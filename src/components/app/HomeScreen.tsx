@@ -46,7 +46,8 @@ const HomeScreen: React.FC<HomeScreenProps> = ({ onNavigate, onSettings, onUpgra
   const juImg = JU_STICKERS[stickerKey];
 
   const handleMoodSelect = (value: number) => {
-    setSelectedMood(value);
+    if (controlledMoodSelect) controlledMoodSelect(value);
+    else setLocalMood(value);
   };
 
   return (
