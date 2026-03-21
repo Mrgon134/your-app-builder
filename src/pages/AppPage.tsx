@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useLang } from "@/lib/i18n";
 import { useAuth } from "@/lib/auth";
-import { fetchEntries, createEntry, fetchStreak, updateStreak, EntryRow, StreakRow } from "@/lib/api";
+import { fetchEntries, createEntry, fetchProfile, updateProfile, EntryRow, ProfileRow } from "@/lib/api";
 import OnboardingScreen from "@/components/app/OnboardingScreen";
 import HomeScreen from "@/components/app/HomeScreen";
 import JournalScreen from "@/components/app/JournalScreen";
@@ -15,7 +15,8 @@ type Screen = "home" | "journal" | "insights" | "coach" | "pro" | "settings";
 const AppPage: React.FC = () => {
   const { t } = useLang();
   const { user } = useAuth();
-  const [showOnboarding, setShowOnboarding] = useState(() => !localStorage.getItem("nuju-onboarded"));
+  const [profile, setProfile] = useState<ProfileRow | null>(null);
+  const [showOnboarding, setShowOnboarding] = useState(false);
   const [screen, setScreen] = useState<Screen>("home");
   const [entries, setEntries] = useState<Array<{ mood: number; date: string; text: string }>>([]);
   const [streak, setStreak] = useState(0);
@@ -23,23 +24,24 @@ const AppPage: React.FC = () => {
   const [selectedMood, setSelectedMood] = useState<number>(3);
   const [energy, setEnergy] = useState(50);
 
-  // Load entries and streak from Supabase
   useEffect(() => {
     if (!user) return;
     const load = async () => {
       try {
-        const [dbEntries, dbStreak] = await Promise.all([
+        const [dbProfile, dbEntries] = await Promise.all([
+          fetchProfile(user.id),
           fetchEntries(user.id),
-          fetchStreak(user.id),
         ]);
+        setProfile(dbProfile);
+        setShowOnboarding(!dbProfile?.onboarded);
+        setStreak(dbProfile?.streak_current || 0);
         setEntries(
           dbEntries.map((e) => ({
             mood: e.mood,
             date: e.entry_date,
-            text: e.text_content,
+            text: e.text,
           }))
         );
-        setStreak(dbStreak?.current_streak || 0);
       } catch (err) {
         console.error("Failed to load data:", err);
       } finally {
@@ -49,8 +51,10 @@ const AppPage: React.FC = () => {
     load();
   }, [user]);
 
-  const handleOnboardingComplete = () => {
-    localStorage.setItem("nuju-onboarded", "true");
+  const handleOnboardingComplete = async () => {
+    if (user) {
+      await updateProfile(user.id, { onboarded: true } as any);
+    }
     setShowOnboarding(false);
   };
 
@@ -59,11 +63,15 @@ const AppPage: React.FC = () => {
     try {
       const entry = await createEntry(user.id, selectedMood, text, energy);
       setEntries((prev) => [
-        { mood: entry.mood, date: entry.entry_date, text: entry.text_content },
+        { mood: entry.mood, date: entry.entry_date, text: entry.text },
         ...prev,
       ]);
-      const updatedStreak = await updateStreak(user.id);
-      setStreak(updatedStreak.current_streak);
+      // Refresh profile for updated streak
+      const updatedProfile = await fetchProfile(user.id);
+      if (updatedProfile) {
+        setStreak(updatedProfile.streak_current);
+        setProfile(updatedProfile);
+      }
     } catch (err) {
       console.error("Failed to save entry:", err);
     }
@@ -105,10 +113,7 @@ const AppPage: React.FC = () => {
           />
         )}
         {screen === "journal" && (
-          <JournalScreen
-            onBack={() => setScreen("home")}
-            onSave={handleSaveEntry}
-          />
+          <JournalScreen onBack={() => setScreen("home")} onSave={handleSaveEntry} />
         )}
         {screen === "insights" && <InsightsScreen entries={entries} onUpgrade={() => setScreen("pro")} />}
         {screen === "coach" && <CoachScreen />}
