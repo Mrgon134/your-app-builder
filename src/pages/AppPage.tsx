@@ -19,6 +19,7 @@ type Screen = "home" | "journal" | "insights" | "coach" | "pro" | "settings";
 const AppPage: React.FC = () => {
   const { t } = useLang();
   const { user } = useAuth();
+  const { country } = useGeoPricing();
   const [profile, setProfile] = useState<ProfileRow | null>(null);
   const [showOnboarding, setShowOnboarding] = useState(false);
   const [screen, setScreen] = useState<Screen>("home");
