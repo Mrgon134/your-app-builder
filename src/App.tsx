@@ -6,6 +6,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { LangProvider } from "@/lib/i18n";
 import Index from "./pages/Index.tsx";
 import AppPage from "./pages/AppPage.tsx";
+import Install from "./pages/Install.tsx";
 import NotFound from "./pages/NotFound.tsx";
 
 const queryClient = new QueryClient();
