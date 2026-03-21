@@ -1,14 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { useLang } from "@/lib/i18n";
 import { useAuth } from "@/lib/auth";
-import { fetchEntries, createEntry, fetchProfile, updateProfile, EntryRow, ProfileRow } from "@/lib/api";
+import { fetchEntries, createEntry, fetchProfile, updateProfile, checkEntryLimit, EntryRow, ProfileRow } from "@/lib/api";
 import OnboardingScreen from "@/components/app/OnboardingScreen";
 import HomeScreen from "@/components/app/HomeScreen";
 import JournalScreen from "@/components/app/JournalScreen";
 import InsightsScreen from "@/components/app/InsightsScreen";
 import CoachScreen from "@/components/app/CoachScreen";
 import SettingsScreen from "@/components/app/SettingsScreen";
+import Confetti from "@/components/app/Confetti";
 import { Home, BarChart3, MessageCircle, Sparkles, Loader2 } from "lucide-react";
+import { toast } from "sonner";
 
 type Screen = "home" | "journal" | "insights" | "coach" | "pro" | "settings";
 
@@ -23,6 +25,8 @@ const AppPage: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [selectedMood, setSelectedMood] = useState<number>(3);
   const [energy, setEnergy] = useState(50);
+  const [showConfetti, setShowConfetti] = useState(false);
+  const [showSignupAfterSave, setShowSignupAfterSave] = useState(false);
 
   useEffect(() => {
     if (!user) return;
@@ -58,19 +62,41 @@ const AppPage: React.FC = () => {
     setShowOnboarding(false);
   };
 
+  // Confetti on mood 5 selection
+  const handleMoodSelect = useCallback((mood: number) => {
+    setSelectedMood(mood);
+    if (mood === 5) {
+      setShowConfetti(true);
+    }
+  }, []);
+
   const handleSaveEntry = async (text: string): Promise<string | null> => {
     if (!user) return null;
     try {
+      // Check entry limit (free = 3/week)
+      const canWrite = await checkEntryLimit(user.id);
+      if (!canWrite) {
+        toast.error(t.history_locked || "Entry limit reached. Upgrade for unlimited entries.");
+        return null;
+      }
+
       const entry = await createEntry(user.id, selectedMood, text, energy);
-      setEntries((prev) => [
+      const newEntries = [
         { mood: entry.mood, date: entry.entry_date, text: entry.text },
-        ...prev,
-      ]);
+        ...entries,
+      ];
+      setEntries(newEntries);
+
       // Refresh profile for updated streak
       const updatedProfile = await fetchProfile(user.id);
       if (updatedProfile) {
         setStreak(updatedProfile.streak_current);
         setProfile(updatedProfile);
+      }
+
+      // Show SignupPrompt after 3rd entry (1.5s delay)
+      if (newEntries.length === 3) {
+        setTimeout(() => setShowSignupAfterSave(true), 1500);
       }
 
       // Get AI insight
@@ -121,6 +147,35 @@ const AppPage: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
+      {/* Confetti overlay */}
+      <Confetti active={showConfetti} onComplete={() => setShowConfetti(false)} />
+
+      {/* Signup prompt modal after 3rd entry */}
+      {showSignupAfterSave && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-foreground/30 backdrop-blur-sm p-6 animate-fade-in">
+          <div className="bg-card rounded-3xl p-6 max-w-xs w-full shadow-xl border border-border/50 text-center animate-celebrate-pop">
+            <h3 className="font-serif text-xl font-bold text-foreground mb-2">
+              {(t.signup_title || "Ju knows you now").replace("{n}", String(entries.length))}
+            </h3>
+            <p className="text-sm text-muted-foreground mb-5 leading-relaxed">
+              {(t.signup_desc || "You've written {n} entries. Create an account to keep your journal safe forever.").replace("{n}", String(entries.length))}
+            </p>
+            <button
+              onClick={() => { setShowSignupAfterSave(false); setScreen("pro"); }}
+              className="w-full py-3 rounded-2xl bg-primary text-primary-foreground font-semibold text-sm mb-2 transition-all active:scale-[0.97]"
+            >
+              {t.signup_btn || "Save my journal"}
+            </button>
+            <button
+              onClick={() => setShowSignupAfterSave(false)}
+              className="w-full py-2 text-sm text-muted-foreground transition-all active:scale-[0.97]"
+            >
+              {t.signup_later || "Maybe later"}
+            </button>
+          </div>
+        </div>
+      )}
+
       <div className="flex-1 w-full max-w-app mx-auto px-4 pt-6 pb-24">
         {screen === "home" && (
           <HomeScreen
@@ -130,7 +185,7 @@ const AppPage: React.FC = () => {
             streak={streak}
             entries={entries}
             selectedMood={selectedMood}
-            onMoodSelect={setSelectedMood}
+            onMoodSelect={handleMoodSelect}
             energy={energy}
             onEnergyChange={setEnergy}
           />

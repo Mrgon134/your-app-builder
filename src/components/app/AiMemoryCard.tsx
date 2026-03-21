@@ -33,14 +33,16 @@ const AiMemoryCard: React.FC<AiMemoryCardProps> = ({ entries }) => {
     return () => clearTimeout(timer);
   }, []);
 
-  const memory = useMemo(() => {
-    if (entries.length < 2) return null;
+  const memories = useMemo(() => {
+    if (entries.length < 3) return null;
     const patterns = MEMORY_PATTERNS[lang as keyof typeof MEMORY_PATTERNS] || MEMORY_PATTERNS.en;
-    // Deterministic pick based on entry count so it doesn't change on re-render
-    return patterns[entries.length % patterns.length];
+    // 3+ entries: 1 pattern. 7+: 3 patterns per spec
+    const count = entries.length >= 7 ? 3 : 1;
+    const startIdx = entries.length % patterns.length;
+    return Array.from({ length: count }, (_, i) => patterns[(startIdx + i) % patterns.length]);
   }, [entries.length, lang]);
 
-  if (!memory || !visible) return null;
+  if (!memories || !visible) return null;
 
   return (
     <div
@@ -59,13 +61,20 @@ const AiMemoryCard: React.FC<AiMemoryCardProps> = ({ entries }) => {
         <div className="flex items-center gap-1.5">
           <Brain className="w-3.5 h-3.5 text-primary" />
           <p className="text-xs font-medium text-primary uppercase tracking-wider">
-            {t.ju_remembers || "Ju remembers"}
+            {(t.ju_remembers || "Ju remembers")}
           </p>
         </div>
       </div>
-      <p className="font-writing text-sm italic text-foreground leading-relaxed">
-        {memory}
+      <p className="text-[11px] text-muted-foreground mb-2">
+        {(t.ju_memory_desc || "Based on your past {n} entries, Ju noticed:").replace("{n}", String(entries.length))}
       </p>
+      <ul className="space-y-1.5">
+        {memories.map((m, i) => (
+          <li key={i} className="font-writing text-sm italic text-foreground leading-relaxed">
+            • {m}
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };
