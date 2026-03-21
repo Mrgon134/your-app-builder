@@ -195,6 +195,10 @@ const CoachScreen: React.FC<{ onUpgrade?: () => void }> = ({ onUpgrade }) => {
           if (user && assistantSoFar) {
             saveCoachMessage(user.id, "assistant", assistantSoFar, persona).catch(console.error);
           }
+          // Re-check limit after sending
+          if (user) {
+            checkCoachLimit(user.id).then(setCanSend).catch(console.error);
+          }
         },
         onError: (msg) => {
           setIsLoading(false);
