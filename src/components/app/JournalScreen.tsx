@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useLang } from "@/lib/i18n";
 import { coachResponses } from "@/lib/constants";
+import { JU_STICKERS } from "@/lib/stickers";
 import { ArrowLeft } from "lucide-react";
 
 interface JournalScreenProps {
@@ -33,7 +34,6 @@ const JournalScreen: React.FC<JournalScreenProps> = ({ onBack, onSave }) => {
 
   const handleSave = () => {
     if (!text.trim()) return;
-    // Mock AI insight
     const responses = coachResponses.gentle;
     setInsight(responses[Math.floor(Math.random() * responses.length)]);
     onSave(text);
@@ -45,11 +45,19 @@ const JournalScreen: React.FC<JournalScreenProps> = ({ onBack, onSave }) => {
   if (saved) {
     return (
       <div className="animate-fade-up text-center py-8">
-        <div className="text-5xl mb-4 animate-celebrate-pop">🎉</div>
+        {/* Yay sticker for celebration */}
+        <img
+          src={JU_STICKERS.yay}
+          alt="Yay!"
+          className="w-24 h-24 mx-auto mb-4 animate-[mascot-swap_0.3s_ease-out]"
+        />
         <h2 className="font-serif text-2xl font-bold mb-6">{t.done}!</h2>
         {insight && (
-          <div className="bg-card rounded-3xl p-6 mb-8 text-left shadow-sm border border-border/50">
-            <p className="text-xs font-medium text-primary uppercase tracking-wider mb-3">{t.ju_insight}</p>
+          <div className="bg-card rounded-3xl p-6 mb-4 text-left shadow-sm border border-border/50">
+            <div className="flex items-center gap-2 mb-3">
+              <img src={JU_STICKERS.goodjob} alt="" className="w-8 h-8" />
+              <p className="text-xs font-medium text-primary uppercase tracking-wider">{t.ju_insight}</p>
+            </div>
             <p className="font-writing text-base italic text-foreground leading-relaxed">
               {typedInsight}
               {!insightDone && <span className="inline-block w-0.5 h-4 bg-primary ml-0.5 animate-pulse-scale" />}
@@ -68,10 +76,18 @@ const JournalScreen: React.FC<JournalScreenProps> = ({ onBack, onSave }) => {
 
   return (
     <div className="animate-fade-up">
-      <button onClick={onBack} className="flex items-center gap-2 text-muted-foreground mb-6 transition-all active:scale-[0.97]">
-        <ArrowLeft className="w-5 h-5" />
-        <span className="text-sm font-medium">{t.back}</span>
-      </button>
+      <div className="flex items-center justify-between mb-6">
+        <button onClick={onBack} className="flex items-center gap-2 text-muted-foreground transition-all active:scale-[0.97]">
+          <ArrowLeft className="w-5 h-5" />
+          <span className="text-sm font-medium">{t.back}</span>
+        </button>
+        {/* Dear Diary sticker while writing */}
+        <img
+          src={JU_STICKERS.diary}
+          alt="Writing"
+          className="w-10 h-10 animate-[ju-float_3s_ease-in-out_infinite]"
+        />
+      </div>
 
       <textarea
         value={text}

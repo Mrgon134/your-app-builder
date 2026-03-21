@@ -2,17 +2,8 @@ import React, { useState } from "react";
 import { useLang } from "@/lib/i18n";
 import { MOODS, getGreeting, getRandomPrompt } from "@/lib/constants";
 import MoodIcon from "@/components/MoodIcon";
-import juMain from "@/assets/ju-main.png";
-import juRough from "@/assets/ju-rough.png";
-import juLow from "@/assets/ju-low.png";
-import juOkay from "@/assets/ju-okay.png";
-import juGood from "@/assets/ju-good.png";
-import juGreat from "@/assets/ju-great.png";
+import { JU_STICKERS, getMascotForState } from "@/lib/stickers";
 import { Settings, Flame } from "lucide-react";
-
-const juMoodImages: Record<number, string> = {
-  1: juRough, 2: juLow, 3: juOkay, 4: juGood, 5: juGreat,
-};
 
 interface HomeScreenProps {
   onNavigate: (screen: string) => void;
@@ -27,7 +18,9 @@ const HomeScreen: React.FC<HomeScreenProps> = ({ onNavigate, onSettings, streak 
   const [energy, setEnergy] = useState(50);
 
   const greeting = getGreeting(t);
-  const juImg = selectedMood ? juMoodImages[selectedMood] : juMain;
+  const isNight = new Date().getHours() >= 21;
+  const stickerKey = getMascotForState({ selectedMood, isNight });
+  const juImg = JU_STICKERS[stickerKey];
 
   const handleMoodSelect = (value: number) => {
     setSelectedMood(value);
@@ -57,11 +50,11 @@ const HomeScreen: React.FC<HomeScreenProps> = ({ onNavigate, onSettings, streak 
         </div>
       </div>
 
-      {/* Mascot - all images preloaded, instant swap */}
+      {/* Mascot - sticker based on state */}
       <div className="relative w-28 h-28 mx-auto mb-8">
         <div className="absolute inset-0 rounded-full bg-primary/15 animate-glow-pulse" />
-        {/* Preload all mood images offscreen */}
-        {Object.values(juMoodImages).map((src) => (
+        {/* Preload all stickers */}
+        {Object.values(JU_STICKERS).map((src) => (
           <img key={src} src={src} alt="" className="hidden" aria-hidden />
         ))}
         <img

@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect, useCallback } from "react";
 import { useLang } from "@/lib/i18n";
 import { AI_PERSONAS, coachResponses } from "@/lib/constants";
 import { Send } from "lucide-react";
+import { JU_STICKERS } from "@/lib/stickers";
 import coachGentle from "@/assets/coach-gentle.png";
 import coachTough from "@/assets/coach-tough.png";
 import coachWise from "@/assets/coach-wise.png";
@@ -130,7 +131,8 @@ const CoachScreen: React.FC = () => {
           </div>
         ))}
         {typing && (
-          <div className="flex justify-start" style={{ animation: "msg-enter 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards" }}>
+          <div className="flex justify-start items-end gap-2" style={{ animation: "msg-enter 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards" }}>
+            <img src={JU_STICKERS.hmm} alt="Thinking" className="w-8 h-8 animate-[ju-float_2s_ease-in-out_infinite]" />
             <div className="bg-card border border-border/50 px-4 py-3 rounded-2xl rounded-bl-sm flex gap-1">
               {[0, 1, 2].map((i) => (
                 <div
