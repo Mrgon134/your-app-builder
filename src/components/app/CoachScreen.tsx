@@ -201,6 +201,7 @@ const CoachScreen: React.FC<{ onUpgrade?: () => void }> = ({ onUpgrade }) => {
           // Re-check limit after sending
           if (user) {
             checkCoachLimit(user.id).then(setCanSend).catch(console.error);
+            countCoachMessagesThisWeek(user.id).then(setMessagesUsed).catch(console.error);
           }
         },
         onError: (msg) => {
