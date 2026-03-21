@@ -45,7 +45,7 @@ const AuthPage: React.FC = () => {
     setError("");
     try {
       const result = await lovable.auth.signInWithOAuth("google", {
-        redirect_uri: window.location.origin,
+        redirect_uri: window.location.origin + "/app",
       });
       if (result.error) {
         setError(result.error.message || "Google sign-in failed");

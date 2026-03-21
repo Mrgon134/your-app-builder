@@ -121,7 +121,7 @@ const InsightsScreen: React.FC<InsightsScreenProps> = ({ entries, onUpgrade }) =
             <span className="text-sm">Analyzing your week...</span>
           </div>
         ) : (
-          <p className="font-writing text-sm italic text-foreground leading-relaxed">
+          <p className="text-sm text-foreground leading-relaxed">
             {aiSummary || (entries.length > 0 ? t.summary_has_entries : t.summary_no_entries)}
           </p>
         )}
