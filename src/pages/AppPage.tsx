@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react";
+import { useGeoPricing } from "@/hooks/use-geo-pricing";
 import { useLang } from "@/lib/i18n";
 import { useAuth } from "@/lib/auth";
 import { fetchEntries, createEntry, fetchProfile, updateProfile, checkEntryLimit, EntryRow, ProfileRow } from "@/lib/api";
