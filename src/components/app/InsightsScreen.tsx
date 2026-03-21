@@ -30,18 +30,18 @@ const InsightsScreen: React.FC<InsightsScreenProps> = ({ entries, onUpgrade }) =
       {/* Weekly mood wave */}
       <div className="bg-card rounded-3xl p-5 shadow-sm border border-border/50">
         <p className="text-xs font-medium text-primary uppercase tracking-wider mb-4">{t.weekly_mood}</p>
-        <div className="flex items-end justify-between gap-1 h-24">
+        <div className="flex items-end justify-between gap-2 h-32">
           {weekMoods.map((mood, i) => {
             const moodData = MOODS.find((m) => m.value === mood) || MOODS[2];
-            const height = (mood / 5) * 100;
+            const barHeight = Math.max(mood * 18, 12);
             return (
-              <div key={i} className="flex-1 flex flex-col items-center gap-1">
+              <div key={i} className="flex-1 flex flex-col items-center gap-1.5">
                 <div
                   className="w-full rounded-xl transition-all duration-500"
                   style={{
-                    height: `${height}%`,
+                    height: `${barHeight}px`,
                     background: moodData.color,
-                    opacity: 0.7,
+                    animationDelay: `${i * 0.08}s`,
                   }}
                 />
                 <span className="text-[10px] text-muted-foreground">{weekDays[i]}</span>
