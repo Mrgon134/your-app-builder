@@ -2,7 +2,8 @@ import React, { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useLang } from "@/lib/i18n";
 import { addToWaitlist } from "@/lib/api";
-import { Crosshair, PenLine, BrainCircuit, Check, Shield, Zap, Heart, Star, Quote } from "lucide-react";
+import { useGeoPricing } from "@/hooks/use-geo-pricing";
+import { Crosshair, PenLine, BrainCircuit, Check, Shield, Zap, Heart, Star, Quote, Globe } from "lucide-react";
 import juMain from "@/assets/ju-main.webp";
 import { toast } from "sonner";
 
