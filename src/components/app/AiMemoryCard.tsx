@@ -42,7 +42,7 @@ const AiMemoryCard: React.FC<AiMemoryCardProps> = ({ entries }) => {
     return Array.from({ length: count }, (_, i) => patterns[(startIdx + i) % patterns.length]);
   }, [entries.length, lang]);
 
-  if (!memory || !visible) return null;
+  if (!memories || !visible) return null;
 
   return (
     <div
@@ -61,13 +61,20 @@ const AiMemoryCard: React.FC<AiMemoryCardProps> = ({ entries }) => {
         <div className="flex items-center gap-1.5">
           <Brain className="w-3.5 h-3.5 text-primary" />
           <p className="text-xs font-medium text-primary uppercase tracking-wider">
-            {t.ju_remembers || "Ju remembers"}
+            {(t.ju_remembers || "Ju remembers")}
           </p>
         </div>
       </div>
-      <p className="font-writing text-sm italic text-foreground leading-relaxed">
-        {memory}
+      <p className="text-[11px] text-muted-foreground mb-2">
+        {(t.ju_memory_desc || "Based on your past {n} entries, Ju noticed:").replace("{n}", String(entries.length))}
       </p>
+      <ul className="space-y-1.5">
+        {memories.map((m, i) => (
+          <li key={i} className="font-writing text-sm italic text-foreground leading-relaxed">
+            • {m}
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };
