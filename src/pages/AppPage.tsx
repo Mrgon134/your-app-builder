@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react";
+import { useGeoPricing } from "@/hooks/use-geo-pricing";
 import { useLang } from "@/lib/i18n";
 import { useAuth } from "@/lib/auth";
 import { fetchEntries, createEntry, fetchProfile, updateProfile, checkEntryLimit, EntryRow, ProfileRow } from "@/lib/api";
@@ -18,6 +19,7 @@ type Screen = "home" | "journal" | "insights" | "coach" | "pro" | "settings";
 const AppPage: React.FC = () => {
   const { t } = useLang();
   const { user } = useAuth();
+  const { country } = useGeoPricing();
   const [profile, setProfile] = useState<ProfileRow | null>(null);
   const [showOnboarding, setShowOnboarding] = useState(false);
   const [screen, setScreen] = useState<Screen>("home");
@@ -99,6 +101,7 @@ const AppPage: React.FC = () => {
             variant_id: variantId,
             user_id: user.id,
             user_email: user.email,
+            country,
           }),
         }
       );
