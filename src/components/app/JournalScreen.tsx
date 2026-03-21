@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useLang } from "@/lib/i18n";
-import { coachResponses } from "@/lib/constants";
 import { JU_STICKERS } from "@/lib/stickers";
 import { ArrowLeft } from "lucide-react";
 
 interface JournalScreenProps {
   onBack: () => void;
-  onSave: (text: string) => void;
+  onSave: (text: string) => Promise<string | null>;
 }
 
 const useTypingEffect = (text: string, speed = 22) => {
@@ -15,6 +14,7 @@ const useTypingEffect = (text: string, speed = 22) => {
   useEffect(() => {
     setDisplayed("");
     setDone(false);
+    if (!text) return;
     let i = 0;
     const timer = setInterval(() => {
       i++;
@@ -31,13 +31,20 @@ const JournalScreen: React.FC<JournalScreenProps> = ({ onBack, onSave }) => {
   const [text, setText] = useState("");
   const [saved, setSaved] = useState(false);
   const [insight, setInsight] = useState("");
+  const [saving, setSaving] = useState(false);
 
-  const handleSave = () => {
-    if (!text.trim()) return;
-    const responses = coachResponses.gentle;
-    setInsight(responses[Math.floor(Math.random() * responses.length)]);
-    onSave(text);
-    setSaved(true);
+  const handleSave = async () => {
+    if (!text.trim() || saving) return;
+    setSaving(true);
+    try {
+      const aiInsight = await onSave(text);
+      setInsight(aiInsight || "");
+      setSaved(true);
+    } catch (err) {
+      console.error("Save failed:", err);
+    } finally {
+      setSaving(false);
+    }
   };
 
   const { displayed: typedInsight, done: insightDone } = useTypingEffect(insight);
@@ -45,7 +52,6 @@ const JournalScreen: React.FC<JournalScreenProps> = ({ onBack, onSave }) => {
   if (saved) {
     return (
       <div className="animate-fade-up text-center py-8">
-        {/* Yay sticker for celebration */}
         <img
           src={JU_STICKERS.yay}
           alt="Yay!"
@@ -81,7 +87,6 @@ const JournalScreen: React.FC<JournalScreenProps> = ({ onBack, onSave }) => {
           <ArrowLeft className="w-5 h-5" />
           <span className="text-sm font-medium">{t.back}</span>
         </button>
-        {/* Dear Diary sticker while writing */}
         <img
           src={JU_STICKERS.diary}
           alt="Writing"
@@ -99,10 +104,10 @@ const JournalScreen: React.FC<JournalScreenProps> = ({ onBack, onSave }) => {
 
       <button
         onClick={handleSave}
-        disabled={!text.trim()}
+        disabled={!text.trim() || saving}
         className="w-full mt-6 py-4 rounded-2xl bg-primary text-primary-foreground font-semibold text-base transition-all hover:shadow-lg hover:shadow-primary/20 active:scale-[0.97] disabled:opacity-40 disabled:hover:shadow-none"
       >
-        {t.save}
+        {saving ? "..." : t.save}
       </button>
     </div>
   );
