@@ -77,10 +77,10 @@ const AppPage: React.FC = () => {
       // Variant IDs should be configured in Lemon Squeezy dashboard
       // These are placeholders — replace with real variant IDs
       const variantMap: Record<string, string> = {
-        plus_monthly: "PLUS_MONTHLY_VARIANT_ID",
-        plus_annual: "PLUS_ANNUAL_VARIANT_ID",
-        pro_monthly: "PRO_MONTHLY_VARIANT_ID",
-        pro_annual: "PRO_ANNUAL_VARIANT_ID",
+        plus_monthly: "1428721",
+        plus_annual: "1428730",
+        pro_monthly: "1428741",
+        pro_annual: "1428750",
       };
       const variantId = variantMap[plan];
       if (!variantId || variantId.includes("VARIANT_ID")) {
