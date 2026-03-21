@@ -83,6 +83,12 @@ export const translations: Record<string, Record<string, string>> = {
     enter_email: "Enter your email",
     cta_final: "Your mind deserves more than a blank page",
     cta_final_desc: "Start your journey with Ju today. It only takes 30 seconds.",
+    signup_title: "Ju is getting to know you!",
+    signup_desc: "You've used your free entries. Unlock unlimited journaling, all coach personas, and full history.",
+    signup_cta: "Unlock full access",
+    ju_remembers: "Ju remembers",
+    history_locked: "Full history locked",
+    history_locked_desc: "Free plan shows 7 days. Upgrade to see all your entries.",
   },
   id: {
     greeting_morning: "Selamat pagi",
