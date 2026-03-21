@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useLang } from "@/lib/i18n";
-import { Sparkles, Check, ArrowLeft } from "lucide-react";
+import { Check, ArrowLeft, Globe } from "lucide-react";
+import { useGeoPricing } from "@/hooks/use-geo-pricing";
 
 interface PricingScreenProps {
   currentPlan?: string;
@@ -8,50 +9,50 @@ interface PricingScreenProps {
   onBack: () => void;
 }
 
-const tiers = [
-  {
-    id: "free",
-    name: "Free",
-    monthlyPrice: 0,
-    annualPrice: 0,
-    features: [
-      "3 entries per week",
-      "Basic mood tracking",
-      "7-day history",
-    ],
-  },
-  {
-    id: "plus",
-    name: "Plus",
-    monthlyPrice: 4.99,
-    annualPrice: 39.99,
-    popular: true,
-    features: [
-      "Unlimited entries",
-      "Full history",
-      "AI insights",
-      "Mood trends & analytics",
-      "All coach personas",
-    ],
-  },
-  {
-    id: "pro",
-    name: "Pro",
-    monthlyPrice: 9.99,
-    annualPrice: 79.99,
-    features: [
-      "Everything in Plus",
-      "Voice journaling",
-      "Relationship mood map",
-      "AI memory & patterns",
-      "Priority support",
-    ],
-  },
-];
-
 const PricingScreen: React.FC<PricingScreenProps> = ({ currentPlan = "free", onCheckout, onBack }) => {
   const { t } = useLang();
   const [annual, setAnnual] = useState(false);
+  const geo = useGeoPricing();
+
+  const tiers = [
+    {
+      id: "free",
+      name: "Free",
+      getPrice: () => 0,
+      features: [
+        "3 entries per week",
+        "Basic mood tracking",
+        "7-day history",
+      ],
+    },
+    {
+      id: "plus",
+      name: "Plus",
+      popular: true,
+      getPrice: () => annual ? geo.rates.plusAnnual : geo.rates.plusMonthly,
+      features: [
+        "Unlimited entries",
+        "Full history",
+        "AI insights",
+        "Mood trends & analytics",
+        "All coach personas",
+      ],
+    },
+    {
+      id: "pro",
+      name: "Pro",
+      getPrice: () => annual ? geo.rates.proAnnual : geo.rates.proMonthly,
+      features: [
+        "Everything in Plus",
+        "Voice journaling",
+        "Relationship mood map",
+        "AI memory & patterns",
+        "Priority support",
+      ],
+    },
+  ];
+
+  const period = annual ? "/year" : "/month";
 
   return (
     <div className="animate-fade-up pb-8">
@@ -62,6 +63,16 @@ const PricingScreen: React.FC<PricingScreenProps> = ({ currentPlan = "free", onC
         </button>
         <h1 className="font-serif text-xl font-bold">{t.unlock_ju}</h1>
       </div>
+
+      {/* Currency badge */}
+      {geo.currency !== "USD" && (
+        <div className="flex items-center justify-center gap-1.5 mb-4">
+          <Globe className="w-3.5 h-3.5 text-muted-foreground" />
+          <span className="text-xs text-muted-foreground">
+            Prices shown in {geo.currency}
+          </span>
+        </div>
+      )}
 
       {/* Billing toggle */}
       <div className="flex items-center justify-center gap-3 mb-6">
@@ -87,8 +98,7 @@ const PricingScreen: React.FC<PricingScreenProps> = ({ currentPlan = "free", onC
       <div className="space-y-4">
         {tiers.map((tier) => {
           const isCurrent = currentPlan === tier.id;
-          const price = annual ? tier.annualPrice : tier.monthlyPrice;
-          const period = annual ? "/year" : "/month";
+          const price = tier.getPrice();
 
           return (
             <div
@@ -107,7 +117,7 @@ const PricingScreen: React.FC<PricingScreenProps> = ({ currentPlan = "free", onC
 
               <div className="flex items-baseline gap-1 mb-4">
                 <span className="font-serif text-2xl font-bold text-foreground">
-                  {price === 0 ? "Free" : `$${price.toFixed(2)}`}
+                  {price === 0 ? "Free" : geo.formatPrice(price)}
                 </span>
                 {price > 0 && (
                   <span className="text-sm text-muted-foreground">{period}</span>
