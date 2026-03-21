@@ -9,6 +9,7 @@ interface SettingsScreenProps {
 
 const SettingsScreen: React.FC<SettingsScreenProps> = ({ onBack }) => {
   const { t, lang, setLang } = useLang();
+  const { signOut, user } = useAuth();
   const [darkMode, setDarkMode] = useState(document.documentElement.classList.contains("dark"));
 
   const toggleDark = () => {
