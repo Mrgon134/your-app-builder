@@ -9,7 +9,7 @@ interface SettingsScreenProps {
   onUpgrade?: () => void;
 }
 
-const SettingsScreen: React.FC<SettingsScreenProps> = ({ onBack }) => {
+const SettingsScreen: React.FC<SettingsScreenProps> = ({ onBack, onUpgrade }) => {
   const { t, lang, setLang } = useLang();
   const { signOut, user } = useAuth();
   const [darkMode, setDarkMode] = useState(document.documentElement.classList.contains("dark"));
