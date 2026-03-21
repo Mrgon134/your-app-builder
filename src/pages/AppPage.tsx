@@ -47,7 +47,7 @@ const AppPage: React.FC = () => {
     { id: "home" as const, icon: Home, label: t.home },
     { id: "insights" as const, icon: BarChart3, label: t.insights_label },
     { id: "coach" as const, icon: MessageCircle, label: t.coach_label },
-    { id: "pro" as const, icon: Crown, label: t.pro_label },
+    { id: "pro" as const, icon: Sparkles, label: t.pro_label },
   ];
 
   return (
