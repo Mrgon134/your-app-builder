@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { useLang } from "@/lib/i18n";
 import { useAuth } from "@/lib/auth";
 import { lovable } from "@/integrations/lovable/index";
