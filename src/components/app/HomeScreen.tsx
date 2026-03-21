@@ -53,15 +53,11 @@ const HomeScreen: React.FC<HomeScreenProps> = ({ onNavigate, onSettings, streak 
       {/* Mascot - sticker based on state */}
       <div className="relative w-28 h-28 mx-auto mb-8">
         <div className="absolute inset-0 rounded-full bg-primary/15 animate-glow-pulse" />
-        {/* Preload all stickers */}
-        {Object.values(JU_STICKERS).map((src) => (
-          <img key={src} src={src} alt="" className="hidden" aria-hidden />
-        ))}
         <img
-          key={juImg}
           src={juImg}
           alt="Ju"
-          className="relative w-full h-full object-contain animate-[mascot-swap_0.2s_ease-out]"
+          className="relative w-full h-full object-contain transition-all duration-150 ease-out"
+          style={{ willChange: "transform, opacity" }}
         />
       </div>
 
