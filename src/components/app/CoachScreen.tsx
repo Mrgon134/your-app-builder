@@ -38,7 +38,7 @@ const CoachScreen: React.FC = () => {
       <h1 className="font-serif text-2xl font-bold text-foreground mb-4">{t.ai_coach}</h1>
 
       {/* Persona pills */}
-      <div className="flex gap-2 mb-4 overflow-x-auto pb-2 -mx-1 px-1">
+      <div className="flex flex-wrap gap-2 mb-4 pb-2">
         {AI_PERSONAS.map((p) => (
           <button
             key={p.id}
