@@ -7,10 +7,10 @@ import { useAuth } from "@/lib/auth";
 import { saveCoachMessage, fetchCoachMessages, checkCoachLimit, fetchProfile } from "@/lib/api";
 import { toast } from "sonner";
 import { Lock } from "lucide-react";
-import coachGentle from "@/assets/coach-gentle.png";
-import coachTough from "@/assets/coach-tough.png";
-import coachWise from "@/assets/coach-wise.png";
-import coachFun from "@/assets/coach-fun.png";
+import coachGentle from "@/assets/coach-gentle.webp";
+import coachTough from "@/assets/coach-tough.webp";
+import coachWise from "@/assets/coach-wise.webp";
+import coachFun from "@/assets/coach-fun.webp";
 
 const COACH_ICONS: Record<string, string> = {
   gentle: coachGentle,

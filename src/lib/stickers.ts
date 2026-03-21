@@ -1,11 +1,11 @@
-import stickerHi from "@/assets/sticker-hi.png";
-import stickerZen from "@/assets/sticker-zen.png";
-import stickerDiary from "@/assets/sticker-diary.png";
-import stickerLove from "@/assets/sticker-love.png";
-import stickerZzz from "@/assets/sticker-zzz.png";
-import stickerYay from "@/assets/sticker-yay.png";
-import stickerHmm from "@/assets/sticker-hmm.png";
-import stickerGoodJob from "@/assets/sticker-goodjob.png";
+import stickerHi from "@/assets/sticker-hi.webp";
+import stickerZen from "@/assets/sticker-zen.webp";
+import stickerDiary from "@/assets/sticker-diary.webp";
+import stickerLove from "@/assets/sticker-love.webp";
+import stickerZzz from "@/assets/sticker-zzz.webp";
+import stickerYay from "@/assets/sticker-yay.webp";
+import stickerHmm from "@/assets/sticker-hmm.webp";
+import stickerGoodJob from "@/assets/sticker-goodjob.webp";
 
 export const JU_STICKERS = {
   hi: stickerHi,

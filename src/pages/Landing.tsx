@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useLang } from "@/lib/i18n";
 import { addToWaitlist } from "@/lib/api";
 import { Crosshair, PenLine, BrainCircuit, Check, Shield, Zap, Heart, Star, Quote } from "lucide-react";
-import juMain from "@/assets/ju-main.png";
+import juMain from "@/assets/ju-main.webp";
 import { toast } from "sonner";
 
 const useReveal = () => {
