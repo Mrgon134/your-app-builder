@@ -57,13 +57,18 @@ const HomeScreen: React.FC<HomeScreenProps> = ({ onNavigate, onSettings, streak 
         </div>
       </div>
 
-      {/* Mascot */}
+      {/* Mascot - all images preloaded, instant swap */}
       <div className="relative w-28 h-28 mx-auto mb-8">
         <div className="absolute inset-0 rounded-full bg-primary/15 animate-glow-pulse" />
+        {/* Preload all mood images offscreen */}
+        {Object.values(juMoodImages).map((src) => (
+          <img key={src} src={src} alt="" className="hidden" aria-hidden />
+        ))}
         <img
+          key={juImg}
           src={juImg}
           alt="Ju"
-          className={`relative w-full h-full object-contain ${selectedMood ? "animate-celebrate-pop" : "animate-ju-float"}`}
+          className="relative w-full h-full object-contain animate-[mascot-swap_0.2s_ease-out]"
         />
       </div>
 
