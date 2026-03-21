@@ -146,7 +146,7 @@ const Landing: React.FC = () => {
                 <ul className="space-y-3 mb-8">
                   {plan.features.map((f) => (
                     <li key={f} className={`text-sm flex items-center gap-2 ${plan.highlight ? "text-primary-foreground/90" : "text-muted-foreground"}`}>
-                      <span className={plan.highlight ? "text-primary-foreground" : "text-primary"}>✓</span>
+                      <Check className={`w-4 h-4 flex-shrink-0 ${plan.highlight ? "text-primary-foreground" : "text-primary"}`} />
                       {f}
                     </li>
                   ))}
