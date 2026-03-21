@@ -4,7 +4,7 @@ import { AI_PERSONAS } from "@/lib/constants";
 import { Send } from "lucide-react";
 import { JU_STICKERS } from "@/lib/stickers";
 import { useAuth } from "@/lib/auth";
-import { saveCoachMessage, fetchCoachMessages, checkCoachLimit, fetchProfile } from "@/lib/api";
+import { saveCoachMessage, fetchCoachMessages, checkCoachLimit, countCoachMessagesThisWeek, fetchProfile } from "@/lib/api";
 import { toast } from "sonner";
 import { Lock } from "lucide-react";
 import coachGentle from "@/assets/coach-gentle.webp";
