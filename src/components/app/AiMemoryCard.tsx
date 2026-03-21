@@ -33,11 +33,13 @@ const AiMemoryCard: React.FC<AiMemoryCardProps> = ({ entries }) => {
     return () => clearTimeout(timer);
   }, []);
 
-  const memory = useMemo(() => {
-    if (entries.length < 2) return null;
+  const memories = useMemo(() => {
+    if (entries.length < 3) return null;
     const patterns = MEMORY_PATTERNS[lang as keyof typeof MEMORY_PATTERNS] || MEMORY_PATTERNS.en;
-    // Deterministic pick based on entry count so it doesn't change on re-render
-    return patterns[entries.length % patterns.length];
+    // 3+ entries: 1 pattern. 7+: 3 patterns per spec
+    const count = entries.length >= 7 ? 3 : 1;
+    const startIdx = entries.length % patterns.length;
+    return Array.from({ length: count }, (_, i) => patterns[(startIdx + i) % patterns.length]);
   }, [entries.length, lang]);
 
   if (!memory || !visible) return null;
