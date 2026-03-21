@@ -6,7 +6,7 @@ import JournalScreen from "@/components/app/JournalScreen";
 import InsightsScreen from "@/components/app/InsightsScreen";
 import CoachScreen from "@/components/app/CoachScreen";
 import SettingsScreen from "@/components/app/SettingsScreen";
-import { Home, BarChart3, MessageCircle, Crown } from "lucide-react";
+import { Home, BarChart3, MessageCircle, Sparkles } from "lucide-react";
 
 type Screen = "home" | "journal" | "insights" | "coach" | "pro" | "settings";
 
