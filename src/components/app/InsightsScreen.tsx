@@ -4,6 +4,8 @@ import { MOODS } from "@/lib/constants";
 import MoodIcon from "@/components/MoodIcon";
 import { Lock } from "lucide-react";
 import HistoryLock from "@/components/app/HistoryLock";
+import MoodTrendChart from "@/components/app/MoodTrendChart";
+import MonthPixelGrid from "@/components/app/MonthPixelGrid";
 
 interface InsightsScreenProps {
   entries: Array<{ mood: number; date: string; text: string }>;
@@ -13,7 +15,7 @@ interface InsightsScreenProps {
 const InsightsScreen: React.FC<InsightsScreenProps> = ({ entries, onUpgrade }) => {
   const { t } = useLang();
 
-  // Generate mock week data
+  // Generate week data
   const weekDays = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
   const weekMoods = entries.length > 0
     ? entries.slice(0, 7).map((e) => e.mood)
@@ -26,6 +28,9 @@ const InsightsScreen: React.FC<InsightsScreenProps> = ({ entries, onUpgrade }) =
   return (
     <div className="animate-fade-up space-y-4">
       <h1 className="font-serif text-2xl font-bold text-foreground mb-6">{t.mind_gallery}</h1>
+
+      {/* 30-Day Mood Trend Chart */}
+      <MoodTrendChart entries={entries} />
 
       {/* Weekly mood wave */}
       <div className="bg-card rounded-3xl p-5 shadow-sm border border-border/50">
@@ -50,6 +55,9 @@ const InsightsScreen: React.FC<InsightsScreenProps> = ({ entries, onUpgrade }) =
           })}
         </div>
       </div>
+
+      {/* Month Pixel Grid */}
+      <MonthPixelGrid entries={entries} />
 
       {/* Stats row */}
       <div className="grid grid-cols-3 gap-3">
