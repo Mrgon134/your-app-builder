@@ -118,7 +118,7 @@ const HomeScreen: React.FC<HomeScreenProps> = ({ onNavigate, onSettings, onUpgra
       {/* Prompt card */}
       <div className="bg-card rounded-3xl p-5 mb-4 shadow-sm border border-border/50">
         <p className="text-xs font-medium text-primary uppercase tracking-wider mb-2">{t.todays_prompt}</p>
-        <p className="font-writing text-base italic text-foreground leading-relaxed">{prompt}</p>
+        <p className="text-[15px] text-foreground leading-relaxed">{prompt}</p>
       </div>
 
       {/* Energy slider */}

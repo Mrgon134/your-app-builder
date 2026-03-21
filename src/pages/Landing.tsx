@@ -274,6 +274,7 @@ const Landing: React.FC = () => {
                   ))}
                 </ul>
                 <button
+                  onClick={() => navigate("/auth")}
                   className={`w-full py-3 rounded-2xl font-semibold text-sm transition-all active:scale-[0.97] ${plan.highlight ? "bg-primary-foreground text-primary hover:shadow-lg" : "bg-secondary text-foreground hover:bg-secondary/80"}`}
                 >
                   {t.start_trial}
