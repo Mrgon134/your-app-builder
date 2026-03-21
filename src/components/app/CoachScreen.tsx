@@ -112,7 +112,7 @@ async function streamChat({
   onDone();
 }
 
-const CoachScreen: React.FC = () => {
+const CoachScreen: React.FC<{ onUpgrade?: () => void }> = ({ onUpgrade }) => {
   const { t } = useLang();
   const { user } = useAuth();
   const [persona, setPersona] = useState("gentle");
@@ -120,16 +120,24 @@ const CoachScreen: React.FC = () => {
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [switching, setSwitching] = useState(false);
+  const [canSend, setCanSend] = useState(true);
+  const [userPlan, setUserPlan] = useState("free");
   const scrollRef = useRef<HTMLDivElement>(null);
 
-  // Load previous messages
+  // Load previous messages + check limit
   useEffect(() => {
     if (!user) return;
-    fetchCoachMessages(user.id, 50).then((data) => {
+    Promise.all([
+      fetchCoachMessages(user.id, 50),
+      checkCoachLimit(user.id),
+      fetchProfile(user.id),
+    ]).then(([data, limitOk, profile]) => {
       if (data.length > 0) {
         setMessages(data.map((m) => ({ role: m.role as "user" | "assistant", content: m.content })));
         if (data[0]?.persona) setPersona(data[0].persona);
       }
+      setCanSend(limitOk);
+      setUserPlan(profile?.plan || "free");
     });
   }, [user]);
 
