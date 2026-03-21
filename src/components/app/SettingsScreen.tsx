@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useLang, LANG_META } from "@/lib/i18n";
-import { ArrowLeft, Moon, Globe, Crown } from "lucide-react";
+import { useAuth } from "@/lib/auth";
+import { ArrowLeft, Moon, Globe, Crown, LogOut } from "lucide-react";
 
 interface SettingsScreenProps {
   onBack: () => void;
@@ -8,6 +9,7 @@ interface SettingsScreenProps {
 
 const SettingsScreen: React.FC<SettingsScreenProps> = ({ onBack }) => {
   const { t, lang, setLang } = useLang();
+  const { signOut, user } = useAuth();
   const [darkMode, setDarkMode] = useState(document.documentElement.classList.contains("dark"));
 
   const toggleDark = () => {
@@ -69,6 +71,17 @@ const SettingsScreen: React.FC<SettingsScreenProps> = ({ onBack }) => {
             {t.start_trial}
           </button>
         </div>
+        {/* Sign out */}
+        <button
+          onClick={signOut}
+          className="w-full bg-card rounded-2xl p-4 flex items-center gap-3 shadow-sm border border-border/50 text-destructive transition-all active:scale-[0.97]"
+        >
+          <LogOut className="w-5 h-5" />
+          <span className="text-sm font-medium">{t.sign_out || "Sign out"}</span>
+        </button>
+        {user && (
+          <p className="text-xs text-muted-foreground text-center mt-2">{user.email}</p>
+        )}
       </div>
     </div>
   );

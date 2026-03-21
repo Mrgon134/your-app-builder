@@ -1,46 +1,84 @@
 import React, { useState, useEffect } from "react";
 import { useLang } from "@/lib/i18n";
+import { useAuth } from "@/lib/auth";
+import { fetchEntries, createEntry, fetchStreak, updateStreak, EntryRow, StreakRow } from "@/lib/api";
 import OnboardingScreen from "@/components/app/OnboardingScreen";
 import HomeScreen from "@/components/app/HomeScreen";
 import JournalScreen from "@/components/app/JournalScreen";
 import InsightsScreen from "@/components/app/InsightsScreen";
 import CoachScreen from "@/components/app/CoachScreen";
 import SettingsScreen from "@/components/app/SettingsScreen";
-import { Home, BarChart3, MessageCircle, Sparkles } from "lucide-react";
+import { Home, BarChart3, MessageCircle, Sparkles, Loader2 } from "lucide-react";
 
 type Screen = "home" | "journal" | "insights" | "coach" | "pro" | "settings";
 
 const AppPage: React.FC = () => {
   const { t } = useLang();
+  const { user } = useAuth();
   const [showOnboarding, setShowOnboarding] = useState(() => !localStorage.getItem("nuju-onboarded"));
   const [screen, setScreen] = useState<Screen>("home");
-  const [entries, setEntries] = useState<Array<{ mood: number; date: string; text: string }>>(() => {
-    const saved = localStorage.getItem("nuju-entries");
-    return saved ? JSON.parse(saved) : [];
-  });
-  const [streak] = useState(() => {
-    const saved = localStorage.getItem("nuju-streak");
-    return saved ? parseInt(saved) : 0;
-  });
+  const [entries, setEntries] = useState<Array<{ mood: number; date: string; text: string }>>([]);
+  const [streak, setStreak] = useState(0);
+  const [loading, setLoading] = useState(true);
+  const [selectedMood, setSelectedMood] = useState<number>(3);
+  const [energy, setEnergy] = useState(50);
 
+  // Load entries and streak from Supabase
   useEffect(() => {
-    localStorage.setItem("nuju-entries", JSON.stringify(entries));
-  }, [entries]);
+    if (!user) return;
+    const load = async () => {
+      try {
+        const [dbEntries, dbStreak] = await Promise.all([
+          fetchEntries(user.id),
+          fetchStreak(user.id),
+        ]);
+        setEntries(
+          dbEntries.map((e) => ({
+            mood: e.mood,
+            date: e.entry_date,
+            text: e.text_content,
+          }))
+        );
+        setStreak(dbStreak?.current_streak || 0);
+      } catch (err) {
+        console.error("Failed to load data:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+    load();
+  }, [user]);
 
   const handleOnboardingComplete = () => {
     localStorage.setItem("nuju-onboarded", "true");
     setShowOnboarding(false);
   };
 
-  const handleSaveEntry = (text: string) => {
-    const newEntry = { mood: 3, date: new Date().toISOString(), text };
-    setEntries((prev) => [newEntry, ...prev]);
-    const newStreak = streak + 1;
-    localStorage.setItem("nuju-streak", String(newStreak));
+  const handleSaveEntry = async (text: string) => {
+    if (!user) return;
+    try {
+      const entry = await createEntry(user.id, selectedMood, text, energy);
+      setEntries((prev) => [
+        { mood: entry.mood, date: entry.entry_date, text: entry.text_content },
+        ...prev,
+      ]);
+      const updatedStreak = await updateStreak(user.id);
+      setStreak(updatedStreak.current_streak);
+    } catch (err) {
+      console.error("Failed to save entry:", err);
+    }
   };
 
   if (showOnboarding) {
     return <OnboardingScreen onComplete={handleOnboardingComplete} />;
+  }
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-background flex items-center justify-center">
+        <Loader2 className="w-8 h-8 text-primary animate-spin" />
+      </div>
+    );
   }
 
   const navItems = [
@@ -52,7 +90,6 @@ const AppPage: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
-      {/* Content */}
       <div className="flex-1 w-full max-w-app mx-auto px-4 pt-6 pb-24">
         {screen === "home" && (
           <HomeScreen
@@ -61,6 +98,10 @@ const AppPage: React.FC = () => {
             onUpgrade={() => setScreen("pro")}
             streak={streak}
             entries={entries}
+            selectedMood={selectedMood}
+            onMoodSelect={setSelectedMood}
+            energy={energy}
+            onEnergyChange={setEnergy}
           />
         )}
         {screen === "journal" && (
@@ -93,7 +134,6 @@ const AppPage: React.FC = () => {
         )}
       </div>
 
-      {/* Bottom nav */}
       {screen !== "journal" && screen !== "settings" && (
         <nav className="fixed bottom-0 left-0 right-0 bg-background/90 backdrop-blur-xl border-t border-border/50 safe-area-bottom">
           <div className="max-w-app mx-auto flex">

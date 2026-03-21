@@ -25,13 +25,20 @@ interface HomeScreenProps {
   onUpgrade: () => void;
   streak: number;
   entries: Array<{ mood: number; date: string; text: string }>;
+  selectedMood?: number;
+  onMoodSelect?: (mood: number) => void;
+  energy?: number;
+  onEnergyChange?: (val: number) => void;
 }
 
-const HomeScreen: React.FC<HomeScreenProps> = ({ onNavigate, onSettings, onUpgrade, streak, entries }) => {
+const HomeScreen: React.FC<HomeScreenProps> = ({ onNavigate, onSettings, onUpgrade, streak, entries, selectedMood: controlledMood, onMoodSelect: controlledMoodSelect, energy: controlledEnergy, onEnergyChange: controlledEnergyChange }) => {
   const { t } = useLang();
-  const [selectedMood, setSelectedMood] = useState<number | null>(null);
+  const [localMood, setLocalMood] = useState<number | null>(null);
   const [prompt] = useState(getRandomPrompt);
-  const [energy, setEnergy] = useState(50);
+  const [localEnergy, setLocalEnergy] = useState(50);
+
+  const selectedMood = controlledMood ?? localMood;
+  const energy = controlledEnergy ?? localEnergy;
 
   const greeting = getGreeting(t);
   const isNight = new Date().getHours() >= 21;
@@ -39,7 +46,8 @@ const HomeScreen: React.FC<HomeScreenProps> = ({ onNavigate, onSettings, onUpgra
   const juImg = JU_STICKERS[stickerKey];
 
   const handleMoodSelect = (value: number) => {
-    setSelectedMood(value);
+    if (controlledMoodSelect) controlledMoodSelect(value);
+    else setLocalMood(value);
   };
 
   return (
@@ -121,7 +129,11 @@ const HomeScreen: React.FC<HomeScreenProps> = ({ onNavigate, onSettings, onUpgra
           min={0}
           max={100}
           value={energy}
-          onChange={(e) => setEnergy(Number(e.target.value))}
+          onChange={(e) => {
+            const val = Number(e.target.value);
+            if (controlledEnergyChange) controlledEnergyChange(val);
+            else setLocalEnergy(val);
+          }}
           className="w-full h-1 rounded-full appearance-none cursor-pointer accent-primary"
           style={{ background: `linear-gradient(to right, #7C6EDB ${energy}%, hsl(var(--border)) ${energy}%)` }}
         />
