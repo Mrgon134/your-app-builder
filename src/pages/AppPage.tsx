@@ -69,7 +69,7 @@ const AppPage: React.FC = () => {
             onSave={handleSaveEntry}
           />
         )}
-        {screen === "insights" && <InsightsScreen entries={entries} />}
+        {screen === "insights" && <InsightsScreen entries={entries} onUpgrade={() => setScreen("pro")} />}
         {screen === "coach" && <CoachScreen />}
         {screen === "settings" && <SettingsScreen onBack={() => setScreen("home")} />}
         {screen === "pro" && (
