@@ -6,7 +6,7 @@ import JournalScreen from "@/components/app/JournalScreen";
 import InsightsScreen from "@/components/app/InsightsScreen";
 import CoachScreen from "@/components/app/CoachScreen";
 import SettingsScreen from "@/components/app/SettingsScreen";
-import { Home, BarChart3, MessageCircle, Crown } from "lucide-react";
+import { Home, BarChart3, MessageCircle, Sparkles } from "lucide-react";
 
 type Screen = "home" | "journal" | "insights" | "coach" | "pro" | "settings";
 
@@ -47,7 +47,7 @@ const AppPage: React.FC = () => {
     { id: "home" as const, icon: Home, label: t.home },
     { id: "insights" as const, icon: BarChart3, label: t.insights_label },
     { id: "coach" as const, icon: MessageCircle, label: t.coach_label },
-    { id: "pro" as const, icon: Crown, label: t.pro_label },
+    { id: "pro" as const, icon: Sparkles, label: t.pro_label },
   ];
 
   return (
@@ -72,7 +72,9 @@ const AppPage: React.FC = () => {
         {screen === "settings" && <SettingsScreen onBack={() => setScreen("home")} />}
         {screen === "pro" && (
           <div className="animate-fade-up text-center py-12">
-            <Crown className="w-12 h-12 mx-auto text-mood-okay mb-4" />
+            <div className="w-16 h-16 mx-auto rounded-2xl bg-primary/15 flex items-center justify-center mb-4">
+              <Sparkles className="w-8 h-8 text-primary" />
+            </div>
             <h1 className="font-serif text-2xl font-bold mb-3">{t.unlock_ju}</h1>
             <p className="text-muted-foreground text-sm mb-8 max-w-xs mx-auto">
               Unlimited entries, all 4 coach personas, full history, and AI-powered insights.

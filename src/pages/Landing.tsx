@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useLang } from "@/lib/i18n";
+import { Crosshair, PenLine, BrainCircuit, Check } from "lucide-react";
 import juMain from "@/assets/ju-main.png";
 
 const useReveal = () => {
@@ -96,21 +97,26 @@ const Landing: React.FC = () => {
           </h2>
           <div className="grid md:grid-cols-3 gap-8">
             {[
-              { num: "01", title: t.step_1_title, desc: t.step_1_desc, emoji: "🎯" },
-              { num: "02", title: t.step_2_title, desc: t.step_2_desc, emoji: "✍️" },
-              { num: "03", title: t.step_3_title, desc: t.step_3_desc, emoji: "✨" },
-            ].map((step, i) => (
-              <div
-                key={step.num}
-                className={`text-center p-8 rounded-3xl bg-card shadow-sm shadow-primary/5 transition-all duration-700 ${stepsReveal.visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
-                style={{ transitionDelay: `${200 + i * 120}ms` }}
-              >
-                <div className="text-4xl mb-4">{step.emoji}</div>
-                <div className="text-xs font-bold text-primary tracking-widest uppercase mb-2">{step.num}</div>
-                <h3 className="font-serif text-xl font-semibold mb-3">{step.title}</h3>
-                <p className="text-muted-foreground text-sm leading-relaxed">{step.desc}</p>
-              </div>
-            ))}
+              { num: "01", title: t.step_1_title, desc: t.step_1_desc, icon: Crosshair, iconBg: "bg-primary/10", iconColor: "text-primary" },
+              { num: "02", title: t.step_2_title, desc: t.step_2_desc, icon: PenLine, iconBg: "bg-mood-good/15", iconColor: "text-mood-good" },
+              { num: "03", title: t.step_3_title, desc: t.step_3_desc, icon: BrainCircuit, iconBg: "bg-mood-okay/15", iconColor: "text-mood-okay" },
+            ].map((step, i) => {
+              const Icon = step.icon;
+              return (
+                <div
+                  key={step.num}
+                  className={`text-center p-8 rounded-3xl bg-card shadow-sm shadow-primary/5 transition-all duration-700 ${stepsReveal.visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+                  style={{ transitionDelay: `${200 + i * 120}ms` }}
+                >
+                  <div className={`w-14 h-14 mx-auto rounded-2xl ${step.iconBg} flex items-center justify-center mb-4`}>
+                    <Icon className={`w-7 h-7 ${step.iconColor}`} />
+                  </div>
+                  <div className="text-xs font-bold text-primary tracking-widest uppercase mb-2">{step.num}</div>
+                  <h3 className="font-serif text-xl font-semibold mb-3">{step.title}</h3>
+                  <p className="text-muted-foreground text-sm leading-relaxed">{step.desc}</p>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -140,7 +146,7 @@ const Landing: React.FC = () => {
                 <ul className="space-y-3 mb-8">
                   {plan.features.map((f) => (
                     <li key={f} className={`text-sm flex items-center gap-2 ${plan.highlight ? "text-primary-foreground/90" : "text-muted-foreground"}`}>
-                      <span className={plan.highlight ? "text-primary-foreground" : "text-primary"}>✓</span>
+                      <Check className={`w-4 h-4 flex-shrink-0 ${plan.highlight ? "text-primary-foreground" : "text-primary"}`} />
                       {f}
                     </li>
                   ))}

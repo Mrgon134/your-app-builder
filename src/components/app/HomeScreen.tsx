@@ -3,7 +3,7 @@ import { useLang } from "@/lib/i18n";
 import { MOODS, getGreeting, getRandomPrompt } from "@/lib/constants";
 import MoodIcon from "@/components/MoodIcon";
 import { JU_STICKERS, getMascotForState } from "@/lib/stickers";
-import { Settings, Flame } from "lucide-react";
+import { Settings, Flame, PenLine, Mic } from "lucide-react";
 
 // Preload all sticker images in memory on mount
 const preloadedImages: HTMLImageElement[] = [];
@@ -121,15 +121,17 @@ const HomeScreen: React.FC<HomeScreenProps> = ({ onNavigate, onSettings, streak 
       <div className="grid grid-cols-2 gap-3">
         <button
           onClick={() => onNavigate("journal")}
-          className="py-4 rounded-2xl bg-primary text-primary-foreground font-semibold text-base transition-all hover:shadow-lg hover:shadow-primary/20 active:scale-[0.97]"
+          className="flex items-center justify-center gap-2 py-4 rounded-2xl bg-primary text-primary-foreground font-semibold text-base transition-all hover:shadow-lg hover:shadow-primary/20 active:scale-[0.97]"
         >
-          ✍️ {t.write}
+          <PenLine className="w-5 h-5" />
+          {t.write}
         </button>
         <button
           onClick={() => onNavigate("journal")}
-          className="py-4 rounded-2xl bg-secondary text-foreground font-semibold text-base transition-all active:scale-[0.97]"
+          className="flex items-center justify-center gap-2 py-4 rounded-2xl bg-secondary text-foreground font-semibold text-base transition-all active:scale-[0.97]"
         >
-          🎙 {t.talk}
+          <Mic className="w-5 h-5" />
+          {t.talk}
         </button>
       </div>
     </div>
