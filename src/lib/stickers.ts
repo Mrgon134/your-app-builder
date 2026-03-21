@@ -43,8 +43,11 @@ export const getMascotForState = (opts: {
   if (screen === "coach-typing") return "hmm";
   if (screen === "entry-confirmed") return "goodjob";
 
+  if (selectedMood === 1) return "hmm";
+  if (selectedMood === 2) return "zzz";
   if (selectedMood === 3) return "zen";
-  if (selectedMood && selectedMood >= 4) return "love";
+  if (selectedMood === 4) return "love";
+  if (selectedMood === 5) return "yay";
 
   if (isNight) return "zzz";
 
