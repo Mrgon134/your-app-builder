@@ -40,7 +40,7 @@ const AuthPage: React.FC = () => {
   return (
     <div className="min-h-screen bg-background flex flex-col items-center justify-center px-6 py-12">
       <img
-        src={JU_STICKERS.hello}
+        src={JU_STICKERS.hi}
         alt="Ju"
         className="w-20 h-20 mb-4 animate-[ju-float_3s_ease-in-out_infinite]"
       />
