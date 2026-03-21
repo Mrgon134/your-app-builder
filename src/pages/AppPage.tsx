@@ -58,7 +58,9 @@ const AppPage: React.FC = () => {
           <HomeScreen
             onNavigate={(s) => setScreen(s as Screen)}
             onSettings={() => setScreen("settings")}
+            onUpgrade={() => setScreen("pro")}
             streak={streak}
+            entries={entries}
           />
         )}
         {screen === "journal" && (
