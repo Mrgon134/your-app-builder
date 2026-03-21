@@ -314,6 +314,7 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      check_coach_limit: { Args: { p_user_id: string }; Returns: boolean }
       check_entry_limit: { Args: { p_user_id: string }; Returns: boolean }
       update_streak: { Args: { p_user_id: string }; Returns: undefined }
     }
