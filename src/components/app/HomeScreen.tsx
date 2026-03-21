@@ -25,13 +25,20 @@ interface HomeScreenProps {
   onUpgrade: () => void;
   streak: number;
   entries: Array<{ mood: number; date: string; text: string }>;
+  selectedMood?: number;
+  onMoodSelect?: (mood: number) => void;
+  energy?: number;
+  onEnergyChange?: (val: number) => void;
 }
 
-const HomeScreen: React.FC<HomeScreenProps> = ({ onNavigate, onSettings, onUpgrade, streak, entries }) => {
+const HomeScreen: React.FC<HomeScreenProps> = ({ onNavigate, onSettings, onUpgrade, streak, entries, selectedMood: controlledMood, onMoodSelect: controlledMoodSelect, energy: controlledEnergy, onEnergyChange: controlledEnergyChange }) => {
   const { t } = useLang();
-  const [selectedMood, setSelectedMood] = useState<number | null>(null);
+  const [localMood, setLocalMood] = useState<number | null>(null);
   const [prompt] = useState(getRandomPrompt);
-  const [energy, setEnergy] = useState(50);
+  const [localEnergy, setLocalEnergy] = useState(50);
+
+  const selectedMood = controlledMood ?? localMood;
+  const energy = controlledEnergy ?? localEnergy;
 
   const greeting = getGreeting(t);
   const isNight = new Date().getHours() >= 21;
