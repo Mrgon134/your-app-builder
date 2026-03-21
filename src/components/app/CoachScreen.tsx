@@ -4,8 +4,9 @@ import { AI_PERSONAS } from "@/lib/constants";
 import { Send } from "lucide-react";
 import { JU_STICKERS } from "@/lib/stickers";
 import { useAuth } from "@/lib/auth";
-import { saveCoachMessage, fetchCoachMessages } from "@/lib/api";
+import { saveCoachMessage, fetchCoachMessages, checkCoachLimit, fetchProfile } from "@/lib/api";
 import { toast } from "sonner";
+import { Lock } from "lucide-react";
 import coachGentle from "@/assets/coach-gentle.png";
 import coachTough from "@/assets/coach-tough.png";
 import coachWise from "@/assets/coach-wise.png";
@@ -111,7 +112,7 @@ async function streamChat({
   onDone();
 }
 
-const CoachScreen: React.FC = () => {
+const CoachScreen: React.FC<{ onUpgrade?: () => void }> = ({ onUpgrade }) => {
   const { t } = useLang();
   const { user } = useAuth();
   const [persona, setPersona] = useState("gentle");
@@ -119,16 +120,24 @@ const CoachScreen: React.FC = () => {
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [switching, setSwitching] = useState(false);
+  const [canSend, setCanSend] = useState(true);
+  const [userPlan, setUserPlan] = useState("free");
   const scrollRef = useRef<HTMLDivElement>(null);
 
-  // Load previous messages
+  // Load previous messages + check limit
   useEffect(() => {
     if (!user) return;
-    fetchCoachMessages(user.id, 50).then((data) => {
+    Promise.all([
+      fetchCoachMessages(user.id, 50),
+      checkCoachLimit(user.id),
+      fetchProfile(user.id),
+    ]).then(([data, limitOk, profile]) => {
       if (data.length > 0) {
         setMessages(data.map((m) => ({ role: m.role as "user" | "assistant", content: m.content })));
         if (data[0]?.persona) setPersona(data[0].persona);
       }
+      setCanSend(limitOk);
+      setUserPlan(profile?.plan || "free");
     });
   }, [user]);
 
@@ -149,7 +158,7 @@ const CoachScreen: React.FC = () => {
   );
 
   const sendMessage = async () => {
-    if (!input.trim() || isLoading) return;
+    if (!input.trim() || isLoading || !canSend) return;
     const userMsg = input.trim();
     setInput("");
 
@@ -185,6 +194,10 @@ const CoachScreen: React.FC = () => {
           // Save assistant message to DB
           if (user && assistantSoFar) {
             saveCoachMessage(user.id, "assistant", assistantSoFar, persona).catch(console.error);
+          }
+          // Re-check limit after sending
+          if (user) {
+            checkCoachLimit(user.id).then(setCanSend).catch(console.error);
           }
         },
         onError: (msg) => {
@@ -290,19 +303,40 @@ const CoachScreen: React.FC = () => {
         )}
       </div>
 
+      {/* Paywall banner when limit reached */}
+      {!canSend && userPlan === "free" && (
+        <div className="bg-primary/10 border border-primary/20 rounded-2xl p-4 mb-3 text-center animate-fade-up">
+          <div className="flex items-center justify-center gap-2 mb-2">
+            <Lock className="w-4 h-4 text-primary" />
+            <span className="text-sm font-semibold text-foreground">Weekly limit reached</span>
+          </div>
+          <p className="text-xs text-muted-foreground mb-3">
+            Free plan includes 5 messages per week. Upgrade for unlimited coaching.
+          </p>
+          {onUpgrade && (
+            <button
+              onClick={onUpgrade}
+              className="px-6 py-2.5 rounded-2xl bg-primary text-primary-foreground text-sm font-semibold transition-all active:scale-[0.97] hover:shadow-lg hover:shadow-primary/20"
+            >
+              {t.unlock_ju}
+            </button>
+          )}
+        </div>
+      )}
+
       {/* Input */}
       <div className="flex gap-2">
         <input
           value={input}
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={(e) => e.key === "Enter" && sendMessage()}
-          placeholder={t.talk_to_ju}
-          disabled={isLoading}
+          placeholder={!canSend && userPlan === "free" ? "Upgrade to keep chatting..." : t.talk_to_ju}
+          disabled={isLoading || (!canSend && userPlan === "free")}
           className="flex-1 px-5 py-3 rounded-2xl bg-card border border-border/50 text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:ring-2 focus:ring-primary/30 text-sm transition-shadow duration-200 disabled:opacity-60"
         />
         <button
           onClick={sendMessage}
-          disabled={!input.trim() || isLoading}
+          disabled={!input.trim() || isLoading || (!canSend && userPlan === "free")}
           className="w-12 h-12 rounded-2xl bg-primary text-primary-foreground flex items-center justify-center transition-all duration-200 active:scale-[0.95] disabled:opacity-40"
         >
           <Send className="w-5 h-5" />

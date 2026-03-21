@@ -122,3 +122,10 @@ export const fetchCoachMessages = async (userId: string, limit = 50) => {
   if (error) throw error;
   return data || [];
 };
+
+// Check coach message limit (free = 5/week)
+export const checkCoachLimit = async (userId: string): Promise<boolean> => {
+  const { data, error } = await supabase.rpc("check_coach_limit", { p_user_id: userId });
+  if (error) throw error;
+  return data as boolean;
+};
