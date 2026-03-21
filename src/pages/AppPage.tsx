@@ -239,7 +239,7 @@ const AppPage: React.FC = () => {
         )}
         {screen === "insights" && <InsightsScreen entries={entries} onUpgrade={() => setScreen("pro")} />}
         {screen === "coach" && <CoachScreen onUpgrade={() => setScreen("pro")} />}
-        {screen === "settings" && <SettingsScreen onBack={() => setScreen("home")} />}
+        {screen === "settings" && <SettingsScreen onBack={() => setScreen("home")} onUpgrade={() => setScreen("pro")} />}
         {screen === "pro" && (
           <PricingScreen
             currentPlan={profile?.plan || "free"}

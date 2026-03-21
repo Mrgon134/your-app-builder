@@ -6,9 +6,10 @@ import { ArrowLeft, Moon, Sun, Globe, Crown, LogOut } from "lucide-react";
 
 interface SettingsScreenProps {
   onBack: () => void;
+  onUpgrade?: () => void;
 }
 
-const SettingsScreen: React.FC<SettingsScreenProps> = ({ onBack }) => {
+const SettingsScreen: React.FC<SettingsScreenProps> = ({ onBack, onUpgrade }) => {
   const { t, lang, setLang } = useLang();
   const { signOut, user } = useAuth();
   const [darkMode, setDarkMode] = useState(document.documentElement.classList.contains("dark"));
@@ -79,7 +80,10 @@ const SettingsScreen: React.FC<SettingsScreenProps> = ({ onBack }) => {
           <Crown className="w-8 h-8 mx-auto text-mood-okay mb-3" />
           <p className="font-serif text-lg font-semibold mb-1">{t.unlock_ju}</p>
           <p className="text-sm text-muted-foreground mb-4">Unlimited entries, all coaches, full history</p>
-          <button className="w-full py-3 rounded-2xl bg-primary text-primary-foreground font-semibold text-sm transition-all active:scale-[0.97]">
+          <button
+            onClick={onUpgrade}
+            className="w-full py-3 rounded-2xl bg-primary text-primary-foreground font-semibold text-sm transition-all active:scale-[0.97]"
+          >
             {t.start_trial}
           </button>
         </div>
