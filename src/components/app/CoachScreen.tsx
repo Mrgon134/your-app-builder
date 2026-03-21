@@ -132,13 +132,15 @@ const CoachScreen: React.FC<{ onUpgrade?: () => void }> = ({ onUpgrade }) => {
       fetchCoachMessages(user.id, 50),
       checkCoachLimit(user.id),
       fetchProfile(user.id),
-    ]).then(([data, limitOk, profile]) => {
+      countCoachMessagesThisWeek(user.id),
+    ]).then(([data, limitOk, profile, weekCount]) => {
       if (data.length > 0) {
         setMessages(data.map((m) => ({ role: m.role as "user" | "assistant", content: m.content })));
         if (data[0]?.persona) setPersona(data[0].persona);
       }
       setCanSend(limitOk);
       setUserPlan(profile?.plan || "free");
+      setMessagesUsed(weekCount);
     });
   }, [user]);
 
