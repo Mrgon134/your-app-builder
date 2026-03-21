@@ -93,13 +93,17 @@ const CoachScreen: React.FC = () => {
             style={{ opacity: switching ? 0 : 1, transform: switching ? "translateY(8px) scale(0.97)" : "translateY(0) scale(1)" }}
           >
             <div
-              className="w-16 h-16 rounded-full mx-auto mb-4 flex items-center justify-center transition-all duration-500 ease-out"
+              className="w-20 h-20 rounded-full mx-auto mb-4 flex items-center justify-center transition-all duration-500 ease-out overflow-hidden"
               style={{
-                background: `${currentPersona.color}20`,
-                boxShadow: `0 0 24px ${currentPersona.color}15`,
+                background: `${currentPersona.color}15`,
+                boxShadow: `0 0 28px ${currentPersona.color}20`,
               }}
             >
-              <span className="text-2xl">💬</span>
+              <img
+                src={COACH_ICONS[persona]}
+                alt={currentPersona.name}
+                className="w-16 h-16 object-contain transition-all duration-500"
+              />
             </div>
             <p className="text-sm text-muted-foreground transition-all duration-300">{currentPersona.desc}</p>
           </div>
