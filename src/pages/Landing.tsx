@@ -23,6 +23,7 @@ const useReveal = () => {
 const Landing: React.FC = () => {
   const { t } = useLang();
   const navigate = useNavigate();
+  const geo = useGeoPricing();
   const [email, setEmail] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const heroReveal = useReveal();
