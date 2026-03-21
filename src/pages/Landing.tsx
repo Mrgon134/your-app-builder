@@ -79,7 +79,7 @@ const Landing: React.FC = () => {
         <div className="max-w-3xl mx-auto text-center">
           <div className="relative w-32 h-32 mx-auto mb-8">
             <div className="absolute inset-0 rounded-full bg-primary/20 animate-glow-pulse" />
-            <img src={juMain} alt="Ju mascot" className="relative w-full h-full object-contain animate-ju-float" />
+            <img src={juMain} alt="Ju mascot" className="relative w-full h-full object-contain animate-ju-float" width={128} height={128} fetchPriority="high" />
           </div>
           <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl font-bold text-foreground leading-[1.1] mb-6 text-balance">
             {t.hero_title}
