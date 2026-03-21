@@ -1,9 +1,21 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useLang } from "@/lib/i18n";
 import { MOODS, getGreeting, getRandomPrompt } from "@/lib/constants";
 import MoodIcon from "@/components/MoodIcon";
 import { JU_STICKERS, getMascotForState } from "@/lib/stickers";
 import { Settings, Flame } from "lucide-react";
+
+// Preload all sticker images in memory on mount
+const preloadedImages: HTMLImageElement[] = [];
+const preloadStickers = () => {
+  if (preloadedImages.length > 0) return;
+  Object.values(JU_STICKERS).forEach((src) => {
+    const img = new Image();
+    img.src = src;
+    preloadedImages.push(img);
+  });
+};
+preloadStickers();
 
 interface HomeScreenProps {
   onNavigate: (screen: string) => void;
