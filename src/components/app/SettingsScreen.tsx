@@ -45,12 +45,12 @@ const SettingsScreen: React.FC<SettingsScreenProps> = ({ onBack }) => {
             <Globe className="w-5 h-5 text-muted-foreground" />
             <span className="text-sm font-medium">{t.language}</span>
           </div>
-          <div className="flex gap-2">
+          <div className="flex flex-wrap gap-2 max-h-48 overflow-y-auto">
             {LANG_META.map((l) => (
               <button
                 key={l.code}
                 onClick={() => setLang(l.code)}
-                className={`px-4 py-2 rounded-xl text-sm font-medium transition-all active:scale-[0.95] ${
+                className={`px-3 py-1.5 rounded-xl text-xs font-medium transition-all active:scale-[0.95] ${
                   lang === l.code ? "bg-primary text-primary-foreground" : "bg-secondary text-muted-foreground"
                 }`}
               >
