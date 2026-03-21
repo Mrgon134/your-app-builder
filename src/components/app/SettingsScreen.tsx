@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useLang, LANG_META } from "@/lib/i18n";
 import { useAuth } from "@/lib/auth";
-import { ArrowLeft, Moon, Globe, Crown, LogOut } from "lucide-react";
+import { updateProfile } from "@/lib/api";
+import { ArrowLeft, Moon, Sun, Globe, Crown, LogOut } from "lucide-react";
 
 interface SettingsScreenProps {
   onBack: () => void;
@@ -12,9 +13,20 @@ const SettingsScreen: React.FC<SettingsScreenProps> = ({ onBack }) => {
   const { signOut, user } = useAuth();
   const [darkMode, setDarkMode] = useState(document.documentElement.classList.contains("dark"));
 
-  const toggleDark = () => {
-    document.documentElement.classList.toggle("dark");
-    setDarkMode(!darkMode);
+  const toggleDark = async () => {
+    const newVal = !darkMode;
+    document.documentElement.classList.toggle("dark", newVal);
+    setDarkMode(newVal);
+    // Persist to localStorage
+    localStorage.setItem("nuju-dark", newVal ? "1" : "0");
+    // Persist to DB
+    if (user) {
+      try {
+        await updateProfile(user.id, { dark_mode: newVal } as any);
+      } catch (e) {
+        console.error("Failed to save dark mode:", e);
+      }
+    }
   };
 
   return (
@@ -30,7 +42,7 @@ const SettingsScreen: React.FC<SettingsScreenProps> = ({ onBack }) => {
         {/* Dark mode */}
         <div className="bg-card rounded-2xl p-4 flex items-center justify-between shadow-sm border border-border/50">
           <div className="flex items-center gap-3">
-            <Moon className="w-5 h-5 text-muted-foreground" />
+            {darkMode ? <Sun className="w-5 h-5 text-mood-okay" /> : <Moon className="w-5 h-5 text-muted-foreground" />}
             <span className="text-sm font-medium">{t.dark_mode}</span>
           </div>
           <button
@@ -71,6 +83,7 @@ const SettingsScreen: React.FC<SettingsScreenProps> = ({ onBack }) => {
             {t.start_trial}
           </button>
         </div>
+
         {/* Sign out */}
         <button
           onClick={signOut}

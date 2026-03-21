@@ -1,8 +1,10 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useLang } from "@/lib/i18n";
-import { Crosshair, PenLine, BrainCircuit, Check } from "lucide-react";
+import { addToWaitlist } from "@/lib/api";
+import { Crosshair, PenLine, BrainCircuit, Check, Shield, Zap, Heart, Star, Quote } from "lucide-react";
 import juMain from "@/assets/ju-main.png";
+import { toast } from "sonner";
 
 const useReveal = () => {
   const ref = useRef<HTMLDivElement>(null);
@@ -21,24 +23,39 @@ const Landing: React.FC = () => {
   const { t } = useLang();
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
-  const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
   const heroReveal = useReveal();
+  const socialReveal = useReveal();
   const stepsReveal = useReveal();
+  const comparisonReveal = useReveal();
+  const testimonialsReveal = useReveal();
   const pricingReveal = useReveal();
   const ctaReveal = useReveal();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (email.includes("@")) {
-      setSubmitted(true);
-      setTimeout(() => setSubmitted(false), 3000);
+    if (!email.includes("@") || submitting) return;
+    setSubmitting(true);
+    try {
+      const result = await addToWaitlist(email);
+      toast.success(result.alreadyExists ? "You're already on the list! 🎉" : "You're on the list! 🎉");
       setEmail("");
+    } catch {
+      toast.error("Something went wrong. Try again.");
+    } finally {
+      setSubmitting(false);
     }
   };
 
+  const testimonials = [
+    { name: "Sarah K.", role: "Designer", text: "Nuju helped me understand why Mondays felt so heavy. Now I have a plan for it.", rating: 5 },
+    { name: "Rafi A.", role: "Student", text: "Ju feels like a friend who actually gets it. I journal every single night now.", rating: 5 },
+    { name: "Maya L.", role: "Product Manager", text: "The relationship mood map blew my mind. I didn't realize how much my team dynamics affected me.", rating: 5 },
+  ];
+
   return (
     <div className="min-h-screen bg-background">
-      {/* Navbar */}
+      {/* 1. Navbar */}
       <nav className="sticky top-0 z-50 backdrop-blur-xl bg-background/80 border-b border-border/50">
         <div className="max-w-5xl mx-auto px-4 h-16 flex items-center justify-between">
           <div className="flex items-center gap-2">
@@ -54,10 +71,10 @@ const Landing: React.FC = () => {
         </div>
       </nav>
 
-      {/* Hero */}
+      {/* 2. Hero + Waitlist */}
       <section
         ref={heroReveal.ref}
-        className={`relative overflow-hidden pt-16 pb-24 px-4 transition-all duration-700 ${heroReveal.visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}
+        className={`relative overflow-hidden pt-16 pb-20 px-4 transition-all duration-700 ${heroReveal.visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}
       >
         <div className="max-w-3xl mx-auto text-center">
           <div className="relative w-32 h-32 mx-auto mb-8">
@@ -80,16 +97,48 @@ const Landing: React.FC = () => {
             />
             <button
               type="submit"
-              className="px-6 py-3.5 rounded-2xl bg-primary text-primary-foreground font-semibold text-base whitespace-nowrap transition-all hover:shadow-lg hover:shadow-primary/25 active:scale-[0.97]"
+              disabled={submitting}
+              className="px-6 py-3.5 rounded-2xl bg-primary text-primary-foreground font-semibold text-base whitespace-nowrap transition-all hover:shadow-lg hover:shadow-primary/25 active:scale-[0.97] disabled:opacity-60"
             >
-              {submitted ? "✓" : t.join_waitlist}
+              {submitting ? "..." : t.join_waitlist}
             </button>
           </form>
           <p className="text-sm text-muted-foreground mt-4">{t.join_count}</p>
         </div>
       </section>
 
-      {/* How it works */}
+      {/* 3. Social Proof */}
+      <section
+        ref={socialReveal.ref}
+        className={`py-12 px-4 transition-all duration-700 ${socialReveal.visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}
+      >
+        <div className="max-w-3xl mx-auto flex flex-wrap items-center justify-center gap-6 sm:gap-10">
+          {[
+            { icon: Shield, label: "Privacy-first", sublabel: "Your data stays yours" },
+            { icon: Zap, label: "30 seconds", sublabel: "To journal daily" },
+            { icon: Heart, label: "AI-powered", sublabel: "Insights that matter" },
+          ].map((badge, i) => {
+            const Icon = badge.icon;
+            return (
+              <div
+                key={i}
+                className="flex items-center gap-3 transition-all duration-500"
+                style={{ transitionDelay: `${i * 100}ms` }}
+              >
+                <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
+                  <Icon className="w-5 h-5 text-primary" />
+                </div>
+                <div>
+                  <p className="text-sm font-semibold text-foreground">{badge.label}</p>
+                  <p className="text-xs text-muted-foreground">{badge.sublabel}</p>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </section>
+
+      {/* 4. How it works — 3 Steps */}
       <section ref={stepsReveal.ref} className="py-20 px-4 bg-secondary/30">
         <div className="max-w-4xl mx-auto">
           <h2 className={`font-serif text-3xl font-bold text-center mb-16 transition-all duration-700 delay-100 ${stepsReveal.visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
@@ -121,7 +170,75 @@ const Landing: React.FC = () => {
         </div>
       </section>
 
-      {/* Pricing */}
+      {/* 5. Feature Comparison */}
+      <section ref={comparisonReveal.ref} className="py-20 px-4">
+        <div className={`max-w-3xl mx-auto transition-all duration-700 ${comparisonReveal.visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
+          <h2 className="font-serif text-3xl font-bold text-center mb-12">
+            Why Nuju?
+          </h2>
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="border-b border-border">
+                  <th className="text-left py-3 px-4 font-medium text-muted-foreground">Feature</th>
+                  <th className="py-3 px-4 font-semibold text-primary">Nuju</th>
+                  <th className="py-3 px-4 font-medium text-muted-foreground">Paper Journal</th>
+                  <th className="py-3 px-4 font-medium text-muted-foreground">Therapy Apps</th>
+                </tr>
+              </thead>
+              <tbody>
+                {[
+                  ["Time to journal", "30 sec", "5-15 min", "15-30 min"],
+                  ["AI insights", "✓", "✗", "Limited"],
+                  ["Mood tracking", "✓", "Manual", "✓"],
+                  ["Relationship mapping", "✓", "✗", "✗"],
+                  ["Coach personas", "4 styles", "✗", "1 generic"],
+                  ["Cost", "Free start", "Free", "$50-200/mo"],
+                ].map(([feature, nuju, paper, therapy], i) => (
+                  <tr key={i} className="border-b border-border/50">
+                    <td className="py-3 px-4 text-foreground font-medium">{feature}</td>
+                    <td className="py-3 px-4 text-center font-semibold text-primary">{nuju}</td>
+                    <td className="py-3 px-4 text-center text-muted-foreground">{paper}</td>
+                    <td className="py-3 px-4 text-center text-muted-foreground">{therapy}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      {/* 6. Testimonials */}
+      <section ref={testimonialsReveal.ref} className="py-20 px-4 bg-secondary/30">
+        <div className="max-w-4xl mx-auto">
+          <h2 className={`font-serif text-3xl font-bold text-center mb-12 transition-all duration-700 ${testimonialsReveal.visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
+            Loved by early users
+          </h2>
+          <div className="grid md:grid-cols-3 gap-6">
+            {testimonials.map((item, i) => (
+              <div
+                key={i}
+                className={`bg-card rounded-3xl p-6 shadow-sm border border-border/50 transition-all duration-700 ${testimonialsReveal.visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+                style={{ transitionDelay: `${200 + i * 120}ms` }}
+              >
+                <Quote className="w-5 h-5 text-primary/30 mb-3" />
+                <p className="text-sm text-foreground leading-relaxed mb-4">{item.text}</p>
+                <div className="flex items-center gap-1 mb-3">
+                  {Array.from({ length: item.rating }).map((_, j) => (
+                    <Star key={j} className="w-3.5 h-3.5 fill-mood-okay text-mood-okay" />
+                  ))}
+                </div>
+                <div>
+                  <p className="text-sm font-semibold text-foreground">{item.name}</p>
+                  <p className="text-xs text-muted-foreground">{item.role}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 7. Pricing */}
       <section ref={pricingReveal.ref} className="py-20 px-4">
         <div className="max-w-4xl mx-auto">
           <h2 className={`font-serif text-3xl font-bold text-center mb-16 transition-all duration-700 ${pricingReveal.visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
@@ -138,6 +255,11 @@ const Landing: React.FC = () => {
                 className={`relative p-8 rounded-3xl transition-all duration-700 ${plan.highlight ? "bg-primary text-primary-foreground shadow-xl shadow-primary/20 scale-[1.02]" : "bg-card border border-border shadow-sm"} ${pricingReveal.visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
                 style={{ transitionDelay: `${200 + i * 120}ms` }}
               >
+                {plan.highlight && (
+                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full bg-mood-okay text-xs font-bold text-white">
+                    Most popular
+                  </div>
+                )}
                 <h3 className="font-serif text-xl font-semibold mb-2">{plan.name}</h3>
                 <div className="flex items-baseline gap-1 mb-6">
                   <span className="text-3xl font-bold">{plan.price}</span>
@@ -162,22 +284,32 @@ const Landing: React.FC = () => {
         </div>
       </section>
 
-      {/* Final CTA */}
+      {/* 8. Final CTA */}
       <section ref={ctaReveal.ref} className="py-20 px-4 bg-secondary/30">
         <div className={`max-w-lg mx-auto text-center transition-all duration-700 ${ctaReveal.visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
           <img src={juMain} alt="Ju" className="w-20 h-20 mx-auto mb-6 animate-bounce-gentle" />
           <h2 className="font-serif text-3xl font-bold mb-4">{t.cta_final}</h2>
           <p className="text-muted-foreground mb-8">{t.cta_final_desc}</p>
-          <button
-            onClick={() => navigate("/app")}
-            className="px-8 py-4 rounded-2xl bg-primary text-primary-foreground font-semibold text-lg transition-all hover:shadow-xl hover:shadow-primary/25 active:scale-[0.97]"
-          >
-            {t.onb_start}
-          </button>
+          <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto mb-4">
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder={t.enter_email}
+              className="flex-1 px-5 py-3.5 rounded-2xl bg-card border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/40 text-base"
+            />
+            <button
+              type="submit"
+              disabled={submitting}
+              className="px-6 py-3.5 rounded-2xl bg-primary text-primary-foreground font-semibold text-base whitespace-nowrap transition-all hover:shadow-lg hover:shadow-primary/25 active:scale-[0.97] disabled:opacity-60"
+            >
+              {submitting ? "..." : t.join_waitlist}
+            </button>
+          </form>
         </div>
       </section>
 
-      {/* Footer */}
+      {/* 9. Footer */}
       <footer className="py-12 px-4 border-t border-border">
         <div className="max-w-4xl mx-auto text-center">
           <div className="flex items-center justify-center gap-2 mb-3">
