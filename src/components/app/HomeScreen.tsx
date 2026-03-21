@@ -3,6 +3,8 @@ import { useLang } from "@/lib/i18n";
 import { MOODS, getGreeting, getRandomPrompt } from "@/lib/constants";
 import MoodIcon from "@/components/MoodIcon";
 import { JU_STICKERS, getMascotForState } from "@/lib/stickers";
+import SignupPrompt from "@/components/app/SignupPrompt";
+import AiMemoryCard from "@/components/app/AiMemoryCard";
 import { Settings, Flame, PenLine, Mic } from "lucide-react";
 
 // Preload all sticker images in memory on mount
