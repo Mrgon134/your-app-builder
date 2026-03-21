@@ -3,12 +3,14 @@ import { useLang } from "@/lib/i18n";
 import { MOODS } from "@/lib/constants";
 import MoodIcon from "@/components/MoodIcon";
 import { Lock } from "lucide-react";
+import HistoryLock from "@/components/app/HistoryLock";
 
 interface InsightsScreenProps {
   entries: Array<{ mood: number; date: string; text: string }>;
+  onUpgrade: () => void;
 }
 
-const InsightsScreen: React.FC<InsightsScreenProps> = ({ entries }) => {
+const InsightsScreen: React.FC<InsightsScreenProps> = ({ entries, onUpgrade }) => {
   const { t } = useLang();
 
   // Generate mock week data

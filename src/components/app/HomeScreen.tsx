@@ -97,6 +97,16 @@ const HomeScreen: React.FC<HomeScreenProps> = ({ onNavigate, onSettings, onUpgra
         ))}
       </div>
 
+      {/* Retention: Signup prompt after 3 entries */}
+      <SignupPrompt
+        entriesCount={entries.length}
+        onDismiss={() => {}}
+        onUpgrade={onUpgrade}
+      />
+
+      {/* Retention: Ju Remembers card */}
+      <AiMemoryCard entries={entries} />
+
       {/* Prompt card */}
       <div className="bg-card rounded-3xl p-5 mb-4 shadow-sm border border-border/50">
         <p className="text-xs font-medium text-primary uppercase tracking-wider mb-2">{t.todays_prompt}</p>
