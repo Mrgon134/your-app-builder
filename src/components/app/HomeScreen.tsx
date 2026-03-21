@@ -1,9 +1,21 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useLang } from "@/lib/i18n";
 import { MOODS, getGreeting, getRandomPrompt } from "@/lib/constants";
 import MoodIcon from "@/components/MoodIcon";
 import { JU_STICKERS, getMascotForState } from "@/lib/stickers";
 import { Settings, Flame } from "lucide-react";
+
+// Preload all sticker images in memory on mount
+const preloadedImages: HTMLImageElement[] = [];
+const preloadStickers = () => {
+  if (preloadedImages.length > 0) return;
+  Object.values(JU_STICKERS).forEach((src) => {
+    const img = new Image();
+    img.src = src;
+    preloadedImages.push(img);
+  });
+};
+preloadStickers();
 
 interface HomeScreenProps {
   onNavigate: (screen: string) => void;
@@ -53,15 +65,11 @@ const HomeScreen: React.FC<HomeScreenProps> = ({ onNavigate, onSettings, streak 
       {/* Mascot - sticker based on state */}
       <div className="relative w-28 h-28 mx-auto mb-8">
         <div className="absolute inset-0 rounded-full bg-primary/15 animate-glow-pulse" />
-        {/* Preload all stickers */}
-        {Object.values(JU_STICKERS).map((src) => (
-          <img key={src} src={src} alt="" className="hidden" aria-hidden />
-        ))}
         <img
-          key={juImg}
           src={juImg}
           alt="Ju"
-          className="relative w-full h-full object-contain animate-[mascot-swap_0.2s_ease-out]"
+          className="relative w-full h-full object-contain transition-all duration-150 ease-out"
+          style={{ willChange: "transform, opacity" }}
         />
       </div>
 
