@@ -8,7 +8,12 @@ import { Mail, Lock, User, ArrowRight, Loader2 } from "lucide-react";
 
 const AuthPage: React.FC = () => {
   const { t } = useLang();
-  const { signIn, signUp } = useAuth();
+  const { signIn, signUp, user } = useAuth();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (user) navigate("/app", { replace: true });
+  }, [user, navigate]);
   const [mode, setMode] = useState<"login" | "signup">("login");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
