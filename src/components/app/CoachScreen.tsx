@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect, useCallback } from "react";
 import { useLang } from "@/lib/i18n";
 import { AI_PERSONAS, coachResponses } from "@/lib/constants";
 import { Send } from "lucide-react";
+import { JU_STICKERS } from "@/lib/stickers";
 import coachGentle from "@/assets/coach-gentle.png";
 import coachTough from "@/assets/coach-tough.png";
 import coachWise from "@/assets/coach-wise.png";
