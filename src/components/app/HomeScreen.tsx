@@ -22,10 +22,12 @@ preloadStickers();
 interface HomeScreenProps {
   onNavigate: (screen: string) => void;
   onSettings: () => void;
+  onUpgrade: () => void;
   streak: number;
+  entries: Array<{ mood: number; date: string; text: string }>;
 }
 
-const HomeScreen: React.FC<HomeScreenProps> = ({ onNavigate, onSettings, streak }) => {
+const HomeScreen: React.FC<HomeScreenProps> = ({ onNavigate, onSettings, onUpgrade, streak, entries }) => {
   const { t } = useLang();
   const [selectedMood, setSelectedMood] = useState<number | null>(null);
   const [prompt] = useState(getRandomPrompt);
