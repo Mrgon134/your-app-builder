@@ -59,7 +59,7 @@ const Landing: React.FC = () => {
       <nav className="sticky top-0 z-50 backdrop-blur-xl bg-background/80 border-b border-border/50">
         <div className="max-w-5xl mx-auto px-4 h-16 flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <img src={juMain} alt="Ju" className="w-8 h-8" />
+            <img src={juMain} alt="Ju" className="w-8 h-8" width={32} height={32} />
             <span className="font-serif text-xl font-bold text-foreground">Nuju</span>
           </div>
           <button
