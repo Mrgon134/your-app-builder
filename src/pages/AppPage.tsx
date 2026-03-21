@@ -206,10 +206,16 @@ const AppPage: React.FC = () => {
               Unlimited entries, all 4 coach personas, full history, and AI-powered insights.
             </p>
             <div className="space-y-3 max-w-xs mx-auto">
-              <button className="w-full py-4 rounded-2xl bg-primary text-primary-foreground font-semibold transition-all active:scale-[0.97]">
+              <button
+                onClick={() => handleCheckout("plus_monthly")}
+                className="w-full py-4 rounded-2xl bg-primary text-primary-foreground font-semibold transition-all active:scale-[0.97]"
+              >
                 {t.monthly} — $4.99
               </button>
-              <button className="w-full py-4 rounded-2xl bg-secondary text-foreground font-semibold transition-all active:scale-[0.97]">
+              <button
+                onClick={() => handleCheckout("plus_annual")}
+                className="w-full py-4 rounded-2xl bg-secondary text-foreground font-semibold transition-all active:scale-[0.97]"
+              >
                 {t.annual} — $39.99
               </button>
             </div>
