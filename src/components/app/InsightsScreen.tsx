@@ -3,12 +3,14 @@ import { useLang } from "@/lib/i18n";
 import { MOODS } from "@/lib/constants";
 import MoodIcon from "@/components/MoodIcon";
 import { Lock } from "lucide-react";
+import HistoryLock from "@/components/app/HistoryLock";
 
 interface InsightsScreenProps {
   entries: Array<{ mood: number; date: string; text: string }>;
+  onUpgrade: () => void;
 }
 
-const InsightsScreen: React.FC<InsightsScreenProps> = ({ entries }) => {
+const InsightsScreen: React.FC<InsightsScreenProps> = ({ entries, onUpgrade }) => {
   const { t } = useLang();
 
   // Generate mock week data
@@ -73,12 +75,18 @@ const InsightsScreen: React.FC<InsightsScreenProps> = ({ entries }) => {
         </p>
       </div>
 
+      {/* History lock for free users */}
+      <HistoryLock onUpgrade={onUpgrade} />
+
       {/* Relationship map locked */}
       <div className="bg-card rounded-3xl p-6 shadow-sm border border-border/50 text-center">
         <Lock className="w-8 h-8 mx-auto text-muted-foreground/40 mb-3" />
         <p className="font-serif text-lg font-semibold mb-1">{t.relationship_map}</p>
         <p className="text-sm text-muted-foreground mb-4">{t.rel_desc}</p>
-        <button className="px-5 py-2.5 rounded-2xl bg-primary/10 text-primary font-semibold text-sm transition-all active:scale-[0.97]">
+        <button
+          onClick={onUpgrade}
+          className="px-5 py-2.5 rounded-2xl bg-primary/10 text-primary font-semibold text-sm transition-all active:scale-[0.97]"
+        >
           {t.unlock_pro}
         </button>
       </div>

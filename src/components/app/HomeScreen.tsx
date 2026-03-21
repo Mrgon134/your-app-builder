@@ -3,6 +3,8 @@ import { useLang } from "@/lib/i18n";
 import { MOODS, getGreeting, getRandomPrompt } from "@/lib/constants";
 import MoodIcon from "@/components/MoodIcon";
 import { JU_STICKERS, getMascotForState } from "@/lib/stickers";
+import SignupPrompt from "@/components/app/SignupPrompt";
+import AiMemoryCard from "@/components/app/AiMemoryCard";
 import { Settings, Flame, PenLine, Mic } from "lucide-react";
 
 // Preload all sticker images in memory on mount
@@ -20,10 +22,12 @@ preloadStickers();
 interface HomeScreenProps {
   onNavigate: (screen: string) => void;
   onSettings: () => void;
+  onUpgrade: () => void;
   streak: number;
+  entries: Array<{ mood: number; date: string; text: string }>;
 }
 
-const HomeScreen: React.FC<HomeScreenProps> = ({ onNavigate, onSettings, streak }) => {
+const HomeScreen: React.FC<HomeScreenProps> = ({ onNavigate, onSettings, onUpgrade, streak, entries }) => {
   const { t } = useLang();
   const [selectedMood, setSelectedMood] = useState<number | null>(null);
   const [prompt] = useState(getRandomPrompt);
@@ -92,6 +96,16 @@ const HomeScreen: React.FC<HomeScreenProps> = ({ onNavigate, onSettings, streak 
           </button>
         ))}
       </div>
+
+      {/* Retention: Signup prompt after 3 entries */}
+      <SignupPrompt
+        entriesCount={entries.length}
+        onDismiss={() => {}}
+        onUpgrade={onUpgrade}
+      />
+
+      {/* Retention: Ju Remembers card */}
+      <AiMemoryCard entries={entries} />
 
       {/* Prompt card */}
       <div className="bg-card rounded-3xl p-5 mb-4 shadow-sm border border-border/50">
