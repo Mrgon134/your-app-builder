@@ -58,8 +58,8 @@ const AppPage: React.FC = () => {
     setShowOnboarding(false);
   };
 
-  const handleSaveEntry = async (text: string) => {
-    if (!user) return;
+  const handleSaveEntry = async (text: string): Promise<string | null> => {
+    if (!user) return null;
     try {
       const entry = await createEntry(user.id, selectedMood, text, energy);
       setEntries((prev) => [
@@ -72,8 +72,31 @@ const AppPage: React.FC = () => {
         setStreak(updatedProfile.streak_current);
         setProfile(updatedProfile);
       }
+
+      // Get AI insight
+      try {
+        const resp = await fetch(
+          `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/ai-insight`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY}`,
+            },
+            body: JSON.stringify({ text, mood: selectedMood, energy }),
+          }
+        );
+        if (resp.ok) {
+          const data = await resp.json();
+          return data.insight || null;
+        }
+      } catch (aiErr) {
+        console.error("AI insight failed:", aiErr);
+      }
+      return null;
     } catch (err) {
       console.error("Failed to save entry:", err);
+      return null;
     }
   };
 
