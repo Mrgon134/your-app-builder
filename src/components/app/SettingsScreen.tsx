@@ -6,6 +6,7 @@ import { ArrowLeft, Moon, Sun, Globe, Crown, LogOut } from "lucide-react";
 
 interface SettingsScreenProps {
   onBack: () => void;
+  onUpgrade?: () => void;
 }
 
 const SettingsScreen: React.FC<SettingsScreenProps> = ({ onBack }) => {
