@@ -72,8 +72,9 @@ const AppPage: React.FC = () => {
         {screen === "settings" && <SettingsScreen onBack={() => setScreen("home")} />}
         {screen === "pro" && (
           <div className="animate-fade-up text-center py-12">
-            <Crown className="w-12 h-12 mx-auto text-mood-okay mb-4" />
-            <h1 className="font-serif text-2xl font-bold mb-3">{t.unlock_ju}</h1>
+            <div className="w-16 h-16 mx-auto rounded-2xl bg-primary/15 flex items-center justify-center mb-4">
+              <Sparkles className="w-8 h-8 text-primary" />
+            </div>
             <p className="text-muted-foreground text-sm mb-8 max-w-xs mx-auto">
               Unlimited entries, all 4 coach personas, full history, and AI-powered insights.
             </p>
