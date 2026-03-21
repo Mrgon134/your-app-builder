@@ -241,29 +241,11 @@ const AppPage: React.FC = () => {
         {screen === "coach" && <CoachScreen />}
         {screen === "settings" && <SettingsScreen onBack={() => setScreen("home")} />}
         {screen === "pro" && (
-          <div className="animate-fade-up text-center py-12">
-            <div className="w-16 h-16 mx-auto rounded-2xl bg-primary/15 flex items-center justify-center mb-4">
-              <Sparkles className="w-8 h-8 text-primary" />
-            </div>
-            <h1 className="font-serif text-2xl font-bold mb-3">{t.unlock_ju}</h1>
-            <p className="text-muted-foreground text-sm mb-8 max-w-xs mx-auto">
-              Unlimited entries, all 4 coach personas, full history, and AI-powered insights.
-            </p>
-            <div className="space-y-3 max-w-xs mx-auto">
-              <button
-                onClick={() => handleCheckout("plus_monthly")}
-                className="w-full py-4 rounded-2xl bg-primary text-primary-foreground font-semibold transition-all active:scale-[0.97]"
-              >
-                {t.monthly} — $4.99
-              </button>
-              <button
-                onClick={() => handleCheckout("plus_annual")}
-                className="w-full py-4 rounded-2xl bg-secondary text-foreground font-semibold transition-all active:scale-[0.97]"
-              >
-                {t.annual} — $39.99
-              </button>
-            </div>
-          </div>
+          <PricingScreen
+            currentPlan={profile?.plan || "free"}
+            onCheckout={handleCheckout}
+            onBack={() => setScreen("home")}
+          />
         )}
       </div>
 
