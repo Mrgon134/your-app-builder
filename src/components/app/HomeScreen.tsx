@@ -129,7 +129,11 @@ const HomeScreen: React.FC<HomeScreenProps> = ({ onNavigate, onSettings, onUpgra
           min={0}
           max={100}
           value={energy}
-          onChange={(e) => setEnergy(Number(e.target.value))}
+          onChange={(e) => {
+            const val = Number(e.target.value);
+            if (controlledEnergyChange) controlledEnergyChange(val);
+            else setLocalEnergy(val);
+          }}
           className="w-full h-1 rounded-full appearance-none cursor-pointer accent-primary"
           style={{ background: `linear-gradient(to right, #7C6EDB ${energy}%, hsl(var(--border)) ${energy}%)` }}
         />
