@@ -328,6 +328,21 @@ const CoachScreen: React.FC<{ onUpgrade?: () => void }> = ({ onUpgrade }) => {
         </div>
       )}
 
+      {/* Free user message counter */}
+      {canSend && userPlan === "free" && (
+        <div className={`flex items-center justify-center gap-1.5 mb-2 transition-all duration-300 ${messagesUsed >= 4 ? "animate-pulse" : ""}`}>
+          <div className={`text-xs font-medium px-3 py-1 rounded-full ${
+            messagesUsed >= 4
+              ? "bg-destructive/10 text-destructive"
+              : messagesUsed >= 3
+                ? "bg-amber-500/10 text-amber-600 dark:text-amber-400"
+                : "bg-muted text-muted-foreground"
+          }`}>
+            💬 {5 - messagesUsed} / 5 messages left this week
+          </div>
+        </div>
+      )}
+
       {/* Input */}
       <div className="flex gap-2">
         <input
