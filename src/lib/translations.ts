@@ -174,6 +174,12 @@ export const translations: Record<string, Record<string, string>> = {
     enter_email: "Masukkan emailmu",
     cta_final: "Pikiranmu layak lebih dari halaman kosong",
     cta_final_desc: "Mulai perjalananmu dengan Ju hari ini. Cuma butuh 30 detik.",
+    signup_title: "Ju mulai mengenalmu!",
+    signup_desc: "Entri gratismu sudah habis. Buka akses unlimited journaling, semua coach persona, dan riwayat lengkap.",
+    signup_cta: "Buka akses penuh",
+    ju_remembers: "Ju ingat",
+    history_locked: "Riwayat lengkap terkunci",
+    history_locked_desc: "Paket gratis hanya 7 hari. Upgrade untuk lihat semua entri.",
   },
   es: {
     greeting_morning: "Buenos días",
