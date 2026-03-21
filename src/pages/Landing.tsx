@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useLang } from "@/lib/i18n";
+import { Crosshair, PenLine, BrainCircuit, Check } from "lucide-react";
 import juMain from "@/assets/ju-main.png";
 
 const useReveal = () => {
