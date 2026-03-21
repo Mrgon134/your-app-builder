@@ -4,7 +4,7 @@ import { AI_PERSONAS } from "@/lib/constants";
 import { Send } from "lucide-react";
 import { JU_STICKERS } from "@/lib/stickers";
 import { useAuth } from "@/lib/auth";
-import { saveCoachMessage, fetchCoachMessages, checkCoachLimit, fetchProfile } from "@/lib/api";
+import { saveCoachMessage, fetchCoachMessages, checkCoachLimit, countCoachMessagesThisWeek, fetchProfile } from "@/lib/api";
 import { toast } from "sonner";
 import { Lock } from "lucide-react";
 import coachGentle from "@/assets/coach-gentle.webp";
@@ -122,6 +122,7 @@ const CoachScreen: React.FC<{ onUpgrade?: () => void }> = ({ onUpgrade }) => {
   const [switching, setSwitching] = useState(false);
   const [canSend, setCanSend] = useState(true);
   const [userPlan, setUserPlan] = useState("free");
+  const [messagesUsed, setMessagesUsed] = useState(0);
   const scrollRef = useRef<HTMLDivElement>(null);
 
   // Load previous messages + check limit
@@ -131,13 +132,15 @@ const CoachScreen: React.FC<{ onUpgrade?: () => void }> = ({ onUpgrade }) => {
       fetchCoachMessages(user.id, 50),
       checkCoachLimit(user.id),
       fetchProfile(user.id),
-    ]).then(([data, limitOk, profile]) => {
+      countCoachMessagesThisWeek(user.id),
+    ]).then(([data, limitOk, profile, weekCount]) => {
       if (data.length > 0) {
         setMessages(data.map((m) => ({ role: m.role as "user" | "assistant", content: m.content })));
         if (data[0]?.persona) setPersona(data[0].persona);
       }
       setCanSend(limitOk);
       setUserPlan(profile?.plan || "free");
+      setMessagesUsed(weekCount);
     });
   }, [user]);
 
@@ -198,6 +201,7 @@ const CoachScreen: React.FC<{ onUpgrade?: () => void }> = ({ onUpgrade }) => {
           // Re-check limit after sending
           if (user) {
             checkCoachLimit(user.id).then(setCanSend).catch(console.error);
+            countCoachMessagesThisWeek(user.id).then(setMessagesUsed).catch(console.error);
           }
         },
         onError: (msg) => {
@@ -321,6 +325,21 @@ const CoachScreen: React.FC<{ onUpgrade?: () => void }> = ({ onUpgrade }) => {
               {t.unlock_ju}
             </button>
           )}
+        </div>
+      )}
+
+      {/* Free user message counter */}
+      {canSend && userPlan === "free" && (
+        <div className={`flex items-center justify-center gap-1.5 mb-2 transition-all duration-300 ${messagesUsed >= 4 ? "animate-pulse" : ""}`}>
+          <div className={`text-xs font-medium px-3 py-1 rounded-full ${
+            messagesUsed >= 4
+              ? "bg-destructive/10 text-destructive"
+              : messagesUsed >= 3
+                ? "bg-amber-500/10 text-amber-600 dark:text-amber-400"
+                : "bg-muted text-muted-foreground"
+          }`}>
+            💬 {5 - messagesUsed} / 5 messages left this week
+          </div>
         </div>
       )}
 

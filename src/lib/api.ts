@@ -129,3 +129,19 @@ export const checkCoachLimit = async (userId: string): Promise<boolean> => {
   if (error) throw error;
   return data as boolean;
 };
+
+// Count coach messages sent this week (user messages only)
+export const countCoachMessagesThisWeek = async (userId: string): Promise<number> => {
+  const weekStart = new Date();
+  weekStart.setDate(weekStart.getDate() - weekStart.getDay());
+  weekStart.setHours(0, 0, 0, 0);
+
+  const { count, error } = await supabase
+    .from("coach_messages")
+    .select("id", { count: "exact", head: true })
+    .eq("user_id", userId)
+    .eq("role", "user")
+    .gte("created_at", weekStart.toISOString());
+  if (error) throw error;
+  return count || 0;
+};
