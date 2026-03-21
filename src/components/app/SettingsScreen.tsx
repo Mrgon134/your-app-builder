@@ -71,6 +71,17 @@ const SettingsScreen: React.FC<SettingsScreenProps> = ({ onBack }) => {
             {t.start_trial}
           </button>
         </div>
+        {/* Sign out */}
+        <button
+          onClick={signOut}
+          className="w-full bg-card rounded-2xl p-4 flex items-center gap-3 shadow-sm border border-border/50 text-destructive transition-all active:scale-[0.97]"
+        >
+          <LogOut className="w-5 h-5" />
+          <span className="text-sm font-medium">{t.sign_out || "Sign out"}</span>
+        </button>
+        {user && (
+          <p className="text-xs text-muted-foreground text-center mt-2">{user.email}</p>
+        )}
       </div>
     </div>
   );
