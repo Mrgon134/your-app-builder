@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useLang } from "@/lib/i18n";
 import { MOODS } from "@/lib/constants";
 import MoodIcon from "@/components/MoodIcon";
-import { Lock } from "lucide-react";
+import { Lock, Loader2 } from "lucide-react";
 import HistoryLock from "@/components/app/HistoryLock";
 import MoodTrendChart from "@/components/app/MoodTrendChart";
 import MonthPixelGrid from "@/components/app/MonthPixelGrid";
+import AiMemoryCard from "@/components/app/AiMemoryCard";
+import { JU_STICKERS } from "@/lib/stickers";
 
 interface InsightsScreenProps {
   entries: Array<{ mood: number; date: string; text: string }>;
@@ -13,9 +15,41 @@ interface InsightsScreenProps {
 }
 
 const InsightsScreen: React.FC<InsightsScreenProps> = ({ entries, onUpgrade }) => {
-  const { t } = useLang();
+  const { t, lang } = useLang();
+  const [aiSummary, setAiSummary] = useState<string | null>(null);
+  const [summaryLoading, setSummaryLoading] = useState(false);
 
-  // Generate week data
+  // Fetch AI weekly summary
+  useEffect(() => {
+    if (entries.length < 2) return;
+    const fetchSummary = async () => {
+      setSummaryLoading(true);
+      try {
+        const resp = await fetch(
+          `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/ai-weekly-summary`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY}`,
+            },
+            body: JSON.stringify({ entries: entries.slice(0, 7), lang }),
+          }
+        );
+        if (resp.ok) {
+          const data = await resp.json();
+          if (data.summary) setAiSummary(data.summary);
+        }
+      } catch (e) {
+        console.error("Weekly summary failed:", e);
+      } finally {
+        setSummaryLoading(false);
+      }
+    };
+    fetchSummary();
+  }, [entries.length, lang]);
+
+  // Week data
   const weekDays = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
   const weekMoods = entries.length > 0
     ? entries.slice(0, 7).map((e) => e.mood)
@@ -75,13 +109,26 @@ const InsightsScreen: React.FC<InsightsScreenProps> = ({ entries, onUpgrade }) =
         </div>
       </div>
 
-      {/* Weekly summary */}
+      {/* AI Weekly Summary */}
       <div className="bg-card rounded-3xl p-5 shadow-sm border border-border/50">
-        <p className="text-xs font-medium text-primary uppercase tracking-wider mb-3">{t.weekly_summary}</p>
-        <p className="text-sm text-muted-foreground leading-relaxed">
-          {entries.length > 0 ? t.summary_has_entries : t.summary_no_entries}
-        </p>
+        <div className="flex items-center gap-2.5 mb-3">
+          <img src={JU_STICKERS.goodjob} alt="Ju" className="w-8 h-8" />
+          <p className="text-xs font-medium text-primary uppercase tracking-wider">{t.weekly_summary}</p>
+        </div>
+        {summaryLoading ? (
+          <div className="flex items-center gap-2 text-muted-foreground">
+            <Loader2 className="w-4 h-4 animate-spin" />
+            <span className="text-sm">Analyzing your week...</span>
+          </div>
+        ) : (
+          <p className="font-writing text-sm italic text-foreground leading-relaxed">
+            {aiSummary || (entries.length > 0 ? t.summary_has_entries : t.summary_no_entries)}
+          </p>
+        )}
       </div>
+
+      {/* Ju Remembers — AI Memory Card */}
+      <AiMemoryCard entries={entries} />
 
       {/* History lock for free users */}
       <HistoryLock onUpgrade={onUpgrade} />
