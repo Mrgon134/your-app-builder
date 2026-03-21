@@ -303,19 +303,40 @@ const CoachScreen: React.FC<{ onUpgrade?: () => void }> = ({ onUpgrade }) => {
         )}
       </div>
 
+      {/* Paywall banner when limit reached */}
+      {!canSend && userPlan === "free" && (
+        <div className="bg-primary/10 border border-primary/20 rounded-2xl p-4 mb-3 text-center animate-fade-up">
+          <div className="flex items-center justify-center gap-2 mb-2">
+            <Lock className="w-4 h-4 text-primary" />
+            <span className="text-sm font-semibold text-foreground">Weekly limit reached</span>
+          </div>
+          <p className="text-xs text-muted-foreground mb-3">
+            Free plan includes 5 messages per week. Upgrade for unlimited coaching.
+          </p>
+          {onUpgrade && (
+            <button
+              onClick={onUpgrade}
+              className="px-6 py-2.5 rounded-2xl bg-primary text-primary-foreground text-sm font-semibold transition-all active:scale-[0.97] hover:shadow-lg hover:shadow-primary/20"
+            >
+              {t.unlock_ju}
+            </button>
+          )}
+        </div>
+      )}
+
       {/* Input */}
       <div className="flex gap-2">
         <input
           value={input}
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={(e) => e.key === "Enter" && sendMessage()}
-          placeholder={t.talk_to_ju}
-          disabled={isLoading}
+          placeholder={!canSend && userPlan === "free" ? "Upgrade to keep chatting..." : t.talk_to_ju}
+          disabled={isLoading || (!canSend && userPlan === "free")}
           className="flex-1 px-5 py-3 rounded-2xl bg-card border border-border/50 text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:ring-2 focus:ring-primary/30 text-sm transition-shadow duration-200 disabled:opacity-60"
         />
         <button
           onClick={sendMessage}
-          disabled={!input.trim() || isLoading}
+          disabled={!input.trim() || isLoading || (!canSend && userPlan === "free")}
           className="w-12 h-12 rounded-2xl bg-primary text-primary-foreground flex items-center justify-center transition-all duration-200 active:scale-[0.95] disabled:opacity-40"
         >
           <Send className="w-5 h-5" />
