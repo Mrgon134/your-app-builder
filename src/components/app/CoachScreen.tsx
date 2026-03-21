@@ -158,7 +158,7 @@ const CoachScreen: React.FC<{ onUpgrade?: () => void }> = ({ onUpgrade }) => {
   );
 
   const sendMessage = async () => {
-    if (!input.trim() || isLoading) return;
+    if (!input.trim() || isLoading || !canSend) return;
     const userMsg = input.trim();
     setInput("");
 
