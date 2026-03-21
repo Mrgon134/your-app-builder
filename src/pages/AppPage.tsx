@@ -101,6 +101,7 @@ const AppPage: React.FC = () => {
             variant_id: variantId,
             user_id: user.id,
             user_email: user.email,
+            country,
           }),
         }
       );
