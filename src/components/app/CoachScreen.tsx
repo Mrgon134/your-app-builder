@@ -122,6 +122,7 @@ const CoachScreen: React.FC<{ onUpgrade?: () => void }> = ({ onUpgrade }) => {
   const [switching, setSwitching] = useState(false);
   const [canSend, setCanSend] = useState(true);
   const [userPlan, setUserPlan] = useState("free");
+  const [messagesUsed, setMessagesUsed] = useState(0);
   const scrollRef = useRef<HTMLDivElement>(null);
 
   // Load previous messages + check limit
