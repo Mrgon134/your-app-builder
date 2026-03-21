@@ -8,6 +8,7 @@ import JournalScreen from "@/components/app/JournalScreen";
 import InsightsScreen from "@/components/app/InsightsScreen";
 import CoachScreen from "@/components/app/CoachScreen";
 import SettingsScreen from "@/components/app/SettingsScreen";
+import PricingScreen from "@/components/app/PricingScreen";
 import Confetti from "@/components/app/Confetti";
 import { Home, BarChart3, MessageCircle, Sparkles, Loader2 } from "lucide-react";
 import { toast } from "sonner";
