@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import { useLang } from "@/lib/i18n";
 import { JU_STICKERS } from "@/lib/stickers";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, Mic, MicOff } from "lucide-react";
 
 interface JournalScreenProps {
   onBack: () => void;
@@ -26,16 +26,85 @@ const useTypingEffect = (text: string, speed = 22) => {
   return { displayed, done };
 };
 
+// Check SpeechRecognition support
+const SpeechRecognition =
+  typeof window !== "undefined"
+    ? (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition
+    : null;
+
 const JournalScreen: React.FC<JournalScreenProps> = ({ onBack, onSave }) => {
-  const { t } = useLang();
+  const { t, lang } = useLang();
   const [text, setText] = useState("");
   const [saved, setSaved] = useState(false);
   const [insight, setInsight] = useState("");
   const [saving, setSaving] = useState(false);
+  const [isRecording, setIsRecording] = useState(false);
+  const recognitionRef = useRef<any>(null);
+
+  const startRecording = useCallback(() => {
+    if (!SpeechRecognition) return;
+    const recognition = new SpeechRecognition();
+    recognition.continuous = true;
+    recognition.interimResults = true;
+    recognition.lang = lang === "id" ? "id-ID" : lang === "es" ? "es-ES" : lang === "pt" ? "pt-BR" : lang === "ja" ? "ja-JP" : lang === "ko" ? "ko-KR" : lang === "zh" ? "zh-CN" : lang === "hi" ? "hi-IN" : "en-US";
+
+    let finalTranscript = "";
+
+    recognition.onresult = (event: any) => {
+      let interim = "";
+      for (let i = event.resultIndex; i < event.results.length; i++) {
+        const transcript = event.results[i][0].transcript;
+        if (event.results[i].isFinal) {
+          finalTranscript += transcript + " ";
+        } else {
+          interim = transcript;
+        }
+      }
+      setText((prev) => {
+        const base = prev.endsWith(" ") ? prev : prev ? prev + " " : "";
+        return (base + finalTranscript + interim).replace(/\s+/g, " ").trim();
+      });
+    };
+
+    recognition.onerror = (e: any) => {
+      console.error("Speech recognition error:", e.error);
+      setIsRecording(false);
+    };
+
+    recognition.onend = () => {
+      setIsRecording(false);
+    };
+
+    recognitionRef.current = recognition;
+    recognition.start();
+    setIsRecording(true);
+
+    // Haptic feedback
+    if (navigator.vibrate) navigator.vibrate([10, 50, 10]);
+  }, [lang]);
+
+  const stopRecording = useCallback(() => {
+    if (recognitionRef.current) {
+      recognitionRef.current.stop();
+      recognitionRef.current = null;
+    }
+    setIsRecording(false);
+    if (navigator.vibrate) navigator.vibrate([10]);
+  }, []);
+
+  // Cleanup on unmount
+  useEffect(() => {
+    return () => {
+      if (recognitionRef.current) {
+        recognitionRef.current.stop();
+      }
+    };
+  }, []);
 
   const handleSave = async () => {
     if (!text.trim() || saving) return;
     setSaving(true);
+    if (isRecording) stopRecording();
     try {
       const aiInsight = await onSave(text);
       setInsight(aiInsight || "");
@@ -102,13 +171,38 @@ const JournalScreen: React.FC<JournalScreenProps> = ({ onBack, onSave }) => {
         autoFocus
       />
 
-      <button
-        onClick={handleSave}
-        disabled={!text.trim() || saving}
-        className="w-full mt-6 py-4 rounded-2xl bg-primary text-primary-foreground font-semibold text-base transition-all hover:shadow-lg hover:shadow-primary/20 active:scale-[0.97] disabled:opacity-40 disabled:hover:shadow-none"
-      >
-        {saving ? "..." : t.save}
-      </button>
+      {/* Voice recording button */}
+      <div className="flex items-center gap-3 mt-4">
+        {SpeechRecognition && (
+          <button
+            onClick={isRecording ? stopRecording : startRecording}
+            className={`flex items-center justify-center gap-2 px-5 py-3 rounded-2xl font-medium text-sm transition-all active:scale-[0.97] ${
+              isRecording
+                ? "bg-destructive/10 text-destructive border border-destructive/30"
+                : "bg-secondary text-foreground border border-border/50"
+            }`}
+          >
+            {isRecording ? (
+              <>
+                <MicOff className="w-4 h-4" />
+                <span className="animate-pulse">{t.recording}</span>
+              </>
+            ) : (
+              <>
+                <Mic className="w-4 h-4" />
+                <span>{t.talk}</span>
+              </>
+            )}
+          </button>
+        )}
+        <button
+          onClick={handleSave}
+          disabled={!text.trim() || saving}
+          className="flex-1 py-3 rounded-2xl bg-primary text-primary-foreground font-semibold text-sm transition-all hover:shadow-lg hover:shadow-primary/20 active:scale-[0.97] disabled:opacity-40 disabled:hover:shadow-none"
+        >
+          {saving ? "..." : t.save}
+        </button>
+      </div>
     </div>
   );
 };

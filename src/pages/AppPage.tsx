@@ -69,6 +69,49 @@ const AppPage: React.FC = () => {
       setShowConfetti(true);
     }
   }, []);
+  // Lemon Squeezy checkout
+  const handleCheckout = async (plan: string) => {
+    if (!user) return;
+    try {
+      // Variant IDs should be configured in Lemon Squeezy dashboard
+      // These are placeholders — replace with real variant IDs
+      const variantMap: Record<string, string> = {
+        plus_monthly: "PLUS_MONTHLY_VARIANT_ID",
+        plus_annual: "PLUS_ANNUAL_VARIANT_ID",
+        pro_monthly: "PRO_MONTHLY_VARIANT_ID",
+        pro_annual: "PRO_ANNUAL_VARIANT_ID",
+      };
+      const variantId = variantMap[plan];
+      if (!variantId || variantId.includes("VARIANT_ID")) {
+        toast.info("Payments coming soon! Stay tuned.");
+        return;
+      }
+      const resp = await fetch(
+        `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/lemon-checkout`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY}`,
+          },
+          body: JSON.stringify({
+            variant_id: variantId,
+            user_id: user.id,
+            user_email: user.email,
+          }),
+        }
+      );
+      if (resp.ok) {
+        const data = await resp.json();
+        if (data.url) window.open(data.url, "_blank");
+      } else {
+        toast.error("Could not start checkout. Try again.");
+      }
+    } catch (err) {
+      console.error("Checkout error:", err);
+      toast.error("Checkout failed");
+    }
+  };
 
   const handleSaveEntry = async (text: string): Promise<string | null> => {
     if (!user) return null;
@@ -206,10 +249,16 @@ const AppPage: React.FC = () => {
               Unlimited entries, all 4 coach personas, full history, and AI-powered insights.
             </p>
             <div className="space-y-3 max-w-xs mx-auto">
-              <button className="w-full py-4 rounded-2xl bg-primary text-primary-foreground font-semibold transition-all active:scale-[0.97]">
+              <button
+                onClick={() => handleCheckout("plus_monthly")}
+                className="w-full py-4 rounded-2xl bg-primary text-primary-foreground font-semibold transition-all active:scale-[0.97]"
+              >
                 {t.monthly} — $4.99
               </button>
-              <button className="w-full py-4 rounded-2xl bg-secondary text-foreground font-semibold transition-all active:scale-[0.97]">
+              <button
+                onClick={() => handleCheckout("plus_annual")}
+                className="w-full py-4 rounded-2xl bg-secondary text-foreground font-semibold transition-all active:scale-[0.97]"
+              >
                 {t.annual} — $39.99
               </button>
             </div>
