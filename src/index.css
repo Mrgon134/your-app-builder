@@ -2,87 +2,83 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Lora:ital,wght@0,400;0,500;0,600;0,700&family=Newsreader:ital,wght@0,400;1,400&display=swap');
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --font-body: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-serif: 'Lora', 'Georgia', serif;
+    --font-writing: 'Newsreader', 'Georgia', serif;
 
+    --background: 252 100% 98%;
+    --foreground: 240 33% 14%;
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-
+    --card-foreground: 240 33% 14%;
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 240 33% 14%;
+    --primary: 248 62% 64%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 252 100% 96%;
+    --secondary-foreground: 240 33% 14%;
+    --muted: 252 100% 94%;
+    --muted-foreground: 0 0% 47%;
+    --accent: 252 100% 96%;
+    --accent-foreground: 248 62% 64%;
+    --destructive: 354 70% 54%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 252 30% 90%;
+    --input: 252 30% 90%;
+    --ring: 248 62% 64%;
+    --radius: 1rem;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Nuju brand */
+    --nuju-purple: 248 62% 64%;
+    --nuju-light-bg: 252 100% 98%;
+    --nuju-body-bg: 252 100% 99%;
+    
+    /* Mood colors (raw hex for inline use) */
+    --mood-rough: 354 66% 72%;
+    --mood-low: 212 52% 62%;
+    --mood-okay: 33 100% 64%;
+    --mood-good: 163 57% 73%;
+    --mood-great: 174 60% 55%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
-
-    --radius: 0.5rem;
+    /* Persona colors */
+    --persona-gentle: 224 68% 81%;
+    --persona-tough: 300 34% 73%;
+    --persona-wise: 42 57% 77%;
+    --persona-fun: 151 52% 78%;
 
     --sidebar-background: 0 0% 98%;
-
     --sidebar-foreground: 240 5.3% 26.1%;
-
     --sidebar-primary: 240 5.9% 10%;
-
     --sidebar-primary-foreground: 0 0% 98%;
-
     --sidebar-accent: 240 4.8% 95.9%;
-
     --sidebar-accent-foreground: 240 5.9% 10%;
-
     --sidebar-border: 220 13% 91%;
-
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-
+    --background: 252 27% 9%;
+    --foreground: 252 50% 93%;
+    --card: 252 30% 14%;
+    --card-foreground: 252 50% 93%;
+    --popover: 252 30% 14%;
+    --popover-foreground: 252 50% 93%;
+    --primary: 248 62% 64%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 252 30% 17%;
+    --secondary-foreground: 252 50% 93%;
+    --muted: 252 30% 17%;
+    --muted-foreground: 252 30% 65%;
+    --accent: 252 30% 17%;
+    --accent-foreground: 248 62% 74%;
     --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 248 30% 22%;
+    --input: 248 30% 22%;
+    --ring: 248 62% 64%;
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;
@@ -97,9 +93,111 @@ All colors MUST be HSL.
 @layer base {
   * {
     @apply border-border;
+    -webkit-tap-highlight-color: transparent;
   }
-
+  html {
+    scroll-behavior: smooth;
+  }
   body {
     @apply bg-background text-foreground;
+    font-family: var(--font-body);
+  }
+  ::selection {
+    background: hsl(248 62% 64% / 0.19);
+  }
+  ::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* ============ ANIMATIONS ============ */
+@keyframes ju-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+@keyframes glow-pulse {
+  0%, 100% { opacity: 0.6; transform: translate(-50%, -50%) scale(1); }
+  50% { opacity: 1; transform: translate(-50%, -50%) scale(1.15); }
+}
+@keyframes wave-hand {
+  0%, 100% { transform: rotate(-15deg); }
+  50% { transform: rotate(-30deg) translateY(-4px); }
+}
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes pulse-scale {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.08); }
+}
+@keyframes bounce-gentle {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+@keyframes celebrate-pop {
+  0% { transform: scale(0.3); opacity: 0; }
+  50% { transform: scale(1.15); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
+}
+@keyframes typing-dots {
+  0%, 80%, 100% { opacity: 0.3; }
+  40% { opacity: 1; }
+}
+@keyframes streak-fire {
+  0%, 100% { transform: scaleY(1) scaleX(1); }
+  25% { transform: scaleY(1.15) scaleX(0.92); }
+  50% { transform: scaleY(0.95) scaleX(1.05); }
+  75% { transform: scaleY(1.08) scaleX(0.97); }
+}
+
+@layer utilities {
+  .animate-ju-float {
+    animation: ju-float 3s ease-in-out infinite;
+  }
+  .animate-glow-pulse {
+    animation: glow-pulse 3s ease-in-out infinite;
+  }
+  .animate-wave-hand {
+    animation: wave-hand 2s ease-in-out infinite;
+  }
+  .animate-fade-in {
+    animation: fade-in 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+  .animate-slide-up {
+    animation: slide-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+  .animate-fade-up {
+    animation: fade-up 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+  .animate-pulse-scale {
+    animation: pulse-scale 0.8s ease-in-out;
+  }
+  .animate-bounce-gentle {
+    animation: bounce-gentle 2s ease-in-out infinite;
+  }
+  .animate-celebrate-pop {
+    animation: celebrate-pop 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+  .animate-streak-fire {
+    animation: streak-fire 1.5s ease-in-out infinite;
+  }
+  .font-serif {
+    font-family: var(--font-serif);
+  }
+  .font-writing {
+    font-family: var(--font-writing);
   }
 }
