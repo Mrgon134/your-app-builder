@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useLang, LANG_META } from "@/lib/i18n";
-import { ArrowLeft, Moon, Globe, Crown } from "lucide-react";
+import { useAuth } from "@/lib/auth";
+import { ArrowLeft, Moon, Globe, Crown, LogOut } from "lucide-react";
 
 interface SettingsScreenProps {
   onBack: () => void;
