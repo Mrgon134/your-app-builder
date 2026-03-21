@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useLang } from "@/lib/i18n";
 import { addToWaitlist } from "@/lib/api";
 import { Crosshair, PenLine, BrainCircuit, Check, Shield, Zap, Heart, Star, Quote } from "lucide-react";
-import juMain from "@/assets/ju-main.png";
+import juMain from "@/assets/ju-main.webp";
 import { toast } from "sonner";
 
 const useReveal = () => {
@@ -59,7 +59,7 @@ const Landing: React.FC = () => {
       <nav className="sticky top-0 z-50 backdrop-blur-xl bg-background/80 border-b border-border/50">
         <div className="max-w-5xl mx-auto px-4 h-16 flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <img src={juMain} alt="Ju" className="w-8 h-8" />
+            <img src={juMain} alt="Ju" className="w-8 h-8" width={32} height={32} />
             <span className="font-serif text-xl font-bold text-foreground">Nuju</span>
           </div>
           <button
@@ -79,7 +79,7 @@ const Landing: React.FC = () => {
         <div className="max-w-3xl mx-auto text-center">
           <div className="relative w-32 h-32 mx-auto mb-8">
             <div className="absolute inset-0 rounded-full bg-primary/20 animate-glow-pulse" />
-            <img src={juMain} alt="Ju mascot" className="relative w-full h-full object-contain animate-ju-float" />
+            <img src={juMain} alt="Ju mascot" className="relative w-full h-full object-contain animate-ju-float" width={128} height={128} fetchPriority="high" />
           </div>
           <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl font-bold text-foreground leading-[1.1] mb-6 text-balance">
             {t.hero_title}

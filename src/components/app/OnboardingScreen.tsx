@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useLang } from "@/lib/i18n";
-import juMain from "@/assets/ju-main.png";
-import juGreat from "@/assets/ju-great.png";
-import juOkay from "@/assets/ju-okay.png";
+import juMain from "@/assets/ju-main.webp";
+import juGreat from "@/assets/ju-great.webp";
+import juOkay from "@/assets/ju-okay.webp";
 
 const OnboardingScreen: React.FC<{ onComplete: () => void }> = ({ onComplete }) => {
   const { t } = useLang();
