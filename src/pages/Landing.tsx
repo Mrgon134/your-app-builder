@@ -2,7 +2,8 @@ import React, { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useLang } from "@/lib/i18n";
 import { addToWaitlist } from "@/lib/api";
-import { Crosshair, PenLine, BrainCircuit, Check, Shield, Zap, Heart, Star, Quote } from "lucide-react";
+import { useGeoPricing } from "@/hooks/use-geo-pricing";
+import { Crosshair, PenLine, BrainCircuit, Check, Shield, Zap, Heart, Star, Quote, Globe } from "lucide-react";
 import juMain from "@/assets/ju-main.webp";
 import { toast } from "sonner";
 
@@ -22,6 +23,7 @@ const useReveal = () => {
 const Landing: React.FC = () => {
   const { t } = useLang();
   const navigate = useNavigate();
+  const geo = useGeoPricing();
   const [email, setEmail] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const heroReveal = useReveal();
@@ -238,17 +240,23 @@ const Landing: React.FC = () => {
         </div>
       </section>
 
-      {/* 7. Pricing */}
       <section ref={pricingReveal.ref} className="py-20 px-4">
         <div className="max-w-4xl mx-auto">
-          <h2 className={`font-serif text-3xl font-bold text-center mb-16 transition-all duration-700 ${pricingReveal.visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
+          <h2 className={`font-serif text-3xl font-bold text-center mb-4 transition-all duration-700 ${pricingReveal.visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
             {t.pricing_title}
           </h2>
+          {geo.currency !== "USD" && (
+            <div className="flex items-center justify-center gap-1.5 mb-12">
+              <Globe className="w-3.5 h-3.5 text-muted-foreground" />
+              <span className="text-xs text-muted-foreground">Prices shown in {geo.currency}</span>
+            </div>
+          )}
+          {geo.currency === "USD" && <div className="mb-12" />}
           <div className="grid md:grid-cols-3 gap-6">
             {[
-              { name: t.pricing_free, price: "$0", period: "/forever", features: ["3 entries/week", "Mood tracking", "1 AI coach persona", "7-day history"], highlight: false },
-              { name: t.pricing_plus, price: "$4.99", period: "/month", features: ["Unlimited entries", "All 4 coach personas", "Full history", "Weekly AI reports", "Dark mode"], highlight: true },
-              { name: t.pricing_pro, price: "$9.99", period: "/month", features: ["Everything in Plus", "Voice journaling", "Relationship mood map", "AI memory & patterns", "Priority support"], highlight: false },
+              { name: t.pricing_free, price: geo.formatPrice(0), period: "/forever", features: ["3 entries/week", "Mood tracking", "1 AI coach persona", "7-day history"], highlight: false },
+              { name: t.pricing_plus, price: geo.formatPrice(geo.rates.plusMonthly), period: "/month", features: ["Unlimited entries", "All 4 coach personas", "Full history", "Weekly AI reports", "Dark mode"], highlight: true },
+              { name: t.pricing_pro, price: geo.formatPrice(geo.rates.proMonthly), period: "/month", features: ["Everything in Plus", "Voice journaling", "Relationship mood map", "AI memory & patterns", "Priority support"], highlight: false },
             ].map((plan, i) => (
               <div
                 key={plan.name}
@@ -262,8 +270,10 @@ const Landing: React.FC = () => {
                 )}
                 <h3 className="font-serif text-xl font-semibold mb-2">{plan.name}</h3>
                 <div className="flex items-baseline gap-1 mb-6">
-                  <span className="text-3xl font-bold">{plan.price}</span>
-                  <span className={`text-sm ${plan.highlight ? "text-primary-foreground/70" : "text-muted-foreground"}`}>{plan.period}</span>
+                  <span className="text-3xl font-bold">{plan.price === geo.formatPrice(0) ? "Free" : plan.price}</span>
+                  {plan.price !== geo.formatPrice(0) && (
+                    <span className={`text-sm ${plan.highlight ? "text-primary-foreground/70" : "text-muted-foreground"}`}>{plan.period}</span>
+                  )}
                 </div>
                 <ul className="space-y-3 mb-8">
                   {plan.features.map((f) => (
