@@ -63,7 +63,18 @@ const InsightsScreen: React.FC<InsightsScreenProps> = ({ entries, streak = 0, on
 
   return (
     <div className="animate-fade-up space-y-4">
-      <h1 className="font-serif text-2xl font-bold text-foreground mb-6">{t.mind_gallery}</h1>
+      <div className="flex items-center justify-between mb-6">
+        <h1 className="font-serif text-2xl font-bold text-foreground">{t.mind_gallery}</h1>
+        <div className="flex gap-2">
+          {entries.length > 0 && (
+            <ShareButton
+              type="daily"
+              data={{ mood: entries[0].mood, date: entries[0].date, text: entries[0].text }}
+              label={t.share_mood || "Share"}
+            />
+          )}
+        </div>
+      </div>
 
       {/* 30-Day Mood Trend Chart */}
       <MoodTrendChart entries={entries} />
