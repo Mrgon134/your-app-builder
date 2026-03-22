@@ -32,6 +32,9 @@ const AppPage: React.FC = () => {
   const [showConfetti, setShowConfetti] = useState(false);
   const [showSignupAfterSave, setShowSignupAfterSave] = useState(false);
 
+  // Initialize notification reminders
+  useEffect(() => { initReminders(); }, []);
+
   useEffect(() => {
     if (!user) return;
     const load = async () => {
