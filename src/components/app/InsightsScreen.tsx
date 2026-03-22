@@ -131,6 +131,21 @@ const InsightsScreen: React.FC<InsightsScreenProps> = ({ entries, streak = 0, on
         </div>
       </div>
 
+      {/* Streak milestone share */}
+      {streak >= 7 && (
+        <div className="bg-card rounded-3xl p-5 shadow-sm border border-border/50 flex items-center justify-between">
+          <div>
+            <p className="text-xs font-medium text-primary uppercase tracking-wider mb-1">🔥 {t.streak_milestone || "Streak Milestone"}</p>
+            <p className="text-2xl font-bold text-foreground">{streak} {t.days_streak || "days"}</p>
+          </div>
+          <ShareButton
+            type="streak"
+            data={{ streak }}
+            label={t.share_streak || "Share"}
+          />
+        </div>
+      )}
+
       {/* AI Weekly Summary */}
       <div className="bg-card rounded-3xl p-5 shadow-sm border border-border/50">
         <div className="flex items-center gap-2.5 mb-3">
