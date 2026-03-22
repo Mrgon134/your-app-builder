@@ -16,7 +16,7 @@ interface InsightsScreenProps {
   onUpgrade: () => void;
 }
 
-const InsightsScreen: React.FC<InsightsScreenProps> = ({ entries, onUpgrade }) => {
+const InsightsScreen: React.FC<InsightsScreenProps> = ({ entries, streak = 0, onUpgrade }) => {
   const { t, lang } = useLang();
   const [aiSummary, setAiSummary] = useState<string | null>(null);
   const [summaryLoading, setSummaryLoading] = useState(false);
