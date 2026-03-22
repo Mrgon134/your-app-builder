@@ -21,6 +21,10 @@ const SettingsScreen: React.FC<SettingsScreenProps> = ({ onBack, onUpgrade }) =>
   const { t, lang, setLang } = useLang();
   const { signOut, user } = useAuth();
   const [darkMode, setDarkMode] = useState(document.documentElement.classList.contains("dark"));
+  const reminderDefaults = getReminderSettings();
+  const [reminderEnabled, setReminderEnabled] = useState(reminderDefaults.enabled);
+  const [reminderHour, setReminderHour] = useState(reminderDefaults.hour);
+  const notifSupported = getNotificationPermission() !== "unsupported";
 
   const toggleDark = async () => {
     const newVal = !darkMode;
