@@ -7,14 +7,16 @@ import HistoryLock from "@/components/app/HistoryLock";
 import MoodTrendChart from "@/components/app/MoodTrendChart";
 import MonthPixelGrid from "@/components/app/MonthPixelGrid";
 import AiMemoryCard from "@/components/app/AiMemoryCard";
+import ShareButton from "@/components/app/ShareButton";
 import { JU_STICKERS } from "@/lib/stickers";
 
 interface InsightsScreenProps {
   entries: Array<{ mood: number; date: string; text: string }>;
+  streak?: number;
   onUpgrade: () => void;
 }
 
-const InsightsScreen: React.FC<InsightsScreenProps> = ({ entries, onUpgrade }) => {
+const InsightsScreen: React.FC<InsightsScreenProps> = ({ entries, streak = 0, onUpgrade }) => {
   const { t, lang } = useLang();
   const [aiSummary, setAiSummary] = useState<string | null>(null);
   const [summaryLoading, setSummaryLoading] = useState(false);
@@ -61,7 +63,18 @@ const InsightsScreen: React.FC<InsightsScreenProps> = ({ entries, onUpgrade }) =
 
   return (
     <div className="animate-fade-up space-y-4">
-      <h1 className="font-serif text-2xl font-bold text-foreground mb-6">{t.mind_gallery}</h1>
+      <div className="flex items-center justify-between mb-6">
+        <h1 className="font-serif text-2xl font-bold text-foreground">{t.mind_gallery}</h1>
+        <div className="flex gap-2">
+          {entries.length > 0 && (
+            <ShareButton
+              type="daily"
+              data={{ mood: entries[0].mood, date: entries[0].date, text: entries[0].text }}
+              label={t.share_mood || "Share"}
+            />
+          )}
+        </div>
+      </div>
 
       {/* 30-Day Mood Trend Chart */}
       <MoodTrendChart entries={entries} />
@@ -88,6 +101,15 @@ const InsightsScreen: React.FC<InsightsScreenProps> = ({ entries, onUpgrade }) =
             );
           })}
         </div>
+        {/* Share weekly mood */}
+        <div className="flex justify-end mt-3">
+          <ShareButton
+            type="weekly"
+            data={{ moods: weekMoods, avgMood: parseFloat(avgMood), totalEntries: entries.length }}
+            label={t.share_week || "Share week"}
+            className="text-xs"
+          />
+        </div>
       </div>
 
       {/* Month Pixel Grid */}
@@ -108,6 +130,21 @@ const InsightsScreen: React.FC<InsightsScreenProps> = ({ entries, onUpgrade }) =
           <p className="text-[10px] text-muted-foreground mt-1">{t.mood_best}</p>
         </div>
       </div>
+
+      {/* Streak milestone share */}
+      {streak >= 7 && (
+        <div className="bg-card rounded-3xl p-5 shadow-sm border border-border/50 flex items-center justify-between">
+          <div>
+            <p className="text-xs font-medium text-primary uppercase tracking-wider mb-1">🔥 {t.streak_milestone || "Streak Milestone"}</p>
+            <p className="text-2xl font-bold text-foreground">{streak} {t.days_streak || "days"}</p>
+          </div>
+          <ShareButton
+            type="streak"
+            data={{ streak }}
+            label={t.share_streak || "Share"}
+          />
+        </div>
+      )}
 
       {/* AI Weekly Summary */}
       <div className="bg-card rounded-3xl p-5 shadow-sm border border-border/50">

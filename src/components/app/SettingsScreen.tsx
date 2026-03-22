@@ -2,7 +2,15 @@ import React, { useState, useEffect } from "react";
 import { useLang, LANG_META } from "@/lib/i18n";
 import { useAuth } from "@/lib/auth";
 import { updateProfile } from "@/lib/api";
-import { ArrowLeft, Moon, Sun, Globe, Crown, LogOut } from "lucide-react";
+import { ArrowLeft, Moon, Sun, Globe, Crown, LogOut, Bell, BellOff } from "lucide-react";
+import {
+  requestNotificationPermission,
+  getNotificationPermission,
+  getReminderSettings,
+  scheduleLocalReminder,
+  disableReminder,
+} from "@/lib/notifications";
+import { toast } from "sonner";
 
 interface SettingsScreenProps {
   onBack: () => void;
@@ -13,6 +21,10 @@ const SettingsScreen: React.FC<SettingsScreenProps> = ({ onBack, onUpgrade }) =>
   const { t, lang, setLang } = useLang();
   const { signOut, user } = useAuth();
   const [darkMode, setDarkMode] = useState(document.documentElement.classList.contains("dark"));
+  const reminderDefaults = getReminderSettings();
+  const [reminderEnabled, setReminderEnabled] = useState(reminderDefaults.enabled);
+  const [reminderHour, setReminderHour] = useState(reminderDefaults.hour);
+  const notifSupported = getNotificationPermission() !== "unsupported";
 
   const toggleDark = async () => {
     const newVal = !darkMode;
@@ -53,6 +65,58 @@ const SettingsScreen: React.FC<SettingsScreenProps> = ({ onBack, onUpgrade }) =>
             <div className={`absolute top-0.5 w-6 h-6 rounded-full bg-card shadow transition-transform ${darkMode ? "translate-x-5" : "translate-x-0.5"}`} />
           </button>
         </div>
+
+        {/* Notifications */}
+        {notifSupported && (
+          <div className="bg-card rounded-2xl p-4 shadow-sm border border-border/50">
+            <div className="flex items-center justify-between mb-3">
+              <div className="flex items-center gap-3">
+                {reminderEnabled ? <Bell className="w-5 h-5 text-primary" /> : <BellOff className="w-5 h-5 text-muted-foreground" />}
+                <span className="text-sm font-medium">{t.daily_reminder || "Daily reminder"}</span>
+              </div>
+              <button
+                onClick={async () => {
+                  if (!reminderEnabled) {
+                    const granted = await requestNotificationPermission();
+                    if (!granted) {
+                      toast.error(t.notif_denied || "Notifications blocked. Enable in browser settings.");
+                      return;
+                    }
+                    scheduleLocalReminder(reminderHour);
+                    setReminderEnabled(true);
+                    toast.success(t.notif_enabled || "Reminder set! 🔔");
+                  } else {
+                    disableReminder();
+                    setReminderEnabled(false);
+                  }
+                }}
+                className={`relative w-12 h-7 rounded-full transition-colors ${reminderEnabled ? "bg-primary" : "bg-border"}`}
+              >
+                <div className={`absolute top-0.5 w-6 h-6 rounded-full bg-card shadow transition-transform ${reminderEnabled ? "translate-x-5" : "translate-x-0.5"}`} />
+              </button>
+            </div>
+            {reminderEnabled && (
+              <div className="flex items-center gap-3 mt-2">
+                <span className="text-xs text-muted-foreground">{t.remind_at || "Remind at"}</span>
+                <select
+                  value={reminderHour}
+                  onChange={(e) => {
+                    const h = Number(e.target.value);
+                    setReminderHour(h);
+                    scheduleLocalReminder(h);
+                  }}
+                  className="px-3 py-1.5 rounded-xl bg-secondary text-sm font-medium text-foreground border-none outline-none"
+                >
+                  {Array.from({ length: 24 }, (_, i) => (
+                    <option key={i} value={i}>
+                      {i.toString().padStart(2, "0")}:00
+                    </option>
+                  ))}
+                </select>
+              </div>
+            )}
+          </div>
+        )}
 
         {/* Language */}
         <div className="bg-card rounded-2xl p-4 shadow-sm border border-border/50">

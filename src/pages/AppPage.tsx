@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react";
+import { initReminders } from "@/lib/notifications";
 import { useGeoPricing } from "@/hooks/use-geo-pricing";
 import { useLang } from "@/lib/i18n";
 import { useAuth } from "@/lib/auth";
@@ -30,6 +31,9 @@ const AppPage: React.FC = () => {
   const [energy, setEnergy] = useState(50);
   const [showConfetti, setShowConfetti] = useState(false);
   const [showSignupAfterSave, setShowSignupAfterSave] = useState(false);
+
+  // Initialize notification reminders
+  useEffect(() => { initReminders(); }, []);
 
   useEffect(() => {
     if (!user) return;
@@ -240,7 +244,7 @@ const AppPage: React.FC = () => {
         {screen === "journal" && (
           <JournalScreen onBack={() => setScreen("home")} onSave={handleSaveEntry} />
         )}
-        {screen === "insights" && <InsightsScreen entries={entries} onUpgrade={() => setScreen("pro")} />}
+        {screen === "insights" && <InsightsScreen entries={entries} streak={streak} onUpgrade={() => setScreen("pro")} />}
         {screen === "coach" && <CoachScreen onUpgrade={() => setScreen("pro")} />}
         {screen === "settings" && <SettingsScreen onBack={() => setScreen("home")} onUpgrade={() => setScreen("pro")} />}
         {screen === "pro" && (
