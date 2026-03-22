@@ -12,6 +12,7 @@ import { JU_STICKERS } from "@/lib/stickers";
 
 interface InsightsScreenProps {
   entries: Array<{ mood: number; date: string; text: string }>;
+  streak?: number;
   onUpgrade: () => void;
 }
 
