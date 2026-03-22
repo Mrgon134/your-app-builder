@@ -240,7 +240,7 @@ const AppPage: React.FC = () => {
         {screen === "journal" && (
           <JournalScreen onBack={() => setScreen("home")} onSave={handleSaveEntry} />
         )}
-        {screen === "insights" && <InsightsScreen entries={entries} onUpgrade={() => setScreen("pro")} />}
+        {screen === "insights" && <InsightsScreen entries={entries} streak={streak} onUpgrade={() => setScreen("pro")} />}
         {screen === "coach" && <CoachScreen onUpgrade={() => setScreen("pro")} />}
         {screen === "settings" && <SettingsScreen onBack={() => setScreen("home")} onUpgrade={() => setScreen("pro")} />}
         {screen === "pro" && (
