@@ -2,7 +2,15 @@ import React, { useState, useEffect } from "react";
 import { useLang, LANG_META } from "@/lib/i18n";
 import { useAuth } from "@/lib/auth";
 import { updateProfile } from "@/lib/api";
-import { ArrowLeft, Moon, Sun, Globe, Crown, LogOut } from "lucide-react";
+import { ArrowLeft, Moon, Sun, Globe, Crown, LogOut, Bell, BellOff } from "lucide-react";
+import {
+  requestNotificationPermission,
+  getNotificationPermission,
+  getReminderSettings,
+  scheduleLocalReminder,
+  disableReminder,
+} from "@/lib/notifications";
+import { toast } from "sonner";
 
 interface SettingsScreenProps {
   onBack: () => void;
