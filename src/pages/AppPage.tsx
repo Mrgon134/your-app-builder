@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react";
+import { initReminders } from "@/lib/notifications";
 import { useGeoPricing } from "@/hooks/use-geo-pricing";
 import { useLang } from "@/lib/i18n";
 import { useAuth } from "@/lib/auth";
