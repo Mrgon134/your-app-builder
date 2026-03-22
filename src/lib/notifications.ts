@@ -77,8 +77,7 @@ function showReminderNotification() {
     icon: "/pwa-192x192.png",
     badge: "/pwa-192x192.png",
     tag: "nuju-reminder",
-    renotify: true,
-  });
+  } as NotificationOptions);
 
   notification.onclick = () => {
     window.focus();
