@@ -21,6 +21,7 @@ export interface ProfileRow {
   total_entries: number;
   coach_persona: string | null;
   onboarded: boolean | null;
+  trial_started_at: string | null;
 }
 
 // Fetch user profile
