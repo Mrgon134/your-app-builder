@@ -77,6 +77,21 @@ const AppPage: React.FC = () => {
       setShowConfetti(true);
     }
   }, []);
+
+  // Start free trial
+  const handleStartTrial = async () => {
+    if (!user) return;
+    try {
+      await updateProfile(user.id, { trial_started_at: new Date().toISOString() } as any);
+      const updated = await fetchProfile(user.id);
+      if (updated) setProfile(updated);
+      toast.success("🎉 Your 7-day free trial has started!");
+    } catch (err) {
+      console.error("Trial start failed:", err);
+      toast.error("Could not start trial");
+    }
+  };
+
   // Lemon Squeezy checkout
   const handleCheckout = async (plan: string) => {
     if (!user) return;
