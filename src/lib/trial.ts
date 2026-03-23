@@ -1,0 +1,40 @@
+// 7-day free trial logic
+// Data: 7-day trials convert 2-3x better than 14-day for wellness apps
+// (urgency + enough time to build journaling habit)
+
+export const TRIAL_DAYS = 7;
+
+export function getTrialStatus(trialStartedAt: string | null): {
+  isActive: boolean;
+  daysLeft: number;
+  daysUsed: number;
+  expiresAt: Date | null;
+  expired: boolean;
+  notStarted: boolean;
+} {
+  if (!trialStartedAt) {
+    return { isActive: false, daysLeft: TRIAL_DAYS, daysUsed: 0, expiresAt: null, expired: false, notStarted: true };
+  }
+
+  const start = new Date(trialStartedAt);
+  const expires = new Date(start.getTime() + TRIAL_DAYS * 24 * 60 * 60 * 1000);
+  const now = new Date();
+  const msLeft = expires.getTime() - now.getTime();
+  const daysLeft = Math.max(0, Math.ceil(msLeft / (24 * 60 * 60 * 1000)));
+  const daysUsed = TRIAL_DAYS - daysLeft;
+
+  return {
+    isActive: msLeft > 0,
+    daysLeft,
+    daysUsed,
+    expiresAt: expires,
+    expired: msLeft <= 0,
+    notStarted: false,
+  };
+}
+
+export function formatTrialCountdown(daysLeft: number): string {
+  if (daysLeft <= 0) return "Trial expired";
+  if (daysLeft === 1) return "Last day!";
+  return `${daysLeft} days left`;
+}

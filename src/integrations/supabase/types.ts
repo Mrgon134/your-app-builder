@@ -206,6 +206,7 @@ export type Database = {
           streak_longest: number | null
           timezone: string | null
           total_entries: number | null
+          trial_started_at: string | null
           updated_at: string | null
         }
         Insert: {
@@ -226,6 +227,7 @@ export type Database = {
           streak_longest?: number | null
           timezone?: string | null
           total_entries?: number | null
+          trial_started_at?: string | null
           updated_at?: string | null
         }
         Update: {
@@ -246,6 +248,7 @@ export type Database = {
           streak_longest?: number | null
           timezone?: string | null
           total_entries?: number | null
+          trial_started_at?: string | null
           updated_at?: string | null
         }
         Relationships: []

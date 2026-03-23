@@ -21,13 +21,14 @@ export interface ProfileRow {
   total_entries: number;
   coach_persona: string | null;
   onboarded: boolean | null;
+  trial_started_at: string | null;
 }
 
 // Fetch user profile
 export const fetchProfile = async (userId: string): Promise<ProfileRow | null> => {
   const { data, error } = await supabase
     .from("profiles")
-    .select("id, display_name, language, plan, streak_current, streak_longest, streak_last_date, total_entries, coach_persona, onboarded")
+    .select("id, display_name, language, plan, streak_current, streak_longest, streak_last_date, total_entries, coach_persona, onboarded, trial_started_at")
     .eq("id", userId)
     .maybeSingle();
   if (error) throw error;

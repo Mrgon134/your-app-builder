@@ -7,7 +7,7 @@ import HistoryLock from "@/components/app/HistoryLock";
 import MoodTrendChart from "@/components/app/MoodTrendChart";
 import MonthPixelGrid from "@/components/app/MonthPixelGrid";
 import AiMemoryCard from "@/components/app/AiMemoryCard";
-import ShareButton from "@/components/app/ShareButton";
+import ShareMenu from "@/components/app/ShareMenu";
 import { JU_STICKERS } from "@/lib/stickers";
 
 interface InsightsScreenProps {
@@ -67,7 +67,7 @@ const InsightsScreen: React.FC<InsightsScreenProps> = ({ entries, streak = 0, on
         <h1 className="font-serif text-2xl font-bold text-foreground">{t.mind_gallery}</h1>
         <div className="flex gap-2">
           {entries.length > 0 && (
-            <ShareButton
+            <ShareMenu
               type="daily"
               data={{ mood: entries[0].mood, date: entries[0].date, text: entries[0].text }}
               label={t.share_mood || "Share"}
@@ -103,7 +103,7 @@ const InsightsScreen: React.FC<InsightsScreenProps> = ({ entries, streak = 0, on
         </div>
         {/* Share weekly mood */}
         <div className="flex justify-end mt-3">
-          <ShareButton
+          <ShareMenu
             type="weekly"
             data={{ moods: weekMoods, avgMood: parseFloat(avgMood), totalEntries: entries.length }}
             label={t.share_week || "Share week"}
@@ -138,7 +138,7 @@ const InsightsScreen: React.FC<InsightsScreenProps> = ({ entries, streak = 0, on
             <p className="text-xs font-medium text-primary uppercase tracking-wider mb-1">🔥 {t.streak_milestone || "Streak Milestone"}</p>
             <p className="text-2xl font-bold text-foreground">{streak} {t.days_streak || "days"}</p>
           </div>
-          <ShareButton
+          <ShareMenu
             type="streak"
             data={{ streak }}
             label={t.share_streak || "Share"}

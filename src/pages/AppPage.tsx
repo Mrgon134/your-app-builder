@@ -11,6 +11,7 @@ import InsightsScreen from "@/components/app/InsightsScreen";
 import CoachScreen from "@/components/app/CoachScreen";
 import SettingsScreen from "@/components/app/SettingsScreen";
 import PricingScreen from "@/components/app/PricingScreen";
+import TrialBanner from "@/components/app/TrialBanner";
 import Confetti from "@/components/app/Confetti";
 import { Home, BarChart3, MessageCircle, Sparkles, Loader2 } from "lucide-react";
 import { toast } from "sonner";
@@ -76,6 +77,21 @@ const AppPage: React.FC = () => {
       setShowConfetti(true);
     }
   }, []);
+
+  // Start free trial
+  const handleStartTrial = async () => {
+    if (!user) return;
+    try {
+      await updateProfile(user.id, { trial_started_at: new Date().toISOString() } as any);
+      const updated = await fetchProfile(user.id);
+      if (updated) setProfile(updated);
+      toast.success("🎉 Your 7-day free trial has started!");
+    } catch (err) {
+      console.error("Trial start failed:", err);
+      toast.error("Could not start trial");
+    }
+  };
+
   // Lemon Squeezy checkout
   const handleCheckout = async (plan: string) => {
     if (!user) return;
@@ -228,6 +244,15 @@ const AppPage: React.FC = () => {
       )}
 
       <div className="flex-1 w-full max-w-app mx-auto px-4 pt-6 pb-24">
+        {/* Trial banner on home/insights */}
+        {(screen === "home" || screen === "insights") && (
+          <TrialBanner
+            trialStartedAt={profile?.trial_started_at || null}
+            plan={profile?.plan || "free"}
+            onUpgrade={() => setScreen("pro")}
+          />
+        )}
+
         {screen === "home" && (
           <HomeScreen
             onNavigate={(s) => setScreen(s as Screen)}
@@ -250,7 +275,9 @@ const AppPage: React.FC = () => {
         {screen === "pro" && (
           <PricingScreen
             currentPlan={profile?.plan || "free"}
+            trialStartedAt={profile?.trial_started_at || null}
             onCheckout={handleCheckout}
+            onStartTrial={handleStartTrial}
             onBack={() => setScreen("home")}
           />
         )}

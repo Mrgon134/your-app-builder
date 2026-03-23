@@ -1,18 +1,22 @@
 import React, { useState } from "react";
 import { useLang } from "@/lib/i18n";
-import { Check, ArrowLeft, Globe } from "lucide-react";
+import { Check, ArrowLeft, Globe, Clock, Sparkles } from "lucide-react";
 import { useGeoPricing } from "@/hooks/use-geo-pricing";
+import { getTrialStatus, formatTrialCountdown, TRIAL_DAYS } from "@/lib/trial";
 
 interface PricingScreenProps {
   currentPlan?: string;
+  trialStartedAt?: string | null;
   onCheckout: (plan: string) => void;
+  onStartTrial: () => void;
   onBack: () => void;
 }
 
-const PricingScreen: React.FC<PricingScreenProps> = ({ currentPlan = "free", onCheckout, onBack }) => {
+const PricingScreen: React.FC<PricingScreenProps> = ({ currentPlan = "free", trialStartedAt = null, onCheckout, onStartTrial, onBack }) => {
   const { t } = useLang();
   const [annual, setAnnual] = useState(false);
   const geo = useGeoPricing();
+  const trial = getTrialStatus(trialStartedAt);
 
   const tiers = [
     {
@@ -63,6 +67,41 @@ const PricingScreen: React.FC<PricingScreenProps> = ({ currentPlan = "free", onC
         </button>
         <h1 className="font-serif text-xl font-bold">{t.unlock_ju}</h1>
       </div>
+
+      {/* Trial status banner */}
+      {trial.isActive && (
+        <div className="bg-primary/[0.06] border border-primary/15 rounded-2xl p-4 mb-5 animate-fade-in">
+          <div className="flex items-center gap-3">
+            <div className="w-9 h-9 rounded-full bg-primary/10 flex items-center justify-center">
+              <Sparkles className="w-4 h-4 text-primary" />
+            </div>
+            <div>
+              <p className="text-sm font-semibold text-foreground">
+                {trial.daysLeft <= 2 ? "⏰" : "✨"} {formatTrialCountdown(trial.daysLeft)}
+              </p>
+              <p className="text-xs text-muted-foreground">Subscribe now to keep your access</p>
+            </div>
+          </div>
+          <div className="mt-2.5 h-1.5 bg-muted rounded-full overflow-hidden">
+            <div
+              className={`h-full rounded-full ${trial.daysLeft <= 2 ? "bg-[#FFB347]" : "bg-primary"}`}
+              style={{ width: `${(trial.daysUsed / TRIAL_DAYS) * 100}%` }}
+            />
+          </div>
+        </div>
+      )}
+
+      {trial.expired && (
+        <div className="bg-destructive/10 border border-destructive/20 rounded-2xl p-4 mb-5">
+          <div className="flex items-center gap-2.5">
+            <Clock className="w-5 h-5 text-destructive" />
+            <div>
+              <p className="text-sm font-semibold text-foreground">Trial ended</p>
+              <p className="text-xs text-muted-foreground">Subscribe to keep unlimited access</p>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Currency badge */}
       {geo.currency !== "USD" && (
@@ -140,16 +179,28 @@ const PricingScreen: React.FC<PricingScreenProps> = ({ currentPlan = "free", onC
                   {t.current_plan}
                 </div>
               ) : tier.id === "free" ? null : (
-                <button
-                  onClick={() => onCheckout(`${tier.id}_${annual ? "annual" : "monthly"}`)}
-                  className={`w-full py-3.5 rounded-2xl font-semibold text-sm transition-all active:scale-[0.97] ${
-                    tier.popular
-                      ? "bg-primary text-primary-foreground hover:shadow-lg hover:shadow-primary/20"
-                      : "bg-secondary text-foreground hover:bg-secondary/80"
-                  }`}
-                >
-                  {t.start_trial}
-                </button>
+                <div className="space-y-2">
+                  {trial.notStarted && tier.id === "plus" && (
+                    <button
+                      onClick={onStartTrial}
+                      className="w-full py-3.5 rounded-2xl font-semibold text-sm transition-all active:scale-[0.97] bg-primary text-primary-foreground hover:shadow-lg hover:shadow-primary/20"
+                    >
+                      Start {TRIAL_DAYS}-day free trial
+                    </button>
+                  )}
+                  <button
+                    onClick={() => onCheckout(`${tier.id}_${annual ? "annual" : "monthly"}`)}
+                    className={`w-full py-3.5 rounded-2xl font-semibold text-sm transition-all active:scale-[0.97] ${
+                      tier.popular && trial.notStarted
+                        ? "bg-primary/10 text-primary"
+                        : tier.popular
+                          ? "bg-primary text-primary-foreground hover:shadow-lg hover:shadow-primary/20"
+                          : "bg-secondary text-foreground hover:bg-secondary/80"
+                    }`}
+                  >
+                    {trial.isActive || trial.expired ? "Subscribe" : t.start_trial}
+                  </button>
+                </div>
               )}
             </div>
           );
