@@ -7,7 +7,7 @@ import HistoryLock from "@/components/app/HistoryLock";
 import MoodTrendChart from "@/components/app/MoodTrendChart";
 import MonthPixelGrid from "@/components/app/MonthPixelGrid";
 import AiMemoryCard from "@/components/app/AiMemoryCard";
-import ShareButton from "@/components/app/ShareButton";
+import ShareMenu from "@/components/app/ShareMenu";
 import { JU_STICKERS } from "@/lib/stickers";
 
 interface InsightsScreenProps {
