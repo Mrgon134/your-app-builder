@@ -67,7 +67,7 @@ const InsightsScreen: React.FC<InsightsScreenProps> = ({ entries, streak = 0, on
         <h1 className="font-serif text-2xl font-bold text-foreground">{t.mind_gallery}</h1>
         <div className="flex gap-2">
           {entries.length > 0 && (
-            <ShareButton
+            <ShareMenu
               type="daily"
               data={{ mood: entries[0].mood, date: entries[0].date, text: entries[0].text }}
               label={t.share_mood || "Share"}
