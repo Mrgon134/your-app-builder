@@ -138,7 +138,7 @@ const InsightsScreen: React.FC<InsightsScreenProps> = ({ entries, streak = 0, on
             <p className="text-xs font-medium text-primary uppercase tracking-wider mb-1">🔥 {t.streak_milestone || "Streak Milestone"}</p>
             <p className="text-2xl font-bold text-foreground">{streak} {t.days_streak || "days"}</p>
           </div>
-          <ShareButton
+          <ShareMenu
             type="streak"
             data={{ streak }}
             label={t.share_streak || "Share"}
