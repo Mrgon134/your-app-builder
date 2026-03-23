@@ -244,6 +244,15 @@ const AppPage: React.FC = () => {
       )}
 
       <div className="flex-1 w-full max-w-app mx-auto px-4 pt-6 pb-24">
+        {/* Trial banner on home/insights */}
+        {(screen === "home" || screen === "insights") && (
+          <TrialBanner
+            trialStartedAt={profile?.trial_started_at || null}
+            plan={profile?.plan || "free"}
+            onUpgrade={() => setScreen("pro")}
+          />
+        )}
+
         {screen === "home" && (
           <HomeScreen
             onNavigate={(s) => setScreen(s as Screen)}
@@ -266,7 +275,9 @@ const AppPage: React.FC = () => {
         {screen === "pro" && (
           <PricingScreen
             currentPlan={profile?.plan || "free"}
+            trialStartedAt={profile?.trial_started_at || null}
             onCheckout={handleCheckout}
+            onStartTrial={handleStartTrial}
             onBack={() => setScreen("home")}
           />
         )}
