@@ -103,7 +103,7 @@ const InsightsScreen: React.FC<InsightsScreenProps> = ({ entries, streak = 0, on
         </div>
         {/* Share weekly mood */}
         <div className="flex justify-end mt-3">
-          <ShareButton
+          <ShareMenu
             type="weekly"
             data={{ moods: weekMoods, avgMood: parseFloat(avgMood), totalEntries: entries.length }}
             label={t.share_week || "Share week"}
