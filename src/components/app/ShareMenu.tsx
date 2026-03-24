@@ -34,6 +34,16 @@ const PLATFORMS = [
     color: "bg-foreground/10 text-foreground",
   },
   {
+    id: "tiktok",
+    label: "TikTok",
+    icon: (
+      <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 00-.79-.05A6.34 6.34 0 003.15 15.2a6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.34-6.34V8.73a8.19 8.19 0 004.76 1.52V6.8a4.84 4.84 0 01-1-.11z" />
+      </svg>
+    ),
+    color: "bg-[#010101]/10 text-[#010101] dark:bg-white/10 dark:text-white",
+  },
+  {
     id: "telegram",
     label: "Telegram",
     icon: <Send className="w-4 h-4" />,
@@ -93,6 +103,11 @@ const ShareMenu: React.FC<ShareMenuProps> = ({ type, data, label, className }) =
           downloadBlob(blob);
           toast.success("Image saved! Attach it to your tweet 🐦");
         }
+      } else if (platformId === "tiktok") {
+        // TikTok Share Kit: download image + open TikTok
+        downloadBlob(blob);
+        window.open("https://www.tiktok.com/upload", "_blank");
+        toast.success("Image saved! Upload it to TikTok 🎵");
       } else if (platformId === "telegram") {
         if (navigator.share && navigator.canShare?.({ files: [new File([blob], "nuju.png", { type: "image/png" })] })) {
           await navigator.share({
