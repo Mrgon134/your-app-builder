@@ -9,6 +9,8 @@ import Index from "./pages/Index.tsx";
 import AppPage from "./pages/AppPage.tsx";
 import AuthPage from "./pages/AuthPage.tsx";
 import Install from "./pages/Install.tsx";
+import Terms from "./pages/Terms.tsx";
+import Privacy from "./pages/Privacy.tsx";
 import NotFound from "./pages/NotFound.tsx";
 
 const queryClient = new QueryClient();
@@ -38,6 +40,8 @@ const App = () => (
               <Route path="/" element={<Index />} />
               <Route path="/auth" element={<AuthPage />} />
               <Route path="/install" element={<Install />} />
+              <Route path="/terms" element={<Terms />} />
+              <Route path="/privacy" element={<Privacy />} />
               <Route
                 path="/app"
                 element={
