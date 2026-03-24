@@ -103,6 +103,11 @@ const ShareMenu: React.FC<ShareMenuProps> = ({ type, data, label, className }) =
           downloadBlob(blob);
           toast.success("Image saved! Attach it to your tweet 🐦");
         }
+      } else if (platformId === "tiktok") {
+        // TikTok Share Kit: download image + open TikTok
+        downloadBlob(blob);
+        window.open("https://www.tiktok.com/upload", "_blank");
+        toast.success("Image saved! Upload it to TikTok 🎵");
       } else if (platformId === "telegram") {
         if (navigator.share && navigator.canShare?.({ files: [new File([blob], "nuju.png", { type: "image/png" })] })) {
           await navigator.share({
