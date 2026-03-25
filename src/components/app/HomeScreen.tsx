@@ -29,9 +29,11 @@ interface HomeScreenProps {
   onMoodSelect?: (mood: number) => void;
   energy?: number;
   onEnergyChange?: (val: number) => void;
+  plan?: string | null;
+  trialStartedAt?: string | null;
 }
 
-const HomeScreen: React.FC<HomeScreenProps> = ({ onNavigate, onSettings, onUpgrade, streak, entries, selectedMood: controlledMood, onMoodSelect: controlledMoodSelect, energy: controlledEnergy, onEnergyChange: controlledEnergyChange }) => {
+const HomeScreen: React.FC<HomeScreenProps> = ({ onNavigate, onSettings, onUpgrade, streak, entries, selectedMood: controlledMood, onMoodSelect: controlledMoodSelect, energy: controlledEnergy, onEnergyChange: controlledEnergyChange, plan, trialStartedAt }) => {
   const { t } = useLang();
   const [localMood, setLocalMood] = useState<number | null>(null);
   const [prompt] = useState(getRandomPrompt);
@@ -110,6 +112,8 @@ const HomeScreen: React.FC<HomeScreenProps> = ({ onNavigate, onSettings, onUpgra
         entriesCount={entries.length}
         onDismiss={() => {}}
         onUpgrade={onUpgrade}
+        plan={plan}
+        trialStartedAt={trialStartedAt}
       />
 
       {/* Retention: Ju Remembers card */}

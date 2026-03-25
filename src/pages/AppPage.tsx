@@ -264,6 +264,8 @@ const AppPage: React.FC = () => {
             onMoodSelect={handleMoodSelect}
             energy={energy}
             onEnergyChange={setEnergy}
+            plan={profile?.plan}
+            trialStartedAt={profile?.trial_started_at}
           />
         )}
         {screen === "journal" && (
