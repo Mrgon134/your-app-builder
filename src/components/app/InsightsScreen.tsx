@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { hasPlusAccess } from "@/lib/trial";
 import { useLang } from "@/lib/i18n";
 import { MOODS } from "@/lib/constants";
 import MoodIcon from "@/components/MoodIcon";
@@ -14,9 +15,11 @@ interface InsightsScreenProps {
   entries: Array<{ mood: number; date: string; text: string }>;
   streak?: number;
   onUpgrade: () => void;
+  plan?: string | null;
+  trialStartedAt?: string | null;
 }
 
-const InsightsScreen: React.FC<InsightsScreenProps> = ({ entries, streak = 0, onUpgrade }) => {
+const InsightsScreen: React.FC<InsightsScreenProps> = ({ entries, streak = 0, onUpgrade, plan = "free", trialStartedAt = null }) => {
   const { t, lang } = useLang();
   const [aiSummary, setAiSummary] = useState<string | null>(null);
   const [summaryLoading, setSummaryLoading] = useState(false);
@@ -168,20 +171,22 @@ const InsightsScreen: React.FC<InsightsScreenProps> = ({ entries, streak = 0, on
       <AiMemoryCard entries={entries} />
 
       {/* History lock for free users */}
-      <HistoryLock onUpgrade={onUpgrade} />
+      <HistoryLock onUpgrade={onUpgrade} plan={plan} trialStartedAt={trialStartedAt} />
 
-      {/* Relationship map locked */}
-      <div className="bg-card rounded-3xl p-6 shadow-sm border border-border/50 text-center">
-        <Lock className="w-8 h-8 mx-auto text-muted-foreground/40 mb-3" />
-        <p className="font-serif text-lg font-semibold mb-1">{t.relationship_map}</p>
-        <p className="text-sm text-muted-foreground mb-4">{t.rel_desc}</p>
-        <button
-          onClick={onUpgrade}
-          className="px-5 py-2.5 rounded-2xl bg-primary/10 text-primary font-semibold text-sm transition-all active:scale-[0.97]"
-        >
-          {t.unlock_pro}
-        </button>
-      </div>
+      {/* Relationship map locked — hide for trial/paid users */}
+      {!hasPlusAccess(plan, trialStartedAt) && (
+        <div className="bg-card rounded-3xl p-6 shadow-sm border border-border/50 text-center">
+          <Lock className="w-8 h-8 mx-auto text-muted-foreground/40 mb-3" />
+          <p className="font-serif text-lg font-semibold mb-1">{t.relationship_map}</p>
+          <p className="text-sm text-muted-foreground mb-4">{t.rel_desc}</p>
+          <button
+            onClick={onUpgrade}
+            className="px-5 py-2.5 rounded-2xl bg-primary/10 text-primary font-semibold text-sm transition-all active:scale-[0.97]"
+          >
+            {t.unlock_pro}
+          </button>
+        </div>
+      )}
     </div>
   );
 };

@@ -5,6 +5,7 @@ import { Send } from "lucide-react";
 import { JU_STICKERS } from "@/lib/stickers";
 import { useAuth } from "@/lib/auth";
 import { saveCoachMessage, fetchCoachMessages, checkCoachLimit, countCoachMessagesThisWeek, fetchProfile } from "@/lib/api";
+import { hasPlusAccess } from "@/lib/trial";
 import { toast } from "sonner";
 import { Lock } from "lucide-react";
 import coachGentle from "@/assets/coach-gentle.webp";
@@ -112,7 +113,7 @@ async function streamChat({
   onDone();
 }
 
-const CoachScreen: React.FC<{ onUpgrade?: () => void }> = ({ onUpgrade }) => {
+const CoachScreen: React.FC<{ onUpgrade?: () => void; plan?: string | null; trialStartedAt?: string | null }> = ({ onUpgrade, plan: propPlan, trialStartedAt: propTrialStartedAt }) => {
   const { t } = useLang();
   const { user } = useAuth();
   const [persona, setPersona] = useState("gentle");
@@ -308,7 +309,7 @@ const CoachScreen: React.FC<{ onUpgrade?: () => void }> = ({ onUpgrade }) => {
       </div>
 
       {/* Paywall banner when limit reached */}
-      {!canSend && userPlan === "free" && (
+      {!canSend && !hasPlusAccess(propPlan || userPlan, propTrialStartedAt || null) && (
         <div className="bg-primary/10 border border-primary/20 rounded-2xl p-4 mb-3 text-center animate-fade-up">
           <div className="flex items-center justify-center gap-2 mb-2">
             <Lock className="w-4 h-4 text-primary" />
@@ -329,7 +330,7 @@ const CoachScreen: React.FC<{ onUpgrade?: () => void }> = ({ onUpgrade }) => {
       )}
 
       {/* Free user message counter */}
-      {canSend && userPlan === "free" && (
+      {canSend && !hasPlusAccess(propPlan || userPlan, propTrialStartedAt || null) && (
         <div className={`flex items-center justify-center gap-1.5 mb-2 transition-all duration-300 ${messagesUsed >= 4 ? "animate-pulse" : ""}`}>
           <div className={`text-xs font-medium px-3 py-1 rounded-full ${
             messagesUsed >= 4
@@ -349,13 +350,13 @@ const CoachScreen: React.FC<{ onUpgrade?: () => void }> = ({ onUpgrade }) => {
           value={input}
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={(e) => e.key === "Enter" && sendMessage()}
-          placeholder={!canSend && userPlan === "free" ? "Upgrade to keep chatting..." : t.talk_to_ju}
-          disabled={isLoading || (!canSend && userPlan === "free")}
+          placeholder={!canSend && !hasPlusAccess(propPlan || userPlan, propTrialStartedAt || null) ? "Upgrade to keep chatting..." : t.talk_to_ju}
+          disabled={isLoading || (!canSend && !hasPlusAccess(propPlan || userPlan, propTrialStartedAt || null))}
           className="flex-1 px-5 py-3 rounded-2xl bg-card border border-border/50 text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:ring-2 focus:ring-primary/30 text-sm transition-shadow duration-200 disabled:opacity-60"
         />
         <button
           onClick={sendMessage}
-          disabled={!input.trim() || isLoading || (!canSend && userPlan === "free")}
+          disabled={!input.trim() || isLoading || (!canSend && !hasPlusAccess(propPlan || userPlan, propTrialStartedAt || null))}
           className="w-12 h-12 rounded-2xl bg-primary text-primary-foreground flex items-center justify-center transition-all duration-200 active:scale-[0.95] disabled:opacity-40"
         >
           <Send className="w-5 h-5" />
