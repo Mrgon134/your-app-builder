@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { hasPlusAccess } from "@/lib/trial";
 import { useLang } from "@/lib/i18n";
 import { MOODS } from "@/lib/constants";
 import MoodIcon from "@/components/MoodIcon";
