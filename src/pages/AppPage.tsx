@@ -269,8 +269,8 @@ const AppPage: React.FC = () => {
         {screen === "journal" && (
           <JournalScreen onBack={() => setScreen("home")} onSave={handleSaveEntry} />
         )}
-        {screen === "insights" && <InsightsScreen entries={entries} streak={streak} onUpgrade={() => setScreen("pro")} />}
-        {screen === "coach" && <CoachScreen onUpgrade={() => setScreen("pro")} />}
+        {screen === "insights" && <InsightsScreen entries={entries} streak={streak} onUpgrade={() => setScreen("pro")} plan={profile?.plan} trialStartedAt={profile?.trial_started_at} />}
+        {screen === "coach" && <CoachScreen onUpgrade={() => setScreen("pro")} plan={profile?.plan} trialStartedAt={profile?.trial_started_at} />}
         {screen === "settings" && <SettingsScreen onBack={() => setScreen("home")} onUpgrade={() => setScreen("pro")} />}
         {screen === "pro" && (
           <PricingScreen
