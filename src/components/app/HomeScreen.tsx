@@ -29,6 +29,8 @@ interface HomeScreenProps {
   onMoodSelect?: (mood: number) => void;
   energy?: number;
   onEnergyChange?: (val: number) => void;
+  plan?: string | null;
+  trialStartedAt?: string | null;
 }
 
 const HomeScreen: React.FC<HomeScreenProps> = ({ onNavigate, onSettings, onUpgrade, streak, entries, selectedMood: controlledMood, onMoodSelect: controlledMoodSelect, energy: controlledEnergy, onEnergyChange: controlledEnergyChange }) => {
