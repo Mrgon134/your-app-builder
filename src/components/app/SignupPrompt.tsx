@@ -7,15 +7,19 @@ interface SignupPromptProps {
   entriesCount: number;
   onDismiss: () => void;
   onUpgrade: () => void;
+  plan?: string | null;
+  trialStartedAt?: string | null;
 }
 
 const FREE_ENTRY_LIMIT = 3;
 
-const SignupPrompt: React.FC<SignupPromptProps> = ({ entriesCount, onDismiss, onUpgrade }) => {
+const SignupPrompt: React.FC<SignupPromptProps> = ({ entriesCount, onDismiss, onUpgrade, plan = "free", trialStartedAt = null }) => {
   const { t } = useLang();
   const [dismissed, setDismissed] = useState(false);
 
-  if (dismissed || entriesCount < FREE_ENTRY_LIMIT) return null;
+  // Hide if user has plus access (paid or active trial)
+  const { hasPlusAccess } = require("@/lib/trial");
+  if (dismissed || entriesCount < FREE_ENTRY_LIMIT || hasPlusAccess(plan, trialStartedAt)) return null;
 
   const remaining = Math.max(0, FREE_ENTRY_LIMIT - entriesCount);
 
