@@ -33,7 +33,7 @@ interface HomeScreenProps {
   trialStartedAt?: string | null;
 }
 
-const HomeScreen: React.FC<HomeScreenProps> = ({ onNavigate, onSettings, onUpgrade, streak, entries, selectedMood: controlledMood, onMoodSelect: controlledMoodSelect, energy: controlledEnergy, onEnergyChange: controlledEnergyChange }) => {
+const HomeScreen: React.FC<HomeScreenProps> = ({ onNavigate, onSettings, onUpgrade, streak, entries, selectedMood: controlledMood, onMoodSelect: controlledMoodSelect, energy: controlledEnergy, onEnergyChange: controlledEnergyChange, plan, trialStartedAt }) => {
   const { t } = useLang();
   const [localMood, setLocalMood] = useState<number | null>(null);
   const [prompt] = useState(getRandomPrompt);
