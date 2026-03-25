@@ -18,8 +18,6 @@ const SignupPrompt: React.FC<SignupPromptProps> = ({ entriesCount, onDismiss, on
   const { t } = useLang();
   const [dismissed, setDismissed] = useState(false);
 
-  // Hide if user has plus access (paid or active trial)
-  const { hasPlusAccess } = require("@/lib/trial");
   if (dismissed || entriesCount < FREE_ENTRY_LIMIT || hasPlusAccess(plan, trialStartedAt)) return null;
 
   const remaining = Math.max(0, FREE_ENTRY_LIMIT - entriesCount);
