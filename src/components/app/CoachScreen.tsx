@@ -5,6 +5,7 @@ import { Send } from "lucide-react";
 import { JU_STICKERS } from "@/lib/stickers";
 import { useAuth } from "@/lib/auth";
 import { saveCoachMessage, fetchCoachMessages, checkCoachLimit, countCoachMessagesThisWeek, fetchProfile } from "@/lib/api";
+import { hasPlusAccess } from "@/lib/trial";
 import { toast } from "sonner";
 import { Lock } from "lucide-react";
 import coachGentle from "@/assets/coach-gentle.webp";
