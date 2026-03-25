@@ -356,7 +356,7 @@ const CoachScreen: React.FC<{ onUpgrade?: () => void; plan?: string | null; tria
         />
         <button
           onClick={sendMessage}
-          disabled={!input.trim() || isLoading || (!canSend && userPlan === "free")}
+          disabled={!input.trim() || isLoading || (!canSend && !hasPlusAccess(propPlan || userPlan, propTrialStartedAt || null))}
           className="w-12 h-12 rounded-2xl bg-primary text-primary-foreground flex items-center justify-center transition-all duration-200 active:scale-[0.95] disabled:opacity-40"
         >
           <Send className="w-5 h-5" />
