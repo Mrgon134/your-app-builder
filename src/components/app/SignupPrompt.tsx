@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useLang } from "@/lib/i18n";
 import { JU_STICKERS } from "@/lib/stickers";
 import { X, Sparkles } from "lucide-react";
+import { hasPlusAccess } from "@/lib/trial";
 
 interface SignupPromptProps {
   entriesCount: number;
