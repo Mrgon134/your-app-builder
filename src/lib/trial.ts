@@ -38,3 +38,14 @@ export function formatTrialCountdown(daysLeft: number): string {
   if (daysLeft === 1) return "Last day!";
   return `${daysLeft} days left`;
 }
+
+// Check if user has "plus-level" access: paid plan OR active trial
+export function hasPlusAccess(plan: string | null, trialStartedAt: string | null): boolean {
+  if (plan === "plus" || plan === "pro") return true;
+  const trial = getTrialStatus(trialStartedAt);
+  return trial.isActive;
+}
+  if (daysLeft <= 0) return "Trial expired";
+  if (daysLeft === 1) return "Last day!";
+  return `${daysLeft} days left`;
+}
