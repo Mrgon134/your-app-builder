@@ -112,6 +112,8 @@ const HomeScreen: React.FC<HomeScreenProps> = ({ onNavigate, onSettings, onUpgra
         entriesCount={entries.length}
         onDismiss={() => {}}
         onUpgrade={onUpgrade}
+        plan={plan}
+        trialStartedAt={trialStartedAt}
       />
 
       {/* Retention: Ju Remembers card */}
