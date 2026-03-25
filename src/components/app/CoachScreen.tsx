@@ -350,8 +350,8 @@ const CoachScreen: React.FC<{ onUpgrade?: () => void; plan?: string | null; tria
           value={input}
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={(e) => e.key === "Enter" && sendMessage()}
-          placeholder={!canSend && userPlan === "free" ? "Upgrade to keep chatting..." : t.talk_to_ju}
-          disabled={isLoading || (!canSend && userPlan === "free")}
+          placeholder={!canSend && !hasPlusAccess(propPlan || userPlan, propTrialStartedAt || null) ? "Upgrade to keep chatting..." : t.talk_to_ju}
+          disabled={isLoading || (!canSend && !hasPlusAccess(propPlan || userPlan, propTrialStartedAt || null))}
           className="flex-1 px-5 py-3 rounded-2xl bg-card border border-border/50 text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:ring-2 focus:ring-primary/30 text-sm transition-shadow duration-200 disabled:opacity-60"
         />
         <button
