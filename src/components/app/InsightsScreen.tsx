@@ -14,9 +14,11 @@ interface InsightsScreenProps {
   entries: Array<{ mood: number; date: string; text: string }>;
   streak?: number;
   onUpgrade: () => void;
+  plan?: string | null;
+  trialStartedAt?: string | null;
 }
 
-const InsightsScreen: React.FC<InsightsScreenProps> = ({ entries, streak = 0, onUpgrade }) => {
+const InsightsScreen: React.FC<InsightsScreenProps> = ({ entries, streak = 0, onUpgrade, plan = "free", trialStartedAt = null }) => {
   const { t, lang } = useLang();
   const [aiSummary, setAiSummary] = useState<string | null>(null);
   const [summaryLoading, setSummaryLoading] = useState(false);
