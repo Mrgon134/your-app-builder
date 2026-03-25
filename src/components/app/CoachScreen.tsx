@@ -330,7 +330,7 @@ const CoachScreen: React.FC<{ onUpgrade?: () => void; plan?: string | null; tria
       )}
 
       {/* Free user message counter */}
-      {canSend && userPlan === "free" && (
+      {canSend && !hasPlusAccess(propPlan || userPlan, propTrialStartedAt || null) && (
         <div className={`flex items-center justify-center gap-1.5 mb-2 transition-all duration-300 ${messagesUsed >= 4 ? "animate-pulse" : ""}`}>
           <div className={`text-xs font-medium px-3 py-1 rounded-full ${
             messagesUsed >= 4
