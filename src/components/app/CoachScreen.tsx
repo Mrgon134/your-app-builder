@@ -309,7 +309,7 @@ const CoachScreen: React.FC<{ onUpgrade?: () => void; plan?: string | null; tria
       </div>
 
       {/* Paywall banner when limit reached */}
-      {!canSend && userPlan === "free" && (
+      {!canSend && !hasPlusAccess(propPlan || userPlan, propTrialStartedAt || null) && (
         <div className="bg-primary/10 border border-primary/20 rounded-2xl p-4 mb-3 text-center animate-fade-up">
           <div className="flex items-center justify-center gap-2 mb-2">
             <Lock className="w-4 h-4 text-primary" />
