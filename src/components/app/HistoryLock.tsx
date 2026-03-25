@@ -1,13 +1,19 @@
 import React from "react";
 import { useLang } from "@/lib/i18n";
 import { Lock, Sparkles } from "lucide-react";
+import { hasPlusAccess } from "@/lib/trial";
 
 interface HistoryLockProps {
   onUpgrade: () => void;
+  plan?: string | null;
+  trialStartedAt?: string | null;
 }
 
-const HistoryLock: React.FC<HistoryLockProps> = ({ onUpgrade }) => {
+const HistoryLock: React.FC<HistoryLockProps> = ({ onUpgrade, plan = "free", trialStartedAt = null }) => {
   const { t } = useLang();
+
+  // Don't show lock if user has plus access (paid or trial)
+  if (hasPlusAccess(plan, trialStartedAt)) return null;
 
   return (
     <div className="relative rounded-3xl overflow-hidden">

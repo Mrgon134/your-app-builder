@@ -170,7 +170,7 @@ const InsightsScreen: React.FC<InsightsScreenProps> = ({ entries, streak = 0, on
       <AiMemoryCard entries={entries} />
 
       {/* History lock for free users */}
-      <HistoryLock onUpgrade={onUpgrade} />
+      <HistoryLock onUpgrade={onUpgrade} plan={plan} trialStartedAt={trialStartedAt} />
 
       {/* Relationship map locked */}
       <div className="bg-card rounded-3xl p-6 shadow-sm border border-border/50 text-center">

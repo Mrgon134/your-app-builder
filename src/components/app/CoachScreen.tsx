@@ -112,7 +112,7 @@ async function streamChat({
   onDone();
 }
 
-const CoachScreen: React.FC<{ onUpgrade?: () => void }> = ({ onUpgrade }) => {
+const CoachScreen: React.FC<{ onUpgrade?: () => void; plan?: string | null; trialStartedAt?: string | null }> = ({ onUpgrade, plan: propPlan, trialStartedAt: propTrialStartedAt }) => {
   const { t } = useLang();
   const { user } = useAuth();
   const [persona, setPersona] = useState("gentle");
