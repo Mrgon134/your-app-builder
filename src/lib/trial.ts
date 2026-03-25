@@ -45,7 +45,3 @@ export function hasPlusAccess(plan: string | null, trialStartedAt: string | null
   const trial = getTrialStatus(trialStartedAt);
   return trial.isActive;
 }
-  if (daysLeft <= 0) return "Trial expired";
-  if (daysLeft === 1) return "Last day!";
-  return `${daysLeft} days left`;
-}
