@@ -221,7 +221,7 @@ const CoachScreen: React.FC<{ onUpgrade?: () => void; plan?: string | null; tria
 
   return (
     <div className="animate-fade-up flex flex-col h-[calc(100vh-180px)]">
-      <h1 className="font-serif text-2xl font-bold text-foreground mb-4">{t.ai_coach}</h1>
+      <h1 className="text-[28px] font-bold text-foreground tracking-tight mb-4">{t.ai_coach}</h1>
 
       {/* Persona pills */}
       <div className="flex flex-wrap gap-2 mb-4 pb-2">
@@ -282,10 +282,10 @@ const CoachScreen: React.FC<{ onUpgrade?: () => void; plan?: string | null; tria
             }}
           >
             <div
-              className={`max-w-[80%] px-4 py-3 rounded-2xl text-sm leading-relaxed ${
+              className={`max-w-[80%] px-4 py-3 rounded-2xl text-[14px] leading-relaxed ${
                 msg.role === "user"
-                  ? "bg-primary text-primary-foreground rounded-br-sm"
-                  : "bg-card border border-border/50 text-foreground rounded-bl-sm"
+                  ? "bg-primary text-primary-foreground rounded-br-md"
+                  : "bg-card border border-border/40 text-foreground rounded-bl-md shadow-[0_1px_2px_rgba(0,0,0,0.04)]"
               }`}
             >
               {msg.content}
@@ -352,12 +352,12 @@ const CoachScreen: React.FC<{ onUpgrade?: () => void; plan?: string | null; tria
           onKeyDown={(e) => e.key === "Enter" && sendMessage()}
           placeholder={!canSend && !hasPlusAccess(propPlan || userPlan, propTrialStartedAt || null) ? "Upgrade to keep chatting..." : t.talk_to_ju}
           disabled={isLoading || (!canSend && !hasPlusAccess(propPlan || userPlan, propTrialStartedAt || null))}
-          className="flex-1 px-5 py-3 rounded-2xl bg-card border border-border/50 text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:ring-2 focus:ring-primary/30 text-sm transition-shadow duration-200 disabled:opacity-60"
+          className="flex-1 px-5 h-[48px] rounded-xl bg-card border border-border/40 text-foreground placeholder:text-muted-foreground/40 focus:outline-none focus:ring-2 focus:ring-primary/15 focus:border-primary/30 text-[15px] transition-all disabled:opacity-50"
         />
         <button
           onClick={sendMessage}
           disabled={!input.trim() || isLoading || (!canSend && !hasPlusAccess(propPlan || userPlan, propTrialStartedAt || null))}
-          className="w-12 h-12 rounded-2xl bg-primary text-primary-foreground flex items-center justify-center transition-all duration-200 active:scale-[0.95] disabled:opacity-40"
+          className="w-12 h-12 rounded-xl bg-primary text-primary-foreground flex items-center justify-center transition-all duration-150 active:scale-[0.93] disabled:opacity-40 shadow-[0_2px_12px_-3px_hsl(var(--primary)/0.35)]"
         >
           <Send className="w-5 h-5" />
         </button>

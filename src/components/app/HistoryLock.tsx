@@ -12,17 +12,16 @@ interface HistoryLockProps {
 const HistoryLock: React.FC<HistoryLockProps> = ({ onUpgrade, plan = "free", trialStartedAt = null }) => {
   const { t } = useLang();
 
-  // Don't show lock if user has plus access (paid or trial)
   if (hasPlusAccess(plan, trialStartedAt)) return null;
 
   return (
-    <div className="relative rounded-3xl overflow-hidden">
+    <div className="relative rounded-2xl overflow-hidden">
       {/* Blurred preview rows */}
       <div className="space-y-3 p-5 select-none pointer-events-none" aria-hidden>
         {[1, 2, 3].map((i) => (
           <div
             key={i}
-            className="flex items-center gap-3 opacity-40"
+            className="flex items-center gap-3 opacity-30"
             style={{ filter: `blur(${i * 2}px)` }}
           >
             <div className="w-10 h-10 rounded-xl bg-muted" />
@@ -35,21 +34,21 @@ const HistoryLock: React.FC<HistoryLockProps> = ({ onUpgrade, plan = "free", tri
       </div>
 
       {/* Lock overlay */}
-      <div className="absolute inset-0 flex flex-col items-center justify-center bg-card/80 backdrop-blur-sm rounded-3xl border border-border/50">
-        <div className="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center mb-3">
-          <Lock className="w-6 h-6 text-primary" />
+      <div className="absolute inset-0 flex flex-col items-center justify-center bg-card/85 backdrop-blur-sm rounded-2xl border border-border/40">
+        <div className="w-11 h-11 rounded-2xl bg-primary/8 flex items-center justify-center mb-3">
+          <Lock className="w-5 h-5 text-primary" />
         </div>
-        <p className="font-serif text-base font-semibold text-foreground mb-1">
+        <p className="font-semibold text-foreground text-[15px] mb-1">
           {t.history_locked || "Full history locked"}
         </p>
-        <p className="text-xs text-muted-foreground mb-4 text-center max-w-[200px]">
+        <p className="text-[12px] text-muted-foreground mb-4 text-center max-w-[200px]">
           {t.history_locked_desc || "Free plan shows 7 days. Upgrade to see all your entries."}
         </p>
         <button
           onClick={onUpgrade}
-          className="flex items-center gap-2 px-5 py-2.5 rounded-2xl bg-primary text-primary-foreground text-sm font-semibold transition-all hover:shadow-lg hover:shadow-primary/20 active:scale-[0.97]"
+          className="flex items-center gap-2 px-5 h-[40px] rounded-xl bg-primary text-primary-foreground text-[13px] font-semibold transition-all active:scale-[0.97] shadow-[0_2px_12px_-3px_hsl(var(--primary)/0.35)]"
         >
-          <Sparkles className="w-4 h-4" />
+          <Sparkles className="w-3.5 h-3.5" />
           {t.unlock_pro || "Unlock with Pro"}
         </button>
       </div>

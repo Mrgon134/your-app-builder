@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useLang, LANG_META } from "@/lib/i18n";
 import { useAuth } from "@/lib/auth";
 import { updateProfile } from "@/lib/api";
-import { ArrowLeft, Moon, Sun, Globe, Crown, LogOut, Bell, BellOff } from "lucide-react";
+import { ArrowLeft, Moon, Sun, Globe, Crown, LogOut, Bell, BellOff, ChevronRight } from "lucide-react";
 import {
   requestNotificationPermission,
   getNotificationPermission,
@@ -28,14 +28,15 @@ const SettingsScreen: React.FC<SettingsScreenProps> = ({ onBack, onUpgrade, plan
   const [reminderEnabled, setReminderEnabled] = useState(reminderDefaults.enabled);
   const [reminderHour, setReminderHour] = useState(reminderDefaults.hour);
   const notifSupported = getNotificationPermission() !== "unsupported";
+  const [showLangPicker, setShowLangPicker] = useState(false);
+
+  const currentLang = LANG_META.find((l) => l.code === lang);
 
   const toggleDark = async () => {
     const newVal = !darkMode;
     document.documentElement.classList.toggle("dark", newVal);
     setDarkMode(newVal);
-    // Persist to localStorage
     localStorage.setItem("nuju-dark", newVal ? "1" : "0");
-    // Persist to DB
     if (user) {
       try {
         await updateProfile(user.id, { dark_mode: newVal } as any);
@@ -47,127 +48,189 @@ const SettingsScreen: React.FC<SettingsScreenProps> = ({ onBack, onUpgrade, plan
 
   return (
     <div className="animate-fade-up">
-      <button onClick={onBack} className="flex items-center gap-2 text-muted-foreground mb-6 transition-all active:scale-[0.97]">
+      {/* iOS-style large title header */}
+      <button onClick={onBack} className="flex items-center gap-1 text-primary mb-5 transition-all active:scale-[0.97]">
         <ArrowLeft className="w-5 h-5" />
-        <span className="text-sm font-medium">{t.back}</span>
+        <span className="text-[15px] font-medium">{t.back}</span>
       </button>
 
-      <h1 className="font-serif text-2xl font-bold text-foreground mb-8">{t.settings}</h1>
+      <h1 className="text-[34px] font-bold text-foreground tracking-tight mb-6">{t.settings}</h1>
 
-      <div className="space-y-3">
-        {/* Dark mode */}
-        <div className="bg-card rounded-2xl p-4 flex items-center justify-between shadow-sm border border-border/50">
-          <div className="flex items-center gap-3">
-            {darkMode ? <Sun className="w-5 h-5 text-mood-okay" /> : <Moon className="w-5 h-5 text-muted-foreground" />}
-            <span className="text-sm font-medium">{t.dark_mode}</span>
-          </div>
-          <button
-            onClick={toggleDark}
-            className={`relative w-12 h-7 rounded-full transition-colors ${darkMode ? "bg-primary" : "bg-border"}`}
-          >
-            <div className={`absolute top-0.5 w-6 h-6 rounded-full bg-card shadow transition-transform ${darkMode ? "translate-x-5" : "translate-x-0.5"}`} />
-          </button>
-        </div>
-
-        {/* Notifications */}
-        {notifSupported && (
-          <div className="bg-card rounded-2xl p-4 shadow-sm border border-border/50">
-            <div className="flex items-center justify-between mb-3">
+      <div className="space-y-6">
+        {/* Appearance group */}
+        <div>
+          <p className="text-[13px] font-medium text-muted-foreground uppercase tracking-wider px-4 mb-1.5">
+            {t.dark_mode ? "Appearance" : "Appearance"}
+          </p>
+          <div className="ios-group">
+            {/* Dark mode */}
+            <div className="ios-group-item">
               <div className="flex items-center gap-3">
-                {reminderEnabled ? <Bell className="w-5 h-5 text-primary" /> : <BellOff className="w-5 h-5 text-muted-foreground" />}
-                <span className="text-sm font-medium">{t.daily_reminder || "Daily reminder"}</span>
+                <div className={`w-8 h-8 rounded-lg flex items-center justify-center ${darkMode ? "bg-indigo-500" : "bg-blue-500"}`}>
+                  {darkMode ? <Sun className="w-4 h-4 text-white" /> : <Moon className="w-4 h-4 text-white" />}
+                </div>
+                <span className="text-[15px] font-normal text-foreground">{t.dark_mode}</span>
               </div>
               <button
-                onClick={async () => {
-                  if (!reminderEnabled) {
-                    const granted = await requestNotificationPermission();
-                    if (!granted) {
-                      toast.error(t.notif_denied || "Notifications blocked. Enable in browser settings.");
-                      return;
-                    }
-                    scheduleLocalReminder(reminderHour);
-                    setReminderEnabled(true);
-                    toast.success(t.notif_enabled || "Reminder set! 🔔");
-                  } else {
-                    disableReminder();
-                    setReminderEnabled(false);
-                  }
-                }}
-                className={`relative w-12 h-7 rounded-full transition-colors ${reminderEnabled ? "bg-primary" : "bg-border"}`}
+                onClick={toggleDark}
+                className={`relative w-[51px] h-[31px] rounded-full transition-colors duration-200 ${darkMode ? "bg-primary" : "bg-border"}`}
               >
-                <div className={`absolute top-0.5 w-6 h-6 rounded-full bg-card shadow transition-transform ${reminderEnabled ? "translate-x-5" : "translate-x-0.5"}`} />
+                <div className={`absolute top-[2px] w-[27px] h-[27px] rounded-full bg-white shadow-[0_1px_3px_rgba(0,0,0,0.15)] transition-transform duration-200 ${darkMode ? "translate-x-[22px]" : "translate-x-[2px]"}`} />
               </button>
             </div>
-            {reminderEnabled && (
-              <div className="flex items-center gap-3 mt-2">
-                <span className="text-xs text-muted-foreground">{t.remind_at || "Remind at"}</span>
-                <select
-                  value={reminderHour}
-                  onChange={(e) => {
-                    const h = Number(e.target.value);
-                    setReminderHour(h);
-                    scheduleLocalReminder(h);
+          </div>
+        </div>
+
+        {/* Notifications group */}
+        {notifSupported && (
+          <div>
+            <p className="text-[13px] font-medium text-muted-foreground uppercase tracking-wider px-4 mb-1.5">
+              Notifications
+            </p>
+            <div className="ios-group">
+              <div className="ios-group-item">
+                <div className="flex items-center gap-3">
+                  <div className={`w-8 h-8 rounded-lg flex items-center justify-center ${reminderEnabled ? "bg-red-500" : "bg-gray-400"}`}>
+                    {reminderEnabled ? <Bell className="w-4 h-4 text-white" /> : <BellOff className="w-4 h-4 text-white" />}
+                  </div>
+                  <span className="text-[15px] font-normal text-foreground">{t.daily_reminder || "Daily reminder"}</span>
+                </div>
+                <button
+                  onClick={async () => {
+                    if (!reminderEnabled) {
+                      const granted = await requestNotificationPermission();
+                      if (!granted) {
+                        toast.error(t.notif_denied || "Notifications blocked. Enable in browser settings.");
+                        return;
+                      }
+                      scheduleLocalReminder(reminderHour);
+                      setReminderEnabled(true);
+                      toast.success(t.notif_enabled || "Reminder set! 🔔");
+                    } else {
+                      disableReminder();
+                      setReminderEnabled(false);
+                    }
                   }}
-                  className="px-3 py-1.5 rounded-xl bg-secondary text-sm font-medium text-foreground border-none outline-none"
+                  className={`relative w-[51px] h-[31px] rounded-full transition-colors duration-200 ${reminderEnabled ? "bg-primary" : "bg-border"}`}
                 >
-                  {Array.from({ length: 24 }, (_, i) => (
-                    <option key={i} value={i}>
-                      {i.toString().padStart(2, "0")}:00
-                    </option>
-                  ))}
-                </select>
+                  <div className={`absolute top-[2px] w-[27px] h-[27px] rounded-full bg-white shadow-[0_1px_3px_rgba(0,0,0,0.15)] transition-transform duration-200 ${reminderEnabled ? "translate-x-[22px]" : "translate-x-[2px]"}`} />
+                </button>
               </div>
-            )}
+              {reminderEnabled && (
+                <div className="ios-group-item">
+                  <span className="text-[15px] text-foreground">{t.remind_at || "Remind at"}</span>
+                  <select
+                    value={reminderHour}
+                    onChange={(e) => {
+                      const h = Number(e.target.value);
+                      setReminderHour(h);
+                      scheduleLocalReminder(h);
+                    }}
+                    className="text-[15px] text-primary font-medium bg-transparent border-none outline-none cursor-pointer text-right"
+                  >
+                    {Array.from({ length: 24 }, (_, i) => (
+                      <option key={i} value={i}>
+                        {i.toString().padStart(2, "0")}:00
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              )}
+            </div>
           </div>
         )}
 
-        {/* Language */}
-        <div className="bg-card rounded-2xl p-4 shadow-sm border border-border/50">
-          <div className="flex items-center gap-3 mb-3">
-            <Globe className="w-5 h-5 text-muted-foreground" />
-            <span className="text-sm font-medium">{t.language}</span>
-          </div>
-          <div className="flex flex-wrap gap-2 max-h-48 overflow-y-auto">
-            {LANG_META.map((l) => (
-              <button
-                key={l.code}
-                onClick={() => setLang(l.code)}
-                className={`px-3 py-1.5 rounded-xl text-xs font-medium transition-all active:scale-[0.95] ${
-                  lang === l.code ? "bg-primary text-primary-foreground" : "bg-secondary text-muted-foreground"
-                }`}
-              >
-                {l.flag} {l.label}
-              </button>
-            ))}
+        {/* Language group */}
+        <div>
+          <p className="text-[13px] font-medium text-muted-foreground uppercase tracking-wider px-4 mb-1.5">
+            {t.language}
+          </p>
+          <div className="ios-group">
+            <button
+              onClick={() => setShowLangPicker(!showLangPicker)}
+              className="ios-group-item w-full"
+            >
+              <div className="flex items-center gap-3">
+                <div className="w-8 h-8 rounded-lg bg-blue-500 flex items-center justify-center">
+                  <Globe className="w-4 h-4 text-white" />
+                </div>
+                <span className="text-[15px] font-normal text-foreground">{t.language}</span>
+              </div>
+              <div className="flex items-center gap-1.5">
+                <span className="text-[15px] text-muted-foreground">{currentLang?.flag} {currentLang?.label}</span>
+                <ChevronRight className={`w-4 h-4 text-muted-foreground/50 transition-transform duration-200 ${showLangPicker ? "rotate-90" : ""}`} />
+              </div>
+            </button>
+            {showLangPicker && (
+              <div className="px-4 py-2 space-y-0.5">
+                {LANG_META.map((l) => (
+                  <button
+                    key={l.code}
+                    onClick={() => { setLang(l.code); setShowLangPicker(false); }}
+                    className={`w-full flex items-center justify-between px-3 py-2.5 rounded-lg text-[15px] transition-colors ${
+                      lang === l.code
+                        ? "bg-primary/8 text-primary font-medium"
+                        : "text-foreground active:bg-secondary"
+                    }`}
+                  >
+                    <span>{l.flag} {l.label}</span>
+                    {lang === l.code && <span className="text-primary text-sm">✓</span>}
+                  </button>
+                ))}
+              </div>
+            )}
           </div>
         </div>
 
         {/* Pro upsell — hide if user has plus access */}
         {!hasPlusAccess(plan, trialStartedAt) && (
-          <div className="bg-card rounded-2xl p-5 shadow-sm border border-border/50 text-center">
-            <Crown className="w-8 h-8 mx-auto text-mood-okay mb-3" />
-            <p className="font-serif text-lg font-semibold mb-1">{t.unlock_ju}</p>
-            <p className="text-sm text-muted-foreground mb-4">Unlimited entries, all coaches, full history</p>
-            <button
-              onClick={onUpgrade}
-              className="w-full py-3 rounded-2xl bg-primary text-primary-foreground font-semibold text-sm transition-all active:scale-[0.97]"
-            >
-              {t.start_trial}
-            </button>
+          <div>
+            <div className="ios-group">
+              <button
+                onClick={onUpgrade}
+                className="w-full px-4 py-5 text-center"
+              >
+                <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-primary to-primary/70 flex items-center justify-center mx-auto mb-3 shadow-[0_4px_16px_-4px_hsl(var(--primary)/0.4)]">
+                  <Crown className="w-6 h-6 text-white" />
+                </div>
+                <p className="font-semibold text-foreground text-[17px] mb-0.5">{t.unlock_ju}</p>
+                <p className="text-[13px] text-muted-foreground mb-3">Unlimited entries, all coaches, full history</p>
+                <div className="w-full py-3 rounded-xl bg-primary text-primary-foreground font-semibold text-[15px] transition-all active:scale-[0.97]">
+                  {t.start_trial}
+                </div>
+              </button>
+            </div>
           </div>
         )}
 
-        {/* Sign out */}
-        <button
-          onClick={signOut}
-          className="w-full bg-card rounded-2xl p-4 flex items-center gap-3 shadow-sm border border-border/50 text-destructive transition-all active:scale-[0.97]"
-        >
-          <LogOut className="w-5 h-5" />
-          <span className="text-sm font-medium">{t.sign_out || "Sign out"}</span>
-        </button>
-        {user && (
-          <p className="text-xs text-muted-foreground text-center mt-2">{user.email}</p>
-        )}
+        {/* Account group */}
+        <div>
+          <p className="text-[13px] font-medium text-muted-foreground uppercase tracking-wider px-4 mb-1.5">
+            Account
+          </p>
+          <div className="ios-group">
+            {user && (
+              <div className="ios-group-item">
+                <span className="text-[15px] text-foreground">Email</span>
+                <span className="text-[15px] text-muted-foreground">{user.email}</span>
+              </div>
+            )}
+            <button
+              onClick={signOut}
+              className="ios-group-item w-full"
+            >
+              <div className="flex items-center gap-3">
+                <div className="w-8 h-8 rounded-lg bg-red-500 flex items-center justify-center">
+                  <LogOut className="w-4 h-4 text-white" />
+                </div>
+                <span className="text-[15px] font-normal text-red-500">{t.sign_out || "Sign out"}</span>
+              </div>
+            </button>
+          </div>
+        </div>
+
+        {/* Footer spacing */}
+        <div className="h-8" />
       </div>
     </div>
   );

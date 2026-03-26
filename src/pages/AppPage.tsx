@@ -286,7 +286,7 @@ const AppPage: React.FC = () => {
       </div>
 
       {screen !== "journal" && screen !== "settings" && (
-        <nav className="fixed bottom-0 left-0 right-0 bg-background/90 backdrop-blur-xl border-t border-border/50 safe-area-bottom">
+        <nav className="fixed bottom-0 left-0 right-0 bg-card/80 backdrop-blur-2xl border-t border-border/30 safe-area-bottom">
           <div className="max-w-app mx-auto flex">
             {navItems.map((item) => {
               const active = screen === item.id;
@@ -294,13 +294,16 @@ const AppPage: React.FC = () => {
               return (
                 <button
                   key={item.id}
-                  onClick={() => setScreen(item.id)}
-                  className={`flex-1 flex flex-col items-center gap-1 py-3 transition-all active:scale-[0.95] ${
-                    active ? "text-primary" : "text-muted-foreground"
+                  onClick={() => {
+                    setScreen(item.id);
+                    if (navigator.vibrate) navigator.vibrate(8);
+                  }}
+                  className={`flex-1 flex flex-col items-center gap-0.5 py-2 pt-2.5 transition-all duration-150 ${
+                    active ? "text-primary" : "text-muted-foreground/60"
                   }`}
                 >
-                  <Icon className="w-5 h-5" />
-                  <span className="text-[10px] font-medium">{item.label}</span>
+                  <Icon className={`w-[22px] h-[22px] transition-transform duration-150 ${active ? "scale-[1.05]" : ""}`} strokeWidth={active ? 2.2 : 1.8} />
+                  <span className={`text-[10px] transition-all ${active ? "font-semibold" : "font-medium"}`}>{item.label}</span>
                 </button>
               );
             })}
