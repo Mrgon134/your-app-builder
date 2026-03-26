@@ -221,7 +221,7 @@ const CoachScreen: React.FC<{ onUpgrade?: () => void; plan?: string | null; tria
 
   return (
     <div className="animate-fade-up flex flex-col h-[calc(100vh-180px)]">
-      <h1 className="font-serif text-2xl font-bold text-foreground mb-4">{t.ai_coach}</h1>
+      <h1 className="text-[28px] font-bold text-foreground tracking-tight mb-4">{t.ai_coach}</h1>
 
       {/* Persona pills */}
       <div className="flex flex-wrap gap-2 mb-4 pb-2">
