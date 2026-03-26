@@ -11,13 +11,16 @@ import {
   disableReminder,
 } from "@/lib/notifications";
 import { toast } from "sonner";
+import { hasPlusAccess } from "@/lib/trial";
 
 interface SettingsScreenProps {
   onBack: () => void;
   onUpgrade?: () => void;
+  plan?: string | null;
+  trialStartedAt?: string | null;
 }
 
-const SettingsScreen: React.FC<SettingsScreenProps> = ({ onBack, onUpgrade }) => {
+const SettingsScreen: React.FC<SettingsScreenProps> = ({ onBack, onUpgrade, plan = "free", trialStartedAt = null }) => {
   const { t, lang, setLang } = useLang();
   const { signOut, user } = useAuth();
   const [darkMode, setDarkMode] = useState(document.documentElement.classList.contains("dark"));
@@ -139,18 +142,20 @@ const SettingsScreen: React.FC<SettingsScreenProps> = ({ onBack, onUpgrade }) =>
           </div>
         </div>
 
-        {/* Pro upsell */}
-        <div className="bg-card rounded-2xl p-5 shadow-sm border border-border/50 text-center">
-          <Crown className="w-8 h-8 mx-auto text-mood-okay mb-3" />
-          <p className="font-serif text-lg font-semibold mb-1">{t.unlock_ju}</p>
-          <p className="text-sm text-muted-foreground mb-4">Unlimited entries, all coaches, full history</p>
-          <button
-            onClick={onUpgrade}
-            className="w-full py-3 rounded-2xl bg-primary text-primary-foreground font-semibold text-sm transition-all active:scale-[0.97]"
-          >
-            {t.start_trial}
-          </button>
-        </div>
+        {/* Pro upsell — hide if user has plus access */}
+        {!hasPlusAccess(plan, trialStartedAt) && (
+          <div className="bg-card rounded-2xl p-5 shadow-sm border border-border/50 text-center">
+            <Crown className="w-8 h-8 mx-auto text-mood-okay mb-3" />
+            <p className="font-serif text-lg font-semibold mb-1">{t.unlock_ju}</p>
+            <p className="text-sm text-muted-foreground mb-4">Unlimited entries, all coaches, full history</p>
+            <button
+              onClick={onUpgrade}
+              className="w-full py-3 rounded-2xl bg-primary text-primary-foreground font-semibold text-sm transition-all active:scale-[0.97]"
+            >
+              {t.start_trial}
+            </button>
+          </div>
+        )}
 
         {/* Sign out */}
         <button
