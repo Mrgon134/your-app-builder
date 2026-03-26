@@ -273,7 +273,7 @@ const AppPage: React.FC = () => {
         )}
         {screen === "insights" && <InsightsScreen entries={entries} streak={streak} onUpgrade={() => setScreen("pro")} plan={profile?.plan} trialStartedAt={profile?.trial_started_at} />}
         {screen === "coach" && <CoachScreen onUpgrade={() => setScreen("pro")} plan={profile?.plan} trialStartedAt={profile?.trial_started_at} />}
-        {screen === "settings" && <SettingsScreen onBack={() => setScreen("home")} onUpgrade={() => setScreen("pro")} />}
+        {screen === "settings" && <SettingsScreen onBack={() => setScreen("home")} onUpgrade={() => setScreen("pro")} plan={profile?.plan} trialStartedAt={profile?.trial_started_at} />}
         {screen === "pro" && (
           <PricingScreen
             currentPlan={profile?.plan || "free"}
