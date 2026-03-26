@@ -20,7 +20,7 @@ interface SettingsScreenProps {
   trialStartedAt?: string | null;
 }
 
-const SettingsScreen: React.FC<SettingsScreenProps> = ({ onBack, onUpgrade }) => {
+const SettingsScreen: React.FC<SettingsScreenProps> = ({ onBack, onUpgrade, plan = "free", trialStartedAt = null }) => {
   const { t, lang, setLang } = useLang();
   const { signOut, user } = useAuth();
   const [darkMode, setDarkMode] = useState(document.documentElement.classList.contains("dark"));
