@@ -282,10 +282,10 @@ const CoachScreen: React.FC<{ onUpgrade?: () => void; plan?: string | null; tria
             }}
           >
             <div
-              className={`max-w-[80%] px-4 py-3 rounded-2xl text-sm leading-relaxed ${
+              className={`max-w-[80%] px-4 py-3 rounded-2xl text-[14px] leading-relaxed ${
                 msg.role === "user"
-                  ? "bg-primary text-primary-foreground rounded-br-sm"
-                  : "bg-card border border-border/50 text-foreground rounded-bl-sm"
+                  ? "bg-primary text-primary-foreground rounded-br-md"
+                  : "bg-card border border-border/40 text-foreground rounded-bl-md shadow-[0_1px_2px_rgba(0,0,0,0.04)]"
               }`}
             >
               {msg.content}
