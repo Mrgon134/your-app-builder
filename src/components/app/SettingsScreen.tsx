@@ -11,10 +11,13 @@ import {
   disableReminder,
 } from "@/lib/notifications";
 import { toast } from "sonner";
+import { hasPlusAccess } from "@/lib/trial";
 
 interface SettingsScreenProps {
   onBack: () => void;
   onUpgrade?: () => void;
+  plan?: string | null;
+  trialStartedAt?: string | null;
 }
 
 const SettingsScreen: React.FC<SettingsScreenProps> = ({ onBack, onUpgrade }) => {
