@@ -108,7 +108,7 @@ const JournalScreen: React.FC<JournalScreenProps> = ({ onBack, onSave }) => {
         />
         <h2 className="text-[24px] font-bold text-foreground tracking-tight mb-6">{t.done}!</h2>
         {insight && (
-          <div className="bg-card rounded-2xl p-6 mb-5 text-left shadow-[0_1px_3px_rgba(0,0,0,0.04)] border border-border/40">
+          <div className="glass-card rounded-2xl p-6 mb-5 text-left">
             <div className="flex items-center gap-2 mb-3">
               <img src={JU_STICKERS.goodjob} alt="" className="w-7 h-7" />
               <p className="text-[11px] font-semibold text-primary uppercase tracking-widest">{t.ju_insight}</p>
