@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { useLang } from "@/lib/i18n";
 import { MOODS, getGreeting, getRandomPrompt } from "@/lib/constants";
 import MoodIcon from "@/components/MoodIcon";
@@ -38,6 +38,9 @@ const HomeScreen: React.FC<HomeScreenProps> = ({ onNavigate, onSettings, onUpgra
   const [localMood, setLocalMood] = useState<number | null>(null);
   const [prompt, setPrompt] = useState(getRandomPrompt);
   const [localEnergy, setLocalEnergy] = useState(50);
+  const [moodAnimating, setMoodAnimating] = useState<number | null>(null);
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [scrollY, setScrollY] = useState(0);
 
   const selectedMood = controlledMood ?? localMood;
   const energy = controlledEnergy ?? localEnergy;
@@ -47,64 +50,96 @@ const HomeScreen: React.FC<HomeScreenProps> = ({ onNavigate, onSettings, onUpgra
   const stickerKey = getMascotForState({ selectedMood, isNight });
   const juImg = JU_STICKERS[stickerKey];
 
+  // Parallax scroll tracking
+  useEffect(() => {
+    const el = scrollRef.current?.closest('.flex-1.overflow-y-auto') || window;
+    const handleScroll = () => {
+      if (scrollRef.current) {
+        const parent = scrollRef.current.closest('[class*="overflow"]');
+        setScrollY(parent ? parent.scrollTop : window.scrollY);
+      }
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   const handleMoodSelect = (value: number) => {
     if (controlledMoodSelect) controlledMoodSelect(value);
     else setLocalMood(value);
-    // Subtle haptic
+    setMoodAnimating(value);
+    setTimeout(() => setMoodAnimating(null), 400);
     if (navigator.vibrate) navigator.vibrate(10);
   };
 
+  // Dynamic title size based on scroll
+  const titleScale = Math.max(0.82, 1 - scrollY * 0.002);
+  const titleOpacity = Math.max(0.6, 1 - scrollY * 0.003);
+
   return (
-    <div className="animate-fade-up space-y-5">
-      {/* Header — Apple-clean */}
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-[28px] font-bold text-foreground tracking-tight leading-tight">{greeting}</h1>
-          <p className="text-[15px] text-muted-foreground mt-0.5">{t.how_feeling}</p>
-        </div>
-        <div className="flex items-center gap-2.5">
-          {streak > 0 && (
-            <div className="flex items-center gap-1.5 h-9 px-3.5 rounded-full bg-mood-okay/12">
-              <Flame className={`w-4 h-4 text-mood-okay ${streak >= 7 ? "animate-streak-fire" : ""}`} />
-              <span className="text-[13px] font-semibold text-mood-okay">{streak}</span>
-            </div>
-          )}
-          <button
-            onClick={onSettings}
-            className="w-9 h-9 rounded-full bg-secondary flex items-center justify-center transition-all active:scale-[0.92]"
-          >
-            <Settings className="w-[18px] h-[18px] text-muted-foreground" />
-          </button>
+    <div ref={scrollRef} className="animate-page-slide-in space-y-6">
+      {/* Animated gradient mesh header */}
+      <div className="gradient-mesh -mx-4 -mt-6 px-4 pt-6 pb-4 rounded-b-[28px]">
+        {/* Header — Apple Large Title style */}
+        <div className="flex items-center justify-between mb-1">
+          <div style={{ transform: `scale(${titleScale})`, opacity: titleOpacity, transformOrigin: 'left center', transition: 'transform 0.1s ease-out, opacity 0.1s ease-out' }}>
+            <h1 className="text-[34px] font-bold text-foreground tracking-tight leading-tight">{greeting}</h1>
+            <p className="text-[15px] text-muted-foreground mt-0.5">{t.how_feeling}</p>
+          </div>
+          <div className="flex items-center gap-2">
+            {/* Dynamic Island-style streak badge */}
+            {streak > 0 && (
+              <div className="animate-dynamic-island flex items-center gap-1.5 h-10 px-4 rounded-full bg-foreground/[0.06] dark:bg-foreground/[0.08] backdrop-blur-sm">
+                <Flame className={`w-[15px] h-[15px] text-mood-okay ${streak >= 7 ? "animate-streak-fire" : ""}`} />
+                <span className="text-[14px] font-bold text-foreground tabular-nums">{streak}</span>
+              </div>
+            )}
+            <button
+              onClick={onSettings}
+              className="w-10 h-10 rounded-full bg-foreground/[0.06] dark:bg-foreground/[0.08] backdrop-blur-sm flex items-center justify-center press-spring"
+            >
+              <Settings className="w-[18px] h-[18px] text-muted-foreground" />
+            </button>
+          </div>
         </div>
       </div>
 
-      {/* Mascot — refined glow */}
-      <div className="relative w-24 h-24 mx-auto">
-        <div className="absolute inset-[-8px] rounded-full bg-primary/8 animate-glow-pulse" />
+      {/* Mascot — parallax effect */}
+      <div className="relative w-28 h-28 mx-auto" style={{ transform: `translateY(${-scrollY * 0.15}px)`, transition: 'transform 0.05s linear' }}>
+        <div className="absolute inset-[-12px] rounded-full bg-primary/8 animate-glow-pulse" />
         <img
           src={juImg}
           alt="Ju"
-          className="relative w-full h-full object-contain animate-ju-float"
+          className="relative w-full h-full object-contain animate-parallax-float"
           style={{ willChange: "transform" }}
         />
       </div>
 
-      {/* Mood selector — Apple-clean pills */}
-      <div className="flex justify-center gap-2">
-        {MOODS.map((mood) => {
+      {/* Mood selector — Apple-style horizontal carousel cards */}
+      <div className="flex justify-center gap-2.5 px-1">
+        {MOODS.map((mood, index) => {
           const isSelected = selectedMood === mood.value;
+          const isAnimating = moodAnimating === mood.value;
           return (
             <button
               key={mood.value}
               onClick={() => handleMoodSelect(mood.value)}
-              className={`flex flex-col items-center gap-1 px-3 py-2.5 rounded-2xl transition-all duration-200 ${
+              className={`flex flex-col items-center gap-1.5 flex-1 py-3 rounded-2xl transition-all duration-300 ${
                 isSelected
-                  ? "bg-card shadow-[0_2px_12px_-2px_rgba(0,0,0,0.08)] scale-[1.05]"
-                  : "active:scale-[0.94]"
+                  ? "shadow-lg"
+                  : "hover:bg-foreground/[0.03] active:scale-[0.94]"
               }`}
+              style={{
+                background: isSelected ? `${mood.color}18` : undefined,
+                boxShadow: isSelected ? `0 4px 20px ${mood.color}25, 0 1px 3px ${mood.color}15` : undefined,
+                border: isSelected ? `1.5px solid ${mood.color}40` : '1.5px solid transparent',
+                animation: isAnimating ? 'mood-card-select 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)' : undefined,
+                animationDelay: `${index * 0.02}s`,
+              }}
             >
-              <MoodIcon value={mood.value} color={mood.color} size={30} />
-              <span className={`text-[11px] font-medium transition-colors ${isSelected ? "text-foreground" : "text-muted-foreground"}`}>
+              <div className={`transition-transform duration-300 ${isSelected ? "scale-110" : ""}`}>
+                <MoodIcon value={mood.value} color={mood.color} size={32} />
+              </div>
+              <span className={`text-[11px] font-semibold tracking-wide transition-all duration-200 ${isSelected ? "text-foreground" : "text-muted-foreground"}`}>
                 {t[mood.key] || mood.label}
               </span>
             </button>
@@ -124,23 +159,23 @@ const HomeScreen: React.FC<HomeScreenProps> = ({ onNavigate, onSettings, onUpgra
       {/* Retention: Ju Remembers card */}
       <AiMemoryCard entries={entries} />
 
-      {/* Prompt card — clean, spacious */}
-      <div className="bg-card rounded-2xl p-5 shadow-[0_1px_3px_rgba(0,0,0,0.04)] border border-border/40">
+      {/* Prompt card — glassmorphic */}
+      <div className="glass-card rounded-2xl p-5">
         <div className="flex items-center justify-between mb-3">
-          <p className="text-[11px] font-semibold text-primary uppercase tracking-widest">{t.todays_prompt}</p>
+          <p className="text-[11px] font-semibold text-primary uppercase tracking-[0.12em]">{t.todays_prompt}</p>
           <button
             onClick={() => setPrompt(getRandomPrompt())}
-            className="w-7 h-7 rounded-full flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-secondary transition-all active:scale-[0.9]"
+            className="w-8 h-8 rounded-full flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-foreground/[0.05] transition-all press-spring"
           >
             <RefreshCw className="w-3.5 h-3.5" />
           </button>
         </div>
-        <p className="text-[15px] text-foreground leading-relaxed">{prompt}</p>
+        <p className="text-[16px] text-foreground leading-relaxed font-medium">{prompt}</p>
       </div>
 
-      {/* Energy slider — Apple-style */}
-      <div className="bg-card rounded-2xl p-5 shadow-[0_1px_3px_rgba(0,0,0,0.04)] border border-border/40">
-        <p className="text-[11px] font-semibold text-muted-foreground uppercase tracking-widest mb-4">{t.energy}</p>
+      {/* Energy slider — glassmorphic */}
+      <div className="glass-card rounded-2xl p-5">
+        <p className="text-[11px] font-semibold text-muted-foreground uppercase tracking-[0.12em] mb-4">{t.energy}</p>
         <input
           type="range"
           min={0}
@@ -160,23 +195,26 @@ const HomeScreen: React.FC<HomeScreenProps> = ({ onNavigate, onSettings, onUpgra
         </div>
       </div>
 
-      {/* Action buttons — iOS-style */}
+      {/* Action buttons — Apple-style with spring press */}
       <div className="grid grid-cols-2 gap-3">
         <button
           onClick={() => onNavigate("journal")}
-          className="flex items-center justify-center gap-2.5 h-[52px] rounded-2xl bg-primary text-primary-foreground font-semibold text-[15px] transition-all active:scale-[0.97] shadow-[0_2px_12px_-3px_hsl(var(--primary)/0.35)]"
+          className="flex items-center justify-center gap-2.5 h-[54px] rounded-2xl bg-primary text-primary-foreground font-semibold text-[15px] press-spring shadow-[0_4px_20px_-4px_hsl(var(--primary)/0.4)]"
         >
           <PenLine className="w-[18px] h-[18px]" />
           {t.write}
         </button>
         <button
           onClick={() => onNavigate("journal")}
-          className="flex items-center justify-center gap-2.5 h-[52px] rounded-2xl bg-secondary text-foreground font-semibold text-[15px] transition-all active:scale-[0.97]"
+          className="flex items-center justify-center gap-2.5 h-[54px] rounded-2xl bg-foreground/[0.06] dark:bg-foreground/[0.08] text-foreground font-semibold text-[15px] press-spring backdrop-blur-sm"
         >
           <Mic className="w-[18px] h-[18px]" />
           {t.talk}
         </button>
       </div>
+
+      {/* Spacer for bottom nav */}
+      <div className="h-2" />
     </div>
   );
 };
