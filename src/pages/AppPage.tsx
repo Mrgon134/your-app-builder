@@ -3,7 +3,7 @@ import { initReminders } from "@/lib/notifications";
 import { useGeoPricing } from "@/hooks/use-geo-pricing";
 import { useLang } from "@/lib/i18n";
 import { useAuth } from "@/lib/auth";
-import { fetchEntries, createEntry, fetchProfile, updateProfile, checkEntryLimit, EntryRow, ProfileRow } from "@/lib/api";
+import { fetchEntries, createEntry, createQuickEntry, fetchProfile, updateProfile, checkEntryLimit, EntryRow, ProfileRow } from "@/lib/api";
 import OnboardingScreen from "@/components/app/OnboardingScreen";
 import HomeScreen from "@/components/app/HomeScreen";
 import JournalScreen from "@/components/app/JournalScreen";
@@ -163,6 +163,23 @@ const AppPage: React.FC = () => {
     }
   };
 
+  const handleQuickLog = async () => {
+    if (!user) return;
+    try {
+      const canWrite = await checkEntryLimit(user.id);
+      if (!canWrite) { toast.error(t.history_locked || "Entry limit reached."); return; }
+      const entry = await createQuickEntry(user.id, selectedMood, energy);
+      const newEntries = [{ mood: entry.mood, date: entry.entry_date, text: "" }, ...entries];
+      setEntries(newEntries);
+      const updatedProfile = await fetchProfile(user.id);
+      if (updatedProfile) { setStreak(updatedProfile.streak_current); setProfile(updatedProfile); }
+      toast.success("Mood logged");
+      if (navigator.vibrate) navigator.vibrate([10, 50, 20]);
+    } catch (err) {
+      console.error("Quick log failed:", err);
+    }
+  };
+
   const handleSaveEntry = async (text: string): Promise<string | null> => {
     if (!user) return null;
     try {
@@ -284,6 +301,7 @@ const AppPage: React.FC = () => {
               onNavigate={(s) => navigateTo(s as Screen)}
               onSettings={() => navigateTo("settings")}
               onUpgrade={() => navigateTo("pro")}
+              onQuickLog={handleQuickLog}
               streak={streak}
               entries={entries}
               selectedMood={selectedMood}
