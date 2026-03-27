@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useLang, LANG_META } from "@/lib/i18n";
 import { useAuth } from "@/lib/auth";
 import { updateProfile } from "@/lib/api";
-import { ArrowLeft, Moon, Sun, Globe, Crown, LogOut, Bell, BellOff, ChevronRight } from "lucide-react";
+import { ArrowLeft, Moon, Sun, Globe, Crown, LogOut, Bell, BellOff, ChevronRight, Fingerprint } from "lucide-react";
 import {
   requestNotificationPermission,
   getNotificationPermission,
@@ -29,6 +29,8 @@ const SettingsScreen: React.FC<SettingsScreenProps> = ({ onBack, onUpgrade, plan
   const [reminderHour, setReminderHour] = useState(reminderDefaults.hour);
   const notifSupported = getNotificationPermission() !== "unsupported";
   const [showLangPicker, setShowLangPicker] = useState(false);
+  const [biometricEnabled, setBiometricEnabled] = useState(() => localStorage.getItem("nuju-biometric") === "1");
+  const biometricSupported = typeof window !== "undefined" && window.PublicKeyCredential !== undefined;
 
   const currentLang = LANG_META.find((l) => l.code === lang);
 
@@ -136,6 +138,57 @@ const SettingsScreen: React.FC<SettingsScreenProps> = ({ onBack, onUpgrade, plan
                   </select>
                 </div>
               )}
+            </div>
+          </div>
+        )}
+
+        {/* Privacy / Biometric lock */}
+        {biometricSupported && (
+          <div>
+            <p className="text-[13px] font-medium text-muted-foreground uppercase tracking-wider px-4 mb-1.5">
+              Privacy
+            </p>
+            <div className="ios-group">
+              <div className="ios-group-item">
+                <div className="flex items-center gap-3">
+                  <div className="w-8 h-8 rounded-lg bg-green-600 flex items-center justify-center">
+                    <Fingerprint className="w-4 h-4 text-white" />
+                  </div>
+                  <span className="text-[15px] font-normal text-foreground">Biometric lock</span>
+                </div>
+                <button
+                  onClick={async () => {
+                    if (!biometricEnabled) {
+                      try {
+                        const cred = await navigator.credentials.create({
+                          publicKey: {
+                            challenge: crypto.getRandomValues(new Uint8Array(32)),
+                            rp: { name: "Nuju" },
+                            user: { id: new Uint8Array(16), name: user?.email || "nuju", displayName: "Nuju" },
+                            pubKeyCredParams: [{ type: "public-key", alg: -7 }],
+                            authenticatorSelection: { userVerification: "required" },
+                            timeout: 60000,
+                          },
+                        });
+                        if (cred) {
+                          localStorage.setItem("nuju-biometric", "1");
+                          setBiometricEnabled(true);
+                          toast.success("Biometric lock enabled 🔒");
+                        }
+                      } catch (e) {
+                        toast.error("Biometric setup failed");
+                      }
+                    } else {
+                      localStorage.removeItem("nuju-biometric");
+                      setBiometricEnabled(false);
+                      toast.success("Biometric lock disabled");
+                    }
+                  }}
+                  className={`relative w-[51px] h-[31px] rounded-full transition-colors duration-200 ${biometricEnabled ? "bg-primary" : "bg-border"}`}
+                >
+                  <div className={`absolute top-[2px] w-[27px] h-[27px] rounded-full bg-white shadow-[0_1px_3px_rgba(0,0,0,0.15)] transition-transform duration-200 ${biometricEnabled ? "translate-x-[22px]" : "translate-x-[2px]"}`} />
+                </button>
+              </div>
             </div>
           </div>
         )}

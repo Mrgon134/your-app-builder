@@ -3,7 +3,7 @@ import { hasPlusAccess } from "@/lib/trial";
 import { useLang } from "@/lib/i18n";
 import { MOODS } from "@/lib/constants";
 import MoodIcon from "@/components/MoodIcon";
-import { Lock, Loader2 } from "lucide-react";
+import { Lock, Loader2, CalendarDays } from "lucide-react";
 import HistoryLock from "@/components/app/HistoryLock";
 import MoodTrendChart from "@/components/app/MoodTrendChart";
 import MonthPixelGrid from "@/components/app/MonthPixelGrid";
@@ -15,11 +15,12 @@ interface InsightsScreenProps {
   entries: Array<{ mood: number; date: string; text: string }>;
   streak?: number;
   onUpgrade: () => void;
+  onNavigate?: (screen: string) => void;
   plan?: string | null;
   trialStartedAt?: string | null;
 }
 
-const InsightsScreen: React.FC<InsightsScreenProps> = ({ entries, streak = 0, onUpgrade, plan = "free", trialStartedAt = null }) => {
+const InsightsScreen: React.FC<InsightsScreenProps> = ({ entries, streak = 0, onUpgrade, onNavigate, plan = "free", trialStartedAt = null }) => {
   const { t, lang } = useLang();
   const [aiSummary, setAiSummary] = useState<string | null>(null);
   const [summaryLoading, setSummaryLoading] = useState(false);
@@ -30,12 +31,12 @@ const InsightsScreen: React.FC<InsightsScreenProps> = ({ entries, streak = 0, on
       setSummaryLoading(true);
       try {
         const resp = await fetch(
-          `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/ai-weekly-summary`,
+          `https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/ai-weekly-summary`,
           {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
-              Authorization: `Bearer ${import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY}`,
+              Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InN4Z21sbmxxbWRqamZtY3lwaXZpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQwMTEyNDYsImV4cCI6MjA4OTU4NzI0Nn0.kUM2J00vmkRd55MmQw5AAadS8XGZKeLY0mgGg8aAVFg`,
             },
             body: JSON.stringify({ entries: entries.slice(0, 7), lang }),
           }
@@ -161,6 +162,31 @@ const InsightsScreen: React.FC<InsightsScreenProps> = ({ entries, streak = 0, on
       </div>
 
       <AiMemoryCard entries={entries} />
+
+      {/* Quick links — Programs + Year in Review */}
+      <div className="grid grid-cols-2 gap-3">
+        <button
+          onClick={() => onNavigate?.("programs")}
+          className="glass-card rounded-2xl p-4 flex flex-col items-start gap-2 press-spring text-left"
+        >
+          <span className="text-2xl">🎯</span>
+          <div>
+            <p className="text-[14px] font-semibold text-foreground">Guided Programs</p>
+            <p className="text-[11px] text-muted-foreground mt-0.5">Structured challenges</p>
+          </div>
+        </button>
+        <button
+          onClick={() => onNavigate?.("year-review")}
+          className="glass-card rounded-2xl p-4 flex flex-col items-start gap-2 press-spring text-left"
+        >
+          <CalendarDays className="w-6 h-6 text-primary" />
+          <div>
+            <p className="text-[14px] font-semibold text-foreground">Year in Review</p>
+            <p className="text-[11px] text-muted-foreground mt-0.5">{new Date().getFullYear()} recap</p>
+          </div>
+        </button>
+      </div>
+
       <HistoryLock onUpgrade={onUpgrade} plan={plan} trialStartedAt={trialStartedAt} />
 
       {/* Relationship map locked */}

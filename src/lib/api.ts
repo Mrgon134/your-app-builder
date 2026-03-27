@@ -146,3 +146,64 @@ export const countCoachMessagesThisWeek = async (userId: string): Promise<number
   if (error) throw error;
   return count || 0;
 };
+
+// ── Habits ──────────────────────────────────────────────────────────────────
+
+export interface HabitRow {
+  id: string;
+  name: string;
+  emoji: string;
+  color: string;
+}
+
+export const fetchHabits = async (userId: string): Promise<HabitRow[]> => {
+  const { data, error } = await supabase
+    .from("habits")
+    .select("id, name, emoji, color")
+    .eq("user_id", userId)
+    .eq("is_active", true)
+    .order("sort_order");
+  if (error) throw error;
+  return data || [];
+};
+
+export const toggleHabitLog = async (
+  userId: string,
+  habitId: string,
+  date: string,
+  done: boolean
+): Promise<void> => {
+  if (done) {
+    await supabase.from("habit_logs").delete().eq("habit_id", habitId).eq("date", date);
+  } else {
+    await supabase.from("habit_logs").insert({ user_id: userId, habit_id: habitId, date });
+  }
+};
+
+export const fetchHabitLogsToday = async (userId: string, date: string): Promise<string[]> => {
+  const { data, error } = await supabase
+    .from("habit_logs")
+    .select("habit_id")
+    .eq("user_id", userId)
+    .eq("date", date);
+  if (error) throw error;
+  return (data || []).map((l: any) => l.habit_id);
+};
+
+// ── Programs ─────────────────────────────────────────────────────────────────
+
+export interface UserProgramRow {
+  program_id: string;
+  current_day: number;
+  completed: boolean;
+  started_at: string;
+}
+
+export const fetchUserPrograms = async (userId: string): Promise<UserProgramRow[]> => {
+  const { data, error } = await supabase
+    .from("user_programs")
+    .select("program_id, current_day, completed, started_at")
+    .eq("user_id", userId);
+  if (error) throw error;
+  return data || [];
+};
