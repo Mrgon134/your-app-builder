@@ -1,5 +1,5 @@
 import React, { useMemo } from "react";
-import { ArrowLeft, Share2, Trophy, Flame, BookOpen, TrendingUp } from "lucide-react";
+import { ArrowLeft, Share2, Trophy, Flame, BookOpen, TrendingUp, Star, Zap, Target, Sparkles } from "lucide-react";
 import MoodIcon from "@/components/MoodIcon";
 import { MOODS } from "@/lib/constants";
 import { generateShareCard } from "@/lib/share-card";
@@ -85,10 +85,13 @@ const YearInReviewScreen: React.FC<YearInReviewScreenProps> = ({ entries, streak
       ) : (
         <div className="space-y-4">
           {/* Hero stat */}
-          <div className="glass-card rounded-2xl p-6 text-center">
+          <div className="glass-card rounded-2xl p-6 text-center" style={{ background: "linear-gradient(135deg, hsl(var(--primary)/0.08), hsl(var(--primary)/0.04))", border: "1.5px solid hsl(var(--primary)/0.15)" }}>
             <p className="text-[64px] font-bold text-primary leading-none">{stats.total}</p>
             <p className="text-[15px] text-muted-foreground mt-1">journal entries in {year}</p>
-            <p className="text-[13px] text-muted-foreground mt-0.5">That's {Math.round(stats.total / 365 * 100)}% of days journaled 🎉</p>
+            <div className="flex items-center justify-center gap-1.5 mt-2">
+              <Sparkles className="w-3.5 h-3.5 text-primary/60" />
+              <p className="text-[13px] text-primary/70 font-medium">{Math.round(stats.total / 365 * 100)}% of days journaled</p>
+            </div>
           </div>
 
           {/* Stats row */}
@@ -160,17 +163,24 @@ const YearInReviewScreen: React.FC<YearInReviewScreenProps> = ({ entries, streak
           </div>
 
           {/* Motivational closing */}
-          <div className="glass-card rounded-2xl p-5 text-center">
-            <p className="text-[17px] font-semibold text-foreground mb-1">
-              {stats.total >= 100 ? "You're a journaling champion 🏆" :
-               stats.total >= 50 ? "Incredible consistency 🔥" :
-               stats.total >= 20 ? "Great progress this year 💪" :
-               "Every entry counts ✨"}
-            </p>
-            <p className="text-[13px] text-muted-foreground">
-              {stats.total} moments captured. Keep going in {year + 1}.
-            </p>
-          </div>
+          {(() => {
+            const { icon: MotivIcon, label, color } =
+              stats.total >= 100 ? { icon: Trophy, label: "You're a journaling champion", color: "#FFB347" } :
+              stats.total >= 50  ? { icon: Flame,  label: "Incredible consistency",        color: "#E8878C" } :
+              stats.total >= 20  ? { icon: Zap,    label: "Great progress this year",      color: "#7C6EDB" } :
+                                   { icon: Star,   label: "Every entry counts",            color: "#4ECDC4" };
+            return (
+              <div className="glass-card rounded-2xl p-5 text-center">
+                <div className="w-12 h-12 rounded-2xl flex items-center justify-center mx-auto mb-3" style={{ background: `${color}18`, border: `1.5px solid ${color}35` }}>
+                  <MotivIcon className="w-6 h-6" style={{ color }} />
+                </div>
+                <p className="text-[17px] font-semibold text-foreground mb-1">{label}</p>
+                <p className="text-[13px] text-muted-foreground">
+                  {stats.total} moments captured. Keep going in {year + 1}.
+                </p>
+              </div>
+            );
+          })()}
         </div>
       )}
 
