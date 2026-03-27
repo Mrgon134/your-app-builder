@@ -147,7 +147,7 @@ const JournalScreen: React.FC<JournalScreenProps> = ({ onBack, onSave }) => {
         value={text}
         onChange={(e) => setText(e.target.value)}
         placeholder={t.whats_on_mind}
-        className="w-full min-h-[260px] p-5 rounded-2xl bg-card border border-border/40 text-foreground font-writing text-[17px] leading-relaxed placeholder:text-muted-foreground/40 focus:outline-none focus:ring-2 focus:ring-primary/15 focus:border-primary/30 resize-none transition-all shadow-[0_1px_3px_rgba(0,0,0,0.04)]"
+        className="w-full min-h-[260px] p-5 rounded-2xl glass-card text-foreground font-writing text-[17px] leading-relaxed placeholder:text-muted-foreground/40 focus:outline-none focus:ring-2 focus:ring-primary/15 focus:border-primary/30 resize-none transition-all"
         autoFocus
       />
 
