@@ -100,7 +100,7 @@ const JournalScreen: React.FC<JournalScreenProps> = ({ onBack, onSave }) => {
 
   if (saved) {
     return (
-      <div className="animate-fade-up text-center py-10">
+      <div className="animate-spring-in text-center py-10">
         <img
           src={JU_STICKERS.yay}
           alt="Yay!"
