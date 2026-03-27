@@ -63,9 +63,9 @@ const InsightsScreen: React.FC<InsightsScreenProps> = ({ entries, streak = 0, on
     : "0";
 
   return (
-    <div className="animate-fade-up space-y-4">
+    <div className="animate-page-slide-in space-y-5">
       <div className="flex items-center justify-between mb-2">
-        <h1 className="text-[28px] font-bold text-foreground tracking-tight">{t.mind_gallery}</h1>
+        <h1 className="text-[34px] font-bold text-foreground tracking-tight">{t.mind_gallery}</h1>
         <div className="flex gap-2">
           {entries.length > 0 && (
             <ShareMenu
