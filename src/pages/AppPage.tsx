@@ -11,12 +11,14 @@ import InsightsScreen from "@/components/app/InsightsScreen";
 import CoachScreen from "@/components/app/CoachScreen";
 import SettingsScreen from "@/components/app/SettingsScreen";
 import PricingScreen from "@/components/app/PricingScreen";
+import GuidedProgramsScreen from "@/components/app/GuidedProgramsScreen";
+import YearInReviewScreen from "@/components/app/YearInReviewScreen";
 import TrialBanner from "@/components/app/TrialBanner";
 import Confetti from "@/components/app/Confetti";
 import { Home, BarChart3, MessageCircle, Sparkles, Loader2 } from "lucide-react";
 import { toast } from "sonner";
 
-type Screen = "home" | "journal" | "insights" | "coach" | "pro" | "settings";
+type Screen = "home" | "journal" | "insights" | "coach" | "pro" | "settings" | "programs" | "year-review";
 
 const AppPage: React.FC = () => {
   const { t } = useLang();
@@ -35,6 +37,7 @@ const AppPage: React.FC = () => {
   const [showConfetti, setShowConfetti] = useState(false);
   const [showSignupAfterSave, setShowSignupAfterSave] = useState(false);
   const [activeTabAnim, setActiveTabAnim] = useState<string | null>(null);
+  const [journalPrompt, setJournalPrompt] = useState<string>("");
 
   // Screen ordering for directional transitions
   const screenOrder: Screen[] = ["home", "insights", "coach", "pro"];
@@ -292,11 +295,27 @@ const AppPage: React.FC = () => {
             />
           )}
           {screen === "journal" && (
-            <JournalScreen onBack={() => navigateTo("home")} onSave={handleSaveEntry} />
+            <JournalScreen onBack={() => navigateTo("home")} onSave={handleSaveEntry} initialPrompt={journalPrompt} />
           )}
-          {screen === "insights" && <InsightsScreen entries={entries} streak={streak} onUpgrade={() => navigateTo("pro")} plan={profile?.plan} trialStartedAt={profile?.trial_started_at} />}
+          {screen === "insights" && <InsightsScreen entries={entries} streak={streak} onUpgrade={() => navigateTo("pro")} onNavigate={(s) => navigateTo(s as Screen)} plan={profile?.plan} trialStartedAt={profile?.trial_started_at} />}
           {screen === "coach" && <CoachScreen onUpgrade={() => navigateTo("pro")} plan={profile?.plan} trialStartedAt={profile?.trial_started_at} />}
           {screen === "settings" && <SettingsScreen onBack={() => navigateTo("home")} onUpgrade={() => navigateTo("pro")} plan={profile?.plan} trialStartedAt={profile?.trial_started_at} />}
+          {screen === "programs" && (
+            <GuidedProgramsScreen
+              onBack={() => navigateTo("insights")}
+              onWritePrompt={(prompt) => { setJournalPrompt(prompt); navigateTo("journal"); }}
+              plan={profile?.plan}
+              trialStartedAt={profile?.trial_started_at}
+              onUpgrade={() => navigateTo("pro")}
+            />
+          )}
+          {screen === "year-review" && (
+            <YearInReviewScreen
+              entries={entries}
+              streak={streak}
+              onBack={() => navigateTo("insights")}
+            />
+          )}
           {screen === "pro" && (
             <PricingScreen
               currentPlan={profile?.plan || "free"}

@@ -6,6 +6,7 @@ import { ArrowLeft, Mic, MicOff } from "lucide-react";
 interface JournalScreenProps {
   onBack: () => void;
   onSave: (text: string) => Promise<string | null>;
+  initialPrompt?: string;
 }
 
 const useTypingEffect = (text: string, speed = 22) => {
@@ -31,7 +32,7 @@ const SpeechRecognition =
     ? (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition
     : null;
 
-const JournalScreen: React.FC<JournalScreenProps> = ({ onBack, onSave }) => {
+const JournalScreen: React.FC<JournalScreenProps> = ({ onBack, onSave, initialPrompt }) => {
   const { t, lang } = useLang();
   const [text, setText] = useState("");
   const [saved, setSaved] = useState(false);
@@ -143,6 +144,12 @@ const JournalScreen: React.FC<JournalScreenProps> = ({ onBack, onSave }) => {
         />
       </div>
 
+      {initialPrompt && (
+        <div className="glass-card rounded-2xl p-4 mb-3">
+          <p className="text-[11px] font-semibold text-primary uppercase tracking-widest mb-1">{t.todays_prompt}</p>
+          <p className="text-[15px] text-foreground leading-relaxed">{initialPrompt}</p>
+        </div>
+      )}
       <textarea
         value={text}
         onChange={(e) => setText(e.target.value)}

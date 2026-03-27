@@ -6,6 +6,7 @@ import { JU_STICKERS, getMascotForState } from "@/lib/stickers";
 import SignupPrompt from "@/components/app/SignupPrompt";
 import AiMemoryCard from "@/components/app/AiMemoryCard";
 import { Settings, Flame, PenLine, Mic, RefreshCw } from "lucide-react";
+import HabitSection from "@/components/app/HabitSection";
 
 // Preload all sticker images in memory on mount
 const preloadedImages: HTMLImageElement[] = [];
@@ -212,6 +213,9 @@ const HomeScreen: React.FC<HomeScreenProps> = ({ onNavigate, onSettings, onUpgra
           {t.talk}
         </button>
       </div>
+
+      {/* Daily Habits */}
+      <HabitSection plan={plan} onUpgrade={onUpgrade} />
 
       {/* Spacer for bottom nav */}
       <div className="h-2" />
