@@ -66,6 +66,7 @@ interface HomeScreenProps {
   onEnergyChange?: (val: number) => void;
   plan?: string | null;
   trialStartedAt?: string | null;
+  hasBanner?: boolean;
 }
 
 const HomeScreen: React.FC<HomeScreenProps> = ({
@@ -73,7 +74,7 @@ const HomeScreen: React.FC<HomeScreenProps> = ({
   streak, entries,
   selectedMood: controlledMood, onMoodSelect: controlledMoodSelect,
   energy: controlledEnergy, onEnergyChange: controlledEnergyChange,
-  plan, trialStartedAt,
+  plan, trialStartedAt, hasBanner,
 }) => {
   const { t } = useLang();
   const [localMood, setLocalMood] = useState<number | null>(null);
@@ -142,7 +143,7 @@ const HomeScreen: React.FC<HomeScreenProps> = ({
   return (
     <div ref={scrollRef} className="animate-page-slide-in space-y-5">
       {/* Animated gradient mesh header — reacts to selected mood color */}
-      <div className="gradient-mesh relative -mx-4 -mt-6 px-4 pt-6 pb-5 rounded-b-[28px]">
+      <div className={`gradient-mesh relative -mx-4 px-4 pt-6 pb-5 rounded-b-[28px] ${hasBanner ? "mt-0" : "-mt-6"}`}>
         {/* Mood color overlay — child div so it doesn't conflict with gradient-mesh background */}
         {selectedMoodData && (
           <div
