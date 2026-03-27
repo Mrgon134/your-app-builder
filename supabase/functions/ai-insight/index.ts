@@ -13,62 +13,40 @@ serve(async (req) => {
 
   try {
     const { text, mood, energy } = await req.json();
-    const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY");
-    if (!LOVABLE_API_KEY) throw new Error("LOVABLE_API_KEY is not configured");
+    const GEMINI_API_KEY = Deno.env.get("GEMINI_API_KEY");
+    if (!GEMINI_API_KEY) throw new Error("GEMINI_API_KEY is not configured");
 
     const moodLabels: Record<number, string> = {
-      1: "Rough",
-      2: "Low",
-      3: "Okay",
-      4: "Good",
-      5: "Great",
+      1: "Rough", 2: "Low", 3: "Okay", 4: "Good", 5: "Great",
     };
 
-    const systemPrompt = `You are Ju, a warm and insightful AI journal companion. The user just wrote a journal entry. Analyze their writing and provide a brief, empathetic 2-3 sentence insight. 
+    const prompt = `You are Ju, a warm and insightful AI journal companion. The user just wrote a journal entry. Analyze their writing and provide a brief, empathetic 2-3 sentence insight.
 
-Be specific to what they wrote — reference their words, feelings, or situations. Don't be generic. 
+Be specific to what they wrote — reference their words, feelings, or situations. Don't be generic.
 If mood is low (1-2), be extra compassionate. If mood is high (4-5), celebrate with them.
-Respond in the same language the user wrote in.`;
+Respond in the same language the user wrote in.
 
-    const userPrompt = `Journal entry (mood: ${moodLabels[mood] || "Unknown"} ${mood}/5, energy: ${energy}/100):
+Journal entry (mood: ${moodLabels[mood] || "Unknown"} ${mood}/5, energy: ${energy}/100):
 
 "${text}"
 
 Give a brief personalized insight about this entry.`;
 
     const response = await fetch(
-      "https://ai.gateway.lovable.dev/v1/chat/completions",
+      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-lite:generateContent?key=${GEMINI_API_KEY}`,
       {
         method: "POST",
-        headers: {
-          Authorization: `Bearer ${LOVABLE_API_KEY}`,
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          model: "google/gemini-3-flash-preview",
-          messages: [
-            { role: "system", content: systemPrompt },
-            { role: "user", content: userPrompt },
-          ],
+          contents: [{ parts: [{ text: prompt }] }],
+          generationConfig: { maxOutputTokens: 200, temperature: 0.7 },
         }),
       }
     );
 
     if (!response.ok) {
-      if (response.status === 429) {
-        return new Response(
-          JSON.stringify({ error: "Rate limited", insight: null }),
-          { status: 429, headers: { ...corsHeaders, "Content-Type": "application/json" } }
-        );
-      }
-      if (response.status === 402) {
-        return new Response(
-          JSON.stringify({ error: "Credits exhausted", insight: null }),
-          { status: 402, headers: { ...corsHeaders, "Content-Type": "application/json" } }
-        );
-      }
-      const t = await response.text();
-      console.error("AI gateway error:", response.status, t);
+      const errText = await response.text();
+      console.error("Gemini error:", response.status, errText);
       return new Response(
         JSON.stringify({ error: "AI error", insight: null }),
         { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
@@ -76,7 +54,7 @@ Give a brief personalized insight about this entry.`;
     }
 
     const data = await response.json();
-    const insight = data.choices?.[0]?.message?.content || "";
+    const insight = data.candidates?.[0]?.content?.parts?.[0]?.text || "";
 
     return new Response(
       JSON.stringify({ insight }),

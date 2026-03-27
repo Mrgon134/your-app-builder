@@ -187,13 +187,15 @@ const AppPage: React.FC = () => {
       }
 
       try {
+        const aiUrl = import.meta.env.VITE_AI_SUPABASE_URL || import.meta.env.VITE_SUPABASE_URL;
+        const aiKey = import.meta.env.VITE_AI_SUPABASE_KEY || import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY;
         const resp = await fetch(
-          `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/ai-insight`,
+          `${aiUrl}/functions/v1/ai-insight`,
           {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
-              Authorization: `Bearer ${import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY}`,
+              Authorization: `Bearer ${aiKey}`,
             },
             body: JSON.stringify({ text, mood: selectedMood, energy }),
           }

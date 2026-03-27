@@ -22,7 +22,9 @@ const COACH_ICONS: Record<string, string> = {
 
 type Msg = { role: "user" | "assistant"; content: string };
 
-const CHAT_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/ai-coach`;
+const AI_BASE = import.meta.env.VITE_AI_SUPABASE_URL || import.meta.env.VITE_SUPABASE_URL;
+const AI_KEY = import.meta.env.VITE_AI_SUPABASE_KEY || import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY;
+const CHAT_URL = `${AI_BASE}/functions/v1/ai-coach`;
 
 async function streamChat({
   messages,
@@ -41,7 +43,7 @@ async function streamChat({
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY}`,
+      Authorization: `Bearer ${AI_KEY}`,
     },
     body: JSON.stringify({ messages, persona }),
   });
