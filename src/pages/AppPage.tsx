@@ -14,6 +14,7 @@ import PricingScreen from "@/components/app/PricingScreen";
 import GuidedProgramsScreen from "@/components/app/GuidedProgramsScreen";
 import YearInReviewScreen from "@/components/app/YearInReviewScreen";
 import TrialBanner from "@/components/app/TrialBanner";
+import { getTrialStatus } from "@/lib/trial";
 import Confetti from "@/components/app/Confetti";
 import { Home, BarChart3, MessageCircle, Sparkles, Loader2 } from "lucide-react";
 import { toast } from "sonner";
@@ -310,6 +311,12 @@ const AppPage: React.FC = () => {
               onEnergyChange={setEnergy}
               plan={profile?.plan}
               trialStartedAt={profile?.trial_started_at}
+              hasBanner={(() => {
+                const p = profile?.plan;
+                if (p === "plus" || p === "pro") return false;
+                const trial = getTrialStatus(profile?.trial_started_at || null);
+                return !trial.notStarted;
+              })()}
             />
           )}
           {screen === "journal" && (
