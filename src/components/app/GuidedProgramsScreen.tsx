@@ -1,6 +1,20 @@
 import React, { useState, useEffect } from "react";
-import { ArrowLeft, Play, CheckCircle2, ChevronRight, Lock } from "lucide-react";
+import { ArrowLeft, Play, CheckCircle2, ChevronRight, Lock, Heart, Wind, Compass, Sun, Zap } from "lucide-react";
 import { GUIDED_PROGRAMS, getProgramById } from "@/lib/programs";
+
+const PROGRAM_ICONS: Record<string, React.FC<{ size?: number; color?: string }>> = {
+  "gratitude-7": ({ size = 22, color }) => <Heart size={size} color={color} />,
+  "stress-relief-5": ({ size = 22, color }) => <Wind size={size} color={color} />,
+  "self-discovery-14": ({ size = 22, color }) => <Compass size={size} color={color} />,
+  "morning-clarity-7": ({ size = 22, color }) => <Sun size={size} color={color} />,
+  "resilience-10": ({ size = 22, color }) => <Zap size={size} color={color} />,
+};
+
+const ProgramIcon: React.FC<{ id: string; color: string; size?: number }> = ({ id, color, size = 22 }) => {
+  const Icon = PROGRAM_ICONS[id];
+  if (!Icon) return null;
+  return <Icon size={size} color={color} />;
+};
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/lib/auth";
 import { hasPlusAccess } from "@/lib/trial";
@@ -113,8 +127,13 @@ const GuidedProgramsScreen: React.FC<GuidedProgramsScreenProps> = ({
           <span className="text-[15px] font-medium">Programs</span>
         </button>
 
-        <div className="flex items-center gap-3 mb-6">
-          <span className="text-4xl">{program.emoji}</span>
+        <div className="flex items-center gap-4 mb-6">
+          <div
+            className="w-14 h-14 rounded-2xl flex items-center justify-center shadow-lg flex-shrink-0"
+            style={{ background: `linear-gradient(135deg, ${program.color}30, ${program.color}18)`, border: `1.5px solid ${program.color}40` }}
+          >
+            <ProgramIcon id={program.id} color={program.color} size={26} />
+          </div>
           <div>
             <h2 className="text-[22px] font-bold text-foreground">{program.title}</h2>
             <p className="text-[13px] text-muted-foreground">Day {Math.min(up.current_day, program.days)} of {program.days}</p>
@@ -164,8 +183,10 @@ const GuidedProgramsScreen: React.FC<GuidedProgramsScreenProps> = ({
           </div>
         ) : (
           <div className="text-center py-8">
-            <CheckCircle2 className="w-16 h-16 mx-auto mb-3" style={{ color: program.color }} />
-            <h3 className="text-[20px] font-bold text-foreground mb-1">Program Complete! 🏆</h3>
+            <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4" style={{ background: `${program.color}18`, border: `2px solid ${program.color}40` }}>
+              <CheckCircle2 className="w-9 h-9" style={{ color: program.color }} />
+            </div>
+            <h3 className="text-[20px] font-bold text-foreground mb-1">Program Complete</h3>
             <p className="text-[14px] text-muted-foreground">You finished {program.title}. Amazing work.</p>
           </div>
         )}
@@ -201,7 +222,12 @@ const GuidedProgramsScreen: React.FC<GuidedProgramsScreenProps> = ({
                   onClick={() => setActiveProgram(up.program_id)}
                   className="w-full glass-card rounded-2xl p-4 flex items-center gap-4 press-spring text-left"
                 >
-                  <span className="text-3xl">{program.emoji}</span>
+                  <div
+                    className="w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0"
+                    style={{ background: `linear-gradient(135deg, ${program.color}28, ${program.color}14)`, border: `1.5px solid ${program.color}35` }}
+                  >
+                    <ProgramIcon id={program.id} color={program.color} size={20} />
+                  </div>
                   <div className="flex-1 min-w-0">
                     <p className="font-semibold text-foreground text-[15px]">{program.title}</p>
                     <div className="flex items-center gap-2 mt-1">
@@ -236,10 +262,10 @@ const GuidedProgramsScreen: React.FC<GuidedProgramsScreenProps> = ({
               className="w-full glass-card rounded-2xl p-4 flex items-center gap-4 press-spring text-left relative overflow-hidden"
             >
               <div
-                className="w-12 h-12 rounded-xl flex items-center justify-center text-2xl flex-shrink-0"
-                style={{ background: `${program.color}20` }}
+                className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0"
+                style={{ background: `linear-gradient(135deg, ${program.color}28, ${program.color}14)`, border: `1.5px solid ${program.color}35` }}
               >
-                {program.emoji}
+                <ProgramIcon id={program.id} color={program.color} size={22} />
               </div>
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-2">
