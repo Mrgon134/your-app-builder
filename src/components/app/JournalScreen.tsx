@@ -130,7 +130,7 @@ const JournalScreen: React.FC<JournalScreenProps> = ({ onBack, onSave }) => {
   }
 
   return (
-    <div className="animate-fade-up">
+    <div className="animate-page-slide-in">
       <div className="flex items-center justify-between mb-6">
         <button onClick={onBack} className="flex items-center gap-1 text-primary transition-all active:scale-[0.97]">
           <ArrowLeft className="w-5 h-5" />
