@@ -178,7 +178,7 @@ const JournalScreen: React.FC<JournalScreenProps> = ({ onBack, onSave }) => {
         <button
           onClick={handleSave}
           disabled={!text.trim() || saving}
-          className="flex-1 h-[48px] rounded-xl bg-primary text-primary-foreground font-semibold text-[15px] transition-all active:scale-[0.97] disabled:opacity-40 shadow-[0_2px_12px_-3px_hsl(var(--primary)/0.35)]"
+          className="flex-1 h-[52px] rounded-2xl bg-primary text-primary-foreground font-semibold text-[15px] press-spring disabled:opacity-40 shadow-[0_4px_20px_-4px_hsl(var(--primary)/0.4)]"
         >
           {saving ? "..." : t.save}
         </button>

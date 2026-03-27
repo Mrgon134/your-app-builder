@@ -47,9 +47,9 @@ const SettingsScreen: React.FC<SettingsScreenProps> = ({ onBack, onUpgrade, plan
   };
 
   return (
-    <div className="animate-fade-up">
+    <div className="animate-page-slide-in">
       {/* iOS-style large title header */}
-      <button onClick={onBack} className="flex items-center gap-1 text-primary mb-5 transition-all active:scale-[0.97]">
+      <button onClick={onBack} className="flex items-center gap-1 text-primary mb-5 press-spring">
         <ArrowLeft className="w-5 h-5" />
         <span className="text-[15px] font-medium">{t.back}</span>
       </button>

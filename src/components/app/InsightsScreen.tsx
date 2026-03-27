@@ -165,7 +165,7 @@ const InsightsScreen: React.FC<InsightsScreenProps> = ({ entries, streak = 0, on
 
       {/* Relationship map locked */}
       {!hasPlusAccess(plan, trialStartedAt) && (
-        <div className="bg-card rounded-2xl p-6 shadow-[0_1px_3px_rgba(0,0,0,0.04)] border border-border/40 text-center">
+        <div className="glass-card rounded-2xl p-6 text-center">
           <Lock className="w-7 h-7 mx-auto text-muted-foreground/30 mb-3" />
           <p className="font-semibold text-foreground text-[17px] mb-1">{t.relationship_map}</p>
           <p className="text-[13px] text-muted-foreground mb-4">{t.rel_desc}</p>
