@@ -143,7 +143,7 @@ const InsightsScreen: React.FC<InsightsScreenProps> = ({ entries, streak = 0, on
       )}
 
       {/* AI Weekly Summary */}
-      <div className="bg-card rounded-2xl p-5 shadow-[0_1px_3px_rgba(0,0,0,0.04)] border border-border/40">
+      <div className="glass-card rounded-2xl p-5">
         <div className="flex items-center gap-2.5 mb-3">
           <img src={JU_STICKERS.goodjob} alt="Ju" className="w-8 h-8" />
           <p className="text-[11px] font-semibold text-primary uppercase tracking-widest">{t.weekly_summary}</p>
