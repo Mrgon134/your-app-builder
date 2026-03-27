@@ -63,9 +63,9 @@ const InsightsScreen: React.FC<InsightsScreenProps> = ({ entries, streak = 0, on
     : "0";
 
   return (
-    <div className="animate-fade-up space-y-4">
+    <div className="animate-page-slide-in space-y-5">
       <div className="flex items-center justify-between mb-2">
-        <h1 className="text-[28px] font-bold text-foreground tracking-tight">{t.mind_gallery}</h1>
+        <h1 className="text-[34px] font-bold text-foreground tracking-tight">{t.mind_gallery}</h1>
         <div className="flex gap-2">
           {entries.length > 0 && (
             <ShareMenu
@@ -81,7 +81,7 @@ const InsightsScreen: React.FC<InsightsScreenProps> = ({ entries, streak = 0, on
       <MoodTrendChart entries={entries} />
 
       {/* Weekly mood wave */}
-      <div className="bg-card rounded-2xl p-5 shadow-[0_1px_3px_rgba(0,0,0,0.04)] border border-border/40">
+      <div className="glass-card rounded-2xl p-5">
         <p className="text-[11px] font-semibold text-primary uppercase tracking-widest mb-4">{t.weekly_mood}</p>
         <div className="flex items-end justify-between gap-2 h-28">
           {weekMoods.map((mood, i) => {
@@ -117,15 +117,15 @@ const InsightsScreen: React.FC<InsightsScreenProps> = ({ entries, streak = 0, on
 
       {/* Stats row — Apple-style metrics */}
       <div className="grid grid-cols-3 gap-3">
-        <div className="bg-card rounded-2xl p-4 text-center shadow-[0_1px_3px_rgba(0,0,0,0.04)] border border-border/40">
+        <div className="glass-card rounded-2xl p-4 text-center">
           <p className="text-[22px] font-bold text-foreground tracking-tight">{avgMood}</p>
           <p className="text-[10px] text-muted-foreground mt-0.5 font-medium">{t.mood_avg}</p>
         </div>
-        <div className="bg-card rounded-2xl p-4 text-center shadow-[0_1px_3px_rgba(0,0,0,0.04)] border border-border/40">
+        <div className="glass-card rounded-2xl p-4 text-center">
           <p className="text-[22px] font-bold text-foreground tracking-tight">{entries.length}</p>
           <p className="text-[10px] text-muted-foreground mt-0.5 font-medium">{t.entries_total}</p>
         </div>
-        <div className="bg-card rounded-2xl p-4 text-center shadow-[0_1px_3px_rgba(0,0,0,0.04)] border border-border/40">
+        <div className="glass-card rounded-2xl p-4 text-center">
           <MoodIcon value={5} color="#4ECDC4" size={26} />
           <p className="text-[10px] text-muted-foreground mt-1 font-medium">{t.mood_best}</p>
         </div>
@@ -133,7 +133,7 @@ const InsightsScreen: React.FC<InsightsScreenProps> = ({ entries, streak = 0, on
 
       {/* Streak milestone */}
       {streak >= 7 && (
-        <div className="bg-card rounded-2xl p-5 shadow-[0_1px_3px_rgba(0,0,0,0.04)] border border-border/40 flex items-center justify-between">
+        <div className="glass-card rounded-2xl p-5 flex items-center justify-between">
           <div>
             <p className="text-[11px] font-semibold text-primary uppercase tracking-widest mb-0.5">🔥 {t.streak_milestone || "Streak Milestone"}</p>
             <p className="text-[22px] font-bold text-foreground tracking-tight">{streak} {t.days_streak || "days"}</p>
@@ -143,7 +143,7 @@ const InsightsScreen: React.FC<InsightsScreenProps> = ({ entries, streak = 0, on
       )}
 
       {/* AI Weekly Summary */}
-      <div className="bg-card rounded-2xl p-5 shadow-[0_1px_3px_rgba(0,0,0,0.04)] border border-border/40">
+      <div className="glass-card rounded-2xl p-5">
         <div className="flex items-center gap-2.5 mb-3">
           <img src={JU_STICKERS.goodjob} alt="Ju" className="w-8 h-8" />
           <p className="text-[11px] font-semibold text-primary uppercase tracking-widest">{t.weekly_summary}</p>
@@ -165,7 +165,7 @@ const InsightsScreen: React.FC<InsightsScreenProps> = ({ entries, streak = 0, on
 
       {/* Relationship map locked */}
       {!hasPlusAccess(plan, trialStartedAt) && (
-        <div className="bg-card rounded-2xl p-6 shadow-[0_1px_3px_rgba(0,0,0,0.04)] border border-border/40 text-center">
+        <div className="glass-card rounded-2xl p-6 text-center">
           <Lock className="w-7 h-7 mx-auto text-muted-foreground/30 mb-3" />
           <p className="font-semibold text-foreground text-[17px] mb-1">{t.relationship_map}</p>
           <p className="text-[13px] text-muted-foreground mb-4">{t.rel_desc}</p>

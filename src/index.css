@@ -183,6 +183,51 @@
   to { opacity: 1; }
 }
 
+/* iOS-style page transitions */
+@keyframes page-slide-in {
+  from { opacity: 0; transform: translateX(60px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+@keyframes page-slide-out {
+  from { opacity: 1; transform: translateX(0); }
+  to { opacity: 0; transform: translateX(-30px); }
+}
+@keyframes page-slide-back-in {
+  from { opacity: 0; transform: translateX(-60px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+@keyframes spring-in {
+  0% { transform: scale(0.92); opacity: 0; }
+  60% { transform: scale(1.02); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
+}
+@keyframes dynamic-island-expand {
+  0% { transform: scaleX(0.6) scaleY(0.8); opacity: 0; border-radius: 999px; }
+  60% { transform: scaleX(1.04) scaleY(1.02); opacity: 1; }
+  100% { transform: scaleX(1) scaleY(1); opacity: 1; }
+}
+@keyframes gradient-flow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+@keyframes parallax-float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  25% { transform: translateY(-8px) rotate(1deg); }
+  75% { transform: translateY(-4px) rotate(-0.5deg); }
+}
+@keyframes tab-pop {
+  0% { transform: scale(0.85); opacity: 0.5; }
+  50% { transform: scale(1.12); }
+  100% { transform: scale(1); opacity: 1; }
+}
+@keyframes mood-card-select {
+  0% { transform: scale(1); }
+  30% { transform: scale(0.92); }
+  60% { transform: scale(1.08); }
+  100% { transform: scale(1.04); }
+}
+
 @layer utilities {
   .animate-ju-float {
     animation: ju-float 3s ease-in-out infinite;
@@ -214,6 +259,31 @@
   .animate-streak-fire {
     animation: streak-fire 1.5s ease-in-out infinite;
   }
+  .animate-page-slide-in {
+    animation: page-slide-in 0.45s cubic-bezier(0.32, 0.72, 0, 1) forwards;
+  }
+  .animate-page-slide-back {
+    animation: page-slide-back-in 0.45s cubic-bezier(0.32, 0.72, 0, 1) forwards;
+  }
+  .animate-spring-in {
+    animation: spring-in 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  }
+  .animate-dynamic-island {
+    animation: dynamic-island-expand 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  }
+  .animate-parallax-float {
+    animation: parallax-float 4s ease-in-out infinite;
+  }
+  .animate-tab-pop {
+    animation: tab-pop 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  }
+  .animate-mood-card-select {
+    animation: mood-card-select 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  }
+  .animate-gradient-flow {
+    background-size: 200% 200%;
+    animation: gradient-flow 6s ease infinite;
+  }
   .font-serif {
     font-family: var(--font-serif);
   }
@@ -224,6 +294,29 @@
   /* Apple-style safe area */
   .safe-area-bottom {
     padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+
+  /* Apple spring press effect */
+  .press-spring {
+    transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  .press-spring:active {
+    transform: scale(0.96);
+  }
+
+  /* Glassmorphic card */
+  .glass-card {
+    @apply bg-card/70 backdrop-blur-xl border border-border/30;
+    box-shadow: 
+      0 1px 2px rgba(0, 0, 0, 0.04),
+      0 4px 16px rgba(0, 0, 0, 0.04),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  }
+  .dark .glass-card {
+    box-shadow: 
+      0 1px 2px rgba(0, 0, 0, 0.2),
+      0 4px 16px rgba(0, 0, 0, 0.15),
+      inset 0 1px 0 rgba(255, 255, 255, 0.05);
   }
 }
 
@@ -260,4 +353,28 @@ input[type="range"]::-webkit-slider-thumb {
 }
 .dark input[type="range"]::-webkit-slider-thumb {
   border-color: hsl(var(--card));
+}
+
+/* Animated gradient mesh for header */
+.gradient-mesh {
+  background: linear-gradient(
+    135deg,
+    hsl(var(--primary) / 0.06) 0%,
+    hsl(var(--mood-great) / 0.04) 30%,
+    hsl(var(--mood-okay) / 0.04) 60%,
+    hsl(var(--primary) / 0.06) 100%
+  );
+  background-size: 200% 200%;
+  animation: gradient-flow 8s ease infinite;
+}
+.dark .gradient-mesh {
+  background: linear-gradient(
+    135deg,
+    hsl(var(--primary) / 0.1) 0%,
+    hsl(var(--mood-great) / 0.06) 30%,
+    hsl(var(--mood-okay) / 0.06) 60%,
+    hsl(var(--primary) / 0.1) 100%
+  );
+  background-size: 200% 200%;
+  animation: gradient-flow 8s ease infinite;
 }

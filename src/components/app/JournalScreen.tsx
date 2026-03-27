@@ -100,7 +100,7 @@ const JournalScreen: React.FC<JournalScreenProps> = ({ onBack, onSave }) => {
 
   if (saved) {
     return (
-      <div className="animate-fade-up text-center py-10">
+      <div className="animate-spring-in text-center py-10">
         <img
           src={JU_STICKERS.yay}
           alt="Yay!"
@@ -108,7 +108,7 @@ const JournalScreen: React.FC<JournalScreenProps> = ({ onBack, onSave }) => {
         />
         <h2 className="text-[24px] font-bold text-foreground tracking-tight mb-6">{t.done}!</h2>
         {insight && (
-          <div className="bg-card rounded-2xl p-6 mb-5 text-left shadow-[0_1px_3px_rgba(0,0,0,0.04)] border border-border/40">
+          <div className="glass-card rounded-2xl p-6 mb-5 text-left">
             <div className="flex items-center gap-2 mb-3">
               <img src={JU_STICKERS.goodjob} alt="" className="w-7 h-7" />
               <p className="text-[11px] font-semibold text-primary uppercase tracking-widest">{t.ju_insight}</p>
@@ -121,7 +121,7 @@ const JournalScreen: React.FC<JournalScreenProps> = ({ onBack, onSave }) => {
         )}
         <button
           onClick={onBack}
-          className="px-8 h-[48px] rounded-xl bg-primary text-primary-foreground font-semibold text-[15px] transition-all active:scale-[0.97] shadow-[0_2px_12px_-3px_hsl(var(--primary)/0.35)]"
+          className="px-8 h-[52px] rounded-2xl bg-primary text-primary-foreground font-semibold text-[15px] press-spring shadow-[0_4px_20px_-4px_hsl(var(--primary)/0.4)]"
         >
           {t.done}
         </button>
@@ -130,9 +130,9 @@ const JournalScreen: React.FC<JournalScreenProps> = ({ onBack, onSave }) => {
   }
 
   return (
-    <div className="animate-fade-up">
+    <div className="animate-page-slide-in">
       <div className="flex items-center justify-between mb-6">
-        <button onClick={onBack} className="flex items-center gap-1 text-primary transition-all active:scale-[0.97]">
+        <button onClick={onBack} className="flex items-center gap-1 text-primary press-spring">
           <ArrowLeft className="w-5 h-5" />
           <span className="text-[15px] font-medium">{t.back}</span>
         </button>
@@ -147,7 +147,7 @@ const JournalScreen: React.FC<JournalScreenProps> = ({ onBack, onSave }) => {
         value={text}
         onChange={(e) => setText(e.target.value)}
         placeholder={t.whats_on_mind}
-        className="w-full min-h-[260px] p-5 rounded-2xl bg-card border border-border/40 text-foreground font-writing text-[17px] leading-relaxed placeholder:text-muted-foreground/40 focus:outline-none focus:ring-2 focus:ring-primary/15 focus:border-primary/30 resize-none transition-all shadow-[0_1px_3px_rgba(0,0,0,0.04)]"
+        className="w-full min-h-[260px] p-5 rounded-2xl glass-card text-foreground font-writing text-[17px] leading-relaxed placeholder:text-muted-foreground/40 focus:outline-none focus:ring-2 focus:ring-primary/15 focus:border-primary/30 resize-none transition-all"
         autoFocus
       />
 
@@ -178,7 +178,7 @@ const JournalScreen: React.FC<JournalScreenProps> = ({ onBack, onSave }) => {
         <button
           onClick={handleSave}
           disabled={!text.trim() || saving}
-          className="flex-1 h-[48px] rounded-xl bg-primary text-primary-foreground font-semibold text-[15px] transition-all active:scale-[0.97] disabled:opacity-40 shadow-[0_2px_12px_-3px_hsl(var(--primary)/0.35)]"
+          className="flex-1 h-[52px] rounded-2xl bg-primary text-primary-foreground font-semibold text-[15px] press-spring disabled:opacity-40 shadow-[0_4px_20px_-4px_hsl(var(--primary)/0.4)]"
         >
           {saving ? "..." : t.save}
         </button>

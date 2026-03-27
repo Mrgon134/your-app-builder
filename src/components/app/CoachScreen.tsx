@@ -220,8 +220,8 @@ const CoachScreen: React.FC<{ onUpgrade?: () => void; plan?: string | null; tria
   const currentPersona = AI_PERSONAS.find((p) => p.id === persona)!;
 
   return (
-    <div className="animate-fade-up flex flex-col h-[calc(100vh-180px)]">
-      <h1 className="text-[28px] font-bold text-foreground tracking-tight mb-4">{t.ai_coach}</h1>
+    <div className="animate-page-slide-in flex flex-col h-[calc(100vh-180px)]">
+      <h1 className="text-[34px] font-bold text-foreground tracking-tight mb-4">{t.ai_coach}</h1>
 
       {/* Persona pills */}
       <div className="flex flex-wrap gap-2 mb-4 pb-2">

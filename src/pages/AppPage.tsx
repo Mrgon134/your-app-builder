@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useRef } from "react";
 import { initReminders } from "@/lib/notifications";
 import { useGeoPricing } from "@/hooks/use-geo-pricing";
 import { useLang } from "@/lib/i18n";
@@ -25,6 +25,8 @@ const AppPage: React.FC = () => {
   const [profile, setProfile] = useState<ProfileRow | null>(null);
   const [showOnboarding, setShowOnboarding] = useState(false);
   const [screen, setScreen] = useState<Screen>("home");
+  const [prevScreen, setPrevScreen] = useState<Screen | null>(null);
+  const [transitionClass, setTransitionClass] = useState("animate-page-slide-in");
   const [entries, setEntries] = useState<Array<{ mood: number; date: string; text: string }>>([]);
   const [streak, setStreak] = useState(0);
   const [loading, setLoading] = useState(true);
@@ -32,6 +34,10 @@ const AppPage: React.FC = () => {
   const [energy, setEnergy] = useState(50);
   const [showConfetti, setShowConfetti] = useState(false);
   const [showSignupAfterSave, setShowSignupAfterSave] = useState(false);
+  const [activeTabAnim, setActiveTabAnim] = useState<string | null>(null);
+
+  // Screen ordering for directional transitions
+  const screenOrder: Screen[] = ["home", "insights", "coach", "pro"];
 
   // Initialize notification reminders
   useEffect(() => { initReminders(); }, []);
@@ -70,6 +76,25 @@ const AppPage: React.FC = () => {
     setShowOnboarding(false);
   };
 
+  // Navigate with iOS-style slide transitions
+  const navigateTo = useCallback((newScreen: Screen) => {
+    if (newScreen === screen) return;
+    
+    const oldIdx = screenOrder.indexOf(screen);
+    const newIdx = screenOrder.indexOf(newScreen);
+    const isForward = newIdx > oldIdx || newScreen === "journal" || newScreen === "settings" || newScreen === "pro";
+    
+    setPrevScreen(screen);
+    setTransitionClass(isForward ? "animate-page-slide-in" : "animate-page-slide-back");
+    setScreen(newScreen);
+    
+    // Tab pop animation
+    setActiveTabAnim(newScreen);
+    setTimeout(() => setActiveTabAnim(null), 300);
+    
+    if (navigator.vibrate) navigator.vibrate(6);
+  }, [screen]);
+
   // Confetti on mood 5 selection
   const handleMoodSelect = useCallback((mood: number) => {
     setSelectedMood(mood);
@@ -96,8 +121,6 @@ const AppPage: React.FC = () => {
   const handleCheckout = async (plan: string) => {
     if (!user) return;
     try {
-      // Variant IDs should be configured in Lemon Squeezy dashboard
-      // These are placeholders — replace with real variant IDs
       const variantMap: Record<string, string> = {
         plus_monthly: "1428721",
         plus_annual: "1428730",
@@ -140,7 +163,6 @@ const AppPage: React.FC = () => {
   const handleSaveEntry = async (text: string): Promise<string | null> => {
     if (!user) return null;
     try {
-      // Check entry limit (free = 3/week)
       const canWrite = await checkEntryLimit(user.id);
       if (!canWrite) {
         toast.error(t.history_locked || "Entry limit reached. Upgrade for unlimited entries.");
@@ -154,19 +176,16 @@ const AppPage: React.FC = () => {
       ];
       setEntries(newEntries);
 
-      // Refresh profile for updated streak
       const updatedProfile = await fetchProfile(user.id);
       if (updatedProfile) {
         setStreak(updatedProfile.streak_current);
         setProfile(updatedProfile);
       }
 
-      // Show SignupPrompt after 3rd entry (1.5s delay)
       if (newEntries.length === 3) {
         setTimeout(() => setShowSignupAfterSave(true), 1500);
       }
 
-      // Get AI insight
       try {
         const resp = await fetch(
           `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/ai-insight`,
@@ -219,8 +238,8 @@ const AppPage: React.FC = () => {
 
       {/* Signup prompt modal after 3rd entry */}
       {showSignupAfterSave && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-foreground/30 backdrop-blur-sm p-6 animate-fade-in">
-          <div className="bg-card rounded-3xl p-6 max-w-xs w-full shadow-xl border border-border/50 text-center animate-celebrate-pop">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-foreground/30 backdrop-blur-md p-6 animate-fade-in">
+          <div className="bg-card rounded-3xl p-7 max-w-xs w-full shadow-2xl border border-border/30 text-center animate-spring-in">
             <h3 className="font-serif text-xl font-bold text-foreground mb-2">
               {(t.signup_title || "Ju knows you now").replace("{n}", String(entries.length))}
             </h3>
@@ -228,14 +247,14 @@ const AppPage: React.FC = () => {
               {(t.signup_desc || "You've written {n} entries. Create an account to keep your journal safe forever.").replace("{n}", String(entries.length))}
             </p>
             <button
-              onClick={() => { setShowSignupAfterSave(false); setScreen("pro"); }}
-              className="w-full py-3 rounded-2xl bg-primary text-primary-foreground font-semibold text-sm mb-2 transition-all active:scale-[0.97]"
+              onClick={() => { setShowSignupAfterSave(false); navigateTo("pro"); }}
+              className="w-full py-3.5 rounded-2xl bg-primary text-primary-foreground font-semibold text-sm mb-2 press-spring shadow-[0_4px_20px_-4px_hsl(var(--primary)/0.4)]"
             >
               {t.signup_btn || "Save my journal"}
             </button>
             <button
               onClick={() => setShowSignupAfterSave(false)}
-              className="w-full py-2 text-sm text-muted-foreground transition-all active:scale-[0.97]"
+              className="w-full py-2.5 text-sm text-muted-foreground press-spring"
             >
               {t.signup_later || "Maybe later"}
             </button>
@@ -243,67 +262,80 @@ const AppPage: React.FC = () => {
         </div>
       )}
 
-      <div className="flex-1 w-full max-w-app mx-auto px-4 pt-6 pb-24">
+      <div className="flex-1 w-full max-w-app mx-auto px-4 pt-6 pb-24 overflow-y-auto">
         {/* Trial banner on home/insights */}
         {(screen === "home" || screen === "insights") && (
           <TrialBanner
             trialStartedAt={profile?.trial_started_at || null}
             plan={profile?.plan || "free"}
-            onUpgrade={() => setScreen("pro")}
+            onUpgrade={() => navigateTo("pro")}
           />
         )}
 
-        {screen === "home" && (
-          <HomeScreen
-            onNavigate={(s) => setScreen(s as Screen)}
-            onSettings={() => setScreen("settings")}
-            onUpgrade={() => setScreen("pro")}
-            streak={streak}
-            entries={entries}
-            selectedMood={selectedMood}
-            onMoodSelect={handleMoodSelect}
-            energy={energy}
-            onEnergyChange={setEnergy}
-            plan={profile?.plan}
-            trialStartedAt={profile?.trial_started_at}
-          />
-        )}
-        {screen === "journal" && (
-          <JournalScreen onBack={() => setScreen("home")} onSave={handleSaveEntry} />
-        )}
-        {screen === "insights" && <InsightsScreen entries={entries} streak={streak} onUpgrade={() => setScreen("pro")} plan={profile?.plan} trialStartedAt={profile?.trial_started_at} />}
-        {screen === "coach" && <CoachScreen onUpgrade={() => setScreen("pro")} plan={profile?.plan} trialStartedAt={profile?.trial_started_at} />}
-        {screen === "settings" && <SettingsScreen onBack={() => setScreen("home")} onUpgrade={() => setScreen("pro")} plan={profile?.plan} trialStartedAt={profile?.trial_started_at} />}
-        {screen === "pro" && (
-          <PricingScreen
-            currentPlan={profile?.plan || "free"}
-            trialStartedAt={profile?.trial_started_at || null}
-            onCheckout={handleCheckout}
-            onStartTrial={handleStartTrial}
-            onBack={() => setScreen("home")}
-          />
-        )}
+        {/* Screen content with transition */}
+        <div key={screen} className={transitionClass}>
+          {screen === "home" && (
+            <HomeScreen
+              onNavigate={(s) => navigateTo(s as Screen)}
+              onSettings={() => navigateTo("settings")}
+              onUpgrade={() => navigateTo("pro")}
+              streak={streak}
+              entries={entries}
+              selectedMood={selectedMood}
+              onMoodSelect={handleMoodSelect}
+              energy={energy}
+              onEnergyChange={setEnergy}
+              plan={profile?.plan}
+              trialStartedAt={profile?.trial_started_at}
+            />
+          )}
+          {screen === "journal" && (
+            <JournalScreen onBack={() => navigateTo("home")} onSave={handleSaveEntry} />
+          )}
+          {screen === "insights" && <InsightsScreen entries={entries} streak={streak} onUpgrade={() => navigateTo("pro")} plan={profile?.plan} trialStartedAt={profile?.trial_started_at} />}
+          {screen === "coach" && <CoachScreen onUpgrade={() => navigateTo("pro")} plan={profile?.plan} trialStartedAt={profile?.trial_started_at} />}
+          {screen === "settings" && <SettingsScreen onBack={() => navigateTo("home")} onUpgrade={() => navigateTo("pro")} plan={profile?.plan} trialStartedAt={profile?.trial_started_at} />}
+          {screen === "pro" && (
+            <PricingScreen
+              currentPlan={profile?.plan || "free"}
+              trialStartedAt={profile?.trial_started_at || null}
+              onCheckout={handleCheckout}
+              onStartTrial={handleStartTrial}
+              onBack={() => navigateTo("home")}
+            />
+          )}
+        </div>
       </div>
 
+      {/* iOS-style tab bar with spring animations */}
       {screen !== "journal" && screen !== "settings" && (
-        <nav className="fixed bottom-0 left-0 right-0 bg-card/80 backdrop-blur-2xl border-t border-border/30 safe-area-bottom">
+        <nav className="fixed bottom-0 left-0 right-0 bg-card/70 backdrop-blur-2xl border-t border-border/20 safe-area-bottom">
           <div className="max-w-app mx-auto flex">
             {navItems.map((item) => {
               const active = screen === item.id;
+              const isPopping = activeTabAnim === item.id;
               const Icon = item.icon;
               return (
                 <button
                   key={item.id}
-                  onClick={() => {
-                    setScreen(item.id);
-                    if (navigator.vibrate) navigator.vibrate(8);
-                  }}
-                  className={`flex-1 flex flex-col items-center gap-0.5 py-2 pt-2.5 transition-all duration-150 ${
-                    active ? "text-primary" : "text-muted-foreground/60"
+                  onClick={() => navigateTo(item.id)}
+                  className={`flex-1 flex flex-col items-center gap-0.5 py-2 pt-2.5 transition-all duration-200 ${
+                    active ? "text-primary" : "text-muted-foreground/50"
                   }`}
                 >
-                  <Icon className={`w-[22px] h-[22px] transition-transform duration-150 ${active ? "scale-[1.05]" : ""}`} strokeWidth={active ? 2.2 : 1.8} />
-                  <span className={`text-[10px] transition-all ${active ? "font-semibold" : "font-medium"}`}>{item.label}</span>
+                  <div className={`relative ${isPopping ? "animate-tab-pop" : ""}`}>
+                    <Icon
+                      className={`w-[22px] h-[22px] transition-all duration-300 ${active ? "scale-[1.08]" : ""}`}
+                      strokeWidth={active ? 2.3 : 1.6}
+                    />
+                    {/* Active indicator dot */}
+                    {active && (
+                      <div className="absolute -bottom-1.5 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-primary animate-spring-in" />
+                    )}
+                  </div>
+                  <span className={`text-[10px] transition-all duration-200 ${active ? "font-bold" : "font-medium"}`}>
+                    {item.label}
+                  </span>
                 </button>
               );
             })}
