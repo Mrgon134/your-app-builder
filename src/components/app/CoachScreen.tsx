@@ -22,8 +22,8 @@ const COACH_ICONS: Record<string, string> = {
 
 type Msg = { role: "user" | "assistant"; content: string };
 
-const AI_BASE = import.meta.env.VITE_AI_SUPABASE_URL || import.meta.env.VITE_SUPABASE_URL;
-const AI_KEY = import.meta.env.VITE_AI_SUPABASE_KEY || import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY;
+const AI_BASE = "https://sxgmlnlqmdjjfmcypivi.supabase.co";
+const AI_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InN4Z21sbmxxbWRqamZtY3lwaXZpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQwMTEyNDYsImV4cCI6MjA4OTU4NzI0Nn0.kUM2J00vmkRd55MmQw5AAadS8XGZKeLY0mgGg8aAVFg";
 const CHAT_URL = `${AI_BASE}/functions/v1/ai-coach`;
 
 async function streamChat({
