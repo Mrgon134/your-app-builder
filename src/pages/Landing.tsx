@@ -40,7 +40,7 @@ const Landing: React.FC = () => {
     setSubmitting(true);
     try {
       const result = await addToWaitlist(email);
-      toast.success(result.alreadyExists ? "You're already on the list! 🎉" : "You're on the list! 🎉");
+      toast.success(result.alreadyExists ? "You're already on the list!" : "You're on the list!");
       setEmail("");
     } catch {
       toast.error("Something went wrong. Try again.");

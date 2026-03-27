@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { Plus, Check, X } from "lucide-react";
-import { supabase } from "@/integrations/supabase/client";
-import { useAuth } from "@/lib/auth";
+import { Plus, Check, Dumbbell, Wind, BookOpen, Droplets, Moon, Ban } from "lucide-react";
 import { toast } from "sonner";
 
 interface Habit {
   id: string;
   name: string;
-  emoji: string;
+  iconKey: string;
   color: string;
 }
 
@@ -16,80 +14,129 @@ interface HabitSectionProps {
   plan?: string | null;
 }
 
-const PRESET_HABITS = [
-  { name: "Exercise", emoji: "🏃", color: "#4ECDC4" },
-  { name: "Meditate", emoji: "🧘", color: "#7C6EDB" },
-  { name: "Read", emoji: "📚", color: "#FFB347" },
-  { name: "Drink water", emoji: "💧", color: "#6C9BCF" },
-  { name: "Sleep 8h", emoji: "😴", color: "#B8C4F0" },
-  { name: "No sugar", emoji: "🚫🍬", color: "#E8878C" },
+const HABIT_ICONS: Record<string, React.FC<{ size?: number; color?: string; strokeWidth?: number }>> = {
+  dumbbell: ({ size = 14, color, strokeWidth = 1.8 }) => <Dumbbell size={size} color={color} strokeWidth={strokeWidth} />,
+  wind: ({ size = 14, color, strokeWidth = 1.8 }) => <Wind size={size} color={color} strokeWidth={strokeWidth} />,
+  book: ({ size = 14, color, strokeWidth = 1.8 }) => <BookOpen size={size} color={color} strokeWidth={strokeWidth} />,
+  droplets: ({ size = 14, color, strokeWidth = 1.8 }) => <Droplets size={size} color={color} strokeWidth={strokeWidth} />,
+  moon: ({ size = 14, color, strokeWidth = 1.8 }) => <Moon size={size} color={color} strokeWidth={strokeWidth} />,
+  ban: ({ size = 14, color, strokeWidth = 1.8 }) => <Ban size={size} color={color} strokeWidth={strokeWidth} />,
+};
+
+const PRESET_HABITS: { name: string; iconKey: string; color: string }[] = [
+  { name: "Exercise", iconKey: "dumbbell", color: "#4ECDC4" },
+  { name: "Meditate", iconKey: "wind", color: "#7C6EDB" },
+  { name: "Read", iconKey: "book", color: "#FFB347" },
+  { name: "Drink water", iconKey: "droplets", color: "#6C9BCF" },
+  { name: "Sleep 8h", iconKey: "moon", color: "#B8C4F0" },
+  { name: "No sugar", iconKey: "ban", color: "#E8878C" },
 ];
+
+const STORAGE_KEY = "nuju-habits";
+const LOGS_KEY = "nuju-habit-logs";
 
 const today = new Date().toISOString().split("T")[0];
 
+const loadHabits = (): Habit[] => {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    return raw ? JSON.parse(raw) : [];
+  } catch {
+    return [];
+  }
+};
+
+const saveHabitsToStorage = (habits: Habit[]) => {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(habits));
+};
+
+const loadLogs = (): Record<string, string[]> => {
+  try {
+    const raw = localStorage.getItem(LOGS_KEY);
+    return raw ? JSON.parse(raw) : {};
+  } catch {
+    return {};
+  }
+};
+
+const saveLogsToStorage = (logs: Record<string, string[]>) => {
+  localStorage.setItem(LOGS_KEY, JSON.stringify(logs));
+};
+
+const HabitIcon: React.FC<{ iconKey: string; color: string; active: boolean }> = ({ iconKey, color, active }) => {
+  const Icon = HABIT_ICONS[iconKey] || HABIT_ICONS["dumbbell"];
+  return <Icon size={14} color={active ? "#fff" : color} strokeWidth={active ? 2.2 : 1.8} />;
+};
+
 const HabitSection: React.FC<HabitSectionProps> = ({ onUpgrade, plan }) => {
-  const { user } = useAuth();
   const [habits, setHabits] = useState<Habit[]>([]);
   const [completedToday, setCompletedToday] = useState<Set<string>>(new Set());
   const [showAdd, setShowAdd] = useState(false);
   const [newName, setNewName] = useState("");
-  const [newEmoji, setNewEmoji] = useState("✨");
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (!user) return;
-    const load = async () => {
-      const [{ data: habitsData }, { data: logsData }] = await Promise.all([
-        supabase.from("habits").select("id, name, emoji, color").eq("user_id", user.id).eq("is_active", true).order("sort_order"),
-        supabase.from("habit_logs").select("habit_id").eq("user_id", user.id).eq("date", today),
-      ]);
-      setHabits(habitsData || []);
-      setCompletedToday(new Set((logsData || []).map((l: any) => l.habit_id)));
-      setLoading(false);
-    };
-    load();
-  }, [user]);
+    const storedHabits = loadHabits();
+    const logs = loadLogs();
+    const todayLogs = logs[today] || [];
+    setHabits(storedHabits);
+    setCompletedToday(new Set(todayLogs));
+  }, []);
 
-  const toggleHabit = async (habitId: string) => {
-    if (!user) return;
+  const toggleHabit = (habitId: string) => {
     const done = completedToday.has(habitId);
+    const logs = loadLogs();
+    const todayLogs = new Set(logs[today] || []);
+
     if (done) {
-      await supabase.from("habit_logs").delete().eq("habit_id", habitId).eq("date", today);
-      setCompletedToday((prev) => { const s = new Set(prev); s.delete(habitId); return s; });
+      todayLogs.delete(habitId);
     } else {
-      await supabase.from("habit_logs").insert({ user_id: user.id, habit_id: habitId, date: today });
-      setCompletedToday((prev) => new Set([...prev, habitId]));
+      todayLogs.add(habitId);
       if (navigator.vibrate) navigator.vibrate([10, 30, 10]);
     }
+
+    logs[today] = Array.from(todayLogs);
+    saveLogsToStorage(logs);
+    setCompletedToday(new Set(todayLogs));
   };
 
-  const addPreset = async (preset: typeof PRESET_HABITS[0]) => {
-    if (!user) return;
+  const addPreset = (preset: typeof PRESET_HABITS[0]) => {
     if (habits.length >= 6 && plan === "free") {
       toast.error("Upgrade to add more habits");
       onUpgrade?.();
       return;
     }
-    const { data } = await supabase.from("habits").insert({ user_id: user.id, name: preset.name, emoji: preset.emoji, color: preset.color }).select("id, name, emoji, color").single();
-    if (data) setHabits((prev) => [...prev, data]);
+    const newHabit: Habit = {
+      id: `habit-${Date.now()}`,
+      name: preset.name,
+      iconKey: preset.iconKey,
+      color: preset.color,
+    };
+    const updated = [...habits, newHabit];
+    setHabits(updated);
+    saveHabitsToStorage(updated);
     setShowAdd(false);
   };
 
-  const addCustom = async () => {
-    if (!user || !newName.trim()) return;
-    const { data } = await supabase.from("habits").insert({ user_id: user.id, name: newName.trim(), emoji: newEmoji, color: "#7C6EDB" }).select("id, name, emoji, color").single();
-    if (data) setHabits((prev) => [...prev, data]);
+  const addCustom = () => {
+    if (!newName.trim()) return;
+    const newHabit: Habit = {
+      id: `habit-${Date.now()}`,
+      name: newName.trim(),
+      iconKey: "dumbbell",
+      color: "#7C6EDB",
+    };
+    const updated = [...habits, newHabit];
+    setHabits(updated);
+    saveHabitsToStorage(updated);
     setNewName("");
     setShowAdd(false);
   };
 
-  const removeHabit = async (habitId: string) => {
-    if (!user) return;
-    await supabase.from("habits").update({ is_active: false }).eq("id", habitId);
-    setHabits((prev) => prev.filter((h) => h.id !== habitId));
+  const removeHabit = (habitId: string) => {
+    const updated = habits.filter((h) => h.id !== habitId);
+    setHabits(updated);
+    saveHabitsToStorage(updated);
   };
-
-  if (loading) return null;
 
   const doneCount = completedToday.size;
   const total = habits.length;
@@ -130,7 +177,7 @@ const HabitSection: React.FC<HabitSectionProps> = ({ onUpgrade, plan }) => {
               <button
                 key={habit.id}
                 onClick={() => toggleHabit(habit.id)}
-                onLongPress={() => removeHabit(habit.id)}
+                onContextMenu={(e) => { e.preventDefault(); removeHabit(habit.id); }}
                 className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[13px] font-medium transition-all duration-200 press-spring ${
                   done
                     ? "text-white shadow-sm"
@@ -138,7 +185,7 @@ const HabitSection: React.FC<HabitSectionProps> = ({ onUpgrade, plan }) => {
                 }`}
                 style={done ? { background: habit.color } : {}}
               >
-                <span>{habit.emoji}</span>
+                <HabitIcon iconKey={habit.iconKey} color={habit.color} active={done} />
                 <span>{habit.name}</span>
                 {done && <Check className="w-3 h-3" />}
               </button>
@@ -154,15 +201,19 @@ const HabitSection: React.FC<HabitSectionProps> = ({ onUpgrade, plan }) => {
         <div className="mt-4 pt-4 border-t border-border/30">
           <p className="text-[12px] font-medium text-muted-foreground mb-2">Quick add:</p>
           <div className="flex flex-wrap gap-1.5 mb-3">
-            {PRESET_HABITS.filter((p) => !habits.find((h) => h.name === p.name)).map((preset) => (
-              <button
-                key={preset.name}
-                onClick={() => addPreset(preset)}
-                className="flex items-center gap-1 px-2.5 py-1 rounded-full bg-foreground/[0.05] text-[12px] text-foreground press-spring"
-              >
-                {preset.emoji} {preset.name}
-              </button>
-            ))}
+            {PRESET_HABITS.filter((p) => !habits.find((h) => h.name === p.name)).map((preset) => {
+              const Icon = HABIT_ICONS[preset.iconKey];
+              return (
+                <button
+                  key={preset.name}
+                  onClick={() => addPreset(preset)}
+                  className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-full bg-foreground/[0.05] text-[12px] text-foreground press-spring"
+                >
+                  <Icon size={12} color={preset.color} strokeWidth={1.8} />
+                  {preset.name}
+                </button>
+              );
+            })}
           </div>
           <div className="flex gap-2">
             <input
@@ -172,13 +223,6 @@ const HabitSection: React.FC<HabitSectionProps> = ({ onUpgrade, plan }) => {
               placeholder="Custom habit..."
               className="flex-1 px-3 py-2 rounded-xl bg-background border border-border text-[14px] focus:outline-none focus:ring-2 focus:ring-primary/20"
               onKeyDown={(e) => e.key === "Enter" && addCustom()}
-            />
-            <input
-              type="text"
-              value={newEmoji}
-              onChange={(e) => setNewEmoji(e.target.value)}
-              className="w-12 px-2 py-2 rounded-xl bg-background border border-border text-[14px] text-center focus:outline-none"
-              maxLength={2}
             />
             <button onClick={addCustom} className="px-3 py-2 rounded-xl bg-primary text-white text-[13px] font-medium press-spring">
               Add

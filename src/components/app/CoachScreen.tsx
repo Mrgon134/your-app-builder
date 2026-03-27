@@ -341,7 +341,7 @@ const CoachScreen: React.FC<{ onUpgrade?: () => void; plan?: string | null; tria
                 ? "bg-amber-500/10 text-amber-600 dark:text-amber-400"
                 : "bg-muted text-muted-foreground"
           }`}>
-            💬 {5 - messagesUsed} / 5 messages left this week
+            {5 - messagesUsed} / 5 messages left this week
           </div>
         </div>
       )}

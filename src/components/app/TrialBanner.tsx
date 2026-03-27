@@ -50,7 +50,6 @@ const TrialBanner: React.FC<TrialBannerProps> = ({ trialStartedAt, plan, onUpgra
         </div>
         <div className="flex-1 min-w-0">
           <p className="text-[14px] font-semibold text-foreground">
-            {urgentColor ? "⏰ " : "✨ "}
             {formatTrialCountdown(trial.daysLeft)}
           </p>
           <p className="text-[12px] text-muted-foreground">

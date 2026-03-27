@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { ArrowLeft, Play, CheckCircle2, ChevronRight, Lock, Heart, Wind, Compass, Sun, Zap } from "lucide-react";
+import { ArrowLeft, CheckCircle2, ChevronRight, Lock, Heart, Wind, Compass, Sun, Zap } from "lucide-react";
 import { GUIDED_PROGRAMS, getProgramById } from "@/lib/programs";
+import { useAuth } from "@/lib/auth";
+import { hasPlusAccess } from "@/lib/trial";
+import { toast } from "sonner";
 
 const PROGRAM_ICONS: Record<string, React.FC<{ size?: number; color?: string }>> = {
   "gratitude-7": ({ size = 22, color }) => <Heart size={size} color={color} />,
@@ -15,10 +18,8 @@ const ProgramIcon: React.FC<{ id: string; color: string; size?: number }> = ({ i
   if (!Icon) return null;
   return <Icon size={size} color={color} />;
 };
-import { supabase } from "@/integrations/supabase/client";
-import { useAuth } from "@/lib/auth";
-import { hasPlusAccess } from "@/lib/trial";
-import { toast } from "sonner";
+
+const STORAGE_KEY = "nuju-user-programs";
 
 interface UserProgram {
   program_id: string;
@@ -35,6 +36,19 @@ interface GuidedProgramsScreenProps {
   onUpgrade?: () => void;
 }
 
+const loadPrograms = (): UserProgram[] => {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    return raw ? JSON.parse(raw) : [];
+  } catch {
+    return [];
+  }
+};
+
+const savePrograms = (programs: UserProgram[]) => {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(programs));
+};
+
 const GuidedProgramsScreen: React.FC<GuidedProgramsScreenProps> = ({
   onBack,
   onWritePrompt,
@@ -45,43 +59,33 @@ const GuidedProgramsScreen: React.FC<GuidedProgramsScreenProps> = ({
   const { user } = useAuth();
   const [userPrograms, setUserPrograms] = useState<UserProgram[]>([]);
   const [activeProgram, setActiveProgram] = useState<string | null>(null);
-  const [loading, setLoading] = useState(true);
 
   const isPro = hasPlusAccess(plan, trialStartedAt);
 
   useEffect(() => {
-    if (!user) return;
-    supabase
-      .from("user_programs")
-      .select("program_id, current_day, completed, started_at")
-      .eq("user_id", user.id)
-      .then(({ data }) => {
-        setUserPrograms(data || []);
-        setLoading(false);
-      });
-  }, [user]);
+    setUserPrograms(loadPrograms());
+  }, []);
 
-  const joinProgram = async (programId: string) => {
-    if (!user) return;
+  const joinProgram = (programId: string) => {
     const exists = userPrograms.find((p) => p.program_id === programId);
     if (exists) {
       setActiveProgram(programId);
       return;
     }
-    const { data, error } = await supabase
-      .from("user_programs")
-      .insert({ user_id: user.id, program_id: programId, current_day: 1 })
-      .select()
-      .single();
-    if (!error && data) {
-      setUserPrograms((prev) => [...prev, data]);
-      setActiveProgram(programId);
-      toast.success("Program started! 🎉");
-    }
+    const newProgram: UserProgram = {
+      program_id: programId,
+      current_day: 1,
+      completed: false,
+      started_at: new Date().toISOString(),
+    };
+    const updated = [...userPrograms, newProgram];
+    setUserPrograms(updated);
+    savePrograms(updated);
+    setActiveProgram(programId);
+    toast.success("Program started!");
   };
 
-  const startTodayPrompt = async (programId: string) => {
-    if (!user) return;
+  const startTodayPrompt = (programId: string) => {
     const up = userPrograms.find((p) => p.program_id === programId);
     const program = getProgramById(programId);
     if (!up || !program) return;
@@ -89,27 +93,19 @@ const GuidedProgramsScreen: React.FC<GuidedProgramsScreenProps> = ({
     const promptIdx = Math.min(up.current_day - 1, program.prompts.length - 1);
     const prompt = program.prompts[promptIdx];
 
-    // Advance day
     const nextDay = up.current_day + 1;
     const completed = nextDay > program.days;
-    await supabase
-      .from("user_programs")
-      .update({ current_day: nextDay, completed })
-      .eq("user_id", user.id)
-      .eq("program_id", programId);
 
-    setUserPrograms((prev) =>
-      prev.map((p) =>
-        p.program_id === programId ? { ...p, current_day: nextDay, completed } : p
-      )
+    const updated = userPrograms.map((p) =>
+      p.program_id === programId ? { ...p, current_day: nextDay, completed } : p
     );
+    setUserPrograms(updated);
+    savePrograms(updated);
 
     onWritePrompt(prompt);
     onBack();
-    if (completed) toast.success(`🏆 You completed ${program.title}!`);
+    if (completed) toast.success(`You completed ${program.title}!`);
   };
-
-  if (loading) return null;
 
   // Show active program detail
   if (activeProgram) {

@@ -107,7 +107,7 @@ const SettingsScreen: React.FC<SettingsScreenProps> = ({ onBack, onUpgrade, plan
                       }
                       scheduleLocalReminder(reminderHour);
                       setReminderEnabled(true);
-                      toast.success(t.notif_enabled || "Reminder set! 🔔");
+                      toast.success(t.notif_enabled || "Reminder set");
                     } else {
                       disableReminder();
                       setReminderEnabled(false);
@@ -173,7 +173,7 @@ const SettingsScreen: React.FC<SettingsScreenProps> = ({ onBack, onUpgrade, plan
                         if (cred) {
                           localStorage.setItem("nuju-biometric", "1");
                           setBiometricEnabled(true);
-                          toast.success("Biometric lock enabled 🔒");
+                          toast.success("Biometric lock enabled");
                         }
                       } catch (e) {
                         toast.error("Biometric setup failed");

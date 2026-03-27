@@ -113,7 +113,7 @@ const AppPage: React.FC = () => {
       await updateProfile(user.id, { trial_started_at: new Date().toISOString() } as any);
       const updated = await fetchProfile(user.id);
       if (updated) setProfile(updated);
-      toast.success("🎉 Your 7-day free trial has started!");
+      toast.success("Your 7-day free trial has started!");
     } catch (err) {
       console.error("Trial start failed:", err);
       toast.error("Could not start trial");

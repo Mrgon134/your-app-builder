@@ -3,7 +3,7 @@ import { hasPlusAccess } from "@/lib/trial";
 import { useLang } from "@/lib/i18n";
 import { MOODS } from "@/lib/constants";
 import MoodIcon from "@/components/MoodIcon";
-import { Lock, Loader2, CalendarDays } from "lucide-react";
+import { Lock, Loader2, CalendarDays, Flame, Target } from "lucide-react";
 import HistoryLock from "@/components/app/HistoryLock";
 import MoodTrendChart from "@/components/app/MoodTrendChart";
 import MonthPixelGrid from "@/components/app/MonthPixelGrid";
@@ -136,7 +136,7 @@ const InsightsScreen: React.FC<InsightsScreenProps> = ({ entries, streak = 0, on
       {streak >= 7 && (
         <div className="glass-card rounded-2xl p-5 flex items-center justify-between">
           <div>
-            <p className="text-[11px] font-semibold text-primary uppercase tracking-widest mb-0.5">🔥 {t.streak_milestone || "Streak Milestone"}</p>
+            <p className="text-[11px] font-semibold text-primary uppercase tracking-widest mb-0.5 flex items-center gap-1"><Flame className="w-3.5 h-3.5" /> {t.streak_milestone || "Streak Milestone"}</p>
             <p className="text-[22px] font-bold text-foreground tracking-tight">{streak} {t.days_streak || "days"}</p>
           </div>
           <ShareMenu type="streak" data={{ streak }} label={t.share_streak || "Share"} />
@@ -169,7 +169,7 @@ const InsightsScreen: React.FC<InsightsScreenProps> = ({ entries, streak = 0, on
           onClick={() => onNavigate?.("programs")}
           className="glass-card rounded-2xl p-4 flex flex-col items-start gap-2 press-spring text-left"
         >
-          <span className="text-2xl">🎯</span>
+          <Target className="w-6 h-6 text-primary" />
           <div>
             <p className="text-[14px] font-semibold text-foreground">Guided Programs</p>
             <p className="text-[11px] text-muted-foreground mt-0.5">Structured challenges</p>
