@@ -128,22 +128,22 @@ const CoachScreen: React.FC<{ onUpgrade?: () => void; plan?: string | null; tria
   const [messagesUsed, setMessagesUsed] = useState(0);
   const scrollRef = useRef<HTMLDivElement>(null);
 
-  // Load previous messages + check limit
+  // Load previous messages + check limit — use allSettled so DB errors don't break the screen
   useEffect(() => {
     if (!user) return;
-    Promise.all([
+    Promise.allSettled([
       fetchCoachMessages(user.id, 50),
       checkCoachLimit(user.id),
       fetchProfile(user.id),
       countCoachMessagesThisWeek(user.id),
-    ]).then(([data, limitOk, profile, weekCount]) => {
-      if (data.length > 0) {
-        setMessages(data.map((m) => ({ role: m.role as "user" | "assistant", content: m.content })));
-        if (data[0]?.persona) setPersona(data[0].persona);
+    ]).then(([msgsResult, limitResult, profileResult, countResult]) => {
+      if (msgsResult.status === "fulfilled" && msgsResult.value.length > 0) {
+        setMessages(msgsResult.value.map((m) => ({ role: m.role as "user" | "assistant", content: m.content })));
+        if ((msgsResult.value[0] as any)?.persona) setPersona((msgsResult.value[0] as any).persona);
       }
-      setCanSend(limitOk);
-      setUserPlan(profile?.plan || "free");
-      setMessagesUsed(weekCount);
+      setCanSend(limitResult.status === "fulfilled" ? limitResult.value : true);
+      setUserPlan(profileResult.status === "fulfilled" ? profileResult.value?.plan || "free" : "free");
+      setMessagesUsed(countResult.status === "fulfilled" ? countResult.value : 0);
     });
   }, [user]);
 

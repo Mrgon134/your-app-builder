@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import { useLang } from "@/lib/i18n";
 import { JU_STICKERS } from "@/lib/stickers";
-import { ArrowLeft, Mic, MicOff, Square } from "lucide-react";
+import { ArrowLeft, Mic, Square, Loader2 } from "lucide-react";
 
 interface JournalScreenProps {
   onBack: () => void;
@@ -27,31 +27,27 @@ const useTypingEffect = (text: string, speed = 22) => {
   return { displayed, done };
 };
 
-const SpeechRecognition =
-  typeof window !== "undefined"
-    ? (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition
-    : null;
+const AI_BASE = "https://sxgmlnlqmdjjfmcypivi.supabase.co";
+const AI_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InN4Z21sbmxxbWRqamZtY3lwaXZpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQwMTEyNDYsImV4cCI6MjA4OTU4NzI0Nn0.kUM2J00vmkRd55MmQw5AAadS8XGZKeLY0mgGg8aAVFg";
 
-/** Map app language code → BCP-47 locale for SpeechRecognition */
 const langToLocale: Record<string, string> = {
   id: "id-ID", es: "es-ES", pt: "pt-BR",
   ja: "ja-JP", ko: "ko-KR", zh: "zh-CN", hi: "hi-IN",
 };
 
-/** Capitalise first character of a sentence */
-const capitalizeFirst = (s: string) =>
-  s ? s.charAt(0).toUpperCase() + s.slice(1) : s;
+type RecordState = "idle" | "recording" | "transcribing";
 
-/** Animated waveform bars shown while recording */
-const RecordingWave: React.FC = () => (
+/** Animated waveform bars */
+const RecordingWave: React.FC<{ color?: string }> = ({ color = "var(--destructive)" }) => (
   <span className="flex items-end gap-[3px] h-4">
     {[0, 1, 2, 3].map((i) => (
       <span
         key={i}
-        className="w-[3px] rounded-full bg-destructive"
+        className="w-[3px] rounded-full"
         style={{
-          animation: `voiceBar 0.9s ease-in-out infinite`,
-          animationDelay: `${i * 0.15}s`,
+          background: color,
+          animation: `voiceBar 0.85s ease-in-out infinite`,
+          animationDelay: `${i * 0.16}s`,
           height: "100%",
           display: "inline-block",
         }}
@@ -66,128 +62,99 @@ const JournalScreen: React.FC<JournalScreenProps> = ({ onBack, onSave, initialPr
   const [saved, setSaved] = useState(false);
   const [insight, setInsight] = useState("");
   const [saving, setSaving] = useState(false);
-  const [isRecording, setIsRecording] = useState(false);
-  const [interimText, setInterimText] = useState("");
+  const [recordState, setRecordState] = useState<RecordState>("idle");
 
-  // Refs to avoid stale closures
-  const recognitionRef = useRef<any>(null);
-  const isRecordingRef = useRef(false);
-  const textBeforeRecordingRef = useRef("");   // snapshot of text when mic started
-  const sessionFinalRef = useRef("");          // finals accumulated this session only
+  const mediaRecorderRef = useRef<MediaRecorder | null>(null);
+  const audioChunksRef = useRef<Blob[]>([]);
   const textRef = useRef(text);
   useEffect(() => { textRef.current = text; }, [text]);
 
-  const locale = langToLocale[lang] || "en-US";
-
-  const createRecognition = useCallback(() => {
-    if (!SpeechRecognition) return null;
-    const recognition = new SpeechRecognition();
-    recognition.continuous = true;
-    recognition.interimResults = true;
-    recognition.maxAlternatives = 3;
-    recognition.lang = locale;
-    return recognition;
-  }, [locale]);
-
-  const attachHandlers = useCallback(
-    (recognition: any) => {
-      recognition.onresult = (event: any) => {
-        let interimChunk = "";
-        for (let i = event.resultIndex; i < event.results.length; i++) {
-          // Pick the alternative with the highest confidence
-          let best = event.results[i][0];
-          for (let j = 1; j < event.results[i].length; j++) {
-            if (event.results[i][j].confidence > best.confidence) best = event.results[i][j];
-          }
-          const transcript = best.transcript;
-          if (event.results[i].isFinal) {
-            sessionFinalRef.current += capitalizeFirst(transcript.trimStart()) + " ";
-          } else {
-            interimChunk = transcript;
-          }
-        }
-
-        // Always: text = (what was there before recording started) + (this session's finals) + interim
-        const base = textBeforeRecordingRef.current;
-        const combined =
-          (base ? base + " " : "") + sessionFinalRef.current + interimChunk;
-        setText(combined.replace(/\s{2,}/g, " ").trim());
-        setInterimText(interimChunk);
-      };
-
-      recognition.onerror = (e: any) => {
-        // 'no-speech' and 'aborted' are non-fatal — let onend handle restart
-        if (e.error !== "no-speech" && e.error !== "aborted") {
-          isRecordingRef.current = false;
-          setIsRecording(false);
-        }
-      };
-
-      recognition.onend = () => {
-        // Auto-restart if user hasn't stopped manually (handles Chrome's silence timeout)
-        if (isRecordingRef.current) {
-          try {
-            recognition.start();
-          } catch {
-            // Recognition already started (race) — ignore
-          }
-        } else {
-          setInterimText("");
-          setIsRecording(false);
-        }
-      };
-    },
-    []
-  );
-
-  const startRecording = useCallback(() => {
-    if (!SpeechRecognition || isRecordingRef.current) return;
-
-    const recognition = createRecognition();
-    if (!recognition) return;
-
-    // Snapshot current text so we can anchor session results to it
-    textBeforeRecordingRef.current = textRef.current.trim();
-    sessionFinalRef.current = "";
-
-    attachHandlers(recognition);
-    recognitionRef.current = recognition;
-    isRecordingRef.current = true;
-    setIsRecording(true);
-    setInterimText("");
-
-    try {
-      recognition.start();
-      if (navigator.vibrate) navigator.vibrate([10, 50, 10]);
-    } catch {
-      isRecordingRef.current = false;
-      setIsRecording(false);
+  const getMimeType = (): string => {
+    const types = ["audio/webm;codecs=opus", "audio/webm", "audio/ogg;codecs=opus", "audio/mp4"];
+    for (const t of types) {
+      if (MediaRecorder.isTypeSupported(t)) return t;
     }
-  }, [createRecognition, attachHandlers]);
+    return "audio/webm";
+  };
+
+  const startRecording = useCallback(async () => {
+    if (recordState !== "idle") return;
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({
+        audio: {
+          channelCount: 1,
+          sampleRate: 16000,
+          echoCancellation: true,
+          noiseSuppression: true,
+          autoGainControl: true,
+        },
+      });
+      const mimeType = getMimeType();
+      const recorder = new MediaRecorder(stream, { mimeType });
+      audioChunksRef.current = [];
+
+      recorder.ondataavailable = (e) => {
+        if (e.data.size > 0) audioChunksRef.current.push(e.data);
+      };
+
+      recorder.onstop = async () => {
+        stream.getTracks().forEach((t) => t.stop());
+        const audioBlob = new Blob(audioChunksRef.current, { type: mimeType });
+        if (audioBlob.size < 1000) {
+          setRecordState("idle");
+          return;
+        }
+        setRecordState("transcribing");
+        try {
+          const base64 = await blobToBase64(audioBlob);
+          const resp = await fetch(`${AI_BASE}/functions/v1/ai-transcribe`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json", Authorization: `Bearer ${AI_KEY}` },
+            body: JSON.stringify({ audioBase64: base64, mimeType: audioBlob.type.split(";")[0], lang }),
+          });
+          if (resp.ok) {
+            const data = await resp.json();
+            if (data.transcript) {
+              const base = textRef.current.trim();
+              setText((base ? base + " " : "") + data.transcript);
+            }
+          }
+        } catch (err) {
+          console.error("Transcription failed:", err);
+        } finally {
+          setRecordState("idle");
+        }
+      };
+
+      recorder.start(250); // collect chunks every 250ms
+      mediaRecorderRef.current = recorder;
+      setRecordState("recording");
+      if (navigator.vibrate) navigator.vibrate([10, 50, 10]);
+    } catch (err) {
+      console.error("Mic access denied:", err);
+      setRecordState("idle");
+    }
+  }, [recordState, lang]);
 
   const stopRecording = useCallback(() => {
-    isRecordingRef.current = false;
-    if (recognitionRef.current) {
-      recognitionRef.current.stop();
-      recognitionRef.current = null;
+    if (mediaRecorderRef.current && mediaRecorderRef.current.state !== "inactive") {
+      mediaRecorderRef.current.stop();
+      if (navigator.vibrate) navigator.vibrate([10]);
     }
-    setInterimText("");
-    setIsRecording(false);
-    if (navigator.vibrate) navigator.vibrate([10]);
   }, []);
 
-  // Cleanup on unmount
   useEffect(() => {
     return () => {
-      isRecordingRef.current = false;
-      if (recognitionRef.current) recognitionRef.current.stop();
+      if (mediaRecorderRef.current && mediaRecorderRef.current.state !== "inactive") {
+        mediaRecorderRef.current.stop();
+      }
     };
   }, []);
 
   const handleSave = async () => {
     if (!text.trim() || saving) return;
     setSaving(true);
-    if (isRecording) stopRecording();
+    if (recordState === "recording") stopRecording();
     try {
       const aiInsight = await onSave(text);
       setInsight(aiInsight || "");
@@ -204,11 +171,7 @@ const JournalScreen: React.FC<JournalScreenProps> = ({ onBack, onSave, initialPr
   if (saved) {
     return (
       <div className="animate-spring-in text-center py-10">
-        <img
-          src={JU_STICKERS.yay}
-          alt="Yay!"
-          className="w-24 h-24 mx-auto mb-5 animate-[mascot-swap_0.3s_ease-out]"
-        />
+        <img src={JU_STICKERS.yay} alt="Yay!" className="w-24 h-24 mx-auto mb-5 animate-[mascot-swap_0.3s_ease-out]" />
         <h2 className="text-[24px] font-bold text-foreground tracking-tight mb-6">{t.done}!</h2>
         {insight && (
           <div className="glass-card rounded-2xl p-6 mb-5 text-left">
@@ -232,11 +195,15 @@ const JournalScreen: React.FC<JournalScreenProps> = ({ onBack, onSave, initialPr
     );
   }
 
+  const isRecording = recordState === "recording";
+  const isTranscribing = recordState === "transcribing";
+  const canRecord = typeof navigator !== "undefined" && !!navigator.mediaDevices?.getUserMedia;
+
   return (
     <div className="animate-page-slide-in">
       <style>{`
         @keyframes voiceBar {
-          0%, 100% { transform: scaleY(0.3); opacity: 0.5; }
+          0%, 100% { transform: scaleY(0.25); opacity: 0.45; }
           50% { transform: scaleY(1); opacity: 1; }
         }
       `}</style>
@@ -246,11 +213,7 @@ const JournalScreen: React.FC<JournalScreenProps> = ({ onBack, onSave, initialPr
           <ArrowLeft className="w-5 h-5" />
           <span className="text-[15px] font-medium">{t.back}</span>
         </button>
-        <img
-          src={JU_STICKERS.diary}
-          alt="Writing"
-          className="w-9 h-9 animate-ju-float"
-        />
+        <img src={JU_STICKERS.diary} alt="Writing" className="w-9 h-9 animate-ju-float" />
       </div>
 
       {initialPrompt && (
@@ -260,47 +223,37 @@ const JournalScreen: React.FC<JournalScreenProps> = ({ onBack, onSave, initialPr
         </div>
       )}
 
-      {/* Textarea — shows committed text; interim shown as ghost overlay */}
-      <div className="relative">
-        <textarea
-          value={text}
-          onChange={(e) => {
-            if (!isRecording) setText(e.target.value);
-          }}
-          readOnly={isRecording}
-          placeholder={t.whats_on_mind}
-          className={`w-full min-h-[260px] p-5 rounded-2xl glass-card text-foreground font-writing text-[17px] leading-relaxed placeholder:text-muted-foreground/40 focus:outline-none focus:ring-2 focus:ring-primary/15 focus:border-primary/30 resize-none transition-all ${isRecording ? "cursor-default" : ""}`}
-          autoFocus={!isRecording}
-        />
-        {/* Interim ghost text */}
-        {isRecording && interimText && (
-          <div
-            className="absolute bottom-5 left-5 right-5 pointer-events-none text-[17px] font-writing leading-relaxed text-muted-foreground/50 italic select-none"
-            style={{ whiteSpace: "pre-wrap", wordBreak: "break-word" }}
-          >
-            {/* spacer to push interim text below committed text */}
-            <span className="opacity-0 select-none">{text}{text ? " " : ""}</span>
-            <span>{interimText}</span>
-          </div>
-        )}
-      </div>
+      <textarea
+        value={text}
+        onChange={(e) => { if (!isRecording && !isTranscribing) setText(e.target.value); }}
+        readOnly={isRecording || isTranscribing}
+        placeholder={t.whats_on_mind}
+        className={`w-full min-h-[260px] p-5 rounded-2xl glass-card text-foreground font-writing text-[17px] leading-relaxed placeholder:text-muted-foreground/40 focus:outline-none focus:ring-2 focus:ring-primary/15 focus:border-primary/30 resize-none transition-all ${isRecording || isTranscribing ? "cursor-default" : ""}`}
+        autoFocus={!isRecording}
+      />
 
-      {/* Recording status bar */}
+      {/* Status bar */}
       {isRecording && (
         <div className="flex items-center gap-2.5 mt-3 px-1">
           <RecordingWave />
-          <span className="text-[13px] text-destructive font-medium">
-            {t.recording} — speak naturally, Ju is listening
-          </span>
+          <span className="text-[13px] text-destructive font-medium">Recording — speak naturally</span>
+          <span className="ml-auto text-[12px] text-muted-foreground">Tap Stop when done</span>
+        </div>
+      )}
+      {isTranscribing && (
+        <div className="flex items-center gap-2.5 mt-3 px-1">
+          <Loader2 className="w-4 h-4 text-primary animate-spin" />
+          <span className="text-[13px] text-primary font-medium">Transcribing with AI...</span>
         </div>
       )}
 
       {/* Bottom actions */}
       <div className="flex items-center gap-3 mt-4">
-        {SpeechRecognition && (
+        {canRecord && (
           <button
             onClick={isRecording ? stopRecording : startRecording}
-            className={`flex items-center justify-center gap-2 h-[48px] px-5 rounded-xl font-medium text-[14px] transition-all active:scale-[0.97] ${
+            disabled={isTranscribing}
+            className={`flex items-center justify-center gap-2 h-[48px] px-5 rounded-xl font-medium text-[14px] transition-all active:scale-[0.97] disabled:opacity-50 ${
               isRecording
                 ? "bg-destructive/8 text-destructive border border-destructive/20"
                 : "bg-secondary text-foreground"
@@ -321,7 +274,7 @@ const JournalScreen: React.FC<JournalScreenProps> = ({ onBack, onSave, initialPr
         )}
         <button
           onClick={handleSave}
-          disabled={!text.trim() || saving}
+          disabled={!text.trim() || saving || isTranscribing}
           className="flex-1 h-[52px] rounded-2xl bg-primary text-primary-foreground font-semibold text-[15px] press-spring disabled:opacity-40 shadow-[0_4px_20px_-4px_hsl(var(--primary)/0.4)]"
         >
           {saving ? "..." : t.save}
@@ -330,5 +283,18 @@ const JournalScreen: React.FC<JournalScreenProps> = ({ onBack, onSave, initialPr
     </div>
   );
 };
+
+/** Convert Blob to base64 string (data portion only) */
+async function blobToBase64(blob: Blob): Promise<string> {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => {
+      const result = reader.result as string;
+      resolve(result.split(",")[1]); // strip "data:...;base64,"
+    };
+    reader.onerror = reject;
+    reader.readAsDataURL(blob);
+  });
+}
 
 export default JournalScreen;
