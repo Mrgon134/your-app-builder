@@ -142,10 +142,17 @@ const HomeScreen: React.FC<HomeScreenProps> = ({
   return (
     <div ref={scrollRef} className="animate-page-slide-in space-y-5">
       {/* Animated gradient mesh header — reacts to selected mood color */}
-      <div
-        className="gradient-mesh -mx-4 -mt-6 px-4 pt-6 pb-5 rounded-b-[28px] transition-all duration-500"
-        style={{ "--mood-active": selectedMoodData?.color ?? "hsl(var(--primary))" } as React.CSSProperties}
-      >
+      <div className="gradient-mesh relative -mx-4 -mt-6 px-4 pt-6 pb-5 rounded-b-[28px]">
+        {/* Mood color overlay — child div so it doesn't conflict with gradient-mesh background */}
+        {selectedMoodData && (
+          <div
+            className="absolute inset-0 rounded-b-[28px] pointer-events-none"
+            style={{
+              background: `linear-gradient(160deg, ${selectedMoodData.color}1A 0%, transparent 65%)`,
+              transition: "background 0.5s cubic-bezier(0.25, 1, 0.5, 1)",
+            }}
+          />
+        )}
         {/* Header — Apple Large Title */}
         <div className="flex items-center justify-between mb-1">
           <div
