@@ -81,7 +81,7 @@ const InsightsScreen: React.FC<InsightsScreenProps> = ({ entries, streak = 0, on
       <MoodTrendChart entries={entries} />
 
       {/* Weekly mood wave */}
-      <div className="bg-card rounded-2xl p-5 shadow-[0_1px_3px_rgba(0,0,0,0.04)] border border-border/40">
+      <div className="glass-card rounded-2xl p-5">
         <p className="text-[11px] font-semibold text-primary uppercase tracking-widest mb-4">{t.weekly_mood}</p>
         <div className="flex items-end justify-between gap-2 h-28">
           {weekMoods.map((mood, i) => {
