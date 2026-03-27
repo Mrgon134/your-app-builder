@@ -125,7 +125,7 @@ const InsightsScreen: React.FC<InsightsScreenProps> = ({ entries, streak = 0, on
           <p className="text-[22px] font-bold text-foreground tracking-tight">{entries.length}</p>
           <p className="text-[10px] text-muted-foreground mt-0.5 font-medium">{t.entries_total}</p>
         </div>
-        <div className="bg-card rounded-2xl p-4 text-center shadow-[0_1px_3px_rgba(0,0,0,0.04)] border border-border/40">
+        <div className="glass-card rounded-2xl p-4 text-center">
           <MoodIcon value={5} color="#4ECDC4" size={26} />
           <p className="text-[10px] text-muted-foreground mt-1 font-medium">{t.mood_best}</p>
         </div>
