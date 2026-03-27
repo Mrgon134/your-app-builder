@@ -80,6 +80,22 @@ export const createEntry = async (
   return data;
 };
 
+// Quick entry (mood-only, no writing)
+export const createQuickEntry = async (
+  userId: string,
+  mood: number,
+  energy: number
+): Promise<EntryRow> => {
+  const { data, error } = await supabase
+    .from("entries")
+    .insert({ user_id: userId, mood, text: "", energy })
+    .select("id, mood, text, energy, entry_date, created_at")
+    .single();
+  if (error) throw error;
+  await supabase.rpc("update_streak", { p_user_id: userId });
+  return data;
+};
+
 // Update profile
 export const updateProfile = async (userId: string, updates: Partial<ProfileRow>) => {
   const { error } = await supabase
