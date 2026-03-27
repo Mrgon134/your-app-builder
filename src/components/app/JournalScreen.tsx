@@ -121,7 +121,7 @@ const JournalScreen: React.FC<JournalScreenProps> = ({ onBack, onSave }) => {
         )}
         <button
           onClick={onBack}
-          className="px-8 h-[48px] rounded-xl bg-primary text-primary-foreground font-semibold text-[15px] transition-all active:scale-[0.97] shadow-[0_2px_12px_-3px_hsl(var(--primary)/0.35)]"
+          className="px-8 h-[52px] rounded-2xl bg-primary text-primary-foreground font-semibold text-[15px] press-spring shadow-[0_4px_20px_-4px_hsl(var(--primary)/0.4)]"
         >
           {t.done}
         </button>
