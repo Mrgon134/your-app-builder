@@ -133,7 +133,7 @@ const InsightsScreen: React.FC<InsightsScreenProps> = ({ entries, streak = 0, on
 
       {/* Streak milestone */}
       {streak >= 7 && (
-        <div className="bg-card rounded-2xl p-5 shadow-[0_1px_3px_rgba(0,0,0,0.04)] border border-border/40 flex items-center justify-between">
+        <div className="glass-card rounded-2xl p-5 flex items-center justify-between">
           <div>
             <p className="text-[11px] font-semibold text-primary uppercase tracking-widest mb-0.5">🔥 {t.streak_milestone || "Streak Milestone"}</p>
             <p className="text-[22px] font-bold text-foreground tracking-tight">{streak} {t.days_streak || "days"}</p>
