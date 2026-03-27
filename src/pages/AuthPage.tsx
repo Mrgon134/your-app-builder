@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useLang } from "@/lib/i18n";
 import { useAuth } from "@/lib/auth";
-import { lovable } from "@/integrations/lovable/index";
+import { supabase } from "@/integrations/supabase/client";
 import { JU_STICKERS } from "@/lib/stickers";
 import { Mail, Lock, User, ArrowRight, Loader2 } from "lucide-react";
 
@@ -44,12 +44,11 @@ const AuthPage: React.FC = () => {
     setGoogleLoading(true);
     setError("");
     try {
-      const result = await lovable.auth.signInWithOAuth("google", {
-        redirect_uri: window.location.origin + "/app",
+      const { error } = await supabase.auth.signInWithOAuth({
+        provider: "google",
+        options: { redirectTo: window.location.origin + "/app" },
       });
-      if (result.error) {
-        setError(result.error.message || "Google sign-in failed");
-      }
+      if (error) setError(error.message || "Google sign-in failed");
     } catch (err: any) {
       setError(err.message || "Google sign-in failed");
     }
