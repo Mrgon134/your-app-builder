@@ -45,12 +45,21 @@ const ACTIVITY_TAGS = [
 
 // Mood-reactive speech bubble messages
 const JU_BUBBLE: Record<string, string> = {
-  "1": "I'm right here with you",
+  "1": "I'm right here with you. No pressure.",
   "2": "Let's take this one step at a time",
   "3": "A steady day has its own beauty",
   "4": "You're doing well today",
   "5": "What a wonderful feeling",
   default: "How are you today?",
+};
+
+// Streak milestone copy
+const getStreakMessage = (streak: number): string | null => {
+  if (streak >= 30) return "One month strong!";
+  if (streak >= 14) return "Two weeks of showing up";
+  if (streak >= 7) return "You built a habit!";
+  if (streak >= 3) return "3 days in a row";
+  return null;
 };
 
 interface HomeScreenProps {
@@ -182,6 +191,9 @@ const HomeScreen: React.FC<HomeScreenProps> = ({
               <div className="animate-dynamic-island flex items-center gap-1.5 h-10 px-4 rounded-full bg-foreground/[0.06] dark:bg-foreground/[0.08] backdrop-blur-sm">
                 <Flame className={`w-[15px] h-[15px] text-mood-okay ${streak >= 7 ? "animate-streak-fire" : ""}`} />
                 <span className="text-[14px] font-bold text-foreground tabular-nums">{streak}</span>
+                {getStreakMessage(streak) && (
+                  <span className="text-[11px] font-medium text-muted-foreground hidden xs:inline">{getStreakMessage(streak)}</span>
+                )}
               </div>
             )}
             <button
@@ -211,11 +223,18 @@ const HomeScreen: React.FC<HomeScreenProps> = ({
         {/* Mood-reactive speech bubble — pure text, no emoji */}
         <div
           key={String(selectedMood)}
-          className="glass-card rounded-full px-4 py-1.5 animate-fade-up"
+          className="flex flex-col items-center gap-1.5 animate-fade-up"
         >
-          <p className="text-[13px] text-foreground/80 font-medium">
-            {JU_BUBBLE[String(selectedMood)] ?? JU_BUBBLE.default}
-          </p>
+          <div className="glass-card rounded-full px-4 py-1.5">
+            <p className="text-[13px] text-foreground/80 font-medium">
+              {JU_BUBBLE[String(selectedMood)] ?? JU_BUBBLE.default}
+            </p>
+          </div>
+          {selectedMood === 1 && (
+            <p className="text-[12px] text-muted-foreground/70 animate-fade-up" style={{ animationDelay: "0.2s" }}>
+              Writing even a little can help
+            </p>
+          )}
         </div>
       </div>
 

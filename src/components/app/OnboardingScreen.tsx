@@ -6,6 +6,13 @@ import juGreat from "@/assets/ju-great.webp";
 import juOkay from "@/assets/ju-okay.webp";
 import { requestNotificationPermission, scheduleLocalReminder } from "@/lib/notifications";
 
+const INTENT_OPTIONS = [
+  { id: "stress", emoji: "😮‍💨", label: "Manage stress", desc: "Unload what's on my mind" },
+  { id: "awareness", emoji: "🔍", label: "Know myself better", desc: "Understand my patterns" },
+  { id: "habits", emoji: "🌱", label: "Build a habit", desc: "Show up every day" },
+  { id: "exploring", emoji: "✨", label: "Just exploring", desc: "See what this is about" },
+] as const;
+
 const REMINDER_OPTIONS = [
   { label: "8:00 AM", hour: 8 },
   { label: "12:00 PM", hour: 12 },
@@ -15,7 +22,9 @@ const REMINDER_OPTIONS = [
 
 const OnboardingScreen: React.FC<{ onComplete: () => void }> = ({ onComplete }) => {
   const { t } = useLang();
+  // step 0 = intent, steps 1-4 = slides, step 5 = reminder
   const [step, setStep] = useState(0);
+  const [selectedIntent, setSelectedIntent] = useState<string | null>(null);
   const [reminderSet, setReminderSet] = useState(false);
   const [selectedHour, setSelectedHour] = useState<number | null>(null);
 
@@ -26,9 +35,11 @@ const OnboardingScreen: React.FC<{ onComplete: () => void }> = ({ onComplete }) 
     { title: t.onb_title_4, desc: t.onb_desc_4, img: juMain },
   ];
 
-  const TOTAL_STEPS = slides.length + 1; // 4 slides + 1 reminder step
-  const isReminderStep = step === slides.length;
-  const isLast = step === slides.length - 1;
+  const TOTAL_STEPS = 1 + slides.length + 1; // intent + 4 slides + reminder
+  const isIntentStep = step === 0;
+  const isReminderStep = step === slides.length + 1;
+  const isLast = step === slides.length; // last slide (step 4)
+  const slideIndex = step - 1; // slides start at step 1
 
   const handleReminderTap = async (hour: number) => {
     setSelectedHour(hour);
@@ -42,12 +53,30 @@ const OnboardingScreen: React.FC<{ onComplete: () => void }> = ({ onComplete }) 
   const handleNext = () => {
     if (isReminderStep) {
       onComplete();
-    } else if (isLast) {
-      setStep(step + 1); // go to reminder step
     } else {
       setStep(step + 1);
     }
   };
+
+  const handleIntentSelect = (id: string) => {
+    setSelectedIntent(id);
+    try { localStorage.setItem("nuju-intent", id); } catch {}
+  };
+
+  const Dots = () => (
+    <div className="flex justify-center gap-2 mb-8">
+      {Array.from({ length: TOTAL_STEPS }).map((_, i) => (
+        <div
+          key={i}
+          className="h-2 rounded-full transition-all duration-300"
+          style={{
+            width: i === step ? 24 : 8,
+            background: i === step ? "#7C6EDB" : "#E8E4F8",
+          }}
+        />
+      ))}
+    </div>
+  );
 
   return (
     <div className="fixed inset-0 z-50 flex flex-col items-center justify-center px-6" style={{ background: "#F5F3FF" }}>
@@ -59,7 +88,50 @@ const OnboardingScreen: React.FC<{ onComplete: () => void }> = ({ onComplete }) 
         {t.onb_skip}
       </button>
 
-      {isReminderStep ? (
+      {isIntentStep ? (
+        /* Step 0 — Why are you here? */
+        <div className="w-full max-w-sm mx-auto text-center animate-fade-up" key="intent">
+          <div className="relative w-32 h-32 mx-auto mb-8">
+            <div className="absolute inset-0 rounded-full animate-glow-pulse" style={{ background: "rgba(124,110,219,0.15)" }} />
+            <img src={juMain} alt="Ju" className="relative w-full h-full object-contain animate-ju-float" />
+          </div>
+          <h2 className="font-serif text-2xl font-bold mb-2" style={{ color: "#1A1A2E" }}>
+            Why are you here?
+          </h2>
+          <p className="text-base leading-relaxed mb-7" style={{ color: "#777" }}>
+            Ju will personalize your experience based on what matters to you.
+          </p>
+          <div className="grid grid-cols-2 gap-3 mb-8">
+            {INTENT_OPTIONS.map(({ id, emoji, label, desc }) => {
+              const isSelected = selectedIntent === id;
+              return (
+                <button
+                  key={id}
+                  onClick={() => handleIntentSelect(id)}
+                  className="flex flex-col items-start p-4 rounded-2xl text-left transition-all active:scale-[0.97]"
+                  style={{
+                    background: isSelected ? "rgba(124,110,219,0.12)" : "rgba(124,110,219,0.05)",
+                    border: `1.5px solid ${isSelected ? "#7C6EDB" : "rgba(124,110,219,0.15)"}`,
+                  }}
+                >
+                  <span className="text-2xl mb-2">{emoji}</span>
+                  <span className="text-[14px] font-semibold block" style={{ color: "#1A1A2E" }}>{label}</span>
+                  <span className="text-[12px] mt-0.5" style={{ color: "#777" }}>{desc}</span>
+                </button>
+              );
+            })}
+          </div>
+          <Dots />
+          <button
+            onClick={handleNext}
+            disabled={!selectedIntent}
+            className="w-full py-4 rounded-2xl font-semibold text-base transition-all active:scale-[0.97] disabled:opacity-40"
+            style={{ background: "#7C6EDB", color: "white" }}
+          >
+            {t.onb_next}
+          </button>
+        </div>
+      ) : isReminderStep ? (
         /* Reminder step */
         <div className="w-full max-w-sm mx-auto text-center animate-fade-up" key="reminder">
           <div className="relative w-40 h-40 mx-auto mb-8">
@@ -103,19 +175,7 @@ const OnboardingScreen: React.FC<{ onComplete: () => void }> = ({ onComplete }) 
             </div>
           )}
 
-          {/* Dots */}
-          <div className="flex justify-center gap-2 mb-8">
-            {Array.from({ length: TOTAL_STEPS }).map((_, i) => (
-              <div
-                key={i}
-                className="h-2 rounded-full transition-all duration-300"
-                style={{
-                  width: i === step ? 24 : 8,
-                  background: i === step ? "#7C6EDB" : "#E8E4F8",
-                }}
-              />
-            ))}
-          </div>
+          <Dots />
 
           <button
             onClick={handleNext}
@@ -126,33 +186,21 @@ const OnboardingScreen: React.FC<{ onComplete: () => void }> = ({ onComplete }) 
           </button>
         </div>
       ) : (
-        /* Regular slides */
+        /* Regular slides (steps 1-4) */
         <div className="w-full max-w-sm mx-auto text-center animate-fade-up" key={step}>
           <div className="relative w-40 h-40 mx-auto mb-10">
             <div className="absolute inset-0 rounded-full animate-glow-pulse" style={{ background: "rgba(124,110,219,0.15)" }} />
-            <img src={slides[step].img} alt="Ju" className="relative w-full h-full object-contain animate-ju-float" />
+            <img src={slides[slideIndex].img} alt="Ju" className="relative w-full h-full object-contain animate-ju-float" />
           </div>
 
           <h2 className="font-serif text-2xl font-bold mb-3" style={{ color: "#1A1A2E" }}>
-            {slides[step].title}
+            {slides[slideIndex].title}
           </h2>
           <p className="text-base leading-relaxed mb-10" style={{ color: "#777" }}>
-            {slides[step].desc}
+            {slides[slideIndex].desc}
           </p>
 
-          {/* Dots */}
-          <div className="flex justify-center gap-2 mb-8">
-            {Array.from({ length: TOTAL_STEPS }).map((_, i) => (
-              <div
-                key={i}
-                className="h-2 rounded-full transition-all duration-300"
-                style={{
-                  width: i === step ? 24 : 8,
-                  background: i === step ? "#7C6EDB" : "#E8E4F8",
-                }}
-              />
-            ))}
-          </div>
+          <Dots />
 
           <button
             onClick={handleNext}
