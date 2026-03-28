@@ -16,7 +16,10 @@ const LangContext = createContext<LangContextType>({
 export const LangProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [lang, setLangState] = useState(() => {
     const saved = localStorage.getItem("nuju-lang");
-    return saved && translations[saved] ? saved : "en";
+    if (saved && translations[saved]) return saved;
+    // Auto-detect browser language on first load
+    const browserLang = navigator.language?.split("-")[0]?.toLowerCase();
+    return browserLang && translations[browserLang] ? browserLang : "en";
   });
 
   const setLang = useCallback((l: string) => {
