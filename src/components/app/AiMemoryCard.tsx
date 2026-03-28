@@ -100,12 +100,13 @@ function derivePatterns(entries: Array<{ mood: number; date: string; text: strin
   const moods = entries.map((e) => e.mood);
   const avgMood = moods.reduce((a, b) => a + b, 0) / moods.length;
 
-  // Pattern 1: mood trend (compare first half vs second half of entries)
+  // Pattern 1: mood trend
+  // entries are sorted newest-first, so firstHalf = recent, secondHalf = older
   const half = Math.floor(moods.length / 2);
-  const firstHalfAvg = moods.slice(0, half).reduce((a, b) => a + b, 0) / half;
-  const secondHalfAvg = moods.slice(-half).reduce((a, b) => a + b, 0) / half;
-  if (secondHalfAvg - firstHalfAvg >= 0.5) result.push(get("trending_up"));
-  else if (firstHalfAvg - secondHalfAvg >= 0.5) result.push(get("trending_down"));
+  const recentAvg = moods.slice(0, half).reduce((a, b) => a + b, 0) / half;
+  const olderAvg = moods.slice(-half).reduce((a, b) => a + b, 0) / half;
+  if (recentAvg - olderAvg >= 0.5) result.push(get("trending_up"));
+  else if (olderAvg - recentAvg >= 0.5) result.push(get("trending_down"));
   else if (avgMood >= 3.5) result.push(get("avg_good"));
 
   // Pattern 2: consistency (≥5 entries = consistent)
