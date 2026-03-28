@@ -13,6 +13,7 @@ import CoachScreen from "@/components/app/CoachScreen";
 import SettingsScreen from "@/components/app/SettingsScreen";
 import PricingScreen from "@/components/app/PricingScreen";
 import GuidedProgramsScreen from "@/components/app/GuidedProgramsScreen";
+import GuidedTour from "@/components/app/GuidedTour";
 import YearInReviewScreen from "@/components/app/YearInReviewScreen";
 import TrialBanner from "@/components/app/TrialBanner";
 import { getTrialStatus } from "@/lib/trial";
@@ -48,6 +49,7 @@ const AppPage: React.FC = () => {
   const [showSignupAfterSave, setShowSignupAfterSave] = useState(false);
   const [activeTabAnim, setActiveTabAnim] = useState<string | null>(null);
   const [journalPrompt, setJournalPrompt] = useState<string>("");
+  const [showTour, setShowTour] = useState(false);
 
   // Screen ordering for directional transitions
   const screenOrder: Screen[] = ["home", "insights", "coach", "pro"];
@@ -81,6 +83,14 @@ const AppPage: React.FC = () => {
     };
     load();
   }, [user]);
+
+  useEffect(() => {
+    if (!loading && !showOnboarding && !localStorage.getItem("nuju-tour-done")) {
+      // Small delay to let app render first
+      const timer = setTimeout(() => setShowTour(true), 800);
+      return () => clearTimeout(timer);
+    }
+  }, [loading, showOnboarding]);
 
   const handleOnboardingComplete = async () => {
     if (user) {
@@ -402,6 +412,17 @@ const AppPage: React.FC = () => {
           )}
         </div>
       </div>
+
+      {showTour && (
+        <GuidedTour
+          onDone={() => {
+            localStorage.setItem("nuju-tour-done", "1");
+            setShowTour(false);
+          }}
+          currentScreen={screen}
+          onNavigate={(s) => navigateTo(s as Screen)}
+        />
+      )}
 
       {/* iOS-style tab bar with spring animations */}
       {screen !== "journal" && screen !== "settings" && (

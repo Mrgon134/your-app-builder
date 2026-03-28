@@ -47,12 +47,15 @@ const blobToBase64 = (blob: Blob): Promise<string> =>
     reader.readAsDataURL(blob);
   });
 
-const MOOD_PLACEHOLDERS: Record<string, string> = {
-  "1": "No filter needed. This is just for you.",
-  "2": "Even a few words is enough.",
-  "3": "What's been on your mind today?",
-  "4": "You seem good — what's making it that way?",
-  "5": "Tell me everything — I want to hear it.",
+const getMoodPlaceholder = (mood: number | undefined, t: Record<string, string>): string => {
+  const map: Record<number, string> = {
+    1: t.mood_placeholder_1 || "No filter needed. This is just for you.",
+    2: t.mood_placeholder_2 || "Even a few words is enough.",
+    3: t.mood_placeholder_3 || "What's been on your mind today?",
+    4: t.mood_placeholder_4 || "You seem good — what's making it that way?",
+    5: t.mood_placeholder_5 || "Tell me everything — I want to hear it.",
+  };
+  return mood ? (map[mood] || map[3]) : map[3];
 };
 
 interface JournalScreenProps {
@@ -321,7 +324,7 @@ const JournalScreen: React.FC<JournalScreenProps> = ({
             ? "I'm all ears..."
             : isTranscribing
             ? "Just a moment..."
-            : MOOD_PLACEHOLDERS[String(mood)] ?? t.whats_on_mind
+            : getMoodPlaceholder(mood, t)
         }
         className={`w-full min-h-[260px] p-5 rounded-2xl glass-card text-foreground font-writing text-[17px] leading-relaxed placeholder:text-muted-foreground/40 focus:outline-none focus:ring-2 focus:ring-primary/15 focus:border-primary/30 resize-none transition-all ${isRecording || isTranscribing ? "cursor-default" : ""}`}
         autoFocus={!autoRecord}

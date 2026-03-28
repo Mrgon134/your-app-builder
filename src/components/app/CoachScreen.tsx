@@ -332,10 +332,10 @@ const CoachScreen: React.FC<{ onUpgrade?: () => void; plan?: string | null; tria
         <div className="bg-primary/10 border border-primary/20 rounded-2xl p-4 mb-3 text-center animate-fade-up">
           <div className="flex items-center justify-center gap-2 mb-2">
             <Lock className="w-4 h-4 text-primary" />
-            <span className="text-sm font-semibold text-foreground">Weekly limit reached</span>
+            <span className="text-sm font-semibold text-foreground">{t.coach_limit_title || "Weekly limit reached"}</span>
           </div>
           <p className="text-xs text-muted-foreground mb-3">
-            Free plan includes 5 messages per week. Upgrade for unlimited coaching.
+            {t.coach_limit_desc || "Free plan includes 5 messages per week. Upgrade for unlimited coaching."}
           </p>
           {onUpgrade && (
             <button
@@ -358,7 +358,7 @@ const CoachScreen: React.FC<{ onUpgrade?: () => void; plan?: string | null; tria
                 ? "bg-amber-500/10 text-amber-600 dark:text-amber-400"
                 : "bg-muted text-muted-foreground"
           }`}>
-            {5 - messagesUsed} / 5 messages left this week
+            {(t.coach_messages_left || "{used} / 5 messages left this week").replace("{used}", String(5 - messagesUsed))}
           </div>
         </div>
       )}
