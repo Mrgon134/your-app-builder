@@ -28,7 +28,13 @@ const AppPage: React.FC = () => {
   const { country } = useGeoPricing();
   const [profile, setProfile] = useState<ProfileRow | null>(null);
   const [showOnboarding, setShowOnboarding] = useState(false);
-  const [screen, setScreen] = useState<Screen>("home");
+  const [screen, setScreen] = useState<Screen>(() => {
+    try {
+      const saved = localStorage.getItem("nuju-screen") as Screen | null;
+      const mainTabs: Screen[] = ["home", "insights", "coach", "pro"];
+      return saved && mainTabs.includes(saved) ? saved : "home";
+    } catch { return "home"; }
+  });
   const [prevScreen, setPrevScreen] = useState<Screen | null>(null);
   const [transitionClass, setTransitionClass] = useState("animate-page-slide-in");
   const [entries, setEntries] = useState<Array<{ mood: number; date: string; text: string }>>([]);
@@ -94,7 +100,13 @@ const AppPage: React.FC = () => {
     setPrevScreen(screen);
     setTransitionClass(isForward ? "animate-page-slide-in" : "animate-page-slide-back");
     setScreen(newScreen);
-    
+
+    // Persist main tab across refresh
+    const mainTabs: Screen[] = ["home", "insights", "coach", "pro"];
+    if (mainTabs.includes(newScreen)) {
+      try { localStorage.setItem("nuju-screen", newScreen); } catch {}
+    }
+
     // Tab pop animation
     setActiveTabAnim(newScreen);
     setTimeout(() => setActiveTabAnim(null), 300);
