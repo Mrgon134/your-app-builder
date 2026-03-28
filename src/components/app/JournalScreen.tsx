@@ -47,6 +47,14 @@ const blobToBase64 = (blob: Blob): Promise<string> =>
     reader.readAsDataURL(blob);
   });
 
+const MOOD_PLACEHOLDERS: Record<string, string> = {
+  "1": "No filter needed. This is just for you.",
+  "2": "Even a few words is enough.",
+  "3": "What's been on your mind today?",
+  "4": "You seem good — what's making it that way?",
+  "5": "Tell me everything — I want to hear it.",
+};
+
 interface JournalScreenProps {
   onBack: () => void;
   onSave: (text: string) => Promise<string | null>;
@@ -309,7 +317,11 @@ const JournalScreen: React.FC<JournalScreenProps> = ({
         onChange={(e) => { if (!isRecording && !isTranscribing) setText(e.target.value); }}
         readOnly={isRecording || isTranscribing}
         placeholder={
-          isRecording ? "Listening..." : isTranscribing ? "Transcribing..." : t.whats_on_mind
+          isRecording
+            ? "I'm all ears..."
+            : isTranscribing
+            ? "Just a moment..."
+            : MOOD_PLACEHOLDERS[String(mood)] ?? t.whats_on_mind
         }
         className={`w-full min-h-[260px] p-5 rounded-2xl glass-card text-foreground font-writing text-[17px] leading-relaxed placeholder:text-muted-foreground/40 focus:outline-none focus:ring-2 focus:ring-primary/15 focus:border-primary/30 resize-none transition-all ${isRecording || isTranscribing ? "cursor-default" : ""}`}
         autoFocus={!autoRecord}
@@ -319,14 +331,14 @@ const JournalScreen: React.FC<JournalScreenProps> = ({
       {isRecording && (
         <div className="flex items-center gap-2.5 mt-3 px-1">
           <RecordingWave />
-          <span className="text-[13px] text-destructive font-medium">Recording — speak naturally</span>
+          <span className="text-[13px] text-destructive font-medium">I'm all ears — speak freely</span>
           <span className="ml-auto text-[12px] text-muted-foreground">Tap Stop when done</span>
         </div>
       )}
       {isTranscribing && (
         <div className="flex items-center gap-2.5 mt-3 px-1">
           <Loader2 className="w-4 h-4 text-primary animate-spin" />
-          <span className="text-[13px] text-primary font-medium">Transcribing with AI...</span>
+          <span className="text-[13px] text-primary font-medium">Just a moment...</span>
         </div>
       )}
 

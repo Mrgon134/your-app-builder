@@ -63,6 +63,21 @@ const InsightsScreen: React.FC<InsightsScreenProps> = ({ entries, streak = 0, on
     ? (weekMoods.reduce((a, b) => a + b, 0) / weekMoods.length).toFixed(1)
     : "0";
 
+  // Compute mood trend from recent entries (last 7 vs previous 7)
+  const getMoodTrend = (): { direction: "up" | "down" | "stable"; message: string } => {
+    if (entries.length < 3) return { direction: "stable", message: "Keep writing and I'll spot patterns in your mood." };
+    const recent = entries.slice(0, Math.min(7, entries.length)).map((e) => e.mood);
+    const older = entries.slice(Math.min(7, entries.length), Math.min(14, entries.length)).map((e) => e.mood);
+    const recentAvg = recent.reduce((a, b) => a + b, 0) / recent.length;
+    if (older.length === 0) return { direction: "stable", message: "You've been showing up consistently. That's already a win." };
+    const olderAvg = older.reduce((a, b) => a + b, 0) / older.length;
+    const diff = recentAvg - olderAvg;
+    if (diff >= 0.5) return { direction: "up", message: "Your mood has been climbing this week. Something's working — what is it?" };
+    if (diff <= -0.5) return { direction: "down", message: "Things have been heavier lately. That's okay — I'm noticing it so you don't have to carry it alone." };
+    return { direction: "stable", message: "Your mood has been steady. Consistency is underrated — it's a kind of strength." };
+  };
+  const moodTrend = getMoodTrend();
+
   // Empty state — no entries yet
   if (entries.length === 0) {
     return (
@@ -137,6 +152,21 @@ const InsightsScreen: React.FC<InsightsScreenProps> = ({ entries, streak = 0, on
           />
         </div>
       </div>
+
+      {/* Ju mood trend narration */}
+      {entries.length >= 3 && (
+        <div className="glass-card rounded-2xl p-5 flex items-start gap-3">
+          <img
+            src={moodTrend.direction === "up" ? JU_STICKERS.yay : moodTrend.direction === "down" ? JU_STICKERS.zen : JU_STICKERS.goodjob}
+            alt="Ju"
+            className="w-9 h-9 flex-shrink-0 mt-0.5"
+          />
+          <div>
+            <p className="text-[11px] font-semibold text-primary uppercase tracking-widest mb-1.5">I noticed...</p>
+            <p className="text-[14px] text-foreground leading-relaxed">{moodTrend.message}</p>
+          </div>
+        </div>
+      )}
 
       <MonthPixelGrid entries={entries} />
 

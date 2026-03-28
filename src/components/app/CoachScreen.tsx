@@ -13,6 +13,13 @@ import coachTough from "@/assets/coach-tough.webp";
 import coachWise from "@/assets/coach-wise.webp";
 import coachFun from "@/assets/coach-fun.webp";
 
+const PERSONA_GREETINGS: Record<string, string> = {
+  gentle: "Hey, I'm here now. Take your time — what's on your heart?",
+  tough: "Let's get real with each other. What are we actually dealing with?",
+  wise: "I'm glad you found me. Every shift in perspective is its own kind of wisdom.",
+  fun: "Okay, new energy! Let's shake things up — what's going on?",
+};
+
 const COACH_ICONS: Record<string, string> = {
   gentle: coachGentle,
   tough: coachTough,
@@ -158,9 +165,16 @@ const CoachScreen: React.FC<{ onUpgrade?: () => void; plan?: string | null; tria
       setTimeout(() => {
         setPersona(id);
         setSwitching(false);
+        // Inject warm transition greeting when there are existing messages
+        if (messages.length > 0) {
+          const greeting = PERSONA_GREETINGS[id];
+          if (greeting) {
+            setMessages((prev) => [...prev, { role: "assistant", content: greeting }]);
+          }
+        }
       }, 250);
     },
-    [persona]
+    [persona, messages.length]
   );
 
   const sendMessage = async () => {
