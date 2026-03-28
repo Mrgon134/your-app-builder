@@ -3,6 +3,7 @@ import { initReminders } from "@/lib/notifications";
 import { useGeoPricing } from "@/hooks/use-geo-pricing";
 import { useLang } from "@/lib/i18n";
 import { useAuth } from "@/lib/auth";
+import { hasPlusAccess } from "@/lib/trial";
 import { fetchEntries, createEntry, createQuickEntry, fetchProfile, updateProfile, checkEntryLimit, EntryRow, ProfileRow } from "@/lib/api";
 import OnboardingScreen from "@/components/app/OnboardingScreen";
 import HomeScreen from "@/components/app/HomeScreen";
@@ -194,12 +195,7 @@ const AppPage: React.FC = () => {
   const handleSaveEntry = async (text: string): Promise<string | null> => {
     if (!user) return null;
     try {
-      const canWrite = await checkEntryLimit(user.id);
-      if (!canWrite) {
-        toast.error(t.history_locked || "Entry limit reached. Upgrade for unlimited entries.");
-        return null;
-      }
-
+      // P2: Unlimited entries for all users — gate AI insight instead of input
       const entry = await createEntry(user.id, selectedMood, text, energy);
 
       // Persist activity tags locally (no DB migration needed)
@@ -226,6 +222,12 @@ const AppPage: React.FC = () => {
 
       if (newEntries.length === 3) {
         setTimeout(() => setShowSignupAfterSave(true), 1500);
+      }
+
+      // P2: AI insight only for Plus/Pro — free users see teaser
+      const hasPlus = hasPlusAccess(profile?.plan || null, profile?.trial_started_at || null);
+      if (!hasPlus) {
+        return "Ju noticed something in your journal... Upgrade to Plus to unlock AI insights after every entry.";
       }
 
       try {
@@ -355,6 +357,7 @@ const AppPage: React.FC = () => {
               initialPrompt={journalPrompt}
               autoRecord={journalAutoRecord}
               activities={selectedActivities}
+              mood={selectedMood}
             />
           )}
           {screen === "insights" && <InsightsScreen entries={entries} streak={streak} onUpgrade={() => navigateTo("pro")} onNavigate={(s) => navigateTo(s as Screen)} plan={profile?.plan} trialStartedAt={profile?.trial_started_at} />}

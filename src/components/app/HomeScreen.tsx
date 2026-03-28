@@ -87,6 +87,7 @@ const HomeScreen: React.FC<HomeScreenProps> = ({
   const [localEnergy, setLocalEnergy] = useState(60);
   const [moodAnimating, setMoodAnimating] = useState<number | null>(null);
   const [localActivities, setLocalActivities] = useState<string[]>([]);
+  const [moodTouched, setMoodTouched] = useState(false);
   const selectedActivities = controlledActivities ?? localActivities;
   const scrollRef = useRef<HTMLDivElement>(null);
   const [scrollY, setScrollY] = useState(0);
@@ -120,6 +121,7 @@ const HomeScreen: React.FC<HomeScreenProps> = ({
     if (controlledMoodSelect) controlledMoodSelect(value);
     else setLocalMood(value);
     setMoodAnimating(value);
+    setMoodTouched(true);
     setTimeout(() => setMoodAnimating(null), 400);
     if (navigator.vibrate) navigator.vibrate(10);
   };
@@ -292,72 +294,7 @@ const HomeScreen: React.FC<HomeScreenProps> = ({
         })}
       </div>
 
-      {/* Retention */}
-      <SignupPrompt
-        entriesCount={entries.length}
-        onDismiss={() => {}}
-        onUpgrade={onUpgrade}
-        plan={plan}
-        trialStartedAt={trialStartedAt}
-      />
-      <AiMemoryCard entries={entries} />
-
-      {/* Prompt card */}
-      <div className="glass-card rounded-2xl p-5">
-        <div className="flex items-center justify-between mb-3">
-          <p className="text-[11px] font-semibold text-primary uppercase tracking-[0.12em]">{t.todays_prompt}</p>
-          <button
-            onClick={() => setPrompt(getRandomPrompt())}
-            className="w-8 h-8 rounded-full flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-foreground/[0.05] transition-all press-spring"
-          >
-            <RefreshCw className="w-3.5 h-3.5" />
-          </button>
-        </div>
-        <p className="text-[16px] text-foreground leading-relaxed font-medium">{prompt}</p>
-      </div>
-
-      {/* Energy — 5-segment icon picker */}
-      <div className="glass-card rounded-2xl p-5">
-        <div className="flex items-center justify-between mb-4">
-          <p className="text-[11px] font-semibold text-muted-foreground uppercase tracking-[0.12em]">{t.energy}</p>
-          <span className="text-[11px] font-medium text-muted-foreground">{nearestEnergy.label}</span>
-        </div>
-        <div className="flex gap-2">
-          {ENERGY_LEVELS.map((lvl) => {
-            const active = energy >= lvl.value;
-            const isNearest = nearestEnergy.value === lvl.value;
-            const Icon = lvl.icon;
-            return (
-              <button
-                key={lvl.value}
-                onClick={() => handleEnergySelect(lvl.value)}
-                className="flex-1 flex flex-col items-center gap-2 py-3.5 rounded-xl transition-all duration-200 press-spring"
-                style={{
-                  background: active ? `${lvl.color}14` : "transparent",
-                  border: `1.5px solid ${isNearest ? lvl.color + "80" : active ? lvl.color + "30" : "transparent"}`,
-                }}
-              >
-                <Icon
-                  className="w-5 h-5 transition-all duration-200"
-                  style={{
-                    color: active ? lvl.color : "hsl(var(--muted-foreground)/0.3)",
-                    strokeWidth: active ? 2.2 : 1.5,
-                  }}
-                />
-                {isNearest && (
-                  <div className="w-1.5 h-1.5 rounded-full" style={{ background: lvl.color }} />
-                )}
-              </button>
-            );
-          })}
-        </div>
-        <div className="flex justify-between text-[10px] text-muted-foreground/50 mt-2.5 font-medium px-1">
-          <span>{t.drained}</span>
-          <span>{t.energized}</span>
-        </div>
-      </div>
-
-      {/* Action buttons */}
+      {/* Action buttons — always visible right after mood/activity */}
       <div className="space-y-2.5">
         <div className="grid grid-cols-2 gap-3">
           <button
@@ -375,8 +312,8 @@ const HomeScreen: React.FC<HomeScreenProps> = ({
             {t.talk}
           </button>
         </div>
-        {/* Quick log — appears when mood is selected */}
-        {selectedMood && onQuickLog && (
+        {/* Quick log — appears when mood is explicitly tapped */}
+        {moodTouched && onQuickLog && (
           <button
             onClick={onQuickLog}
             className="w-full flex items-center justify-center gap-2 h-[44px] rounded-2xl border border-border/50 text-muted-foreground font-medium text-[13px] press-spring animate-fade-up transition-all hover:border-border hover:text-foreground"
@@ -386,6 +323,76 @@ const HomeScreen: React.FC<HomeScreenProps> = ({
           </button>
         )}
       </div>
+
+      {/* Progressive disclosure — revealed after mood tap */}
+      {moodTouched && (
+        <div className="space-y-5 animate-fade-up">
+          {/* Energy — 5-segment icon picker */}
+          <div className="glass-card rounded-2xl p-5">
+            <div className="flex items-center justify-between mb-4">
+              <p className="text-[11px] font-semibold text-muted-foreground uppercase tracking-[0.12em]">{t.energy}</p>
+              <span className="text-[11px] font-medium text-muted-foreground">{nearestEnergy.label}</span>
+            </div>
+            <div className="flex gap-2">
+              {ENERGY_LEVELS.map((lvl) => {
+                const active = energy >= lvl.value;
+                const isNearest = nearestEnergy.value === lvl.value;
+                const Icon = lvl.icon;
+                return (
+                  <button
+                    key={lvl.value}
+                    onClick={() => handleEnergySelect(lvl.value)}
+                    className="flex-1 flex flex-col items-center gap-2 py-3.5 rounded-xl transition-all duration-200 press-spring"
+                    style={{
+                      background: active ? `${lvl.color}14` : "transparent",
+                      border: `1.5px solid ${isNearest ? lvl.color + "80" : active ? lvl.color + "30" : "transparent"}`,
+                    }}
+                  >
+                    <Icon
+                      className="w-5 h-5 transition-all duration-200"
+                      style={{
+                        color: active ? lvl.color : "hsl(var(--muted-foreground)/0.3)",
+                        strokeWidth: active ? 2.2 : 1.5,
+                      }}
+                    />
+                    {isNearest && (
+                      <div className="w-1.5 h-1.5 rounded-full" style={{ background: lvl.color }} />
+                    )}
+                  </button>
+                );
+              })}
+            </div>
+            <div className="flex justify-between text-[10px] text-muted-foreground/50 mt-2.5 font-medium px-1">
+              <span>{t.drained}</span>
+              <span>{t.energized}</span>
+            </div>
+          </div>
+
+          {/* Prompt card */}
+          <div className="glass-card rounded-2xl p-5">
+            <div className="flex items-center justify-between mb-3">
+              <p className="text-[11px] font-semibold text-primary uppercase tracking-[0.12em]">{t.todays_prompt}</p>
+              <button
+                onClick={() => setPrompt(getRandomPrompt())}
+                className="w-8 h-8 rounded-full flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-foreground/[0.05] transition-all press-spring"
+              >
+                <RefreshCw className="w-3.5 h-3.5" />
+              </button>
+            </div>
+            <p className="text-[16px] text-foreground leading-relaxed font-medium">{prompt}</p>
+          </div>
+        </div>
+      )}
+
+      {/* Retention */}
+      <SignupPrompt
+        entriesCount={entries.length}
+        onDismiss={() => {}}
+        onUpgrade={onUpgrade}
+        plan={plan}
+        trialStartedAt={trialStartedAt}
+      />
+      <AiMemoryCard entries={entries} />
 
       {/* Recent entries — clean iOS-list style, no cards */}
       {entries.length > 0 && (

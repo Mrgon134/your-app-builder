@@ -1,10 +1,13 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import { useLang } from "@/lib/i18n";
 import { JU_STICKERS } from "@/lib/stickers";
+import { MOODS } from "@/lib/constants";
 import { ArrowLeft, Mic, Square, Loader2 } from "lucide-react";
+import MoodIcon from "@/components/MoodIcon";
 
 const AI_BASE = "https://sxgmlnlqmdjjfmcypivi.supabase.co";
 const AI_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InN4Z21sbmxxbWRqamZtY3lwaXZpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQwMTEyNDYsImV4cCI6MjA4OTU4NzI0Nn0.kUM2J00vmkRd55MmQw5AAadS8XGZKeLY0mgGg8aAVFg";
+const DRAFT_KEY = "nuju-journal-draft";
 
 const langToLocale: Record<string, string> = {
   id: "id-ID", es: "es-ES", pt: "pt-BR",
@@ -50,6 +53,7 @@ interface JournalScreenProps {
   initialPrompt?: string;
   autoRecord?: boolean;
   activities?: string[];
+  mood?: number;
 }
 
 const useTypingEffect = (text: string, speed = 22) => {
@@ -70,12 +74,11 @@ const useTypingEffect = (text: string, speed = 22) => {
   return { displayed, done };
 };
 
-const DRAFT_KEY = "nuju-journal-draft";
-
 const JournalScreen: React.FC<JournalScreenProps> = ({
-  onBack, onSave, initialPrompt, autoRecord = false, activities = [],
+  onBack, onSave, initialPrompt, autoRecord = false, activities = [], mood,
 }) => {
   const { t, lang } = useLang();
+  const moodData = MOODS.find((m) => m.value === mood);
   const [text, setText] = useState(() => {
     try { return localStorage.getItem(DRAFT_KEY) || ""; } catch { return ""; }
   });
@@ -262,10 +265,16 @@ const JournalScreen: React.FC<JournalScreenProps> = ({
           <ArrowLeft className="w-5 h-5" />
           <span className="text-[15px] font-medium">{t.back}</span>
         </button>
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2.5">
+          {moodData && (
+            <div className="flex items-center gap-1.5 h-7 px-2.5 rounded-full" style={{ background: `${moodData.color}18` }}>
+              <MoodIcon value={moodData.value} color={moodData.color} size={16} />
+              <span className="text-[11px] font-semibold" style={{ color: moodData.color }}>{moodData.label}</span>
+            </div>
+          )}
           {wordCount > 0 && (
             <span className="text-[12px] text-muted-foreground/60 tabular-nums">
-              {wordCount} {wordCount === 1 ? "word" : "words"}
+              {wordCount}w
             </span>
           )}
           <img src={JU_STICKERS.diary} alt="Writing" className="w-9 h-9 animate-ju-float" />
