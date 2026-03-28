@@ -3,30 +3,6 @@ import { useLang } from "@/lib/i18n";
 import { JU_STICKERS } from "@/lib/stickers";
 import { ArrowLeft, Mic, Square, Loader2 } from "lucide-react";
 
-interface JournalScreenProps {
-  onBack: () => void;
-  onSave: (text: string) => Promise<string | null>;
-  initialPrompt?: string;
-}
-
-const useTypingEffect = (text: string, speed = 22) => {
-  const [displayed, setDisplayed] = useState("");
-  const [done, setDone] = useState(false);
-  useEffect(() => {
-    setDisplayed("");
-    setDone(false);
-    if (!text) return;
-    let i = 0;
-    const timer = setInterval(() => {
-      i++;
-      setDisplayed(text.slice(0, i));
-      if (i >= text.length) { setDone(true); clearInterval(timer); }
-    }, speed);
-    return () => clearInterval(timer);
-  }, [text, speed]);
-  return { displayed, done };
-};
-
 const AI_BASE = "https://sxgmlnlqmdjjfmcypivi.supabase.co";
 const AI_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InN4Z21sbmxxbWRqamZtY3lwaXZpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQwMTEyNDYsImV4cCI6MjA4OTU4NzI0Nn0.kUM2J00vmkRd55MmQw5AAadS8XGZKeLY0mgGg8aAVFg";
 
@@ -56,9 +32,53 @@ const RecordingWave: React.FC<{ color?: string }> = ({ color = "var(--destructiv
   </span>
 );
 
-const JournalScreen: React.FC<JournalScreenProps> = ({ onBack, onSave, initialPrompt }) => {
+/** Convert Blob to base64 string (data portion only) */
+const blobToBase64 = (blob: Blob): Promise<string> =>
+  new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => {
+      const result = reader.result as string;
+      resolve(result.split(",")[1]);
+    };
+    reader.onerror = reject;
+    reader.readAsDataURL(blob);
+  });
+
+interface JournalScreenProps {
+  onBack: () => void;
+  onSave: (text: string) => Promise<string | null>;
+  initialPrompt?: string;
+  autoRecord?: boolean;
+  activities?: string[];
+}
+
+const useTypingEffect = (text: string, speed = 22) => {
+  const [displayed, setDisplayed] = useState("");
+  const [done, setDone] = useState(false);
+  useEffect(() => {
+    setDisplayed("");
+    setDone(false);
+    if (!text) return;
+    let i = 0;
+    const timer = setInterval(() => {
+      i++;
+      setDisplayed(text.slice(0, i));
+      if (i >= text.length) { setDone(true); clearInterval(timer); }
+    }, speed);
+    return () => clearInterval(timer);
+  }, [text, speed]);
+  return { displayed, done };
+};
+
+const DRAFT_KEY = "nuju-journal-draft";
+
+const JournalScreen: React.FC<JournalScreenProps> = ({
+  onBack, onSave, initialPrompt, autoRecord = false, activities = [],
+}) => {
   const { t, lang } = useLang();
-  const [text, setText] = useState("");
+  const [text, setText] = useState(() => {
+    try { return localStorage.getItem(DRAFT_KEY) || ""; } catch { return ""; }
+  });
   const [saved, setSaved] = useState(false);
   const [insight, setInsight] = useState("");
   const [saving, setSaving] = useState(false);
@@ -66,8 +86,23 @@ const JournalScreen: React.FC<JournalScreenProps> = ({ onBack, onSave, initialPr
 
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
   const audioChunksRef = useRef<Blob[]>([]);
+  const streamRef = useRef<MediaStream | null>(null);
   const textRef = useRef(text);
   useEffect(() => { textRef.current = text; }, [text]);
+
+  // Draft auto-save (2s debounce)
+  useEffect(() => {
+    if (saved) return;
+    const timer = setTimeout(() => {
+      try {
+        if (text.trim()) localStorage.setItem(DRAFT_KEY, text);
+        else localStorage.removeItem(DRAFT_KEY);
+      } catch {}
+    }, 2000);
+    return () => clearTimeout(timer);
+  }, [text, saved]);
+
+  const wordCount = text.trim() ? text.trim().split(/\s+/).length : 0;
 
   const getMimeType = (): string => {
     const types = ["audio/webm;codecs=opus", "audio/webm", "audio/ogg;codecs=opus", "audio/mp4"];
@@ -89,6 +124,7 @@ const JournalScreen: React.FC<JournalScreenProps> = ({ onBack, onSave, initialPr
           autoGainControl: true,
         },
       });
+      streamRef.current = stream;
       const mimeType = getMimeType();
       const recorder = new MediaRecorder(stream, { mimeType });
       audioChunksRef.current = [];
@@ -99,6 +135,7 @@ const JournalScreen: React.FC<JournalScreenProps> = ({ onBack, onSave, initialPr
 
       recorder.onstop = async () => {
         stream.getTracks().forEach((t) => t.stop());
+        streamRef.current = null;
         const audioBlob = new Blob(audioChunksRef.current, { type: mimeType });
         if (audioBlob.size < 1000) {
           setRecordState("idle");
@@ -126,7 +163,7 @@ const JournalScreen: React.FC<JournalScreenProps> = ({ onBack, onSave, initialPr
         }
       };
 
-      recorder.start(250); // collect chunks every 250ms
+      recorder.start(250);
       mediaRecorderRef.current = recorder;
       setRecordState("recording");
       if (navigator.vibrate) navigator.vibrate([10, 50, 10]);
@@ -143,11 +180,21 @@ const JournalScreen: React.FC<JournalScreenProps> = ({ onBack, onSave, initialPr
     }
   }, []);
 
+  // Auto-start recording if opened via Talk button
+  useEffect(() => {
+    if (autoRecord) {
+      const timer = setTimeout(() => startRecording(), 300);
+      return () => clearTimeout(timer);
+    }
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  // Cleanup on unmount
   useEffect(() => {
     return () => {
       if (mediaRecorderRef.current && mediaRecorderRef.current.state !== "inactive") {
         mediaRecorderRef.current.stop();
       }
+      streamRef.current?.getTracks().forEach((t) => t.stop());
     };
   }, []);
 
@@ -159,6 +206,7 @@ const JournalScreen: React.FC<JournalScreenProps> = ({ onBack, onSave, initialPr
       const aiInsight = await onSave(text);
       setInsight(aiInsight || "");
       setSaved(true);
+      try { localStorage.removeItem(DRAFT_KEY); } catch {}
     } catch (err) {
       console.error("Save failed:", err);
     } finally {
@@ -208,14 +256,38 @@ const JournalScreen: React.FC<JournalScreenProps> = ({ onBack, onSave, initialPr
         }
       `}</style>
 
-      <div className="flex items-center justify-between mb-6">
+      {/* Header */}
+      <div className="flex items-center justify-between mb-4">
         <button onClick={onBack} className="flex items-center gap-1 text-primary press-spring">
           <ArrowLeft className="w-5 h-5" />
           <span className="text-[15px] font-medium">{t.back}</span>
         </button>
-        <img src={JU_STICKERS.diary} alt="Writing" className="w-9 h-9 animate-ju-float" />
+        <div className="flex items-center gap-2">
+          {wordCount > 0 && (
+            <span className="text-[12px] text-muted-foreground/60 tabular-nums">
+              {wordCount} {wordCount === 1 ? "word" : "words"}
+            </span>
+          )}
+          <img src={JU_STICKERS.diary} alt="Writing" className="w-9 h-9 animate-ju-float" />
+        </div>
       </div>
 
+      {/* Activity tags (read-only, passed from home) */}
+      {activities.length > 0 && (
+        <div className="flex flex-wrap gap-1.5 mb-3">
+          {activities.map((a) => (
+            <span
+              key={a}
+              className="h-6 px-2.5 rounded-full text-[11px] font-medium capitalize"
+              style={{ background: "hsl(var(--primary)/0.1)", color: "hsl(var(--primary))" }}
+            >
+              {a}
+            </span>
+          ))}
+        </div>
+      )}
+
+      {/* Prompt */}
       {initialPrompt && (
         <div className="glass-card rounded-2xl p-4 mb-3">
           <p className="text-[11px] font-semibold text-primary uppercase tracking-widest mb-1">{t.todays_prompt}</p>
@@ -227,9 +299,11 @@ const JournalScreen: React.FC<JournalScreenProps> = ({ onBack, onSave, initialPr
         value={text}
         onChange={(e) => { if (!isRecording && !isTranscribing) setText(e.target.value); }}
         readOnly={isRecording || isTranscribing}
-        placeholder={t.whats_on_mind}
+        placeholder={
+          isRecording ? "Listening..." : isTranscribing ? "Transcribing..." : t.whats_on_mind
+        }
         className={`w-full min-h-[260px] p-5 rounded-2xl glass-card text-foreground font-writing text-[17px] leading-relaxed placeholder:text-muted-foreground/40 focus:outline-none focus:ring-2 focus:ring-primary/15 focus:border-primary/30 resize-none transition-all ${isRecording || isTranscribing ? "cursor-default" : ""}`}
-        autoFocus={!isRecording}
+        autoFocus={!autoRecord}
       />
 
       {/* Status bar */}
@@ -256,15 +330,24 @@ const JournalScreen: React.FC<JournalScreenProps> = ({ onBack, onSave, initialPr
             className={`flex items-center justify-center gap-2 h-[48px] px-5 rounded-xl font-medium text-[14px] transition-all active:scale-[0.97] disabled:opacity-50 ${
               isRecording
                 ? "bg-destructive/8 text-destructive border border-destructive/20"
+                : isTranscribing
+                ? "bg-muted text-muted-foreground"
                 : "bg-secondary text-foreground"
             }`}
           >
-            {isRecording ? (
+            {isRecording && (
               <>
                 <Square className="w-3.5 h-3.5 fill-destructive text-destructive" />
                 <span>Stop</span>
               </>
-            ) : (
+            )}
+            {isTranscribing && (
+              <>
+                <Loader2 className="w-4 h-4 animate-spin" />
+                <span>Transcribing...</span>
+              </>
+            )}
+            {!isRecording && !isTranscribing && (
               <>
                 <Mic className="w-4 h-4" />
                 <span>{t.talk}</span>
@@ -283,18 +366,5 @@ const JournalScreen: React.FC<JournalScreenProps> = ({ onBack, onSave, initialPr
     </div>
   );
 };
-
-/** Convert Blob to base64 string (data portion only) */
-async function blobToBase64(blob: Blob): Promise<string> {
-  return new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.onload = () => {
-      const result = reader.result as string;
-      resolve(result.split(",")[1]); // strip "data:...;base64,"
-    };
-    reader.onerror = reject;
-    reader.readAsDataURL(blob);
-  });
-}
 
 export default JournalScreen;

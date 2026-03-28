@@ -35,6 +35,8 @@ const AppPage: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [selectedMood, setSelectedMood] = useState<number>(3);
   const [energy, setEnergy] = useState(50);
+  const [selectedActivities, setSelectedActivities] = useState<string[]>([]);
+  const [journalAutoRecord, setJournalAutoRecord] = useState(false);
   const [showConfetti, setShowConfetti] = useState(false);
   const [showSignupAfterSave, setShowSignupAfterSave] = useState(false);
   const [activeTabAnim, setActiveTabAnim] = useState<string | null>(null);
@@ -170,6 +172,14 @@ const AppPage: React.FC = () => {
       const canWrite = await checkEntryLimit(user.id);
       if (!canWrite) { toast.error(t.history_locked || "Entry limit reached."); return; }
       const entry = await createQuickEntry(user.id, selectedMood, energy);
+      if (selectedActivities.length > 0) {
+        try {
+          const stored = JSON.parse(localStorage.getItem("nuju-activity-tags") || "{}");
+          stored[entry.id] = selectedActivities;
+          localStorage.setItem("nuju-activity-tags", JSON.stringify(stored));
+        } catch {}
+      }
+      setSelectedActivities([]);
       const newEntries = [{ mood: entry.mood, date: entry.entry_date, text: "" }, ...entries];
       setEntries(newEntries);
       const updatedProfile = await fetchProfile(user.id);
@@ -191,6 +201,17 @@ const AppPage: React.FC = () => {
       }
 
       const entry = await createEntry(user.id, selectedMood, text, energy);
+
+      // Persist activity tags locally (no DB migration needed)
+      if (selectedActivities.length > 0) {
+        try {
+          const stored = JSON.parse(localStorage.getItem("nuju-activity-tags") || "{}");
+          stored[entry.id] = selectedActivities;
+          localStorage.setItem("nuju-activity-tags", JSON.stringify(stored));
+        } catch {}
+      }
+      setSelectedActivities([]);
+
       const newEntries = [
         { mood: entry.mood, date: entry.entry_date, text: entry.text },
         ...entries,
@@ -300,6 +321,12 @@ const AppPage: React.FC = () => {
           {screen === "home" && (
             <HomeScreen
               onNavigate={(s) => navigateTo(s as Screen)}
+              onWrite={() => navigateTo("journal")}
+              onTalk={() => {
+                setJournalAutoRecord(true);
+                navigateTo("journal");
+                setTimeout(() => setJournalAutoRecord(false), 600);
+              }}
               onSettings={() => navigateTo("settings")}
               onUpgrade={() => navigateTo("pro")}
               onQuickLog={handleQuickLog}
@@ -309,6 +336,8 @@ const AppPage: React.FC = () => {
               onMoodSelect={handleMoodSelect}
               energy={energy}
               onEnergyChange={setEnergy}
+              selectedActivities={selectedActivities}
+              onActivitiesChange={setSelectedActivities}
               plan={profile?.plan}
               trialStartedAt={profile?.trial_started_at}
               hasBanner={(() => {
@@ -320,7 +349,13 @@ const AppPage: React.FC = () => {
             />
           )}
           {screen === "journal" && (
-            <JournalScreen onBack={() => navigateTo("home")} onSave={handleSaveEntry} initialPrompt={journalPrompt} />
+            <JournalScreen
+              onBack={() => navigateTo("home")}
+              onSave={handleSaveEntry}
+              initialPrompt={journalPrompt}
+              autoRecord={journalAutoRecord}
+              activities={selectedActivities}
+            />
           )}
           {screen === "insights" && <InsightsScreen entries={entries} streak={streak} onUpgrade={() => navigateTo("pro")} onNavigate={(s) => navigateTo(s as Screen)} plan={profile?.plan} trialStartedAt={profile?.trial_started_at} />}
           {screen === "coach" && <CoachScreen onUpgrade={() => navigateTo("pro")} plan={profile?.plan} trialStartedAt={profile?.trial_started_at} />}

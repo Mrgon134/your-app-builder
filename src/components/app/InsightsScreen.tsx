@@ -63,6 +63,30 @@ const InsightsScreen: React.FC<InsightsScreenProps> = ({ entries, streak = 0, on
     ? (weekMoods.reduce((a, b) => a + b, 0) / weekMoods.length).toFixed(1)
     : "0";
 
+  // Empty state — no entries yet
+  if (entries.length === 0) {
+    return (
+      <div className="animate-page-slide-in flex flex-col items-center justify-center py-16 text-center px-6">
+        <div className="relative w-28 h-28 mb-6">
+          <div className="absolute inset-[-12px] rounded-full bg-primary/8 animate-glow-pulse" />
+          <img src={JU_STICKERS.diary} alt="Ju" className="relative w-full h-full object-contain animate-ju-float" />
+        </div>
+        <h2 className="font-serif text-[22px] font-bold text-foreground mb-2">Your story starts here</h2>
+        <p className="text-[15px] text-muted-foreground leading-relaxed mb-8 max-w-[260px]">
+          Write your first entry and Ju will start discovering patterns in your mood and energy.
+        </p>
+        {onNavigate && (
+          <button
+            onClick={() => onNavigate("home")}
+            className="h-[52px] px-8 rounded-2xl bg-primary text-primary-foreground font-semibold text-[15px] press-spring shadow-[0_4px_20px_-4px_hsl(var(--primary)/0.4)]"
+          >
+            Write first entry
+          </button>
+        )}
+      </div>
+    );
+  }
+
   return (
     <div className="animate-page-slide-in space-y-5">
       <div className="flex items-center justify-between mb-2">

@@ -55,6 +55,8 @@ const JU_BUBBLE: Record<string, string> = {
 
 interface HomeScreenProps {
   onNavigate: (screen: string) => void;
+  onWrite?: () => void;
+  onTalk?: () => void;
   onSettings: () => void;
   onUpgrade: () => void;
   onQuickLog?: () => void;
@@ -64,16 +66,19 @@ interface HomeScreenProps {
   onMoodSelect?: (mood: number) => void;
   energy?: number;
   onEnergyChange?: (val: number) => void;
+  selectedActivities?: string[];
+  onActivitiesChange?: (activities: string[]) => void;
   plan?: string | null;
   trialStartedAt?: string | null;
   hasBanner?: boolean;
 }
 
 const HomeScreen: React.FC<HomeScreenProps> = ({
-  onNavigate, onSettings, onUpgrade, onQuickLog,
+  onNavigate, onWrite, onTalk, onSettings, onUpgrade, onQuickLog,
   streak, entries,
   selectedMood: controlledMood, onMoodSelect: controlledMoodSelect,
   energy: controlledEnergy, onEnergyChange: controlledEnergyChange,
+  selectedActivities: controlledActivities, onActivitiesChange,
   plan, trialStartedAt, hasBanner,
 }) => {
   const { t } = useLang();
@@ -81,7 +86,8 @@ const HomeScreen: React.FC<HomeScreenProps> = ({
   const [prompt, setPrompt] = useState(getRandomPrompt);
   const [localEnergy, setLocalEnergy] = useState(60);
   const [moodAnimating, setMoodAnimating] = useState<number | null>(null);
-  const [selectedActivities, setSelectedActivities] = useState<string[]>([]);
+  const [localActivities, setLocalActivities] = useState<string[]>([]);
+  const selectedActivities = controlledActivities ?? localActivities;
   const scrollRef = useRef<HTMLDivElement>(null);
   const [scrollY, setScrollY] = useState(0);
 
@@ -125,9 +131,11 @@ const HomeScreen: React.FC<HomeScreenProps> = ({
   };
 
   const toggleActivity = (id: string) => {
-    setSelectedActivities((prev) =>
-      prev.includes(id) ? prev.filter((a) => a !== id) : [...prev, id]
-    );
+    const next = selectedActivities.includes(id)
+      ? selectedActivities.filter((a) => a !== id)
+      : [...selectedActivities, id];
+    if (onActivitiesChange) onActivitiesChange(next);
+    else setLocalActivities(next);
     if (navigator.vibrate) navigator.vibrate(6);
   };
 
@@ -353,14 +361,14 @@ const HomeScreen: React.FC<HomeScreenProps> = ({
       <div className="space-y-2.5">
         <div className="grid grid-cols-2 gap-3">
           <button
-            onClick={() => onNavigate("journal")}
+            onClick={() => onWrite ? onWrite() : onNavigate("journal")}
             className="flex items-center justify-center gap-2.5 h-[54px] rounded-2xl bg-primary text-primary-foreground font-semibold text-[15px] press-spring shadow-[0_4px_20px_-4px_hsl(var(--primary)/0.4)]"
           >
             <PenLine className="w-[18px] h-[18px]" />
             {t.write}
           </button>
           <button
-            onClick={() => onNavigate("journal")}
+            onClick={() => onTalk ? onTalk() : onNavigate("journal")}
             className="flex items-center justify-center gap-2.5 h-[54px] rounded-2xl bg-foreground/[0.06] dark:bg-foreground/[0.08] text-foreground font-semibold text-[15px] press-spring backdrop-blur-sm"
           >
             <Mic className="w-[18px] h-[18px]" />
