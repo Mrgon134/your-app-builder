@@ -163,7 +163,7 @@ export const countCoachMessagesThisWeek = async (userId: string): Promise<number
   return count || 0;
 };
 
-// ── Habits ──────────────────────────────────────────────────────────────────
+// ── Habits (placeholder — tables not yet created) ──────────────────────────
 
 export interface HabitRow {
   id: string;
@@ -172,41 +172,26 @@ export interface HabitRow {
   color: string;
 }
 
-export const fetchHabits = async (userId: string): Promise<HabitRow[]> => {
-  const { data, error } = await supabase
-    .from("habits")
-    .select("id, name, emoji, color")
-    .eq("user_id", userId)
-    .eq("is_active", true)
-    .order("sort_order");
-  if (error) throw error;
-  return data || [];
+export const fetchHabits = async (_userId: string): Promise<HabitRow[]> => {
+  // habits table not yet created
+  return [];
 };
 
 export const toggleHabitLog = async (
-  userId: string,
-  habitId: string,
-  date: string,
-  done: boolean
+  _userId: string,
+  _habitId: string,
+  _date: string,
+  _done: boolean
 ): Promise<void> => {
-  if (done) {
-    await supabase.from("habit_logs").delete().eq("habit_id", habitId).eq("date", date);
-  } else {
-    await supabase.from("habit_logs").insert({ user_id: userId, habit_id: habitId, date });
-  }
+  // habit_logs table not yet created
 };
 
-export const fetchHabitLogsToday = async (userId: string, date: string): Promise<string[]> => {
-  const { data, error } = await supabase
-    .from("habit_logs")
-    .select("habit_id")
-    .eq("user_id", userId)
-    .eq("date", date);
-  if (error) throw error;
-  return (data || []).map((l: any) => l.habit_id);
+export const fetchHabitLogsToday = async (_userId: string, _date: string): Promise<string[]> => {
+  // habit_logs table not yet created
+  return [];
 };
 
-// ── Programs ─────────────────────────────────────────────────────────────────
+// ── Programs (placeholder — table not yet created) ───────────────────────────
 
 export interface UserProgramRow {
   program_id: string;
@@ -215,11 +200,7 @@ export interface UserProgramRow {
   started_at: string;
 }
 
-export const fetchUserPrograms = async (userId: string): Promise<UserProgramRow[]> => {
-  const { data, error } = await supabase
-    .from("user_programs")
-    .select("program_id, current_day, completed, started_at")
-    .eq("user_id", userId);
-  if (error) throw error;
-  return data || [];
+export const fetchUserPrograms = async (_userId: string): Promise<UserProgramRow[]> => {
+  // user_programs table not yet created
+  return [];
 };
