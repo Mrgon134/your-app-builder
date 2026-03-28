@@ -25,19 +25,27 @@ const moodLabels: Record<number, string> = {
   1: "Rough", 2: "Low", 3: "Okay", 4: "Good", 5: "Great",
 };
 
-function buildPrompt(text: string, mood: number, energy: number): string {
-  return `CRITICAL RULE: You MUST respond in the EXACT same language the user wrote in. If they wrote in Indonesian, respond in Indonesian. If Spanish, respond in Spanish. If Japanese, respond in Japanese. Never switch to English unless the user wrote in English. This rule overrides everything else.
+const langNames: Record<string, string> = {
+  en: "English", id: "Indonesian (Bahasa Indonesia)", es: "Spanish (Español)",
+  pt: "Portuguese (Português)", ja: "Japanese (日本語)", ko: "Korean (한국어)",
+  zh: "Chinese (中文)", hi: "Hindi (हिन्दी)", ar: "Arabic (العربية)",
+  fr: "French (Français)", de: "German (Deutsch)", ms: "Malay (Bahasa Melayu)",
+  th: "Thai (ไทย)", vi: "Vietnamese (Tiếng Việt)", fil: "Filipino",
+};
 
-You are Ju, a warm and insightful AI journal companion. The user just wrote a journal entry. Analyze their writing and provide a brief, empathetic 2-3 sentence insight.
+function buildPrompt(text: string, mood: number, energy: number, lang: string): string {
+  const langName = langNames[lang] || "English";
+  return `CRITICAL INSTRUCTION: You MUST respond ONLY in ${langName}. This is non-negotiable regardless of what language the journal entry is written in.
+
+You are Ju, a warm and insightful AI journal companion. The user just wrote a journal entry. Provide a brief, empathetic 2-3 sentence insight.
 
 Be specific to what they wrote — reference their words, feelings, or situations. Don't be generic.
 If mood is low (1-2), be extra compassionate. If mood is high (4-5), celebrate with them.
 
 Journal entry (mood: ${moodLabels[mood] || "Unknown"} ${mood}/5, energy: ${energy}/100):
-
 "${text}"
 
-Give a brief personalized insight about this entry. Remember: respond in the same language as the journal entry above.`;
+Respond in ${langName} only.`;
 }
 
 // ── Gemini ────────────────────────────────────────────────────────────────────
@@ -145,8 +153,8 @@ serve(async (req) => {
   if (req.method === "OPTIONS") return new Response(null, { headers: corsHeaders });
 
   try {
-    const { text, mood, energy } = await req.json();
-    const prompt = buildPrompt(text, mood ?? 3, energy ?? 50);
+    const { text, mood, energy, lang } = await req.json();
+    const prompt = buildPrompt(text, mood ?? 3, energy ?? 50, lang || "en");
     const insight = await getInsight(prompt);
 
     return new Response(

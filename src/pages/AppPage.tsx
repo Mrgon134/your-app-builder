@@ -23,7 +23,7 @@ import { toast } from "sonner";
 type Screen = "home" | "journal" | "insights" | "coach" | "pro" | "settings" | "programs" | "year-review";
 
 const AppPage: React.FC = () => {
-  const { t } = useLang();
+  const { t, lang } = useLang();
   const { user } = useAuth();
   const { country } = useGeoPricing();
   const [profile, setProfile] = useState<ProfileRow | null>(null);
@@ -253,7 +253,7 @@ const AppPage: React.FC = () => {
               "Content-Type": "application/json",
               Authorization: `Bearer ${aiKey}`,
             },
-            body: JSON.stringify({ text, mood: selectedMood, energy }),
+            body: JSON.stringify({ text, mood: selectedMood, energy, lang }),
           }
         );
         if (resp.ok) {
