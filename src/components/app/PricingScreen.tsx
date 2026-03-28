@@ -14,7 +14,7 @@ interface PricingScreenProps {
 
 const PricingScreen: React.FC<PricingScreenProps> = ({ currentPlan = "free", trialStartedAt = null, onCheckout, onStartTrial, onBack }) => {
   const { t } = useLang();
-  const [annual, setAnnual] = useState(false);
+  const [annual, setAnnual] = useState(true); // Default to annual — higher LTV + better value
   const geo = useGeoPricing();
   const trial = getTrialStatus(trialStartedAt);
 
@@ -24,9 +24,10 @@ const PricingScreen: React.FC<PricingScreenProps> = ({ currentPlan = "free", tri
       name: "Free",
       getPrice: () => 0,
       features: [
-        "3 entries per week",
-        "Basic mood tracking",
+        "Unlimited journal entries",
+        "Mood tracking & streaks",
         "7-day history",
+        "Basic AI coach (5 msgs/week)",
       ],
     },
     {
@@ -35,11 +36,11 @@ const PricingScreen: React.FC<PricingScreenProps> = ({ currentPlan = "free", tri
       popular: true,
       getPrice: () => annual ? geo.rates.plusAnnual : geo.rates.plusMonthly,
       features: [
-        "Unlimited entries",
-        "Full history",
-        "AI insights",
-        "Mood trends & analytics",
-        "All coach personas",
+        "AI insight after every entry",
+        "Unlimited history",
+        "30-day mood trends",
+        "All 4 coach personas",
+        "Monthly mood reports",
       ],
     },
     {
@@ -57,16 +58,26 @@ const PricingScreen: React.FC<PricingScreenProps> = ({ currentPlan = "free", tri
   ];
 
   const period = annual ? "/year" : "/month";
+  // When annual, show monthly equivalent
+  const getPriceDisplay = (price: number) => {
+    if (!annual || price === 0) return geo.formatPrice(price);
+    // Show as monthly equivalent (annual price / 12)
+    return geo.formatPrice(Math.round(price / 12 * 100) / 100);
+  };
+  const periodDisplay = annual ? "/mo, billed yearly" : "/month";
 
   return (
     <div className="animate-fade-up pb-8">
       {/* Header */}
-      <div className="flex items-center gap-3 mb-6">
+      <div className="flex items-center gap-3 mb-2">
         <button onClick={onBack} className="text-muted-foreground transition-all active:scale-[0.97]">
           <ArrowLeft className="w-5 h-5" />
         </button>
         <h1 className="font-serif text-xl font-bold">{t.unlock_ju}</h1>
       </div>
+      <p className="text-[13px] text-muted-foreground mb-6 ml-8">
+        Join 10,000+ people who journal with Ju every day
+      </p>
 
       {/* Trial status banner */}
       {trial.isActive && (
@@ -128,9 +139,16 @@ const PricingScreen: React.FC<PricingScreenProps> = ({ currentPlan = "free", tri
             }`}
           />
         </button>
-        <span className={`text-sm font-medium ${annual ? "text-foreground" : "text-muted-foreground"}`}>
-          {t.annual}
-        </span>
+        <div className="flex items-center gap-1.5">
+          <span className={`text-sm font-medium ${annual ? "text-foreground" : "text-muted-foreground"}`}>
+            Annual
+          </span>
+          {annual && (
+            <span className="text-[10px] font-bold px-1.5 py-0.5 rounded-full bg-[#4ECDC4]/15 text-[#4ECDC4] uppercase tracking-wide">
+              Save 33%
+            </span>
+          )}
+        </div>
       </div>
 
       {/* Tier cards */}
@@ -154,16 +172,21 @@ const PricingScreen: React.FC<PricingScreenProps> = ({ currentPlan = "free", tri
                 </span>
               )}
 
-              <div className="flex items-baseline gap-1 mb-4">
+              <div className="flex items-baseline gap-1 mb-1">
                 <span className="font-serif text-2xl font-bold text-foreground">
-                  {price === 0 ? "Free" : geo.formatPrice(price)}
+                  {price === 0 ? "Free" : getPriceDisplay(price)}
                 </span>
                 {price > 0 && (
-                  <span className="text-sm text-muted-foreground">{period}</span>
+                  <span className="text-sm text-muted-foreground">{periodDisplay}</span>
                 )}
               </div>
+              {price > 0 && annual && (
+                <p className="text-[11px] text-muted-foreground mt-0.5">
+                  Billed {geo.formatPrice(price)} once per year
+                </p>
+              )}
 
-              <h3 className="font-semibold text-base text-foreground mb-3">{tier.name}</h3>
+              <h3 className="font-semibold text-base text-foreground mt-3 mb-3">{tier.name}</h3>
 
               <ul className="space-y-2.5 mb-5">
                 {tier.features.map((f) => (
@@ -183,7 +206,7 @@ const PricingScreen: React.FC<PricingScreenProps> = ({ currentPlan = "free", tri
                   {trial.notStarted && tier.id === "plus" && (
                     <button
                       onClick={onStartTrial}
-                      className="w-full py-3.5 rounded-2xl font-semibold text-sm transition-all active:scale-[0.97] bg-primary text-primary-foreground hover:shadow-lg hover:shadow-primary/20"
+                      className="w-full py-3.5 rounded-2xl font-semibold text-sm transition-all active:scale-[0.97] bg-primary text-primary-foreground shadow-[0_4px_20px_-4px_hsl(var(--primary)/0.45)]"
                     >
                       Start {TRIAL_DAYS}-day free trial
                     </button>
@@ -194,12 +217,17 @@ const PricingScreen: React.FC<PricingScreenProps> = ({ currentPlan = "free", tri
                       tier.popular && trial.notStarted
                         ? "bg-primary/10 text-primary"
                         : tier.popular
-                          ? "bg-primary text-primary-foreground hover:shadow-lg hover:shadow-primary/20"
-                          : "bg-secondary text-foreground hover:bg-secondary/80"
+                          ? "bg-primary text-primary-foreground shadow-[0_4px_20px_-4px_hsl(var(--primary)/0.45)]"
+                          : "bg-secondary text-foreground"
                     }`}
                   >
-                    {trial.isActive || trial.expired ? "Subscribe" : t.start_trial}
+                    {trial.isActive || trial.expired ? `Subscribe to ${tier.name}` : trial.notStarted && tier.id === "plus" ? `Subscribe — ${geo.formatPrice(tier.getPrice())}${period}` : t.start_trial}
                   </button>
+                  {tier.popular && (
+                    <p className="text-center text-[11px] text-muted-foreground">
+                      No payment due today. Cancel anytime.
+                    </p>
+                  )}
                 </div>
               )}
             </div>
