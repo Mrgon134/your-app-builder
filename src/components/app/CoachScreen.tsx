@@ -36,12 +36,14 @@ const CHAT_URL = `${AI_BASE}/functions/v1/ai-coach`;
 async function streamChat({
   messages,
   persona,
+  lang,
   onDelta,
   onDone,
   onError,
 }: {
   messages: Msg[];
   persona: string;
+  lang: string;
   onDelta: (text: string) => void;
   onDone: () => void;
   onError: (msg: string) => void;
@@ -52,7 +54,7 @@ async function streamChat({
       "Content-Type": "application/json",
       Authorization: `Bearer ${AI_KEY}`,
     },
-    body: JSON.stringify({ messages, persona }),
+    body: JSON.stringify({ messages, persona, lang }),
   });
 
   if (!resp.ok) {
@@ -123,7 +125,7 @@ async function streamChat({
 }
 
 const CoachScreen: React.FC<{ onUpgrade?: () => void; plan?: string | null; trialStartedAt?: string | null }> = ({ onUpgrade, plan: propPlan, trialStartedAt: propTrialStartedAt }) => {
-  const { t } = useLang();
+  const { t, lang } = useLang();
   const { user } = useAuth();
   const [persona, setPersona] = useState("gentle");
   const [messages, setMessages] = useState<Msg[]>([]);
@@ -208,6 +210,7 @@ const CoachScreen: React.FC<{ onUpgrade?: () => void; plan?: string | null; tria
       await streamChat({
         messages: newMessages.slice(-20), // last 20 messages for context
         persona,
+        lang,
         onDelta: upsertAssistant,
         onDone: () => {
           setIsLoading(false);

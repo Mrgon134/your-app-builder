@@ -7,92 +7,126 @@ interface AiMemoryCardProps {
   entries: Array<{ mood: number; date: string; text: string }>;
 }
 
-const MEMORY_PATTERNS: Record<string, string[]> = {
-  en: [
-    "You tend to feel more positive when you journal regularly.",
-    "Your mood has been trending upward recently — keep going!",
-    "You write more on days when you feel low. That's a healthy outlet.",
-    "Showing up to journal even on hard days says a lot about your resilience.",
-    "Your mood tends to dip mid-week. You're not alone in that.",
-  ],
-  id: [
-    "Kamu cenderung lebih positif saat rutin menulis jurnal.",
-    "Mood kamu lagi trending naik — terus ya!",
-    "Kamu lebih banyak nulis saat merasa sedih. Itu outlet yang sehat.",
-    "Tetap nulis walau hari berat itu tanda kamu tangguh.",
-    "Mood kamu sering turun di tengah minggu. Itu normal banget.",
-  ],
-  es: [
-    "Tiendes a sentirte más positivo cuando escribes con regularidad.",
-    "Tu ánimo ha estado mejorando recientemente — ¡sigue así!",
-    "Escribes más en los días que te sientes bajo. Es una salida saludable.",
-    "Seguir escribiendo incluso en días difíciles muestra tu resiliencia.",
-    "Tu ánimo tiende a bajar a mitad de semana. No estás solo en eso.",
-  ],
-  fr: [
-    "Tu as tendance à te sentir mieux quand tu écris régulièrement.",
-    "Ton humeur est en hausse ces derniers temps — continue !",
-    "Tu écris davantage les jours où tu te sens bas. C'est un exutoire sain.",
-    "Continuer à écrire même les jours difficiles montre ta résilience.",
-    "Ton humeur tend à baisser en milieu de semaine. Tu n'es pas seul(e).",
-  ],
-  de: [
-    "Du neigst dazu, dich besser zu fühlen, wenn du regelmäßig schreibst.",
-    "Deine Stimmung verbessert sich in letzter Zeit — weiter so!",
-    "Du schreibst mehr an schlechten Tagen. Das ist ein gesundes Ventil.",
-    "Auch an schwierigen Tagen zu schreiben zeigt deine Widerstandskraft.",
-    "Deine Stimmung neigt dazu, Mitte der Woche zu sinken. Das ist normal.",
-  ],
-  ja: [
-    "定期的に書くと気分が良くなる傾向があります。",
-    "最近、気分が上向いています — その調子で！",
-    "気分が落ち込む日ほど書いていますね。それは健全な発散方法です。",
-    "辛い日でも書き続けることが、あなたの強さを表しています。",
-    "週の半ばに気分が落ちる傾向があります。それは珍しいことではありません。",
-  ],
-  ms: [
-    "Anda cenderung berasa lebih positif apabila menulis dengan kerap.",
-    "Mood anda sedang meningkat kebelakangan ini — teruskan!",
-    "Anda lebih banyak menulis pada hari yang terasa rendah. Itu pelepasan yang sihat.",
-    "Terus menulis walaupun pada hari yang sukar menunjukkan ketahanan anda.",
-    "Mood anda cenderung turun di pertengahan minggu. Itu perkara biasa.",
-  ],
-  th: [
-    "คุณมีแนวโน้มรู้สึกดีขึ้นเมื่อเขียนอย่างสม่ำเสมอ",
-    "อารมณ์ของคุณกำลังดีขึ้นเร็วๆ นี้ — ทำต่อไปเลย!",
-    "คุณเขียนมากขึ้นในวันที่รู้สึกไม่ดี นั่นเป็นทางออกที่ดีต่อสุขภาพ",
-    "การเขียนต่อแม้ในวันที่ยากแสดงถึงความยืดหยุ่นของคุณ",
-    "อารมณ์คุณมักลดลงกลางสัปดาห์ คุณไม่ได้อยู่คนเดียวในเรื่องนี้",
-  ],
-  vi: [
-    "Bạn có xu hướng cảm thấy tích cực hơn khi viết nhật ký đều đặn.",
-    "Cảm xúc của bạn đang cải thiện gần đây — tiếp tục nhé!",
-    "Bạn viết nhiều hơn vào những ngày không tốt. Đó là cách giải tỏa lành mạnh.",
-    "Vẫn viết kể cả những ngày khó nói lên sức mạnh của bạn.",
-    "Cảm xúc bạn có xu hướng giảm vào giữa tuần. Bạn không một mình đâu.",
-  ],
-  fil: [
-    "May tendensya kang mas maging positibo kapag regular kang nagsusulat.",
-    "Papataas ang mood mo kamakailan — ituloy mo!",
-    "Mas marami kang sinusulat sa mga araw na hindi ka maganda ang pakiramdam. Malusog na outlet iyon.",
-    "Ang patuloy na pagsusulat kahit sa mahirap na araw ay nagpapakita ng iyong lakas.",
-    "Ang mood mo ay may tendensyang bumaba sa kalagitnaan ng linggo. Hindi ka nag-iisa.",
-  ],
-  ar: [
-    "تميل إلى الشعور بتحسن عند الكتابة بانتظام.",
-    "مزاجك في تحسن مؤخراً — استمر!",
-    "تكتب أكثر في الأيام الصعبة. هذا منفذ صحي.",
-    "الاستمرار في الكتابة حتى في الأيام الصعبة يعكس قدرتك على الصمود.",
-    "مزاجك يميل إلى الانخفاض في منتصف الأسبوع. أنت لست وحدك.",
-  ],
-  hi: [
-    "नियमित रूप से लिखने पर आप अधिक सकारात्मक महसूस करते हैं।",
-    "हाल ही में आपका मूड बेहतर हो रहा है — जारी रखें!",
-    "मुश्किल दिनों में आप ज़्यादा लिखते हैं। यह एक स्वस्थ आउटलेट है।",
-    "कठिन दिनों में भी लिखते रहना आपकी मज़बूती को दर्शाता है।",
-    "सप्ताह के मध्य में आपका मूड थोड़ा गिरता है। आप अकेले नहीं हैं।",
-  ],
+// Translated pattern templates — each key maps to a language map
+const PATTERNS: Record<string, Record<string, string>> = {
+  trending_up: {
+    en: "Your mood has been trending upward recently — great momentum!",
+    id: "Mood kamu lagi naik belakangan ini — terus pertahankan!",
+    es: "Tu ánimo ha estado mejorando recientemente — ¡gran impulso!",
+    fr: "Ton humeur est en hausse récemment — bel élan !",
+    de: "Deine Stimmung verbessert sich in letzter Zeit — toller Schwung!",
+    ja: "最近、気分が上向いています — その勢いを続けて！",
+    ko: "최근 기분이 좋아지고 있어요 — 좋은 흐름이에요!",
+    zh: "最近你的心情一直在好转 — 保持下去！",
+    hi: "हाल ही में आपका मूड बेहतर हो रहा है — बढ़िया!",
+    ar: "مزاجك في تحسن مؤخراً — استمر في هذا الزخم!",
+    ms: "Mood anda semakin baik kebelakangan ini — teruskan!",
+    th: "อารมณ์ของคุณกำลังดีขึ้นเร็วๆ นี้ — ยอดเยี่ยม!",
+    vi: "Cảm xúc của bạn đang cải thiện gần đây — tiếp tục nhé!",
+    fil: "Papataas ang mood mo kamakailan — napakagandang momentum!",
+  },
+  trending_down: {
+    en: "Your mood has dipped a bit lately — but you're still here, and that matters.",
+    id: "Mood kamu sempat turun, tapi kamu tetap nulis — itu sudah luar biasa.",
+    es: "Tu ánimo ha bajado un poco — pero sigues aquí, y eso importa.",
+    fr: "Ton humeur a un peu baissé — mais tu es toujours là, et c'est important.",
+    de: "Deine Stimmung ist etwas gesunken — aber du bist noch hier, und das zählt.",
+    ja: "最近少し気分が落ちていますが、それでも書き続けているあなたは素晴らしい。",
+    ko: "기분이 조금 내려갔지만 — 그래도 여기 있다는 게 중요해요.",
+    zh: "最近心情有些低落 — 但你还在这里，这很重要。",
+    hi: "हाल में मूड थोड़ा गिरा, लेकिन आप यहाँ हैं — यह बड़ी बात है।",
+    ar: "تراجع مزاجك قليلاً مؤخراً — لكنك لا تزال هنا، وهذا يهم.",
+    ms: "Mood anda sedikit menurun — tapi anda masih di sini, dan itu penting.",
+    th: "อารมณ์ลดลงเล็กน้อย — แต่คุณยังอยู่ที่นี่ และนั่นสำคัญมาก",
+    vi: "Cảm xúc có hơi xuống gần đây — nhưng bạn vẫn ở đây, điều đó quan trọng.",
+    fil: "Bumaba ng kaunti ang mood mo — pero nandito ka pa rin, at iyon ang mahalaga.",
+  },
+  consistent: {
+    en: "You've been showing up consistently — journaling regularly is one of the best things you can do.",
+    id: "Kamu rutin nulis belakangan ini — itu salah satu kebiasaan terbaik.",
+    es: "Has sido consistente — escribir regularmente es una de las mejores cosas que puedes hacer.",
+    fr: "Tu es régulier(ère) — écrire régulièrement est l'une des meilleures choses pour toi.",
+    de: "Du bist konsequent dabei — regelmäßiges Schreiben ist eine der besten Gewohnheiten.",
+    ja: "継続して書いていますね — 定期的な日記は最高の習慣の一つです。",
+    ko: "꾸준히 쓰고 있네요 — 정기적으로 일기 쓰는 건 최고의 습관 중 하나예요.",
+    zh: "你一直在坚持写 — 定期写日记是你能做的最好的事情之一。",
+    hi: "आप लगातार लिख रहे हैं — नियमित journaling सबसे अच्छी आदतों में से एक है।",
+    ar: "أنت ملتزم بالكتابة — الكتابة المنتظمة من أفضل العادات.",
+    ms: "Anda konsisten dalam menulis — menulis secara berkala adalah antara kebiasaan terbaik.",
+    th: "คุณเขียนสม่ำเสมอ — การเขียนบันทึกเป็นประจำเป็นหนึ่งในสิ่งที่ดีที่สุดที่คุณทำได้",
+    vi: "Bạn đã kiên trì viết — viết nhật ký đều đặn là một trong những thói quen tốt nhất.",
+    fil: "Palagi kang lumalabas at nagsusulat — isa ito sa mga pinakamahusay na gawi.",
+  },
+  avg_good: {
+    en: "Your average mood this week has been positive — you're doing better than you might think.",
+    id: "Rata-rata mood kamu minggu ini positif — kamu lebih baik dari yang kamu kira.",
+    es: "Tu estado de ánimo promedio ha sido positivo — estás mejor de lo que crees.",
+    fr: "Ton humeur moyenne a été positive — tu vas mieux que tu ne le penses.",
+    de: "Deine durchschnittliche Stimmung war positiv — es geht dir besser, als du denkst.",
+    ja: "今週の平均気分はポジティブです — 思っているより調子がいいですよ。",
+    ko: "이번 주 평균 기분이 긍정적이에요 — 생각보다 훨씬 잘하고 있어요.",
+    zh: "本周你的平均心情是积极的 — 你比你想象的要好。",
+    hi: "इस हफ्ते आपका औसत मूड सकारात्मक रहा — आप सोचते हैं उससे बेहतर कर रहे हैं।",
+    ar: "كان متوسط مزاجك إيجابياً هذا الأسبوع — أنت أفضل مما تظن.",
+    ms: "Purata mood anda minggu ini adalah positif — anda lebih baik daripada yang anda fikir.",
+    th: "อารมณ์เฉลี่ยของคุณสัปดาห์นี้เป็นบวก — คุณทำได้ดีกว่าที่คิด",
+    vi: "Tâm trạng trung bình của bạn tuần này tích cực — bạn đang làm tốt hơn bạn nghĩ.",
+    fil: "Positibo ang average mood mo ngayong linggo — mas maganda ka kaysa sa iniisip mo.",
+  },
+  writes_on_low: {
+    en: "You tend to write more when you're feeling low. That's actually a healthy outlet.",
+    id: "Kamu lebih banyak nulis saat merasa sedih. Itu cara yang sehat banget.",
+    es: "Tiendes a escribir más cuando te sientes bajo. Es una salida muy saludable.",
+    fr: "Tu as tendance à écrire plus quand tu te sens bas. C'est un exutoire sain.",
+    de: "Du schreibst mehr, wenn du dich schlecht fühlst. Das ist ein gesundes Ventil.",
+    ja: "気分が落ちている日ほど書いていますね。それは健全な発散方法です。",
+    ko: "기분이 안 좋을 때 더 많이 쓰는 경향이 있어요. 그건 정말 건강한 방법이에요.",
+    zh: "你在情绪低落时写得更多。这其实是很健康的发泄方式。",
+    hi: "आप कम मूड पर ज़्यादा लिखते हैं। यह एक स्वस्थ आउटलेट है।",
+    ar: "تميل إلى الكتابة أكثر عندما تشعر بالانخفاض. هذا منفذ صحي.",
+    ms: "Anda cenderung menulis lebih banyak apabila berasa rendah. Itu cara yang sihat.",
+    th: "คุณมีแนวโน้มเขียนมากขึ้นเมื่อรู้สึกไม่ดี นั่นเป็นทางออกที่ดีต่อสุขภาพ",
+    vi: "Bạn có xu hướng viết nhiều hơn khi cảm thấy không tốt. Đó là cách giải tỏa lành mạnh.",
+    fil: "May tendensya kang magsulat nang mas marami kapag mababa ang mood. Malusog na paraan iyon.",
+  },
 };
+
+function derivePatterns(entries: Array<{ mood: number; date: string; text: string }>, lang: string): string[] {
+  const get = (key: string) => PATTERNS[key][lang] || PATTERNS[key].en;
+  const result: string[] = [];
+
+  if (entries.length < 3) return result;
+
+  const moods = entries.map((e) => e.mood);
+  const avgMood = moods.reduce((a, b) => a + b, 0) / moods.length;
+
+  // Pattern 1: mood trend (compare first half vs second half of entries)
+  const half = Math.floor(moods.length / 2);
+  const firstHalfAvg = moods.slice(0, half).reduce((a, b) => a + b, 0) / half;
+  const secondHalfAvg = moods.slice(-half).reduce((a, b) => a + b, 0) / half;
+  if (secondHalfAvg - firstHalfAvg >= 0.5) result.push(get("trending_up"));
+  else if (firstHalfAvg - secondHalfAvg >= 0.5) result.push(get("trending_down"));
+  else if (avgMood >= 3.5) result.push(get("avg_good"));
+
+  // Pattern 2: consistency (≥5 entries = consistent)
+  if (entries.length >= 7) result.push(get("consistent"));
+
+  // Pattern 3: writes more on low mood days
+  if (entries.length >= 5) {
+    const lowEntries = entries.filter((e) => e.mood <= 2);
+    const highEntries = entries.filter((e) => e.mood >= 4);
+    if (lowEntries.length >= 2) {
+      const avgLowLen = lowEntries.reduce((a, e) => a + e.text.length, 0) / lowEntries.length;
+      const avgHighLen = highEntries.length
+        ? highEntries.reduce((a, e) => a + e.text.length, 0) / highEntries.length
+        : 0;
+      if (avgLowLen > avgHighLen * 1.3) result.push(get("writes_on_low"));
+    }
+  }
+
+  // Return max 3 patterns
+  return result.slice(0, 3);
+}
 
 const AiMemoryCard: React.FC<AiMemoryCardProps> = ({ entries }) => {
   const { t, lang } = useLang();
@@ -103,16 +137,9 @@ const AiMemoryCard: React.FC<AiMemoryCardProps> = ({ entries }) => {
     return () => clearTimeout(timer);
   }, []);
 
-  const memories = useMemo(() => {
-    if (entries.length < 3) return null;
-    const patterns = MEMORY_PATTERNS[lang as keyof typeof MEMORY_PATTERNS] || MEMORY_PATTERNS.en;
-    // 3+ entries: 1 pattern. 7+: 3 patterns per spec
-    const count = entries.length >= 7 ? 3 : 1;
-    const startIdx = entries.length % patterns.length;
-    return Array.from({ length: count }, (_, i) => patterns[(startIdx + i) % patterns.length]);
-  }, [entries.length, lang]);
+  const memories = useMemo(() => derivePatterns(entries, lang), [entries, lang]);
 
-  if (!memories || !visible) return null;
+  if (entries.length < 3 || memories.length === 0 || !visible) return null;
 
   return (
     <div
@@ -123,15 +150,11 @@ const AiMemoryCard: React.FC<AiMemoryCardProps> = ({ entries }) => {
       }}
     >
       <div className="flex items-center gap-2.5 mb-3">
-        <img
-          src={JU_STICKERS.goodjob}
-          alt="Ju remembers"
-          className="w-8 h-8"
-        />
+        <img src={JU_STICKERS.goodjob} alt="Ju remembers" className="w-8 h-8" />
         <div className="flex items-center gap-1.5">
           <Brain className="w-3.5 h-3.5 text-primary" />
           <p className="text-xs font-medium text-primary uppercase tracking-wider">
-            {(t.ju_remembers || "Ju remembers")}
+            {t.ju_remembers || "Ju remembers"}
           </p>
         </div>
       </div>
