@@ -6,13 +6,6 @@ import juGreat from "@/assets/ju-great.webp";
 import juOkay from "@/assets/ju-okay.webp";
 import { requestNotificationPermission, scheduleLocalReminder } from "@/lib/notifications";
 
-const INTENT_OPTIONS = [
-  { id: "stress", emoji: "😮‍💨", label: "Manage stress", desc: "Unload what's on my mind" },
-  { id: "awareness", emoji: "🔍", label: "Know myself better", desc: "Understand my patterns" },
-  { id: "habits", emoji: "🌱", label: "Build a habit", desc: "Show up every day" },
-  { id: "exploring", emoji: "✨", label: "Just exploring", desc: "See what this is about" },
-] as const;
-
 const REMINDER_OPTIONS = [
   { label: "8:00 AM", hour: 8 },
   { label: "12:00 PM", hour: 12 },
@@ -22,6 +15,14 @@ const REMINDER_OPTIONS = [
 
 const OnboardingScreen: React.FC<{ onComplete: () => void }> = ({ onComplete }) => {
   const { t } = useLang();
+
+  const INTENT_OPTIONS = [
+    { id: "stress",    emoji: "😮‍💨", label: t.onb_intent_stress || "Manage stress",       desc: t.onb_intent_stress_desc || "Unload what's on my mind" },
+    { id: "awareness", emoji: "🔍",  label: t.onb_intent_awareness || "Know myself better",  desc: t.onb_intent_awareness_desc || "Understand my patterns" },
+    { id: "habits",    emoji: "🌱",  label: t.onb_intent_habits || "Build a habit",          desc: t.onb_intent_habits_desc || "Show up every day" },
+    { id: "exploring", emoji: "✨",  label: t.onb_intent_exploring || "Just exploring",       desc: t.onb_intent_exploring_desc || "See what this is about" },
+  ];
+
   // step 0 = intent, steps 1-4 = slides, step 5 = reminder
   const [step, setStep] = useState(0);
   const [selectedIntent, setSelectedIntent] = useState<string | null>(null);
@@ -96,10 +97,10 @@ const OnboardingScreen: React.FC<{ onComplete: () => void }> = ({ onComplete }) 
             <img src={juMain} alt="Ju" className="relative w-full h-full object-contain animate-ju-float" />
           </div>
           <h2 className="font-serif text-2xl font-bold mb-2" style={{ color: "#1A1A2E" }}>
-            Why are you here?
+            {t.onb_intent_title || "Why are you here?"}
           </h2>
           <p className="text-base leading-relaxed mb-7" style={{ color: "#777" }}>
-            Ju will personalize your experience based on what matters to you.
+            {t.onb_intent_desc || "Ju will personalize your experience based on what matters to you."}
           </p>
           <div className="grid grid-cols-2 gap-3 mb-8">
             {INTENT_OPTIONS.map(({ id, emoji, label, desc }) => {
@@ -140,10 +141,10 @@ const OnboardingScreen: React.FC<{ onComplete: () => void }> = ({ onComplete }) 
           </div>
 
           <h2 className="font-serif text-2xl font-bold mb-2" style={{ color: "#1A1A2E" }}>
-            Never miss a day
+            {t.onb_reminder_title || "Never miss a day"}
           </h2>
           <p className="text-base leading-relaxed mb-8" style={{ color: "#777" }}>
-            When should Ju check in with you?
+            {t.onb_reminder_desc || "When should Ju check in with you?"}
           </p>
 
           <div className="grid grid-cols-2 gap-3 mb-8">
@@ -170,7 +171,7 @@ const OnboardingScreen: React.FC<{ onComplete: () => void }> = ({ onComplete }) 
             <div className="flex items-center justify-center gap-2 mb-6 animate-fade-up">
               <Bell className="w-4 h-4" style={{ color: "#7C6EDB" }} />
               <span className="text-[13px] font-medium" style={{ color: "#7C6EDB" }}>
-                Reminder set! Ju will check in at {REMINDER_OPTIONS.find(o => o.hour === selectedHour)?.label}
+                {`${t.onb_reminder_set || "Reminder set! Ju will check in at"} ${REMINDER_OPTIONS.find(o => o.hour === selectedHour)?.label}`}
               </span>
             </div>
           )}
@@ -182,7 +183,7 @@ const OnboardingScreen: React.FC<{ onComplete: () => void }> = ({ onComplete }) 
             className="w-full py-4 rounded-2xl font-semibold text-base transition-all active:scale-[0.97]"
             style={{ background: "#7C6EDB", color: "white" }}
           >
-            {reminderSet ? t.onb_start : "Skip for now"}
+            {reminderSet ? t.onb_start : (t.onb_skip_reminder || "Skip for now")}
           </button>
         </div>
       ) : (
