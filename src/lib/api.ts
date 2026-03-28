@@ -200,7 +200,19 @@ export interface UserProgramRow {
   started_at: string;
 }
 
-export const fetchUserPrograms = async (_userId: string): Promise<UserProgramRow[]> => {
-  // user_programs table not yet created
-  return [];
+export const fetchUserPrograms = async (userId: string): Promise<UserProgramRow[]> => {
+  const { data, error } = await supabase
+    .from("user_programs")
+    .select("program_id, current_day, completed, started_at")
+    .eq("user_id", userId)
+    .order("started_at", { ascending: false });
+  if (error) { console.error("fetchUserPrograms:", error); return []; }
+  return data || [];
+};
+
+export const upsertUserProgram = async (userId: string, program: UserProgramRow): Promise<void> => {
+  const { error } = await supabase
+    .from("user_programs")
+    .upsert({ user_id: userId, ...program }, { onConflict: "user_id,program_id" });
+  if (error) console.error("upsertUserProgram:", error);
 };
