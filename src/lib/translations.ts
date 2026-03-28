@@ -87,6 +87,7 @@ export const translations: Record<string, Record<string, string>> = {
     signup_desc: "You've used your free entries. Unlock unlimited journaling, all coach personas, and full history.",
     signup_cta: "Unlock full access",
     ju_remembers: "Ju remembers",
+    ju_memory_desc: "Based on your past {n} entries, Ju noticed:",
     history_locked: "Full history locked",
     history_locked_desc: "Free plan shows 7 days. Upgrade to see all your entries.",
     share_mood: "Share",
@@ -188,6 +189,7 @@ export const translations: Record<string, Record<string, string>> = {
     signup_desc: "Entri gratismu sudah habis. Buka akses unlimited journaling, semua coach persona, dan riwayat lengkap.",
     signup_cta: "Buka akses penuh",
     ju_remembers: "Ju ingat",
+    ju_memory_desc: "Dari {n} entri sebelumnya, Ju menyadari:",
     history_locked: "Riwayat lengkap terkunci",
     history_locked_desc: "Paket gratis hanya 7 hari. Upgrade untuk lihat semua entri.",
     share_mood: "Bagikan",
@@ -285,6 +287,8 @@ export const translations: Record<string, Record<string, string>> = {
     enter_email: "Ingresa tu email",
     cta_final: "Tu mente merece más que una página en blanco",
     cta_final_desc: "Comienza tu viaje con Ju hoy. Solo toma 30 segundos.",
+    ju_remembers: "Ju recuerda",
+    ju_memory_desc: "Basándose en tus {n} entradas anteriores, Ju notó:",
   },
   fr: {
     greeting_morning: "Bonjour",
@@ -370,6 +374,8 @@ export const translations: Record<string, Record<string, string>> = {
     enter_email: "Entre ton email",
     cta_final: "Ton esprit mérite mieux qu'une page blanche",
     cta_final_desc: "Commence ton voyage avec Ju aujourd'hui. 30 secondes suffisent.",
+    ju_remembers: "Ju se souvient",
+    ju_memory_desc: "D'après tes {n} entrées précédentes, Ju a remarqué :",
   },
   de: {
     greeting_morning: "Guten Morgen",
@@ -455,6 +461,8 @@ export const translations: Record<string, Record<string, string>> = {
     enter_email: "E-Mail eingeben",
     cta_final: "Dein Geist verdient mehr als eine leere Seite",
     cta_final_desc: "Starte deine Reise mit Ju heute. Nur 30 Sekunden.",
+    ju_remembers: "Ju erinnert sich",
+    ju_memory_desc: "Basierend auf deinen {n} bisherigen Einträgen hat Ju bemerkt:",
   },
   ja: {
     greeting_morning: "おはようございます",
@@ -540,6 +548,8 @@ export const translations: Record<string, Record<string, string>> = {
     enter_email: "メールアドレスを入力",
     cta_final: "あなたの心は白紙以上のものに値する",
     cta_final_desc: "今日からJuと旅を始めよう。たった30秒。",
+    ju_remembers: "Juが覚えていること",
+    ju_memory_desc: "過去{n}回の記録から、Juが気づいたこと：",
   },
   ms: {
     greeting_morning: "Selamat pagi",
@@ -625,6 +635,8 @@ export const translations: Record<string, Record<string, string>> = {
     enter_email: "Masukkan email",
     cta_final: "Minda anda layak lebih dari halaman kosong",
     cta_final_desc: "Mula perjalanan dengan Ju hari ini. 30 saat sahaja.",
+    ju_remembers: "Ju ingat",
+    ju_memory_desc: "Berdasarkan {n} entri lepas anda, Ju perasan:",
   },
   th: {
     greeting_morning: "สวัสดีตอนเช้า",
@@ -710,6 +722,8 @@ export const translations: Record<string, Record<string, string>> = {
     enter_email: "กรอกอีเมล",
     cta_final: "จิตใจคุณสมควรมากกว่าหน้ากระดาษเปล่า",
     cta_final_desc: "เริ่มการเดินทางกับ Ju วันนี้ แค่ 30 วินาที",
+    ju_remembers: "Ju จำได้",
+    ju_memory_desc: "จาก {n} บันทึกที่ผ่านมา Ju สังเกตว่า:",
   },
   vi: {
     greeting_morning: "Chào buổi sáng",
@@ -795,6 +809,8 @@ export const translations: Record<string, Record<string, string>> = {
     enter_email: "Nhập email",
     cta_final: "Tâm trí bạn xứng đáng hơn một trang trắng",
     cta_final_desc: "Bắt đầu hành trình với Ju hôm nay. Chỉ 30 giây.",
+    ju_remembers: "Ju nhớ",
+    ju_memory_desc: "Dựa trên {n} bài viết trước của bạn, Ju nhận thấy:",
   },
   fil: {
     greeting_morning: "Magandang umaga",
@@ -880,6 +896,8 @@ export const translations: Record<string, Record<string, string>> = {
     enter_email: "Ilagay ang email mo",
     cta_final: "Ang isip mo ay nararapat sa higit pa sa blangkong pahina",
     cta_final_desc: "Simulan ang journey mo kasama si Ju ngayon. 30 segundo lang.",
+    ju_remembers: "Naalala ni Ju",
+    ju_memory_desc: "Batay sa iyong {n} nakaraang entries, napansin ni Ju:",
   },
   ar: {
     greeting_morning: "صباح الخير",
@@ -965,6 +983,8 @@ export const translations: Record<string, Record<string, string>> = {
     enter_email: "أدخل بريدك الإلكتروني",
     cta_final: "عقلك يستحق أكثر من صفحة فارغة",
     cta_final_desc: "ابدأ رحلتك مع Ju اليوم. 30 ثانية فقط.",
+    ju_remembers: "Ju يتذكر",
+    ju_memory_desc: "بناءً على {n} مدخلاتك السابقة، لاحظ Ju:",
   },
   hi: {
     greeting_morning: "सुप्रभात",
@@ -1050,6 +1070,8 @@ export const translations: Record<string, Record<string, string>> = {
     enter_email: "ईमेल डालें",
     cta_final: "आपका मन एक खाली पन्ने से ज़्यादा का हकदार है",
     cta_final_desc: "आज ही Ju के साथ अपनी यात्रा शुरू करें। बस 30 सेकंड।",
+    ju_remembers: "Ju को याद है",
+    ju_memory_desc: "आपकी {n} पिछली एंट्री के आधार पर, Ju ने ध्यान दिया:",
   },
   zh: {
     greeting_morning: "早上好",
