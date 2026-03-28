@@ -6,6 +6,16 @@ const corsHeaders = {
     "authorization, x-client-info, apikey, content-type, x-supabase-client-platform, x-supabase-client-platform-version, x-supabase-client-runtime, x-supabase-client-runtime-version",
 };
 
+// ─── Provider config via Supabase Dashboard > Edge Functions > Secrets ────────
+//
+//  AI_PROVIDER  = "gemini" | "openai" | "groq" | "anthropic" | "openai-compatible"
+//  AI_MODEL     = model name
+//  AI_API_KEY   = API key for the provider
+//  AI_BASE_URL  = (optional) custom OpenAI-compatible base URL
+//  GEMINI_API_KEY = legacy fallback
+//
+// ─────────────────────────────────────────────────────────────────────────────
+
 const PERSONA_PROMPTS: Record<string, string> = {
   gentle:
     "You are Ju as Gentle Guide. Warm, nurturing, validating. Use soft language. Acknowledge feelings first. Ask open-ended questions. Never judge. Keep responses 2-3 sentences. Respond in the same language as the user.",
@@ -17,83 +27,250 @@ const PERSONA_PROMPTS: Record<string, string> = {
     "You are Ju as Fun Friend. Playful, energetic, honest. Casual language. Make user laugh but be real when needed. Celebrate small wins. 2-3 sentences. Respond in the same language as the user.",
 };
 
-serve(async (req) => {
-  if (req.method === "OPTIONS") {
-    return new Response(null, { headers: corsHeaders });
+type ChatMessage = { role: string; content: string };
+
+// ── Helpers: SSE encoder ──────────────────────────────────────────────────────
+const encoder = new TextEncoder();
+function sseChunk(text: string): Uint8Array {
+  const chunk = JSON.stringify({ choices: [{ delta: { content: text } }] });
+  return encoder.encode(`data: ${chunk}\n\n`);
+}
+const sseDone = encoder.encode("data: [DONE]\n\n");
+
+// ── Gemini streaming ──────────────────────────────────────────────────────────
+async function streamGemini(
+  systemPrompt: string,
+  messages: ChatMessage[],
+  model: string,
+  apiKey: string
+): Promise<ReadableStream> {
+  const contents = messages.map((m) => ({
+    role: m.role === "assistant" ? "model" : "user",
+    parts: [{ text: m.content }],
+  }));
+
+  const res = await fetch(
+    `https://generativelanguage.googleapis.com/v1beta/models/${model}:streamGenerateContent?alt=sse&key=${apiKey}`,
+    {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        system_instruction: { parts: [{ text: systemPrompt }] },
+        contents,
+        generationConfig: { maxOutputTokens: 250, temperature: 0.8 },
+      }),
+    }
+  );
+  if (!res.ok || !res.body) throw new Error(`Gemini ${res.status}: ${await res.text()}`);
+
+  const reader = res.body.getReader();
+  const decoder = new TextDecoder();
+
+  return new ReadableStream({
+    async start(controller) {
+      let buffer = "";
+      try {
+        while (true) {
+          const { done, value } = await reader.read();
+          if (done) break;
+          buffer += decoder.decode(value, { stream: true });
+          let nlIdx: number;
+          while ((nlIdx = buffer.indexOf("\n")) !== -1) {
+            const line = buffer.slice(0, nlIdx).replace(/\r$/, "");
+            buffer = buffer.slice(nlIdx + 1);
+            if (!line.startsWith("data: ")) continue;
+            const jsonStr = line.slice(6).trim();
+            if (!jsonStr || jsonStr === "[DONE]") continue;
+            try {
+              const data = JSON.parse(jsonStr);
+              const text = data.candidates?.[0]?.content?.parts?.[0]?.text;
+              if (text) controller.enqueue(sseChunk(text));
+            } catch { /* skip malformed */ }
+          }
+        }
+      } finally {
+        controller.enqueue(sseDone);
+        controller.close();
+      }
+    },
+  });
+}
+
+// ── OpenAI-compatible streaming (OpenAI, Groq, DashScope, Azure, Together…) ──
+async function streamOpenAICompat(
+  systemPrompt: string,
+  messages: ChatMessage[],
+  model: string,
+  apiKey: string,
+  baseUrl: string
+): Promise<ReadableStream> {
+  const res = await fetch(`${baseUrl}/chat/completions`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json", Authorization: `Bearer ${apiKey}` },
+    body: JSON.stringify({
+      model,
+      stream: true,
+      max_tokens: 250,
+      temperature: 0.8,
+      messages: [
+        { role: "system", content: systemPrompt },
+        ...messages.map((m) => ({ role: m.role === "assistant" ? "assistant" : "user", content: m.content })),
+      ],
+    }),
+  });
+  if (!res.ok || !res.body) throw new Error(`OpenAI-compat ${res.status}: ${await res.text()}`);
+
+  // OpenAI SSE is already in our target format — pass through directly
+  const reader = res.body.getReader();
+  const decoder = new TextDecoder();
+
+  return new ReadableStream({
+    async start(controller) {
+      let buffer = "";
+      try {
+        while (true) {
+          const { done, value } = await reader.read();
+          if (done) break;
+          buffer += decoder.decode(value, { stream: true });
+          let nlIdx: number;
+          while ((nlIdx = buffer.indexOf("\n")) !== -1) {
+            const line = buffer.slice(0, nlIdx).replace(/\r$/, "");
+            buffer = buffer.slice(nlIdx + 1);
+            if (!line.startsWith("data: ")) continue;
+            const jsonStr = line.slice(6).trim();
+            if (jsonStr === "[DONE]") {
+              controller.enqueue(sseDone);
+              continue;
+            }
+            if (!jsonStr) continue;
+            try {
+              const data = JSON.parse(jsonStr);
+              const text = data.choices?.[0]?.delta?.content;
+              if (text) controller.enqueue(sseChunk(text));
+            } catch { /* skip malformed */ }
+          }
+        }
+      } finally {
+        controller.enqueue(sseDone);
+        controller.close();
+      }
+    },
+  });
+}
+
+// ── Anthropic streaming ───────────────────────────────────────────────────────
+async function streamAnthropic(
+  systemPrompt: string,
+  messages: ChatMessage[],
+  model: string,
+  apiKey: string
+): Promise<ReadableStream> {
+  const res = await fetch("https://api.anthropic.com/v1/messages", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "x-api-key": apiKey,
+      "anthropic-version": "2023-06-01",
+    },
+    body: JSON.stringify({
+      model,
+      max_tokens: 250,
+      stream: true,
+      system: systemPrompt,
+      messages: messages.map((m) => ({
+        role: m.role === "assistant" ? "assistant" : "user",
+        content: m.content,
+      })),
+    }),
+  });
+  if (!res.ok || !res.body) throw new Error(`Anthropic ${res.status}: ${await res.text()}`);
+
+  const reader = res.body.getReader();
+  const decoder = new TextDecoder();
+
+  return new ReadableStream({
+    async start(controller) {
+      let buffer = "";
+      try {
+        while (true) {
+          const { done, value } = await reader.read();
+          if (done) break;
+          buffer += decoder.decode(value, { stream: true });
+          let nlIdx: number;
+          while ((nlIdx = buffer.indexOf("\n")) !== -1) {
+            const line = buffer.slice(0, nlIdx).replace(/\r$/, "");
+            buffer = buffer.slice(nlIdx + 1);
+            if (!line.startsWith("data: ")) continue;
+            const jsonStr = line.slice(6).trim();
+            if (!jsonStr) continue;
+            try {
+              const data = JSON.parse(jsonStr);
+              // Anthropic streams: { type: "content_block_delta", delta: { type: "text_delta", text: "..." } }
+              if (data.type === "content_block_delta" && data.delta?.type === "text_delta") {
+                const text = data.delta.text;
+                if (text) controller.enqueue(sseChunk(text));
+              }
+            } catch { /* skip malformed */ }
+          }
+        }
+      } finally {
+        controller.enqueue(sseDone);
+        controller.close();
+      }
+    },
+  });
+}
+
+// ── Provider router ───────────────────────────────────────────────────────────
+async function getStream(
+  systemPrompt: string,
+  messages: ChatMessage[]
+): Promise<ReadableStream> {
+  const provider = Deno.env.get("AI_PROVIDER") || "gemini";
+  const apiKey = Deno.env.get("AI_API_KEY") || Deno.env.get("GEMINI_API_KEY") || "";
+  if (!apiKey) throw new Error("No API key set. Add AI_API_KEY (or GEMINI_API_KEY) in Supabase secrets.");
+
+  switch (provider) {
+    case "gemini": {
+      const model = Deno.env.get("AI_MODEL") || "gemini-2.0-flash-lite";
+      return streamGemini(systemPrompt, messages, model, apiKey);
+    }
+    case "openai":
+    case "groq": {
+      const defaultBase = provider === "groq"
+        ? "https://api.groq.com/openai/v1"
+        : "https://api.openai.com/v1";
+      const baseUrl = Deno.env.get("AI_BASE_URL") || defaultBase;
+      const defaultModel = provider === "groq" ? "llama-3.3-70b-versatile" : "gpt-4o-mini";
+      const model = Deno.env.get("AI_MODEL") || defaultModel;
+      return streamOpenAICompat(systemPrompt, messages, model, apiKey, baseUrl);
+    }
+    case "anthropic": {
+      const model = Deno.env.get("AI_MODEL") || "claude-haiku-4-5-20251001";
+      return streamAnthropic(systemPrompt, messages, model, apiKey);
+    }
+    case "openai-compatible": {
+      const baseUrl = Deno.env.get("AI_BASE_URL");
+      const model = Deno.env.get("AI_MODEL");
+      if (!baseUrl) throw new Error("openai-compatible requires AI_BASE_URL in secrets.");
+      if (!model) throw new Error("openai-compatible requires AI_MODEL in secrets.");
+      return streamOpenAICompat(systemPrompt, messages, model, apiKey, baseUrl);
+    }
+    default:
+      throw new Error(
+        `Unknown AI_PROVIDER: "${provider}". Valid values: gemini, openai, groq, anthropic, openai-compatible`
+      );
   }
+}
+
+// ── Handler ───────────────────────────────────────────────────────────────────
+serve(async (req) => {
+  if (req.method === "OPTIONS") return new Response(null, { headers: corsHeaders });
 
   try {
     const { messages, persona } = await req.json();
-    const GEMINI_API_KEY = Deno.env.get("GEMINI_API_KEY");
-    if (!GEMINI_API_KEY) throw new Error("GEMINI_API_KEY is not configured");
-
     const systemPrompt = PERSONA_PROMPTS[persona] || PERSONA_PROMPTS.gentle;
-
-    // Convert to Gemini format
-    const contents = (messages as Array<{ role: string; content: string }>).map((m) => ({
-      role: m.role === "assistant" ? "model" : "user",
-      parts: [{ text: m.content }],
-    }));
-
-    const response = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-lite:streamGenerateContent?alt=sse&key=${GEMINI_API_KEY}`,
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          system_instruction: { parts: [{ text: systemPrompt }] },
-          contents,
-          generationConfig: { maxOutputTokens: 250, temperature: 0.8 },
-        }),
-      }
-    );
-
-    if (!response.ok || !response.body) {
-      const errText = await response.text();
-      console.error("Gemini error:", response.status, errText);
-      return new Response(
-        JSON.stringify({ error: "AI error" }),
-        { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
-      );
-    }
-
-    // Transform Gemini SSE → OpenAI-compatible SSE format
-    const reader = response.body.getReader();
-    const encoder = new TextEncoder();
-    const decoder = new TextDecoder();
-
-    const stream = new ReadableStream({
-      async start(controller) {
-        let buffer = "";
-        try {
-          while (true) {
-            const { done, value } = await reader.read();
-            if (done) break;
-            buffer += decoder.decode(value, { stream: true });
-
-            let nlIdx: number;
-            while ((nlIdx = buffer.indexOf("\n")) !== -1) {
-              const line = buffer.slice(0, nlIdx).replace(/\r$/, "");
-              buffer = buffer.slice(nlIdx + 1);
-              if (!line.startsWith("data: ")) continue;
-              const jsonStr = line.slice(6).trim();
-              if (!jsonStr || jsonStr === "[DONE]") continue;
-              try {
-                const data = JSON.parse(jsonStr);
-                const text = data.candidates?.[0]?.content?.parts?.[0]?.text;
-                if (text) {
-                  const chunk = JSON.stringify({ choices: [{ delta: { content: text } }] });
-                  controller.enqueue(encoder.encode(`data: ${chunk}\n\n`));
-                }
-              } catch { /* skip malformed */ }
-            }
-          }
-        } finally {
-          controller.enqueue(encoder.encode("data: [DONE]\n\n"));
-          controller.close();
-        }
-      },
-    });
+    const stream = await getStream(systemPrompt, messages);
 
     return new Response(stream, {
       headers: { ...corsHeaders, "Content-Type": "text/event-stream", "Cache-Control": "no-cache" },
