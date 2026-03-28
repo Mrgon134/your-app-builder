@@ -119,7 +119,7 @@ const HomeScreen: React.FC<HomeScreenProps> = ({
   selectedActivities: controlledActivities, onActivitiesChange,
   plan, trialStartedAt, hasBanner,
 }) => {
-  const { t } = useLang();
+  const { t, lang } = useLang();
   const [localMood, setLocalMood] = useState<number | null>(null);
   const [prompt, setPrompt] = useState(getRandomPrompt);
   const [localEnergy, setLocalEnergy] = useState(60);
