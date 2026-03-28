@@ -64,19 +64,26 @@ const InsightsScreen: React.FC<InsightsScreenProps> = ({ entries, streak = 0, on
     : "0";
 
   // Compute mood trend from recent entries (last 7 vs previous 7)
-  const getMoodTrend = (): { direction: "up" | "down" | "stable"; message: string } => {
-    if (entries.length < 3) return { direction: "stable", message: "Keep writing and I'll spot patterns in your mood." };
+  const getMoodTrend = (): { direction: "up" | "down" | "stable" | "seed" | "first" } => {
+    if (entries.length < 3) return { direction: "seed" };
     const recent = entries.slice(0, Math.min(7, entries.length)).map((e) => e.mood);
     const older = entries.slice(Math.min(7, entries.length), Math.min(14, entries.length)).map((e) => e.mood);
     const recentAvg = recent.reduce((a, b) => a + b, 0) / recent.length;
-    if (older.length === 0) return { direction: "stable", message: "You've been showing up consistently. That's already a win." };
+    if (older.length === 0) return { direction: "first" };
     const olderAvg = older.reduce((a, b) => a + b, 0) / older.length;
     const diff = recentAvg - olderAvg;
-    if (diff >= 0.5) return { direction: "up", message: "Your mood has been climbing this week. Something's working — what is it?" };
-    if (diff <= -0.5) return { direction: "down", message: "Things have been heavier lately. That's okay — I'm noticing it so you don't have to carry it alone." };
-    return { direction: "stable", message: "Your mood has been steady. Consistency is underrated — it's a kind of strength." };
+    if (diff >= 0.5) return { direction: "up" };
+    if (diff <= -0.5) return { direction: "down" };
+    return { direction: "stable" };
   };
   const moodTrend = getMoodTrend();
+  const MOOD_TREND_MESSAGES: Record<string, string> = {
+    seed: t.mood_trend_seed || "Keep writing and I'll spot patterns in your mood.",
+    first: t.mood_trend_first || "You've been showing up consistently. That's already a win.",
+    up: t.mood_trend_up || "Your mood has been climbing this week. Something's working — what is it?",
+    down: t.mood_trend_down || "Things have been heavier lately. That's okay — I'm here.",
+    stable: t.mood_trend_stable || "Your mood has been steady. Consistency is a kind of strength.",
+  };
 
   // Empty state — no entries yet
   if (entries.length === 0) {
@@ -86,16 +93,16 @@ const InsightsScreen: React.FC<InsightsScreenProps> = ({ entries, streak = 0, on
           <div className="absolute inset-[-12px] rounded-full bg-primary/8 animate-glow-pulse" />
           <img src={JU_STICKERS.diary} alt="Ju" className="relative w-full h-full object-contain animate-ju-float" />
         </div>
-        <h2 className="font-serif text-[22px] font-bold text-foreground mb-2">Your story starts here</h2>
+        <h2 className="font-serif text-[22px] font-bold text-foreground mb-2">{t.insights_empty_title || "Your story starts here"}</h2>
         <p className="text-[15px] text-muted-foreground leading-relaxed mb-8 max-w-[260px]">
-          Write your first entry and Ju will start discovering patterns in your mood and energy.
+          {t.insights_empty_desc || "Write your first entry and Ju will start discovering patterns in your mood and energy."}
         </p>
         {onNavigate && (
           <button
             onClick={() => onNavigate("home")}
             className="h-[52px] px-8 rounded-2xl bg-primary text-primary-foreground font-semibold text-[15px] press-spring shadow-[0_4px_20px_-4px_hsl(var(--primary)/0.4)]"
           >
-            Write first entry
+            {t.insights_empty_cta || "Write first entry"}
           </button>
         )}
       </div>
@@ -163,7 +170,7 @@ const InsightsScreen: React.FC<InsightsScreenProps> = ({ entries, streak = 0, on
           />
           <div>
             <p className="text-[11px] font-semibold text-primary uppercase tracking-widest mb-1.5">I noticed...</p>
-            <p className="text-[14px] text-foreground leading-relaxed">{moodTrend.message}</p>
+            <p className="text-[14px] text-foreground leading-relaxed">{MOOD_TREND_MESSAGES[moodTrend.direction]}</p>
           </div>
         </div>
       )}

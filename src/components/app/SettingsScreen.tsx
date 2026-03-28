@@ -62,7 +62,7 @@ const SettingsScreen: React.FC<SettingsScreenProps> = ({ onBack, onUpgrade, plan
         {/* Appearance group */}
         <div>
           <p className="text-[13px] font-medium text-muted-foreground uppercase tracking-wider px-4 mb-1.5">
-            {t.dark_mode ? "Appearance" : "Appearance"}
+            {t.appearance || "Appearance"}
           </p>
           <div className="ios-group">
             {/* Dark mode */}

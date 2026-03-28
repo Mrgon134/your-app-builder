@@ -49,7 +49,7 @@ const HistoryLock: React.FC<HistoryLockProps> = ({ onUpgrade, plan = "free", tri
           className="flex items-center gap-2 px-5 h-[40px] rounded-xl bg-primary text-primary-foreground text-[13px] font-semibold transition-all active:scale-[0.97] shadow-[0_2px_12px_-3px_hsl(var(--primary)/0.35)]"
         >
           <Sparkles className="w-3.5 h-3.5" />
-          {t.unlock_pro || "Unlock with Pro"}
+          {t.unlock_plus || t.unlock_ju || "Unlock with Plus"}
         </button>
       </div>
     </div>
