@@ -68,25 +68,29 @@ const ShareMenu: React.FC<ShareMenuProps> = ({ type, data, label, className }) =
       const shareText = "Check out my mood on Nuju 💜 https://nuju.app";
 
       if (platformId === "native") {
-        try {
-          await shareImage(blob, `My ${type} mood — Nuju`);
+        const file = new File([blob], "nuju-mood.png", { type: "image/png" });
+        if (navigator.share && navigator.canShare?.({ files: [file] })) {
+          await navigator.share({ title: `My ${type} — Nuju`, text: shareText, files: [file] });
           toast.success("Shared! 💜");
-        } catch {
-          // Fall through to download
-          downloadBlob(blob);
-          toast.success("Downloaded! 📥");
+        } else {
+          // Desktop fallback: copy image to clipboard
+          try {
+            await navigator.clipboard.write([new ClipboardItem({ "image/png": blob })]);
+            toast.success("Image copied! Paste it anywhere 📋");
+          } catch {
+            downloadBlob(blob);
+            toast.success("Saved! Now share it 📥");
+          }
         }
       } else if (platformId === "whatsapp") {
-        // WhatsApp: share text with link (image via native share on mobile)
-        if (navigator.share && navigator.canShare?.({ files: [new File([blob], "nuju.png", { type: "image/png" })] })) {
-          await navigator.share({
-            text: shareText,
-            files: [new File([blob], "nuju-mood.png", { type: "image/png" })],
-          });
+        const file = new File([blob], "nuju-mood.png", { type: "image/png" });
+        if (navigator.share && navigator.canShare?.({ files: [file] })) {
+          await navigator.share({ text: shareText, files: [file] });
         } else {
+          // Desktop: open wa.me link (user can add image manually)
           window.open(`https://wa.me/?text=${encodeURIComponent(shareText)}`, "_blank");
         }
-        toast.success("Shared to WhatsApp! 💚");
+        toast.success("Opening WhatsApp! 💚");
       } else if (platformId === "twitter") {
         // X/Twitter: open tweet compose with text
         window.open(

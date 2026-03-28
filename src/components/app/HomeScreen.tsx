@@ -43,15 +43,44 @@ const ACTIVITY_TAGS = [
   { id: "fun",    icon: Gamepad2,  label: "Fun"    },
 ] as const;
 
-// Mood-reactive speech bubble messages
-const JU_BUBBLE: Record<string, string> = {
-  "1": "I'm right here with you. No pressure.",
-  "2": "Let's take this one step at a time",
-  "3": "A steady day has its own beauty",
-  "4": "You're doing well today",
-  "5": "What a wonderful feeling",
-  default: "How are you today?",
+// Mood-reactive speech bubble messages — multilingual
+const JU_BUBBLES: Record<string, Record<string, string>> = {
+  en: { "1": "I'm right here with you. No pressure.", "2": "Let's take this one step at a time", "3": "A steady day has its own beauty", "4": "You're doing well today", "5": "What a wonderful feeling", default: "How are you today?" },
+  id: { "1": "Aku di sini bersamamu. Nggak ada tekanan.", "2": "Pelan-pelan aja, satu langkah sekaligus", "3": "Hari yang biasa pun ada indahnya", "4": "Kamu baik-baik aja hari ini", "5": "Perasaan yang luar biasa!", default: "Gimana kabar hari ini?" },
+  ms: { "1": "Aku di sini bersamamu. Tiada tekanan.", "2": "Kita buat satu langkah dulu", "3": "Hari biasa pun ada keindahannya", "4": "Kamu baik-baik hari ini", "5": "Perasaan yang luar biasa!", default: "Apa khabar hari ini?" },
+  es: { "1": "Estoy aquí contigo. Sin presión.", "2": "Vamos paso a paso", "3": "Un día tranquilo tiene su propia belleza", "4": "Lo estás haciendo bien hoy", "5": "¡Qué sensación tan maravillosa!", default: "¿Cómo estás hoy?" },
+  fr: { "1": "Je suis là avec toi. Sans pression.", "2": "On y va étape par étape", "3": "Une journée calme a sa propre beauté", "4": "Tu t'en sors bien aujourd'hui", "5": "Quelle merveilleuse sensation !", default: "Comment tu vas aujourd'hui ?" },
+  de: { "1": "Ich bin hier bei dir. Kein Druck.", "2": "Schritt für Schritt", "3": "Ein ruhiger Tag hat seine eigene Schönheit", "4": "Du machst das heute gut", "5": "Was für ein wunderbares Gefühl!", default: "Wie geht es dir heute?" },
+  ja: { "1": "ここにいるよ。プレッシャーなしでいい。", "2": "一歩ずつ進もう", "3": "穏やかな日にも美しさがある", "4": "今日はよくやってるよ", "5": "素晴らしい気分だね！", default: "今日の調子はどう？" },
+  ko: { "1": "여기 있을게, 부담 갖지 마.", "2": "한 걸음씩 같이 가자", "3": "평범한 하루도 나름의 아름다움이 있어", "4": "오늘 잘 하고 있어", "5": "정말 멋진 기분이네!", default: "오늘 어때?" },
+  zh: { "1": "我在这里陪你，不用有压力。", "2": "我们一步一步来", "3": "平静的一天也有它的美", "4": "你今天做得很好", "5": "真是美妙的感觉！", default: "今天感觉怎么样？" },
+  hi: { "1": "मैं यहाँ हूँ तुम्हारे साथ। कोई दबाव नहीं।", "2": "एक-एक कदम चलते हैं", "3": "शांत दिन की भी अपनी सुंदरता है", "4": "आज तुम अच्छा कर रहे हो", "5": "कितना शानदार एहसास है!", default: "आज कैसा महसूस हो रहा है?" },
+  ar: { "1": "أنا هنا معك. لا ضغط.", "2": "لنأخذها خطوة بخطوة", "3": "ليوم الهادئ جماله الخاص", "4": "أنت تتعامل معها بشكل جيد اليوم", "5": "يا له من شعور رائع!", default: "كيف حالك اليوم؟" },
+  th: { "1": "ฉันอยู่ตรงนี้กับคุณ ไม่ต้องกดดัน", "2": "ทีละก้าวนะ", "3": "วันธรรมดาก็มีความงามในแบบของมัน", "4": "คุณทำได้ดีวันนี้", "5": "ความรู้สึกที่วิเศษมาก!", default: "วันนี้เป็นยังไงบ้าง?" },
+  vi: { "1": "Tôi ở đây bên bạn. Không áp lực gì cả.", "2": "Hãy từng bước một nhé", "3": "Ngày bình thường cũng có vẻ đẹp riêng", "4": "Hôm nay bạn làm tốt lắm", "5": "Cảm giác tuyệt vời quá!", default: "Hôm nay bạn thế nào?" },
+  fil: { "1": "Nandito ako para sa iyo. Walang pressure.", "2": "Isa-isang hakbang lang", "3": "May sariling ganda ang tahimik na araw", "4": "Magaling ka ngayon", "5": "Napakagandang pakiramdam!", default: "Kumusta ka ngayon?" },
 };
+
+// Activity tag labels — multilingual
+const ACTIVITY_LABELS: Record<string, Record<string, string>> = {
+  en: { move: "Move", sleep: "Sleep", food: "Food", work: "Work", social: "Social", fun: "Fun" },
+  id: { move: "Gerak", sleep: "Tidur", food: "Makan", work: "Kerja", social: "Sosial", fun: "Hiburan" },
+  ms: { move: "Gerak", sleep: "Tidur", food: "Makan", work: "Kerja", social: "Sosial", fun: "Seronok" },
+  es: { move: "Mover", sleep: "Dormir", food: "Comer", work: "Trabajo", social: "Social", fun: "Diversión" },
+  fr: { move: "Bouger", sleep: "Dormir", food: "Manger", work: "Travail", social: "Social", fun: "Amusement" },
+  de: { move: "Bewegen", sleep: "Schlafen", food: "Essen", work: "Arbeit", social: "Sozial", fun: "Spaß" },
+  ja: { move: "運動", sleep: "睡眠", food: "食事", work: "仕事", social: "交流", fun: "楽しみ" },
+  ko: { move: "운동", sleep: "수면", food: "식사", work: "일", social: "교류", fun: "즐거움" },
+  zh: { move: "运动", sleep: "睡眠", food: "饮食", work: "工作", social: "社交", fun: "娱乐" },
+  hi: { move: "व्यायाम", sleep: "नींद", food: "खाना", work: "काम", social: "मेलजोल", fun: "मौज" },
+  ar: { move: "تحرك", sleep: "نوم", food: "طعام", work: "عمل", social: "تواصل", fun: "ترفيه" },
+  th: { move: "ออกกำลัง", sleep: "นอน", food: "อาหาร", work: "งาน", social: "สังคม", fun: "ความสนุก" },
+  vi: { move: "Vận động", sleep: "Ngủ", food: "Ăn uống", work: "Công việc", social: "Giao lưu", fun: "Vui chơi" },
+  fil: { move: "Kilos", sleep: "Tulog", food: "Pagkain", work: "Trabaho", social: "Sosyal", fun: "Kasiyahan" },
+};
+
+// Energy level labels — multilingual [drained, low, okay, good, full]
+const ENERGY_LABEL_KEYS = ["drained", "low", "okay", "good", "energized"] as const;
 
 // Streak milestone copy
 const getStreakMessage = (streak: number): string | null => {
@@ -110,9 +139,15 @@ const HomeScreen: React.FC<HomeScreenProps> = ({
   const stickerKey = getMascotForState({ selectedMood, isNight });
   const juImg = JU_STICKERS[stickerKey];
 
-  // Today's date string — clean, no emoji
+  // Today's date string — locale-aware
+  const LANG_LOCALE: Record<string, string> = {
+    en: "en-US", id: "id-ID", ms: "ms-MY", es: "es-ES", fr: "fr-FR",
+    de: "de-DE", ja: "ja-JP", ko: "ko-KR", zh: "zh-CN", hi: "hi-IN",
+    ar: "ar-SA", th: "th-TH", vi: "vi-VN", fil: "fil-PH",
+  };
   const today = new Date();
-  const dateStr = today.toLocaleDateString("en-US", { weekday: "long", day: "numeric", month: "long" });
+  const locale = LANG_LOCALE[lang] || "en-US";
+  const dateStr = today.toLocaleDateString(locale, { weekday: "long", day: "numeric", month: "long" });
 
   // Parallax scroll tracking
   useEffect(() => {
@@ -227,12 +262,12 @@ const HomeScreen: React.FC<HomeScreenProps> = ({
         >
           <div className="glass-card rounded-full px-4 py-1.5">
             <p className="text-[13px] text-foreground/80 font-medium">
-              {JU_BUBBLE[String(selectedMood)] ?? JU_BUBBLE.default}
+              {(JU_BUBBLES[lang] || JU_BUBBLES.en)[String(selectedMood)] ?? (JU_BUBBLES[lang] || JU_BUBBLES.en).default}
             </p>
           </div>
           {selectedMood === 1 && (
             <p className="text-[12px] text-muted-foreground/70 animate-fade-up" style={{ animationDelay: "0.2s" }}>
-              Writing even a little can help
+              {t.writing_helps || "Writing even a little can help"}
             </p>
           )}
         </div>
@@ -306,7 +341,7 @@ const HomeScreen: React.FC<HomeScreenProps> = ({
                 className="text-[11px] font-medium"
                 style={{ color: active ? "hsl(var(--primary))" : "hsl(var(--muted-foreground))" }}
               >
-                {label}
+                {(ACTIVITY_LABELS[lang] || ACTIVITY_LABELS.en)[id] || label}
               </span>
             </button>
           );
@@ -338,7 +373,7 @@ const HomeScreen: React.FC<HomeScreenProps> = ({
             className="w-full flex items-center justify-center gap-2 h-[44px] rounded-2xl border border-border/50 text-muted-foreground font-medium text-[13px] press-spring animate-fade-up transition-all hover:border-border hover:text-foreground"
           >
             <Check className="w-3.5 h-3.5" />
-            Log mood only
+            {t.log_mood_only || "Log mood only"}
           </button>
         )}
       </div>
@@ -350,7 +385,7 @@ const HomeScreen: React.FC<HomeScreenProps> = ({
           <div className="glass-card rounded-2xl p-5">
             <div className="flex items-center justify-between mb-4">
               <p className="text-[11px] font-semibold text-muted-foreground uppercase tracking-[0.12em]">{t.energy}</p>
-              <span className="text-[11px] font-medium text-muted-foreground">{nearestEnergy.label}</span>
+              <span className="text-[11px] font-medium text-muted-foreground">{t[ENERGY_LABEL_KEYS[ENERGY_LEVELS.indexOf(nearestEnergy)]] || nearestEnergy.label}</span>
             </div>
             <div className="flex gap-2">
               {ENERGY_LEVELS.map((lvl) => {
@@ -417,12 +452,12 @@ const HomeScreen: React.FC<HomeScreenProps> = ({
       {entries.length > 0 && (
         <div>
           <div className="flex items-center justify-between mb-2 px-0.5">
-            <p className="text-[11px] font-semibold text-muted-foreground uppercase tracking-[0.12em]">Recent</p>
+            <p className="text-[11px] font-semibold text-muted-foreground uppercase tracking-[0.12em]">{t.recent || "Recent"}</p>
             <button
               onClick={() => onNavigate("insights")}
               className="text-[11px] text-primary font-medium press-spring"
             >
-              See all
+              {t.see_all || "See all"}
             </button>
           </div>
           <div className="glass-card rounded-2xl overflow-hidden">

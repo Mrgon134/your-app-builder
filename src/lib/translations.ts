@@ -100,6 +100,10 @@ export const translations: Record<string, Record<string, string>> = {
     notif_denied: "Notifications blocked. Enable in browser settings.",
     notif_enabled: "Reminder set! 🔔",
     sign_out: "Sign out",
+    writing_helps: "Writing even a little can help",
+    log_mood_only: "Log mood only",
+    recent: "Recent",
+    see_all: "See all",
   },
   id: {
     greeting_morning: "Selamat pagi",
@@ -202,6 +206,10 @@ export const translations: Record<string, Record<string, string>> = {
     notif_denied: "Notifikasi diblokir. Aktifkan di pengaturan browser.",
     notif_enabled: "Pengingat aktif! 🔔",
     sign_out: "Keluar",
+    writing_helps: "Menulis sedikit pun bisa membantu",
+    log_mood_only: "Catat mood saja",
+    recent: "Terbaru",
+    see_all: "Lihat semua",
   },
   es: {
     greeting_morning: "Buenos días",
