@@ -16,18 +16,25 @@ const corsHeaders = {
 //
 // ─────────────────────────────────────────────────────────────────────────────
 
-const LANGUAGE_RULE = "CRITICAL: Always reply in the exact same language the user is writing in. If they write in Indonesian, reply in Indonesian. If Spanish, reply in Spanish. Never default to English unless the user writes in English.";
-
-const PERSONA_PROMPTS: Record<string, string> = {
-  gentle:
-    `${LANGUAGE_RULE} You are Ju as Gentle Guide. Warm, nurturing, validating. Use soft language. Acknowledge feelings first. Ask open-ended questions. Never judge. Keep responses 2-3 sentences.`,
-  tough:
-    `${LANGUAGE_RULE} You are Ju as Tough Coach. Direct, motivating, action-oriented. Cut through excuses lovingly. Challenge the user. Focus on what they can control. Push for next steps. 2-3 sentences.`,
-  wise:
-    `${LANGUAGE_RULE} You are Ju as Wise Sage. Philosophical, contemplative. Reference wisdom traditions (Stoicism, mindfulness). Ask deep questions. Help see the bigger picture. 2-3 sentences.`,
-  fun:
-    `${LANGUAGE_RULE} You are Ju as Fun Friend. Playful, energetic, honest. Casual language. Make user laugh but be real when needed. Celebrate small wins. 2-3 sentences.`,
+const langNames: Record<string, string> = {
+  en: "English", id: "Indonesian (Bahasa Indonesia)", es: "Spanish (Español)",
+  pt: "Portuguese (Português)", ja: "Japanese (日本語)", ko: "Korean (한국어)",
+  zh: "Chinese (中文)", hi: "Hindi (हिन्दी)", ar: "Arabic (العربية)",
+  fr: "French (Français)", de: "German (Deutsch)", ms: "Malay (Bahasa Melayu)",
+  th: "Thai (ไทย)", vi: "Vietnamese (Tiếng Việt)", fil: "Filipino",
 };
+
+function getPersonaPrompt(persona: string, lang: string): string {
+  const langName = langNames[lang] || "English";
+  const langRule = `CRITICAL INSTRUCTION: You MUST respond ONLY in ${langName}. This is non-negotiable.`;
+  const prompts: Record<string, string> = {
+    gentle: `${langRule} You are Ju as Gentle Guide. Warm, nurturing, validating. Use soft language. Acknowledge feelings first. Ask open-ended questions. Never judge. Keep responses 2-3 sentences.`,
+    tough: `${langRule} You are Ju as Tough Coach. Direct, motivating, action-oriented. Cut through excuses lovingly. Challenge the user. Focus on what they can control. Push for next steps. 2-3 sentences.`,
+    wise: `${langRule} You are Ju as Wise Sage. Philosophical, contemplative. Reference wisdom traditions (Stoicism, mindfulness). Ask deep questions. Help see the bigger picture. 2-3 sentences.`,
+    fun: `${langRule} You are Ju as Fun Friend. Playful, energetic, honest. Casual language. Make user laugh but be real when needed. Celebrate small wins. 2-3 sentences.`,
+  };
+  return prompts[persona] || prompts.gentle;
+}
 
 type ChatMessage = { role: string; content: string };
 
@@ -270,8 +277,8 @@ serve(async (req) => {
   if (req.method === "OPTIONS") return new Response(null, { headers: corsHeaders });
 
   try {
-    const { messages, persona } = await req.json();
-    const systemPrompt = PERSONA_PROMPTS[persona] || PERSONA_PROMPTS.gentle;
+    const { messages, persona, lang } = await req.json();
+    const systemPrompt = getPersonaPrompt(persona || "gentle", lang || "en");
     const stream = await getStream(systemPrompt, messages);
 
     return new Response(stream, {

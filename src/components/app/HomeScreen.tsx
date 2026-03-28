@@ -83,11 +83,8 @@ const ACTIVITY_LABELS: Record<string, Record<string, string>> = {
 const ENERGY_LABEL_KEYS = ["drained", "low", "okay", "good", "energized"] as const;
 
 // Streak milestone copy
-const getStreakMessage = (streak: number): string | null => {
-  if (streak >= 30) return "One month strong!";
-  if (streak >= 14) return "Two weeks of showing up";
-  if (streak >= 7) return "You built a habit!";
-  if (streak >= 3) return "3 days in a row";
+const getStreakMessage = (streak: number, t: Record<string, string>): string | null => {
+  if (streak >= 3) return (t.streak_milestone || "🔥 {n} days!").replace("{n}", String(streak));
   return null;
 };
 
@@ -129,6 +126,10 @@ const HomeScreen: React.FC<HomeScreenProps> = ({
   const selectedActivities = controlledActivities ?? localActivities;
   const scrollRef = useRef<HTMLDivElement>(null);
   const [scrollY, setScrollY] = useState(0);
+  const [tutorialStep, setTutorialStep] = useState<number>(() => {
+    if (localStorage.getItem("nuju-tutorial-done")) return -1;
+    return 0;
+  });
 
   const selectedMood = controlledMood ?? localMood;
   const energy = controlledEnergy ?? localEnergy;
@@ -168,6 +169,7 @@ const HomeScreen: React.FC<HomeScreenProps> = ({
     setMoodTouched(true);
     setTimeout(() => setMoodAnimating(null), 400);
     if (navigator.vibrate) navigator.vibrate(10);
+    if (tutorialStep === 0) setTutorialStep(1);
   };
 
   const handleEnergySelect = (value: number) => {
@@ -226,8 +228,8 @@ const HomeScreen: React.FC<HomeScreenProps> = ({
               <div className="animate-dynamic-island flex items-center gap-1.5 h-10 px-4 rounded-full bg-foreground/[0.06] dark:bg-foreground/[0.08] backdrop-blur-sm">
                 <Flame className={`w-[15px] h-[15px] text-mood-okay ${streak >= 7 ? "animate-streak-fire" : ""}`} />
                 <span className="text-[14px] font-bold text-foreground tabular-nums">{streak}</span>
-                {getStreakMessage(streak) && (
-                  <span className="text-[11px] font-medium text-muted-foreground hidden xs:inline">{getStreakMessage(streak)}</span>
+                {getStreakMessage(streak, t) && (
+                  <span className="text-[11px] font-medium text-muted-foreground hidden xs:inline">{getStreakMessage(streak, t)}</span>
                 )}
               </div>
             )}
@@ -352,7 +354,13 @@ const HomeScreen: React.FC<HomeScreenProps> = ({
       <div className="space-y-2.5">
         <div className="grid grid-cols-2 gap-3">
           <button
-            onClick={() => onWrite ? onWrite() : onNavigate("journal")}
+            onClick={() => {
+              if (tutorialStep === 1) {
+                localStorage.setItem("nuju-tutorial-done", "1");
+                setTutorialStep(-1);
+              }
+              onWrite ? onWrite() : onNavigate("journal");
+            }}
             className="flex items-center justify-center gap-2.5 h-[54px] rounded-2xl bg-primary text-primary-foreground font-semibold text-[15px] press-spring shadow-[0_4px_20px_-4px_hsl(var(--primary)/0.4)]"
           >
             <PenLine className="w-[18px] h-[18px]" />
@@ -466,9 +474,9 @@ const HomeScreen: React.FC<HomeScreenProps> = ({
               const relativeDate = (() => {
                 const d = new Date(entry.date);
                 const diff = Math.floor((Date.now() - d.getTime()) / 86400000);
-                if (diff === 0) return "Today";
-                if (diff === 1) return "Yesterday";
-                return d.toLocaleDateString("en-US", { month: "short", day: "numeric" });
+                if (diff === 0) return t.today || "Today";
+                if (diff === 1) return t.yesterday || "Yesterday";
+                return d.toLocaleDateString(lang || "en", { month: "short", day: "numeric" });
               })();
               return (
                 <button
@@ -499,6 +507,48 @@ const HomeScreen: React.FC<HomeScreenProps> = ({
 
       {/* Spacer for bottom nav */}
       <div className="h-2" />
+
+      {/* First-visit tutorial overlay */}
+      {tutorialStep >= 0 && tutorialStep <= 2 && entries.length === 0 && (
+        <div
+          className="fixed inset-0 z-50 pointer-events-none"
+          style={{ background: "rgba(0,0,0,0.45)" }}
+        >
+          {/* Step 0: tap mood */}
+          {tutorialStep === 0 && (
+            <div className="absolute left-1/2 -translate-x-1/2 pointer-events-auto"
+              style={{ bottom: "42%" }}
+            >
+              <div className="bg-card rounded-2xl px-5 py-4 shadow-xl max-w-[280px] text-center border border-primary/30">
+                <p className="text-[13px] font-semibold text-foreground mb-1">👆 {t.how_feeling || "How are you feeling?"}</p>
+                <p className="text-[12px] text-muted-foreground mb-3">Tap a mood to start</p>
+                <button
+                  onClick={() => {
+                    localStorage.setItem("nuju-tutorial-done", "1");
+                    setTutorialStep(-1);
+                  }}
+                  className="text-[11px] text-muted-foreground underline"
+                >
+                  Skip tutorial
+                </button>
+              </div>
+              <div className="w-0 h-0 mx-auto" style={{ borderLeft: "8px solid transparent", borderRight: "8px solid transparent", borderTop: "8px solid hsl(var(--card))" }} />
+            </div>
+          )}
+          {/* Step 1: write */}
+          {tutorialStep === 1 && (
+            <div className="absolute left-1/2 -translate-x-1/2 pointer-events-auto"
+              style={{ bottom: "28%" }}
+            >
+              <div className="w-0 h-0 mx-auto mb-0" style={{ borderLeft: "8px solid transparent", borderRight: "8px solid transparent", borderBottom: "8px solid hsl(var(--card))" }} />
+              <div className="bg-card rounded-2xl px-5 py-4 shadow-xl max-w-[280px] text-center border border-primary/30">
+                <p className="text-[13px] font-semibold text-foreground mb-1">✍️ {t.write || "Write"}</p>
+                <p className="text-[12px] text-muted-foreground">Tap <strong>Write</strong> to journal how you feel. Takes 30 seconds.</p>
+              </div>
+            </div>
+          )}
+        </div>
+      )}
     </div>
   );
 };
