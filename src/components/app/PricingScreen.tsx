@@ -102,7 +102,7 @@ const PricingScreen: React.FC<PricingScreenProps> = ({ currentPlan = "free", tri
             </div>
             <div>
               <p className="text-sm font-semibold text-foreground">
-                {formatTrialCountdown(trial.daysLeft)}
+                {formatTrialCountdown(trial.daysLeft, t)}
               </p>
               <p className="text-xs text-muted-foreground">{t.trial_subscribe_now || "Subscribe now to keep your access"}</p>
             </div>
