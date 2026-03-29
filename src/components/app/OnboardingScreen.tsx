@@ -208,7 +208,7 @@ const OnboardingScreen: React.FC<{ onComplete: () => void }> = ({ onComplete }) 
             className="w-full py-4 rounded-2xl font-semibold text-base transition-all active:scale-[0.97]"
             style={{ background: "#7C6EDB", color: "white" }}
           >
-            {isLast ? t.onb_next : t.onb_next}
+            {isLast ? t.onb_start : t.onb_next}
           </button>
         </div>
       )}

@@ -29,8 +29,8 @@ const COACH_ICONS: Record<string, string> = {
 
 type Msg = { role: "user" | "assistant"; content: string };
 
-const AI_BASE = "https://sxgmlnlqmdjjfmcypivi.supabase.co";
-const AI_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InN4Z21sbmxxbWRqamZtY3lwaXZpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQwMTEyNDYsImV4cCI6MjA4OTU4NzI0Nn0.kUM2J00vmkRd55MmQw5AAadS8XGZKeLY0mgGg8aAVFg";
+const AI_BASE = import.meta.env.VITE_SUPABASE_URL as string;
+const AI_KEY = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY as string;
 const CHAT_URL = `${AI_BASE}/functions/v1/ai-coach`;
 
 async function streamChat({
@@ -287,7 +287,9 @@ const CoachScreen: React.FC<{ onUpgrade?: () => void; plan?: string | null; tria
                 className="w-16 h-16 object-contain transition-all duration-500"
               />
             </div>
-            <p className="text-sm text-muted-foreground transition-all duration-300">{currentPersona.desc}</p>
+            <p className="text-sm text-muted-foreground transition-all duration-300">
+              {(t as Record<string, string>)[`persona_${currentPersona.id}_desc`] || currentPersona.desc}
+            </p>
           </div>
         )}
         {messages.map((msg, i) => (
@@ -369,7 +371,7 @@ const CoachScreen: React.FC<{ onUpgrade?: () => void; plan?: string | null; tria
           value={input}
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={(e) => e.key === "Enter" && sendMessage()}
-          placeholder={!canSend && !hasPlusAccess(propPlan || userPlan, propTrialStartedAt || null) ? "Upgrade to keep chatting..." : t.talk_to_ju}
+          placeholder={!canSend && !hasPlusAccess(propPlan || userPlan, propTrialStartedAt || null) ? (t.upgrade_to_chat || "Upgrade to keep chatting...") : t.talk_to_ju}
           disabled={isLoading || (!canSend && !hasPlusAccess(propPlan || userPlan, propTrialStartedAt || null))}
           className="flex-1 px-5 h-[48px] rounded-xl bg-card border border-border/40 text-foreground placeholder:text-muted-foreground/40 focus:outline-none focus:ring-2 focus:ring-primary/15 focus:border-primary/30 text-[15px] transition-all disabled:opacity-50"
         />

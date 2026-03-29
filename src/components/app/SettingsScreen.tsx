@@ -90,7 +90,7 @@ const SettingsScreen: React.FC<SettingsScreenProps> = ({ onBack, onUpgrade, plan
         {notifSupported && (
           <div>
             <p className="text-[13px] font-medium text-muted-foreground uppercase tracking-wider px-4 mb-1.5">
-              Notifications
+              {t.notifications || "Notifications"}
             </p>
             <div className="ios-group">
               <div className="ios-group-item">
@@ -149,7 +149,7 @@ const SettingsScreen: React.FC<SettingsScreenProps> = ({ onBack, onUpgrade, plan
         {biometricSupported && (
           <div>
             <p className="text-[13px] font-medium text-muted-foreground uppercase tracking-wider px-4 mb-1.5">
-              Privacy
+              {t.privacy || "Privacy"}
             </p>
             <div className="ios-group">
               <div className="ios-group-item">
@@ -157,7 +157,7 @@ const SettingsScreen: React.FC<SettingsScreenProps> = ({ onBack, onUpgrade, plan
                   <div className="w-8 h-8 rounded-lg bg-green-600 flex items-center justify-center">
                     <Fingerprint className="w-4 h-4 text-white" />
                   </div>
-                  <span className="text-[15px] font-normal text-foreground">Biometric lock</span>
+                  <span className="text-[15px] font-normal text-foreground">{t.biometric_lock || "Biometric lock"}</span>
                 </div>
                 <button
                   onClick={async () => {
@@ -176,15 +176,15 @@ const SettingsScreen: React.FC<SettingsScreenProps> = ({ onBack, onUpgrade, plan
                         if (cred) {
                           localStorage.setItem("nuju-biometric", "1");
                           setBiometricEnabled(true);
-                          toast.success("Biometric lock enabled");
+                          toast.success(t.biometric_enabled || "Biometric lock enabled");
                         }
                       } catch (e) {
-                        toast.error("Biometric setup failed");
+                        toast.error(t.biometric_failed || "Biometric setup failed");
                       }
                     } else {
                       localStorage.removeItem("nuju-biometric");
                       setBiometricEnabled(false);
-                      toast.success("Biometric lock disabled");
+                      toast.success(t.biometric_disabled || "Biometric lock disabled");
                     }
                   }}
                   className={`relative w-[51px] h-[31px] rounded-full transition-colors duration-200 ${biometricEnabled ? "bg-primary" : "bg-border"}`}
@@ -250,7 +250,7 @@ const SettingsScreen: React.FC<SettingsScreenProps> = ({ onBack, onUpgrade, plan
                   <Crown className="w-6 h-6 text-white" />
                 </div>
                 <p className="font-semibold text-foreground text-[17px] mb-0.5">{t.unlock_ju}</p>
-                <p className="text-[13px] text-muted-foreground mb-3">Unlimited entries, all coaches, full history</p>
+                <p className="text-[13px] text-muted-foreground mb-3">{t.pro_feature_desc || "Unlimited entries, all coaches, full history"}</p>
                 <div className="w-full py-3 rounded-xl bg-primary text-primary-foreground font-semibold text-[15px] transition-all active:scale-[0.97]">
                   {t.start_trial}
                 </div>
