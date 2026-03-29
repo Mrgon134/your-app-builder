@@ -161,14 +161,13 @@ const AppPage: React.FC = () => {
         toast.info(t.payments_coming_soon || "Payments coming soon! Stay tuned.");
         return;
       }
-      const SUPA_URL = import.meta.env.VITE_SUPABASE_URL || "https://sxgmlnlqmdjjfmcypivi.supabase.co";
       const resp = await fetch(
-        `${SUPA_URL}/functions/v1/lemon-checkout`,
+        `https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/lemon-checkout`,
         {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY || "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InN4Z21sbmxxbWRqamZtY3lwaXZpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQwMTEyNDYsImV4cCI6MjA4OTU4NzI0Nn0.kUM2J00vmkRd55MmQw5AAadS8XGZKeLY0mgGg8aAVFg"}`,
+            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InN4Z21sbmxxbWRqamZtY3lwaXZpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQwMTEyNDYsImV4cCI6MjA4OTU4NzI0Nn0.kUM2J00vmkRd55MmQw5AAadS8XGZKeLY0mgGg8aAVFg`,
           },
           body: JSON.stringify({
             variant_id: variantId,
@@ -254,8 +253,8 @@ const AppPage: React.FC = () => {
       }
 
       try {
-        const aiUrl = import.meta.env.VITE_SUPABASE_URL || "https://sxgmlnlqmdjjfmcypivi.supabase.co";
-        const aiKey = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY || "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InN4Z21sbmxxbWRqamZtY3lwaXZpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQwMTEyNDYsImV4cCI6MjA4OTU4NzI0Nn0.kUM2J00vmkRd55MmQw5AAadS8XGZKeLY0mgGg8aAVFg";
+        const aiUrl = "https://sxgmlnlqmdjjfmcypivi.supabase.co";
+        const aiKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InN4Z21sbmxxbWRqamZtY3lwaXZpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQwMTEyNDYsImV4cCI6MjA4OTU4NzI0Nn0.kUM2J00vmkRd55MmQw5AAadS8XGZKeLY0mgGg8aAVFg";
         const resp = await fetch(
           `${aiUrl}/functions/v1/ai-insight`,
           {
