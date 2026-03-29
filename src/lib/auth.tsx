@@ -73,7 +73,6 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const updateEmail = async (newEmail: string) => {
     const { error } = await supabase.auth.updateUser({
       email: newEmail,
-      options: { emailRedirectTo: window.location.origin + "/auth/callback" },
     });
     return { error: error as Error | null };
   };
