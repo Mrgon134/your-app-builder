@@ -20,7 +20,16 @@ serve(async (req) => {
 
   try {
     const LEMON_API_KEY = Deno.env.get("LEMON_SQUEEZY_API_KEY");
-    if (!LEMON_API_KEY) throw new Error("LEMON_SQUEEZY_API_KEY not set");
+    if (!LEMON_API_KEY) {
+      console.error("MISSING SECRET: LEMON_SQUEEZY_API_KEY is not set in Supabase Edge Function secrets");
+      throw new Error("LEMON_SQUEEZY_API_KEY not set");
+    }
+
+    const STORE_ID = Deno.env.get("LEMON_SQUEEZY_STORE_ID");
+    if (!STORE_ID || STORE_ID === "0") {
+      console.error("MISSING SECRET: LEMON_SQUEEZY_STORE_ID is not set in Supabase Edge Function secrets");
+      throw new Error("LEMON_SQUEEZY_STORE_ID not set");
+    }
 
     const { variant_id, user_id, user_email, country } = await req.json();
 
@@ -30,6 +39,8 @@ serve(async (req) => {
         { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
       );
     }
+
+    console.log(`Creating checkout: variant=${variant_id}, store=${STORE_ID}, user=${user_id}, country=${country}`);
 
     // Resolve currency from country code
     const currency = country ? COUNTRY_CURRENCY[country.toUpperCase()] : undefined;
@@ -64,7 +75,7 @@ serve(async (req) => {
             store: {
               data: {
                 type: "stores",
-                id: Deno.env.get("LEMON_SQUEEZY_STORE_ID") || "0",
+                id: STORE_ID,
               },
             },
             variant: {
@@ -82,13 +93,14 @@ serve(async (req) => {
       const errText = await resp.text();
       console.error("Lemon Squeezy API error:", resp.status, errText);
       return new Response(
-        JSON.stringify({ error: "Failed to create checkout" }),
+        JSON.stringify({ error: "Failed to create checkout", detail: errText }),
         { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
       );
     }
 
     const data = await resp.json();
     const checkoutUrl = data.data?.attributes?.url;
+    console.log("Checkout created successfully:", checkoutUrl);
 
     return new Response(
       JSON.stringify({ url: checkoutUrl }),
