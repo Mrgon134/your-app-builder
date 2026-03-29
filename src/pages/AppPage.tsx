@@ -139,10 +139,10 @@ const AppPage: React.FC = () => {
       await updateProfile(user.id, { trial_started_at: new Date().toISOString() } as any);
       const updated = await fetchProfile(user.id);
       if (updated) setProfile(updated);
-      toast.success("Your 7-day free trial has started!");
+      toast.success(t.trial_started_toast || "Your 7-day free trial has started!");
     } catch (err) {
       console.error("Trial start failed:", err);
-      toast.error("Could not start trial");
+      toast.error(t.trial_error_toast || "Could not start trial. Please try again.");
     }
   };
 
@@ -158,7 +158,7 @@ const AppPage: React.FC = () => {
       };
       const variantId = variantMap[plan];
       if (!variantId || variantId.includes("VARIANT_ID")) {
-        toast.info("Payments coming soon! Stay tuned.");
+        toast.info(t.payments_coming_soon || "Payments coming soon! Stay tuned.");
         return;
       }
       const resp = await fetch(
@@ -181,11 +181,11 @@ const AppPage: React.FC = () => {
         const data = await resp.json();
         if (data.url) window.open(data.url, "_blank");
       } else {
-        toast.error("Could not start checkout. Try again.");
+        toast.error(t.checkout_error || "Could not start checkout. Try again.");
       }
     } catch (err) {
       console.error("Checkout error:", err);
-      toast.error("Checkout failed");
+      toast.error(t.checkout_failed || "Checkout failed. Please try again.");
     }
   };
 

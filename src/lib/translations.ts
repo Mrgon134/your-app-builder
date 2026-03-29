@@ -242,6 +242,15 @@ export const translations: Record<string, Record<string, string>> = {
     plus_tagline: "Remember everything. Understand yourself.",
     pro_tagline: "Everything, unlocked.",
     get_plan: "Get {name}",
+    // Trial toasts & countdown
+    trial_started_toast: "Your 7-day free trial has started!",
+    trial_error_toast: "Could not start trial. Please try again.",
+    trial_days_left: "{n} days left",
+    trial_last_day: "Last day of trial!",
+    trial_expired_label: "Trial expired",
+    checkout_error: "Could not start checkout. Try again.",
+    checkout_failed: "Checkout failed. Please try again.",
+    payments_coming_soon: "Payments coming soon! Stay tuned.",
   },
   id: {
     greeting_morning: "Selamat pagi",
@@ -454,6 +463,15 @@ export const translations: Record<string, Record<string, string>> = {
     plus_tagline: "Ingat segalanya. Pahami dirimu.",
     pro_tagline: "Semua fitur, terbuka penuh.",
     get_plan: "Dapatkan {name}",
+    // Trial toasts & countdown
+    trial_started_toast: "Trial gratis 7 hari kamu sudah dimulai!",
+    trial_error_toast: "Gagal memulai trial. Silakan coba lagi.",
+    trial_days_left: "{n} hari tersisa",
+    trial_last_day: "Hari terakhir trial!",
+    trial_expired_label: "Trial berakhir",
+    checkout_error: "Gagal memulai checkout. Coba lagi.",
+    checkout_failed: "Checkout gagal. Silakan coba lagi.",
+    payments_coming_soon: "Pembayaran segera hadir! Nantikan.",
   },
   es: {
     greeting_morning: "Buenos días",

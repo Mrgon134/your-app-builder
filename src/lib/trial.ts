@@ -33,10 +33,13 @@ export function getTrialStatus(trialStartedAt: string | null): {
   };
 }
 
-export function formatTrialCountdown(daysLeft: number): string {
-  if (daysLeft <= 0) return "Trial expired";
-  if (daysLeft === 1) return "Last day!";
-  return `${daysLeft} days left`;
+export function formatTrialCountdown(
+  daysLeft: number,
+  t?: { trial_expired_label?: string; trial_last_day?: string; trial_days_left?: string }
+): string {
+  if (daysLeft <= 0) return t?.trial_expired_label || "Trial expired";
+  if (daysLeft === 1) return t?.trial_last_day || "Last day!";
+  return (t?.trial_days_left || "{n} days left").replace("{n}", String(daysLeft));
 }
 
 // Check if user has "plus-level" access: paid plan OR active trial
