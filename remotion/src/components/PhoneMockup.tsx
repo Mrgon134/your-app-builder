@@ -7,11 +7,11 @@ export const PhoneMockup: React.FC<{
   return (
     <div
       style={{
-        width: 380,
-        height: 780,
-        borderRadius: 48,
+        width: 520,
+        height: 1060,
+        borderRadius: 56,
         background: "#1A1A2E",
-        padding: 8,
+        padding: 10,
         boxShadow: "0 40px 100px rgba(124,110,219,0.3), 0 10px 30px rgba(0,0,0,0.2)",
         position: "relative",
         ...style,

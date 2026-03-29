@@ -105,7 +105,7 @@ export const SceneOutro: React.FC = () => {
           transform: `scale(${interpolate(spring({ frame: frame - 80, fps, config: { damping: 10 } }), [0, 1], [0.5, 1])})`,
         }}
       >
-        nuju.lovable.app
+        nuju.app
       </div>
     </AbsoluteFill>
   );
