@@ -4,14 +4,28 @@ import { supabase } from "@/integrations/supabase/client";
 import { Loader2 } from "lucide-react";
 
 /**
- * Handles OAuth redirects (Google, Apple).
- * Supabase PKCE flow redirects here with ?code=xxx after OAuth.
- * We exchange the code for a session, then redirect to /app.
+ * Handles OAuth redirects (Google, Apple) and email confirmation links.
+ * Supabase PKCE flow redirects here with ?code=xxx.
+ * We exchange the code, then redirect to /app (or /auth?mode=reset for password recovery).
  */
 const AuthCallback: React.FC = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    let settled = false;
+
+    // Listen to auth state change — catches PASSWORD_RECOVERY event
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
+      if (settled) return;
+      if (event === "PASSWORD_RECOVERY") {
+        settled = true;
+        navigate("/auth?mode=reset", { replace: true });
+      } else if ((event === "SIGNED_IN" || event === "TOKEN_REFRESHED") && session) {
+        settled = true;
+        navigate("/app", { replace: true });
+      }
+    });
+
     const exchange = async () => {
       const params = new URLSearchParams(window.location.search);
       const hashParams = new URLSearchParams(window.location.hash.slice(1));
@@ -22,24 +36,55 @@ const AuthCallback: React.FC = () => {
         const { error } = await supabase.auth.exchangeCodeForSession(code);
         if (error) {
           console.error("Auth callback error:", error.message);
-          navigate("/auth?error=" + encodeURIComponent(error.message), { replace: true });
+          if (!settled) {
+            settled = true;
+            navigate("/auth?error=" + encodeURIComponent(error.message), { replace: true });
+          }
           return;
         }
+        // onAuthStateChange will fire and handle the redirect
+        return;
       }
 
       // Handle implicit flow (access_token in hash)
       const accessToken = hashParams.get("access_token");
       if (accessToken) {
         const refreshToken = hashParams.get("refresh_token") || "";
+        const type = hashParams.get("type");
         await supabase.auth.setSession({ access_token: accessToken, refresh_token: refreshToken });
+        if (type === "recovery" && !settled) {
+          settled = true;
+          navigate("/auth?mode=reset", { replace: true });
+          return;
+        }
+        // onAuthStateChange handles the rest
+        return;
       }
 
-      // Check final session state
-      const { data: { session } } = await supabase.auth.getSession();
-      navigate(session ? "/app" : "/auth", { replace: true });
+      // No code or token — check existing session
+      if (!settled) {
+        const { data: { session } } = await supabase.auth.getSession();
+        settled = true;
+        navigate(session ? "/app" : "/auth", { replace: true });
+      }
     };
 
     exchange();
+
+    // Fallback timeout in case events don't fire
+    const timeout = setTimeout(() => {
+      if (!settled) {
+        settled = true;
+        supabase.auth.getSession().then(({ data: { session } }) => {
+          navigate(session ? "/app" : "/auth", { replace: true });
+        });
+      }
+    }, 5000);
+
+    return () => {
+      subscription.unsubscribe();
+      clearTimeout(timeout);
+    };
   }, [navigate]);
 
   return (
