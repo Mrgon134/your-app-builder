@@ -213,7 +213,7 @@ const InsightsScreen: React.FC<InsightsScreenProps> = ({ entries, streak = 0, on
         {summaryLoading ? (
           <div className="flex items-center gap-2 text-muted-foreground">
             <Loader2 className="w-4 h-4 animate-spin" />
-            <span className="text-[13px]">Analyzing your week...</span>
+            <span className="text-[13px]">{t.analyzing_week || "Analyzing your week..."}</span>
           </div>
         ) : (
           <p className="text-[14px] text-foreground leading-relaxed">

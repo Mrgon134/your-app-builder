@@ -5,8 +5,8 @@ import { MOODS } from "@/lib/constants";
 import { ArrowLeft, Mic, Square, Loader2 } from "lucide-react";
 import MoodIcon from "@/components/MoodIcon";
 
-const AI_BASE = "https://sxgmlnlqmdjjfmcypivi.supabase.co";
-const AI_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InN4Z21sbmxxbWRqamZtY3lwaXZpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQwMTEyNDYsImV4cCI6MjA4OTU4NzI0Nn0.kUM2J00vmkRd55MmQw5AAadS8XGZKeLY0mgGg8aAVFg";
+const AI_BASE = import.meta.env.VITE_SUPABASE_URL as string;
+const AI_KEY = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY as string;
 const DRAFT_KEY = "nuju-journal-draft";
 
 const langToLocale: Record<string, string> = {
@@ -321,9 +321,9 @@ const JournalScreen: React.FC<JournalScreenProps> = ({
         readOnly={isRecording || isTranscribing}
         placeholder={
           isRecording
-            ? "I'm all ears..."
+            ? (t.recording_listening || "I'm all ears...")
             : isTranscribing
-            ? "Just a moment..."
+            ? (t.recording_processing || "Just a moment...")
             : getMoodPlaceholder(mood, t)
         }
         className={`w-full min-h-[260px] p-5 rounded-2xl glass-card text-foreground font-writing text-[17px] leading-relaxed placeholder:text-muted-foreground/40 focus:outline-none focus:ring-2 focus:ring-primary/15 focus:border-primary/30 resize-none transition-all ${isRecording || isTranscribing ? "cursor-default" : ""}`}
@@ -334,14 +334,14 @@ const JournalScreen: React.FC<JournalScreenProps> = ({
       {isRecording && (
         <div className="flex items-center gap-2.5 mt-3 px-1">
           <RecordingWave />
-          <span className="text-[13px] text-destructive font-medium">I'm all ears — speak freely</span>
-          <span className="ml-auto text-[12px] text-muted-foreground">Tap Stop when done</span>
+          <span className="text-[13px] text-destructive font-medium">{t.recording_hint || "I'm all ears — speak freely"}</span>
+          <span className="ml-auto text-[12px] text-muted-foreground">{t.recording_stop_hint || "Tap Stop when done"}</span>
         </div>
       )}
       {isTranscribing && (
         <div className="flex items-center gap-2.5 mt-3 px-1">
           <Loader2 className="w-4 h-4 text-primary animate-spin" />
-          <span className="text-[13px] text-primary font-medium">Just a moment...</span>
+          <span className="text-[13px] text-primary font-medium">{t.recording_processing || "Just a moment..."}</span>
         </div>
       )}
 
@@ -368,7 +368,7 @@ const JournalScreen: React.FC<JournalScreenProps> = ({
             {isTranscribing && (
               <>
                 <Loader2 className="w-4 h-4 animate-spin" />
-                <span>Transcribing...</span>
+                <span>{t.recording_processing || "Transcribing..."}</span>
               </>
             )}
             {!isRecording && !isTranscribing && (
