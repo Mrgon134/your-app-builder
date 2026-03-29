@@ -164,7 +164,7 @@ export const countCoachMessagesThisWeek = async (userId: string): Promise<number
   return count || 0;
 };
 
-// ── Habits (placeholder — tables not yet created) ──────────────────────────
+// ── Habits ─────────────────────────────────────────────────────────────────
 
 export interface HabitRow {
   id: string;
@@ -173,26 +173,42 @@ export interface HabitRow {
   color: string;
 }
 
-export const fetchHabits = async (_userId: string): Promise<HabitRow[]> => {
-  // habits table not yet created
-  return [];
+export const fetchHabits = async (userId: string): Promise<HabitRow[]> => {
+  const { data, error } = await supabase
+    .from("habits")
+    .select("id, name, emoji, color")
+    .eq("user_id", userId)
+    .eq("is_active", true)
+    .order("sort_order", { ascending: true });
+  if (error) throw error;
+  return data || [];
 };
 
 export const toggleHabitLog = async (
-  _userId: string,
-  _habitId: string,
-  _date: string,
-  _done: boolean
+  userId: string,
+  habitId: string,
+  date: string,
+  done: boolean
 ): Promise<void> => {
-  // habit_logs table not yet created
+  if (done) {
+    await supabase.from("habit_logs").insert({ user_id: userId, habit_id: habitId, date });
+  } else {
+    await supabase.from("habit_logs").delete()
+      .eq("user_id", userId).eq("habit_id", habitId).eq("date", date);
+  }
 };
 
-export const fetchHabitLogsToday = async (_userId: string, _date: string): Promise<string[]> => {
-  // habit_logs table not yet created
-  return [];
+export const fetchHabitLogsToday = async (userId: string, date: string): Promise<string[]> => {
+  const { data, error } = await supabase
+    .from("habit_logs")
+    .select("habit_id")
+    .eq("user_id", userId)
+    .eq("date", date);
+  if (error) throw error;
+  return (data || []).map((r: { habit_id: string }) => r.habit_id);
 };
 
-// ── Programs (placeholder — table not yet created) ───────────────────────────
+// ── Programs ────────────────────────────────────────────────────────────────
 
 export interface UserProgramRow {
   program_id: string;
@@ -201,11 +217,22 @@ export interface UserProgramRow {
   started_at: string;
 }
 
-export const fetchUserPrograms = async (_userId: string): Promise<UserProgramRow[]> => {
-  // user_programs table not yet created
-  return [];
+export const fetchUserPrograms = async (userId: string): Promise<UserProgramRow[]> => {
+  const { data, error } = await supabase
+    .from("user_programs")
+    .select("program_id, current_day, completed, started_at")
+    .eq("user_id", userId);
+  if (error) throw error;
+  return data || [];
 };
 
-export const upsertUserProgram = async (_userId: string, _program: UserProgramRow): Promise<void> => {
-  // user_programs table not yet created
+export const upsertUserProgram = async (userId: string, program: UserProgramRow): Promise<void> => {
+  const { error } = await supabase.from("user_programs").upsert({
+    user_id: userId,
+    program_id: program.program_id,
+    current_day: program.current_day,
+    completed: program.completed,
+    started_at: program.started_at,
+  }, { onConflict: "user_id,program_id" });
+  if (error) throw error;
 };
