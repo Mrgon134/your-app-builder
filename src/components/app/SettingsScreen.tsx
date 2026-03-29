@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useLang, LANG_META } from "@/lib/i18n";
 import { useAuth } from "@/lib/auth";
 import { updateProfile } from "@/lib/api";
-import { ArrowLeft, Moon, Sun, Globe, Crown, LogOut, Bell, BellOff, ChevronRight, Fingerprint } from "lucide-react";
+import { ArrowLeft, Moon, Sun, Globe, Crown, LogOut, Bell, BellOff, ChevronRight, Fingerprint, KeyRound, AtSign } from "lucide-react";
 import {
   requestNotificationPermission,
   getNotificationPermission,
@@ -22,7 +22,10 @@ interface SettingsScreenProps {
 
 const SettingsScreen: React.FC<SettingsScreenProps> = ({ onBack, onUpgrade, plan = "free", trialStartedAt = null }) => {
   const { t, lang, setLang } = useLang();
-  const { signOut, user } = useAuth();
+  const { signOut, user, resetPassword, updateEmail } = useAuth();
+  const [showChangeEmail, setShowChangeEmail] = useState(false);
+  const [newEmail, setNewEmail] = useState("");
+  const [emailLoading, setEmailLoading] = useState(false);
   const [darkMode, setDarkMode] = useState(document.documentElement.classList.contains("dark"));
   const reminderDefaults = getReminderSettings();
   const [reminderEnabled, setReminderEnabled] = useState(reminderDefaults.enabled);
@@ -257,30 +260,91 @@ const SettingsScreen: React.FC<SettingsScreenProps> = ({ onBack, onUpgrade, plan
         )}
 
         {/* Account group */}
-        <div>
-          <p className="text-[13px] font-medium text-muted-foreground uppercase tracking-wider px-4 mb-1.5">
-            Account
-          </p>
-          <div className="ios-group">
-            {user && (
+        {user && (
+          <div>
+            <p className="text-[13px] font-medium text-muted-foreground uppercase tracking-wider px-4 mb-1.5">
+              {t.account || "Account"}
+            </p>
+            <div className="ios-group">
               <div className="ios-group-item">
                 <span className="text-[15px] text-foreground">Email</span>
-                <span className="text-[15px] text-muted-foreground">{user.email}</span>
+                <span className="text-[15px] text-muted-foreground truncate max-w-[180px]">{user.email}</span>
               </div>
-            )}
-            <button
-              onClick={signOut}
-              className="ios-group-item w-full"
-            >
-              <div className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded-lg bg-red-500 flex items-center justify-center">
-                  <LogOut className="w-4 h-4 text-white" />
+
+              {/* Change Email */}
+              <button
+                onClick={() => { setShowChangeEmail(!showChangeEmail); setNewEmail(""); }}
+                className="ios-group-item w-full"
+              >
+                <div className="flex items-center gap-3">
+                  <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center">
+                    <AtSign className="w-4 h-4 text-primary" />
+                  </div>
+                  <span className="text-[15px] font-normal text-foreground">{t.change_email || "Change email"}</span>
                 </div>
-                <span className="text-[15px] font-normal text-red-500">{t.sign_out || "Sign out"}</span>
-              </div>
-            </button>
+                <ChevronRight className="w-4 h-4 text-muted-foreground/40" />
+              </button>
+              {showChangeEmail && (
+                <div className="px-4 py-3 border-t border-border/40">
+                  <input
+                    type="email"
+                    placeholder={t.new_email || "New email address"}
+                    value={newEmail}
+                    onChange={(e) => setNewEmail(e.target.value)}
+                    className="w-full px-3 h-[44px] rounded-xl bg-background border border-border/60 text-foreground text-[15px] focus:outline-none focus:ring-2 focus:ring-primary/20 mb-2"
+                  />
+                  <button
+                    disabled={emailLoading || !newEmail.includes("@")}
+                    onClick={async () => {
+                      setEmailLoading(true);
+                      const { error } = await updateEmail(newEmail);
+                      setEmailLoading(false);
+                      if (error) { toast.error(error.message); }
+                      else { toast.success(t.change_email_sent || "Confirmation sent to new email!"); setShowChangeEmail(false); setNewEmail(""); }
+                    }}
+                    className="w-full h-[40px] rounded-xl bg-primary text-primary-foreground text-[14px] font-semibold disabled:opacity-40 transition-all active:scale-[0.97]"
+                  >
+                    {emailLoading ? "..." : (t.save || t.save_changes || "Save")}
+                  </button>
+                </div>
+              )}
+
+              {/* Change Password */}
+              {user.app_metadata?.provider === "email" && (
+                <button
+                  onClick={async () => {
+                    if (!user.email) return;
+                    const { error } = await resetPassword(user.email);
+                    if (error) toast.error(error.message);
+                    else toast.success(t.reset_email_sent || "Password reset link sent to your email!");
+                  }}
+                  className="ios-group-item w-full"
+                >
+                  <div className="flex items-center gap-3">
+                    <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center">
+                      <KeyRound className="w-4 h-4 text-primary" />
+                    </div>
+                    <span className="text-[15px] font-normal text-foreground">{t.change_password || "Change password"}</span>
+                  </div>
+                  <ChevronRight className="w-4 h-4 text-muted-foreground/40" />
+                </button>
+              )}
+
+              {/* Sign out */}
+              <button
+                onClick={signOut}
+                className="ios-group-item w-full"
+              >
+                <div className="flex items-center gap-3">
+                  <div className="w-8 h-8 rounded-lg bg-red-500 flex items-center justify-center">
+                    <LogOut className="w-4 h-4 text-white" />
+                  </div>
+                  <span className="text-[15px] font-normal text-red-500">{t.sign_out || "Sign out"}</span>
+                </div>
+              </button>
+            </div>
           </div>
-        </div>
+        )}
 
         {/* Footer spacing */}
         <div className="h-8" />

@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { useLang } from "@/lib/i18n";
 import { useAuth } from "@/lib/auth";
 import { supabase } from "@/integrations/supabase/client";
 import { JU_STICKERS } from "@/lib/stickers";
-import { Mail, Lock, User, ArrowRight, Loader2 } from "lucide-react";
+import { Mail, Lock, User, ArrowRight, Loader2, ChevronLeft } from "lucide-react";
 
 /** Apple SVG logo */
 const AppleLogo: React.FC = () => (
@@ -13,23 +13,34 @@ const AppleLogo: React.FC = () => (
   </svg>
 );
 
+type Mode = "login" | "signup" | "forgot" | "reset";
+
 const AuthPage: React.FC = () => {
   const { t } = useLang();
-  const { signIn, signUp, user } = useAuth();
+  const { signIn, signUp, resetPassword, updatePassword, user } = useAuth();
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
 
   useEffect(() => {
-    if (user) navigate("/app", { replace: true });
-  }, [user, navigate]);
+    // If already logged in and not in reset mode, go to app
+    const modeParam = searchParams.get("mode");
+    if (user && modeParam !== "reset") navigate("/app", { replace: true });
+  }, [user, navigate, searchParams]);
 
-  const [mode, setMode] = useState<"login" | "signup">("login");
+  const initialMode: Mode = (() => {
+    const m = searchParams.get("mode");
+    if (m === "reset") return "reset";
+    return "login";
+  })();
+
+  const [mode, setMode] = useState<Mode>(initialMode);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
   const [loading, setLoading] = useState(false);
   const [googleLoading, setGoogleLoading] = useState(false);
   const [appleLoading, setAppleLoading] = useState(false);
-  const [error, setError] = useState("");
+  const [error, setError] = useState(searchParams.get("error") || "");
   const [success, setSuccess] = useState("");
 
   const callbackUrl = window.location.origin + "/auth/callback";
@@ -44,9 +55,25 @@ const AuthPage: React.FC = () => {
       const { error } = await signUp(email, password, name);
       if (error) setError(error.message);
       else setSuccess(t.check_email || "Check your email to confirm your account!");
-    } else {
+    } else if (mode === "login") {
       const { error } = await signIn(email, password);
       if (error) setError(error.message);
+    } else if (mode === "forgot") {
+      const { error } = await resetPassword(email);
+      if (error) setError(error.message);
+      else setSuccess(t.reset_email_sent || "Password reset link sent! Check your inbox.");
+    } else if (mode === "reset") {
+      if (password.length < 6) {
+        setError(t.password_too_short || "Password must be at least 6 characters.");
+        setLoading(false);
+        return;
+      }
+      const { error } = await updatePassword(password);
+      if (error) setError(error.message);
+      else {
+        setSuccess(t.password_updated || "Password updated! Redirecting...");
+        setTimeout(() => navigate("/app", { replace: true }), 1500);
+      }
     }
     setLoading(false);
   };
@@ -65,7 +92,6 @@ const AuthPage: React.FC = () => {
       setError(error.message || "Google sign-in failed");
       setGoogleLoading(false);
     }
-    // if no error, browser redirects — no need to setLoading(false)
   };
 
   const handleAppleLogin = async () => {
@@ -81,6 +107,101 @@ const AuthPage: React.FC = () => {
     }
   };
 
+  const resetMode = (m: Mode) => {
+    setMode(m);
+    setError("");
+    setSuccess("");
+    setEmail("");
+    setPassword("");
+  };
+
+  // --- Forgot password screen ---
+  if (mode === "forgot") {
+    return (
+      <div className="min-h-screen bg-background flex flex-col items-center justify-center px-6 py-12">
+        <div className="w-full max-w-[340px]">
+          <button onClick={() => resetMode("login")} className="flex items-center gap-1 text-[15px] text-muted-foreground mb-8 hover:text-foreground transition-colors">
+            <ChevronLeft className="w-4 h-4" /> {t.back || "Back"}
+          </button>
+          <div className="flex justify-center mb-6">
+            <img src={JU_STICKERS.hi} alt="Ju" className="w-20 h-20 animate-ju-float" />
+          </div>
+          <h1 className="text-[28px] font-bold text-foreground text-center tracking-tight mb-1">
+            {t.forgot_password || "Forgot password?"}
+          </h1>
+          <p className="text-[15px] text-muted-foreground text-center mb-8">
+            {t.forgot_password_desc || "Enter your email and we'll send you a reset link."}
+          </p>
+          <form onSubmit={handleSubmit} className="space-y-3">
+            <div className="relative">
+              <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-[18px] h-[18px] text-muted-foreground/60" />
+              <input
+                type="email"
+                placeholder="Email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+                className="w-full pl-11 pr-4 h-[52px] rounded-xl bg-card border border-border/60 text-foreground text-[15px] focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary/40 transition-all"
+              />
+            </div>
+            {error && <p className="text-[13px] text-destructive bg-destructive/8 rounded-xl px-4 py-3">{error}</p>}
+            {success && <p className="text-[13px] text-primary bg-primary/8 rounded-xl px-4 py-3">{success}</p>}
+            <button
+              type="submit"
+              disabled={loading || !!success}
+              className="w-full flex items-center justify-center gap-2 h-[52px] rounded-xl bg-primary text-primary-foreground font-semibold text-[15px] transition-all active:scale-[0.98] disabled:opacity-50 shadow-[0_2px_12px_-3px_hsl(var(--primary)/0.35)]"
+            >
+              {loading ? <Loader2 className="w-5 h-5 animate-spin" /> : (t.send_reset_link || "Send reset link")}
+            </button>
+          </form>
+        </div>
+      </div>
+    );
+  }
+
+  // --- Reset password screen (after clicking email link) ---
+  if (mode === "reset") {
+    return (
+      <div className="min-h-screen bg-background flex flex-col items-center justify-center px-6 py-12">
+        <div className="w-full max-w-[340px]">
+          <div className="flex justify-center mb-6">
+            <img src={JU_STICKERS.goodjob} alt="Ju" className="w-20 h-20 animate-ju-float" />
+          </div>
+          <h1 className="text-[28px] font-bold text-foreground text-center tracking-tight mb-1">
+            {t.set_new_password || "Set new password"}
+          </h1>
+          <p className="text-[15px] text-muted-foreground text-center mb-8">
+            {t.set_new_password_desc || "Choose a new password for your account."}
+          </p>
+          <form onSubmit={handleSubmit} className="space-y-3">
+            <div className="relative">
+              <Lock className="absolute left-4 top-1/2 -translate-y-1/2 w-[18px] h-[18px] text-muted-foreground/60" />
+              <input
+                type="password"
+                placeholder={t.new_password || "New password"}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+                minLength={6}
+                className="w-full pl-11 pr-4 h-[52px] rounded-xl bg-card border border-border/60 text-foreground text-[15px] focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary/40 transition-all"
+              />
+            </div>
+            {error && <p className="text-[13px] text-destructive bg-destructive/8 rounded-xl px-4 py-3">{error}</p>}
+            {success && <p className="text-[13px] text-primary bg-primary/8 rounded-xl px-4 py-3">{success}</p>}
+            <button
+              type="submit"
+              disabled={loading || !!success}
+              className="w-full flex items-center justify-center gap-2 h-[52px] rounded-xl bg-primary text-primary-foreground font-semibold text-[15px] transition-all active:scale-[0.98] disabled:opacity-50 shadow-[0_2px_12px_-3px_hsl(var(--primary)/0.35)]"
+            >
+              {loading ? <Loader2 className="w-5 h-5 animate-spin" /> : (t.update_password || "Update password")}
+            </button>
+          </form>
+        </div>
+      </div>
+    );
+  }
+
+  // --- Login / Signup screen ---
   return (
     <div className="min-h-screen bg-background flex flex-col items-center justify-center px-6 py-12">
       <div className="w-full max-w-[340px]">
@@ -181,6 +302,19 @@ const AuthPage: React.FC = () => {
             />
           </div>
 
+          {/* Forgot password link */}
+          {mode === "login" && (
+            <div className="flex justify-end">
+              <button
+                type="button"
+                onClick={() => resetMode("forgot")}
+                className="text-[13px] text-primary hover:opacity-75 transition-opacity"
+              >
+                {t.forgot_password || "Forgot password?"}
+              </button>
+            </div>
+          )}
+
           {error && (
             <p className="text-[13px] text-destructive bg-destructive/8 rounded-xl px-4 py-3">{error}</p>
           )}
@@ -205,7 +339,7 @@ const AuthPage: React.FC = () => {
         </form>
 
         <button
-          onClick={() => { setMode(mode === "login" ? "signup" : "login"); setError(""); setSuccess(""); }}
+          onClick={() => resetMode(mode === "login" ? "signup" : "login")}
           className="w-full mt-6 text-[15px] text-muted-foreground hover:text-foreground transition-colors text-center"
         >
           {mode === "login"
