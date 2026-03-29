@@ -41,7 +41,8 @@ export const fetchEntries = async (userId: string): Promise<EntryRow[]> => {
     .from("entries")
     .select("id, mood, text, energy, entry_date, created_at")
     .eq("user_id", userId)
-    .order("entry_date", { ascending: false });
+    .order("entry_date", { ascending: false })
+    .order("created_at", { ascending: false });
   if (error) throw error;
   return data || [];
 };
