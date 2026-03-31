@@ -146,15 +146,16 @@ const AppPage: React.FC = () => {
     }
   };
 
-  // Lemon Squeezy checkout
+  // Dodo Payments checkout
   const handleCheckout = async (plan: string) => {
     if (!user) return;
     try {
       const variantMap: Record<string, string> = {
-        plus_monthly: "1428721",
-        plus_annual: "1428730",
-        pro_monthly: "1428741",
-        pro_annual: "1428750",
+        plus_monthly: "pdt_0NbhFlXcexmMdlcYFUaYb",
+        plus_annual: "pdt_0NbhG9cZxUlLissUYnKkm",
+        pro_monthly: "pdt_0NbhHW3W4gTSSif6PbYb8",
+        pro_annual: "pdt_0NbhHexts6edZvPqDnoqt",
+        lifetime_one_time: "pdt_0NbhHzl2NQ8Dx0ntZsPQs",
       };
       const variantId = variantMap[plan];
       if (!variantId || variantId.includes("VARIANT_ID")) {
@@ -162,7 +163,7 @@ const AppPage: React.FC = () => {
         return;
       }
       const resp = await fetch(
-        `https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/lemon-checkout`,
+        `https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/dodo-checkout`,
         {
           method: "POST",
           headers: {

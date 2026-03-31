@@ -44,7 +44,7 @@ export function formatTrialCountdown(
 
 // Check if user has "plus-level" access: paid plan OR active trial
 export function hasPlusAccess(plan: string | null, trialStartedAt: string | null): boolean {
-  if (plan === "plus" || plan === "pro") return true;
+  if (plan === "plus" || plan === "pro" || plan === "lifetime") return true;
   const trial = getTrialStatus(trialStartedAt);
   return trial.isActive;
 }

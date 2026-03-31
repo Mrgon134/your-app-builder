@@ -71,6 +71,19 @@ const PricingScreen: React.FC<PricingScreenProps> = ({ currentPlan = "free", tri
         t.pro_feature_5 || "Priority support",
       ],
     },
+    {
+      id: "lifetime",
+      name: "Lifetime Pro",
+      tagline: "Total access forever. Limited to 100 founding members.",
+      getPrice: () => 99.00,
+      features: [
+        t.pro_feature_1 || "Everything in Plus",
+        t.pro_feature_2 || "Voice journaling",
+        t.pro_feature_3 || "Relationship mood map",
+        t.pro_feature_4 || "AI memory & patterns",
+        "Pay once, use forever (No recurring fees)",
+      ],
+    },
   ];
 
   // Monthly-equivalent display when annual
@@ -250,7 +263,7 @@ const PricingScreen: React.FC<PricingScreenProps> = ({ currentPlan = "free", tri
 
                   {/* Subscribe / Get plan button */}
                   <button
-                    onClick={() => onCheckout(`${tier.id}_${annual ? "annual" : "monthly"}`)}
+                    onClick={() => onCheckout(tier.id === "lifetime" ? "lifetime_one_time" : `${tier.id}_${annual ? "annual" : "monthly"}`)}
                     className={`w-full py-3.5 rounded-2xl font-semibold text-sm transition-all active:scale-[0.97] ${
                       (tier as { popular?: boolean }).popular && trial.notStarted
                         ? "bg-primary/10 text-primary"

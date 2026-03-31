@@ -57,7 +57,7 @@ const Privacy: React.FC = () => {
             <h2 className="font-serif text-xl font-semibold text-foreground">5. Data Sharing</h2>
             <p>We do not sell your personal data. We may share limited information with:</p>
             <ul className="list-disc pl-5 space-y-1">
-              <li><strong>Service Providers:</strong> Hosting (Supabase), authentication (Google), payment processing (Lemon Squeezy), and AI services used to operate the App.</li>
+              <li><strong>Service Providers:</strong> Hosting (Supabase), authentication (Google), payment processing (Dodo Payments), and AI services used to operate the App.</li>
               <li><strong>Social Platforms:</strong> When you voluntarily share mood cards or insights to platforms like TikTok, WhatsApp, X/Twitter, or Telegram, only the generated image/text is shared — not your raw journal data.</li>
               <li><strong>Legal Requirements:</strong> When required by law, court order, or to protect our rights.</li>
             </ul>

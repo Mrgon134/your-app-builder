@@ -198,6 +198,8 @@ export type Database = {
           last_active_at: string | null
           lemon_customer_id: string | null
           lemon_subscription_id: string | null
+          dodo_customer_id: string | null
+          dodo_subscription_id: string | null
           onboarded: boolean | null
           plan: string | null
           plan_expires_at: string | null
@@ -219,6 +221,8 @@ export type Database = {
           last_active_at?: string | null
           lemon_customer_id?: string | null
           lemon_subscription_id?: string | null
+          dodo_customer_id?: string | null
+          dodo_subscription_id?: string | null
           onboarded?: boolean | null
           plan?: string | null
           plan_expires_at?: string | null
@@ -240,6 +244,8 @@ export type Database = {
           last_active_at?: string | null
           lemon_customer_id?: string | null
           lemon_subscription_id?: string | null
+          dodo_customer_id?: string | null
+          dodo_subscription_id?: string | null
           onboarded?: boolean | null
           plan?: string | null
           plan_expires_at?: string | null
