@@ -9,6 +9,7 @@ interface GeoPricing {
     plusAnnual: number;
     proMonthly: number;
     proAnnual: number;
+    lifetime: number;
   };
   isLoading: boolean;
 }
@@ -18,54 +19,54 @@ const PRICING_MAP: Record<string, { currency: string; symbol: string; rates: Geo
   ID: {
     currency: "IDR",
     symbol: "Rp",
-    rates: { plusMonthly: 29900, plusAnnual: 239000, proMonthly: 59900, proAnnual: 479000 },
+    rates: { plusMonthly: 29900, plusAnnual: 239000, proMonthly: 59900, proAnnual: 479000, lifetime: 999000 },
   },
   IN: {
     currency: "INR",
     symbol: "₹",
-    rates: { plusMonthly: 149, plusAnnual: 1199, proMonthly: 299, proAnnual: 2399 },
+    rates: { plusMonthly: 149, plusAnnual: 1199, proMonthly: 299, proAnnual: 2399, lifetime: 3999 },
   },
   BR: {
     currency: "BRL",
     symbol: "R$",
-    rates: { plusMonthly: 14.90, plusAnnual: 119.90, proMonthly: 29.90, proAnnual: 239.90 },
+    rates: { plusMonthly: 14.90, plusAnnual: 119.90, proMonthly: 29.90, proAnnual: 239.90, lifetime: 399.90 },
   },
   JP: {
     currency: "JPY",
     symbol: "¥",
-    rates: { plusMonthly: 480, plusAnnual: 3800, proMonthly: 980, proAnnual: 7800 },
+    rates: { plusMonthly: 480, plusAnnual: 3800, proMonthly: 980, proAnnual: 7800, lifetime: 14800 },
   },
   KR: {
     currency: "KRW",
     symbol: "₩",
-    rates: { plusMonthly: 4900, plusAnnual: 39000, proMonthly: 9900, proAnnual: 79000 },
+    rates: { plusMonthly: 4900, plusAnnual: 39000, proMonthly: 9900, proAnnual: 79000, lifetime: 129000 },
   },
   MY: {
     currency: "MYR",
     symbol: "RM",
-    rates: { plusMonthly: 14.90, plusAnnual: 119.90, proMonthly: 29.90, proAnnual: 239.90 },
+    rates: { plusMonthly: 14.90, plusAnnual: 119.90, proMonthly: 29.90, proAnnual: 239.90, lifetime: 399.90 },
   },
   TH: {
     currency: "THB",
     symbol: "฿",
-    rates: { plusMonthly: 129, plusAnnual: 990, proMonthly: 259, proAnnual: 1990 },
+    rates: { plusMonthly: 129, plusAnnual: 990, proMonthly: 259, proAnnual: 1990, lifetime: 3490 },
   },
   PH: {
     currency: "PHP",
     symbol: "₱",
-    rates: { plusMonthly: 199, plusAnnual: 1590, proMonthly: 399, proAnnual: 3190 },
+    rates: { plusMonthly: 199, plusAnnual: 1590, proMonthly: 399, proAnnual: 3190, lifetime: 4990 },
   },
   VN: {
     currency: "VND",
     symbol: "₫",
-    rates: { plusMonthly: 79000, plusAnnual: 629000, proMonthly: 159000, proAnnual: 1269000 },
+    rates: { plusMonthly: 79000, plusAnnual: 629000, proMonthly: 159000, proAnnual: 1269000, lifetime: 1999000 },
   },
 };
 
 const DEFAULT_PRICING = {
   currency: "USD",
   symbol: "$",
-  rates: { plusMonthly: 4.99, plusAnnual: 39.99, proMonthly: 9.99, proAnnual: 79.99 },
+  rates: { plusMonthly: 4.99, plusAnnual: 39.99, proMonthly: 9.99, proAnnual: 79.99, lifetime: 99.00 },
 };
 
 function formatPrice(amount: number, currency: string): string {

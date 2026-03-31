@@ -37,16 +37,20 @@ serve(async (req) => {
     // For simplicity, Dodo Payments uses /payments to generate checkout links for both one-time and recurring if product is configured correctly.
     const endpoint = `${baseUrl}/payments`;
 
-    const payload = {
+    const payload: any = {
       product_id: variant_id,
       quantity: 1,
-      customer: {
-        email: user_email,
-      },
+      return_url: req.headers.get("origin") + "/app",
       metadata: {
         user_id: user_id,
       }
     };
+
+    if (user_email) {
+      payload.customer = {
+        email: user_email,
+      };
+    }
 
     const resp = await fetch(endpoint, {
       method: "POST",
@@ -62,7 +66,7 @@ serve(async (req) => {
       console.error("Dodo API error:", resp.status, errText);
       return new Response(
         JSON.stringify({ error: "Failed to create checkout", detail: errText }),
-        { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+        { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
       );
     }
 

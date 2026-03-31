@@ -75,7 +75,7 @@ const PricingScreen: React.FC<PricingScreenProps> = ({ currentPlan = "free", tri
       id: "lifetime",
       name: "Lifetime Pro",
       tagline: "Total access forever. Limited to 100 founding members.",
-      getPrice: () => 99.00,
+      getPrice: () => geo.rates.lifetime,
       features: [
         t.pro_feature_1 || "Everything in Plus",
         t.pro_feature_2 || "Voice journaling",
