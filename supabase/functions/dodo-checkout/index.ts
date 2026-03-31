@@ -34,10 +34,14 @@ serve(async (req) => {
     
     const endpoint = `${baseUrl}/payments`;
 
-    // Dodo requires customer.email AND customer.name
+    // Dodo requires product_cart array format
     const payload: any = {
-      product_id: variant_id,
-      quantity: 1,
+      product_cart: [
+        {
+          product_id: variant_id,
+          quantity: 1,
+        },
+      ],
       payment_link: true,
       return_url: req.headers.get("origin") + "/app",
       customer: {
