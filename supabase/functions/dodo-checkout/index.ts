@@ -30,7 +30,7 @@ serve(async (req) => {
 
     // Dodo Payments endpoint depending on environment. Usually defaults to live if no test mode specified
     const testMode = Deno.env.get("DODO_TEST_MODE") === "true";
-    const baseUrl = testMode ? "https://test.dodopayments.com" : "https://api.dodopayments.com";
+    const baseUrl = testMode ? "https://test.dodopayments.com" : "https://live.dodopayments.com";
     
     // Choose endpoint based on if it's a subscription or a one-time payment
     // Assumes product_id starting with 'sub_' or 'plan_' is a subscription? Dodo handles both via /payments often but sometimes /subscriptions for recurring.
