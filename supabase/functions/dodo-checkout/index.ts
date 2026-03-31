@@ -28,30 +28,32 @@ serve(async (req) => {
 
     console.log(`Creating Dodo checkout: product=${variant_id}, user=${user_id}`);
 
-    // Dodo Payments endpoint depending on environment
+    // Use /checkouts endpoint (NOT /payments which requires billing address)
     const testMode = Deno.env.get("DODO_TEST_MODE") === "true";
     const baseUrl = testMode ? "https://test.dodopayments.com" : "https://live.dodopayments.com";
-    
-    const endpoint = `${baseUrl}/payments`;
+    const endpoint = `${baseUrl}/checkouts`;
 
-    // Dodo requires product_cart array format
-    const payload: any = {
+    // Minimal payload: only product_cart is required for hosted checkout
+    // Dodo's hosted checkout page collects billing/customer info itself
+    const payload: Record<string, unknown> = {
       product_cart: [
         {
           product_id: variant_id,
           quantity: 1,
         },
       ],
-      payment_link: true,
-      return_url: req.headers.get("origin") + "/app",
-      customer: {
-        email: user_email || `${user_id}@nuju.app`,
-        name: user_name || "Nuju User",
-      },
       metadata: {
         user_id: user_id,
-      }
+      },
     };
+
+    // Optional: pass return_url so user comes back to app after payment
+    const origin = req.headers.get("origin");
+    if (origin) {
+      payload.return_url = `${origin}/app`;
+    }
+
+    console.log("Dodo payload:", JSON.stringify(payload));
 
     const resp = await fetch(endpoint, {
       method: "POST",
@@ -62,22 +64,24 @@ serve(async (req) => {
       body: JSON.stringify(payload),
     });
 
+    const responseText = await resp.text();
+    console.log("Dodo response status:", resp.status, "body:", responseText);
+
     if (!resp.ok) {
-      const errText = await resp.text();
-      console.error("Dodo API error:", resp.status, errText);
       return new Response(
-        JSON.stringify({ error: "Failed to create checkout", detail: errText }),
+        JSON.stringify({ error: "Failed to create checkout", detail: responseText }),
         { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
       );
     }
 
-    // Dodo API typical response for /payments includes a checkout URL or payment_link
-    const data = await resp.json();
-    const checkoutUrl = data.payment_link || (data.data && data.data.payment_link);
+    // Parse the checkout session response
+    const data = JSON.parse(responseText);
+    // Dodo /checkouts returns checkout_url
+    const checkoutUrl = data.checkout_url || data.payment_link || data.url;
 
     if (!checkoutUrl) {
-      console.error("No payment link returned by Dodo:", data);
-      throw new Error("No payment link returned");
+      console.error("No checkout URL returned by Dodo. Full response:", responseText);
+      throw new Error("No checkout URL returned");
     }
 
     console.log("Checkout created successfully:", checkoutUrl);
