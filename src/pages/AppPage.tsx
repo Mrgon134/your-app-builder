@@ -174,6 +174,7 @@ const AppPage: React.FC = () => {
             variant_id: variantId,
             user_id: user.id,
             user_email: user.email,
+            user_name: user.user_metadata?.full_name || user.user_metadata?.name || user.email?.split("@")[0] || "User",
             country,
           }),
         }

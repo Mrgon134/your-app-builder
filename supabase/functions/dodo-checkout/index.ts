@@ -17,7 +17,7 @@ serve(async (req) => {
       throw new Error("DODO_PAYMENTS_API_KEY not set");
     }
 
-    const { variant_id, user_id, user_email } = await req.json();
+    const { variant_id, user_id, user_email, user_name, country } = await req.json();
 
     if (!variant_id || !user_id) {
       return new Response(
@@ -28,29 +28,26 @@ serve(async (req) => {
 
     console.log(`Creating Dodo checkout: product=${variant_id}, user=${user_id}`);
 
-    // Dodo Payments endpoint depending on environment. Usually defaults to live if no test mode specified
+    // Dodo Payments endpoint depending on environment
     const testMode = Deno.env.get("DODO_TEST_MODE") === "true";
     const baseUrl = testMode ? "https://test.dodopayments.com" : "https://live.dodopayments.com";
     
-    // Choose endpoint based on if it's a subscription or a one-time payment
-    // Assumes product_id starting with 'sub_' or 'plan_' is a subscription? Dodo handles both via /payments often but sometimes /subscriptions for recurring.
-    // For simplicity, Dodo Payments uses /payments to generate checkout links for both one-time and recurring if product is configured correctly.
     const endpoint = `${baseUrl}/payments`;
 
+    // Dodo requires customer.email AND customer.name
     const payload: any = {
       product_id: variant_id,
       quantity: 1,
+      payment_link: true,
       return_url: req.headers.get("origin") + "/app",
+      customer: {
+        email: user_email || `${user_id}@nuju.app`,
+        name: user_name || "Nuju User",
+      },
       metadata: {
         user_id: user_id,
       }
     };
-
-    if (user_email) {
-      payload.customer = {
-        email: user_email,
-      };
-    }
 
     const resp = await fetch(endpoint, {
       method: "POST",
