@@ -142,14 +142,12 @@ const PricingScreen: React.FC<PricingScreenProps> = ({ currentPlan = "free", tri
       )}
 
       {/* Currency badge */}
-      {geo.currency !== "USD" && (
-        <div className="flex items-center justify-center gap-1.5 mb-4">
-          <Globe className="w-3.5 h-3.5 text-muted-foreground" />
-          <span className="text-xs text-muted-foreground">
-            {(t.prices_in_currency || "Prices shown in {currency}").replace("{currency}", geo.currency)}
-          </span>
-        </div>
-      )}
+      <div className="flex items-center justify-center gap-1.5 mb-4">
+        <Globe className="w-3.5 h-3.5 text-muted-foreground" />
+        <span className="text-xs text-muted-foreground">
+          {"Prices in USD · Local currency at checkout"}
+        </span>
+      </div>
 
       {/* Billing toggle */}
       <div className="flex items-center justify-center gap-3 mb-6">
@@ -203,15 +201,17 @@ const PricingScreen: React.FC<PricingScreenProps> = ({ currentPlan = "free", tri
               {/* Price */}
               <div className="flex items-baseline gap-1 mb-0.5">
                 <span className="font-serif text-2xl font-bold text-foreground">
-                  {price === 0 ? (t.free || "Free") : getPriceDisplay(price)}
+                  {price === 0 ? (t.free || "Free") : tier.id === "lifetime" ? geo.formatPrice(price) : getPriceDisplay(price)}
                 </span>
                 {price > 0 && (
-                  <span className="text-sm text-muted-foreground">{periodDisplay}</span>
+                  <span className="text-sm text-muted-foreground">
+                    {tier.id === "lifetime" ? " one-time" : periodDisplay}
+                  </span>
                 )}
               </div>
 
               {/* Per-day & billed-yearly line */}
-              {price > 0 && annual && (
+              {price > 0 && annual && tier.id !== "lifetime" && (
                 <div className="flex items-center gap-2 mt-0.5 mb-1">
                   {perDay && (
                     <span className="text-[11px] font-medium text-primary/70">
@@ -272,11 +272,13 @@ const PricingScreen: React.FC<PricingScreenProps> = ({ currentPlan = "free", tri
                           : "bg-secondary text-foreground"
                     }`}
                   >
-                    {trial.isActive || trial.expired
-                      ? (t.subscribe_to || "Subscribe to {name}").replace("{name}", tier.name)
-                      : trial.notStarted && tier.id === "plus"
-                        ? `${(t.subscribe_to || "Subscribe to {name}").replace("{name}", tier.name)} — ${geo.formatPrice(tier.getPrice())}${annual ? "/yr" : "/mo"}`
-                        : (t.get_plan || "Get {name}").replace("{name}", tier.name)}
+                    {tier.id === "lifetime"
+                      ? `Get Lifetime Pro — ${geo.formatPrice(tier.getPrice())}`
+                      : trial.isActive || trial.expired
+                        ? (t.subscribe_to || "Subscribe to {name}").replace("{name}", tier.name)
+                        : trial.notStarted && tier.id === "plus"
+                          ? `${(t.subscribe_to || "Subscribe to {name}").replace("{name}", tier.name)} — ${geo.formatPrice(tier.getPrice())}${annual ? "/yr" : "/mo"}`
+                          : (t.get_plan || "Get {name}").replace("{name}", tier.name)}
                   </button>
 
                   {(tier as { popular?: boolean }).popular && (
