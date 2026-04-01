@@ -16,6 +16,15 @@ interface Props {
 const EntryDetailModal: React.FC<Props> = ({ entry, isOpen, onClose }) => {
   const { t, lang } = useLang();
   const [show, setShow] = useState(false);
+  
+  // Cache the entry so it doesn't disappear instantly during exit animation
+  const [cachedEntry, setCachedEntry] = useState<EntryRow | null>(entry);
+
+  useEffect(() => {
+    if (entry) {
+      setCachedEntry(entry);
+    }
+  }, [entry]);
 
   useEffect(() => {
     if (isOpen) {
@@ -27,10 +36,10 @@ const EntryDetailModal: React.FC<Props> = ({ entry, isOpen, onClose }) => {
     }
   }, [isOpen]);
 
-  if (!entry) return null;
+  if (!cachedEntry) return null;
 
-  const moodData = MOODS.find((m) => m.value === entry.mood);
-  const formattedDate = new Date(entry.entry_date).toLocaleDateString(lang || "en", {
+  const moodData = MOODS.find((m) => m.value === cachedEntry.mood);
+  const formattedDate = new Date(cachedEntry.entry_date).toLocaleDateString(lang || "en", {
     weekday: "long",
     year: "numeric",
     month: "long",
@@ -40,14 +49,17 @@ const EntryDetailModal: React.FC<Props> = ({ entry, isOpen, onClose }) => {
   const modalContent = (
     <AnimatePresence>
       {show && (
-        <>
+        <motion.div
+          key="entry-modal-wrapper"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          className="fixed inset-0 z-[10000] flex items-center justify-center p-4 sm:p-6"
+        >
           {/* Backdrop */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
+          <div
             onClick={onClose}
-            className="fixed inset-0 bg-background/80 backdrop-blur-sm z-[9999] flex items-center justify-center p-4 sm:p-6"
+            className="absolute inset-0 bg-background/80 backdrop-blur-sm"
           />
           
           {/* Modal Container */}
@@ -56,7 +68,7 @@ const EntryDetailModal: React.FC<Props> = ({ entry, isOpen, onClose }) => {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             transition={{ type: "spring", damping: 25, stiffness: 300 }}
-            className="fixed inset-x-4 top-[10vh] sm:top-auto sm:inset-x-auto sm:w-full z-[10000] max-w-md max-h-[80vh] flex flex-col bg-card backdrop-blur-3xl border border-border/50 shadow-2xl rounded-3xl overflow-hidden sm:left-1/2 sm:-translate-x-1/2 mx-auto"
+            className="relative w-full max-w-md max-h-[85vh] flex flex-col bg-card backdrop-blur-3xl border border-border/50 shadow-2xl rounded-3xl overflow-hidden pointer-events-auto"
             style={{ 
               boxShadow: `0 20px 60px -15px ${moodData?.color || "var(--primary)"}20, inset 0 1px 0 rgba(255,255,255,0.1)` 
             }}
@@ -68,7 +80,7 @@ const EntryDetailModal: React.FC<Props> = ({ entry, isOpen, onClose }) => {
                   className="w-10 h-10 rounded-2xl flex items-center justify-center"
                   style={{ background: `${moodData?.color || "var(--primary)"}15` }}
                 >
-                  <MoodIcon value={entry.mood} color={moodData?.color} size={22} />
+                  <MoodIcon value={cachedEntry.mood} color={moodData?.color} size={22} />
                 </div>
                 <div>
                   <p className="text-[14px] font-semibold text-foreground tracking-tight">
@@ -97,9 +109,9 @@ const EntryDetailModal: React.FC<Props> = ({ entry, isOpen, onClose }) => {
                   <MessageCircle className="w-4 h-4 text-primary" />
                   <p className="text-[11px] font-semibold text-primary uppercase tracking-[0.12em]">Your Entry</p>
                 </div>
-                {entry.text ? (
+                {cachedEntry.text ? (
                   <p className="text-[15px] leading-relaxed text-foreground whitespace-pre-wrap font-medium">
-                    {entry.text}
+                    {cachedEntry.text}
                   </p>
                 ) : (
                   <p className="text-[14px] leading-relaxed text-muted-foreground italic">
@@ -109,7 +121,7 @@ const EntryDetailModal: React.FC<Props> = ({ entry, isOpen, onClose }) => {
               </div>
 
               {/* AI Insight */}
-              {entry.ai_summary && (
+              {cachedEntry.ai_summary && (
                 <div className="glass-card rounded-2xl p-5 relative overflow-hidden group">
                   <div 
                     className="absolute inset-0 opacity-10 transition-opacity duration-500 group-hover:opacity-20"
@@ -123,7 +135,7 @@ const EntryDetailModal: React.FC<Props> = ({ entry, isOpen, onClose }) => {
                       </p>
                     </div>
                     <p className="text-[14px] leading-relaxed text-foreground">
-                      {entry.ai_summary}
+                      {cachedEntry.ai_summary}
                     </p>
                   </div>
                 </div>
@@ -131,7 +143,7 @@ const EntryDetailModal: React.FC<Props> = ({ entry, isOpen, onClose }) => {
             </div>
             
           </motion.div>
-        </>
+        </motion.div>
       )}
     </AnimatePresence>
   );
