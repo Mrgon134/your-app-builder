@@ -141,12 +141,21 @@ const PricingScreen: React.FC<PricingScreenProps> = ({ currentPlan = "free", tri
         </div>
       )}
 
-      {/* Currency badge */}
-      <div className="flex items-center justify-center gap-1.5 mb-4">
-        <Globe className="w-3.5 h-3.5 text-muted-foreground" />
-        <span className="text-xs text-muted-foreground">
-          {"Prices in USD · Local currency at checkout"}
-        </span>
+      {/* Currency & PPP discount badge */}
+      <div className="flex flex-col items-center gap-2 mb-4">
+        <div className="flex items-center gap-1.5">
+          <Globe className="w-3.5 h-3.5 text-muted-foreground" />
+          <span className="text-xs text-muted-foreground">
+            {"Prices in USD · Local currency at checkout"}
+          </span>
+        </div>
+        {geo.discountPct > 0 && (
+          <div className="flex items-center gap-1.5 bg-[#4ECDC4]/10 border border-[#4ECDC4]/20 rounded-full px-3 py-1">
+            <span className="text-[11px] font-semibold text-[#4ECDC4]">
+              🎉 {geo.discountPct}% PPP discount applied for your region
+            </span>
+          </div>
+        )}
       </div>
 
       {/* Billing toggle */}

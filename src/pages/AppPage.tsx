@@ -26,7 +26,7 @@ type Screen = "home" | "journal" | "insights" | "coach" | "pro" | "settings" | "
 const AppPage: React.FC = () => {
   const { t, lang } = useLang();
   const { user } = useAuth();
-  const { country } = useGeoPricing();
+  const { country, couponCode } = useGeoPricing();
   const [profile, setProfile] = useState<ProfileRow | null>(null);
   const [showOnboarding, setShowOnboarding] = useState(false);
   const [screen, setScreen] = useState<Screen>(() => {
@@ -176,6 +176,7 @@ const AppPage: React.FC = () => {
             user_email: user.email,
             user_name: user.user_metadata?.full_name || user.user_metadata?.name || user.email?.split("@")[0] || "User",
             country,
+            coupon_code: couponCode || undefined,
           }),
         }
       );

@@ -17,7 +17,7 @@ serve(async (req) => {
       throw new Error("DODO_PAYMENTS_API_KEY not set");
     }
 
-    const { variant_id, user_id, user_email, user_name, country } = await req.json();
+    const { variant_id, user_id, user_email, user_name, country, coupon_code } = await req.json();
 
     if (!variant_id || !user_id) {
       return new Response(
@@ -51,6 +51,11 @@ serve(async (req) => {
     const origin = req.headers.get("origin");
     if (origin) {
       payload.return_url = `${origin}/app`;
+    }
+
+    // PPP discount: pass ParityDeals coupon code to Dodo
+    if (coupon_code) {
+      payload.discount_code = coupon_code;
     }
 
     console.log("Dodo payload:", JSON.stringify(payload));
