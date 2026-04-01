@@ -5,15 +5,10 @@ import { MOODS } from "@/lib/constants";
 import { generateShareCard } from "@/lib/share-card";
 import { toast } from "sonner";
 import { useLang } from "@/lib/i18n";
-
-interface Entry {
-  mood: number;
-  date: string;
-  text: string;
-}
+import { EntryRow } from "@/lib/api";
 
 interface YearInReviewScreenProps {
-  entries: Entry[];
+  entries: EntryRow[];
   streak: number;
   onBack: () => void;
 }
@@ -23,7 +18,7 @@ const YearInReviewScreen: React.FC<YearInReviewScreenProps> = ({ entries, streak
   const year = new Date().getFullYear();
 
   const stats = useMemo(() => {
-    const thisYear = entries.filter((e) => e.date?.startsWith(String(year)));
+    const thisYear = entries.filter((e) => e.entry_date?.startsWith(String(year)));
     if (thisYear.length === 0) return null;
 
     const avgMood = thisYear.reduce((s, e) => s + e.mood, 0) / thisYear.length;
@@ -31,7 +26,7 @@ const YearInReviewScreen: React.FC<YearInReviewScreenProps> = ({ entries, streak
     // Best month
     const byMonth: Record<number, number[]> = {};
     thisYear.forEach((e) => {
-      const month = new Date(e.date).getMonth();
+      const month = new Date(e.entry_date).getMonth();
       if (!byMonth[month]) byMonth[month] = [];
       byMonth[month].push(e.mood);
     });

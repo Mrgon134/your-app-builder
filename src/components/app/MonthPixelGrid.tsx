@@ -1,9 +1,10 @@
 import React from "react";
 import { useLang } from "@/lib/i18n";
 import { MOODS } from "@/lib/constants";
+import { EntryRow } from "@/lib/api";
 
 interface MonthPixelGridProps {
-  entries: Array<{ mood: number; date: string }>;
+  entries: EntryRow[];
 }
 
 const MonthPixelGrid: React.FC<MonthPixelGridProps> = ({ entries }) => {
@@ -17,7 +18,7 @@ const MonthPixelGrid: React.FC<MonthPixelGridProps> = ({ entries }) => {
 
   const moodMap = new Map<number, number>();
   entries.forEach((e) => {
-    const d = new Date(e.date);
+    const d = new Date(e.entry_date);
     if (d.getFullYear() === year && d.getMonth() === month) {
       moodMap.set(d.getDate(), e.mood);
     }

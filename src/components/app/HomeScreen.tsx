@@ -11,6 +11,8 @@ import {
   Dumbbell, Moon, Utensils, Briefcase, Users, Gamepad2,
 } from "lucide-react";
 import HabitSection from "@/components/app/HabitSection";
+import EntryDetailModal from "@/components/app/EntryDetailModal";
+import { EntryRow } from "@/lib/api";
 
 // Preload all sticker images in memory on mount
 const preloadedImages: HTMLImageElement[] = [];
@@ -96,7 +98,7 @@ interface HomeScreenProps {
   onUpgrade: () => void;
   onQuickLog?: () => void;
   streak: number;
-  entries: Array<{ mood: number; date: string; text: string }>;
+  entries: EntryRow[];
   selectedMood?: number;
   onMoodSelect?: (mood: number) => void;
   energy?: number;
@@ -129,6 +131,7 @@ const HomeScreen: React.FC<HomeScreenProps> = ({
   const selectedMood = controlledMood ?? localMood;
   const energy = controlledEnergy ?? localEnergy;
   const selectedMoodData = MOODS.find((m) => m.value === selectedMood);
+  const [selectedEntry, setSelectedEntry] = useState<EntryRow | null>(null);
 
   const greeting = getGreeting(t);
   const isNight = new Date().getHours() >= 21;
@@ -462,7 +465,7 @@ const HomeScreen: React.FC<HomeScreenProps> = ({
             {entries.slice(0, 3).map((entry, i) => {
               const moodData = MOODS.find((m) => m.value === entry.mood);
               const relativeDate = (() => {
-                const d = new Date(entry.date);
+                const d = new Date(entry.entry_date);
                 const diff = Math.floor((Date.now() - d.getTime()) / 86400000);
                 if (diff === 0) return t.today || "Today";
                 if (diff === 1) return t.yesterday || "Yesterday";
@@ -471,7 +474,7 @@ const HomeScreen: React.FC<HomeScreenProps> = ({
               return (
                 <button
                   key={i}
-                  onClick={() => onNavigate("insights")}
+                  onClick={() => setSelectedEntry(entry)}
                   className="w-full flex items-center gap-3 px-4 py-3.5 press-spring text-left"
                   style={i > 0 ? { boxShadow: "inset 0 0.5px 0 hsl(var(--border)/0.5)" } : {}}
                 >
@@ -498,6 +501,12 @@ const HomeScreen: React.FC<HomeScreenProps> = ({
       {/* Spacer for bottom nav */}
       <div className="h-2" />
 
+      {/* Entry Detail Modal (History) */}
+      <EntryDetailModal 
+        entry={selectedEntry} 
+        isOpen={!!selectedEntry} 
+        onClose={() => setSelectedEntry(null)} 
+      />
     </div>
   );
 };

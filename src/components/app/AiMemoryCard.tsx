@@ -2,9 +2,10 @@ import React, { useState, useEffect, useMemo } from "react";
 import { useLang } from "@/lib/i18n";
 import { JU_STICKERS } from "@/lib/stickers";
 import { Brain } from "lucide-react";
+import { EntryRow } from "@/lib/api";
 
 interface AiMemoryCardProps {
-  entries: Array<{ mood: number; date: string; text: string }>;
+  entries: EntryRow[];
 }
 
 // Translated pattern templates — each key maps to a language map
@@ -91,7 +92,7 @@ const PATTERNS: Record<string, Record<string, string>> = {
   },
 };
 
-function derivePatterns(entries: Array<{ mood: number; date: string; text: string }>, lang: string): string[] {
+function derivePatterns(entries: EntryRow[], lang: string): string[] {
   const get = (key: string) => PATTERNS[key][lang] || PATTERNS[key].en;
   const result: string[] = [];
 

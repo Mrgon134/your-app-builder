@@ -1,9 +1,10 @@
 import React from "react";
 import { useLang } from "@/lib/i18n";
 import { MOODS } from "@/lib/constants";
+import { EntryRow } from "@/lib/api";
 
 interface MoodTrendChartProps {
-  entries: Array<{ mood: number; date: string }>;
+  entries: EntryRow[];
 }
 
 const MoodTrendChart: React.FC<MoodTrendChartProps> = ({ entries }) => {

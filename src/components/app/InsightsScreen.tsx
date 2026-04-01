@@ -11,9 +11,10 @@ import AiMemoryCard from "@/components/app/AiMemoryCard";
 import ShareMenu from "@/components/app/ShareMenu";
 import { JU_STICKERS } from "@/lib/stickers";
 import { SUPABASE_URL, SUPABASE_ANON_KEY } from "@/integrations/supabase/client";
+import { EntryRow } from "@/lib/api";
 
 interface InsightsScreenProps {
-  entries: Array<{ mood: number; date: string; text: string }>;
+  entries: EntryRow[];
   streak?: number;
   onUpgrade: () => void;
   onNavigate?: (screen: string) => void;
@@ -118,7 +119,7 @@ const InsightsScreen: React.FC<InsightsScreenProps> = ({ entries, streak = 0, on
           {entries.length > 0 && (
             <ShareMenu
               type="daily"
-              data={{ mood: entries[0].mood, date: entries[0].date, text: entries[0].text }}
+              data={{ mood: entries[0].mood, date: entries[0].entry_date, text: entries[0].text }}
               label={t.share_mood || "Share"}
             />
           )}

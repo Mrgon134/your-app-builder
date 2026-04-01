@@ -6,7 +6,7 @@ import { useAuth } from "@/lib/auth";
 import { hasPlusAccess } from "@/lib/trial";
 import { PRICING_CONFIG } from "@/lib/config";
 import { SUPABASE_URL, SUPABASE_ANON_KEY } from "@/integrations/supabase/client";
-import { fetchEntries, createEntry, createQuickEntry, fetchProfile, updateProfile, checkEntryLimit, EntryRow, ProfileRow } from "@/lib/api";
+import { fetchEntries, createEntry, createQuickEntry, fetchProfile, updateProfile, checkEntryLimit, updateEntryInsight, EntryRow, ProfileRow } from "@/lib/api";
 import OnboardingScreen from "@/components/app/OnboardingScreen";
 import HomeScreen from "@/components/app/HomeScreen";
 import JournalScreen from "@/components/app/JournalScreen";
@@ -41,7 +41,7 @@ const AppPage: React.FC = () => {
   });
   const [prevScreen, setPrevScreen] = useState<Screen | null>(null);
   const [navDirection, setNavDirection] = useState<1 | -1>(1);
-  const [entries, setEntries] = useState<Array<{ mood: number; date: string; text: string }>>([]);
+  const [entries, setEntries] = useState<EntryRow[]>([]);
   const [streak, setStreak] = useState(0);
   const [loading, setLoading] = useState(true);
   const [selectedMood, setSelectedMood] = useState<number>(3);
@@ -70,13 +70,7 @@ const AppPage: React.FC = () => {
         setProfile(dbProfile);
         setShowOnboarding(!dbProfile?.onboarded);
         setStreak(dbProfile?.streak_current || 0);
-        setEntries(
-          dbEntries.map((e) => ({
-            mood: e.mood,
-            date: e.entry_date,
-            text: e.text,
-          }))
-        );
+        setEntries(dbEntries);
       } catch (err) {
         console.error("Failed to load data:", err);
       } finally {
@@ -204,7 +198,7 @@ const AppPage: React.FC = () => {
         } catch {}
       }
       setSelectedActivities([]);
-      const newEntries = [{ mood: entry.mood, date: entry.entry_date, text: "" }, ...entries];
+      const newEntries = [entry, ...entries];
       setEntries(newEntries);
       const updatedProfile = await fetchProfile(user.id);
       if (updatedProfile) { setStreak(updatedProfile.streak_current); setProfile(updatedProfile); }
@@ -232,7 +226,7 @@ const AppPage: React.FC = () => {
       setSelectedActivities([]);
 
       const newEntries = [
-        { mood: entry.mood, date: entry.entry_date, text: entry.text },
+        entry,
         ...entries,
       ];
       setEntries(newEntries);
@@ -267,7 +261,12 @@ const AppPage: React.FC = () => {
         );
         if (resp.ok) {
           const data = await resp.json();
-          return data.insight || null;
+          const insight = data.insight || null;
+          if (insight) {
+            await updateEntryInsight(entry.id, insight);
+            setEntries(prev => prev.map(e => e.id === entry.id ? { ...e, ai_summary: insight } : e));
+          }
+          return insight;
         }
       } catch (aiErr) {
         console.error("AI insight failed:", aiErr);

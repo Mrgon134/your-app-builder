@@ -8,6 +8,7 @@ export interface EntryRow {
   energy: number | null;
   entry_date: string;
   created_at: string;
+  ai_summary: string | null;
 }
 
 export interface ProfileRow {
@@ -39,7 +40,7 @@ export const fetchProfile = async (userId: string): Promise<ProfileRow | null> =
 export const fetchEntries = async (userId: string): Promise<EntryRow[]> => {
   const { data, error } = await supabase
     .from("entries")
-    .select("id, mood, text, energy, entry_date, created_at")
+    .select("id, mood, text, energy, entry_date, created_at, ai_summary")
     .eq("user_id", userId)
     .order("entry_date", { ascending: false })
     .order("created_at", { ascending: false });
@@ -79,6 +80,15 @@ export const createEntry = async (
   await supabase.rpc("update_streak", { p_user_id: userId });
 
   return data;
+};
+
+// Update an entry with its AI insight/summary
+export const updateEntryInsight = async (entryId: string, insight: string) => {
+  const { error } = await supabase
+    .from("entries")
+    .update({ ai_summary: insight })
+    .eq("id", entryId);
+  if (error) throw error;
 };
 
 // Quick entry (mood-only, no writing)
