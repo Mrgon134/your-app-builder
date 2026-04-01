@@ -6,6 +6,7 @@ import { EntryRow } from "@/lib/api";
 
 interface AiMemoryCardProps {
   entries: EntryRow[];
+  hasProAccess: boolean;
 }
 
 // Translated pattern templates — each key maps to a language map
@@ -130,7 +131,7 @@ function derivePatterns(entries: EntryRow[], lang: string): string[] {
   return result.slice(0, 3);
 }
 
-const AiMemoryCard: React.FC<AiMemoryCardProps> = ({ entries }) => {
+const AiMemoryCard: React.FC<AiMemoryCardProps> = ({ entries, hasProAccess }) => {
   const { t, lang } = useLang();
   const [visible, setVisible] = useState(false);
 
@@ -141,7 +142,7 @@ const AiMemoryCard: React.FC<AiMemoryCardProps> = ({ entries }) => {
 
   const memories = useMemo(() => derivePatterns(entries, lang), [entries, lang]);
 
-  if (entries.length < 3 || memories.length === 0 || !visible) return null;
+  if (!hasProAccess || entries.length < 3 || memories.length === 0 || !visible) return null;
 
   return (
     <div

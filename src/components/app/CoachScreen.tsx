@@ -163,6 +163,10 @@ const CoachScreen: React.FC<{ onUpgrade?: () => void; plan?: string | null; tria
   const handlePersonaSwitch = useCallback(
     (id: string) => {
       if (id === persona) return;
+      if (id !== "gentle" && !hasPlusAccess(propPlan || userPlan, propTrialStartedAt || null)) {
+        if (onUpgrade) onUpgrade();
+        return;
+      }
       setSwitching(true);
       setTimeout(() => {
         setPersona(id);
@@ -176,7 +180,7 @@ const CoachScreen: React.FC<{ onUpgrade?: () => void; plan?: string | null; tria
         }
       }, 250);
     },
-    [persona, messages.length]
+    [persona, messages.length, propPlan, userPlan, propTrialStartedAt, onUpgrade]
   );
 
   const sendMessage = async () => {
@@ -262,6 +266,9 @@ const CoachScreen: React.FC<{ onUpgrade?: () => void; plan?: string | null; tria
                 style={{ background: p.color, transform: isActive ? "scale(1.3)" : "scale(1)" }}
               />
               {p.name}
+              {p.id !== "gentle" && !hasPlusAccess(propPlan || userPlan, propTrialStartedAt || null) && (
+                <Lock className="w-3 h-3 ml-[2px] opacity-60" />
+              )}
             </button>
           );
         })}

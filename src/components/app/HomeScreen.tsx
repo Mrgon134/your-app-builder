@@ -3,6 +3,7 @@ import { useLang } from "@/lib/i18n";
 import { MOODS, getGreeting, getRandomPrompt } from "@/lib/constants";
 import MoodIcon from "@/components/MoodIcon";
 import { JU_STICKERS, getMascotForState } from "@/lib/stickers";
+import { hasProAccess } from "@/lib/trial";
 import SignupPrompt from "@/components/app/SignupPrompt";
 import AiMemoryCard from "@/components/app/AiMemoryCard";
 import TimeCapsuleCard from "@/components/app/TimeCapsuleCard";
@@ -448,8 +449,14 @@ const HomeScreen: React.FC<HomeScreenProps> = ({
             {t.write}
           </button>
           <button
-            onClick={() => onTalk ? onTalk() : onNavigate("journal")}
-            className="flex items-center justify-center gap-2.5 h-[54px] rounded-2xl bg-foreground/[0.06] dark:bg-foreground/[0.08] text-foreground font-semibold text-[15px] press-spring backdrop-blur-sm"
+            onClick={() => {
+              if (!hasProAccess(plan ?? null, trialStartedAt ?? null)) {
+                onUpgrade();
+                return;
+              }
+              onTalk ? onTalk() : onNavigate("journal");
+            }}
+            className="flex items-center justify-center gap-2.5 h-[54px] rounded-2xl bg-foreground/[0.06] dark:bg-foreground/[0.08] text-foreground font-semibold text-[15px] press-spring backdrop-blur-sm relative overflow-hidden"
           >
             <Mic className="w-[18px] h-[18px]" />
             {t.talk}
@@ -539,7 +546,7 @@ const HomeScreen: React.FC<HomeScreenProps> = ({
       {/* Time Capsule — Echoes of the Past */}
       <TimeCapsuleCard entries={entries} onClick={setSelectedEntry} />
       
-      <AiMemoryCard entries={entries} />
+      <AiMemoryCard entries={entries} hasProAccess={hasProAccess(plan ?? null, trialStartedAt ?? null)} />
 
       {/* Recent entries — clean iOS-list style, no cards */}
       {entries.length > 0 && (

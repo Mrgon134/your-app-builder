@@ -48,3 +48,10 @@ export function hasPlusAccess(plan: string | null, trialStartedAt: string | null
   const trial = getTrialStatus(trialStartedAt);
   return trial.isActive;
 }
+
+// Check if user has "pro-level" access: pro/lifetime plan OR active trial
+export function hasProAccess(plan: string | null, trialStartedAt: string | null): boolean {
+  if (plan === "pro" || plan === "lifetime") return true;
+  const trial = getTrialStatus(trialStartedAt);
+  return trial.isActive;
+}

@@ -64,6 +64,8 @@ interface JournalScreenProps {
   autoRecord?: boolean;
   activities?: string[];
   mood?: number;
+  hasProAccess?: boolean;
+  onUpgrade?: () => void;
 }
 
 const useTypingEffect = (text: string, speed = 22) => {
@@ -85,7 +87,7 @@ const useTypingEffect = (text: string, speed = 22) => {
 };
 
 const JournalScreen: React.FC<JournalScreenProps> = ({
-  onBack, onSave, initialPrompt, autoRecord = false, activities = [], mood,
+  onBack, onSave, initialPrompt, autoRecord = false, activities = [], mood, hasProAccess = false, onUpgrade
 }) => {
   const { t, lang } = useLang();
   const moodData = MOODS.find((m) => m.value === mood);
@@ -430,7 +432,13 @@ const JournalScreen: React.FC<JournalScreenProps> = ({
       <div className="flex items-center gap-3 mt-4">
         {canRecord && (
           <button
-            onClick={isRecording ? stopRecording : startRecording}
+            onClick={() => {
+              if (!hasProAccess && onUpgrade) {
+                onUpgrade();
+                return;
+              }
+              isRecording ? stopRecording() : startRecording();
+            }}
             disabled={isTranscribing}
             className={`flex items-center justify-center gap-2 h-[48px] px-5 rounded-xl font-medium text-[14px] transition-all active:scale-[0.97] disabled:opacity-50 ${
               isRecording

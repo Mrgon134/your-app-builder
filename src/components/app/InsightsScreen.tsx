@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { hasPlusAccess } from "@/lib/trial";
+import { hasPlusAccess, hasProAccess } from "@/lib/trial";
 import { useLang } from "@/lib/i18n";
 import { MOODS } from "@/lib/constants";
 import MoodIcon from "@/components/MoodIcon";
@@ -318,7 +318,7 @@ const InsightsScreen: React.FC<InsightsScreenProps> = ({ entries, streak = 0, on
         </div>
       )}
 
-      <AiMemoryCard entries={entries} />
+      <AiMemoryCard entries={entries} hasProAccess={hasProAccess(plan ?? null, trialStartedAt ?? null)} />
 
       {/* Quick links — Programs + Year in Review */}
       <div className="grid grid-cols-2 gap-3">
@@ -347,7 +347,7 @@ const InsightsScreen: React.FC<InsightsScreenProps> = ({ entries, streak = 0, on
       <HistoryLock onUpgrade={onUpgrade} plan={plan} trialStartedAt={trialStartedAt} />
 
       {/* Relationship map locked */}
-      {!hasPlusAccess(plan, trialStartedAt) && (
+      {!hasProAccess(plan ?? null, trialStartedAt ?? null) && (
         <div className="glass-card rounded-2xl p-6 text-center">
           <Lock className="w-7 h-7 mx-auto text-muted-foreground/30 mb-3" />
           <p className="font-semibold text-foreground text-[17px] mb-1">{t.relationship_map}</p>
