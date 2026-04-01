@@ -48,7 +48,6 @@ const AppPage: React.FC = () => {
   const [journalAutoRecord, setJournalAutoRecord] = useState(false);
   const [showConfetti, setShowConfetti] = useState(false);
   const [showSignupAfterSave, setShowSignupAfterSave] = useState(false);
-  const [activeTabAnim, setActiveTabAnim] = useState<string | null>(null);
   const [journalPrompt, setJournalPrompt] = useState<string>("");
   const [showTour, setShowTour] = useState(false);
 
