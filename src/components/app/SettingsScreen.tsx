@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { useLang, LANG_META } from "@/lib/i18n";
 import { useAuth } from "@/lib/auth";
 import { updateProfile } from "@/lib/api";
-import { ArrowLeft, Moon, Sun, Globe, Crown, LogOut, Bell, BellOff, ChevronRight, Fingerprint, KeyRound, AtSign } from "lucide-react";
+import { ArrowLeft, Moon, Sun, Globe, Crown, LogOut, Bell, BellOff, ChevronRight, Fingerprint, KeyRound, AtSign, Trash2, AlertTriangle } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
 import {
   requestNotificationPermission,
   getNotificationPermission,
@@ -27,6 +28,8 @@ const SettingsScreen: React.FC<SettingsScreenProps> = ({ onBack, onUpgrade, plan
   const [newEmail, setNewEmail] = useState("");
   const [emailLoading, setEmailLoading] = useState(false);
   const [darkMode, setDarkMode] = useState(document.documentElement.classList.contains("dark"));
+  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
+  const [deleteLoading, setDeleteLoading] = useState(false);
   const reminderDefaults = getReminderSettings();
   const [reminderEnabled, setReminderEnabled] = useState(reminderDefaults.enabled);
   const [reminderHour, setReminderHour] = useState(reminderDefaults.hour);
@@ -339,7 +342,20 @@ const SettingsScreen: React.FC<SettingsScreenProps> = ({ onBack, onUpgrade, plan
                   <div className="w-8 h-8 rounded-lg bg-red-500 flex items-center justify-center">
                     <LogOut className="w-4 h-4 text-white" />
                   </div>
-                  <span className="text-[15px] font-normal text-red-500">{t.sign_out || "Sign out"}</span>
+                  <span className="text-[15px] font-normal text-muted-foreground">{t.sign_out || "Sign out"}</span>
+                </div>
+              </button>
+
+              {/* Delete Account */}
+              <button
+                onClick={() => setShowDeleteConfirm(true)}
+                className="ios-group-item w-full"
+              >
+                <div className="flex items-center gap-3">
+                  <div className="w-8 h-8 rounded-lg bg-red-500/10 flex items-center justify-center">
+                    <Trash2 className="w-4 h-4 text-red-500" />
+                  </div>
+                  <span className="text-[15px] font-normal text-red-500">{t.delete_account || "Delete account"}</span>
                 </div>
               </button>
             </div>
@@ -349,6 +365,54 @@ const SettingsScreen: React.FC<SettingsScreenProps> = ({ onBack, onUpgrade, plan
         {/* Footer spacing */}
         <div className="h-8" />
       </div>
+
+      {/* Account Deletion Confirmation Modal */}
+      {showDeleteConfirm && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-foreground/30 backdrop-blur-sm p-6 animate-fade-in" onClick={() => setShowDeleteConfirm(false)}>
+          <div className="bg-card rounded-3xl p-6 w-full max-w-[320px] shadow-2xl border border-border/50 text-center animate-spring-in" onClick={e => e.stopPropagation()}>
+            <div className="mx-auto w-12 h-12 rounded-full bg-red-500/10 flex items-center justify-center mb-4">
+              <AlertTriangle className="w-6 h-6 text-red-500" />
+            </div>
+            <h3 className="text-xl font-bold text-foreground mb-2">{t.delete_account || "Delete Account?"}</h3>
+            <p className="text-sm text-muted-foreground mb-6 leading-relaxed">
+              {t.delete_account_desc || "This will permanently delete your profile, all journal entries, and settings. This action cannot be undone."}
+            </p>
+            <div className="space-y-2.5">
+              <button
+                disabled={deleteLoading}
+                onClick={async () => {
+                  setDeleteLoading(true);
+                  try {
+                    const { error } = await supabase.rpc("delete_user" as any);
+                    // Ignore fail and sign out if it's a test/mock environment
+                    if (error) {
+                      toast.error("Contact support to complete account deletion.");
+                      console.error(error);
+                    } else {
+                      await signOut();
+                    }
+                  } catch (e: any) {
+                    toast.error("Contact support to complete account deletion.");
+                  } finally {
+                    setDeleteLoading(false);
+                    setShowDeleteConfirm(false);
+                  }
+                }}
+                className="w-full h-12 rounded-xl bg-red-500 text-white font-semibold text-[15px] transition-transform active:scale-[0.98] disabled:opacity-50 flex items-center justify-center gap-2"
+              >
+                {deleteLoading ? <span className="animate-spin rounded-full h-5 w-5 border-b-2 border-white/50" /> : (t.confirm_delete || "Yes, delete my account")}
+              </button>
+              <button
+                disabled={deleteLoading}
+                onClick={() => setShowDeleteConfirm(false)}
+                className="w-full h-12 rounded-xl bg-muted text-foreground font-semibold text-[15px] transition-transform active:scale-[0.98] disabled:opacity-50"
+              >
+                {t.cancel || "Cancel"}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

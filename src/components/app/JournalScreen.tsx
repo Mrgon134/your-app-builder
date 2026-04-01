@@ -97,7 +97,7 @@ const JournalScreen: React.FC<JournalScreenProps> = ({
   const [saving, setSaving] = useState(false);
   const [recordState, setRecordState] = useState<RecordState>("idle");
 
-  const [grounding, setGrounding] = useState(mood !== undefined && mood <= 2);
+  const [grounding, setGrounding] = useState(false);
   const [breatheState, setBreatheState] = useState<"inhale" | "hold" | "exhale">("inhale");
 
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
@@ -376,6 +376,24 @@ const JournalScreen: React.FC<JournalScreenProps> = ({
           <p className="text-[11px] font-semibold text-primary uppercase tracking-widest mb-1">{t.todays_prompt}</p>
           <p className="text-[15px] text-foreground leading-relaxed">{initialPrompt}</p>
         </div>
+      )}
+
+      {/* Optional SOS Banner for Low Moods */}
+      {!grounding && mood !== undefined && mood <= 2 && (
+        <button 
+          onClick={() => setGrounding(true)}
+          className="w-full flex items-center justify-between p-4 mb-3 rounded-2xl bg-destructive/5 border border-destructive/20 transition-transform active:scale-[0.98]"
+        >
+          <div className="flex items-center gap-3 text-left">
+            <div className="w-8 h-8 rounded-full bg-destructive/10 flex items-center justify-center">
+              <span className="text-destructive text-sm font-bold">SOS</span>
+            </div>
+            <div>
+              <p className="text-[13px] font-semibold text-destructive">Feeling overwhelmed?</p>
+              <p className="text-[12px] text-muted-foreground">Take a guided breathing break before writing.</p>
+            </div>
+          </div>
+        </button>
       )}
 
       <textarea

@@ -134,6 +134,11 @@ const HomeScreen: React.FC<HomeScreenProps> = ({
   const selectedMoodData = MOODS.find((m) => m.value === selectedMood);
   const [selectedEntry, setSelectedEntry] = useState<EntryRow | null>(null);
 
+  // PWA Install Prompt State
+  const [installPrompt, setInstallPrompt] = useState<any>(null);
+  const [isIOS, setIsIOS] = useState(false);
+  const [showInstallBanner, setShowInstallBanner] = useState(false);
+
   const greeting = getGreeting(t);
   const isNight = new Date().getHours() >= 21;
   const stickerKey = getMascotForState({ selectedMood, isNight });
@@ -165,7 +170,7 @@ const HomeScreen: React.FC<HomeScreenProps> = ({
     displaySubtitle = `Glad to see you. You felt ${lastMoodData?.label?.toLowerCase() || 'okay'} last time.`;
   }
 
-  // Parallax scroll tracking
+  // Parallax scroll tracking and PWA Install Prompt
   useEffect(() => {
     const handleScroll = () => {
       if (scrollRef.current) {
@@ -174,7 +179,28 @@ const HomeScreen: React.FC<HomeScreenProps> = ({
       }
     };
     window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
+
+    // PWA Install Prompt Listener
+    const handleInstallPrompt = (e: any) => {
+      e.preventDefault();
+      setInstallPrompt(e);
+      if (!localStorage.getItem("nuju-dismiss-install")) setShowInstallBanner(true);
+    };
+    window.addEventListener("beforeinstallprompt", handleInstallPrompt);
+
+    // iOS PWA Detection
+    const userAgent = window.navigator.userAgent.toLowerCase();
+    const isIosDevice = /iphone|ipad|ipod/.test(userAgent);
+    const isStandalone = ("standalone" in window.navigator) && (window.navigator as any).standalone;
+    if (isIosDevice && !isStandalone && !localStorage.getItem("nuju-dismiss-install")) {
+      setIsIOS(true);
+      setShowInstallBanner(true);
+    }
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("beforeinstallprompt", handleInstallPrompt);
+    };
   }, []);
 
   const handleMoodSelect = (value: number) => {
@@ -256,6 +282,43 @@ const HomeScreen: React.FC<HomeScreenProps> = ({
           </div>
         </div>
       </div>
+
+      {/* PWA Install Banner */}
+      {showInstallBanner && (
+        <div className="glass-card rounded-2xl p-4 flex items-center justify-between animate-fade-in border border-primary/20 bg-primary/5">
+          <div>
+            <p className="font-semibold text-[14px] text-foreground text-primary">{t.install_app || "Add Nuju to Home Screen"}</p>
+            <p className="text-[12px] text-muted-foreground mt-0.5 max-w-[200px]">
+              {isIOS 
+                ? "Tap Share > 'Add to Home Screen' for native performance."
+                : "Install the app for a native experience and notifications."}
+            </p>
+          </div>
+          {!isIOS && installPrompt ? (
+            <button 
+              onClick={async () => {
+                if (!installPrompt) return;
+                installPrompt.prompt();
+                const { outcome } = await installPrompt.userChoice;
+                if (outcome === 'accepted') setShowInstallBanner(false);
+              }}
+              className="px-4 py-2 rounded-xl bg-primary text-primary-foreground text-[13px] font-bold shadow-[0_2px_10px_-2px_hsl(var(--primary)/0.4)] transition-transform active:scale-95"
+            >
+              Install
+            </button>
+          ) : (
+            <button 
+              onClick={() => {
+                setShowInstallBanner(false);
+                localStorage.setItem("nuju-dismiss-install", "1");
+              }}
+              className="text-[12px] text-muted-foreground font-medium px-2 py-1 uppercase tracking-wide opacity-70 hover:opacity-100"
+            >
+              Dismiss
+            </button>
+          )}
+        </div>
+      )}
 
       {/* Mascot + speech bubble */}
       <div className="flex flex-col items-center gap-2.5">

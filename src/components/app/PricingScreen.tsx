@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useLang } from "@/lib/i18n";
-import { Check, ArrowLeft, Globe, Clock, Sparkles } from "lucide-react";
+import { Check, ArrowLeft, Globe, Clock, Sparkles, Loader2, X } from "lucide-react";
 import { useGeoPricing } from "@/hooks/use-geo-pricing";
 import { getTrialStatus, formatTrialCountdown, TRIAL_DAYS } from "@/lib/trial";
 
@@ -15,6 +15,8 @@ interface PricingScreenProps {
 const PricingScreen: React.FC<PricingScreenProps> = ({ currentPlan = "free", trialStartedAt = null, onCheckout, onStartTrial, onBack }) => {
   const { t } = useLang();
   const [annual, setAnnual] = useState(true);
+  const [showTrialModal, setShowTrialModal] = useState(false);
+  const [trialLoading, setTrialLoading] = useState(false);
   const geo = useGeoPricing();
   const trial = getTrialStatus(trialStartedAt);
 
@@ -261,7 +263,7 @@ const PricingScreen: React.FC<PricingScreenProps> = ({ currentPlan = "free", tri
                   {/* Trial CTA — Plus only, trial not yet started */}
                   {trial.notStarted && tier.id === "plus" && (
                     <button
-                      onClick={onStartTrial}
+                      onClick={() => setShowTrialModal(true)}
                       className="w-full py-3.5 rounded-2xl font-semibold text-sm transition-all active:scale-[0.97] bg-primary text-primary-foreground shadow-[0_4px_20px_-4px_hsl(var(--primary)/0.45)]"
                     >
                       {(t.start_trial_n_days || "Try {plan} free for {n} days")
@@ -301,6 +303,52 @@ const PricingScreen: React.FC<PricingScreenProps> = ({ currentPlan = "free", tri
           );
         })}
       </div>
+
+      {/* Trial Confirmation Modal (Friction for Gating) */}
+      {showTrialModal && (
+        <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-foreground/30 backdrop-blur-sm p-4 animate-fade-in" onClick={() => setShowTrialModal(false)}>
+          <div 
+            className="w-full max-w-sm bg-card rounded-[32px] p-6 shadow-2xl border border-border/50 animate-spring-up"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex justify-between items-start mb-4">
+              <div className="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center animate-ju-float">
+                <Sparkles className="w-6 h-6 text-primary" />
+              </div>
+              <button onClick={() => setShowTrialModal(false)} className="w-8 h-8 flex items-center justify-center rounded-full bg-muted/50 text-muted-foreground hover:bg-muted transition-colors">
+                <X className="w-4 h-4" />
+              </button>
+            </div>
+            
+            <h3 className="font-serif text-2xl font-bold text-foreground mb-2">
+              Start 7-Day Free Trial
+            </h3>
+            <p className="text-[14px] text-muted-foreground leading-relaxed mb-6">
+              Unlock unlimited AI insights, all coaching styles, and your full history. 
+              <br/><br/>
+              <span className="font-medium text-foreground">No payment required right now.</span> We use Dodo Payments, so you can choose a plan later if you love Nuju.
+            </p>
+            
+            <div className="space-y-2.5">
+              <button
+                disabled={trialLoading}
+                onClick={() => {
+                  setTrialLoading(true);
+                  // Simulate realistic checkout loading before starting
+                  setTimeout(() => {
+                    onStartTrial();
+                    setShowTrialModal(false);
+                  }, 800);
+                }}
+                className="w-full h-14 rounded-2xl font-semibold text-[15px] bg-primary text-primary-foreground transition-transform active:scale-[0.98] flex items-center justify-center"
+              >
+                {trialLoading ? <Loader2 className="w-5 h-5 animate-spin" /> : "Confirm My Free Trial"}
+              </button>
+              <p className="text-center text-[11px] text-muted-foreground/60 w-full mb-2">Cancel anytime before standard terms apply.</p>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
