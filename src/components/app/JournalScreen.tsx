@@ -5,6 +5,7 @@ import { MOODS } from "@/lib/constants";
 import { ArrowLeft, Mic, Square, Loader2 } from "lucide-react";
 import MoodIcon from "@/components/MoodIcon";
 import { SUPABASE_URL, SUPABASE_ANON_KEY } from "@/integrations/supabase/client";
+import { motion, AnimatePresence } from "framer-motion";
 const DRAFT_KEY = "nuju-journal-draft";
 
 const langToLocale: Record<string, string> = {
@@ -95,6 +96,9 @@ const JournalScreen: React.FC<JournalScreenProps> = ({
   const [insight, setInsight] = useState("");
   const [saving, setSaving] = useState(false);
   const [recordState, setRecordState] = useState<RecordState>("idle");
+
+  const [grounding, setGrounding] = useState(mood !== undefined && mood <= 2);
+  const [breatheState, setBreatheState] = useState<"inhale" | "hold" | "exhale">("inhale");
 
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
   const audioChunksRef = useRef<Blob[]>([]);
@@ -227,6 +231,67 @@ const JournalScreen: React.FC<JournalScreenProps> = ({
   };
 
   const { displayed: typedInsight, done: insightDone } = useTypingEffect(insight);
+
+  // SOS Grounding logic
+  useEffect(() => {
+    if (!grounding) return;
+    const interval = setInterval(() => {
+      setBreatheState(prev => prev === "inhale" ? "hold" : prev === "hold" ? "exhale" : "inhale");
+    }, 4000);
+    
+    // Total 12 seconds breathing before auto-skipping
+    const timeout = setTimeout(() => {
+      setGrounding(false);
+    }, 12000);
+    
+    return () => { clearInterval(interval); clearTimeout(timeout); };
+  }, [grounding]);
+
+  if (grounding) {
+    return (
+      <div className="min-h-[100dvh] fixed inset-0 z-[99999] bg-background/95 backdrop-blur-3xl flex flex-col items-center justify-center p-6 animate-fade-in">
+        <div className="relative w-full flex items-center justify-center mb-16 mt-[-10vh]">
+          {/* Outer glow ring */}
+          <motion.div 
+            animate={{ 
+              scale: breatheState === "inhale" ? 1.4 : breatheState === "hold" ? 1.4 : 0.9,
+              opacity: breatheState === "inhale" ? 0.3 : breatheState === "hold" ? 0.3 : 0.1 
+            }}
+            transition={{ duration: 4, ease: "easeInOut" }}
+            className="absolute w-64 h-64 rounded-full blur-3xl"
+            style={{ background: moodData?.color || "hsl(var(--primary))" }}
+          />
+          {/* Inner circle */}
+          <motion.div 
+            animate={{ 
+              scale: breatheState === "inhale" ? 1.15 : breatheState === "hold" ? 1.15 : 0.95 
+            }}
+            transition={{ duration: 4, ease: "easeInOut" }}
+            className="relative w-40 h-40 rounded-full flex flex-col items-center justify-center text-white font-semibold tracking-[0.15em] uppercase shadow-2xl"
+            style={{ background: moodData?.color || "hsl(var(--primary))" }}
+          >
+            <span className="text-[14px]">
+              {breatheState === "inhale" ? "Breathe in" : breatheState === "hold" ? "Hold" : "Breathe out"}
+            </span>
+          </motion.div>
+        </div>
+        
+        <p className="text-center text-foreground font-semibold text-[20px] leading-relaxed max-w-xs animate-fade-up tracking-tight mb-2">
+          {t.sos_title || "It's okay to feel this way."}
+        </p>
+        <p className="text-center text-muted-foreground/80 font-medium text-[15px] max-w-xs animate-fade-up" style={{ animationDelay: "0.2s" }}>
+          {t.sos_desc || "Take a moment for yourself before you begin writing."}
+        </p>
+        
+        <button 
+          onClick={() => setGrounding(false)} 
+          className="absolute bottom-16 px-6 py-3 rounded-full bg-foreground/[0.04] text-muted-foreground text-[12px] font-bold tracking-widest uppercase press-spring hover:bg-foreground/[0.08] hover:text-foreground transition-colors"
+        >
+          {t.tour_skip || "Skip"}
+        </button>
+      </div>
+    );
+  }
 
   if (saved) {
     return (

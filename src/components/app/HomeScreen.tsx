@@ -5,6 +5,7 @@ import MoodIcon from "@/components/MoodIcon";
 import { JU_STICKERS, getMascotForState } from "@/lib/stickers";
 import SignupPrompt from "@/components/app/SignupPrompt";
 import AiMemoryCard from "@/components/app/AiMemoryCard";
+import TimeCapsuleCard from "@/components/app/TimeCapsuleCard";
 import {
   Settings, Flame, PenLine, Mic, RefreshCw,
   BedDouble, BatteryLow, Zap, Sparkles, Check,
@@ -246,7 +247,15 @@ const HomeScreen: React.FC<HomeScreenProps> = ({
           className="relative w-28 h-28"
           style={{ transform: `translateY(${-scrollY * 0.12}px)`, transition: "transform 0.05s linear" }}
         >
-          <div className="absolute inset-[-12px] rounded-full bg-primary/8 animate-glow-pulse" />
+          {/* Visual Progression: Glow intensifies based on streak */}
+          <div 
+            className="absolute inset-[-12px] rounded-full animate-glow-pulse transition-all duration-1000" 
+            style={{ 
+              background: streak >= 7 ? "hsl(var(--primary)/0.25)" : streak >= 3 ? "hsl(var(--primary)/0.15)" : "hsl(var(--primary)/0.08)",
+              boxShadow: streak >= 7 ? "0 0 60px hsl(var(--primary)/0.3), inset 0 0 20px hsl(var(--primary)/0.2)" : "none",
+              transform: streak >= 7 ? "scale(1.15)" : streak >= 3 ? "scale(1.05)" : "scale(1)"
+            }}
+          />
           <img
             src={juImg}
             alt="Ju"
@@ -277,7 +286,7 @@ const HomeScreen: React.FC<HomeScreenProps> = ({
         <p className="text-[11px] font-semibold text-muted-foreground uppercase tracking-[0.12em] mb-3 px-0.5">
           {t.how_feeling}
         </p>
-        <div className="flex justify-center gap-2 px-0.5">
+        <div id="tour-mood-selector" className="flex justify-center gap-2 px-0.5">
           {MOODS.map((mood, index) => {
             const isSelected = selectedMood === mood.value;
             const isAnimating = moodAnimating === mood.value;
@@ -348,7 +357,7 @@ const HomeScreen: React.FC<HomeScreenProps> = ({
       </div>
 
       {/* Action buttons — always visible right after mood/activity */}
-      <div className="space-y-2.5">
+      <div id="tour-action-buttons" className="space-y-2.5">
         <div className="grid grid-cols-2 gap-3">
           <button
             onClick={() => {
@@ -447,6 +456,10 @@ const HomeScreen: React.FC<HomeScreenProps> = ({
         plan={plan}
         trialStartedAt={trialStartedAt}
       />
+      
+      {/* Time Capsule — Echoes of the Past */}
+      <TimeCapsuleCard entries={entries} onClick={setSelectedEntry} />
+      
       <AiMemoryCard entries={entries} />
 
       {/* Recent entries — clean iOS-list style, no cards */}

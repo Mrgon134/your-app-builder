@@ -446,6 +446,7 @@ const AppPage: React.FC = () => {
                 const Icon = item.icon;
                 return (
                   <motion.button
+                    id={`tour-nav-${item.id}`}
                     key={item.id}
                     onClick={() => navigateTo(item.id)}
                     className={`flex-1 flex flex-col items-center gap-0.5 py-2.5 transition-colors duration-200 ${
