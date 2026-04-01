@@ -321,10 +321,10 @@ const PricingScreen: React.FC<PricingScreenProps> = ({ currentPlan = "free", tri
             </div>
             
             <h3 className="font-serif text-2xl font-bold text-foreground mb-2">
-              Start 7-Day Free Trial
+              Start 7-Day Pro Trial
             </h3>
             <p className="text-[14px] text-muted-foreground leading-relaxed mb-6">
-              Unlock unlimited AI insights, all coaching styles, and your full history. 
+              Unlock full Pro access: voice journaling, unlimited AI insights, all coaching styles, and your full history. 
               <br/><br/>
               <span className="font-medium text-foreground">No payment required right now.</span> We use Dodo Payments, so you can choose a plan later if you love Nuju.
             </p>
@@ -342,7 +342,7 @@ const PricingScreen: React.FC<PricingScreenProps> = ({ currentPlan = "free", tri
                 }}
                 className="w-full h-14 rounded-2xl font-semibold text-[15px] bg-primary text-primary-foreground transition-transform active:scale-[0.98] flex items-center justify-center"
               >
-                {trialLoading ? <Loader2 className="w-5 h-5 animate-spin" /> : "Confirm My Free Trial"}
+                {trialLoading ? <Loader2 className="w-5 h-5 animate-spin" /> : "Confirm My Pro Trial"}
               </button>
               <p className="text-center text-[11px] text-muted-foreground/60 w-full mb-2">Cancel anytime before standard terms apply.</p>
             </div>

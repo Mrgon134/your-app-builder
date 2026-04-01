@@ -23,7 +23,7 @@ const TrialBanner: React.FC<TrialBannerProps> = ({ trialStartedAt, plan, onUpgra
           </div>
           <div className="flex-1 min-w-0">
             <p className="text-[14px] font-semibold text-foreground">Trial ended</p>
-            <p className="text-[12px] text-muted-foreground">Upgrade to keep your AI insights & unlimited entries</p>
+            <p className="text-[12px] text-muted-foreground">Upgrade to keep your Pro access & unlimited history</p>
           </div>
           <button
             onClick={onUpgrade}
@@ -55,7 +55,7 @@ const TrialBanner: React.FC<TrialBannerProps> = ({ trialStartedAt, plan, onUpgra
           <p className="text-[12px] text-muted-foreground">
             {urgentColor
               ? "Don't lose your AI insights & history"
-              : "Enjoying Nuju Plus? Subscribe to keep access"
+              : "Enjoying Nuju Pro? Subscribe to keep access"
             }
           </p>
         </div>
