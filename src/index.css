@@ -100,17 +100,48 @@
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    /* iOS-native overscroll rubber-band */
+    overscroll-behavior-y: none;
   }
   body {
     @apply bg-background text-foreground;
     font-family: var(--font-body);
     letter-spacing: -0.011em;
+    /* Smooth dark/light mode transitions */
+    transition: background-color 0.4s ease, color 0.3s ease;
+    /* iOS-native momentum scrolling */
+    -webkit-overflow-scrolling: touch;
+  }
+  /* Smooth color transitions for dark mode toggle */
+  .dark body,
+  .dark *,
+  * {
+    transition-property: background-color, border-color, color, fill, stroke, box-shadow;
+    transition-duration: 0.3s;
+    transition-timing-function: cubic-bezier(0.25, 1, 0.5, 1);
+  }
+  /* Don't transition transform/opacity (conflicts with framer-motion) */
+  [style*="transform"], [style*="opacity"] {
+    transition-property: background-color, border-color, color, fill, stroke !important;
   }
   ::selection {
     background: hsl(248 58% 58% / 0.15);
   }
+  /* Hide scrollbar everywhere but keep scroll functional */
   ::-webkit-scrollbar {
     display: none;
+  }
+  * {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  /* Respect reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
   }
 }
 

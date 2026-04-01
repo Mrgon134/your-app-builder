@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, useRef } from "react";
+import React, { useState, useEffect, useCallback, useRef, useMemo } from "react";
 import { initReminders } from "@/lib/notifications";
 import { useGeoPricing } from "@/hooks/use-geo-pricing";
 import { useLang } from "@/lib/i18n";
@@ -20,6 +20,7 @@ import { getTrialStatus } from "@/lib/trial";
 import Confetti from "@/components/app/Confetti";
 import { Home, BarChart3, MessageCircle, Sparkles, Loader2 } from "lucide-react";
 import { toast } from "sonner";
+import { AnimatePresence, motion } from "framer-motion";
 
 type Screen = "home" | "journal" | "insights" | "coach" | "pro" | "settings" | "programs" | "year-review";
 
@@ -37,7 +38,7 @@ const AppPage: React.FC = () => {
     } catch { return "home"; }
   });
   const [prevScreen, setPrevScreen] = useState<Screen | null>(null);
-  const [transitionClass, setTransitionClass] = useState("animate-page-slide-in");
+  const [navDirection, setNavDirection] = useState<1 | -1>(1);
   const [entries, setEntries] = useState<Array<{ mood: number; date: string; text: string }>>([]);
   const [streak, setStreak] = useState(0);
   const [loading, setLoading] = useState(true);
@@ -99,7 +100,7 @@ const AppPage: React.FC = () => {
     setShowOnboarding(false);
   };
 
-  // Navigate with iOS-style slide transitions
+  // Navigate with fluid framer-motion transitions
   const navigateTo = useCallback((newScreen: Screen) => {
     if (newScreen === screen) return;
     
@@ -108,7 +109,7 @@ const AppPage: React.FC = () => {
     const isForward = newIdx > oldIdx || newScreen === "journal" || newScreen === "settings" || newScreen === "pro";
     
     setPrevScreen(screen);
-    setTransitionClass(isForward ? "animate-page-slide-in" : "animate-page-slide-back");
+    setNavDirection(isForward ? 1 : -1);
     setScreen(newScreen);
 
     // Persist main tab across refresh
@@ -116,10 +117,6 @@ const AppPage: React.FC = () => {
     if (mainTabs.includes(newScreen)) {
       try { localStorage.setItem("nuju-screen", newScreen); } catch {}
     }
-
-    // Tab pop animation
-    setActiveTabAnim(newScreen);
-    setTimeout(() => setActiveTabAnim(null), 300);
     
     if (navigator.vibrate) navigator.vibrate(6);
   }, [screen]);
@@ -343,8 +340,21 @@ const AppPage: React.FC = () => {
           />
         )}
 
-        {/* Screen content with transition */}
-        <div key={screen} className={transitionClass}>
+        {/* Screen content with framer-motion transitions */}
+        <AnimatePresence mode="popLayout" initial={false}>
+          <motion.div
+            key={screen}
+            initial={{ opacity: 0, x: navDirection * 60 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: navDirection * -30 }}
+            transition={{
+              type: "spring",
+              stiffness: 380,
+              damping: 35,
+              mass: 0.8,
+            }}
+            style={{ willChange: "transform, opacity" }}
+          >
           {screen === "home" && (
             <HomeScreen
               onNavigate={(s) => navigateTo(s as Screen)}
@@ -413,8 +423,9 @@ const AppPage: React.FC = () => {
               onBack={() => navigateTo("home")}
             />
           )}
+          </motion.div>
+        </AnimatePresence>
         </div>
-      </div>
 
       {showTour && (
         <GuidedTour
@@ -427,38 +438,57 @@ const AppPage: React.FC = () => {
         />
       )}
 
-      {/* iOS-style tab bar with spring animations */}
+      {/* Floating glass tab bar with spring animations */}
       {screen !== "journal" && screen !== "settings" && (
-        <nav className="fixed bottom-0 left-0 right-0 bg-card/70 backdrop-blur-2xl border-t border-border/20 safe-area-bottom">
-          <div className="max-w-app mx-auto flex">
-            {navItems.map((item) => {
-              const active = screen === item.id;
-              const isPopping = activeTabAnim === item.id;
-              const Icon = item.icon;
-              return (
-                <button
-                  key={item.id}
-                  onClick={() => navigateTo(item.id)}
-                  className={`flex-1 flex flex-col items-center gap-0.5 py-2 pt-2.5 transition-all duration-200 ${
-                    active ? "text-primary" : "text-muted-foreground/50"
-                  }`}
-                >
-                  <div className={`relative ${isPopping ? "animate-tab-pop" : ""}`}>
-                    <Icon
-                      className={`w-[22px] h-[22px] transition-all duration-300 ${active ? "scale-[1.08]" : ""}`}
-                      strokeWidth={active ? 2.3 : 1.6}
-                    />
-                    {/* Active indicator dot */}
-                    {active && (
-                      <div className="absolute -bottom-1.5 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-primary animate-spring-in" />
-                    )}
-                  </div>
-                  <span className={`text-[10px] transition-all duration-200 ${active ? "font-bold" : "font-medium"}`}>
-                    {item.label}
-                  </span>
-                </button>
-              );
-            })}
+        <nav className="fixed bottom-0 left-0 right-0 z-40">
+          <div className="max-w-app mx-auto px-4 pb-[max(0.5rem,env(safe-area-inset-bottom))]">
+            <div className="bg-card/60 dark:bg-card/50 backdrop-blur-2xl rounded-2xl border border-border/15 shadow-[0_-4px_30px_-8px_rgba(0,0,0,0.1)] dark:shadow-[0_-4px_30px_-8px_rgba(0,0,0,0.3)] flex overflow-hidden">
+              {navItems.map((item) => {
+                const active = screen === item.id;
+                const Icon = item.icon;
+                return (
+                  <motion.button
+                    key={item.id}
+                    onClick={() => navigateTo(item.id)}
+                    className={`flex-1 flex flex-col items-center gap-0.5 py-2.5 transition-colors duration-200 ${
+                      active ? "text-primary" : "text-muted-foreground/50"
+                    }`}
+                    whileTap={{ scale: 0.88 }}
+                    transition={{ type: "spring", stiffness: 500, damping: 25 }}
+                  >
+                    <div className="relative">
+                      <motion.div
+                        animate={{
+                          scale: active ? 1.12 : 1,
+                          y: active ? -2 : 0,
+                        }}
+                        transition={{ type: "spring", stiffness: 500, damping: 25 }}
+                      >
+                        <Icon
+                          className="w-[22px] h-[22px]"
+                          strokeWidth={active ? 2.3 : 1.6}
+                        />
+                      </motion.div>
+                      {/* Active indicator dot */}
+                      <AnimatePresence>
+                        {active && (
+                          <motion.div
+                            className="absolute -bottom-1 left-1/2 w-1 h-1 rounded-full bg-primary"
+                            initial={{ scale: 0, x: "-50%" }}
+                            animate={{ scale: 1, x: "-50%" }}
+                            exit={{ scale: 0, x: "-50%" }}
+                            transition={{ type: "spring", stiffness: 600, damping: 22 }}
+                          />
+                        )}
+                      </AnimatePresence>
+                    </div>
+                    <span className={`text-[10px] transition-all duration-200 ${active ? "font-bold" : "font-medium"}`}>
+                      {item.label}
+                    </span>
+                  </motion.button>
+                );
+              })}
+            </div>
           </div>
         </nav>
       )}
