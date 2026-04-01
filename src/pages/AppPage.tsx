@@ -81,12 +81,12 @@ const AppPage: React.FC = () => {
   }, [user]);
 
   useEffect(() => {
-    if (!loading && !showOnboarding && !localStorage.getItem("nuju-tour-done")) {
+    if (!loading && !showOnboarding && user && !localStorage.getItem("nuju-tour-done-" + user.id)) {
       // Small delay to let app render first
       const timer = setTimeout(() => setShowTour(true), 800);
       return () => clearTimeout(timer);
     }
-  }, [loading, showOnboarding]);
+  }, [loading, showOnboarding, user]);
 
   const handleOnboardingComplete = async () => {
     if (user) {
@@ -428,7 +428,9 @@ const AppPage: React.FC = () => {
       {showTour && (
         <GuidedTour
           onDone={() => {
-            localStorage.setItem("nuju-tour-done", "1");
+            if (user) {
+              localStorage.setItem("nuju-tour-done-" + user.id, "1");
+            }
             setShowTour(false);
           }}
           currentScreen={screen}
