@@ -321,7 +321,7 @@ const HomeScreen: React.FC<HomeScreenProps> = ({
       )}
 
       {/* Mascot + speech bubble */}
-      <div className="flex flex-col items-center gap-2.5">
+      <div className="flex flex-col items-center gap-10 mt-6">
         <div
           className="relative w-28 h-28"
           style={{ transform: `translateY(${-scrollY * 0.12}px)`, transition: "transform 0.05s linear" }}
