@@ -5,6 +5,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { LangProvider } from "@/lib/i18n";
 import { AuthProvider, useAuth } from "@/lib/auth";
+import { ErrorBoundary } from "@/components/ErrorBoundary";
 import Index from "./pages/Index.tsx";
 import AppPage from "./pages/AppPage.tsx";
 import AuthPage from "./pages/AuthPage.tsx";
@@ -30,35 +31,37 @@ const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({ children }) =
 };
 
 const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <LangProvider>
-      <AuthProvider>
-        <TooltipProvider>
-          <Toaster />
-          <Sonner />
-          <BrowserRouter>
-            <Routes>
-              <Route path="/" element={<Index />} />
-              <Route path="/auth" element={<AuthPage />} />
-              <Route path="/auth/callback" element={<AuthCallback />} />
-              <Route path="/install" element={<Install />} />
-              <Route path="/terms" element={<Terms />} />
-              <Route path="/privacy" element={<Privacy />} />
-              <Route
-                path="/app"
-                element={
-                  <ProtectedRoute>
-                    <AppPage />
-                  </ProtectedRoute>
-                }
-              />
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </BrowserRouter>
-        </TooltipProvider>
-      </AuthProvider>
-    </LangProvider>
-  </QueryClientProvider>
+  <ErrorBoundary>
+    <QueryClientProvider client={queryClient}>
+      <LangProvider>
+        <AuthProvider>
+          <TooltipProvider>
+            <Toaster />
+            <Sonner />
+            <BrowserRouter>
+              <Routes>
+                <Route path="/" element={<Index />} />
+                <Route path="/auth" element={<AuthPage />} />
+                <Route path="/auth/callback" element={<AuthCallback />} />
+                <Route path="/install" element={<Install />} />
+                <Route path="/terms" element={<Terms />} />
+                <Route path="/privacy" element={<Privacy />} />
+                <Route
+                  path="/app"
+                  element={
+                    <ProtectedRoute>
+                      <AppPage />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+            </BrowserRouter>
+          </TooltipProvider>
+        </AuthProvider>
+      </LangProvider>
+    </QueryClientProvider>
+  </ErrorBoundary>
 );
 
 export default App;

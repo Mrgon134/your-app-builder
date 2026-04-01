@@ -5,7 +5,7 @@ const corsHeaders = {
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type, x-supabase-client-platform",
 };
 
-const PD_IDENTIFIER = "7ec59c54-d9ee-4473-91be-799aff6504cb";
+const PD_IDENTIFIER = Deno.env.get("PARITYDEALS_PD_IDENTIFIER") || "7ec59c54-d9ee-4473-91be-799aff6504cb";
 
 serve(async (req) => {
   if (req.method === "OPTIONS") {
