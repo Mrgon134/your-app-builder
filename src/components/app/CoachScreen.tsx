@@ -29,9 +29,9 @@ const COACH_ICONS: Record<string, string> = {
 
 type Msg = { role: "user" | "assistant"; content: string };
 
-const AI_BASE = "https://sxgmlnlqmdjjfmcypivi.supabase.co";
-const AI_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InN4Z21sbmxxbWRqamZtY3lwaXZpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQwMTEyNDYsImV4cCI6MjA4OTU4NzI0Nn0.kUM2J00vmkRd55MmQw5AAadS8XGZKeLY0mgGg8aAVFg";
-const CHAT_URL = `${AI_BASE}/functions/v1/ai-coach`;
+import { SUPABASE_URL, SUPABASE_ANON_KEY } from "@/integrations/supabase/client";
+
+const CHAT_URL = `${SUPABASE_URL}/functions/v1/ai-coach`;
 
 async function streamChat({
   messages,
@@ -52,7 +52,7 @@ async function streamChat({
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${AI_KEY}`,
+      Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
     },
     body: JSON.stringify({ messages, persona, lang }),
   });

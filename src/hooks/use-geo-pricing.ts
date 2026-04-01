@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { SUPABASE_URL, SUPABASE_ANON_KEY } from "@/integrations/supabase/client";
 
 interface GeoPricing {
   country: string;
@@ -25,9 +26,6 @@ const BASE_RATES = {
   lifetime: 99.00,
 };
 
-const SUPABASE_URL = "https://sxgmlnlqmdjjfmcypivi.supabase.co";
-const SUPABASE_ANON = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InN4Z21sbmxxbWRqamZtY3lwaXZpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQwMTEyNDYsImV4cCI6MjA4OTU4NzI0Nn0.kUM2J00vmkRd55MmQw5AAadS8XGZKeLY0mgGg8aAVFg";
-
 export function useGeoPricing(): GeoPricing & { formatPrice: (amount: number) => string } {
   const [couponCode, setCouponCode] = useState<string | null>(null);
   const [discountPct, setDiscountPct] = useState(0);
@@ -40,7 +38,7 @@ export function useGeoPricing(): GeoPricing & { formatPrice: (amount: number) =>
         // Call our server-side edge function (keeps pd_identifier secure)
         const resp = await fetch(`${SUPABASE_URL}/functions/v1/parity-lookup`, {
           headers: {
-            Authorization: `Bearer ${SUPABASE_ANON}`,
+            Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
           },
           signal: AbortSignal.timeout(5000),
         });

@@ -10,6 +10,7 @@ import MonthPixelGrid from "@/components/app/MonthPixelGrid";
 import AiMemoryCard from "@/components/app/AiMemoryCard";
 import ShareMenu from "@/components/app/ShareMenu";
 import { JU_STICKERS } from "@/lib/stickers";
+import { SUPABASE_URL, SUPABASE_ANON_KEY } from "@/integrations/supabase/client";
 
 interface InsightsScreenProps {
   entries: Array<{ mood: number; date: string; text: string }>;
@@ -31,12 +32,12 @@ const InsightsScreen: React.FC<InsightsScreenProps> = ({ entries, streak = 0, on
       setSummaryLoading(true);
       try {
         const resp = await fetch(
-          `https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/ai-weekly-summary`,
+          `${SUPABASE_URL}/functions/v1/ai-weekly-summary`,
           {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
-              Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InN4Z21sbmxxbWRqamZtY3lwaXZpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQwMTEyNDYsImV4cCI6MjA4OTU4NzI0Nn0.kUM2J00vmkRd55MmQw5AAadS8XGZKeLY0mgGg8aAVFg`,
+              Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
             },
             body: JSON.stringify({ entries: entries.slice(0, 7), lang }),
           }

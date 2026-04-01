@@ -4,6 +4,8 @@ import { useGeoPricing } from "@/hooks/use-geo-pricing";
 import { useLang } from "@/lib/i18n";
 import { useAuth } from "@/lib/auth";
 import { hasPlusAccess } from "@/lib/trial";
+import { PRICING_CONFIG } from "@/lib/config";
+import { SUPABASE_URL, SUPABASE_ANON_KEY } from "@/integrations/supabase/client";
 import { fetchEntries, createEntry, createQuickEntry, fetchProfile, updateProfile, checkEntryLimit, EntryRow, ProfileRow } from "@/lib/api";
 import OnboardingScreen from "@/components/app/OnboardingScreen";
 import HomeScreen from "@/components/app/HomeScreen";
@@ -147,11 +149,11 @@ const AppPage: React.FC = () => {
     if (!user) return;
     try {
       const variantMap: Record<string, string> = {
-        plus_monthly: "pdt_0NbhFlXcexmMdlcYFUaYb",
-        plus_annual: "pdt_0NbhG9cZxUlLissUYnKkm",
-        pro_monthly: "pdt_0NbhHW3W4gTSSif6PbYb8",
-        pro_annual: "pdt_0NbhHexts6edZvPqDnoqt",
-        lifetime_one_time: "pdt_0NbhHzl2NQ8Dx0ntZsPQs",
+        plus_monthly: PRICING_CONFIG.products.plus_monthly,
+        plus_annual: PRICING_CONFIG.products.plus_annual,
+        pro_monthly: PRICING_CONFIG.products.pro_monthly,
+        pro_annual: PRICING_CONFIG.products.pro_annual,
+        lifetime_one_time: PRICING_CONFIG.products.lifetime_one_time,
       };
       const variantId = variantMap[plan];
       if (!variantId || variantId.includes("VARIANT_ID")) {
@@ -159,12 +161,12 @@ const AppPage: React.FC = () => {
         return;
       }
       const resp = await fetch(
-        `https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/dodo-checkout`,
+        `${SUPABASE_URL}/functions/v1/dodo-checkout`,
         {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InN4Z21sbmxxbWRqamZtY3lwaXZpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQwMTEyNDYsImV4cCI6MjA4OTU4NzI0Nn0.kUM2J00vmkRd55MmQw5AAadS8XGZKeLY0mgGg8aAVFg`,
+            Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
           },
           body: JSON.stringify({
             variant_id: variantId,
@@ -252,15 +254,13 @@ const AppPage: React.FC = () => {
       }
 
       try {
-        const aiUrl = "https://sxgmlnlqmdjjfmcypivi.supabase.co";
-        const aiKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InN4Z21sbmxxbWRqamZtY3lwaXZpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQwMTEyNDYsImV4cCI6MjA4OTU4NzI0Nn0.kUM2J00vmkRd55MmQw5AAadS8XGZKeLY0mgGg8aAVFg";
         const resp = await fetch(
-          `${aiUrl}/functions/v1/ai-insight`,
+          `${SUPABASE_URL}/functions/v1/ai-insight`,
           {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
-              Authorization: `Bearer ${aiKey}`,
+              Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
             },
             body: JSON.stringify({ text, mood: selectedMood, energy, lang }),
           }

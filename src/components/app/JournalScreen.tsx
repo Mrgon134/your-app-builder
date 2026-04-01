@@ -4,9 +4,7 @@ import { JU_STICKERS } from "@/lib/stickers";
 import { MOODS } from "@/lib/constants";
 import { ArrowLeft, Mic, Square, Loader2 } from "lucide-react";
 import MoodIcon from "@/components/MoodIcon";
-
-const AI_BASE = "https://sxgmlnlqmdjjfmcypivi.supabase.co";
-const AI_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InN4Z21sbmxxbWRqamZtY3lwaXZpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQwMTEyNDYsImV4cCI6MjA4OTU4NzI0Nn0.kUM2J00vmkRd55MmQw5AAadS8XGZKeLY0mgGg8aAVFg";
+import { SUPABASE_URL, SUPABASE_ANON_KEY } from "@/integrations/supabase/client";
 const DRAFT_KEY = "nuju-journal-draft";
 
 const langToLocale: Record<string, string> = {
@@ -158,9 +156,9 @@ const JournalScreen: React.FC<JournalScreenProps> = ({
         setRecordState("transcribing");
         try {
           const base64 = await blobToBase64(audioBlob);
-          const resp = await fetch(`${AI_BASE}/functions/v1/ai-transcribe`, {
+          const resp = await fetch(`${SUPABASE_URL}/functions/v1/ai-transcribe`, {
             method: "POST",
-            headers: { "Content-Type": "application/json", Authorization: `Bearer ${AI_KEY}` },
+            headers: { "Content-Type": "application/json", Authorization: `Bearer ${SUPABASE_ANON_KEY}` },
             body: JSON.stringify({ audioBase64: base64, mimeType: audioBlob.type.split(";")[0], lang }),
           });
           if (resp.ok) {
