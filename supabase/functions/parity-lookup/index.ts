@@ -13,7 +13,6 @@ serve(async (req) => {
   }
 
   try {
-    // Get the user's real IP from request headers
     const clientIp =
       req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ||
       req.headers.get("x-real-ip") ||
@@ -22,7 +21,6 @@ serve(async (req) => {
 
     console.log("ParityDeals lookup for IP:", clientIp);
 
-    // Call ParityDeals server-side API with pd_identifier + IP
     const pdUrl = `https://api.paritydeals.com/api/v1/deals/discount/?pd_identifier=${PD_IDENTIFIER}&ip_address=${clientIp}`;
 
     const resp = await fetch(pdUrl, {
@@ -38,12 +36,38 @@ serve(async (req) => {
     }
 
     const data = await resp.json();
-    console.log("ParityDeals response:", JSON.stringify(data));
+    console.log("ParityDeals raw response:", JSON.stringify(data));
+
+    // Try top-level fields first
+    let discountPct = parseFloat(data.discountPercentage) || 0;
+    let coupon = data.couponCode || null;
+
+    // Parse from message HTML if top-level fields are empty
+    // ParityDeals format: use code <b>\u201Cpdmlhofm65\u201D</b> to get <b>65%</b> off
+    const msg = data.message || data.messageText || "";
+
+    if (!coupon && msg) {
+      // Match: code <b>"couponhere"</b>  (with smart quotes or regular quotes or no quotes)
+      const m = msg.match(/code\s*(?:<[^>]*>)*\s*[\u201C\u201D"']?([A-Za-z0-9_]+)[\u201C\u201D"']?\s*(?:<[^>]*>)*/i);
+      if (m && m[1]) {
+        coupon = m[1];
+      }
+    }
+
+    if (!discountPct && msg) {
+      // Match: <b>65%</b> or just 65%
+      const m = msg.match(/(?:<[^>]*>)*\s*(\d+)\s*%/);
+      if (m && m[1]) {
+        discountPct = parseInt(m[1], 10);
+      }
+    }
+
+    console.log(`Parsed PPP: country=${data.countryCode}, discount=${discountPct}%, coupon=${coupon}`);
 
     return new Response(
       JSON.stringify({
-        discountPercentage: parseFloat(data.discountPercentage) || 0,
-        couponCode: data.couponCode || null,
+        discountPercentage: discountPct,
+        couponCode: coupon,
         countryCode: data.countryCode || "US",
         currencyCode: data.currencyCode || "USD",
         currencySymbol: data.currencySymbol || "$",
