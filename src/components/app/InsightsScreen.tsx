@@ -87,6 +87,10 @@ const InsightsScreen: React.FC<InsightsScreenProps> = ({ entries, streak = 0, on
     stable: t.mood_trend_stable || "Your mood has been steady. Consistency is a kind of strength.",
   };
 
+  // Compute best mood
+  const bestDay = entries.length > 0 ? entries.reduce((best, e) => (e.mood > best.mood ? e : best), entries[0]) : null;
+  const bestMoodData = bestDay ? MOODS.find((m) => m.value === bestDay.mood) || MOODS[2] : MOODS[2];
+
   // Empty state — no entries yet
   if (entries.length === 0) {
     return (
@@ -189,8 +193,8 @@ const InsightsScreen: React.FC<InsightsScreenProps> = ({ entries, streak = 0, on
           <p className="text-[22px] font-bold text-foreground tracking-tight">{entries.length}</p>
           <p className="text-[10px] text-muted-foreground mt-0.5 font-medium">{t.entries_total}</p>
         </div>
-        <div className="glass-card rounded-2xl p-4 text-center">
-          <MoodIcon value={5} color="#4ECDC4" size={26} />
+        <div className="glass-card rounded-2xl p-4 text-center flex flex-col items-center justify-center">
+          <MoodIcon value={bestDay?.mood || 5} color={bestMoodData.color} size={26} />
           <p className="text-[10px] text-muted-foreground mt-1 font-medium">{t.mood_best}</p>
         </div>
       </div>
