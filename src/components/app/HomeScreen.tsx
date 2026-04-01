@@ -149,6 +149,22 @@ const HomeScreen: React.FC<HomeScreenProps> = ({
   const locale = LANG_LOCALE[lang] || "en-US";
   const dateStr = today.toLocaleDateString(locale, { weekday: "long", day: "numeric", month: "long" });
 
+  // Dynamic Contextual Greeting (First Impression Hook)
+  let displayTitle = greeting;
+  let displaySubtitle = dateStr;
+  
+  if (entries.length === 0) {
+    displayTitle = "Hey, I'm Ju.";
+    displaySubtitle = "I'll learn your patterns the more you share.";
+  } else if (streak > 0 && streak % 7 === 0 && !selectedMood) {
+    displayTitle = `Day ${streak} — impressive`;
+    displaySubtitle = "You're building something real.";
+  } else if (entries.length > 0 && !selectedMood) {
+    const lastMoodData = MOODS.find(m => m.value === entries[0].mood);
+    displayTitle = "Welcome back.";
+    displaySubtitle = `Glad to see you. You felt ${lastMoodData?.label?.toLowerCase() || 'okay'} last time.`;
+  }
+
   // Parallax scroll tracking
   useEffect(() => {
     const handleScroll = () => {
@@ -218,8 +234,8 @@ const HomeScreen: React.FC<HomeScreenProps> = ({
               transition: "transform 0.1s ease-out, opacity 0.1s ease-out",
             }}
           >
-            <h1 className="text-[34px] font-bold text-foreground tracking-tight leading-tight">{greeting}</h1>
-            <p className="text-[13px] text-muted-foreground/70 font-medium mt-0.5">{dateStr}</p>
+            <h1 className="text-[34px] font-bold text-foreground tracking-tight leading-tight">{displayTitle}</h1>
+            <p className="text-[13px] text-muted-foreground/70 font-medium mt-0.5">{displaySubtitle}</p>
           </div>
           <div className="flex items-center gap-2">
             {streak > 0 && (

@@ -3,7 +3,7 @@ import { hasPlusAccess } from "@/lib/trial";
 import { useLang } from "@/lib/i18n";
 import { MOODS } from "@/lib/constants";
 import MoodIcon from "@/components/MoodIcon";
-import { Lock, Loader2, CalendarDays, Flame, Target } from "lucide-react";
+import { Lock, Loader2, CalendarDays, Flame, Target, ArrowRight, Sparkles } from "lucide-react";
 import HistoryLock from "@/components/app/HistoryLock";
 import MoodTrendChart from "@/components/app/MoodTrendChart";
 import MonthPixelGrid from "@/components/app/MonthPixelGrid";
@@ -90,6 +90,46 @@ const InsightsScreen: React.FC<InsightsScreenProps> = ({ entries, streak = 0, on
   // Compute best mood
   const bestDay = entries.length > 0 ? entries.reduce((best, e) => (e.mood > best.mood ? e : best), entries[0]) : null;
   const bestMoodData = bestDay ? MOODS.find((m) => m.value === bestDay.mood) || MOODS[2] : MOODS[2];
+
+  // Correlation Pattern
+  const getBestDayOfWeek = () => {
+    if (entries.length < 5) return null;
+    const dayScores: Record<number, number[]> = {};
+    entries.forEach(e => {
+      const d = new Date(e.entry_date).getDay();
+      if (!dayScores[d]) dayScores[d] = [];
+      dayScores[d].push(e.mood);
+    });
+    let bestDayIdx = -1;
+    let maxAvg = 0;
+    Object.entries(dayScores).forEach(([dayStr, scores]) => {
+      if (scores.length >= 2) {
+        const avg = scores.reduce((a, b) => a + b, 0) / scores.length;
+        if (avg > maxAvg) {
+          maxAvg = avg;
+          bestDayIdx = Number(dayStr);
+        }
+      }
+    });
+    if (bestDayIdx === -1) return null;
+    const dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    return dayNames[bestDayIdx];
+  };
+  const bestDayOfWeek = getBestDayOfWeek();
+
+  // Mood Prediction
+  const getPrediction = () => {
+    if (entries.length < 14) return null;
+    const recent = entries.slice(0, 3).map(e => e.mood).reduce((a, b) => a + b, 0) / 3;
+    const past = entries.slice(3, 14).map(e => e.mood).reduce((a, b) => a + b, 0) / 11;
+    if (recent < past - 0.4) {
+      return "Based on your patterns, you might feel a natural dip tomorrow — want to prep tonight?";
+    } else if (recent > past + 0.5) {
+      return "Your energy is climbing! Keep this momentum flowing into tomorrow.";
+    }
+    return null;
+  };
+  const prediction = getPrediction();
 
   // Empty state — no entries yet
   if (entries.length === 0) {
@@ -226,7 +266,57 @@ const InsightsScreen: React.FC<InsightsScreenProps> = ({ entries, streak = 0, on
             {aiSummary || (entries.length > 0 ? t.summary_has_entries : t.summary_no_entries)}
           </p>
         )}
+
+        {/* Ask Ju CTA */}
+        {entries.length > 2 && onNavigate && (
+          <button 
+            onClick={() => onNavigate("coach")}
+            className="mt-4 flex items-center justify-between w-full p-3 rounded-xl bg-primary/10 hover:bg-primary/15 transition-colors text-primary"
+          >
+            <span className="text-[13px] font-semibold">Ask Ju about your week</span>
+            <ArrowRight className="w-4 h-4" />
+          </button>
+        )}
       </div>
+
+      {/* Mood Correlation Insights */}
+      {bestDayOfWeek && (
+        <div className="glass-card rounded-2xl p-5">
+          <p className="text-[11px] font-semibold text-primary uppercase tracking-widest mb-3">Hidden Pattern</p>
+          <p className="text-[15px] font-medium text-foreground leading-relaxed">
+            You tend to have your best days on <span className="text-primary font-bold">{bestDayOfWeek}s</span>. 
+          </p>
+          {onNavigate && (
+            <button 
+              onClick={() => onNavigate("coach")}
+              className="mt-4 flex items-center gap-1.5 text-[13px] font-semibold text-muted-foreground hover:text-foreground transition-colors"
+            >
+              Ask Ju why <ArrowRight className="w-3.5 h-3.5" />
+            </button>
+          )}
+        </div>
+      )}
+
+      {/* Mood Forecast */}
+      {prediction && (
+        <div className="glass-card rounded-2xl p-5 border border-primary/20" style={{ background: "linear-gradient(180deg, hsl(var(--primary)/0.05) 0%, transparent 100%)" }}>
+          <div className="flex items-center gap-2 mb-3">
+            <Sparkles className="w-4 h-4 text-primary" />
+            <p className="text-[11px] font-semibold text-primary uppercase tracking-widest">Ju's Forecast</p>
+          </div>
+          <p className="text-[15px] font-medium text-foreground leading-relaxed">
+            {prediction}
+          </p>
+          {onNavigate && (
+            <button 
+              onClick={() => onNavigate("coach")}
+              className="mt-4 w-full py-2.5 rounded-xl bg-primary text-primary-foreground font-semibold text-[13px] transition-transform active:scale-95"
+            >
+              Talk to Ju tonight
+            </button>
+          )}
+        </div>
+      )}
 
       <AiMemoryCard entries={entries} />
 

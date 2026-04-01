@@ -127,4 +127,45 @@ export function initReminders() {
   if (settings.enabled && Notification.permission === "granted") {
     scheduleLocalReminder(settings.hour, settings.minute);
   }
+  
+  // Also check if we need to show the post-install notification
+  checkPostInstallNotification();
+}
+
+// 30-minute post-install retention hook
+export function schedulePostInstallNotification() {
+  if (Notification.permission !== "granted") return;
+  localStorage.setItem("nuju-install-time", String(Date.now()));
+  
+  setTimeout(() => {
+    checkPostInstallNotification();
+  }, 30 * 60 * 1000);
+}
+
+export function checkPostInstallNotification() {
+  if (Notification.permission !== "granted") return;
+  const installTime = localStorage.getItem("nuju-install-time");
+  if (!installTime) return;
+  
+  const hasJournaled = localStorage.getItem("nuju-last-entry-date");
+  if (hasJournaled) return; // Don't annoy if they already journaled
+  
+  const elapsed = Date.now() - Number(installTime);
+  const THIRTY_MINS = 30 * 60 * 1000;
+  
+  if (elapsed >= THIRTY_MINS && !localStorage.getItem("nuju-post-install-shown")) {
+    const notification = new Notification("Ju has a question for you", {
+      body: "Takes 30 seconds to answer.",
+      icon: "/pwa-192x192.png",
+      badge: "/pwa-192x192.png",
+      tag: "nuju-post-install",
+    } as NotificationOptions);
+    
+    notification.onclick = () => {
+      window.focus();
+      notification.close();
+    };
+    
+    localStorage.setItem("nuju-post-install-shown", "1");
+  }
 }

@@ -4,7 +4,7 @@ import { Bell, BellOff } from "lucide-react";
 import juMain from "@/assets/ju-main.webp";
 import juGreat from "@/assets/ju-great.webp";
 import juOkay from "@/assets/ju-okay.webp";
-import { requestNotificationPermission, scheduleLocalReminder } from "@/lib/notifications";
+import { requestNotificationPermission, scheduleLocalReminder, schedulePostInstallNotification } from "@/lib/notifications";
 
 const REMINDER_OPTIONS = [
   { label: "8:00 AM", hour: 8 },
@@ -53,6 +53,7 @@ const OnboardingScreen: React.FC<{ onComplete: () => void }> = ({ onComplete }) 
 
   const handleNext = () => {
     if (isReminderStep) {
+      schedulePostInstallNotification();
       onComplete();
     } else {
       setStep(step + 1);
@@ -96,9 +97,20 @@ const OnboardingScreen: React.FC<{ onComplete: () => void }> = ({ onComplete }) 
             <div className="absolute inset-0 rounded-full animate-glow-pulse" style={{ background: "rgba(124,110,219,0.15)" }} />
             <img src={juMain} alt="Ju" className="relative w-full h-full object-contain animate-ju-float" />
           </div>
-          <h2 className="font-serif text-2xl font-bold mb-2" style={{ color: "#1A1A2E" }}>
+          <h2 className="font-serif text-2xl font-bold mb-1.5" style={{ color: "#1A1A2E" }}>
             {t.onb_intent_title || "Why are you here?"}
           </h2>
+          {/* Micro-Social Proof */}
+          <div className="flex justify-center items-center gap-1.5 mb-3">
+            <div className="flex -space-x-1.5 opacity-80">
+              <div className="w-4 h-4 rounded-full bg-[#7C6EDB]" />
+              <div className="w-4 h-4 rounded-full bg-[#4ECDC4]" />
+              <div className="w-4 h-4 rounded-full bg-[#FFB347]" />
+            </div>
+            <span className="text-[12px] font-medium" style={{ color: "#777" }}>
+              {t.join_count || "Join 2,847+ early users"}
+            </span>
+          </div>
           <p className="text-base leading-relaxed mb-7" style={{ color: "#777" }}>
             {t.onb_intent_desc || "Ju will personalize your experience based on what matters to you."}
           </p>
