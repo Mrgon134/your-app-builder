@@ -1,7 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useLang } from "@/lib/i18n";
-import { useLang } from "@/lib/i18n";
 import { useGeoPricing } from "@/hooks/use-geo-pricing";
 import { Crosshair, PenLine, BrainCircuit, Check, Shield, Zap, Heart, Star, Quote, Globe } from "lucide-react";
 import juMain from "@/assets/ju-main.webp";
@@ -25,6 +24,12 @@ const Landing: React.FC = () => {
   const navigate = useNavigate();
   const geo = useGeoPricing();
   const heroReveal = useReveal();
+  const socialReveal = useReveal();
+  const stepsReveal = useReveal();
+  const comparisonReveal = useReveal();
+  const testimonialsReveal = useReveal();
+  const pricingReveal = useReveal();
+  const ctaReveal = useReveal();
 
   const testimonials = [
     { name: "Sarah K.", role: "Designer", text: "Nuju helped me understand why Mondays felt so heavy. Now I have a plan for it.", rating: 5 },
