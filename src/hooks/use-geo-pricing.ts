@@ -1,14 +1,5 @@
 import { useState, useEffect } from "react";
 
-interface ParityDeal {
-  couponCode: string | null;
-  discountPercentage: number;
-  countryCode: string;
-  currencyCode: string;
-  currencySymbol: string;
-  country: string;
-}
-
 interface GeoPricing {
   country: string;
   currency: string;
@@ -34,33 +25,38 @@ const BASE_RATES = {
   lifetime: 99.00,
 };
 
+const SUPABASE_URL = "https://sxgmlnlqmdjjfmcypivi.supabase.co";
+const SUPABASE_ANON = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InN4Z21sbmxxbWRqamZtY3lwaXZpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQwMTEyNDYsImV4cCI6MjA4OTU4NzI0Nn0.kUM2J00vmkRd55MmQw5AAadS8XGZKeLY0mgGg8aAVFg";
+
 export function useGeoPricing(): GeoPricing & { formatPrice: (amount: number) => string } {
-  const [parityDeal, setParityDeal] = useState<ParityDeal | null>(null);
+  const [couponCode, setCouponCode] = useState<string | null>(null);
+  const [discountPct, setDiscountPct] = useState(0);
+  const [country, setCountry] = useState("US");
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Call ParityDeals API (client-side, uses URL for domain verification)
     const fetchParity = async () => {
       try {
-        const resp = await fetch(
-          `https://api.paritydeals.com/api/v1/deals/discount/?url=${encodeURIComponent(window.location.href)}`,
-          { signal: AbortSignal.timeout(4000) }
-        );
+        // Call our server-side edge function (keeps pd_identifier secure)
+        const resp = await fetch(`${SUPABASE_URL}/functions/v1/parity-lookup`, {
+          headers: {
+            Authorization: `Bearer ${SUPABASE_ANON}`,
+          },
+          signal: AbortSignal.timeout(5000),
+        });
+
         if (resp.ok) {
           const data = await resp.json();
-          if (data && data.countryCode) {
-            setParityDeal({
-              couponCode: data.couponCode || null,
-              discountPercentage: parseFloat(data.discountPercentage) || 0,
-              countryCode: data.countryCode || "US",
-              currencyCode: data.currencyCode || "USD",
-              currencySymbol: data.currencySymbol || "$",
-              country: data.country || "United States",
-            });
+          if (data.discountPercentage > 0) {
+            setDiscountPct(data.discountPercentage);
+            setCouponCode(data.couponCode);
+          }
+          if (data.countryCode) {
+            setCountry(data.countryCode);
           }
         }
       } catch (e) {
-        console.log("ParityDeals not available, using default USD pricing");
+        console.log("PPP lookup not available, using default USD pricing");
       } finally {
         setIsLoading(false);
       }
@@ -69,7 +65,6 @@ export function useGeoPricing(): GeoPricing & { formatPrice: (amount: number) =>
     fetchParity();
   }, []);
 
-  const discountPct = parityDeal?.discountPercentage || 0;
   const multiplier = 1 - discountPct / 100;
 
   // Apply PPP discount to base rates
@@ -81,14 +76,13 @@ export function useGeoPricing(): GeoPricing & { formatPrice: (amount: number) =>
     lifetime: round2(BASE_RATES.lifetime * multiplier),
   };
 
-  // Always show in USD since Dodo handles currency conversion at checkout
   return {
-    country: parityDeal?.countryCode || "US",
+    country,
     currency: "USD",
     symbol: "$",
     rates,
     isLoading,
-    couponCode: parityDeal?.couponCode || null,
+    couponCode,
     discountPct,
     formatPrice: (amount: number) => `$${amount.toFixed(2)}`,
   };
