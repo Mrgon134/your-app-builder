@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useLang } from "@/lib/i18n";
-import { addToWaitlist } from "@/lib/api";
+import { useLang } from "@/lib/i18n";
 import { useGeoPricing } from "@/hooks/use-geo-pricing";
 import { Crosshair, PenLine, BrainCircuit, Check, Shield, Zap, Heart, Star, Quote, Globe } from "lucide-react";
 import juMain from "@/assets/ju-main.webp";
@@ -24,30 +24,7 @@ const Landing: React.FC = () => {
   const { t } = useLang();
   const navigate = useNavigate();
   const geo = useGeoPricing();
-  const [email, setEmail] = useState("");
-  const [submitting, setSubmitting] = useState(false);
   const heroReveal = useReveal();
-  const socialReveal = useReveal();
-  const stepsReveal = useReveal();
-  const comparisonReveal = useReveal();
-  const testimonialsReveal = useReveal();
-  const pricingReveal = useReveal();
-  const ctaReveal = useReveal();
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!email.includes("@") || submitting) return;
-    setSubmitting(true);
-    try {
-      const result = await addToWaitlist(email);
-      toast.success(result.alreadyExists ? "You're already on the list!" : "You're on the list!");
-      setEmail("");
-    } catch {
-      toast.error("Something went wrong. Try again.");
-    } finally {
-      setSubmitting(false);
-    }
-  };
 
   const testimonials = [
     { name: "Sarah K.", role: "Designer", text: "Nuju helped me understand why Mondays felt so heavy. Now I have a plan for it.", rating: 5 },
@@ -65,10 +42,10 @@ const Landing: React.FC = () => {
             <span className="font-serif text-xl font-bold text-foreground">Nuju</span>
           </div>
           <button
-            onClick={() => navigate("/app")}
-            className="px-4 py-2 rounded-full bg-primary text-primary-foreground text-sm font-semibold transition-all hover:shadow-lg hover:shadow-primary/25 active:scale-[0.97]"
+            onClick={() => navigate("/auth")}
+            className="px-5 py-2.5 rounded-full bg-primary text-primary-foreground text-sm font-semibold transition-all hover:shadow-lg hover:shadow-primary/25 active:scale-[0.97]"
           >
-            {t.get_early_access}
+            Start for Free
           </button>
         </div>
       </nav>
@@ -89,23 +66,100 @@ const Landing: React.FC = () => {
           <p className="text-lg text-muted-foreground max-w-xl mx-auto mb-10 text-pretty">
             {t.hero_subtitle}
           </p>
-          <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder={t.enter_email}
-              className="flex-1 px-5 py-3.5 rounded-2xl bg-card border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/40 text-base"
-            />
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-8">
             <button
-              type="submit"
-              disabled={submitting}
-              className="px-6 py-3.5 rounded-2xl bg-primary text-primary-foreground font-semibold text-base whitespace-nowrap transition-all hover:shadow-lg hover:shadow-primary/25 active:scale-[0.97] disabled:opacity-60"
+              onClick={() => navigate("/auth")}
+              className="px-8 py-4 rounded-2xl bg-primary text-primary-foreground font-semibold text-lg transition-all hover:shadow-xl hover:shadow-primary/30 hover:-translate-y-0.5 active:scale-[0.97]"
             >
-              {submitting ? "..." : t.join_waitlist}
+              Start Journaling — It's Free
             </button>
-          </form>
-          <p className="text-sm text-muted-foreground mt-4">{t.join_count}</p>
+            <p className="text-sm text-muted-foreground font-medium sm:hidden">No credit card required</p>
+          </div>
+          <p className="hidden sm:block text-sm text-muted-foreground mt-4 font-medium">No credit card required. Join 10,000+ mindful journalers.</p>
+
+          {/* App Preview Mockup */}
+          <div className="relative w-full max-w-4xl mx-auto mt-16 sm:mt-24 px-2 sm:px-0">
+            {/* Decorative blurs */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-4/5 h-4/5 bg-primary/20 blur-[120px] rounded-full pointer-events-none" />
+            
+            <div className="relative rounded-[2.5rem] bg-card/60 backdrop-blur-3xl border border-border/50 shadow-2xl overflow-hidden min-h-[400px] flex flex-col md:flex-row p-6 sm:p-10 gap-8">
+              
+              {/* Left Column: Voice Journaling Mock */}
+              <div className="flex-1 flex flex-col gap-4">
+                <div className="flex items-center gap-3 mb-2 px-2">
+                  <div className="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center shadow-inner">
+                    <img src={juMain} alt="Ju" className="w-[26px] h-[26px]" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-foreground text-lg">Voice Journal</h3>
+                    <p className="text-xs text-muted-foreground font-medium">Recording safe & secure...</p>
+                  </div>
+                </div>
+                
+                <div className="glass-card rounded-[2rem] p-6 flex flex-col items-center justify-center flex-1 min-h-[240px] border border-primary/15 relative overflow-hidden shadow-sm">
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-transparent" />
+                  <div className="w-20 h-20 rounded-full bg-primary flex items-center justify-center shadow-xl shadow-primary/30 mb-8 relative z-10 animate-pulse">
+                    <div className="absolute inset-0 rounded-full bg-primary animate-ping opacity-30" style={{ animationDuration: '2s' }}></div>
+                    <svg className="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" />
+                    </svg>
+                  </div>
+                  
+                  {/* Fake waveform */}
+                  <div className="flex items-center gap-[3px] z-10 h-8">
+                    {[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15].map(i => (
+                      <div 
+                        key={i} 
+                        className="w-[4px] rounded-full bg-primary/40" 
+                        style={{ 
+                          height: `${20 + Math.random() * 80}%`, 
+                          animation: `typing-dots 1.5s ease-in-out infinite alternate`,
+                          animationDelay: `${i * 0.1}s` 
+                        }} 
+                      />
+                    ))}
+                  </div>
+                  <p className="text-sm font-medium text-foreground mt-8 z-10 px-4 text-center italic opacity-80">
+                    "Honestly, today was overwhelming but writing this down helps..."
+                  </p>
+                </div>
+              </div>
+
+              {/* Right Column: AI Memory Mock */}
+              <div className="flex-1 flex flex-col gap-5 mt-6 md:mt-12 justify-center">
+                <div className="glass-card rounded-[2rem] p-6 border border-border shadow-lg shadow-black/5 transform transition-all hover:-translate-y-1 bg-gradient-to-br from-card to-card/50">
+                  <div className="flex items-center gap-3 mb-5">
+                    <div className="w-9 h-9 rounded-xl bg-[#4ECDC4]/20 flex items-center justify-center">
+                      <BrainCircuit className="w-4.5 h-4.5 text-[#4ECDC4]" />
+                    </div>
+                    <span className="text-xs font-bold text-[#4ECDC4] tracking-wider uppercase">Ju Remembers</span>
+                  </div>
+                  <div className="border-l-[3px] border-[#4ECDC4]/40 pl-4 py-1">
+                    <p className="text-base font-writing text-foreground leading-relaxed italic opacity-90">
+                      "You tend to reflect more when you're feeling anxious. That's a powerful and healthy outlet. Keep going, I'm here for you."
+                    </p>
+                  </div>
+                </div>
+
+                <div className="glass-card rounded-[2rem] p-5 border border-border/50 opacity-90 scale-95 origin-top ml-4 bg-gradient-to-r from-card/80 to-transparent">
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="w-7 h-7 rounded-lg bg-[#FFD166]/20 flex items-center justify-center">
+                      <Star className="w-3.5 h-3.5 text-[#FFD166]" />
+                    </div>
+                    <span className="text-[11px] font-bold text-foreground/80 tracking-wider uppercase">Mood Pattern</span>
+                  </div>
+                  <div className="flex gap-1.5 w-full mb-3">
+                    {/* Simulated pixel grid */}
+                    {[1,2,3,4,5,6,7].map(i => (
+                      <div key={i} className={`h-8 flex-1 rounded-md ${i > 4 ? 'bg-primary' : i > 2 ? 'bg-[#4ECDC4]' : 'bg-muted'} opacity-${20 + (i*10)}`}></div>
+                    ))}
+                  </div>
+                  <p className="text-xs text-muted-foreground font-medium">Your mood trend is glowing up this week! ✨</p>
+                </div>
+              </div>
+
+            </div>
+          </div>
         </div>
       </section>
 
@@ -301,22 +355,14 @@ const Landing: React.FC = () => {
           <img src={juMain} alt="Ju" className="w-20 h-20 mx-auto mb-6 animate-bounce-gentle" />
           <h2 className="font-serif text-3xl font-bold mb-4">{t.cta_final}</h2>
           <p className="text-muted-foreground mb-8">{t.cta_final_desc}</p>
-          <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto mb-4">
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder={t.enter_email}
-              className="flex-1 px-5 py-3.5 rounded-2xl bg-card border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/40 text-base"
-            />
+          <div className="flex justify-center mt-8">
             <button
-              type="submit"
-              disabled={submitting}
-              className="px-6 py-3.5 rounded-2xl bg-primary text-primary-foreground font-semibold text-base whitespace-nowrap transition-all hover:shadow-lg hover:shadow-primary/25 active:scale-[0.97] disabled:opacity-60"
+              onClick={() => navigate("/auth")}
+              className="px-8 py-4 rounded-2xl bg-primary text-primary-foreground font-semibold text-lg transition-all hover:shadow-xl hover:shadow-primary/30 hover:-translate-y-0.5 active:scale-[0.97]"
             >
-              {submitting ? "..." : t.join_waitlist}
+              Start Journaling — It's Free
             </button>
-          </form>
+          </div>
         </div>
       </section>
 
