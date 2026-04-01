@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Sparkles, MessageCircle, Calendar } from "lucide-react";
 import { MOODS } from "@/lib/constants";
@@ -36,7 +37,7 @@ const EntryDetailModal: React.FC<Props> = ({ entry, isOpen, onClose }) => {
     day: "numeric",
   });
 
-  return (
+  const modalContent = (
     <AnimatePresence>
       {show && (
         <>
@@ -46,7 +47,7 @@ const EntryDetailModal: React.FC<Props> = ({ entry, isOpen, onClose }) => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
-            className="fixed inset-0 bg-background/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 sm:p-6"
+            className="fixed inset-0 bg-background/80 backdrop-blur-sm z-[9999] flex items-center justify-center p-4 sm:p-6"
           />
           
           {/* Modal Container */}
@@ -55,7 +56,7 @@ const EntryDetailModal: React.FC<Props> = ({ entry, isOpen, onClose }) => {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             transition={{ type: "spring", damping: 25, stiffness: 300 }}
-            className="fixed top-[10vh] sm:top-auto z-50 w-[92vw] sm:w-full max-w-md max-h-[80vh] flex flex-col bg-card/90 backdrop-blur-2xl border border-border/50 shadow-2xl rounded-3xl overflow-hidden left-1/2 -translate-x-1/2"
+            className="fixed inset-x-4 top-[10vh] sm:top-auto sm:inset-x-auto sm:w-full z-[10000] max-w-md max-h-[80vh] flex flex-col bg-card backdrop-blur-3xl border border-border/50 shadow-2xl rounded-3xl overflow-hidden sm:left-1/2 sm:-translate-x-1/2 mx-auto"
             style={{ 
               boxShadow: `0 20px 60px -15px ${moodData?.color || "var(--primary)"}20, inset 0 1px 0 rgba(255,255,255,0.1)` 
             }}
@@ -134,6 +135,9 @@ const EntryDetailModal: React.FC<Props> = ({ entry, isOpen, onClose }) => {
       )}
     </AnimatePresence>
   );
+
+  if (typeof document === "undefined") return null;
+  return createPortal(modalContent, document.body);
 };
 
 export default EntryDetailModal;
