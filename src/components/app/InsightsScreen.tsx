@@ -6,7 +6,6 @@ import MoodIcon from "@/components/MoodIcon";
 import { Lock, Loader2, CalendarDays, Flame, Target, ArrowRight, Sparkles } from "lucide-react";
 import HistoryLock from "@/components/app/HistoryLock";
 import MoodTrendChart from "@/components/app/MoodTrendChart";
-import MonthPixelGrid from "@/components/app/MonthPixelGrid";
 import AiMemoryCard from "@/components/app/AiMemoryCard";
 import ShareMenu from "@/components/app/ShareMenu";
 import { JU_STICKERS } from "@/lib/stickers";
@@ -221,8 +220,6 @@ const InsightsScreen: React.FC<InsightsScreenProps> = ({ entries, streak = 0, on
           </div>
         </div>
       )}
-
-      <MonthPixelGrid entries={entries} />
 
       {/* Stats row — Apple-style metrics */}
       <div className="grid grid-cols-3 gap-3">

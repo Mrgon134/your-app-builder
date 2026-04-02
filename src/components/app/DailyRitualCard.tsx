@@ -9,8 +9,10 @@ import {
   getRitualStreak,
   type RitualType,
 } from "@/lib/daily-ritual";
+import { useLang } from "@/lib/i18n";
 
 const DailyRitualCard: React.FC = () => {
+  const { t } = useLang();
   const ritualType = getCurrentRitualType();
   const [expanded, setExpanded] = useState(false);
   const [saved, setSaved] = useState(false);
@@ -83,10 +85,10 @@ const DailyRitualCard: React.FC = () => {
           </div>
           <div className="flex-1">
             <p className="text-[14px] font-semibold text-foreground">
-              {isMorning ? "Morning Check-in ☀️" : "Evening Reflection 🌙"}
+              {isMorning ? (t.ritual_morning_title || "Morning Check-in ☀️") : (t.ritual_evening_title || "Evening Reflection 🌙")}
             </p>
             <p className="text-[12px] text-muted-foreground mt-0.5">
-              {isMorning ? "Start your day with intention" : "How did your day go?"}
+              {isMorning ? (t.ritual_morning_desc || "Start your day with intention") : (t.ritual_evening_desc || "How did your day go?")}
             </p>
           </div>
           {streak > 0 && (
@@ -112,12 +114,12 @@ const DailyRitualCard: React.FC = () => {
             <Moon className="w-4 h-4" style={{ color: accentColor }} />
           )}
           <span className="text-[10px] font-bold uppercase tracking-widest" style={{ color: accentColor }}>
-            {isMorning ? "Morning Check-in" : "Evening Reflection"}
+            {isMorning ? (t.ritual_morning_label || "Morning Check-in") : (t.ritual_evening_label || "Evening Reflection")}
           </span>
           <Check className="w-3.5 h-3.5 ml-auto" style={{ color: accentColor }} />
           {streak > 1 && (
             <span className="text-[11px] font-medium text-muted-foreground">
-              🔥 {streak} day streak
+              🔥 {streak} {t.days_streak || "day streak"}
             </span>
           )}
         </div>
@@ -132,7 +134,7 @@ const DailyRitualCard: React.FC = () => {
             ))}
             {intention && (
               <div className="mt-2 pt-2 border-t" style={{ borderColor: accentBorder }}>
-                <p className="text-[11px] text-muted-foreground font-medium mb-1">Intention:</p>
+                <p className="text-[11px] text-muted-foreground font-medium mb-1">{t.ritual_intention || "Intention:"}</p>
                 <p className="text-[13px] text-foreground font-medium">{intention}</p>
               </div>
             )}
@@ -141,13 +143,13 @@ const DailyRitualCard: React.FC = () => {
           <div className="space-y-2">
             {highlight && (
               <div>
-                <p className="text-[11px] text-muted-foreground font-medium mb-1">✨ Best moment:</p>
+                <p className="text-[11px] text-muted-foreground font-medium mb-1">✨ {t.ritual_highlight || "Best moment:"}</p>
                 <p className="text-[13px] text-foreground leading-relaxed">{highlight}</p>
               </div>
             )}
             {learned && (
               <div className="mt-2 pt-2 border-t" style={{ borderColor: accentBorder }}>
-                <p className="text-[11px] text-muted-foreground font-medium mb-1">💡 Learned:</p>
+                <p className="text-[11px] text-muted-foreground font-medium mb-1">💡 {t.ritual_learned || "Learned:"}</p>
                 <p className="text-[13px] text-foreground leading-relaxed">{learned}</p>
               </div>
             )}
@@ -158,7 +160,7 @@ const DailyRitualCard: React.FC = () => {
           onClick={() => { setSaved(false); setExpanded(true); }}
           className="mt-3 text-[11px] text-muted-foreground font-medium hover:text-foreground transition-colors"
         >
-          Edit
+          {t.edit || "Edit"}
         </button>
       </div>
     );
@@ -180,7 +182,7 @@ const DailyRitualCard: React.FC = () => {
             <Moon className="w-4 h-4" style={{ color: accentColor }} />
           )}
           <span className="text-[10px] font-bold uppercase tracking-widest" style={{ color: accentColor }}>
-            {isMorning ? "Morning Check-in" : "Evening Reflection"}
+            {isMorning ? (t.ritual_morning_label || "Morning Check-in") : (t.ritual_evening_label || "Evening Reflection")}
           </span>
         </div>
         <button onClick={() => setExpanded(false)} className="text-[11px] text-muted-foreground font-medium press-spring">
@@ -191,7 +193,7 @@ const DailyRitualCard: React.FC = () => {
       {isMorning ? (
         <>
           <p className="text-[13px] text-muted-foreground mb-3">
-            3 things you're grateful for this morning:
+            {t.ritual_grateful_qn || "3 things you're grateful for this morning:"}
           </p>
           <div className="space-y-2 mb-4">
             {gratitude.map((g, i) => (
@@ -206,9 +208,9 @@ const DailyRitualCard: React.FC = () => {
                     setGratitude(next);
                   }}
                   placeholder={
-                    i === 0 ? "Something that made you smile..." :
-                    i === 1 ? "Someone you appreciate..." :
-                    "A small win..."
+                    i === 0 ? (t.ritual_g1 || "Something that made you smile...") :
+                    i === 1 ? (t.ritual_g2 || "Someone you appreciate...") :
+                    (t.ritual_g3 || "A small win...")
                   }
                   className="ritual-input flex-1 px-3 py-2.5 rounded-xl bg-background border border-border/50 text-[14px] text-foreground placeholder:text-muted-foreground/40 focus:outline-none focus:ring-2 transition-all"
                   style={{ "--tw-ring-color": accentBorder } as React.CSSProperties}
@@ -224,13 +226,13 @@ const DailyRitualCard: React.FC = () => {
           </div>
 
           <p className="text-[13px] text-muted-foreground mb-2">
-            What will I make great today?
+            {t.ritual_intention_qn || "What will I make great today?"}
           </p>
           <input
             type="text"
             value={intention}
             onChange={(e) => setIntention(e.target.value)}
-            placeholder="My intention for today..."
+            placeholder={t.ritual_intention_ph || "My intention for today..."}
             className="w-full px-3 py-2.5 rounded-xl bg-background border border-border/50 text-[14px] text-foreground placeholder:text-muted-foreground/40 focus:outline-none focus:ring-2 transition-all mb-4"
             style={{ "--tw-ring-color": accentBorder } as React.CSSProperties}
             onKeyDown={(e) => { if (e.key === "Enter") handleSaveMorning(); }}
@@ -247,7 +249,7 @@ const DailyRitualCard: React.FC = () => {
                 style={{ background: accentColor, boxShadow: `0 4px 20px -4px ${accentBg}` }}
               >
                 <Sun className="w-4 h-4" />
-                Start My Day
+                {t.ritual_start_btn || "Start My Day"}
               </motion.button>
             )}
           </AnimatePresence>
@@ -255,25 +257,25 @@ const DailyRitualCard: React.FC = () => {
       ) : (
         <>
           <p className="text-[13px] text-muted-foreground mb-2">
-            ✨ What was the best thing about today?
+            ✨ {t.ritual_highlight_qn || "What was the best thing about today?"}
           </p>
           <input
             type="text"
             value={highlight}
             onChange={(e) => setHighlight(e.target.value)}
-            placeholder="The highlight of my day..."
+            placeholder={t.ritual_highlight_ph || "The highlight of my day..."}
             className="w-full px-3 py-2.5 rounded-xl bg-background border border-border/50 text-[14px] text-foreground placeholder:text-muted-foreground/40 focus:outline-none focus:ring-2 transition-all mb-4"
             style={{ "--tw-ring-color": accentBorder } as React.CSSProperties}
           />
 
           <p className="text-[13px] text-muted-foreground mb-2">
-            💡 What did you learn today?
+            💡 {t.ritual_learned_qn || "What did you learn today?"}
           </p>
           <input
             type="text"
             value={learned}
             onChange={(e) => setLearned(e.target.value)}
-            placeholder="Something I realized..."
+            placeholder={t.ritual_learned_ph || "Something I realized..."}
             className="w-full px-3 py-2.5 rounded-xl bg-background border border-border/50 text-[14px] text-foreground placeholder:text-muted-foreground/40 focus:outline-none focus:ring-2 transition-all mb-4"
             style={{ "--tw-ring-color": accentBorder } as React.CSSProperties}
             onKeyDown={(e) => { if (e.key === "Enter") handleSaveEvening(); }}
@@ -290,7 +292,7 @@ const DailyRitualCard: React.FC = () => {
                 style={{ background: accentColor, boxShadow: `0 4px 20px -4px ${accentBg}` }}
               >
                 <Moon className="w-4 h-4" />
-                End My Day
+                {t.ritual_end_btn || "End My Day"}
               </motion.button>
             )}
           </AnimatePresence>
