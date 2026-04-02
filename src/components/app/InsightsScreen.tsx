@@ -12,6 +12,7 @@ import ShareMenu from "@/components/app/ShareMenu";
 import { JU_STICKERS } from "@/lib/stickers";
 import { SUPABASE_URL, SUPABASE_ANON_KEY } from "@/integrations/supabase/client";
 import { EntryRow } from "@/lib/api";
+import LetterToFutureSelf from "@/components/app/LetterToFutureSelf";
 
 interface InsightsScreenProps {
   entries: EntryRow[];
@@ -342,6 +343,11 @@ const InsightsScreen: React.FC<InsightsScreenProps> = ({ entries, streak = 0, on
             <p className="text-[11px] text-muted-foreground mt-0.5">{new Date().getFullYear()} recap</p>
           </div>
         </button>
+      </div>
+
+      {/* Letter to Future Self */}
+      <div className="glass-card rounded-2xl p-5">
+        <LetterToFutureSelf />
       </div>
 
       <HistoryLock onUpgrade={onUpgrade} plan={plan} trialStartedAt={trialStartedAt} />

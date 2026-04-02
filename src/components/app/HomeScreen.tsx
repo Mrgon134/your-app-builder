@@ -15,6 +15,10 @@ import {
 import HabitSection from "@/components/app/HabitSection";
 import EntryDetailModal from "@/components/app/EntryDetailModal";
 import { EntryRow } from "@/lib/api";
+import { motion, AnimatePresence } from "framer-motion";
+import GratitudeCard from "@/components/app/GratitudeCard";
+import LetterToFutureSelf from "@/components/app/LetterToFutureSelf";
+import { getReadyToOpenLetters } from "@/lib/future-letters";
 
 // Preload all sticker images in memory on mount
 const preloadedImages: HTMLImageElement[] = [];
@@ -371,10 +375,15 @@ const HomeScreen: React.FC<HomeScreenProps> = ({
             const isSelected = selectedMood === mood.value;
             const isAnimating = moodAnimating === mood.value;
             return (
-              <button
+              <motion.button
                 key={mood.value}
                 onClick={() => handleMoodSelect(mood.value)}
-                className="flex flex-col items-center gap-2 flex-1 pt-4 pb-3 rounded-2xl transition-all duration-300"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.9 }}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.2, delay: index * 0.05 }}
+                className="flex flex-col items-center gap-2 flex-1 pt-4 pb-3 rounded-2xl transition-colors duration-300 relative overflow-hidden"
                 style={{
                   background: isSelected
                     ? `linear-gradient(160deg, ${mood.color}28 0%, ${mood.color}12 100%)`
@@ -382,25 +391,38 @@ const HomeScreen: React.FC<HomeScreenProps> = ({
                   boxShadow: isSelected
                     ? `0 0 0 1.5px ${mood.color}70, 0 6px 24px ${mood.color}25, inset 0 1px 0 rgba(255,255,255,0.12)`
                     : "0 0 0 1.5px transparent",
-                  animation: isAnimating
-                    ? "mood-card-select 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)"
-                    : undefined,
-                  animationDelay: `${index * 0.02}s`,
                 }}
               >
-                <div
-                  className="transition-transform duration-300"
-                  style={{ transform: isSelected ? "scale(1.12)" : "scale(1)" }}
+                <motion.div
+                  animate={{ 
+                    scale: isSelected ? 1.15 : 1,
+                    rotate: isAnimating ? [0, -10, 10, -5, 5, 0] : 0 
+                  }}
+                  transition={{ duration: 0.4 }}
                 >
                   <MoodIcon value={mood.value} color={mood.color} size={38} />
-                </div>
+                </motion.div>
                 <span
-                  className="text-[10px] font-semibold tracking-wide transition-all duration-200"
+                  className="text-[10px] font-semibold tracking-wide transition-colors duration-200"
                   style={{ color: isSelected ? mood.color : "hsl(var(--muted-foreground))" }}
                 >
                   {t[mood.key] || mood.label}
                 </span>
-              </button>
+                
+                {/* Playful pop effect on select */}
+                <AnimatePresence>
+                  {isAnimating && (
+                    <motion.div
+                      initial={{ scale: 0.8, opacity: 0.8 }}
+                      animate={{ scale: 2, opacity: 0 }}
+                      exit={{ opacity: 0 }}
+                      transition={{ duration: 0.4 }}
+                      className="absolute inset-0 rounded-2xl"
+                      style={{ background: `radial-gradient(circle, ${mood.color}50 0%, transparent 60%)` }}
+                    />
+                  )}
+                </AnimatePresence>
+              </motion.button>
             );
           })}
         </div>
@@ -545,6 +567,16 @@ const HomeScreen: React.FC<HomeScreenProps> = ({
       
       {/* Time Capsule — Echoes of the Past */}
       <TimeCapsuleCard entries={entries} onClick={setSelectedEntry} />
+
+      {/* Daily Gratitude — inspired by Gratitude app (4.9★) */}
+      <GratitudeCard />
+
+      {/* Letter to Future Self — emotional lock-in (inspired by Tangerine) */}
+      {getReadyToOpenLetters().length > 0 && (
+        <div className="glass-card rounded-2xl p-5">
+          <LetterToFutureSelf />
+        </div>
+      )}
       
       <AiMemoryCard entries={entries} hasProAccess={hasProAccess(plan ?? null, trialStartedAt ?? null)} />
 

@@ -20,6 +20,8 @@ import YearInReviewScreen from "@/components/app/YearInReviewScreen";
 import TrialBanner from "@/components/app/TrialBanner";
 import { getTrialStatus } from "@/lib/trial";
 import Confetti from "@/components/app/Confetti";
+import AchievementPopup from "@/components/app/AchievementPopup";
+import { checkAndUnlockAchievements, type Achievement } from "@/lib/achievements";
 import { Home, BarChart3, MessageCircle, Sparkles, Loader2 } from "lucide-react";
 import { toast } from "sonner";
 import { AnimatePresence, motion } from "framer-motion";
@@ -52,6 +54,7 @@ const AppPage: React.FC = () => {
   const [showSignupAfterSave, setShowSignupAfterSave] = useState(false);
   const [journalPrompt, setJournalPrompt] = useState<string>("");
   const [showTour, setShowTour] = useState(false);
+  const [unlockedAchievement, setUnlockedAchievement] = useState<Achievement | null>(null);
 
   // Screen ordering for directional transitions
   const screenOrder: Screen[] = ["home", "insights", "coach", "pro"];
@@ -204,6 +207,21 @@ const AppPage: React.FC = () => {
       if (updatedProfile) { setStreak(updatedProfile.streak_current); setProfile(updatedProfile); }
       toast.success("Mood logged");
       if (navigator.vibrate) navigator.vibrate([10, 50, 20]);
+
+      // Check achievements after quick log
+      const achievement = checkAndUnlockAchievements({
+        totalEntries: newEntries.length,
+        streak: updatedProfile?.streak_current || streak,
+        currentMood: selectedMood,
+        hour: new Date().getHours(),
+        consecutiveDays5Mood: newEntries.slice(0, 3).every(e => e.mood === 5) ? 3 : 0,
+        hasUsedVoice: false,
+        hasUsedCoach: false,
+      });
+      if (achievement) {
+        setShowConfetti(true);
+        setTimeout(() => setUnlockedAchievement(achievement), 300);
+      }
     } catch (err) {
       console.error("Quick log failed:", err);
     }
@@ -275,6 +293,21 @@ const AppPage: React.FC = () => {
     } catch (err) {
       console.error("Failed to save entry:", err);
       return null;
+    } finally {
+      // Check achievements after journal save (runs regardless of AI insight success/failure)
+      const achievement = checkAndUnlockAchievements({
+        totalEntries: entries.length + 1,
+        streak: streak,
+        currentMood: selectedMood,
+        hour: new Date().getHours(),
+        consecutiveDays5Mood: 0,
+        hasUsedVoice: journalAutoRecord,
+        hasUsedCoach: false,
+      });
+      if (achievement) {
+        setShowConfetti(true);
+        setTimeout(() => setUnlockedAchievement(achievement), 300);
+      }
     }
   };
 
@@ -301,6 +334,12 @@ const AppPage: React.FC = () => {
     <div className="min-h-screen bg-background flex flex-col">
       {/* Confetti overlay */}
       <Confetti active={showConfetti} onComplete={() => setShowConfetti(false)} />
+
+      {/* Achievement popup */}
+      <AchievementPopup
+        achievement={unlockedAchievement}
+        onClose={() => setUnlockedAchievement(null)}
+      />
 
       {/* Signup prompt modal after 3rd entry */}
       {showSignupAfterSave && (

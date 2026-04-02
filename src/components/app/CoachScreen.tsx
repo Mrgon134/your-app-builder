@@ -27,6 +27,27 @@ const COACH_ICONS: Record<string, string> = {
   fun: coachFun,
 };
 
+const useTypingEffect = (text: string, speed = 25) => {
+  const [displayed, setDisplayed] = useState("");
+  useEffect(() => {
+    setDisplayed("");
+    if (!text) return;
+    let i = 0;
+    const timer = setInterval(() => {
+      i++;
+      setDisplayed((prev) => text.slice(0, prev.length + 1));
+      if (i >= text.length) clearInterval(timer);
+    }, speed);
+    return () => clearInterval(timer);
+  }, [text, speed]);
+  return displayed;
+};
+
+const AnimatedGreeting: React.FC<{ text: string }> = ({ text }) => {
+  const displayed = useTypingEffect(text);
+  return <span>{displayed}{displayed.length < text.length && <span className="inline-block w-1.5 h-3 ml-0.5 bg-primary animate-pulse" />}</span>;
+};
+
 type Msg = { role: "user" | "assistant"; content: string };
 
 import { SUPABASE_URL, SUPABASE_ANON_KEY } from "@/integrations/supabase/client";
@@ -316,7 +337,13 @@ const CoachScreen: React.FC<{ onUpgrade?: () => void; plan?: string | null; tria
                   : "bg-card border border-border/40 text-foreground rounded-bl-md shadow-[0_1px_2px_rgba(0,0,0,0.04)]"
               }`}
             >
-              {msg.content}
+              {msg.role === "user" ? (
+                msg.content
+              ) : i === messages.length - 1 && Object.values(PERSONA_GREETINGS).includes(msg.content) ? (
+                <AnimatedGreeting text={msg.content} />
+              ) : (
+                msg.content
+              )}
             </div>
           </div>
         ))}
