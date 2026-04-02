@@ -7,8 +7,8 @@ import {
 } from "lucide-react";
 import {
   type Achievement,
-  getAllAchievements,
-  getUnlockedAchievements,
+  getAllAchievementsWithStatus,
+  getUnlockedCount,
 } from "@/lib/achievements";
 import LetterToFutureSelf from "@/components/app/LetterToFutureSelf";
 import BreathingExercise from "@/components/app/BreathingExercise";
@@ -39,9 +39,8 @@ const ExploreScreen: React.FC<ExploreScreenProps> = ({
 }) => {
   const [subScreen, setSubScreen] = useState<SubScreen>("main");
 
-  const allAchievements = getAllAchievements();
-  const unlocked = getUnlockedAchievements();
-  const unlockedCount = unlocked.length;
+  const allAchievements = getAllAchievementsWithStatus();
+  const unlockedCount = getUnlockedCount();
 
   if (subScreen === "achievements") {
     return (
@@ -55,7 +54,7 @@ const ExploreScreen: React.FC<ExploreScreenProps> = ({
         </div>
         <div className="grid grid-cols-2 gap-3">
           {allAchievements.map((ach) => {
-            const isUnlocked = unlocked.some((u) => u.id === ach.id);
+            const isUnlocked = !ach.locked;
             return (
               <motion.div
                 key={ach.id}

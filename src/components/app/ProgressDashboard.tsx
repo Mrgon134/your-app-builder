@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { Flame, PenLine, TrendingUp, Star, Trophy, Calendar } from "lucide-react";
 import { type EntryRow } from "@/lib/api";
 import { MOODS } from "@/lib/constants";
-import { getUnlockedAchievements } from "@/lib/achievements";
+import { getUnlockedCount } from "@/lib/achievements";
 import { getRitualStreak } from "@/lib/daily-ritual";
 
 interface ProgressDashboardProps {
@@ -19,7 +19,7 @@ const ProgressDashboard: React.FC<ProgressDashboardProps> = ({ entries, streak }
     ritualStreak: 0,
   });
 
-  const achievements = getUnlockedAchievements();
+  const achievementsCount = getUnlockedCount();
   const ritualStreak = getRitualStreak();
 
   // Find most common mood
@@ -46,7 +46,7 @@ const ProgressDashboard: React.FC<ProgressDashboardProps> = ({ entries, streak }
     const targets = {
       entries: entries.length,
       streak,
-      achievements: achievements.length,
+      achievements: achievementsCount,
       ritualStreak,
     };
 
@@ -69,7 +69,7 @@ const ProgressDashboard: React.FC<ProgressDashboardProps> = ({ entries, streak }
     };
 
     requestAnimationFrame(animate);
-  }, [entries.length, streak, achievements.length, ritualStreak]);
+  }, [entries.length, streak, achievementsCount, ritualStreak]);
 
   const stats = [
     {
