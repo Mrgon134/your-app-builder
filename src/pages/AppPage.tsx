@@ -116,8 +116,25 @@ const AppPage: React.FC = () => {
       try { localStorage.setItem("nuju-screen", newScreen); } catch {}
     }
     
+    // Check "coach_first" achievement when user opens coach
+    if (newScreen === "coach") {
+      const achievement = checkAndUnlockAchievements({
+        totalEntries: entries.length,
+        streak,
+        currentMood: selectedMood,
+        hour: new Date().getHours(),
+        consecutiveDays5Mood: 0,
+        hasUsedVoice: false,
+        hasUsedCoach: true,
+      });
+      if (achievement) {
+        setShowConfetti(true);
+        setTimeout(() => setUnlockedAchievement(achievement), 300);
+      }
+    }
+    
     if (navigator.vibrate) navigator.vibrate(6);
-  }, [screen]);
+  }, [screen, entries.length, streak, selectedMood]);
 
   // Confetti on mood 5 selection
   const handleMoodSelect = useCallback((mood: number) => {

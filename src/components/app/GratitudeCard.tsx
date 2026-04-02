@@ -139,7 +139,7 @@ const GratitudeCard: React.FC = () => {
                 i === 1 ? "Someone you appreciate..." :
                 "A small win from today..."
               }
-              className="flex-1 px-3 py-2.5 rounded-xl bg-background border border-border/50 text-[14px] text-foreground placeholder:text-muted-foreground/40 focus:outline-none focus:ring-2 focus:ring-pink-500/20 focus:border-pink-500/30 transition-all"
+              className="gratitude-input flex-1 px-3 py-2.5 rounded-xl bg-background border border-border/50 text-[14px] text-foreground placeholder:text-muted-foreground/40 focus:outline-none focus:ring-2 focus:ring-pink-500/20 focus:border-pink-500/30 transition-all"
               onKeyDown={(e) => {
                 if (e.key === "Enter" && i < 2) {
                   const next = document.querySelectorAll<HTMLInputElement>(".gratitude-input");
