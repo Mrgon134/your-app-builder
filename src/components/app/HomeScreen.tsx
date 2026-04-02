@@ -16,9 +16,9 @@ import HabitSection from "@/components/app/HabitSection";
 import EntryDetailModal from "@/components/app/EntryDetailModal";
 import { EntryRow } from "@/lib/api";
 import { motion, AnimatePresence } from "framer-motion";
-import GratitudeCard from "@/components/app/GratitudeCard";
-import LetterToFutureSelf from "@/components/app/LetterToFutureSelf";
-import { getReadyToOpenLetters } from "@/lib/future-letters";
+import InspirationCard from "@/components/app/InspirationCard";
+import DailyRitualCard from "@/components/app/DailyRitualCard";
+import WeeklyReviewCard from "@/components/app/WeeklyReviewCard";
 
 // Preload all sticker images in memory on mount
 const preloadedImages: HTMLImageElement[] = [];
@@ -325,6 +325,9 @@ const HomeScreen: React.FC<HomeScreenProps> = ({
         </div>
       )}
 
+      {/* Daily Inspiration Quote/Affirmation — top of home */}
+      <InspirationCard />
+
       {/* Mascot + speech bubble */}
       <div className="flex flex-col items-center gap-10 mt-6">
         <div
@@ -568,15 +571,11 @@ const HomeScreen: React.FC<HomeScreenProps> = ({
       {/* Time Capsule — Echoes of the Past */}
       <TimeCapsuleCard entries={entries} onClick={setSelectedEntry} />
 
-      {/* Daily Gratitude — inspired by Gratitude app (4.9★) */}
-      <GratitudeCard />
+      {/* Weekly Review — shows on Sun/Mon (inspired by Rosebud) */}
+      <WeeklyReviewCard entries={entries} />
 
-      {/* Letter to Future Self — emotional lock-in (inspired by Tangerine) */}
-      {getReadyToOpenLetters().length > 0 && (
-        <div className="glass-card rounded-2xl p-5">
-          <LetterToFutureSelf />
-        </div>
-      )}
+      {/* Morning/Evening Check-in — replaces GratitudeCard (inspired by 5MJ + Rosebud) */}
+      <DailyRitualCard />
       
       <AiMemoryCard entries={entries} hasProAccess={hasProAccess(plan ?? null, trialStartedAt ?? null)} />
 

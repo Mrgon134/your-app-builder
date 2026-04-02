@@ -17,16 +17,17 @@ import PricingScreen from "@/components/app/PricingScreen";
 import GuidedProgramsScreen from "@/components/app/GuidedProgramsScreen";
 import GuidedTour from "@/components/app/GuidedTour";
 import YearInReviewScreen from "@/components/app/YearInReviewScreen";
+import ExploreScreen from "@/components/app/ExploreScreen";
 import TrialBanner from "@/components/app/TrialBanner";
 import { getTrialStatus } from "@/lib/trial";
 import Confetti from "@/components/app/Confetti";
 import AchievementPopup from "@/components/app/AchievementPopup";
 import { checkAndUnlockAchievements, type Achievement } from "@/lib/achievements";
-import { Home, BarChart3, MessageCircle, Sparkles, Loader2 } from "lucide-react";
+import { Home, BarChart3, MessageCircle, Compass, Sparkles, Loader2 } from "lucide-react";
 import { toast } from "sonner";
 import { AnimatePresence, motion } from "framer-motion";
 
-type Screen = "home" | "journal" | "insights" | "coach" | "pro" | "settings" | "programs" | "year-review";
+type Screen = "home" | "journal" | "insights" | "coach" | "explore" | "pro" | "settings" | "programs" | "year-review";
 
 const AppPage: React.FC = () => {
   const { t, lang } = useLang();
@@ -37,7 +38,7 @@ const AppPage: React.FC = () => {
   const [screen, setScreen] = useState<Screen>(() => {
     try {
       const saved = localStorage.getItem("nuju-screen") as Screen | null;
-      const mainTabs: Screen[] = ["home", "insights", "coach", "pro"];
+      const mainTabs: Screen[] = ["home", "insights", "coach", "explore", "pro"];
       return saved && mainTabs.includes(saved) ? saved : "home";
     } catch { return "home"; }
   });
@@ -57,7 +58,7 @@ const AppPage: React.FC = () => {
   const [unlockedAchievement, setUnlockedAchievement] = useState<Achievement | null>(null);
 
   // Screen ordering for directional transitions
-  const screenOrder: Screen[] = ["home", "insights", "coach", "pro"];
+  const screenOrder: Screen[] = ["home", "insights", "coach", "explore", "pro"];
 
   // Initialize notification reminders
   useEffect(() => { initReminders(); }, []);
@@ -344,6 +345,7 @@ const AppPage: React.FC = () => {
     { id: "home" as const, icon: Home, label: t.home },
     { id: "insights" as const, icon: BarChart3, label: t.insights_label },
     { id: "coach" as const, icon: MessageCircle, label: t.coach_label },
+    { id: "explore" as const, icon: Compass, label: "Explore" },
     { id: "pro" as const, icon: Sparkles, label: t.pro_label },
   ];
 
@@ -451,6 +453,17 @@ const AppPage: React.FC = () => {
           )}
           {screen === "insights" && <InsightsScreen entries={entries} streak={streak} onUpgrade={() => navigateTo("pro")} onNavigate={(s) => navigateTo(s as Screen)} plan={profile?.plan} trialStartedAt={profile?.trial_started_at} />}
           {screen === "coach" && <CoachScreen onUpgrade={() => navigateTo("pro")} plan={profile?.plan} trialStartedAt={profile?.trial_started_at} />}
+          {screen === "explore" && (
+            <ExploreScreen
+              entries={entries}
+              streak={streak}
+              onWritePrompt={(prompt) => { setJournalPrompt(prompt); navigateTo("journal"); }}
+              onNavigate={(s) => navigateTo(s as Screen)}
+              plan={profile?.plan}
+              trialStartedAt={profile?.trial_started_at}
+              onUpgrade={() => navigateTo("pro")}
+            />
+          )}
           {screen === "settings" && <SettingsScreen onBack={() => navigateTo("home")} onUpgrade={() => navigateTo("pro")} plan={profile?.plan} trialStartedAt={profile?.trial_started_at} />}
           {screen === "programs" && (
             <GuidedProgramsScreen

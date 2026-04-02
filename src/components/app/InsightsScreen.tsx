@@ -12,7 +12,7 @@ import ShareMenu from "@/components/app/ShareMenu";
 import { JU_STICKERS } from "@/lib/stickers";
 import { SUPABASE_URL, SUPABASE_ANON_KEY } from "@/integrations/supabase/client";
 import { EntryRow } from "@/lib/api";
-import LetterToFutureSelf from "@/components/app/LetterToFutureSelf";
+import MoodCalendar from "@/components/app/MoodCalendar";
 
 interface InsightsScreenProps {
   entries: EntryRow[];
@@ -345,10 +345,8 @@ const InsightsScreen: React.FC<InsightsScreenProps> = ({ entries, streak = 0, on
         </button>
       </div>
 
-      {/* Letter to Future Self */}
-      <div className="glass-card rounded-2xl p-5">
-        <LetterToFutureSelf />
-      </div>
+      {/* Mood Calendar Heatmap — visual engagement (inspired by Daylio, DailyBean) */}
+      <MoodCalendar entries={entries} />
 
       <HistoryLock onUpgrade={onUpgrade} plan={plan} trialStartedAt={trialStartedAt} />
 
