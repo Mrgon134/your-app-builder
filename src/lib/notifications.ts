@@ -63,7 +63,7 @@ const REMINDER_MESSAGES = [
 ];
 
 function showReminderNotification() {
-  if (Notification.permission !== "granted") return;
+  if (getNotificationPermission() !== "granted") return;
 
   // Don't notify if already journaled today
   const lastEntry = localStorage.getItem("nuju-last-entry-date");
@@ -124,7 +124,7 @@ export function analyzeSmartTiming(entries: Array<{ date: string }>): number {
 // Initialize reminders on app load
 export function initReminders() {
   const settings = getReminderSettings();
-  if (settings.enabled && Notification.permission === "granted") {
+  if (settings.enabled && getNotificationPermission() === "granted") {
     scheduleLocalReminder(settings.hour, settings.minute);
   }
   
@@ -134,7 +134,7 @@ export function initReminders() {
 
 // 30-minute post-install retention hook
 export function schedulePostInstallNotification() {
-  if (Notification.permission !== "granted") return;
+  if (getNotificationPermission() !== "granted") return;
   localStorage.setItem("nuju-install-time", String(Date.now()));
   
   setTimeout(() => {
@@ -143,7 +143,7 @@ export function schedulePostInstallNotification() {
 }
 
 export function checkPostInstallNotification() {
-  if (Notification.permission !== "granted") return;
+  if (getNotificationPermission() !== "granted") return;
   const installTime = localStorage.getItem("nuju-install-time");
   if (!installTime) return;
   
