@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useLang } from "@/lib/i18n";
-import { MOODS, getGreeting } from "@/lib/constants";
+import { MOODS, getGreeting, getRandomPrompt } from "@/lib/constants";
 import MoodIcon from "@/components/MoodIcon";
 import { JU_STICKERS, getMascotForState } from "@/lib/stickers";
 import { hasProAccess } from "@/lib/trial";
@@ -8,7 +8,7 @@ import SignupPrompt from "@/components/app/SignupPrompt";
 import AiMemoryCard from "@/components/app/AiMemoryCard";
 import TimeCapsuleCard from "@/components/app/TimeCapsuleCard";
 import {
-  Settings, Flame, PenLine, Mic,
+  Settings, Flame, PenLine, Mic, RefreshCw,
   BedDouble, BatteryLow, Zap, Sparkles, Check,
   Dumbbell, Moon, Utensils, Briefcase, Users, Gamepad2,
 } from "lucide-react";
@@ -126,7 +126,7 @@ const HomeScreen: React.FC<HomeScreenProps> = ({
 }) => {
   const { t, lang } = useLang();
   const [localMood, setLocalMood] = useState<number | null>(null);
-
+  const [prompt, setPrompt] = useState(getRandomPrompt);
   const [localEnergy, setLocalEnergy] = useState(60);
   const [moodAnimating, setMoodAnimating] = useState<number | null>(null);
   const [localActivities, setLocalActivities] = useState<string[]>([]);
@@ -542,7 +542,19 @@ const HomeScreen: React.FC<HomeScreenProps> = ({
             </div>
           </div>
 
-
+          {/* Prompt card */}
+          <div className="glass-card rounded-2xl p-5">
+            <div className="flex items-center justify-between mb-3">
+              <p className="text-[11px] font-semibold text-primary uppercase tracking-[0.12em]">{t.todays_prompt}</p>
+              <button
+                onClick={() => setPrompt(getRandomPrompt())}
+                className="w-8 h-8 rounded-full flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-foreground/[0.05] transition-all press-spring"
+              >
+                <RefreshCw className="w-3.5 h-3.5" />
+              </button>
+            </div>
+            <p className="text-[16px] text-foreground leading-relaxed font-medium">{prompt}</p>
+          </div>
         </div>
       )}
 
