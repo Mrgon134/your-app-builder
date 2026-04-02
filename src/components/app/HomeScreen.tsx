@@ -16,7 +16,7 @@ import HabitSection from "@/components/app/HabitSection";
 import EntryDetailModal from "@/components/app/EntryDetailModal";
 import { EntryRow } from "@/lib/api";
 import { motion, AnimatePresence } from "framer-motion";
-import InspirationCard from "@/components/app/InspirationCard";
+
 import DailyRitualCard from "@/components/app/DailyRitualCard";
 import WeeklyReviewCard from "@/components/app/WeeklyReviewCard";
 
@@ -325,8 +325,7 @@ const HomeScreen: React.FC<HomeScreenProps> = ({
         </div>
       )}
 
-      {/* Daily Inspiration Quote/Affirmation — top of home */}
-      <InspirationCard />
+
 
       {/* Mascot + speech bubble */}
       <div className="flex flex-col items-center gap-10 mt-6">
