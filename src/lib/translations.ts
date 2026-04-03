@@ -307,7 +307,7 @@ export const translations: Record<string, Record<string, string>> = {
     voice_preserved: "Audio preserved",
     // Data Export
     export_all_data: "Export all my data",
-    export_all_data_desc: "Download an archive of all your journals (JSON)",
+    export_all_data_desc: "Download an archive of all your journals (TXT)",
     exporting: "Exporting...",
   },
   id: {
@@ -586,7 +586,7 @@ export const translations: Record<string, Record<string, string>> = {
     voice_preserved: "Audio tersimpan",
     // Data Export
     export_all_data: "Ekspor semua data",
-    export_all_data_desc: "Unduh semua jurnal dalam bentuk arsip (JSON)",
+    export_all_data_desc: "Unduh semua jurnal dalam bentuk arsip teks (.txt)",
     exporting: "Mengekspor...",
   },
   es: {

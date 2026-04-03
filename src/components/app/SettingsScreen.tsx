@@ -68,19 +68,26 @@ const SettingsScreen: React.FC<SettingsScreenProps> = ({ onBack, onUpgrade, plan
     try {
       const allEntries = await fetchEntries(user.id);
       
-      const exportObject = {
-        meta: {
-          app: "Nuju",
-          export_date: new Date().toISOString(),
-          total_entries: allEntries.length
-        },
-        entries: allEntries
-      };
-
-      const dataStr = JSON.stringify(exportObject, null, 2);
-      const dataUri = "data:application/json;charset=utf-8," + encodeURIComponent(dataStr);
+      let textContent = `Nuju Journal Export\nExport Date: ${new Date().toLocaleDateString()}\nTotal Entries: ${allEntries.length}\n\n`;
       
-      const exportFileDefaultName = `nuju-export-${new Date().toISOString().split('T')[0]}.json`;
+      allEntries.forEach((entry) => {
+        textContent += `=========================================\n`;
+        textContent += `Date: ${new Date(entry.entry_date).toLocaleDateString()}\n`;
+        textContent += `Mood: ${entry.mood}/5`;
+        if (entry.energy) textContent += ` | Energy: ${entry.energy}`;
+        if (entry.audio_url) textContent += ` | (Contains Voice Audio in App)`;
+        textContent += `\n-----------------------------------------\n`;
+        textContent += `${entry.text || "(No text)"}\n`;
+        
+        if (entry.ai_summary) {
+          textContent += `\n-- AI Insight --\n${entry.ai_summary}\n`;
+        }
+        textContent += `=========================================\n\n`;
+      });
+
+      const dataUri = "data:text/plain;charset=utf-8," + encodeURIComponent(textContent);
+      
+      const exportFileDefaultName = `nuju-export-${new Date().toISOString().split('T')[0]}.txt`;
       
       const linkElement = document.createElement("a");
       linkElement.setAttribute("href", dataUri);
