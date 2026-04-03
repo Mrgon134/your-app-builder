@@ -242,7 +242,7 @@ const AuthPage: React.FC = () => {
             )}
           </button>
 
-          {/* Apple */}
+          {/* Apple — hidden until OAuth is configured
           <button
             onClick={handleAppleLogin}
             disabled={googleLoading || appleLoading}
@@ -257,6 +257,7 @@ const AuthPage: React.FC = () => {
               </>
             )}
           </button>
+          */}
         </div>
 
         <div className="flex items-center gap-3 mb-4">
