@@ -59,7 +59,7 @@ const getMoodPlaceholder = (mood: number | undefined, t: Record<string, string>)
 
 interface JournalScreenProps {
   onBack: () => void;
-  onSave: (text: string) => Promise<string | null>;
+  onSave: (text: string, audioBlob?: Blob | null, segments?: { start: number; end: number; text: string }[] | null) => Promise<string | null>;
   initialPrompt?: string;
   autoRecord?: boolean;
   activities?: string[];
@@ -105,6 +105,8 @@ const JournalScreen: React.FC<JournalScreenProps> = ({
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
   const audioChunksRef = useRef<Blob[]>([]);
   const streamRef = useRef<MediaStream | null>(null);
+  const [lastAudioBlob, setLastAudioBlob] = useState<Blob | null>(null);
+  const [lastSegments, setLastSegments] = useState<{ start: number; end: number; text: string }[] | null>(null);
   const textRef = useRef(text);
   useEffect(() => { textRef.current = text; }, [text]);
 
@@ -159,6 +161,8 @@ const JournalScreen: React.FC<JournalScreenProps> = ({
           setRecordState("idle");
           return;
         }
+        // Preserve audio blob for saving later
+        setLastAudioBlob(audioBlob);
         setRecordState("transcribing");
         try {
           const base64 = await blobToBase64(audioBlob);
@@ -172,6 +176,10 @@ const JournalScreen: React.FC<JournalScreenProps> = ({
             if (data.transcript) {
               const base = textRef.current.trim();
               setText((base ? base + " " : "") + data.transcript);
+            }
+            // Store segments from verbose_json response
+            if (data.segments && data.segments.length > 0) {
+              setLastSegments(data.segments);
             }
           }
         } catch (err) {
@@ -221,7 +229,7 @@ const JournalScreen: React.FC<JournalScreenProps> = ({
     setSaving(true);
     if (recordState === "recording") stopRecording();
     try {
-      const aiInsight = await onSave(text);
+      const aiInsight = await onSave(text, lastAudioBlob, lastSegments);
       setInsight(aiInsight || "");
       setSaved(true);
       try { localStorage.removeItem(DRAFT_KEY); } catch {}

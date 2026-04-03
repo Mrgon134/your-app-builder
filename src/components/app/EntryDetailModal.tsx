@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, Sparkles, MessageCircle, Calendar } from "lucide-react";
+import { X, Sparkles, MessageCircle, Calendar, Mic } from "lucide-react";
 import { MOODS } from "@/lib/constants";
 import { EntryRow } from "@/lib/api";
 import MoodIcon from "@/components/MoodIcon";
 import { useLang } from "@/lib/i18n";
+import VoicePlayer from "@/components/app/VoicePlayer";
 
 interface Props {
   entry: EntryRow | null;
@@ -92,17 +93,37 @@ const EntryDetailModal: React.FC<Props> = ({ entry, isOpen, onClose }) => {
                   </div>
                 </div>
               </div>
-              <button
-                onClick={onClose}
-                className="w-9 h-9 rounded-full bg-secondary/80 flex items-center justify-center text-muted-foreground hover:text-foreground transition-all active:scale-95"
-              >
-                <X className="w-4 h-4" />
-              </button>
+              <div className="flex items-center gap-2">
+                {cachedEntry.audio_url && (
+                  <div className="flex items-center gap-1 h-6 px-2 rounded-full bg-primary/10">
+                    <Mic className="w-3 h-3 text-primary" />
+                    <span className="text-[10px] font-semibold text-primary">{t.voice_entry || "Voice"}</span>
+                  </div>
+                )}
+                <button
+                  onClick={onClose}
+                  className="w-9 h-9 rounded-full bg-secondary/80 flex items-center justify-center text-muted-foreground hover:text-foreground transition-all active:scale-95"
+                >
+                  <X className="w-4 h-4" />
+                </button>
+              </div>
             </div>
 
             {/* Content Scroll Area */}
             <div className="flex-1 overflow-y-auto p-5 pt-2 pb-8 overscroll-contain">
               
+              {/* Voice Player */}
+              {cachedEntry.audio_url && (
+                <div className="mb-5">
+                  <VoicePlayer
+                    audioUrl={cachedEntry.audio_url}
+                    segments={cachedEntry.transcript_segments || []}
+                    accentColor={moodData?.color}
+                    entryDate={cachedEntry.entry_date}
+                  />
+                </div>
+              )}
+
               {/* Journal Text */}
               <div className="mb-6">
                 <div className="flex items-center gap-2 mb-2">

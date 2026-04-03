@@ -6,7 +6,7 @@ import { useAuth } from "@/lib/auth";
 import { hasPlusAccess } from "@/lib/trial";
 import { PRICING_CONFIG } from "@/lib/config";
 import { SUPABASE_URL, SUPABASE_ANON_KEY } from "@/integrations/supabase/client";
-import { fetchEntries, createEntry, createQuickEntry, fetchProfile, updateProfile, checkEntryLimit, updateEntryInsight, EntryRow, ProfileRow } from "@/lib/api";
+import { fetchEntries, createEntry, createQuickEntry, fetchProfile, updateProfile, checkEntryLimit, updateEntryInsight, uploadVoiceAudio, updateEntryVoice, EntryRow, ProfileRow } from "@/lib/api";
 import OnboardingScreen from "@/components/app/OnboardingScreen";
 import HomeScreen from "@/components/app/HomeScreen";
 import JournalScreen from "@/components/app/JournalScreen";
@@ -249,11 +249,24 @@ const AppPage: React.FC = () => {
     }
   };
 
-  const handleSaveEntry = async (text: string): Promise<string | null> => {
+  const handleSaveEntry = async (text: string, audioBlob?: Blob | null, segments?: { start: number; end: number; text: string }[] | null): Promise<string | null> => {
     if (!user) return null;
     try {
       // P2: Unlimited entries for all users — gate AI insight instead of input
       const entry = await createEntry(user.id, selectedMood, text, energy);
+
+      // Upload voice audio if present (Pro feature)
+      if (audioBlob && audioBlob.size > 1000) {
+        try {
+          const audioUrl = await uploadVoiceAudio(user.id, entry.id, audioBlob);
+          await updateEntryVoice(entry.id, audioUrl, segments || []);
+          entry.audio_url = audioUrl;
+          entry.transcript_segments = segments || null;
+        } catch (voiceErr) {
+          console.error("Voice upload failed:", voiceErr);
+          // Non-blocking: entry is still saved with text
+        }
+      }
 
       // Persist activity tags locally (no DB migration needed)
       if (selectedActivities.length > 0) {

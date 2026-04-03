@@ -20,8 +20,8 @@ const corsHeaders = {
 //
 // ─────────────────────────────────────────────────────────────────────────────
 
-/** Groq Whisper large-v3 — auto language detection */
-async function transcribeGroq(audioBase64: string, mimeType: string, apiKey: string): Promise<string> {
+/** Groq Whisper large-v3 — auto language detection, with timestamps */
+async function transcribeGroq(audioBase64: string, mimeType: string, apiKey: string): Promise<{ transcript: string; segments: { start: number; end: number; text: string }[] }> {
   // Decode base64 → binary
   const audioBytes = Uint8Array.from(atob(audioBase64), (c) => c.charCodeAt(0));
 
@@ -39,7 +39,8 @@ async function transcribeGroq(audioBase64: string, mimeType: string, apiKey: str
   const form = new FormData();
   form.append("file", new Blob([audioBytes], { type: mimeType }), `audio.${ext}`);
   form.append("model", "whisper-large-v3");
-  form.append("response_format", "text");
+  form.append("response_format", "verbose_json");
+  form.append("timestamp_granularities[]", "segment");
   // No "language" param → Groq auto-detects → works for all global users
 
   const res = await fetch("https://api.groq.com/openai/v1/audio/transcriptions", {
@@ -53,9 +54,15 @@ async function transcribeGroq(audioBase64: string, mimeType: string, apiKey: str
     throw new Error(`Groq transcription failed ${res.status}: ${err}`);
   }
 
-  // response_format=text returns plain text directly
-  const transcript = await res.text();
-  return transcript.trim();
+  const data = await res.json();
+  const transcript = (data.text || "").trim();
+  const segments = (data.segments || []).map((s: any) => ({
+    start: s.start ?? 0,
+    end: s.end ?? 0,
+    text: (s.text || "").trim(),
+  }));
+
+  return { transcript, segments };
 }
 
 /** Gemini 1.5 Flash — multimodal audio, auto language detection (fallback) */
@@ -109,12 +116,15 @@ serve(async (req) => {
     const geminiKey = Deno.env.get("GEMINI_API_KEY");
 
     let transcript = "";
+    let segments: { start: number; end: number; text: string }[] = [];
 
     if (groqKey) {
-      // Primary: Groq Whisper (free, fastest, best multilingual accuracy)
-      transcript = await transcribeGroq(audioBase64, mimeType, groqKey);
+      // Primary: Groq Whisper (free, fastest, best multilingual accuracy + timestamps)
+      const result = await transcribeGroq(audioBase64, mimeType, groqKey);
+      transcript = result.transcript;
+      segments = result.segments;
     } else if (geminiKey) {
-      // Fallback: Gemini 1.5 Flash multimodal
+      // Fallback: Gemini 1.5 Flash multimodal (no timestamps available)
       transcript = await transcribeGemini(audioBase64, mimeType, geminiKey);
     } else {
       return new Response(
@@ -124,7 +134,7 @@ serve(async (req) => {
     }
 
     return new Response(
-      JSON.stringify({ transcript }),
+      JSON.stringify({ transcript, segments }),
       { headers: { ...corsHeaders, "Content-Type": "application/json" } }
     );
   } catch (e) {

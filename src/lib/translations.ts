@@ -297,6 +297,14 @@ export const translations: Record<string, Record<string, string>> = {
     protect_journal: "Protect your journal",
     protect_journal_desc: "Add a PIN to keep your journal private. Only you can read it.",
     pin_skip: "Skip for now",
+    // Voice Journaling
+    voice_entry: "Voice entry",
+    play_audio: "Play audio",
+    pause_audio: "Pause audio",
+    export_audio: "Audio",
+    export_srt: "Transcript (.srt)",
+    tap_to_seek: "Tap to seek",
+    voice_preserved: "Audio preserved",
   },
   id: {
     greeting_morning: "Selamat pagi",
@@ -564,6 +572,14 @@ export const translations: Record<string, Record<string, string>> = {
     protect_journal: "Lindungi jurnalmu",
     protect_journal_desc: "Tambahkan PIN untuk menjaga privasi jurnalmu. Hanya kamu yang bisa membacanya.",
     pin_skip: "Lewati dulu",
+    // Voice Journaling
+    voice_entry: "Entri suara",
+    play_audio: "Putar audio",
+    pause_audio: "Jeda audio",
+    export_audio: "Audio",
+    export_srt: "Transkrip (.srt)",
+    tap_to_seek: "Ketuk untuk navigasi",
+    voice_preserved: "Audio tersimpan",
   },
   es: {
     greeting_morning: "Buenos días",

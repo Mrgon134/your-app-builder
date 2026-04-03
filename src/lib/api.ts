@@ -9,6 +9,8 @@ export interface EntryRow {
   entry_date: string;
   created_at: string;
   ai_summary: string | null;
+  audio_url: string | null;
+  transcript_segments: { start: number; end: number; text: string }[] | null;
 }
 
 export interface ProfileRow {
@@ -40,12 +42,12 @@ export const fetchProfile = async (userId: string): Promise<ProfileRow | null> =
 export const fetchEntries = async (userId: string): Promise<EntryRow[]> => {
   const { data, error } = await supabase
     .from("entries")
-    .select("id, mood, text, energy, entry_date, created_at, ai_summary")
+    .select("id, mood, text, energy, entry_date, created_at, ai_summary, audio_url, transcript_segments")
     .eq("user_id", userId)
     .order("entry_date", { ascending: false })
     .order("created_at", { ascending: false });
   if (error) throw error;
-  return data || [];
+  return (data as unknown as EntryRow[]) || [];
 };
 
 // Check entry limit (free = 3/week)
@@ -79,7 +81,7 @@ export const createEntry = async (
   // Update streak via DB function
   await supabase.rpc("update_streak", { p_user_id: userId });
 
-  return data;
+  return data as unknown as EntryRow;
 };
 
 // Update an entry with its AI insight/summary
@@ -87,6 +89,40 @@ export const updateEntryInsight = async (entryId: string, insight: string) => {
   const { error } = await supabase
     .from("entries")
     .update({ ai_summary: insight })
+    .eq("id", entryId);
+  if (error) throw error;
+};
+
+// Upload voice audio to Supabase Storage
+export const uploadVoiceAudio = async (
+  userId: string,
+  entryId: string,
+  audioBlob: Blob
+): Promise<string> => {
+  const ext = audioBlob.type.includes("webm") ? "webm" : audioBlob.type.includes("ogg") ? "ogg" : "webm";
+  const filePath = `${userId}/${entryId}.${ext}`;
+  const { error } = await supabase.storage
+    .from("voice-entries")
+    .upload(filePath, audioBlob, {
+      contentType: audioBlob.type,
+      upsert: true,
+    });
+  if (error) throw error;
+  const { data: urlData } = supabase.storage
+    .from("voice-entries")
+    .getPublicUrl(filePath);
+  return urlData.publicUrl;
+};
+
+// Update entry with voice data (audio URL + transcript segments)
+export const updateEntryVoice = async (
+  entryId: string,
+  audioUrl: string,
+  transcriptSegments: { start: number; end: number; text: string }[]
+) => {
+  const { error } = await supabase
+    .from("entries")
+    .update({ audio_url: audioUrl, transcript_segments: transcriptSegments })
     .eq("id", entryId);
   if (error) throw error;
 };
@@ -104,7 +140,7 @@ export const createQuickEntry = async (
     .single();
   if (error) throw error;
   await supabase.rpc("update_streak", { p_user_id: userId });
-  return data;
+  return data as unknown as EntryRow;
 };
 
 // Update profile
