@@ -7,11 +7,11 @@ import { StepIndicator } from "../components/StepIndicator";
 const { fontFamily: dmSans } = loadFont("normal", { weights: ["400", "700", "800"], subsets: ["latin"] });
 
 const moods = [
-  { label: "Berat", color: COLORS.mood1, emoji: "😢", value: 1 },
-  { label: "Murung", color: COLORS.mood2, emoji: "😔", value: 2 },
-  { label: "Biasa", color: COLORS.mood3, emoji: "😐", value: 3 },
-  { label: "Baik", color: COLORS.mood4, emoji: "😊", value: 4 },
-  { label: "Senang", color: COLORS.mood5, emoji: "😄", value: 5 },
+  { label: "Rough", color: COLORS.mood1, emoji: "😢", value: 1 },
+  { label: "Low", color: COLORS.mood2, emoji: "😔", value: 2 },
+  { label: "Okay", color: COLORS.mood3, emoji: "😐", value: 3 },
+  { label: "Good", color: COLORS.mood4, emoji: "😊", value: 4 },
+  { label: "Great", color: COLORS.mood5, emoji: "😄", value: 5 },
 ];
 
 export const SceneMood: React.FC = () => {
@@ -22,11 +22,9 @@ export const SceneMood: React.FC = () => {
   const phoneScale = interpolate(phoneS, [0, 1], [0.8, 1]);
   const phoneOp = interpolate(phoneS, [0, 1], [0, 1]);
 
-  // Mood selection animation — highlight mood 4 at frame 70
   const selectedMood = frame > 70 ? 4 : -1;
   const selectionPop = selectedMood === 4 ? spring({ frame: frame - 70, fps, config: { damping: 10 } }) : 0;
 
-  // Energy slider
   const energyValue = interpolate(frame, [85, 110], [20, 72], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
 
   return (
@@ -34,7 +32,7 @@ export const SceneMood: React.FC = () => {
       style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 40 }}
     >
       <Sequence from={0}>
-        <StepIndicator step={2} label="Pilih Mood" delay={0} />
+        <StepIndicator step={2} label="Pick Your Mood" delay={0} />
       </Sequence>
 
       <div style={{ opacity: phoneOp, transform: `scale(${phoneScale})` }}>
@@ -49,13 +47,11 @@ export const SceneMood: React.FC = () => {
               background: COLORS.bg,
             }}
           >
-            {/* Greeting */}
-            <div style={{ fontFamily: dmSans, fontSize: 14, color: COLORS.muted }}>Selamat siang 👋</div>
+            <div style={{ fontFamily: dmSans, fontSize: 14, color: COLORS.muted }}>Good afternoon 👋</div>
             <div style={{ fontFamily: dmSans, fontSize: 26, fontWeight: 800, color: COLORS.text }}>
-              Apa kabar hari ini?
+              How are you feeling?
             </div>
 
-            {/* Mood buttons */}
             <div style={{ display: "flex", justifyContent: "space-between", marginTop: 16 }}>
               {moods.map((m, i) => {
                 const isSelected = m.value === selectedMood;
@@ -98,10 +94,9 @@ export const SceneMood: React.FC = () => {
               })}
             </div>
 
-            {/* Energy slider */}
             <div style={{ marginTop: 16 }}>
               <div style={{ fontFamily: dmSans, fontSize: 14, fontWeight: 600, color: COLORS.text, marginBottom: 8 }}>
-                Level Energi
+                Energy Level
               </div>
               <div style={{ position: "relative", height: 8, borderRadius: 4, background: `${COLORS.primary}15` }}>
                 <div
@@ -128,31 +123,29 @@ export const SceneMood: React.FC = () => {
                 />
               </div>
               <div style={{ display: "flex", justifyContent: "space-between", marginTop: 6 }}>
-                <span style={{ fontFamily: dmSans, fontSize: 11, color: COLORS.muted }}>Capek</span>
-                <span style={{ fontFamily: dmSans, fontSize: 11, color: COLORS.muted }}>Berenergi</span>
+                <span style={{ fontFamily: dmSans, fontSize: 11, color: COLORS.muted }}>Drained</span>
+                <span style={{ fontFamily: dmSans, fontSize: 11, color: COLORS.muted }}>Energized</span>
               </div>
             </div>
 
-            {/* Prompt card */}
             <div
               style={{
                 marginTop: 16,
                 padding: 20,
                 borderRadius: 20,
-                background: `${COLORS.white}`,
+                background: COLORS.white,
                 border: `1px solid ${COLORS.primary}15`,
                 boxShadow: `0 4px 16px rgba(0,0,0,0.04)`,
               }}
             >
               <div style={{ fontFamily: dmSans, fontSize: 12, color: COLORS.primary, fontWeight: 700, marginBottom: 8 }}>
-                Prompt hari ini ✨
+                Today's prompt ✨
               </div>
               <div style={{ fontFamily: dmSans, fontSize: 15, color: COLORS.text, lineHeight: 1.5 }}>
-                Apa yang membuatmu tersenyum hari ini?
+                What made you smile today, even just a little?
               </div>
             </div>
 
-            {/* Action buttons */}
             <div style={{ display: "flex", gap: 12, marginTop: 12 }}>
               <div
                 style={{
@@ -167,7 +160,7 @@ export const SceneMood: React.FC = () => {
                   color: COLORS.white,
                 }}
               >
-                ✍️ Tulis
+                ✍️ Write
               </div>
               <div
                 style={{
@@ -183,7 +176,7 @@ export const SceneMood: React.FC = () => {
                   border: `1px solid ${COLORS.primary}30`,
                 }}
               >
-                💬 Bicara
+                💬 Talk
               </div>
             </div>
           </div>

@@ -7,11 +7,11 @@ const { fontFamily: dmSans } = loadFont("normal", { weights: ["400", "700", "800
 const { fontFamily: lora } = loadLora("normal", { weights: ["400", "700"], subsets: ["latin"] });
 
 const features = [
-  "📝 Jurnal harian 30 detik",
-  "🧠 AI Insights otomatis",
-  "💬 Chat coaching personal",
+  "📝 30-second daily journal",
+  "🧠 AI-powered insights",
+  "💬 Personal coaching chat",
   "📊 Mood trends & analytics",
-  "🔥 Streak & motivasi harian",
+  "🔥 Streaks & daily motivation",
 ];
 
 export const SceneOutro: React.FC = () => {
@@ -21,7 +21,6 @@ export const SceneOutro: React.FC = () => {
   const logoS = spring({ frame, fps, config: { damping: 12 } });
   const logoScale = interpolate(logoS, [0, 1], [0.5, 1]);
 
-  // Floating gentle motion
   const floatY = Math.sin(frame / 20) * 5;
 
   return (
@@ -34,7 +33,6 @@ export const SceneOutro: React.FC = () => {
         gap: 36,
       }}
     >
-      {/* Logo */}
       <div
         style={{
           fontFamily: lora,
@@ -48,7 +46,6 @@ export const SceneOutro: React.FC = () => {
         nuju
       </div>
 
-      {/* Tagline */}
       <div
         style={{
           fontFamily: dmSans,
@@ -61,12 +58,11 @@ export const SceneOutro: React.FC = () => {
           opacity: interpolate(spring({ frame: frame - 15, fps, config: { damping: 15 } }), [0, 1], [0, 1]),
         }}
       >
-        Mulai perjalanan jurnalmu
+        Start your journaling journey
         <br />
-        hari ini 💜
+        today 💜
       </div>
 
-      {/* Features list */}
       <div style={{ display: "flex", flexDirection: "column", gap: 16, marginTop: 10 }}>
         {features.map((f, i) => {
           const fS = spring({ frame: frame - (30 + i * 10), fps, config: { damping: 15 } });
@@ -89,7 +85,6 @@ export const SceneOutro: React.FC = () => {
         })}
       </div>
 
-      {/* CTA */}
       <div
         style={{
           marginTop: 20,

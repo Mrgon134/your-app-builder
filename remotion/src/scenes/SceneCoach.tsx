@@ -7,8 +7,8 @@ import { StepIndicator } from "../components/StepIndicator";
 const { fontFamily: dmSans } = loadFont("normal", { weights: ["400", "700", "800"], subsets: ["latin"] });
 
 const chatMessages = [
-  { role: "user", text: "Aku merasa cemas soal deadline minggu depan..." },
-  { role: "ai", text: "Aku dengar kamu, dan perasaan itu sangat valid. Mari kita breakdown — apa satu hal terkecil yang bisa kamu selesaikan hari ini? 💜" },
+  { role: "user", text: "I'm feeling anxious about my deadline next week..." },
+  { role: "ai", text: "I hear you, and that feeling is completely valid. Let's break it down — what's the one smallest thing you can finish today? 💜" },
 ];
 
 export const SceneCoach: React.FC = () => {
@@ -18,20 +18,16 @@ export const SceneCoach: React.FC = () => {
   const phoneS = spring({ frame: frame - 10, fps, config: { damping: 15 } });
   const phoneOp = interpolate(phoneS, [0, 1], [0, 1]);
 
-  // User message appears
   const msg1S = spring({ frame: frame - 30, fps, config: { damping: 15 } });
   const msg1Op = interpolate(msg1S, [0, 1], [0, 1]);
   const msg1Y = interpolate(msg1S, [0, 1], [20, 0]);
 
-  // Typing dots
   const showDots = frame > 55 && frame < 80;
 
-  // AI response
   const msg2S = spring({ frame: frame - 80, fps, config: { damping: 15 } });
   const msg2Op = interpolate(msg2S, [0, 1], [0, 1]);
   const msg2Y = interpolate(msg2S, [0, 1], [20, 0]);
 
-  // AI text typing
   const aiText = chatMessages[1].text;
   const aiChars = Math.min(aiText.length, Math.max(0, Math.floor((frame - 80) * 1.2)));
   const typedAi = aiText.slice(0, aiChars);
@@ -41,7 +37,7 @@ export const SceneCoach: React.FC = () => {
       style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 40 }}
     >
       <Sequence from={0}>
-        <StepIndicator step={5} label="Chat dengan Ju" delay={0} />
+        <StepIndicator step={5} label="Chat with Ju" delay={0} />
       </Sequence>
 
       <div style={{ opacity: phoneOp }}>
@@ -55,7 +51,6 @@ export const SceneCoach: React.FC = () => {
               background: COLORS.bg,
             }}
           >
-            {/* Header */}
             <div
               style={{
                 display: "flex",
@@ -72,13 +67,12 @@ export const SceneCoach: React.FC = () => {
               </div>
             </div>
 
-            {/* Persona pills */}
             <div style={{ display: "flex", gap: 8, marginBottom: 20, flexWrap: "wrap" }}>
               {[
-                { name: "Lembut", color: "#B8C4F0", active: true },
-                { name: "Tegas", color: "#D4A0D0", active: false },
-                { name: "Bijak", color: "#E8D5A3", active: false },
-                { name: "Seru", color: "#A8E6CF", active: false },
+                { name: "Gentle", color: "#B8C4F0", active: true },
+                { name: "Tough", color: "#D4A0D0", active: false },
+                { name: "Wise", color: "#E8D5A3", active: false },
+                { name: "Fun", color: "#A8E6CF", active: false },
               ].map((p) => (
                 <div
                   key={p.name}
@@ -98,9 +92,7 @@ export const SceneCoach: React.FC = () => {
               ))}
             </div>
 
-            {/* Chat area */}
             <div style={{ flex: 1, display: "flex", flexDirection: "column", gap: 12 }}>
-              {/* User message */}
               <div
                 style={{
                   alignSelf: "flex-end",
@@ -119,7 +111,6 @@ export const SceneCoach: React.FC = () => {
                 {chatMessages[0].text}
               </div>
 
-              {/* Typing indicator */}
               {showDots && (
                 <div
                   style={{
@@ -133,11 +124,7 @@ export const SceneCoach: React.FC = () => {
                   }}
                 >
                   {[0, 1, 2].map((d) => {
-                    const dotOp = interpolate(
-                      (frame + d * 8) % 24,
-                      [0, 12, 24],
-                      [0.3, 1, 0.3],
-                    );
+                    const dotOp = interpolate((frame + d * 8) % 24, [0, 12, 24], [0.3, 1, 0.3]);
                     return (
                       <div
                         key={d}
@@ -154,7 +141,6 @@ export const SceneCoach: React.FC = () => {
                 </div>
               )}
 
-              {/* AI response */}
               {frame > 78 && (
                 <div
                   style={{
@@ -180,7 +166,6 @@ export const SceneCoach: React.FC = () => {
               )}
             </div>
 
-            {/* Input bar */}
             <div
               style={{
                 display: "flex",
@@ -202,7 +187,7 @@ export const SceneCoach: React.FC = () => {
                   color: COLORS.muted,
                 }}
               >
-                Ngobrol sama Ju...
+                Talk to Ju...
               </div>
               <div
                 style={{

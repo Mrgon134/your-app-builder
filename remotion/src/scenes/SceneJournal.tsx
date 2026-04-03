@@ -8,7 +8,7 @@ import { StepIndicator } from "../components/StepIndicator";
 const { fontFamily: dmSans } = loadFont("normal", { weights: ["400", "700", "800"], subsets: ["latin"] });
 const { fontFamily: newsreader } = loadNewsreader("normal", { weights: ["400"], subsets: ["latin"] });
 
-const journalText = "Hari ini aku merasa sangat bersyukur. Pagi tadi dapat kabar baik dari kantor, dan sore ini jalan-jalan santai di taman. Rasanya tenang dan damai sekali.";
+const journalText = "Today I'm feeling really grateful. Got some great news from work this morning, and spent the afternoon walking through the park. It felt so peaceful and calm.";
 
 export const SceneJournal: React.FC = () => {
   const frame = useCurrentFrame();
@@ -18,11 +18,9 @@ export const SceneJournal: React.FC = () => {
   const phoneOp = interpolate(phoneS, [0, 1], [0, 1]);
   const phoneY = interpolate(phoneS, [0, 1], [100, 0]);
 
-  // Typing animation
   const charsShown = Math.min(journalText.length, Math.max(0, Math.floor((frame - 30) * 1.5)));
   const typedText = journalText.slice(0, charsShown);
 
-  // AI insight card
   const insightDelay = 100;
   const insightS = spring({ frame: frame - insightDelay, fps, config: { damping: 12 } });
   const insightOp = interpolate(insightS, [0, 1], [0, 1]);
@@ -33,7 +31,7 @@ export const SceneJournal: React.FC = () => {
       style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 40 }}
     >
       <Sequence from={0}>
-        <StepIndicator step={3} label="Tulis Jurnal" delay={0} />
+        <StepIndicator step={3} label="Write Your Journal" delay={0} />
       </Sequence>
 
       <div style={{ opacity: phoneOp, transform: `translateY(${phoneY}px)` }}>
@@ -48,9 +46,8 @@ export const SceneJournal: React.FC = () => {
               background: COLORS.bg,
             }}
           >
-            {/* Header */}
             <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-              <span style={{ fontFamily: dmSans, fontSize: 16, color: COLORS.muted }}>← Kembali</span>
+              <span style={{ fontFamily: dmSans, fontSize: 16, color: COLORS.muted }}>← Back</span>
               <span
                 style={{
                   fontFamily: dmSans,
@@ -62,17 +59,15 @@ export const SceneJournal: React.FC = () => {
                   borderRadius: 12,
                 }}
               >
-                Simpan
+                Save
               </span>
             </div>
 
-            {/* Mood indicator */}
             <div style={{ display: "flex", alignItems: "center", gap: 8, marginTop: 8 }}>
               <span style={{ fontSize: 24 }}>😊</span>
-              <span style={{ fontFamily: dmSans, fontSize: 14, fontWeight: 600, color: COLORS.mood4 }}>Baik</span>
+              <span style={{ fontFamily: dmSans, fontSize: 14, fontWeight: 600, color: COLORS.mood4 }}>Good</span>
             </div>
 
-            {/* Prompt */}
             <div
               style={{
                 padding: "12px 16px",
@@ -84,10 +79,9 @@ export const SceneJournal: React.FC = () => {
                 fontStyle: "italic",
               }}
             >
-              Apa yang membuatmu tersenyum hari ini?
+              What made you smile today?
             </div>
 
-            {/* Textarea */}
             <div
               style={{
                 flex: 1,
@@ -108,7 +102,6 @@ export const SceneJournal: React.FC = () => {
               )}
             </div>
 
-            {/* AI Insight */}
             {frame > insightDelay && (
               <div
                 style={{
@@ -121,10 +114,10 @@ export const SceneJournal: React.FC = () => {
                 }}
               >
                 <div style={{ fontFamily: dmSans, fontSize: 13, fontWeight: 700, color: COLORS.primary, marginBottom: 8 }}>
-                  ✨ Insight dari Ju
+                  ✨ Ju's Insight
                 </div>
                 <div style={{ fontFamily: dmSans, fontSize: 14, color: COLORS.text, lineHeight: 1.5 }}>
-                  Kamu punya kemampuan luar biasa untuk menghargai momen kecil. Rasa syukurmu itu kekuatan besar!
+                  You have an incredible ability to appreciate small moments. Your gratitude is a powerful strength!
                 </div>
               </div>
             )}

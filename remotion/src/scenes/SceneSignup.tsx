@@ -1,6 +1,6 @@
 import { AbsoluteFill, useCurrentFrame, useVideoConfig, spring, interpolate, Sequence } from "remotion";
 import { loadFont } from "@remotion/google-fonts/DMSans";
-import { COLORS, FONT_BODY } from "../styles";
+import { COLORS } from "../styles";
 import { PhoneMockup } from "../components/PhoneMockup";
 import { StepIndicator } from "../components/StepIndicator";
 
@@ -14,12 +14,10 @@ export const SceneSignup: React.FC = () => {
   const phoneY = interpolate(phoneS, [0, 1], [200, 0]);
   const phoneOp = interpolate(phoneS, [0, 1], [0, 1]);
 
-  // Typing email animation
   const email = "user@email.com";
   const charsShown = Math.min(email.length, Math.max(0, Math.floor((frame - 50) / 3)));
   const typedEmail = email.slice(0, charsShown);
 
-  // Button press
   const btnPress = frame > 90 ? spring({ frame: frame - 90, fps, config: { damping: 20 } }) : 0;
   const btnScale = interpolate(btnPress, [0, 0.5, 1], [1, 0.95, 1]);
 
@@ -34,7 +32,7 @@ export const SceneSignup: React.FC = () => {
       }}
     >
       <Sequence from={0}>
-        <StepIndicator step={1} label="Buat Akun" delay={0} />
+        <StepIndicator step={1} label="Create Account" delay={0} />
       </Sequence>
 
       <div style={{ opacity: phoneOp, transform: `translateY(${phoneY}px)` }}>
@@ -50,15 +48,13 @@ export const SceneSignup: React.FC = () => {
               background: COLORS.bg,
             }}
           >
-            {/* Logo */}
             <div style={{ fontFamily: dmSans, fontSize: 48, fontWeight: 800, color: COLORS.primary }}>
               nuju
             </div>
             <div style={{ fontFamily: dmSans, fontSize: 18, color: COLORS.muted, textAlign: "center" }}>
-              Mulai perjalanan jurnalmu
+              Start your journaling journey
             </div>
 
-            {/* Email input */}
             <div
               style={{
                 width: "100%",
@@ -76,7 +72,6 @@ export const SceneSignup: React.FC = () => {
               {frame % 30 < 15 && <span style={{ color: COLORS.primary }}>|</span>}
             </div>
 
-            {/* Password input */}
             <div
               style={{
                 width: "100%",
@@ -92,7 +87,6 @@ export const SceneSignup: React.FC = () => {
               ••••••••
             </div>
 
-            {/* Sign up button */}
             <div
               style={{
                 width: "100%",
@@ -109,12 +103,11 @@ export const SceneSignup: React.FC = () => {
                 marginTop: 10,
               }}
             >
-              Daftar Sekarang ✨
+              Sign Up Now ✨
             </div>
 
-            {/* Divider */}
             <div style={{ fontFamily: dmSans, fontSize: 14, color: COLORS.muted }}>
-              atau lanjut dengan Google
+              or continue with Google
             </div>
 
             <div
