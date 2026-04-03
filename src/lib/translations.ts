@@ -305,6 +305,10 @@ export const translations: Record<string, Record<string, string>> = {
     export_srt: "Transcript (.srt)",
     tap_to_seek: "Tap to seek",
     voice_preserved: "Audio preserved",
+    // Data Export
+    export_all_data: "Export all my data",
+    export_all_data_desc: "Download an archive of all your journals (JSON)",
+    exporting: "Exporting...",
   },
   id: {
     greeting_morning: "Selamat pagi",
@@ -580,6 +584,10 @@ export const translations: Record<string, Record<string, string>> = {
     export_srt: "Transkrip (.srt)",
     tap_to_seek: "Ketuk untuk navigasi",
     voice_preserved: "Audio tersimpan",
+    // Data Export
+    export_all_data: "Ekspor semua data",
+    export_all_data_desc: "Unduh semua jurnal dalam bentuk arsip (JSON)",
+    exporting: "Mengekspor...",
   },
   es: {
     greeting_morning: "Buenos días",

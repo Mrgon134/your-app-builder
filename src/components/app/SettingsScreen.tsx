@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useLang, LANG_META } from "@/lib/i18n";
 import { useAuth } from "@/lib/auth";
-import { updateProfile } from "@/lib/api";
-import { ArrowLeft, Moon, Sun, Globe, Crown, LogOut, Bell, BellOff, ChevronRight, Fingerprint, KeyRound, AtSign, Trash2, AlertTriangle } from "lucide-react";
+import { updateProfile, fetchEntries } from "@/lib/api";
+import { ArrowLeft, Moon, Sun, Globe, Crown, LogOut, Bell, BellOff, ChevronRight, Fingerprint, KeyRound, AtSign, Trash2, AlertTriangle, Download } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import {
   requestNotificationPermission,
@@ -44,6 +44,7 @@ const SettingsScreen: React.FC<SettingsScreenProps> = ({ onBack, onUpgrade, plan
   const [showPinChange, setShowPinChange] = useState(false);
   const [showPinDisable, setShowPinDisable] = useState(false);
   const [disablePin, setDisablePin] = useState("");
+  const [exporting, setExporting] = useState(false);
 
   const currentLang = LANG_META.find((l) => l.code === lang);
 
@@ -58,6 +59,40 @@ const SettingsScreen: React.FC<SettingsScreenProps> = ({ onBack, onUpgrade, plan
       } catch (e) {
         console.error("Failed to save dark mode:", e);
       }
+    }
+  };
+
+  const handleExportData = async () => {
+    if (!user || exporting) return;
+    setExporting(true);
+    try {
+      const allEntries = await fetchEntries(user.id);
+      
+      const exportObject = {
+        meta: {
+          app: "Nuju",
+          export_date: new Date().toISOString(),
+          total_entries: allEntries.length
+        },
+        entries: allEntries
+      };
+
+      const dataStr = JSON.stringify(exportObject, null, 2);
+      const dataUri = "data:application/json;charset=utf-8," + encodeURIComponent(dataStr);
+      
+      const exportFileDefaultName = `nuju-export-${new Date().toISOString().split('T')[0]}.json`;
+      
+      const linkElement = document.createElement("a");
+      linkElement.setAttribute("href", dataUri);
+      linkElement.setAttribute("download", exportFileDefaultName);
+      linkElement.click();
+      
+      toast.success("Data export downloaded successfully");
+    } catch (err) {
+      console.error("Export failed:", err);
+      toast.error("Failed to export data");
+    } finally {
+      setExporting(false);
     }
   };
 
@@ -242,6 +277,23 @@ const SettingsScreen: React.FC<SettingsScreenProps> = ({ onBack, onUpgrade, plan
                 </button>
               </div>
             )}
+
+            {/* Export All Data */}
+            <button
+              onClick={handleExportData}
+              disabled={exporting}
+              className="ios-group-item w-full"
+            >
+              <div className="flex items-center gap-3">
+                <div className="w-8 h-8 rounded-lg bg-blue-500/10 flex items-center justify-center">
+                  <Download className="w-4 h-4 text-blue-500" />
+                </div>
+                <span className="text-[15px] font-normal text-foreground">
+                  {exporting ? (t.exporting || "Exporting...") : (t.export_all_data || "Export all my data")}
+                </span>
+              </div>
+              <ChevronRight className="w-4 h-4 text-muted-foreground/40" />
+            </button>
           </div>
         </div>
 
