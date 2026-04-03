@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useLang } from "@/lib/i18n";
 import { useGeoPricing } from "@/hooks/use-geo-pricing";
-import { Crosshair, PenLine, BrainCircuit, Check, Shield, Zap, Heart, Star, Quote, Globe } from "lucide-react";
+import { Crosshair, PenLine, BrainCircuit, Check, Shield, Zap, Heart, Star, Quote, Globe, Download, BellRing, Smartphone, LifeBuoy } from "lucide-react";
 import juMain from "@/assets/ju-main.webp";
 import { toast } from "sonner";
 
@@ -30,6 +30,7 @@ const Landing: React.FC = () => {
   const testimonialsReveal = useReveal();
   const pricingReveal = useReveal();
   const ctaReveal = useReveal();
+  const advancedFeaturesReveal = useReveal();
 
   const testimonials = [
     { name: "Sarah K.", role: "Designer", text: "Nuju helped me understand why Mondays felt so heavy. Now I have a plan for it.", rating: 5 },
@@ -178,6 +179,7 @@ const Landing: React.FC = () => {
             { icon: Shield, label: "Privacy-first", sublabel: "Your data stays yours" },
             { icon: Zap, label: "30 seconds", sublabel: "To journal daily" },
             { icon: Heart, label: "AI-powered", sublabel: "Insights that matter" },
+            { icon: Smartphone, label: "Install Anywhere", sublabel: "PWA ready app" },
           ].map((badge, i) => {
             const Icon = badge.icon;
             return (
@@ -231,6 +233,38 @@ const Landing: React.FC = () => {
         </div>
       </section>
 
+      {/* 4.5 Advanced Features */}
+      <section ref={advancedFeaturesReveal.ref} className="py-20 px-4">
+        <div className="max-w-4xl mx-auto">
+          <h2 className={`font-serif text-3xl font-bold text-center mb-16 transition-all duration-700 delay-100 ${advancedFeaturesReveal.visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
+            Empowering Features
+          </h2>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              { title: "SOS Mode", desc: "Instant relief for moments of anxiety or low mood. Guided to bring you back to center.", icon: LifeBuoy, iconBg: "bg-red-500/10", iconColor: "text-red-500" },
+              { title: "Proactive Care", desc: "Ju checks in when you need it most based on your emotional patterns and habits.", icon: BellRing, iconBg: "bg-blue-500/10", iconColor: "text-blue-500" },
+              { title: "Data Export", desc: "Export your entries to TXT format anytime. Your data, completely within your control.", icon: Download, iconBg: "bg-green-500/10", iconColor: "text-green-500" },
+              { title: "Install Anywhere", desc: "Add Nuju directly to your home screen for quick, frictionless journaling anywhere.", icon: Smartphone, iconBg: "bg-purple-500/10", iconColor: "text-purple-500" },
+            ].map((feat, i) => {
+              const Icon = feat.icon;
+              return (
+                <div
+                  key={feat.title}
+                  className={`p-6 rounded-3xl bg-card border border-border shadow-sm transition-all duration-700 ${advancedFeaturesReveal.visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+                  style={{ transitionDelay: `${200 + i * 100}ms` }}
+                >
+                  <div className={`w-12 h-12 rounded-xl flex items-center justify-center mb-4 ${feat.iconBg}`}>
+                    <Icon className={`w-6 h-6 ${feat.iconColor}`} />
+                  </div>
+                  <h3 className="font-serif text-lg font-semibold mb-2">{feat.title}</h3>
+                  <p className="text-muted-foreground text-sm leading-relaxed">{feat.desc}</p>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
       {/* 5. Feature Comparison */}
       <section ref={comparisonReveal.ref} className="py-20 px-4">
         <div className={`max-w-3xl mx-auto transition-all duration-700 ${comparisonReveal.visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
@@ -252,8 +286,10 @@ const Landing: React.FC = () => {
                   ["Time to journal", "30 sec", "5-15 min", "15-30 min"],
                   ["AI insights", "✓", "✗", "Limited"],
                   ["Mood tracking", "✓", "Manual", "✓"],
+                  ["Emergency support", "SOS Mode", "✗", "Crisis Line"],
                   ["Relationship mapping", "✓", "✗", "✗"],
                   ["Coach personas", "4 styles", "✗", "1 generic"],
+                  ["Data export", "TXT format", "N/A", "Limited"],
                   ["Cost", "Free start", "Free", "$50-200/mo"],
                 ].map(([feature, nuju, paper, therapy], i) => (
                   <tr key={i} className="border-b border-border/50">
