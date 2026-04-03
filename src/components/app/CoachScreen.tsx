@@ -205,7 +205,7 @@ const CoachScreen: React.FC<{ onUpgrade?: () => void; plan?: string | null; tria
   );
 
   const sendMessage = async () => {
-    if (!input.trim() || isLoading || !canSend) return;
+    if (!input.trim() || isLoading || (!canSend && !hasPlusAccess(propPlan || userPlan, propTrialStartedAt || null))) return;
     const userMsg = input.trim();
     setInput("");
 
