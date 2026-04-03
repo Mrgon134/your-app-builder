@@ -13,6 +13,8 @@ import {
 } from "@/lib/notifications";
 import { toast } from "sonner";
 import { hasPlusAccess } from "@/lib/trial";
+import PinSetupScreen from "@/components/app/PinSetupScreen";
+import { hashPin } from "@/components/app/PinLockScreen";
 
 interface SettingsScreenProps {
   onBack: () => void;
@@ -37,6 +39,11 @@ const SettingsScreen: React.FC<SettingsScreenProps> = ({ onBack, onUpgrade, plan
   const [showLangPicker, setShowLangPicker] = useState(false);
   const [biometricEnabled, setBiometricEnabled] = useState(() => localStorage.getItem("nuju-biometric") === "1");
   const biometricSupported = typeof window !== "undefined" && window.PublicKeyCredential !== undefined;
+  const [pinEnabled, setPinEnabled] = useState(() => !!localStorage.getItem("nuju-pin-hash"));
+  const [showPinSetup, setShowPinSetup] = useState(false);
+  const [showPinChange, setShowPinChange] = useState(false);
+  const [showPinDisable, setShowPinDisable] = useState(false);
+  const [disablePin, setDisablePin] = useState("");
 
   const currentLang = LANG_META.find((l) => l.code === lang);
 
@@ -148,13 +155,52 @@ const SettingsScreen: React.FC<SettingsScreenProps> = ({ onBack, onUpgrade, plan
           </div>
         )}
 
-        {/* Privacy / Biometric lock */}
-        {biometricSupported && (
-          <div>
-            <p className="text-[13px] font-medium text-muted-foreground uppercase tracking-wider px-4 mb-1.5">
-              {t.privacy || "Privacy"}
-            </p>
-            <div className="ios-group">
+        {/* Privacy / PIN & Biometric lock */}
+        <div>
+          <p className="text-[13px] font-medium text-muted-foreground uppercase tracking-wider px-4 mb-1.5">
+            {t.privacy || "Privacy"}
+          </p>
+          <div className="ios-group">
+            {/* PIN Lock */}
+            <div className="ios-group-item">
+              <div className="flex items-center gap-3">
+                <div className="w-8 h-8 rounded-lg bg-purple-600 flex items-center justify-center">
+                  <KeyRound className="w-4 h-4 text-white" />
+                </div>
+                <span className="text-[15px] font-normal text-foreground">{t.pin_lock || "PIN lock"}</span>
+              </div>
+              <button
+                onClick={() => {
+                  if (!pinEnabled) {
+                    setShowPinSetup(true);
+                  } else {
+                    setShowPinDisable(true);
+                  }
+                }}
+                className={`relative w-[51px] h-[31px] rounded-full transition-colors duration-200 ${pinEnabled ? "bg-primary" : "bg-border"}`}
+              >
+                <div className={`absolute top-[2px] w-[27px] h-[27px] rounded-full bg-white shadow-[0_1px_3px_rgba(0,0,0,0.15)] transition-transform duration-200 ${pinEnabled ? "translate-x-[22px]" : "translate-x-[2px]"}`} />
+              </button>
+            </div>
+
+            {/* Change PIN — visible only when PIN is enabled */}
+            {pinEnabled && (
+              <button
+                onClick={() => setShowPinChange(true)}
+                className="ios-group-item w-full"
+              >
+                <div className="flex items-center gap-3">
+                  <div className="w-8 h-8 rounded-lg bg-purple-600/10 flex items-center justify-center">
+                    <KeyRound className="w-4 h-4 text-purple-600" />
+                  </div>
+                  <span className="text-[15px] font-normal text-foreground">{t.change_pin || "Change PIN"}</span>
+                </div>
+                <ChevronRight className="w-4 h-4 text-muted-foreground/40" />
+              </button>
+            )}
+
+            {/* Biometric Lock */}
+            {biometricSupported && (
               <div className="ios-group-item">
                 <div className="flex items-center gap-3">
                   <div className="w-8 h-8 rounded-lg bg-green-600 flex items-center justify-center">
@@ -195,9 +241,9 @@ const SettingsScreen: React.FC<SettingsScreenProps> = ({ onBack, onUpgrade, plan
                   <div className={`absolute top-[2px] w-[27px] h-[27px] rounded-full bg-white shadow-[0_1px_3px_rgba(0,0,0,0.15)] transition-transform duration-200 ${biometricEnabled ? "translate-x-[22px]" : "translate-x-[2px]"}`} />
                 </button>
               </div>
-            </div>
+            )}
           </div>
-        )}
+        </div>
 
         {/* Language group */}
         <div>
@@ -410,6 +456,100 @@ const SettingsScreen: React.FC<SettingsScreenProps> = ({ onBack, onUpgrade, plan
                 {t.cancel || "Cancel"}
               </button>
             </div>
+          </div>
+        </div>
+      )}
+
+      {/* PIN Setup Modal */}
+      {showPinSetup && (
+        <div className="fixed inset-0 z-50 bg-background animate-fade-in">
+          <PinSetupScreen
+            onComplete={() => {
+              setShowPinSetup(false);
+              setPinEnabled(true);
+            }}
+            onSkip={() => setShowPinSetup(false)}
+          />
+        </div>
+      )}
+
+      {/* Change PIN Modal */}
+      {showPinChange && (
+        <div className="fixed inset-0 z-50 bg-background animate-fade-in">
+          <PinSetupScreen
+            requireOldPin
+            onComplete={() => {
+              setShowPinChange(false);
+              toast.success(t.pin_changed || "PIN changed successfully");
+            }}
+            onSkip={() => setShowPinChange(false)}
+          />
+        </div>
+      )}
+
+      {/* Disable PIN Confirmation Modal */}
+      {showPinDisable && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-foreground/30 backdrop-blur-sm p-6 animate-fade-in" onClick={() => { setShowPinDisable(false); setDisablePin(""); }}>
+          <div className="bg-card rounded-3xl p-6 w-full max-w-[320px] shadow-2xl border border-border/50 text-center animate-spring-in" onClick={e => e.stopPropagation()}>
+            <div className="mx-auto w-12 h-12 rounded-full bg-purple-500/10 flex items-center justify-center mb-4">
+              <KeyRound className="w-6 h-6 text-purple-600" />
+            </div>
+            <h3 className="text-xl font-bold text-foreground mb-2">{t.disable_pin || "Disable PIN?"}</h3>
+            <p className="text-sm text-muted-foreground mb-5 leading-relaxed">
+              {t.disable_pin_desc || "Enter your current PIN to remove it."}
+            </p>
+            <div className="flex justify-center gap-3 mb-5">
+              {Array.from({ length: 4 }).map((_, i) => (
+                <div
+                  key={i}
+                  className="w-4 h-4 rounded-full transition-all duration-200"
+                  style={{
+                    background: i < disablePin.length ? "hsl(var(--primary))" : "hsl(var(--foreground)/0.12)",
+                    transform: i < disablePin.length ? "scale(1.15)" : "scale(1)",
+                  }}
+                />
+              ))}
+            </div>
+            <div className="grid grid-cols-3 gap-2 mb-4 max-w-[200px] mx-auto">
+              {["1","2","3","4","5","6","7","8","9","","0","⌫"].map((key, i) => {
+                if (key === "") return <div key={i} />;
+                if (key === "⌫") return (
+                  <button key={i} onClick={() => setDisablePin(p => p.slice(0, -1))} className="py-2.5 rounded-xl text-muted-foreground text-lg active:bg-foreground/5">⌫</button>
+                );
+                return (
+                  <button
+                    key={i}
+                    onClick={async () => {
+                      const newPin = disablePin + key;
+                      setDisablePin(newPin);
+                      if (newPin.length === 4) {
+                        const storedHash = localStorage.getItem("nuju-pin-hash");
+                        const inputHash = await hashPin(newPin);
+                        if (inputHash === storedHash) {
+                          localStorage.removeItem("nuju-pin-hash");
+                          setPinEnabled(false);
+                          setShowPinDisable(false);
+                          setDisablePin("");
+                          toast.success(t.pin_disabled || "PIN lock disabled");
+                        } else {
+                          toast.error(t.pin_wrong || "Wrong PIN");
+                          setDisablePin("");
+                        }
+                      }
+                    }}
+                    className="py-2.5 rounded-xl bg-foreground/[0.04] text-foreground font-semibold text-lg active:scale-90 transition-transform"
+                  >
+                    {key}
+                  </button>
+                );
+              })}
+            </div>
+            <button
+              onClick={() => { setShowPinDisable(false); setDisablePin(""); }}
+              className="text-sm text-muted-foreground font-medium"
+            >
+              {t.cancel || "Cancel"}
+            </button>
           </div>
         </div>
       )}

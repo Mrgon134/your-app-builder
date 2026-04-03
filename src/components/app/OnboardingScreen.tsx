@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { useLang } from "@/lib/i18n";
-import { Bell, BellOff } from "lucide-react";
+import { Bell, BellOff, ShieldCheck } from "lucide-react";
 import juMain from "@/assets/ju-main.webp";
 import juGreat from "@/assets/ju-great.webp";
 import juOkay from "@/assets/ju-okay.webp";
 import { requestNotificationPermission, scheduleLocalReminder, schedulePostInstallNotification } from "@/lib/notifications";
+import PinSetupScreen from "@/components/app/PinSetupScreen";
 
 const REMINDER_OPTIONS = [
   { label: "8:00 AM", hour: 8 },
@@ -23,11 +24,12 @@ const OnboardingScreen: React.FC<{ onComplete: () => void }> = ({ onComplete }) 
     { id: "exploring", emoji: "✨",  label: t.onb_intent_exploring || "Just exploring",       desc: t.onb_intent_exploring_desc || "See what this is about" },
   ];
 
-  // step 0 = intent, steps 1-4 = slides, step 5 = reminder
+  // step 0 = intent, steps 1-4 = slides, step 5 = PIN setup, step 6 = reminder
   const [step, setStep] = useState(0);
   const [selectedIntent, setSelectedIntent] = useState<string | null>(null);
   const [reminderSet, setReminderSet] = useState(false);
   const [selectedHour, setSelectedHour] = useState<number | null>(null);
+  const [showPinSetup, setShowPinSetup] = useState(false);
 
   const slides = [
     { title: t.onb_title_1, desc: t.onb_desc_1, img: juMain },
@@ -36,9 +38,10 @@ const OnboardingScreen: React.FC<{ onComplete: () => void }> = ({ onComplete }) 
     { title: t.onb_title_4, desc: t.onb_desc_4, img: juMain },
   ];
 
-  const TOTAL_STEPS = 1 + slides.length + 1; // intent + 4 slides + reminder
+  const TOTAL_STEPS = 1 + slides.length + 1 + 1; // intent + 4 slides + PIN + reminder
   const isIntentStep = step === 0;
-  const isReminderStep = step === slides.length + 1;
+  const isPinStep = step === slides.length + 1;
+  const isReminderStep = step === slides.length + 2;
   const isLast = step === slides.length; // last slide (step 4)
   const slideIndex = step - 1; // slides start at step 1
 
@@ -144,6 +147,52 @@ const OnboardingScreen: React.FC<{ onComplete: () => void }> = ({ onComplete }) 
             {t.onb_next}
           </button>
         </div>
+      ) : isPinStep ? (
+        /* PIN Setup step */
+        showPinSetup ? (
+          <PinSetupScreen
+            isOnboarding
+            onComplete={() => {
+              setShowPinSetup(false);
+              setStep(step + 1);
+            }}
+            onSkip={() => {
+              setShowPinSetup(false);
+              setStep(step + 1);
+            }}
+          />
+        ) : (
+          <div className="w-full max-w-sm mx-auto text-center animate-fade-up" key="pin-setup">
+            <div className="relative w-32 h-32 mx-auto mb-8">
+              <div className="absolute inset-0 rounded-full animate-glow-pulse" style={{ background: "rgba(124,110,219,0.15)" }} />
+              <div className="relative w-full h-full rounded-full bg-primary/10 flex items-center justify-center">
+                <ShieldCheck className="w-16 h-16" style={{ color: "#7C6EDB" }} />
+              </div>
+            </div>
+            <h2 className="font-serif text-2xl font-bold mb-2" style={{ color: "#1A1A2E" }}>
+              {t.protect_journal || "Protect your journal"}
+            </h2>
+            <p className="text-base leading-relaxed mb-8" style={{ color: "#777" }}>
+              {t.protect_journal_desc || "Add a PIN to keep your journal private. Only you can read it."}
+            </p>
+            <Dots />
+            <button
+              onClick={() => setShowPinSetup(true)}
+              className="w-full py-4 rounded-2xl font-semibold text-base transition-all active:scale-[0.97] mb-3"
+              style={{ background: "#7C6EDB", color: "white" }}
+            >
+              {t.set_pin || "Set up PIN"}
+            </button>
+            <button
+              onClick={() => setStep(step + 1)}
+              className="w-full py-3 rounded-2xl font-medium text-base transition-all active:scale-[0.97]"
+              style={{ color: "#777" }}
+            >
+              {t.pin_skip || "Skip for now"}
+            </button>
+          </div>
+        )
+
       ) : isReminderStep ? (
         /* Reminder step */
         <div className="w-full max-w-sm mx-auto text-center animate-fade-up" key="reminder">

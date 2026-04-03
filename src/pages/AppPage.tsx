@@ -26,6 +26,7 @@ import { checkAndUnlockAchievements, type Achievement } from "@/lib/achievements
 import { Home, BarChart3, MessageCircle, Compass, Sparkles, Loader2 } from "lucide-react";
 import { toast } from "sonner";
 import { AnimatePresence, motion } from "framer-motion";
+import PinLockScreen from "@/components/app/PinLockScreen";
 
 type Screen = "home" | "journal" | "insights" | "coach" | "explore" | "pro" | "settings" | "programs" | "year-review";
 
@@ -56,6 +57,9 @@ const AppPage: React.FC = () => {
   const [journalPrompt, setJournalPrompt] = useState<string>("");
   const [showTour, setShowTour] = useState(false);
   const [unlockedAchievement, setUnlockedAchievement] = useState<Achievement | null>(null);
+  const [appLocked, setAppLocked] = useState(() => !!localStorage.getItem("nuju-pin-hash"));
+  const biometricEnabled = localStorage.getItem("nuju-biometric") === "1";
+  const biometricSupported = typeof window !== "undefined" && window.PublicKeyCredential !== undefined;
 
   // Screen ordering for directional transitions
   const screenOrder: Screen[] = ["home", "insights", "coach", "explore", "pro"];
@@ -338,6 +342,31 @@ const AppPage: React.FC = () => {
       <div className="min-h-screen bg-background flex items-center justify-center">
         <Loader2 className="w-8 h-8 text-primary animate-spin" />
       </div>
+    );
+  }
+
+  // PIN Lock guard — show lock screen before app
+  if (appLocked) {
+    return (
+      <PinLockScreen
+        onUnlock={() => setAppLocked(false)}
+        biometricAvailable={biometricEnabled && biometricSupported}
+        onBiometric={async () => {
+          try {
+            const cred = await navigator.credentials.get({
+              publicKey: {
+                challenge: crypto.getRandomValues(new Uint8Array(32)),
+                timeout: 60000,
+                userVerification: "required",
+                rpId: window.location.hostname,
+              },
+            });
+            if (cred) setAppLocked(false);
+          } catch {
+            // Biometric failed, user stays on PIN
+          }
+        }}
+      />
     );
   }
 
