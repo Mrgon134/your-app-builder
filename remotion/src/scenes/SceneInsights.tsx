@@ -6,7 +6,7 @@ import { StepIndicator } from "../components/StepIndicator";
 
 const { fontFamily: dmSans } = loadFont("normal", { weights: ["400", "700", "800"], subsets: ["latin"] });
 
-const weekDays = ["Sen", "Sel", "Rab", "Kam", "Jum", "Sab", "Min"];
+const weekDays = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 const moodData = [3, 2, 4, 3, 5, 4, 4];
 const moodColors = [COLORS.mood3, COLORS.mood2, COLORS.mood4, COLORS.mood3, COLORS.mood5, COLORS.mood4, COLORS.mood4];
 
@@ -22,7 +22,7 @@ export const SceneInsights: React.FC = () => {
       style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 40 }}
     >
       <Sequence from={0}>
-        <StepIndicator step={4} label="Lihat Insights" delay={0} />
+        <StepIndicator step={4} label="See Your Insights" delay={0} />
       </Sequence>
 
       <div style={{ opacity: phoneOp }}>
@@ -39,10 +39,9 @@ export const SceneInsights: React.FC = () => {
             }}
           >
             <div style={{ fontFamily: dmSans, fontSize: 24, fontWeight: 800, color: COLORS.text }}>
-              Galeri Pikiranmu ✨
+              Your Mind Gallery ✨
             </div>
 
-            {/* Weekly mood bars */}
             <div
               style={{
                 padding: 16,
@@ -52,7 +51,7 @@ export const SceneInsights: React.FC = () => {
               }}
             >
               <div style={{ fontFamily: dmSans, fontSize: 13, fontWeight: 700, color: COLORS.text, marginBottom: 12 }}>
-                Mood minggu ini
+                This week's mood wave
               </div>
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", height: 100 }}>
                 {weekDays.map((day, i) => {
@@ -75,12 +74,11 @@ export const SceneInsights: React.FC = () => {
               </div>
             </div>
 
-            {/* Stats row */}
             <div style={{ display: "flex", gap: 10 }}>
               {[
-                { label: "Rata-rata", value: "3.6", icon: "📊" },
+                { label: "Avg mood", value: "3.6", icon: "📊" },
                 { label: "Streak", value: "7🔥", icon: "" },
-                { label: "Entri", value: "23", icon: "📝" },
+                { label: "Entries", value: "23", icon: "📝" },
               ].map((stat, i) => {
                 const statS = spring({ frame: frame - (50 + i * 10), fps, config: { damping: 12 } });
                 const statScale = interpolate(statS, [0, 1], [0.5, 1]);
@@ -106,7 +104,6 @@ export const SceneInsights: React.FC = () => {
               })}
             </div>
 
-            {/* Ju remembers card */}
             <div
               style={{
                 padding: 16,
@@ -116,14 +113,13 @@ export const SceneInsights: React.FC = () => {
               }}
             >
               <div style={{ fontFamily: dmSans, fontSize: 13, fontWeight: 700, color: COLORS.primary, marginBottom: 8 }}>
-                🧠 Ju ingat...
+                🧠 Ju remembers...
               </div>
               <div style={{ fontFamily: dmSans, fontSize: 13, color: COLORS.text, lineHeight: 1.5 }}>
-                Kamu cenderung merasa lebih baik di akhir pekan. Menulis di malam hari memperbaiki mood pagi berikutnya.
+                You tend to feel better on weekends. Writing in the evening improves your next morning mood.
               </div>
             </div>
 
-            {/* Month grid preview */}
             <div
               style={{
                 padding: 16,
@@ -133,7 +129,7 @@ export const SceneInsights: React.FC = () => {
               }}
             >
               <div style={{ fontFamily: dmSans, fontSize: 13, fontWeight: 700, color: COLORS.text, marginBottom: 10 }}>
-                Sebulan sekilas
+                Month at a glance
               </div>
               <div style={{ display: "flex", flexWrap: "wrap", gap: 4 }}>
                 {Array.from({ length: 30 }, (_, i) => {

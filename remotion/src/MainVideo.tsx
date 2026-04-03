@@ -3,6 +3,7 @@ import { TransitionSeries, springTiming } from "@remotion/transitions";
 import { fade } from "@remotion/transitions/fade";
 import { slide } from "@remotion/transitions/slide";
 import { SceneIntro } from "./scenes/SceneIntro";
+import { SceneSignup } from "./scenes/SceneSignup";
 import { SceneMood } from "./scenes/SceneMood";
 import { SceneJournal } from "./scenes/SceneJournal";
 import { SceneInsights } from "./scenes/SceneInsights";
@@ -23,24 +24,29 @@ export const MainVideo: React.FC = () => {
         <TransitionSeries.Transition presentation={fade()} timing={timing} />
 
         <TransitionSeries.Sequence durationInFrames={120}>
-          <SceneMood />
+          <SceneSignup />
         </TransitionSeries.Sequence>
         <TransitionSeries.Transition presentation={slide({ direction: "from-left" })} timing={timing} />
+
+        <TransitionSeries.Sequence durationInFrames={120}>
+          <SceneMood />
+        </TransitionSeries.Sequence>
+        <TransitionSeries.Transition presentation={fade()} timing={timing} />
 
         <TransitionSeries.Sequence durationInFrames={130}>
           <SceneJournal />
         </TransitionSeries.Sequence>
-        <TransitionSeries.Transition presentation={fade()} timing={timing} />
+        <TransitionSeries.Transition presentation={slide({ direction: "from-right" })} timing={timing} />
 
         <TransitionSeries.Sequence durationInFrames={120}>
           <SceneInsights />
         </TransitionSeries.Sequence>
-        <TransitionSeries.Transition presentation={slide({ direction: "from-right" })} timing={timing} />
+        <TransitionSeries.Transition presentation={fade()} timing={timing} />
 
         <TransitionSeries.Sequence durationInFrames={120}>
           <SceneCoach />
         </TransitionSeries.Sequence>
-        <TransitionSeries.Transition presentation={fade()} timing={timing} />
+        <TransitionSeries.Transition presentation={slide({ direction: "from-left" })} timing={timing} />
 
         <TransitionSeries.Sequence durationInFrames={120}>
           <SceneOutro />
