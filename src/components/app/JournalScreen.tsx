@@ -375,7 +375,7 @@ const JournalScreen: React.FC<JournalScreenProps> = ({
           animation: sos-pulse 2s infinite;
         }
       `}</style>
-b
+
       {/* Header */}
       <div className="flex items-center justify-between mb-4">
         <button onClick={onBack} className="flex items-center gap-1 text-primary press-spring">
