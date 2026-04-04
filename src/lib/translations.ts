@@ -305,6 +305,8 @@ export const translations: Record<string, Record<string, string>> = {
     export_srt: "Transcript (.srt)",
     tap_to_seek: "Tap to seek",
     voice_preserved: "Audio preserved",
+    sos_title: "It's okay to feel this way.",
+    sos_desc: "Take a moment for yourself before you begin writing.",
     // Data Export
     export_all_data: "Export all my data",
     export_all_data_desc: "Download an archive of all your journals (TXT)",
@@ -584,6 +586,8 @@ export const translations: Record<string, Record<string, string>> = {
     export_srt: "Transkrip (.srt)",
     tap_to_seek: "Ketuk untuk navigasi",
     voice_preserved: "Audio tersimpan",
+    sos_title: "Nggak apa-apa merasa seperti ini.",
+    sos_desc: "Ambil nafas sejenak untuk dirimu sendiri sebelum mulai menulis.",
     // Data Export
     export_all_data: "Ekspor semua data",
     export_all_data_desc: "Unduh semua jurnal dalam bentuk arsip teks (.txt)",

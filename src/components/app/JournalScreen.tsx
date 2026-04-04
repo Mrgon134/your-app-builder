@@ -110,6 +110,8 @@ const JournalScreen: React.FC<JournalScreenProps> = ({
   const textRef = useRef(text);
   useEffect(() => { textRef.current = text; }, [text]);
 
+  const stopResolverRef = useRef<((blob: Blob | null) => void) | null>(null);
+
   // Draft auto-save (2s debounce)
   useEffect(() => {
     if (saved) return;
@@ -157,6 +159,12 @@ const JournalScreen: React.FC<JournalScreenProps> = ({
         stream.getTracks().forEach((t) => t.stop());
         streamRef.current = null;
         const audioBlob = new Blob(audioChunksRef.current, { type: mimeType });
+        
+        if (stopResolverRef.current) {
+          stopResolverRef.current(audioBlob.size >= 1000 ? audioBlob : null);
+          stopResolverRef.current = null;
+        }
+
         if (audioBlob.size < 1000) {
           setRecordState("idle");
           return;
@@ -208,11 +216,19 @@ const JournalScreen: React.FC<JournalScreenProps> = ({
 
   // Auto-start recording if opened via Talk button
   useEffect(() => {
-    if (autoRecord) {
+    if (autoRecord && !grounding) {
       const timer = setTimeout(() => startRecording(), 300);
       return () => clearTimeout(timer);
     }
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [autoRecord, grounding]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  // Auto-trigger SOS for Rough mood
+  useEffect(() => {
+    if (mood === 1 && !grounding && !saved) {
+      const timer = setTimeout(() => setGrounding(true), 400);
+      return () => clearTimeout(timer);
+    }
+  }, [mood]);
 
   // Cleanup on unmount
   useEffect(() => {
@@ -227,9 +243,18 @@ const JournalScreen: React.FC<JournalScreenProps> = ({
   const handleSave = async () => {
     if (!text.trim() || saving) return;
     setSaving(true);
-    if (recordState === "recording") stopRecording();
+    
+    let finalAudioBlob = lastAudioBlob;
+    if (recordState === "recording") {
+      const waitForBlob = new Promise<Blob | null>(resolve => {
+        stopResolverRef.current = resolve;
+      });
+      stopRecording();
+      finalAudioBlob = await waitForBlob;
+    }
+
     try {
-      const aiInsight = await onSave(text, lastAudioBlob, lastSegments);
+      const aiInsight = await onSave(text, finalAudioBlob, lastSegments);
       setInsight(aiInsight || "");
       setSaved(true);
       try { localStorage.removeItem(DRAFT_KEY); } catch {}
@@ -341,8 +366,16 @@ const JournalScreen: React.FC<JournalScreenProps> = ({
           0%, 100% { transform: scaleY(0.25); opacity: 0.45; }
           50% { transform: scaleY(1); opacity: 1; }
         }
+        @keyframes sos-pulse {
+          0% { box-shadow: 0 0 0 0 rgba(232, 135, 140, 0.4); }
+          70% { box-shadow: 0 0 0 10px rgba(232, 135, 140, 0); }
+          100% { box-shadow: 0 0 0 0 rgba(232, 135, 140, 0); }
+        }
+        .animate-sos-pulse {
+          animation: sos-pulse 2s infinite;
+        }
       `}</style>
-
+b
       {/* Header */}
       <div className="flex items-center justify-between mb-4">
         <button onClick={onBack} className="flex items-center gap-1 text-primary press-spring">
@@ -392,15 +425,16 @@ const JournalScreen: React.FC<JournalScreenProps> = ({
       {!grounding && mood !== undefined && mood <= 2 && (
         <button 
           onClick={() => setGrounding(true)}
-          className="w-full flex items-center justify-between p-4 mb-3 rounded-2xl bg-destructive/5 border border-destructive/20 transition-transform active:scale-[0.98]"
+          className={`w-full flex items-center justify-between p-4 mb-3 rounded-2xl transition-all active:scale-[0.98] ${mood === 1 ? 'bg-destructive/10 border-destructive/30 animate-sos-pulse' : 'bg-destructive/5 border-destructive/20'}`}
+          style={{ border: "1px solid" }}
         >
           <div className="flex items-center gap-3 text-left">
-            <div className="w-8 h-8 rounded-full bg-destructive/10 flex items-center justify-center">
-              <span className="text-destructive text-sm font-bold">SOS</span>
+            <div className="w-8 h-8 rounded-full bg-destructive/15 flex items-center justify-center">
+              <span className="text-destructive text-xs font-black">SOS</span>
             </div>
             <div>
-              <p className="text-[13px] font-semibold text-destructive">Feeling overwhelmed?</p>
-              <p className="text-[12px] text-muted-foreground">Take a guided breathing break before writing.</p>
+              <p className="text-[13px] font-bold text-destructive">Feeling overwhelmed?</p>
+              <p className="text-[12px] text-muted-foreground/80">Take a guided breathing break before writing.</p>
             </div>
           </div>
         </button>
