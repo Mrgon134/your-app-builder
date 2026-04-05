@@ -2,12 +2,12 @@ import React, { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useLang } from "@/lib/i18n";
 import { useGeoPricing } from "@/hooks/use-geo-pricing";
-import { Crosshair, PenLine, BrainCircuit, Check, Shield, Zap, Heart, Star, Quote, Globe, Download, BellRing, Smartphone, LifeBuoy } from "lucide-react";
+import { Crosshair, PenLine, BrainCircuit, Check, Shield, Zap, Heart, Star, Quote, Globe, Download, BellRing, Smartphone, LifeBuoy, ArrowRight, Sparkles } from "lucide-react";
 import juMain from "@/assets/ju-main.webp";
 import { toast } from "sonner";
 
-const useReveal = () => {
-  const ref = useRef<HTMLDivElement>(null);
+const useReveal = <T extends HTMLElement = HTMLDivElement>() => {
+  const ref = useRef<T>(null);
   const [visible, setVisible] = useState(false);
   useEffect(() => {
     const el = ref.current;
@@ -29,9 +29,12 @@ const Landing: React.FC = () => {
   const stepsReveal = useReveal();
   const comparisonReveal = useReveal();
   const testimonialsReveal = useReveal();
-  const pricingReveal = useReveal();
+  const pricingReveal = useReveal<HTMLElement>();
   const ctaReveal = useReveal();
   const advancedFeaturesReveal = useReveal();
+  const pricingSectionRef = useRef<HTMLElement>(null);
+
+  const scrollToPricing = () => pricingSectionRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
 
   const testimonials = [
     { name: "Sarah K.", role: "Designer", text: "Nuju helped me understand why Mondays felt so heavy. Now I have a plan for it.", rating: 5 },
@@ -67,22 +70,52 @@ const Landing: React.FC = () => {
             <div className="absolute inset-0 rounded-full bg-primary/20 animate-glow-pulse" />
             <img src={juMain} alt="Ju mascot" className="relative w-full h-full object-contain animate-ju-float" width={128} height={128} fetchPriority="high" />
           </div>
+          <div className="inline-flex items-center gap-2 rounded-full border border-primary/15 bg-primary/8 px-4 py-2 text-sm font-medium text-primary mb-6">
+            <Sparkles className="w-4 h-4" />
+            {t.hero_badge_v2 || "Start free in 30 seconds"}
+          </div>
           <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl font-bold text-foreground leading-[1.1] mb-6 text-balance">
-            {t.hero_title}
+            {t.hero_title_v2 || t.hero_title}
           </h1>
           <p className="text-lg text-muted-foreground max-w-xl mx-auto mb-10 text-pretty">
-            {t.hero_subtitle}
+            {t.hero_subtitle_v2 || t.hero_subtitle}
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-8">
             <button
               onClick={() => navigate("/auth")}
-              className="px-8 py-4 rounded-2xl bg-primary text-primary-foreground font-semibold text-lg transition-all hover:shadow-xl hover:shadow-primary/30 hover:-translate-y-0.5 active:scale-[0.97]"
+              className="inline-flex items-center gap-2 px-8 py-4 rounded-2xl bg-primary text-primary-foreground font-semibold text-lg transition-all hover:shadow-xl hover:shadow-primary/30 hover:-translate-y-0.5 active:scale-[0.97]"
             >
               Start Journaling — It's Free
             </button>
-            <p className="text-sm text-muted-foreground font-medium sm:hidden">No credit card required</p>
+            <button
+              onClick={scrollToPricing}
+              className="inline-flex items-center gap-2 px-6 py-4 rounded-2xl border border-border bg-card text-foreground font-semibold text-base transition-all hover:border-primary/30 hover:bg-primary/[0.04] active:scale-[0.97]"
+            >
+              {t.hero_secondary_cta || "See plans first"}
+              <ArrowRight className="w-5 h-5" />
+            </button>
           </div>
-          <p className="hidden sm:block text-sm text-muted-foreground mt-4 font-medium">No credit card required. Join 10,000+ mindful journalers.</p>
+          <p className="text-sm text-muted-foreground mt-4 font-medium">
+            {t.hero_microcopy_v2 || "No credit card required. Start free, keep journaling, upgrade only if it helps."}
+          </p>
+          <div className="grid sm:grid-cols-3 gap-3 mt-8 max-w-3xl mx-auto">
+            {[
+              { label: t.hero_trust_1 || "No credit card to start", icon: Shield },
+              { label: t.hero_trust_2 || "Voice + AI insights when you want more", icon: BrainCircuit },
+              { label: t.hero_trust_3 || "Designed to feel useful from day one", icon: Heart },
+            ].map((item, i) => {
+              const Icon = item.icon;
+              return (
+                <div
+                  key={i}
+                  className="flex items-center justify-center gap-2 rounded-2xl border border-border/60 bg-card/70 px-4 py-3 text-sm text-foreground shadow-sm"
+                >
+                  <Icon className="w-4 h-4 text-primary" />
+                  <span>{item.label}</span>
+                </div>
+              );
+            })}
+          </div>
 
           {/* App Preview Mockup */}
           <div className="relative w-full max-w-4xl mx-auto mt-16 sm:mt-24 px-2 sm:px-0">
@@ -336,11 +369,20 @@ const Landing: React.FC = () => {
         </div>
       </section>
 
-      <section ref={pricingReveal.ref} className="py-20 px-4">
+      <section
+        ref={(node) => {
+          pricingReveal.ref.current = node;
+          pricingSectionRef.current = node;
+        }}
+        className="py-20 px-4"
+      >
         <div className="max-w-4xl mx-auto">
           <h2 className={`font-serif text-3xl font-bold text-center mb-4 transition-all duration-700 ${pricingReveal.visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
             {t.pricing_title}
           </h2>
+          <p className={`text-center text-muted-foreground max-w-2xl mx-auto mb-8 transition-all duration-700 ${pricingReveal.visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
+            {t.pricing_promise_v2 || "Most people start free. Upgrade only if you want voice journaling, AI memory, and deeper coaching."}
+          </p>
           {geo.currency !== "USD" && (
             <div className="flex items-center justify-center gap-1.5 mb-12">
               <Globe className="w-3.5 h-3.5 text-muted-foreground" />
@@ -444,8 +486,8 @@ const Landing: React.FC = () => {
       <section ref={ctaReveal.ref} className="py-20 px-4 bg-secondary/30">
         <div className={`max-w-lg mx-auto text-center transition-all duration-700 ${ctaReveal.visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
           <img src={juMain} alt="Ju" className="w-20 h-20 mx-auto mb-6 animate-bounce-gentle" />
-          <h2 className="font-serif text-3xl font-bold mb-4">{t.cta_final}</h2>
-          <p className="text-muted-foreground mb-8">{t.cta_final_desc}</p>
+          <h2 className="font-serif text-3xl font-bold mb-4">{t.cta_final_v2 || t.cta_final}</h2>
+          <p className="text-muted-foreground mb-8">{t.cta_final_desc_v2 || t.cta_final_desc}</p>
           <div className="flex justify-center mt-8">
             <button
               onClick={() => navigate("/auth")}
@@ -454,6 +496,9 @@ const Landing: React.FC = () => {
               Start Journaling — It's Free
             </button>
           </div>
+          <p className="text-xs text-muted-foreground mt-4">
+            {t.hero_microcopy_v2 || "No credit card required. Start free, keep journaling, upgrade only if it helps."}
+          </p>
         </div>
       </section>
 
