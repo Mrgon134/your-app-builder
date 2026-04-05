@@ -12,7 +12,13 @@ interface PricingScreenProps {
   onBack: () => void;
 }
 
-const PricingScreen: React.FC<PricingScreenProps> = ({ currentPlan = "free", trialStartedAt = null, onCheckout, onStartTrial, onBack }) => {
+const PricingScreen: React.FC<PricingScreenProps> = ({
+  currentPlan = "free",
+  trialStartedAt = null,
+  onCheckout,
+  onStartTrial,
+  onBack,
+}) => {
   const { t } = useLang();
   const [annual, setAnnual] = useState(true);
   const [showTrialModal, setShowTrialModal] = useState(false);
@@ -20,10 +26,8 @@ const PricingScreen: React.FC<PricingScreenProps> = ({ currentPlan = "free", tri
   const geo = useGeoPricing();
   const trial = getTrialStatus(trialStartedAt);
 
-  // Dynamic savings % based on actual rates
   const savingsPct = Math.round((1 - (geo.rates.plusAnnual / 12) / geo.rates.plusMonthly) * 100);
 
-  // Per-day price helper — only for annual, null for free
   const getPricePerWeek = (amount: number, billedAnnually: boolean): string | null => {
     if (amount === 0) return null;
     const perWeek = billedAnnually ? amount / 52 : amount / 4.345;
@@ -87,9 +91,7 @@ const PricingScreen: React.FC<PricingScreenProps> = ({ currentPlan = "free", tri
     {
       id: "lifetime",
       name: "Lifetime Pro",
-      tagline: lifetimeBreakEvenMonths > 0
-        ? `Pays for itself in about ${lifetimeBreakEvenMonths} months vs Pro annual`
-        : "One payment, full access forever.",
+      tagline: t.lifetime_tagline_v2 || "One payment, full access forever.",
       badge: t.lifetime_badge || "Best for long-term users",
       highlight: false,
       getPrice: () => geo.rates.lifetime,
@@ -103,16 +105,15 @@ const PricingScreen: React.FC<PricingScreenProps> = ({ currentPlan = "free", tri
     },
   ];
 
-  // Monthly-equivalent display when annual
   const getPriceDisplay = (price: number) => {
     if (!annual || price === 0) return geo.formatPrice(price);
     return geo.formatPrice(Math.round(price / 12 * 100) / 100);
   };
+
   const periodDisplay = annual ? (t.mo_billed_yearly || "/mo, billed yearly") : `/${t.month || "month"}`;
 
   return (
     <div className="animate-fade-up pb-8">
-      {/* Header */}
       <div className="flex items-center gap-3 mb-1">
         <button onClick={onBack} className="text-muted-foreground transition-all active:scale-[0.97]">
           <ArrowLeft className="w-5 h-5" />
@@ -123,7 +124,6 @@ const PricingScreen: React.FC<PricingScreenProps> = ({ currentPlan = "free", tri
         {t.pricing_social_proof || "Join 10,000+ journalers worldwide"}
       </p>
 
-      {/* Trial status banner */}
       {trial.isActive && (
         <div className="bg-primary/[0.06] border border-primary/15 rounded-2xl p-4 mb-5 animate-fade-in">
           <div className="flex items-center gap-3">
@@ -134,7 +134,9 @@ const PricingScreen: React.FC<PricingScreenProps> = ({ currentPlan = "free", tri
               <p className="text-sm font-semibold text-foreground">
                 {(t.pro_trial_days_left || "{time} left in your Pro trial").replace("{time}", formatTrialCountdown(trial.daysLeft, t))}
               </p>
-              <p className="text-xs text-muted-foreground">{t.pro_trial_pricing_sub || "You have full Pro access right now. Choose the plan you want to keep after the trial."}</p>
+              <p className="text-xs text-muted-foreground">
+                {t.pro_trial_pricing_sub || "You have full Pro access right now. Choose the plan you want to keep after the trial."}
+              </p>
             </div>
           </div>
           <div className="mt-2.5 h-1.5 bg-muted rounded-full overflow-hidden">
@@ -152,30 +154,30 @@ const PricingScreen: React.FC<PricingScreenProps> = ({ currentPlan = "free", tri
             <Clock className="w-5 h-5 text-destructive" />
             <div>
               <p className="text-sm font-semibold text-foreground">{t.pro_trial_ended_title || "Your Pro trial ended"}</p>
-              <p className="text-xs text-muted-foreground">{t.pro_trial_ended_sub || "Choose Plus to keep the essentials, or Pro to keep voice, memory, and deeper AI features."}</p>
+              <p className="text-xs text-muted-foreground">
+                {t.pro_trial_ended_sub || "Choose Plus to keep the essentials, or Pro to keep voice, memory, and deeper AI features."}
+              </p>
             </div>
           </div>
         </div>
       )}
 
-      {/* Currency & PPP discount badge */}
       <div className="flex flex-col items-center gap-2 mb-4">
         <div className="flex items-center gap-1.5">
           <Globe className="w-3.5 h-3.5 text-muted-foreground" />
           <span className="text-xs text-muted-foreground">
-            {"Prices in USD · Local currency at checkout"}
+            {t.pricing_checkout_note || "Prices shown in USD. Local currency appears at checkout."}
           </span>
         </div>
         {geo.discountPct > 0 && (
           <div className="flex items-center gap-1.5 bg-[#4ECDC4]/10 border border-[#4ECDC4]/20 rounded-full px-3 py-1">
             <span className="text-[11px] font-semibold text-[#4ECDC4]">
-              🎉 {geo.discountPct}% PPP discount applied for your region
+              {(t.ppp_discount_applied || "{n}% PPP discount applied for your region").replace("{n}", String(geo.discountPct))}
             </span>
           </div>
         )}
       </div>
 
-      {/* Billing toggle */}
       <div className="flex items-center justify-center gap-3 mb-6">
         <span className={`text-sm font-medium ${!annual ? "text-foreground" : "text-muted-foreground"}`}>
           {t.monthly}
@@ -202,12 +204,11 @@ const PricingScreen: React.FC<PricingScreenProps> = ({ currentPlan = "free", tri
         </div>
       </div>
 
-      {/* Tier cards */}
       <div className="space-y-4">
         {tiers.map((tier) => {
           const isCurrent = currentPlan === tier.id;
           const price = tier.getPrice();
-          const perDay = tier.id === "lifetime" ? null : getPricePerWeek(price, annual);
+          const perWeek = tier.id === "lifetime" ? null : getPricePerWeek(price, annual);
 
           return (
             <div
@@ -224,7 +225,6 @@ const PricingScreen: React.FC<PricingScreenProps> = ({ currentPlan = "free", tri
                 </span>
               )}
 
-              {/* Price */}
               <div className="flex items-baseline gap-1 mb-0.5">
                 <span className="font-serif text-2xl font-bold text-foreground">
                   {price === 0 ? (t.free || "Free") : tier.id === "lifetime" ? geo.formatPrice(price) : getPriceDisplay(price)}
@@ -236,20 +236,20 @@ const PricingScreen: React.FC<PricingScreenProps> = ({ currentPlan = "free", tri
                 )}
               </div>
 
-              {/* Per-day & billed-yearly line */}
               {price > 0 && annual && tier.id !== "lifetime" && (
                 <div className="flex items-center gap-2 mt-0.5 mb-1">
-                  {perDay && (
+                  {perWeek && (
                     <span className="text-[11px] font-medium text-primary/70">
-                      {(t.per_week || "~{price}/week").replace("{price}", perDay)}
+                      {(t.per_week || "~{price}/week").replace("{price}", perWeek)}
                     </span>
                   )}
-                  {perDay && <span className="text-[10px] text-muted-foreground/40">·</span>}
+                  {perWeek && <span className="text-[10px] text-muted-foreground/40">|</span>}
                   <span className="text-[11px] text-muted-foreground">
                     {(t.billed_yearly || "Billed {price} once per year").replace("{price}", geo.formatPrice(price))}
                   </span>
                 </div>
               )}
+
               {tier.id === "lifetime" && lifetimeBreakEvenMonths > 0 && (
                 <div className="mt-1 mb-1">
                   <span className="text-[11px] font-medium text-primary/75">
@@ -258,31 +258,27 @@ const PricingScreen: React.FC<PricingScreenProps> = ({ currentPlan = "free", tri
                 </div>
               )}
 
-              {/* Tier name + tagline */}
               <h3 className="font-semibold text-base text-foreground mt-3 mb-0.5">{tier.name}</h3>
               {tier.tagline && (
                 <p className="text-[12px] text-muted-foreground mb-3 leading-snug">{tier.tagline}</p>
               )}
               {!tier.tagline && <div className="mb-3" />}
 
-              {/* Feature list */}
               <ul className="space-y-2.5 mb-5">
-                {tier.features.map((f) => (
-                  <li key={f} className="flex items-start gap-2.5">
+                {tier.features.map((feature) => (
+                  <li key={feature} className="flex items-start gap-2.5">
                     <Check className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
-                    <span className="text-sm text-muted-foreground">{f}</span>
+                    <span className="text-sm text-muted-foreground">{feature}</span>
                   </li>
                 ))}
               </ul>
 
-              {/* CTA */}
               {isCurrent ? (
                 <div className="w-full py-3 rounded-2xl bg-muted text-center text-sm font-medium text-muted-foreground">
                   {t.current_plan}
                 </div>
               ) : tier.id === "free" ? null : (
                 <div className="space-y-2">
-                  {/* Trial CTA — Plus only, trial not yet started */}
                   {trial.notStarted && tier.id === "pro" && (
                     <button
                       onClick={() => setShowTrialModal(true)}
@@ -292,7 +288,6 @@ const PricingScreen: React.FC<PricingScreenProps> = ({ currentPlan = "free", tri
                     </button>
                   )}
 
-                  {/* Subscribe / Get plan button */}
                   <button
                     onClick={() => onCheckout(tier.id === "lifetime" ? "lifetime_one_time" : `${tier.id}_${annual ? "annual" : "monthly"}`)}
                     className={`w-full py-3.5 rounded-2xl font-semibold text-sm transition-all active:scale-[0.97] ${
@@ -304,11 +299,11 @@ const PricingScreen: React.FC<PricingScreenProps> = ({ currentPlan = "free", tri
                     }`}
                   >
                     {tier.id === "lifetime"
-                      ? `Get Lifetime Pro — ${geo.formatPrice(tier.getPrice())}`
+                      ? (t.get_lifetime_cta || "Get Lifetime Pro - {price}").replace("{price}", geo.formatPrice(tier.getPrice()))
                       : trial.isActive || trial.expired
                         ? (t.subscribe_to || "Subscribe to {name}").replace("{name}", tier.name)
                         : trial.notStarted && tier.id === "pro"
-                          ? `${(t.subscribe_to || "Subscribe to {name}").replace("{name}", tier.name)} — ${geo.formatPrice(tier.getPrice())}${annual ? "/yr" : "/mo"}`
+                          ? `${(t.subscribe_to || "Subscribe to {name}").replace("{name}", tier.name)} - ${geo.formatPrice(tier.getPrice())}${annual ? "/yr" : "/mo"}`
                           : (t.get_plan || "Get {name}").replace("{name}", tier.name)}
                   </button>
 
@@ -326,10 +321,12 @@ const PricingScreen: React.FC<PricingScreenProps> = ({ currentPlan = "free", tri
         })}
       </div>
 
-      {/* Trial Confirmation Modal (Friction for Gating) */}
       {showTrialModal && (
-        <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-foreground/30 backdrop-blur-sm p-4 animate-fade-in" onClick={() => setShowTrialModal(false)}>
-          <div 
+        <div
+          className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-foreground/30 backdrop-blur-sm p-4 animate-fade-in"
+          onClick={() => setShowTrialModal(false)}
+        >
+          <div
             className="w-full max-w-sm bg-card rounded-[32px] p-6 shadow-2xl border border-border/50 animate-spring-up"
             onClick={(e) => e.stopPropagation()}
           >
@@ -337,26 +334,30 @@ const PricingScreen: React.FC<PricingScreenProps> = ({ currentPlan = "free", tri
               <div className="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center animate-ju-float">
                 <Sparkles className="w-6 h-6 text-primary" />
               </div>
-              <button onClick={() => setShowTrialModal(false)} className="w-8 h-8 flex items-center justify-center rounded-full bg-muted/50 text-muted-foreground hover:bg-muted transition-colors">
+              <button
+                onClick={() => setShowTrialModal(false)}
+                className="w-8 h-8 flex items-center justify-center rounded-full bg-muted/50 text-muted-foreground hover:bg-muted transition-colors"
+              >
                 <X className="w-4 h-4" />
               </button>
             </div>
-            
+
             <h3 className="font-serif text-2xl font-bold text-foreground mb-2">
               {t.pro_trial_modal_title || "Start 7-Day Pro Trial"}
             </h3>
             <p className="text-[14px] text-muted-foreground leading-relaxed mb-6">
               {t.pro_trial_modal_body || "Unlock full Pro access: voice journaling, unlimited AI coach, AI memory, deeper insights, and your full history."}
-              <br/><br/>
-              <span className="font-medium text-foreground">{t.pro_trial_modal_subhead || "No payment required right now."}</span> {t.pro_trial_modal_footer || "Start with the trial, then choose Plus, Pro, or Lifetime later if Nuju becomes part of your weekly routine."}
+              <br />
+              <br />
+              <span className="font-medium text-foreground">{t.pro_trial_modal_subhead || "No payment required right now."}</span>{" "}
+              {t.pro_trial_modal_footer || "Start with the trial, then choose Plus, Pro, or Lifetime later if Nuju becomes part of your weekly routine."}
             </p>
-            
+
             <div className="space-y-2.5">
               <button
                 disabled={trialLoading}
                 onClick={() => {
                   setTrialLoading(true);
-                  // Simulate realistic checkout loading before starting
                   setTimeout(() => {
                     onStartTrial();
                     setShowTrialModal(false);
@@ -366,7 +367,9 @@ const PricingScreen: React.FC<PricingScreenProps> = ({ currentPlan = "free", tri
               >
                 {trialLoading ? <Loader2 className="w-5 h-5 animate-spin" /> : (t.confirm_pro_trial || "Confirm My Pro Trial")}
               </button>
-              <p className="text-center text-[11px] text-muted-foreground/60 w-full mb-2">{t.pro_trial_cancel_copy || "Cancel anytime before standard terms apply."}</p>
+              <p className="text-center text-[11px] text-muted-foreground/60 w-full mb-2">
+                {t.pro_trial_cancel_copy || "Cancel anytime before standard terms apply."}
+              </p>
             </div>
           </div>
         </div>

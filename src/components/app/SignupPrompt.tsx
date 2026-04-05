@@ -40,7 +40,7 @@ const SignupPrompt: React.FC<SignupPromptProps> = ({ entriesCount, onDismiss, on
             {t.signup_title || "Ju is getting to know you!"}
           </h3>
           <p className="text-sm text-muted-foreground leading-relaxed mb-3">
-            {t.signup_desc_v2 || `You've written ${entriesCount} entries. Unlock AI insights, unlimited coach chats, and your full history when you're ready.`}
+            {(t.signup_desc_v2 || "You've written {n} entries. Unlock AI insights, unlimited coach chats, and your full history when you're ready.").replace("{n}", String(entriesCount))}
           </p>
           <button
             onClick={onUpgrade}

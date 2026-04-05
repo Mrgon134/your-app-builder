@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { SUPABASE_URL, SUPABASE_ANON_KEY } from "@/integrations/supabase/client";
+import { PRICING_CONFIG, getLifetimePriceFromAnnual } from "@/lib/config";
 
 interface GeoPricing {
   country: string;
@@ -16,15 +17,6 @@ interface GeoPricing {
   couponCode: string | null;
   discountPct: number;
 }
-
-// Base USD prices (before any PPP discount)
-const BASE_RATES = {
-  plusMonthly: 4.99,
-  plusAnnual: 39.99,
-  proMonthly: 9.99,
-  proAnnual: 79.99,
-  lifetime: 99.00,
-};
 
 export function useGeoPricing(): GeoPricing & { formatPrice: (amount: number) => string } {
   const [couponCode, setCouponCode] = useState<string | null>(null);
@@ -66,12 +58,17 @@ export function useGeoPricing(): GeoPricing & { formatPrice: (amount: number) =>
   const multiplier = 1 - discountPct / 100;
 
   // Apply PPP discount to base rates
+  const plusMonthly = round2(PRICING_CONFIG.baseRates.plusMonthly * multiplier);
+  const plusAnnual = round2(PRICING_CONFIG.baseRates.plusAnnual * multiplier);
+  const proMonthly = round2(PRICING_CONFIG.baseRates.proMonthly * multiplier);
+  const proAnnual = round2(PRICING_CONFIG.baseRates.proAnnual * multiplier);
+
   const rates = {
-    plusMonthly: round2(BASE_RATES.plusMonthly * multiplier),
-    plusAnnual: round2(BASE_RATES.plusAnnual * multiplier),
-    proMonthly: round2(BASE_RATES.proMonthly * multiplier),
-    proAnnual: round2(BASE_RATES.proAnnual * multiplier),
-    lifetime: round2(BASE_RATES.lifetime * multiplier),
+    plusMonthly,
+    plusAnnual,
+    proMonthly,
+    proAnnual,
+    lifetime: getLifetimePriceFromAnnual(proAnnual),
   };
 
   return {
