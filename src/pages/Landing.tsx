@@ -23,6 +23,7 @@ const Landing: React.FC = () => {
   const { t } = useLang();
   const navigate = useNavigate();
   const geo = useGeoPricing();
+  const weeklyPrice = (amount: number) => geo.formatPrice(Math.round((amount / 4.345) * 100) / 100);
   const heroReveal = useReveal();
   const socialReveal = useReveal();
   const stepsReveal = useReveal();
@@ -349,18 +350,62 @@ const Landing: React.FC = () => {
           {geo.currency === "USD" && <div className="mb-12" />}
           <div className="grid md:grid-cols-3 gap-6">
             {[
-              { name: t.pricing_free, price: geo.formatPrice(0), period: "/forever", features: ["3 entries/week", "Mood tracking", "1 AI coach persona", "7-day history"], highlight: false },
-              { name: t.pricing_plus, price: geo.formatPrice(geo.rates.plusMonthly), period: "/month", features: ["Unlimited entries", "All 4 coach personas", "Full history", "Weekly AI reports", "Dark mode"], highlight: true },
-              { name: t.pricing_pro, price: geo.formatPrice(geo.rates.proMonthly), period: "/month", features: ["Everything in Plus", "Voice journaling", "Relationship mood map", "AI memory & patterns", "Priority support"], highlight: false },
+              {
+                name: t.pricing_free,
+                price: geo.formatPrice(0),
+                period: "/forever",
+                weekly: null as string | null,
+                button: t.start_free || "Start free",
+                badge: null as string | null,
+                features: [
+                  "Unlimited journal entries",
+                  "Mood + energy tracking",
+                  "Gentle coach (5 msgs/week)",
+                  "7-day history",
+                ],
+                highlight: false,
+              },
+              {
+                name: t.pricing_plus,
+                price: geo.formatPrice(geo.rates.plusMonthly),
+                period: "/month",
+                weekly: `~${weeklyPrice(geo.rates.plusMonthly)}/week`,
+                button: t.get_plus || "Unlock Plus",
+                badge: t.plus_badge || "Best everyday value",
+                features: [
+                  "AI insight after every entry",
+                  "Unlimited history",
+                  "30-day mood trends + weekly summaries",
+                  "All 4 coach personas",
+                  "Unlimited AI coach chats",
+                ],
+                highlight: false,
+              },
+              {
+                name: t.pricing_pro,
+                price: geo.formatPrice(geo.rates.proMonthly),
+                period: "/month",
+                weekly: `~${weeklyPrice(geo.rates.proMonthly)}/week`,
+                button: t.start_pro_trial_cta || "Start 7-day Pro trial",
+                badge: t.pro_trial_badge || "Includes 7-day free trial",
+                features: [
+                  "Everything in Plus",
+                  "Voice journaling + transcription",
+                  "AI memory + pattern cards",
+                  "Relationship mood map",
+                  "Priority access to new premium features",
+                ],
+                highlight: true,
+              },
             ].map((plan, i) => (
               <div
                 key={plan.name}
                 className={`relative p-8 rounded-3xl transition-all duration-700 ${plan.highlight ? "bg-primary text-primary-foreground shadow-xl shadow-primary/20 scale-[1.02]" : "bg-card border border-border shadow-sm"} ${pricingReveal.visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
                 style={{ transitionDelay: `${200 + i * 120}ms` }}
               >
-                {plan.highlight && (
+                {plan.badge && (
                   <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full bg-mood-okay text-xs font-bold text-white">
-                    Most popular
+                    {plan.badge}
                   </div>
                 )}
                 <h3 className="font-serif text-xl font-semibold mb-2">{plan.name}</h3>
@@ -370,6 +415,11 @@ const Landing: React.FC = () => {
                     <span className={`text-sm ${plan.highlight ? "text-primary-foreground/70" : "text-muted-foreground"}`}>{plan.period}</span>
                   )}
                 </div>
+                {plan.weekly && (
+                  <p className={`text-xs mb-6 font-medium ${plan.highlight ? "text-primary-foreground/80" : "text-primary/80"}`}>
+                    {plan.weekly}
+                  </p>
+                )}
                 <ul className="space-y-3 mb-8">
                   {plan.features.map((f) => (
                     <li key={f} className={`text-sm flex items-center gap-2 ${plan.highlight ? "text-primary-foreground/90" : "text-muted-foreground"}`}>
@@ -382,7 +432,7 @@ const Landing: React.FC = () => {
                   onClick={() => navigate("/auth")}
                   className={`w-full py-3 rounded-2xl font-semibold text-sm transition-all active:scale-[0.97] ${plan.highlight ? "bg-primary-foreground text-primary hover:shadow-lg" : "bg-secondary text-foreground hover:bg-secondary/80"}`}
                 >
-                  {t.start_trial}
+                  {plan.button}
                 </button>
               </div>
             ))}

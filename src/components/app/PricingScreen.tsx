@@ -24,66 +24,81 @@ const PricingScreen: React.FC<PricingScreenProps> = ({ currentPlan = "free", tri
   const savingsPct = Math.round((1 - (geo.rates.plusAnnual / 12) / geo.rates.plusMonthly) * 100);
 
   // Per-day price helper — only for annual, null for free
-  const getPricePerDay = (annualPrice: number): string | null => {
-    if (annualPrice === 0) return null;
-    const perDay = annualPrice / 365;
+  const getPricePerWeek = (amount: number, billedAnnually: boolean): string | null => {
+    if (amount === 0) return null;
+    const perWeek = billedAnnually ? amount / 52 : amount / 4.345;
     const rounded = ["IDR", "JPY", "KRW", "VND"].includes(geo.currency)
-      ? Math.round(perDay)
-      : Math.round(perDay * 100) / 100;
+      ? Math.round(perWeek)
+      : Math.round(perWeek * 100) / 100;
     return geo.formatPrice(rounded);
   };
+
+  const lifetimeBreakEvenMonths = geo.rates.proAnnual > 0
+    ? Math.ceil((geo.rates.lifetime / geo.rates.proAnnual) * 12)
+    : 0;
 
   const tiers = [
     {
       id: "free",
       name: t.free || "Free",
       tagline: null as string | null,
+      badge: null as string | null,
+      highlight: false,
       getPrice: () => 0,
       features: [
         t.free_feature_1 || "Unlimited journal entries",
-        t.free_feature_2 || "Mood tracking & streaks",
+        t.free_feature_2_v2 || "Mood + energy tracking",
         t.free_feature_3 || "7-day history",
-        t.free_feature_4 || "Basic AI coach (5 msgs/week)",
+        t.free_feature_4_v2 || "Gentle coach (5 msgs/week)",
       ],
     },
     {
       id: "plus",
       name: "Plus",
-      tagline: t.plus_tagline || "Remember everything. Understand yourself.",
-      popular: true,
+      tagline: t.plus_tagline_v2 || "Keep every entry, insight, and coaching thread in one calm place.",
+      badge: t.plus_badge || "Best everyday value",
+      highlight: false,
       getPrice: () => annual ? geo.rates.plusAnnual : geo.rates.plusMonthly,
       features: [
-        t.plus_feature_1 || "AI insight after every entry",
-        t.plus_feature_2 || "Unlimited history",
-        t.plus_feature_3 || "See your mood patterns over 30 days",
-        t.plus_feature_4 || "4 different coaching styles",
-        t.plus_feature_5 || "Monthly mood reports",
+        t.plus_feature_1_v2 || "AI insight after every entry",
+        t.plus_feature_2_v2 || "Unlimited history",
+        t.plus_feature_3_v2 || "30-day mood trends + weekly summaries",
+        t.plus_feature_4_v2 || "All 4 coach personas",
+        t.plus_feature_5_v2 || "Unlimited AI coach chats",
       ],
     },
     {
       id: "pro",
       name: "Pro",
-      tagline: t.pro_tagline || "Everything, unlocked.",
+      tagline: t.pro_tagline_v2 || "Full Ju experience with voice, memory, and deeper pattern spotting.",
+      badge: trial.notStarted
+        ? (t.pro_trial_badge || "Includes 7-day free trial")
+        : (t.most_popular || "Most popular"),
+      highlight: true,
       getPrice: () => annual ? geo.rates.proAnnual : geo.rates.proMonthly,
       features: [
-        t.pro_feature_1 || "Everything in Plus",
-        t.pro_feature_2 || "Voice journaling",
-        t.pro_feature_3 || "Relationship mood map",
-        t.pro_feature_4 || "AI memory & patterns",
-        t.pro_feature_5 || "Priority support",
+        t.pro_feature_1_v2 || "Everything in Plus",
+        t.pro_feature_2_v2 || "Voice journaling + transcription",
+        t.pro_feature_3_v2 || "AI memory + recurring pattern cards",
+        t.pro_feature_4_v2 || "Relationship mood map",
+        t.pro_feature_5_v2 || "Priority access to new premium features",
       ],
     },
     {
       id: "lifetime",
       name: "Lifetime Pro",
-      tagline: "Total access forever. Limited to 100 founding members.",
+      tagline: lifetimeBreakEvenMonths > 0
+        ? `Pays for itself in about ${lifetimeBreakEvenMonths} months vs Pro annual`
+        : "One payment, full access forever.",
+      badge: t.lifetime_badge || "Best for long-term users",
+      highlight: false,
       getPrice: () => geo.rates.lifetime,
       features: [
-        t.pro_feature_1 || "Everything in Plus",
-        t.pro_feature_2 || "Voice journaling",
-        t.pro_feature_3 || "Relationship mood map",
-        t.pro_feature_4 || "AI memory & patterns",
-        "Pay once, use forever (No recurring fees)",
+        t.lifetime_feature_1 || "Everything in Pro",
+        t.lifetime_feature_2 || "One payment, no renewals",
+        t.lifetime_feature_3 || "Keep every future Pro upgrade",
+        t.lifetime_feature_4 || "Best value if Nuju becomes your daily habit",
+        t.lifetime_feature_5 || "Forever access to the premium stack",
       ],
     },
   ];
@@ -117,9 +132,9 @@ const PricingScreen: React.FC<PricingScreenProps> = ({ currentPlan = "free", tri
             </div>
             <div>
               <p className="text-sm font-semibold text-foreground">
-                {formatTrialCountdown(trial.daysLeft, t)}
+                {(t.pro_trial_days_left || "{time} left in your Pro trial").replace("{time}", formatTrialCountdown(trial.daysLeft, t))}
               </p>
-              <p className="text-xs text-muted-foreground">{t.trial_subscribe_now || "Subscribe now to keep your access"}</p>
+              <p className="text-xs text-muted-foreground">{t.pro_trial_pricing_sub || "You have full Pro access right now. Choose the plan you want to keep after the trial."}</p>
             </div>
           </div>
           <div className="mt-2.5 h-1.5 bg-muted rounded-full overflow-hidden">
@@ -136,8 +151,8 @@ const PricingScreen: React.FC<PricingScreenProps> = ({ currentPlan = "free", tri
           <div className="flex items-center gap-2.5">
             <Clock className="w-5 h-5 text-destructive" />
             <div>
-              <p className="text-sm font-semibold text-foreground">{t.trial_ended || "Trial ended"}</p>
-              <p className="text-xs text-muted-foreground">{t.trial_subscribe_now || "Subscribe now to keep your access"}</p>
+              <p className="text-sm font-semibold text-foreground">{t.pro_trial_ended_title || "Your Pro trial ended"}</p>
+              <p className="text-xs text-muted-foreground">{t.pro_trial_ended_sub || "Choose Plus to keep the essentials, or Pro to keep voice, memory, and deeper AI features."}</p>
             </div>
           </div>
         </div>
@@ -192,20 +207,20 @@ const PricingScreen: React.FC<PricingScreenProps> = ({ currentPlan = "free", tri
         {tiers.map((tier) => {
           const isCurrent = currentPlan === tier.id;
           const price = tier.getPrice();
-          const perDay = annual ? getPricePerDay(price) : null;
+          const perDay = tier.id === "lifetime" ? null : getPricePerWeek(price, annual);
 
           return (
             <div
               key={tier.id}
               className={`rounded-3xl p-5 border transition-all ${
-                (tier as { popular?: boolean }).popular
+                tier.highlight
                   ? "bg-primary/5 border-primary/30 shadow-md shadow-primary/10"
                   : "bg-card border-border/50"
               }`}
             >
-              {(tier as { popular?: boolean }).popular && (
+              {tier.badge && (
                 <span className="inline-block text-[10px] font-bold uppercase tracking-wider text-primary bg-primary/10 px-2.5 py-1 rounded-full mb-3">
-                  {t.most_popular || "Most popular"}
+                  {tier.badge}
                 </span>
               )}
 
@@ -226,12 +241,19 @@ const PricingScreen: React.FC<PricingScreenProps> = ({ currentPlan = "free", tri
                 <div className="flex items-center gap-2 mt-0.5 mb-1">
                   {perDay && (
                     <span className="text-[11px] font-medium text-primary/70">
-                      {(t.per_day || "~{price}/day").replace("{price}", perDay)}
+                      {(t.per_week || "~{price}/week").replace("{price}", perDay)}
                     </span>
                   )}
                   {perDay && <span className="text-[10px] text-muted-foreground/40">·</span>}
                   <span className="text-[11px] text-muted-foreground">
                     {(t.billed_yearly || "Billed {price} once per year").replace("{price}", geo.formatPrice(price))}
+                  </span>
+                </div>
+              )}
+              {tier.id === "lifetime" && lifetimeBreakEvenMonths > 0 && (
+                <div className="mt-1 mb-1">
+                  <span className="text-[11px] font-medium text-primary/75">
+                    {(t.lifetime_break_even || "Break-even in ~{months} months vs Pro annual").replace("{months}", String(lifetimeBreakEvenMonths))}
                   </span>
                 </div>
               )}
@@ -261,14 +283,12 @@ const PricingScreen: React.FC<PricingScreenProps> = ({ currentPlan = "free", tri
               ) : tier.id === "free" ? null : (
                 <div className="space-y-2">
                   {/* Trial CTA — Plus only, trial not yet started */}
-                  {trial.notStarted && tier.id === "plus" && (
+                  {trial.notStarted && tier.id === "pro" && (
                     <button
                       onClick={() => setShowTrialModal(true)}
                       className="w-full py-3.5 rounded-2xl font-semibold text-sm transition-all active:scale-[0.97] bg-primary text-primary-foreground shadow-[0_4px_20px_-4px_hsl(var(--primary)/0.45)]"
                     >
-                      {(t.start_trial_n_days || "Try {plan} free for {n} days")
-                        .replace("{plan}", tier.name)
-                        .replace("{n}", String(TRIAL_DAYS))}
+                      {(t.start_pro_trial_n_days || "Try Pro free for {n} days").replace("{n}", String(TRIAL_DAYS))}
                     </button>
                   )}
 
@@ -276,9 +296,9 @@ const PricingScreen: React.FC<PricingScreenProps> = ({ currentPlan = "free", tri
                   <button
                     onClick={() => onCheckout(tier.id === "lifetime" ? "lifetime_one_time" : `${tier.id}_${annual ? "annual" : "monthly"}`)}
                     className={`w-full py-3.5 rounded-2xl font-semibold text-sm transition-all active:scale-[0.97] ${
-                      (tier as { popular?: boolean }).popular && trial.notStarted
+                      tier.highlight && trial.notStarted
                         ? "bg-primary/10 text-primary"
-                        : (tier as { popular?: boolean }).popular
+                        : tier.highlight
                           ? "bg-primary text-primary-foreground shadow-[0_4px_20px_-4px_hsl(var(--primary)/0.45)]"
                           : "bg-secondary text-foreground"
                     }`}
@@ -287,14 +307,16 @@ const PricingScreen: React.FC<PricingScreenProps> = ({ currentPlan = "free", tri
                       ? `Get Lifetime Pro — ${geo.formatPrice(tier.getPrice())}`
                       : trial.isActive || trial.expired
                         ? (t.subscribe_to || "Subscribe to {name}").replace("{name}", tier.name)
-                        : trial.notStarted && tier.id === "plus"
+                        : trial.notStarted && tier.id === "pro"
                           ? `${(t.subscribe_to || "Subscribe to {name}").replace("{name}", tier.name)} — ${geo.formatPrice(tier.getPrice())}${annual ? "/yr" : "/mo"}`
                           : (t.get_plan || "Get {name}").replace("{name}", tier.name)}
                   </button>
 
-                  {(tier as { popular?: boolean }).popular && (
+                  {tier.highlight && (
                     <p className="text-center text-[11px] text-muted-foreground">
-                      {t.no_payment_today || "No payment due today. Cancel anytime."}
+                      {trial.notStarted
+                        ? (t.pro_trial_no_charge_today || "No payment due today. Start with full Pro access first.")
+                        : (t.no_payment_today || "No payment due today. Cancel anytime.")}
                     </p>
                   )}
                 </div>
@@ -321,12 +343,12 @@ const PricingScreen: React.FC<PricingScreenProps> = ({ currentPlan = "free", tri
             </div>
             
             <h3 className="font-serif text-2xl font-bold text-foreground mb-2">
-              Start 7-Day Pro Trial
+              {t.pro_trial_modal_title || "Start 7-Day Pro Trial"}
             </h3>
             <p className="text-[14px] text-muted-foreground leading-relaxed mb-6">
-              Unlock full Pro access: voice journaling, unlimited AI insights, all coaching styles, and your full history. 
+              {t.pro_trial_modal_body || "Unlock full Pro access: voice journaling, unlimited AI coach, AI memory, deeper insights, and your full history."}
               <br/><br/>
-              <span className="font-medium text-foreground">No payment required right now.</span> We use Dodo Payments, so you can choose a plan later if you love Nuju.
+              <span className="font-medium text-foreground">{t.pro_trial_modal_subhead || "No payment required right now."}</span> {t.pro_trial_modal_footer || "Start with the trial, then choose Plus, Pro, or Lifetime later if Nuju becomes part of your weekly routine."}
             </p>
             
             <div className="space-y-2.5">
@@ -342,9 +364,9 @@ const PricingScreen: React.FC<PricingScreenProps> = ({ currentPlan = "free", tri
                 }}
                 className="w-full h-14 rounded-2xl font-semibold text-[15px] bg-primary text-primary-foreground transition-transform active:scale-[0.98] flex items-center justify-center"
               >
-                {trialLoading ? <Loader2 className="w-5 h-5 animate-spin" /> : "Confirm My Pro Trial"}
+                {trialLoading ? <Loader2 className="w-5 h-5 animate-spin" /> : (t.confirm_pro_trial || "Confirm My Pro Trial")}
               </button>
-              <p className="text-center text-[11px] text-muted-foreground/60 w-full mb-2">Cancel anytime before standard terms apply.</p>
+              <p className="text-center text-[11px] text-muted-foreground/60 w-full mb-2">{t.pro_trial_cancel_copy || "Cancel anytime before standard terms apply."}</p>
             </div>
           </div>
         </div>

@@ -20,8 +20,6 @@ const SignupPrompt: React.FC<SignupPromptProps> = ({ entriesCount, onDismiss, on
 
   if (dismissed || entriesCount < FREE_ENTRY_LIMIT || hasPlusAccess(plan, trialStartedAt)) return null;
 
-  const remaining = Math.max(0, FREE_ENTRY_LIMIT - entriesCount);
-
   return (
     <div className="relative bg-primary/[0.06] border border-primary/20 rounded-3xl p-5 mb-4 animate-fade-in">
       <button
@@ -42,14 +40,14 @@ const SignupPrompt: React.FC<SignupPromptProps> = ({ entriesCount, onDismiss, on
             {t.signup_title || "Ju is getting to know you!"}
           </h3>
           <p className="text-sm text-muted-foreground leading-relaxed mb-3">
-            {t.signup_desc || `You've written ${entriesCount} entries. Unlock unlimited journaling, all coach personas, and full history.`}
+            {t.signup_desc_v2 || `You've written ${entriesCount} entries. Unlock AI insights, unlimited coach chats, and your full history when you're ready.`}
           </p>
           <button
             onClick={onUpgrade}
             className="flex items-center gap-2 px-5 py-2.5 rounded-2xl bg-primary text-primary-foreground text-sm font-semibold transition-all hover:shadow-lg hover:shadow-primary/20 active:scale-[0.97]"
           >
             <Sparkles className="w-4 h-4" />
-            {t.signup_cta || "Unlock full access"}
+            {t.signup_cta_v2 || "See paid plans"}
           </button>
         </div>
       </div>
