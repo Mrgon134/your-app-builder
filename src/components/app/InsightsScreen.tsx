@@ -231,7 +231,7 @@ const InsightsScreen: React.FC<InsightsScreenProps> = ({ entries, streak = 0, on
           <p className="text-[22px] font-bold text-foreground tracking-tight">{entries.length}</p>
           <p className="text-[10px] text-muted-foreground mt-0.5 font-medium">{t.entries_total}</p>
         </div>
-        <div className="glass-card rounded-2xl p-4 text-center flex flex-col items-center justify-center">
+        <div className="glass-card rounded-2xl p-4 flex flex-col items-center justify-center">
           <MoodIcon value={bestDay?.mood || 5} color={bestMoodData.color} size={26} />
           <p className="text-[10px] text-muted-foreground mt-1 font-medium">{t.mood_best}</p>
         </div>
@@ -326,8 +326,8 @@ const InsightsScreen: React.FC<InsightsScreenProps> = ({ entries, streak = 0, on
         >
           <Target className="w-6 h-6 text-primary" />
           <div>
-            <p className="text-[14px] font-semibold text-foreground">Guided Programs</p>
-            <p className="text-[11px] text-muted-foreground mt-0.5">Structured challenges</p>
+            <p className="text-[14px] font-semibold text-foreground">{t.guided_programs_title || "Guided Programs"}</p>
+            <p className="text-[11px] text-muted-foreground mt-0.5">{t.guided_programs_sub || "Structured challenges"}</p>
           </div>
         </button>
         <button
@@ -336,8 +336,8 @@ const InsightsScreen: React.FC<InsightsScreenProps> = ({ entries, streak = 0, on
         >
           <CalendarDays className="w-6 h-6 text-primary" />
           <div>
-            <p className="text-[14px] font-semibold text-foreground">Year in Review</p>
-            <p className="text-[11px] text-muted-foreground mt-0.5">{new Date().getFullYear()} recap</p>
+            <p className="text-[14px] font-semibold text-foreground">{t.year_card_title || "Year in Review"}</p>
+            <p className="text-[11px] text-muted-foreground mt-0.5">{(t.year_card_sub || "{year} recap").replace("{year}", String(new Date().getFullYear()))}</p>
           </div>
         </button>
       </div>

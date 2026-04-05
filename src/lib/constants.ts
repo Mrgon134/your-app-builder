@@ -57,3 +57,9 @@ export const getGreeting = (t: Record<string, string>) => {
 };
 
 export const getRandomPrompt = () => PROMPTS[Math.floor(Math.random() * PROMPTS.length)];
+
+export const getLocalizedRandomPrompt = (t: Record<string, string>): string => {
+  const keys = ["prompt_1","prompt_2","prompt_3","prompt_4","prompt_5","prompt_6","prompt_7","prompt_8"] as const;
+  const localizedPrompts = keys.map((k, i) => t[k] || PROMPTS[i]).filter(Boolean);
+  return localizedPrompts[Math.floor(Math.random() * localizedPrompts.length)];
+};

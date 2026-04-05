@@ -1,6 +1,7 @@
 import React from "react";
 import { Clock, Sparkles } from "lucide-react";
 import { getTrialStatus, formatTrialCountdown } from "@/lib/trial";
+import { useLang } from "@/lib/i18n";
 
 interface TrialBannerProps {
   trialStartedAt: string | null;
@@ -9,6 +10,8 @@ interface TrialBannerProps {
 }
 
 const TrialBanner: React.FC<TrialBannerProps> = ({ trialStartedAt, plan, onUpgrade }) => {
+  const { t } = useLang();
+
   if (plan === "plus" || plan === "pro") return null;
 
   const trial = getTrialStatus(trialStartedAt);
@@ -22,14 +25,14 @@ const TrialBanner: React.FC<TrialBannerProps> = ({ trialStartedAt, plan, onUpgra
             <Clock className="w-[18px] h-[18px] text-destructive" />
           </div>
           <div className="flex-1 min-w-0">
-            <p className="text-[14px] font-semibold text-foreground">Trial ended</p>
-            <p className="text-[12px] text-muted-foreground">Upgrade to keep your Pro access & unlimited history</p>
+            <p className="text-[14px] font-semibold text-foreground">{t.trial_ended_title || "Trial ended"}</p>
+            <p className="text-[12px] text-muted-foreground">{t.trial_ended_sub || "Upgrade to keep your Pro access & unlimited history"}</p>
           </div>
           <button
             onClick={onUpgrade}
             className="px-4 h-[34px] rounded-lg bg-primary text-primary-foreground text-[12px] font-semibold transition-all active:scale-[0.97] flex-shrink-0"
           >
-            Upgrade
+            {t.upgrade || "Upgrade"}
           </button>
         </div>
       </div>
@@ -50,12 +53,12 @@ const TrialBanner: React.FC<TrialBannerProps> = ({ trialStartedAt, plan, onUpgra
         </div>
         <div className="flex-1 min-w-0">
           <p className="text-[14px] font-semibold text-foreground">
-            {formatTrialCountdown(trial.daysLeft)}
+            {formatTrialCountdown(trial.daysLeft, t)}
           </p>
           <p className="text-[12px] text-muted-foreground">
             {urgentColor
-              ? "Don't lose your AI insights & history"
-              : "Enjoying Nuju Pro? Subscribe to keep access"
+              ? (t.trial_urgent_sub || "Don't lose your AI insights & history")
+              : (t.trial_enjoying || "Enjoying Nuju Pro? Subscribe to keep access")
             }
           </p>
         </div>
@@ -67,7 +70,7 @@ const TrialBanner: React.FC<TrialBannerProps> = ({ trialStartedAt, plan, onUpgra
               : "bg-primary/8 text-primary"
           }`}
         >
-          {urgentColor ? "Subscribe now" : "See plans"}
+          {urgentColor ? (t.trial_subscribe_now || "Subscribe now") : (t.trial_see_plans || "See plans")}
         </button>
       </div>
 

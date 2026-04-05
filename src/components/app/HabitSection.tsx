@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Plus, Check, Dumbbell, Wind, BookOpen, Droplets, Moon, Ban } from "lucide-react";
 import { toast } from "sonner";
+import { useLang } from "@/lib/i18n";
 
 interface Habit {
   id: string;
@@ -23,13 +24,14 @@ const HABIT_ICONS: Record<string, React.FC<{ size?: number; color?: string; stro
   ban: ({ size = 14, color, strokeWidth = 1.8 }) => <Ban size={size} color={color} strokeWidth={strokeWidth} />,
 };
 
-const PRESET_HABITS: { name: string; iconKey: string; color: string }[] = [
-  { name: "Exercise", iconKey: "dumbbell", color: "#4ECDC4" },
-  { name: "Meditate", iconKey: "wind", color: "#7C6EDB" },
-  { name: "Read", iconKey: "book", color: "#FFB347" },
-  { name: "Drink water", iconKey: "droplets", color: "#6C9BCF" },
-  { name: "Sleep 8h", iconKey: "moon", color: "#B8C4F0" },
-  { name: "No sugar", iconKey: "ban", color: "#E8878C" },
+// Preset keys map to translation keys habit_exercise, habit_meditate, etc.
+const PRESET_HABITS: { nameKey: string; fallback: string; iconKey: string; color: string }[] = [
+  { nameKey: "habit_exercise", fallback: "Exercise", iconKey: "dumbbell", color: "#4ECDC4" },
+  { nameKey: "habit_meditate", fallback: "Meditate", iconKey: "wind", color: "#7C6EDB" },
+  { nameKey: "habit_read", fallback: "Read", iconKey: "book", color: "#FFB347" },
+  { nameKey: "habit_water", fallback: "Drink water", iconKey: "droplets", color: "#6C9BCF" },
+  { nameKey: "habit_sleep", fallback: "Sleep 8h", iconKey: "moon", color: "#B8C4F0" },
+  { nameKey: "habit_no_sugar", fallback: "No sugar", iconKey: "ban", color: "#E8878C" },
 ];
 
 const STORAGE_KEY = "nuju-habits";
@@ -69,6 +71,7 @@ const HabitIcon: React.FC<{ iconKey: string; color: string; active: boolean }> =
 };
 
 const HabitSection: React.FC<HabitSectionProps> = ({ onUpgrade, plan }) => {
+  const { t } = useLang();
   const [habits, setHabits] = useState<Habit[]>([]);
   const [completedToday, setCompletedToday] = useState<Set<string>>(new Set());
   const [showAdd, setShowAdd] = useState(false);
@@ -101,13 +104,13 @@ const HabitSection: React.FC<HabitSectionProps> = ({ onUpgrade, plan }) => {
 
   const addPreset = (preset: typeof PRESET_HABITS[0]) => {
     if (habits.length >= 6 && plan === "free") {
-      toast.error("Upgrade to add more habits");
+      toast.error(t.habits_upgrade || "Upgrade to add more habits");
       onUpgrade?.();
       return;
     }
     const newHabit: Habit = {
       id: `habit-${Date.now()}`,
-      name: preset.name,
+      name: t[preset.nameKey] || preset.fallback,
       iconKey: preset.iconKey,
       color: preset.color,
     };
@@ -145,9 +148,9 @@ const HabitSection: React.FC<HabitSectionProps> = ({ onUpgrade, plan }) => {
     <div className="glass-card rounded-2xl p-5">
       <div className="flex items-center justify-between mb-3">
         <div>
-          <p className="text-[11px] font-semibold text-primary uppercase tracking-[0.12em]">Today's Habits</p>
+          <p className="text-[11px] font-semibold text-primary uppercase tracking-[0.12em]">{t.habits_title || "Today's Habits"}</p>
           {total > 0 && (
-            <p className="text-[12px] text-muted-foreground mt-0.5">{doneCount}/{total} done</p>
+            <p className="text-[12px] text-muted-foreground mt-0.5">{(t.habits_done || "{done}/{total} done").replace("{done}", String(doneCount)).replace("{total}", String(total))}</p>
           )}
         </div>
         <button
@@ -193,24 +196,24 @@ const HabitSection: React.FC<HabitSectionProps> = ({ onUpgrade, plan }) => {
           })}
         </div>
       ) : (
-        <p className="text-[13px] text-muted-foreground text-center py-2">Tap + to add habits to track daily</p>
+        <p className="text-[13px] text-muted-foreground text-center py-2">{t.habits_empty || "Tap + to add habits to track daily"}</p>
       )}
 
       {/* Add habit panel */}
       {showAdd && (
         <div className="mt-4 pt-4 border-t border-border/30">
-          <p className="text-[12px] font-medium text-muted-foreground mb-2">Quick add:</p>
+          <p className="text-[12px] font-medium text-muted-foreground mb-2">{t.habits_quick_add || "Quick add:"}</p>
           <div className="flex flex-wrap gap-1.5 mb-3">
-            {PRESET_HABITS.filter((p) => !habits.find((h) => h.name === p.name)).map((preset) => {
+            {PRESET_HABITS.filter((p) => !habits.find((h) => h.name === (t[p.nameKey] || p.fallback))).map((preset) => {
               const Icon = HABIT_ICONS[preset.iconKey];
               return (
                 <button
-                  key={preset.name}
+                  key={preset.nameKey}
                   onClick={() => addPreset(preset)}
                   className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-full bg-foreground/[0.05] text-[12px] text-foreground press-spring"
                 >
                   <Icon size={12} color={preset.color} strokeWidth={1.8} />
-                  {preset.name}
+                  {t[preset.nameKey] || preset.fallback}
                 </button>
               );
             })}
@@ -220,12 +223,12 @@ const HabitSection: React.FC<HabitSectionProps> = ({ onUpgrade, plan }) => {
               type="text"
               value={newName}
               onChange={(e) => setNewName(e.target.value)}
-              placeholder="Custom habit..."
+              placeholder={t.habits_custom_placeholder || "Custom habit..."}
               className="flex-1 px-3 py-2 rounded-xl bg-background border border-border text-[14px] focus:outline-none focus:ring-2 focus:ring-primary/20"
               onKeyDown={(e) => e.key === "Enter" && addCustom()}
             />
             <button onClick={addCustom} className="px-3 py-2 rounded-xl bg-primary text-white text-[13px] font-medium press-spring">
-              Add
+              {t.habits_add_btn || "Add"}
             </button>
           </div>
         </div>

@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useLang } from "@/lib/i18n";
-import { MOODS, getGreeting, getRandomPrompt } from "@/lib/constants";
+import { MOODS, getGreeting, getLocalizedRandomPrompt } from "@/lib/constants";
 import MoodIcon from "@/components/MoodIcon";
 import { JU_STICKERS, getMascotForState } from "@/lib/stickers";
 import { hasProAccess } from "@/lib/trial";
@@ -126,7 +126,7 @@ const HomeScreen: React.FC<HomeScreenProps> = ({
 }) => {
   const { t, lang } = useLang();
   const [localMood, setLocalMood] = useState<number | null>(null);
-  const [prompt, setPrompt] = useState(getRandomPrompt);
+  const [prompt, setPrompt] = useState("");
   const [localEnergy, setLocalEnergy] = useState(60);
   const [moodAnimating, setMoodAnimating] = useState<number | null>(null);
   const [localActivities, setLocalActivities] = useState<string[]>([]);
@@ -143,6 +143,11 @@ const HomeScreen: React.FC<HomeScreenProps> = ({
   const [installPrompt, setInstallPrompt] = useState<any>(null);
   const [isIOS, setIsIOS] = useState(false);
   const [showInstallBanner, setShowInstallBanner] = useState(false);
+
+  // Set localized prompt on mount / language change
+  useEffect(() => {
+    setPrompt(getLocalizedRandomPrompt(t));
+  }, [lang]);
 
   const greeting = getGreeting(t);
   const isNight = new Date().getHours() >= 21;
@@ -547,7 +552,7 @@ const HomeScreen: React.FC<HomeScreenProps> = ({
             <div className="flex items-center justify-between mb-3">
               <p className="text-[11px] font-semibold text-primary uppercase tracking-[0.12em]">{t.todays_prompt}</p>
               <button
-                onClick={() => setPrompt(getRandomPrompt())}
+                onClick={() => setPrompt(getLocalizedRandomPrompt(t))}
                 className="w-8 h-8 rounded-full flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-foreground/[0.05] transition-all press-spring"
               >
                 <RefreshCw className="w-3.5 h-3.5" />
