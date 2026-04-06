@@ -324,10 +324,10 @@ const AppPage: React.FC = () => {
         setTimeout(() => setShowSignupAfterSave(true), 1500);
       }
 
-      // P2: AI insight only for Plus/Pro — free users see teaser
+      // P2: AI insight only for Plus/Pro — free users get no insight card
       const hasPlus = hasPlusAccess(profile?.plan || null, profile?.trial_started_at || null);
       if (!hasPlus) {
-        return "Ju noticed something in your journal... Upgrade to Plus to unlock AI insights after every entry.";
+        return null; // Don't show misleading teaser; upgrade prompts in other places
       }
 
       try {
