@@ -49,6 +49,9 @@ const BreathingExercise: React.FC = () => {
   const [phaseTime, setPhaseTime] = useState(0);
   const [totalElapsed, setTotalElapsed] = useState(0);
   const [cycleCount, setCycleCount] = useState(0);
+  const [moodBefore, setMoodBefore] = useState<number | null>(null);
+  const [moodAfter, setMoodAfter] = useState<number | null>(null);
+  const [showMoodPrompt, setShowMoodPrompt] = useState(false);
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   const pattern = PATTERNS[selectedPattern];
@@ -97,6 +100,7 @@ const BreathingExercise: React.FC = () => {
         if (te + 1 >= duration) {
           setIsActive(false);
           if (navigator.vibrate) navigator.vibrate([50, 100, 50]);
+          setShowMoodPrompt(true); // Show mood after prompt
           return 0;
         }
         return te + 1;
@@ -109,6 +113,10 @@ const BreathingExercise: React.FC = () => {
   }, [isActive, phase, duration, pattern]);
 
   const handleStart = () => {
+    if (moodBefore === null) {
+      setShowMoodPrompt(true);
+      return;
+    }
     setIsActive(true);
     setPhase("inhale");
     setPhaseTime(0);
@@ -149,10 +157,77 @@ const BreathingExercise: React.FC = () => {
   const mins = Math.floor(remainingSeconds / 60);
   const secs = remainingSeconds % 60;
 
+  // Show mood impact when both before and after are set
+  const moodImprovement = moodAfter && moodBefore ? moodAfter - moodBefore : null;
+
   return (
     <div className="space-y-6">
+      {/* Mood Prompt Modal */}
+      {showMoodPrompt && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-foreground/30 backdrop-blur-sm p-4 animate-fade-in">
+          <div className="bg-card rounded-3xl p-6 w-full max-w-xs shadow-2xl border border-border/50 animate-spring-in">
+            <h3 className="text-lg font-bold text-foreground mb-1 text-center">
+              {moodBefore === null ? "How's your mood right now?" : "How do you feel after?"}
+            </h3>
+            <p className="text-sm text-muted-foreground text-center mb-4">
+              {moodBefore === null ? "Rate it before breathing" : "Let's see the impact"}
+            </p>
+            <div className="flex justify-center gap-2 mb-4">
+              {[1, 2, 3, 4, 5].map((mood) => (
+                <button
+                  key={mood}
+                  onClick={() => {
+                    if (moodBefore === null) {
+                      setMoodBefore(mood);
+                      setShowMoodPrompt(false);
+                    } else {
+                      setMoodAfter(mood);
+                      setShowMoodPrompt(false);
+                    }
+                  }}
+                  className="w-10 h-10 rounded-full font-bold text-sm transition-all press-spring"
+                  style={{
+                    background: ["#E8878C", "#6C9BCF", "#FFB347", "#95E1D3", "#4ECDC4"][mood - 1],
+                    color: "white",
+                  }}
+                >
+                  {mood}
+                </button>
+              ))}
+            </div>
+            {moodBefore === null && (
+              <button
+                onClick={() => {
+                  setShowMoodPrompt(false);
+                  handleStart();
+                }}
+                className="w-full py-2 text-sm text-muted-foreground text-center"
+              >
+                Skip
+              </button>
+            )}
+          </div>
+        </div>
+      )}
+
+      {/* Mood Impact Display */}
+      {moodImprovement !== null && (
+        <div className="bg-primary/5 border border-primary/20 rounded-2xl p-4 text-center animate-fade-in">
+          <p className="text-sm font-semibold text-foreground">
+            {moodImprovement > 0
+              ? `✨ You improved by ${moodImprovement} point${moodImprovement !== 1 ? 's' : ''}`
+              : moodImprovement < 0
+                ? `Breath work in progress (${Math.abs(moodImprovement)} point adjustment)`
+                : "Same vibe, different energy"}
+          </p>
+          {moodImprovement > 0 && (
+            <p className="text-xs text-muted-foreground mt-1">Keep these patterns in mind for future calm</p>
+          )}
+        </div>
+      )}
+
       {/* Pattern selector */}
-      {!isActive && totalElapsed === 0 && (
+      {!isActive && totalElapsed === 0 && moodBefore === null && (
         <div className="space-y-3">
           {PATTERNS.map((p, i) => (
             <button
