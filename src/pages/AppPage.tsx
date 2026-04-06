@@ -92,11 +92,14 @@ const AppPage: React.FC = () => {
         setStreak(dbProfile?.streak_current || 0);
         setEntries(dbEntries);
 
-        // Load dark mode preference from profile
-        if (dbProfile?.dark_mode) {
+        // Sync dark mode: load from profile and update localStorage
+        const darkModeEnabled = dbProfile?.dark_mode ?? localStorage.getItem("nuju-dark") === "1";
+        if (darkModeEnabled) {
           document.documentElement.classList.add("dark");
+          localStorage.setItem("nuju-dark", "1");
         } else {
           document.documentElement.classList.remove("dark");
+          localStorage.setItem("nuju-dark", "0");
         }
       } catch (err) {
         console.error("Failed to load data:", err);
