@@ -11,6 +11,7 @@ import {
   Settings, Flame, PenLine, Mic, RefreshCw,
   BedDouble, BatteryLow, Zap, Sparkles, Check,
   Dumbbell, Moon, Utensils, Briefcase, Users, Gamepad2,
+  Wind,
 } from "lucide-react";
 import HabitSection from "@/components/app/HabitSection";
 import EntryDetailModal from "@/components/app/EntryDetailModal";
@@ -491,6 +492,16 @@ const HomeScreen: React.FC<HomeScreenProps> = ({
             {t.talk}
           </button>
         </div>
+
+        {/* Breathing exercise quick action */}
+        <button
+          onClick={() => onNavigate("explore")}
+          className="w-full flex items-center justify-center gap-2 h-[44px] rounded-2xl border border-primary/20 bg-primary/5 text-primary font-medium text-[13px] press-spring transition-all hover:border-primary/40 hover:bg-primary/10"
+        >
+          <Wind className="w-4 h-4" />
+          {"Take a breath"}
+        </button>
+
         {/* Quick log — appears when mood is explicitly tapped */}
         {moodTouched && onQuickLog && (
           <button
