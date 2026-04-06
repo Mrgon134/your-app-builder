@@ -1,13 +1,22 @@
 import { Purchases, LOG_LEVEL } from "@revenuecat/purchases-capacitor";
 import { isNative } from "./platform";
 
-// Replace with your actual RevenueCat API key after creating your account
+// RevenueCat API key (from https://app.revenuecat.com)
 const REVENUECAT_API_KEY = import.meta.env.VITE_REVENUECAT_API_KEY || "";
 
-// RevenueCat entitlement identifiers (configure in RevenueCat dashboard)
+// RevenueCat entitlement identifiers
 export const ENTITLEMENTS = {
   plus: "plus",
   pro: "pro",
+} as const;
+
+// RevenueCat product identifiers (must match RevenueCat dashboard)
+export const PRODUCT_IDS = {
+  plus_monthly: "prodd12cd5056a",
+  plus_annual: "prodde2def8f68",
+  pro_monthly: "prodeb17183b4e",
+  pro_annual: "prodecbcc01ee5",
+  pro_lifetime: "prodeae2f54491",
 } as const;
 
 export const initRevenueCat = async (appUserID?: string) => {
@@ -113,3 +122,13 @@ export const getPlanFromEntitlements = async (): Promise<string> => {
   if (info.entitlements.active[ENTITLEMENTS.plus]?.isActive) return "plus";
   return "free";
 };
+
+// Map Dodo plan IDs to RevenueCat product IDs
+// Usage: when user clicks checkout on web (Dodo), or on iOS we directly use RevenueCat
+export const getDodoToRevenueCatMap = (): Record<string, string> => ({
+  "plus_monthly": PRODUCT_IDS.plus_monthly,
+  "plus_annual": PRODUCT_IDS.plus_annual,
+  "pro_monthly": PRODUCT_IDS.pro_monthly,
+  "pro_annual": PRODUCT_IDS.pro_annual,
+  "lifetime_one_time": PRODUCT_IDS.pro_lifetime,
+});

@@ -7,9 +7,10 @@ import {
   purchasePackage,
   restorePurchases,
   getPlanFromEntitlements,
+  PRODUCT_IDS,
 } from "@/lib/revenueCat";
 
-interface NativePackage {
+export interface NativePackage {
   identifier: string;
   offeringIdentifier: string;
   product: {
@@ -21,6 +22,18 @@ interface NativePackage {
     currencyCode: string;
   };
 }
+
+// Map RevenueCat product ID to plan display name (for pricing screen)
+const getDisplayName = (productId: string): string => {
+  const map: Record<string, string> = {
+    [PRODUCT_IDS.plus_monthly]: "plus_monthly",
+    [PRODUCT_IDS.plus_annual]: "plus_annual",
+    [PRODUCT_IDS.pro_monthly]: "pro_monthly",
+    [PRODUCT_IDS.pro_annual]: "pro_annual",
+    [PRODUCT_IDS.pro_lifetime]: "lifetime_one_time",
+  };
+  return map[productId] || productId;
+};
 
 interface UseNativePurchasesResult {
   isNativeApp: boolean;
