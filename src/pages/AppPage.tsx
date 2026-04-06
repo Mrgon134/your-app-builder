@@ -5,6 +5,7 @@ import { useLang } from "@/lib/i18n";
 import { useAuth } from "@/lib/auth";
 import { hasPlusAccess, hasProAccess } from "@/lib/trial";
 import { PRICING_CONFIG } from "@/lib/config";
+import { isNative, isIOS } from "@/lib/platform";
 import { SUPABASE_URL, SUPABASE_ANON_KEY } from "@/integrations/supabase/client";
 import { fetchEntries, createEntry, createQuickEntry, fetchProfile, updateProfile, checkEntryLimit, updateEntryInsight, uploadVoiceAudio, updateEntryVoice, EntryRow, ProfileRow } from "@/lib/api";
 import OnboardingScreen from "@/components/app/OnboardingScreen";
@@ -14,6 +15,7 @@ import InsightsScreen from "@/components/app/InsightsScreen";
 import CoachScreen from "@/components/app/CoachScreen";
 import SettingsScreen from "@/components/app/SettingsScreen";
 import PricingScreen from "@/components/app/PricingScreen";
+import NativePricingScreen from "@/components/app/NativePricingScreen";
 import GuidedProgramsScreen from "@/components/app/GuidedProgramsScreen";
 import GuidedTour from "@/components/app/GuidedTour";
 import YearInReviewScreen from "@/components/app/YearInReviewScreen";
@@ -537,7 +539,19 @@ const AppPage: React.FC = () => {
               onBack={() => navigateTo("insights")}
             />
           )}
-          {screen === "pro" && (
+          {screen === "pro" && isNative() && isIOS() ? (
+            <NativePricingScreen
+              currentPlan={profile?.plan || "free"}
+              trialStartedAt={profile?.trial_started_at || null}
+              userId={user?.id}
+              onClose={() => navigateTo("home")}
+              onSuccess={(plan) => {
+                setProfile((p) => p ? { ...p, plan } : null);
+                toast.success(t.subscription_updated || "Subscription updated!");
+                navigateTo("home");
+              }}
+            />
+          ) : screen === "pro" ? (
             <PricingScreen
               currentPlan={profile?.plan || "free"}
               trialStartedAt={profile?.trial_started_at || null}
@@ -545,7 +559,7 @@ const AppPage: React.FC = () => {
               onStartTrial={handleStartTrial}
               onBack={() => navigateTo("home")}
             />
-          )}
+          ) : null}
           </motion.div>
         </AnimatePresence>
         </div>
