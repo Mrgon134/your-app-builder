@@ -38,17 +38,20 @@ workflows:
       - name: Setup Capacitor iOS
         script: |
           set -e
-          # Generate iOS project if not exists
+          # Check if ios folder exists, if not create it
           if [ ! -d "ios" ]; then
+            echo "Creating iOS project..."
             npx cap add ios
           fi
+          echo "Syncing Capacitor with iOS..."
           npx cap sync ios
 
-      - name: Install CocoaPods
+      - name: Install CocoaPods dependencies
         script: |
           set -e
           cd ios/App
-          pod install
+          echo "Installing pods..."
+          pod install --repo-update
 
       - name: Update build number
         script: |
@@ -65,16 +68,12 @@ workflows:
             -workspace App.xcworkspace \
             -scheme App \
             -configuration Release \
-            -archivePath build/App.xcarchive \
-            CODE_SIGN_IDENTITY="" \
-            CODE_SIGNING_REQUIRED=NO \
-            CODE_SIGNING_ALLOWED=NO
+            -archivePath build/App.xcarchive
 
       - name: Build complete
         script: |
           echo "iOS archive created successfully!"
           echo "Archive: ios/App/build/App.xcarchive"
-          echo "Next: Add Apple Developer credentials for signed builds"
 
     artifacts:
       - ios/App/build/App.xcarchive/**
