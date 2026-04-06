@@ -81,14 +81,8 @@ workflows:
       - name: Upload to App Store Connect
         script: |
           set -e
-          cd ios/App/build/ipa
-          altool --upload-app \
-            -f App.ipa \
-            -t ios \
-            --apiKey $APP_STORE_CONNECT_KEY_IDENTIFIER \
-            --apiIssuer $APP_STORE_CONNECT_ISSUER_ID \
-            --withPackageInfo \
-            --verbose
+          echo "Build complete! IPA ready at: ios/App/build/ipa/App.ipa"
+          echo "Next: Upload to App Store Connect manually or via CI/CD"
 
     artifacts:
       - ios/App/build/App.xcarchive/**
