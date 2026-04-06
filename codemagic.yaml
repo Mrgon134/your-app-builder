@@ -102,9 +102,3 @@ workflows:
         notify:
           success: true
           failure: true
-      slack:
-        channel: "#builds"
-        notify_on_build_start: true
-        notifications:
-          success: "✅ iOS build uploaded to App Store Connect"
-          failure: "❌ iOS build failed"
