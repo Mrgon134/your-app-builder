@@ -91,6 +91,13 @@ const AppPage: React.FC = () => {
         setShowOnboarding(!dbProfile?.onboarded);
         setStreak(dbProfile?.streak_current || 0);
         setEntries(dbEntries);
+
+        // Load dark mode preference from profile
+        if (dbProfile?.dark_mode) {
+          document.documentElement.classList.add("dark");
+        } else {
+          document.documentElement.classList.remove("dark");
+        }
       } catch (err) {
         console.error("Failed to load data:", err);
       } finally {
