@@ -3,7 +3,7 @@ import { initReminders } from "@/lib/notifications";
 import { useGeoPricing } from "@/hooks/use-geo-pricing";
 import { useLang } from "@/lib/i18n";
 import { useAuth } from "@/lib/auth";
-import { hasPlusAccess } from "@/lib/trial";
+import { hasPlusAccess, hasProAccess } from "@/lib/trial";
 import { PRICING_CONFIG } from "@/lib/config";
 import { SUPABASE_URL, SUPABASE_ANON_KEY } from "@/integrations/supabase/client";
 import { fetchEntries, createEntry, createQuickEntry, fetchProfile, updateProfile, checkEntryLimit, updateEntryInsight, uploadVoiceAudio, updateEntryVoice, EntryRow, ProfileRow } from "@/lib/api";
@@ -491,6 +491,8 @@ const AppPage: React.FC = () => {
               autoRecord={journalAutoRecord}
               activities={selectedActivities}
               mood={selectedMood}
+              hasProAccess={hasProAccess(profile?.plan || null, profile?.trial_started_at || null)}
+              onUpgrade={() => navigateTo("pro")}
             />
           )}
           {screen === "insights" && <InsightsScreen entries={entries} streak={streak} onUpgrade={() => navigateTo("pro")} onNavigate={(s) => navigateTo(s as Screen)} plan={profile?.plan} trialStartedAt={profile?.trial_started_at} />}

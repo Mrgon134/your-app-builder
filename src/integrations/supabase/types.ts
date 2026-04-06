@@ -108,6 +108,7 @@ export type Database = {
           mood: number
           prompt_text: string | null
           text: string
+          transcript_segments: Json | null
           updated_at: string | null
           user_id: string
         }
@@ -125,6 +126,7 @@ export type Database = {
           mood: number
           prompt_text?: string | null
           text?: string
+          transcript_segments?: Json | null
           updated_at?: string | null
           user_id: string
         }
@@ -142,6 +144,7 @@ export type Database = {
           mood?: number
           prompt_text?: string | null
           text?: string
+          transcript_segments?: Json | null
           updated_at?: string | null
           user_id?: string
         }
@@ -319,6 +322,7 @@ export type Database = {
     Functions: {
       check_coach_limit: { Args: { p_user_id: string }; Returns: boolean }
       check_entry_limit: { Args: { p_user_id: string }; Returns: boolean }
+      delete_user: { Args: Record<PropertyKey, never>; Returns: undefined }
       update_streak: { Args: { p_user_id: string }; Returns: undefined }
     }
     Enums: {

@@ -22,6 +22,8 @@ export function useGeoPricing(): GeoPricing & { formatPrice: (amount: number) =>
   const [couponCode, setCouponCode] = useState<string | null>(null);
   const [discountPct, setDiscountPct] = useState(0);
   const [country, setCountry] = useState("US");
+  const [currency, setCurrency] = useState("USD");
+  const [symbol, setSymbol] = useState("$");
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -43,6 +45,12 @@ export function useGeoPricing(): GeoPricing & { formatPrice: (amount: number) =>
           }
           if (data.countryCode) {
             setCountry(data.countryCode);
+          }
+          if (data.currencyCode) {
+            setCurrency(data.currencyCode);
+          }
+          if (data.currencySymbol) {
+            setSymbol(data.currencySymbol);
           }
         }
       } catch (e) {
@@ -73,13 +81,18 @@ export function useGeoPricing(): GeoPricing & { formatPrice: (amount: number) =>
 
   return {
     country,
-    currency: "USD",
-    symbol: "$",
+    currency,
+    symbol,
     rates,
     isLoading,
     couponCode,
     discountPct,
-    formatPrice: (amount: number) => `$${amount.toFixed(2)}`,
+    formatPrice: (amount: number) => {
+      const rounded = ["IDR", "JPY", "KRW", "VND"].includes(currency)
+        ? Math.round(amount)
+        : amount.toFixed(2);
+      return `${symbol}${rounded}`;
+    },
   };
 }
 

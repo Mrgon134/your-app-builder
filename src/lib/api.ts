@@ -1,4 +1,5 @@
 import { supabase } from "@/integrations/supabase/client";
+import type { Json } from "@/integrations/supabase/types";
 
 // Types matching the new spec schema
 export interface EntryRow {
@@ -12,6 +13,8 @@ export interface EntryRow {
   audio_url: string | null;
   transcript_segments: { start: number; end: number; text: string }[] | null;
 }
+
+type TranscriptSegment = EntryRow["transcript_segments"] extends (infer T)[] | null ? T : never;
 
 export interface ProfileRow {
   id: string;
@@ -118,11 +121,14 @@ export const uploadVoiceAudio = async (
 export const updateEntryVoice = async (
   entryId: string,
   audioUrl: string,
-  transcriptSegments: { start: number; end: number; text: string }[]
+  transcriptSegments: TranscriptSegment[]
 ) => {
   const { error } = await supabase
     .from("entries")
-    .update({ audio_url: audioUrl, transcript_segments: transcriptSegments })
+    .update({
+      audio_url: audioUrl,
+      transcript_segments: transcriptSegments as Json,
+    })
     .eq("id", entryId);
   if (error) throw error;
 };
