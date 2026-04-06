@@ -168,17 +168,41 @@ const HomeScreen: React.FC<HomeScreenProps> = ({
   // Dynamic Contextual Greeting (First Impression Hook)
   let displayTitle = greeting;
   let displaySubtitle = dateStr;
-  
+
   if (entries.length === 0) {
     displayTitle = "Hey, I'm Ju.";
     displaySubtitle = "I'll learn your patterns the more you share.";
+  } else if (streak > 0 && streak % 30 === 0 && !selectedMood) {
+    displayTitle = `${streak} days strong 🔥`;
+    displaySubtitle = "You're rewriting your story.";
   } else if (streak > 0 && streak % 7 === 0 && !selectedMood) {
     displayTitle = `Day ${streak} — impressive`;
     displaySubtitle = "You're building something real.";
   } else if (entries.length > 0 && !selectedMood) {
+    const daysSinceLastEntry = Math.floor((new Date().getTime() - new Date(entries[0].created_at).getTime()) / (1000 * 60 * 60 * 24));
     const lastMoodData = MOODS.find(m => m.value === entries[0].mood);
-    displayTitle = "Welcome back.";
-    displaySubtitle = `Glad to see you. You felt ${lastMoodData?.label?.toLowerCase() || 'okay'} last time.`;
+
+    if (daysSinceLastEntry >= 3 && daysSinceLastEntry < 7) {
+      displayTitle = "We've missed you. 💙";
+      displaySubtitle = `It's been ${daysSinceLastEntry} days. What's changed?`;
+    } else if (daysSinceLastEntry >= 7) {
+      displayTitle = "Welcome back.";
+      displaySubtitle = "You last felt " + (lastMoodData?.label?.toLowerCase() || 'okay') + ". Let's check in.";
+    } else {
+      // Recent entry
+      const avgMoodRecent = Math.round(entries.slice(0, Math.min(7, entries.length)).reduce((s, e) => s + e.mood, 0) / Math.min(7, entries.length));
+      const lastMood = entries[0].mood;
+      const isMoodImproving = lastMood > (entries[1]?.mood || 3);
+
+      displayTitle = "Welcome back.";
+      if (isMoodImproving && lastMood >= 4) {
+        displaySubtitle = "Your mood's been trending up. Let's keep it going. ⬆️";
+      } else if (lastMood <= 2 && entries.length >= 3) {
+        displaySubtitle = "You've been through tough days. I'm here to listen.";
+      } else {
+        displaySubtitle = `Glad to see you. You felt ${lastMoodData?.label?.toLowerCase() || 'okay'} last time.`;
+      }
+    }
   }
 
   // Parallax scroll tracking and PWA Install Prompt
