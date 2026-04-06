@@ -72,5 +72,88 @@ export const usePostHogEvents = () => {
         timestamp: new Date().toISOString(),
       });
     },
+
+    // Voice & Media events
+    trackVoiceUpload: (success: boolean, duration: number, userId: string | null) => {
+      posthog?.capture("voice_upload", {
+        success,
+        duration_seconds: duration,
+        user_id: userId,
+        timestamp: new Date().toISOString(),
+      });
+    },
+
+    // Coach events
+    trackCoachLimitHit: (userId: string | null) => {
+      posthog?.capture("coach_limit_hit", {
+        user_id: userId,
+        timestamp: new Date().toISOString(),
+      });
+    },
+
+    // Subscription events
+    trackTrialStarted: (plan: string, userId: string | null) => {
+      posthog?.capture("trial_started", {
+        plan,
+        user_id: userId,
+        timestamp: new Date().toISOString(),
+      });
+    },
+    trackUpgradeSuccess: (plan: string, userId: string | null) => {
+      posthog?.capture("upgrade_success", {
+        plan,
+        user_id: userId,
+        timestamp: new Date().toISOString(),
+      });
+    },
+
+    // Feature engagement
+    trackBreathingComplete: (pattern: string, duration: number, moodImprovement: number, userId: string | null) => {
+      posthog?.capture("breathing_complete", {
+        pattern,
+        duration_seconds: duration,
+        mood_improvement: moodImprovement,
+        user_id: userId,
+        timestamp: new Date().toISOString(),
+      });
+    },
+    trackRitualComplete: (type: string, userId: string | null) => {
+      posthog?.capture("ritual_complete", {
+        ritual_type: type,
+        user_id: userId,
+        timestamp: new Date().toISOString(),
+      });
+    },
+    trackProgramProgress: (programId: string, currentDay: number, userId: string | null) => {
+      posthog?.capture("program_progress", {
+        program_id: programId,
+        current_day: currentDay,
+        user_id: userId,
+        timestamp: new Date().toISOString(),
+      });
+    },
+    trackProgramComplete: (programId: string, userId: string | null) => {
+      posthog?.capture("program_complete", {
+        program_id: programId,
+        user_id: userId,
+        timestamp: new Date().toISOString(),
+      });
+    },
+
+    // Engagement events
+    trackAchievementUnlocked: (achievementId: string, userId: string | null) => {
+      posthog?.capture("achievement_unlocked", {
+        achievement_id: achievementId,
+        user_id: userId,
+        timestamp: new Date().toISOString(),
+      });
+    },
+    trackQuickLogEntry: (mood: number, userId: string | null) => {
+      posthog?.capture("quick_log_entry", {
+        mood,
+        user_id: userId,
+        timestamp: new Date().toISOString(),
+      });
+    },
   };
 };
