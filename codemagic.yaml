@@ -1,0 +1,110 @@
+workflows:
+  ios-app-store:
+    name: iOS App Store Build
+    max_build_duration: 120
+    instance_type: mac_mini_m2
+
+    environment:
+      vars:
+        XCODE_WORKSPACE: "ios/App/App.xcworkspace"
+        XCODE_SCHEME: "App"
+        BUNDLE_ID: "app.nuju.journal"
+        APP_STORE_CONNECT_ISSUER_ID: $APP_STORE_CONNECT_ISSUER_ID
+        APP_STORE_CONNECT_KEY_IDENTIFIER: $APP_STORE_CONNECT_KEY_IDENTIFIER
+        APP_STORE_CONNECT_PRIVATE_KEY: $APP_STORE_CONNECT_PRIVATE_KEY
+      xcode: latest
+      node: 18.17.1
+
+    scripts:
+      - name: Setup environment
+        script: |
+          set -e
+          echo "Node version:"
+          node --version
+          echo "npm version:"
+          npm --version
+          echo "Xcode version:"
+          xcode-select --version
+
+      - name: Install dependencies
+        script: |
+          set -e
+          npm install
+          npx cap sync ios
+
+      - name: Build React for iOS
+        script: |
+          set -e
+          npm run build
+
+      - name: Update build number
+        script: |
+          set -e
+          BUILD_NUMBER=$(($(date +%s) / 60))
+          cd ios/App
+          agvtool new-version -all $BUILD_NUMBER
+          cd ../..
+
+      - name: Build iOS app
+        script: |
+          set -e
+          cd ios/App
+          xcodebuild build-for-testing \
+            -workspace $XCODE_WORKSPACE \
+            -scheme $XCODE_SCHEME \
+            -configuration Release \
+            -derivedDataPath build/DerivedData \
+            -verbose
+
+      - name: Create App Store archive
+        script: |
+          set -e
+          cd ios/App
+          xcodebuild archive \
+            -workspace $XCODE_WORKSPACE \
+            -scheme $XCODE_SCHEME \
+            -configuration Release \
+            -archivePath build/App.xcarchive \
+            -derivedDataPath build/DerivedData \
+            -verbose
+
+      - name: Export for App Store
+        script: |
+          set -e
+          cd ios/App
+          xcodebuild -exportArchive \
+            -archivePath build/App.xcarchive \
+            -exportOptionsPlist exportOptions.plist \
+            -exportPath build/ipa \
+            -verbose
+
+      - name: Upload to App Store Connect
+        script: |
+          set -e
+          cd ios/App/build/ipa
+          altool --upload-app \
+            -f App.ipa \
+            -t ios \
+            --apiKey $APP_STORE_CONNECT_KEY_IDENTIFIER \
+            --apiIssuer $APP_STORE_CONNECT_ISSUER_ID \
+            --withPackageInfo \
+            --verbose
+
+    artifacts:
+      - ios/App/build/App.xcarchive/**
+      - ios/App/build/ipa/**
+      - build/DerivedData/Logs/Build/**
+
+    publishing:
+      email:
+        recipients:
+          - $DEVELOPER_EMAIL
+        notify:
+          success: true
+          failure: true
+      slack:
+        channel: "#builds"
+        notify_on_build_start: true
+        notifications:
+          success: "✅ iOS build uploaded to App Store Connect"
+          failure: "❌ iOS build failed"
