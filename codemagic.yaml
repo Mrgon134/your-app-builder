@@ -48,19 +48,13 @@ workflows:
           fi
           echo "✓ iOS project synced successfully"
 
-      - name: Install CocoaPods dependencies
+      - name: Verify iOS setup
         script: |
           set -e
-          cd ios/App
-          echo "Installing pods..."
-          # Create Podfile if missing (Capacitor sometimes doesn't generate it)
-          if [ ! -f "Podfile" ]; then
-            echo "Podfile missing, creating from Capacitor..."
-            cd ..
-            npx cap sync ios
-            cd App
-          fi
-          pod install --repo-update
+          # Capacitor 6+ uses SPM, not CocoaPods, so no Podfile needed
+          # Xcode handles dependency resolution automatically
+          echo "✓ iOS project ready for Xcode build"
+          ls -la ios/App/App.xcodeproj/
 
       - name: Update build number
         script: |
