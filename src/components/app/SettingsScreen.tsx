@@ -48,6 +48,13 @@ const SettingsScreen: React.FC<SettingsScreenProps> = ({ onBack, onUpgrade, plan
 
   const currentLang = LANG_META.find((l) => l.code === lang);
 
+  const handleSignOut = async () => {
+    // Clear PIN hash before signing out (security: prevent PIN lock after logout)
+    localStorage.removeItem("nuju-pin-hash");
+    localStorage.removeItem("nuju-biometric");
+    await signOut();
+  };
+
   const toggleDark = async () => {
     const newVal = !darkMode;
     document.documentElement.classList.toggle("dark", newVal);
@@ -440,7 +447,7 @@ const SettingsScreen: React.FC<SettingsScreenProps> = ({ onBack, onUpgrade, plan
 
               {/* Sign out */}
               <button
-                onClick={signOut}
+                onClick={handleSignOut}
                 className="ios-group-item w-full"
               >
                 <div className="flex items-center gap-3">
@@ -494,7 +501,7 @@ const SettingsScreen: React.FC<SettingsScreenProps> = ({ onBack, onUpgrade, plan
                       toast.error("Contact support to complete account deletion.");
                       console.error(error);
                     } else {
-                      await signOut();
+                      await handleSignOut();
                     }
                   } catch (e: any) {
                     toast.error("Contact support to complete account deletion.");
