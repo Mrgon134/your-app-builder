@@ -19,21 +19,30 @@ const TrialBanner: React.FC<TrialBannerProps> = ({ trialStartedAt, plan, onUpgra
 
   if (trial.expired) {
     return (
-      <div className="bg-destructive/6 border border-destructive/15 rounded-2xl p-4 mb-5 animate-fade-in">
-        <div className="flex items-center gap-3">
-          <div className="w-9 h-9 rounded-xl bg-destructive/8 flex items-center justify-center flex-shrink-0">
-            <Clock className="w-[18px] h-[18px] text-destructive" />
+      <div className="bg-destructive/12 border border-destructive/30 rounded-2xl p-5 mb-5 animate-fade-in shadow-sm">
+        <div className="flex items-start gap-3">
+          <div className="w-10 h-10 rounded-xl bg-destructive/15 flex items-center justify-center flex-shrink-0 mt-0.5">
+            <Clock className="w-5 h-5 text-destructive" />
           </div>
           <div className="flex-1 min-w-0">
-            <p className="text-[14px] font-semibold text-foreground">{t.pro_trial_ended_title || "Your Pro trial ended"}</p>
-            <p className="text-[12px] text-muted-foreground">{t.pro_trial_ended_sub || "Choose Plus to keep the essentials, or Pro to keep voice, memory, and deeper AI features."}</p>
+            <p className="text-[15px] font-bold text-foreground mb-1">
+              {t.pro_trial_ended_title || "Your Pro trial has ended"}
+            </p>
+            <p className="text-[13px] text-muted-foreground leading-relaxed mb-3">
+              {t.pro_trial_ended_sub || "You've lost access to Pro features. Choose Plus for AI insights, or Pro for voice journaling, memory cards, and more."}
+            </p>
+            <div className="flex gap-2">
+              <button
+                onClick={onUpgrade}
+                className="px-4 py-2 h-9 rounded-lg bg-primary text-primary-foreground text-[13px] font-semibold transition-all hover:shadow-lg active:scale-[0.97]"
+              >
+                {t.choose_plan || "Choose plan"}
+              </button>
+              <p className="text-[12px] text-destructive/60 flex items-center">
+                Expired {trial.daysLeft < 0 ? `${Math.abs(trial.daysLeft)} days ago` : "today"}
+              </p>
+            </div>
           </div>
-          <button
-            onClick={onUpgrade}
-            className="px-4 h-[34px] rounded-lg bg-primary text-primary-foreground text-[12px] font-semibold transition-all active:scale-[0.97] flex-shrink-0"
-          >
-            {t.choose_plan || "Choose plan"}
-          </button>
         </div>
       </div>
     );
