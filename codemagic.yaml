@@ -38,13 +38,16 @@ workflows:
       - name: Setup Capacitor iOS
         script: |
           set -e
-          # Check if ios folder exists, if not create it
-          if [ ! -d "ios" ]; then
-            echo "Creating iOS project..."
-            npx cap add ios
-          fi
           echo "Syncing Capacitor with iOS..."
-          npx cap sync ios
+          npx cap sync ios --no-prompt || true
+
+          # If sync failed, check if Podfile exists
+          if [ ! -f "ios/App/Podfile" ]; then
+            echo "WARNING: Podfile not found, trying to regenerate iOS files..."
+            rm -rf ios
+            npx cap add ios
+            npx cap sync ios --no-prompt
+          fi
 
       - name: Install CocoaPods dependencies
         script: |
