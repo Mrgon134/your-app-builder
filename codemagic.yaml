@@ -29,12 +29,26 @@ workflows:
         script: |
           set -e
           npm install
-          npx cap sync ios
 
-      - name: Build React for iOS
+      - name: Build React app
         script: |
           set -e
           npm run build
+
+      - name: Setup Capacitor iOS
+        script: |
+          set -e
+          # Generate iOS project if not exists
+          if [ ! -d "ios" ]; then
+            npx cap add ios
+          fi
+          npx cap sync ios
+
+      - name: Install CocoaPods
+        script: |
+          set -e
+          cd ios/App
+          pod install
 
       - name: Update build number
         script: |
@@ -42,46 +56,25 @@ workflows:
           BUILD_NUMBER=$(($(date +%s) / 60))
           cd ios/App
           agvtool new-version -all $BUILD_NUMBER
-          cd ../..
 
-      - name: Build iOS app
-        script: |
-          set -e
-          cd ios/App
-          xcodebuild build-for-testing \
-            -workspace $XCODE_WORKSPACE \
-            -scheme $XCODE_SCHEME \
-            -configuration Release \
-            -derivedDataPath build/DerivedData \
-            -verbose
-
-      - name: Create App Store archive
+      - name: Build iOS archive
         script: |
           set -e
           cd ios/App
           xcodebuild archive \
-            -workspace $XCODE_WORKSPACE \
-            -scheme $XCODE_SCHEME \
+            -workspace App.xcworkspace \
+            -scheme App \
             -configuration Release \
             -archivePath build/App.xcarchive \
-            -derivedDataPath build/DerivedData \
-            -verbose
+            CODE_SIGN_IDENTITY="" \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGNING_ALLOWED=NO
 
-      - name: Export for App Store
+      - name: Build complete
         script: |
-          set -e
-          cd ios/App
-          xcodebuild -exportArchive \
-            -archivePath build/App.xcarchive \
-            -exportOptionsPlist exportOptions.plist \
-            -exportPath build/ipa \
-            -verbose
-
-      - name: Upload to App Store Connect
-        script: |
-          set -e
-          echo "Build complete! IPA ready at: ios/App/build/ipa/App.ipa"
-          echo "Next: Upload to App Store Connect manually or via CI/CD"
+          echo "iOS archive created successfully!"
+          echo "Archive: ios/App/build/App.xcarchive"
+          echo "Next: Add Apple Developer credentials for signed builds"
 
     artifacts:
       - ios/App/build/App.xcarchive/**
