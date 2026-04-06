@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useGeoPricing } from "@/hooks/use-geo-pricing";
+import { saveAuthIntent } from "@/lib/auth-intent";
 import {
   ArrowRight,
   BrainCircuit,
@@ -63,6 +64,14 @@ const Landing: React.FC = () => {
     pricingSectionRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
 
   const weeklyPrice = (amount: number) => geo.formatPrice(Math.round((amount / 4.345) * 100) / 100);
+  const startFreeSignup = () => {
+    saveAuthIntent({ source: "landing" });
+    navigate("/auth?mode=signup");
+  };
+  const startPlanSignup = (plan: "plus_monthly" | "pro_monthly", trial = false) => {
+    saveAuthIntent({ source: "landing", screen: "pro", plan, trial });
+    navigate("/auth?mode=signup");
+  };
 
   const emotionalMoments = [
     {
@@ -164,6 +173,7 @@ const Landing: React.FC = () => {
       badge: null as string | null,
       highlight: false,
       cta: "Start free",
+      onClick: startFreeSignup,
       features: [
         "Unlimited journal entries",
         "Mood and energy tracking",
@@ -178,6 +188,7 @@ const Landing: React.FC = () => {
       badge: "Best everyday value",
       highlight: false,
       cta: "Unlock Plus",
+      onClick: () => startPlanSignup("plus_monthly"),
       features: [
         "AI insight after every entry",
         "Unlimited history",
@@ -192,6 +203,7 @@ const Landing: React.FC = () => {
       badge: "Most loved by active users",
       highlight: true,
       cta: "Start 7-day Pro trial",
+      onClick: () => startPlanSignup("pro_monthly", true),
       features: [
         "Everything in Plus",
         "Voice journaling and transcription",
@@ -222,7 +234,7 @@ const Landing: React.FC = () => {
               See plans
             </button>
             <button
-              onClick={() => navigate("/auth")}
+              onClick={startFreeSignup}
               className="rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground transition-all hover:-translate-y-0.5 hover:shadow-lg hover:shadow-primary/25 active:scale-[0.97]"
             >
               Start free
@@ -259,7 +271,7 @@ const Landing: React.FC = () => {
 
             <div className="mt-8 flex flex-col gap-4 sm:flex-row">
               <button
-                onClick={() => navigate("/auth")}
+                onClick={startFreeSignup}
                 className="inline-flex items-center justify-center gap-2 rounded-2xl bg-primary px-8 py-4 text-lg font-semibold text-primary-foreground transition-all hover:-translate-y-0.5 hover:shadow-xl hover:shadow-primary/30 active:scale-[0.97]"
               >
                 Start free tonight
@@ -384,7 +396,7 @@ const Landing: React.FC = () => {
                 </div>
               </div>
             </div>
-            <div className="absolute -bottom-6 left-4 max-w-[18rem] rounded-[1.75rem] border border-white/60 bg-white/90 p-4 shadow-xl backdrop-blur-xl dark:border-white/10 dark:bg-card/90">
+            <div className="mt-4 max-w-[18rem] rounded-[1.75rem] border border-white/60 bg-white/90 p-4 shadow-xl backdrop-blur-xl sm:ml-4 lg:absolute lg:-bottom-6 lg:left-4 lg:mt-0 dark:border-white/10 dark:bg-card/90">
               <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-primary">What makes it different</p>
               <p className="mt-2 font-serif text-lg leading-7 text-foreground">
                 It feels like a private late-night conversation, then becomes a clearer picture of your inner world.
@@ -436,8 +448,8 @@ const Landing: React.FC = () => {
                 You are not being asked to perform self-awareness.
               </h3>
               <p className="mt-4 max-w-md text-base leading-8 text-muted-foreground">
-                The page and product both work better when they remove pressure first. That is why Nuju should feel
-                less like homework and more like somewhere to land.
+                Nuju removes the pressure to say the perfect thing. It gives you a softer place to land when your
+                thoughts feel loud, tangled, or too heavy to carry alone.
               </p>
             </div>
             <div className="grid gap-5">
@@ -459,14 +471,14 @@ const Landing: React.FC = () => {
         <div className="mx-auto max-w-6xl">
           <div className="grid gap-12 lg:grid-cols-[0.82fr_1.18fr] lg:items-start">
             <div>
-              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">Why this lands emotionally</p>
+              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">Why Nuju feels easier to begin</p>
               <h2 className="mt-4 font-serif text-4xl font-bold text-foreground sm:text-5xl">
                 Less pressure. More relief.
               </h2>
               <p className="mt-5 max-w-xl text-lg leading-8 text-muted-foreground">
-                The best wellness products do not ask for your best self first.
-                They lower the bar so you can start while you are still overwhelmed.
-                That is the job of this page and the product behind it.
+                You should not need your most organized, reflective self to begin.
+                Nuju lowers the bar so you can start while you are still overwhelmed,
+                then helps you feel clearer from there.
               </p>
               <div className="mt-8 rounded-[1.75rem] border border-border/60 bg-secondary/40 p-6">
                 <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-primary">Editorial cue</p>
@@ -556,9 +568,9 @@ const Landing: React.FC = () => {
           <div className="mt-10 rounded-[2rem] border border-border/60 bg-card px-6 py-7 shadow-sm sm:px-8">
             <div className="grid gap-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
               <div>
-                <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">Trust matters more in this category</p>
+                <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">What helps people say yes</p>
                 <h3 className="mt-3 font-serif text-3xl font-semibold text-foreground">
-                  People sign up when they feel emotionally safe.
+                  Emotional safety makes support easier to trust.
                 </h3>
               </div>
               <div className="grid gap-4 sm:grid-cols-3">
@@ -594,12 +606,17 @@ const Landing: React.FC = () => {
               Most people begin free, get a feel for the ritual, and upgrade when they want voice journaling,
               AI memory, and deeper coaching.
             </p>
-            {geo.currency !== "USD" && (
+            {geo.hasLocalizedDisplay ? (
               <div className="mt-5 inline-flex items-center gap-2 rounded-full border border-border bg-card px-4 py-2 text-xs font-medium text-muted-foreground">
                 <Globe className="h-3.5 w-3.5" />
-                Prices shown in {geo.currency}
+                Approximate prices shown in {geo.displayCurrency} for your region
               </div>
-            )}
+            ) : geo.currency !== geo.displayCurrency ? (
+              <div className="mt-5 inline-flex items-center gap-2 rounded-full border border-border bg-card px-4 py-2 text-xs font-medium text-muted-foreground">
+                <Globe className="h-3.5 w-3.5" />
+                Prices shown in {geo.displayCurrency}. Regional checkout in {geo.currency} may appear later.
+              </div>
+            ) : null}
           </div>
 
           <div className="mt-12 grid gap-6 lg:grid-cols-3">
@@ -643,7 +660,7 @@ const Landing: React.FC = () => {
                 </ul>
 
                 <button
-                  onClick={() => navigate("/auth")}
+                  onClick={plan.onClick}
                   className={`mt-8 w-full rounded-2xl py-3.5 text-sm font-semibold transition-all active:scale-[0.97] ${
                     plan.highlight
                       ? "bg-primary-foreground text-primary hover:shadow-lg"
@@ -678,7 +695,7 @@ const Landing: React.FC = () => {
           </p>
           <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
             <button
-              onClick={() => navigate("/auth")}
+              onClick={startFreeSignup}
               className="inline-flex items-center justify-center gap-2 rounded-2xl bg-primary px-8 py-4 text-lg font-semibold text-primary-foreground transition-all hover:-translate-y-0.5 hover:shadow-xl hover:shadow-primary/30 active:scale-[0.97]"
             >
               Start free tonight

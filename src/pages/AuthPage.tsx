@@ -30,6 +30,8 @@ const AuthPage: React.FC = () => {
   const initialMode: Mode = (() => {
     const m = searchParams.get("mode");
     if (m === "reset") return "reset";
+    if (m === "signup") return "signup";
+    if (m === "forgot") return "forgot";
     return "login";
   })();
 

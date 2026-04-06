@@ -4,8 +4,11 @@ import { PRICING_CONFIG, getLifetimePriceFromAnnual } from "@/lib/config";
 
 interface GeoPricing {
   country: string;
+  displayCurrency: string;
   currency: string;
   symbol: string;
+  hasLocalizedDisplay: boolean;
+  usdConversionRate: number | null;
   rates: {
     plusMonthly: number;
     plusAnnual: number;
@@ -24,6 +27,7 @@ export function useGeoPricing(): GeoPricing & { formatPrice: (amount: number) =>
   const [country, setCountry] = useState("US");
   const [currency, setCurrency] = useState("USD");
   const [symbol, setSymbol] = useState("$");
+  const [usdConversionRate, setUsdConversionRate] = useState<number | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -52,6 +56,10 @@ export function useGeoPricing(): GeoPricing & { formatPrice: (amount: number) =>
           if (data.currencySymbol) {
             setSymbol(data.currencySymbol);
           }
+          const parsedUsdRate = Number(data.usdConversionRate);
+          if (Number.isFinite(parsedUsdRate) && parsedUsdRate > 0) {
+            setUsdConversionRate(parsedUsdRate);
+          }
         }
       } catch (e) {
         console.log("PPP lookup not available, using default USD pricing");
@@ -64,12 +72,13 @@ export function useGeoPricing(): GeoPricing & { formatPrice: (amount: number) =>
   }, []);
 
   const multiplier = 1 - discountPct / 100;
+  const { hasLocalizedDisplay, displayCurrency, currencyMultiplier } = getDisplayPricingContext(currency, usdConversionRate);
 
   // Apply PPP discount to base rates
-  const plusMonthly = round2(PRICING_CONFIG.baseRates.plusMonthly * multiplier);
-  const plusAnnual = round2(PRICING_CONFIG.baseRates.plusAnnual * multiplier);
-  const proMonthly = round2(PRICING_CONFIG.baseRates.proMonthly * multiplier);
-  const proAnnual = round2(PRICING_CONFIG.baseRates.proAnnual * multiplier);
+  const plusMonthly = roundCurrency(PRICING_CONFIG.baseRates.plusMonthly * multiplier * currencyMultiplier, displayCurrency);
+  const plusAnnual = roundCurrency(PRICING_CONFIG.baseRates.plusAnnual * multiplier * currencyMultiplier, displayCurrency);
+  const proMonthly = roundCurrency(PRICING_CONFIG.baseRates.proMonthly * multiplier * currencyMultiplier, displayCurrency);
+  const proAnnual = roundCurrency(PRICING_CONFIG.baseRates.proAnnual * multiplier * currencyMultiplier, displayCurrency);
 
   const rates = {
     plusMonthly,
@@ -81,21 +90,58 @@ export function useGeoPricing(): GeoPricing & { formatPrice: (amount: number) =>
 
   return {
     country,
+    displayCurrency,
     currency,
     symbol,
+    hasLocalizedDisplay,
+    usdConversionRate,
     rates,
     isLoading,
     couponCode,
     discountPct,
     formatPrice: (amount: number) => {
-      const rounded = ["IDR", "JPY", "KRW", "VND"].includes(currency)
-        ? Math.round(amount)
-        : amount.toFixed(2);
-      return `${symbol}${rounded}`;
+      const rounded = roundCurrency(amount, displayCurrency);
+      const fractionDigits = getFractionDigits(displayCurrency);
+
+      try {
+        return new Intl.NumberFormat(undefined, {
+          style: "currency",
+          currency: displayCurrency,
+          minimumFractionDigits: fractionDigits,
+          maximumFractionDigits: fractionDigits,
+        }).format(rounded);
+      } catch {
+        return `${symbol}${rounded.toFixed(fractionDigits)}`;
+      }
     },
   };
 }
 
 function round2(n: number): number {
   return Math.round(n * 100) / 100;
+}
+
+export function getDisplayPricingContext(currencyCode: string, usdConversionRate: number | null) {
+  const hasLocalizedDisplay = Boolean(
+    usdConversionRate &&
+    usdConversionRate > 0 &&
+    currencyCode &&
+    currencyCode !== "USD"
+  );
+
+  return {
+    hasLocalizedDisplay,
+    displayCurrency: hasLocalizedDisplay ? currencyCode : "USD",
+    currencyMultiplier: hasLocalizedDisplay ? usdConversionRate! : 1,
+  };
+}
+
+export function getFractionDigits(currencyCode: string): number {
+  return ["IDR", "JPY", "KRW", "VND"].includes(currencyCode) ? 0 : 2;
+}
+
+export function roundCurrency(amount: number, currencyCode: string): number {
+  const fractionDigits = getFractionDigits(currencyCode);
+  const factor = 10 ** fractionDigits;
+  return Math.round(amount * factor) / factor;
 }

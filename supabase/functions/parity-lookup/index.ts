@@ -71,6 +71,7 @@ serve(async (req) => {
         countryCode: data.countryCode || "US",
         currencyCode: data.currencyCode || "USD",
         currencySymbol: data.currencySymbol || "$",
+        usdConversionRate: data.usdConversionRate || null,
         country: data.country || "United States",
       }),
       { headers: { ...corsHeaders, "Content-Type": "application/json" } }

@@ -23,6 +23,7 @@ import { getTrialStatus } from "@/lib/trial";
 import Confetti from "@/components/app/Confetti";
 import AchievementPopup from "@/components/app/AchievementPopup";
 import { checkAndUnlockAchievements, type Achievement } from "@/lib/achievements";
+import { consumeAuthIntent } from "@/lib/auth-intent";
 import { Home, BarChart3, MessageCircle, Compass, Sparkles, Loader2 } from "lucide-react";
 import { toast } from "sonner";
 import { AnimatePresence, motion } from "framer-motion";
@@ -140,6 +141,17 @@ const AppPage: React.FC = () => {
     
     if (navigator.vibrate) navigator.vibrate(6);
   }, [screen, entries.length, streak, selectedMood]);
+
+  useEffect(() => {
+    if (!user || loading) return;
+
+    const intent = consumeAuthIntent();
+    if (!intent) return;
+
+    if (intent.screen === "pro") {
+      navigateTo("pro");
+    }
+  }, [user, loading, navigateTo]);
 
   // Confetti on mood 5 selection
   const handleMoodSelect = useCallback((mood: number) => {

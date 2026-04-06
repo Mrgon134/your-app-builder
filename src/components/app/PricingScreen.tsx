@@ -31,10 +31,7 @@ const PricingScreen: React.FC<PricingScreenProps> = ({
   const getPricePerWeek = (amount: number, billedAnnually: boolean): string | null => {
     if (amount === 0) return null;
     const perWeek = billedAnnually ? amount / 52 : amount / 4.345;
-    const rounded = ["IDR", "JPY", "KRW", "VND"].includes(geo.currency)
-      ? Math.round(perWeek)
-      : Math.round(perWeek * 100) / 100;
-    return geo.formatPrice(rounded);
+    return geo.formatPrice(Math.round(perWeek * 100) / 100);
   };
 
   const lifetimeBreakEvenMonths = geo.rates.proAnnual > 0
@@ -166,7 +163,11 @@ const PricingScreen: React.FC<PricingScreenProps> = ({
         <div className="flex items-center gap-1.5">
           <Globe className="w-3.5 h-3.5 text-muted-foreground" />
           <span className="text-xs text-muted-foreground">
-            {t.pricing_checkout_note || "Prices shown in USD. Local currency appears at checkout."}
+            {geo.hasLocalizedDisplay
+              ? `Approximate prices shown in ${geo.displayCurrency} for your region. Checkout may vary slightly with taxes or processor rounding.`
+              : geo.currency !== geo.displayCurrency
+                ? `Prices shown in ${geo.displayCurrency}. Local currency may appear later at checkout.`
+              : (t.pricing_checkout_note || "Prices shown in USD. Local currency appears at checkout.")}
           </span>
         </div>
         {geo.discountPct > 0 && (
