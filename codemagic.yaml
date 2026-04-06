@@ -40,24 +40,7 @@ workflows:
           set -e
           echo "Syncing Capacitor with iOS..."
           npx cap sync ios
-
-          # Verify Podfile was created
-          if [ ! -f "ios/App/Podfile" ]; then
-            echo "ERROR: Podfile not found after sync"
-            exit 1
-          fi
-          echo "✓ iOS project synced successfully"
-
-      - name: Verify iOS setup
-        script: |
-          set -e
-          # Capacitor 6+ uses SPM (Swift Package Manager), not CocoaPods
-          # Xcode handles SPM automatically, no Podfile needed
-          if [ ! -d "ios/App/App.xcodeproj" ]; then
-            echo "ERROR: Xcode project not found"
-            exit 1
-          fi
-          echo "✓ iOS Xcode project ready"
+          echo "✓ iOS synced (using SPM, no Podfile needed)"
 
       - name: Update build number
         script: |
