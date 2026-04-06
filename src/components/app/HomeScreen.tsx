@@ -490,6 +490,47 @@ const HomeScreen: React.FC<HomeScreenProps> = ({
         })}
       </div>
 
+      {/* Energy — 5-segment icon picker (always visible) */}
+      <div className="glass-card rounded-2xl p-5">
+        <div className="flex items-center justify-between mb-4">
+          <p className="text-[11px] font-semibold text-muted-foreground uppercase tracking-[0.12em]">{t.energy}</p>
+          <span className="text-[11px] font-medium text-muted-foreground">{t[ENERGY_LABEL_KEYS[ENERGY_LEVELS.indexOf(nearestEnergy)]] || nearestEnergy.label}</span>
+        </div>
+        <div className="flex gap-2">
+          {ENERGY_LEVELS.map((lvl) => {
+            const active = energy >= lvl.value;
+            const isNearest = nearestEnergy.value === lvl.value;
+            const Icon = lvl.icon;
+            return (
+              <button
+                key={lvl.value}
+                onClick={() => handleEnergySelect(lvl.value)}
+                className="flex-1 flex flex-col items-center gap-2 py-3.5 rounded-xl transition-all duration-200 press-spring"
+                style={{
+                  background: active ? `${lvl.color}14` : "transparent",
+                  border: `1.5px solid ${isNearest ? lvl.color + "80" : active ? lvl.color + "30" : "transparent"}`,
+                }}
+              >
+                <Icon
+                  className="w-5 h-5 transition-all duration-200"
+                  style={{
+                    color: active ? lvl.color : "hsl(var(--muted-foreground)/0.3)",
+                    strokeWidth: active ? 2.2 : 1.5,
+                  }}
+                />
+                {isNearest && (
+                  <div className="w-1.5 h-1.5 rounded-full" style={{ background: lvl.color }} />
+                )}
+              </button>
+            );
+          })}
+        </div>
+        <div className="flex justify-between text-[10px] text-muted-foreground/50 mt-2.5 font-medium px-1">
+          <span>{t.drained}</span>
+          <span>{t.energized}</span>
+        </div>
+      </div>
+
       {/* Action buttons — always visible right after mood/activity */}
       <div id="tour-action-buttons" className="space-y-2.5">
         <div className="grid grid-cols-2 gap-3">
@@ -541,46 +582,6 @@ const HomeScreen: React.FC<HomeScreenProps> = ({
       {/* Progressive disclosure — revealed after mood tap */}
       {moodTouched && (
         <div className="space-y-5 animate-fade-up">
-          {/* Energy — 5-segment icon picker */}
-          <div className="glass-card rounded-2xl p-5">
-            <div className="flex items-center justify-between mb-4">
-              <p className="text-[11px] font-semibold text-muted-foreground uppercase tracking-[0.12em]">{t.energy}</p>
-              <span className="text-[11px] font-medium text-muted-foreground">{t[ENERGY_LABEL_KEYS[ENERGY_LEVELS.indexOf(nearestEnergy)]] || nearestEnergy.label}</span>
-            </div>
-            <div className="flex gap-2">
-              {ENERGY_LEVELS.map((lvl) => {
-                const active = energy >= lvl.value;
-                const isNearest = nearestEnergy.value === lvl.value;
-                const Icon = lvl.icon;
-                return (
-                  <button
-                    key={lvl.value}
-                    onClick={() => handleEnergySelect(lvl.value)}
-                    className="flex-1 flex flex-col items-center gap-2 py-3.5 rounded-xl transition-all duration-200 press-spring"
-                    style={{
-                      background: active ? `${lvl.color}14` : "transparent",
-                      border: `1.5px solid ${isNearest ? lvl.color + "80" : active ? lvl.color + "30" : "transparent"}`,
-                    }}
-                  >
-                    <Icon
-                      className="w-5 h-5 transition-all duration-200"
-                      style={{
-                        color: active ? lvl.color : "hsl(var(--muted-foreground)/0.3)",
-                        strokeWidth: active ? 2.2 : 1.5,
-                      }}
-                    />
-                    {isNearest && (
-                      <div className="w-1.5 h-1.5 rounded-full" style={{ background: lvl.color }} />
-                    )}
-                  </button>
-                );
-              })}
-            </div>
-            <div className="flex justify-between text-[10px] text-muted-foreground/50 mt-2.5 font-medium px-1">
-              <span>{t.drained}</span>
-              <span>{t.energized}</span>
-            </div>
-          </div>
 
           {/* Prompt card */}
           <div className="glass-card rounded-2xl p-5">
