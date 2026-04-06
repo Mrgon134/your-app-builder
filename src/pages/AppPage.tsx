@@ -3,6 +3,7 @@ import { initReminders } from "@/lib/notifications";
 import { useGeoPricing } from "@/hooks/use-geo-pricing";
 import { useLang } from "@/lib/i18n";
 import { useAuth } from "@/lib/auth";
+import { usePostHogEvents } from "@/hooks/use-posthog-events";
 import { hasPlusAccess, hasProAccess } from "@/lib/trial";
 import { PRICING_CONFIG } from "@/lib/config";
 import { isNative, isIOS } from "@/lib/platform";
@@ -37,6 +38,7 @@ const AppPage: React.FC = () => {
   const { t, lang } = useLang();
   const { user } = useAuth();
   const { country, couponCode } = useGeoPricing();
+  const events = usePostHogEvents();
   const [profile, setProfile] = useState<ProfileRow | null>(null);
   const [showOnboarding, setShowOnboarding] = useState(false);
   const [screen, setScreen] = useState<Screen>(() => {
@@ -69,6 +71,13 @@ const AppPage: React.FC = () => {
 
   // Initialize notification reminders
   useEffect(() => { initReminders(); }, []);
+
+  // Track app opened
+  useEffect(() => {
+    if (user) {
+      events.trackAppOpen(user.id);
+    }
+  }, [user, events]);
 
   useEffect(() => {
     if (!user) return;
@@ -109,21 +118,24 @@ const AppPage: React.FC = () => {
   // Navigate with fluid framer-motion transitions
   const navigateTo = useCallback((newScreen: Screen) => {
     if (newScreen === screen) return;
-    
+
     const oldIdx = screenOrder.indexOf(screen);
     const newIdx = screenOrder.indexOf(newScreen);
     const isForward = newIdx > oldIdx || newScreen === "journal" || newScreen === "settings" || newScreen === "pro";
-    
+
     setPrevScreen(screen);
     setNavDirection(isForward ? 1 : -1);
     setScreen(newScreen);
+
+    // Track screen view
+    events.trackScreenView(newScreen, user?.id || null);
 
     // Persist main tab across refresh
     const mainTabs: Screen[] = ["home", "insights", "coach", "pro"];
     if (mainTabs.includes(newScreen)) {
       try { localStorage.setItem("nuju-screen", newScreen); } catch {}
     }
-    
+
     // Check "coach_first" achievement when user opens coach
     if (newScreen === "coach") {
       const achievement = checkAndUnlockAchievements({
@@ -140,9 +152,9 @@ const AppPage: React.FC = () => {
         setTimeout(() => setUnlockedAchievement(achievement), 300);
       }
     }
-    
+
     if (navigator.vibrate) navigator.vibrate(6);
-  }, [screen, entries.length, streak, selectedMood]);
+  }, [screen, entries.length, streak, selectedMood, user, events]);
 
   useEffect(() => {
     if (!user || loading) return;
@@ -158,10 +170,11 @@ const AppPage: React.FC = () => {
   // Confetti on mood 5 selection
   const handleMoodSelect = useCallback((mood: number) => {
     setSelectedMood(mood);
+    events.trackMoodSelected(mood, user?.id || null);
     if (mood === 5) {
       setShowConfetti(true);
     }
-  }, []);
+  }, [user, events]);
 
   // Start free trial
   const handleStartTrial = async () => {
@@ -268,6 +281,9 @@ const AppPage: React.FC = () => {
     try {
       // P2: Unlimited entries for all users — gate AI insight instead of input
       const entry = await createEntry(user.id, selectedMood, text, energy);
+
+      // Track entry creation
+      events.trackEntryCreated(selectedMood, text.length, user.id);
 
       // Upload voice audio if present (Pro feature)
       if (audioBlob && audioBlob.size > 1000) {

@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useGeoPricing } from "@/hooks/use-geo-pricing";
+import { usePostHogEvents } from "@/hooks/use-posthog-events";
 import { saveAuthIntent } from "@/lib/auth-intent";
 import {
   ArrowRight,
@@ -52,6 +53,11 @@ const Landing: React.FC = () => {
   const navigate = useNavigate();
   const geo = useGeoPricing();
   const pricingSectionRef = useRef<HTMLElement>(null);
+  const { trackLandingView, trackWaitlistSignup } = usePostHogEvents();
+
+  useEffect(() => {
+    trackLandingView();
+  }, []);
 
   const heroReveal = useReveal();
   const storyReveal = useReveal();
