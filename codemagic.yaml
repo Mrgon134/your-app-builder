@@ -91,7 +91,7 @@ workflows:
     publishing:
       email:
         recipients:
-          - $DEVELOPER_EMAIL
+          - $DEVELOPER_MAIL
         notify:
           success: true
           failure: true
