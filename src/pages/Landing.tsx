@@ -311,7 +311,7 @@ const Landing: React.FC = () => {
 
           <div className="relative">
             <div className="absolute inset-x-8 top-6 h-72 rounded-full bg-primary/15 blur-[100px]" />
-            <div className="relative overflow-hidden rounded-[2rem] border border-border/60 bg-card/80 p-5 shadow-2xl backdrop-blur-2xl lg:pb-32">
+            <div className="relative overflow-hidden rounded-[2rem] border border-border/60 bg-card/80 p-5 shadow-2xl backdrop-blur-2xl">
               <div className="mb-5 flex items-center justify-between">
                 <div className="flex items-center gap-3">
                   <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-primary/10">
@@ -394,13 +394,14 @@ const Landing: React.FC = () => {
                     </ul>
                   </div>
                 </div>
+
+                <div className="rounded-[1.75rem] border border-white/60 bg-white/90 p-5 shadow-xl backdrop-blur-xl dark:border-white/10 dark:bg-card/90">
+                  <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-primary">What makes it different</p>
+                  <p className="mt-2 font-serif text-lg leading-8 text-foreground">
+                    It feels like a private late-night conversation, then becomes a clearer picture of your inner world.
+                  </p>
+                </div>
               </div>
-            </div>
-            <div className="mt-4 max-w-[18rem] rounded-[1.75rem] border border-white/60 bg-white/90 p-4 shadow-xl backdrop-blur-xl sm:ml-4 lg:absolute lg:bottom-6 lg:left-4 lg:mt-0 dark:border-white/10 dark:bg-card/90">
-              <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-primary">What makes it different</p>
-              <p className="mt-2 font-serif text-lg leading-7 text-foreground">
-                It feels like a private late-night conversation, then becomes a clearer picture of your inner world.
-              </p>
             </div>
           </div>
         </div>
