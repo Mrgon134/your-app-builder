@@ -5,6 +5,7 @@ import { useAuth } from "@/lib/auth";
 import { updateProfile, fetchEntries } from "@/lib/api";
 import { ArrowLeft, Moon, Sun, Globe, Crown, LogOut, Bell, BellOff, ChevronRight, Fingerprint, KeyRound, AtSign, Trash2, AlertTriangle, Download, HelpCircle, Mail, Info, FileText, Lock } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
+import { ROUTES } from "@/lib/routes";
 import {
   requestNotificationPermission,
   getNotificationPermission,
@@ -383,7 +384,7 @@ const SettingsScreen: React.FC<SettingsScreenProps> = ({ onBack, onUpgrade, plan
           </p>
           <div className="ios-group">
             <button
-              onClick={() => navigate("/support")}
+              onClick={() => navigate(ROUTES.SUPPORT)}
               className="ios-group-item w-full"
             >
               <div className="flex items-center gap-3">
@@ -395,7 +396,7 @@ const SettingsScreen: React.FC<SettingsScreenProps> = ({ onBack, onUpgrade, plan
               <ChevronRight className="w-4 h-4 text-muted-foreground/40" />
             </button>
             <button
-              onClick={() => navigate("/contact")}
+              onClick={() => navigate(ROUTES.CONTACT)}
               className="ios-group-item w-full"
             >
               <div className="flex items-center gap-3">
@@ -407,7 +408,7 @@ const SettingsScreen: React.FC<SettingsScreenProps> = ({ onBack, onUpgrade, plan
               <ChevronRight className="w-4 h-4 text-muted-foreground/40" />
             </button>
             <button
-              onClick={() => navigate("/medical-disclaimer")}
+              onClick={() => navigate(ROUTES.MEDICAL_DISCLAIMER)}
               className="ios-group-item w-full"
             >
               <div className="flex items-center gap-3">
@@ -419,7 +420,7 @@ const SettingsScreen: React.FC<SettingsScreenProps> = ({ onBack, onUpgrade, plan
               <ChevronRight className="w-4 h-4 text-muted-foreground/40" />
             </button>
             <button
-              onClick={() => navigate("/about")}
+              onClick={() => navigate(ROUTES.ABOUT)}
               className="ios-group-item w-full"
             >
               <div className="flex items-center gap-3">
@@ -431,7 +432,7 @@ const SettingsScreen: React.FC<SettingsScreenProps> = ({ onBack, onUpgrade, plan
               <ChevronRight className="w-4 h-4 text-muted-foreground/40" />
             </button>
             <button
-              onClick={() => navigate("/privacy")}
+              onClick={() => navigate(ROUTES.PRIVACY)}
               className="ios-group-item w-full"
             >
               <div className="flex items-center gap-3">
@@ -443,7 +444,7 @@ const SettingsScreen: React.FC<SettingsScreenProps> = ({ onBack, onUpgrade, plan
               <ChevronRight className="w-4 h-4 text-muted-foreground/40" />
             </button>
             <button
-              onClick={() => navigate("/terms")}
+              onClick={() => navigate(ROUTES.TERMS)}
               className="ios-group-item w-full"
             >
               <div className="flex items-center gap-3">
@@ -578,16 +579,21 @@ const SettingsScreen: React.FC<SettingsScreenProps> = ({ onBack, onUpgrade, plan
                 onClick={async () => {
                   setDeleteLoading(true);
                   try {
+                    // Delete account via RPC - this cascades and deletes all user data
                     const { error } = await supabase.rpc("delete_user" as any);
-                    // Ignore fail and sign out if it's a test/mock environment
+
                     if (error) {
-                      toast.error("Contact support to complete account deletion.");
-                      console.error(error);
+                      console.error("Delete user error:", error);
+                      toast.error("Failed to delete account. Please try again or contact support.");
                     } else {
+                      toast.success("Account deleted successfully. Signing out...");
+                      // Always sign out after deletion attempt (handleSignOut clears PIN first)
+                      await new Promise(r => setTimeout(r, 1000));
                       await handleSignOut();
                     }
                   } catch (e: any) {
-                    toast.error("Contact support to complete account deletion.");
+                    console.error("Delete error:", e);
+                    toast.error("Error deleting account. Please contact support.");
                   } finally {
                     setDeleteLoading(false);
                     setShowDeleteConfirm(false);
