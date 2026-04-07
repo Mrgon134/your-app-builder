@@ -7,9 +7,9 @@ const Contact: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  // Go back to Settings in /app (not browser back which might go to landing)
+  const from = (location.state as any)?.from || "/app?screen=settings";
+  const linkState = { from };
   const handleBack = () => {
-    const from = (location.state as any)?.from || "/app?screen=settings";
     navigate(from);
   };
   const [email, setEmail] = useState("");
@@ -176,11 +176,11 @@ const Contact: React.FC = () => {
         <div className="mt-12 pt-8 border-t border-border">
           <p className="text-xs text-muted-foreground text-center">© 2026 Nuju. All rights reserved.</p>
           <div className="flex flex-wrap justify-center gap-4 mt-4 text-xs">
-            <Link to="/privacy" className="text-primary hover:underline">Privacy Policy</Link>
-            <Link to="/terms" className="text-primary hover:underline">Terms of Service</Link>
-            <Link to="/support" className="text-primary hover:underline">Support</Link>
-            <Link to="/medical-disclaimer" className="text-primary hover:underline">Medical Disclaimer</Link>
-            <Link to="/about" className="text-primary hover:underline">About</Link>
+            <Link to="/privacy" state={linkState} className="text-primary hover:underline">Privacy Policy</Link>
+            <Link to="/terms" state={linkState} className="text-primary hover:underline">Terms of Service</Link>
+            <Link to="/support" state={linkState} className="text-primary hover:underline">Support</Link>
+            <Link to="/medical-disclaimer" state={linkState} className="text-primary hover:underline">Medical Disclaimer</Link>
+            <Link to="/about" state={linkState} className="text-primary hover:underline">About</Link>
           </div>
         </div>
       </div>
