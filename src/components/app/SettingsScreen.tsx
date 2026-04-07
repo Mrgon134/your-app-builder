@@ -1,8 +1,9 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useLang, LANG_META } from "@/lib/i18n";
 import { useAuth } from "@/lib/auth";
 import { updateProfile, fetchEntries } from "@/lib/api";
-import { ArrowLeft, Moon, Sun, Globe, Crown, LogOut, Bell, BellOff, ChevronRight, Fingerprint, KeyRound, AtSign, Trash2, AlertTriangle, Download } from "lucide-react";
+import { ArrowLeft, Moon, Sun, Globe, Crown, LogOut, Bell, BellOff, ChevronRight, Fingerprint, KeyRound, AtSign, Trash2, AlertTriangle, Download, HelpCircle, Mail, Info, FileText, Lock } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import {
   requestNotificationPermission,
@@ -24,6 +25,7 @@ interface SettingsScreenProps {
 }
 
 const SettingsScreen: React.FC<SettingsScreenProps> = ({ onBack, onUpgrade, plan = "free", trialStartedAt = null }) => {
+  const navigate = useNavigate();
   const { t, lang, setLang } = useLang();
   const { signOut, user, resetPassword, updateEmail } = useAuth();
   const [showChangeEmail, setShowChangeEmail] = useState(false);
@@ -366,6 +368,87 @@ const SettingsScreen: React.FC<SettingsScreenProps> = ({ onBack, onUpgrade, plan
             </div>
           </div>
         )}
+
+        {/* Help & Legal group */}
+        <div>
+          <p className="text-[13px] font-medium text-muted-foreground uppercase tracking-wider px-4 mb-1.5">
+            Help & Legal
+          </p>
+          <div className="ios-group">
+            <button
+              onClick={() => navigate("/support")}
+              className="ios-group-item w-full"
+            >
+              <div className="flex items-center gap-3">
+                <div className="w-8 h-8 rounded-lg bg-green-500/10 flex items-center justify-center">
+                  <HelpCircle className="w-4 h-4 text-green-500" />
+                </div>
+                <span className="text-[15px] font-normal text-foreground">Support & FAQ</span>
+              </div>
+              <ChevronRight className="w-4 h-4 text-muted-foreground/40" />
+            </button>
+            <button
+              onClick={() => navigate("/contact")}
+              className="ios-group-item w-full"
+            >
+              <div className="flex items-center gap-3">
+                <div className="w-8 h-8 rounded-lg bg-blue-500/10 flex items-center justify-center">
+                  <Mail className="w-4 h-4 text-blue-500" />
+                </div>
+                <span className="text-[15px] font-normal text-foreground">Contact Us</span>
+              </div>
+              <ChevronRight className="w-4 h-4 text-muted-foreground/40" />
+            </button>
+            <button
+              onClick={() => navigate("/medical-disclaimer")}
+              className="ios-group-item w-full"
+            >
+              <div className="flex items-center gap-3">
+                <div className="w-8 h-8 rounded-lg bg-yellow-500/10 flex items-center justify-center">
+                  <AlertTriangle className="w-4 h-4 text-yellow-500" />
+                </div>
+                <span className="text-[15px] font-normal text-foreground">Medical Disclaimer</span>
+              </div>
+              <ChevronRight className="w-4 h-4 text-muted-foreground/40" />
+            </button>
+            <button
+              onClick={() => navigate("/about")}
+              className="ios-group-item w-full"
+            >
+              <div className="flex items-center gap-3">
+                <div className="w-8 h-8 rounded-lg bg-purple-500/10 flex items-center justify-center">
+                  <Info className="w-4 h-4 text-purple-500" />
+                </div>
+                <span className="text-[15px] font-normal text-foreground">About Nuju</span>
+              </div>
+              <ChevronRight className="w-4 h-4 text-muted-foreground/40" />
+            </button>
+            <button
+              onClick={() => navigate("/privacy")}
+              className="ios-group-item w-full"
+            >
+              <div className="flex items-center gap-3">
+                <div className="w-8 h-8 rounded-lg bg-indigo-500/10 flex items-center justify-center">
+                  <Lock className="w-4 h-4 text-indigo-500" />
+                </div>
+                <span className="text-[15px] font-normal text-foreground">Privacy Policy</span>
+              </div>
+              <ChevronRight className="w-4 h-4 text-muted-foreground/40" />
+            </button>
+            <button
+              onClick={() => navigate("/terms")}
+              className="ios-group-item w-full"
+            >
+              <div className="flex items-center gap-3">
+                <div className="w-8 h-8 rounded-lg bg-red-500/10 flex items-center justify-center">
+                  <FileText className="w-4 h-4 text-red-500" />
+                </div>
+                <span className="text-[15px] font-normal text-foreground">Terms of Service</span>
+              </div>
+              <ChevronRight className="w-4 h-4 text-muted-foreground/40" />
+            </button>
+          </div>
+        </div>
 
         {/* Account group */}
         {user && (
