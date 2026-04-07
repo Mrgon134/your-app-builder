@@ -20,6 +20,7 @@ import GuidedProgramsScreen from "@/components/app/GuidedProgramsScreen";
 import GuidedTour from "@/components/app/GuidedTour";
 import YearInReviewScreen from "@/components/app/YearInReviewScreen";
 import ExploreScreen from "@/components/app/ExploreScreen";
+import HistoryScreen from "@/components/app/HistoryScreen";
 import TrialBanner from "@/components/app/TrialBanner";
 import { getTrialStatus } from "@/lib/trial";
 import Confetti from "@/components/app/Confetti";
@@ -31,7 +32,7 @@ import { toast } from "sonner";
 import { AnimatePresence, motion } from "framer-motion";
 import PinLockScreen from "@/components/app/PinLockScreen";
 
-type Screen = "home" | "journal" | "insights" | "coach" | "explore" | "pro" | "settings" | "programs" | "year-review";
+type Screen = "home" | "journal" | "insights" | "coach" | "explore" | "pro" | "settings" | "programs" | "year-review" | "history";
 
 const AppPage: React.FC = () => {
   const { t, lang } = useLang();
@@ -510,6 +511,7 @@ const AppPage: React.FC = () => {
             />
           )}
           {screen === "insights" && <InsightsScreen entries={entries} streak={streak} onUpgrade={() => navigateTo("pro")} onNavigate={(s) => navigateTo(s as Screen)} plan={profile?.plan} trialStartedAt={profile?.trial_started_at} />}
+          {screen === "history" && <HistoryScreen entries={entries} onNavigate={(s) => navigateTo(s as Screen)} />}
           {screen === "coach" && <CoachScreen onUpgrade={() => navigateTo("pro")} plan={profile?.plan} trialStartedAt={profile?.trial_started_at} />}
           {screen === "explore" && (
             <ExploreScreen

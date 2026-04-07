@@ -589,7 +589,7 @@ const HomeScreen: React.FC<HomeScreenProps> = ({
           <div className="flex items-center justify-between mb-2 px-0.5">
             <p className="text-[11px] font-semibold text-muted-foreground uppercase tracking-[0.12em]">{t.recent || "Recent"}</p>
             <button
-              onClick={() => onNavigate("insights")}
+              onClick={() => onNavigate("history")}
               className="text-[11px] text-primary font-medium press-spring"
             >
               {t.see_all || "See all"}

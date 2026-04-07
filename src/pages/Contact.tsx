@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { ArrowLeft, Mail, Send } from "lucide-react";
 import { toast } from "sonner";
 
 const Contact: React.FC = () => {
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [subject, setSubject] = useState("");
   const [message, setMessage] = useState("");
@@ -43,10 +44,10 @@ const Contact: React.FC = () => {
   return (
     <div className="min-h-screen bg-background">
       <div className="max-w-2xl mx-auto px-6 py-12">
-        <Link to="/" className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors mb-8">
+        <button onClick={() => navigate(-1)} className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors mb-8 bg-transparent border-none cursor-pointer">
           <ArrowLeft className="w-4 h-4" />
-          <span className="text-sm">Back to Home</span>
-        </Link>
+          <span className="text-sm">Back</span>
+        </button>
 
         <h1 className="font-serif text-3xl font-bold text-foreground mb-2">Contact Us</h1>
         <p className="text-sm text-muted-foreground mb-8">Have a question, suggestion, or feedback? We'd love to hear from you.</p>
