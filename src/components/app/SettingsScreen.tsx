@@ -377,7 +377,15 @@ const SettingsScreen: React.FC<SettingsScreenProps> = ({ onBack, onUpgrade, plan
             {hasPlusAccess(plan, trialStartedAt) && (
               <div className="ios-group-item">
                 <span className="text-[15px] text-foreground">Current Plan</span>
-                <span className="text-[15px] font-semibold text-primary capitalize">{plan === "pro" ? "Pro" : plan === "plus" ? "Plus" : "Plus (Trial)"}</span>
+                <span className="text-[15px] font-semibold text-primary">
+                  {plan === "pro"
+                    ? "Pro"
+                    : plan === "plus"
+                      ? "Plus"
+                      : plan === "lifetime"
+                        ? "Lifetime"
+                        : "Pro (Trial)"}
+                </span>
               </div>
             )}
           </div>
