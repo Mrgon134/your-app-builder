@@ -7,6 +7,7 @@ import {
   ArrowRight,
   BrainCircuit,
   Check,
+  Flame,
   Globe,
   Heart,
   Lock,
@@ -19,6 +20,7 @@ import {
   TrendingUp,
   Zap,
 } from "lucide-react";
+import { PRICING_CONFIG } from "@/lib/config";
 import juMain from "@/assets/ju-main.webp";
 import HeroPatternPreview from "@/components/landing/HeroPatternPreview";
 
@@ -216,6 +218,24 @@ const Landing: React.FC = () => {
         "Voice journaling and transcription",
         "AI memory cards and recurring patterns",
         "Relationship mood map and premium features",
+      ],
+    },
+    {
+      name: "Lifetime Pro",
+      price: geo.formatPrice(geo.rates.lifetime),
+      note: "One payment. Full Pro access forever.",
+      badge: null,
+      highlight: false,
+      cta: `Get Lifetime Pro — ${geo.formatPrice(geo.rates.lifetime)}`,
+      onClick: () => {
+        saveAuthIntent({ source: "landing", screen: "pro", plan: "lifetime_one_time" as any });
+        navigate("/auth?mode=signup");
+      },
+      features: [
+        "Everything in Pro",
+        "One payment, no renewals",
+        "Every future Pro upgrade included",
+        "Best value for daily journalers",
       ],
     },
   ];
@@ -584,58 +604,73 @@ const Landing: React.FC = () => {
             ) : null}
           </div>
 
-          <div className="mt-12 grid gap-6 lg:grid-cols-3">
-            {plans.map((plan, index) => (
-              <div
-                key={plan.name}
-                className={`relative rounded-[2rem] border p-8 transition-all duration-700 ${
-                  plan.highlight
-                    ? "border-primary/35 bg-primary text-primary-foreground shadow-2xl shadow-primary/20"
-                    : "border-border/60 bg-card shadow-sm"
-                }`}
-                style={{ transitionDelay: `${index * 120}ms` }}
-              >
-                {plan.badge && (
-                  <div className="absolute -top-3 left-6 rounded-full bg-[#FFD166] px-3 py-1 text-xs font-bold text-foreground">
-                    {plan.badge}
-                  </div>
-                )}
-
-                <h3 className="font-serif text-2xl font-semibold">{plan.name}</h3>
-                <div className="mt-4 flex items-end gap-1">
-                  <span className="text-4xl font-bold">{plan.price === geo.formatPrice(0) ? "Free" : plan.price}</span>
-                  {plan.price !== geo.formatPrice(0) && (
-                    <span className={plan.highlight ? "text-primary-foreground/75" : "text-muted-foreground"}>/month</span>
-                  )}
-                </div>
-                <p className={`mt-3 text-sm leading-6 ${plan.highlight ? "text-primary-foreground/85" : "text-muted-foreground"}`}>
-                  {plan.note}
-                </p>
-
-                <ul className="mt-6 space-y-3">
-                  {plan.features.map((feature) => (
-                    <li
-                      key={feature}
-                      className={`flex items-start gap-2 text-sm ${plan.highlight ? "text-primary-foreground/92" : "text-muted-foreground"}`}
-                    >
-                      <Check className={`mt-0.5 h-4 w-4 shrink-0 ${plan.highlight ? "text-primary-foreground" : "text-primary"}`} />
-                      <span>{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-
-                <button
-                  onClick={plan.onClick}
-                  className={`mt-8 w-full rounded-2xl py-3.5 text-sm font-semibold transition-all active:scale-[0.97] ${
+          <div className="mt-12 grid gap-6 lg:grid-cols-2 xl:grid-cols-4">
+            {plans.map((plan, index) => {
+              const isLifetime = plan.name === "Lifetime Pro";
+              return (
+                <div
+                  key={plan.name}
+                  className={`relative rounded-[2rem] border p-8 transition-all duration-700 ${
                     plan.highlight
-                      ? "bg-primary-foreground text-primary hover:shadow-lg"
-                      : "bg-secondary text-foreground hover:bg-secondary/80"
+                      ? "border-primary/35 bg-primary text-primary-foreground shadow-2xl shadow-primary/20"
+                      : "border-border/60 bg-card shadow-sm"
                   }`}
+                  style={{ transitionDelay: `${index * 120}ms` }}
                 >
-                  {plan.cta}
-                </button>
-              </div>
-            ))}
+                  {plan.badge && (
+                    <div className="absolute -top-3 left-6 rounded-full bg-[#FFD166] px-3 py-1 text-xs font-bold text-foreground">
+                      {plan.badge}
+                    </div>
+                  )}
+
+                  <h3 className="font-serif text-2xl font-semibold">{plan.name}</h3>
+                  <div className="mt-4 flex items-end gap-1">
+                    <span className="text-4xl font-bold">{plan.price === geo.formatPrice(0) ? "Free" : plan.price}</span>
+                    {plan.price !== geo.formatPrice(0) && !isLifetime && (
+                      <span className={plan.highlight ? "text-primary-foreground/75" : "text-muted-foreground"}>/month</span>
+                    )}
+                    {isLifetime && (
+                      <span className="text-muted-foreground">one-time</span>
+                    )}
+                  </div>
+                  <p className={`mt-3 text-sm leading-6 ${plan.highlight ? "text-primary-foreground/85" : "text-muted-foreground"}`}>
+                    {plan.note}
+                  </p>
+
+                  {isLifetime && PRICING_CONFIG.lifetimeSlots.left > 0 && (
+                    <div className="mt-4 flex items-center gap-2 rounded-2xl bg-[#FF6B35]/10 border border-[#FF6B35]/25 px-4 py-2.5">
+                      <Flame className="h-5 w-5 text-[#FF6B35] shrink-0" />
+                      <span className="text-sm font-bold text-[#FF6B35]">
+                        Only {PRICING_CONFIG.lifetimeSlots.left}/{PRICING_CONFIG.lifetimeSlots.total} Early Access slots left
+                      </span>
+                    </div>
+                  )}
+
+                  <ul className="mt-6 space-y-3">
+                    {plan.features.map((feature) => (
+                      <li
+                        key={feature}
+                        className={`flex items-start gap-2 text-sm ${plan.highlight ? "text-primary-foreground/92" : "text-muted-foreground"}`}
+                      >
+                        <Check className={`mt-0.5 h-4 w-4 shrink-0 ${plan.highlight ? "text-primary-foreground" : "text-primary"}`} />
+                        <span>{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+
+                  <button
+                    onClick={plan.onClick}
+                    className={`mt-8 w-full rounded-2xl py-3.5 text-sm font-semibold transition-all active:scale-[0.97] ${
+                      plan.highlight
+                        ? "bg-primary-foreground text-primary hover:shadow-lg"
+                        : "bg-secondary text-foreground hover:bg-secondary/80"
+                    }`}
+                  >
+                    {plan.cta}
+                  </button>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
