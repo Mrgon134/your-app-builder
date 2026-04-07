@@ -46,6 +46,9 @@ const AppPage: React.FC = () => {
   const [showOnboarding, setShowOnboarding] = useState(false);
   const [screen, setScreen] = useState<Screen>(() => {
     try {
+      const allScreens: Screen[] = ["home", "journal", "insights", "coach", "explore", "pro", "settings", "programs", "year-review", "history"];
+      const urlScreen = new URLSearchParams(window.location.search).get("screen") as Screen | null;
+      if (urlScreen && allScreens.includes(urlScreen)) return urlScreen;
       const saved = localStorage.getItem("nuju-screen") as Screen | null;
       const mainTabs: Screen[] = ["home", "insights", "coach", "explore"];
       return saved && mainTabs.includes(saved) ? saved : "home";
