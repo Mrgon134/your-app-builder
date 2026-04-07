@@ -580,20 +580,24 @@ const SettingsScreen: React.FC<SettingsScreenProps> = ({ onBack, onUpgrade, plan
                   setDeleteLoading(true);
                   try {
                     // Delete account via RPC - this cascades and deletes all user data
-                    const { error } = await supabase.rpc("delete_user" as any);
+                    const { data, error } = await supabase.rpc("delete_user" as any);
 
                     if (error) {
                       console.error("Delete user error:", error);
-                      toast.error("Failed to delete account. Please try again or contact support.");
+                      toast.error(error.message || "Failed to delete account. Please try again or contact support.");
                     } else {
-                      toast.success("Account deleted successfully. Signing out...");
-                      // Always sign out after deletion attempt (handleSignOut clears PIN first)
+                      // Success - show detailed message
+                      console.log("Account deletion result:", data);
+                      toast.success(typeof data === "object" && data?.message
+                        ? data.message
+                        : "Account deleted successfully. Signing out...");
+                      // Always sign out after deletion (handleSignOut clears PIN first)
                       await new Promise(r => setTimeout(r, 1000));
                       await handleSignOut();
                     }
                   } catch (e: any) {
                     console.error("Delete error:", e);
-                    toast.error("Error deleting account. Please contact support.");
+                    toast.error(e.message || "Error deleting account. Please contact support.");
                   } finally {
                     setDeleteLoading(false);
                     setShowDeleteConfirm(false);

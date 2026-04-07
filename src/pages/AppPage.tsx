@@ -145,7 +145,7 @@ const AppPage: React.FC = () => {
     events.trackScreenView(newScreen, user?.id || null);
 
     // Persist main tab across refresh
-    const mainTabs: Screen[] = ["home", "insights", "coach", "explore", "pro"];
+    const mainTabs: Screen[] = ["home", "insights", "coach", "explore"];
     if (mainTabs.includes(newScreen)) {
       try { localStorage.setItem("nuju-screen", newScreen); } catch {}
     }
