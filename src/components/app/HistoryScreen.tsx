@@ -6,6 +6,7 @@ import { MOODS } from "@/lib/constants";
 import MoodIcon from "@/components/MoodIcon";
 import { EntryRow } from "@/lib/api";
 import { motion } from "framer-motion";
+import { Mic, Camera, MapPin, Calendar } from "lucide-react";
 import EntryDetailModal from "@/components/app/EntryDetailModal";
 
 interface HistoryScreenProps {
@@ -104,9 +105,31 @@ const HistoryScreen: React.FC<HistoryScreenProps> = ({ entries, onNavigate }) =>
                         <p className="text-sm font-medium text-foreground truncate">
                           {textPreview || "(No text)"}
                         </p>
-                        <p className="text-xs text-muted-foreground mt-1">
-                          {formatDate(entry.entry_date)}
-                        </p>
+                        <div className="flex items-center gap-1.5 mt-1">
+                          <span className="text-xs text-muted-foreground">
+                            {formatDate(entry.entry_date)}
+                          </span>
+                          {entry.audio_url && (
+                            <span className="inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded-full bg-primary/10 text-primary">
+                              <Mic className="w-2.5 h-2.5" />
+                            </span>
+                          )}
+                          {entry.photo_url && (
+                            <span className="inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded-full bg-green-500/10 text-green-600">
+                              <Camera className="w-2.5 h-2.5" />
+                            </span>
+                          )}
+                          {entry.location_lat != null && (
+                            <span className="inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded-full bg-red-500/10 text-red-500">
+                              <MapPin className="w-2.5 h-2.5" />
+                            </span>
+                          )}
+                          {entry.capture_type === "calendar" && (
+                            <span className="inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded-full bg-blue-500/10 text-blue-500">
+                              <Calendar className="w-2.5 h-2.5" />
+                            </span>
+                          )}
+                        </div>
                       </div>
                       <div
                         className="w-3 h-3 rounded-full flex-shrink-0 mt-2"
