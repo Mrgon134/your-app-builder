@@ -387,7 +387,7 @@ const AppPage: React.FC = () => {
   };
 
   if (showOnboarding) {
-    return <OnboardingScreen onComplete={handleOnboardingComplete} />;
+    return <OnboardingScreen onComplete={handleOnboardingComplete} onStartTrial={handleStartTrial} />;
   }
 
   if (loading) {
