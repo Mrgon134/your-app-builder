@@ -12,6 +12,10 @@ import AuthPage from "./pages/AuthPage.tsx";
 import Install from "./pages/Install.tsx";
 import Terms from "./pages/Terms.tsx";
 import Privacy from "./pages/Privacy.tsx";
+import MedicalDisclaimer from "./pages/MedicalDisclaimer.tsx";
+import Support from "./pages/Support.tsx";
+import Contact from "./pages/Contact.tsx";
+import About from "./pages/About.tsx";
 import NotFound from "./pages/NotFound.tsx";
 import AuthCallback from "./pages/AuthCallback.tsx";
 
@@ -46,6 +50,10 @@ const App = () => (
                 <Route path="/install" element={<Install />} />
                 <Route path="/terms" element={<Terms />} />
                 <Route path="/privacy" element={<Privacy />} />
+                <Route path="/medical-disclaimer" element={<MedicalDisclaimer />} />
+                <Route path="/support" element={<Support />} />
+                <Route path="/contact" element={<Contact />} />
+                <Route path="/about" element={<About />} />
                 <Route
                   path="/app"
                   element={

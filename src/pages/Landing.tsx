@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useGeoPricing } from "@/hooks/use-geo-pricing";
 import { usePostHogEvents } from "@/hooks/use-posthog-events";
 import { saveAuthIntent } from "@/lib/auth-intent";
@@ -721,16 +721,33 @@ const Landing: React.FC = () => {
         </div>
       </section>
 
-      <footer className="border-t border-border/60 px-4 py-10">
-        <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 text-center sm:flex-row sm:text-left">
-          <div className="flex items-center gap-3">
-            <img src={juMain} alt="Ju" className="h-8 w-8 object-contain" />
-            <div>
-              <p className="font-serif text-lg font-bold text-foreground">Nuju</p>
-              <p className="text-sm text-muted-foreground">A journal that feels like support.</p>
+      <footer className="border-t border-border/60 px-4 py-10 bg-card/50">
+        <div className="mx-auto max-w-6xl space-y-6">
+          <div className="flex flex-col items-center justify-between gap-4 sm:flex-row sm:text-left">
+            <div className="flex items-center gap-3">
+              <img src={juMain} alt="Ju" className="h-8 w-8 object-contain" />
+              <div>
+                <p className="font-serif text-lg font-bold text-foreground">Nuju</p>
+                <p className="text-sm text-muted-foreground">A journal that feels like support.</p>
+              </div>
             </div>
+            <p className="text-xs text-muted-foreground/80">Copyright 2026 Nuju. Built for softer check-ins and steadier days.</p>
           </div>
-          <p className="text-xs text-muted-foreground/80">Copyright 2026 Nuju. Built for softer check-ins and steadier days.</p>
+
+          {/* Legal Links */}
+          <div className="flex flex-wrap justify-center gap-4 text-xs border-t border-border/40 pt-6">
+            <Link to="/about" className="text-muted-foreground hover:text-foreground transition-colors">About</Link>
+            <span className="text-border/40">•</span>
+            <Link to="/support" className="text-muted-foreground hover:text-foreground transition-colors">Support</Link>
+            <span className="text-border/40">•</span>
+            <Link to="/contact" className="text-muted-foreground hover:text-foreground transition-colors">Contact</Link>
+            <span className="text-border/40">•</span>
+            <Link to="/privacy" className="text-muted-foreground hover:text-foreground transition-colors">Privacy</Link>
+            <span className="text-border/40">•</span>
+            <Link to="/terms" className="text-muted-foreground hover:text-foreground transition-colors">Terms</Link>
+            <span className="text-border/40">•</span>
+            <Link to="/medical-disclaimer" className="text-muted-foreground hover:text-foreground transition-colors">Medical Disclaimer</Link>
+          </div>
         </div>
       </footer>
     </div>
