@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, Sparkles, MessageCircle, Calendar, Mic } from "lucide-react";
+import { X, Sparkles, MessageCircle, Calendar, Mic, Camera, MapPin } from "lucide-react";
 import { MOODS } from "@/lib/constants";
 import { EntryRow } from "@/lib/api";
 import MoodIcon from "@/components/MoodIcon";
@@ -100,6 +100,17 @@ const EntryDetailModal: React.FC<Props> = ({ entry, isOpen, onClose }) => {
                     <span className="text-[10px] font-semibold text-primary">{t.voice_entry || "Voice"}</span>
                   </div>
                 )}
+                {cachedEntry.photo_url && (
+                  <div className="flex items-center gap-1 h-6 px-2 rounded-full bg-green-500/10">
+                    <Camera className="w-3 h-3 text-green-600" />
+                    <span className="text-[10px] font-semibold text-green-600">Photo</span>
+                  </div>
+                )}
+                {cachedEntry.location_lat != null && (
+                  <div className="flex items-center gap-1 h-6 px-2 rounded-full bg-red-500/10">
+                    <MapPin className="w-3 h-3 text-red-500" />
+                  </div>
+                )}
                 <button
                   onClick={onClose}
                   className="w-9 h-9 rounded-full bg-secondary/80 flex items-center justify-center text-muted-foreground hover:text-foreground transition-all active:scale-95"
@@ -112,6 +123,27 @@ const EntryDetailModal: React.FC<Props> = ({ entry, isOpen, onClose }) => {
             {/* Content Scroll Area */}
             <div className="flex-1 overflow-y-auto p-5 pt-2 pb-8 overscroll-contain">
               
+              {/* Photo */}
+              {cachedEntry.photo_url && (
+                <div className="mb-5 rounded-2xl overflow-hidden">
+                  <img
+                    src={cachedEntry.photo_url}
+                    alt="Journal photo"
+                    className="w-full max-h-64 object-cover rounded-2xl"
+                  />
+                </div>
+              )}
+
+              {/* Location */}
+              {cachedEntry.location_lat != null && cachedEntry.location_lng != null && (
+                <div className="mb-5 flex items-center gap-2 px-3 py-2 rounded-xl bg-red-500/5 border border-red-500/10">
+                  <MapPin className="w-4 h-4 text-red-500 flex-shrink-0" />
+                  <span className="text-xs text-muted-foreground">
+                    {cachedEntry.location_name || `${cachedEntry.location_lat.toFixed(4)}°, ${cachedEntry.location_lng.toFixed(4)}°`}
+                  </span>
+                </div>
+              )}
+
               {/* Voice Player */}
               {cachedEntry.audio_url && (
                 <div className="mb-5">

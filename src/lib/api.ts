@@ -12,6 +12,11 @@ export interface EntryRow {
   ai_summary: string | null;
   audio_url: string | null;
   transcript_segments: { start: number; end: number; text: string }[] | null;
+  photo_url: string | null;
+  location_lat: number | null;
+  location_lng: number | null;
+  location_name: string | null;
+  capture_type: string | null;
 }
 
 type TranscriptSegment = EntryRow["transcript_segments"] extends (infer T)[] | null ? T : never;
@@ -45,7 +50,7 @@ export const fetchProfile = async (userId: string): Promise<ProfileRow | null> =
 export const fetchEntries = async (userId: string): Promise<EntryRow[]> => {
   const { data, error } = await supabase
     .from("entries")
-    .select("id, mood, text, energy, entry_date, created_at, ai_summary, audio_url, transcript_segments")
+    .select("id, mood, text, energy, entry_date, created_at, ai_summary, audio_url, transcript_segments, photo_url, location_lat, location_lng, location_name, capture_type")
     .eq("user_id", userId)
     .order("entry_date", { ascending: false })
     .order("created_at", { ascending: false });
@@ -66,18 +71,27 @@ export const createEntry = async (
   mood: number,
   text: string,
   energy: number,
-  promptText?: string
+  promptText?: string,
+  captureType?: string,
+  locationData?: { lat: number; lng: number; name?: string }
 ): Promise<EntryRow> => {
+  const insertData: Record<string, unknown> = {
+    user_id: userId,
+    mood,
+    text,
+    energy,
+    prompt_text: promptText || null,
+    capture_type: captureType || "journal",
+  };
+  if (locationData) {
+    insertData.location_lat = locationData.lat;
+    insertData.location_lng = locationData.lng;
+    insertData.location_name = locationData.name || null;
+  }
   const { data, error } = await supabase
     .from("entries")
-    .insert({
-      user_id: userId,
-      mood,
-      text,
-      energy,
-      prompt_text: promptText || null,
-    })
-    .select("id, mood, text, energy, entry_date, created_at")
+    .insert(insertData)
+    .select("id, mood, text, energy, entry_date, created_at, photo_url, location_lat, location_lng, location_name, capture_type")
     .single();
   if (error) throw error;
 
@@ -129,6 +143,36 @@ export const updateEntryVoice = async (
       audio_url: audioUrl,
       transcript_segments: transcriptSegments as Json,
     })
+    .eq("id", entryId);
+  if (error) throw error;
+};
+
+// Upload photo to Supabase Storage
+export const uploadPhoto = async (
+  userId: string,
+  entryId: string,
+  file: File
+): Promise<string> => {
+  const ext = file.name.split(".").pop() || "jpg";
+  const filePath = `${userId}/${entryId}.${ext}`;
+  const { error } = await supabase.storage
+    .from("photo-entries")
+    .upload(filePath, file, {
+      contentType: file.type,
+      upsert: true,
+    });
+  if (error) throw error;
+  const { data: urlData } = supabase.storage
+    .from("photo-entries")
+    .getPublicUrl(filePath);
+  return urlData.publicUrl;
+};
+
+// Update entry with photo URL
+export const updateEntryPhoto = async (entryId: string, photoUrl: string) => {
+  const { error } = await supabase
+    .from("entries")
+    .update({ photo_url: photoUrl })
     .eq("id", entryId);
   if (error) throw error;
 };
@@ -223,7 +267,7 @@ export interface HabitRow {
   user_id: string;
   name: string;
   description?: string;
-  icon: string;
+  emoji: string;
   color: string;
   frequency: 'daily' | 'weekly';
   reminder_time?: string;
@@ -242,10 +286,10 @@ export const fetchHabits = async (userId: string): Promise<HabitRow[]> => {
   return data || [];
 };
 
-export const createHabit = async (userId: string, name: string, icon: string = "✨", color: string = "#7C6EDB"): Promise<HabitRow> => {
+export const createHabit = async (userId: string, name: string, emoji: string = "✨", color: string = "#7C6EDB"): Promise<HabitRow> => {
   const { data, error } = await supabase
     .from("habits")
-    .insert([{ user_id: userId, name, icon, color, frequency: "daily", is_active: true }])
+    .insert([{ user_id: userId, name, emoji, color, frequency: "daily", is_active: true }])
     .select()
     .single();
   if (error) throw error;

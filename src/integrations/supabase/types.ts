@@ -101,11 +101,16 @@ export type Database = {
           ai_summary: string | null
           ai_themes: string[] | null
           audio_url: string | null
+          capture_type: string | null
           created_at: string | null
           energy: number | null
           entry_date: string
           id: string
+          location_lat: number | null
+          location_lng: number | null
+          location_name: string | null
           mood: number
+          photo_url: string | null
           prompt_text: string | null
           text: string
           transcript_segments: Json | null
@@ -119,11 +124,16 @@ export type Database = {
           ai_summary?: string | null
           ai_themes?: string[] | null
           audio_url?: string | null
+          capture_type?: string | null
           created_at?: string | null
           energy?: number | null
           entry_date?: string
           id?: string
+          location_lat?: number | null
+          location_lng?: number | null
+          location_name?: string | null
           mood: number
+          photo_url?: string | null
           prompt_text?: string | null
           text?: string
           transcript_segments?: Json | null
@@ -137,11 +147,16 @@ export type Database = {
           ai_summary?: string | null
           ai_themes?: string[] | null
           audio_url?: string | null
+          capture_type?: string | null
           created_at?: string | null
           energy?: number | null
           entry_date?: string
           id?: string
+          location_lat?: number | null
+          location_lng?: number | null
+          location_name?: string | null
           mood?: number
+          photo_url?: string | null
           prompt_text?: string | null
           text?: string
           transcript_segments?: Json | null

@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation, Link } from "react-router-dom";
 import { ArrowLeft, Heart, Shield, Sparkles, Code } from "lucide-react";
 
 const About: React.FC = () => {

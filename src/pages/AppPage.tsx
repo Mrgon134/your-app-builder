@@ -8,7 +8,7 @@ import { hasPlusAccess, hasProAccess } from "@/lib/trial";
 import { PRICING_CONFIG } from "@/lib/config";
 import { isNative, isIOS } from "@/lib/platform";
 import { SUPABASE_URL, SUPABASE_ANON_KEY } from "@/integrations/supabase/client";
-import { fetchEntries, createEntry, createQuickEntry, fetchProfile, updateProfile, checkEntryLimit, updateEntryInsight, uploadVoiceAudio, updateEntryVoice, EntryRow, ProfileRow } from "@/lib/api";
+import { fetchEntries, createEntry, createQuickEntry, fetchProfile, updateProfile, checkEntryLimit, updateEntryInsight, uploadVoiceAudio, updateEntryVoice, uploadPhoto, updateEntryPhoto, EntryRow, ProfileRow } from "@/lib/api";
 import OnboardingScreen from "@/components/app/OnboardingScreen";
 import HomeScreen from "@/components/app/HomeScreen";
 import JournalScreen from "@/components/app/JournalScreen";
@@ -46,6 +46,9 @@ const AppPage: React.FC = () => {
   const [showOnboarding, setShowOnboarding] = useState(false);
   const [screen, setScreen] = useState<Screen>(() => {
     try {
+      const allScreens: Screen[] = ["home", "journal", "insights", "coach", "explore", "pro", "settings", "programs", "year-review", "history"];
+      const urlScreen = new URLSearchParams(window.location.search).get("screen") as Screen | null;
+      if (urlScreen && allScreens.includes(urlScreen)) return urlScreen;
       const saved = localStorage.getItem("nuju-screen") as Screen | null;
       const mainTabs: Screen[] = ["home", "insights", "coach", "explore"];
       return saved && mainTabs.includes(saved) ? saved : "home";
@@ -67,6 +70,9 @@ const AppPage: React.FC = () => {
   const [unlockedAchievement, setUnlockedAchievement] = useState<Achievement | null>(null);
   const [appLocked, setAppLocked] = useState(() => !!localStorage.getItem("nuju-pin-hash"));
   const [showMomentCapture, setShowMomentCapture] = useState(false);
+  const [pendingPhoto, setPendingPhoto] = useState<File | null>(null);
+  const [pendingLocation, setPendingLocation] = useState<{ lat: number; lng: number; name?: string } | null>(null);
+  const [pendingCaptureType, setPendingCaptureType] = useState<string>("journal");
   const biometricEnabled = localStorage.getItem("nuju-biometric") === "1";
   const biometricSupported = typeof window !== "undefined" && window.PublicKeyCredential !== undefined;
 
@@ -294,10 +300,38 @@ const AppPage: React.FC = () => {
     if (!user) return null;
     try {
       // P2: Unlimited entries for all users — gate AI insight instead of input
-      const entry = await createEntry(user.id, selectedMood, text, energy);
+      const entry = await createEntry(
+        user.id, selectedMood, text, energy, undefined,
+        pendingCaptureType,
+        pendingLocation || undefined
+      );
 
       // Track entry creation
       events.trackEntryCreated(selectedMood, text.length, user.id);
+
+      // Upload photo if present
+      if (pendingPhoto) {
+        try {
+          const photoUrl = await uploadPhoto(user.id, entry.id, pendingPhoto);
+          await updateEntryPhoto(entry.id, photoUrl);
+          entry.photo_url = photoUrl;
+        } catch (photoErr) {
+          console.error("Photo upload failed:", photoErr);
+        }
+      }
+
+      // Carry location data to entry object for immediate UI display
+      if (pendingLocation) {
+        entry.location_lat = pendingLocation.lat;
+        entry.location_lng = pendingLocation.lng;
+        entry.location_name = pendingLocation.name || null;
+      }
+      entry.capture_type = pendingCaptureType;
+
+      // Clear pending capture data
+      setPendingPhoto(null);
+      setPendingLocation(null);
+      setPendingCaptureType("journal");
 
       // Upload voice audio if present (Pro feature)
       if (audioBlob && audioBlob.size > 1000) {
@@ -308,7 +342,6 @@ const AppPage: React.FC = () => {
           entry.transcript_segments = segments || null;
         } catch (voiceErr) {
           console.error("Voice upload failed:", voiceErr);
-          // Non-blocking: entry is still saved with text
         }
       }
 
@@ -391,11 +424,11 @@ const AppPage: React.FC = () => {
   };
 
   const handleCalendarCapture = () => {
-    // Open date/time picker and create entry with calendar context
     const now = new Date();
-    const dateStr = now.toISOString().split('T')[0]; // YYYY-MM-DD
-    const timeStr = now.toTimeString().split(' ')[0]; // HH:MM:SS
+    const dateStr = now.toISOString().split('T')[0];
+    const timeStr = now.toTimeString().split(' ')[0];
 
+    setPendingCaptureType("calendar");
     navigateTo("journal");
     setTimeout(() => {
       setJournalPrompt(`📅 Moment on ${dateStr} at ${timeStr.slice(0, 5)}\n\nWhat happened?`);
@@ -403,7 +436,6 @@ const AppPage: React.FC = () => {
   };
 
   const handleLocationCapture = async () => {
-    // Get user's location and create entry with location context
     if (!user) return;
 
     try {
@@ -411,21 +443,22 @@ const AppPage: React.FC = () => {
         navigator.geolocation.getCurrentPosition(
           async (position) => {
             const { latitude, longitude } = position.coords;
-            // Reverse geocode to get location name (optional, for now just use coords)
-            const prompt = `📍 Location: ${latitude.toFixed(4)}°, ${longitude.toFixed(4)}°\n\nWhat's happening here?`;
+            setPendingLocation({ lat: latitude, lng: longitude });
+            setPendingCaptureType("location");
 
+            const prompt = `📍 Location: ${latitude.toFixed(4)}°, ${longitude.toFixed(4)}°\n\nWhat's happening here?`;
             navigateTo("journal");
             setTimeout(() => setJournalPrompt(prompt), 100);
           },
           (error) => {
             console.error("Location error:", error);
-            // Fallback: allow user to manually enter location
+            setPendingCaptureType("location");
             navigateTo("journal");
             setTimeout(() => setJournalPrompt("📍 Where are you right now? What's on your mind?"), 100);
           }
         );
       } else {
-        // Geolocation not supported
+        setPendingCaptureType("location");
         navigateTo("journal");
         setTimeout(() => setJournalPrompt("📍 Where are you right now? What's on your mind?"), 100);
       }
@@ -436,7 +469,6 @@ const AppPage: React.FC = () => {
   };
 
   const handlePhotoCapture = () => {
-    // Create hidden file input for photo upload
     const input = document.createElement("input");
     input.type = "file";
     input.accept = "image/*";
@@ -444,26 +476,11 @@ const AppPage: React.FC = () => {
       const file = (e.target as HTMLInputElement).files?.[0];
       if (!file || !user) return;
 
-      try {
-        // Read file as data URL for preview/context
-        const reader = new FileReader();
-        reader.onload = () => {
-          const prompt = `📷 Photo captured\n\nDescribe what you see or how it makes you feel`;
-          navigateTo("journal");
-          setTimeout(() => setJournalPrompt(prompt), 100);
-
-          // Store photo temporarily in localStorage for attaching to entry
-          try {
-            localStorage.setItem("nuju-pending-photo", reader.result as string);
-          } catch {
-            // Storage full, ignore
-          }
-        };
-        reader.readAsDataURL(file);
-      } catch (err) {
-        console.error("Photo capture failed:", err);
-        toast.error("Could not process photo");
-      }
+      setPendingPhoto(file);
+      setPendingCaptureType("photo");
+      const prompt = `📷 Photo captured\n\nDescribe what you see or how it makes you feel`;
+      navigateTo("journal");
+      setTimeout(() => setJournalPrompt(prompt), 100);
     };
     input.click();
   };
@@ -531,6 +548,7 @@ const AppPage: React.FC = () => {
         onUpgrade={() => navigateTo("pro")}
         onSelectType={(type) => {
           if (type === "quick") {
+            setPendingCaptureType("quick");
             navigateTo("journal");
             setTimeout(() => setJournalPrompt("📍 Quick Moment Capture"), 100);
           } else if (type === "calendar") {
