@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { ArrowLeft, ChevronDown } from "lucide-react";
 import { useState } from "react";
 
@@ -10,15 +10,13 @@ interface FAQItem {
 
 const Support: React.FC = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const [openId, setOpenId] = useState<number | null>(0);
 
-  // Go back to the previous page, or to app if no referrer
+  // Go back to Settings in /app (not browser back which might go to landing)
   const handleBack = () => {
-    if (window.history.length > 1) {
-      navigate(-1);
-    } else {
-      navigate("/app");
-    }
+    const from = (location.state as any)?.from || "/app?screen=settings";
+    navigate(from);
   };
 
   const faqItems: FAQItem[] = [

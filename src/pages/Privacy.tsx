@@ -1,16 +1,14 @@
 import React from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
 
 const Privacy: React.FC = () => {
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleBack = () => {
-    if (window.history.length > 1) {
-      navigate(-1);
-    } else {
-      navigate("/app");
-    }
+    const from = (location.state as any)?.from || "/app?screen=settings";
+    navigate(from);
   };
 
   return (

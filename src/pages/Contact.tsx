@@ -1,18 +1,16 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { ArrowLeft, Mail, Send } from "lucide-react";
 import { toast } from "sonner";
 
 const Contact: React.FC = () => {
   const navigate = useNavigate();
-  
-  // Go back to the previous page, or to app if no referrer
+  const location = useLocation();
+
+  // Go back to Settings in /app (not browser back which might go to landing)
   const handleBack = () => {
-    if (window.history.length > 1) {
-      navigate(-1);
-    } else {
-      navigate("/app");
-    }
+    const from = (location.state as any)?.from || "/app?screen=settings";
+    navigate(from);
   };
   const [email, setEmail] = useState("");
   const [subject, setSubject] = useState("");

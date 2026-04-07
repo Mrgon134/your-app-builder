@@ -419,7 +419,7 @@ const SettingsScreen: React.FC<SettingsScreenProps> = ({ onBack, onUpgrade, plan
           </p>
           <div className="ios-group">
             <button
-              onClick={() => navigate(ROUTES.SUPPORT)}
+              onClick={() => navigate(ROUTES.SUPPORT, { state: { from: "/app?screen=settings" } })}
               className="ios-group-item w-full"
             >
               <div className="flex items-center gap-3">
@@ -431,7 +431,7 @@ const SettingsScreen: React.FC<SettingsScreenProps> = ({ onBack, onUpgrade, plan
               <ChevronRight className="w-4 h-4 text-muted-foreground/40" />
             </button>
             <button
-              onClick={() => navigate(ROUTES.CONTACT)}
+              onClick={() => navigate(ROUTES.CONTACT, { state: { from: "/app?screen=settings" } })}
               className="ios-group-item w-full"
             >
               <div className="flex items-center gap-3">
@@ -443,7 +443,7 @@ const SettingsScreen: React.FC<SettingsScreenProps> = ({ onBack, onUpgrade, plan
               <ChevronRight className="w-4 h-4 text-muted-foreground/40" />
             </button>
             <button
-              onClick={() => navigate(ROUTES.MEDICAL_DISCLAIMER)}
+              onClick={() => navigate(ROUTES.MEDICAL_DISCLAIMER, { state: { from: "/app?screen=settings" } })}
               className="ios-group-item w-full"
             >
               <div className="flex items-center gap-3">
@@ -455,7 +455,7 @@ const SettingsScreen: React.FC<SettingsScreenProps> = ({ onBack, onUpgrade, plan
               <ChevronRight className="w-4 h-4 text-muted-foreground/40" />
             </button>
             <button
-              onClick={() => navigate(ROUTES.ABOUT)}
+              onClick={() => navigate(ROUTES.ABOUT, { state: { from: "/app?screen=settings" } })}
               className="ios-group-item w-full"
             >
               <div className="flex items-center gap-3">
@@ -467,7 +467,7 @@ const SettingsScreen: React.FC<SettingsScreenProps> = ({ onBack, onUpgrade, plan
               <ChevronRight className="w-4 h-4 text-muted-foreground/40" />
             </button>
             <button
-              onClick={() => navigate(ROUTES.PRIVACY)}
+              onClick={() => navigate(ROUTES.PRIVACY, { state: { from: "/app?screen=settings" } })}
               className="ios-group-item w-full"
             >
               <div className="flex items-center gap-3">
@@ -479,7 +479,7 @@ const SettingsScreen: React.FC<SettingsScreenProps> = ({ onBack, onUpgrade, plan
               <ChevronRight className="w-4 h-4 text-muted-foreground/40" />
             </button>
             <button
-              onClick={() => navigate(ROUTES.TERMS)}
+              onClick={() => navigate(ROUTES.TERMS, { state: { from: "/app?screen=settings" } })}
               className="ios-group-item w-full"
             >
               <div className="flex items-center gap-3">
