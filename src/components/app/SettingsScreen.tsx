@@ -377,7 +377,15 @@ const SettingsScreen: React.FC<SettingsScreenProps> = ({ onBack, onUpgrade, plan
             {hasPlusAccess(plan, trialStartedAt) && (
               <div className="ios-group-item">
                 <span className="text-[15px] text-foreground">Current Plan</span>
-                <span className="text-[15px] font-semibold text-primary capitalize">{plan === "pro" ? "Pro" : plan === "plus" ? "Plus" : "Plus (Trial)"}</span>
+                <span className="text-[15px] font-semibold text-primary">
+                  {plan === "pro"
+                    ? "Pro"
+                    : plan === "plus"
+                      ? "Plus"
+                      : plan === "lifetime"
+                        ? "Lifetime"
+                        : "Pro (Trial)"}
+                </span>
               </div>
             )}
           </div>
@@ -411,7 +419,7 @@ const SettingsScreen: React.FC<SettingsScreenProps> = ({ onBack, onUpgrade, plan
           </p>
           <div className="ios-group">
             <button
-              onClick={() => navigate(ROUTES.SUPPORT)}
+              onClick={() => navigate(ROUTES.SUPPORT, { state: { from: "/app?screen=settings" } })}
               className="ios-group-item w-full"
             >
               <div className="flex items-center gap-3">
@@ -423,7 +431,7 @@ const SettingsScreen: React.FC<SettingsScreenProps> = ({ onBack, onUpgrade, plan
               <ChevronRight className="w-4 h-4 text-muted-foreground/40" />
             </button>
             <button
-              onClick={() => navigate(ROUTES.CONTACT)}
+              onClick={() => navigate(ROUTES.CONTACT, { state: { from: "/app?screen=settings" } })}
               className="ios-group-item w-full"
             >
               <div className="flex items-center gap-3">
@@ -435,7 +443,7 @@ const SettingsScreen: React.FC<SettingsScreenProps> = ({ onBack, onUpgrade, plan
               <ChevronRight className="w-4 h-4 text-muted-foreground/40" />
             </button>
             <button
-              onClick={() => navigate(ROUTES.MEDICAL_DISCLAIMER)}
+              onClick={() => navigate(ROUTES.MEDICAL_DISCLAIMER, { state: { from: "/app?screen=settings" } })}
               className="ios-group-item w-full"
             >
               <div className="flex items-center gap-3">
@@ -447,7 +455,7 @@ const SettingsScreen: React.FC<SettingsScreenProps> = ({ onBack, onUpgrade, plan
               <ChevronRight className="w-4 h-4 text-muted-foreground/40" />
             </button>
             <button
-              onClick={() => navigate(ROUTES.ABOUT)}
+              onClick={() => navigate(ROUTES.ABOUT, { state: { from: "/app?screen=settings" } })}
               className="ios-group-item w-full"
             >
               <div className="flex items-center gap-3">
@@ -459,7 +467,7 @@ const SettingsScreen: React.FC<SettingsScreenProps> = ({ onBack, onUpgrade, plan
               <ChevronRight className="w-4 h-4 text-muted-foreground/40" />
             </button>
             <button
-              onClick={() => navigate(ROUTES.PRIVACY)}
+              onClick={() => navigate(ROUTES.PRIVACY, { state: { from: "/app?screen=settings" } })}
               className="ios-group-item w-full"
             >
               <div className="flex items-center gap-3">
@@ -471,7 +479,7 @@ const SettingsScreen: React.FC<SettingsScreenProps> = ({ onBack, onUpgrade, plan
               <ChevronRight className="w-4 h-4 text-muted-foreground/40" />
             </button>
             <button
-              onClick={() => navigate(ROUTES.TERMS)}
+              onClick={() => navigate(ROUTES.TERMS, { state: { from: "/app?screen=settings" } })}
               className="ios-group-item w-full"
             >
               <div className="flex items-center gap-3">
@@ -614,7 +622,6 @@ const SettingsScreen: React.FC<SettingsScreenProps> = ({ onBack, onUpgrade, plan
                       toast.error(error.message || "Failed to delete account. Please try again or contact support.");
                     } else {
                       // Success - show detailed message
-                      console.log("Account deletion result:", data);
                       toast.success(typeof data === "object" && data?.message
                         ? data.message
                         : "Account deleted successfully. Signing out...");

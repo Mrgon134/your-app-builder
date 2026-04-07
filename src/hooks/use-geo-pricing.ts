@@ -62,7 +62,7 @@ export function useGeoPricing(): GeoPricing & { formatPrice: (amount: number) =>
           }
         }
       } catch (e) {
-        console.log("PPP lookup not available, using default USD pricing");
+        // PPP lookup not available, using default USD pricing
       } finally {
         setIsLoading(false);
       }
