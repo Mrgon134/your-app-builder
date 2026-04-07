@@ -390,6 +390,84 @@ const AppPage: React.FC = () => {
     }
   };
 
+  const handleCalendarCapture = () => {
+    // Open date/time picker and create entry with calendar context
+    const now = new Date();
+    const dateStr = now.toISOString().split('T')[0]; // YYYY-MM-DD
+    const timeStr = now.toTimeString().split(' ')[0]; // HH:MM:SS
+
+    navigateTo("journal");
+    setTimeout(() => {
+      setJournalPrompt(`📅 Moment on ${dateStr} at ${timeStr.slice(0, 5)}\n\nWhat happened?`);
+    }, 100);
+  };
+
+  const handleLocationCapture = async () => {
+    // Get user's location and create entry with location context
+    if (!user) return;
+
+    try {
+      if ("geolocation" in navigator) {
+        navigator.geolocation.getCurrentPosition(
+          async (position) => {
+            const { latitude, longitude } = position.coords;
+            // Reverse geocode to get location name (optional, for now just use coords)
+            const prompt = `📍 Location: ${latitude.toFixed(4)}°, ${longitude.toFixed(4)}°\n\nWhat's happening here?`;
+
+            navigateTo("journal");
+            setTimeout(() => setJournalPrompt(prompt), 100);
+          },
+          (error) => {
+            console.error("Location error:", error);
+            // Fallback: allow user to manually enter location
+            navigateTo("journal");
+            setTimeout(() => setJournalPrompt("📍 Where are you right now? What's on your mind?"), 100);
+          }
+        );
+      } else {
+        // Geolocation not supported
+        navigateTo("journal");
+        setTimeout(() => setJournalPrompt("📍 Where are you right now? What's on your mind?"), 100);
+      }
+    } catch (err) {
+      console.error("Location capture failed:", err);
+      toast.error("Could not access location");
+    }
+  };
+
+  const handlePhotoCapture = () => {
+    // Create hidden file input for photo upload
+    const input = document.createElement("input");
+    input.type = "file";
+    input.accept = "image/*";
+    input.onchange = async (e) => {
+      const file = (e.target as HTMLInputElement).files?.[0];
+      if (!file || !user) return;
+
+      try {
+        // Read file as data URL for preview/context
+        const reader = new FileReader();
+        reader.onload = () => {
+          const prompt = `📷 Photo captured\n\nDescribe what you see or how it makes you feel`;
+          navigateTo("journal");
+          setTimeout(() => setJournalPrompt(prompt), 100);
+
+          // Store photo temporarily in localStorage for attaching to entry
+          try {
+            localStorage.setItem("nuju-pending-photo", reader.result as string);
+          } catch {
+            // Storage full, ignore
+          }
+        };
+        reader.readAsDataURL(file);
+      } catch (err) {
+        console.error("Photo capture failed:", err);
+        toast.error("Could not process photo");
+      }
+    };
+    input.click();
+  };
+
   if (showOnboarding) {
     return <OnboardingScreen onComplete={handleOnboardingComplete} onStartTrial={handleStartTrial} />;
   }
@@ -452,11 +530,15 @@ const AppPage: React.FC = () => {
         hasProAccess={hasProAccess(profile?.plan || "free", profile?.trial_started_at || null)}
         onUpgrade={() => navigateTo("pro")}
         onSelectType={(type) => {
-          // TODO: Handle moment capture types
-          console.log("Capturing moment type:", type);
           if (type === "quick") {
             navigateTo("journal");
             setTimeout(() => setJournalPrompt("📍 Quick Moment Capture"), 100);
+          } else if (type === "calendar") {
+            handleCalendarCapture();
+          } else if (type === "location") {
+            handleLocationCapture();
+          } else if (type === "photo") {
+            handlePhotoCapture();
           }
         }}
       />
