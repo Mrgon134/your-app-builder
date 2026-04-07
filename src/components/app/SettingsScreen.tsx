@@ -356,6 +356,33 @@ const SettingsScreen: React.FC<SettingsScreenProps> = ({ onBack, onUpgrade, plan
           </div>
         </div>
 
+        {/* Pricing / Plans group */}
+        <div>
+          <p className="text-[13px] font-medium text-muted-foreground uppercase tracking-wider px-4 mb-1.5">
+            Subscription
+          </p>
+          <div className="ios-group">
+            <button
+              onClick={onUpgrade}
+              className="ios-group-item w-full"
+            >
+              <div className="flex items-center gap-3">
+                <div className="w-8 h-8 rounded-lg bg-amber-500 flex items-center justify-center">
+                  <Crown className="w-4 h-4 text-white" />
+                </div>
+                <span className="text-[15px] font-normal text-foreground">View Pricing Plans</span>
+              </div>
+              <ChevronRight className="w-4 h-4 text-muted-foreground/40" />
+            </button>
+            {hasPlusAccess(plan, trialStartedAt) && (
+              <div className="ios-group-item">
+                <span className="text-[15px] text-foreground">Current Plan</span>
+                <span className="text-[15px] font-semibold text-primary capitalize">{plan === "pro" ? "Pro" : plan === "plus" ? "Plus" : "Plus (Trial)"}</span>
+              </div>
+            )}
+          </div>
+        </div>
+
         {/* Pro upsell — hide if user has plus access */}
         {!hasPlusAccess(plan, trialStartedAt) && (
           <div>
