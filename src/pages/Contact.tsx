@@ -35,10 +35,8 @@ const Contact: React.FC = () => {
     setLoading(true);
 
     try {
-      // In a real implementation, this would send to your backend
-      // For now, we'll just show a success message and clear the form
-      console.log("Contact form submission:", { email, subject, message });
-
+      // Send to backend - currently shows success message
+      // In production, implement actual email sending via API
       toast.success("Message sent! We'll get back to you within 24-48 hours.");
       setEmail("");
       setSubject("");

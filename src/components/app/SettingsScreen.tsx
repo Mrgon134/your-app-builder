@@ -614,7 +614,6 @@ const SettingsScreen: React.FC<SettingsScreenProps> = ({ onBack, onUpgrade, plan
                       toast.error(error.message || "Failed to delete account. Please try again or contact support.");
                     } else {
                       // Success - show detailed message
-                      console.log("Account deletion result:", data);
                       toast.success(typeof data === "object" && data?.message
                         ? data.message
                         : "Account deleted successfully. Signing out...");
