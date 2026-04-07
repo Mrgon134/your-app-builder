@@ -69,40 +69,13 @@ const GuidedTour: React.FC<GuidedTourProps> = ({ onDone, currentScreen, onNaviga
     }
   }, [step]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  // Global click interception
-  useEffect(() => {
-    const handleGlobalClick = (e: MouseEvent) => {
-      if (!rect) return;
-      
-      // If user clicked the "Skip" button inside the tooltip, don't intercept
-      const target = e.target as HTMLElement;
-      if (target.closest("#tour-skip-btn")) {
-        return;
-      }
-
-      const x = e.clientX;
-      const y = e.clientY;
-      const isInsideHole = x >= rect.left && x <= rect.right && y >= rect.top && y <= rect.bottom;
-      
-      if (isInsideHole) {
-        // Let the click happen naturally, then advance step
-        setTimeout(() => {
-          if (step === steps.length - 1) {
-            onDone();
-          } else {
-            setStep(s => s + 1);
-          }
-        }, 150);
-      } else {
-        // User clicked outside the hole, block the event!
-        e.preventDefault();
-        e.stopPropagation();
-      }
-    };
-    
-    document.addEventListener("click", handleGlobalClick, true);
-    return () => document.removeEventListener("click", handleGlobalClick, true);
-  }, [rect, step, steps.length, onDone]);
+  const advanceStep = () => {
+    if (step === steps.length - 1) {
+      onDone();
+    } else {
+      setStep(s => s + 1);
+    }
+  };
 
   if (!rect) return null;
 
@@ -134,11 +107,13 @@ const GuidedTour: React.FC<GuidedTourProps> = ({ onDone, currentScreen, onNaviga
         style={{ top: holeTop, bottom: `calc(100vh - ${holeBottom}px)`, left: holeRight, right: 0 }} 
       />
       
-      {/* The Transparent Hole (pointer-events-none so click falls into real UI) */}
-      <div 
-        className="absolute rounded-3xl ring-2 ring-primary shadow-[0_0_30px_hsl(var(--primary)/0.4)_inset] pointer-events-none transition-all duration-300"
-        style={{ 
+      {/* The Hole — clickable to advance step */}
+      <button
+        onClick={advanceStep}
+        className="absolute rounded-3xl ring-2 ring-primary pointer-events-auto transition-all duration-300 cursor-pointer"
+        style={{
           top: holeTop, left: holeLeft, width: holeRight - holeLeft, height: holeBottom - holeTop,
+          background: "transparent",
           boxShadow: "0 0 0 4px hsl(var(--background)/0.5), 0 0 30px hsl(var(--primary)/0.4) inset"
         }}
       />
@@ -152,15 +127,19 @@ const GuidedTour: React.FC<GuidedTourProps> = ({ onDone, currentScreen, onNaviga
         }}
       >
         <div className="bg-card rounded-3xl p-5 shadow-2xl border border-primary/30 relative">
-          {/* Header */}
-          <div className="flex items-start gap-4 mb-3">
-            <img src={JU_STICKERS.hi} alt="Ju" className="w-[52px] h-[52px] object-contain flex-shrink-0 animate-ju-float" />
-            <div className="flex-1 mt-0.5">
-              <p className="text-[16px] font-bold text-foreground mb-0.5">{current.title}</p>
-              <p className="text-[13px] text-muted-foreground leading-relaxed font-medium">{current.desc}</p>
+          {/* Tappable area to advance */}
+          <button onClick={advanceStep} className="w-full text-left">
+            {/* Header */}
+            <div className="flex items-start gap-4 mb-3">
+              <img src={JU_STICKERS.hi} alt="Ju" className="w-[52px] h-[52px] object-contain flex-shrink-0 animate-ju-float" />
+              <div className="flex-1 mt-0.5">
+                <p className="text-[16px] font-bold text-foreground mb-0.5">{current.title}</p>
+                <p className="text-[13px] text-muted-foreground leading-relaxed font-medium">{current.desc}</p>
+              </div>
             </div>
-          </div>
-          
+            <p className="text-[11px] text-primary font-semibold text-center">Tap to continue →</p>
+          </button>
+
           {/* Progress & Skip */}
           <div className="flex items-center justify-between mt-3 pt-4 border-t border-border/40">
             <div className="flex gap-1.5">
@@ -178,10 +157,10 @@ const GuidedTour: React.FC<GuidedTourProps> = ({ onDone, currentScreen, onNaviga
             </div>
             <button
               id="tour-skip-btn"
-              onClick={onDone}
+              onClick={(e) => { e.stopPropagation(); onDone(); }}
               className="text-[13px] font-semibold text-muted-foreground press-spring hover:text-foreground transition-colors"
             >
-              {t.tour_skip || "Skip tutorial"}
+              {t.tour_skip || "Skip tour"}
             </button>
           </div>
         </div>
