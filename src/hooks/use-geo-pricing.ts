@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { SUPABASE_URL, SUPABASE_ANON_KEY } from "@/integrations/supabase/client";
-import { PRICING_CONFIG, getLifetimePriceFromAnnual } from "@/lib/config";
+import { PRICING_CONFIG, getLifetimePrice } from "@/lib/config";
 
 interface GeoPricing {
   country: string;
@@ -85,7 +85,7 @@ export function useGeoPricing(): GeoPricing & { formatPrice: (amount: number) =>
     plusAnnual,
     proMonthly,
     proAnnual,
-    lifetime: getLifetimePriceFromAnnual(proAnnual),
+    lifetime: getLifetimePrice(currencyMultiplier),
   };
 
   return {

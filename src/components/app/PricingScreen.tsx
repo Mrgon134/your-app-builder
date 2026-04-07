@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { useLang } from "@/lib/i18n";
-import { Check, ArrowLeft, Globe, Clock, Sparkles, Loader2, X } from "lucide-react";
+import { Check, ArrowLeft, Globe, Clock, Sparkles, Loader2, X, Flame } from "lucide-react";
 import { useGeoPricing } from "@/hooks/use-geo-pricing";
 import { getTrialStatus, formatTrialCountdown, TRIAL_DAYS } from "@/lib/trial";
+import { PRICING_CONFIG } from "@/lib/config";
 
 interface PricingScreenProps {
   currentPlan?: string;
@@ -34,9 +35,7 @@ const PricingScreen: React.FC<PricingScreenProps> = ({
     return geo.formatPrice(Math.round(perWeek * 100) / 100);
   };
 
-  const lifetimeBreakEvenMonths = geo.rates.proAnnual > 0
-    ? Math.ceil((geo.rates.lifetime / geo.rates.proAnnual) * 12)
-    : 0;
+  const lifetimeBreakEvenMonths = 0;
 
   const tiers = [
     {
@@ -224,6 +223,15 @@ const PricingScreen: React.FC<PricingScreenProps> = ({
                 <span className="inline-block text-[10px] font-bold uppercase tracking-wider text-primary bg-primary/10 px-2.5 py-1 rounded-full mb-3">
                   {tier.badge}
                 </span>
+              )}
+
+              {tier.id === "lifetime" && PRICING_CONFIG.lifetimeSlots.left > 0 && (
+                <div className="flex items-center gap-2 bg-[#FF6B35]/10 border border-[#FF6B35]/25 rounded-2xl px-4 py-2.5 mb-3">
+                  <Flame className="w-5 h-5 text-[#FF6B35] shrink-0" />
+                  <span className="text-sm font-bold text-[#FF6B35]">
+                    Only {PRICING_CONFIG.lifetimeSlots.left}/{PRICING_CONFIG.lifetimeSlots.total} Early Access slots left
+                  </span>
+                </div>
               )}
 
               <div className="flex items-baseline gap-1 mb-0.5">

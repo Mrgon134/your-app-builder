@@ -17,11 +17,14 @@ export const PRICING_CONFIG = {
     proMonthly: readNumber(import.meta.env.VITE_PRO_MONTHLY_PRICE, 9.99),
     proAnnual: readNumber(import.meta.env.VITE_PRO_ANNUAL_PRICE, 79.99),
   },
-  // Lifetime price is derived from the annual Pro price so it stays aligned with the flagship plan.
-  // Keep the Dodo lifetime product price aligned with this formula.
+  // Lifetime flat price in USD. Set via env or defaults to $25.
   lifetime: {
-    annualMultiplier: readNumber(import.meta.env.VITE_LIFETIME_ANNUAL_MULTIPLIER, 1.75),
-    charmEnding: readNumber(import.meta.env.VITE_LIFETIME_CHARM_ENDING, 0.99),
+    flatPrice: readNumber(import.meta.env.VITE_LIFETIME_FLAT_PRICE, 25),
+  },
+  // Early-access scarcity (frontend-only, manually updated).
+  lifetimeSlots: {
+    total: 25,
+    left: readNumber(import.meta.env.VITE_LIFETIME_SLOTS_LEFT, 14),
   },
   // Dodo Payments Product Identifiers (Test environment by default)
   products: {
@@ -33,17 +36,8 @@ export const PRICING_CONFIG = {
   },
 };
 
-export const getLifetimePriceFromAnnual = (proAnnualPrice: number) => {
-  const rawLifetime = proAnnualPrice * PRICING_CONFIG.lifetime.annualMultiplier;
-  return roundToCharmPrice(rawLifetime, PRICING_CONFIG.lifetime.charmEnding);
-};
-
-const roundToCharmPrice = (amount: number, charmEnding: number) => {
-  const safeEnding = Math.min(Math.max(charmEnding, 0), 0.99);
-  if (safeEnding === 0) return round2(Math.round(amount));
-
-  const roundedWhole = Math.max(1, Math.round(amount));
-  return round2(roundedWhole - (1 - safeEnding));
+export const getLifetimePrice = (currencyMultiplier: number) => {
+  return round2(PRICING_CONFIG.lifetime.flatPrice * currencyMultiplier);
 };
 
 const round2 = (amount: number) => Math.round(amount * 100) / 100;
