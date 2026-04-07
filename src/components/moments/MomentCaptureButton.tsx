@@ -13,14 +13,14 @@ const MomentCaptureButton: React.FC<MomentCaptureButtonProps> = ({
   onClick,
   hasProAccess,
 }) => {
-  if (!hasProAccess) {
-    return null; // Hidden for free users
-  }
-
   return (
     <motion.button
       onClick={onClick}
-      className="fixed bottom-28 right-6 z-30 w-14 h-14 rounded-full bg-gradient-to-br from-primary to-primary/80 text-white shadow-[0_8px_24px_-6px_hsl(var(--primary)/0.4)] flex items-center justify-center"
+      className={`fixed bottom-28 right-6 z-30 w-14 h-14 rounded-full text-white shadow-[0_8px_24px_-6px_hsl(var(--primary)/0.4)] flex items-center justify-center ${
+        hasProAccess
+          ? "bg-gradient-to-br from-primary to-primary/80"
+          : "bg-gradient-to-br from-primary/60 to-primary/40"
+      }`}
       whileHover={{ scale: 1.1 }}
       whileTap={{ scale: 0.95 }}
       initial={{ scale: 0, opacity: 0 }}
