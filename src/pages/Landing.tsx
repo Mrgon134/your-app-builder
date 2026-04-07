@@ -19,6 +19,7 @@ import {
   Zap,
 } from "lucide-react";
 import juMain from "@/assets/ju-main.webp";
+import HeroPatternPreview from "@/components/landing/HeroPatternPreview";
 
 const useReveal = <T extends HTMLElement = HTMLDivElement>() => {
   const ref = useRef<T>(null);
@@ -213,6 +214,27 @@ const Landing: React.FC = () => {
     },
   ];
 
+  const secondaryProofStats = [
+    {
+      value: "28 entries",
+      title: "A month of honest check-ins",
+      body: "Small, messy reflections build a story you can come back to instead of losing the feeling by tomorrow.",
+      icon: PenLine,
+    },
+    {
+      value: "5 day rhythm",
+      title: "A ritual that can actually stick",
+      body: "Because starting only takes a minute, showing up again feels softer and more realistic on heavy days.",
+      icon: TrendingUp,
+    },
+    {
+      value: "3 patterns noticed",
+      title: "Insight that feels personal",
+      body: "Ju can surface patterns like heavier Fridays or writing longer when your energy is low.",
+      icon: BrainCircuit,
+    },
+  ];
+
   return (
     <div className="min-h-screen bg-background">
       <nav className="sticky top-0 z-50 border-b border-border/60 bg-background/78 backdrop-blur-xl">
@@ -261,12 +283,12 @@ const Landing: React.FC = () => {
             </div>
 
             <h1 className="max-w-3xl text-balance font-serif text-5xl font-bold leading-[1.02] tracking-tight text-foreground sm:text-6xl lg:text-7xl">
-              When your mind feels full, Ju helps you let it out.
+              When your mind feels loud, Ju helps you hear yourself again.
             </h1>
 
             <p className="mt-6 max-w-2xl text-pretty text-lg leading-8 text-muted-foreground sm:text-xl">
-              Talk or write your thoughts, feel understood, and start noticing the patterns behind your moods.
-              Nuju is built to feel safe enough for hard nights and easy enough to come back to tomorrow.
+              Talk or write for a minute, feel understood right away, and watch your messy emotions turn into patterns
+              you can finally make sense of.
             </p>
 
             <div className="mt-8 flex flex-col gap-4 sm:flex-row">
@@ -309,101 +331,7 @@ const Landing: React.FC = () => {
             </div>
           </div>
 
-          <div className="relative">
-            <div className="absolute inset-x-8 top-6 h-72 rounded-full bg-primary/15 blur-[100px]" />
-            <div className="relative overflow-hidden rounded-[2rem] border border-border/60 bg-card/80 p-5 shadow-2xl backdrop-blur-2xl">
-              <div className="mb-5 flex items-center justify-between">
-                <div className="flex items-center gap-3">
-                  <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-primary/10">
-                    <img src={juMain} alt="Ju mascot" className="h-7 w-7 object-contain animate-ju-float" />
-                  </div>
-                  <div>
-                    <p className="font-semibold text-foreground">Ju is listening</p>
-                    <p className="text-xs font-medium text-muted-foreground">A softer space for what is hard to say out loud</p>
-                  </div>
-                </div>
-                <div className="rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold text-primary">
-                  Safe and private
-                </div>
-              </div>
-
-              <div className="space-y-4">
-                <div className="rounded-[1.5rem] border border-primary/15 bg-primary/[0.06] p-5">
-                  <div className="mb-3 flex items-center gap-2">
-                    <Mic className="h-4 w-4 text-primary" />
-                    <span className="text-xs font-bold uppercase tracking-[0.18em] text-primary">Voice journal</span>
-                  </div>
-                  <div className="mb-4 flex h-8 items-end gap-[3px]">
-                    {[32, 58, 84, 64, 42, 76, 96, 70, 50, 72, 46, 60].map((height, index) => (
-                      <span
-                        key={index}
-                        className="w-[4px] rounded-full bg-primary/40"
-                        style={{
-                          height: `${height}%`,
-                          animation: "typing-dots 1.6s ease-in-out infinite alternate",
-                          animationDelay: `${index * 0.09}s`,
-                        }}
-                      />
-                    ))}
-                  </div>
-                  <p className="text-sm leading-7 text-foreground/85">
-                    "I have been carrying so much all week and I did not realize how tired I was until I started talking."
-                  </p>
-                </div>
-
-                <div className="rounded-[1.5rem] border border-[#4ECDC4]/20 bg-[#4ECDC4]/8 p-5">
-                  <div className="mb-3 flex items-center gap-2">
-                    <BrainCircuit className="h-4 w-4 text-[#4ECDC4]" />
-                    <span className="text-xs font-bold uppercase tracking-[0.18em] text-[#4ECDC4]">Ju noticed</span>
-                  </div>
-                  <p className="text-[15px] leading-7 text-foreground">
-                    "You open up most honestly when you are overwhelmed. That is not a failure. It is you trying to take care of yourself."
-                  </p>
-                </div>
-
-                <div className="grid gap-3 sm:grid-cols-2">
-                  <div className="rounded-[1.5rem] border border-border/60 bg-card p-4">
-                    <p className="text-xs font-bold uppercase tracking-[0.18em] text-primary">Mood trend</p>
-                    <div className="mt-4 flex items-end gap-2">
-                      {[34, 52, 44, 60, 74, 68, 82].map((height, index) => (
-                        <div
-                          key={index}
-                          className="flex-1 rounded-t-xl bg-gradient-to-t from-primary to-[#4ECDC4]"
-                          style={{ height: `${height}px`, opacity: 0.86 - index * 0.06 }}
-                        />
-                      ))}
-                    </div>
-                    <p className="mt-3 text-xs text-muted-foreground">Your week is feeling steadier than the last one.</p>
-                  </div>
-
-                  <div className="rounded-[1.5rem] border border-border/60 bg-card p-4">
-                    <p className="text-xs font-bold uppercase tracking-[0.18em] text-primary">Why people keep coming back</p>
-                    <ul className="mt-4 space-y-2.5 text-sm text-foreground">
-                      <li className="flex items-start gap-2">
-                        <Check className="mt-0.5 h-4 w-4 text-primary" />
-                        <span>It feels easier than traditional journaling</span>
-                      </li>
-                      <li className="flex items-start gap-2">
-                        <Check className="mt-0.5 h-4 w-4 text-primary" />
-                        <span>The reflections sound caring, not cold</span>
-                      </li>
-                      <li className="flex items-start gap-2">
-                        <Check className="mt-0.5 h-4 w-4 text-primary" />
-                        <span>You start noticing your emotional patterns</span>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-
-                <div className="rounded-[1.75rem] border border-white/60 bg-white/90 p-5 shadow-xl backdrop-blur-xl dark:border-white/10 dark:bg-card/90">
-                  <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-primary">What makes it different</p>
-                  <p className="mt-2 font-serif text-lg leading-8 text-foreground">
-                    It feels like a private late-night conversation, then becomes a clearer picture of your inner world.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
+          <HeroPatternPreview />
         </div>
       </section>
 
@@ -528,6 +456,36 @@ const Landing: React.FC = () => {
             <h2 className="mt-4 font-serif text-4xl font-bold text-foreground sm:text-5xl">
               Warm enough to open up. Useful enough to come back.
             </h2>
+          </div>
+
+          <div className="mt-12 rounded-[2rem] border border-border/60 bg-card/90 p-6 shadow-sm sm:p-8">
+            <div className="flex flex-col gap-3 text-left sm:flex-row sm:items-end sm:justify-between">
+              <div>
+                <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">Example after a few weeks</p>
+                <h3 className="mt-2 font-serif text-3xl font-semibold text-foreground">
+                  The soft check-in turns into something you can actually see.
+                </h3>
+              </div>
+              <p className="max-w-md text-sm leading-7 text-muted-foreground">
+                Metrics like entries, streak, and patterns matter more after the emotional trust is there.
+              </p>
+            </div>
+
+            <div className="mt-8 grid gap-4 md:grid-cols-3">
+              {secondaryProofStats.map((stat) => {
+                const Icon = stat.icon;
+                return (
+                  <div key={stat.value} className="rounded-[1.6rem] bg-secondary/45 p-5">
+                    <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-primary/10">
+                      <Icon className="h-5 w-5 text-primary" />
+                    </div>
+                    <p className="mt-5 font-serif text-3xl font-semibold text-foreground">{stat.value}</p>
+                    <p className="mt-2 text-lg font-semibold text-foreground">{stat.title}</p>
+                    <p className="mt-3 text-sm leading-7 text-muted-foreground">{stat.body}</p>
+                  </div>
+                );
+              })}
+            </div>
           </div>
 
           <div className="mt-12 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
