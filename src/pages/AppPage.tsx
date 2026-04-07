@@ -48,7 +48,11 @@ const AppPage: React.FC = () => {
     try {
       const allScreens: Screen[] = ["home", "journal", "insights", "coach", "explore", "pro", "settings", "programs", "year-review", "history"];
       const urlScreen = new URLSearchParams(window.location.search).get("screen") as Screen | null;
-      if (urlScreen && allScreens.includes(urlScreen)) return urlScreen;
+      if (urlScreen && allScreens.includes(urlScreen)) {
+        // Clear the URL param so it doesn't stick on future refreshes
+        window.history.replaceState({}, "", window.location.pathname);
+        return urlScreen;
+      }
       const saved = localStorage.getItem("nuju-screen") as Screen | null;
       const mainTabs: Screen[] = ["home", "insights", "coach", "explore"];
       return saved && mainTabs.includes(saved) ? saved : "home";
