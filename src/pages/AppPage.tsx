@@ -23,6 +23,8 @@ import YearInReviewScreen from "@/components/app/YearInReviewScreen";
 import ExploreScreen from "@/components/app/ExploreScreen";
 import HistoryScreen from "@/components/app/HistoryScreen";
 import TrialBanner from "@/components/app/TrialBanner";
+import MomentCaptureButton from "@/components/moments/MomentCaptureButton";
+import MomentCaptureModal from "@/components/moments/MomentCaptureModal";
 import { getTrialStatus } from "@/lib/trial";
 import Confetti from "@/components/app/Confetti";
 import AchievementPopup from "@/components/app/AchievementPopup";
@@ -45,7 +47,7 @@ const AppPage: React.FC = () => {
   const [screen, setScreen] = useState<Screen>(() => {
     try {
       const saved = localStorage.getItem("nuju-screen") as Screen | null;
-      const mainTabs: Screen[] = ["home", "insights", "coach", "explore", "pro"];
+      const mainTabs: Screen[] = ["home", "insights", "coach", "explore"];
       return saved && mainTabs.includes(saved) ? saved : "home";
     } catch { return "home"; }
   });
@@ -64,11 +66,12 @@ const AppPage: React.FC = () => {
   const [showTour, setShowTour] = useState(false);
   const [unlockedAchievement, setUnlockedAchievement] = useState<Achievement | null>(null);
   const [appLocked, setAppLocked] = useState(() => !!localStorage.getItem("nuju-pin-hash"));
+  const [showMomentCapture, setShowMomentCapture] = useState(false);
   const biometricEnabled = localStorage.getItem("nuju-biometric") === "1";
   const biometricSupported = typeof window !== "undefined" && window.PublicKeyCredential !== undefined;
 
   // Screen ordering for directional transitions
-  const screenOrder: Screen[] = ["home", "insights", "coach", "explore", "pro"];
+  const screenOrder: Screen[] = ["home", "insights", "coach", "explore"];
 
   // Initialize notification reminders
   useEffect(() => { initReminders(); }, []);
@@ -429,7 +432,6 @@ const AppPage: React.FC = () => {
     { id: "insights" as const, icon: BarChart3, label: t.insights_label },
     { id: "coach" as const, icon: MessageCircle, label: t.coach_label },
     { id: "explore" as const, icon: Compass, label: "Explore" },
-    { id: "pro" as const, icon: Sparkles, label: t.pro_label },
   ];
 
   return (
@@ -441,6 +443,22 @@ const AppPage: React.FC = () => {
       <AchievementPopup
         achievement={unlockedAchievement}
         onClose={() => setUnlockedAchievement(null)}
+      />
+
+      {/* Moment Capture Modal */}
+      <MomentCaptureModal
+        isOpen={showMomentCapture}
+        onClose={() => setShowMomentCapture(false)}
+        hasProAccess={hasProAccess(profile?.plan || "free", profile?.trial_started_at || null)}
+        onUpgrade={() => navigateTo("pro")}
+        onSelectType={(type) => {
+          // TODO: Handle moment capture types
+          console.log("Capturing moment type:", type);
+          if (type === "quick") {
+            navigateTo("journal");
+            setTimeout(() => setJournalPrompt("📍 Quick Moment Capture"), 100);
+          }
+        }}
       />
 
       {/* Signup prompt modal after 3rd entry */}
@@ -604,6 +622,12 @@ const AppPage: React.FC = () => {
           onNavigate={(s) => navigateTo(s as Screen)}
         />
       )}
+
+      {/* Moment Capture Floating Button (Pro feature) */}
+      <MomentCaptureButton
+        onClick={() => setShowMomentCapture(true)}
+        hasProAccess={hasProAccess(profile?.plan || "free", profile?.trial_started_at || null)}
+      />
 
       {/* Floating glass tab bar with spring animations */}
       {screen !== "journal" && screen !== "settings" && (

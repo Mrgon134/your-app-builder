@@ -8,6 +8,7 @@ import HistoryLock from "@/components/app/HistoryLock";
 import MoodTrendChart from "@/components/app/MoodTrendChart";
 import AiMemoryCard from "@/components/app/AiMemoryCard";
 import ShareMenu from "@/components/app/ShareMenu";
+import SmartNotificationsPanel from "@/components/insights/SmartNotificationsPanel";
 import { JU_STICKERS } from "@/lib/stickers";
 import { SUPABASE_URL, SUPABASE_ANON_KEY } from "@/integrations/supabase/client";
 import { EntryRow } from "@/lib/api";
@@ -277,15 +278,22 @@ const InsightsScreen: React.FC<InsightsScreenProps> = ({ entries, streak = 0, on
         )}
       </div>
 
+      {/* Smart Notifications Panel (Pro feature) */}
+      <SmartNotificationsPanel
+        entries={entries}
+        onUpgrade={onUpgrade}
+        hasProAccess={hasProAccess(plan ?? null, trialStartedAt ?? null)}
+      />
+
       {/* Mood Correlation Insights */}
       {bestDayOfWeek && (
         <div className="glass-card rounded-2xl p-5">
           <p className="text-[11px] font-semibold text-primary uppercase tracking-widest mb-3">Hidden Pattern</p>
           <p className="text-[15px] font-medium text-foreground leading-relaxed">
-            You tend to have your best days on <span className="text-primary font-bold">{bestDayOfWeek}s</span>. 
+            You tend to have your best days on <span className="text-primary font-bold">{bestDayOfWeek}s</span>.
           </p>
           {onNavigate && (
-            <button 
+            <button
               onClick={() => onNavigate("coach")}
               className="mt-4 flex items-center gap-1.5 text-[13px] font-semibold text-muted-foreground hover:text-foreground transition-colors"
             >
