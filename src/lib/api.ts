@@ -267,7 +267,7 @@ export interface HabitRow {
   user_id: string;
   name: string;
   description?: string;
-  icon: string;
+  emoji: string;
   color: string;
   frequency: 'daily' | 'weekly';
   reminder_time?: string;
@@ -286,10 +286,10 @@ export const fetchHabits = async (userId: string): Promise<HabitRow[]> => {
   return data || [];
 };
 
-export const createHabit = async (userId: string, name: string, icon: string = "✨", color: string = "#7C6EDB"): Promise<HabitRow> => {
+export const createHabit = async (userId: string, name: string, emoji: string = "✨", color: string = "#7C6EDB"): Promise<HabitRow> => {
   const { data, error } = await supabase
     .from("habits")
-    .insert([{ user_id: userId, name, icon, color, frequency: "daily", is_active: true }])
+    .insert([{ user_id: userId, name, emoji, color, frequency: "daily", is_active: true }])
     .select()
     .single();
   if (error) throw error;
