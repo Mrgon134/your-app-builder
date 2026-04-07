@@ -12,6 +12,15 @@ const Support: React.FC = () => {
   const navigate = useNavigate();
   const [openId, setOpenId] = useState<number | null>(0);
 
+  // Go back to the previous page, or to app if no referrer
+  const handleBack = () => {
+    if (window.history.length > 1) {
+      navigate(-1);
+    } else {
+      navigate("/app");
+    }
+  };
+
   const faqItems: FAQItem[] = [
     {
       question: "What is Nuju?",
@@ -74,7 +83,7 @@ const Support: React.FC = () => {
   return (
     <div className="min-h-screen bg-background">
       <div className="max-w-2xl mx-auto px-6 py-12">
-        <button onClick={() => navigate(-1)} className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors mb-8 bg-transparent border-none cursor-pointer">
+        <button onClick={handleBack} className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors mb-8 bg-transparent border-none cursor-pointer">
           <ArrowLeft className="w-4 h-4" />
           <span className="text-sm">Back</span>
         </button>
