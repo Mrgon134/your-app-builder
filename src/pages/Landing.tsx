@@ -736,17 +736,17 @@ const Landing: React.FC = () => {
 
           {/* Legal Links */}
           <div className="flex flex-wrap justify-center gap-4 text-xs border-t border-border/40 pt-6">
-            <Link to="/about" className="text-muted-foreground hover:text-foreground transition-colors">About</Link>
+            <Link to="/about" state={{ from: "/" }} className="text-muted-foreground hover:text-foreground transition-colors">About</Link>
             <span className="text-border/40">•</span>
-            <Link to="/support" className="text-muted-foreground hover:text-foreground transition-colors">Support</Link>
+            <Link to="/support" state={{ from: "/" }} className="text-muted-foreground hover:text-foreground transition-colors">Support</Link>
             <span className="text-border/40">•</span>
-            <Link to="/contact" className="text-muted-foreground hover:text-foreground transition-colors">Contact</Link>
+            <Link to="/contact" state={{ from: "/" }} className="text-muted-foreground hover:text-foreground transition-colors">Contact</Link>
             <span className="text-border/40">•</span>
-            <Link to="/privacy" className="text-muted-foreground hover:text-foreground transition-colors">Privacy</Link>
+            <Link to="/privacy" state={{ from: "/" }} className="text-muted-foreground hover:text-foreground transition-colors">Privacy</Link>
             <span className="text-border/40">•</span>
-            <Link to="/terms" className="text-muted-foreground hover:text-foreground transition-colors">Terms</Link>
+            <Link to="/terms" state={{ from: "/" }} className="text-muted-foreground hover:text-foreground transition-colors">Terms</Link>
             <span className="text-border/40">•</span>
-            <Link to="/medical-disclaimer" className="text-muted-foreground hover:text-foreground transition-colors">Medical Disclaimer</Link>
+            <Link to="/medical-disclaimer" state={{ from: "/" }} className="text-muted-foreground hover:text-foreground transition-colors">Medical Disclaimer</Link>
           </div>
         </div>
       </footer>

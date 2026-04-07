@@ -12,10 +12,10 @@ const Support: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [openId, setOpenId] = useState<number | null>(0);
+  const from = (location.state as any)?.from || "/app?screen=settings";
+  const linkState = { from };
 
-  // Go back to Settings in /app (not browser back which might go to landing)
   const handleBack = () => {
-    const from = (location.state as any)?.from || "/app?screen=settings";
     navigate(from);
   };
 
@@ -34,7 +34,7 @@ const Support: React.FC = () => {
     },
     {
       question: "Can I export my data?",
-      answer: <>Yes! Go to Settings → Export Data to download your entire journal as a text file. You can also request data export through our <Link to="/contact" className="text-primary hover:underline">contact page</Link>.</>,
+      answer: <>Yes! Go to Settings → Export Data to download your entire journal as a text file. You can also request data export through our <Link to="/contact" state={linkState} className="text-primary hover:underline">contact page</Link>.</>,
     },
     {
       question: "What can Plus unlock?",
@@ -121,6 +121,7 @@ const Support: React.FC = () => {
           </p>
           <Link
             to="/contact"
+            state={linkState}
             className="inline-block bg-primary text-primary-foreground px-4 py-2 rounded-lg font-semibold hover:bg-primary/90 transition-colors"
           >
             Contact Us →
@@ -130,18 +131,18 @@ const Support: React.FC = () => {
         {/* Health Disclaimer Notice */}
         <div className="bg-amber-500/10 border border-amber-500/30 rounded-lg p-4 mb-8">
           <p className="text-sm text-foreground">
-            <strong>Important:</strong> Nuju is not a medical service. If you are in crisis or need immediate mental health support, please <Link to="/medical-disclaimer" className="text-primary hover:underline">read our medical disclaimer</Link> and contact emergency services or a mental health professional.
+            <strong>Important:</strong> Nuju is not a medical service. If you are in crisis or need immediate mental health support, please <Link to="/medical-disclaimer" state={linkState} className="text-primary hover:underline">read our medical disclaimer</Link> and contact emergency services or a mental health professional.
           </p>
         </div>
 
         <div className="mt-12 pt-8 border-t border-border">
           <p className="text-xs text-muted-foreground text-center">© 2026 Nuju. All rights reserved.</p>
           <div className="flex flex-wrap justify-center gap-4 mt-4 text-xs">
-            <Link to="/privacy" className="text-primary hover:underline">Privacy Policy</Link>
-            <Link to="/terms" className="text-primary hover:underline">Terms of Service</Link>
-            <Link to="/medical-disclaimer" className="text-primary hover:underline">Medical Disclaimer</Link>
-            <Link to="/contact" className="text-primary hover:underline">Contact</Link>
-            <Link to="/about" className="text-primary hover:underline">About</Link>
+            <Link to="/privacy" state={linkState} className="text-primary hover:underline">Privacy Policy</Link>
+            <Link to="/terms" state={linkState} className="text-primary hover:underline">Terms of Service</Link>
+            <Link to="/medical-disclaimer" state={linkState} className="text-primary hover:underline">Medical Disclaimer</Link>
+            <Link to="/contact" state={linkState} className="text-primary hover:underline">Contact</Link>
+            <Link to="/about" state={linkState} className="text-primary hover:underline">About</Link>
           </div>
         </div>
       </div>
