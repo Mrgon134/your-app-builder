@@ -74,7 +74,7 @@ const PricingScreen: React.FC<PricingScreenProps> = ({
       badge: trial.notStarted
         ? (t.pro_trial_badge || "Includes 7-day free trial")
         : (t.most_popular || "Most popular"),
-      highlight: true,
+      highlight: false,
       getPrice: () => annual ? geo.rates.proAnnual : geo.rates.proMonthly,
       features: [
         t.pro_feature_1_v2 || "Everything in Plus",
@@ -88,8 +88,8 @@ const PricingScreen: React.FC<PricingScreenProps> = ({
       id: "lifetime",
       name: "Lifetime Pro",
       tagline: t.lifetime_tagline_v2 || "One payment, full access forever.",
-      badge: t.lifetime_badge || "Best for long-term users",
-      highlight: false,
+      badge: "Early Access",
+      highlight: true,
       getPrice: () => geo.rates.lifetime,
       features: [
         t.lifetime_feature_1 || "Everything in Pro",

@@ -186,7 +186,9 @@ const AppPage: React.FC = () => {
     const intent = consumeAuthIntent();
     if (!intent) return;
 
-    if (intent.screen === "pro") {
+    if (intent.plan === "lifetime_one_time") {
+      handleCheckout("lifetime_one_time");
+    } else if (intent.screen === "pro") {
       navigateTo("pro");
     }
   }, [user, loading, navigateTo]);
@@ -490,7 +492,7 @@ const AppPage: React.FC = () => {
   };
 
   if (showOnboarding) {
-    return <OnboardingScreen onComplete={handleOnboardingComplete} onStartTrial={handleStartTrial} />;
+    return <OnboardingScreen onComplete={handleOnboardingComplete} onStartTrial={handleStartTrial} onCheckout={handleCheckout} />;
   }
 
   if (loading) {

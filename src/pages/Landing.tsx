@@ -210,7 +210,7 @@ const Landing: React.FC = () => {
       price: geo.formatPrice(geo.rates.proMonthly),
       note: `${weeklyPrice(geo.rates.proMonthly)} per week for voice, memory, and deeper support.`,
       badge: "Most loved by active users",
-      highlight: true,
+      highlight: false,
       cta: "Start 7-day Pro trial",
       onClick: () => startPlanSignup("pro_monthly", true),
       features: [
@@ -224,11 +224,11 @@ const Landing: React.FC = () => {
       name: "Lifetime Pro",
       price: geo.formatPrice(geo.rates.lifetime),
       note: "One payment. Full Pro access forever.",
-      badge: null,
-      highlight: false,
+      badge: "Early Access",
+      highlight: true,
       cta: `Get Lifetime Pro — ${geo.formatPrice(geo.rates.lifetime)}`,
       onClick: () => {
-        saveAuthIntent({ source: "landing", screen: "pro", plan: "lifetime_one_time" as any });
+        saveAuthIntent({ source: "landing", screen: "pro", plan: "lifetime_one_time" });
         navigate("/auth?mode=signup");
       },
       features: [

@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { useLang } from "@/lib/i18n";
 import { motion, AnimatePresence, useMotionValue, useTransform, PanInfo } from "framer-motion";
-import { Bell, Check, ChevronLeft, Star, X, Crown } from "lucide-react";
+import { Bell, Check, ChevronLeft, Star, X, Crown, Flame } from "lucide-react";
 import { MOODS, AI_PERSONAS } from "@/lib/constants";
+import { PRICING_CONFIG } from "@/lib/config";
 import MoodIcon from "@/components/MoodIcon";
 import {
   requestNotificationPermission,
@@ -182,9 +183,10 @@ const SwipeCard: React.FC<{
 interface OnboardingProps {
   onComplete: () => void;
   onStartTrial?: () => void;
+  onCheckout?: (plan: string) => void;
 }
 
-const OnboardingScreen: React.FC<OnboardingProps> = ({ onComplete, onStartTrial }) => {
+const OnboardingScreen: React.FC<OnboardingProps> = ({ onComplete, onStartTrial, onCheckout }) => {
   const { t } = useLang();
 
   const [step, setStep] = useState(0);
@@ -962,10 +964,13 @@ const OnboardingScreen: React.FC<OnboardingProps> = ({ onComplete, onStartTrial 
         ))}
       </div>
 
-      {/* Trial CTA */}
+      {/* Lifetime CTA — highlighted */}
       <motion.button
-        onClick={() => handleFinish(true)}
-        className="w-full py-4 rounded-2xl font-bold text-base mb-3 relative overflow-hidden"
+        onClick={() => {
+          if (onCheckout) onCheckout("lifetime_one_time");
+          handleFinish(false);
+        }}
+        className="w-full py-4 rounded-2xl font-bold text-base mb-2 relative overflow-hidden"
         style={{
           background: "linear-gradient(135deg, #7C6EDB, #4ECDC4)",
           color: "white",
@@ -975,13 +980,38 @@ const OnboardingScreen: React.FC<OnboardingProps> = ({ onComplete, onStartTrial 
       >
         <div className="flex items-center justify-center gap-2">
           <Crown className="w-4 h-4" />
-          {t.onb_paywall_cta || "Start 7-day free trial"}
+          Get Lifetime Pro — ${PRICING_CONFIG.lifetime.flatPrice}
         </div>
       </motion.button>
 
-      <SecondaryButton onClick={() => handleFinish(false)}>
-        {t.onb_paywall_free || "Continue with free plan"}
-      </SecondaryButton>
+      {PRICING_CONFIG.lifetimeSlots.left > 0 && (
+        <div className="flex items-center justify-center gap-1.5 mb-4">
+          <Flame className="w-3.5 h-3.5 text-[#FF6B35]" />
+          <span className="text-xs font-bold text-[#FF6B35]">
+            Only {PRICING_CONFIG.lifetimeSlots.left}/{PRICING_CONFIG.lifetimeSlots.total} Early Access slots left
+          </span>
+        </div>
+      )}
+
+      {/* Trial — secondary/grey */}
+      <button
+        onClick={() => handleFinish(true)}
+        className="w-full py-3.5 rounded-2xl font-semibold text-sm mb-1"
+        style={{
+          background: "rgba(124,110,219,0.08)",
+          color: "#777",
+        }}
+      >
+        {t.onb_paywall_cta || "Start 7-day free trial"}
+      </button>
+
+      <button
+        onClick={() => handleFinish(false)}
+        className="w-full py-2 text-xs font-medium"
+        style={{ color: "#999" }}
+      >
+        {t.onb_paywall_skip || "Skip"}
+      </button>
     </div>
   );
 
