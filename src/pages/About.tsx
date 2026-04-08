@@ -19,6 +19,10 @@ const About: React.FC = () => {
         title="About Nuju"
         description="Learn how Nuju was built — a 30-second AI journaling app designed to help you understand your emotional patterns and feel heard every day."
         canonical="https://nuju.app/about"
+        breadcrumbs={[
+          { name: "Home", url: "https://nuju.app/" },
+          { name: "About", url: "https://nuju.app/about" },
+        ]}
       />
       <div className="max-w-2xl mx-auto px-6 py-12">
         <button onClick={handleBack} className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors mb-8 bg-transparent border-none cursor-pointer">

@@ -19,6 +19,10 @@ const Terms: React.FC = () => {
         description="Read Nuju's terms of service — the rules and guidelines for using the Nuju AI journaling app."
         canonical="https://nuju.app/terms"
         noindex
+        breadcrumbs={[
+          { name: "Home", url: "https://nuju.app/" },
+          { name: "Terms of Service", url: "https://nuju.app/terms" },
+        ]}
       />
       <div className="max-w-2xl mx-auto px-6 py-12">
         <button onClick={handleBack} className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors mb-8 bg-transparent border-none cursor-pointer">

@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate, useLocation, Link } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
+import SEOHead from "@/components/SEOHead";
 
 const MedicalDisclaimer: React.FC = () => {
   const navigate = useNavigate();
@@ -14,6 +15,15 @@ const MedicalDisclaimer: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <SEOHead
+        title="Medical Disclaimer"
+        description="Important medical disclaimer for Nuju — the app is not a medical service and should not replace professional mental health support."
+        canonical="https://nuju.app/medical-disclaimer"
+        breadcrumbs={[
+          { name: "Home", url: "https://nuju.app/" },
+          { name: "Medical Disclaimer", url: "https://nuju.app/medical-disclaimer" },
+        ]}
+      />
       <div className="max-w-2xl mx-auto px-6 py-12">
         <button onClick={handleBack} className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors mb-8 bg-transparent border-none cursor-pointer">
           <ArrowLeft className="w-4 h-4" />

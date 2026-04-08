@@ -19,6 +19,10 @@ const Privacy: React.FC = () => {
         description="Learn how Nuju collects, uses, and protects your personal data and journal entries. Your privacy is our priority."
         canonical="https://nuju.app/privacy"
         noindex
+        breadcrumbs={[
+          { name: "Home", url: "https://nuju.app/" },
+          { name: "Privacy Policy", url: "https://nuju.app/privacy" },
+        ]}
       />
       <div className="max-w-2xl mx-auto px-6 py-12">
         <button onClick={handleBack} className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors mb-8 bg-transparent border-none cursor-pointer">
