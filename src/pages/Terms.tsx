@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
+import SEOHead from "@/components/SEOHead";
 
 const Terms: React.FC = () => {
   const navigate = useNavigate();
@@ -13,6 +14,12 @@ const Terms: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <SEOHead
+        title="Terms of Service"
+        description="Read Nuju's terms of service — the rules and guidelines for using the Nuju AI journaling app."
+        canonical="https://nuju.app/terms"
+        noindex
+      />
       <div className="max-w-2xl mx-auto px-6 py-12">
         <button onClick={handleBack} className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors mb-8 bg-transparent border-none cursor-pointer">
           <ArrowLeft className="w-4 h-4" />

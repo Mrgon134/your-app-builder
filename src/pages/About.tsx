@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate, useLocation, Link } from "react-router-dom";
 import { ArrowLeft, Heart, Shield, Sparkles, Code } from "lucide-react";
+import SEOHead from "@/components/SEOHead";
 
 const About: React.FC = () => {
   const navigate = useNavigate();
@@ -14,6 +15,11 @@ const About: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <SEOHead
+        title="About Nuju"
+        description="Learn how Nuju was built — a 30-second AI journaling app designed to help you understand your emotional patterns and feel heard every day."
+        canonical="https://nuju.app/about"
+      />
       <div className="max-w-2xl mx-auto px-6 py-12">
         <button onClick={handleBack} className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors mb-8 bg-transparent border-none cursor-pointer">
           <ArrowLeft className="w-4 h-4" />

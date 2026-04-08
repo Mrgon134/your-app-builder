@@ -23,6 +23,7 @@ import {
 import { PRICING_CONFIG } from "@/lib/config";
 import juMain from "@/assets/ju-main.webp";
 import HeroPatternPreview from "@/components/landing/HeroPatternPreview";
+import SEOHead from "@/components/SEOHead";
 
 const useReveal = <T extends HTMLElement = HTMLDivElement>() => {
   const ref = useRef<T>(null);
@@ -263,6 +264,11 @@ const Landing: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <SEOHead
+        title="AI Journal That Understands Your Life"
+        description="The 30-second AI journal app that actually listens. Track your moods, discover hidden life patterns, and talk to your personal AI coach today. Free to start."
+        canonical="https://nuju.app/"
+      />
       <nav className="sticky top-0 z-50 border-b border-border/60 bg-background/78 backdrop-blur-xl">
         <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4">
           <div className="flex items-center gap-3">
