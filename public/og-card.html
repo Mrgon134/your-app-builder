@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      width: 1200px;
+      height: 630px;
+      overflow: hidden;
+      font-family: -apple-system, 'Segoe UI', sans-serif;
+      background: #13111C;
+    }
+
+    .card {
+      width: 1200px;
+      height: 630px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+      overflow: hidden;
+    }
+
+    /* Background glows */
+    .glow-top {
+      position: absolute;
+      top: -120px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 700px;
+      height: 500px;
+      background: radial-gradient(ellipse, rgba(124,110,219,0.22) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .glow-left {
+      position: absolute;
+      bottom: -80px;
+      left: -80px;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(ellipse, rgba(78,205,196,0.10) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .glow-right {
+      position: absolute;
+      top: 0;
+      right: -80px;
+      width: 350px;
+      height: 350px;
+      background: radial-gradient(ellipse, rgba(255,179,71,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    /* Grid dots subtle */
+    .dots {
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(rgba(124,110,219,0.12) 1px, transparent 1px);
+      background-size: 40px 40px;
+      pointer-events: none;
+    }
+
+    /* Content */
+    .content {
+      position: relative;
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+    }
+
+    /* Icon */
+    .icon-wrap {
+      width: 96px;
+      height: 96px;
+      border-radius: 28px;
+      background: rgba(124,110,219,0.12);
+      border: 1.5px solid rgba(124,110,219,0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 28px;
+    }
+    .icon-wrap img {
+      width: 68px;
+      height: 68px;
+      object-fit: contain;
+    }
+
+    /* App name */
+    .app-name {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 84px;
+      font-weight: bold;
+      color: #E8E4F8;
+      letter-spacing: -2px;
+      line-height: 1;
+      margin-bottom: 20px;
+    }
+
+    /* Tagline */
+    .tagline {
+      font-size: 28px;
+      font-weight: 400;
+      color: #9B93C0;
+      text-align: center;
+      max-width: 720px;
+      line-height: 1.4;
+      margin-bottom: 40px;
+    }
+    .tagline strong {
+      color: #C4BFEA;
+      font-weight: 500;
+    }
+
+    /* Pills */
+    .pills {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 48px;
+    }
+    .pill {
+      padding: 10px 24px;
+      border-radius: 100px;
+      font-size: 17px;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .pill-purple {
+      background: rgba(124,110,219,0.12);
+      border: 1px solid rgba(124,110,219,0.3);
+      color: #B8B0E8;
+    }
+    .pill-teal {
+      background: rgba(78,205,196,0.08);
+      border: 1px solid rgba(78,205,196,0.25);
+      color: #4ECDC4;
+    }
+    .pill-orange {
+      background: rgba(255,179,71,0.08);
+      border: 1px solid rgba(255,179,71,0.25);
+      color: #FFB347;
+    }
+
+    /* Domain */
+    .domain {
+      font-size: 20px;
+      color: rgba(124,110,219,0.6);
+      letter-spacing: 0.5px;
+    }
+
+    /* Border */
+    .border-line {
+      position: absolute;
+      inset: 0;
+      border: 1px solid rgba(124,110,219,0.08);
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="dots"></div>
+    <div class="glow-top"></div>
+    <div class="glow-left"></div>
+    <div class="glow-right"></div>
+    <div class="border-line"></div>
+
+    <div class="content">
+      <div class="icon-wrap">
+        <img src="/pwa-192x192.png" alt="Nuju" />
+      </div>
+
+      <div class="app-name">Nuju</div>
+
+      <div class="tagline">
+        The <strong>30-second AI journal</strong> that understands your life.
+      </div>
+
+      <div class="pills">
+        <div class="pill pill-purple">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          Mood Tracking
+        </div>
+        <div class="pill pill-teal">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          AI Coach
+        </div>
+        <div class="pill pill-orange">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+          Voice Journal
+        </div>
+      </div>
+
+      <div class="domain">nuju.app</div>
+    </div>
+  </div>
+</body>
+</html>
