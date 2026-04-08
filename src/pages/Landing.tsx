@@ -88,6 +88,7 @@ const Landing: React.FC = () => {
     navigate("/auth?mode=signup");
   };
   const startPlanSignup = (plan: "plus_monthly" | "pro_monthly", trial = false) => {
+    ttk.trackAddToCart(plan);
     ttk.trackWaitlistSignup();
     saveAuthIntent({ source: "landing", screen: "pro", plan, trial });
     navigate("/auth?mode=signup");
