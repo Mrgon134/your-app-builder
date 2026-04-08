@@ -1,4 +1,5 @@
 import { createRoot } from "react-dom/client";
+import { HelmetProvider } from "react-helmet-async";
 import App from "./App.tsx";
 import "./index.css";
 import posthog from "posthog-js";
@@ -17,7 +18,9 @@ if (localStorage.getItem("nuju-dark") === "1") {
 }
 
 createRoot(document.getElementById("root")!).render(
-  <PostHogProvider client={posthog}>
-    <App />
-  </PostHogProvider>
+  <HelmetProvider>
+    <PostHogProvider client={posthog}>
+      <App />
+    </PostHogProvider>
+  </HelmetProvider>
 );

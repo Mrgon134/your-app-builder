@@ -2,6 +2,7 @@ import React from "react";
 import { useNavigate, useLocation, Link } from "react-router-dom";
 import { ArrowLeft, ChevronDown } from "lucide-react";
 import { useState } from "react";
+import SEOHead from "@/components/SEOHead";
 
 interface FAQItem {
   question: string;
@@ -80,6 +81,11 @@ const Support: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <SEOHead
+        title="Support & FAQ"
+        description="Get help with Nuju — frequently asked questions, contact info, and everything you need to get the most out of your AI journal."
+        canonical="https://nuju.app/support"
+      />
       <div className="max-w-2xl mx-auto px-6 py-12">
         <button onClick={handleBack} className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors mb-8 bg-transparent border-none cursor-pointer">
           <ArrowLeft className="w-4 h-4" />

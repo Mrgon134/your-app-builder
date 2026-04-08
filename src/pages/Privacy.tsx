@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
+import SEOHead from "@/components/SEOHead";
 
 const Privacy: React.FC = () => {
   const navigate = useNavigate();
@@ -13,6 +14,12 @@ const Privacy: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <SEOHead
+        title="Privacy Policy"
+        description="Learn how Nuju collects, uses, and protects your personal data and journal entries. Your privacy is our priority."
+        canonical="https://nuju.app/privacy"
+        noindex
+      />
       <div className="max-w-2xl mx-auto px-6 py-12">
         <button onClick={handleBack} className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors mb-8 bg-transparent border-none cursor-pointer">
           <ArrowLeft className="w-4 h-4" />
