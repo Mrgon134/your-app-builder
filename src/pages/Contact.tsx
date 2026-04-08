@@ -53,6 +53,10 @@ const Contact: React.FC = () => {
         title="Contact Us"
         description="Reach out to the Nuju team — we're here to help with questions, feedback, or anything about your journaling experience."
         canonical="https://nuju.app/contact"
+        breadcrumbs={[
+          { name: "Home", url: "https://nuju.app/" },
+          { name: "Contact", url: "https://nuju.app/contact" },
+        ]}
       />
       <div className="max-w-2xl mx-auto px-6 py-12">
         <button onClick={handleBack} className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors mb-8 bg-transparent border-none cursor-pointer">

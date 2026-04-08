@@ -687,7 +687,7 @@ const Landing: React.FC = () => {
       >
           <div className="mx-auto max-w-4xl rounded-[2.5rem] border border-border/60 bg-card px-6 py-12 text-center shadow-xl sm:px-10">
           <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-primary/10">
-            <img src={juMain} alt="Ju" className="h-14 w-14 animate-ju-float object-contain" />
+            <img src={juMain} alt="Ju" className="h-14 w-14 animate-ju-float object-contain" width={56} height={56} loading="lazy" />
           </div>
           <h2 className="mt-6 font-serif text-4xl font-bold text-foreground sm:text-5xl">
             You do not need the perfect words to begin.
@@ -724,7 +724,7 @@ const Landing: React.FC = () => {
         <div className="mx-auto max-w-6xl space-y-6">
           <div className="flex flex-col items-center justify-between gap-4 sm:flex-row sm:text-left">
             <div className="flex items-center gap-3">
-              <img src={juMain} alt="Ju" className="h-8 w-8 object-contain" />
+              <img src={juMain} alt="Ju" className="h-8 w-8 object-contain" width={32} height={32} loading="lazy" />
               <div>
                 <p className="font-serif text-lg font-bold text-foreground">Nuju</p>
                 <p className="text-sm text-muted-foreground">A journal that feels like support.</p>

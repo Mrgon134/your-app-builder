@@ -15,7 +15,7 @@ const HeroPatternPreview: React.FC = () => {
         <div className="flex items-center justify-between gap-3">
           <div className="flex items-center gap-3">
             <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-primary/10">
-              <img src={juMain} alt="Ju mascot" className="h-7 w-7 animate-ju-float object-contain" />
+              <img src={juMain} alt="Ju mascot" className="h-7 w-7 animate-ju-float object-contain" width={28} height={28} />
             </div>
             <div>
               <p className="font-semibold text-foreground">Ju is listening</p>

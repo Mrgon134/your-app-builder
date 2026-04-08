@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useLang } from "@/lib/i18n";
 import { JU_STICKERS } from "@/lib/stickers";
 import { Download, Share, MoreVertical, Plus, Check } from "lucide-react";
+import SEOHead from "@/components/SEOHead";
 
 interface BeforeInstallPromptEvent extends Event {
   prompt: () => Promise<void>;
@@ -39,10 +40,21 @@ const Install: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-background flex flex-col items-center justify-center px-6 py-12">
+      <SEOHead
+        title="Install Nuju"
+        description="Add Nuju to your home screen for the full app experience — works offline on iOS, Android, and desktop."
+        canonical="https://nuju.app/install"
+        breadcrumbs={[
+          { name: "Home", url: "https://nuju.app/" },
+          { name: "Install", url: "https://nuju.app/install" },
+        ]}
+      />
       <img
         src={JU_STICKERS.love}
         alt="Ju"
         className="w-24 h-24 mb-6 animate-[ju-float_3s_ease-in-out_infinite]"
+        width={96}
+        height={96}
       />
 
       {installed ? (
