@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { useGeoPricing } from "@/hooks/use-geo-pricing";
 import { usePostHogEvents } from "@/hooks/use-posthog-events";
+import { useTikTokPixel } from "@/hooks/use-tiktok-pixel";
 import { saveAuthIntent } from "@/lib/auth-intent";
 import {
   ArrowRight,
@@ -58,9 +59,11 @@ const Landing: React.FC = () => {
   const geo = useGeoPricing();
   const pricingSectionRef = useRef<HTMLElement>(null);
   const { trackLandingView, trackWaitlistSignup } = usePostHogEvents();
+  const ttk = useTikTokPixel();
 
   useEffect(() => {
     trackLandingView();
+    ttk.trackPageView();
   }, []);
 
   const heroReveal = useReveal();
@@ -69,6 +72,12 @@ const Landing: React.FC = () => {
   const proofReveal = useReveal();
   const pricingReveal = useReveal<HTMLElement>();
   const ctaReveal = useReveal();
+
+  useEffect(() => {
+    if (pricingReveal.visible) {
+      ttk.trackPricingView();
+    }
+  }, [pricingReveal.visible]);
 
   const scrollToPricing = () =>
     pricingSectionRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -79,6 +88,7 @@ const Landing: React.FC = () => {
     navigate("/auth?mode=signup");
   };
   const startPlanSignup = (plan: "plus_monthly" | "pro_monthly", trial = false) => {
+    ttk.trackWaitlistSignup();
     saveAuthIntent({ source: "landing", screen: "pro", plan, trial });
     navigate("/auth?mode=signup");
   };
