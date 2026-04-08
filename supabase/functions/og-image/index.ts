@@ -5,6 +5,17 @@ import { Resvg, initWasm } from "https://esm.sh/@resvg/resvg-wasm@2.6.0";
 const wasmResponse = await fetch("https://esm.sh/@resvg/resvg-wasm@2.6.0/index_bg.wasm");
 await initWasm(wasmResponse);
 
+// Load fonts at cold start for proper text rendering
+const serifFontUrl = "https://fonts.gstatic.com/s/lora/v35/0QI6MX1D_JOuGQbT0gvTJPa787weuyJGmKxemMeZ.ttf";
+const sansFontUrl = "https://fonts.gstatic.com/s/dmsans/v15/rP2Hp2ywxg089UriCZOIHTWEBlw.ttf";
+
+const [serifRes, sansRes] = await Promise.all([
+  fetch(serifFontUrl),
+  fetch(sansFontUrl),
+]);
+const serifFont = new Uint8Array(await serifRes.arrayBuffer());
+const sansFont = new Uint8Array(await sansRes.arrayBuffer());
+
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
@@ -40,29 +51,32 @@ function buildSVG(title = "Nuju", subtitle = "The 30-second AI journal that unde
 
   <!-- Icon box -->
   <rect x="552" y="60" width="96" height="96" rx="28" fill="#7C6EDB" fill-opacity="0.12" stroke="#7C6EDB" stroke-opacity="0.3" stroke-width="1.5"/>
-  <!-- J letter as mascot placeholder -->
-  <text x="600" y="130" font-family="Georgia, serif" font-size="52" font-weight="bold" fill="#7C6EDB" text-anchor="middle">Ju</text>
+  <!-- Ju text as mascot placeholder -->
+  <text x="600" y="130" font-family="Lora" font-size="52" font-weight="bold" fill="#7C6EDB" text-anchor="middle">Ju</text>
 
   <!-- App name -->
-  <text x="600" y="240" font-family="Georgia, serif" font-size="84" font-weight="bold" fill="#E8E4F8" text-anchor="middle" letter-spacing="-2">${title}</text>
+  <text x="600" y="240" font-family="Lora" font-size="84" font-weight="bold" fill="#E8E4F8" text-anchor="middle" letter-spacing="-2">${title}</text>
 
   <!-- Tagline -->
-  <text x="600" y="295" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="26" fill="#9B93C0" text-anchor="middle">${subtitle}</text>
+  <text x="600" y="295" font-family="DM Sans" font-size="26" fill="#9B93C0" text-anchor="middle">${subtitle}</text>
 
   <!-- Pill: Mood Tracking -->
   <rect x="220" y="355" width="208" height="44" rx="22" fill="#7C6EDB" fill-opacity="0.10" stroke="#7C6EDB" stroke-opacity="0.28" stroke-width="1.2"/>
-  <text x="324" y="383" font-family="-apple-system, sans-serif" font-size="18" font-weight="500" fill="#B8B0E8" text-anchor="middle">♡  Mood Tracking</text>
+  <circle cx="258" cy="377" r="6" fill="#E8878C" opacity="0.8"/>
+  <text x="330" y="383" font-family="DM Sans" font-size="18" font-weight="500" fill="#B8B0E8" text-anchor="middle">Mood Tracking</text>
 
   <!-- Pill: AI Coach -->
   <rect x="496" y="355" width="208" height="44" rx="22" fill="#4ECDC4" fill-opacity="0.08" stroke="#4ECDC4" stroke-opacity="0.25" stroke-width="1.2"/>
-  <text x="600" y="383" font-family="-apple-system, sans-serif" font-size="18" font-weight="500" fill="#4ECDC4" text-anchor="middle">✦  AI Coach</text>
+  <circle cx="534" cy="377" r="6" fill="#4ECDC4" opacity="0.8"/>
+  <text x="606" y="383" font-family="DM Sans" font-size="18" font-weight="500" fill="#4ECDC4" text-anchor="middle">AI Coach</text>
 
   <!-- Pill: Voice Journal -->
   <rect x="772" y="355" width="208" height="44" rx="22" fill="#FFB347" fill-opacity="0.08" stroke="#FFB347" stroke-opacity="0.25" stroke-width="1.2"/>
-  <text x="876" y="383" font-family="-apple-system, sans-serif" font-size="18" font-weight="500" fill="#FFB347" text-anchor="middle">♪  Voice Journal</text>
+  <circle cx="810" cy="377" r="6" fill="#FFB347" opacity="0.8"/>
+  <text x="882" y="383" font-family="DM Sans" font-size="18" font-weight="500" fill="#FFB347" text-anchor="middle">Voice Journal</text>
 
   <!-- Domain -->
-  <text x="600" y="570" font-family="-apple-system, sans-serif" font-size="20" fill="#7C6EDB" fill-opacity="0.55" text-anchor="middle" letter-spacing="0.5">nuju.app</text>
+  <text x="600" y="570" font-family="DM Sans" font-size="20" fill="#7C6EDB" fill-opacity="0.55" text-anchor="middle" letter-spacing="0.5">nuju.app</text>
 
   <!-- Outer border -->
   <rect x="0.5" y="0.5" width="1199" height="629" fill="none" stroke="#7C6EDB" stroke-opacity="0.08" stroke-width="1"/>
@@ -82,6 +96,11 @@ serve(async (req) => {
     const svg = buildSVG(title, subtitle);
     const resvg = new Resvg(svg, {
       fitTo: { mode: "width", value: 1200 },
+      font: {
+        fontFiles: [serifFont, sansFont],
+        loadSystemFonts: false,
+        defaultFontFamily: "DM Sans",
+      },
     });
     const pngData = resvg.render();
     const png = pngData.asPng();
