@@ -12,6 +12,7 @@ import coachGentle from "@/assets/coach-gentle.webp";
 import coachTough from "@/assets/coach-tough.webp";
 import coachWise from "@/assets/coach-wise.webp";
 import coachFun from "@/assets/coach-fun.webp";
+import { type ShellMode } from "@/hooks/use-shell-mode";
 
 const PERSONA_GREETINGS: Record<string, string> = {
   gentle: "Hey, I'm here now. Take your time — what's on your heart?",
@@ -58,6 +59,7 @@ async function streamChat({
   messages,
   persona,
   lang,
+  userName,
   onDelta,
   onDone,
   onError,
@@ -65,6 +67,7 @@ async function streamChat({
   messages: Msg[];
   persona: string;
   lang: string;
+  userName?: string | null;
   onDelta: (text: string) => void;
   onDone: () => void;
   onError: (msg: string) => void;
@@ -75,7 +78,7 @@ async function streamChat({
       "Content-Type": "application/json",
       Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
     },
-    body: JSON.stringify({ messages, persona, lang }),
+    body: JSON.stringify({ messages, persona, lang, userName }),
   });
 
   if (!resp.ok) {
@@ -145,7 +148,7 @@ async function streamChat({
   onDone();
 }
 
-const CoachScreen: React.FC<{ onUpgrade?: () => void; plan?: string | null; trialStartedAt?: string | null }> = ({ onUpgrade, plan: propPlan, trialStartedAt: propTrialStartedAt }) => {
+const CoachScreen: React.FC<{ onUpgrade?: () => void; plan?: string | null; trialStartedAt?: string | null; shellMode?: ShellMode; displayName?: string | null }> = ({ onUpgrade, plan: propPlan, trialStartedAt: propTrialStartedAt, shellMode = "phone", displayName = null }) => {
   const { t, lang } = useLang();
   const { user } = useAuth();
   const [persona, setPersona] = useState("gentle");
@@ -157,6 +160,7 @@ const CoachScreen: React.FC<{ onUpgrade?: () => void; plan?: string | null; tria
   const [userPlan, setUserPlan] = useState("free");
   const [messagesUsed, setMessagesUsed] = useState(0);
   const scrollRef = useRef<HTMLDivElement>(null);
+  const splitLayout = shellMode !== "phone";
 
   // Load previous messages + check limit — use allSettled so DB errors don't break the screen
   useEffect(() => {
@@ -236,6 +240,7 @@ const CoachScreen: React.FC<{ onUpgrade?: () => void; plan?: string | null; tria
         messages: newMessages.slice(-20), // last 20 messages for context
         persona,
         lang,
+        userName: displayName,
         onDelta: upsertAssistant,
         onDone: () => {
           setIsLoading(false);
@@ -264,11 +269,12 @@ const CoachScreen: React.FC<{ onUpgrade?: () => void; plan?: string | null; tria
   const currentPersona = AI_PERSONAS.find((p) => p.id === persona)!;
 
   return (
-    <div className="animate-page-slide-in flex flex-col h-[calc(100vh-180px)]">
-      <h1 className="text-[34px] font-bold text-foreground tracking-tight mb-4">{t.ai_coach}</h1>
+    <div className={`animate-page-slide-in ${splitLayout ? "grid gap-6 md:grid-cols-[280px_minmax(0,1fr)]" : "flex flex-col h-[calc(100vh-180px)]"}`}>
+      <div className={`${splitLayout ? "space-y-4" : ""}`}>
+        <h1 className="text-[34px] font-bold text-foreground tracking-tight mb-4">{t.ai_coach}</h1>
 
-      {/* Persona pills */}
-      <div className="flex flex-wrap gap-2 mb-4 pb-2">
+        {/* Persona pills */}
+        <div className={`flex flex-wrap gap-2 ${splitLayout ? "rounded-[1.75rem] border border-border/60 bg-card/50 p-4" : "mb-4 pb-2"}`}>
         {AI_PERSONAS.map((p) => {
           const isActive = persona === p.id;
           return (
@@ -293,10 +299,40 @@ const CoachScreen: React.FC<{ onUpgrade?: () => void; plan?: string | null; tria
             </button>
           );
         })}
+        </div>
+
+        {splitLayout && (
+          <div className="space-y-3 rounded-[1.75rem] border border-border/60 bg-card/50 p-4">
+            <div className="flex items-center gap-3">
+              <div
+                className="flex h-14 w-14 items-center justify-center overflow-hidden rounded-2xl"
+                style={{
+                  background: `${currentPersona.color}15`,
+                  boxShadow: `0 0 28px ${currentPersona.color}20`,
+                }}
+              >
+                <img src={COACH_ICONS[persona]} alt={currentPersona.name} className="h-11 w-11 object-contain" />
+              </div>
+              <div>
+                <p className="text-sm font-semibold text-foreground">{currentPersona.name}</p>
+                <p className="text-xs text-muted-foreground">
+                  {(t as Record<string, string>)[`persona_${currentPersona.id}_desc`] || currentPersona.desc}
+                </p>
+              </div>
+            </div>
+            <div className="rounded-2xl bg-secondary/70 px-3 py-3 text-xs leading-6 text-muted-foreground">
+              {hasPlusAccess(propPlan || userPlan, propTrialStartedAt || null)
+                ? (displayName
+                    ? `${t.coach_desktop_hint || "Use the side panel to switch tone, then keep the conversation flowing on the right."} Ju will remember your name too.`
+                    : (t.coach_desktop_hint || "Use the side panel to switch tone, then keep the conversation flowing on the right."))
+                : (t.coach_free_hint || "Free users can chat with Gentle Ju for 5 messages each week.")}
+            </div>
+          </div>
+        )}
       </div>
 
-      {/* Messages */}
-      <div ref={scrollRef} className="flex-1 overflow-y-auto space-y-3 mb-4">
+      <div className={`${splitLayout ? "flex min-h-[620px] min-w-0 flex-col rounded-[2rem] border border-border/60 bg-card/55 p-4 md:p-6" : ""}`}>
+      <div ref={scrollRef} className={`space-y-3 ${splitLayout ? "min-h-0 flex-1 overflow-y-auto pr-1" : "mb-4 flex-1 overflow-y-auto"}`}>
         {messages.length === 0 && (
           <div
             className="text-center py-12 transition-all duration-500 ease-out"
@@ -365,7 +401,7 @@ const CoachScreen: React.FC<{ onUpgrade?: () => void; plan?: string | null; tria
 
       {/* Paywall banner when limit reached */}
       {!canSend && !hasPlusAccess(propPlan || userPlan, propTrialStartedAt || null) && (
-        <div className="bg-primary/10 border border-primary/20 rounded-2xl p-4 mb-3 text-center animate-fade-up">
+        <div className={`bg-primary/10 border border-primary/20 rounded-2xl p-4 text-center animate-fade-up ${splitLayout ? "mb-4" : "mb-3"}`}>
           <div className="flex items-center justify-center gap-2 mb-2">
             <Lock className="w-4 h-4 text-primary" />
             <span className="text-sm font-semibold text-foreground">{t.coach_limit_title || "Weekly limit reached"}</span>
@@ -386,7 +422,7 @@ const CoachScreen: React.FC<{ onUpgrade?: () => void; plan?: string | null; tria
 
       {/* Free user message counter */}
       {canSend && !hasPlusAccess(propPlan || userPlan, propTrialStartedAt || null) && (
-        <div className={`flex items-center justify-center gap-1.5 mb-2 transition-all duration-300 ${messagesUsed >= 4 ? "animate-pulse" : ""}`}>
+        <div className={`flex items-center justify-center gap-1.5 transition-all duration-300 ${splitLayout ? "mb-4" : "mb-2"} ${messagesUsed >= 4 ? "animate-pulse" : ""}`}>
           <div className={`text-xs font-medium px-3 py-1 rounded-full ${
             messagesUsed >= 4
               ? "bg-destructive/10 text-destructive"
@@ -400,7 +436,7 @@ const CoachScreen: React.FC<{ onUpgrade?: () => void; plan?: string | null; tria
       )}
 
       {/* Input */}
-      <div className="flex gap-2">
+      <div className={`flex gap-2 ${splitLayout ? "border-t border-border/50 pt-4" : ""}`}>
         <input
           value={input}
           onChange={(e) => setInput(e.target.value)}
@@ -416,6 +452,7 @@ const CoachScreen: React.FC<{ onUpgrade?: () => void; plan?: string | null; tria
         >
           <Send className="w-5 h-5" />
         </button>
+      </div>
       </div>
     </div>
   );

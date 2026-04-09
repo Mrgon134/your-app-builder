@@ -213,7 +213,7 @@ const ExploreScreen: React.FC<ExploreScreenProps> = ({
       </div>
 
       {/* Feature grid */}
-      <div className="grid grid-cols-2 gap-3">
+      <div className="grid grid-cols-2 gap-3 md:grid-cols-3 xl:grid-cols-4">
         {cards.map((card, i) => (
           <motion.button
             key={card.id}

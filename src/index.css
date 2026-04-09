@@ -58,6 +58,10 @@
     --sidebar-accent-foreground: 240 5.9% 10%;
     --sidebar-border: 220 13% 91%;
     --sidebar-ring: 217.2 91.2% 59.8%;
+    --app-shell-gutter: 1rem;
+    --app-shell-rail: 5.75rem;
+    --app-shell-sidebar: 16rem;
+    --app-shell-content: 1200px;
   }
 
   .dark {
@@ -348,6 +352,46 @@
       0 1px 2px rgba(0, 0, 0, 0.2),
       0 4px 16px rgba(0, 0, 0, 0.15),
       inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  }
+
+  .app-shell {
+    padding-inline: var(--app-shell-gutter);
+  }
+
+  .app-shell-content {
+    width: 100%;
+    max-width: min(100%, var(--app-shell-content));
+    margin-inline: auto;
+  }
+
+  .app-shell-scroll {
+    min-height: 0;
+    overflow-y: auto;
+  }
+
+  .app-shell-rail {
+    width: var(--app-shell-rail);
+  }
+
+  .app-shell-sidebar {
+    width: min(100%, var(--app-shell-sidebar));
+  }
+
+  @media (min-width: 768px) {
+    :root {
+      --app-shell-gutter: 1.5rem;
+      --app-shell-rail: 6.5rem;
+      --app-shell-sidebar: 17rem;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    :root {
+      --app-shell-gutter: 2rem;
+      --app-shell-rail: 7rem;
+      --app-shell-sidebar: 18rem;
+      --app-shell-content: 1320px;
+    }
   }
 }
 

@@ -14,8 +14,10 @@ import { SUPABASE_URL, SUPABASE_ANON_KEY } from "@/integrations/supabase/client"
 import { EntryRow } from "@/lib/api";
 import MoodCalendar from "@/components/app/MoodCalendar";
 import { getMoodHighlight } from "@/lib/mood-highlights";
+import { type ShellMode } from "@/hooks/use-shell-mode";
 
 interface InsightsScreenProps {
+  shellMode?: ShellMode;
   entries: EntryRow[];
   streak?: number;
   onUpgrade: () => void;
@@ -24,7 +26,7 @@ interface InsightsScreenProps {
   trialStartedAt?: string | null;
 }
 
-const InsightsScreen: React.FC<InsightsScreenProps> = ({ entries, streak = 0, onUpgrade, onNavigate, plan = "free", trialStartedAt = null }) => {
+const InsightsScreen: React.FC<InsightsScreenProps> = ({ shellMode = "phone", entries, streak = 0, onUpgrade, onNavigate, plan = "free", trialStartedAt = null }) => {
   const { t, lang } = useLang();
   const [aiSummary, setAiSummary] = useState<string | null>(null);
   const [summaryLoading, setSummaryLoading] = useState(false);
@@ -91,6 +93,7 @@ const InsightsScreen: React.FC<InsightsScreenProps> = ({ entries, streak = 0, on
 
   const moodHighlight = getMoodHighlight(entries, t);
   const highlightMoodData = MOODS.find((m) => m.value === moodHighlight.mood) || MOODS[2];
+  const isLargeShell = shellMode !== "phone";
 
   // Correlation Pattern
   const getBestDayOfWeek = () => {
@@ -157,7 +160,7 @@ const InsightsScreen: React.FC<InsightsScreenProps> = ({ entries, streak = 0, on
   }
 
   return (
-    <div className="animate-page-slide-in space-y-5">
+    <div className={`animate-page-slide-in space-y-5 ${isLargeShell ? "mx-auto max-w-app-content" : ""}`}>
       <div className="flex items-center justify-between mb-2">
         <h1 className="text-[34px] font-bold text-foreground tracking-tight">{t.mind_gallery}</h1>
         <div className="flex gap-2">
@@ -171,7 +174,8 @@ const InsightsScreen: React.FC<InsightsScreenProps> = ({ entries, streak = 0, on
         </div>
       </div>
 
-      {/* 30-Day Mood Trend Chart */}
+      <div className={isLargeShell ? "grid gap-5 xl:grid-cols-[minmax(0,1.15fr)_minmax(320px,0.85fr)]" : "space-y-5"}>
+      <div className="space-y-5">
       <MoodTrendChart entries={entries} />
 
       {/* Weekly mood wave */}
@@ -284,6 +288,9 @@ const InsightsScreen: React.FC<InsightsScreenProps> = ({ entries, streak = 0, on
         onUpgrade={onUpgrade}
         hasProAccess={hasProAccess(plan ?? null, trialStartedAt ?? null)}
       />
+      </div>
+
+      <div className="space-y-5">
 
       {/* Mood Correlation Insights */}
       {bestDayOfWeek && (
@@ -327,7 +334,7 @@ const InsightsScreen: React.FC<InsightsScreenProps> = ({ entries, streak = 0, on
       <AiMemoryCard entries={entries} hasProAccess={hasProAccess(plan ?? null, trialStartedAt ?? null)} />
 
       {/* Quick links — Programs + Year in Review */}
-      <div className="grid grid-cols-2 gap-3">
+      <div className={`grid gap-3 ${isLargeShell ? "sm:grid-cols-2" : "grid-cols-2"}`}>
         <button
           onClick={() => onNavigate?.("programs")}
           className="glass-card rounded-2xl p-4 flex flex-col items-start gap-2 press-spring text-left"
@@ -369,6 +376,8 @@ const InsightsScreen: React.FC<InsightsScreenProps> = ({ entries, streak = 0, on
           </button>
         </div>
       )}
+      </div>
+      </div>
     </div>
   );
 };

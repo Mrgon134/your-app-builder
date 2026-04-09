@@ -6,6 +6,7 @@ import { ArrowLeft, Mic, Square, Loader2, Sparkles } from "lucide-react";
 import MoodIcon from "@/components/MoodIcon";
 import { SUPABASE_URL, SUPABASE_ANON_KEY } from "@/integrations/supabase/client";
 import { motion, AnimatePresence } from "framer-motion";
+import { type ShellMode } from "@/hooks/use-shell-mode";
 const DRAFT_KEY = "nuju-journal-draft";
 
 const langToLocale: Record<string, string> = {
@@ -58,6 +59,7 @@ const getMoodPlaceholder = (mood: number | undefined, t: Record<string, string>)
 };
 
 interface JournalScreenProps {
+  shellMode?: ShellMode;
   onBack: () => void;
   onSave: (text: string, audioBlob?: Blob | null, segments?: { start: number; end: number; text: string }[] | null) => Promise<string | null>;
   initialPrompt?: string;
@@ -87,6 +89,7 @@ const useTypingEffect = (text: string, speed = 22) => {
 };
 
 const JournalScreen: React.FC<JournalScreenProps> = ({
+  shellMode = "phone",
   onBack, onSave, initialPrompt, autoRecord = false, activities = [], mood, hasProAccess = false, onUpgrade
 }) => {
   const { t, lang } = useLang();
@@ -397,9 +400,10 @@ const JournalScreen: React.FC<JournalScreenProps> = ({
   const isRecording = recordState === "recording";
   const isTranscribing = recordState === "transcribing";
   const canRecord = typeof navigator !== "undefined" && !!navigator.mediaDevices?.getUserMedia;
+  const isLargeShell = shellMode !== "phone";
 
   return (
-    <div className="animate-page-slide-in">
+    <div className={`animate-page-slide-in ${isLargeShell ? "mx-auto max-w-app-reading" : ""}`}>
       <style>{`
         @keyframes voiceBar {
           0%, 100% { transform: scaleY(0.25); opacity: 0.45; }
@@ -439,7 +443,7 @@ const JournalScreen: React.FC<JournalScreenProps> = ({
 
       {/* Activity tags (read-only, passed from home) */}
       {activities.length > 0 && (
-        <div className="flex flex-wrap gap-1.5 mb-3">
+        <div className="mb-3 flex flex-wrap gap-1.5">
           {activities.map((a) => (
             <span
               key={a}
@@ -454,7 +458,7 @@ const JournalScreen: React.FC<JournalScreenProps> = ({
 
       {/* Prompt */}
       {initialPrompt && (
-        <div className="glass-card rounded-2xl p-4 mb-3">
+        <div className="glass-card mb-3 rounded-2xl p-4">
           <p className="text-[11px] font-semibold text-primary uppercase tracking-widest mb-1">{t.todays_prompt}</p>
           <p className="text-[15px] text-foreground leading-relaxed">{initialPrompt}</p>
         </div>
@@ -490,7 +494,7 @@ const JournalScreen: React.FC<JournalScreenProps> = ({
             ? (t.recording_processing || "Just a moment...")
             : getMoodPlaceholder(mood, t)
         }
-        className={`w-full min-h-[260px] p-5 rounded-2xl glass-card text-foreground font-writing text-[17px] leading-relaxed placeholder:text-muted-foreground/40 focus:outline-none focus:ring-2 focus:ring-primary/15 focus:border-primary/30 resize-none transition-all ${isRecording || isTranscribing ? "cursor-default" : ""}`}
+        className={`w-full min-h-[260px] rounded-2xl glass-card p-5 text-[17px] leading-relaxed text-foreground transition-all resize-none placeholder:text-muted-foreground/40 focus:border-primary/30 focus:outline-none focus:ring-2 focus:ring-primary/15 xl:min-h-[520px] ${isRecording || isTranscribing ? "cursor-default" : ""}`}
         autoFocus={!autoRecord}
       />
 
@@ -510,7 +514,7 @@ const JournalScreen: React.FC<JournalScreenProps> = ({
       )}
 
       {/* Bottom actions */}
-      <div className="flex items-center gap-3 mt-4">
+      <div className={`mt-4 flex items-center gap-3 ${isLargeShell ? "rounded-2xl border border-border/50 bg-card/40 p-4" : ""}`}>
         {canRecord && (
           <button
             onClick={() => {

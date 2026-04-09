@@ -69,7 +69,7 @@ const HistoryScreen: React.FC<HistoryScreenProps> = ({ entries, onNavigate }) =>
       exit={{ opacity: 0, y: 20 }}
       className="min-h-screen bg-background"
     >
-      <div className="max-w-2xl mx-auto px-4 py-6">
+      <div className="mx-auto max-w-4xl px-4 py-6 md:px-6">
         <h1 className="text-2xl font-bold text-foreground mb-2">{t.history_label || "Your History"}</h1>
         <p className="text-sm text-muted-foreground mb-6">
           {entries.length} {entries.length === 1 ? "entry" : "entries"} total

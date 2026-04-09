@@ -271,7 +271,7 @@ const OnboardingScreen: React.FC<OnboardingProps> = ({ onComplete, onStartTrial,
 
   // ─── SCREEN 0: Welcome ─────────────────────────
   const renderWelcome = () => (
-    <div className="w-full max-w-sm mx-auto text-center flex flex-col items-center justify-center min-h-[70vh]">
+          <div className="w-full max-w-sm mx-auto text-center flex flex-col items-center justify-center min-h-[70vh] md:max-w-2xl">
       <motion.div
         className="relative w-36 h-36 mb-8"
         initial={{ scale: 0.5, opacity: 0 }}
@@ -334,7 +334,7 @@ const OnboardingScreen: React.FC<OnboardingProps> = ({ onComplete, onStartTrial,
 
   // ─── SCREEN 1: Goal Question ────────────────────
   const renderGoal = () => (
-    <div className="w-full max-w-sm mx-auto text-center animate-fade-up">
+          <div className="w-full max-w-sm mx-auto text-center animate-fade-up md:max-w-2xl">
       <div className="relative w-28 h-28 mx-auto mb-6">
         <div className="absolute inset-0 rounded-full animate-glow-pulse" style={{ background: "rgba(124,110,219,0.15)" }} />
         <img src={juHi} alt="Ju" className="relative w-full h-full object-contain animate-ju-float" />
@@ -347,7 +347,7 @@ const OnboardingScreen: React.FC<OnboardingProps> = ({ onComplete, onStartTrial,
         {t.onb_intent_desc || "Ju will personalize your experience based on what matters to you."}
       </p>
 
-      <div className="grid grid-cols-2 gap-3 mb-8">
+          <div className="grid grid-cols-2 gap-3 mb-8 md:grid-cols-4">
         {GOAL_OPTIONS.map(({ id, emoji, label, desc }) => {
           const isSelected = selectedGoal === id;
           return (
@@ -377,7 +377,7 @@ const OnboardingScreen: React.FC<OnboardingProps> = ({ onComplete, onStartTrial,
 
   // ─── SCREEN 2: Pain Points ──────────────────────
   const renderPains = () => (
-    <div className="w-full max-w-sm mx-auto text-center animate-fade-up">
+          <div className="w-full max-w-sm mx-auto text-center animate-fade-up md:max-w-2xl">
       <h2 className="text-2xl font-bold mb-2" style={{ color: "#1A1A2E", fontFamily: "var(--font-serif, 'Lora', serif)" }}>
         {t.onb_pain_title || "What usually gets in the way?"}
       </h2>
@@ -432,7 +432,7 @@ const OnboardingScreen: React.FC<OnboardingProps> = ({ onComplete, onStartTrial,
 
   // ─── SCREEN 3: Social Proof ─────────────────────
   const renderSocialProof = () => (
-    <div className="w-full max-w-sm mx-auto text-center animate-fade-up">
+          <div className="w-full max-w-sm mx-auto text-center animate-fade-up md:max-w-2xl">
       <h2 className="text-2xl font-bold mb-2" style={{ color: "#1A1A2E", fontFamily: "var(--font-serif, 'Lora', serif)" }}>
         {t.onb_social_title || "You're in good company"}
       </h2>
@@ -505,7 +505,7 @@ const OnboardingScreen: React.FC<OnboardingProps> = ({ onComplete, onStartTrial,
     }[currentStatement] || "";
 
     return (
-      <div className="w-full max-w-sm mx-auto text-center animate-fade-up">
+          <div className="w-full max-w-sm mx-auto text-center animate-fade-up md:max-w-2xl">
         <h2 className="text-2xl font-bold mb-2" style={{ color: "#1A1A2E", fontFamily: "var(--font-serif, 'Lora', serif)" }}>
           {t.onb_tinder_title || "Do you relate?"}
         </h2>
@@ -549,7 +549,7 @@ const OnboardingScreen: React.FC<OnboardingProps> = ({ onComplete, onStartTrial,
 
   // ─── SCREEN 5: Solution ─────────────────────────
   const renderSolution = () => (
-    <div className="w-full max-w-sm mx-auto text-center animate-fade-up">
+          <div className="w-full max-w-sm mx-auto text-center animate-fade-up md:max-w-2xl">
       <motion.div
         className="relative w-24 h-24 mx-auto mb-5"
         initial={{ scale: 0.5, opacity: 0 }}
@@ -609,7 +609,7 @@ const OnboardingScreen: React.FC<OnboardingProps> = ({ onComplete, onStartTrial,
 
   // ─── SCREEN 6: Coach Picker ─────────────────────
   const renderCoachPicker = () => (
-    <div className="w-full max-w-sm mx-auto text-center animate-fade-up">
+          <div className="w-full max-w-sm mx-auto text-center animate-fade-up md:max-w-2xl">
       <h2 className="text-2xl font-bold mb-2" style={{ color: "#1A1A2E", fontFamily: "var(--font-serif, 'Lora', serif)" }}>
         {t.onb_coach_title || "Pick your coach vibe"}
       </h2>
@@ -617,7 +617,7 @@ const OnboardingScreen: React.FC<OnboardingProps> = ({ onComplete, onStartTrial,
         {t.onb_coach_desc || "You can switch anytime — Ju adapts to your style"}
       </p>
 
-      <div className="grid grid-cols-2 gap-3 mb-8">
+          <div className="grid grid-cols-2 gap-3 mb-8 md:grid-cols-4">
         {AI_PERSONAS.map((persona) => {
           const isSelected = selectedCoach === persona.id;
           return (
@@ -674,7 +674,7 @@ const OnboardingScreen: React.FC<OnboardingProps> = ({ onComplete, onStartTrial,
     ];
 
     return (
-      <div className="w-full max-w-sm mx-auto text-center flex flex-col items-center justify-center min-h-[60vh]">
+          <div className="w-full max-w-sm mx-auto text-center flex flex-col items-center justify-center min-h-[60vh] md:max-w-2xl">
         <motion.div
           className="relative w-28 h-28 mb-8"
           animate={{ rotate: [0, 5, -5, 0] }}
@@ -729,7 +729,7 @@ const OnboardingScreen: React.FC<OnboardingProps> = ({ onComplete, onStartTrial,
       : "";
 
     return (
-      <div className="w-full max-w-sm mx-auto animate-fade-up">
+          <div className="w-full max-w-sm mx-auto animate-fade-up md:max-w-2xl">
         <div className="text-center mb-6">
           <h2 className="text-2xl font-bold mb-2" style={{ color: "#1A1A2E", fontFamily: "var(--font-serif, 'Lora', serif)" }}>
             {t.onb_demo_title || "Try it now"}
@@ -850,7 +850,7 @@ const OnboardingScreen: React.FC<OnboardingProps> = ({ onComplete, onStartTrial,
 
   // ─── SCREEN 9: Notification Priming ─────────────
   const renderNotification = () => (
-    <div className="w-full max-w-sm mx-auto text-center animate-fade-up">
+          <div className="w-full max-w-sm mx-auto text-center animate-fade-up md:max-w-2xl">
       <div className="relative w-32 h-32 mx-auto mb-6">
         <div className="absolute inset-0 rounded-full animate-glow-pulse" style={{ background: "rgba(124,110,219,0.15)" }} />
         <img src={juHi} alt="Ju" className="relative w-full h-full object-contain animate-ju-float" />
@@ -863,7 +863,7 @@ const OnboardingScreen: React.FC<OnboardingProps> = ({ onComplete, onStartTrial,
         {t.onb_notif_desc || "Ju will send a gentle nudge at your ideal time"}
       </p>
 
-      <div className="grid grid-cols-2 gap-3 mb-6">
+          <div className="grid grid-cols-2 gap-3 mb-6 md:grid-cols-4">
         {REMINDER_OPTIONS.map(({ label, hour }) => {
           const isSelected = selectedHour === hour;
           return (
@@ -905,7 +905,7 @@ const OnboardingScreen: React.FC<OnboardingProps> = ({ onComplete, onStartTrial,
 
   // ─── SCREEN 10: Paywall ─────────────────────────
   const renderPaywall = () => (
-    <div className="w-full max-w-sm mx-auto text-center animate-fade-up">
+          <div className="w-full max-w-sm mx-auto text-center animate-fade-up md:max-w-2xl">
       <motion.div
         className="relative w-20 h-20 mx-auto mb-4"
         initial={{ scale: 0.5, opacity: 0 }}
@@ -1036,7 +1036,7 @@ const OnboardingScreen: React.FC<OnboardingProps> = ({ onComplete, onStartTrial,
       style={{ background: "#F5F3FF" }}
     >
       {/* Top bar: progress + skip */}
-      <div className="w-full max-w-sm mx-auto px-6 pt-6">
+          <div className="w-full max-w-sm mx-auto px-6 pt-6 md:max-w-2xl">
         <div className="flex items-center justify-between mb-2">
           {step > 0 && step !== 7 ? (
             <button onClick={goBack} className="text-sm font-medium flex items-center gap-0.5" style={{ color: "#777" }}>

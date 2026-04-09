@@ -89,6 +89,8 @@ export default {
       },
       maxWidth: {
         app: "430px",
+        "app-content": "1200px",
+        "app-reading": "960px",
       },
       keyframes: {
         "accordion-down": {

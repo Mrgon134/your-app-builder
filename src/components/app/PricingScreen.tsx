@@ -109,7 +109,7 @@ const PricingScreen: React.FC<PricingScreenProps> = ({
   const periodDisplay = annual ? (t.mo_billed_yearly || "/mo, billed yearly") : `/${t.month || "month"}`;
 
   return (
-    <div className="animate-fade-up pb-8">
+    <div className="animate-fade-up mx-auto max-w-app-content pb-8">
       <div className="flex items-center gap-3 mb-1">
         <button onClick={onBack} className="text-muted-foreground transition-all active:scale-[0.97]">
           <ArrowLeft className="w-5 h-5" />
@@ -204,7 +204,7 @@ const PricingScreen: React.FC<PricingScreenProps> = ({
         </div>
       </div>
 
-      <div className="space-y-4">
+      <div className="grid gap-4 xl:grid-cols-2 2xl:grid-cols-4">
         {tiers.map((tier) => {
           const isCurrent = currentPlan === tier.id;
           const price = tier.getPrice();

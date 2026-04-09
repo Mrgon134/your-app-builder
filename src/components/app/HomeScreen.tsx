@@ -20,6 +20,8 @@ import { motion, AnimatePresence } from "framer-motion";
 
 import DailyRitualCard from "@/components/app/DailyRitualCard";
 import WeeklyReviewCard from "@/components/app/WeeklyReviewCard";
+import { type ShellMode } from "@/hooks/use-shell-mode";
+import { getFirstName } from "@/lib/profile-name";
 
 // Preload all sticker images in memory on mount
 const preloadedImages: HTMLImageElement[] = [];
@@ -98,6 +100,8 @@ const getStreakMessage = (streak: number, t: Record<string, string>): string | n
 };
 
 interface HomeScreenProps {
+  shellMode?: ShellMode;
+  displayName?: string | null;
   onNavigate: (screen: string) => void;
   onWrite?: (prompt?: string) => void;
   onTalk?: (prompt?: string) => void;
@@ -118,6 +122,8 @@ interface HomeScreenProps {
 }
 
 const HomeScreen: React.FC<HomeScreenProps> = ({
+  shellMode = "phone",
+  displayName = null,
   onNavigate, onWrite, onTalk, onSettings, onUpgrade, onQuickLog,
   streak, entries,
   selectedMood: controlledMood, onMoodSelect: controlledMoodSelect,
@@ -139,6 +145,8 @@ const HomeScreen: React.FC<HomeScreenProps> = ({
   const energy = controlledEnergy ?? localEnergy;
   const selectedMoodData = MOODS.find((m) => m.value === selectedMood);
   const [selectedEntry, setSelectedEntry] = useState<EntryRow | null>(null);
+  const isLargeShell = shellMode !== "phone";
+  const firstName = getFirstName(displayName);
 
   // PWA Install Prompt State
   const [installPrompt, setInstallPrompt] = useState<any>(null);
@@ -170,8 +178,10 @@ const HomeScreen: React.FC<HomeScreenProps> = ({
   let displaySubtitle = dateStr;
 
   if (entries.length === 0) {
-    displayTitle = "Hey, I'm Ju.";
-    displaySubtitle = "I'll learn your patterns the more you share.";
+    displayTitle = firstName ? `Hey, ${firstName}.` : "Hey, I'm Ju.";
+    displaySubtitle = firstName
+      ? "I'm Ju, and I'll learn your patterns the more you share."
+      : "I'll learn your patterns the more you share.";
   } else if (streak > 0 && streak % 30 === 0 && !selectedMood) {
     displayTitle = `${streak} days strong 🔥`;
     displaySubtitle = "You're rewriting your story.";
@@ -183,10 +193,10 @@ const HomeScreen: React.FC<HomeScreenProps> = ({
     const lastMoodData = MOODS.find(m => m.value === entries[0].mood);
 
     if (daysSinceLastEntry >= 3 && daysSinceLastEntry < 7) {
-      displayTitle = "We've missed you. 💙";
+      displayTitle = firstName ? `We've missed you, ${firstName}. 💙` : "We've missed you. 💙";
       displaySubtitle = `It's been ${daysSinceLastEntry} days. What's changed?`;
     } else if (daysSinceLastEntry >= 7) {
-      displayTitle = "Welcome back.";
+      displayTitle = firstName ? `Welcome back, ${firstName}.` : "Welcome back.";
       displaySubtitle = "You last felt " + (lastMoodData?.label?.toLowerCase() || 'okay') + ". Let's check in.";
     } else {
       // Recent entry
@@ -194,7 +204,7 @@ const HomeScreen: React.FC<HomeScreenProps> = ({
       const lastMood = entries[0].mood;
       const isMoodImproving = lastMood > (entries[1]?.mood || 3);
 
-      displayTitle = "Welcome back.";
+      displayTitle = firstName ? `Welcome back, ${firstName}.` : "Welcome back.";
       if (isMoodImproving && lastMood >= 4) {
         displaySubtitle = "Your mood's been trending up. Let's keep it going. ⬆️";
       } else if (lastMood <= 2 && entries.length >= 3) {
@@ -272,13 +282,13 @@ const HomeScreen: React.FC<HomeScreenProps> = ({
   );
 
   return (
-    <div ref={scrollRef} className="animate-page-slide-in space-y-5">
+    <div ref={scrollRef} className="animate-page-slide-in space-y-5 md:space-y-6">
       {/* Animated gradient mesh header — reacts to selected mood color */}
-      <div className={`gradient-mesh relative -mx-4 px-4 pt-6 pb-5 rounded-b-[28px] ${hasBanner ? "mt-0" : "-mt-6"}`}>
+      <div className={`gradient-mesh relative -mx-4 rounded-b-[28px] px-4 pb-5 pt-6 md:mx-0 md:rounded-[2rem] md:px-6 lg:px-8 ${hasBanner ? "mt-0" : "-mt-6 md:mt-0"}`}>
         {/* Mood color overlay — child div so it doesn't conflict with gradient-mesh background */}
         {selectedMoodData && (
           <div
-            className="absolute inset-0 rounded-b-[28px] pointer-events-none"
+            className="absolute inset-0 rounded-b-[28px] pointer-events-none md:rounded-[2rem]"
             style={{
               background: `linear-gradient(160deg, ${selectedMoodData.color}1A 0%, transparent 65%)`,
               transition: "background 0.5s cubic-bezier(0.25, 1, 0.5, 1)",
@@ -355,10 +365,10 @@ const HomeScreen: React.FC<HomeScreenProps> = ({
         </div>
       )}
 
-
-
+      <div className={isLargeShell ? "grid gap-6 xl:grid-cols-[minmax(0,1.15fr)_minmax(320px,0.85fr)]" : "space-y-5 md:space-y-6"}>
+        <div className="space-y-5 md:space-y-6">
       {/* Mascot + speech bubble */}
-      <div className="flex flex-col items-center gap-10 mt-6">
+      <div className={`mt-6 flex ${isLargeShell ? "flex-row items-center justify-between gap-6 rounded-[2rem] border border-border/60 bg-card/40 px-6 py-6 md:mt-0" : "flex-col items-center gap-10"}`}>
         <div
           className="relative w-28 h-28"
           style={{ transform: `translateY(${-scrollY * 0.12}px)`, transition: "transform 0.05s linear" }}
@@ -382,7 +392,7 @@ const HomeScreen: React.FC<HomeScreenProps> = ({
         {/* Mood-reactive speech bubble — pure text, no emoji */}
         <div
           key={String(selectedMood)}
-          className="flex flex-col items-center gap-1.5 animate-fade-up"
+          className={`flex flex-col gap-1.5 animate-fade-up ${isLargeShell ? "flex-1 items-start" : "items-center"}`}
         >
           <div className="glass-card rounded-full px-4 py-1.5">
             <p className="text-[13px] text-foreground/80 font-medium">
@@ -402,7 +412,7 @@ const HomeScreen: React.FC<HomeScreenProps> = ({
         <p className="text-[11px] font-semibold text-muted-foreground uppercase tracking-[0.12em] mb-3 px-0.5">
           {t.how_feeling}
         </p>
-        <div id="tour-mood-selector" className="flex justify-center gap-2 px-0.5">
+        <div id="tour-mood-selector" className="grid grid-cols-5 gap-2 px-0.5">
           {MOODS.map((mood, index) => {
             const isSelected = selectedMood === mood.value;
             const isAnimating = moodAnimating === mood.value;
@@ -415,7 +425,7 @@ const HomeScreen: React.FC<HomeScreenProps> = ({
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.2, delay: index * 0.05 }}
-                className="flex flex-col items-center gap-2 flex-1 pt-4 pb-3 rounded-2xl transition-colors duration-300 relative overflow-hidden"
+                className="flex flex-col items-center gap-2 pt-4 pb-3 rounded-2xl transition-colors duration-300 relative overflow-hidden"
                 style={{
                   background: isSelected
                     ? `linear-gradient(160deg, ${mood.color}28 0%, ${mood.color}12 100%)`
@@ -533,7 +543,7 @@ const HomeScreen: React.FC<HomeScreenProps> = ({
 
       {/* Action buttons — always visible right after mood/activity */}
       <div id="tour-action-buttons" className="space-y-2.5">
-        <div className="grid grid-cols-2 gap-3">
+        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
           <button
             onClick={() => {
               const nextPrompt = moodTouched ? prompt : undefined;
@@ -602,6 +612,9 @@ const HomeScreen: React.FC<HomeScreenProps> = ({
       )}
 
       {/* Retention */}
+        </div>
+
+        <div className="space-y-5 md:space-y-6">
       <SignupPrompt
         entriesCount={entries.length}
         onDismiss={() => {}}
@@ -669,6 +682,8 @@ const HomeScreen: React.FC<HomeScreenProps> = ({
 
       {/* Daily Habits */}
       <HabitSection plan={plan} onUpgrade={onUpgrade} />
+        </div>
+      </div>
 
       {/* Spacer for bottom nav */}
       <div className="h-2" />

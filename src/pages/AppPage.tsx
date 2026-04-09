@@ -30,10 +30,13 @@ import Confetti from "@/components/app/Confetti";
 import AchievementPopup from "@/components/app/AchievementPopup";
 import { checkAndUnlockAchievements, type Achievement } from "@/lib/achievements";
 import { consumeAuthIntent } from "@/lib/auth-intent";
-import { Home, BarChart3, MessageCircle, Compass, Sparkles, Loader2 } from "lucide-react";
+import { Home, BarChart3, MessageCircle, Compass, Loader2 } from "lucide-react";
 import { toast } from "sonner";
 import { AnimatePresence, motion } from "framer-motion";
 import PinLockScreen from "@/components/app/PinLockScreen";
+import { useShellMode } from "@/hooks/use-shell-mode";
+import { resolveDisplayName } from "@/lib/profile-name";
+import juMain from "@/assets/ju-main.webp";
 
 type Screen = "home" | "journal" | "insights" | "coach" | "explore" | "pro" | "settings" | "programs" | "year-review" | "history";
 
@@ -79,6 +82,8 @@ const AppPage: React.FC = () => {
   const [pendingCaptureType, setPendingCaptureType] = useState<string>("journal");
   const biometricEnabled = localStorage.getItem("nuju-biometric") === "1";
   const biometricSupported = typeof window !== "undefined" && window.PublicKeyCredential !== undefined;
+  const { shellMode, isPhone, isDesktop } = useShellMode();
+  const displayName = resolveDisplayName(profile, user);
 
   // Screen ordering for directional transitions
   const screenOrder: Screen[] = ["home", "insights", "coach", "explore"];
@@ -226,6 +231,29 @@ const AppPage: React.FC = () => {
     }
   };
 
+  const handleDisplayNameSave = async (nextDisplayName: string) => {
+    if (!user) return false;
+
+    const normalizedName = nextDisplayName.replace(/\s+/g, " ").trim();
+
+    if (!normalizedName) {
+      toast.error("Add a name or nickname first.");
+      return false;
+    }
+
+    try {
+      await updateProfile(user.id, { display_name: normalizedName } as Partial<ProfileRow>);
+      const refreshedProfile = await fetchProfile(user.id);
+      setProfile((prev) => refreshedProfile || (prev ? { ...prev, display_name: normalizedName } : prev));
+      toast.success("Ju will remember your name now.");
+      return true;
+    } catch (err) {
+      console.error("Display name update failed:", err);
+      toast.error("Couldn't save your name just yet.");
+      return false;
+    }
+  };
+
   // Dodo Payments checkout
   const handleCheckout = async (plan: string) => {
     if (!user) return;
@@ -254,7 +282,7 @@ const AppPage: React.FC = () => {
             variant_id: variantId,
             user_id: user.id,
             user_email: user.email,
-            user_name: user.user_metadata?.full_name || user.user_metadata?.name || user.email?.split("@")[0] || "User",
+            user_name: displayName || user.user_metadata?.full_name || user.user_metadata?.name || user.email?.split("@")[0] || "User",
             country,
             coupon_code: couponCode || undefined,
           }),
@@ -538,8 +566,37 @@ const AppPage: React.FC = () => {
     { id: "explore" as const, icon: Compass, label: "Explore" },
   ];
 
+  const secondaryNavItems = [
+    { id: "history" as const, label: t.history_label || "History" },
+    { id: "pro" as const, label: t.unlock_ju },
+    { id: "settings" as const, label: t.settings },
+  ];
+
+  const activeNavId =
+    navItems.find((item) => item.id === screen)?.id ||
+    navItems.find((item) => item.id === prevScreen)?.id ||
+    "home";
+
+  const showTabletSidebar = shellMode === "tablet";
+  const showDesktopTopbar = isDesktop;
+  const showBottomNav = isPhone && screen !== "journal" && screen !== "settings";
+  const showDesktopChrome = !isPhone && !showOnboarding;
+  const contentShellClass = screen === "coach"
+    ? "max-w-[1400px]"
+    : screen === "journal"
+      ? "max-w-[1100px]"
+      : isDesktop
+        ? "max-w-app-content"
+        : "max-w-[1100px]";
+  const surfaceClass = showDesktopChrome
+    ? "md:rounded-[2rem] md:border md:border-border/60 md:bg-card/45 md:shadow-[0_20px_60px_-28px_rgba(15,23,42,0.18)] md:backdrop-blur-xl"
+    : "";
+  const contentPaddingClass = showDesktopChrome
+    ? "px-4 py-4 md:px-6 md:py-6 lg:px-8 lg:py-8"
+    : "px-4 pt-6 pb-24";
+
   return (
-    <div className="min-h-screen bg-background flex flex-col">
+    <div className="min-h-screen bg-background">
       {/* Confetti overlay */}
       <Confetti active={showConfetti} onComplete={() => setShowConfetti(false)} />
 
@@ -595,124 +652,232 @@ const AppPage: React.FC = () => {
         </div>
       )}
 
-      <div className="flex-1 w-full max-w-app mx-auto px-4 pt-6 pb-24 overflow-y-auto">
-        {/* Trial banner on home/insights */}
-        {(screen === "home" || screen === "insights") && (
-          <TrialBanner
-            trialStartedAt={profile?.trial_started_at || null}
-            plan={profile?.plan || "free"}
-            onUpgrade={() => navigateTo("pro")}
-          />
+      <div className={`min-h-screen ${showTabletSidebar ? "md:grid md:grid-cols-[var(--app-shell-sidebar)_minmax(0,1fr)]" : "flex flex-col"}`}>
+        {showTabletSidebar && (
+          <aside
+            data-testid="app-shell-sidebar"
+            className="hidden md:flex md:min-h-screen md:flex-col md:justify-between md:border-r md:border-border/60 md:bg-card/70 md:px-4 md:py-6 lg:px-5 lg:py-8"
+          >
+            <div className="space-y-6">
+              <div className="flex items-center gap-3 rounded-[1.75rem] bg-background/80 px-3 py-3 shadow-sm">
+                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/10 shadow-[0_10px_24px_-12px_hsl(var(--primary)/0.5)]">
+                  <img src={juMain} alt="Nuju mascot" className="h-8 w-8 object-contain" />
+                </div>
+                <div>
+                  <p className="font-serif text-xl font-semibold text-foreground">Nuju</p>
+                </div>
+              </div>
+
+              <nav className="space-y-2" aria-label="Primary" data-testid="app-shell-nav">
+                {[...navItems, ...secondaryNavItems].map((item) => {
+                  const active = screen === item.id || activeNavId === item.id;
+                  const Icon = "icon" in item ? item.icon : null;
+                  return (
+                    <button
+                      key={item.id}
+                      onClick={() => navigateTo(item.id)}
+                      className={`flex w-full items-center gap-3 rounded-2xl px-4 py-3 text-left transition-all ${
+                        active
+                          ? "bg-primary text-primary-foreground shadow-[0_14px_28px_-18px_hsl(var(--primary)/0.85)]"
+                          : "bg-transparent text-muted-foreground hover:bg-background/80 hover:text-foreground"
+                      }`}
+                    >
+                      {Icon ? <Icon className="h-5 w-5 shrink-0" strokeWidth={active ? 2.2 : 1.8} /> : <div className="h-5 w-5 shrink-0" />}
+                      <span className="text-sm font-semibold">{item.label}</span>
+                    </button>
+                  );
+                })}
+              </nav>
+            </div>
+            <div />
+          </aside>
         )}
 
-        {/* Screen content with framer-motion transitions */}
-        <AnimatePresence mode="popLayout" initial={false}>
-          <motion.div
-            key={screen}
-            initial={{ opacity: 0, x: navDirection * 60 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: navDirection * -30 }}
-            transition={{
-              type: "spring",
-              stiffness: 380,
-              damping: 35,
-              mass: 0.8,
-            }}
-            style={{ willChange: "transform, opacity" }}
+        <div className="flex min-h-screen min-w-0 flex-col">
+          {showDesktopTopbar && (
+            <header
+              data-testid="app-shell-topbar"
+              className="sticky top-0 z-30 border-b border-border/60 bg-background/88 backdrop-blur-xl"
+            >
+              <div className="app-shell">
+                <div className="app-shell-content flex items-center gap-6 px-2 py-3">
+                  <div className="flex items-center gap-3 rounded-full bg-card/80 px-3 py-2 shadow-sm">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-primary/10 shadow-[0_10px_24px_-12px_hsl(var(--primary)/0.5)]">
+                      <img src={juMain} alt="Nuju mascot" className="h-7 w-7 object-contain" />
+                    </div>
+                    <p className="font-serif text-lg font-semibold text-foreground">Nuju</p>
+                  </div>
+
+                  <nav
+                    aria-label="Desktop"
+                    data-testid="app-shell-desktop-nav"
+                    className="flex min-w-0 flex-1 flex-wrap items-center justify-center gap-2"
+                  >
+                    {[...navItems, ...secondaryNavItems].map((item) => {
+                      const active = screen === item.id || activeNavId === item.id;
+                      const Icon = "icon" in item ? item.icon : null;
+                      return (
+                        <button
+                          key={item.id}
+                          onClick={() => navigateTo(item.id)}
+                          className={`flex items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold transition-all ${
+                            active
+                              ? "bg-primary text-primary-foreground shadow-[0_14px_28px_-18px_hsl(var(--primary)/0.85)]"
+                              : "bg-card/70 text-muted-foreground hover:bg-secondary hover:text-foreground"
+                          }`}
+                        >
+                          {Icon ? <Icon className="h-4 w-4 shrink-0" strokeWidth={active ? 2.2 : 1.8} /> : null}
+                          <span>{item.label}</span>
+                        </button>
+                      );
+                    })}
+                  </nav>
+                </div>
+              </div>
+            </header>
+          )}
+
+          <div
+            data-testid="app-shell-main"
+            className={`app-shell app-shell-scroll flex-1 ${showBottomNav ? "pb-24" : "pb-6 md:pb-8"}`}
           >
-          {screen === "home" && (
-            <HomeScreen
-              onNavigate={(s) => navigateTo(s as Screen)}
-              onWrite={(prompt) => openJournalScreen(prompt ? { prompt } : undefined)}
-              onTalk={(prompt) => openJournalScreen(prompt ? { prompt, autoRecord: true } : { autoRecord: true })}
-              onSettings={() => navigateTo("settings")}
-              onUpgrade={() => navigateTo("pro")}
-              onQuickLog={handleQuickLog}
-              streak={streak}
-              entries={entries}
-              selectedMood={selectedMood}
-              onMoodSelect={handleMoodSelect}
-              energy={energy}
-              onEnergyChange={setEnergy}
-              selectedActivities={selectedActivities}
-              onActivitiesChange={setSelectedActivities}
-              plan={profile?.plan}
-              trialStartedAt={profile?.trial_started_at}
-              hasBanner={(() => {
-                const p = profile?.plan;
-                if (p === "plus" || p === "pro") return false;
-                const trial = getTrialStatus(profile?.trial_started_at || null);
-                return !trial.notStarted;
-              })()}
-            />
-          )}
-          {screen === "journal" && (
-            <JournalScreen
-              onBack={() => navigateTo("home")}
-              onSave={handleSaveEntry}
-              initialPrompt={journalPrompt}
-              autoRecord={journalAutoRecord}
-              activities={selectedActivities}
-              mood={selectedMood}
-              hasProAccess={hasProAccess(profile?.plan || null, profile?.trial_started_at || null)}
-              onUpgrade={() => navigateTo("pro")}
-            />
-          )}
-          {screen === "insights" && <InsightsScreen entries={entries} streak={streak} onUpgrade={() => navigateTo("pro")} onNavigate={(s) => navigateTo(s as Screen)} plan={profile?.plan} trialStartedAt={profile?.trial_started_at} />}
-          {screen === "history" && <HistoryScreen entries={entries} onNavigate={(s) => s === "journal" ? openJournalScreen() : navigateTo(s as Screen)} />}
-          {screen === "coach" && <CoachScreen onUpgrade={() => navigateTo("pro")} plan={profile?.plan} trialStartedAt={profile?.trial_started_at} />}
-          {screen === "explore" && (
-            <ExploreScreen
-              entries={entries}
-              streak={streak}
-              onWritePrompt={(prompt) => openJournalScreen({ prompt })}
-              onNavigate={(s) => navigateTo(s as Screen)}
-              plan={profile?.plan}
-              trialStartedAt={profile?.trial_started_at}
-              onUpgrade={() => navigateTo("pro")}
-            />
-          )}
-          {screen === "settings" && <SettingsScreen onBack={() => navigateTo("home")} onUpgrade={() => navigateTo("pro")} plan={profile?.plan} trialStartedAt={profile?.trial_started_at} />}
-          {screen === "programs" && (
-            <GuidedProgramsScreen
-              onBack={() => navigateTo("insights")}
-              onWritePrompt={(prompt) => openJournalScreen({ prompt })}
-              plan={profile?.plan}
-              trialStartedAt={profile?.trial_started_at}
-              onUpgrade={() => navigateTo("pro")}
-            />
-          )}
-          {screen === "year-review" && (
-            <YearInReviewScreen
-              entries={entries}
-              streak={streak}
-              onBack={() => navigateTo("insights")}
-            />
-          )}
-          {screen === "pro" && isNative() && isIOS() ? (
-            <NativePricingScreen
-              currentPlan={profile?.plan || "free"}
-              trialStartedAt={profile?.trial_started_at || null}
-              userId={user?.id}
-              onClose={() => navigateTo("home")}
-              onSuccess={(plan) => {
-                setProfile((p) => p ? { ...p, plan } : null);
-                toast.success(t.subscription_updated || "Subscription updated!");
-                navigateTo("home");
-              }}
-            />
-          ) : screen === "pro" ? (
-            <PricingScreen
-              currentPlan={profile?.plan || "free"}
-              trialStartedAt={profile?.trial_started_at || null}
-              onCheckout={handleCheckout}
-              onStartTrial={handleStartTrial}
-              onBack={() => navigateTo("home")}
-            />
-          ) : null}
-          </motion.div>
-        </AnimatePresence>
+            <div data-testid="app-shell-content" className={`app-shell-content ${contentShellClass} ${contentPaddingClass}`}>
+              <div className={surfaceClass}>
+                <div className={showDesktopChrome ? "min-h-full px-4 py-4 md:px-6 md:py-6 lg:px-8 lg:py-8" : ""}>
+                  {/* Trial banner on home/insights */}
+                  {(screen === "home" || screen === "insights") && (
+                    <TrialBanner
+                      trialStartedAt={profile?.trial_started_at || null}
+                      plan={profile?.plan || "free"}
+                      onUpgrade={() => navigateTo("pro")}
+                    />
+                  )}
+
+                  {/* Screen content with framer-motion transitions */}
+                  <AnimatePresence mode="popLayout" initial={false}>
+                    <motion.div
+                      key={screen}
+                      initial={{ opacity: 0, x: navDirection * 60 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      exit={{ opacity: 0, x: navDirection * -30 }}
+                      transition={{
+                        type: "spring",
+                        stiffness: 380,
+                        damping: 35,
+                        mass: 0.8,
+                      }}
+                      style={{ willChange: "transform, opacity" }}
+                    >
+                    {screen === "home" && (
+                      <HomeScreen
+                        shellMode={shellMode}
+                        displayName={displayName}
+                        onNavigate={(s) => navigateTo(s as Screen)}
+                        onWrite={(prompt) => openJournalScreen(prompt ? { prompt } : undefined)}
+                        onTalk={(prompt) => openJournalScreen(prompt ? { prompt, autoRecord: true } : { autoRecord: true })}
+                        onSettings={() => navigateTo("settings")}
+                        onUpgrade={() => navigateTo("pro")}
+                        onQuickLog={handleQuickLog}
+                        streak={streak}
+                        entries={entries}
+                        selectedMood={selectedMood}
+                        onMoodSelect={handleMoodSelect}
+                        energy={energy}
+                        onEnergyChange={setEnergy}
+                        selectedActivities={selectedActivities}
+                        onActivitiesChange={setSelectedActivities}
+                        plan={profile?.plan}
+                        trialStartedAt={profile?.trial_started_at}
+                        hasBanner={(() => {
+                          const p = profile?.plan;
+                          if (p === "plus" || p === "pro") return false;
+                          const trial = getTrialStatus(profile?.trial_started_at || null);
+                          return !trial.notStarted;
+                        })()}
+                      />
+                    )}
+                    {screen === "journal" && (
+                      <JournalScreen
+                        shellMode={shellMode}
+                        onBack={() => navigateTo("home")}
+                        onSave={handleSaveEntry}
+                        initialPrompt={journalPrompt}
+                        autoRecord={journalAutoRecord}
+                        activities={selectedActivities}
+                        mood={selectedMood}
+                        hasProAccess={hasProAccess(profile?.plan || null, profile?.trial_started_at || null)}
+                        onUpgrade={() => navigateTo("pro")}
+                      />
+                    )}
+                    {screen === "insights" && <InsightsScreen shellMode={shellMode} entries={entries} streak={streak} onUpgrade={() => navigateTo("pro")} onNavigate={(s) => navigateTo(s as Screen)} plan={profile?.plan} trialStartedAt={profile?.trial_started_at} />}
+                    {screen === "history" && <HistoryScreen entries={entries} onNavigate={(s) => s === "journal" ? openJournalScreen() : navigateTo(s as Screen)} />}
+                    {screen === "coach" && <CoachScreen shellMode={shellMode} displayName={displayName} onUpgrade={() => navigateTo("pro")} plan={profile?.plan} trialStartedAt={profile?.trial_started_at} />}
+                    {screen === "explore" && (
+                      <ExploreScreen
+                        entries={entries}
+                        streak={streak}
+                        onWritePrompt={(prompt) => openJournalScreen({ prompt })}
+                        onNavigate={(s) => navigateTo(s as Screen)}
+                        plan={profile?.plan}
+                        trialStartedAt={profile?.trial_started_at}
+                        onUpgrade={() => navigateTo("pro")}
+                      />
+                    )}
+                    {screen === "settings" && (
+                      <SettingsScreen
+                        onBack={() => navigateTo("home")}
+                        onUpgrade={() => navigateTo("pro")}
+                        onSaveDisplayName={handleDisplayNameSave}
+                        displayName={displayName}
+                        plan={profile?.plan}
+                        trialStartedAt={profile?.trial_started_at}
+                      />
+                    )}
+                    {screen === "programs" && (
+                      <GuidedProgramsScreen
+                        onBack={() => navigateTo("insights")}
+                        onWritePrompt={(prompt) => openJournalScreen({ prompt })}
+                        plan={profile?.plan}
+                        trialStartedAt={profile?.trial_started_at}
+                        onUpgrade={() => navigateTo("pro")}
+                      />
+                    )}
+                    {screen === "year-review" && (
+                      <YearInReviewScreen
+                        entries={entries}
+                        streak={streak}
+                        onBack={() => navigateTo("insights")}
+                      />
+                    )}
+                    {screen === "pro" && isNative() && isIOS() ? (
+                      <NativePricingScreen
+                        currentPlan={profile?.plan || "free"}
+                        trialStartedAt={profile?.trial_started_at || null}
+                        userId={user?.id}
+                        onClose={() => navigateTo("home")}
+                        onSuccess={(plan) => {
+                          setProfile((p) => p ? { ...p, plan } : null);
+                          toast.success(t.subscription_updated || "Subscription updated!");
+                          navigateTo("home");
+                        }}
+                      />
+                    ) : screen === "pro" ? (
+                      <PricingScreen
+                        currentPlan={profile?.plan || "free"}
+                        trialStartedAt={profile?.trial_started_at || null}
+                        onCheckout={handleCheckout}
+                        onStartTrial={handleStartTrial}
+                        onBack={() => navigateTo("home")}
+                      />
+                    ) : null}
+                    </motion.div>
+                  </AnimatePresence>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
 
       {showTour && (
         <GuidedTour
@@ -731,12 +896,13 @@ const AppPage: React.FC = () => {
       <MomentCaptureButton
         onClick={() => setShowMomentCapture(true)}
         hasProAccess={hasProAccess(profile?.plan || "free", profile?.trial_started_at || null)}
+        shellMode={shellMode}
       />
 
       {/* Floating glass tab bar with spring animations */}
-      {screen !== "journal" && screen !== "settings" && (
-        <nav className="fixed bottom-0 left-0 right-0 z-40">
-          <div className="max-w-app mx-auto px-4 pb-[max(0.5rem,env(safe-area-inset-bottom))]">
+      {showBottomNav && (
+        <nav className="fixed bottom-0 left-0 right-0 z-40" data-testid="app-bottom-nav">
+          <div className="mx-auto max-w-app px-4 pb-[max(0.5rem,env(safe-area-inset-bottom))]">
             <div className="bg-card/60 dark:bg-card/50 backdrop-blur-2xl rounded-2xl border border-border/15 shadow-[0_-4px_30px_-8px_rgba(0,0,0,0.1)] dark:shadow-[0_-4px_30px_-8px_rgba(0,0,0,0.3)] flex overflow-hidden">
               {navItems.map((item) => {
                 const active = screen === item.id;

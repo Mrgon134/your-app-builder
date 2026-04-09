@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useLang, LANG_META } from "@/lib/i18n";
 import { useAuth } from "@/lib/auth";
 import { updateProfile, fetchEntries, type EntryRow } from "@/lib/api";
-import { ArrowLeft, Moon, Sun, Globe, Crown, LogOut, Bell, BellOff, ChevronRight, Fingerprint, KeyRound, AtSign, Trash2, AlertTriangle, Download, HelpCircle, Mail, Info, FileText, Lock } from "lucide-react";
+import { ArrowLeft, Moon, Sun, Globe, Crown, LogOut, Bell, BellOff, ChevronRight, Fingerprint, KeyRound, AtSign, Trash2, AlertTriangle, Download, HelpCircle, Mail, Info, FileText, Lock, UserRound } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { ROUTES } from "@/lib/routes";
 import {
@@ -21,15 +21,20 @@ import { hashPin } from "@/components/app/PinLockScreen";
 interface SettingsScreenProps {
   onBack: () => void;
   onUpgrade?: () => void;
+  onSaveDisplayName?: (displayName: string) => Promise<boolean> | boolean;
+  displayName?: string | null;
   plan?: string | null;
   trialStartedAt?: string | null;
 }
 
-const SettingsScreen: React.FC<SettingsScreenProps> = ({ onBack, onUpgrade, plan = "free", trialStartedAt = null }) => {
+const SettingsScreen: React.FC<SettingsScreenProps> = ({ onBack, onUpgrade, onSaveDisplayName, displayName = null, plan = "free", trialStartedAt = null }) => {
   const navigate = useNavigate();
   const { t, lang, setLang } = useLang();
   const { signOut, user, resetPassword, updateEmail } = useAuth();
   const [showChangeEmail, setShowChangeEmail] = useState(false);
+  const [showChangeName, setShowChangeName] = useState(false);
+  const [nameDraft, setNameDraft] = useState(displayName || "");
+  const [nameLoading, setNameLoading] = useState(false);
   const [newEmail, setNewEmail] = useState("");
   const [emailLoading, setEmailLoading] = useState(false);
   const [darkMode, setDarkMode] = useState(document.documentElement.classList.contains("dark"));
@@ -49,6 +54,10 @@ const SettingsScreen: React.FC<SettingsScreenProps> = ({ onBack, onUpgrade, plan
   const [disablePin, setDisablePin] = useState("");
   const [exporting, setExporting] = useState(false);
   const [exportingCsv, setExportingCsv] = useState(false);
+
+  useEffect(() => {
+    setNameDraft(displayName || "");
+  }, [displayName]);
 
   const currentLang = LANG_META.find((l) => l.code === lang);
 
@@ -198,7 +207,7 @@ const SettingsScreen: React.FC<SettingsScreenProps> = ({ onBack, onUpgrade, plan
   };
 
   return (
-    <div className="animate-page-slide-in">
+    <div className="animate-page-slide-in mx-auto max-w-app-content">
       {/* iOS-style large title header */}
       <button onClick={onBack} className="flex items-center gap-1 text-primary mb-5 press-spring">
         <ArrowLeft className="w-5 h-5" />
@@ -207,7 +216,7 @@ const SettingsScreen: React.FC<SettingsScreenProps> = ({ onBack, onUpgrade, plan
 
       <h1 className="text-[34px] font-bold text-foreground tracking-tight mb-6">{t.settings}</h1>
 
-      <div className="space-y-6">
+      <div className="space-y-6 xl:grid xl:grid-cols-2 xl:gap-6 xl:space-y-0">
         {/* Appearance group */}
         <div>
           <p className="text-[13px] font-medium text-muted-foreground uppercase tracking-wider px-4 mb-1.5">
@@ -599,6 +608,53 @@ const SettingsScreen: React.FC<SettingsScreenProps> = ({ onBack, onUpgrade, plan
               {t.account || "Account"}
             </p>
             <div className="ios-group">
+              <div className="ios-group-item">
+                <span className="text-[15px] text-foreground">Name</span>
+                <span className="text-[15px] text-muted-foreground truncate max-w-[180px]">
+                  {displayName || "Not set"}
+                </span>
+              </div>
+
+              <button
+                onClick={() => {
+                  setShowChangeName(!showChangeName);
+                  setNameDraft(displayName || "");
+                }}
+                className="ios-group-item w-full"
+              >
+                <div className="flex items-center gap-3">
+                  <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center">
+                    <UserRound className="w-4 h-4 text-primary" />
+                  </div>
+                  <span className="text-[15px] font-normal text-foreground">How Ju calls you</span>
+                </div>
+                <ChevronRight className="w-4 h-4 text-muted-foreground/40" />
+              </button>
+              {showChangeName && (
+                <div className="px-4 py-3 border-t border-border/40">
+                  <input
+                    type="text"
+                    placeholder="Your name or nickname"
+                    value={nameDraft}
+                    onChange={(e) => setNameDraft(e.target.value)}
+                    className="w-full px-3 h-[44px] rounded-xl bg-background border border-border/60 text-foreground text-[15px] focus:outline-none focus:ring-2 focus:ring-primary/20 mb-2"
+                  />
+                  <button
+                    disabled={nameLoading || !nameDraft.trim()}
+                    onClick={async () => {
+                      if (!onSaveDisplayName || nameLoading) return;
+                      setNameLoading(true);
+                      const didSave = await onSaveDisplayName(nameDraft);
+                      setNameLoading(false);
+                      if (didSave !== false) setShowChangeName(false);
+                    }}
+                    className="w-full h-[40px] rounded-xl bg-primary text-primary-foreground text-[14px] font-semibold disabled:opacity-40 transition-all active:scale-[0.97]"
+                  >
+                    {nameLoading ? "..." : "Save name"}
+                  </button>
+                </div>
+              )}
+
               <div className="ios-group-item">
                 <span className="text-[15px] text-foreground">Email</span>
                 <span className="text-[15px] text-muted-foreground truncate max-w-[180px]">{user.email}</span>
