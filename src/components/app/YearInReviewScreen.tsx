@@ -2,7 +2,7 @@ import React, { useMemo } from "react";
 import { ArrowLeft, Share2, Trophy, Flame, BookOpen, TrendingUp, Star, Zap, Target, Sparkles } from "lucide-react";
 import MoodIcon from "@/components/MoodIcon";
 import { MOODS } from "@/lib/constants";
-import { generateShareCard } from "@/lib/share-card";
+import { generateShareCard, shareImage } from "@/lib/share-card";
 import { toast } from "sonner";
 import { useLang } from "@/lib/i18n";
 import { EntryRow } from "@/lib/api";
@@ -49,8 +49,20 @@ const YearInReviewScreen: React.FC<YearInReviewScreenProps> = ({ entries, streak
   }, [entries, year]);
 
   const handleShare = async () => {
+    if (!stats) {
+      toast.error("Not enough data to share yet");
+      return;
+    }
+
     try {
-      await generateShareCard("streak", { streak, year: String(year) } as any);
+      const blob = await generateShareCard("year", {
+        year: String(year),
+        totalEntries: stats.total,
+        avgMood: stats.avgMood,
+        bestMonth: stats.monthNames[stats.bestMonth],
+        streak,
+      });
+      await shareImage(blob, `${year} in Review — Nuju`, `nuju-year-in-review-${year}.png`);
     } catch (e) {
       toast.error("Could not generate share card");
     }

@@ -89,7 +89,7 @@ const HistoryScreen: React.FC<HistoryScreenProps> = ({ entries, onNavigate }) =>
               <div className="glass-card rounded-2xl overflow-hidden">
                 {monthEntries.map((entry, idx) => {
                   const moodData = MOODS.find((m) => m.value === entry.mood);
-                  const textPreview = entry.text?.substring(0, 60) || "";
+                  const textPreview = (entry.text || entry.prompt_text || "").substring(0, 60);
 
                   return (
                     <button

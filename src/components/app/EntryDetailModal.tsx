@@ -156,6 +156,21 @@ const EntryDetailModal: React.FC<Props> = ({ entry, isOpen, onClose }) => {
                 </div>
               )}
 
+              {/* Saved Prompt */}
+              {cachedEntry.prompt_text && (
+                <div className="mb-5 rounded-2xl px-4 py-3 bg-primary/5 border border-primary/10">
+                  <div className="flex items-center gap-2 mb-2">
+                    <Sparkles className="w-4 h-4 text-primary" />
+                    <p className="text-[11px] font-semibold text-primary uppercase tracking-[0.12em]">
+                      {t.todays_prompt || "Prompt"}
+                    </p>
+                  </div>
+                  <p className="text-[14px] leading-relaxed text-foreground">
+                    {cachedEntry.prompt_text}
+                  </p>
+                </div>
+              )}
+
               {/* Journal Text */}
               <div className="mb-6">
                 <div className="flex items-center gap-2 mb-2">

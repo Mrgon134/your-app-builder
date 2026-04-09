@@ -180,6 +180,16 @@ const AppPage: React.FC = () => {
     if (navigator.vibrate) navigator.vibrate(6);
   }, [screen, entries.length, streak, selectedMood, user, events]);
 
+  const openJournalScreen = useCallback((options?: { prompt?: string; autoRecord?: boolean }) => {
+    setJournalPrompt(options?.prompt || "");
+    setJournalAutoRecord(!!options?.autoRecord);
+    navigateTo("journal");
+
+    if (options?.autoRecord) {
+      setTimeout(() => setJournalAutoRecord(false), 600);
+    }
+  }, [navigateTo]);
+
   useEffect(() => {
     if (!user || loading) return;
 
@@ -307,7 +317,7 @@ const AppPage: React.FC = () => {
     try {
       // P2: Unlimited entries for all users — gate AI insight instead of input
       const entry = await createEntry(
-        user.id, selectedMood, text, energy, undefined,
+        user.id, selectedMood, text, energy, journalPrompt || undefined,
         pendingCaptureType,
         pendingLocation || undefined
       );
@@ -435,10 +445,7 @@ const AppPage: React.FC = () => {
     const timeStr = now.toTimeString().split(' ')[0];
 
     setPendingCaptureType("calendar");
-    navigateTo("journal");
-    setTimeout(() => {
-      setJournalPrompt(`📅 Moment on ${dateStr} at ${timeStr.slice(0, 5)}\n\nWhat happened?`);
-    }, 100);
+    openJournalScreen({ prompt: `📅 Moment on ${dateStr} at ${timeStr.slice(0, 5)}\n\nWhat happened?` });
   };
 
   const handleLocationCapture = async () => {
@@ -453,20 +460,17 @@ const AppPage: React.FC = () => {
             setPendingCaptureType("location");
 
             const prompt = `📍 Location: ${latitude.toFixed(4)}°, ${longitude.toFixed(4)}°\n\nWhat's happening here?`;
-            navigateTo("journal");
-            setTimeout(() => setJournalPrompt(prompt), 100);
+            openJournalScreen({ prompt });
           },
           (error) => {
             console.error("Location error:", error);
             setPendingCaptureType("location");
-            navigateTo("journal");
-            setTimeout(() => setJournalPrompt("📍 Where are you right now? What's on your mind?"), 100);
+            openJournalScreen({ prompt: "📍 Where are you right now? What's on your mind?" });
           }
         );
       } else {
         setPendingCaptureType("location");
-        navigateTo("journal");
-        setTimeout(() => setJournalPrompt("📍 Where are you right now? What's on your mind?"), 100);
+        openJournalScreen({ prompt: "📍 Where are you right now? What's on your mind?" });
       }
     } catch (err) {
       console.error("Location capture failed:", err);
@@ -485,8 +489,7 @@ const AppPage: React.FC = () => {
       setPendingPhoto(file);
       setPendingCaptureType("photo");
       const prompt = `📷 Photo captured\n\nDescribe what you see or how it makes you feel`;
-      navigateTo("journal");
-      setTimeout(() => setJournalPrompt(prompt), 100);
+      openJournalScreen({ prompt });
     };
     input.click();
   };
@@ -555,8 +558,7 @@ const AppPage: React.FC = () => {
         onSelectType={(type) => {
           if (type === "quick") {
             setPendingCaptureType("quick");
-            navigateTo("journal");
-            setTimeout(() => setJournalPrompt("📍 Quick Moment Capture"), 100);
+            openJournalScreen({ prompt: "📍 Quick Moment Capture" });
           } else if (type === "calendar") {
             handleCalendarCapture();
           } else if (type === "location") {
@@ -621,12 +623,8 @@ const AppPage: React.FC = () => {
           {screen === "home" && (
             <HomeScreen
               onNavigate={(s) => navigateTo(s as Screen)}
-              onWrite={() => navigateTo("journal")}
-              onTalk={() => {
-                setJournalAutoRecord(true);
-                navigateTo("journal");
-                setTimeout(() => setJournalAutoRecord(false), 600);
-              }}
+              onWrite={(prompt) => openJournalScreen(prompt ? { prompt } : undefined)}
+              onTalk={(prompt) => openJournalScreen(prompt ? { prompt, autoRecord: true } : { autoRecord: true })}
               onSettings={() => navigateTo("settings")}
               onUpgrade={() => navigateTo("pro")}
               onQuickLog={handleQuickLog}
@@ -661,13 +659,13 @@ const AppPage: React.FC = () => {
             />
           )}
           {screen === "insights" && <InsightsScreen entries={entries} streak={streak} onUpgrade={() => navigateTo("pro")} onNavigate={(s) => navigateTo(s as Screen)} plan={profile?.plan} trialStartedAt={profile?.trial_started_at} />}
-          {screen === "history" && <HistoryScreen entries={entries} onNavigate={(s) => navigateTo(s as Screen)} />}
+          {screen === "history" && <HistoryScreen entries={entries} onNavigate={(s) => s === "journal" ? openJournalScreen() : navigateTo(s as Screen)} />}
           {screen === "coach" && <CoachScreen onUpgrade={() => navigateTo("pro")} plan={profile?.plan} trialStartedAt={profile?.trial_started_at} />}
           {screen === "explore" && (
             <ExploreScreen
               entries={entries}
               streak={streak}
-              onWritePrompt={(prompt) => { setJournalPrompt(prompt); navigateTo("journal"); }}
+              onWritePrompt={(prompt) => openJournalScreen({ prompt })}
               onNavigate={(s) => navigateTo(s as Screen)}
               plan={profile?.plan}
               trialStartedAt={profile?.trial_started_at}
@@ -678,7 +676,7 @@ const AppPage: React.FC = () => {
           {screen === "programs" && (
             <GuidedProgramsScreen
               onBack={() => navigateTo("insights")}
-              onWritePrompt={(prompt) => { setJournalPrompt(prompt); navigateTo("journal"); }}
+              onWritePrompt={(prompt) => openJournalScreen({ prompt })}
               plan={profile?.plan}
               trialStartedAt={profile?.trial_started_at}
               onUpgrade={() => navigateTo("pro")}

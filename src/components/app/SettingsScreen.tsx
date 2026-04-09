@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useLang, LANG_META } from "@/lib/i18n";
 import { useAuth } from "@/lib/auth";
-import { updateProfile, fetchEntries } from "@/lib/api";
+import { updateProfile, fetchEntries, type EntryRow } from "@/lib/api";
 import { ArrowLeft, Moon, Sun, Globe, Crown, LogOut, Bell, BellOff, ChevronRight, Fingerprint, KeyRound, AtSign, Trash2, AlertTriangle, Download, HelpCircle, Mail, Info, FileText, Lock } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { ROUTES } from "@/lib/routes";
@@ -48,8 +48,95 @@ const SettingsScreen: React.FC<SettingsScreenProps> = ({ onBack, onUpgrade, plan
   const [showPinDisable, setShowPinDisable] = useState(false);
   const [disablePin, setDisablePin] = useState("");
   const [exporting, setExporting] = useState(false);
+  const [exportingCsv, setExportingCsv] = useState(false);
 
   const currentLang = LANG_META.find((l) => l.code === lang);
+
+  const downloadFile = (content: string, fileName: string, mimeType: string) => {
+    const blob = new Blob([content], { type: mimeType });
+    const url = URL.createObjectURL(blob);
+    const linkElement = document.createElement("a");
+    linkElement.href = url;
+    linkElement.download = fileName;
+    linkElement.click();
+    URL.revokeObjectURL(url);
+  };
+
+  const formatExportDate = (value: string) =>
+    new Date(value).toLocaleString(lang || undefined, {
+      year: "numeric",
+      month: "short",
+      day: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+    });
+
+  const buildTextExport = (entries: EntryRow[]) => {
+    let textContent = `Nuju Journal Export\nExport Date: ${new Date().toLocaleString()}\nTotal Entries: ${entries.length}\n\n`;
+
+    entries.forEach((entry, index) => {
+      textContent += `Entry ${entries.length - index}\n`;
+      textContent += `=========================================\n`;
+      textContent += `Date: ${formatExportDate(entry.created_at || entry.entry_date)}\n`;
+      textContent += `Mood: ${entry.mood}/5\n`;
+      if (entry.energy != null) textContent += `Energy: ${entry.energy}/100\n`;
+      if (entry.capture_type) textContent += `Capture Type: ${entry.capture_type}\n`;
+      if (entry.location_name) textContent += `Location: ${entry.location_name}\n`;
+      if (entry.location_lat != null && entry.location_lng != null && !entry.location_name) {
+        textContent += `Location: ${entry.location_lat.toFixed(4)}°, ${entry.location_lng.toFixed(4)}°\n`;
+      }
+      if (entry.audio_url) textContent += `Voice: Yes\n`;
+      if (entry.photo_url) textContent += `Photo: Yes\n`;
+      if (entry.prompt_text) {
+        textContent += `\n-- Prompt --\n${entry.prompt_text}\n`;
+      }
+      textContent += `\n-- Entry --\n${entry.text || "(No text)"}\n`;
+      if (entry.ai_summary) {
+        textContent += `\n-- AI Insight --\n${entry.ai_summary}\n`;
+      }
+      textContent += `=========================================\n\n`;
+    });
+
+    return textContent;
+  };
+
+  const escapeCsvValue = (value: unknown) => `"${String(value ?? "").replace(/"/g, '""')}"`;
+
+  const buildCsvExport = (entries: EntryRow[]) => {
+    const headers = [
+      "entry_date",
+      "created_at",
+      "mood",
+      "energy",
+      "capture_type",
+      "prompt_text",
+      "entry_text",
+      "ai_summary",
+      "has_voice",
+      "has_photo",
+      "location_name",
+      "location_lat",
+      "location_lng",
+    ];
+
+    const rows = entries.map((entry) => [
+      entry.entry_date,
+      entry.created_at,
+      entry.mood,
+      entry.energy ?? "",
+      entry.capture_type ?? "",
+      entry.prompt_text ?? "",
+      entry.text ?? "",
+      entry.ai_summary ?? "",
+      entry.audio_url ? "yes" : "no",
+      entry.photo_url ? "yes" : "no",
+      entry.location_name ?? "",
+      entry.location_lat ?? "",
+      entry.location_lng ?? "",
+    ].map(escapeCsvValue).join(","));
+
+    return [headers.join(","), ...rows].join("\n");
+  };
 
   const handleSignOut = async () => {
     // Clear PIN hash before signing out (security: prevent PIN lock after logout)
@@ -77,39 +164,36 @@ const SettingsScreen: React.FC<SettingsScreenProps> = ({ onBack, onUpgrade, plan
     setExporting(true);
     try {
       const allEntries = await fetchEntries(user.id);
-      
-      let textContent = `Nuju Journal Export\nExport Date: ${new Date().toLocaleDateString()}\nTotal Entries: ${allEntries.length}\n\n`;
-      
-      allEntries.forEach((entry) => {
-        textContent += `=========================================\n`;
-        textContent += `Date: ${new Date(entry.entry_date).toLocaleDateString()}\n`;
-        textContent += `Mood: ${entry.mood}/5`;
-        if (entry.energy) textContent += ` | Energy: ${entry.energy}`;
-        if (entry.audio_url) textContent += ` | (Contains Voice Audio in App)`;
-        textContent += `\n-----------------------------------------\n`;
-        textContent += `${entry.text || "(No text)"}\n`;
-        
-        if (entry.ai_summary) {
-          textContent += `\n-- AI Insight --\n${entry.ai_summary}\n`;
-        }
-        textContent += `=========================================\n\n`;
-      });
-
-      const dataUri = "data:text/plain;charset=utf-8," + encodeURIComponent(textContent);
-      
-      const exportFileDefaultName = `nuju-export-${new Date().toISOString().split('T')[0]}.txt`;
-      
-      const linkElement = document.createElement("a");
-      linkElement.setAttribute("href", dataUri);
-      linkElement.setAttribute("download", exportFileDefaultName);
-      linkElement.click();
-      
-      toast.success("Data export downloaded successfully");
+      downloadFile(
+        buildTextExport(allEntries),
+        `nuju-export-${new Date().toISOString().split('T')[0]}.txt`,
+        "text/plain;charset=utf-8"
+      );
+      toast.success("Journal export downloaded successfully");
     } catch (err) {
       console.error("Export failed:", err);
       toast.error("Failed to export data");
     } finally {
       setExporting(false);
+    }
+  };
+
+  const handleExportCsv = async () => {
+    if (!user || exportingCsv) return;
+    setExportingCsv(true);
+    try {
+      const allEntries = await fetchEntries(user.id);
+      downloadFile(
+        buildCsvExport(allEntries),
+        `nuju-insights-${new Date().toISOString().split('T')[0]}.csv`,
+        "text/csv;charset=utf-8"
+      );
+      toast.success("CSV export downloaded successfully");
+    } catch (err) {
+      console.error("CSV export failed:", err);
+      toast.error("Failed to export CSV");
+    } finally {
+      setExportingCsv(false);
     }
   };
 
@@ -303,10 +387,25 @@ const SettingsScreen: React.FC<SettingsScreenProps> = ({ onBack, onUpgrade, plan
             >
               <div className="flex items-center gap-3">
                 <div className="w-8 h-8 rounded-lg bg-blue-500/10 flex items-center justify-center">
-                  <Download className="w-4 h-4 text-blue-500" />
+                  <FileText className="w-4 h-4 text-blue-500" />
                 </div>
                 <span className="text-[15px] font-normal text-foreground">
-                  {exporting ? (t.exporting || "Exporting...") : (t.export_all_data || "Export all my data")}
+                  {exporting ? (t.exporting || "Exporting...") : (t.export_all_data || "Export full journal (.txt)")}
+                </span>
+              </div>
+              <ChevronRight className="w-4 h-4 text-muted-foreground/40" />
+            </button>
+            <button
+              onClick={handleExportCsv}
+              disabled={exportingCsv}
+              className="ios-group-item w-full"
+            >
+              <div className="flex items-center gap-3">
+                <div className="w-8 h-8 rounded-lg bg-emerald-500/10 flex items-center justify-center">
+                  <Download className="w-4 h-4 text-emerald-600" />
+                </div>
+                <span className="text-[15px] font-normal text-foreground">
+                  {exportingCsv ? (t.exporting || "Exporting...") : (t.export_csv || "Export entries + insights (.csv)")}
                 </span>
               </div>
               <ChevronRight className="w-4 h-4 text-muted-foreground/40" />

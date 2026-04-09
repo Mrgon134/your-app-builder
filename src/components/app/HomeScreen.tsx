@@ -99,8 +99,8 @@ const getStreakMessage = (streak: number, t: Record<string, string>): string | n
 
 interface HomeScreenProps {
   onNavigate: (screen: string) => void;
-  onWrite?: () => void;
-  onTalk?: () => void;
+  onWrite?: (prompt?: string) => void;
+  onTalk?: (prompt?: string) => void;
   onSettings: () => void;
   onUpgrade: () => void;
   onQuickLog?: () => void;
@@ -536,7 +536,8 @@ const HomeScreen: React.FC<HomeScreenProps> = ({
         <div className="grid grid-cols-2 gap-3">
           <button
             onClick={() => {
-              onWrite ? onWrite() : onNavigate("journal");
+              const nextPrompt = moodTouched ? prompt : undefined;
+              onWrite ? onWrite(nextPrompt) : onNavigate("journal");
             }}
             className="flex items-center justify-center gap-2.5 h-[54px] rounded-2xl bg-primary text-primary-foreground font-semibold text-[15px] press-spring shadow-[0_4px_20px_-4px_hsl(var(--primary)/0.4)]"
           >
@@ -549,7 +550,8 @@ const HomeScreen: React.FC<HomeScreenProps> = ({
                 onUpgrade();
                 return;
               }
-              onTalk ? onTalk() : onNavigate("journal");
+              const nextPrompt = moodTouched ? prompt : undefined;
+              onTalk ? onTalk(nextPrompt) : onNavigate("journal");
             }}
             className="flex items-center justify-center gap-2.5 h-[54px] rounded-2xl bg-foreground/[0.06] dark:bg-foreground/[0.08] text-foreground font-semibold text-[15px] press-spring backdrop-blur-sm relative overflow-hidden"
           >

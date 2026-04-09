@@ -2,6 +2,7 @@ import React from "react";
 import { useLang } from "@/lib/i18n";
 import { MOODS } from "@/lib/constants";
 import { EntryRow } from "@/lib/api";
+import { getMoodHighlight } from "@/lib/mood-highlights";
 
 interface MoodTrendChartProps {
   entries: EntryRow[];
@@ -54,8 +55,8 @@ const MoodTrendChart: React.FC<MoodTrendChartProps> = ({ entries }) => {
 
   // Stats
   const avgMood = (data.reduce((s, e) => s + e.mood, 0) / data.length).toFixed(1);
-  const bestDay = data.reduce((best, e) => (e.mood > best.mood ? e : best), data[0]);
-  const bestMoodData = MOODS.find((m) => m.value === bestDay.mood) || MOODS[2];
+  const moodHighlight = getMoodHighlight(data, t);
+  const highlightMoodData = MOODS.find((m) => m.value === moodHighlight.mood) || MOODS[2];
 
   return (
     <div className="bg-card rounded-3xl p-5 shadow-sm border border-border/50">
@@ -122,8 +123,8 @@ const MoodTrendChart: React.FC<MoodTrendChartProps> = ({ entries }) => {
           <p className="text-[10px] text-muted-foreground">{t.entries_total}</p>
         </div>
         <div className="text-center flex flex-col items-center">
-          <div className="w-5 h-5 rounded-full" style={{ background: bestMoodData.color }} />
-          <p className="text-[10px] text-muted-foreground mt-1">{t.mood_best}</p>
+          <div className="w-5 h-5 rounded-full" style={{ background: highlightMoodData.color }} />
+          <p className="text-[10px] text-muted-foreground mt-1">{moodHighlight.label}</p>
         </div>
       </div>
     </div>

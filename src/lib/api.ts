@@ -7,6 +7,7 @@ export interface EntryRow {
   mood: number;
   text: string;
   energy: number | null;
+  prompt_text: string | null;
   entry_date: string;
   created_at: string;
   ai_summary: string | null;
@@ -50,7 +51,7 @@ export const fetchProfile = async (userId: string): Promise<ProfileRow | null> =
 export const fetchEntries = async (userId: string): Promise<EntryRow[]> => {
   const { data, error } = await supabase
     .from("entries")
-    .select("id, mood, text, energy, entry_date, created_at, ai_summary, audio_url, transcript_segments, photo_url, location_lat, location_lng, location_name, capture_type")
+    .select("id, mood, text, energy, prompt_text, entry_date, created_at, ai_summary, audio_url, transcript_segments, photo_url, location_lat, location_lng, location_name, capture_type")
     .eq("user_id", userId)
     .order("entry_date", { ascending: false })
     .order("created_at", { ascending: false });
@@ -91,7 +92,7 @@ export const createEntry = async (
   const { data, error } = await supabase
     .from("entries")
     .insert(insertData)
-    .select("id, mood, text, energy, entry_date, created_at, photo_url, location_lat, location_lng, location_name, capture_type")
+    .select("id, mood, text, energy, prompt_text, entry_date, created_at, ai_summary, audio_url, transcript_segments, photo_url, location_lat, location_lng, location_name, capture_type")
     .single();
   if (error) throw error;
 
@@ -186,7 +187,7 @@ export const createQuickEntry = async (
   const { data, error } = await supabase
     .from("entries")
     .insert({ user_id: userId, mood, text: "", energy })
-    .select("id, mood, text, energy, entry_date, created_at")
+    .select("id, mood, text, energy, prompt_text, entry_date, created_at, ai_summary, audio_url, transcript_segments, photo_url, location_lat, location_lng, location_name, capture_type")
     .single();
   if (error) throw error;
   await supabase.rpc("update_streak", { p_user_id: userId });

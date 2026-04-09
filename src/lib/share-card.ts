@@ -74,7 +74,7 @@ function drawBrandWatermark(ctx: CanvasRenderingContext2D, w: number, h: number)
   ctx.fillText("Track your mood · Talk to Ju", w / 2, h - 30);
 }
 
-export type ShareCardType = "daily" | "weekly" | "streak";
+export type ShareCardType = "daily" | "weekly" | "streak" | "year";
 
 interface DailyCardData {
   mood: number;
@@ -92,9 +92,17 @@ interface StreakCardData {
   streak: number;
 }
 
+interface YearCardData {
+  year: string;
+  totalEntries: number;
+  avgMood: number;
+  bestMonth: string;
+  streak: number;
+}
+
 export async function generateShareCard(
   type: ShareCardType,
-  data: DailyCardData | WeeklyCardData | StreakCardData
+  data: DailyCardData | WeeklyCardData | StreakCardData | YearCardData
 ): Promise<Blob> {
   const W = 1080;
   const H = 1920;
@@ -125,6 +133,8 @@ export async function generateShareCard(
     drawDailyCard(ctx, W, H, data as DailyCardData);
   } else if (type === "weekly") {
     drawWeeklyCard(ctx, W, H, data as WeeklyCardData);
+  } else if (type === "year") {
+    drawYearCard(ctx, W, H, data as YearCardData);
   } else {
     drawStreakCard(ctx, W, H, data as StreakCardData);
   }
@@ -282,6 +292,86 @@ function drawStreakCard(ctx: CanvasRenderingContext2D, W: number, H: number, dat
   });
 }
 
+function drawYearCard(ctx: CanvasRenderingContext2D, W: number, H: number, data: YearCardData) {
+  ctx.fillStyle = TEXT_DARK;
+  ctx.font = "700 48px 'Lora', Georgia, serif";
+  ctx.textAlign = "center";
+  ctx.fillText(`${data.year} in Review`, W / 2, 240);
+
+  ctx.fillStyle = TEXT_MUTED;
+  ctx.font = "500 28px 'DM Sans', sans-serif";
+  ctx.fillText("A look back at your journaling year", W / 2, 292);
+
+  const heroX = 90;
+  const heroY = 360;
+  const heroW = W - 180;
+  const heroH = 300;
+  ctx.fillStyle = "#FFFFFFB8";
+  roundRect(ctx, heroX, heroY, heroW, heroH, 40);
+  ctx.fill();
+  ctx.strokeStyle = BRAND_COLOR + "25";
+  ctx.lineWidth = 2;
+  roundRect(ctx, heroX, heroY, heroW, heroH, 40);
+  ctx.stroke();
+
+  ctx.fillStyle = BRAND_COLOR;
+  ctx.font = "800 128px 'DM Sans', sans-serif";
+  ctx.fillText(String(data.totalEntries), W / 2, heroY + 155);
+  ctx.fillStyle = TEXT_DARK;
+  ctx.font = "600 34px 'DM Sans', sans-serif";
+  ctx.fillText("entries captured", W / 2, heroY + 215);
+
+  const stats = [
+    { label: "Avg Mood", value: data.avgMood.toFixed(1), color: "#4ECDC4" },
+    { label: "Best Month", value: data.bestMonth, color: "#FFB347" },
+    { label: "Streak", value: `${data.streak}d`, color: "#E8878C" },
+  ];
+  const cardW = 270;
+  const cardH = 190;
+  const gap = 45;
+  const totalW = cardW * stats.length + gap * (stats.length - 1);
+  const startX = (W - totalW) / 2;
+  const statsY = 760;
+
+  stats.forEach((stat, index) => {
+    const x = startX + index * (cardW + gap);
+    ctx.fillStyle = "#FFFFFF96";
+    roundRect(ctx, x, statsY, cardW, cardH, 32);
+    ctx.fill();
+    ctx.strokeStyle = stat.color + "30";
+    ctx.lineWidth = 2;
+    roundRect(ctx, x, statsY, cardW, cardH, 32);
+    ctx.stroke();
+
+    ctx.fillStyle = stat.color;
+    ctx.font = "700 42px 'DM Sans', sans-serif";
+    ctx.fillText(stat.value, x + cardW / 2, statsY + 88);
+
+    ctx.fillStyle = TEXT_MUTED;
+    ctx.font = "600 24px 'DM Sans', sans-serif";
+    ctx.fillText(stat.label, x + cardW / 2, statsY + 130);
+  });
+
+  const avgMoodValue = Math.max(1, Math.min(5, Math.round(data.avgMood)));
+  const avgMoodData = MOODS.find((m) => m.value === avgMoodValue) || MOODS[2];
+  drawMoodFace(ctx, W / 2, 1270, 120, avgMoodValue, avgMoodData.color);
+
+  ctx.fillStyle = TEXT_DARK;
+  ctx.font = "600 42px 'DM Sans', sans-serif";
+  ctx.fillText("You kept showing up for yourself.", W / 2, 1480);
+
+  ctx.fillStyle = TEXT_MUTED;
+  ctx.font = "italic 400 30px 'Newsreader', Georgia, serif";
+  wrapText(
+    ctx,
+    `From ${data.totalEntries} moments captured to a ${data.streak}-day streak, this year counts.`,
+    W / 2,
+    1545,
+    W - 220,
+    44
+  );
+}
+
 function wrapText(ctx: CanvasRenderingContext2D, text: string, x: number, y: number, maxWidth: number, lineHeight: number) {
   const words = text.split(" ");
   let line = "";
@@ -301,8 +391,8 @@ function wrapText(ctx: CanvasRenderingContext2D, text: string, x: number, y: num
   ctx.fillText(line.trim(), x, currentY);
 }
 
-export async function shareImage(blob: Blob, title: string) {
-  const file = new File([blob], "nuju-mood.png", { type: "image/png" });
+export async function shareImage(blob: Blob, title: string, fileName = "nuju-mood.png") {
+  const file = new File([blob], fileName, { type: "image/png" });
 
   if (navigator.share && navigator.canShare?.({ files: [file] })) {
     await navigator.share({
@@ -315,7 +405,7 @@ export async function shareImage(blob: Blob, title: string) {
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
-    a.download = "nuju-mood.png";
+    a.download = fileName;
     a.click();
     URL.revokeObjectURL(url);
   }

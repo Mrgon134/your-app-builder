@@ -64,7 +64,7 @@ const SmartNotificationsPanel: React.FC<SmartNotificationsPanelProps> = ({
       const olderAvg =
         olderMoods.reduce((a, b) => a + b, 0) / olderMoods.length;
 
-      if (recentAvg > olderAvg + 0.5) {
+      if (recentAvg > olderAvg + 0.5 && recentAvg >= 3.2) {
         detected.push({
           type: "improvement",
           text: `Mood trending ↑ +${(recentAvg - olderAvg).toFixed(1)} pts`,
@@ -95,7 +95,7 @@ const SmartNotificationsPanel: React.FC<SmartNotificationsPanelProps> = ({
         }
       });
 
-      if (bestDayIdx !== -1 && maxAvg > 3.5) {
+      if (bestDayIdx !== -1 && maxAvg >= 4) {
         const dayNames = [
           "Sunday",
           "Monday",

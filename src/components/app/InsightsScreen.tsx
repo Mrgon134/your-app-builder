@@ -13,6 +13,7 @@ import { JU_STICKERS } from "@/lib/stickers";
 import { SUPABASE_URL, SUPABASE_ANON_KEY } from "@/integrations/supabase/client";
 import { EntryRow } from "@/lib/api";
 import MoodCalendar from "@/components/app/MoodCalendar";
+import { getMoodHighlight } from "@/lib/mood-highlights";
 
 interface InsightsScreenProps {
   entries: EntryRow[];
@@ -88,9 +89,8 @@ const InsightsScreen: React.FC<InsightsScreenProps> = ({ entries, streak = 0, on
     stable: t.mood_trend_stable || "Your mood has been steady. Consistency is a kind of strength.",
   };
 
-  // Compute best mood
-  const bestDay = entries.length > 0 ? entries.reduce((best, e) => (e.mood > best.mood ? e : best), entries[0]) : null;
-  const bestMoodData = bestDay ? MOODS.find((m) => m.value === bestDay.mood) || MOODS[2] : MOODS[2];
+  const moodHighlight = getMoodHighlight(entries, t);
+  const highlightMoodData = MOODS.find((m) => m.value === moodHighlight.mood) || MOODS[2];
 
   // Correlation Pattern
   const getBestDayOfWeek = () => {
@@ -112,7 +112,7 @@ const InsightsScreen: React.FC<InsightsScreenProps> = ({ entries, streak = 0, on
         }
       }
     });
-    if (bestDayIdx === -1) return null;
+    if (bestDayIdx === -1 || maxAvg < 4) return null;
     const dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
     return dayNames[bestDayIdx];
   };
@@ -233,8 +233,8 @@ const InsightsScreen: React.FC<InsightsScreenProps> = ({ entries, streak = 0, on
           <p className="text-[10px] text-muted-foreground mt-0.5 font-medium">{t.entries_total}</p>
         </div>
         <div className="glass-card rounded-2xl p-4 flex flex-col items-center justify-center">
-          <MoodIcon value={bestDay?.mood || 5} color={bestMoodData.color} size={26} />
-          <p className="text-[10px] text-muted-foreground mt-1 font-medium">{t.mood_best}</p>
+          <MoodIcon value={moodHighlight.mood} color={highlightMoodData.color} size={26} />
+          <p className="text-[10px] text-muted-foreground mt-1 font-medium">{moodHighlight.label}</p>
         </div>
       </div>
 
