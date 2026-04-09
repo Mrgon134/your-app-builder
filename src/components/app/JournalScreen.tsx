@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef, useCallback } from "react";
 import { useLang } from "@/lib/i18n";
 import { JU_STICKERS } from "@/lib/stickers";
 import { MOODS } from "@/lib/constants";
-import { ArrowLeft, Mic, Square, Loader2 } from "lucide-react";
+import { ArrowLeft, Mic, Square, Loader2, Sparkles } from "lucide-react";
 import MoodIcon from "@/components/MoodIcon";
 import { SUPABASE_URL, SUPABASE_ANON_KEY } from "@/integrations/supabase/client";
 import { motion, AnimatePresence } from "framer-motion";
@@ -96,6 +96,7 @@ const JournalScreen: React.FC<JournalScreenProps> = ({
   });
   const [saved, setSaved] = useState(false);
   const [insight, setInsight] = useState("");
+  const [showUpgradePopup, setShowUpgradePopup] = useState(false);
   const [saving, setSaving] = useState(false);
   const [recordState, setRecordState] = useState<RecordState>("idle");
 
@@ -257,6 +258,9 @@ const JournalScreen: React.FC<JournalScreenProps> = ({
       const aiInsight = await onSave(text, finalAudioBlob, lastSegments);
       setInsight(aiInsight || "");
       setSaved(true);
+      if (!hasProAccess && !aiInsight) {
+        setShowUpgradePopup(true);
+      }
       try { localStorage.removeItem(DRAFT_KEY); } catch {}
     } catch (err) {
       console.error("Save failed:", err);
@@ -330,28 +334,63 @@ const JournalScreen: React.FC<JournalScreenProps> = ({
 
   if (saved) {
     return (
-      <div className="animate-spring-in text-center py-10">
-        <img src={JU_STICKERS.yay} alt="Yay!" className="w-24 h-24 mx-auto mb-5 animate-[mascot-swap_0.3s_ease-out]" />
-        <h2 className="text-[24px] font-bold text-foreground tracking-tight mb-6">{t.done}!</h2>
-        {insight && (
-          <div className="glass-card rounded-2xl p-6 mb-5 text-left">
-            <div className="flex items-center gap-2 mb-3">
-              <img src={JU_STICKERS.goodjob} alt="" className="w-7 h-7" />
-              <p className="text-[11px] font-semibold text-primary uppercase tracking-widest">{t.ju_insight}</p>
+      <>
+        <div className="animate-spring-in text-center py-10">
+          <img src={JU_STICKERS.yay} alt="Yay!" className="w-24 h-24 mx-auto mb-5 animate-[mascot-swap_0.3s_ease-out]" />
+          <h2 className="text-[24px] font-bold text-foreground tracking-tight mb-6">{t.done}!</h2>
+          {insight && (
+            <div className="glass-card rounded-2xl p-6 mb-5 text-left">
+              <div className="flex items-center gap-2 mb-3">
+                <img src={JU_STICKERS.goodjob} alt="" className="w-7 h-7" />
+                <p className="text-[11px] font-semibold text-primary uppercase tracking-widest">{t.ju_insight}</p>
+              </div>
+              <p className="text-[15px] text-foreground leading-relaxed">
+                {typedInsight}
+                {!insightDone && <span className="inline-block w-0.5 h-4 bg-primary ml-0.5 animate-pulse-scale" />}
+              </p>
             </div>
-            <p className="text-[15px] text-foreground leading-relaxed">
-              {typedInsight}
-              {!insightDone && <span className="inline-block w-0.5 h-4 bg-primary ml-0.5 animate-pulse-scale" />}
-            </p>
+          )}
+          <button
+            onClick={onBack}
+            className="px-8 h-[52px] rounded-2xl bg-primary text-primary-foreground font-semibold text-[15px] press-spring shadow-[0_4px_20px_-4px_hsl(var(--primary)/0.4)]"
+          >
+            {t.done}
+          </button>
+        </div>
+
+        {showUpgradePopup && (
+          <div className="fixed inset-0 z-[100] flex items-center justify-center p-6 sm:p-8 bg-background/80 backdrop-blur-md animate-fade-in">
+            <div className="bg-card rounded-3xl p-7 max-w-sm w-full shadow-2xl border border-border/50 text-center animate-spring-in relative overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent pointer-events-none" />
+              <div className="relative z-10">
+                <img src={JU_STICKERS.yay} alt="Premium" className="w-20 h-20 mx-auto mb-5 drop-shadow-md" />
+                <h3 className="text-[20px] font-bold text-foreground mb-3 font-serif">Unlock Ju's Insights ✨</h3>
+                <p className="text-[14px] text-muted-foreground leading-relaxed mb-6">
+                  Your entry is safely saved! Upgrade to Plus to get personalized emotional feedback, deep reflections, and unlimited AI voice journaling.
+                </p>
+                <div className="space-y-3">
+                  <button
+                    onClick={() => {
+                      setShowUpgradePopup(false);
+                      if (onUpgrade) onUpgrade();
+                    }}
+                    className="w-full h-[52px] rounded-2xl bg-primary text-primary-foreground font-semibold text-[15px] press-spring shadow-[0_4px_20px_-4px_hsl(var(--primary)/0.4)] flex items-center justify-center gap-2"
+                  >
+                    <Sparkles className="w-4 h-4" />
+                    See Plans
+                  </button>
+                  <button
+                    onClick={() => setShowUpgradePopup(false)}
+                    className="w-full h-[44px] rounded-xl text-muted-foreground font-medium text-[14px] transition-colors hover:text-foreground hover:bg-secondary/50 press-spring"
+                  >
+                    Maybe Later
+                  </button>
+                </div>
+              </div>
+            </div>
           </div>
         )}
-        <button
-          onClick={onBack}
-          className="px-8 h-[52px] rounded-2xl bg-primary text-primary-foreground font-semibold text-[15px] press-spring shadow-[0_4px_20px_-4px_hsl(var(--primary)/0.4)]"
-        >
-          {t.done}
-        </button>
-      </div>
+      </>
     );
   }
 
