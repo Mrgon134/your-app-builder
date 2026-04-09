@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
+import { motion, AnimatePresence } from "framer-motion";
 import { useGeoPricing } from "@/hooks/use-geo-pricing";
 import { usePostHogEvents } from "@/hooks/use-posthog-events";
 import { useTikTokPixel } from "@/hooks/use-tiktok-pixel";
@@ -25,34 +26,7 @@ import { PRICING_CONFIG } from "@/lib/config";
 import juMain from "@/assets/ju-main.webp";
 import HeroPatternPreview from "@/components/landing/HeroPatternPreview";
 import SEOHead from "@/components/SEOHead";
-
-const useReveal = <T extends HTMLElement = HTMLDivElement>() => {
-  const ref = useRef<T>(null);
-  const [visible, setVisible] = useState(false);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-
-    const obs = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setVisible(true);
-          obs.disconnect();
-        }
-      },
-      { threshold: 0.16 }
-    );
-
-    obs.observe(el);
-    return () => obs.disconnect();
-  }, []);
-
-  return { ref, visible };
-};
-
-const revealClass = (visible: boolean) =>
-  visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8";
+import { Magnetic } from "@/components/ui/Magnetic";
 
 const Landing: React.FC = () => {
   const navigate = useNavigate();
@@ -65,19 +39,6 @@ const Landing: React.FC = () => {
     trackLandingView();
     ttk.trackPageView();
   }, []);
-
-  const heroReveal = useReveal();
-  const storyReveal = useReveal();
-  const stepsReveal = useReveal();
-  const proofReveal = useReveal();
-  const pricingReveal = useReveal<HTMLElement>();
-  const ctaReveal = useReveal();
-
-  useEffect(() => {
-    if (pricingReveal.visible) {
-      ttk.trackPricingView();
-    }
-  }, [pricingReveal.visible]);
 
   const scrollToPricing = () =>
     pricingSectionRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -308,53 +269,88 @@ const Landing: React.FC = () => {
         </div>
       </nav>
 
-      <section
-        ref={heroReveal.ref}
-        className={`relative overflow-hidden px-4 pb-20 pt-12 transition-all duration-700 ${revealClass(heroReveal.visible)}`}
-      >
+      <section className="relative overflow-hidden px-4 pb-20 pt-12">
         <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute left-1/2 top-20 h-[26rem] w-[26rem] -translate-x-1/2 rounded-full bg-primary/14 blur-[120px]" />
-          <div className="absolute right-0 top-32 h-64 w-64 rounded-full bg-[#4ECDC4]/12 blur-[100px]" />
-          <div className="absolute bottom-0 left-0 h-72 w-72 rounded-full bg-[#FFD166]/10 blur-[120px]" />
+          <motion.div 
+            animate={{ scale: [1, 1.05, 1], opacity: [0.15, 0.25, 0.15] }} 
+            transition={{ repeat: Infinity, duration: 8, ease: "easeInOut" }}
+            className="absolute left-1/2 top-20 h-[30rem] w-[30rem] -translate-x-1/2 rounded-full bg-primary/20 blur-[130px]" 
+          />
+          <motion.div 
+            animate={{ scale: [1, 1.1, 1], opacity: [0.12, 0.2, 0.12] }} 
+            transition={{ repeat: Infinity, duration: 10, ease: "easeInOut", delay: 1 }}
+            className="absolute right-0 top-32 h-64 w-64 rounded-full bg-[#4ECDC4]/15 blur-[100px]" 
+          />
         </div>
 
-        <div className="relative mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-[1.1fr_0.9fr]">
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          className="relative mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-[1.1fr_0.9fr]"
+        >
           <div className="text-left">
-            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-primary/15 bg-primary/8 px-4 py-2 text-sm font-medium text-primary">
-              <Sparkles className="h-4 w-4" />
-              Start free in under a minute
-            </div>
+            <Magnetic>
+              <motion.div 
+                whileHover={{ scale: 1.02 }}
+                onClick={scrollToPricing}
+                className="mb-8 inline-flex cursor-pointer items-center gap-2 rounded-full border border-[#FFD166]/30 bg-[#FFD166]/10 px-5 py-2 text-sm font-bold text-[#FFD166] shadow-[0_0_20px_rgba(255,209,102,0.15)] transition-all hover:bg-[#FFD166]/20"
+              >
+                <Flame className="h-4 w-4" />
+                Get Lifetime Pro for {geo.formatPrice(geo.rates.lifetime)}
+              </motion.div>
+            </Magnetic>
 
-            <h1 className="max-w-3xl text-balance font-serif text-5xl font-bold leading-[1.02] tracking-tight text-foreground sm:text-6xl lg:text-7xl">
+            <motion.h1 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+              className="max-w-3xl text-balance font-serif text-5xl font-bold leading-[1.02] tracking-tight text-foreground sm:text-6xl lg:text-7xl"
+            >
               When your mind feels loud, Ju helps you hear yourself again.
-            </h1>
+            </motion.h1>
 
-            <p className="mt-6 max-w-2xl text-pretty text-lg leading-8 text-muted-foreground sm:text-xl">
+            <motion.p 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+              className="mt-6 max-w-2xl text-pretty text-lg leading-8 text-muted-foreground sm:text-xl"
+            >
               Talk or write for a minute, feel understood right away, and watch your messy emotions turn into patterns
               you can finally make sense of.
-            </p>
+            </motion.p>
 
-            <div className="mt-8 flex flex-col gap-4 sm:flex-row">
-              <button
-                onClick={startFreeSignup}
-                className="inline-flex items-center justify-center gap-2 rounded-2xl bg-primary px-8 py-4 text-lg font-semibold text-primary-foreground transition-all hover:-translate-y-0.5 hover:shadow-xl hover:shadow-primary/30 active:scale-[0.97]"
-              >
-                Start free tonight
-                <ArrowRight className="h-5 w-5" />
-              </button>
-              <button
-                onClick={scrollToPricing}
-                className="inline-flex items-center justify-center gap-2 rounded-2xl border border-border bg-card px-6 py-4 text-base font-semibold text-foreground transition-all hover:border-primary/30 hover:bg-primary/[0.04] active:scale-[0.97]"
-              >
-                Compare plans
-              </button>
-            </div>
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+              className="mt-8 flex flex-col gap-4 sm:flex-row"
+            >
+              <Magnetic>
+                <button
+                  onClick={startFreeSignup}
+                  className="inline-flex items-center justify-center gap-2 rounded-2xl bg-primary px-8 py-4 text-lg font-semibold text-primary-foreground transition-all hover:-translate-y-1 hover:shadow-xl hover:shadow-primary/30 active:scale-[0.97]"
+                >
+                  Start free tonight
+                  <ArrowRight className="h-5 w-5" />
+                </button>
+              </Magnetic>
+              <Magnetic>
+                <button
+                  onClick={scrollToPricing}
+                  className="inline-flex items-center justify-center gap-2 rounded-2xl border border-border bg-card px-6 py-4 text-base font-semibold text-foreground transition-all hover:-translate-y-1 hover:border-primary/30 hover:bg-primary/[0.04] hover:shadow-xl hover:shadow-black/5 active:scale-[0.97]"
+                >
+                  Compare plans
+                </button>
+              </Magnetic>
+            </motion.div>
 
-            <p className="mt-4 text-sm font-medium text-muted-foreground">
-              No credit card required. Start with text or mood check-ins, then upgrade only if it helps.
-            </p>
-
-            <div className="mt-8 grid gap-3 sm:grid-cols-3">
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.5, duration: 1 }}
+              className="mt-8 grid gap-3 sm:grid-cols-3"
+            >
               {[
                 { label: "Private by default", icon: Lock },
                 { label: "Voice or text in minutes", icon: Mic },
@@ -362,25 +358,35 @@ const Landing: React.FC = () => {
               ].map((item) => {
                 const Icon = item.icon;
                 return (
-                  <div
+                  <motion.div
+                    whileHover={{ scale: 1.05 }}
                     key={item.label}
-                    className="flex items-center gap-2 rounded-2xl border border-border/60 bg-card/75 px-4 py-3 text-sm text-foreground shadow-sm"
+                    className="flex items-center gap-2 rounded-2xl border border-border/60 bg-card/75 px-4 py-3 text-sm text-foreground shadow-sm backdrop-blur-md"
                   >
                     <Icon className="h-4 w-4 text-primary" />
                     <span>{item.label}</span>
-                  </div>
+                  </motion.div>
                 );
               })}
-            </div>
+            </motion.div>
           </div>
 
-          <HeroPatternPreview />
-        </div>
+          <motion.div
+             initial={{ opacity: 0, scale: 0.95 }}
+             animate={{ opacity: 1, scale: 1 }}
+             transition={{ delay: 0.3, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          >
+             <HeroPatternPreview />
+          </motion.div>
+        </motion.div>
       </section>
 
-      <section
-        ref={storyReveal.ref}
-        className={`border-y border-border/50 bg-secondary/35 px-4 py-20 transition-all duration-700 ${revealClass(storyReveal.visible)}`}
+      <motion.section
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+        className="border-y border-border/50 bg-secondary/35 px-4 py-20"
       >
         <div className="mx-auto max-w-6xl">
           <div className="mx-auto max-w-2xl text-center">
@@ -398,22 +404,32 @@ const Landing: React.FC = () => {
             {emotionalMoments.map((moment, index) => {
               const Icon = moment.icon;
               return (
-                <div
+                <motion.div
+                  whileHover={{ scale: 1.03, y: -5 }}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: index * 0.1, type: "spring", stiffness: 100 }}
                   key={moment.title}
-                  className="glass-card rounded-[2rem] p-7 transition-all duration-700"
-                  style={{ transitionDelay: `${index * 120}ms` }}
+                  className="glass-card rounded-[2rem] p-7"
                 >
                   <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/10">
                     <Icon className="h-6 w-6 text-primary" />
                   </div>
                   <h3 className="font-serif text-2xl font-semibold text-foreground">{moment.title}</h3>
                   <p className="mt-4 text-base leading-7 text-muted-foreground">{moment.body}</p>
-                </div>
+                </motion.div>
               );
             })}
           </div>
 
-          <div className="mt-12 grid gap-8 rounded-[2rem] border border-border/60 bg-card/80 p-8 shadow-sm lg:grid-cols-[0.85fr_1.15fr]">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="mt-12 grid gap-8 rounded-[2rem] border border-border/60 bg-card/80 p-8 shadow-[0_8px_30px_rgb(0,0,0,0.04)] lg:grid-cols-[0.85fr_1.15fr]"
+          >
             <div>
               <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">The real shift</p>
               <h3 className="mt-4 max-w-md font-serif text-3xl font-semibold leading-tight text-foreground sm:text-4xl">
@@ -432,13 +448,16 @@ const Landing: React.FC = () => {
                 </div>
               ))}
             </div>
-          </div>
+          </motion.div>
         </div>
-      </section>
+      </motion.section>
 
-      <section
-        ref={stepsReveal.ref}
-        className={`px-4 py-20 transition-all duration-700 ${revealClass(stepsReveal.visible)}`}
+      <motion.section
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+        className="px-4 py-20"
       >
         <div className="mx-auto max-w-6xl">
           <div className="grid gap-12 lg:grid-cols-[0.82fr_1.18fr] lg:items-start">
@@ -452,24 +471,31 @@ const Landing: React.FC = () => {
                 Nuju lowers the bar so you can start while you are still overwhelmed,
                 then helps you feel clearer from there.
               </p>
-              <div className="mt-8 rounded-[1.75rem] border border-border/60 bg-secondary/40 p-6">
+              <motion.div 
+                whileHover={{ scale: 1.02 }}
+                className="mt-8 rounded-[1.75rem] border border-border/60 bg-secondary/40 p-6 shadow-[0_8px_30px_rgb(0,0,0,0.04)]"
+              >
                 <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-primary">Editorial cue</p>
                 <p className="mt-3 font-serif text-2xl leading-9 text-foreground">
                   Start with relief.
                   <br />
                   Earn the deeper commitment after.
                 </p>
-              </div>
+              </motion.div>
             </div>
 
             <div className="grid gap-5">
               {steps.map((step, index) => {
                 const Icon = step.icon;
                 return (
-                  <div
+                  <motion.div
+                    whileHover={{ scale: 1.02, x: 5 }}
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: index * 0.15, type: "spring", stiffness: 100 }}
                     key={step.title}
-                    className="rounded-[2rem] border border-border/60 bg-card p-6 shadow-sm transition-all duration-700"
-                    style={{ transitionDelay: `${120 + index * 120}ms` }}
+                    className="rounded-[2rem] border border-border/60 bg-card p-6 shadow-sm hover:shadow-md"
                   >
                     <div className="flex items-start gap-4">
                       <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-primary/10">
@@ -481,17 +507,20 @@ const Landing: React.FC = () => {
                         <p className="mt-3 text-base leading-7 text-muted-foreground">{step.body}</p>
                       </div>
                     </div>
-                  </div>
+                  </motion.div>
                 );
               })}
             </div>
           </div>
         </div>
-      </section>
+      </motion.section>
 
-      <section
-        ref={proofReveal.ref}
-        className={`bg-[#f7f5ff] px-4 py-20 transition-all duration-700 dark:bg-[#18152a] ${revealClass(proofReveal.visible)}`}
+      <motion.section
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+        className="bg-[#f7f5ff] px-4 py-20 dark:bg-[#18152a]"
       >
         <div className="mx-auto max-w-6xl">
           <div className="mx-auto max-w-2xl text-center">
@@ -501,7 +530,13 @@ const Landing: React.FC = () => {
             </h2>
           </div>
 
-          <div className="mt-12 rounded-[2rem] border border-border/60 bg-card/90 p-6 shadow-sm sm:p-8">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="mt-12 rounded-[2rem] border border-border/60 bg-card/90 p-6 shadow-[0_8px_30px_rgb(0,0,0,0.04)] sm:p-8"
+          >
             <div className="flex flex-col gap-3 text-left sm:flex-row sm:items-end sm:justify-between">
               <div>
                 <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">Example after a few weeks</p>
@@ -515,47 +550,63 @@ const Landing: React.FC = () => {
             </div>
 
             <div className="mt-8 grid gap-4 md:grid-cols-3">
-              {secondaryProofStats.map((stat) => {
+              {secondaryProofStats.map((stat, index) => {
                 const Icon = stat.icon;
                 return (
-                  <div key={stat.value} className="rounded-[1.6rem] bg-secondary/45 p-5">
+                  <motion.div 
+                    whileHover={{ scale: 1.02 }}
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: index * 0.1, type: "spring", stiffness: 100 }}
+                    key={stat.value} 
+                    className="rounded-[1.6rem] bg-secondary/45 p-5 shadow-sm"
+                  >
                     <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-primary/10">
                       <Icon className="h-5 w-5 text-primary" />
                     </div>
                     <p className="mt-5 font-serif text-3xl font-semibold text-foreground">{stat.value}</p>
                     <p className="mt-2 text-lg font-semibold text-foreground">{stat.title}</p>
                     <p className="mt-3 text-sm leading-7 text-muted-foreground">{stat.body}</p>
-                  </div>
+                  </motion.div>
                 );
               })}
             </div>
-          </div>
+          </motion.div>
 
           <div className="mt-12 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
             {proofCards.map((card, index) => {
               const Icon = card.icon;
               return (
-                <div
+                <motion.div
+                  whileHover={{ scale: 1.03, y: -5 }}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: index * 0.1, type: "spring" }}
                   key={card.title}
-                  className="rounded-[2rem] border border-border/60 bg-card/90 p-6 shadow-sm transition-all duration-700"
-                  style={{ transitionDelay: `${index * 100}ms` }}
+                  className="rounded-[2rem] border border-border/60 bg-card/90 p-6 shadow-sm hover:shadow-md"
                 >
                   <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-2xl bg-primary/10">
                     <Icon className="h-5 w-5 text-primary" />
                   </div>
                   <h3 className="font-serif text-xl font-semibold text-foreground">{card.title}</h3>
                   <p className="mt-3 text-sm leading-7 text-muted-foreground">{card.body}</p>
-                </div>
+                </motion.div>
               );
             })}
           </div>
 
           <div className="mt-12 grid gap-6 lg:grid-cols-3">
             {testimonials.map((item, index) => (
-              <div
+              <motion.div
+                whileHover={{ scale: 1.02 }}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.15 }}
                 key={item.name}
-                className="rounded-[2rem] border border-border/60 bg-card p-6 shadow-sm transition-all duration-700"
-                style={{ transitionDelay: `${160 + index * 120}ms` }}
+                className="rounded-[2rem] border border-border/60 bg-card p-6 shadow-sm hover:shadow-md"
               >
                 <Quote className="h-5 w-5 text-primary/35" />
                 <p className="mt-4 text-[15px] leading-7 text-foreground">{item.text}</p>
@@ -563,11 +614,16 @@ const Landing: React.FC = () => {
                   <p className="font-semibold text-foreground">{item.name}</p>
                   <p className="text-sm text-muted-foreground">{item.role}</p>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
 
-          <div className="mt-10 rounded-[2rem] border border-border/60 bg-card px-6 py-7 shadow-sm sm:px-8">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mt-10 rounded-[2rem] border border-border/60 bg-card px-6 py-7 shadow-sm sm:px-8"
+          >
             <div className="grid gap-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
               <div>
                 <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">What helps people say yes</p>
@@ -580,23 +636,32 @@ const Landing: React.FC = () => {
                   "Start free before making any commitment",
                   "Private-first language is visible early",
                   "The product promise sounds supportive, not clinical",
-                ].map((line) => (
-                  <div key={line} className="rounded-[1.5rem] bg-secondary/45 px-4 py-4 text-sm leading-6 text-foreground">
+                ].map((line, index) => (
+                  <motion.div 
+                    initial={{ opacity: 0, x: 10 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ delay: index * 0.1 }}
+                    viewport={{ once: true }}
+                    key={line} 
+                    className="rounded-[1.5rem] bg-secondary/45 px-4 py-4 text-sm leading-6 text-foreground"
+                  >
                     {line}
-                  </div>
+                  </motion.div>
                 ))}
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
-      </section>
+      </motion.section>
 
-      <section
-        ref={(node) => {
-          pricingReveal.ref.current = node;
-          pricingSectionRef.current = node;
-        }}
-        className={`px-4 py-20 transition-all duration-700 ${revealClass(pricingReveal.visible)}`}
+      <motion.section
+        ref={pricingSectionRef}
+        onViewportEnter={() => ttk.trackPricingView()}
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+        className="px-4 py-20"
       >
         <div className="mx-auto max-w-6xl">
           <div className="mx-auto max-w-2xl text-center">
@@ -625,17 +690,21 @@ const Landing: React.FC = () => {
             {plans.map((plan, index) => {
               const isLifetime = plan.name === "Lifetime Pro";
               return (
-                <div
+                <motion.div
+                  whileHover={{ scale: 1.02, y: -5 }}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: index * 0.1, type: "spring", stiffness: 100 }}
                   key={plan.name}
-                  className={`relative rounded-[2rem] border p-8 transition-all duration-700 ${
+                  className={`relative rounded-[2rem] border p-8 flex flex-col hover:shadow-xl ${
                     plan.highlight
-                      ? "border-primary/35 bg-primary text-primary-foreground shadow-2xl shadow-primary/20"
+                      ? "border-primary/40 bg-primary text-primary-foreground shadow-[0_0_30px_rgba(124,110,219,0.25)]"
                       : "border-border/60 bg-card shadow-sm"
                   }`}
-                  style={{ transitionDelay: `${index * 120}ms` }}
                 >
                   {plan.badge && (
-                    <div className="absolute -top-3 left-6 rounded-full bg-[#FFD166] px-3 py-1 text-xs font-bold text-foreground">
+                    <div className="absolute -top-3 left-6 rounded-full bg-[#FFD166] px-3 py-1 text-xs font-bold text-[#1A1A2E] shadow-sm">
                       {plan.badge}
                     </div>
                   )}
@@ -655,7 +724,7 @@ const Landing: React.FC = () => {
                   </p>
 
                   {isLifetime && PRICING_CONFIG.lifetimeSlots.left > 0 && (
-                    <div className="mt-4 flex items-center gap-2 rounded-2xl bg-[#FF6B35]/10 border border-[#FF6B35]/25 px-4 py-2.5">
+                    <div className="mt-4 flex items-center gap-2 rounded-2xl bg-[#FF6B35]/15 border border-[#FF6B35]/30 px-4 py-2.5 shadow-inner">
                       <Flame className="h-5 w-5 text-[#FF6B35] shrink-0" />
                       <span className="text-sm font-bold text-[#FF6B35]">
                         Only {PRICING_CONFIG.lifetimeSlots.left}/{PRICING_CONFIG.lifetimeSlots.total} Early Access slots left
@@ -663,7 +732,7 @@ const Landing: React.FC = () => {
                     </div>
                   )}
 
-                  <ul className="mt-6 space-y-3">
+                  <ul className="mt-6 mb-8 flex-1 space-y-3">
                     {plan.features.map((feature) => (
                       <li
                         key={feature}
@@ -677,29 +746,35 @@ const Landing: React.FC = () => {
 
                   <button
                     onClick={plan.onClick}
-                    className={`mt-8 w-full rounded-2xl py-3.5 text-sm font-semibold transition-all active:scale-[0.97] ${
+                    className={`mt-auto w-full rounded-2xl py-3.5 text-sm font-semibold transition-all active:scale-[0.97] ${
                       plan.highlight
                         ? "bg-primary-foreground text-primary hover:shadow-lg"
-                        : "bg-secondary text-foreground hover:bg-secondary/80"
+                        : "bg-secondary text-foreground hover:bg-secondary/80 hover:shadow-md"
                     }`}
                   >
                     {plan.cta}
                   </button>
-                </div>
+                </motion.div>
               );
             })}
           </div>
         </div>
-      </section>
+      </motion.section>
 
-      <section
-        ref={ctaReveal.ref}
-        className={`px-4 pb-20 pt-6 transition-all duration-700 ${revealClass(ctaReveal.visible)}`}
+      <motion.section
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+        className="px-4 pb-20 pt-6"
       >
-          <div className="mx-auto max-w-4xl rounded-[2.5rem] border border-border/60 bg-card px-6 py-12 text-center shadow-xl sm:px-10">
-          <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-primary/10">
+        <div className="mx-auto max-w-4xl rounded-[2.5rem] border border-border/60 bg-card px-6 py-12 text-center shadow-xl sm:px-10">
+          <motion.div 
+            whileHover={{ scale: 1.1, rotate: 5 }}
+            className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-primary/10 shadow-inner"
+          >
             <img src={juMain} alt="Ju" className="h-14 w-14 animate-ju-float object-contain" width={56} height={56} loading="lazy" />
-          </div>
+          </motion.div>
           <h2 className="mt-6 font-serif text-4xl font-bold text-foreground sm:text-5xl">
             You do not need the perfect words to begin.
           </h2>
@@ -711,25 +786,29 @@ const Landing: React.FC = () => {
             Built for the nights you need support, not perfection.
           </p>
           <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
-            <button
-              onClick={startFreeSignup}
-              className="inline-flex items-center justify-center gap-2 rounded-2xl bg-primary px-8 py-4 text-lg font-semibold text-primary-foreground transition-all hover:-translate-y-0.5 hover:shadow-xl hover:shadow-primary/30 active:scale-[0.97]"
-            >
-              Start free tonight
-              <ArrowRight className="h-5 w-5" />
-            </button>
-            <button
-              onClick={scrollToPricing}
-              className="rounded-2xl border border-border bg-card px-6 py-4 text-base font-semibold text-foreground transition-all hover:border-primary/30 hover:bg-primary/[0.04] active:scale-[0.97]"
-            >
-              See pricing
-            </button>
+            <Magnetic>
+              <button
+                onClick={startFreeSignup}
+                className="inline-flex items-center justify-center gap-2 rounded-2xl bg-primary px-8 py-4 text-lg font-semibold text-primary-foreground transition-all hover:-translate-y-1 hover:shadow-xl hover:shadow-primary/30 active:scale-[0.97]"
+              >
+                Start free tonight
+                <ArrowRight className="h-5 w-5" />
+              </button>
+            </Magnetic>
+            <Magnetic>
+              <button
+                onClick={scrollToPricing}
+                className="rounded-2xl border border-border bg-card px-6 py-4 text-base font-semibold text-foreground transition-all hover:-translate-y-1 hover:border-primary/30 hover:bg-primary/[0.04] hover:shadow-md active:scale-[0.97]"
+              >
+                See pricing
+              </button>
+            </Magnetic>
           </div>
           <p className="mt-4 text-sm font-medium text-muted-foreground">
             No credit card required. Your journal stays yours.
           </p>
         </div>
-      </section>
+      </motion.section>
 
       <footer className="border-t border-border/60 px-4 py-10 bg-card/50">
         <div className="mx-auto max-w-6xl space-y-6">

@@ -79,13 +79,14 @@ export function useGeoPricing(): GeoPricing & { formatPrice: (amount: number) =>
   const plusAnnual = roundCurrency(PRICING_CONFIG.baseRates.plusAnnual * multiplier * currencyMultiplier, displayCurrency);
   const proMonthly = roundCurrency(PRICING_CONFIG.baseRates.proMonthly * multiplier * currencyMultiplier, displayCurrency);
   const proAnnual = roundCurrency(PRICING_CONFIG.baseRates.proAnnual * multiplier * currencyMultiplier, displayCurrency);
+  const lifetime = roundCurrency(PRICING_CONFIG.lifetime.flatPrice * multiplier * currencyMultiplier, displayCurrency);
 
   const rates = {
     plusMonthly,
     plusAnnual,
     proMonthly,
     proAnnual,
-    lifetime: getLifetimePrice(currencyMultiplier),
+    lifetime,
   };
 
   return {
