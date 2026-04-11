@@ -221,7 +221,7 @@ const Landing: React.FC = () => {
         <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4">
           <div className="flex items-center gap-3">
             <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-primary/10 shadow-inner">
-              <img src={juMain} alt="Ju" className="h-7 w-7 object-contain" width={28} height={28} />
+              <img src={juMain} alt="Ju, the Nuju AI journal companion mascot" className="h-7 w-7 object-contain" width={28} height={28} />
             </div>
             <div>
               <p className="font-serif text-xl font-bold text-foreground">Nuju</p>
@@ -751,7 +751,7 @@ const Landing: React.FC = () => {
             whileHover={{ scale: 1.1, rotate: 5 }}
             className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-primary/10 shadow-inner"
           >
-            <img src={juMain} alt="Ju" className="h-14 w-14 animate-ju-float object-contain" width={56} height={56} loading="lazy" />
+            <img src={juMain} alt="Ju mascot celebrating — Nuju AI journal companion" className="h-14 w-14 animate-ju-float object-contain" width={56} height={56} loading="lazy" />
           </motion.div>
           <h2 className="mt-6 font-serif text-4xl font-bold text-foreground sm:text-5xl">
             You do not need perfect words to feel understood.
@@ -791,7 +791,7 @@ const Landing: React.FC = () => {
         <div className="mx-auto max-w-6xl space-y-6">
           <div className="flex flex-col items-center justify-between gap-4 sm:flex-row sm:text-left">
             <div className="flex items-center gap-3">
-              <img src={juMain} alt="Ju" className="h-8 w-8 object-contain" width={32} height={32} loading="lazy" />
+              <img src={juMain} alt="Nuju logo — Ju the AI journal companion" className="h-8 w-8 object-contain" width={32} height={32} loading="lazy" />
               <div>
                 <p className="font-serif text-lg font-bold text-foreground">Nuju</p>
                 <p className="text-sm text-muted-foreground">Support that helps you feel understood.</p>

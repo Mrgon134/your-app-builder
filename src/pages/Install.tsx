@@ -51,7 +51,7 @@ const Install: React.FC = () => {
       />
       <img
         src={JU_STICKERS.love}
-        alt="Ju"
+        alt="Ju mascot welcoming you to install the Nuju AI journal app"
         className="w-24 h-24 mb-6 animate-[ju-float_3s_ease-in-out_infinite]"
         width={96}
         height={96}
