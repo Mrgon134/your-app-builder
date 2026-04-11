@@ -1,3 +1,4 @@
+import React, { Suspense, lazy } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import { Toaster as Sonner } from "@/components/ui/sonner";
@@ -6,31 +7,34 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { LangProvider } from "@/lib/i18n";
 import { AuthProvider, useAuth } from "@/lib/auth";
 import { ErrorBoundary } from "@/components/ErrorBoundary";
-import Index from "./pages/Index.tsx";
-import AppPage from "./pages/AppPage.tsx";
-import AuthPage from "./pages/AuthPage.tsx";
-import OnboardingScreen from "@/components/app/OnboardingScreen";
-import Install from "./pages/Install.tsx";
-import Terms from "./pages/Terms.tsx";
-import Privacy from "./pages/Privacy.tsx";
-import MedicalDisclaimer from "./pages/MedicalDisclaimer.tsx";
-import Support from "./pages/Support.tsx";
-import Contact from "./pages/Contact.tsx";
-import About from "./pages/About.tsx";
-import NotFound from "./pages/NotFound.tsx";
-import AuthCallback from "./pages/AuthCallback.tsx";
+
+// Lazy-load all routes — each page is only downloaded when first visited.
+// This splits the bundle and dramatically improves LCP on the landing page.
+const Index = lazy(() => import("./pages/Index.tsx"));
+const AppPage = lazy(() => import("./pages/AppPage.tsx"));
+const AuthPage = lazy(() => import("./pages/AuthPage.tsx"));
+const OnboardingScreen = lazy(() => import("@/components/app/OnboardingScreen"));
+const Install = lazy(() => import("./pages/Install.tsx"));
+const Terms = lazy(() => import("./pages/Terms.tsx"));
+const Privacy = lazy(() => import("./pages/Privacy.tsx"));
+const MedicalDisclaimer = lazy(() => import("./pages/MedicalDisclaimer.tsx"));
+const Support = lazy(() => import("./pages/Support.tsx"));
+const Contact = lazy(() => import("./pages/Contact.tsx"));
+const About = lazy(() => import("./pages/About.tsx"));
+const NotFound = lazy(() => import("./pages/NotFound.tsx"));
+const AuthCallback = lazy(() => import("./pages/AuthCallback.tsx"));
 
 const queryClient = new QueryClient();
 
+const PageLoader = () => (
+  <div className="min-h-screen bg-background flex items-center justify-center">
+    <div className="w-8 h-8 border-[3px] border-primary border-t-transparent rounded-full animate-spin" />
+  </div>
+);
+
 const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const { user, loading } = useAuth();
-  if (loading) {
-    return (
-      <div className="min-h-screen bg-background flex items-center justify-center">
-        <div className="w-8 h-8 border-3 border-primary border-t-transparent rounded-full animate-spin" />
-      </div>
-    );
-  }
+  if (loading) return <PageLoader />;
   if (!user) return <Navigate to="/auth" replace />;
   return <>{children}</>;
 };
@@ -44,28 +48,30 @@ const App = () => (
             <Toaster />
             <Sonner />
             <BrowserRouter>
-              <Routes>
-                <Route path="/" element={<Index />} />
-                <Route path="/onboarding" element={<OnboardingScreen />} />
-                <Route path="/auth" element={<AuthPage />} />
-                <Route path="/auth/callback" element={<AuthCallback />} />
-                <Route path="/install" element={<Install />} />
-                <Route path="/terms" element={<Terms />} />
-                <Route path="/privacy" element={<Privacy />} />
-                <Route path="/medical-disclaimer" element={<MedicalDisclaimer />} />
-                <Route path="/support" element={<Support />} />
-                <Route path="/contact" element={<Contact />} />
-                <Route path="/about" element={<About />} />
-                <Route
-                  path="/app"
-                  element={
-                    <ProtectedRoute>
-                      <AppPage />
-                    </ProtectedRoute>
-                  }
-                />
-                <Route path="*" element={<NotFound />} />
-              </Routes>
+              <Suspense fallback={<PageLoader />}>
+                <Routes>
+                  <Route path="/" element={<Index />} />
+                  <Route path="/onboarding" element={<OnboardingScreen />} />
+                  <Route path="/auth" element={<AuthPage />} />
+                  <Route path="/auth/callback" element={<AuthCallback />} />
+                  <Route path="/install" element={<Install />} />
+                  <Route path="/terms" element={<Terms />} />
+                  <Route path="/privacy" element={<Privacy />} />
+                  <Route path="/medical-disclaimer" element={<MedicalDisclaimer />} />
+                  <Route path="/support" element={<Support />} />
+                  <Route path="/contact" element={<Contact />} />
+                  <Route path="/about" element={<About />} />
+                  <Route
+                    path="/app"
+                    element={
+                      <ProtectedRoute>
+                        <AppPage />
+                      </ProtectedRoute>
+                    }
+                  />
+                  <Route path="*" element={<NotFound />} />
+                </Routes>
+              </Suspense>
             </BrowserRouter>
           </TooltipProvider>
         </AuthProvider>

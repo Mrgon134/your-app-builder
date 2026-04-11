@@ -50,8 +50,8 @@ const Contact: React.FC = () => {
   return (
     <div className="min-h-screen bg-background">
       <SEOHead
-        title="Contact Us"
-        description="Reach out to the Nuju team — we're here to help with questions, feedback, or anything about your journaling experience."
+        title="Contact Nuju – AI Journal App Support & Feedback"
+        description="Reach out to the Nuju team for help with the AI journal app, subscription questions, feedback, or anything about your journaling experience."
         canonical="https://nuju.app/contact"
         breadcrumbs={[
           { name: "Home", url: "https://nuju.app/" },

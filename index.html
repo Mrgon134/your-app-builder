@@ -10,8 +10,8 @@
     <meta name="application-name" content="Nuju" />
     <link rel="apple-touch-icon" href="/pwa-192x192.png" />
 
-    <title>Nuju — The AI Journal App That Understands Your Life</title>
-    <meta name="description" content="Nuju is the 30-second AI journal app that actually listens. Track your moods, discover hidden life patterns, and talk to your personal AI coach today." />
+    <title>Nuju: AI Journal App for Mood Tracking & Emotional Wellness</title>
+    <meta name="description" content="Nuju is the AI journal app that tracks your mood, reveals emotional patterns, and gives you a personal AI coach. Start free — 30 seconds a day." />
     <meta name="keywords" content="AI journal, mood tracker, mental health app, journaling app, AI diary, daily reflection, emotional wellness, mood tracking, self care app, mindfulness journal" />
     <link rel="canonical" href="https://nuju.app/" />
 
@@ -67,10 +67,16 @@
       "description": "Nuju is the 30-second AI journal app that actually listens. Track your moods, discover hidden life patterns, and talk to your personal AI coach.",
       "screenshot": "https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image",
       "offers": {
-        "@type": "Offer",
-        "price": "0",
+        "@type": "AggregateOffer",
+        "lowPrice": "0",
+        "highPrice": "9.99",
         "priceCurrency": "USD",
-        "category": "free"
+        "offerCount": "3",
+        "offers": [
+          { "@type": "Offer", "name": "Free", "price": "0", "priceCurrency": "USD" },
+          { "@type": "Offer", "name": "Plus", "price": "4.99", "priceCurrency": "USD", "priceSpecification": { "@type": "UnitPriceSpecification", "billingDuration": "P1M" } },
+          { "@type": "Offer", "name": "Pro", "price": "9.99", "priceCurrency": "USD", "priceSpecification": { "@type": "UnitPriceSpecification", "billingDuration": "P1M" } }
+        ]
       },
       "featureList": [
         "AI mood tracking",
@@ -95,7 +101,12 @@
         "@type": "ContactPoint",
         "contactType": "customer support",
         "url": "https://nuju.app/support"
-      }
+      },
+      "sameAs": [
+        "https://twitter.com/nujuapp",
+        "https://www.instagram.com/nujuapp",
+        "https://www.tiktok.com/@nujuapp"
+      ]
     }
     </script>
     <script type="application/ld+json">
@@ -111,6 +122,14 @@
         "@type": "Organization",
         "name": "Nuju",
         "url": "https://nuju.app"
+      },
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": "https://nuju.app/support?q={search_term_string}"
+        },
+        "query-input": "required name=search_term_string"
       }
     }
     </script>

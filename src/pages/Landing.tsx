@@ -213,15 +213,15 @@ const Landing: React.FC = () => {
   return (
     <div className="min-h-screen bg-background">
       <SEOHead
-        title="Nuju | Feel Understood Faster"
-        description="Nuju helps people feel understood when their mind feels loud, heavy, or hard to explain. Start the Ju Gets You reveal and see what Ju notices."
+        title="Nuju: AI Journal App for Mood Tracking & Emotional Wellness"
+        description="Nuju is the AI journal app that tracks your mood, reveals emotional patterns, and gives you a personal AI coach. Start free — 30 seconds a day."
         canonical="https://nuju.app/"
       />
-      <nav className="sticky top-0 z-50 border-b border-border/60 bg-background/78 backdrop-blur-xl">
+      <nav className="sticky top-0 z-50 border-b border-border/60 bg-background/95">
         <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4">
           <div className="flex items-center gap-3">
             <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-primary/10 shadow-inner">
-              <img src={juMain} alt="Ju" className="h-7 w-7 object-contain" width={28} height={28} />
+              <img src={juMain} alt="Ju, the Nuju AI journal companion mascot" className="h-7 w-7 object-contain" width={28} height={28} />
             </div>
             <div>
               <p className="font-serif text-xl font-bold text-foreground">Nuju</p>
@@ -246,17 +246,9 @@ const Landing: React.FC = () => {
       </nav>
 
       <section className="relative overflow-hidden px-4 pb-20 pt-12">
-        <div className="absolute inset-0 pointer-events-none">
-          <motion.div 
-            animate={{ scale: [1, 1.05, 1], opacity: [0.15, 0.25, 0.15] }} 
-            transition={{ repeat: Infinity, duration: 8, ease: "easeInOut" }}
-            className="absolute left-1/2 top-20 h-[30rem] w-[30rem] -translate-x-1/2 rounded-full bg-primary/20 blur-[130px]" 
-          />
-          <motion.div 
-            animate={{ scale: [1, 1.1, 1], opacity: [0.12, 0.2, 0.12] }} 
-            transition={{ repeat: Infinity, duration: 10, ease: "easeInOut", delay: 1 }}
-            className="absolute right-0 top-32 h-64 w-64 rounded-full bg-[#4ECDC4]/15 blur-[100px]" 
-          />
+        <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
+          <div className="absolute left-1/2 top-20 h-[30rem] w-[30rem] -translate-x-1/2 rounded-full bg-primary/15 blur-[130px]" />
+          <div className="absolute right-0 top-32 h-64 w-64 rounded-full bg-[#4ECDC4]/10 blur-[100px]" />
         </div>
 
         <motion.div 
@@ -751,7 +743,7 @@ const Landing: React.FC = () => {
             whileHover={{ scale: 1.1, rotate: 5 }}
             className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-primary/10 shadow-inner"
           >
-            <img src={juMain} alt="Ju" className="h-14 w-14 animate-ju-float object-contain" width={56} height={56} loading="lazy" />
+            <img src={juMain} alt="Ju mascot celebrating — Nuju AI journal companion" className="h-14 w-14 animate-ju-float object-contain" width={56} height={56} loading="lazy" />
           </motion.div>
           <h2 className="mt-6 font-serif text-4xl font-bold text-foreground sm:text-5xl">
             You do not need perfect words to feel understood.
@@ -787,11 +779,41 @@ const Landing: React.FC = () => {
         </div>
       </motion.section>
 
+      {/* SEO content section — keyword-rich, indexed by Google */}
+      <section className="border-t border-border/40 bg-muted/30 px-4 py-16">
+        <div className="mx-auto max-w-4xl">
+          <h2 className="font-serif text-2xl font-bold text-foreground mb-4">
+            The AI journal app built for everyday emotional wellness
+          </h2>
+          <p className="text-muted-foreground mb-6 leading-relaxed">
+            Nuju is a daily journaling app powered by artificial intelligence that helps you track your mood, understand emotional patterns, and get personalized insights — in as little as 30 seconds a day. Whether you want to start a mood journal, develop a daily reflection habit, or get support from an AI coach, Nuju adapts to how you feel right now.
+          </p>
+          <div className="grid gap-6 sm:grid-cols-3 mb-8">
+            <div>
+              <h3 className="font-semibold text-foreground mb-2">AI mood tracker</h3>
+              <p className="text-sm text-muted-foreground">Log your mood daily and see 30-day trends, weekly summaries, and emotional patterns you'd never notice on your own.</p>
+            </div>
+            <div>
+              <h3 className="font-semibold text-foreground mb-2">Personal AI coach</h3>
+              <p className="text-sm text-muted-foreground">Choose from four AI coaching personas — Gentle Guide, Tough Coach, Wise Sage, or Fun Friend — and get responses tailored to your journaling style.</p>
+            </div>
+            <div>
+              <h3 className="font-semibold text-foreground mb-2">Daily journal prompts</h3>
+              <p className="text-sm text-muted-foreground">Stuck on what to write? Nuju surfaces a new journaling prompt each day to help you reflect on what matters — no blank-page anxiety.</p>
+            </div>
+          </div>
+          <p className="text-sm text-muted-foreground">
+            Available as a <Link to="/install" state={{ from: "/" }} className="text-primary hover:underline">progressive web app</Link> on iOS, Android, and desktop.
+            Read more on our <Link to="/about" state={{ from: "/" }} className="text-primary hover:underline">about page</Link>, or visit the <Link to="/support" state={{ from: "/" }} className="text-primary hover:underline">support center</Link> if you have questions.
+          </p>
+        </div>
+      </section>
+
       <footer className="border-t border-border/60 px-4 py-10 bg-card/50">
         <div className="mx-auto max-w-6xl space-y-6">
           <div className="flex flex-col items-center justify-between gap-4 sm:flex-row sm:text-left">
             <div className="flex items-center gap-3">
-              <img src={juMain} alt="Ju" className="h-8 w-8 object-contain" width={32} height={32} loading="lazy" />
+              <img src={juMain} alt="Nuju logo — Ju the AI journal companion" className="h-8 w-8 object-contain" width={32} height={32} loading="lazy" />
               <div>
                 <p className="font-serif text-lg font-bold text-foreground">Nuju</p>
                 <p className="text-sm text-muted-foreground">Support that helps you feel understood.</p>

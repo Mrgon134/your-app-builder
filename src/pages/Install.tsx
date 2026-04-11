@@ -41,8 +41,8 @@ const Install: React.FC = () => {
   return (
     <div className="min-h-screen bg-background flex flex-col items-center justify-center px-6 py-12">
       <SEOHead
-        title="Install Nuju"
-        description="Add Nuju to your home screen for the full app experience — works offline on iOS, Android, and desktop."
+        title="Install Nuju App – AI Journal for iOS, Android & Desktop"
+        description="Add Nuju AI journal to your home screen for the full app experience. Works offline on iOS, Android, and desktop — mood tracking and AI coaching always available."
         canonical="https://nuju.app/install"
         breadcrumbs={[
           { name: "Home", url: "https://nuju.app/" },
@@ -51,7 +51,7 @@ const Install: React.FC = () => {
       />
       <img
         src={JU_STICKERS.love}
-        alt="Ju"
+        alt="Ju mascot welcoming you to install the Nuju AI journal app"
         className="w-24 h-24 mb-6 animate-[ju-float_3s_ease-in-out_infinite]"
         width={96}
         height={96}
