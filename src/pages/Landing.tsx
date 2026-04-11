@@ -86,7 +86,7 @@ const Landing: React.FC = () => {
     },
     {
       title: "Choose how closely Ju stays with you",
-      body: "The paywall lands after the emotional payoff, so continuing feels like keeping support open, not buying random features.",
+      body: "Then choose the way you want Ju to stay close, whether you want to start gently or keep that support with you long term.",
       icon: TrendingUp,
     },
   ];
@@ -120,12 +120,12 @@ const Landing: React.FC = () => {
       body: "Nuju is for the moments when your mind is loud and you do not have the energy to look polished or insightful first.",
     },
     {
-      title: "Not cold productivity AI",
-      body: "The tone is warm on purpose. Feeling understood is the first win, and that is what makes the deeper support stick.",
+      title: "Not here to optimize you",
+      body: "Ju is warm on purpose. Feeling understood comes before advice, because that is what makes the deeper support actually land.",
     },
     {
-      title: "Not just a place to dump your thoughts",
-      body: "The point is the reveal. Ju notices what is really happening, then keeps helping you meet it more clearly over time.",
+      title: "Not just a place to vent",
+      body: "Ju notices what is really happening underneath the noise, then helps you meet it more clearly over time.",
     },
   ];
 
@@ -150,7 +150,7 @@ const Landing: React.FC = () => {
   const secondaryProofStats = [
     {
       value: "1 clear read",
-      title: "An emotional reveal you can feel fast",
+      title: "An emotional read you can feel fast",
       body: "The first win is not a streak. It is the relief of seeing your inner state reflected back in a way that clicks.",
       icon: PenLine,
     },
@@ -178,9 +178,7 @@ const Landing: React.FC = () => {
       cta: "Choose weekly",
       features: [
         "Lightest way to begin",
-        "Full premium support while active",
-        "Good if you want to stay cautious",
-        "Easy way to feel Ju out first",
+        "Full support while active",
       ],
       onClick: () => startOnboarding("weekly"),
     },
@@ -192,10 +190,8 @@ const Landing: React.FC = () => {
       highlight: false,
       cta: "Choose annual",
       features: [
-        "Strongest value overall",
-        "Made for ongoing emotional support",
-        "Full premium access",
-        "Best if you want Ju around long-term",
+        "Best long-term value",
+        "Made for ongoing support",
       ],
       onClick: () => startOnboarding("yearly"),
     },
@@ -205,12 +201,10 @@ const Landing: React.FC = () => {
       note: "One payment for people who already know this is the kind of support they want to keep close.",
       badge: "One-time",
       highlight: false,
-      cta: `Choose lifetime - ${geo.formatPrice(geo.rates.lifetime)}`,
+      cta: "Choose lifetime",
       features: [
         "One payment, no renewals",
         "Future premium updates included",
-        "Built for long-term support",
-        "Best for people who know the fit is real",
       ],
       onClick: () => startOnboarding("lifetime_one_time"),
     },
@@ -373,10 +367,10 @@ const Landing: React.FC = () => {
           <div className="mx-auto max-w-2xl text-center">
             <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">Why Nuju feels different</p>
             <h2 className="mt-4 font-serif text-4xl font-bold text-foreground sm:text-5xl">
-              To feel understood when your inner world is hard to explain.
+              Feel understood when what you carry is hard to explain.
             </h2>
             <p className="mt-5 text-lg leading-8 text-muted-foreground">
-              That is the hook. Not productivity. Not perfect journaling. Just the relief of feeling seen in a moment that usually stays stuck inside you.
+              The first relief is simple: feeling seen in a moment that usually stays trapped inside you.
             </p>
           </div>
 
@@ -443,20 +437,20 @@ const Landing: React.FC = () => {
             <div>
               <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">How it works</p>
               <h2 className="mt-4 font-serif text-4xl font-bold text-foreground sm:text-5xl">
-                One reveal. One emotional payoff.
+                A few honest answers. One deeply personal read.
               </h2>
               <p className="mt-5 max-w-xl text-lg leading-8 text-muted-foreground">
-                The point is not to explain the product first. It is to get you to one moment where you think, "wait, this actually gets me."
+                You do not need to understand the whole app first. You only need one moment where Ju reflects something true enough that you feel it.
               </p>
               <motion.div 
                 whileHover={{ scale: 1.02 }}
                 className="mt-8 rounded-[1.75rem] border border-border/60 bg-secondary/40 p-6 shadow-[0_8px_30px_rgb(0,0,0,0.04)]"
               >
-                <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-primary">What makes it click</p>
+                <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-primary">Why it lands</p>
                 <p className="mt-3 font-serif text-2xl leading-9 text-foreground">
                   Feel understood first.
                   <br />
-                  The deeper commitment can come after.
+                  The deeper support can come after.
                 </p>
               </motion.div>
             </div>
@@ -518,11 +512,11 @@ const Landing: React.FC = () => {
               <div>
                 <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">Example after a few weeks</p>
                 <h3 className="mt-2 font-serif text-3xl font-semibold text-foreground">
-                  The reveal becomes something you can actually show.
+                  That first read becomes something you can return to.
                 </h3>
               </div>
               <p className="max-w-md text-sm leading-7 text-muted-foreground">
-                Once the emotional trust is there, the deeper pattern tracking starts to matter. But the first win is still the feeling of being understood.
+                Once the trust is there, the deeper patterns start to matter more. But the first win is still the feeling of being understood quickly.
               </p>
             </div>
 
@@ -610,9 +604,9 @@ const Landing: React.FC = () => {
               </div>
               <div className="grid gap-4 sm:grid-cols-3">
                 {[
-                  "The promise speaks to a real emotional need",
-                  "The reveal is clear enough to feel in one glance",
-                  "The next step comes after you already feel the difference",
+                  "It feels personal quickly",
+                  "The first read lands in one glance",
+                  "Coming back still feels easy on hard days",
                 ].map((line, index) => (
                   <motion.div 
                     initial={{ opacity: 0, x: 10 }}
@@ -731,9 +725,9 @@ const Landing: React.FC = () => {
                     className={`mt-auto w-full rounded-2xl py-3.5 text-sm font-semibold transition-all active:scale-[0.97] ${
                       isLifetime
                         ? "bg-[linear-gradient(135deg,#7C6EDB,#6A58D8)] text-white hover:shadow-[0_18px_35px_-18px_rgba(124,110,219,0.75)]"
-                        : displayPlan.highlight
+                      : displayPlan.highlight
                         ? "bg-primary-foreground text-primary hover:shadow-lg"
-                        : "border border-border/70 bg-[#EAE8F2] text-[#2A2342] hover:bg-[#DED9ED] hover:shadow-sm"
+                        : "border border-[#D8D0EE] bg-[#E9E4F6] text-[#2E2550] hover:bg-[#DED6F1] hover:shadow-[0_12px_24px_-18px_rgba(45,37,80,0.35)]"
                     }`}
                   >
                     {displayPlan.cta}

@@ -9,9 +9,9 @@ import {
   ChevronRight,
   Heart,
   Loader2,
-  Lock,
   Mail,
   Shield,
+  Sparkles,
   TrendingUp,
   UserRound,
 } from "lucide-react";
@@ -21,9 +21,9 @@ import LifetimeScarcityMeter from "@/components/app/LifetimeScarcityMeter";
 import { useGeoPricing } from "@/hooks/use-geo-pricing";
 import { useLifetimeScarcity } from "@/hooks/use-lifetime-scarcity";
 import { usePostHogEvents } from "@/hooks/use-posthog-events";
-import { supabase, SUPABASE_ANON_KEY, SUPABASE_URL } from "@/integrations/supabase/client";
+import { SUPABASE_ANON_KEY, SUPABASE_URL } from "@/integrations/supabase/client";
 import { useAuth } from "@/lib/auth";
-import { saveAuthIntent } from "@/lib/auth-intent";
+import { clearAuthIntent, peekAuthIntent, saveAuthIntent } from "@/lib/auth-intent";
 import { updateProfile } from "@/lib/api";
 import { PRICING_CONFIG } from "@/lib/config";
 import {
@@ -33,100 +33,146 @@ import {
   FunnelPlan,
   loadFunnelState,
   OnboardingFunnelState,
+  ResultTeaser,
   saveFunnelState,
 } from "@/lib/onboarding-funnel";
+import { persistOnboardingLead, requestOnboardingReveal } from "@/lib/onboarding-reveal";
 import { ROUTES } from "@/lib/routes";
 
-const TOTAL_STEPS = 12;
-const PROCESSING_STEP = 7;
-const AUTH_STEP = 8;
-const RESULT_STEP = 10;
-const PAYWALL_STEP = 11;
+const TOTAL_STEPS = 20;
+const CONTACT_STEP = 7;
+const PROCESSING_STEP = 16;
+const RESULT_STEP = 17;
+const BRIDGE_STEP = 18;
+const PAYWALL_STEP = 19;
 
 const STEP_KEYS = [
   "entry",
   "goal",
   "struggles",
   "consistency",
+  "hardest_moment",
+  "blocker",
   "focus",
+  "contact",
+  "unseen_wish",
+  "cost",
   "style",
-  "resonance",
-  "processing",
-  "auth",
+  "resonance_1",
+  "resonance_2",
+  "resonance_3",
   "baseline",
+  "relief",
+  "processing",
   "result",
+  "bridge",
   "paywall",
 ] as const;
+
+const VALID_PLANS: Exclude<FunnelPlan, null>[] = ["weekly", "yearly", "lifetime_one_time"];
 
 const GOAL_OPTIONS = [
   {
     id: "overwhelmed",
     title: "Everything feels like too much",
-    description: "My mind feels crowded and I need help holding what is hitting me.",
+    description: "I am still moving, but inside it feels like I am carrying more than I can really hold.",
     icon: Heart,
   },
   {
     id: "unseen",
     title: "I want to feel understood",
-    description: "I want something that gets what I mean without making me explain it perfectly.",
+    description: "I do not want to explain myself perfectly first. I want something that just gets it.",
     icon: BrainCircuit,
   },
   {
     id: "disconnected",
-    title: "I feel far from myself",
-    description: "I want help understanding what is really going on inside me.",
-    icon: TrendingUp,
+    title: "I feel far from myself lately",
+    description: "I want help getting closer to what is actually happening inside me again.",
+    icon: Sparkles,
   },
   {
     id: "spiraling",
-    title: "My thoughts keep spiraling",
-    description: "I need help slowing the noise down before it takes over the whole moment.",
+    title: "My thoughts run ahead of me",
+    description: "The noise gets big fast, and I need something to help me settle before it takes over.",
     icon: Shield,
   },
 ] as const;
 
 const STRUGGLE_OPTIONS = [
-  { id: "overthinking", label: "By the time I try to explain it, my thoughts are already running in circles." },
+  { id: "overthinking", label: "My thoughts go in circles before I can even say what hurts." },
+  { id: "blank", label: "I go blank when I try to explain what I am feeling." },
+  { id: "privacy", label: "I hold a lot in because emotional safety matters before I can be real." },
   { id: "time", label: "When it hits, I need support fast. I do not have energy for a whole process." },
-  { id: "blank", label: "I know I feel something, but I go blank when I try to put it into words." },
-  { id: "privacy", label: "I hold a lot in because I do not feel understood easily." },
-  { id: "consistency", label: "I want support, but I disappear when life or emotions get heavy." },
+  { id: "consistency", label: "I want support, but I disappear when life gets heavy." },
 ] as const;
 
 const CONSISTENCY_OPTIONS = [
-  { id: "rarely", label: "Only once in a while, but when it happens it still really stings" },
-  { id: "sometimes", label: "Sometimes I feel understood, but not in the moments I need it most" },
-  { id: "often", label: "Pretty often. A lot of what I feel stays stuck inside me" },
+  { id: "rarely", label: "Not all the time, but when it hits, it really stays with me." },
+  { id: "sometimes", label: "It comes and goes, but I never feel fully ahead of it." },
+  { id: "often", label: "Pretty often. A lot of what I feel stays inside me." },
+] as const;
+
+const HARDEST_MOMENT_OPTIONS = [
+  { id: "late_night", label: "Late at night, when everything finally gets quiet" },
+  { id: "after_conflict", label: "After conflict, when I replay everything alone" },
+  { id: "while_busy", label: "While I am still trying to function and keep moving" },
+  { id: "when_alone", label: "When I am alone with it and there is no one nearby" },
+] as const;
+
+const BLOCKER_OPTIONS = [
+  { id: "burden", label: "I do not want to feel like a burden to people" },
+  { id: "words", label: "I cannot find the real words in time" },
+  { id: "functioning", label: "I am too busy trying to stay functional" },
+  { id: "privacy", label: "I need privacy before I can be truly honest" },
 ] as const;
 
 const FOCUS_OPTIONS = [
   { id: "name_it", label: "Help me name what I am actually feeling" },
-  { id: "calm_me", label: "Help me calm the emotional noise down" },
+  { id: "calm_me", label: "Help me slow the emotional noise down" },
   { id: "stay_with_me", label: "Stay with me gently until I can breathe again" },
-  { id: "show_pattern", label: "Show me what pattern this might be part of" },
+  { id: "show_pattern", label: "Help me see the pattern underneath this" },
+] as const;
+
+const UNSEEN_WISH_OPTIONS = [
+  { id: "notice_tired", label: "I wish someone noticed how tired I am before I say it" },
+  { id: "see_pain", label: "I wish someone could see what hurts underneath the surface" },
+  { id: "stay_without_fixing", label: "I wish someone stayed with me before trying to fix it" },
+  { id: "help_me_name_it", label: "I wish someone helped me find the words for it" },
+] as const;
+
+const COST_OPTIONS = [
+  { id: "sleep", label: "It follows me into my sleep" },
+  { id: "relationships", label: "It affects how close I can feel to people" },
+  { id: "focus", label: "It eats up my focus and mental space" },
+  { id: "self_trust", label: "It makes it harder to trust myself" },
 ] as const;
 
 const STYLE_OPTIONS = [
-  { id: "gentle", label: "Soft and reassuring", blurb: "I open up more when I feel handled gently." },
+  { id: "gentle", label: "Soft and reassuring", blurb: "I open up more when the space feels gentle first." },
   { id: "direct", label: "Clear and honest", blurb: "I still want warmth, but I do not want vague comfort." },
-  { id: "private", label: "Quiet and low-pressure", blurb: "I need it to feel private before I can be real." },
-  { id: "guided", label: "Held with a little structure", blurb: "A few thoughtful prompts make it easier for me to start." },
+  { id: "private", label: "Quiet and low-pressure", blurb: "I need it to feel private before I can be fully real." },
+  { id: "guided", label: "Held with a little structure", blurb: "Thoughtful prompts make it easier for me to begin." },
 ] as const;
 
 const RESONANCE_PROMPTS = [
-  "Sometimes I do not need advice first. I need to feel like something actually understands what is happening inside me.",
-  "When my mind gets loud, the hardest part is finding words for it before the feeling gets even bigger.",
-  "If something could make me feel understood quickly, I would trust it enough to keep coming back.",
+  "Sometimes I do not need advice first. I need to feel like something truly understands what is happening inside me.",
+  "The hardest part is not always the feeling itself. It is trying to carry it with no clear words and no soft place to put it.",
+  "If something could make me feel understood quickly, I would trust it enough to come back before things got worse.",
 ] as const;
 
 const BASELINE_OPTIONS = [
   { id: "drained", label: "Drained and stretched thin" },
   { id: "holding", label: "Holding a lot in" },
   { id: "coping", label: "Getting by, but not really settled" },
-  { id: "hopeful", label: "Hopeful and ready for something steadier" },
+  { id: "hopeful", label: "Hopeful that something could feel different" },
 ] as const;
 
-const VALID_PLANS: Exclude<FunnelPlan, null>[] = ["weekly", "yearly", "lifetime_one_time"];
+const RELIEF_OPTIONS = [
+  { id: "breathe", label: "Breathe a little easier" },
+  { id: "softer", label: "Feel softer toward myself" },
+  { id: "clearer", label: "Get clearer words for what is happening" },
+  { id: "less_alone", label: "Feel less alone inside the moment" },
+] as const;
 
 const ProgressBar: React.FC<{ step: number }> = ({ step }) => (
   <div className="h-1.5 w-full overflow-hidden rounded-full bg-primary/10">
@@ -158,12 +204,53 @@ const SecondaryButton: React.FC<React.ButtonHTMLAttributes<HTMLButtonElement>> =
   />
 );
 
+const MultiSelectButton: React.FC<{
+  active: boolean;
+  onClick: () => void;
+  children: React.ReactNode;
+}> = ({ active, onClick, children }) => (
+  <button
+    onClick={onClick}
+    className={`flex w-full items-center gap-3 rounded-[1.5rem] border px-4 py-4 text-left transition-all ${
+      active ? "border-primary bg-primary/8" : "border-border/60 bg-background hover:border-primary/30"
+    }`}
+  >
+    <div className={`flex h-5 w-5 items-center justify-center rounded-full border ${active ? "border-primary bg-primary" : "border-border"}`}>
+      {active ? <Check className="h-3.5 w-3.5 text-primary-foreground" /> : null}
+    </div>
+    <p className="text-sm leading-7 text-foreground">{children}</p>
+  </button>
+);
+
+const ChoiceCard: React.FC<{
+  active: boolean;
+  onClick: () => void;
+  title: string;
+  description?: string;
+  icon?: React.ComponentType<{ className?: string }>;
+}> = ({ active, onClick, title, description, icon: Icon }) => (
+  <button
+    onClick={onClick}
+    className={`rounded-[1.75rem] border p-5 text-left transition-all ${
+      active ? "border-primary bg-primary/8 shadow-sm" : "border-border/60 bg-background hover:border-primary/30"
+    }`}
+  >
+    {Icon ? (
+      <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-primary/10">
+        <Icon className="h-5 w-5 text-primary" />
+      </div>
+    ) : null}
+    <p className={`${Icon ? "mt-4" : ""} text-lg font-semibold text-foreground`}>{title}</p>
+    {description ? <p className="mt-2 text-sm leading-7 text-muted-foreground">{description}</p> : null}
+  </button>
+);
+
 const OnboardingScreen: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const geo = useGeoPricing();
   const events = usePostHogEvents();
-  const { user, signUp } = useAuth();
+  const { user } = useAuth();
 
   const query = useMemo(() => new URLSearchParams(location.search), [location.search]);
   const source = query.get("source") || "landing";
@@ -187,22 +274,29 @@ const OnboardingScreen: React.FC = () => {
   }, [preferredPlan, source]);
 
   const [funnelState, setFunnelState] = useState<OnboardingFunnelState>(initialState);
-  const [resonanceIndex, setResonanceIndex] = useState(() =>
-    Math.min(initialState.answers.resonance.length, RESONANCE_PROMPTS.length - 1),
-  );
-  const [emailPassword, setEmailPassword] = useState("");
-  const [emailLoading, setEmailLoading] = useState(false);
-  const [authError, setAuthError] = useState("");
-  const [authMessage, setAuthMessage] = useState("");
-  const [googleLoading, setGoogleLoading] = useState(false);
+  const [reveal, setReveal] = useState<ResultTeaser | null>(null);
+  const [contactError, setContactError] = useState("");
+  const [checkoutError, setCheckoutError] = useState("");
   const [checkoutLoading, setCheckoutLoading] = useState<Exclude<FunnelPlan, null> | null>(null);
   const [profileSynced, setProfileSynced] = useState(false);
   const startTrackedRef = useRef(false);
   const completedRef = useRef(false);
+  const abandonmentStepRef = useRef(STEP_KEYS[initialState.step] || "entry");
+  const abandonmentSourceRef = useRef(initialState.answers.source);
+  const abandonmentUserRef = useRef<string | null>(null);
+  const processingStartedRef = useRef(false);
+  const checkoutResumeHandledRef = useRef(false);
+  const leadSyncKeyRef = useRef("");
 
   useEffect(() => {
     saveFunnelState(funnelState);
   }, [funnelState]);
+
+  useEffect(() => {
+    abandonmentStepRef.current = STEP_KEYS[funnelState.step] || "unknown";
+    abandonmentSourceRef.current = funnelState.answers.source;
+    abandonmentUserRef.current = user?.id || null;
+  }, [funnelState.answers.source, funnelState.step, user?.id]);
 
   useEffect(() => {
     if (!startTrackedRef.current) {
@@ -212,44 +306,35 @@ const OnboardingScreen: React.FC = () => {
   }, [events, funnelState.answers.source]);
 
   useEffect(() => {
-    if (funnelState.step !== PROCESSING_STEP) return;
-
-    const timer = window.setTimeout(() => {
-      setFunnelState((prev) => ({ ...prev, step: AUTH_STEP }));
-    }, 1800);
-
-    return () => window.clearTimeout(timer);
-  }, [funnelState.step]);
+    return () => {
+      if (!completedRef.current) {
+        events.trackFunnelAbandoned(abandonmentStepRef.current, abandonmentSourceRef.current, abandonmentUserRef.current);
+      }
+    };
+  }, [events]);
 
   useEffect(() => {
-    if (funnelState.step === AUTH_STEP) {
-      events.trackFunnelAuthShown(funnelState.answers.source);
-    }
+    if (!user) return;
 
-    if (funnelState.step === RESULT_STEP) {
-      const teaser = buildResultTeaser(funnelState.answers);
-      events.trackFunnelResultShown(teaser.stateLabel, funnelState.answers.source, user?.id || null);
-    }
+    setFunnelState((prev) => {
+      const nextName = prev.answers.name || String(user.user_metadata?.display_name || user.user_metadata?.name || "").trim();
+      const nextEmail = prev.answers.email || user.email || "";
 
-    if (funnelState.step === PAYWALL_STEP) {
-      events.trackFunnelPaywallShown(funnelState.answers.source, user?.id || null);
-    }
-  }, [events, funnelState.answers, funnelState.step, user?.id]);
+      if (nextName === prev.answers.name && nextEmail === prev.answers.email) {
+        return prev;
+      }
 
-  useEffect(() => {
-    if (!user || funnelState.step !== AUTH_STEP) return;
-
-    setFunnelState((prev) => ({
-      ...prev,
-      step: AUTH_STEP + 1,
-      answers: {
-        ...prev.answers,
-        authCaptured: true,
-        email: prev.answers.email || user.email || "",
-      },
-    }));
-    events.trackFunnelAuthCompleted("session", funnelState.answers.source, user.id);
-  }, [events, funnelState.answers.source, funnelState.step, user]);
+      return {
+        ...prev,
+        answers: {
+          ...prev.answers,
+          name: nextName,
+          email: nextEmail,
+          authCaptured: true,
+        },
+      };
+    });
+  }, [user]);
 
   useEffect(() => {
     if (!user || profileSynced || !funnelState.answers.name.trim()) return;
@@ -260,19 +345,86 @@ const OnboardingScreen: React.FC = () => {
     } as never)
       .then(() => setProfileSynced(true))
       .catch(() => {
-        // The funnel can continue even if profile sync fails.
+        // Keep funnel usable even if profile sync fails.
       });
   }, [funnelState.answers.name, profileSynced, user]);
 
   useEffect(() => {
-    return () => {
-      if (!completedRef.current) {
-        events.trackFunnelAbandoned(STEP_KEYS[funnelState.step] || "unknown", funnelState.answers.source, user?.id || null);
-      }
-    };
-  }, [events, funnelState.answers.source, funnelState.step, user?.id]);
+    if (!funnelState.answers.authCaptured) return;
 
-  const teaser = buildResultTeaser(funnelState.answers);
+    const syncKey = [
+      funnelState.sessionId,
+      user?.id || "anon",
+      funnelState.answers.name.trim(),
+      funnelState.answers.email.trim(),
+      funnelState.answers.selectedPlan || "none",
+    ].join(":");
+
+    if (leadSyncKeyRef.current === syncKey) return;
+    leadSyncKeyRef.current = syncKey;
+
+    void persistOnboardingLead({
+      sessionId: funnelState.sessionId,
+      answers: funnelState.answers,
+      userId: user?.id || null,
+    });
+  }, [
+    funnelState.answers,
+    funnelState.sessionId,
+    user?.id,
+  ]);
+
+  useEffect(() => {
+    if (funnelState.step === RESULT_STEP) {
+      const teaser = reveal || buildResultTeaser(funnelState.answers);
+      events.trackFunnelResultShown(teaser.stateLabel, funnelState.answers.source, user?.id || null);
+    }
+
+    if (funnelState.step === PAYWALL_STEP) {
+      events.trackFunnelPaywallShown(funnelState.answers.source, user?.id || null);
+    }
+  }, [events, funnelState.answers, funnelState.step, reveal, user?.id]);
+
+  useEffect(() => {
+    if (funnelState.step !== PROCESSING_STEP || processingStartedRef.current) return;
+
+    processingStartedRef.current = true;
+    setCheckoutError("");
+
+    const timer = window.setTimeout(async () => {
+      const nextReveal = await requestOnboardingReveal({
+        sessionId: funnelState.sessionId,
+        answers: funnelState.answers,
+        userId: user?.id || null,
+      });
+
+      setReveal(nextReveal);
+      setFunnelState((prev) => ({ ...prev, step: RESULT_STEP }));
+      processingStartedRef.current = false;
+    }, 900);
+
+    return () => {
+      window.clearTimeout(timer);
+      processingStartedRef.current = false;
+    };
+  }, [funnelState.answers, funnelState.sessionId, funnelState.step, user?.id]);
+
+  useEffect(() => {
+    if (!user || checkoutResumeHandledRef.current || funnelState.step !== PAYWALL_STEP || !funnelState.answers.selectedPlan) {
+      return;
+    }
+
+    const intent = peekAuthIntent();
+    if (!intent?.plan || intent.resumePath !== ROUTES.ONBOARDING || intent.plan !== funnelState.answers.selectedPlan) {
+      return;
+    }
+
+    checkoutResumeHandledRef.current = true;
+    clearAuthIntent();
+    void handleCheckout(intent.plan as Exclude<FunnelPlan, null>);
+  }, [funnelState.answers.selectedPlan, funnelState.step, user]);
+
+  const teaser = reveal || buildResultTeaser(funnelState.answers);
   const yearlySavings = Math.max(0, Math.round((1 - geo.rates.yearly / (geo.rates.weekly * 52)) * 100));
   const { snapshot: lifetimeScarcity } = useLifetimeScarcity();
 
@@ -311,95 +463,63 @@ const OnboardingScreen: React.FC = () => {
 
   const goBack = () => {
     if (funnelState.step === 0 || funnelState.step === PROCESSING_STEP) return;
+    setCheckoutError("");
+    setContactError("");
     setFunnelState((prev) => ({ ...prev, step: Math.max(prev.step - 1, 0) }));
   };
 
-  const handleResonance = (matches: boolean) => {
-    const prompt = RESONANCE_PROMPTS[resonanceIndex];
-    if (matches && prompt && !funnelState.answers.resonance.includes(prompt)) {
+  const toggleStruggle = (id: string) => {
+    const active = funnelState.answers.struggles.includes(id);
+    setAnswers({
+      struggles: active
+        ? funnelState.answers.struggles.filter((item) => item !== id)
+        : [...funnelState.answers.struggles, id],
+    });
+  };
+
+  const handleResonance = (prompt: string, matches: boolean) => {
+    if (matches && !funnelState.answers.resonance.includes(prompt)) {
       setAnswers({ resonance: [...funnelState.answers.resonance, prompt] });
     }
-
-    if (resonanceIndex >= RESONANCE_PROMPTS.length - 1) {
-      completeStep();
-      return;
-    }
-
-    setResonanceIndex((prev) => prev + 1);
-  };
-
-  const startGoogleAuth = async () => {
-    setGoogleLoading(true);
-    setAuthError("");
-
-    saveAuthIntent({
-      source: "onboarding",
-      resumePath: ROUTES.ONBOARDING,
-      plan: funnelState.answers.selectedPlan || undefined,
-    });
-    saveFunnelState(funnelState);
-
-    const { error } = await supabase.auth.signInWithOAuth({
-      provider: "google",
-      options: {
-        redirectTo: window.location.origin + ROUTES.AUTH_CALLBACK,
-        queryParams: {
-          access_type: "offline",
-          prompt: "select_account",
-        },
-      },
-    });
-
-    if (error) {
-      setAuthError(error.message || "Google sign-in failed.");
-      setGoogleLoading(false);
-      return;
-    }
-
-    events.trackFunnelAuthCompleted("google_redirect", funnelState.answers.source, user?.id || null);
-  };
-
-  const submitEmailCapture = async () => {
-    setAuthError("");
-    setAuthMessage("");
-
-    if (!funnelState.answers.name.trim() || !funnelState.answers.email.trim()) {
-      setAuthError("Add your name and email so Ju can save your result.");
-      return;
-    }
-
-    setAnswers({ authCaptured: true });
-
-    if (user) {
-      events.trackFunnelAuthCompleted("existing_session", funnelState.answers.source, user.id);
-      completeStep();
-      return;
-    }
-
-    if (!emailPassword.trim()) {
-      completeStep();
-      return;
-    }
-
-    setEmailLoading(true);
-    const { error } = await signUp(
-      funnelState.answers.email.trim(),
-      emailPassword,
-      funnelState.answers.name.trim(),
-    );
-    setEmailLoading(false);
-
-    if (error) {
-      setAuthError(error.message);
-      return;
-    }
-
-    setAuthMessage("Check your email if you do not get signed in instantly. Ju has already saved your result here.");
     completeStep();
   };
 
-  const handleCheckout = async (plan: Exclude<FunnelPlan, null>) => {
+  const submitContactCapture = () => {
+    setContactError("");
+
+    const name = funnelState.answers.name.trim();
+    const email = funnelState.answers.email.trim();
+
+    if (!name) {
+      setContactError("Add your name so Ju can speak to you like it knows who you are.");
+      return;
+    }
+
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      setContactError("Add a real email so Ju can keep this reading with you.");
+      return;
+    }
+
+    const nextAnswers = {
+      ...funnelState.answers,
+      authCaptured: true,
+      name,
+      email,
+    };
+
+    void persistOnboardingLead({
+      sessionId: funnelState.sessionId,
+      answers: nextAnswers,
+      userId: user?.id || null,
+    });
+
+    setAnswers({ authCaptured: true, name, email });
+    completeStep();
+  };
+
+  async function handleCheckout(plan: Exclude<FunnelPlan, null>) {
     setAnswers({ selectedPlan: plan });
+    setCheckoutError("");
     events.trackFunnelPlanSelected(plan, funnelState.answers.source, user?.id || null);
 
     if (!user) {
@@ -413,7 +533,7 @@ const OnboardingScreen: React.FC = () => {
     }
 
     if (!isConfiguredProduct(plan)) {
-      setAuthError("This plan is not configured yet. Add the matching Dodo product ID first.");
+      setCheckoutError("This plan is not configured yet. Add the matching Dodo product ID first.");
       return;
     }
 
@@ -426,7 +546,7 @@ const OnboardingScreen: React.FC = () => {
         onboarded: true,
       } as never);
 
-      const resp = await fetch(`${SUPABASE_URL}/functions/v1/dodo-checkout`, {
+      const response = await fetch(`${SUPABASE_URL}/functions/v1/dodo-checkout`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -435,45 +555,40 @@ const OnboardingScreen: React.FC = () => {
         body: JSON.stringify({
           variant_id: getProductId(plan),
           user_id: user.id,
-          user_email: user.email,
+          user_email: funnelState.answers.email.trim() || user.email,
           user_name: funnelState.answers.name.trim() || user.email?.split("@")[0] || "User",
           country: geo.country,
           coupon_code: geo.couponCode || undefined,
         }),
       });
 
-      if (!resp.ok) {
+      if (!response.ok) {
         throw new Error("Checkout could not be created.");
       }
 
-      const data = await resp.json();
+      const data = await response.json();
       completedRef.current = true;
       events.trackFunnelCheckoutCompleted(plan, funnelState.answers.source, user.id);
       window.open(data.url, "_blank");
     } catch (error) {
-      setAuthError(error instanceof Error ? error.message : "Checkout failed.");
+      setCheckoutError(error instanceof Error ? error.message : "Checkout failed.");
     } finally {
       setCheckoutLoading(null);
     }
-  };
+  }
 
   const finishWithoutUpgrade = async () => {
-    if (!user) {
-      completedRef.current = true;
-      clearFunnelState();
-      navigate(ROUTES.LANDING);
-      return;
-    }
-
-    try {
-      await updateProfile(user.id, { onboarded: true } as never);
-    } catch {
-      // Ignore profile update errors and continue to the app.
+    if (user) {
+      try {
+        await updateProfile(user.id, { onboarded: true } as never);
+      } catch {
+        // Ignore profile update failures and continue.
+      }
     }
 
     completedRef.current = true;
     clearFunnelState();
-    navigate(ROUTES.APP);
+    navigate(user ? ROUTES.APP : ROUTES.LANDING);
   };
 
   const paywallPlans: Array<{
@@ -482,34 +597,58 @@ const OnboardingScreen: React.FC = () => {
     price: string;
     unit: string;
     badge?: string;
-    highlight?: boolean;
     note: string;
+    emphasis: string;
   }> = [
     {
       id: "weekly",
       title: "Weekly",
       price: geo.formatPrice(geo.rates.weekly),
-      unit: "/week",
-      note: "For when you want support now, but still want to stay cautious.",
+      unit: "A gentle weekly start",
+      note: "For when you want support now but still want to keep the commitment light.",
+      emphasis: "Lightest way to begin",
     },
     {
       id: "yearly",
       title: "Annual",
       price: geo.formatPrice(geo.rates.yearly),
-      unit: "/year",
+      unit: "Best value over time",
       badge: yearlySavings > 0 ? `Save ${yearlySavings}%` : "Best value",
-      highlight: false,
-      note: "For when you want Ju in your life long enough to really feel the difference.",
+      note: "For when you want Ju close long enough to feel a real emotional difference.",
+      emphasis: "Best long-term value",
     },
     {
       id: "lifetime_one_time",
       title: "Lifetime",
       price: geo.formatPrice(geo.rates.lifetime),
-      unit: "one-time",
-      badge: "One-time",
-      note: "For when you already know this is the kind of support you want to keep.",
+      unit: "One payment, no renewals",
+      badge: "Limited offer",
+      note: "For when you already know this is the kind of support you want to keep close.",
+      emphasis: "Keep Ju for good",
     },
   ];
+
+  const renderResonanceStep = (stepIndex: number) => {
+    const prompt = RESONANCE_PROMPTS[stepIndex];
+    return (
+      <StepCard className="text-center">
+        <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">Step {stepIndex + 11}</p>
+        <h2 className="mt-3 font-serif text-3xl font-bold text-foreground">Does this feel true for you?</h2>
+        <div className="mt-8 rounded-[2rem] border border-border/60 bg-background px-6 py-10">
+          <p className="text-xl font-semibold leading-9 text-foreground">{prompt}</p>
+        </div>
+        <div className="mt-4 flex justify-center gap-2">
+          {RESONANCE_PROMPTS.map((_, index) => (
+            <span key={index} className={`h-2.5 w-2.5 rounded-full ${index <= stepIndex ? "bg-primary" : "bg-border"}`} />
+          ))}
+        </div>
+        <div className="mt-8 grid gap-3 sm:grid-cols-2">
+          <SecondaryButton onClick={() => handleResonance(prompt, false)}>Not really</SecondaryButton>
+          <PrimaryButton onClick={() => handleResonance(prompt, true)}>That feels true</PrimaryButton>
+        </div>
+      </StepCard>
+    );
+  };
 
   const renderStep = () => {
     switch (funnelState.step) {
@@ -524,18 +663,16 @@ const OnboardingScreen: React.FC = () => {
               When you feel a lot and cannot explain it, Ju helps you feel understood.
             </h1>
             <p className="mt-4 text-base leading-8 text-muted-foreground">
-              A few quick choices help Ju notice what is really going on underneath the noise, so the first result already feels personal.
+              This starts with a few honest choices, then Ju gives you a personal emotional read that is built from what you shared.
             </p>
-            <div className="mt-8 grid gap-3 text-left sm:grid-cols-3">
-              {[
-                "Fast enough for a heavy moment",
-                "Built to feel deeply personal",
-                "Made to help you feel understood quickly",
-              ].map((item) => (
-                <div key={item} className="rounded-2xl border border-border/60 bg-background px-4 py-4 text-sm text-foreground">
-                  {item}
-                </div>
-              ))}
+            <div className="mt-8 rounded-[1.85rem] border border-primary/18 bg-primary/6 px-5 py-5 text-left">
+              <p className="text-sm font-semibold text-foreground">The first win is simple</p>
+              <p className="mt-3 text-lg font-semibold leading-8 text-foreground">
+                Feeling understood before you have everything figured out.
+              </p>
+              <p className="mt-2 text-sm leading-7 text-muted-foreground">
+                Ju listens for what feels heavy, what feels lonely, and what kind of support would help first.
+              </p>
             </div>
             <div className="mt-8">
               <PrimaryButton onClick={completeStep}>
@@ -555,25 +692,16 @@ const OnboardingScreen: React.FC = () => {
               Choose the one that feels closest to what has been sitting on your chest.
             </p>
             <div className="mt-7 grid gap-3 sm:grid-cols-2">
-              {GOAL_OPTIONS.map((option) => {
-                const Icon = option.icon;
-                const active = funnelState.answers.goal === option.id;
-                return (
-                  <button
-                    key={option.id}
-                    onClick={() => setAnswers({ goal: option.id })}
-                    className={`rounded-[1.75rem] border p-5 text-left transition-all ${
-                      active ? "border-primary bg-primary/8 shadow-sm" : "border-border/60 bg-background hover:border-primary/30"
-                    }`}
-                  >
-                    <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-primary/10">
-                      <Icon className="h-5 w-5 text-primary" />
-                    </div>
-                    <p className="mt-4 text-lg font-semibold text-foreground">{option.title}</p>
-                    <p className="mt-2 text-sm leading-7 text-muted-foreground">{option.description}</p>
-                  </button>
-                );
-              })}
+              {GOAL_OPTIONS.map((option) => (
+                <ChoiceCard
+                  key={option.id}
+                  active={funnelState.answers.goal === option.id}
+                  onClick={() => setAnswers({ goal: option.id })}
+                  title={option.title}
+                  description={option.description}
+                  icon={option.icon}
+                />
+              ))}
             </div>
             <div className="mt-7">
               <PrimaryButton onClick={completeStep} disabled={!funnelState.answers.goal}>
@@ -589,32 +717,18 @@ const OnboardingScreen: React.FC = () => {
             <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">Step 2</p>
             <h2 className="mt-3 font-serif text-3xl font-bold text-foreground">What feels hardest when this hits?</h2>
             <p className="mt-3 text-base leading-8 text-muted-foreground">
-              Choose the ones that feel true. This helps Ju understand why it has been hard to carry on your own.
+              Choose the ones that feel true. This helps Ju understand why it has felt so hard to carry alone.
             </p>
             <div className="mt-7 space-y-3">
-              {STRUGGLE_OPTIONS.map((option) => {
-                const active = funnelState.answers.struggles.includes(option.id);
-                return (
-                  <button
-                    key={option.id}
-                    onClick={() =>
-                      setAnswers({
-                        struggles: active
-                          ? funnelState.answers.struggles.filter((item) => item !== option.id)
-                          : [...funnelState.answers.struggles, option.id],
-                      })
-                    }
-                    className={`flex w-full items-center gap-3 rounded-[1.5rem] border px-4 py-4 text-left transition-all ${
-                      active ? "border-primary bg-primary/8" : "border-border/60 bg-background hover:border-primary/30"
-                    }`}
-                  >
-                    <div className={`flex h-5 w-5 items-center justify-center rounded-full border ${active ? "border-primary bg-primary" : "border-border"}`}>
-                      {active ? <Check className="h-3.5 w-3.5 text-primary-foreground" /> : null}
-                    </div>
-                    <p className="text-sm leading-7 text-foreground">{option.label}</p>
-                  </button>
-                );
-              })}
+              {STRUGGLE_OPTIONS.map((option) => (
+                <MultiSelectButton
+                  key={option.id}
+                  active={funnelState.answers.struggles.includes(option.id)}
+                  onClick={() => toggleStruggle(option.id)}
+                >
+                  {option.label}
+                </MultiSelectButton>
+              ))}
             </div>
             <div className="mt-7">
               <PrimaryButton onClick={completeStep} disabled={funnelState.answers.struggles.length === 0}>
@@ -630,20 +744,14 @@ const OnboardingScreen: React.FC = () => {
             <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">Step 3</p>
             <h2 className="mt-3 font-serif text-3xl font-bold text-foreground">How often do you feel misunderstood in moments like this?</h2>
             <div className="mt-7 grid gap-3">
-              {CONSISTENCY_OPTIONS.map((option) => {
-                const active = funnelState.answers.consistency === option.id;
-                return (
-                  <button
-                    key={option.id}
-                    onClick={() => setAnswers({ consistency: option.id })}
-                    className={`rounded-[1.5rem] border px-5 py-5 text-left transition-all ${
-                      active ? "border-primary bg-primary/8" : "border-border/60 bg-background hover:border-primary/30"
-                    }`}
-                  >
-                    <p className="text-base font-semibold text-foreground">{option.label}</p>
-                  </button>
-                );
-              })}
+              {CONSISTENCY_OPTIONS.map((option) => (
+                <ChoiceCard
+                  key={option.id}
+                  active={funnelState.answers.consistency === option.id}
+                  onClick={() => setAnswers({ consistency: option.id })}
+                  title={option.label}
+                />
+              ))}
             </div>
             <div className="mt-7">
               <PrimaryButton onClick={completeStep} disabled={!funnelState.answers.consistency}>
@@ -657,25 +765,19 @@ const OnboardingScreen: React.FC = () => {
         return (
           <StepCard>
             <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">Step 4</p>
-            <h2 className="mt-3 font-serif text-3xl font-bold text-foreground">What kind of support do you wish you had right now?</h2>
-            <div className="mt-7 grid gap-3 sm:grid-cols-2">
-              {FOCUS_OPTIONS.map((option) => {
-                const active = funnelState.answers.focus === option.id;
-                return (
-                  <button
-                    key={option.id}
-                    onClick={() => setAnswers({ focus: option.id })}
-                    className={`rounded-[1.5rem] border px-5 py-5 text-left transition-all ${
-                      active ? "border-primary bg-primary/8" : "border-border/60 bg-background hover:border-primary/30"
-                    }`}
-                  >
-                    <p className="text-base font-semibold text-foreground">{option.label}</p>
-                  </button>
-                );
-              })}
+            <h2 className="mt-3 font-serif text-3xl font-bold text-foreground">When does this usually hit the hardest?</h2>
+            <div className="mt-7 grid gap-3">
+              {HARDEST_MOMENT_OPTIONS.map((option) => (
+                <ChoiceCard
+                  key={option.id}
+                  active={funnelState.answers.hardestMoment === option.id}
+                  onClick={() => setAnswers({ hardestMoment: option.id })}
+                  title={option.label}
+                />
+              ))}
             </div>
             <div className="mt-7">
-              <PrimaryButton onClick={completeStep} disabled={!funnelState.answers.focus}>
+              <PrimaryButton onClick={completeStep} disabled={!funnelState.answers.hardestMoment}>
                 Continue
               </PrimaryButton>
             </div>
@@ -686,26 +788,19 @@ const OnboardingScreen: React.FC = () => {
         return (
           <StepCard>
             <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">Step 5</p>
-            <h2 className="mt-3 font-serif text-3xl font-bold text-foreground">What kind of presence helps you open up?</h2>
+            <h2 className="mt-3 font-serif text-3xl font-bold text-foreground">What usually stops you from opening up fully?</h2>
             <div className="mt-7 grid gap-3 sm:grid-cols-2">
-              {STYLE_OPTIONS.map((option) => {
-                const active = funnelState.answers.style === option.id;
-                return (
-                  <button
-                    key={option.id}
-                    onClick={() => setAnswers({ style: option.id })}
-                    className={`rounded-[1.75rem] border p-5 text-left transition-all ${
-                      active ? "border-primary bg-primary/8" : "border-border/60 bg-background hover:border-primary/30"
-                    }`}
-                  >
-                    <p className="text-lg font-semibold text-foreground">{option.label}</p>
-                    <p className="mt-2 text-sm leading-7 text-muted-foreground">{option.blurb}</p>
-                  </button>
-                );
-              })}
+              {BLOCKER_OPTIONS.map((option) => (
+                <ChoiceCard
+                  key={option.id}
+                  active={funnelState.answers.blocker === option.id}
+                  onClick={() => setAnswers({ blocker: option.id })}
+                  title={option.label}
+                />
+              ))}
             </div>
             <div className="mt-7">
-              <PrimaryButton onClick={completeStep} disabled={!funnelState.answers.style}>
+              <PrimaryButton onClick={completeStep} disabled={!funnelState.answers.blocker}>
                 Continue
               </PrimaryButton>
             </div>
@@ -714,67 +809,42 @@ const OnboardingScreen: React.FC = () => {
 
       case 6:
         return (
-          <StepCard className="text-center">
+          <StepCard>
             <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">Step 6</p>
-            <h2 className="mt-3 font-serif text-3xl font-bold text-foreground">Does this feel familiar?</h2>
-            <div className="mt-8 rounded-[2rem] border border-border/60 bg-background px-6 py-10">
-              <p className="text-xl font-semibold leading-9 text-foreground">{RESONANCE_PROMPTS[resonanceIndex]}</p>
-            </div>
-            <div className="mt-4 flex justify-center gap-2">
-              {RESONANCE_PROMPTS.map((_, index) => (
-                <span
-                  key={index}
-                  className={`h-2.5 w-2.5 rounded-full ${index <= resonanceIndex ? "bg-primary" : "bg-border"}`}
+            <h2 className="mt-3 font-serif text-3xl font-bold text-foreground">What do you need most from Ju first?</h2>
+            <div className="mt-7 grid gap-3 sm:grid-cols-2">
+              {FOCUS_OPTIONS.map((option) => (
+                <ChoiceCard
+                  key={option.id}
+                  active={funnelState.answers.focus === option.id}
+                  onClick={() => setAnswers({ focus: option.id })}
+                  title={option.label}
                 />
               ))}
             </div>
-            <div className="mt-8 grid gap-3 sm:grid-cols-2">
-              <SecondaryButton onClick={() => handleResonance(false)}>Not really</SecondaryButton>
-              <PrimaryButton onClick={() => handleResonance(true)}>That feels true</PrimaryButton>
+            <div className="mt-7">
+              <PrimaryButton onClick={completeStep} disabled={!funnelState.answers.focus}>
+                Continue
+              </PrimaryButton>
             </div>
           </StepCard>
         );
 
-      case 7:
-        return (
-          <StepCard className="text-center">
-            <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-primary/10">
-              <Loader2 className="h-7 w-7 animate-spin text-primary" />
-            </div>
-            <h2 className="mt-6 font-serif text-3xl font-bold text-foreground">Ju is reading your pattern...</h2>
-            <div className="mt-6 space-y-3 text-left">
-              {[
-                "Noticing what has been heaviest for you lately",
-                "Understanding what kind of support feels safest",
-                "Shaping a result that feels surprisingly personal",
-              ].map((item) => (
-                <div key={item} className="flex items-center gap-3 rounded-2xl border border-border/60 bg-background px-4 py-4">
-                  <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary/10">
-                    <Check className="h-4 w-4 text-primary" />
-                  </div>
-                  <span className="text-sm text-foreground">{item}</span>
-                </div>
-              ))}
-            </div>
-          </StepCard>
-        );
-
-      case 8:
+      case CONTACT_STEP:
         return (
           <StepCard>
             <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">Step 7</p>
-            <h2 className="mt-3 font-serif text-3xl font-bold text-foreground">Save what Ju noticed</h2>
+            <h2 className="mt-3 font-serif text-3xl font-bold text-foreground">Who is Ju speaking to?</h2>
             <p className="mt-3 text-base leading-8 text-muted-foreground">
-              Add your name and email so Ju can keep this reading with you and bring it back the next time you need it.
+              Add your name and email so Ju can make the read feel personal and keep it saved for you.
             </p>
-
             <div className="mt-7 grid gap-3">
               <div className="relative">
                 <UserRound className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground/60" />
                 <input
                   value={funnelState.answers.name}
                   onChange={(event) => setAnswers({ name: event.target.value })}
-                  placeholder="Your name or nickname"
+                  placeholder="Your first name or nickname"
                   className="h-14 w-full rounded-2xl border border-border/60 bg-background pl-11 pr-4 text-sm text-foreground outline-none transition-all focus:border-primary/30 focus:ring-2 focus:ring-primary/15"
                 />
               </div>
@@ -788,49 +858,40 @@ const OnboardingScreen: React.FC = () => {
                   className="h-14 w-full rounded-2xl border border-border/60 bg-background pl-11 pr-4 text-sm text-foreground outline-none transition-all focus:border-primary/30 focus:ring-2 focus:ring-primary/15"
                 />
               </div>
-              {!user && (
-                <div className="relative">
-                  <Lock className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground/60" />
-                  <input
-                    type="password"
-                    value={emailPassword}
-                    onChange={(event) => setEmailPassword(event.target.value)}
-                    placeholder="Create a password now if you want (optional)"
-                    className="h-14 w-full rounded-2xl border border-border/60 bg-background pl-11 pr-4 text-sm text-foreground outline-none transition-all focus:border-primary/30 focus:ring-2 focus:ring-primary/15"
-                  />
-                </div>
-              )}
             </div>
-
-            {user && (
-              <div className="mt-4 rounded-2xl border border-primary/20 bg-primary/6 px-4 py-4 text-sm text-foreground">
-                You are already signed in, so Ju can keep this with your account right away.
-              </div>
-            )}
-
-            {authError && (
+            <div className="mt-4 rounded-2xl border border-primary/20 bg-primary/6 px-4 py-4 text-sm leading-7 text-foreground">
+              Ju uses your name in the read so it feels like it is speaking to you personally.
+            </div>
+            {contactError ? (
               <div className="mt-4 rounded-2xl border border-destructive/20 bg-destructive/8 px-4 py-4 text-sm text-destructive">
-                {authError}
+                {contactError}
               </div>
-            )}
+            ) : null}
+            <div className="mt-7">
+              <PrimaryButton onClick={submitContactCapture}>Continue</PrimaryButton>
+            </div>
+          </StepCard>
+        );
 
-            {authMessage && (
-              <div className="mt-4 rounded-2xl border border-primary/20 bg-primary/6 px-4 py-4 text-sm text-foreground">
-                {authMessage}
-              </div>
-            )}
-
-            <div className="mt-7 grid gap-3">
-              <PrimaryButton onClick={submitEmailCapture} disabled={emailLoading}>
-                {emailLoading ? <Loader2 className="h-4 w-4 animate-spin" /> : null}
+      case 8:
+        return (
+          <StepCard>
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">Step 8</p>
+            <h2 className="mt-3 font-serif text-3xl font-bold text-foreground">What do you wish someone understood without you having to spell it out?</h2>
+            <div className="mt-7 grid gap-3 sm:grid-cols-2">
+              {UNSEEN_WISH_OPTIONS.map((option) => (
+                <ChoiceCard
+                  key={option.id}
+                  active={funnelState.answers.unseenWish === option.id}
+                  onClick={() => setAnswers({ unseenWish: option.id })}
+                  title={option.label}
+                />
+              ))}
+            </div>
+            <div className="mt-7">
+              <PrimaryButton onClick={completeStep} disabled={!funnelState.answers.unseenWish}>
                 Continue
               </PrimaryButton>
-              {!user && (
-                <SecondaryButton onClick={startGoogleAuth} disabled={googleLoading}>
-                  {googleLoading ? <Loader2 className="h-4 w-4 animate-spin" /> : null}
-                  Continue with Google
-                </SecondaryButton>
-              )}
             </div>
           </StepCard>
         );
@@ -838,27 +899,21 @@ const OnboardingScreen: React.FC = () => {
       case 9:
         return (
           <StepCard>
-            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">Step 8</p>
-            <h2 className="mt-3 font-serif text-3xl font-bold text-foreground">How are you arriving right now?</h2>
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">Step 9</p>
+            <h2 className="mt-3 font-serif text-3xl font-bold text-foreground">What has carrying this been costing you most lately?</h2>
             <div className="mt-7 grid gap-3 sm:grid-cols-2">
-              {BASELINE_OPTIONS.map((option) => {
-                const active = funnelState.answers.baseline === option.id;
-                return (
-                  <button
-                    key={option.id}
-                    onClick={() => setAnswers({ baseline: option.id })}
-                    className={`rounded-[1.5rem] border px-5 py-5 text-left transition-all ${
-                      active ? "border-primary bg-primary/8" : "border-border/60 bg-background hover:border-primary/30"
-                    }`}
-                  >
-                    <p className="text-base font-semibold text-foreground">{option.label}</p>
-                  </button>
-                );
-              })}
+              {COST_OPTIONS.map((option) => (
+                <ChoiceCard
+                  key={option.id}
+                  active={funnelState.answers.cost === option.id}
+                  onClick={() => setAnswers({ cost: option.id })}
+                  title={option.label}
+                />
+              ))}
             </div>
             <div className="mt-7">
-              <PrimaryButton onClick={completeStep} disabled={!funnelState.answers.baseline}>
-                Show my result
+              <PrimaryButton onClick={completeStep} disabled={!funnelState.answers.cost}>
+                Continue
               </PrimaryButton>
             </div>
           </StepCard>
@@ -867,12 +922,116 @@ const OnboardingScreen: React.FC = () => {
       case 10:
         return (
           <StepCard>
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">Step 10</p>
+            <h2 className="mt-3 font-serif text-3xl font-bold text-foreground">What kind of presence helps you open up most honestly?</h2>
+            <div className="mt-7 grid gap-3 sm:grid-cols-2">
+              {STYLE_OPTIONS.map((option) => (
+                <ChoiceCard
+                  key={option.id}
+                  active={funnelState.answers.style === option.id}
+                  onClick={() => setAnswers({ style: option.id })}
+                  title={option.label}
+                  description={option.blurb}
+                />
+              ))}
+            </div>
+            <div className="mt-7">
+              <PrimaryButton onClick={completeStep} disabled={!funnelState.answers.style}>
+                Continue
+              </PrimaryButton>
+            </div>
+          </StepCard>
+        );
+
+      case 11:
+        return renderResonanceStep(0);
+      case 12:
+        return renderResonanceStep(1);
+      case 13:
+        return renderResonanceStep(2);
+
+      case 14:
+        return (
+          <StepCard>
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">Step 14</p>
+            <h2 className="mt-3 font-serif text-3xl font-bold text-foreground">How are you arriving right now?</h2>
+            <div className="mt-7 grid gap-3 sm:grid-cols-2">
+              {BASELINE_OPTIONS.map((option) => (
+                <ChoiceCard
+                  key={option.id}
+                  active={funnelState.answers.baseline === option.id}
+                  onClick={() => setAnswers({ baseline: option.id })}
+                  title={option.label}
+                />
+              ))}
+            </div>
+            <div className="mt-7">
+              <PrimaryButton onClick={completeStep} disabled={!funnelState.answers.baseline}>
+                Continue
+              </PrimaryButton>
+            </div>
+          </StepCard>
+        );
+
+      case 15:
+        return (
+          <StepCard>
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">Step 15</p>
+            <h2 className="mt-3 font-serif text-3xl font-bold text-foreground">If Ju helps in the right way, what should you feel first?</h2>
+            <div className="mt-7 grid gap-3 sm:grid-cols-2">
+              {RELIEF_OPTIONS.map((option) => (
+                <ChoiceCard
+                  key={option.id}
+                  active={funnelState.answers.relief === option.id}
+                  onClick={() => setAnswers({ relief: option.id })}
+                  title={option.label}
+                />
+              ))}
+            </div>
+            <div className="mt-7">
+              <PrimaryButton onClick={completeStep} disabled={!funnelState.answers.relief}>
+                Let Ju read this
+              </PrimaryButton>
+            </div>
+          </StepCard>
+        );
+
+      case PROCESSING_STEP:
+        return (
+          <StepCard className="text-center">
+            <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-primary/10">
+              <Loader2 className="h-7 w-7 animate-spin text-primary" />
+            </div>
+            <h2 className="mt-6 font-serif text-3xl font-bold text-foreground">Ju is reading what has been heavy...</h2>
+            <p className="mt-4 text-base leading-8 text-muted-foreground">
+              Ju is turning what you shared into a read that sounds like you, not like everyone else.
+            </p>
+            <div className="mt-6 space-y-3 text-left">
+              {[
+                "Tracing what hurts most beneath the surface",
+                "Noticing what kind of presence feels safest for you",
+                "Writing a read that uses your name and emotional context",
+              ].map((item) => (
+                <div key={item} className="flex items-center gap-3 rounded-2xl border border-border/60 bg-background px-4 py-4">
+                  <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary/10">
+                    <Check className="h-4 w-4 text-primary" />
+                  </div>
+                  <span className="text-sm text-foreground">{item}</span>
+                </div>
+              ))}
+            </div>
+          </StepCard>
+        );
+
+      case RESULT_STEP:
+        return (
+          <StepCard>
             <div className="flex flex-col gap-5 sm:flex-row sm:items-start sm:justify-between">
               <div>
                 <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">Ju Gets You</p>
                 <h2 className="mt-3 font-serif text-3xl font-bold text-foreground">{teaser.headline}</h2>
                 <p className="mt-3 text-base leading-8 text-muted-foreground">
-                  This is the emotional state Ju thinks you are in right now, based on what you shared.
+                  This is Ju's first read on what feels true underneath what you shared.
                 </p>
               </div>
               <div className="rounded-full border border-primary/20 bg-primary/6 px-4 py-2 text-sm font-semibold text-primary">
@@ -881,60 +1040,78 @@ const OnboardingScreen: React.FC = () => {
             </div>
 
             <div className="mt-7 grid gap-4 lg:grid-cols-[1.05fr_0.95fr]">
-              <div className="rounded-[1.75rem] border border-border/60 bg-background px-5 py-5">
-                <p className="text-sm font-semibold text-foreground">Why Ju thinks this fits</p>
-                <p className="mt-3 text-sm leading-8 text-muted-foreground">{teaser.whyItFits}</p>
-              </div>
               <div className="rounded-[1.75rem] border border-primary/20 bg-primary/6 px-5 py-5">
-                <p className="text-sm font-semibold text-foreground">What Ju would help with first</p>
-                <p className="mt-3 text-sm leading-8 text-muted-foreground">{teaser.firstSupportMove}</p>
-                <div className="mt-5 space-y-3">
-                  {teaser.supportSignals.map((step) => (
-                    <div key={step} className="flex items-start gap-3">
-                      <div className="mt-1 flex h-6 w-6 items-center justify-center rounded-full bg-primary text-primary-foreground">
-                        <Check className="h-3.5 w-3.5" />
-                      </div>
-                      <p className="text-sm leading-7 text-muted-foreground">{step}</p>
-                    </div>
-                  ))}
-                </div>
+                <p className="text-sm font-semibold text-foreground">What Ju notices first</p>
+                <p className="mt-3 text-[15px] leading-8 text-foreground">{teaser.mirror}</p>
+              </div>
+              <div className="rounded-[1.75rem] border border-border/60 bg-background px-5 py-5">
+                <p className="text-sm font-semibold text-foreground">Why this fits</p>
+                <p className="mt-3 text-sm leading-8 text-muted-foreground">{teaser.whyItFits}</p>
               </div>
             </div>
 
-            <div className="mt-7 rounded-[1.75rem] border border-border/60 bg-background px-5 py-5">
-                <p className="text-sm font-semibold text-foreground">What opens up next</p>
-              <p className="mt-2 text-sm leading-8 text-muted-foreground">
-                {teaser.continuationLine}
-              </p>
+            <div className="mt-4 rounded-[1.75rem] border border-border/60 bg-background px-5 py-5">
+              <p className="text-sm font-semibold text-foreground">What Ju would help with first</p>
+              <p className="mt-3 text-sm leading-8 text-muted-foreground">{teaser.firstSupportMove}</p>
+              <div className="mt-5 space-y-3">
+                {teaser.supportSignals.map((step) => (
+                  <div key={step} className="flex items-start gap-3">
+                    <div className="mt-1 flex h-6 w-6 items-center justify-center rounded-full bg-primary text-primary-foreground">
+                      <Check className="h-3.5 w-3.5" />
+                    </div>
+                    <p className="text-sm leading-7 text-muted-foreground">{step}</p>
+                  </div>
+                ))}
+              </div>
             </div>
 
             <div className="mt-7">
               <PrimaryButton onClick={completeStep}>
-                See ways to continue
+                Show me what opens next
                 <ChevronRight className="h-4 w-4" />
               </PrimaryButton>
             </div>
           </StepCard>
         );
 
-      case 11:
+      case BRIDGE_STEP:
+        return (
+          <StepCard>
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">Keep this feeling open</p>
+            <h2 className="mt-3 font-serif text-3xl font-bold text-foreground">This gets deeper when Ju can stay with you.</h2>
+            <p className="mt-3 text-base leading-8 text-muted-foreground">{teaser.continuationLine}</p>
+            <div className="mt-7 grid gap-3">
+              {[
+                "Come back when the same weight shows up again and Ju still knows where you tend to get stuck.",
+                "Get support that starts from your real emotional pattern instead of one-size-fits-all comfort.",
+                "Turn this first feeling of being understood into something you can return to again and again.",
+              ].map((item) => (
+                <div key={item} className="rounded-[1.5rem] border border-border/60 bg-background px-5 py-5">
+                  <p className="text-sm leading-7 text-foreground">{item}</p>
+                </div>
+              ))}
+            </div>
+            <div className="mt-7">
+              <PrimaryButton onClick={completeStep}>See the plans</PrimaryButton>
+            </div>
+          </StepCard>
+        );
+
+      case PAYWALL_STEP:
       default:
         return (
           <StepCard>
             <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">Choose your plan</p>
-            <h2 className="mt-3 font-serif text-3xl font-bold text-foreground">Keep the version of Ju that gets you</h2>
+            <h2 className="mt-3 font-serif text-3xl font-bold text-foreground">Keep the version of Ju that gets you.</h2>
             <p className="mt-3 text-base leading-8 text-muted-foreground">
-              Ju has already started reading what is heavy for you. Choose how closely you want that support to stay with you from here.
-            </p>
-            <p className="mt-2 text-sm leading-7 text-muted-foreground">
-              Weekly is the cautious start, Annual is the strongest value, and Lifetime is for people who already know this kind of support fits.
+              Choose how closely you want that support to stay with you from here.
             </p>
 
-            {authError && (
+            {checkoutError ? (
               <div className="mt-5 rounded-2xl border border-destructive/20 bg-destructive/8 px-4 py-4 text-sm text-destructive">
-                {authError}
+                {checkoutError}
               </div>
-            )}
+            ) : null}
 
             <div className="mt-7 grid gap-4 xl:grid-cols-3">
               {paywallPlans.map((plan) => {
@@ -948,18 +1125,16 @@ const OnboardingScreen: React.FC = () => {
                     className={`rounded-[1.8rem] border p-5 transition-all ${
                       plan.id === "lifetime_one_time"
                         ? "border-primary/35 bg-[linear-gradient(180deg,rgba(245,241,255,0.96),rgba(255,255,255,0.99))] shadow-[0_20px_50px_-24px_rgba(124,110,219,0.38)]"
-                        : plan.highlight
-                          ? "border-primary/30 bg-primary/6"
+                        : plan.id === "yearly"
+                          ? "border-primary/18 bg-primary/[0.03]"
                           : "border-border/60 bg-background"
                     } ${selected ? "shadow-md shadow-primary/10" : ""}`}
                   >
                     <div className="flex items-start justify-between gap-3">
                       <div>
                         <p className="text-lg font-semibold text-foreground">{plan.title}</p>
-                        <p className="mt-1 text-3xl font-bold text-foreground">
-                          {plan.price}
-                          <span className="ml-1 text-sm font-medium text-muted-foreground">{plan.unit}</span>
-                        </p>
+                        <p className="mt-4 text-4xl font-bold tracking-tight text-foreground">{plan.price}</p>
+                        <p className="mt-1 text-sm font-medium text-muted-foreground">{plan.unit}</p>
                       </div>
                       {plan.badge ? (
                         <span className="rounded-full bg-primary/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-primary">
@@ -968,27 +1143,25 @@ const OnboardingScreen: React.FC = () => {
                       ) : null}
                     </div>
 
-                    <p className="mt-3 text-sm leading-7 text-muted-foreground">{plan.note}</p>
+                    <p className="mt-4 text-sm font-semibold text-foreground">{plan.emphasis}</p>
+                    <p className="mt-2 text-sm leading-7 text-muted-foreground">{plan.note}</p>
 
-                    {plan.id === "lifetime_one_time" && (
-                      <LifetimeScarcityMeter
-                        className="mt-4"
-                        scarcity={lifetimeScarcity}
-                      />
-                    )}
+                    {plan.id === "lifetime_one_time" ? (
+                      <LifetimeScarcityMeter className="mt-4" scarcity={lifetimeScarcity} />
+                    ) : null}
 
-                    <div className="mt-5">
+                    <div className="mt-6">
                       <PrimaryButton
                         className={
                           plan.id === "lifetime_one_time"
                             ? "bg-[linear-gradient(135deg,#7C6EDB,#6A58D8)] text-white hover:shadow-[0_18px_35px_-18px_rgba(124,110,219,0.75)]"
-                            : "!border !border-border/70 !bg-[#EAE8F2] !text-[#2A2342] hover:!bg-[#DED9ED] hover:shadow-sm"
+                            : "!border !border-[#D8D0EE] !bg-[#E9E4F6] !text-[#2E2550] hover:!bg-[#DED6F1] hover:shadow-[0_12px_24px_-18px_rgba(45,37,80,0.35)]"
                         }
                         onClick={() => handleCheckout(plan.id)}
                         disabled={!available || Boolean(checkoutLoading)}
                       >
                         {isLoading ? <Loader2 className="h-4 w-4 animate-spin" /> : null}
-                        {selected ? `Continue with ${plan.title}` : `Choose ${plan.title}`}
+                        {!available ? "Coming soon" : selected ? `Continue with ${plan.title}` : `Choose ${plan.title}`}
                       </PrimaryButton>
                     </div>
                   </div>
@@ -1000,20 +1173,17 @@ const OnboardingScreen: React.FC = () => {
               <SecondaryButton onClick={finishWithoutUpgrade}>
                 {user ? "Continue with limited access" : "Not now"}
               </SecondaryButton>
-              {!user && (
+              {!user ? (
                 <SecondaryButton
                   onClick={() => {
                     saveAuthIntent({ source: "onboarding", resumePath: ROUTES.ONBOARDING });
                     navigate(`${ROUTES.AUTH}?mode=login`);
                   }}
                 >
-                  Sign in instead
+                  I already have an account
                 </SecondaryButton>
-              )}
+              ) : null}
             </div>
-            <p className="mt-4 text-xs leading-6 text-muted-foreground">
-              Weekly is the lightest start, Annual gives the best value, and Lifetime is the one-time premium path.
-            </p>
           </StepCard>
         );
     }
@@ -1042,6 +1212,12 @@ const OnboardingScreen: React.FC = () => {
           >
             Exit
           </Link>
+        </div>
+
+        <div className="mb-5 text-center">
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary">
+            Step {Math.min(funnelState.step + 1, TOTAL_STEPS)} of {TOTAL_STEPS}
+          </p>
         </div>
 
         <div className="flex flex-1 items-center">

@@ -30,15 +30,14 @@ const LifetimeScarcityMeter: React.FC<LifetimeScarcityMeterProps> = ({ scarcity,
   const helperCopy =
     scarcity.remaining <= 3
       ? `Only ${scarcity.remaining} lifetime spots are still open right now.`
-      : `${scarcity.remaining} of ${scarcity.total} lifetime spots are still open right now.`;
+      : `${scarcity.claimed} people have already taken the lifetime offer.`;
 
   return (
     <div className={`rounded-2xl border px-4 py-4 ${styles.shell} ${className}`}>
-      <div className="flex items-start justify-between gap-3">
-        <div>
-          <p className="text-[11px] font-semibold uppercase tracking-[0.18em]">Only 25 lifetime spots</p>
-          <p className="mt-1 text-sm font-semibold">{scarcity.claimed}/{scarcity.total} claimed</p>
-        </div>
+      <p className="text-[11px] font-semibold uppercase tracking-[0.18em]">Only 25 lifetime spots</p>
+
+      <div className="mt-3 flex items-center justify-between gap-3 text-sm font-semibold">
+        <span>{scarcity.claimed} claimed</span>
         <span className={`rounded-full px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] ${styles.pill}`}>
           {scarcity.remaining} left
         </span>

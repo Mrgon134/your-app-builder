@@ -3,6 +3,7 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import { useLang } from "@/lib/i18n";
 import { useAuth } from "@/lib/auth";
 import { peekAuthIntent } from "@/lib/auth-intent";
+import { getFunnelContactPrefill } from "@/lib/onboarding-funnel";
 import { ROUTES } from "@/lib/routes";
 import { supabase } from "@/integrations/supabase/client";
 import { JU_STICKERS } from "@/lib/stickers";
@@ -51,6 +52,16 @@ const AuthPage: React.FC = () => {
   const [error, setError] = useState(searchParams.get("error") || "");
   const [success, setSuccess] = useState("");
   const testUser = getTestUserCredentials();
+  const funnelPrefill = getFunnelContactPrefill();
+  const authIntent = peekAuthIntent();
+  const isOnboardingResume = authIntent?.resumePath === ROUTES.ONBOARDING;
+
+  useEffect(() => {
+    if (!funnelPrefill.email && !funnelPrefill.name) return;
+
+    setEmail((current) => current || funnelPrefill.email);
+    setName((current) => current || funnelPrefill.name);
+  }, [funnelPrefill.email, funnelPrefill.name]);
 
   const callbackUrl = window.location.origin + ROUTES.AUTH_CALLBACK;
 
@@ -251,12 +262,20 @@ const AuthPage: React.FC = () => {
         </div>
 
         <h1 className="text-[28px] font-bold text-foreground text-center tracking-tight mb-1">
-          {mode === "login" ? (t.welcome_back || "Welcome back") : (t.create_account || "Create account")}
+          {mode === "login"
+            ? (t.welcome_back || "Welcome back")
+            : isOnboardingResume
+              ? "Save your result"
+              : (t.create_account || "Create account")}
         </h1>
         <p className="text-[15px] text-muted-foreground text-center mb-8">
           {mode === "login"
-            ? (t.login_desc || "Sign in to continue your journal")
-            : (t.signup_desc_auth || "Start your journaling journey with Ju")}
+            ? isOnboardingResume
+              ? "Sign in to reopen your Ju read and continue where you left off."
+              : (t.login_desc || "Sign in to continue your journal")
+            : isOnboardingResume
+              ? "Your name and email are ready. Add a password so Ju can keep this read with you."
+              : (t.signup_desc_auth || "Start your journaling journey with Ju")}
         </p>
 
         {/* Social login buttons */}

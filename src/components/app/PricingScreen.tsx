@@ -37,7 +37,6 @@ const PricingScreen: React.FC<PricingScreenProps> = ({
       features: [
         "Lightest way to begin",
         "Full premium access while active",
-        "Good if you want to feel Ju out first",
       ],
     },
     {
@@ -51,7 +50,6 @@ const PricingScreen: React.FC<PricingScreenProps> = ({
       features: [
         "Strongest value overall",
         "Made for ongoing emotional support",
-        "Full premium access",
       ],
     },
     {
@@ -65,7 +63,6 @@ const PricingScreen: React.FC<PricingScreenProps> = ({
       features: [
         "One payment, no renewals",
         "Future premium updates included",
-        "Built for people who want Ju to stay close",
       ],
     },
   ] as const;
@@ -156,13 +153,6 @@ const PricingScreen: React.FC<PricingScreenProps> = ({
                 </span>
               )}
 
-              {plan.id === "lifetime_one_time" && (
-                <LifetimeScarcityMeter
-                  className="mb-3"
-                  scarcity={lifetimeScarcity}
-                />
-              )}
-
               <div className="flex items-baseline gap-1">
                 <span className="font-serif text-3xl font-bold text-foreground">{plan.price}</span>
                 <span className="text-sm text-muted-foreground">{plan.unit}</span>
@@ -170,6 +160,13 @@ const PricingScreen: React.FC<PricingScreenProps> = ({
 
               <h3 className="mt-3 text-base font-semibold text-foreground">{plan.title}</h3>
               <p className="mt-2 text-[13px] leading-6 text-muted-foreground">{plan.description}</p>
+
+              {plan.id === "lifetime_one_time" && (
+                <LifetimeScarcityMeter
+                  className="mt-4"
+                  scarcity={lifetimeScarcity}
+                />
+              )}
 
               <ul className="mb-5 mt-4 space-y-2.5">
                 {plan.features.map((feature) => (
@@ -186,11 +183,11 @@ const PricingScreen: React.FC<PricingScreenProps> = ({
                 </div>
               ) : (
                 <button
-                  onClick={() => onCheckout(plan.id)}
-                  className={`w-full rounded-2xl py-3.5 text-sm font-semibold transition-all active:scale-[0.97] ${
-                    plan.id === "lifetime_one_time"
-                      ? "bg-[linear-gradient(135deg,#7C6EDB,#6A58D8)] text-white shadow-[0_18px_35px_-18px_rgba(124,110,219,0.75)]"
-                      : "border border-border/70 bg-[#EAE8F2] text-[#2A2342] hover:bg-[#DED9ED]"
+                    onClick={() => onCheckout(plan.id)}
+                    className={`w-full rounded-2xl py-3.5 text-sm font-semibold transition-all active:scale-[0.97] ${
+                      plan.id === "lifetime_one_time"
+                        ? "bg-[linear-gradient(135deg,#7C6EDB,#6A58D8)] text-white shadow-[0_18px_35px_-18px_rgba(124,110,219,0.75)]"
+                      : "border border-[#D8D0EE] bg-[#E9E4F6] text-[#2E2550] hover:bg-[#DED6F1] hover:shadow-[0_12px_24px_-18px_rgba(45,37,80,0.35)]"
                   }`}
                 >
                   {plan.id === "lifetime_one_time" ? `Choose ${plan.title}` : `Choose ${plan.title}`}

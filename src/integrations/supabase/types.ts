@@ -205,6 +205,56 @@ export type Database = {
           },
         ]
       }
+      onboarding_leads: {
+        Row: {
+          answers: Json
+          created_at: string
+          email: string | null
+          id: string
+          name: string | null
+          reveal: Json | null
+          selected_plan: string | null
+          session_id: string
+          source: string
+          updated_at: string
+          user_id: string | null
+        }
+        Insert: {
+          answers?: Json
+          created_at?: string
+          email?: string | null
+          id?: string
+          name?: string | null
+          reveal?: Json | null
+          selected_plan?: string | null
+          session_id: string
+          source?: string
+          updated_at?: string
+          user_id?: string | null
+        }
+        Update: {
+          answers?: Json
+          created_at?: string
+          email?: string | null
+          id?: string
+          name?: string | null
+          reveal?: Json | null
+          selected_plan?: string | null
+          session_id?: string
+          source?: string
+          updated_at?: string
+          user_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "onboarding_leads_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       profiles: {
         Row: {
           coach_persona: string | null
@@ -338,6 +388,7 @@ export type Database = {
       check_coach_limit: { Args: { p_user_id: string }; Returns: boolean }
       check_entry_limit: { Args: { p_user_id: string }; Returns: boolean }
       delete_user: { Args: Record<PropertyKey, never>; Returns: undefined }
+      get_lifetime_offer_status: { Args: Record<PropertyKey, never>; Returns: { actual_count: number } }
       update_streak: { Args: { p_user_id: string }; Returns: undefined }
     }
     Enums: {

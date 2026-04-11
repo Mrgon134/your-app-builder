@@ -112,7 +112,7 @@ const HeroPatternPreview: React.FC = () => {
               </p>
 
               <div className="mt-4 rounded-[1.2rem] bg-secondary/50 px-3 py-3 text-xs leading-6 text-foreground">
-                The product starts as relief, then becomes a clearer map of your inner world.
+                The first relief is feeling seen. The deeper clarity grows from there.
               </div>
             </div>
           </div>
