@@ -2,9 +2,13 @@ import React, { useState, useEffect } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { useLang } from "@/lib/i18n";
 import { useAuth } from "@/lib/auth";
+import { peekAuthIntent } from "@/lib/auth-intent";
+import { ROUTES } from "@/lib/routes";
 import { supabase } from "@/integrations/supabase/client";
 import { JU_STICKERS } from "@/lib/stickers";
+import { getTestUserCredentials } from "@/lib/test-user";
 import { Mail, Lock, User, ArrowRight, Loader2, ChevronLeft } from "lucide-react";
+import SEOHead from "@/components/SEOHead";
 
 /** Apple SVG logo */
 const AppleLogo: React.FC = () => (
@@ -24,7 +28,9 @@ const AuthPage: React.FC = () => {
   useEffect(() => {
     // If already logged in and not in reset mode, go to app
     const modeParam = searchParams.get("mode");
-    if (user && modeParam !== "reset") navigate("/app", { replace: true });
+    if (user && modeParam !== "reset") {
+      navigate(peekAuthIntent()?.resumePath || ROUTES.APP, { replace: true });
+    }
   }, [user, navigate, searchParams]);
 
   const initialMode: Mode = (() => {
@@ -44,8 +50,9 @@ const AuthPage: React.FC = () => {
   const [appleLoading, setAppleLoading] = useState(false);
   const [error, setError] = useState(searchParams.get("error") || "");
   const [success, setSuccess] = useState("");
+  const testUser = getTestUserCredentials();
 
-  const callbackUrl = window.location.origin + "/auth/callback";
+  const callbackUrl = window.location.origin + ROUTES.AUTH_CALLBACK;
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -107,6 +114,30 @@ const AuthPage: React.FC = () => {
       setError(error.message || "Apple sign-in failed");
       setAppleLoading(false);
     }
+  };
+
+  const handleTestUserLogin = async () => {
+    if (!testUser.enabled) return;
+
+    setLoading(true);
+    setError("");
+    setSuccess("");
+
+    setEmail(testUser.email);
+    setPassword(testUser.password);
+    setName(testUser.name);
+
+    let result = await signIn(testUser.email, testUser.password);
+    if (result.error) {
+      const signUpResult = await signUp(testUser.email, testUser.password, testUser.name);
+      if (signUpResult.error) {
+        setError(signUpResult.error.message);
+      } else {
+        setSuccess("Test account created. If confirmation is required, check that inbox once, then this shortcut will keep working.");
+      }
+    }
+
+    setLoading(false);
   };
 
   const resetMode = (m: Mode) => {
@@ -205,7 +236,14 @@ const AuthPage: React.FC = () => {
 
   // --- Login / Signup screen ---
   return (
-    <div className="min-h-screen bg-background flex flex-col items-center justify-center px-6 py-12">
+    <>
+      <SEOHead
+        title="Sign In or Create Account"
+        description="Start your 30-second AI journaling journey with Nuju. Track moods, discover patterns, feel understood. Sign up free today."
+        canonical="https://nuju.app/auth"
+        noindex
+      />
+      <div className="min-h-screen bg-background flex flex-col items-center justify-center px-6 py-12">
       <div className="w-full max-w-[340px]">
         {/* Mascot */}
         <div className="flex justify-center mb-6">
@@ -269,6 +307,16 @@ const AuthPage: React.FC = () => {
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-3">
+          {mode === "login" && testUser.enabled && (
+            <button
+              type="button"
+              onClick={handleTestUserLogin}
+              disabled={loading || googleLoading || appleLoading}
+              className="w-full rounded-xl border border-primary/20 bg-primary/6 px-4 py-3 text-sm font-semibold text-primary transition-all active:scale-[0.98] disabled:opacity-50"
+            >
+              Use test account with all features unlocked
+            </button>
+          )}
           {mode === "signup" && (
             <div className="relative">
               <User className="absolute left-4 top-1/2 -translate-y-1/2 w-[18px] h-[18px] text-muted-foreground/60" />
@@ -351,6 +399,7 @@ const AuthPage: React.FC = () => {
         </button>
       </div>
     </div>
+    </>
   );
 };
 

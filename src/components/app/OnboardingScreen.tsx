@@ -1,1077 +1,1063 @@
-import React, { useState, useEffect, useCallback } from "react";
-import { useLang } from "@/lib/i18n";
-import { motion, AnimatePresence, useMotionValue, useTransform, PanInfo } from "framer-motion";
-import { Bell, Check, ChevronLeft, Star, X, Crown, Flame } from "lucide-react";
-import { MOODS, AI_PERSONAS } from "@/lib/constants";
-import { PRICING_CONFIG } from "@/lib/config";
-import MoodIcon from "@/components/MoodIcon";
+import React, { useEffect, useMemo, useRef, useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { AnimatePresence, motion } from "framer-motion";
 import {
-  requestNotificationPermission,
-  scheduleLocalReminder,
-  schedulePostInstallNotification,
-} from "@/lib/notifications";
+  ArrowLeft,
+  ArrowRight,
+  BrainCircuit,
+  Check,
+  ChevronRight,
+  Heart,
+  Loader2,
+  Lock,
+  Mail,
+  Shield,
+  TrendingUp,
+  UserRound,
+} from "lucide-react";
 
-// Assets
-import juHi from "@/assets/sticker-hi.webp";
-import juYay from "@/assets/sticker-yay.webp";
-import juHmm from "@/assets/sticker-hmm.webp";
-import juLove from "@/assets/sticker-love.webp";
-import coachGentle from "@/assets/coach-gentle.webp";
-import coachTough from "@/assets/coach-tough.webp";
-import coachWise from "@/assets/coach-wise.webp";
-import coachFun from "@/assets/coach-fun.webp";
+import juMain from "@/assets/ju-main.webp";
+import LifetimeScarcityMeter from "@/components/app/LifetimeScarcityMeter";
+import { useGeoPricing } from "@/hooks/use-geo-pricing";
+import { useLifetimeScarcity } from "@/hooks/use-lifetime-scarcity";
+import { usePostHogEvents } from "@/hooks/use-posthog-events";
+import { supabase, SUPABASE_ANON_KEY, SUPABASE_URL } from "@/integrations/supabase/client";
+import { useAuth } from "@/lib/auth";
+import { saveAuthIntent } from "@/lib/auth-intent";
+import { updateProfile } from "@/lib/api";
+import { PRICING_CONFIG } from "@/lib/config";
+import {
+  buildResultTeaser,
+  clearFunnelState,
+  createDefaultFunnelState,
+  FunnelPlan,
+  loadFunnelState,
+  OnboardingFunnelState,
+  saveFunnelState,
+} from "@/lib/onboarding-funnel";
+import { ROUTES } from "@/lib/routes";
 
-const COACH_IMAGES: Record<string, string> = {
-  gentle: coachGentle,
-  tough: coachTough,
-  wise: coachWise,
-  fun: coachFun,
-};
+const TOTAL_STEPS = 12;
+const PROCESSING_STEP = 7;
+const AUTH_STEP = 8;
+const RESULT_STEP = 10;
+const PAYWALL_STEP = 11;
 
-// ─── Constants ────────────────────────────────────────────
+const STEP_KEYS = [
+  "entry",
+  "goal",
+  "struggles",
+  "consistency",
+  "focus",
+  "style",
+  "resonance",
+  "processing",
+  "auth",
+  "baseline",
+  "result",
+  "paywall",
+] as const;
 
-const TOTAL_STEPS = 11;
+const GOAL_OPTIONS = [
+  {
+    id: "overwhelmed",
+    title: "Everything feels like too much",
+    description: "My mind feels crowded and I need help holding what is hitting me.",
+    icon: Heart,
+  },
+  {
+    id: "unseen",
+    title: "I want to feel understood",
+    description: "I want something that gets what I mean without making me explain it perfectly.",
+    icon: BrainCircuit,
+  },
+  {
+    id: "disconnected",
+    title: "I feel far from myself",
+    description: "I want help understanding what is really going on inside me.",
+    icon: TrendingUp,
+  },
+  {
+    id: "spiraling",
+    title: "My thoughts keep spiraling",
+    description: "I need help slowing the noise down before it takes over the whole moment.",
+    icon: Shield,
+  },
+] as const;
 
-const PAIN_OPTIONS = [
-  { id: "inconsistent", emoji: "🔄" },
-  { id: "blank",        emoji: "📝" },
-  { id: "time",         emoji: "⏰" },
-  { id: "personal",     emoji: "🔒" },
-  { id: "boring",       emoji: "😴" },
-];
+const STRUGGLE_OPTIONS = [
+  { id: "overthinking", label: "By the time I try to explain it, my thoughts are already running in circles." },
+  { id: "time", label: "When it hits, I need support fast. I do not have energy for a whole process." },
+  { id: "blank", label: "I know I feel something, but I go blank when I try to put it into words." },
+  { id: "privacy", label: "I hold a lot in because I do not feel understood easily." },
+  { id: "consistency", label: "I want support, but I disappear when life or emotions get heavy." },
+] as const;
 
-const TINDER_STATEMENTS = [
-  "tinder_thoughts",
-  "tinder_effort",
-  "tinder_understand",
-  "tinder_start",
-];
+const CONSISTENCY_OPTIONS = [
+  { id: "rarely", label: "Only once in a while, but when it happens it still really stings" },
+  { id: "sometimes", label: "Sometimes I feel understood, but not in the moments I need it most" },
+  { id: "often", label: "Pretty often. A lot of what I feel stays stuck inside me" },
+] as const;
 
-const TESTIMONIALS = [
-  { name: "Sarah", age: 24, tag: "testimonial_tag_1", text: "testimonial_1" },
-  { name: "Rina",  age: 21, tag: "testimonial_tag_2", text: "testimonial_2" },
-  { name: "Marcus", age: 29, tag: "testimonial_tag_3", text: "testimonial_3" },
-];
+const FOCUS_OPTIONS = [
+  { id: "name_it", label: "Help me name what I am actually feeling" },
+  { id: "calm_me", label: "Help me calm the emotional noise down" },
+  { id: "stay_with_me", label: "Stay with me gently until I can breathe again" },
+  { id: "show_pattern", label: "Show me what pattern this might be part of" },
+] as const;
 
-const REMINDER_OPTIONS = [
-  { label: "8:00 AM", hour: 8 },
-  { label: "12:00 PM", hour: 12 },
-  { label: "6:00 PM", hour: 18 },
-  { label: "9:00 PM", hour: 21 },
-];
+const STYLE_OPTIONS = [
+  { id: "gentle", label: "Soft and reassuring", blurb: "I open up more when I feel handled gently." },
+  { id: "direct", label: "Clear and honest", blurb: "I still want warmth, but I do not want vague comfort." },
+  { id: "private", label: "Quiet and low-pressure", blurb: "I need it to feel private before I can be real." },
+  { id: "guided", label: "Held with a little structure", blurb: "A few thoughtful prompts make it easier for me to start." },
+] as const;
 
-const DEMO_INSIGHTS: Record<number, string> = {
-  1: "demo_insight_1",
-  2: "demo_insight_2",
-  3: "demo_insight_3",
-  4: "demo_insight_4",
-  5: "demo_insight_5",
-};
+const RESONANCE_PROMPTS = [
+  "Sometimes I do not need advice first. I need to feel like something actually understands what is happening inside me.",
+  "When my mind gets loud, the hardest part is finding words for it before the feeling gets even bigger.",
+  "If something could make me feel understood quickly, I would trust it enough to keep coming back.",
+] as const;
 
-const SOLUTION_ITEMS = [
-  { pain: "pain_inconsistent", solution: "solution_inconsistent", stat: "83%" },
-  { pain: "pain_blank", solution: "solution_blank", icon: "✨" },
-  { pain: "pain_understand", solution: "solution_understand", icon: "🧠" },
-  { pain: "pain_boring", solution: "solution_boring", icon: "🎭" },
-];
+const BASELINE_OPTIONS = [
+  { id: "drained", label: "Drained and stretched thin" },
+  { id: "holding", label: "Holding a lot in" },
+  { id: "coping", label: "Getting by, but not really settled" },
+  { id: "hopeful", label: "Hopeful and ready for something steadier" },
+] as const;
 
-// ─── Sub-components ───────────────────────────────────────
+const VALID_PLANS: Exclude<FunnelPlan, null>[] = ["weekly", "yearly", "lifetime_one_time"];
 
-const ProgressBar: React.FC<{ step: number; total: number }> = ({ step, total }) => (
-  <div className="w-full h-1 rounded-full overflow-hidden mb-6" style={{ background: "rgba(124,110,219,0.12)" }}>
+const ProgressBar: React.FC<{ step: number }> = ({ step }) => (
+  <div className="h-1.5 w-full overflow-hidden rounded-full bg-primary/10">
     <motion.div
-      className="h-full rounded-full"
-      style={{ background: "#7C6EDB" }}
-      animate={{ width: `${((step + 1) / total) * 100}%` }}
-      transition={{ type: "spring", stiffness: 300, damping: 30 }}
+      className="h-full rounded-full bg-primary"
+      animate={{ width: `${((step + 1) / TOTAL_STEPS) * 100}%` }}
+      transition={{ type: "spring", stiffness: 250, damping: 28 }}
     />
   </div>
 );
 
-const PrimaryButton: React.FC<{
-  onClick: () => void;
-  disabled?: boolean;
-  children: React.ReactNode;
-}> = ({ onClick, disabled, children }) => (
-  <motion.button
-    onClick={onClick}
-    disabled={disabled}
-    className="w-full py-4 rounded-2xl font-semibold text-base transition-all disabled:opacity-40"
-    style={{ background: "#7C6EDB", color: "white" }}
-    whileTap={{ scale: 0.97 }}
-  >
+const StepCard: React.FC<{ children: React.ReactNode; className?: string }> = ({ children, className = "" }) => (
+  <div className={`rounded-[2rem] border border-border/60 bg-card/90 p-6 shadow-[0_20px_60px_-28px_rgba(15,23,42,0.18)] backdrop-blur-xl ${className}`}>
     {children}
-  </motion.button>
+  </div>
 );
 
-const SecondaryButton: React.FC<{
-  onClick: () => void;
-  children: React.ReactNode;
-}> = ({ onClick, children }) => (
+const PrimaryButton: React.FC<React.ButtonHTMLAttributes<HTMLButtonElement>> = ({ className = "", ...props }) => (
   <button
-    onClick={onClick}
-    className="w-full py-3 rounded-2xl font-medium text-sm"
-    style={{ color: "#777" }}
-  >
-    {children}
-  </button>
+    {...props}
+    className={`inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-primary px-5 py-4 text-sm font-semibold text-primary-foreground transition-all hover:shadow-lg hover:shadow-primary/20 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-40 ${className}`}
+  />
 );
 
-// Tinder-style swipe card
-const SwipeCard: React.FC<{
-  statement: string;
-  onSwipe: (dir: "left" | "right") => void;
-  hint: string;
-}> = ({ statement, onSwipe, hint }) => {
-  const x = useMotionValue(0);
-  const rotate = useTransform(x, [-200, 200], [-12, 12]);
-  const rightOpacity = useTransform(x, [0, 80], [0, 1]);
-  const leftOpacity = useTransform(x, [-80, 0], [1, 0]);
+const SecondaryButton: React.FC<React.ButtonHTMLAttributes<HTMLButtonElement>> = ({ className = "", ...props }) => (
+  <button
+    {...props}
+    className={`inline-flex w-full items-center justify-center gap-2 rounded-2xl border border-border/60 bg-background px-5 py-3.5 text-sm font-medium text-muted-foreground transition-all hover:border-primary/20 hover:text-foreground active:scale-[0.98] ${className}`}
+  />
+);
 
-  const handleDragEnd = (_: never, info: PanInfo) => {
-    if (info.offset.x > 80) onSwipe("right");
-    else if (info.offset.x < -80) onSwipe("left");
+const OnboardingScreen: React.FC = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const geo = useGeoPricing();
+  const events = usePostHogEvents();
+  const { user, signUp } = useAuth();
+
+  const query = useMemo(() => new URLSearchParams(location.search), [location.search]);
+  const source = query.get("source") || "landing";
+  const planFromQuery = query.get("plan");
+  const preferredPlan = VALID_PLANS.includes(planFromQuery as Exclude<FunnelPlan, null>)
+    ? (planFromQuery as Exclude<FunnelPlan, null>)
+    : null;
+
+  const initialState = useMemo(() => {
+    const stored = loadFunnelState();
+    const baseState = stored || createDefaultFunnelState(source);
+
+    return {
+      ...baseState,
+      answers: {
+        ...baseState.answers,
+        source,
+        selectedPlan: baseState.answers.selectedPlan || preferredPlan,
+      },
+    } satisfies OnboardingFunnelState;
+  }, [preferredPlan, source]);
+
+  const [funnelState, setFunnelState] = useState<OnboardingFunnelState>(initialState);
+  const [resonanceIndex, setResonanceIndex] = useState(() =>
+    Math.min(initialState.answers.resonance.length, RESONANCE_PROMPTS.length - 1),
+  );
+  const [emailPassword, setEmailPassword] = useState("");
+  const [emailLoading, setEmailLoading] = useState(false);
+  const [authError, setAuthError] = useState("");
+  const [authMessage, setAuthMessage] = useState("");
+  const [googleLoading, setGoogleLoading] = useState(false);
+  const [checkoutLoading, setCheckoutLoading] = useState<Exclude<FunnelPlan, null> | null>(null);
+  const [profileSynced, setProfileSynced] = useState(false);
+  const startTrackedRef = useRef(false);
+  const completedRef = useRef(false);
+
+  useEffect(() => {
+    saveFunnelState(funnelState);
+  }, [funnelState]);
+
+  useEffect(() => {
+    if (!startTrackedRef.current) {
+      startTrackedRef.current = true;
+      events.trackFunnelStart(funnelState.answers.source);
+    }
+  }, [events, funnelState.answers.source]);
+
+  useEffect(() => {
+    if (funnelState.step !== PROCESSING_STEP) return;
+
+    const timer = window.setTimeout(() => {
+      setFunnelState((prev) => ({ ...prev, step: AUTH_STEP }));
+    }, 1800);
+
+    return () => window.clearTimeout(timer);
+  }, [funnelState.step]);
+
+  useEffect(() => {
+    if (funnelState.step === AUTH_STEP) {
+      events.trackFunnelAuthShown(funnelState.answers.source);
+    }
+
+    if (funnelState.step === RESULT_STEP) {
+      const teaser = buildResultTeaser(funnelState.answers);
+      events.trackFunnelResultShown(teaser.stateLabel, funnelState.answers.source, user?.id || null);
+    }
+
+    if (funnelState.step === PAYWALL_STEP) {
+      events.trackFunnelPaywallShown(funnelState.answers.source, user?.id || null);
+    }
+  }, [events, funnelState.answers, funnelState.step, user?.id]);
+
+  useEffect(() => {
+    if (!user || funnelState.step !== AUTH_STEP) return;
+
+    setFunnelState((prev) => ({
+      ...prev,
+      step: AUTH_STEP + 1,
+      answers: {
+        ...prev.answers,
+        authCaptured: true,
+        email: prev.answers.email || user.email || "",
+      },
+    }));
+    events.trackFunnelAuthCompleted("session", funnelState.answers.source, user.id);
+  }, [events, funnelState.answers.source, funnelState.step, user]);
+
+  useEffect(() => {
+    if (!user || profileSynced || !funnelState.answers.name.trim()) return;
+
+    updateProfile(user.id, {
+      display_name: funnelState.answers.name.trim(),
+      onboarded: true,
+    } as never)
+      .then(() => setProfileSynced(true))
+      .catch(() => {
+        // The funnel can continue even if profile sync fails.
+      });
+  }, [funnelState.answers.name, profileSynced, user]);
+
+  useEffect(() => {
+    return () => {
+      if (!completedRef.current) {
+        events.trackFunnelAbandoned(STEP_KEYS[funnelState.step] || "unknown", funnelState.answers.source, user?.id || null);
+      }
+    };
+  }, [events, funnelState.answers.source, funnelState.step, user?.id]);
+
+  const teaser = buildResultTeaser(funnelState.answers);
+  const yearlySavings = Math.max(0, Math.round((1 - geo.rates.yearly / (geo.rates.weekly * 52)) * 100));
+  const { snapshot: lifetimeScarcity } = useLifetimeScarcity();
+
+  const getProductId = (plan: Exclude<FunnelPlan, null>) => {
+    switch (plan) {
+      case "weekly":
+        return PRICING_CONFIG.products.weekly;
+      case "yearly":
+        return PRICING_CONFIG.products.yearly;
+      case "lifetime_one_time":
+        return PRICING_CONFIG.products.lifetime_one_time;
+      default:
+        return "";
+    }
   };
 
-  return (
-    <motion.div
-      className="absolute inset-0 cursor-grab active:cursor-grabbing"
-      drag="x"
-      dragConstraints={{ left: 0, right: 0 }}
-      dragElastic={0.9}
-      onDragEnd={handleDragEnd}
-      style={{ x, rotate }}
-      initial={{ scale: 0.95, opacity: 0 }}
-      animate={{ scale: 1, opacity: 1 }}
-      exit={{ x: x.get() > 0 ? 300 : -300, opacity: 0, transition: { duration: 0.25 } }}
-    >
-      <div
-        className="h-full rounded-3xl p-8 flex flex-col items-center justify-center text-center relative overflow-hidden"
-        style={{
-          background: "rgba(255,255,255,0.85)",
-          backdropFilter: "blur(20px)",
-          border: "1.5px solid rgba(124,110,219,0.15)",
-          boxShadow: "0 8px 32px -8px rgba(124,110,219,0.15)",
-        }}
-      >
-        {/* Swipe indicators */}
-        <motion.div
-          className="absolute top-6 right-6 rounded-full px-3 py-1 text-sm font-bold"
-          style={{ opacity: rightOpacity, background: "rgba(78,205,196,0.15)", color: "#4ECDC4", border: "2px solid #4ECDC4" }}
-        >
-          <Check className="w-5 h-5" />
-        </motion.div>
-        <motion.div
-          className="absolute top-6 left-6 rounded-full px-3 py-1 text-sm font-bold"
-          style={{ opacity: leftOpacity, background: "rgba(232,135,140,0.15)", color: "#E8878C", border: "2px solid #E8878C" }}
-        >
-          <X className="w-5 h-5" />
-        </motion.div>
+  const isConfiguredProduct = (plan: Exclude<FunnelPlan, null>) => {
+    const productId = getProductId(plan);
+    return Boolean(productId) && !productId.includes("VARIANT_ID");
+  };
 
-        <div className="text-5xl mb-6">💭</div>
-        <p className="text-lg font-medium leading-relaxed" style={{ color: "#1A1A2E", fontFamily: "var(--font-serif, 'Lora', serif)" }}>
-          "{statement}"
-        </p>
-        <p className="text-xs mt-6" style={{ color: "#999" }}>{hint}</p>
-      </div>
-    </motion.div>
-  );
-};
+  const setAnswers = (patch: Partial<OnboardingFunnelState["answers"]>) => {
+    setFunnelState((prev) => ({
+      ...prev,
+      answers: {
+        ...prev.answers,
+        ...patch,
+      },
+    }));
+  };
 
-// ─── Main Component ───────────────────────────────────────
+  const completeStep = () => {
+    events.trackFunnelStep(STEP_KEYS[funnelState.step], funnelState.answers.source, user?.id || null);
+    setFunnelState((prev) => ({ ...prev, step: Math.min(prev.step + 1, TOTAL_STEPS - 1) }));
+  };
 
-interface OnboardingProps {
-  onComplete: () => void;
-  onStartTrial?: () => void;
-  onCheckout?: (plan: string) => void;
-}
+  const goBack = () => {
+    if (funnelState.step === 0 || funnelState.step === PROCESSING_STEP) return;
+    setFunnelState((prev) => ({ ...prev, step: Math.max(prev.step - 1, 0) }));
+  };
 
-const OnboardingScreen: React.FC<OnboardingProps> = ({ onComplete, onStartTrial, onCheckout }) => {
-  const { t } = useLang();
+  const handleResonance = (matches: boolean) => {
+    const prompt = RESONANCE_PROMPTS[resonanceIndex];
+    if (matches && prompt && !funnelState.answers.resonance.includes(prompt)) {
+      setAnswers({ resonance: [...funnelState.answers.resonance, prompt] });
+    }
 
-  const [step, setStep] = useState(0);
-  const [selectedGoal, setSelectedGoal] = useState<string | null>(null);
-  const [selectedPains, setSelectedPains] = useState<string[]>([]);
-  const [selectedCoach, setSelectedCoach] = useState<string | null>(null);
-  const [tindexIndex, setTinderIndex] = useState(0);
-  const [tinderRelates, setTinderRelates] = useState<string[]>([]);
-  const [selectedHour, setSelectedHour] = useState<number | null>(null);
-  const [reminderSet, setReminderSet] = useState(false);
-  const [demoMood, setDemoMood] = useState<number | null>(null);
-  const [demoText, setDemoText] = useState("");
-  const [showDemoInsight, setShowDemoInsight] = useState(false);
+    if (resonanceIndex >= RESONANCE_PROMPTS.length - 1) {
+      completeStep();
+      return;
+    }
 
-  // Goal options
-  const GOAL_OPTIONS = [
-    { id: "stress",    emoji: "😮‍💨", label: t.onb_intent_stress || "Manage stress",       desc: t.onb_intent_stress_desc || "Unload what's on my mind" },
-    { id: "awareness", emoji: "🔍",  label: t.onb_intent_awareness || "Know myself better",  desc: t.onb_intent_awareness_desc || "Understand my patterns" },
-    { id: "habits",    emoji: "🌱",  label: t.onb_intent_habits || "Build a habit",          desc: t.onb_intent_habits_desc || "Show up every day" },
-    { id: "exploring", emoji: "✨",  label: t.onb_intent_exploring || "Just exploring",       desc: t.onb_intent_exploring_desc || "See what this is about" },
+    setResonanceIndex((prev) => prev + 1);
+  };
+
+  const startGoogleAuth = async () => {
+    setGoogleLoading(true);
+    setAuthError("");
+
+    saveAuthIntent({
+      source: "onboarding",
+      resumePath: ROUTES.ONBOARDING,
+      plan: funnelState.answers.selectedPlan || undefined,
+    });
+    saveFunnelState(funnelState);
+
+    const { error } = await supabase.auth.signInWithOAuth({
+      provider: "google",
+      options: {
+        redirectTo: window.location.origin + ROUTES.AUTH_CALLBACK,
+        queryParams: {
+          access_type: "offline",
+          prompt: "select_account",
+        },
+      },
+    });
+
+    if (error) {
+      setAuthError(error.message || "Google sign-in failed.");
+      setGoogleLoading(false);
+      return;
+    }
+
+    events.trackFunnelAuthCompleted("google_redirect", funnelState.answers.source, user?.id || null);
+  };
+
+  const submitEmailCapture = async () => {
+    setAuthError("");
+    setAuthMessage("");
+
+    if (!funnelState.answers.name.trim() || !funnelState.answers.email.trim()) {
+      setAuthError("Add your name and email so Ju can save your result.");
+      return;
+    }
+
+    setAnswers({ authCaptured: true });
+
+    if (user) {
+      events.trackFunnelAuthCompleted("existing_session", funnelState.answers.source, user.id);
+      completeStep();
+      return;
+    }
+
+    if (!emailPassword.trim()) {
+      completeStep();
+      return;
+    }
+
+    setEmailLoading(true);
+    const { error } = await signUp(
+      funnelState.answers.email.trim(),
+      emailPassword,
+      funnelState.answers.name.trim(),
+    );
+    setEmailLoading(false);
+
+    if (error) {
+      setAuthError(error.message);
+      return;
+    }
+
+    setAuthMessage("Check your email if you do not get signed in instantly. Ju has already saved your result here.");
+    completeStep();
+  };
+
+  const handleCheckout = async (plan: Exclude<FunnelPlan, null>) => {
+    setAnswers({ selectedPlan: plan });
+    events.trackFunnelPlanSelected(plan, funnelState.answers.source, user?.id || null);
+
+    if (!user) {
+      saveAuthIntent({
+        source: "onboarding",
+        plan,
+        resumePath: ROUTES.ONBOARDING,
+      });
+      navigate(`${ROUTES.AUTH}?mode=signup`);
+      return;
+    }
+
+    if (!isConfiguredProduct(plan)) {
+      setAuthError("This plan is not configured yet. Add the matching Dodo product ID first.");
+      return;
+    }
+
+    setCheckoutLoading(plan);
+    events.trackFunnelCheckoutStarted(plan, funnelState.answers.source, user.id);
+
+    try {
+      await updateProfile(user.id, {
+        display_name: funnelState.answers.name.trim() || null,
+        onboarded: true,
+      } as never);
+
+      const resp = await fetch(`${SUPABASE_URL}/functions/v1/dodo-checkout`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
+        },
+        body: JSON.stringify({
+          variant_id: getProductId(plan),
+          user_id: user.id,
+          user_email: user.email,
+          user_name: funnelState.answers.name.trim() || user.email?.split("@")[0] || "User",
+          country: geo.country,
+          coupon_code: geo.couponCode || undefined,
+        }),
+      });
+
+      if (!resp.ok) {
+        throw new Error("Checkout could not be created.");
+      }
+
+      const data = await resp.json();
+      completedRef.current = true;
+      events.trackFunnelCheckoutCompleted(plan, funnelState.answers.source, user.id);
+      window.open(data.url, "_blank");
+    } catch (error) {
+      setAuthError(error instanceof Error ? error.message : "Checkout failed.");
+    } finally {
+      setCheckoutLoading(null);
+    }
+  };
+
+  const finishWithoutUpgrade = async () => {
+    if (!user) {
+      completedRef.current = true;
+      clearFunnelState();
+      navigate(ROUTES.LANDING);
+      return;
+    }
+
+    try {
+      await updateProfile(user.id, { onboarded: true } as never);
+    } catch {
+      // Ignore profile update errors and continue to the app.
+    }
+
+    completedRef.current = true;
+    clearFunnelState();
+    navigate(ROUTES.APP);
+  };
+
+  const paywallPlans: Array<{
+    id: Exclude<FunnelPlan, null>;
+    title: string;
+    price: string;
+    unit: string;
+    badge?: string;
+    highlight?: boolean;
+    note: string;
+  }> = [
+    {
+      id: "weekly",
+      title: "Weekly",
+      price: geo.formatPrice(geo.rates.weekly),
+      unit: "/week",
+      note: "For when you want support now, but still want to stay cautious.",
+    },
+    {
+      id: "yearly",
+      title: "Annual",
+      price: geo.formatPrice(geo.rates.yearly),
+      unit: "/year",
+      badge: yearlySavings > 0 ? `Save ${yearlySavings}%` : "Best value",
+      highlight: false,
+      note: "For when you want Ju in your life long enough to really feel the difference.",
+    },
+    {
+      id: "lifetime_one_time",
+      title: "Lifetime",
+      price: geo.formatPrice(geo.rates.lifetime),
+      unit: "one-time",
+      badge: "One-time",
+      note: "For when you already know this is the kind of support you want to keep.",
+    },
   ];
 
-  // Navigation
-  const goNext = useCallback(() => {
-    if (step < TOTAL_STEPS - 1) setStep(step + 1);
-  }, [step]);
-
-  const goBack = useCallback(() => {
-    if (step > 0) setStep(step - 1);
-  }, [step]);
-
-  // Processing auto-advance
-  useEffect(() => {
-    if (step === 7) {
-      const timer = setTimeout(() => setStep(8), 2800);
-      return () => clearTimeout(timer);
-    }
-  }, [step]);
-
-  // Persist selections
-  const handleFinish = useCallback((startTrial: boolean) => {
-    try {
-      if (selectedGoal) localStorage.setItem("nuju-intent", selectedGoal);
-      if (selectedPains.length) localStorage.setItem("nuju-pain-points", JSON.stringify(selectedPains));
-      if (selectedCoach) localStorage.setItem("nuju-coach-persona", selectedCoach);
-      if (tinderRelates.length) localStorage.setItem("nuju-tinder-relates", JSON.stringify(tinderRelates));
-    } catch {}
-
-    if (startTrial && onStartTrial) onStartTrial();
-    schedulePostInstallNotification();
-    onComplete();
-  }, [selectedGoal, selectedPains, selectedCoach, tinderRelates, onComplete, onStartTrial]);
-
-  // Tinder swipe handler
-  const handleTinderSwipe = (dir: "left" | "right") => {
-    if (dir === "right") {
-      setTinderRelates((prev) => [...prev, TINDER_STATEMENTS[tindexIndex]]);
-    }
-    if (tindexIndex < TINDER_STATEMENTS.length - 1) {
-      setTinderIndex(tindexIndex + 1);
-    } else {
-      goNext();
-    }
-  };
-
-  // Pain toggle
-  const togglePain = (id: string) => {
-    setSelectedPains((prev) =>
-      prev.includes(id) ? prev.filter((p) => p !== id) : [...prev, id]
-    );
-  };
-
-  // Reminder handler
-  const handleReminderTap = async (hour: number) => {
-    setSelectedHour(hour);
-    const granted = await requestNotificationPermission();
-    if (granted) {
-      scheduleLocalReminder(hour, 0);
-      setReminderSet(true);
-    }
-  };
-
-  // ─── SCREEN 0: Welcome ─────────────────────────
-  const renderWelcome = () => (
-          <div className="w-full max-w-sm mx-auto text-center flex flex-col items-center justify-center min-h-[70vh] md:max-w-2xl">
-      <motion.div
-        className="relative w-36 h-36 mb-8"
-        initial={{ scale: 0.5, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        transition={{ type: "spring", stiffness: 200, damping: 15, delay: 0.1 }}
-      >
-        <div className="absolute inset-0 rounded-full animate-glow-pulse" style={{ background: "rgba(124,110,219,0.15)" }} />
-        <img src={juHi} alt="Ju" className="relative w-full h-full object-contain animate-ju-float" />
-      </motion.div>
-
-      <motion.h1
-        className="text-2xl font-bold mb-3 leading-tight"
-        style={{ color: "#1A1A2E", fontFamily: "var(--font-serif, 'Lora', serif)" }}
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.25 }}
-      >
-        {t.onb_welcome_title || "Your mind deserves a companion that listens"}
-      </motion.h1>
-
-      <motion.p
-        className="text-base leading-relaxed mb-2"
-        style={{ color: "#777" }}
-        initial={{ opacity: 0, y: 15 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.4 }}
-      >
-        {t.onb_welcome_desc || "Understand yourself in just 30 seconds a day"}
-      </motion.p>
-
-      {/* Micro social proof */}
-      <motion.div
-        className="flex items-center gap-2 mb-10"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.55 }}
-      >
-        <div className="flex -space-x-1.5">
-          <div className="w-4 h-4 rounded-full bg-[#7C6EDB]" />
-          <div className="w-4 h-4 rounded-full bg-[#4ECDC4]" />
-          <div className="w-4 h-4 rounded-full bg-[#FFB347]" />
-        </div>
-        <span className="text-xs font-medium" style={{ color: "#999" }}>
-          {t.join_count || "Join 2,847+ early users"}
-        </span>
-      </motion.div>
-
-      <motion.div
-        className="w-full"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.6 }}
-      >
-        <PrimaryButton onClick={goNext}>
-          {t.onb_welcome_cta || "Let's go ✨"}
-        </PrimaryButton>
-      </motion.div>
-    </div>
-  );
-
-  // ─── SCREEN 1: Goal Question ────────────────────
-  const renderGoal = () => (
-          <div className="w-full max-w-sm mx-auto text-center animate-fade-up md:max-w-2xl">
-      <div className="relative w-28 h-28 mx-auto mb-6">
-        <div className="absolute inset-0 rounded-full animate-glow-pulse" style={{ background: "rgba(124,110,219,0.15)" }} />
-        <img src={juHi} alt="Ju" className="relative w-full h-full object-contain animate-ju-float" />
-      </div>
-
-      <h2 className="text-2xl font-bold mb-1.5" style={{ color: "#1A1A2E", fontFamily: "var(--font-serif, 'Lora', serif)" }}>
-        {t.onb_intent_title || "What brought you here?"}
-      </h2>
-      <p className="text-sm leading-relaxed mb-6" style={{ color: "#777" }}>
-        {t.onb_intent_desc || "Ju will personalize your experience based on what matters to you."}
-      </p>
-
-          <div className="grid grid-cols-2 gap-3 mb-8 md:grid-cols-4">
-        {GOAL_OPTIONS.map(({ id, emoji, label, desc }) => {
-          const isSelected = selectedGoal === id;
-          return (
-            <motion.button
-              key={id}
-              onClick={() => setSelectedGoal(id)}
-              className="flex flex-col items-start p-4 rounded-2xl text-left transition-all"
-              style={{
-                background: isSelected ? "rgba(124,110,219,0.12)" : "rgba(124,110,219,0.05)",
-                border: `1.5px solid ${isSelected ? "#7C6EDB" : "rgba(124,110,219,0.15)"}`,
-              }}
-              whileTap={{ scale: 0.97 }}
-            >
-              <span className="text-2xl mb-2">{emoji}</span>
-              <span className="text-sm font-semibold block" style={{ color: "#1A1A2E" }}>{label}</span>
-              <span className="text-xs mt-0.5" style={{ color: "#777" }}>{desc}</span>
-            </motion.button>
-          );
-        })}
-      </div>
-
-      <PrimaryButton onClick={goNext} disabled={!selectedGoal}>
-        {t.onb_next || "Next"}
-      </PrimaryButton>
-    </div>
-  );
-
-  // ─── SCREEN 2: Pain Points ──────────────────────
-  const renderPains = () => (
-          <div className="w-full max-w-sm mx-auto text-center animate-fade-up md:max-w-2xl">
-      <h2 className="text-2xl font-bold mb-2" style={{ color: "#1A1A2E", fontFamily: "var(--font-serif, 'Lora', serif)" }}>
-        {t.onb_pain_title || "What usually gets in the way?"}
-      </h2>
-      <p className="text-sm mb-6" style={{ color: "#777" }}>
-        {t.onb_pain_desc || "Select all that apply — no judgment here"}
-      </p>
-
-      <div className="flex flex-col gap-2.5 mb-8">
-        {PAIN_OPTIONS.map(({ id, emoji }) => {
-          const isSelected = selectedPains.includes(id);
-          const label = t[`onb_pain_${id}`] || {
-            inconsistent: "I'm not consistent",
-            blank: "I don't know what to write",
-            time: "I don't have time",
-            personal: "It feels too personal",
-            boring: "Journaling feels boring",
-          }[id];
-
-          return (
-            <motion.button
-              key={id}
-              onClick={() => togglePain(id)}
-              className="flex items-center gap-3 p-4 rounded-2xl text-left transition-all"
-              style={{
-                background: isSelected ? "rgba(124,110,219,0.10)" : "rgba(124,110,219,0.04)",
-                border: `1.5px solid ${isSelected ? "#7C6EDB" : "rgba(124,110,219,0.12)"}`,
-              }}
-              whileTap={{ scale: 0.97 }}
-            >
-              <span className="text-xl">{emoji}</span>
-              <span className="text-sm font-medium flex-1" style={{ color: "#1A1A2E" }}>{label}</span>
-              {isSelected && (
-                <motion.div
-                  initial={{ scale: 0 }}
-                  animate={{ scale: 1 }}
-                  className="w-5 h-5 rounded-full flex items-center justify-center"
-                  style={{ background: "#7C6EDB" }}
-                >
-                  <Check className="w-3 h-3 text-white" />
-                </motion.div>
-              )}
-            </motion.button>
-          );
-        })}
-      </div>
-
-      <PrimaryButton onClick={goNext} disabled={selectedPains.length === 0}>
-        {t.onb_next || "Next"}
-      </PrimaryButton>
-    </div>
-  );
-
-  // ─── SCREEN 3: Social Proof ─────────────────────
-  const renderSocialProof = () => (
-          <div className="w-full max-w-sm mx-auto text-center animate-fade-up md:max-w-2xl">
-      <h2 className="text-2xl font-bold mb-2" style={{ color: "#1A1A2E", fontFamily: "var(--font-serif, 'Lora', serif)" }}>
-        {t.onb_social_title || "You're in good company"}
-      </h2>
-      <p className="text-sm mb-6" style={{ color: "#777" }}>
-        {t.onb_social_desc || "Thousands of people journal with Ju every day"}
-      </p>
-
-      <div className="flex flex-col gap-3 mb-8">
-        {TESTIMONIALS.map(({ name, age, tag, text }, i) => (
-          <motion.div
-            key={name}
-            className="rounded-2xl p-5 text-left"
-            style={{
-              background: "rgba(255,255,255,0.7)",
-              backdropFilter: "blur(12px)",
-              border: "1px solid rgba(124,110,219,0.1)",
-            }}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: i * 0.12 }}
-          >
-            <div className="flex items-center gap-1 mb-2">
-              {[1, 2, 3, 4, 5].map((s) => (
-                <Star key={s} className="w-3.5 h-3.5 fill-[#FFB347] text-[#FFB347]" />
+  const renderStep = () => {
+    switch (funnelState.step) {
+      case 0:
+        return (
+          <StepCard className="text-center">
+            <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-primary/10 shadow-inner">
+              <img src={juMain} alt="Ju" className="h-14 w-14 object-contain" />
+            </div>
+            <p className="mt-5 text-xs font-semibold uppercase tracking-[0.22em] text-primary">Let Ju understand what has been heavy</p>
+            <h1 className="mt-3 font-serif text-4xl font-bold leading-tight text-foreground">
+              When you feel a lot and cannot explain it, Ju helps you feel understood.
+            </h1>
+            <p className="mt-4 text-base leading-8 text-muted-foreground">
+              A few quick choices help Ju notice what is really going on underneath the noise, so the first result already feels personal.
+            </p>
+            <div className="mt-8 grid gap-3 text-left sm:grid-cols-3">
+              {[
+                "Fast enough for a heavy moment",
+                "Built to feel deeply personal",
+                "Made to help you feel understood quickly",
+              ].map((item) => (
+                <div key={item} className="rounded-2xl border border-border/60 bg-background px-4 py-4 text-sm text-foreground">
+                  {item}
+                </div>
               ))}
             </div>
-            <p className="text-sm leading-relaxed mb-3" style={{ color: "#1A1A2E", fontFamily: "var(--font-serif, 'Lora', serif)", fontStyle: "italic" }}>
-              "{t[`onb_${text}`] || {
-                testimonial_1: "I've tried 5 journaling apps. Nuju is the only one I stuck with past a week. Ju just... gets it.",
-                testimonial_2: "30 seconds before bed and I genuinely sleep better. The mood insights blew my mind.",
-                testimonial_3: "I was skeptical about AI journaling but Ju's responses feel more insightful than what I'd write myself.",
-              }[text]}"
-            </p>
-            <div className="flex items-center gap-2">
-              <div
-                className="w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold text-white"
-                style={{ background: ["#7C6EDB", "#4ECDC4", "#FFB347"][i] }}
-              >
-                {name[0]}
-              </div>
-              <div>
-                <span className="text-xs font-semibold" style={{ color: "#1A1A2E" }}>{name}, {age}</span>
-                <span className="text-xs ml-1.5" style={{ color: "#999" }}>
-                  · {t[`onb_${tag}`] || {
-                    testimonial_tag_1: "Busy professional",
-                    testimonial_tag_2: "College student",
-                    testimonial_tag_3: "First-time journaler",
-                  }[tag]}
-                </span>
-              </div>
+            <div className="mt-8">
+              <PrimaryButton onClick={completeStep}>
+                Start
+                <ArrowRight className="h-4 w-4" />
+              </PrimaryButton>
             </div>
-          </motion.div>
-        ))}
-      </div>
+          </StepCard>
+        );
 
-      <PrimaryButton onClick={goNext}>
-        {t.onb_next || "Next"}
-      </PrimaryButton>
-    </div>
-  );
-
-  // ─── SCREEN 4: Tinder Cards ─────────────────────
-  const renderTinderCards = () => {
-    const currentStatement = TINDER_STATEMENTS[tindexIndex];
-    const statementText = t[`onb_${currentStatement}`] || {
-      tinder_thoughts: "I have so many thoughts but nowhere to put them",
-      tinder_effort: "I know I should journal but it always feels like too much effort",
-      tinder_understand: "I wish someone could help me understand why I feel this way",
-      tinder_start: "I want to take care of my mental health but don't know where to start",
-    }[currentStatement] || "";
-
-    return (
-          <div className="w-full max-w-sm mx-auto text-center animate-fade-up md:max-w-2xl">
-        <h2 className="text-2xl font-bold mb-2" style={{ color: "#1A1A2E", fontFamily: "var(--font-serif, 'Lora', serif)" }}>
-          {t.onb_tinder_title || "Do you relate?"}
-        </h2>
-        <p className="text-sm mb-6" style={{ color: "#777" }}>
-          {`${tindexIndex + 1} / ${TINDER_STATEMENTS.length}`}
-        </p>
-
-        <div className="relative w-full" style={{ height: 280 }}>
-          <AnimatePresence mode="wait">
-            <SwipeCard
-              key={tindexIndex}
-              statement={statementText}
-              onSwipe={handleTinderSwipe}
-              hint={t.onb_tinder_hint || "Swipe right if you relate, left if not"}
-            />
-          </AnimatePresence>
-        </div>
-
-        {/* Tap fallback buttons */}
-        <div className="flex gap-3 mt-6">
-          <motion.button
-            onClick={() => handleTinderSwipe("left")}
-            className="flex-1 py-3 rounded-2xl font-medium text-sm flex items-center justify-center gap-2"
-            style={{ background: "rgba(232,135,140,0.1)", color: "#E8878C", border: "1.5px solid rgba(232,135,140,0.3)" }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <X className="w-4 h-4" /> {t.onb_tinder_nope || "Nope"}
-          </motion.button>
-          <motion.button
-            onClick={() => handleTinderSwipe("right")}
-            className="flex-1 py-3 rounded-2xl font-medium text-sm flex items-center justify-center gap-2"
-            style={{ background: "rgba(78,205,196,0.1)", color: "#4ECDC4", border: "1.5px solid rgba(78,205,196,0.3)" }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <Check className="w-4 h-4" /> {t.onb_tinder_relate || "That's me"}
-          </motion.button>
-        </div>
-      </div>
-    );
-  };
-
-  // ─── SCREEN 5: Solution ─────────────────────────
-  const renderSolution = () => (
-          <div className="w-full max-w-sm mx-auto text-center animate-fade-up md:max-w-2xl">
-      <motion.div
-        className="relative w-24 h-24 mx-auto mb-5"
-        initial={{ scale: 0.5, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        transition={{ type: "spring", stiffness: 200, damping: 15 }}
-      >
-        <img src={juYay} alt="Ju" className="w-full h-full object-contain" />
-      </motion.div>
-
-      <h2 className="text-2xl font-bold mb-2" style={{ color: "#1A1A2E", fontFamily: "var(--font-serif, 'Lora', serif)" }}>
-        {t.onb_solution_title || "Nuju was built for exactly this"}
-      </h2>
-      <p className="text-sm mb-6" style={{ color: "#777" }}>
-        {t.onb_solution_desc || "Here's how Ju helps with what you told us"}
-      </p>
-
-      <div className="flex flex-col gap-3 mb-8">
-        {SOLUTION_ITEMS.map(({ pain, solution, stat, icon }, i) => (
-          <motion.div
-            key={pain}
-            className="rounded-2xl p-4 text-left"
-            style={{
-              background: "rgba(124,110,219,0.05)",
-              border: "1px solid rgba(124,110,219,0.1)",
-            }}
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: i * 0.1 }}
-          >
-            <p className="text-xs mb-1.5 line-through" style={{ color: "#999" }}>
-              {t[`onb_${pain}`] || {
-                pain_inconsistent: "I'm not consistent",
-                pain_blank: "I don't know what to write",
-                pain_understand: "I don't understand my feelings",
-                pain_boring: "Journaling feels boring",
-              }[pain]}
+      case 1:
+        return (
+          <StepCard>
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">Step 1</p>
+            <h2 className="mt-3 font-serif text-3xl font-bold text-foreground">What has been feeling the heaviest lately?</h2>
+            <p className="mt-3 text-base leading-8 text-muted-foreground">
+              Choose the one that feels closest to what has been sitting on your chest.
             </p>
-            <p className="text-sm font-semibold" style={{ color: "#1A1A2E" }}>
-              {stat && <span style={{ color: "#7C6EDB" }}>{stat} </span>}
-              {icon && <span className="mr-1">{icon}</span>}
-              {t[`onb_${solution}`] || {
-                solution_inconsistent: "of users journal 5+ days a week — it only takes 30 seconds",
-                solution_blank: "Ju gives you a daily prompt and guides the conversation",
-                solution_understand: "AI spots patterns across entries you'd never notice alone",
-                solution_boring: "4 coach personalities keep every session fresh and personal",
-              }[solution]}
+            <div className="mt-7 grid gap-3 sm:grid-cols-2">
+              {GOAL_OPTIONS.map((option) => {
+                const Icon = option.icon;
+                const active = funnelState.answers.goal === option.id;
+                return (
+                  <button
+                    key={option.id}
+                    onClick={() => setAnswers({ goal: option.id })}
+                    className={`rounded-[1.75rem] border p-5 text-left transition-all ${
+                      active ? "border-primary bg-primary/8 shadow-sm" : "border-border/60 bg-background hover:border-primary/30"
+                    }`}
+                  >
+                    <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-primary/10">
+                      <Icon className="h-5 w-5 text-primary" />
+                    </div>
+                    <p className="mt-4 text-lg font-semibold text-foreground">{option.title}</p>
+                    <p className="mt-2 text-sm leading-7 text-muted-foreground">{option.description}</p>
+                  </button>
+                );
+              })}
+            </div>
+            <div className="mt-7">
+              <PrimaryButton onClick={completeStep} disabled={!funnelState.answers.goal}>
+                Continue
+              </PrimaryButton>
+            </div>
+          </StepCard>
+        );
+
+      case 2:
+        return (
+          <StepCard>
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">Step 2</p>
+            <h2 className="mt-3 font-serif text-3xl font-bold text-foreground">What feels hardest when this hits?</h2>
+            <p className="mt-3 text-base leading-8 text-muted-foreground">
+              Choose the ones that feel true. This helps Ju understand why it has been hard to carry on your own.
             </p>
-          </motion.div>
-        ))}
-      </div>
+            <div className="mt-7 space-y-3">
+              {STRUGGLE_OPTIONS.map((option) => {
+                const active = funnelState.answers.struggles.includes(option.id);
+                return (
+                  <button
+                    key={option.id}
+                    onClick={() =>
+                      setAnswers({
+                        struggles: active
+                          ? funnelState.answers.struggles.filter((item) => item !== option.id)
+                          : [...funnelState.answers.struggles, option.id],
+                      })
+                    }
+                    className={`flex w-full items-center gap-3 rounded-[1.5rem] border px-4 py-4 text-left transition-all ${
+                      active ? "border-primary bg-primary/8" : "border-border/60 bg-background hover:border-primary/30"
+                    }`}
+                  >
+                    <div className={`flex h-5 w-5 items-center justify-center rounded-full border ${active ? "border-primary bg-primary" : "border-border"}`}>
+                      {active ? <Check className="h-3.5 w-3.5 text-primary-foreground" /> : null}
+                    </div>
+                    <p className="text-sm leading-7 text-foreground">{option.label}</p>
+                  </button>
+                );
+              })}
+            </div>
+            <div className="mt-7">
+              <PrimaryButton onClick={completeStep} disabled={funnelState.answers.struggles.length === 0}>
+                Continue
+              </PrimaryButton>
+            </div>
+          </StepCard>
+        );
 
-      <PrimaryButton onClick={goNext}>
-        {t.onb_next || "Next"}
-      </PrimaryButton>
-    </div>
-  );
+      case 3:
+        return (
+          <StepCard>
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">Step 3</p>
+            <h2 className="mt-3 font-serif text-3xl font-bold text-foreground">How often do you feel misunderstood in moments like this?</h2>
+            <div className="mt-7 grid gap-3">
+              {CONSISTENCY_OPTIONS.map((option) => {
+                const active = funnelState.answers.consistency === option.id;
+                return (
+                  <button
+                    key={option.id}
+                    onClick={() => setAnswers({ consistency: option.id })}
+                    className={`rounded-[1.5rem] border px-5 py-5 text-left transition-all ${
+                      active ? "border-primary bg-primary/8" : "border-border/60 bg-background hover:border-primary/30"
+                    }`}
+                  >
+                    <p className="text-base font-semibold text-foreground">{option.label}</p>
+                  </button>
+                );
+              })}
+            </div>
+            <div className="mt-7">
+              <PrimaryButton onClick={completeStep} disabled={!funnelState.answers.consistency}>
+                Continue
+              </PrimaryButton>
+            </div>
+          </StepCard>
+        );
 
-  // ─── SCREEN 6: Coach Picker ─────────────────────
-  const renderCoachPicker = () => (
-          <div className="w-full max-w-sm mx-auto text-center animate-fade-up md:max-w-2xl">
-      <h2 className="text-2xl font-bold mb-2" style={{ color: "#1A1A2E", fontFamily: "var(--font-serif, 'Lora', serif)" }}>
-        {t.onb_coach_title || "Pick your coach vibe"}
-      </h2>
-      <p className="text-sm mb-6" style={{ color: "#777" }}>
-        {t.onb_coach_desc || "You can switch anytime — Ju adapts to your style"}
-      </p>
+      case 4:
+        return (
+          <StepCard>
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">Step 4</p>
+            <h2 className="mt-3 font-serif text-3xl font-bold text-foreground">What kind of support do you wish you had right now?</h2>
+            <div className="mt-7 grid gap-3 sm:grid-cols-2">
+              {FOCUS_OPTIONS.map((option) => {
+                const active = funnelState.answers.focus === option.id;
+                return (
+                  <button
+                    key={option.id}
+                    onClick={() => setAnswers({ focus: option.id })}
+                    className={`rounded-[1.5rem] border px-5 py-5 text-left transition-all ${
+                      active ? "border-primary bg-primary/8" : "border-border/60 bg-background hover:border-primary/30"
+                    }`}
+                  >
+                    <p className="text-base font-semibold text-foreground">{option.label}</p>
+                  </button>
+                );
+              })}
+            </div>
+            <div className="mt-7">
+              <PrimaryButton onClick={completeStep} disabled={!funnelState.answers.focus}>
+                Continue
+              </PrimaryButton>
+            </div>
+          </StepCard>
+        );
 
-          <div className="grid grid-cols-2 gap-3 mb-8 md:grid-cols-4">
-        {AI_PERSONAS.map((persona) => {
-          const isSelected = selectedCoach === persona.id;
-          return (
-            <motion.button
-              key={persona.id}
-              onClick={() => setSelectedCoach(persona.id)}
-              className="flex flex-col items-center p-4 rounded-2xl transition-all"
-              style={{
-                background: isSelected ? `${persona.color}20` : "rgba(124,110,219,0.04)",
-                border: `2px solid ${isSelected ? persona.color : "rgba(124,110,219,0.1)"}`,
-              }}
-              whileTap={{ scale: 0.96 }}
-            >
-              <div className="w-16 h-16 rounded-full overflow-hidden mb-3">
-                <img
-                  src={COACH_IMAGES[persona.id]}
-                  alt={persona.name}
-                  className="w-full h-full object-cover"
+      case 5:
+        return (
+          <StepCard>
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">Step 5</p>
+            <h2 className="mt-3 font-serif text-3xl font-bold text-foreground">What kind of presence helps you open up?</h2>
+            <div className="mt-7 grid gap-3 sm:grid-cols-2">
+              {STYLE_OPTIONS.map((option) => {
+                const active = funnelState.answers.style === option.id;
+                return (
+                  <button
+                    key={option.id}
+                    onClick={() => setAnswers({ style: option.id })}
+                    className={`rounded-[1.75rem] border p-5 text-left transition-all ${
+                      active ? "border-primary bg-primary/8" : "border-border/60 bg-background hover:border-primary/30"
+                    }`}
+                  >
+                    <p className="text-lg font-semibold text-foreground">{option.label}</p>
+                    <p className="mt-2 text-sm leading-7 text-muted-foreground">{option.blurb}</p>
+                  </button>
+                );
+              })}
+            </div>
+            <div className="mt-7">
+              <PrimaryButton onClick={completeStep} disabled={!funnelState.answers.style}>
+                Continue
+              </PrimaryButton>
+            </div>
+          </StepCard>
+        );
+
+      case 6:
+        return (
+          <StepCard className="text-center">
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">Step 6</p>
+            <h2 className="mt-3 font-serif text-3xl font-bold text-foreground">Does this feel familiar?</h2>
+            <div className="mt-8 rounded-[2rem] border border-border/60 bg-background px-6 py-10">
+              <p className="text-xl font-semibold leading-9 text-foreground">{RESONANCE_PROMPTS[resonanceIndex]}</p>
+            </div>
+            <div className="mt-4 flex justify-center gap-2">
+              {RESONANCE_PROMPTS.map((_, index) => (
+                <span
+                  key={index}
+                  className={`h-2.5 w-2.5 rounded-full ${index <= resonanceIndex ? "bg-primary" : "bg-border"}`}
+                />
+              ))}
+            </div>
+            <div className="mt-8 grid gap-3 sm:grid-cols-2">
+              <SecondaryButton onClick={() => handleResonance(false)}>Not really</SecondaryButton>
+              <PrimaryButton onClick={() => handleResonance(true)}>That feels true</PrimaryButton>
+            </div>
+          </StepCard>
+        );
+
+      case 7:
+        return (
+          <StepCard className="text-center">
+            <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-primary/10">
+              <Loader2 className="h-7 w-7 animate-spin text-primary" />
+            </div>
+            <h2 className="mt-6 font-serif text-3xl font-bold text-foreground">Ju is reading your pattern...</h2>
+            <div className="mt-6 space-y-3 text-left">
+              {[
+                "Noticing what has been heaviest for you lately",
+                "Understanding what kind of support feels safest",
+                "Shaping a result that feels surprisingly personal",
+              ].map((item) => (
+                <div key={item} className="flex items-center gap-3 rounded-2xl border border-border/60 bg-background px-4 py-4">
+                  <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary/10">
+                    <Check className="h-4 w-4 text-primary" />
+                  </div>
+                  <span className="text-sm text-foreground">{item}</span>
+                </div>
+              ))}
+            </div>
+          </StepCard>
+        );
+
+      case 8:
+        return (
+          <StepCard>
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">Step 7</p>
+            <h2 className="mt-3 font-serif text-3xl font-bold text-foreground">Save what Ju noticed</h2>
+            <p className="mt-3 text-base leading-8 text-muted-foreground">
+              Add your name and email so Ju can keep this reading with you and bring it back the next time you need it.
+            </p>
+
+            <div className="mt-7 grid gap-3">
+              <div className="relative">
+                <UserRound className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground/60" />
+                <input
+                  value={funnelState.answers.name}
+                  onChange={(event) => setAnswers({ name: event.target.value })}
+                  placeholder="Your name or nickname"
+                  className="h-14 w-full rounded-2xl border border-border/60 bg-background pl-11 pr-4 text-sm text-foreground outline-none transition-all focus:border-primary/30 focus:ring-2 focus:ring-primary/15"
                 />
               </div>
-              <span className="text-sm font-semibold mb-0.5" style={{ color: "#1A1A2E" }}>
-                {persona.name}
-              </span>
-              <span className="text-xs" style={{ color: "#777" }}>
-                {persona.desc}
-              </span>
-              {isSelected && (
-                <motion.div
-                  initial={{ scale: 0 }}
-                  animate={{ scale: 1 }}
-                  className="mt-2 w-5 h-5 rounded-full flex items-center justify-center"
-                  style={{ background: persona.color }}
-                >
-                  <Check className="w-3 h-3 text-white" />
-                </motion.div>
-              )}
-            </motion.button>
-          );
-        })}
-      </div>
-
-      <PrimaryButton onClick={goNext} disabled={!selectedCoach}>
-        {t.onb_next || "Next"}
-      </PrimaryButton>
-    </div>
-  );
-
-  // ─── SCREEN 7: Processing ──────────────────────
-  const renderProcessing = () => {
-    const steps = [
-      t.onb_processing_1 || "Setting up your coach",
-      t.onb_processing_2 || "Personalizing your prompts",
-      t.onb_processing_3 || "Calibrating mood insights",
-    ];
-
-    return (
-          <div className="w-full max-w-sm mx-auto text-center flex flex-col items-center justify-center min-h-[60vh] md:max-w-2xl">
-        <motion.div
-          className="relative w-28 h-28 mb-8"
-          animate={{ rotate: [0, 5, -5, 0] }}
-          transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
-        >
-          <img src={juHmm} alt="Ju thinking" className="w-full h-full object-contain" />
-        </motion.div>
-
-        <h2 className="text-xl font-bold mb-6" style={{ color: "#1A1A2E", fontFamily: "var(--font-serif, 'Lora', serif)" }}>
-          {t.onb_processing_title || "Preparing your journal..."}
-        </h2>
-
-        <div className="flex flex-col gap-3 w-full">
-          {steps.map((label, i) => (
-            <motion.div
-              key={i}
-              className="flex items-center gap-3 px-4"
-              initial={{ opacity: 0, x: -10 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.4 + i * 0.6 }}
-            >
-              <motion.div
-                className="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0"
-                initial={{ scale: 0, background: "rgba(124,110,219,0.15)" }}
-                animate={{
-                  scale: 1,
-                  background: "#7C6EDB",
-                }}
-                transition={{ delay: 0.8 + i * 0.6 }}
-              >
-                <Check className="w-3 h-3 text-white" />
-              </motion.div>
-              <span className="text-sm font-medium" style={{ color: "#1A1A2E" }}>{label}</span>
-            </motion.div>
-          ))}
-        </div>
-      </div>
-    );
-  };
-
-  // ─── SCREEN 8: App Demo ─────────────────────────
-  const renderDemo = () => {
-    const insightKey = demoMood ? DEMO_INSIGHTS[demoMood] : null;
-    const insightText = insightKey
-      ? t[`onb_${insightKey}`] || {
-          demo_insight_1: "I can feel the weight you're carrying. The fact that you showed up to write about it says something powerful about your resilience.",
-          demo_insight_2: "Even on quieter days, there's something worth noticing. You're paying attention — and that matters more than you think.",
-          demo_insight_3: "Steady days have their own wisdom. Not every day needs to be extraordinary — sometimes 'okay' is exactly enough.",
-          demo_insight_4: "There's a warmth in what you wrote. Something good is building here, and you're noticing it.",
-          demo_insight_5: "I love this energy! Let's capture what made today special so we can recreate it. ✨",
-        }[insightKey]
-      : "";
-
-    return (
-          <div className="w-full max-w-sm mx-auto animate-fade-up md:max-w-2xl">
-        <div className="text-center mb-6">
-          <h2 className="text-2xl font-bold mb-2" style={{ color: "#1A1A2E", fontFamily: "var(--font-serif, 'Lora', serif)" }}>
-            {t.onb_demo_title || "Try it now"}
-          </h2>
-          <p className="text-sm" style={{ color: "#777" }}>
-            {t.onb_demo_desc || "Pick your mood and write one thing on your mind"}
-          </p>
-        </div>
-
-        {/* Mood selector */}
-        <div className="flex justify-center gap-2 mb-5">
-          {MOODS.map((mood) => {
-            const isSelected = demoMood === mood.value;
-            return (
-              <motion.button
-                key={mood.value}
-                onClick={() => setDemoMood(mood.value)}
-                className="flex flex-col items-center gap-1 p-2 rounded-xl transition-all"
-                style={{
-                  background: isSelected ? `${mood.color}20` : "transparent",
-                  border: isSelected ? `2px solid ${mood.color}` : "2px solid transparent",
-                }}
-                whileTap={{ scale: 0.92 }}
-                animate={isSelected ? { scale: 1.08 } : { scale: 1 }}
-              >
-                <MoodIcon value={mood.value} size={32} color={mood.color} />
-                <span className="text-[10px] font-medium" style={{ color: isSelected ? mood.color : "#999" }}>
-                  {t[mood.key] || mood.label}
-                </span>
-              </motion.button>
-            );
-          })}
-        </div>
-
-        {/* Journal textarea */}
-        <div
-          className="rounded-2xl p-4 mb-4"
-          style={{
-            background: "rgba(255,255,255,0.7)",
-            backdropFilter: "blur(12px)",
-            border: "1.5px solid rgba(124,110,219,0.12)",
-          }}
-        >
-          <textarea
-            value={demoText}
-            onChange={(e) => setDemoText(e.target.value)}
-            placeholder={t.onb_demo_placeholder || "What's on your mind right now?"}
-            className="w-full border-none outline-none resize-none bg-transparent text-sm leading-relaxed"
-            style={{
-              color: "#1A1A2E",
-              fontFamily: "var(--font-writing, 'Newsreader', serif)",
-              minHeight: 80,
-            }}
-            rows={3}
-          />
-        </div>
-
-        {/* Show insight button or insight card */}
-        <AnimatePresence mode="wait">
-          {!showDemoInsight && demoMood && demoText.length >= 5 && (
-            <motion.div
-              key="cta"
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0 }}
-            >
-              <PrimaryButton onClick={() => setShowDemoInsight(true)}>
-                {t.onb_demo_cta || "See Ju's insight ✨"}
-              </PrimaryButton>
-            </motion.div>
-          )}
-
-          {showDemoInsight && (
-            <motion.div
-              key="insight"
-              initial={{ opacity: 0, scale: 0.95, y: 10 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              transition={{ type: "spring", stiffness: 250, damping: 20 }}
-            >
-              <div
-                className="rounded-2xl p-5 mb-4"
-                style={{
-                  background: "linear-gradient(135deg, rgba(124,110,219,0.08), rgba(78,205,196,0.08))",
-                  border: "1.5px solid rgba(124,110,219,0.15)",
-                }}
-              >
-                <div className="flex items-center gap-2 mb-3">
-                  <img src={juLove} alt="Ju" className="w-8 h-8 object-contain" />
-                  <span className="text-xs font-bold" style={{ color: "#7C6EDB" }}>
-                    {t.ju_insight || "Ju's insight"}
-                  </span>
+              <div className="relative">
+                <Mail className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground/60" />
+                <input
+                  type="email"
+                  value={funnelState.answers.email}
+                  onChange={(event) => setAnswers({ email: event.target.value })}
+                  placeholder="Email"
+                  className="h-14 w-full rounded-2xl border border-border/60 bg-background pl-11 pr-4 text-sm text-foreground outline-none transition-all focus:border-primary/30 focus:ring-2 focus:ring-primary/15"
+                />
+              </div>
+              {!user && (
+                <div className="relative">
+                  <Lock className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground/60" />
+                  <input
+                    type="password"
+                    value={emailPassword}
+                    onChange={(event) => setEmailPassword(event.target.value)}
+                    placeholder="Create a password now if you want (optional)"
+                    className="h-14 w-full rounded-2xl border border-border/60 bg-background pl-11 pr-4 text-sm text-foreground outline-none transition-all focus:border-primary/30 focus:ring-2 focus:ring-primary/15"
+                  />
                 </div>
-                <p className="text-sm leading-relaxed" style={{ color: "#1A1A2E", fontFamily: "var(--font-serif, 'Lora', serif)" }}>
-                  {insightText}
+              )}
+            </div>
+
+            {user && (
+              <div className="mt-4 rounded-2xl border border-primary/20 bg-primary/6 px-4 py-4 text-sm text-foreground">
+                You are already signed in, so Ju can keep this with your account right away.
+              </div>
+            )}
+
+            {authError && (
+              <div className="mt-4 rounded-2xl border border-destructive/20 bg-destructive/8 px-4 py-4 text-sm text-destructive">
+                {authError}
+              </div>
+            )}
+
+            {authMessage && (
+              <div className="mt-4 rounded-2xl border border-primary/20 bg-primary/6 px-4 py-4 text-sm text-foreground">
+                {authMessage}
+              </div>
+            )}
+
+            <div className="mt-7 grid gap-3">
+              <PrimaryButton onClick={submitEmailCapture} disabled={emailLoading}>
+                {emailLoading ? <Loader2 className="h-4 w-4 animate-spin" /> : null}
+                Continue
+              </PrimaryButton>
+              {!user && (
+                <SecondaryButton onClick={startGoogleAuth} disabled={googleLoading}>
+                  {googleLoading ? <Loader2 className="h-4 w-4 animate-spin" /> : null}
+                  Continue with Google
+                </SecondaryButton>
+              )}
+            </div>
+          </StepCard>
+        );
+
+      case 9:
+        return (
+          <StepCard>
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">Step 8</p>
+            <h2 className="mt-3 font-serif text-3xl font-bold text-foreground">How are you arriving right now?</h2>
+            <div className="mt-7 grid gap-3 sm:grid-cols-2">
+              {BASELINE_OPTIONS.map((option) => {
+                const active = funnelState.answers.baseline === option.id;
+                return (
+                  <button
+                    key={option.id}
+                    onClick={() => setAnswers({ baseline: option.id })}
+                    className={`rounded-[1.5rem] border px-5 py-5 text-left transition-all ${
+                      active ? "border-primary bg-primary/8" : "border-border/60 bg-background hover:border-primary/30"
+                    }`}
+                  >
+                    <p className="text-base font-semibold text-foreground">{option.label}</p>
+                  </button>
+                );
+              })}
+            </div>
+            <div className="mt-7">
+              <PrimaryButton onClick={completeStep} disabled={!funnelState.answers.baseline}>
+                Show my result
+              </PrimaryButton>
+            </div>
+          </StepCard>
+        );
+
+      case 10:
+        return (
+          <StepCard>
+            <div className="flex flex-col gap-5 sm:flex-row sm:items-start sm:justify-between">
+              <div>
+                <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">Ju Gets You</p>
+                <h2 className="mt-3 font-serif text-3xl font-bold text-foreground">{teaser.headline}</h2>
+                <p className="mt-3 text-base leading-8 text-muted-foreground">
+                  This is the emotional state Ju thinks you are in right now, based on what you shared.
                 </p>
               </div>
+              <div className="rounded-full border border-primary/20 bg-primary/6 px-4 py-2 text-sm font-semibold text-primary">
+                {teaser.stateLabel}
+              </div>
+            </div>
 
-              <p className="text-xs text-center mb-4" style={{ color: "#999" }}>
-                {t.onb_demo_teaser || "This is just the beginning — Ju learns more with every entry"}
+            <div className="mt-7 grid gap-4 lg:grid-cols-[1.05fr_0.95fr]">
+              <div className="rounded-[1.75rem] border border-border/60 bg-background px-5 py-5">
+                <p className="text-sm font-semibold text-foreground">Why Ju thinks this fits</p>
+                <p className="mt-3 text-sm leading-8 text-muted-foreground">{teaser.whyItFits}</p>
+              </div>
+              <div className="rounded-[1.75rem] border border-primary/20 bg-primary/6 px-5 py-5">
+                <p className="text-sm font-semibold text-foreground">What Ju would help with first</p>
+                <p className="mt-3 text-sm leading-8 text-muted-foreground">{teaser.firstSupportMove}</p>
+                <div className="mt-5 space-y-3">
+                  {teaser.supportSignals.map((step) => (
+                    <div key={step} className="flex items-start gap-3">
+                      <div className="mt-1 flex h-6 w-6 items-center justify-center rounded-full bg-primary text-primary-foreground">
+                        <Check className="h-3.5 w-3.5" />
+                      </div>
+                      <p className="text-sm leading-7 text-muted-foreground">{step}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-7 rounded-[1.75rem] border border-border/60 bg-background px-5 py-5">
+                <p className="text-sm font-semibold text-foreground">What opens up next</p>
+              <p className="mt-2 text-sm leading-8 text-muted-foreground">
+                {teaser.continuationLine}
               </p>
+            </div>
 
-              <PrimaryButton onClick={goNext}>
-                {t.onb_next || "Continue"}
+            <div className="mt-7">
+              <PrimaryButton onClick={completeStep}>
+                See ways to continue
+                <ChevronRight className="h-4 w-4" />
               </PrimaryButton>
-            </motion.div>
-          )}
-        </AnimatePresence>
+            </div>
+          </StepCard>
+        );
 
-        {/* Skip if not engaged */}
-        {!showDemoInsight && (
-          <SecondaryButton onClick={goNext}>
-            {t.onb_skip || "Skip"}
-          </SecondaryButton>
-        )}
-      </div>
-    );
+      case 11:
+      default:
+        return (
+          <StepCard>
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">Choose your plan</p>
+            <h2 className="mt-3 font-serif text-3xl font-bold text-foreground">Keep the version of Ju that gets you</h2>
+            <p className="mt-3 text-base leading-8 text-muted-foreground">
+              Ju has already started reading what is heavy for you. Choose how closely you want that support to stay with you from here.
+            </p>
+            <p className="mt-2 text-sm leading-7 text-muted-foreground">
+              Weekly is the cautious start, Annual is the strongest value, and Lifetime is for people who already know this kind of support fits.
+            </p>
+
+            {authError && (
+              <div className="mt-5 rounded-2xl border border-destructive/20 bg-destructive/8 px-4 py-4 text-sm text-destructive">
+                {authError}
+              </div>
+            )}
+
+            <div className="mt-7 grid gap-4 xl:grid-cols-3">
+              {paywallPlans.map((plan) => {
+                const selected = funnelState.answers.selectedPlan === plan.id;
+                const isLoading = checkoutLoading === plan.id;
+                const available = isConfiguredProduct(plan.id);
+
+                return (
+                  <div
+                    key={plan.id}
+                    className={`rounded-[1.8rem] border p-5 transition-all ${
+                      plan.id === "lifetime_one_time"
+                        ? "border-primary/35 bg-[linear-gradient(180deg,rgba(245,241,255,0.96),rgba(255,255,255,0.99))] shadow-[0_20px_50px_-24px_rgba(124,110,219,0.38)]"
+                        : plan.highlight
+                          ? "border-primary/30 bg-primary/6"
+                          : "border-border/60 bg-background"
+                    } ${selected ? "shadow-md shadow-primary/10" : ""}`}
+                  >
+                    <div className="flex items-start justify-between gap-3">
+                      <div>
+                        <p className="text-lg font-semibold text-foreground">{plan.title}</p>
+                        <p className="mt-1 text-3xl font-bold text-foreground">
+                          {plan.price}
+                          <span className="ml-1 text-sm font-medium text-muted-foreground">{plan.unit}</span>
+                        </p>
+                      </div>
+                      {plan.badge ? (
+                        <span className="rounded-full bg-primary/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-primary">
+                          {plan.badge}
+                        </span>
+                      ) : null}
+                    </div>
+
+                    <p className="mt-3 text-sm leading-7 text-muted-foreground">{plan.note}</p>
+
+                    {plan.id === "lifetime_one_time" && (
+                      <LifetimeScarcityMeter
+                        className="mt-4"
+                        scarcity={lifetimeScarcity}
+                      />
+                    )}
+
+                    <div className="mt-5">
+                      <PrimaryButton
+                        className={
+                          plan.id === "lifetime_one_time"
+                            ? "bg-[linear-gradient(135deg,#7C6EDB,#6A58D8)] text-white hover:shadow-[0_18px_35px_-18px_rgba(124,110,219,0.75)]"
+                            : "!border !border-border/70 !bg-[#EAE8F2] !text-[#2A2342] hover:!bg-[#DED9ED] hover:shadow-sm"
+                        }
+                        onClick={() => handleCheckout(plan.id)}
+                        disabled={!available || Boolean(checkoutLoading)}
+                      >
+                        {isLoading ? <Loader2 className="h-4 w-4 animate-spin" /> : null}
+                        {selected ? `Continue with ${plan.title}` : `Choose ${plan.title}`}
+                      </PrimaryButton>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+
+            <div className="mt-7 flex flex-col gap-3 sm:flex-row">
+              <SecondaryButton onClick={finishWithoutUpgrade}>
+                {user ? "Continue with limited access" : "Not now"}
+              </SecondaryButton>
+              {!user && (
+                <SecondaryButton
+                  onClick={() => {
+                    saveAuthIntent({ source: "onboarding", resumePath: ROUTES.ONBOARDING });
+                    navigate(`${ROUTES.AUTH}?mode=login`);
+                  }}
+                >
+                  Sign in instead
+                </SecondaryButton>
+              )}
+            </div>
+            <p className="mt-4 text-xs leading-6 text-muted-foreground">
+              Weekly is the lightest start, Annual gives the best value, and Lifetime is the one-time premium path.
+            </p>
+          </StepCard>
+        );
+    }
   };
 
-  // ─── SCREEN 9: Notification Priming ─────────────
-  const renderNotification = () => (
-          <div className="w-full max-w-sm mx-auto text-center animate-fade-up md:max-w-2xl">
-      <div className="relative w-32 h-32 mx-auto mb-6">
-        <div className="absolute inset-0 rounded-full animate-glow-pulse" style={{ background: "rgba(124,110,219,0.15)" }} />
-        <img src={juHi} alt="Ju" className="relative w-full h-full object-contain animate-ju-float" />
-      </div>
-
-      <h2 className="text-2xl font-bold mb-2" style={{ color: "#1A1A2E", fontFamily: "var(--font-serif, 'Lora', serif)" }}>
-        {t.onb_reminder_title || "Never miss a check-in"}
-      </h2>
-      <p className="text-sm leading-relaxed mb-6" style={{ color: "#777" }}>
-        {t.onb_notif_desc || "Ju will send a gentle nudge at your ideal time"}
-      </p>
-
-          <div className="grid grid-cols-2 gap-3 mb-6 md:grid-cols-4">
-        {REMINDER_OPTIONS.map(({ label, hour }) => {
-          const isSelected = selectedHour === hour;
-          return (
-            <motion.button
-              key={hour}
-              onClick={() => handleReminderTap(hour)}
-              className="py-3.5 rounded-2xl font-semibold text-[15px] transition-all"
-              style={{
-                background: isSelected ? "#7C6EDB" : "rgba(124,110,219,0.08)",
-                color: isSelected ? "white" : "#7C6EDB",
-                border: `1.5px solid ${isSelected ? "#7C6EDB" : "rgba(124,110,219,0.2)"}`,
-              }}
-              whileTap={{ scale: 0.97 }}
-            >
-              {label}
-            </motion.button>
-          );
-        })}
-      </div>
-
-      {reminderSet && (
-        <motion.div
-          className="flex items-center justify-center gap-2 mb-5"
-          initial={{ opacity: 0, y: 5 }}
-          animate={{ opacity: 1, y: 0 }}
-        >
-          <Bell className="w-4 h-4" style={{ color: "#7C6EDB" }} />
-          <span className="text-xs font-medium" style={{ color: "#7C6EDB" }}>
-            {`${t.onb_reminder_set || "Reminder set! Ju will check in at"} ${REMINDER_OPTIONS.find((o) => o.hour === selectedHour)?.label}`}
-          </span>
-        </motion.div>
-      )}
-
-      <PrimaryButton onClick={goNext}>
-        {reminderSet ? (t.onb_next || "Next") : (t.onb_skip_reminder || "Skip for now")}
-      </PrimaryButton>
-    </div>
-  );
-
-  // ─── SCREEN 10: Paywall ─────────────────────────
-  const renderPaywall = () => (
-          <div className="w-full max-w-sm mx-auto text-center animate-fade-up md:max-w-2xl">
-      <motion.div
-        className="relative w-20 h-20 mx-auto mb-4"
-        initial={{ scale: 0.5, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        transition={{ type: "spring", stiffness: 200, damping: 15 }}
-      >
-        <img src={juYay} alt="Ju" className="w-full h-full object-contain" />
-      </motion.div>
-
-      <h2 className="text-2xl font-bold mb-2" style={{ color: "#1A1A2E", fontFamily: "var(--font-serif, 'Lora', serif)" }}>
-        {t.onb_paywall_title || "Your journal is ready"}
-      </h2>
-      <p className="text-sm leading-relaxed mb-5" style={{ color: "#777" }}>
-        {t.onb_paywall_desc || "Start with 7 days of Pro — free. Cancel anytime."}
-      </p>
-
-      {/* Testimonial */}
-      <div
-        className="rounded-2xl p-4 mb-5 text-left"
-        style={{
-          background: "rgba(124,110,219,0.05)",
-          border: "1px solid rgba(124,110,219,0.1)",
-        }}
-      >
-        <div className="flex items-center gap-1 mb-2">
-          {[1, 2, 3, 4, 5].map((s) => (
-            <Star key={s} className="w-3 h-3 fill-[#FFB347] text-[#FFB347]" />
-          ))}
-        </div>
-        <p className="text-xs leading-relaxed mb-2" style={{ color: "#1A1A2E", fontStyle: "italic" }}>
-          "{t.onb_paywall_review || "The free trial convinced me in 2 days. Ju's insights are genuinely helpful — worth every penny."}"
-        </p>
-        <span className="text-[10px] font-medium" style={{ color: "#999" }}>— Alex, 26</span>
-      </div>
-
-      {/* Pro features */}
-      <div className="flex flex-col gap-2 mb-6 text-left">
-        {[
-          t.onb_paywall_feat_1 || "Unlimited AI coach conversations",
-          t.onb_paywall_feat_2 || "Deep mood insights & pattern detection",
-          t.onb_paywall_feat_3 || "Full journal history & export",
-          t.onb_paywall_feat_4 || "Voice journaling",
-        ].map((feat, i) => (
-          <motion.div
-            key={i}
-            className="flex items-center gap-2.5 px-1"
-            initial={{ opacity: 0, x: -10 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.1 + i * 0.08 }}
-          >
-            <div className="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0" style={{ background: "rgba(124,110,219,0.12)" }}>
-              <Check className="w-3 h-3" style={{ color: "#7C6EDB" }} />
-            </div>
-            <span className="text-sm" style={{ color: "#1A1A2E" }}>{feat}</span>
-          </motion.div>
-        ))}
-      </div>
-
-      {/* Lifetime CTA — highlighted */}
-      <motion.button
-        onClick={() => {
-          if (onCheckout) onCheckout("lifetime_one_time");
-          handleFinish(false);
-        }}
-        className="w-full py-4 rounded-2xl font-bold text-base mb-2 relative overflow-hidden"
-        style={{
-          background: "linear-gradient(135deg, #7C6EDB, #4ECDC4)",
-          color: "white",
-          boxShadow: "0 4px 20px -4px rgba(124,110,219,0.4)",
-        }}
-        whileTap={{ scale: 0.97 }}
-      >
-        <div className="flex items-center justify-center gap-2">
-          <Crown className="w-4 h-4" />
-          Get Lifetime Pro — ${PRICING_CONFIG.lifetime.flatPrice}
-        </div>
-      </motion.button>
-
-      {PRICING_CONFIG.lifetimeSlots.left > 0 && (
-        <div className="flex items-center justify-center gap-1.5 mb-4">
-          <Flame className="w-3.5 h-3.5 text-[#FF6B35]" />
-          <span className="text-xs font-bold text-[#FF6B35]">
-            Only {PRICING_CONFIG.lifetimeSlots.left}/{PRICING_CONFIG.lifetimeSlots.total} Early Access slots left
-          </span>
-        </div>
-      )}
-
-      {/* Trial — secondary/grey */}
-      <button
-        onClick={() => handleFinish(true)}
-        className="w-full py-3.5 rounded-2xl font-semibold text-sm mb-1"
-        style={{
-          background: "rgba(124,110,219,0.08)",
-          color: "#777",
-        }}
-      >
-        {t.onb_paywall_cta || "Start 7-day free trial"}
-      </button>
-
-      <button
-        onClick={() => handleFinish(false)}
-        className="w-full py-2 text-xs font-medium"
-        style={{ color: "#999" }}
-      >
-        {t.onb_paywall_skip || "Skip"}
-      </button>
-    </div>
-  );
-
-  // ─── Screen Router ─────────────────────────────
-  const screens = [
-    renderWelcome,     // 0
-    renderGoal,        // 1
-    renderPains,       // 2
-    renderSocialProof, // 3
-    renderTinderCards, // 4
-    renderSolution,    // 5
-    renderCoachPicker, // 6
-    renderProcessing,  // 7
-    renderDemo,        // 8
-    renderNotification,// 9
-    renderPaywall,     // 10
-  ];
-
   return (
-    <div
-      className="fixed inset-0 z-50 flex flex-col overflow-y-auto"
-      style={{ background: "#F5F3FF" }}
-    >
-      {/* Top bar: progress + skip */}
-          <div className="w-full max-w-sm mx-auto px-6 pt-6 md:max-w-2xl">
-        <div className="flex items-center justify-between mb-2">
-          {step > 0 && step !== 7 ? (
-            <button onClick={goBack} className="text-sm font-medium flex items-center gap-0.5" style={{ color: "#777" }}>
-              <ChevronLeft className="w-4 h-4" />
-            </button>
-          ) : (
-            <div className="w-5" />
-          )}
-          {step < TOTAL_STEPS - 1 && step !== 7 && (
-            <button
-              onClick={() => handleFinish(false)}
-              className="text-sm font-medium"
-              style={{ color: "#999" }}
-            >
-              {t.onb_skip || "Skip"}
-            </button>
-          )}
-        </div>
-        {step !== 7 && <ProgressBar step={step} total={TOTAL_STEPS} />}
-      </div>
-
-      {/* Screen content */}
-      <div className="flex-1 flex items-center px-6 pb-10">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={step}
-            className="w-full"
-            initial={{ opacity: 0, x: 40 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -30 }}
-            transition={{ type: "spring", stiffness: 350, damping: 30, mass: 0.8 }}
+    <div className="min-h-screen bg-[radial-gradient(circle_at_top,_rgba(124,110,219,0.18),_transparent_38%),linear-gradient(180deg,#f8f6ff_0%,#ffffff_46%,#f6f4ff_100%)] px-4 py-6 dark:bg-background">
+      <div className="mx-auto flex min-h-[calc(100vh-3rem)] w-full max-w-4xl flex-col">
+        <div className="mb-6 flex items-center justify-between gap-4">
+          <button
+            onClick={goBack}
+            disabled={funnelState.step === 0 || funnelState.step === PROCESSING_STEP}
+            className="flex h-10 w-10 items-center justify-center rounded-full border border-border/60 bg-card/90 text-muted-foreground transition-all disabled:opacity-40"
           >
-            {screens[step]()}
-          </motion.div>
-        </AnimatePresence>
+            <ArrowLeft className="h-4 w-4" />
+          </button>
+          <div className="w-full max-w-[420px]">
+            <ProgressBar step={funnelState.step} />
+          </div>
+          <Link
+            to={ROUTES.LANDING}
+            className="text-sm font-medium text-muted-foreground transition-all hover:text-foreground"
+            onClick={() => {
+              completedRef.current = true;
+            }}
+          >
+            Exit
+          </Link>
+        </div>
+
+        <div className="flex flex-1 items-center">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={funnelState.step}
+              className="w-full"
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -18 }}
+              transition={{ type: "spring", stiffness: 220, damping: 24 }}
+            >
+              {renderStep()}
+            </motion.div>
+          </AnimatePresence>
+        </div>
       </div>
     </div>
   );

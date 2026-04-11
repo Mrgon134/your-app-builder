@@ -4,12 +4,11 @@ import { useGeoPricing } from "@/hooks/use-geo-pricing";
 import { useLang } from "@/lib/i18n";
 import { useAuth } from "@/lib/auth";
 import { usePostHogEvents } from "@/hooks/use-posthog-events";
-import { hasPlusAccess, hasProAccess } from "@/lib/trial";
+import { hasActivePremiumPlan, hasPlusAccess, hasProAccess } from "@/lib/trial";
 import { PRICING_CONFIG } from "@/lib/config";
 import { isNative, isIOS } from "@/lib/platform";
 import { SUPABASE_URL, SUPABASE_ANON_KEY } from "@/integrations/supabase/client";
 import { fetchEntries, createEntry, createQuickEntry, fetchProfile, updateProfile, checkEntryLimit, updateEntryInsight, uploadVoiceAudio, updateEntryVoice, uploadPhoto, updateEntryPhoto, EntryRow, ProfileRow } from "@/lib/api";
-import OnboardingScreen from "@/components/app/OnboardingScreen";
 import HomeScreen from "@/components/app/HomeScreen";
 import JournalScreen from "@/components/app/JournalScreen";
 import InsightsScreen from "@/components/app/InsightsScreen";
@@ -30,6 +29,8 @@ import Confetti from "@/components/app/Confetti";
 import AchievementPopup from "@/components/app/AchievementPopup";
 import { checkAndUnlockAchievements, type Achievement } from "@/lib/achievements";
 import { consumeAuthIntent } from "@/lib/auth-intent";
+import { clearFunnelState } from "@/lib/onboarding-funnel";
+import { applyTestUserProfile, isTestUser } from "@/lib/test-user";
 import { Home, BarChart3, MessageCircle, Compass, Loader2 } from "lucide-react";
 import { toast } from "sonner";
 import { AnimatePresence, motion } from "framer-motion";
@@ -46,7 +47,6 @@ const AppPage: React.FC = () => {
   const { country, couponCode } = useGeoPricing();
   const events = usePostHogEvents();
   const [profile, setProfile] = useState<ProfileRow | null>(null);
-  const [showOnboarding, setShowOnboarding] = useState(false);
   const [screen, setScreen] = useState<Screen>(() => {
     try {
       const allScreens: Screen[] = ["home", "journal", "insights", "coach", "explore", "pro", "settings", "programs", "year-review", "history"];
@@ -83,7 +83,8 @@ const AppPage: React.FC = () => {
   const biometricEnabled = localStorage.getItem("nuju-biometric") === "1";
   const biometricSupported = typeof window !== "undefined" && window.PublicKeyCredential !== undefined;
   const { shellMode, isPhone, isDesktop } = useShellMode();
-  const displayName = resolveDisplayName(profile, user);
+  const effectiveProfile = useMemo(() => applyTestUserProfile(profile, user), [profile, user]);
+  const displayName = resolveDisplayName(effectiveProfile, user);
 
   // Screen ordering for directional transitions
   const screenOrder: Screen[] = ["home", "insights", "coach", "explore"];
@@ -106,13 +107,21 @@ const AppPage: React.FC = () => {
           fetchProfile(user.id),
           fetchEntries(user.id),
         ]);
-        setProfile(dbProfile);
-        setShowOnboarding(!dbProfile?.onboarded);
-        setStreak(dbProfile?.streak_current || 0);
+        const nextProfile = applyTestUserProfile(dbProfile, user);
+        setProfile(nextProfile);
+        setStreak(nextProfile?.streak_current || 0);
         setEntries(dbEntries);
 
+        if (nextProfile?.onboarded) {
+          clearFunnelState();
+        } else {
+          updateProfile(user.id, { onboarded: true } as any).catch(() => {
+            // Keep the app usable even if the profile sync fails.
+          });
+        }
+
         // Sync dark mode: load from profile and update localStorage
-        const darkModeEnabled = dbProfile?.dark_mode ?? localStorage.getItem("nuju-dark") === "1";
+        const darkModeEnabled = nextProfile?.dark_mode ?? localStorage.getItem("nuju-dark") === "1";
         if (darkModeEnabled) {
           document.documentElement.classList.add("dark");
           localStorage.setItem("nuju-dark", "1");
@@ -130,19 +139,12 @@ const AppPage: React.FC = () => {
   }, [user]);
 
   useEffect(() => {
-    if (!loading && !showOnboarding && user && !localStorage.getItem("nuju-tour-done-" + user.id)) {
+    if (!loading && user && !localStorage.getItem("nuju-tour-done-" + user.id)) {
       // Small delay to let app render first
       const timer = setTimeout(() => setShowTour(true), 800);
       return () => clearTimeout(timer);
     }
-  }, [loading, showOnboarding, user]);
-
-  const handleOnboardingComplete = async () => {
-    if (user) {
-      await updateProfile(user.id, { onboarded: true } as any);
-    }
-    setShowOnboarding(false);
-  };
+  }, [loading, user]);
 
   // Navigate with fluid framer-motion transitions
   const navigateTo = useCallback((newScreen: Screen) => {
@@ -217,20 +219,6 @@ const AppPage: React.FC = () => {
     }
   }, [user, events]);
 
-  // Start free trial
-  const handleStartTrial = async () => {
-    if (!user) return;
-    try {
-      await updateProfile(user.id, { trial_started_at: new Date().toISOString() } as any);
-      const updated = await fetchProfile(user.id);
-      if (updated) setProfile(updated);
-      toast.success(t.pro_trial_started_toast || "Your 7-day Pro trial has started!");
-    } catch (err) {
-      console.error("Trial start failed:", err);
-      toast.error(t.pro_trial_error_toast || "Could not start your Pro trial. Please try again.");
-    }
-  };
-
   const handleDisplayNameSave = async (nextDisplayName: string) => {
     if (!user) return false;
 
@@ -243,7 +231,7 @@ const AppPage: React.FC = () => {
 
     try {
       await updateProfile(user.id, { display_name: normalizedName } as Partial<ProfileRow>);
-      const refreshedProfile = await fetchProfile(user.id);
+      const refreshedProfile = applyTestUserProfile(await fetchProfile(user.id), user);
       setProfile((prev) => refreshedProfile || (prev ? { ...prev, display_name: normalizedName } : prev));
       toast.success("Ju will remember your name now.");
       return true;
@@ -255,10 +243,12 @@ const AppPage: React.FC = () => {
   };
 
   // Dodo Payments checkout
-  const handleCheckout = async (plan: string) => {
+  const handleCheckout = async (plan: string, options?: { couponCode?: string | null }) => {
     if (!user) return;
     try {
       const variantMap: Record<string, string> = {
+        weekly: PRICING_CONFIG.products.weekly,
+        yearly: PRICING_CONFIG.products.yearly,
         plus_monthly: PRICING_CONFIG.products.plus_monthly,
         plus_annual: PRICING_CONFIG.products.plus_annual,
         pro_monthly: PRICING_CONFIG.products.pro_monthly,
@@ -284,7 +274,7 @@ const AppPage: React.FC = () => {
             user_email: user.email,
             user_name: displayName || user.user_metadata?.full_name || user.user_metadata?.name || user.email?.split("@")[0] || "User",
             country,
-            coupon_code: couponCode || undefined,
+            coupon_code: options?.couponCode || couponCode || undefined,
           }),
         }
       );
@@ -303,7 +293,7 @@ const AppPage: React.FC = () => {
   const handleQuickLog = async () => {
     if (!user) return;
     try {
-      const canWrite = await checkEntryLimit(user.id);
+      const canWrite = isTestUser(user) ? true : await checkEntryLimit(user.id);
       if (!canWrite) { toast.error(t.history_locked || "Entry limit reached."); return; }
       const entry = await createQuickEntry(user.id, selectedMood, energy);
       if (selectedActivities.length > 0) {
@@ -316,7 +306,7 @@ const AppPage: React.FC = () => {
       setSelectedActivities([]);
       const newEntries = [entry, ...entries];
       setEntries(newEntries);
-      const updatedProfile = await fetchProfile(user.id);
+      const updatedProfile = applyTestUserProfile(await fetchProfile(user.id), user);
       if (updatedProfile) { setStreak(updatedProfile.streak_current); setProfile(updatedProfile); }
       toast.success("Mood logged");
       if (navigator.vibrate) navigator.vibrate([10, 50, 20]);
@@ -405,7 +395,7 @@ const AppPage: React.FC = () => {
       ];
       setEntries(newEntries);
 
-      const updatedProfile = await fetchProfile(user.id);
+      const updatedProfile = applyTestUserProfile(await fetchProfile(user.id), user);
       if (updatedProfile) {
         setStreak(updatedProfile.streak_current);
         setProfile(updatedProfile);
@@ -416,7 +406,7 @@ const AppPage: React.FC = () => {
       }
 
       // P2: AI insight only for Plus/Pro — free users get no insight card
-      const hasPlus = hasPlusAccess(profile?.plan || null, profile?.trial_started_at || null);
+      const hasPlus = hasPlusAccess(effectiveProfile?.plan || null, effectiveProfile?.trial_started_at || null);
       if (!hasPlus) {
         return null; // Don't show misleading teaser; upgrade prompts in other places
       }
@@ -522,10 +512,6 @@ const AppPage: React.FC = () => {
     input.click();
   };
 
-  if (showOnboarding) {
-    return <OnboardingScreen onComplete={handleOnboardingComplete} onStartTrial={handleStartTrial} onCheckout={handleCheckout} />;
-  }
-
   if (loading) {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center">
@@ -580,7 +566,7 @@ const AppPage: React.FC = () => {
   const showTabletSidebar = shellMode === "tablet";
   const showDesktopTopbar = isDesktop;
   const showBottomNav = isPhone && screen !== "journal" && screen !== "settings";
-  const showDesktopChrome = !isPhone && !showOnboarding;
+  const showDesktopChrome = !isPhone;
   const contentShellClass = screen === "coach"
     ? "max-w-[1400px]"
     : screen === "journal"
@@ -610,7 +596,7 @@ const AppPage: React.FC = () => {
       <MomentCaptureModal
         isOpen={showMomentCapture}
         onClose={() => setShowMomentCapture(false)}
-        hasProAccess={hasProAccess(profile?.plan || "free", profile?.trial_started_at || null)}
+        hasProAccess={hasProAccess(effectiveProfile?.plan || "free", effectiveProfile?.trial_started_at || null)}
         onUpgrade={() => navigateTo("pro")}
         onSelectType={(type) => {
           if (type === "quick") {
@@ -747,8 +733,8 @@ const AppPage: React.FC = () => {
                   {/* Trial banner on home/insights */}
                   {(screen === "home" || screen === "insights") && (
                     <TrialBanner
-                      trialStartedAt={profile?.trial_started_at || null}
-                      plan={profile?.plan || "free"}
+                      trialStartedAt={effectiveProfile?.trial_started_at || null}
+                      plan={effectiveProfile?.plan || "free"}
                       onUpgrade={() => navigateTo("pro")}
                     />
                   )}
@@ -786,12 +772,12 @@ const AppPage: React.FC = () => {
                         onEnergyChange={setEnergy}
                         selectedActivities={selectedActivities}
                         onActivitiesChange={setSelectedActivities}
-                        plan={profile?.plan}
-                        trialStartedAt={profile?.trial_started_at}
+                        plan={effectiveProfile?.plan}
+                        trialStartedAt={effectiveProfile?.trial_started_at}
                         hasBanner={(() => {
-                          const p = profile?.plan;
-                          if (p === "plus" || p === "pro") return false;
-                          const trial = getTrialStatus(profile?.trial_started_at || null);
+                          const p = effectiveProfile?.plan;
+                          if (hasActivePremiumPlan(p || null)) return false;
+                          const trial = getTrialStatus(effectiveProfile?.trial_started_at || null);
                           return !trial.notStarted;
                         })()}
                       />
@@ -805,21 +791,21 @@ const AppPage: React.FC = () => {
                         autoRecord={journalAutoRecord}
                         activities={selectedActivities}
                         mood={selectedMood}
-                        hasProAccess={hasProAccess(profile?.plan || null, profile?.trial_started_at || null)}
+                        hasProAccess={hasProAccess(effectiveProfile?.plan || null, effectiveProfile?.trial_started_at || null)}
                         onUpgrade={() => navigateTo("pro")}
                       />
                     )}
-                    {screen === "insights" && <InsightsScreen shellMode={shellMode} entries={entries} streak={streak} onUpgrade={() => navigateTo("pro")} onNavigate={(s) => navigateTo(s as Screen)} plan={profile?.plan} trialStartedAt={profile?.trial_started_at} />}
+                    {screen === "insights" && <InsightsScreen shellMode={shellMode} entries={entries} streak={streak} onUpgrade={() => navigateTo("pro")} onNavigate={(s) => navigateTo(s as Screen)} plan={effectiveProfile?.plan} trialStartedAt={effectiveProfile?.trial_started_at} />}
                     {screen === "history" && <HistoryScreen entries={entries} onNavigate={(s) => s === "journal" ? openJournalScreen() : navigateTo(s as Screen)} />}
-                    {screen === "coach" && <CoachScreen shellMode={shellMode} displayName={displayName} onUpgrade={() => navigateTo("pro")} plan={profile?.plan} trialStartedAt={profile?.trial_started_at} />}
+                    {screen === "coach" && <CoachScreen shellMode={shellMode} displayName={displayName} onUpgrade={() => navigateTo("pro")} plan={effectiveProfile?.plan} trialStartedAt={effectiveProfile?.trial_started_at} />}
                     {screen === "explore" && (
                       <ExploreScreen
                         entries={entries}
                         streak={streak}
                         onWritePrompt={(prompt) => openJournalScreen({ prompt })}
                         onNavigate={(s) => navigateTo(s as Screen)}
-                        plan={profile?.plan}
-                        trialStartedAt={profile?.trial_started_at}
+                        plan={effectiveProfile?.plan}
+                        trialStartedAt={effectiveProfile?.trial_started_at}
                         onUpgrade={() => navigateTo("pro")}
                       />
                     )}
@@ -827,18 +813,19 @@ const AppPage: React.FC = () => {
                       <SettingsScreen
                         onBack={() => navigateTo("home")}
                         onUpgrade={() => navigateTo("pro")}
+                        onCheckout={handleCheckout}
                         onSaveDisplayName={handleDisplayNameSave}
                         displayName={displayName}
-                        plan={profile?.plan}
-                        trialStartedAt={profile?.trial_started_at}
+                        plan={effectiveProfile?.plan}
+                        trialStartedAt={effectiveProfile?.trial_started_at}
                       />
                     )}
                     {screen === "programs" && (
                       <GuidedProgramsScreen
                         onBack={() => navigateTo("insights")}
                         onWritePrompt={(prompt) => openJournalScreen({ prompt })}
-                        plan={profile?.plan}
-                        trialStartedAt={profile?.trial_started_at}
+                        plan={effectiveProfile?.plan}
+                        trialStartedAt={effectiveProfile?.trial_started_at}
                         onUpgrade={() => navigateTo("pro")}
                       />
                     )}
@@ -851,8 +838,8 @@ const AppPage: React.FC = () => {
                     )}
                     {screen === "pro" && isNative() && isIOS() ? (
                       <NativePricingScreen
-                        currentPlan={profile?.plan || "free"}
-                        trialStartedAt={profile?.trial_started_at || null}
+                        currentPlan={effectiveProfile?.plan || "free"}
+                        trialStartedAt={effectiveProfile?.trial_started_at || null}
                         userId={user?.id}
                         onClose={() => navigateTo("home")}
                         onSuccess={(plan) => {
@@ -863,10 +850,9 @@ const AppPage: React.FC = () => {
                       />
                     ) : screen === "pro" ? (
                       <PricingScreen
-                        currentPlan={profile?.plan || "free"}
-                        trialStartedAt={profile?.trial_started_at || null}
+                        currentPlan={effectiveProfile?.plan || "free"}
+                        trialStartedAt={effectiveProfile?.trial_started_at || null}
                         onCheckout={handleCheckout}
-                        onStartTrial={handleStartTrial}
                         onBack={() => navigateTo("home")}
                       />
                     ) : null}
@@ -895,7 +881,7 @@ const AppPage: React.FC = () => {
       {/* Moment Capture Floating Button (Pro feature) */}
       <MomentCaptureButton
         onClick={() => setShowMomentCapture(true)}
-        hasProAccess={hasProAccess(profile?.plan || "free", profile?.trial_started_at || null)}
+        hasProAccess={hasProAccess(effectiveProfile?.plan || "free", effectiveProfile?.trial_started_at || null)}
         shellMode={shellMode}
       />
 

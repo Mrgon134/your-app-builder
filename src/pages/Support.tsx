@@ -42,11 +42,11 @@ const Support: React.FC = () => {
     },
     {
       question: "What can Plus unlock?",
-      answer: "Plus gives you: unlimited journal entries (Free is limited), full history of all past entries, advanced mood trends and insights, and the ability to see relationship mood maps. Plus costs $4.99/month or $39.99/year (save 33%).",
+      answer: "Nuju now keeps premium access simpler: weekly, annual, or lifetime. Premium keeps the full Ju experience open, including deeper reflection, full history, and more ongoing support.",
     },
     {
       question: "What can Pro unlock?",
-      answer: "Pro includes everything in Plus, plus: unlimited AI coach conversations, voice journaling, advanced analytics, and early access to new features. Pro costs $9.99/month or $79.99/year (save 33%).",
+      answer: "Premium keeps Ju fully open for you, including deeper AI support, longer history, and the more complete guided experience inside the app.",
     },
     {
       question: "How does the AI coach work?",
@@ -70,11 +70,11 @@ const Support: React.FC = () => {
     },
     {
       question: "Is there a free trial for Plus or Pro?",
-      answer: "Yes! You get a 3-day free trial of Plus or Pro when you sign up. No credit card required. After the trial, you can subscribe or go back to Free.",
+      answer: "The main onboarding flow now uses a hard paywall. You go through the Ju Gets You reveal first, then choose weekly, annual, or lifetime if you want to continue with full support.",
     },
     {
       question: "Will my subscription auto-renew?",
-      answer: "Yes, subscriptions auto-renew monthly or yearly depending on your plan. You can cancel anytime from Settings → Subscription. Cancellation takes effect at the end of your current billing cycle.",
+      answer: "Yes, recurring plans auto-renew based on your billing cycle. Go to Settings → Subscription → Manage subscription for help changing or ending a recurring plan. If you are on annual, you may also see a lower keep-going offer there before canceling.",
     },
     {
       question: "What if I want to delete my account?",

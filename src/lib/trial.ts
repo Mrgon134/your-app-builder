@@ -4,6 +4,14 @@
 
 export const TRIAL_DAYS = 7;
 
+export function hasLegacyPlusPlan(plan: string | null): boolean {
+  return plan === "plus";
+}
+
+export function hasActivePremiumPlan(plan: string | null): boolean {
+  return plan === "plus" || plan === "pro" || plan === "weekly" || plan === "yearly" || plan === "lifetime";
+}
+
 export function getTrialStatus(trialStartedAt: string | null): {
   isActive: boolean;
   daysLeft: number;
@@ -44,14 +52,14 @@ export function formatTrialCountdown(
 
 // Check if user has "plus-level" access: paid plan OR active trial
 export function hasPlusAccess(plan: string | null, trialStartedAt: string | null): boolean {
-  if (plan === "plus" || plan === "pro" || plan === "lifetime") return true;
+  if (hasActivePremiumPlan(plan)) return true;
   const trial = getTrialStatus(trialStartedAt);
   return trial.isActive;
 }
 
 // Check if user has "pro-level" access: pro/lifetime plan OR active trial
 export function hasProAccess(plan: string | null, trialStartedAt: string | null): boolean {
-  if (plan === "pro" || plan === "lifetime") return true;
+  if (plan === "pro" || plan === "weekly" || plan === "yearly" || plan === "lifetime") return true;
   const trial = getTrialStatus(trialStartedAt);
   return trial.isActive;
 }

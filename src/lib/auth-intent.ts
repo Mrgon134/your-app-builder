@@ -1,10 +1,11 @@
 export const AUTH_INTENT_STORAGE_KEY = "nuju-auth-intent";
 
 export type PendingAuthIntent = {
-  source?: "landing";
+  source?: "landing" | "onboarding";
   screen?: "pro";
-  plan?: "plus_monthly" | "pro_monthly" | "lifetime_one_time";
+  plan?: "plus_monthly" | "pro_monthly" | "lifetime_one_time" | "weekly" | "yearly";
   trial?: boolean;
+  resumePath?: string;
 };
 
 export const saveAuthIntent = (intent: PendingAuthIntent) => {
@@ -15,13 +16,26 @@ export const saveAuthIntent = (intent: PendingAuthIntent) => {
   }
 };
 
-export const consumeAuthIntent = (): PendingAuthIntent | null => {
+export const peekAuthIntent = (): PendingAuthIntent | null => {
   try {
     const raw = localStorage.getItem(AUTH_INTENT_STORAGE_KEY);
     if (!raw) return null;
-    localStorage.removeItem(AUTH_INTENT_STORAGE_KEY);
     return JSON.parse(raw) as PendingAuthIntent;
   } catch {
     return null;
   }
+};
+
+export const clearAuthIntent = () => {
+  try {
+    localStorage.removeItem(AUTH_INTENT_STORAGE_KEY);
+  } catch {
+    // Ignore storage errors so auth flow still works.
+  }
+};
+
+export const consumeAuthIntent = (): PendingAuthIntent | null => {
+  const intent = peekAuthIntent();
+  clearAuthIntent();
+  return intent;
 };

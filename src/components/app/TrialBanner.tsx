@@ -1,6 +1,6 @@
 import React from "react";
 import { Clock, Sparkles } from "lucide-react";
-import { getTrialStatus, formatTrialCountdown } from "@/lib/trial";
+import { getTrialStatus, formatTrialCountdown, hasActivePremiumPlan } from "@/lib/trial";
 import { useLang } from "@/lib/i18n";
 
 interface TrialBannerProps {
@@ -12,7 +12,7 @@ interface TrialBannerProps {
 const TrialBanner: React.FC<TrialBannerProps> = ({ trialStartedAt, plan, onUpgrade }) => {
   const { t } = useLang();
 
-  if (plan === "plus" || plan === "pro" || plan === "lifetime") return null;
+  if (hasActivePremiumPlan(plan)) return null;
 
   const trial = getTrialStatus(trialStartedAt);
   if (trial.notStarted) return null;
@@ -29,7 +29,7 @@ const TrialBanner: React.FC<TrialBannerProps> = ({ trialStartedAt, plan, onUpgra
               {t.pro_trial_ended_title || "Your Pro trial has ended"}
             </p>
             <p className="text-[13px] text-muted-foreground leading-relaxed mb-3">
-              {t.pro_trial_ended_sub || "You've lost access to Pro features. Choose Plus for AI insights, or Pro for voice journaling, memory cards, and more."}
+              {t.pro_trial_ended_sub || "You've lost access to premium features. Choose weekly, yearly, or lifetime to keep full access."}
             </p>
             <div className="flex gap-2">
               <button
@@ -66,8 +66,8 @@ const TrialBanner: React.FC<TrialBannerProps> = ({ trialStartedAt, plan, onUpgra
           </p>
           <p className="text-[12px] text-muted-foreground">
             {urgentColor
-              ? (t.pro_trial_urgent_sub || "Decide soon if you want to keep full Pro access after the trial ends.")
-              : (t.pro_trial_active_sub || "You currently have full Pro access: voice journaling, AI memory, all coach personas, and unlimited history.")
+              ? (t.pro_trial_urgent_sub || "Decide soon if you want to keep premium access after the trial ends.")
+              : (t.pro_trial_active_sub || "You currently have premium access: voice journaling, AI memory, all coach personas, and unlimited history.")
             }
           </p>
         </div>

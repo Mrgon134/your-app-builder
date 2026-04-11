@@ -74,12 +74,23 @@ serve(async (req) => {
 
     const productId = String(payloadData.product_id || "");
 
+    const weeklyProductId =
+      Deno.env.get("VITE_DODO_WEEKLY") ||
+      Deno.env.get("DODO_WEEKLY_PRODUCT_ID") ||
+      "pdt_0NbhHW3W4gTSSif6PbYb8";
+    const yearlyProductId =
+      Deno.env.get("VITE_DODO_YEARLY") ||
+      Deno.env.get("DODO_YEARLY_PRODUCT_ID") ||
+      "pdt_0NbhHexts6edZvPqDnoqt";
+
     // Map real Dodo product IDs to plan names
     const PRODUCT_PLAN_MAP: Record<string, string> = {
+      [weeklyProductId]: "weekly",
+      [yearlyProductId]: "yearly",
       "pdt_0NbhFlXcexmMdlcYFUaYb": "plus",   // Nuju Plus Monthly
       "pdt_0NbhG9cZxUlLissUYnKkm": "plus",   // Nuju Plus Annual
-      "pdt_0NbhHW3W4gTSSif6PbYb8": "pro",    // Nuju Pro Monthly
-      "pdt_0NbhHexts6edZvPqDnoqt": "pro",    // Nuju Pro Annual
+      "pdt_0NbhHW3W4gTSSif6PbYb8": "weekly", // Nuju Weekly
+      "pdt_0NbhHexts6edZvPqDnoqt": "yearly", // Nuju Yearly
       "pdt_0NbhHzl2NQ8Dx0ntZsPQs": "lifetime", // Nuju Lifetime
     };
     let plan = PRODUCT_PLAN_MAP[productId] || "free";

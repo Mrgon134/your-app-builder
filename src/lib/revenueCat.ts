@@ -12,10 +12,12 @@ export const ENTITLEMENTS = {
 
 // RevenueCat product identifiers (must match RevenueCat dashboard)
 export const PRODUCT_IDS = {
+  weekly: "prod7fb30aa1d7",
+  yearly: "prod4a76c3112a",
   plus_monthly: "prodd12cd5056a",
   plus_annual: "prodde2def8f68",
-  pro_monthly: "prodeb17183b4e",
-  pro_annual: "prodecbcc01ee5",
+  pro_monthly: "prod7fb30aa1d7",
+  pro_annual: "prod4a76c3112a",
   pro_lifetime: "prodeae2f54491",
 } as const;
 
@@ -126,6 +128,8 @@ export const getPlanFromEntitlements = async (): Promise<string> => {
 // Map Dodo plan IDs to RevenueCat product IDs
 // Usage: when user clicks checkout on web (Dodo), or on iOS we directly use RevenueCat
 export const getDodoToRevenueCatMap = (): Record<string, string> => ({
+  "weekly": PRODUCT_IDS.weekly,
+  "yearly": PRODUCT_IDS.yearly,
   "plus_monthly": PRODUCT_IDS.plus_monthly,
   "plus_annual": PRODUCT_IDS.plus_annual,
   "pro_monthly": PRODUCT_IDS.pro_monthly,

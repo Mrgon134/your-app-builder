@@ -5,12 +5,15 @@
 
 export const ROUTES = {
   // Auth routes
+  AUTH: '/auth',
   LOGIN: '/login',
   SIGNUP: '/signup',
+  AUTH_CALLBACK: '/auth/callback',
 
   // App routes
   APP: '/app',
   HOME: '/app',
+  ONBOARDING: '/onboarding',
 
   // Legal & Help routes
   SUPPORT: '/support',

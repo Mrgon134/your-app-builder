@@ -10,6 +10,8 @@ interface GeoPricing {
   hasLocalizedDisplay: boolean;
   usdConversionRate: number | null;
   rates: {
+    weekly: number;
+    yearly: number;
     plusMonthly: number;
     plusAnnual: number;
     proMonthly: number;
@@ -75,6 +77,8 @@ export function useGeoPricing(): GeoPricing & { formatPrice: (amount: number) =>
   const { hasLocalizedDisplay, displayCurrency, currencyMultiplier } = getDisplayPricingContext(currency, usdConversionRate);
 
   // Apply PPP discount to base rates
+  const weekly = roundCurrency(PRICING_CONFIG.baseRates.weekly * multiplier * currencyMultiplier, displayCurrency);
+  const yearly = roundCurrency(PRICING_CONFIG.baseRates.yearly * multiplier * currencyMultiplier, displayCurrency);
   const plusMonthly = roundCurrency(PRICING_CONFIG.baseRates.plusMonthly * multiplier * currencyMultiplier, displayCurrency);
   const plusAnnual = roundCurrency(PRICING_CONFIG.baseRates.plusAnnual * multiplier * currencyMultiplier, displayCurrency);
   const proMonthly = roundCurrency(PRICING_CONFIG.baseRates.proMonthly * multiplier * currencyMultiplier, displayCurrency);
@@ -82,6 +86,8 @@ export function useGeoPricing(): GeoPricing & { formatPrice: (amount: number) =>
   const lifetime = roundCurrency(PRICING_CONFIG.lifetime.flatPrice * multiplier * currencyMultiplier, displayCurrency);
 
   const rates = {
+    weekly,
+    yearly,
     plusMonthly,
     plusAnnual,
     proMonthly,

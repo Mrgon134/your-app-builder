@@ -59,6 +59,7 @@ vi.mock("@/hooks/use-posthog-events", () => ({
 }));
 
 vi.mock("@/lib/trial", () => ({
+  hasActivePremiumPlan: () => false,
   hasPlusAccess: () => false,
   hasProAccess: () => false,
   getTrialStatus: () => ({ notStarted: true, isActive: false, expired: false, daysLeft: 0, daysUsed: 0 }),

@@ -12,6 +12,8 @@ const readNumber = (value: string | undefined, fallback: number) => {
 export const PRICING_CONFIG = {
   // Base display prices before PPP / regional discounts are applied.
   baseRates: {
+    weekly: readNumber(import.meta.env.VITE_WEEKLY_PRICE, 4.99),
+    yearly: readNumber(import.meta.env.VITE_YEARLY_PRICE, 59.99),
     plusMonthly: readNumber(import.meta.env.VITE_PLUS_MONTHLY_PRICE, 4.99),
     plusAnnual: readNumber(import.meta.env.VITE_PLUS_ANNUAL_PRICE, 39.99),
     proMonthly: readNumber(import.meta.env.VITE_PRO_MONTHLY_PRICE, 9.99),
@@ -21,13 +23,19 @@ export const PRICING_CONFIG = {
   lifetime: {
     flatPrice: readNumber(import.meta.env.VITE_LIFETIME_FLAT_PRICE, 25),
   },
-  // Early-access scarcity (frontend-only, manually updated).
+  retention: {
+    yearlyPrice: readNumber(import.meta.env.VITE_RETENTION_YEARLY_PRICE, 44.99),
+    yearlyCouponCode: import.meta.env.VITE_DODO_RETENTION_YEARLY_COUPON || "",
+  },
+  // Legacy scarcity fallback if live purchase count is unavailable.
   lifetimeSlots: {
     total: 25,
     left: readNumber(import.meta.env.VITE_LIFETIME_SLOTS_LEFT, 14),
   },
   // Dodo Payments Product Identifiers (Test environment by default)
   products: {
+    weekly: import.meta.env.VITE_DODO_WEEKLY || "pdt_0NbhHW3W4gTSSif6PbYb8",
+    yearly: import.meta.env.VITE_DODO_YEARLY || "pdt_0NbhHexts6edZvPqDnoqt",
     plus_monthly: import.meta.env.VITE_DODO_PLUS_MONTHLY || "pdt_0NbhFlXcexmMdlcYFUaYb",
     plus_annual: import.meta.env.VITE_DODO_PLUS_ANNUAL || "pdt_0NbhG9cZxUlLissUYnKkm",
     pro_monthly: import.meta.env.VITE_DODO_PRO_MONTHLY || "pdt_0NbhHW3W4gTSSif6PbYb8",

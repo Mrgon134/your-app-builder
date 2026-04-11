@@ -1,7 +1,10 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
+import { peekAuthIntent } from "@/lib/auth-intent";
+import { ROUTES } from "@/lib/routes";
 import { Loader2 } from "lucide-react";
+import SEOHead from "@/components/SEOHead";
 
 /**
  * Handles OAuth redirects (Google, Apple) and email confirmation links.
@@ -13,16 +16,17 @@ const AuthCallback: React.FC = () => {
 
   useEffect(() => {
     let settled = false;
+    const getPostAuthPath = () => peekAuthIntent()?.resumePath || ROUTES.APP;
 
     // Listen to auth state change — catches PASSWORD_RECOVERY event
     const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
       if (settled) return;
       if (event === "PASSWORD_RECOVERY") {
         settled = true;
-        navigate("/auth?mode=reset", { replace: true });
+        navigate(`${ROUTES.AUTH}?mode=reset`, { replace: true });
       } else if ((event === "SIGNED_IN" || event === "TOKEN_REFRESHED") && session) {
         settled = true;
-        navigate("/app", { replace: true });
+        navigate(getPostAuthPath(), { replace: true });
       }
     });
 
@@ -38,7 +42,7 @@ const AuthCallback: React.FC = () => {
           console.error("Auth callback error:", error.message);
           if (!settled) {
             settled = true;
-            navigate("/auth?error=" + encodeURIComponent(error.message), { replace: true });
+            navigate(`${ROUTES.AUTH}?error=` + encodeURIComponent(error.message), { replace: true });
           }
           return;
         }
@@ -54,7 +58,7 @@ const AuthCallback: React.FC = () => {
         await supabase.auth.setSession({ access_token: accessToken, refresh_token: refreshToken });
         if (type === "recovery" && !settled) {
           settled = true;
-          navigate("/auth?mode=reset", { replace: true });
+          navigate(`${ROUTES.AUTH}?mode=reset`, { replace: true });
           return;
         }
         // onAuthStateChange handles the rest
@@ -65,7 +69,7 @@ const AuthCallback: React.FC = () => {
       if (!settled) {
         const { data: { session } } = await supabase.auth.getSession();
         settled = true;
-        navigate(session ? "/app" : "/auth", { replace: true });
+        navigate(session ? getPostAuthPath() : ROUTES.AUTH, { replace: true });
       }
     };
 
@@ -76,7 +80,7 @@ const AuthCallback: React.FC = () => {
       if (!settled) {
         settled = true;
         supabase.auth.getSession().then(({ data: { session } }) => {
-          navigate(session ? "/app" : "/auth", { replace: true });
+          navigate(session ? getPostAuthPath() : ROUTES.AUTH, { replace: true });
         });
       }
     }, 5000);
@@ -88,12 +92,19 @@ const AuthCallback: React.FC = () => {
   }, [navigate]);
 
   return (
-    <div className="min-h-screen bg-background flex items-center justify-center">
-      <div className="flex flex-col items-center gap-3">
-        <Loader2 className="w-8 h-8 text-primary animate-spin" />
-        <p className="text-[15px] text-muted-foreground">Signing you in...</p>
+    <>
+      <SEOHead
+        title="Signing In..."
+        description="Signing you into your Nuju account."
+        noindex
+      />
+      <div className="min-h-screen bg-background flex items-center justify-center">
+        <div className="flex flex-col items-center gap-3">
+          <Loader2 className="w-8 h-8 text-primary animate-spin" />
+          <p className="text-[15px] text-muted-foreground">Signing you in...</p>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
