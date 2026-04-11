@@ -1,0 +1,10 @@
+{
+  "redirects": [
+    {
+      "source": "/(.*)",
+      "has": [{ "type": "host", "value": "www.nuju.app" }],
+      "destination": "https://nuju.app/$1",
+      "permanent": true
+    }
+  ]
+}
