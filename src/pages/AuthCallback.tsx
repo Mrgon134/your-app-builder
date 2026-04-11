@@ -16,7 +16,10 @@ const AuthCallback: React.FC = () => {
 
   useEffect(() => {
     let settled = false;
-    const getPostAuthPath = () => peekAuthIntent()?.resumePath || ROUTES.APP;
+    const checkoutIntentId = new URLSearchParams(window.location.search).get("checkout_intent_id");
+    const getPostAuthPath = () =>
+      peekAuthIntent()?.resumePath ||
+      (checkoutIntentId ? `${ROUTES.CHECKOUT_COMPLETE}?intent_id=${encodeURIComponent(checkoutIntentId)}` : ROUTES.APP);
 
     // Listen to auth state change — catches PASSWORD_RECOVERY event
     const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {

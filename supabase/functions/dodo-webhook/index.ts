@@ -6,7 +6,9 @@ const corsHeaders = {
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
 };
 
-// Dodo payments webhook verification
+const safeText = (value: unknown) => (typeof value === "string" ? value.trim() : "");
+const normalizeEmail = (value: unknown) => safeText(value).toLowerCase();
+
 async function verifySignature(payload: string, signature: string, secret: string): Promise<boolean> {
   try {
     const encoder = new TextEncoder();
@@ -15,17 +17,62 @@ async function verifySignature(payload: string, signature: string, secret: strin
       encoder.encode(secret),
       { name: "HMAC", hash: "SHA-256" },
       false,
-      ["sign"]
+      ["sign"],
     );
     const sig = await crypto.subtle.sign("HMAC", key, encoder.encode(payload));
     const hex = Array.from(new Uint8Array(sig))
-      .map((b) => b.toString(16).padStart(2, "0"))
+      .map((byte) => byte.toString(16).padStart(2, "0"))
       .join("");
     return hex === signature;
-  } catch(e) {
+  } catch {
     return false;
   }
 }
+
+const getProductPlanMap = () => ({
+  [Deno.env.get("VITE_DODO_WEEKLY") || Deno.env.get("DODO_WEEKLY_PRODUCT_ID") || "pdt_0NbhHW3W4gTSSif6PbYb8"]: "weekly",
+  [Deno.env.get("VITE_DODO_YEARLY") || Deno.env.get("DODO_YEARLY_PRODUCT_ID") || "pdt_0NbhHexts6edZvPqDnoqt"]: "yearly",
+  [Deno.env.get("VITE_DODO_LIFETIME") || Deno.env.get("DODO_LIFETIME_PRODUCT_ID") || "pdt_0NbhHzl2NQ8Dx0ntZsPQs"]: "lifetime",
+});
+
+const getPayloadData = (event: Record<string, unknown>) =>
+  (event.data as Record<string, unknown>)?.object ||
+  (event.data as Record<string, unknown>) ||
+  (event.payload as Record<string, unknown>)?.object ||
+  (event.payload as Record<string, unknown>) ||
+  event;
+
+const getMetadata = (event: Record<string, unknown>, payloadData: Record<string, unknown>) => ({
+  ...((event.metadata as Record<string, unknown>) || {}),
+  ...(((event.data as Record<string, unknown>)?.metadata as Record<string, unknown>) || {}),
+  ...((payloadData.metadata as Record<string, unknown>) || {}),
+});
+
+const mergeJson = (current: unknown, patch: Record<string, unknown>) => ({
+  ...(current && typeof current === "object" && !Array.isArray(current) ? current as Record<string, unknown> : {}),
+  ...patch,
+});
+
+const planToProfilePlan = (plan: string) => (plan === "lifetime_one_time" ? "lifetime" : plan);
+
+const extractProductId = (payloadData: Record<string, unknown>) =>
+  safeText(
+    payloadData.product_id ||
+    (payloadData.product as Record<string, unknown>)?.id ||
+    ((payloadData.product_cart as Record<string, unknown>[] | undefined)?.[0] as Record<string, unknown> | undefined)?.product_id,
+  );
+
+const extractPurchaseStatus = (eventName: string, payloadData: Record<string, unknown>) => {
+  if (eventName === "subscription.active" || eventName === "subscription.renewed" || eventName === "subscription.updated" || eventName === "payment.succeeded") {
+    return "paid";
+  }
+
+  if (eventName === "subscription.canceled" || eventName === "subscription.expired" || eventName === "subscription.past_due" || eventName === "payment.failed") {
+    return "failed";
+  }
+
+  return "";
+};
 
 serve(async (req) => {
   if (req.method === "OPTIONS") {
@@ -33,123 +80,182 @@ serve(async (req) => {
   }
 
   try {
-    const WEBHOOK_SECRET = Deno.env.get("DODO_PAYMENTS_WEBHOOK_SECRET");
-    if (!WEBHOOK_SECRET) throw new Error("DODO_PAYMENTS_WEBHOOK_SECRET not set");
+    const webhookSecret = Deno.env.get("DODO_PAYMENTS_WEBHOOK_SECRET");
+    const supabaseUrl = Deno.env.get("SUPABASE_URL");
+    const supabaseServiceRoleKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY");
 
-    const SUPABASE_URL = Deno.env.get("SUPABASE_URL")!;
-    const SUPABASE_SERVICE_ROLE_KEY = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
-    const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY);
+    if (!webhookSecret) throw new Error("DODO_PAYMENTS_WEBHOOK_SECRET not set");
+    if (!supabaseUrl || !supabaseServiceRoleKey) throw new Error("Supabase service role credentials are missing");
 
-    const body = await req.text();
+    const supabase = createClient(supabaseUrl, supabaseServiceRoleKey);
+    const rawBody = await req.text();
     const signature = req.headers.get("dodo-signature") || req.headers.get("authorization")?.replace("Bearer ", "") || "";
 
-    // Authorize either via bearer token or HMAC depending on Dodo's setup
-    const isBearerCheck = signature === WEBHOOK_SECRET;
-    const isHmacCheck = await verifySignature(body, signature, WEBHOOK_SECRET);
-
+    const isBearerCheck = signature === webhookSecret;
+    const isHmacCheck = await verifySignature(rawBody, signature, webhookSecret);
     if (!isBearerCheck && !isHmacCheck) {
-      console.error("Invalid Dodo webhook signature", signature);
       return new Response(JSON.stringify({ error: "Invalid signature" }), {
         status: 401,
         headers: { ...corsHeaders, "Content-Type": "application/json" },
       });
     }
 
-    const event = JSON.parse(body);
-    const eventName = event.type || event.event;
-    
-    // Dodo payload format handles metadata
-    const payloadData = event.data || event.payload || event;
-    const userId = payloadData.metadata?.user_id || event.metadata?.user_id;
-    
-    console.log("Dodo webhook event:", eventName, "user:", userId);
+    const event = JSON.parse(rawBody) as Record<string, unknown>;
+    const eventName = safeText(event.type || event.event);
+    const payloadData = getPayloadData(event);
+    const metadata = getMetadata(event, payloadData);
+    const productId = extractProductId(payloadData);
+    const productPlanMap = getProductPlanMap();
 
-    if (!userId) {
-      console.error("No user_id in metadata");
-      return new Response(JSON.stringify({ error: "No user_id" }), {
-        status: 400,
-        headers: { ...corsHeaders, "Content-Type": "application/json" },
+    const metadataPlan = safeText(metadata.plan);
+    const plan = metadataPlan || productPlanMap[productId] || "free";
+    const purchaseStatus = extractPurchaseStatus(eventName, payloadData);
+
+    const intentId = safeText(metadata.intent_id || payloadData.intent_id);
+    const sessionId = safeText(metadata.session_id || payloadData.session_id);
+    const checkoutSessionId = safeText(payloadData.checkout_session_id || payloadData.checkout_id || (payloadData.checkout as Record<string, unknown>)?.id);
+    const paymentId = safeText(payloadData.payment_id || (eventName.startsWith("payment.") ? payloadData.id : ""));
+    const subscriptionId = safeText(payloadData.subscription_id || (eventName.startsWith("subscription.") ? payloadData.id : ""));
+    const customerId = safeText(payloadData.customer_id || (payloadData.customer as Record<string, unknown>)?.id);
+    const customerEmail = normalizeEmail(
+      payloadData.customer_email ||
+      (payloadData.customer as Record<string, unknown>)?.email ||
+      metadata.email,
+    );
+    const customerName = safeText(
+      payloadData.customer_name ||
+      (payloadData.customer as Record<string, unknown>)?.name ||
+      metadata.name,
+    );
+
+    const directUserId = safeText(metadata.user_id);
+    let targetUserId = directUserId;
+
+    let purchaseIntent: Record<string, unknown> | null = null;
+    const findBySingleField = async (field: string, value: string) => {
+      if (!value) return null;
+      const { data } = await supabase
+        .from("checkout_purchase_intents")
+        .select("*")
+        .eq(field, value)
+        .order("created_at", { ascending: false })
+        .limit(1)
+        .maybeSingle();
+      return data as Record<string, unknown> | null;
+    };
+
+    purchaseIntent =
+      (await findBySingleField("id", intentId)) ||
+      (await findBySingleField("checkout_session_id", checkoutSessionId)) ||
+      (await findBySingleField("payment_id", paymentId)) ||
+      (await findBySingleField("subscription_id", subscriptionId));
+
+    if (!purchaseIntent && sessionId && customerEmail) {
+      const { data } = await supabase
+        .from("checkout_purchase_intents")
+        .select("*")
+        .eq("session_id", sessionId)
+        .eq("email", customerEmail)
+        .order("created_at", { ascending: false })
+        .limit(1)
+        .maybeSingle();
+      purchaseIntent = data as Record<string, unknown> | null;
+    }
+
+    if (purchaseIntent) {
+      targetUserId = targetUserId || safeText(purchaseIntent.claimed_user_id);
+
+      const nextStatus =
+        purchaseStatus ||
+        safeText(purchaseIntent.status) ||
+        "initiated";
+
+      await supabase
+        .from("checkout_purchase_intents")
+        .update({
+          session_id: safeText(purchaseIntent.session_id) || sessionId || String(purchaseIntent.id),
+          checkout_session_id: checkoutSessionId || safeText(purchaseIntent.checkout_session_id) || null,
+          payment_id: paymentId || safeText(purchaseIntent.payment_id) || null,
+          subscription_id: subscriptionId || safeText(purchaseIntent.subscription_id) || null,
+          email: customerEmail || normalizeEmail(purchaseIntent.email) || null,
+          name: customerName || safeText(purchaseIntent.name) || null,
+          plan: plan === "lifetime" ? "lifetime_one_time" : (plan || safeText(purchaseIntent.plan)),
+          status: nextStatus,
+          metadata_json: mergeJson(purchaseIntent.metadata_json, {
+            event_name: eventName,
+            customer_id: customerId || null,
+            payload: payloadData,
+          }),
+          updated_at: new Date().toISOString(),
+        })
+        .eq("id", String(purchaseIntent.id));
+    } else if (intentId) {
+      await supabase.from("checkout_purchase_intents").insert({
+        id: intentId,
+        session_id: sessionId || intentId,
+        checkout_session_id: checkoutSessionId || null,
+        payment_id: paymentId || null,
+        subscription_id: subscriptionId || null,
+        email: customerEmail || "unknown@example.com",
+        name: customerName || null,
+        plan: plan === "lifetime" ? "lifetime_one_time" : plan || "weekly",
+        source: safeText(metadata.source) || "onboarding",
+        status: purchaseStatus || "processing",
+        metadata_json: {
+          customer_id: customerId || null,
+          payload: payloadData,
+        },
       });
     }
 
-    const productId = String(payloadData.product_id || "");
-
-    const weeklyProductId =
-      Deno.env.get("VITE_DODO_WEEKLY") ||
-      Deno.env.get("DODO_WEEKLY_PRODUCT_ID") ||
-      "pdt_0NbhHW3W4gTSSif6PbYb8";
-    const yearlyProductId =
-      Deno.env.get("VITE_DODO_YEARLY") ||
-      Deno.env.get("DODO_YEARLY_PRODUCT_ID") ||
-      "pdt_0NbhHexts6edZvPqDnoqt";
-
-    // Map real Dodo product IDs to plan names
-    const PRODUCT_PLAN_MAP: Record<string, string> = {
-      [weeklyProductId]: "weekly",
-      [yearlyProductId]: "yearly",
-      "pdt_0NbhFlXcexmMdlcYFUaYb": "plus",   // Nuju Plus Monthly
-      "pdt_0NbhG9cZxUlLissUYnKkm": "plus",   // Nuju Plus Annual
-      "pdt_0NbhHW3W4gTSSif6PbYb8": "weekly", // Nuju Weekly
-      "pdt_0NbhHexts6edZvPqDnoqt": "yearly", // Nuju Yearly
-      "pdt_0NbhHzl2NQ8Dx0ntZsPQs": "lifetime", // Nuju Lifetime
-    };
-    let plan = PRODUCT_PLAN_MAP[productId] || "free";
-
-    switch (eventName) {
-      case "subscription.active":
-      case "subscription.renewed":
-      case "subscription.updated": {
-        const nextBillingDate = payloadData.next_billing_date || payloadData.current_period_end;
-        await supabase.from("profiles").update({
-          plan,
-          dodo_customer_id: String(payloadData.customer_id || ""),
-          dodo_subscription_id: String(payloadData.subscription_id || payloadData.id || ""),
-          plan_expires_at: nextBillingDate,
-        }).eq("id", userId);
-        console.log(`Updated user ${userId} to plan: ${plan}`);
-        break;
-      }
-
-      case "subscription.canceled":
-      case "subscription.expired":
-      case "subscription.past_due": {
-        await supabase.from("profiles").update({
-          plan: "free",
-          plan_expires_at: null,
-          dodo_subscription_id: null,
-        }).eq("id", userId);
-        console.log(`Downgraded user ${userId} to free`);
-        break;
-      }
-
-      case "payment.succeeded": {
-        // One-time payment like Lifetime Plan
-        if (plan === "lifetime") {
+    if (targetUserId) {
+      switch (eventName) {
+        case "subscription.active":
+        case "subscription.renewed":
+        case "subscription.updated": {
+          const nextBillingDate = safeText(payloadData.next_billing_date || payloadData.current_period_end) || null;
           await supabase.from("profiles").update({
-            plan: "lifetime",
-            dodo_customer_id: String(payloadData.customer_id || ""),
-            plan_expires_at: '2099-12-31T23:59:59Z', // Essentially infinite
-          }).eq("id", userId);
-          console.log(`Updated user ${userId} to lifetime plan`);
-        } else {
-             console.log(`Payment success for user ${userId} on plan ${plan}`);
+            plan: planToProfilePlan(plan),
+            dodo_customer_id: customerId || null,
+            dodo_subscription_id: subscriptionId || safeText(payloadData.id) || null,
+            plan_expires_at: nextBillingDate,
+          }).eq("id", targetUserId);
+          break;
         }
-        break;
-      }
 
-      default:
-        console.log(`Unhandled event: ${eventName}`);
+        case "subscription.canceled":
+        case "subscription.expired":
+        case "subscription.past_due": {
+          await supabase.from("profiles").update({
+            plan: "free",
+            plan_expires_at: null,
+            dodo_subscription_id: null,
+          }).eq("id", targetUserId);
+          break;
+        }
+
+        case "payment.succeeded": {
+          if (planToProfilePlan(plan) === "lifetime") {
+            await supabase.from("profiles").update({
+              plan: "lifetime",
+              dodo_customer_id: customerId || null,
+              plan_expires_at: "2099-12-31T23:59:59Z",
+            }).eq("id", targetUserId);
+          }
+          break;
+        }
+      }
     }
 
     return new Response(JSON.stringify({ received: true }), {
       status: 200,
       headers: { ...corsHeaders, "Content-Type": "application/json" },
     });
-  } catch (e) {
-    console.error("Webhook error:", e);
-    return new Response(
-      JSON.stringify({ error: e instanceof Error ? e.message : "Unknown" }),
-      { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
-    );
+  } catch (error) {
+    console.error("Webhook error:", error);
+    return new Response(JSON.stringify({ error: error instanceof Error ? error.message : "Unknown" }), {
+      status: 500,
+      headers: { ...corsHeaders, "Content-Type": "application/json" },
+    });
   }
 });

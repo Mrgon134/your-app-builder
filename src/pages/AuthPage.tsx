@@ -55,13 +55,22 @@ const AuthPage: React.FC = () => {
   const funnelPrefill = getFunnelContactPrefill();
   const authIntent = peekAuthIntent();
   const isOnboardingResume = authIntent?.resumePath === ROUTES.ONBOARDING;
+  const isCheckoutClaimFlow = Boolean(authIntent?.checkoutIntentId);
+  const lockedCheckoutEmail = authIntent?.checkoutEmail?.trim() || "";
+  const lockedCheckoutName = authIntent?.checkoutName?.trim() || "";
 
   useEffect(() => {
+    if (lockedCheckoutEmail || lockedCheckoutName) {
+      setEmail((current) => current || lockedCheckoutEmail);
+      setName((current) => current || lockedCheckoutName);
+      return;
+    }
+
     if (!funnelPrefill.email && !funnelPrefill.name) return;
 
     setEmail((current) => current || funnelPrefill.email);
     setName((current) => current || funnelPrefill.name);
-  }, [funnelPrefill.email, funnelPrefill.name]);
+  }, [funnelPrefill.email, funnelPrefill.name, lockedCheckoutEmail, lockedCheckoutName]);
 
   const callbackUrl = window.location.origin + ROUTES.AUTH_CALLBACK;
 
@@ -72,9 +81,19 @@ const AuthPage: React.FC = () => {
     setLoading(true);
 
     if (mode === "signup") {
-      const { error } = await signUp(email, password, name);
+      const redirectTo =
+        authIntent?.checkoutIntentId
+          ? `${window.location.origin}${ROUTES.AUTH_CALLBACK}?checkout_intent_id=${encodeURIComponent(authIntent.checkoutIntentId)}`
+          : undefined;
+      const { error } = await signUp(email, password, name, { redirectTo });
       if (error) setError(error.message);
-      else setSuccess(t.check_email || "Check your email to confirm your account!");
+      else {
+        setSuccess(
+          isCheckoutClaimFlow
+            ? `Check ${email} to confirm your account, then you will come right back to open what you unlocked.`
+            : (t.check_email || "Check your email to confirm your account!"),
+        );
+      }
     } else if (mode === "login") {
       const { error } = await signIn(email, password);
       if (error) setError(error.message);
@@ -155,8 +174,9 @@ const AuthPage: React.FC = () => {
     setMode(m);
     setError("");
     setSuccess("");
-    setEmail("");
+    setEmail(lockedCheckoutEmail || "");
     setPassword("");
+    setName(lockedCheckoutName || "");
   };
 
   // --- Forgot password screen ---
@@ -263,22 +283,31 @@ const AuthPage: React.FC = () => {
 
         <h1 className="text-[28px] font-bold text-foreground text-center tracking-tight mb-1">
           {mode === "login"
-            ? (t.welcome_back || "Welcome back")
+            ? isCheckoutClaimFlow
+              ? "Open your paid access"
+              : (t.welcome_back || "Welcome back")
             : isOnboardingResume
               ? "Save your result"
+              : isCheckoutClaimFlow
+                ? "Create your Nuju account"
               : (t.create_account || "Create account")}
         </h1>
         <p className="text-[15px] text-muted-foreground text-center mb-8">
           {mode === "login"
-            ? isOnboardingResume
+            ? isCheckoutClaimFlow
+              ? `Sign in with ${lockedCheckoutEmail} to unlock the plan you just paid for.`
+              : isOnboardingResume
               ? "Sign in to reopen your Ju read and continue where you left off."
               : (t.login_desc || "Sign in to continue your journal")
-            : isOnboardingResume
+            : isCheckoutClaimFlow
+              ? `Use ${lockedCheckoutEmail} and create a password so your payment attaches to the right account.`
+              : isOnboardingResume
               ? "Your name and email are ready. Add a password so Ju can keep this read with you."
               : (t.signup_desc_auth || "Start your journaling journey with Ju")}
         </p>
 
         {/* Social login buttons */}
+        {!isCheckoutClaimFlow ? (
         <div className="space-y-3 mb-4">
           {/* Google */}
           <button
@@ -318,6 +347,11 @@ const AuthPage: React.FC = () => {
           </button>
           */}
         </div>
+        ) : (
+          <div className="mb-4 rounded-xl border border-primary/15 bg-primary/6 px-4 py-3 text-[13px] leading-6 text-foreground">
+            This payment can only be claimed with <span className="font-semibold">{lockedCheckoutEmail}</span>.
+          </div>
+        )}
 
         <div className="flex items-center gap-3 mb-4">
           <div className="flex-1 h-px bg-border" />
@@ -356,6 +390,7 @@ const AuthPage: React.FC = () => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
+              disabled={Boolean(lockedCheckoutEmail)}
               className="w-full pl-11 pr-4 h-[52px] rounded-xl bg-card border border-border/60 text-foreground text-[15px] focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary/40 transition-all"
             />
           </div>

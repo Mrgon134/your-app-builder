@@ -6,6 +6,9 @@ export type PendingAuthIntent = {
   plan?: "plus_monthly" | "pro_monthly" | "lifetime_one_time" | "weekly" | "yearly";
   trial?: boolean;
   resumePath?: string;
+  checkoutIntentId?: string;
+  checkoutEmail?: string;
+  checkoutName?: string;
 };
 
 export const saveAuthIntent = (intent: PendingAuthIntent) => {

@@ -275,9 +275,10 @@ const buildConcreteContinuationLine = (answers: OnboardingAnswers) => {
 
 const finalizeReveal = (reveal: ResultTeaser, answers: OnboardingAnswers): ResultTeaser => {
   const name = sanitizeName(answers.name);
-  const headline = name && !reveal.headline.toLowerCase().includes(name.toLowerCase())
-    ? `${name}, ${reveal.headline.charAt(0).toLowerCase()}${reveal.headline.slice(1)}`
-    : reveal.headline;
+  const normalizedHeadline = reveal.headline.trim();
+  const headline = name && !normalizedHeadline.toLowerCase().includes(name.toLowerCase())
+    ? `${name}, ${normalizedHeadline.charAt(0).toLowerCase()}${normalizedHeadline.slice(1)}`
+    : normalizedHeadline;
 
   return {
     ...reveal,
@@ -327,6 +328,9 @@ Important rules:
 - Never shame the user or imply they are broken.
 - Avoid generic therapy language like "inner world", "journey", "safe space", "compassionate relationship with your own mind", or "support that stays with you".
 - Avoid cliches like "you're not alone", "validation", "together we can", "explore this further", or "relief and clarity".
+- Do not sound like a polished coach or wellness brand. Sound like Ju quietly naming the exact thing the user has been carrying.
+- Do not use broad praise like "you are resilient", "you are stronger than you think", or "you have been doing your best".
+- Let the reveal feel a little uncomfortably accurate in a good way, like Ju noticed the hidden part and said it out loud gently.
 - Let the user's concrete answers lead the language. If they said late at night, struggling to find words, holding a lot in, or wanting someone to notice how tired they are, use that emotional texture.
 - The reveal should feel a little disarming, like Ju just named the part they have been carrying quietly.
 - Prefer plain, concrete language over polished therapy language.
@@ -349,7 +353,7 @@ Field guidance:
 - whyItFits: 2-3 sentences explaining why Ju noticed this, based on at least two specific answers
 - firstSupportMove: 1-2 sentences on what Ju would help with first, immediate and grounded rather than abstract
 - supportSignals: exactly 3 short lines, concrete and emotionally specific
-- continuationLine: 1 sentence that makes continued support feel emotionally valuable, intimate and specific, with no clichés or promises
+- continuationLine: 1 sentence that makes continued support feel emotionally valuable, intimate and specific, with no cliches or promises
 
 User context:
 ${JSON.stringify(readableContext, null, 2)}`;
@@ -362,7 +366,7 @@ const buildRevisionPrompt = (answers: OnboardingAnswers, reveal: ResultTeaser) =
 
 Important rules:
 - Keep the exact same JSON shape.
-- Remove any therapy clichés or polished filler.
+- Remove any therapy cliches or polished filler.
 - Do not use phrases like "safe space", "validated", "you're not alone", "together we can", "as we move forward", or "relief and clarity".
 - Keep the language grounded in the user's actual answers.
 - Make the mirror feel quietly devastating in a truthful way, not dramatic.

@@ -9,6 +9,7 @@ import {
   ArrowRight,
   BrainCircuit,
   Check,
+  ChevronDown,
   Flame,
   Globe,
   Heart,
@@ -210,14 +211,76 @@ const Landing: React.FC = () => {
     },
   ];
 
+  const landingFaqs = [
+    {
+      q: "Do I need to pay before I can use Nuju?",
+      a: "You start with the Ju Gets You reveal, then choose Weekly, Annual, or Lifetime if you want Ju to stay with you beyond that first read."
+    },
+    {
+      q: "How does the AI understand my journal?",
+      a: "Ju reads patterns in what you share, like when the weight hits, what makes it harder to say, and what kind of support feels safest for you. The goal is to reflect something emotionally true, not give you a generic summary."
+    },
+    {
+      q: "Is my data private?",
+      a: "100% private. Your journal entries are encrypted and only you can access them. We never sell data or share personal information with third parties."
+    },
+    {
+      q: "Why does Nuju ask for my name and email so early?",
+      a: "Because the reveal is meant to feel personal. Ju uses your name in the read, and your email lets you keep the support attached to the same account after checkout."
+    },
+    {
+      q: "What's the difference between Weekly, Annual, and Lifetime?",
+      a: "Weekly is the lightest way to begin, Annual is the best value if you want Ju in your life consistently, and Lifetime is the one-time choice for people who already know the fit is real."
+    }
+  ];
+
+  const landingFaqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": landingFaqs.map(faq => ({
+      "@type": "Question",
+      "name": faq.q,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": faq.a
+      }
+    }))
+  };
+
+  const howToSchema = {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "How to Start Journaling with Nuju",
+    "description": "Learn how to use Nuju's AI journal in 3 simple steps",
+    "step": [
+      {
+        "@type": "HowToStep",
+        "name": "Tap your mood",
+        "text": "Choose from 5 mood levels in just one tap. Track how you're feeling right now."
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Write or speak",
+        "text": "Journal for 30 seconds using text or voice. No pressure, just honest reflection."
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Get AI insights",
+        "text": "Receive personalized patterns and insights about your emotional world."
+      }
+    ]
+  };
+
   return (
     <div className="min-h-screen bg-background">
       <SEOHead
-        title="Nuju: AI Journal App for Mood Tracking & Emotional Wellness"
-        description="Nuju is the AI journal app that tracks your mood, reveals emotional patterns, and gives you a personal AI coach. Start free — 30 seconds a day."
+        title="Nuju | Feel Understood Faster"
+        description="Nuju helps people feel understood when their mind feels loud, heavy, or hard to explain. Start the Ju Gets You reveal and see what Ju notices."
         canonical="https://nuju.app/"
       />
-      <nav className="sticky top-0 z-50 border-b border-border/60 bg-background/95">
+      <script type="application/ld+json">{JSON.stringify(howToSchema)}</script>
+      <script type="application/ld+json">{JSON.stringify(landingFaqSchema)}</script>
+      <nav className="sticky top-0 z-50 border-b border-border/60 bg-background/78 backdrop-blur-xl">
         <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4">
           <div className="flex items-center gap-3">
             <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-primary/10 shadow-inner">
@@ -727,6 +790,42 @@ const Landing: React.FC = () => {
                 </motion.div>
               );
             })}
+          </div>
+        </div>
+      </motion.section>
+
+      {/* FAQ Section */}
+      <motion.section
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+        className="py-20 bg-background"
+        id="faq"
+      >
+        <div className="container mx-auto px-4 max-w-3xl">
+          <h2 className="text-4xl font-serif text-center mb-6 font-bold">
+            Frequently Asked Questions
+          </h2>
+          <p className="text-center text-muted-foreground mb-12 text-sm">
+            Got questions? We've got answers.
+          </p>
+
+          <div className="space-y-4">
+            {landingFaqs.map((faq, i) => (
+              <details
+                key={i}
+                className="group bg-card/50 rounded-xl overflow-hidden border border-border/40 hover:border-border/60 transition-all"
+              >
+                <summary className="flex justify-between items-center p-6 cursor-pointer font-medium text-[15px] list-none">
+                  {faq.q}
+                  <ChevronDown className="w-5 h-5 transition-transform group-open:rotate-180 shrink-0 ml-4" />
+                </summary>
+                <p className="px-6 pb-6 text-muted-foreground leading-relaxed text-sm">
+                  {faq.a}
+                </p>
+              </details>
+            ))}
           </div>
         </div>
       </motion.section>
