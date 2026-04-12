@@ -9,6 +9,7 @@ export const ROUTES = {
   LOGIN: '/login',
   SIGNUP: '/signup',
   AUTH_CALLBACK: '/auth/callback',
+  CHECKOUT_COMPLETE: '/checkout/complete',
 
   // App routes
   APP: '/app',

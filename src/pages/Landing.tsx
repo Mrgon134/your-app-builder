@@ -9,6 +9,7 @@ import {
   ArrowRight,
   BrainCircuit,
   Check,
+  ChevronDown,
   Flame,
   Globe,
   Heart,
@@ -210,14 +211,76 @@ const Landing: React.FC = () => {
     },
   ];
 
+  const landingFaqs = [
+    {
+      q: "Do I need to pay before I can use Nuju?",
+      a: "You start with the Ju Gets You reveal, then choose Weekly, Annual, or Lifetime if you want Ju to stay with you beyond that first read."
+    },
+    {
+      q: "How does the AI understand my journal?",
+      a: "Ju reads patterns in what you share, like when the weight hits, what makes it harder to say, and what kind of support feels safest for you. The goal is to reflect something emotionally true, not give you a generic summary."
+    },
+    {
+      q: "Is my data private?",
+      a: "100% private. Your journal entries are encrypted and only you can access them. We never sell data or share personal information with third parties."
+    },
+    {
+      q: "Why does Nuju ask for my name and email so early?",
+      a: "Because the reveal is meant to feel personal. Ju uses your name in the read, and your email lets you keep the support attached to the same account after checkout."
+    },
+    {
+      q: "What's the difference between Weekly, Annual, and Lifetime?",
+      a: "Weekly is the lightest way to begin, Annual is the best value if you want Ju in your life consistently, and Lifetime is the one-time choice for people who already know the fit is real."
+    }
+  ];
+
+  const landingFaqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": landingFaqs.map(faq => ({
+      "@type": "Question",
+      "name": faq.q,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": faq.a
+      }
+    }))
+  };
+
+  const howToSchema = {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "How to Start Journaling with Nuju",
+    "description": "Learn how to use Nuju's AI journal in 3 simple steps",
+    "step": [
+      {
+        "@type": "HowToStep",
+        "name": "Tap your mood",
+        "text": "Choose from 5 mood levels in just one tap. Track how you're feeling right now."
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Write or speak",
+        "text": "Journal for 30 seconds using text or voice. No pressure, just honest reflection."
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Get AI insights",
+        "text": "Receive personalized patterns and insights about your emotional world."
+      }
+    ]
+  };
+
   return (
     <div className="min-h-screen bg-background">
       <SEOHead
-        title="Nuju: AI Journal App for Mood Tracking & Emotional Wellness"
-        description="Nuju is the AI journal app that tracks your mood, reveals emotional patterns, and gives you a personal AI coach. Start free — 30 seconds a day."
+        title="Nuju | Feel Understood Faster"
+        description="Nuju helps people feel understood when their mind feels loud, heavy, or hard to explain. Start the Ju Gets You reveal and see what Ju notices."
         canonical="https://nuju.app/"
       />
-      <nav className="sticky top-0 z-50 border-b border-border/60 bg-background/95">
+      <script type="application/ld+json">{JSON.stringify(howToSchema)}</script>
+      <script type="application/ld+json">{JSON.stringify(landingFaqSchema)}</script>
+      <nav className="sticky top-0 z-50 border-b border-border/60 bg-background/78 backdrop-blur-xl">
         <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4">
           <div className="flex items-center gap-3">
             <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-primary/10 shadow-inner">
@@ -665,31 +728,47 @@ const Landing: React.FC = () => {
                   key={displayPlan.name}
                   className={`relative rounded-[2rem] border p-8 flex flex-col hover:shadow-xl ${
                     isLifetime
-                      ? "border-primary/35 bg-[linear-gradient(180deg,rgba(245,241,255,0.96),rgba(255,255,255,0.99))] shadow-[0_20px_50px_-24px_rgba(124,110,219,0.38)]"
+                      ? "border-primary/35 bg-[linear-gradient(180deg,rgba(245,241,255,0.96),rgba(255,255,255,0.99))] shadow-[0_20px_50px_-24px_rgba(124,110,219,0.38)] dark:border-[#9385F6]/45 dark:bg-[radial-gradient(circle_at_top,rgba(156,137,255,0.22),transparent_45%),linear-gradient(180deg,#201934_0%,#161124_100%)] dark:shadow-[0_20px_50px_-24px_rgba(86,70,177,0.55)]"
                       : displayPlan.highlight
                       ? "border-primary/40 bg-primary text-primary-foreground shadow-[0_0_30px_rgba(124,110,219,0.25)]"
-                      : "border-border/60 bg-card shadow-sm"
+                      : "border-border/60 bg-card shadow-sm dark:border-white/10 dark:bg-white/[0.03]"
                   }`}
                 >
                   {displayPlan.badge && (
-                    <div className="absolute -top-3 left-6 rounded-full bg-[#FFD166] px-3 py-1 text-xs font-bold text-[#1A1A2E] shadow-sm">
+                    <div
+                      className={`absolute -top-3 left-6 rounded-full px-3 py-1 text-xs font-bold shadow-sm ${
+                        isLifetime
+                          ? "bg-[#FFD166] text-[#1A1A2E]"
+                          : "bg-[#FFD166] text-[#1A1A2E]"
+                      }`}
+                    >
                       {displayPlan.badge}
                     </div>
                   )}
 
-                  <h3 className="font-serif text-2xl font-semibold">{displayPlan.name}</h3>
+                  <h3 className={`font-serif text-2xl font-semibold ${isLifetime ? "text-foreground dark:text-white" : "text-foreground"}`}>
+                    {displayPlan.name}
+                  </h3>
                   <div className="mt-4 flex items-end gap-1">
-                    <span className="text-4xl font-bold">{displayPlan.price}</span>
+                    <span className={`text-4xl font-bold ${isLifetime ? "text-foreground dark:text-white" : "text-foreground"}`}>
+                      {displayPlan.price}
+                    </span>
                     {!isLifetime && (
                       <span className={displayPlan.highlight ? "text-primary-foreground/75" : "text-muted-foreground"}>
                         {displayPlan.name === "Weekly" ? "/week" : "/year"}
                       </span>
                     )}
                     {isLifetime && (
-                      <span className="text-muted-foreground">one-time</span>
+                      <span className="text-muted-foreground dark:text-white/70">one-time</span>
                     )}
                   </div>
-                  <p className={`mt-3 text-sm leading-6 ${displayPlan.highlight ? "text-primary-foreground/85" : "text-muted-foreground"}`}>
+                  <p className={`mt-3 text-sm leading-6 ${
+                    isLifetime
+                      ? "text-muted-foreground dark:text-white/78"
+                      : displayPlan.highlight
+                        ? "text-primary-foreground/85"
+                        : "text-muted-foreground"
+                  }`}>
                     {displayPlan.note}
                   </p>
 
@@ -697,6 +776,7 @@ const Landing: React.FC = () => {
                     <LifetimeScarcityMeter
                       className="mt-4"
                       scarcity={lifetimeScarcity}
+                      variant="hero"
                     />
                   )}
 
@@ -704,9 +784,23 @@ const Landing: React.FC = () => {
                     {displayPlan.features.map((feature) => (
                       <li
                         key={feature}
-                        className={`flex items-start gap-2 text-sm ${displayPlan.highlight ? "text-primary-foreground/92" : "text-muted-foreground"}`}
+                        className={`flex items-start gap-2 text-sm ${
+                          isLifetime
+                            ? "text-muted-foreground dark:text-white/82"
+                            : displayPlan.highlight
+                              ? "text-primary-foreground/92"
+                              : "text-muted-foreground"
+                        }`}
                       >
-                        <Check className={`mt-0.5 h-4 w-4 shrink-0 ${displayPlan.highlight ? "text-primary-foreground" : "text-primary"}`} />
+                        <Check
+                          className={`mt-0.5 h-4 w-4 shrink-0 ${
+                            isLifetime
+                              ? "text-primary dark:text-[#B8AEFF]"
+                              : displayPlan.highlight
+                                ? "text-primary-foreground"
+                                : "text-primary"
+                          }`}
+                        />
                         <span>{feature}</span>
                       </li>
                     ))}
@@ -716,10 +810,10 @@ const Landing: React.FC = () => {
                     onClick={displayPlan.onClick}
                     className={`mt-auto w-full rounded-2xl py-3.5 text-sm font-semibold transition-all active:scale-[0.97] ${
                       isLifetime
-                        ? "bg-[linear-gradient(135deg,#7C6EDB,#6A58D8)] text-white hover:shadow-[0_18px_35px_-18px_rgba(124,110,219,0.75)]"
+                        ? "bg-[linear-gradient(135deg,#9385F6,#6F5FE8)] text-white hover:shadow-[0_18px_35px_-18px_rgba(124,110,219,0.75)] dark:bg-[linear-gradient(135deg,#9B8FFF,#7767EA)]"
                       : displayPlan.highlight
                         ? "bg-primary-foreground text-primary hover:shadow-lg"
-                        : "border border-[#D8D0EE] bg-[#E9E4F6] text-[#2E2550] hover:bg-[#DED6F1] hover:shadow-[0_12px_24px_-18px_rgba(45,37,80,0.35)]"
+                        : "border border-[#D8D0EE] bg-[#E9E4F6] text-[#2E2550] hover:bg-[#DED6F1] hover:shadow-[0_12px_24px_-18px_rgba(45,37,80,0.35)] dark:border-white/10 dark:bg-white/10 dark:text-white"
                     }`}
                   >
                     {displayPlan.cta}
@@ -727,6 +821,42 @@ const Landing: React.FC = () => {
                 </motion.div>
               );
             })}
+          </div>
+        </div>
+      </motion.section>
+
+      {/* FAQ Section */}
+      <motion.section
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+        className="py-20 bg-background"
+        id="faq"
+      >
+        <div className="container mx-auto px-4 max-w-3xl">
+          <h2 className="text-4xl font-serif text-center mb-6 font-bold">
+            Frequently Asked Questions
+          </h2>
+          <p className="text-center text-muted-foreground mb-12 text-sm">
+            Got questions? We've got answers.
+          </p>
+
+          <div className="space-y-4">
+            {landingFaqs.map((faq, i) => (
+              <details
+                key={i}
+                className="group bg-card/50 rounded-xl overflow-hidden border border-border/40 hover:border-border/60 transition-all"
+              >
+                <summary className="flex justify-between items-center p-6 cursor-pointer font-medium text-[15px] list-none">
+                  {faq.q}
+                  <ChevronDown className="w-5 h-5 transition-transform group-open:rotate-180 shrink-0 ml-4" />
+                </summary>
+                <p className="px-6 pb-6 text-muted-foreground leading-relaxed text-sm">
+                  {faq.a}
+                </p>
+              </details>
+            ))}
           </div>
         </div>
       </motion.section>

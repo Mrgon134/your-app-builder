@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import {
   ArrowLeft,
@@ -23,12 +23,10 @@ import { useLifetimeScarcity } from "@/hooks/use-lifetime-scarcity";
 import { usePostHogEvents } from "@/hooks/use-posthog-events";
 import { SUPABASE_ANON_KEY, SUPABASE_URL } from "@/integrations/supabase/client";
 import { useAuth } from "@/lib/auth";
-import { clearAuthIntent, peekAuthIntent, saveAuthIntent } from "@/lib/auth-intent";
 import { updateProfile } from "@/lib/api";
 import { PRICING_CONFIG } from "@/lib/config";
 import {
   buildResultTeaser,
-  clearFunnelState,
   createDefaultFunnelState,
   FunnelPlan,
   loadFunnelState,
@@ -246,7 +244,6 @@ const ChoiceCard: React.FC<{
 );
 
 const OnboardingScreen: React.FC = () => {
-  const navigate = useNavigate();
   const location = useLocation();
   const geo = useGeoPricing();
   const events = usePostHogEvents();
@@ -285,7 +282,6 @@ const OnboardingScreen: React.FC = () => {
   const abandonmentSourceRef = useRef(initialState.answers.source);
   const abandonmentUserRef = useRef<string | null>(null);
   const processingStartedRef = useRef(false);
-  const checkoutResumeHandledRef = useRef(false);
   const leadSyncKeyRef = useRef("");
 
   useEffect(() => {
@@ -409,21 +405,6 @@ const OnboardingScreen: React.FC = () => {
     };
   }, [funnelState.answers, funnelState.sessionId, funnelState.step, user?.id]);
 
-  useEffect(() => {
-    if (!user || checkoutResumeHandledRef.current || funnelState.step !== PAYWALL_STEP || !funnelState.answers.selectedPlan) {
-      return;
-    }
-
-    const intent = peekAuthIntent();
-    if (!intent?.plan || intent.resumePath !== ROUTES.ONBOARDING || intent.plan !== funnelState.answers.selectedPlan) {
-      return;
-    }
-
-    checkoutResumeHandledRef.current = true;
-    clearAuthIntent();
-    void handleCheckout(intent.plan as Exclude<FunnelPlan, null>);
-  }, [funnelState.answers.selectedPlan, funnelState.step, user]);
-
   const teaser = reveal || buildResultTeaser(funnelState.answers);
   const yearlySavings = Math.max(0, Math.round((1 - geo.rates.yearly / (geo.rates.weekly * 52)) * 100));
   const { snapshot: lifetimeScarcity } = useLifetimeScarcity();
@@ -518,17 +499,20 @@ const OnboardingScreen: React.FC = () => {
   };
 
   async function handleCheckout(plan: Exclude<FunnelPlan, null>) {
+    const checkoutName = funnelState.answers.name.trim();
+    const checkoutEmail = funnelState.answers.email.trim();
+
     setAnswers({ selectedPlan: plan });
     setCheckoutError("");
     events.trackFunnelPlanSelected(plan, funnelState.answers.source, user?.id || null);
 
-    if (!user) {
-      saveAuthIntent({
-        source: "onboarding",
-        plan,
-        resumePath: ROUTES.ONBOARDING,
-      });
-      navigate(`${ROUTES.AUTH}?mode=signup`);
+    if (!checkoutName) {
+      setCheckoutError("Add your name first so Ju can carry it into checkout and your read.");
+      return;
+    }
+
+    if (!checkoutEmail || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(checkoutEmail)) {
+      setCheckoutError("Add the email you want to keep after payment so Ju can unlock the right account.");
       return;
     }
 
@@ -538,13 +522,20 @@ const OnboardingScreen: React.FC = () => {
     }
 
     setCheckoutLoading(plan);
-    events.trackFunnelCheckoutStarted(plan, funnelState.answers.source, user.id);
+    events.trackFunnelCheckoutStarted(plan, funnelState.answers.source, user?.id || null);
 
     try {
-      await updateProfile(user.id, {
-        display_name: funnelState.answers.name.trim() || null,
-        onboarded: true,
-      } as never);
+      await persistOnboardingLead({
+        sessionId: funnelState.sessionId,
+        answers: {
+          ...funnelState.answers,
+          authCaptured: true,
+          name: checkoutName,
+          email: checkoutEmail,
+          selectedPlan: plan,
+        },
+        userId: user?.id || null,
+      });
 
       const response = await fetch(`${SUPABASE_URL}/functions/v1/dodo-checkout`, {
         method: "POST",
@@ -554,9 +545,11 @@ const OnboardingScreen: React.FC = () => {
         },
         body: JSON.stringify({
           variant_id: getProductId(plan),
-          user_id: user.id,
-          user_email: funnelState.answers.email.trim() || user.email,
-          user_name: funnelState.answers.name.trim() || user.email?.split("@")[0] || "User",
+          sessionId: funnelState.sessionId,
+          email: checkoutEmail,
+          name: checkoutName,
+          plan,
+          source: funnelState.answers.source,
           country: geo.country,
           coupon_code: geo.couponCode || undefined,
         }),
@@ -568,28 +561,13 @@ const OnboardingScreen: React.FC = () => {
 
       const data = await response.json();
       completedRef.current = true;
-      events.trackFunnelCheckoutCompleted(plan, funnelState.answers.source, user.id);
-      window.open(data.url, "_blank");
+      window.location.assign(data.url);
     } catch (error) {
       setCheckoutError(error instanceof Error ? error.message : "Checkout failed.");
     } finally {
       setCheckoutLoading(null);
     }
   }
-
-  const finishWithoutUpgrade = async () => {
-    if (user) {
-      try {
-        await updateProfile(user.id, { onboarded: true } as never);
-      } catch {
-        // Ignore profile update failures and continue.
-      }
-    }
-
-    completedRef.current = true;
-    clearFunnelState();
-    navigate(user ? ROUTES.APP : ROUTES.LANDING);
-  };
 
   const paywallPlans: Array<{
     id: Exclude<FunnelPlan, null>;
@@ -604,27 +582,27 @@ const OnboardingScreen: React.FC = () => {
       id: "weekly",
       title: "Weekly",
       price: geo.formatPrice(geo.rates.weekly),
-      unit: "A gentle weekly start",
-      note: "For when you want support now but still want to keep the commitment light.",
-      emphasis: "Lightest way to begin",
+      unit: "Start softly, week by week",
+      note: "Best if you want Ju with you now and want to begin with the lightest commitment.",
+      emphasis: "A gentle first yes",
     },
     {
       id: "yearly",
       title: "Annual",
       price: geo.formatPrice(geo.rates.yearly),
-      unit: "Best value over time",
+      unit: "Keep Ju close all year",
       badge: yearlySavings > 0 ? `Save ${yearlySavings}%` : "Best value",
-      note: "For when you want Ju close long enough to feel a real emotional difference.",
-      emphasis: "Best long-term value",
+      note: "Best if you already know this kind of support belongs in your life consistently.",
+      emphasis: "The clearest long-term value",
     },
     {
       id: "lifetime_one_time",
       title: "Lifetime",
       price: geo.formatPrice(geo.rates.lifetime),
-      unit: "One payment, no renewals",
+      unit: "Keep Ju close for good",
       badge: "Limited offer",
-      note: "For when you already know this is the kind of support you want to keep close.",
-      emphasis: "Keep Ju for good",
+      note: "One payment for the people who already feel the fit and do not want renewals hanging over it later.",
+      emphasis: "The strongest yes if Ju already feels right",
     },
   ];
 
@@ -836,7 +814,7 @@ const OnboardingScreen: React.FC = () => {
             <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">Step 7</p>
             <h2 className="mt-3 font-serif text-3xl font-bold text-foreground">Who is Ju speaking to?</h2>
             <p className="mt-3 text-base leading-8 text-muted-foreground">
-              Add your name and email so Ju can make the read feel personal and keep it saved for you.
+              Add your name and email so the read can feel like it is speaking to you, not at you.
             </p>
             <div className="mt-7 grid gap-3">
               <div className="relative">
@@ -860,7 +838,7 @@ const OnboardingScreen: React.FC = () => {
               </div>
             </div>
             <div className="mt-4 rounded-2xl border border-primary/20 bg-primary/6 px-4 py-4 text-sm leading-7 text-foreground">
-              Ju uses your name in the read so it feels like it is speaking to you personally.
+              Ju uses your name in the read so the moment lands more personally and does not feel like copy made for everyone.
             </div>
             {contactError ? (
               <div className="mt-4 rounded-2xl border border-destructive/20 bg-destructive/8 px-4 py-4 text-sm text-destructive">
@@ -1031,7 +1009,7 @@ const OnboardingScreen: React.FC = () => {
                 <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">Ju Gets You</p>
                 <h2 className="mt-3 font-serif text-3xl font-bold text-foreground">{teaser.headline}</h2>
                 <p className="mt-3 text-base leading-8 text-muted-foreground">
-                  This is Ju's first read on what feels true underneath what you shared.
+                  This is Ju's first read on the part of your emotional weight that has been hardest to say out loud.
                 </p>
               </div>
               <div className="rounded-full border border-primary/20 bg-primary/6 px-4 py-2 text-sm font-semibold text-primary">
@@ -1067,7 +1045,7 @@ const OnboardingScreen: React.FC = () => {
 
             <div className="mt-7">
               <PrimaryButton onClick={completeStep}>
-                Show me what opens next
+                Keep going
                 <ChevronRight className="h-4 w-4" />
               </PrimaryButton>
             </div>
@@ -1078,13 +1056,13 @@ const OnboardingScreen: React.FC = () => {
         return (
           <StepCard>
             <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">Keep this feeling open</p>
-            <h2 className="mt-3 font-serif text-3xl font-bold text-foreground">This gets deeper when Ju can stay with you.</h2>
+            <h2 className="mt-3 font-serif text-3xl font-bold text-foreground">This only gets more valuable when Ju can stay with you.</h2>
             <p className="mt-3 text-base leading-8 text-muted-foreground">{teaser.continuationLine}</p>
             <div className="mt-7 grid gap-3">
               {[
-                "Come back when the same weight shows up again and Ju still knows where you tend to get stuck.",
-                "Get support that starts from your real emotional pattern instead of one-size-fits-all comfort.",
-                "Turn this first feeling of being understood into something you can return to again and again.",
+                "Come back when the same weight returns and Ju still remembers where it tends to catch in you.",
+                "Get support that starts from your real emotional pattern instead of generic comfort that misses the point.",
+                "Turn this first feeling of being understood into something you can reach for before the next hard moment gets bigger.",
               ].map((item) => (
                 <div key={item} className="rounded-[1.5rem] border border-border/60 bg-background px-5 py-5">
                   <p className="text-sm leading-7 text-foreground">{item}</p>
@@ -1092,7 +1070,7 @@ const OnboardingScreen: React.FC = () => {
               ))}
             </div>
             <div className="mt-7">
-              <PrimaryButton onClick={completeStep}>See the plans</PrimaryButton>
+              <PrimaryButton onClick={completeStep}>Show me the plans</PrimaryButton>
             </div>
           </StepCard>
         );
@@ -1104,7 +1082,7 @@ const OnboardingScreen: React.FC = () => {
             <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">Choose your plan</p>
             <h2 className="mt-3 font-serif text-3xl font-bold text-foreground">Keep the version of Ju that gets you.</h2>
             <p className="mt-3 text-base leading-8 text-muted-foreground">
-              Choose how closely you want that support to stay with you from here.
+              You have already felt the first read. Choose how you want this kind of support to stay with you from here.
             </p>
 
             {checkoutError ? (
@@ -1124,38 +1102,54 @@ const OnboardingScreen: React.FC = () => {
                     key={plan.id}
                     className={`rounded-[1.8rem] border p-5 transition-all ${
                       plan.id === "lifetime_one_time"
-                        ? "border-primary/35 bg-[linear-gradient(180deg,rgba(245,241,255,0.96),rgba(255,255,255,0.99))] shadow-[0_20px_50px_-24px_rgba(124,110,219,0.38)]"
+                        ? "border-primary/40 bg-[linear-gradient(180deg,rgba(245,241,255,0.97),rgba(255,255,255,0.99))] shadow-[0_24px_60px_-28px_rgba(124,110,219,0.5)] dark:border-[#9385F6]/50 dark:bg-[radial-gradient(circle_at_top,rgba(156,137,255,0.22),transparent_45%),linear-gradient(180deg,#201934_0%,#161124_100%)] dark:text-white"
                         : plan.id === "yearly"
-                          ? "border-primary/18 bg-primary/[0.03]"
-                          : "border-border/60 bg-background"
+                          ? "border-primary/18 bg-primary/[0.03] dark:border-white/10 dark:bg-white/[0.03]"
+                          : "border-border/60 bg-background dark:border-white/10 dark:bg-white/[0.02]"
                     } ${selected ? "shadow-md shadow-primary/10" : ""}`}
                   >
                     <div className="flex items-start justify-between gap-3">
                       <div>
-                        <p className="text-lg font-semibold text-foreground">{plan.title}</p>
-                        <p className="mt-4 text-4xl font-bold tracking-tight text-foreground">{plan.price}</p>
-                        <p className="mt-1 text-sm font-medium text-muted-foreground">{plan.unit}</p>
+                        <p className={`text-lg font-semibold ${plan.id === "lifetime_one_time" ? "text-foreground dark:text-white" : "text-foreground"}`}>
+                          {plan.title}
+                        </p>
+                        <p className={`mt-4 text-4xl font-bold tracking-tight ${plan.id === "lifetime_one_time" ? "text-foreground dark:text-white" : "text-foreground"}`}>
+                          {plan.price}
+                        </p>
+                        <p className={`mt-1 text-sm font-medium ${plan.id === "lifetime_one_time" ? "text-muted-foreground dark:text-white/72" : "text-muted-foreground"}`}>
+                          {plan.unit}
+                        </p>
                       </div>
                       {plan.badge ? (
-                        <span className="rounded-full bg-primary/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-primary">
+                        <span
+                          className={`rounded-full px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] ${
+                            plan.id === "lifetime_one_time"
+                              ? "bg-primary/12 text-primary dark:bg-white/12 dark:text-white"
+                              : "bg-primary/10 text-primary"
+                          }`}
+                        >
                           {plan.badge}
                         </span>
                       ) : null}
                     </div>
 
-                    <p className="mt-4 text-sm font-semibold text-foreground">{plan.emphasis}</p>
-                    <p className="mt-2 text-sm leading-7 text-muted-foreground">{plan.note}</p>
+                    <p className={`mt-4 text-sm font-semibold ${plan.id === "lifetime_one_time" ? "text-foreground dark:text-white" : "text-foreground"}`}>
+                      {plan.emphasis}
+                    </p>
+                    <p className={`mt-2 text-sm leading-7 ${plan.id === "lifetime_one_time" ? "text-muted-foreground dark:text-white/78" : "text-muted-foreground"}`}>
+                      {plan.note}
+                    </p>
 
                     {plan.id === "lifetime_one_time" ? (
-                      <LifetimeScarcityMeter className="mt-4" scarcity={lifetimeScarcity} />
+                      <LifetimeScarcityMeter className="mt-4" scarcity={lifetimeScarcity} variant="hero" />
                     ) : null}
 
                     <div className="mt-6">
                       <PrimaryButton
                         className={
                           plan.id === "lifetime_one_time"
-                            ? "bg-[linear-gradient(135deg,#7C6EDB,#6A58D8)] text-white hover:shadow-[0_18px_35px_-18px_rgba(124,110,219,0.75)]"
-                            : "!border !border-[#D8D0EE] !bg-[#E9E4F6] !text-[#2E2550] hover:!bg-[#DED6F1] hover:shadow-[0_12px_24px_-18px_rgba(45,37,80,0.35)]"
+                            ? "bg-[linear-gradient(135deg,#9385F6,#6F5FE8)] text-white hover:shadow-[0_18px_35px_-18px_rgba(124,110,219,0.75)] dark:bg-[linear-gradient(135deg,#9B8FFF,#7767EA)]"
+                            : "!border !border-[#DDD8EA] !bg-[#F1EEF7] !text-[#31284F] hover:!bg-[#E6E0F2] hover:shadow-[0_12px_24px_-18px_rgba(45,37,80,0.35)] dark:!border-white/10 dark:!bg-white/10 dark:!text-white"
                         }
                         onClick={() => handleCheckout(plan.id)}
                         disabled={!available || Boolean(checkoutLoading)}
@@ -1167,22 +1161,6 @@ const OnboardingScreen: React.FC = () => {
                   </div>
                 );
               })}
-            </div>
-
-            <div className="mt-7 flex flex-col gap-3 sm:flex-row">
-              <SecondaryButton onClick={finishWithoutUpgrade}>
-                {user ? "Continue with limited access" : "Not now"}
-              </SecondaryButton>
-              {!user ? (
-                <SecondaryButton
-                  onClick={() => {
-                    saveAuthIntent({ source: "onboarding", resumePath: ROUTES.ONBOARDING });
-                    navigate(`${ROUTES.AUTH}?mode=login`);
-                  }}
-                >
-                  I already have an account
-                </SecondaryButton>
-              ) : null}
             </div>
           </StepCard>
         );

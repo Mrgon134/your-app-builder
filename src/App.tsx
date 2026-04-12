@@ -1,12 +1,13 @@
 import React, { Suspense, lazy } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+
+import { ErrorBoundary } from "@/components/ErrorBoundary";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import { LangProvider } from "@/lib/i18n";
 import { AuthProvider, useAuth } from "@/lib/auth";
-import { ErrorBoundary } from "@/components/ErrorBoundary";
+import { LangProvider } from "@/lib/i18n";
 
 // Lazy-load all routes — each page is only downloaded when first visited.
 // This splits the bundle and dramatically improves LCP on the landing page.
@@ -15,6 +16,7 @@ const BlogPost = lazy(() => import("./pages/BlogPost.tsx"));
 const Index = lazy(() => import("./pages/Index.tsx"));
 const AppPage = lazy(() => import("./pages/AppPage.tsx"));
 const AuthPage = lazy(() => import("./pages/AuthPage.tsx"));
+const CheckoutComplete = lazy(() => import("./pages/CheckoutComplete.tsx"));
 const OnboardingScreen = lazy(() => import("@/components/app/OnboardingScreen"));
 const Install = lazy(() => import("./pages/Install.tsx"));
 const Terms = lazy(() => import("./pages/Terms.tsx"));
@@ -58,6 +60,7 @@ const App = () => (
                   <Route path="/onboarding" element={<OnboardingScreen />} />
                   <Route path="/auth" element={<AuthPage />} />
                   <Route path="/auth/callback" element={<AuthCallback />} />
+                  <Route path="/checkout/complete" element={<CheckoutComplete />} />
                   <Route path="/install" element={<Install />} />
                   <Route path="/terms" element={<Terms />} />
                   <Route path="/privacy" element={<Privacy />} />

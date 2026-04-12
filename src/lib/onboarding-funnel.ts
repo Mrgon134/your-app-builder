@@ -129,32 +129,32 @@ export const getFunnelContactPrefill = () => {
 
 const GOAL_COPY: Record<Exclude<FunnelGoal, null>, { label: string; headline: string; mirror: string }> = {
   overwhelmed: {
-    label: "Emotionally overloaded",
-    headline: "Ju notices that you have been carrying too much without enough room to set any of it down.",
-    mirror: "This does not read like someone who is weak. It reads like someone who has been trying to stay standing while holding too much for too long.",
+    label: "Carrying too much",
+    headline: "Ju notices how much you have been holding while still trying to look okay on the outside.",
+    mirror: "This reads like someone who has stayed functional for longer than their heart or mind really had room for.",
   },
   unseen: {
     label: "Wanting to feel understood",
-    headline: "Ju notices that a deep part of this is wanting to feel understood without having to explain yourself perfectly.",
-    mirror: "It feels less like you need advice first and more like you need something steady enough to really get what this feels like from the inside.",
+    headline: "Ju notices how tired you are of needing perfect words before anyone really gets it.",
+    mirror: "It feels less like you want advice and more like you want something to recognize the feeling before you have to translate it.",
   },
   disconnected: {
-    label: "Feeling far from yourself",
-    headline: "Ju notices that you have been a little disconnected from your own inner state lately.",
-    mirror: "There is a sense that you have been functioning on the outside while still feeling a step away from what is actually happening inside you.",
+    label: "Far from yourself",
+    headline: "Ju notices that part of you has gone quiet just to keep getting through the day.",
+    mirror: "There is a distance between what you show on the surface and what is actually happening inside you right now.",
   },
   spiraling: {
-    label: "Mind spiraling fast",
-    headline: "Ju notices that your mind has been outrunning your ability to settle or explain what is happening.",
-    mirror: "This feels like the kind of inner noise that grows quickly and gets harder to hold the longer you stay alone with it.",
+    label: "Mind running ahead",
+    headline: "Ju notices how fast the feeling becomes noise before you even get a chance to name it.",
+    mirror: "This feels like the kind of emotional spiral that gets louder the longer you are left alone with it.",
   },
 };
 
 const FOCUS_COPY: Record<Exclude<FunnelFocus, null>, string> = {
-  name_it: "Ju would help you name what this really is, so it stops feeling like one blurred knot in your chest.",
-  calm_me: "Ju would help slow the emotional noise down first, because clarity is hard when everything still feels loud.",
-  stay_with_me: "Ju would stay with you gently enough that you do not have to sort it out alone while it still feels raw.",
-  show_pattern: "Ju would help connect this moment to a larger pattern, so it starts making sense instead of just hurting.",
+  name_it: "Ju would help you catch the feeling before it blurs together, then put honest words around it so it stops sitting in your chest as one heavy knot.",
+  calm_me: "Ju would help the emotional noise come down first, because nothing feels clear while everything is still this loud inside.",
+  stay_with_me: "Ju would stay with the feeling gently enough that you do not have to carry the rawest part of it alone.",
+  show_pattern: "Ju would help connect this moment to the pattern under it, so it starts making sense instead of just hurting again.",
 };
 
 const HARD_MOMENT_COPY: Record<Exclude<FunnelHardestMoment, null>, string> = {
@@ -233,14 +233,14 @@ export const buildResultTeaser = (answers: OnboardingFunnelAnswers): ResultTease
     whyItFits: whyParts.join(" "),
     firstSupportMove: answers.focus
       ? FOCUS_COPY[answers.focus]
-      : "Ju would help you put words around what is heavy, so the feeling stops staying completely alone inside you.",
+      : "Ju would help you put words around what is heaviest first, so the feeling stops staying alone and shapeless inside you.",
     supportSignals: [
       answers.style ? STYLE_COPY[answers.style] : "Ju should feel safe enough that you can be real quickly.",
       answers.baseline ? BASELINE_COPY[answers.baseline] : "Ju should meet you gently where you actually are, not where people expect you to be.",
       answers.relief ? RELIEF_COPY[answers.relief] : "The first step should feel like emotional relief, not homework.",
     ],
     continuationLine: firstName
-      ? `${firstName}, if Ju keeps feeling this accurate, the next step is turning that sense of being understood into support you can come back to whenever the weight returns.`
-      : "If Ju keeps feeling this accurate, the next step is turning that sense of being understood into support you can come back to whenever the weight returns.",
+      ? `${firstName}, if this already feels true, the next step is keeping Ju close enough that the next heavy moment does not have to start from scratch.`
+      : "If this already feels true, the next step is keeping Ju close enough that the next heavy moment does not have to start from scratch.",
   };
 };
