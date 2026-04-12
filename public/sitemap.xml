@@ -48,4 +48,28 @@
     <priority>0.3</priority>
     <changefreq>yearly</changefreq>
   </url>
+  <url>
+    <loc>https://nuju.app/blog</loc>
+    <lastmod>2026-04-11</lastmod>
+    <priority>0.8</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/how-to-start-journaling</loc>
+    <lastmod>2026-04-08</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/benefits-of-mood-tracking</loc>
+    <lastmod>2026-04-09</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/ai-journal-vs-traditional</loc>
+    <lastmod>2026-04-10</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+  </url>
 </urlset>

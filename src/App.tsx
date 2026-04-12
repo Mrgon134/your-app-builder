@@ -10,6 +10,8 @@ import { ErrorBoundary } from "@/components/ErrorBoundary";
 
 // Lazy-load all routes — each page is only downloaded when first visited.
 // This splits the bundle and dramatically improves LCP on the landing page.
+const Blog = lazy(() => import("./pages/Blog.tsx"));
+const BlogPost = lazy(() => import("./pages/BlogPost.tsx"));
 const Index = lazy(() => import("./pages/Index.tsx"));
 const AppPage = lazy(() => import("./pages/AppPage.tsx"));
 const AuthPage = lazy(() => import("./pages/AuthPage.tsx"));
@@ -51,6 +53,8 @@ const App = () => (
               <Suspense fallback={<PageLoader />}>
                 <Routes>
                   <Route path="/" element={<Index />} />
+                  <Route path="/blog" element={<Blog />} />
+                  <Route path="/blog/:slug" element={<BlogPost />} />
                   <Route path="/onboarding" element={<OnboardingScreen />} />
                   <Route path="/auth" element={<AuthPage />} />
                   <Route path="/auth/callback" element={<AuthCallback />} />

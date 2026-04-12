@@ -21,6 +21,10 @@ const ROUTES = [
   "/privacy",
   "/terms",
   "/medical-disclaimer",
+  "/blog",
+  "/blog/how-to-start-journaling",
+  "/blog/benefits-of-mood-tracking",
+  "/blog/ai-journal-vs-traditional",
 ];
 
 async function prerender() {
