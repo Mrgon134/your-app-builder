@@ -866,6 +866,477 @@ export const BLOG_POSTS: BlogPost[] = [
       },
     ],
   },
+  {
+    slug: "what-is-ai-journaling",
+    title: "What Is AI Journaling? How It's Different from Regular Journaling",
+    description:
+      "AI journaling is a new category of mental wellness tool that combines personal journaling with intelligent pattern recognition. Here's what it actually does and why it works.",
+    publishedAt: "2026-04-16",
+    readingTime: 6,
+    category: "App Comparison",
+    sections: [
+      {
+        type: "p",
+        content:
+          "Journaling has existed for centuries. AI journaling is something genuinely different — not just a digital notebook, but a tool that reads what you write and tells you something back. Here's what that actually means in practice.",
+      },
+      {
+        type: "h2",
+        content: "What AI journaling actually is",
+      },
+      {
+        type: "p",
+        content:
+          "AI journaling means writing personal entries that an AI processes — surfacing patterns, offering personalized reflections, and providing coaching based on what you specifically wrote. Unlike a paper journal or a plain notes app, the AI doesn't just store your entries. It analyzes them over time and tells you things you wouldn't have noticed on your own.",
+      },
+      {
+        type: "h2",
+        content: "What the AI actually does",
+      },
+      {
+        type: "ul",
+        content: [
+          "Reads your entries and identifies recurring themes and emotional patterns",
+          "Tracks mood across days and weeks, surfacing weekly cycles",
+          "Responds to what YOU specifically wrote — not a generic template",
+          "Asks follow-up questions to help you think more clearly",
+          "Remembers context from past entries to give more relevant responses over time",
+        ],
+      },
+      {
+        type: "h2",
+        content: "5 things AI journaling can do that regular journaling can't",
+      },
+      {
+        type: "ul",
+        content: [
+          "Surface patterns you'd miss manually: 'your mood drops every Sunday evening'",
+          "Provide an outside perspective on your thoughts without judgment or agenda",
+          "Generate prompts based on what you've actually been struggling with recently",
+          "Track mood trends over months automatically — no spreadsheets needed",
+          "Connect relationship patterns to mood data: who in your life affects how you feel",
+        ],
+      },
+      {
+        type: "callout",
+        content:
+          "An AI journal doesn't replace your thinking. It reads what you've already written and helps you see what you couldn't see on your own.",
+      },
+      {
+        type: "h2",
+        content: "The coaching persona concept",
+      },
+      {
+        type: "p",
+        content:
+          "Some AI journaling apps offer different coaching styles — a Gentle Guide for validation and warmth, a Tough Coach for accountability, a Wise Sage for philosophical perspective, a Fun Friend for lightness. This matters because different emotional states call for different kinds of support. The same entry written on a day when you need encouragement vs. a day when you need a reality check benefits from entirely different responses.",
+      },
+      {
+        type: "h2",
+        content: "The privacy question, answered honestly",
+      },
+      {
+        type: "p",
+        content:
+          "Journal entries are among the most sensitive data that exists. Reputable AI journaling apps use end-to-end encryption and explicit policies against selling your data or using entries to train AI models. When evaluating any AI journal app, look for those specifics — not vague 'we care about your privacy' language. Check whether the policy says entries are used to improve the AI model: that's a red flag.",
+      },
+      {
+        type: "h2",
+        content: "Who benefits from AI journaling vs. who should stick to paper",
+      },
+      {
+        type: "ul",
+        content: [
+          "AI journaling suits: people who want insight not just recording, those tracking mental health patterns, therapy supplement users, anyone who freezes up on blank pages",
+          "Paper suits: those wanting zero technology, people who find physical writing more therapeutic, those with strict privacy requirements",
+        ],
+      },
+      {
+        type: "p",
+        content:
+          "Nuju is free to try — the AI responds to your first entry, and within a few weeks surfaces patterns in your mood and emotional life that you wouldn't have spotted manually.",
+      },
+    ],
+  },
+  {
+    slug: "voice-journaling-guide",
+    title: "Voice Journaling: Why Talking Beats Writing for Some People",
+    description:
+      "Voice journaling — speaking your thoughts instead of writing them — is faster, more natural, and often more emotionally honest. Here's how it works and who it's best for.",
+    publishedAt: "2026-04-17",
+    readingTime: 5,
+    category: "Journaling Tips",
+    sections: [
+      {
+        type: "p",
+        content:
+          "Most journaling advice assumes you'll write. But for a lot of people, writing is actually the barrier — thoughts move faster than fingers, the blank page freezes them up, or sitting down to type just never happens. Voice journaling removes that friction entirely.",
+      },
+      {
+        type: "h2",
+        content: "What voice journaling is",
+      },
+      {
+        type: "p",
+        content:
+          "Voice journaling means speaking your thoughts aloud — into a voice memo app, directly to an AI journal, or just out loud if you're processing in the moment. When done with an AI app, the audio gets transcribed and analyzed as a regular journal entry: mood patterns tracked, themes identified, AI reflections generated.",
+      },
+      {
+        type: "h2",
+        content: "Why talking is sometimes more honest than writing",
+      },
+      {
+        type: "p",
+        content:
+          "Writing requires translating thought into text — a process that introduces editing, hesitation, and self-censorship. Speaking is closer to raw thought. Most people find that what comes out of their mouth when they're not filtering is more emotionally direct than what they'd carefully type. The edit happens after in voice journaling; in written journaling, it often happens before you've even said the true thing.",
+      },
+      {
+        type: "h2",
+        content: "Who voice journaling works best for",
+      },
+      {
+        type: "ul",
+        content: [
+          "People with ADHD — typing slows and fragments fast-moving thoughts",
+          "Those with dyslexia or other writing difficulties",
+          "Anyone who processes emotions better by 'talking it out'",
+          "People commuting, walking, or in situations where writing isn't practical",
+          "Those who freeze at a blank page but can speak freely when asked a question",
+        ],
+      },
+      {
+        type: "callout",
+        content:
+          "There's no wrong way to journal. If writing feels like a barrier, try talking for 2 minutes. What comes out when you speak is often more emotionally honest than what you'd write.",
+      },
+      {
+        type: "h2",
+        content: "How to start voice journaling",
+      },
+      {
+        type: "ol",
+        content: [
+          "Find a private space — or use headphones if you're self-conscious about speaking aloud",
+          "Set a 2-minute timer and just start talking about how you feel right now",
+          "Don't edit yourself — rambling is fine, the AI handles the rest",
+          "Add a mood rating after to anchor the entry in your tracking data",
+        ],
+      },
+      {
+        type: "h2",
+        content: "Voice journaling with AI transcription",
+      },
+      {
+        type: "p",
+        content:
+          "Modern AI journaling apps transcribe voice notes with high accuracy and analyze them exactly like written entries — mood tracking, theme identification, personalized reflections. Nuju's voice journaling (Pro feature) handles up to 3 minutes of audio and integrates the transcript with your mood data seamlessly.",
+      },
+      {
+        type: "h2",
+        content: "Limitations worth knowing",
+      },
+      {
+        type: "ul",
+        content: [
+          "Privacy in shared spaces — don't voice journal on public transport",
+          "Transcription accuracy drops with heavy accents or background noise",
+          "Some people find speaking less reflective than writing — both have value depending on what you need",
+          "Voice journaling lacks the slow-down effect of writing, which is sometimes what you actually need",
+        ],
+      },
+      {
+        type: "p",
+        content:
+          "Voice journaling works especially well as a commute or walking habit — when your hands aren't free but your mind needs to unload.",
+      },
+    ],
+  },
+  {
+    slug: "mood-tracking-for-anxiety",
+    title: "Using Mood Tracking to Understand Your Anxiety Triggers",
+    description:
+      "Anxiety often feels random — until you start tracking it. Here's how daily mood tracking reveals the specific patterns driving your anxiety and what to do about them.",
+    publishedAt: "2026-04-18",
+    readingTime: 6,
+    category: "Mental Wellness",
+    sections: [
+      {
+        type: "p",
+        content:
+          "Anxiety feels unpredictable. It shows up seemingly at random, at inconvenient times, for no clear reason. But it's almost never actually random. It has triggers — specific situations, times, people, or physiological states that reliably activate the threat response. The reason it feels random is that most people don't track closely enough to see the pattern.",
+      },
+      {
+        type: "h2",
+        content: "Why anxiety feels random but usually isn't",
+      },
+      {
+        type: "p",
+        content:
+          "Without data, anxiety episodes blur together. You feel anxious on Tuesday morning, then on Friday evening, then on a Sunday — and it seems chaotic. But Tuesday morning anxiety after poor sleep, Friday evening anxiety after a difficult work week, and Sunday anxiety before a demanding Monday are all different patterns pointing at different triggers. Tracking makes those distinctions visible.",
+      },
+      {
+        type: "h2",
+        content: "What 30 days of mood tracking reveals",
+      },
+      {
+        type: "p",
+        content:
+          "A University of Washington study found that people who tracked their mood daily for 30 days identified at least two previously unrecognized emotional triggers — things like sleep quality, social interaction frequency, or work context — that consistently affected how they felt. Thirty data points is enough to find weekly patterns. Ninety is enough to find monthly ones.",
+      },
+      {
+        type: "h2",
+        content: "Common hidden anxiety triggers that tracking reveals",
+      },
+      {
+        type: "ul",
+        content: [
+          "Poor sleep the night before — often with a 24-hour delayed effect on anxiety",
+          "High caffeine intake earlier in the day",
+          "Social media consumption first thing in the morning",
+          "Specific people or relationship dynamics that reliably increase tension",
+          "Sunday evenings — anticipatory anxiety about the week ahead",
+          "Skipped meals or low blood sugar",
+          "Sedentary days — lack of movement correlates strongly with mood for many people",
+          "Hormonal cycles — worth tracking for those affected",
+        ],
+      },
+      {
+        type: "callout",
+        content:
+          "Anxiety often has consistent triggers. Tracking doesn't eliminate the anxiety — but it removes the surprise, and that alone reduces its power.",
+      },
+      {
+        type: "h2",
+        content: "What to track alongside mood",
+      },
+      {
+        type: "ul",
+        content: [
+          "Sleep duration and quality (rate 1–5)",
+          "Energy level morning vs. evening",
+          "Social interactions — who, and did they help or drain you?",
+          "Exercise yes/no",
+          "Notable stressors or upcoming events",
+          "Caffeine and alcohol if relevant",
+        ],
+      },
+      {
+        type: "h2",
+        content: "How to use the data",
+      },
+      {
+        type: "p",
+        content:
+          "After 3–4 weeks, look at your worst anxiety days and ask: what else was different? Was sleep shorter? Was there a specific interaction? A specific type of work? Look for the variable that keeps appearing. Then test it — change one thing (earlier bedtime, cut morning caffeine, avoid a particular context) and track whether it shifts the pattern over the following two weeks.",
+      },
+      {
+        type: "h2",
+        content: "Sharing mood data with a therapist",
+      },
+      {
+        type: "p",
+        content:
+          "If you work with a therapist, 30 days of mood data is genuinely valuable in session. Instead of reconstructing how you felt from memory — notoriously unreliable — you arrive with a record. Therapists using CBT or DBT frameworks often incorporate mood tracking formally into treatment.",
+      },
+      {
+        type: "h2",
+        content: "When tracking isn't enough",
+      },
+      {
+        type: "p",
+        content:
+          "Mood tracking helps understand anxiety — it doesn't treat anxiety disorders. If you're experiencing panic attacks, generalized anxiety that significantly affects daily functioning, or anxiety that isn't responding to self-help strategies, professional support is the right next step. Nuju is built to complement therapy, not replace it.",
+      },
+    ],
+  },
+  {
+    slug: "journaling-for-self-discovery",
+    title: "7 Journaling Techniques for Deep Self-Discovery",
+    description:
+      "Journaling for self-discovery goes beyond writing about your day. These 7 techniques help you understand your values, emotional patterns, and what you actually want from life.",
+    publishedAt: "2026-04-19",
+    readingTime: 8,
+    category: "Journaling Tips",
+    sections: [
+      {
+        type: "p",
+        content:
+          "There's a difference between journaling as record-keeping and journaling as self-discovery. Record-keeping captures what happened. Self-discovery uses writing to understand why you respond the way you do, what you actually value, and what patterns keep showing up across different areas of your life. These seven techniques are for the latter.",
+      },
+      {
+        type: "callout",
+        content:
+          "Self-discovery isn't about finding a fixed 'true self.' It's about noticing patterns — in what you care about, fear, and gravitate toward — over time.",
+      },
+      {
+        type: "h2",
+        content: "1. Morning Pages",
+      },
+      {
+        type: "p",
+        content:
+          "Julia Cameron's method from The Artist's Way: write 3 pages of uncensored stream-of-consciousness first thing in the morning, before doing anything else. The goal isn't good writing — it's bypassing the inner critic and accessing unfiltered thought. Most people discover within a few weeks that what they write in morning pages is significantly more honest than what they'd write if they thought about it first.",
+      },
+      {
+        type: "h2",
+        content: "2. The Unsent Letter",
+      },
+      {
+        type: "p",
+        content:
+          "Write a letter to someone you have complicated feelings about — a parent, an ex, a former colleague — that you will never send. The purpose isn't communication; it's clarity. What you find yourself writing often reveals what you actually feel versus what you've been telling yourself you feel. The 'unsent' part is important: it removes the self-editing that comes with imagining being read.",
+      },
+      {
+        type: "h2",
+        content: "3. Values Mapping",
+      },
+      {
+        type: "p",
+        content:
+          "Pay attention to what makes you genuinely angry, what moves you emotionally, and what you find yourself defending unprompted. These emotional responses are data about your values — things you care about enough to react to. Prompt: 'What happened this week that felt genuinely wrong or deeply right? What does my reaction tell me about what I care about?'",
+      },
+      {
+        type: "h2",
+        content: "4. The Future Self Letter",
+      },
+      {
+        type: "p",
+        content:
+          "Write a letter from yourself 5 years in the future to your current self. What does future-you want you to know? What decisions are you glad you made? What do you wish you'd started sooner, or stopped sooner? This technique accesses the long-term perspective that day-to-day stress makes hard to find.",
+      },
+      {
+        type: "h2",
+        content: "5. The Relationship Inventory",
+      },
+      {
+        type: "p",
+        content:
+          "List 8–10 important people in your life. For each, answer honestly: do I feel more or less like myself after spending time with this person? What do I gain and what do I lose in this relationship? Patterns in the inventory often reveal things about your own needs and boundaries that are hard to see relationship by relationship but obvious when you look at all of them together.",
+      },
+      {
+        type: "h2",
+        content: "6. The Recurring Thought Journal",
+      },
+      {
+        type: "p",
+        content:
+          "Notice thoughts that keep coming back — worries that cycle, desires that persist, fears that resurface across different contexts. These recurring thoughts aren't random; they're pointing at something unresolved or important. Prompt: 'What thought keeps coming back this week? If it had something to tell me, what would it be?'",
+      },
+      {
+        type: "h2",
+        content: "7. The 'What I Actually Want' List",
+      },
+      {
+        type: "p",
+        content:
+          "Not what you should want. Not what's realistic. Not what others expect. Just what you actually want. Write without editing for 5 minutes. Then compare the list to your current life. The gap between them is one of the most useful pieces of self-knowledge you can have — not because you need to immediately close it, but because knowing it exists is the starting point for intentional change.",
+      },
+      {
+        type: "p",
+        content:
+          "Nuju's AI coach can engage with any of these techniques — respond to an entry using the technique that fits your current state, ask deeper questions, or help you notice what themes you keep returning to across entries over time.",
+      },
+    ],
+  },
+  {
+    slug: "how-to-track-emotions-daily",
+    title: "How to Track Your Emotions Daily (and What to Do with the Data)",
+    description:
+      "Daily emotion tracking is one of the most underrated mental clarity habits. Here's a simple system that takes 60 seconds and actually tells you something useful.",
+    publishedAt: "2026-04-20",
+    readingTime: 6,
+    category: "Mental Wellness",
+    sections: [
+      {
+        type: "p",
+        content:
+          "Most people can tell you how they feel right now. Very few can tell you their emotional patterns over the past month — which days are consistently harder, what situations reliably drain them, what actually makes them happy versus what they think makes them happy. Daily emotion tracking builds that knowledge.",
+      },
+      {
+        type: "h2",
+        content: "Why tracking is different from just 'knowing how you feel'",
+      },
+      {
+        type: "p",
+        content:
+          "Awareness tells you the current state. Tracking builds a dataset. After 30 days of daily check-ins, you can answer questions that are impossible from awareness alone: What's my average mood on Mondays? Which people consistently lift my mood? What time of day am I typically lowest? These answers require data — and data requires consistency.",
+      },
+      {
+        type: "h2",
+        content: "The minimum viable emotion tracking system",
+      },
+      {
+        type: "ol",
+        content: [
+          "Pick a consistent time — morning check-in or evening reflection, same time every day",
+          "Rate your mood 1–5 (Rough → Great)",
+          "Rate your energy 1–5 (Drained → Energized)",
+          "Write one sentence of context — what's shaping how you feel right now?",
+          "Optional: note who you spent significant time with today",
+        ],
+      },
+      {
+        type: "callout",
+        content:
+          "The goal of emotion tracking isn't to optimize your feelings. It's to understand them well enough that they stop running your life unconsciously.",
+      },
+      {
+        type: "h2",
+        content: "What else is worth tracking",
+      },
+      {
+        type: "ul",
+        content: [
+          "Sleep hours and quality — has the single strongest correlation with next-day mood",
+          "Exercise yes/no — movement affects mood significantly for most people",
+          "Major stressors or upcoming events",
+          "Social energy — did you see people? Did it help or cost you?",
+          "Physical health — illness, hormonal cycles, chronic symptoms",
+        ],
+      },
+      {
+        type: "h2",
+        content: "How often to track",
+      },
+      {
+        type: "p",
+        content:
+          "Once daily is the sweet spot — enough data to find patterns, not so demanding that consistency becomes a problem. Twice daily (morning and evening) gives richer data about intraday variation and is worth trying once the once-daily habit is stable. Less than 5 days per week makes weekly pattern detection significantly harder.",
+      },
+      {
+        type: "h2",
+        content: "Patterns to look for in your data",
+      },
+      {
+        type: "ul",
+        content: [
+          "Weekly cycles — are certain days consistently better or worse?",
+          "Sleep threshold — what's your mood like after fewer than 6 hours?",
+          "Social patterns — do you recharge alone or with people?",
+          "Activity correlations — does exercise reliably improve your next-day mood?",
+          "People patterns — whose presence correlates with better or worse mood?",
+        ],
+      },
+      {
+        type: "h2",
+        content: "How to actually use the data — not just collect it",
+      },
+      {
+        type: "p",
+        content:
+          "Data without action is just noise. Once you identify a reliable pattern — 'I'm consistently lower on days after fewer than 7 hours of sleep' or 'I always feel better after a morning walk' — test it. Change one variable deliberately and track whether it shifts the pattern over two weeks. This turns emotion tracking from passive observation into active self-management.",
+      },
+      {
+        type: "h2",
+        content: "Using AI to surface patterns automatically",
+      },
+      {
+        type: "p",
+        content:
+          "Manual pattern analysis takes time and attention most people don't have. Nuju does it automatically — tracking your mood over time, surfacing correlations you'd likely miss, and providing weekly summaries so the insight comes to you rather than requiring you to dig for it.",
+      },
+    ],
+  },
 ];
 
 export const getBlogPost = (slug: string): BlogPost | undefined =>
