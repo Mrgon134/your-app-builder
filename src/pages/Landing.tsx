@@ -935,6 +935,7 @@ const Landing: React.FC = () => {
           <p className="text-sm text-muted-foreground">
             Available as a <Link to="/install" state={{ from: "/" }} className="text-primary hover:underline">progressive web app</Link> on iOS, Android, and desktop.
             Read more on our <Link to="/about" state={{ from: "/" }} className="text-primary hover:underline">about page</Link>, or visit the <Link to="/support" state={{ from: "/" }} className="text-primary hover:underline">support center</Link> if you have questions.
+            Looking for tips? Read our <Link to="/blog" className="text-primary hover:underline">journaling and wellness blog</Link>.
           </p>
         </div>
       </section>
