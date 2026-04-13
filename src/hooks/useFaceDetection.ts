@@ -22,26 +22,46 @@ export type MoodDetectionResult = {
   dominantExpression: string;
 };
 
-/** Maps face-api.js expression probabilities to a Nuju mood value (1–5) */
+/**
+ * Maps face-api.js expression probabilities to a Nuju mood value (1–5).
+ *
+ * Uses weighted scoring instead of dominant-only detection so that
+ * subtle negative expressions (cemberut, marah) register correctly
+ * even when neutral still has the highest single probability.
+ *
+ * Weights per expression → mood axis (1=Rough … 5=Great):
+ *   happy    → 5.0   surprised  → 4.5
+ *   neutral  → 3.0
+ *   sad      → 1.5   fearful    → 1.5
+ *   angry    → 1.0   disgusted  → 1.0
+ *
+ * Example – user frowning (sad 0.4, neutral 0.4, angry 0.1, happy 0.1):
+ *   weighted = 0.1×5 + 0.4×3 + 0.4×1.5 + 0.1×1 = 2.4 → Low (2) ✓
+ * Example – user angry (angry 0.6, neutral 0.2, disgusted 0.1, sad 0.1):
+ *   weighted = 0.2×3 + 0.1×1.5 + 0.6×1 + 0.1×1 = 1.45 → Rough (1) ✓
+ * Example – big grin (happy 0.9):
+ *   weighted ≈ 4.9 → Great (5) ✓
+ */
 export function expressionToMood(expressions: ExpressionResult): MoodDetectionResult {
+  const weighted =
+    expressions.happy      * 5.0 +
+    expressions.surprised  * 4.5 +
+    expressions.neutral    * 3.0 +
+    expressions.sad        * 1.5 +
+    expressions.fearful    * 1.5 +
+    expressions.angry      * 1.0 +
+    expressions.disgusted  * 1.0;
+
+  // Expressions already sum to ~1.0 from face-api.js, but normalise just in case
+  const total = Object.values(expressions).reduce((s, v) => s + (v as number), 0) || 1;
+  const rawScore = weighted / total; // 1.0 – 5.0
+
+  const moodValue = Math.max(1, Math.min(5, Math.round(rawScore))) as 1 | 2 | 3 | 4 | 5;
+
+  // Dominant expression is still shown as a label in the UI
   const sorted = Object.entries(expressions).sort(([, a], [, b]) => (b as number) - (a as number));
   const [dominantExpression, topScore] = sorted[0] as [string, number];
   const confidence = Math.round(topScore * 100);
-
-  let moodValue: 1 | 2 | 3 | 4 | 5;
-
-  if (dominantExpression === "happy") {
-    moodValue = topScore >= 0.7 ? 5 : 4;
-  } else if (dominantExpression === "surprised") {
-    moodValue = 4;
-  } else if (dominantExpression === "neutral") {
-    moodValue = 3;
-  } else if (dominantExpression === "sad") {
-    moodValue = 2;
-  } else {
-    // angry, fearful, disgusted → Rough
-    moodValue = 1;
-  }
 
   return { moodValue, confidence, dominantExpression };
 }
