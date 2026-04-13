@@ -439,13 +439,6 @@ const FacialMoodDetector: React.FC<FacialMoodDetectorProps> = ({
       )}
     </AnimatePresence>
   );
-
-  function handleUse() {
-    if (moodResult) {
-      onMoodDetected(moodResult.moodValue);
-      onClose();
-    }
-  }
 };
 
 export default FacialMoodDetector;
