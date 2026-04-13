@@ -78,9 +78,13 @@ export function generateWeeklyReview(entries: EntryRow[]): WeeklyReview | null {
     : null;
 
   // Mood trend (compare first half vs second half of week)
-  const mid = Math.floor(weekEntries.length / 2) || 1;
-  const firstHalf = weekEntries.slice(0, mid);
-  const secondHalf = weekEntries.slice(mid);
+  // Sort oldest→newest first so firstHalf = start of week, secondHalf = end of week
+  const chronological = [...weekEntries].sort(
+    (a, b) => new Date(a.entry_date).getTime() - new Date(b.entry_date).getTime()
+  );
+  const mid = Math.floor(chronological.length / 2) || 1;
+  const firstHalf = chronological.slice(0, mid);
+  const secondHalf = chronological.slice(mid);
   const firstAvg = firstHalf.reduce((s, e) => s + e.mood, 0) / firstHalf.length;
   const secondAvg = secondHalf.reduce((s, e) => s + e.mood, 0) / secondHalf.length;
   const moodTrend: "up" | "down" | "stable" =
