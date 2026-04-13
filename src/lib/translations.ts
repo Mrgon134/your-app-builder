@@ -487,6 +487,8 @@ export const translations: Record<string, Record<string, string>> = {
     face_no_face_desc: "Make sure your face is visible and well-lit, then try again.",
     face_model_error: "Could not load detection",
     face_model_error_desc: "Check your internet connection and try again.",
+    face_region_scores: "Expression breakdown",
+    face_ai_summary: "Ju's read",
   },
   id: {
     greeting_morning: "Selamat pagi",
@@ -944,6 +946,8 @@ export const translations: Record<string, Record<string, string>> = {
     face_no_face_desc: "Pastikan wajahmu terlihat jelas dan cahaya cukup, lalu coba lagi.",
     face_model_error: "Gagal memuat deteksi",
     face_model_error_desc: "Periksa koneksi internetmu dan coba lagi.",
+    face_region_scores: "Detail ekspresi",
+    face_ai_summary: "Analisis Ju",
   },
   es: {
     greeting_morning: "Buenos días",
