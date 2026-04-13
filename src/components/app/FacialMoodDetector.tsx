@@ -275,9 +275,34 @@ const FacialMoodDetector: React.FC<FacialMoodDetectorProps> = ({
                           <p className="text-[10px] font-semibold uppercase tracking-[0.12em] mb-1.5" style={{ color: "#7C6EDB" }}>
                             ✦ {t.face_ai_summary || "Ju's read"}
                           </p>
-                          <p className="text-[13px] text-foreground leading-relaxed">
-                            {moodResult.summary}
-                          </p>
+                          {moodResult.summaryLoading ? (
+                            <div className="space-y-2 py-0.5">
+                              {/* Shimmer skeleton lines while waiting for AI */}
+                              {[1, 0.85, 0.6].map((w, i) => (
+                                <motion.div
+                                  key={i}
+                                  className="h-3 rounded-full"
+                                  style={{
+                                    width: `${w * 100}%`,
+                                    background: "linear-gradient(90deg, rgba(124,110,219,0.08) 25%, rgba(124,110,219,0.18) 50%, rgba(124,110,219,0.08) 75%)",
+                                    backgroundSize: "200% 100%",
+                                  }}
+                                  animate={{ backgroundPosition: ["200% 0", "-200% 0"] }}
+                                  transition={{ duration: 1.5, repeat: Infinity, delay: i * 0.1 }}
+                                />
+                              ))}
+                            </div>
+                          ) : (
+                            <motion.p
+                              key={moodResult.summary}
+                              initial={{ opacity: 0 }}
+                              animate={{ opacity: 1 }}
+                              transition={{ duration: 0.4 }}
+                              className="text-[13px] text-foreground leading-relaxed"
+                            >
+                              {moodResult.summary}
+                            </motion.p>
+                          )}
                         </motion.div>
 
                         {/* ── Action buttons ── */}
