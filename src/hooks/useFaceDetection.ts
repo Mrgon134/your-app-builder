@@ -71,74 +71,152 @@ export function calculateRegionScores(e: ExpressionResult): RegionScores {
 }
 
 // ─── Emotional Summary Generator ────────────────────────────────────────────
+//
+// Design principles:
+//   1. Validate the emotion — make the user feel *seen*, not analyzed
+//   2. Create a moment of curiosity — they want to reflect more
+//   3. Always end with a pull toward journaling (question or invitation)
+//   4. Sound like Ju — warm, direct, personal. Never clinical.
+//   5. Per-mood × per-expression so outputs never feel copy-paste
+//
+// Structure per template: [emotional mirror] [micro-insight] [journaling pull]
 
-const MOOD_OPENERS: Record<number, string[]> = {
-  1: [
-    "Your face is carrying real heaviness right now.",
-    "The stress in your expression is very visible.",
-    "Your features are showing signs of strain.",
-  ],
-  2: [
-    "There's a quiet sadness written in your features.",
-    "Your face feels a little weighed down today.",
-    "Your expression reflects something low right now.",
-  ],
-  3: [
-    "Your face looks calm and steady.",
-    "You appear composed — neither up nor down.",
-    "Your expression is fairly balanced right now.",
-  ],
-  4: [
-    "There's a warm ease radiating from your face.",
-    "Your features carry a nice sense of lightness.",
-    "Your expression shows a quiet, genuine goodness.",
-  ],
-  5: [
-    "Joy is genuinely written all over your face.",
-    "Your face is glowing with positive energy.",
-    "Your expression is radiating real happiness.",
-  ],
+const SUMMARIES: Record<number, Record<string, string[]>> = {
+  // ── Rough ────────────────────────────────────────────────────────────────
+  1: {
+    angry: [
+      "That frustration is real — I can see it in your whole face. Something today pushed you to your edge, and holding it in will only make it heavier. Write the ugly version. No filter needed here. What set this off?",
+      "There's fire in your features right now. That kind of intensity usually means something matters deeply to you — or someone crossed a line. Don't let it fester. What happened?",
+    ],
+    sad: [
+      "More than just a hard day is written on your face. Something hit deep, and you don't have to make it make sense right now. This is the place where you just say what it is. Talk to me — what's going on?",
+      "That look goes beyond today. Something has been building, and it's showing. You deserve somewhere to put this. Write even one sentence — anything. What's the thing you haven't said out loud yet?",
+    ],
+    fearful: [
+      "I can see that held-breath tension — something feels uncertain or scary right now. Whatever you're dreading, naming it makes it smaller. It's okay to be afraid here. What is it you're most worried about?",
+      "There's anxiety sitting right there in your expression. That kind of feeling usually lives rent-free until you get it out somewhere. This is that somewhere. What's weighing on you?",
+    ],
+    disgusted: [
+      "Something really rubbed you the wrong way today — that reaction is all over your face. You don't have to justify it. Just let it out. What happened that felt so wrong?",
+    ],
+    default: [
+      "You're holding it together on the surface, but your face tells a different story. That tension underneath — it's real, and it matters. You don't have to name it perfectly. Just start writing. What's actually going on today?",
+      "Even in stillness, the weight shows. Sometimes the hardest days are the ones we just push through without acknowledging them. Today deserves a moment of honesty. What are you not letting yourself feel right now?",
+    ],
+  },
+
+  // ── Low ──────────────────────────────────────────────────────────────────
+  2: {
+    sad: [
+      "I can see the weight in your eyes. You don't have to explain it or wrap it in a neat story — whatever this is, it's valid. Sometimes the heaviest things become clearer when you write them down. Tell me what happened.",
+      "That quiet sadness on your face speaks volumes. You might not even know where to start, and that's okay. Just write one sentence — anything. Ju is here, and this space is yours. What's been sitting with you?",
+    ],
+    angry: [
+      "There's a slow burn in your expression — not explosive, just exhausted. Like something has been wrong for a while and you're running low on patience for it. What's been building up that you haven't dealt with yet?",
+    ],
+    neutral: [
+      "Something in you feels muted right now. Not dramatic — just low. Those are actually the days worth paying the most attention to, because something quieter is asking to be heard. What's going on underneath?",
+      "You look like you're going through the motions today. That's a real feeling, and it deserves more than just pushing through. What would you say if you let yourself be fully honest right now?",
+    ],
+    default: [
+      "Something feels off today, even if you can't name it exactly. That vague heaviness — it usually points to something specific if you give it space. Let this be where you actually sit with it. What's dragging?",
+    ],
+  },
+
+  // ── Okay ─────────────────────────────────────────────────────────────────
+  3: {
+    neutral: [
+      "You look steady — but 'okay' can mean a lot of things. Sometimes it's genuinely fine. Sometimes it's holding it together. Which one is it today? A quick entry will tell you more than you expect. What's the honest answer?",
+      "That composed look... there's something grounded about it. But even balanced days have texture. What's the one moment from today that stood out — good or bad — that you haven't processed yet?",
+    ],
+    happy: [
+      "There's a small warmth flickering in your expression — not quite great yet, but heading there. Something small is working today. Don't let it go unnoticed. What's the thing that's quietly going right?",
+    ],
+    sad: [
+      "You're hanging in there, and that genuinely counts. But I can see something still pulling on you even as you stay balanced. What's the thing you're not quite letting yourself feel today?",
+    ],
+    default: [
+      "Steady is good. But something tells me there's more to today than 'okay.' What happened that you haven't told anyone about yet — even something small?",
+    ],
+  },
+
+  // ── Good ─────────────────────────────────────────────────────────────────
+  4: {
+    happy: [
+      "There's a real warmth in your expression right now. Something clicked today — maybe small, maybe significant. Write it down before the day drowns it out. What made this actually feel good?",
+      "That quiet contentment? It's earned. Something is working in your favor right now, and you should know why. Capture it — you'll want to revisit this exact energy on harder days. What's the thing worth holding onto?",
+    ],
+    surprised: [
+      "Something caught you off guard in the best way today. That wide-eyed energy — something good happened that you didn't see coming. I want to hear about it. What was it?",
+    ],
+    neutral: [
+      "You're doing genuinely well — I can see it, even through the calm. There's an ease in your face that comes from things actually going alright. What's been the quiet win today that you haven't celebrated yet?",
+    ],
+    default: [
+      "Good energy on you today. Something is working — or someone reminded you that you're more capable than you give yourself credit for. Don't let it just pass by. What's the thing worth remembering about today?",
+    ],
+  },
+
+  // ── Great ─────────────────────────────────────────────────────────────────
+  5: {
+    happy: [
+      "Look at that — your whole face is lit up. Whatever is happening today, write it down right now. Future you will want to remember exactly this feeling when things get hard again. What made today this good?",
+      "You're genuinely glowing. That kind of joy is worth more than just feeling it — it's worth keeping. Capture what made today feel this good so you can come back to it. What's the thing at the center of this?",
+      "That smile isn't just on your mouth — it's in your eyes, your cheeks, your whole energy. This is a good day. Don't just ride it — document it. Tell me everything.",
+    ],
+    surprised: [
+      "Something incredible happened, didn't it? That can't-believe-it energy is all over your face. Don't just ride the high — write it down. You'll want this memory exactly as it is right now.",
+    ],
+    default: [
+      "Your face is radiating something real right now. Whatever is behind this energy — it's worth documenting. Not just for today, but for every future day that needs a reminder that this kind of feeling is possible for you. What's the story?",
+    ],
+  },
 };
+
+/** Pick the most emotionally relevant expression key for the current mood */
+function pickExpressionKey(expressions: ExpressionResult, moodValue: number): string {
+  // For low moods, surface negative expressions even at lower probabilities
+  if (moodValue <= 2) {
+    if (expressions.angry > 0.18)    return "angry";
+    if (expressions.sad > 0.18)      return "sad";
+    if (expressions.fearful > 0.18)  return "fearful";
+    if (expressions.disgusted > 0.14) return "disgusted";
+  }
+  // For high moods, surface positive expressions
+  if (moodValue >= 4) {
+    if (expressions.happy > 0.25)    return "happy";
+    if (expressions.surprised > 0.25) return "surprised";
+  }
+  // Fallback to raw dominant expression
+  const sorted = Object.entries(expressions)
+    .sort(([, a], [, b]) => (b as number) - (a as number));
+  return sorted[0][0];
+}
+
+/** Optional one-line addendum for interesting score contradictions */
+function scoreAddendum(scores: RegionScores, moodValue: number): string {
+  if (moodValue >= 4 && scores.eyebrows <= 3)
+    return " Though I notice some tension still in your brows — something's still on your mind even through the good energy.";
+  if (moodValue >= 4 && scores.eyes <= 4)
+    return " Your eyes look a little tired even through the positivity — something's costing you energy today.";
+  if (moodValue <= 2 && scores.eyes >= 8)
+    return " Interesting — even through the low mood, there's something bright in your eyes. Something giving you a sliver of hope?";
+  return "";
+}
+
+function pick<T>(arr: T[]): T {
+  return arr[Math.floor(Math.random() * arr.length)];
+}
 
 export function generateEmotionalSummary(
   scores: RegionScores,
   expressions: ExpressionResult,
   moodValue: 1 | 2 | 3 | 4 | 5
 ): string {
-  const openers = MOOD_OPENERS[moodValue];
-  const opener = openers[Math.floor(Math.random() * openers.length)];
-
-  const observations: string[] = [];
-
-  if (scores.eyes >= 7)        observations.push("your eyes are bright and alert");
-  else if (scores.eyes <= 4)   observations.push("your eyes look heavy or tired");
-
-  if (scores.eyebrows <= 3)    observations.push("your brows are deeply furrowed");
-  else if (scores.eyebrows >= 8) observations.push("your brows are relaxed and open");
-
-  if (scores.cheeks >= 7)      observations.push("your cheeks have a genuine upward lift");
-  else if (scores.cheeks <= 3) observations.push("the muscles around your cheeks feel tight");
-
-  if (scores.forehead <= 3)    observations.push("there's visible tension in your forehead");
-  else if (scores.forehead >= 8) observations.push("your forehead looks completely at ease");
-
-  if (scores.chin <= 3)        observations.push("some jaw tension is coming through");
-
-  let detail = "";
-  if (observations.length >= 2) {
-    detail = ` I can see ${observations[0]}, and ${observations[1]}.`;
-  } else if (observations.length === 1) {
-    detail = ` I notice ${observations[0]}.`;
-  }
-
-  let closing = "";
-  if (expressions.happy > 0.5)         closing = " That smile looks real — hold onto whatever's causing it.";
-  else if (expressions.angry > 0.3)    closing = " Take a breath. Your face is holding a lot right now.";
-  else if (expressions.sad > 0.3)      closing = " Whatever you're carrying, you don't have to hold it alone.";
-  else if (expressions.surprised > 0.4) closing = " Something seems to have caught you off guard today.";
-  else if (expressions.neutral > 0.65) closing = " You seem centered and composed — that's a solid place to be.";
-
-  return opener + detail + closing;
+  const moodBank = SUMMARIES[moodValue];
+  const key = pickExpressionKey(expressions, moodValue);
+  const templates = moodBank[key] ?? moodBank.default;
+  return pick(templates) + scoreAddendum(scores, moodValue);
 }
 
 // ─── Main Analysis Function ──────────────────────────────────────────────────
