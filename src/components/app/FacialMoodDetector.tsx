@@ -19,14 +19,23 @@ const EXPRESSION_LABELS: Record<string, string> = {
   fearful: "Fearful", disgusted: "Disgusted", surprised: "Surprised", neutral: "Neutral",
 };
 
-/** Region metadata — label, emoji, i18n key */
+/** Region metadata — labels per language */
+const REGION_LABELS: Record<string, Record<string, string>> = {
+  eyes:     { en: "Eyes",     id: "Mata",   es: "Ojos",    pt: "Olhos",   ja: "目",     ko: "눈",    zh: "眼睛",  hi: "आँखें",  default: "Eyes"     },
+  eyebrows: { en: "Brows",    id: "Alis",   es: "Cejas",   pt: "Sobrancelhas", ja: "眉",ko: "눈썹",  zh: "眉毛",  hi: "भौंहें", default: "Brows"    },
+  cheeks:   { en: "Cheeks",   id: "Pipi",   es: "Mejillas",pt: "Bochechas",ja: "頬",    ko: "볼",    zh: "脸颊",  hi: "गाल",   default: "Cheeks"   },
+  forehead: { en: "Forehead", id: "Jidat",  es: "Frente",  pt: "Testa",   ja: "額",     ko: "이마",  zh: "额头",  hi: "माथा",  default: "Forehead" },
+  chin:     { en: "Chin",     id: "Dagu",   es: "Barbilla",pt: "Queixo",  ja: "顎",     ko: "턱",    zh: "下巴",  hi: "ठुड्डी", default: "Chin"     },
+  aura:     { en: "Aura",     id: "Aura",   es: "Aura",    pt: "Aura",    ja: "オーラ", ko: "아우라", zh: "气场",  hi: "ऊर्जा", default: "Aura"     },
+};
+
 const REGIONS = [
-  { key: "eyes",     emoji: "👁",  label: "Mata"   },
-  { key: "eyebrows", emoji: "🤨",  label: "Alis"   },
-  { key: "cheeks",   emoji: "😊",  label: "Pipi"   },
-  { key: "forehead", emoji: "🧠",  label: "Jidat"  },
-  { key: "chin",     emoji: "💬",  label: "Dagu"   },
-  { key: "aura",     emoji: "✨",  label: "Aura"   },
+  { key: "eyes",     emoji: "👁"  },
+  { key: "eyebrows", emoji: "🤨" },
+  { key: "cheeks",   emoji: "😊" },
+  { key: "forehead", emoji: "🧠" },
+  { key: "chin",     emoji: "💬" },
+  { key: "aura",     emoji: "✨" },
 ] as const;
 
 type RegionKey = typeof REGIONS[number]["key"];
@@ -40,7 +49,7 @@ const FacialMoodDetector: React.FC<FacialMoodDetectorProps> = ({
   onClose,
   onMoodDetected,
 }) => {
-  const { t } = useLang();
+  const { t, lang } = useLang();
   const { status, moodResult, videoRef, canvasRef, activate, confirmMood, reset } =
     useFaceDetection();
 
@@ -236,7 +245,7 @@ const FacialMoodDetector: React.FC<FacialMoodDetectorProps> = ({
                                 >
                                   <div className="flex items-center justify-between">
                                     <span className="text-[12px] font-semibold text-foreground">
-                                      {region.emoji} {region.label}
+                                      {region.emoji} {REGION_LABELS[region.key]?.[lang] ?? REGION_LABELS[region.key]?.default}
                                     </span>
                                     <span
                                       className="text-[13px] font-bold tabular-nums"
