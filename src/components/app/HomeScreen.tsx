@@ -11,8 +11,9 @@ import {
   Settings, Flame, PenLine, Mic, RefreshCw,
   BedDouble, BatteryLow, Zap, Sparkles, Check,
   Dumbbell, Moon, Utensils, Briefcase, Users, Gamepad2,
-  Wind,
+  Wind, ScanFace,
 } from "lucide-react";
+import FacialMoodDetector from "@/components/app/FacialMoodDetector";
 import HabitSection from "@/components/app/HabitSection";
 import EntryDetailModal from "@/components/app/EntryDetailModal";
 import { EntryRow } from "@/lib/api";
@@ -138,6 +139,7 @@ const HomeScreen: React.FC<HomeScreenProps> = ({
   const [moodAnimating, setMoodAnimating] = useState<number | null>(null);
   const [localActivities, setLocalActivities] = useState<string[]>([]);
   const [moodTouched, setMoodTouched] = useState(false);
+  const [showFaceDetector, setShowFaceDetector] = useState(false);
   const selectedActivities = controlledActivities ?? localActivities;
   const scrollRef = useRef<HTMLDivElement>(null);
   const [scrollY, setScrollY] = useState(0);
@@ -409,9 +411,25 @@ const HomeScreen: React.FC<HomeScreenProps> = ({
 
       {/* Mood selector — taller gradient cards with glow ring */}
       <div>
-        <p className="text-[11px] font-semibold text-muted-foreground uppercase tracking-[0.12em] mb-3 px-0.5">
-          {t.how_feeling}
-        </p>
+        <div className="flex items-center justify-between mb-3 px-0.5">
+          <p className="text-[11px] font-semibold text-muted-foreground uppercase tracking-[0.12em]">
+            {t.how_feeling}
+          </p>
+          <motion.button
+            onClick={() => setShowFaceDetector(true)}
+            whileTap={{ scale: 0.9 }}
+            className="flex items-center gap-1.5 h-7 px-3 rounded-full press-spring"
+            style={{
+              background: "rgba(124,110,219,0.10)",
+              border: "1px solid rgba(124,110,219,0.25)",
+            }}
+          >
+            <ScanFace className="w-3.5 h-3.5" style={{ color: "#7C6EDB" }} />
+            <span className="text-[11px] font-semibold" style={{ color: "#7C6EDB" }}>
+              {t.face_detect_btn || "Selfie"}
+            </span>
+          </motion.button>
+        </div>
         <div id="tour-mood-selector" className="grid grid-cols-5 gap-2 px-0.5">
           {MOODS.map((mood, index) => {
             const isSelected = selectedMood === mood.value;
@@ -689,10 +707,25 @@ const HomeScreen: React.FC<HomeScreenProps> = ({
       <div className="h-2" />
 
       {/* Entry Detail Modal (History) */}
-      <EntryDetailModal 
-        entry={selectedEntry} 
-        isOpen={!!selectedEntry} 
-        onClose={() => setSelectedEntry(null)} 
+      <EntryDetailModal
+        entry={selectedEntry}
+        isOpen={!!selectedEntry}
+        onClose={() => setSelectedEntry(null)}
+      />
+
+      <FacialMoodDetector
+        isOpen={showFaceDetector}
+        onClose={() => setShowFaceDetector(false)}
+        onMoodDetected={(mood) => {
+          if (controlledMoodSelect) {
+            controlledMoodSelect(mood);
+          } else {
+            setLocalMood(mood);
+          }
+          setMoodAnimating(mood);
+          setTimeout(() => setMoodAnimating(null), 600);
+          setShowFaceDetector(false);
+        }}
       />
     </div>
   );
