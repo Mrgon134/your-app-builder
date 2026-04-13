@@ -65,7 +65,7 @@ const FacialMoodDetector: React.FC<FacialMoodDetectorProps> = ({
     <AnimatePresence>
       {isOpen && (
         <motion.div
-          className="fixed inset-0 z-50 flex items-end justify-center"
+          className="fixed inset-0 z-50 flex items-center justify-center px-4"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -78,15 +78,15 @@ const FacialMoodDetector: React.FC<FacialMoodDetectorProps> = ({
           }}
         >
           {/* Backdrop */}
-          <div className="absolute inset-0 bg-background/60 backdrop-blur-md" />
+          <div className="absolute inset-0 bg-background/70 backdrop-blur-md" />
 
-          {/* Sheet */}
+          {/* Centered card */}
           <motion.div
-            className="relative w-full max-w-sm bg-card border border-border/30 rounded-t-3xl overflow-hidden shadow-2xl"
-            initial={{ y: "100%" }}
-            animate={{ y: 0 }}
-            exit={{ y: "100%" }}
-            transition={{ type: "spring", stiffness: 380, damping: 40 }}
+            className="relative w-full max-w-sm bg-card border border-border/30 rounded-3xl overflow-hidden shadow-2xl"
+            initial={{ scale: 0.92, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            exit={{ scale: 0.92, opacity: 0 }}
+            transition={{ type: "spring", stiffness: 400, damping: 38 }}
           >
             {/* Header */}
             <div className="flex items-center justify-between px-5 pt-5 pb-3">
