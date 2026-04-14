@@ -1,5 +1,6 @@
-import React, { createContext, useContext, useState, useCallback } from "react";
+import React, { createContext, useContext, useState, useCallback, useEffect } from "react";
 import { translations } from "./translations";
+import { useGeoPricing } from "@/hooks/use-geo-pricing";
 
 type LangContextType = {
   lang: string;
@@ -13,14 +14,43 @@ const LangContext = createContext<LangContextType>({
   setLang: () => {},
 });
 
+function mapCountryToLang(countryCode: string): string {
+  const map: Record<string, string> = {
+    ID: "id", MY: "ms", BN: "ms",
+    FR: "fr", BE: "fr", CH: "de", CA: "en",
+    DE: "de", AT: "de",
+    ES: "es", AR: "es", CO: "es", MX: "es", PE: "es", CL: "es", VE: "es",
+    JP: "ja", KR: "ko",
+    CN: "zh", TW: "zh", HK: "zh",
+    IN: "hi",
+    SA: "ar", AE: "ar", EG: "ar", MA: "ar",
+    TH: "th", VN: "vi", PH: "fil"
+  };
+  return map[countryCode] || "en";
+}
+
 export const LangProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [lang, setLangState] = useState(() => {
     const saved = localStorage.getItem("nuju-lang");
     if (saved && translations[saved]) return saved;
-    // Auto-detect browser language on first load
+    // Auto-detect browser language as an immediate fallback before Geo loads
     const browserLang = navigator.language?.split("-")[0]?.toLowerCase();
     return browserLang && translations[browserLang] ? browserLang : "en";
   });
+
+  const geo = useGeoPricing();
+
+  useEffect(() => {
+    const saved = localStorage.getItem("nuju-lang");
+    if (!saved && geo.country && geo.country !== "US" && !geo.isLoading) {
+      const derivedLang = mapCountryToLang(geo.country);
+      if (derivedLang !== "en" && derivedLang !== lang && translations[derivedLang]) {
+        setLangState(derivedLang);
+        // We do NOT save it to localStorage here, so it remains purely auto-detected
+        // until the user explicitly changes it via Settings.
+      }
+    }
+  }, [geo.country, geo.isLoading, lang]);
 
   const setLang = useCallback((l: string) => {
     if (translations[l]) {

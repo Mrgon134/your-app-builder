@@ -1,8 +1,8 @@
-import { useState, useEffect } from "react";
+import React, { createContext, useContext, useState, useEffect } from "react";
 import { SUPABASE_URL, SUPABASE_ANON_KEY } from "@/integrations/supabase/client";
 import { PRICING_CONFIG, getLifetimePrice } from "@/lib/config";
 
-interface GeoPricing {
+interface GeoPricingState {
   country: string;
   displayCurrency: string;
   currency: string;
@@ -21,9 +21,34 @@ interface GeoPricing {
   isLoading: boolean;
   couponCode: string | null;
   discountPct: number;
+  formatPrice: (amount: number) => string;
 }
 
-export function useGeoPricing(): GeoPricing & { formatPrice: (amount: number) => string } {
+const defaultFormatPrice = (amount: number) => `$${amount.toFixed(2)}`;
+
+export const GeoPricingContext = createContext<GeoPricingState>({
+  country: "US",
+  displayCurrency: "USD",
+  currency: "USD",
+  symbol: "$",
+  hasLocalizedDisplay: false,
+  usdConversionRate: null,
+  rates: {
+    weekly: PRICING_CONFIG.baseRates.weekly,
+    yearly: PRICING_CONFIG.baseRates.yearly,
+    plusMonthly: PRICING_CONFIG.baseRates.plusMonthly,
+    plusAnnual: PRICING_CONFIG.baseRates.plusAnnual,
+    proMonthly: PRICING_CONFIG.baseRates.proMonthly,
+    proAnnual: PRICING_CONFIG.baseRates.proAnnual,
+    lifetime: PRICING_CONFIG.lifetime.flatPrice,
+  },
+  isLoading: true,
+  couponCode: null,
+  discountPct: 0,
+  formatPrice: defaultFormatPrice,
+});
+
+export const GeoPricingProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [couponCode, setCouponCode] = useState<string | null>(null);
   const [discountPct, setDiscountPct] = useState(0);
   const [country, setCountry] = useState("US");
@@ -35,7 +60,6 @@ export function useGeoPricing(): GeoPricing & { formatPrice: (amount: number) =>
   useEffect(() => {
     const fetchParity = async () => {
       try {
-        // Call our server-side edge function (keeps pd_identifier secure)
         const resp = await fetch(`${SUPABASE_URL}/functions/v1/parity-lookup`, {
           headers: {
             Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
@@ -76,7 +100,6 @@ export function useGeoPricing(): GeoPricing & { formatPrice: (amount: number) =>
   const multiplier = 1 - discountPct / 100;
   const { hasLocalizedDisplay, displayCurrency, currencyMultiplier } = getDisplayPricingContext(currency, usdConversionRate);
 
-  // Apply PPP discount to base rates
   const weekly = roundCurrency(PRICING_CONFIG.baseRates.weekly * multiplier * currencyMultiplier, displayCurrency);
   const yearly = roundCurrency(PRICING_CONFIG.baseRates.yearly * multiplier * currencyMultiplier, displayCurrency);
   const plusMonthly = roundCurrency(PRICING_CONFIG.baseRates.plusMonthly * multiplier * currencyMultiplier, displayCurrency);
@@ -85,43 +108,36 @@ export function useGeoPricing(): GeoPricing & { formatPrice: (amount: number) =>
   const proAnnual = roundCurrency(PRICING_CONFIG.baseRates.proAnnual * multiplier * currencyMultiplier, displayCurrency);
   const lifetime = roundCurrency(PRICING_CONFIG.lifetime.flatPrice * multiplier * currencyMultiplier, displayCurrency);
 
-  const rates = {
-    weekly,
-    yearly,
-    plusMonthly,
-    plusAnnual,
-    proMonthly,
-    proAnnual,
-    lifetime,
+  const rates = { weekly, yearly, plusMonthly, plusAnnual, proMonthly, proAnnual, lifetime };
+
+  const formatPrice = (amount: number) => {
+    const rounded = roundCurrency(amount, displayCurrency);
+    const fractionDigits = getFractionDigits(displayCurrency);
+
+    try {
+      return new Intl.NumberFormat(undefined, {
+        style: "currency",
+        currency: displayCurrency,
+        minimumFractionDigits: fractionDigits,
+        maximumFractionDigits: fractionDigits,
+      }).format(rounded);
+    } catch {
+      return `${symbol}${rounded.toFixed(fractionDigits)}`;
+    }
   };
 
-  return {
-    country,
-    displayCurrency,
-    currency,
-    symbol,
-    hasLocalizedDisplay,
-    usdConversionRate,
-    rates,
-    isLoading,
-    couponCode,
-    discountPct,
-    formatPrice: (amount: number) => {
-      const rounded = roundCurrency(amount, displayCurrency);
-      const fractionDigits = getFractionDigits(displayCurrency);
+  return (
+    <GeoPricingContext.Provider value={{
+      country, displayCurrency, currency, symbol, hasLocalizedDisplay, usdConversionRate,
+      rates, isLoading, couponCode, discountPct, formatPrice
+    }}>
+      {children}
+    </GeoPricingContext.Provider>
+  );
+};
 
-      try {
-        return new Intl.NumberFormat(undefined, {
-          style: "currency",
-          currency: displayCurrency,
-          minimumFractionDigits: fractionDigits,
-          maximumFractionDigits: fractionDigits,
-        }).format(rounded);
-      } catch {
-        return `${symbol}${rounded.toFixed(fractionDigits)}`;
-      }
-    },
-  };
+export function useGeoPricing(): GeoPricingState {
+  return useContext(GeoPricingContext);
 }
 
 function round2(n: number): number {

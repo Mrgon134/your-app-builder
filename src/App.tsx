@@ -8,6 +8,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { AuthProvider, useAuth } from "@/lib/auth";
 import { LangProvider } from "@/lib/i18n";
+import { GeoPricingProvider } from "@/hooks/use-geo-pricing";
 
 // Lazy-load all routes — each page is only downloaded when first visited.
 // This splits the bundle and dramatically improves LCP on the landing page.
@@ -46,10 +47,11 @@ const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({ children }) =
 const App = () => (
   <ErrorBoundary>
     <QueryClientProvider client={queryClient}>
-      <LangProvider>
-        <AuthProvider>
-          <TooltipProvider>
-            <Toaster />
+      <GeoPricingProvider>
+        <LangProvider>
+          <AuthProvider>
+            <TooltipProvider>
+              <Toaster />
             <Sonner />
             <BrowserRouter>
               <Suspense fallback={<PageLoader />}>
@@ -82,7 +84,8 @@ const App = () => (
             </BrowserRouter>
           </TooltipProvider>
         </AuthProvider>
-      </LangProvider>
+        </LangProvider>
+      </GeoPricingProvider>
     </QueryClientProvider>
   </ErrorBoundary>
 );
