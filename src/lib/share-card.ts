@@ -391,6 +391,168 @@ function wrapText(ctx: CanvasRenderingContext2D, text: string, x: number, y: num
   ctx.fillText(line.trim(), x, currentY);
 }
 
+// ─── Mood Moment Card (Post-Entry Selfie Journey) ────────────────────────────
+
+export interface MoodMomentCardData {
+  selfieBlob: Blob;
+  beforeMood: number;    // 1–5 from selectedMood when writing
+  afterMood: number;     // 1–5 from face scan after writing
+  date: string;          // ISO string
+  beforeLabel?: string;  // e.g. "Before writing"
+  afterLabel?: string;   // e.g. "After writing"
+}
+
+async function loadImageFromBlob(blob: Blob): Promise<HTMLImageElement> {
+  return new Promise((resolve, reject) => {
+    const url = URL.createObjectURL(blob);
+    const img = new Image();
+    img.onload = () => { URL.revokeObjectURL(url); resolve(img); };
+    img.onerror = () => { URL.revokeObjectURL(url); reject(new Error("Image load failed")); };
+    img.src = url;
+  });
+}
+
+export async function drawMoodMomentCard(data: MoodMomentCardData): Promise<Blob> {
+  const W = 1080;
+  const H = 1350; // 4:5 ratio — Instagram/TikTok
+  const canvas = document.createElement("canvas");
+  canvas.width = W;
+  canvas.height = H;
+  const ctx = canvas.getContext("2d")!;
+
+  const beforeMoodObj = MOODS.find((m) => m.value === data.beforeMood) ?? MOODS[2];
+  const afterMoodObj = MOODS.find((m) => m.value === data.afterMood) ?? MOODS[2];
+
+  // ── Background ──
+  const bg = ctx.createLinearGradient(0, 0, 0, H);
+  bg.addColorStop(0, "#13111C");
+  bg.addColorStop(1, "#1E1B36");
+  ctx.fillStyle = bg;
+  ctx.fillRect(0, 0, W, H);
+
+  // ── Selfie photo (top ~58%) ──
+  const PHOTO_H = 780;
+  const CORNER = 40;
+  ctx.save();
+  roundRect(ctx, 0, 0, W, PHOTO_H, CORNER);
+  ctx.clip();
+  try {
+    const selfieImg = await loadImageFromBlob(data.selfieBlob);
+    // Cover-fit the selfie
+    const scale = Math.max(W / selfieImg.width, PHOTO_H / selfieImg.height);
+    const sw = selfieImg.width * scale;
+    const sh = selfieImg.height * scale;
+    const sx = (W - sw) / 2;
+    const sy = (PHOTO_H - sh) / 2;
+    ctx.drawImage(selfieImg, sx, sy, sw, sh);
+  } catch {
+    ctx.fillStyle = "#2A2640";
+    ctx.fillRect(0, 0, W, PHOTO_H);
+  }
+  ctx.restore();
+
+  // Bottom gradient overlay on photo
+  const photoGrad = ctx.createLinearGradient(0, PHOTO_H - 200, 0, PHOTO_H);
+  photoGrad.addColorStop(0, "rgba(19,17,28,0)");
+  photoGrad.addColorStop(1, "rgba(19,17,28,0.95)");
+  ctx.fillStyle = photoGrad;
+  ctx.fillRect(0, PHOTO_H - 200, W, 200);
+
+  // ── Title ──
+  ctx.fillStyle = "#E8E4F8";
+  ctx.font = "600 52px 'Lora', Georgia, serif";
+  ctx.textAlign = "center";
+  ctx.fillText(data.beforeLabel?.replace("Before writing", "My Emotional Journey") ?? "My Emotional Journey", W / 2, 870);
+
+  // ── Before/After card ──
+  const CARD_X = 60;
+  const CARD_Y = 910;
+  const CARD_W = W - 120;
+  const CARD_H = 310;
+  const CARD_R = 32;
+
+  // Glass card background
+  ctx.fillStyle = "rgba(255,255,255,0.07)";
+  roundRect(ctx, CARD_X, CARD_Y, CARD_W, CARD_H, CARD_R);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(124,110,219,0.3)";
+  ctx.lineWidth = 1.5;
+  ctx.stroke();
+
+  const halfW = CARD_W / 2;
+  const centerX = CARD_X + halfW;
+  const cardCY = CARD_Y + CARD_H / 2;
+
+  // Divider line
+  ctx.strokeStyle = "rgba(255,255,255,0.12)";
+  ctx.lineWidth = 1;
+  ctx.beginPath();
+  ctx.moveTo(centerX, CARD_Y + 30);
+  ctx.lineTo(centerX, CARD_Y + CARD_H - 30);
+  ctx.stroke();
+
+  // Arrow between the two halves
+  ctx.fillStyle = BRAND_COLOR;
+  ctx.font = "bold 40px 'DM Sans', sans-serif";
+  ctx.textAlign = "center";
+  ctx.fillText("→", centerX, cardCY + 14);
+
+  // ── Before section ──
+  const FACE_R = 52;
+  const beforeX = CARD_X + halfW / 2;
+  drawMoodFace(ctx, beforeX, CARD_Y + 100, FACE_R, data.beforeMood, beforeMoodObj.color);
+
+  ctx.fillStyle = beforeMoodObj.color;
+  ctx.font = "bold 36px 'DM Sans', sans-serif";
+  ctx.textAlign = "center";
+  ctx.fillText(beforeMoodObj.label, beforeX, CARD_Y + 185);
+
+  ctx.fillStyle = "rgba(255,255,255,0.45)";
+  ctx.font = "26px 'DM Sans', sans-serif";
+  ctx.fillText(data.beforeLabel ?? "Before writing", beforeX, CARD_Y + 225);
+
+  // ── After section ──
+  const afterX = CARD_X + halfW + halfW / 2;
+  drawMoodFace(ctx, afterX, CARD_Y + 100, FACE_R, data.afterMood, afterMoodObj.color);
+
+  ctx.fillStyle = afterMoodObj.color;
+  ctx.font = "bold 36px 'DM Sans', sans-serif";
+  ctx.textAlign = "center";
+  ctx.fillText(afterMoodObj.label, afterX, CARD_Y + 185);
+
+  ctx.fillStyle = "rgba(255,255,255,0.45)";
+  ctx.font = "26px 'DM Sans', sans-serif";
+  ctx.fillText(data.afterLabel ?? "After writing", afterX, CARD_Y + 225);
+
+  // Mood improvement sparkle
+  if (data.afterMood > data.beforeMood) {
+    ctx.fillStyle = "#4ECDC4";
+    ctx.font = "500 28px 'DM Sans', sans-serif";
+    ctx.textAlign = "center";
+    ctx.fillText("✨ Writing helped!", W / 2, CARD_Y + CARD_H + 50);
+  }
+
+  // ── Date ──
+  const dateStr = new Date(data.date).toLocaleDateString("en-US", {
+    weekday: "long", month: "long", day: "numeric", year: "numeric",
+  });
+  ctx.fillStyle = "rgba(255,255,255,0.3)";
+  ctx.font = "26px 'DM Sans', sans-serif";
+  ctx.textAlign = "center";
+  ctx.fillText(dateStr, W / 2, 1285);
+
+  // ── Brand watermark ──
+  drawBrandWatermark(ctx, W, H);
+
+  return new Promise((resolve, reject) => {
+    canvas.toBlob(
+      (blob) => (blob ? resolve(blob) : reject(new Error("Canvas toBlob failed"))),
+      "image/jpeg",
+      0.92
+    );
+  });
+}
+
 export async function shareImage(blob: Blob, title: string, fileName = "nuju-mood.png") {
   const file = new File([blob], fileName, { type: "image/png" });
 

@@ -321,5 +321,28 @@ export function useFaceDetection() {
     setStatus("result");
   };
 
-  return { status, moodResult, videoRef, canvasRef, activate, confirmMood, reset };
+  const captureFrame = (): Promise<Blob> => {
+    return new Promise((resolve, reject) => {
+      const video = videoRef.current;
+      if (!video || video.readyState < 2) {
+        reject(new Error("Video not ready"));
+        return;
+      }
+      const offscreen = document.createElement("canvas");
+      offscreen.width = video.videoWidth;
+      offscreen.height = video.videoHeight;
+      const ctx = offscreen.getContext("2d")!;
+      // Mirror to match the selfie preview (CSS scaleX(-1) is visual-only)
+      ctx.translate(offscreen.width, 0);
+      ctx.scale(-1, 1);
+      ctx.drawImage(video, 0, 0);
+      offscreen.toBlob(
+        (blob) => (blob ? resolve(blob) : reject(new Error("Blob conversion failed"))),
+        "image/jpeg",
+        0.92
+      );
+    });
+  };
+
+  return { status, moodResult, videoRef, canvasRef, activate, confirmMood, reset, captureFrame };
 }

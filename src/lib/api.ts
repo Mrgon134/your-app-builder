@@ -178,6 +178,26 @@ export const updateEntryPhoto = async (entryId: string, photoUrl: string) => {
   if (error) throw error;
 };
 
+// Upload selfie photo to Supabase Storage (post-entry emotional journey)
+export const uploadSelfiePhoto = async (
+  userId: string,
+  entryId: string,
+  blob: Blob
+): Promise<string> => {
+  const filePath = `${userId}/${entryId}_selfie.jpg`;
+  const { error } = await supabase.storage
+    .from("photo-entries")
+    .upload(filePath, blob, {
+      contentType: "image/jpeg",
+      upsert: true,
+    });
+  if (error) throw error;
+  const { data: urlData } = supabase.storage
+    .from("photo-entries")
+    .getPublicUrl(filePath);
+  return urlData.publicUrl;
+};
+
 // Quick entry (mood-only, no writing)
 export const createQuickEntry = async (
   userId: string,
