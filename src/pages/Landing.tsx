@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from "react";
-import { useLang } from "@/lib/i18n";
 import { useNavigate, Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { useGeoPricing } from "@/hooks/use-geo-pricing";
@@ -34,7 +33,6 @@ import { Magnetic } from "@/components/ui/Magnetic";
 const Landing: React.FC = () => {
   const navigate = useNavigate();
   const geo = useGeoPricing();
-  const { t } = useLang();
   const pricingSectionRef = useRef<HTMLElement>(null);
   const { trackLandingView, trackWaitlistSignup } = usePostHogEvents();
   const ttk = useTikTokPixel();
@@ -173,41 +171,41 @@ const Landing: React.FC = () => {
 
   const pricingPlans = [
     {
-      name: t.landing_plan_weekly || "Weekly",
+      name: "Weekly",
       price: geo.formatPrice(geo.rates.weekly),
-      note: t.landing_plan_weekly_note || "A gentle start for when you want support now, but still want to keep the commitment light.",
+      note: "A gentle start for when you want support now, but still want to keep the commitment light.",
       badge: null as string | null,
       highlight: false,
-      cta: t.landing_plan_weekly_cta || "Choose weekly",
+      cta: "Choose weekly",
       features: [
-        t.landing_feat_lightest || "Lightest way to begin",
-        t.landing_feat_full_support || "Full support while active",
+        "Lightest way to begin",
+        "Full support while active",
       ],
       onClick: () => startOnboarding("weekly"),
     },
     {
-      name: t.landing_plan_annual || "Annual",
+      name: "Annual",
       price: geo.formatPrice(geo.rates.yearly),
-      note: t.landing_plan_annual_note || "Best value for people who want this kind of support to stay part of their life.",
-      badge: t.landing_badge_best_value || "Best value",
+      note: "Best value for people who want this kind of support to stay part of their life.",
+      badge: "Best value",
       highlight: false,
-      cta: t.landing_plan_annual_cta || "Choose annual",
+      cta: "Choose annual",
       features: [
-        t.landing_feat_best_value || "Best long-term value",
-        t.landing_feat_ongoing || "Made for ongoing support",
+        "Best long-term value",
+        "Made for ongoing support",
       ],
       onClick: () => startOnboarding("yearly"),
     },
     {
-      name: t.landing_plan_lifetime || "Lifetime",
+      name: "Lifetime",
       price: geo.formatPrice(geo.rates.lifetime),
-      note: t.landing_plan_lifetime_note || "One payment for people who already know this is the kind of support they want to keep close.",
-      badge: t.landing_badge_one_time || "One-time",
+      note: "One payment for people who already know this is the kind of support they want to keep close.",
+      badge: "One-time",
       highlight: false,
-      cta: t.landing_plan_lifetime_cta || "Choose lifetime",
+      cta: "Choose lifetime",
       features: [
-        t.landing_feat_no_renewals || "One payment, no renewals",
-        t.landing_feat_future || "Future premium updates included",
+        "One payment, no renewals",
+        "Future premium updates included",
       ],
       onClick: () => startOnboarding("lifetime_one_time"),
     },
@@ -215,24 +213,24 @@ const Landing: React.FC = () => {
 
   const landingFaqs = [
     {
-      q: t.landing_faq_q1 || "Do I need to pay before I can use Nuju?",
-      a: t.landing_faq_a1 || "You start with the Ju Gets You reveal, then choose Weekly, Annual, or Lifetime if you want Ju to stay with you beyond that first read."
+      q: "Do I need to pay before I can use Nuju?",
+      a: "You start with the Ju Gets You reveal, then choose Weekly, Annual, or Lifetime if you want Ju to stay with you beyond that first read."
     },
     {
-      q: t.landing_faq_q2 || "How does the AI understand my journal?",
-      a: t.landing_faq_a2 || "Ju reads patterns in what you share, like when the weight hits, what makes it harder to say, and what kind of support feels safest for you. The goal is to reflect something emotionally true, not give you a generic summary."
+      q: "How does the AI understand my journal?",
+      a: "Ju reads patterns in what you share, like when the weight hits, what makes it harder to say, and what kind of support feels safest for you. The goal is to reflect something emotionally true, not give you a generic summary."
     },
     {
-      q: t.landing_faq_q3 || "Is my data private?",
-      a: t.landing_faq_a3 || "100% private. Your journal entries are encrypted and only you can access them. We never sell data or share personal information with third parties."
+      q: "Is my data private?",
+      a: "100% private. Your journal entries are encrypted and only you can access them. We never sell data or share personal information with third parties."
     },
     {
-      q: t.landing_faq_q4 || "Why does Nuju ask for my name and email so early?",
-      a: t.landing_faq_a4 || "Because the reveal is meant to feel personal. Ju uses your name in the read, and your email lets you keep the support attached to the same account after checkout."
+      q: "Why does Nuju ask for my name and email so early?",
+      a: "Because the reveal is meant to feel personal. Ju uses your name in the read, and your email lets you keep the support attached to the same account after checkout."
     },
     {
-      q: t.landing_faq_q5 || "What's the difference between Weekly, Annual, and Lifetime?",
-      a: t.landing_faq_a5 || "Weekly is the lightest way to begin, Annual is the best value if you want Ju in your life consistently, and Lifetime is the one-time choice for people who already know the fit is real."
+      q: "What's the difference between Weekly, Annual, and Lifetime?",
+      a: "Weekly is the lightest way to begin, Annual is the best value if you want Ju in your life consistently, and Lifetime is the one-time choice for people who already know the fit is real."
     }
   ];
 
@@ -290,7 +288,7 @@ const Landing: React.FC = () => {
             </div>
             <div>
               <p className="font-serif text-xl font-bold text-foreground">Nuju</p>
-              <p className="text-xs font-medium text-muted-foreground">{t.landing_nav_tagline || "A softer way to feel understood"}</p>
+              <p className="text-xs font-medium text-muted-foreground">A softer way to feel understood</p>
             </div>
           </div>
           <div className="flex items-center gap-2">
@@ -298,13 +296,13 @@ const Landing: React.FC = () => {
               onClick={scrollToPricing}
               className="hidden rounded-full border border-border bg-card px-4 py-2 text-sm font-semibold text-foreground transition-all hover:border-primary/30 hover:bg-primary/[0.04] sm:inline-flex"
             >
-              {t.landing_nav_plans || "See plans"}
+              See plans
             </button>
             <button
               onClick={() => startOnboarding()}
               className="rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground transition-all hover:-translate-y-0.5 hover:shadow-lg hover:shadow-primary/25 active:scale-[0.97]"
             >
-              {t.landing_nav_cta || "Get started"}
+              Get started
             </button>
           </div>
         </div>
@@ -330,7 +328,7 @@ const Landing: React.FC = () => {
                 className="mb-8 inline-flex cursor-pointer items-center gap-2 rounded-full border border-[#FFD166]/30 bg-[#FFD166]/10 px-5 py-2 text-sm font-bold text-[#FFD166] shadow-[0_0_20px_rgba(255,209,102,0.15)] transition-all hover:bg-[#FFD166]/20"
               >
                 <Flame className="h-4 w-4" />
-                {t.landing_hero_badge || "Start with the Ju Gets You reveal"}
+                Start with the Ju Gets You reveal
               </motion.div>
             </Magnetic>
 
@@ -340,7 +338,7 @@ const Landing: React.FC = () => {
               transition={{ delay: 0.1, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
               className="max-w-3xl text-balance font-serif text-5xl font-bold leading-[1.02] tracking-tight text-foreground sm:text-6xl lg:text-7xl"
             >
-              {t.landing_hero_title || "When you feel a lot and cannot explain it, Ju helps you feel understood."}
+              When you feel a lot and cannot explain it, Ju helps you feel understood.
             </motion.h1>
 
             <motion.p 
@@ -349,7 +347,7 @@ const Landing: React.FC = () => {
               transition={{ delay: 0.2, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
               className="mt-6 max-w-2xl text-pretty text-lg leading-8 text-muted-foreground sm:text-xl"
             >
-              {t.landing_hero_sub || "A few quick answers are enough for Ju to notice what is heavy, reflect it back clearly, and make you feel less alone in it."}
+              A few quick answers are enough for Ju to notice what is heavy, reflect it back clearly, and make you feel less alone in it.
             </motion.p>
 
             <motion.div 
@@ -363,7 +361,7 @@ const Landing: React.FC = () => {
                   onClick={() => startOnboarding()}
                   className="inline-flex items-center justify-center gap-2 rounded-2xl bg-primary px-8 py-4 text-lg font-semibold text-primary-foreground transition-all hover:-translate-y-1 hover:shadow-xl hover:shadow-primary/30 active:scale-[0.97]"
                 >
-                  {t.landing_hero_cta || "See what Ju notices"}
+                  See what Ju notices
                   <ArrowRight className="h-5 w-5" />
                 </button>
               </Magnetic>
@@ -372,7 +370,7 @@ const Landing: React.FC = () => {
                   onClick={scrollToPricing}
                   className="inline-flex items-center justify-center gap-2 rounded-2xl border border-border bg-card px-6 py-4 text-base font-semibold text-foreground transition-all hover:-translate-y-1 hover:border-primary/30 hover:bg-primary/[0.04] hover:shadow-xl hover:shadow-black/5 active:scale-[0.97]"
                 >
-                  {t.landing_hero_cta2 || "Compare plans"}
+                  Compare plans
                 </button>
               </Magnetic>
             </motion.div>
@@ -384,9 +382,9 @@ const Landing: React.FC = () => {
               className="mt-8 grid gap-3 sm:grid-cols-3"
             >
               {[
-                { label: t.landing_hero_pill_1 || "Feels personal fast", icon: Heart },
-                { label: t.landing_hero_pill_2 || "Ju Gets You reveal", icon: Mic },
-                { label: t.landing_hero_pill_3 || "Private by default", icon: Lock },
+                { label: "Feels personal fast", icon: Heart },
+                { label: "Ju Gets You reveal", icon: Mic },
+                { label: "Private by default", icon: Lock },
               ].map((item) => {
                 const Icon = item.icon;
                 return (
@@ -693,15 +691,16 @@ const Landing: React.FC = () => {
       >
         <div className="mx-auto max-w-6xl">
           <div className="mx-auto max-w-2xl text-center">
-            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">{t.landing_pricing_label || "Choose the pace that fits you"}</p>
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">Choose the pace that fits you</p>
             <h2 className="mt-4 font-serif text-4xl font-bold text-foreground sm:text-5xl">
-              {t.landing_pricing_title || "Choose how closely you want Ju to stay with you."}
+              Choose how closely you want Ju to stay with you.
             </h2>
             <p className="mt-5 text-lg leading-8 text-muted-foreground">
-              {t.landing_pricing_sub || "Start with the plan that matches your level of commitment, whether you want a cautious beginning, steady long-term support, or one decision that keeps Ju close for good."}
+              Start with the plan that matches your level of commitment, whether you want a cautious beginning, steady long-term support,
+              or one decision that keeps Ju close for good.
             </p>
             <p className="mt-2 text-sm leading-7 text-muted-foreground">
-              {t.landing_pricing_sub2 || "Weekly is the lightest start, Annual is the best value, and Lifetime is the premium one-time path."}
+              Weekly is the lightest start, Annual is the best value, and Lifetime is the premium one-time path.
             </p>
             {geo.hasLocalizedDisplay ? (
               <div className="mt-5 inline-flex items-center gap-2 rounded-full border border-border bg-card px-4 py-2 text-xs font-medium text-muted-foreground">
@@ -718,7 +717,7 @@ const Landing: React.FC = () => {
 
           <div className="mt-12 grid gap-6 lg:grid-cols-2 xl:grid-cols-3">
             {pricingPlans.map((displayPlan, index) => {
-              const isLifetime = displayPlan.name === (t.landing_plan_lifetime || "Lifetime");
+              const isLifetime = displayPlan.name === "Lifetime";
               return (
                 <motion.div
                   whileHover={{ scale: 1.02, y: -5 }}
@@ -756,11 +755,11 @@ const Landing: React.FC = () => {
                     </span>
                     {!isLifetime && (
                       <span className={displayPlan.highlight ? "text-primary-foreground/75" : "text-muted-foreground"}>
-                        {displayPlan.name === (t.landing_plan_weekly || "Weekly") ? (t.landing_per_week || "/week") : (t.landing_per_year || "/year")}
+                        {displayPlan.name === "Weekly" ? "/week" : "/year"}
                       </span>
                     )}
                     {isLifetime && (
-                      <span className="text-muted-foreground dark:text-white/70">{t.landing_one_time || "one-time"}</span>
+                      <span className="text-muted-foreground dark:text-white/70">one-time</span>
                     )}
                   </div>
                   <p className={`mt-3 text-sm leading-6 ${
@@ -836,10 +835,10 @@ const Landing: React.FC = () => {
       >
         <div className="container mx-auto px-4 max-w-3xl">
           <h2 className="text-4xl font-serif text-center mb-6 font-bold">
-            {t.landing_faq_title || "Frequently Asked Questions"}
+            Frequently Asked Questions
           </h2>
           <p className="text-center text-muted-foreground mb-12 text-sm">
-            {t.landing_faq_sub || "Got questions? We've got answers."}
+            Got questions? We've got answers.
           </p>
 
           <div className="space-y-4">
@@ -876,13 +875,13 @@ const Landing: React.FC = () => {
             <img src={juMain} alt="Ju mascot celebrating — Nuju AI journal companion" className="h-14 w-14 animate-ju-float object-contain" width={56} height={56} loading="lazy" />
           </motion.div>
           <h2 className="mt-6 font-serif text-4xl font-bold text-foreground sm:text-5xl">
-            {t.landing_final_title || "You do not need perfect words to feel understood."}
+            You do not need perfect words to feel understood.
           </h2>
           <p className="mx-auto mt-5 max-w-2xl text-lg leading-8 text-muted-foreground">
-            {t.landing_final_sub || "Open Nuju when your thoughts feel crowded. Answer a few quick prompts, see what Ju notices, and keep the support that feels right."}
+            Open Nuju when your thoughts feel crowded. Answer a few quick prompts, see what Ju notices, and keep the support that feels right.
           </p>
           <p className="mx-auto mt-4 max-w-xl text-sm uppercase tracking-[0.22em] text-primary/80">
-            {t.landing_final_tagline || "Built for the moments you need to feel seen, not polished."}
+            Built for the moments you need to feel seen, not polished.
           </p>
           <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
             <Magnetic>
@@ -890,7 +889,7 @@ const Landing: React.FC = () => {
                 onClick={() => startOnboarding()}
                 className="inline-flex items-center justify-center gap-2 rounded-2xl bg-primary px-8 py-4 text-lg font-semibold text-primary-foreground transition-all hover:-translate-y-1 hover:shadow-xl hover:shadow-primary/30 active:scale-[0.97]"
               >
-                {t.landing_hero_cta || "See what Ju notices"}
+                See what Ju notices
                 <ArrowRight className="h-5 w-5" />
               </button>
             </Magnetic>
@@ -899,12 +898,12 @@ const Landing: React.FC = () => {
                 onClick={scrollToPricing}
                 className="rounded-2xl border border-border bg-card px-6 py-4 text-base font-semibold text-foreground transition-all hover:-translate-y-1 hover:border-primary/30 hover:bg-primary/[0.04] hover:shadow-md active:scale-[0.97]"
               >
-                {t.landing_see_pricing || "See pricing"}
+                See pricing
               </button>
             </Magnetic>
           </div>
           <p className="mt-4 text-sm font-medium text-muted-foreground">
-            {t.landing_final_note || "Start with the reveal, then choose the support level that fits."}
+            Start with the reveal, then choose the support level that fits.
           </p>
         </div>
       </motion.section>
@@ -947,7 +946,7 @@ const Landing: React.FC = () => {
               <img src={juMain} alt="Nuju logo — Ju the AI journal companion" className="h-8 w-8 object-contain" width={32} height={32} loading="lazy" />
               <div>
                 <p className="font-serif text-lg font-bold text-foreground">Nuju</p>
-                <p className="text-sm text-muted-foreground">{t.landing_footer_tagline || "Support that helps you feel understood."}</p>
+                <p className="text-sm text-muted-foreground">Support that helps you feel understood.</p>
               </div>
             </div>
             <p className="text-xs text-muted-foreground/80">Copyright 2026 Nuju. Built for quieter minds and more understood moments.</p>
