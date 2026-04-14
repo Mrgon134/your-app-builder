@@ -1,4 +1,7 @@
 import { MOODS } from "@/lib/constants";
+import { Capacitor } from "@capacitor/core";
+import { Share as CapShare } from "@capacitor/share";
+import { Filesystem, Directory } from "@capacitor/filesystem";
 
 const BRAND_COLOR = "#7C6EDB";
 const BG_LIGHT = "#F8F6FF";
@@ -554,17 +557,15 @@ export async function drawMoodMomentCard(data: MoodMomentCardData): Promise<Blob
 }
 
 export async function shareImage(blob: Blob, title: string, fileName = "nuju-mood.png") {
-  const file = new File([blob], fileName, { type: blob.type || "image/png" });
-
-  if (navigator.share && navigator.canShare?.({ files: [file] })) {
-    await navigator.share({
-      title,
-      text: "Check out my mood on Nuju 💜",
-      files: [file],
-    });
+  if (Capacitor.isNativePlatform()) {
+    await nativeShareFile(blob, fileName, title);
   } else {
-    // Fallback: download
-    downloadBlob(blob, fileName);
+    const file = new File([blob], fileName, { type: blob.type || "image/png" });
+    if (navigator.share && navigator.canShare?.({ files: [file] })) {
+      await navigator.share({ title, text: "Check out my mood on Nuju 💜", files: [file] });
+    } else {
+      downloadBlob(blob, fileName);
+    }
   }
 }
 
@@ -594,98 +595,100 @@ export const SHARE_TARGETS: ShareTargetMeta[] = [
   { id: "save",      label: "Save",      icon: "💾", color: "#7C6EDB" },
 ];
 
+// ─── Helpers ──────────────────────────────────────────────────────────────────
+
+/** Convert a Blob to a base64 data string (without the data:... prefix). */
+async function blobToBase64(blob: Blob): Promise<string> {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      const result = reader.result as string;
+      resolve(result.split(",")[1]);
+    };
+    reader.onerror = reject;
+    reader.readAsDataURL(blob);
+  });
+}
+
 /**
- * Share to a specific social target.
+ * Write the image to Capacitor's cache directory and trigger the native
+ * share sheet with that file URI. On iOS/Android this opens the OS share
+ * sheet where the user can pick IG Stories, TikTok, WhatsApp, etc. —
+ * the image is already attached so the user just taps "Post".
+ */
+async function nativeShareFile(blob: Blob, fileName: string, title?: string) {
+  const base64Data = await blobToBase64(blob);
+
+  const writeResult = await Filesystem.writeFile({
+    path: fileName,
+    data: base64Data,
+    directory: Directory.Cache,
+  });
+
+  await CapShare.share({
+    title: title || "My Nuju Moment",
+    text: "My mood moment on Nuju 💜",
+    url: writeResult.uri,
+    dialogTitle: "Share your moment",
+  });
+}
+
+// ─── Share to specific target ─────────────────────────────────────────────────
+
+/**
+ * Share to a specific social media target.
  *
- * On mobile the approach is:
- *  - Generate the share card image
- *  - Use navigator.share / clipboard / deep-link depending on platform
+ * On native (Capacitor iOS/Android):
+ *   We write the image to the filesystem cache, then trigger the OS native
+ *   share sheet via Capacitor Share plugin. The image is already attached —
+ *   user just picks the app and taps Post.
  *
- * Instagram Stories: use the ig:// deep link with the image copied to clipboard
- * and ask the user to paste, OR use the Web Share API with files targeting IG.
- *
- * For all platforms: we first try the Web Share API with the target hint,
- * then fall back to opening the app deep-link after saving to clipboard,
- * then fall back to download.
+ * On web:
+ *   We use the Web Share API (navigator.share) which on mobile browsers opens
+ *   the same native share sheet. On desktop we fall back to download + open.
  */
 export async function shareToTarget(
-  blob: Blob, 
+  blob: Blob,
   target: ShareTarget,
   caption = "My mood moment on Nuju 💜 nuju.app"
 ) {
-  const file = new File([blob], "nuju-moment.jpg", { type: "image/jpeg" });
-  const canNativeShare = navigator.share && navigator.canShare?.({ files: [file] });
-
-  switch (target) {
-    case "save":
+  // ── Save target ──
+  if (target === "save") {
+    if (Capacitor.isNativePlatform()) {
+      const base64Data = await blobToBase64(blob);
+      await Filesystem.writeFile({
+        path: `nuju-moment-${Date.now()}.jpg`,
+        data: base64Data,
+        directory: Directory.Documents,
+      });
+    } else {
       downloadBlob(blob, "nuju-moment.jpg");
-      return;
-
-    case "instagram": {
-      // Try native share (works on mobile — iOS/Android will show IG Stories as an option)
-      if (canNativeShare) {
-        await navigator.share({ files: [file] });
-        return;
-      }
-      // Fallback: copy image to clipboard and open IG
-      await copyImageToClipboard(blob);
-      window.open("https://www.instagram.com/stories/create/", "_blank");
-      return;
     }
-
-    case "tiktok": {
-      if (canNativeShare) {
-        await navigator.share({ files: [file] });
-        return;
-      }
-      // TikTok doesn't have a direct web-to-story URL, so download + open
-      downloadBlob(blob, "nuju-moment.jpg");
-      window.open("https://www.tiktok.com/upload", "_blank");
-      return;
-    }
-
-    case "whatsapp": {
-      if (canNativeShare) {
-        await navigator.share({ files: [file], text: caption });
-        return;
-      }
-      // Fallback: send text link (WA Web cannot receive files from JS)
-      downloadBlob(blob, "nuju-moment.jpg");
-      window.open(`https://wa.me/?text=${encodeURIComponent(caption + "\n\n(image saved to your device — attach it!)")}`, "_blank");
-      return;
-    }
-
-    case "x": {
-      if (canNativeShare) {
-        await navigator.share({ files: [file], text: caption });
-        return;
-      }
-      // Fallback: open X tweet composer
-      downloadBlob(blob, "nuju-moment.jpg");
-      window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(caption + "\n\n(image saved — attach it to your tweet!)")}`, "_blank");
-      return;
-    }
+    return;
   }
-}
 
-/** Copy an image blob to the system clipboard (if supported). */
-async function copyImageToClipboard(blob: Blob) {
-  try {
-    // Convert to PNG if needed (clipboard API requires image/png)
-    let pngBlob = blob;
-    if (blob.type !== "image/png") {
-      const img = await createImageBitmap(blob);
-      const canvas = document.createElement("canvas");
-      canvas.width = img.width;
-      canvas.height = img.height;
-      const ctx = canvas.getContext("2d")!;
-      ctx.drawImage(img, 0, 0);
-      pngBlob = await new Promise<Blob>((resolve) => canvas.toBlob((b) => resolve(b!), "image/png"));
-    }
-    await navigator.clipboard.write([
-      new ClipboardItem({ "image/png": pngBlob }),
-    ]);
-  } catch {
-    // Clipboard write not supported — silently ignore
+  // ── Native (Capacitor iOS/Android) — triggers OS share sheet directly ──
+  if (Capacitor.isNativePlatform()) {
+    await nativeShareFile(blob, "nuju-moment.jpg", caption);
+    return;
+  }
+
+  // ── Web: try Web Share API with file ──
+  const file = new File([blob], "nuju-moment.jpg", { type: "image/jpeg" });
+  if (navigator.share && navigator.canShare?.({ files: [file] })) {
+    await navigator.share({ files: [file], text: caption });
+    return;
+  }
+
+  // ── Web fallback: download + open target URL ──
+  downloadBlob(blob, "nuju-moment.jpg");
+  const fallbackUrls: Record<string, string> = {
+    instagram: "https://www.instagram.com/",
+    tiktok: "https://www.tiktok.com/upload",
+    whatsapp: `https://wa.me/?text=${encodeURIComponent(caption)}`,
+    x: `https://twitter.com/intent/tweet?text=${encodeURIComponent(caption)}`,
+  };
+  if (fallbackUrls[target]) {
+    window.open(fallbackUrls[target], "_blank");
   }
 }
