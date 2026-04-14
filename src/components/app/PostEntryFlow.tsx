@@ -327,7 +327,7 @@ export default function PostEntryFlow({ beforeMood, onDismiss, onSelfieCapture }
             </div>
             <div className="flex flex-col gap-2 w-full mt-1">
               <button
-                onClick={onDismiss}
+                onClick={goToSelfieInvite}
                 className="w-full py-3 rounded-2xl font-semibold text-sm transition-all active:scale-95"
                 style={{ background: "#7C6EDB", color: "#fff" }}
               >

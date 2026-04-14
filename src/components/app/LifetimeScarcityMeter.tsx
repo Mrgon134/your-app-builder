@@ -10,22 +10,22 @@ interface LifetimeScarcityMeterProps {
 
 const urgencyStyles = {
   calm: {
-    shell: "border-primary/20 bg-primary/[0.07] text-[#5B4DB5]",
-    pill: "bg-white/80 text-[#5B4DB5]",
-    bar: "from-[#8B7AE8] to-[#6F5EE0]",
-    track: "bg-white/60",
+    shell: "border-primary/20 bg-primary/[0.07] text-[#5B4DB5] dark:border-white/15 dark:bg-white/5 dark:text-[#E8E4F8]",
+    pill: "bg-white/80 text-[#5B4DB5] dark:bg-white/10 dark:text-white",
+    bar: "from-[#8B7AE8] to-[#6F5EE0] dark:from-[#A89AF9] dark:to-[#8E80F4]",
+    track: "bg-white/60 dark:bg-white/10",
   },
   warm: {
-    shell: "border-primary/28 bg-[rgba(124,110,219,0.1)] text-[#5647B1]",
-    pill: "bg-white text-[#5647B1]",
-    bar: "from-[#8675E5] to-[#6A58D8]",
-    track: "bg-white/60",
+    shell: "border-primary/28 bg-[rgba(124,110,219,0.1)] text-[#5647B1] dark:border-white/20 dark:bg-white/10 dark:text-white",
+    pill: "bg-white text-[#5647B1] dark:bg-white/15 dark:text-white",
+    bar: "from-[#8675E5] to-[#6A58D8] dark:from-[#B2A6FB] dark:to-[#9385F6]",
+    track: "bg-white/60 dark:bg-white/10",
   },
   hot: {
-    shell: "border-primary/35 bg-[rgba(124,110,219,0.14)] text-[#4A3AA6]",
-    pill: "bg-white text-[#4A3AA6]",
-    bar: "from-[#7C6EDB] to-[#5E4FD1]",
-    track: "bg-white/60",
+    shell: "border-primary/35 bg-[rgba(124,110,219,0.14)] text-[#4A3AA6] dark:border-white/25 dark:bg-white/20 dark:text-white",
+    pill: "bg-white text-[#4A3AA6] dark:bg-white/25 dark:text-[#5746B8]",
+    bar: "from-[#7C6EDB] to-[#5E4FD1] dark:from-[#C5BAFF] dark:to-[#9A8CF7]",
+    track: "bg-white/60 dark:bg-white/10",
   },
 } as const;
 

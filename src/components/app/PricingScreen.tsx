@@ -141,7 +141,7 @@ const PricingScreen: React.FC<PricingScreenProps> = ({
               key={plan.id}
               className={`rounded-3xl border p-5 transition-all ${
                 plan.id === "lifetime_one_time"
-                  ? "border-primary/35 bg-[linear-gradient(180deg,rgba(245,241,255,0.96),rgba(255,255,255,0.99))] shadow-[0_20px_50px_-24px_rgba(124,110,219,0.38)]"
+                  ? "border-primary/35 bg-[linear-gradient(180deg,rgba(245,241,255,0.96),rgba(255,255,255,0.99))] shadow-[0_20px_50px_-24px_rgba(124,110,219,0.38)] dark:border-[#9385F6]/45 dark:bg-[radial-gradient(circle_at_top,rgba(156,137,255,0.22),transparent_45%),linear-gradient(180deg,#201934_0%,#161124_100%)] dark:shadow-[0_20px_50px_-24px_rgba(86,70,177,0.55)]"
                   : plan.highlight
                     ? "border-primary/30 bg-primary/5 shadow-md shadow-primary/10"
                     : "border-border/50 bg-card"

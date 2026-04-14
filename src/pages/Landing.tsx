@@ -776,7 +776,6 @@ const Landing: React.FC = () => {
                     <LifetimeScarcityMeter
                       className="mt-4"
                       scarcity={lifetimeScarcity}
-                      variant="hero"
                     />
                   )}
 

@@ -1141,7 +1141,7 @@ const OnboardingScreen: React.FC = () => {
                     </p>
 
                     {plan.id === "lifetime_one_time" ? (
-                      <LifetimeScarcityMeter className="mt-4" scarcity={lifetimeScarcity} variant="hero" />
+                      <LifetimeScarcityMeter className="mt-4" scarcity={lifetimeScarcity} />
                     ) : null}
 
                     <div className="mt-6">
