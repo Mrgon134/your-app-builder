@@ -8,7 +8,7 @@ import { hasActivePremiumPlan, hasPlusAccess, hasProAccess } from "@/lib/trial";
 import { PRICING_CONFIG } from "@/lib/config";
 import { isNative, isIOS } from "@/lib/platform";
 import { SUPABASE_URL, SUPABASE_ANON_KEY } from "@/integrations/supabase/client";
-import { fetchEntries, createEntry, createQuickEntry, fetchProfile, updateProfile, checkEntryLimit, updateEntryInsight, uploadVoiceAudio, updateEntryVoice, uploadPhoto, updateEntryPhoto, EntryRow, ProfileRow } from "@/lib/api";
+import { fetchEntries, createEntry, createQuickEntry, fetchProfile, updateProfile, checkEntryLimit, updateEntryInsight, uploadVoiceAudio, updateEntryVoice, uploadPhoto, updateEntryPhoto, uploadSelfiePhoto, EntryRow, ProfileRow } from "@/lib/api";
 import HomeScreen from "@/components/app/HomeScreen";
 import JournalScreen from "@/components/app/JournalScreen";
 import InsightsScreen from "@/components/app/InsightsScreen";
@@ -80,6 +80,7 @@ const AppPage: React.FC = () => {
   const [pendingPhoto, setPendingPhoto] = useState<File | null>(null);
   const [pendingLocation, setPendingLocation] = useState<{ lat: number; lng: number; name?: string } | null>(null);
   const [pendingCaptureType, setPendingCaptureType] = useState<string>("journal");
+  const [lastSavedEntryId, setLastSavedEntryId] = useState<string | null>(null);
   const biometricEnabled = localStorage.getItem("nuju-biometric") === "1";
   const biometricSupported = typeof window !== "undefined" && window.PublicKeyCredential !== undefined;
   const { shellMode, isPhone, isDesktop } = useShellMode();
@@ -342,6 +343,7 @@ const AppPage: React.FC = () => {
 
       // Track entry creation
       events.trackEntryCreated(selectedMood, text.length, user.id);
+      setLastSavedEntryId(entry.id);
 
       // Upload photo if present
       if (pendingPhoto) {
@@ -793,6 +795,14 @@ const AppPage: React.FC = () => {
                         mood={selectedMood}
                         hasProAccess={hasProAccess(effectiveProfile?.plan || null, effectiveProfile?.trial_started_at || null)}
                         onUpgrade={() => navigateTo("pro")}
+                        onSelfieCapture={async (blob) => {
+                          if (!user || !lastSavedEntryId) return;
+                          try {
+                            await uploadSelfiePhoto(user.id, lastSavedEntryId, blob);
+                          } catch (err) {
+                            console.error("Selfie upload failed:", err);
+                          }
+                        }}
                       />
                     )}
                     {screen === "insights" && <InsightsScreen shellMode={shellMode} entries={entries} streak={streak} onUpgrade={() => navigateTo("pro")} onNavigate={(s) => navigateTo(s as Screen)} plan={effectiveProfile?.plan} trialStartedAt={effectiveProfile?.trial_started_at} />}

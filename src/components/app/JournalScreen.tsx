@@ -7,6 +7,7 @@ import MoodIcon from "@/components/MoodIcon";
 import { SUPABASE_URL, SUPABASE_ANON_KEY } from "@/integrations/supabase/client";
 import { motion, AnimatePresence } from "framer-motion";
 import { type ShellMode } from "@/hooks/use-shell-mode";
+import PostEntryFlow from "@/components/app/PostEntryFlow";
 const DRAFT_KEY = "nuju-journal-draft";
 
 const langToLocale: Record<string, string> = {
@@ -68,6 +69,7 @@ interface JournalScreenProps {
   mood?: number;
   hasProAccess?: boolean;
   onUpgrade?: () => void;
+  onSelfieCapture?: (blob: Blob) => void;
 }
 
 const useTypingEffect = (text: string, speed = 22) => {
@@ -90,7 +92,7 @@ const useTypingEffect = (text: string, speed = 22) => {
 
 const JournalScreen: React.FC<JournalScreenProps> = ({
   shellMode = "phone",
-  onBack, onSave, initialPrompt, autoRecord = false, activities = [], mood, hasProAccess = false, onUpgrade
+  onBack, onSave, initialPrompt, autoRecord = false, activities = [], mood, hasProAccess = false, onUpgrade, onSelfieCapture
 }) => {
   const { t, lang } = useLang();
   const moodData = MOODS.find((m) => m.value === mood);
@@ -100,6 +102,7 @@ const JournalScreen: React.FC<JournalScreenProps> = ({
   const [saved, setSaved] = useState(false);
   const [insight, setInsight] = useState("");
   const [showUpgradePopup, setShowUpgradePopup] = useState(false);
+  const [showPostFlow, setShowPostFlow] = useState(false);
   const [saving, setSaving] = useState(false);
   const [recordState, setRecordState] = useState<RecordState>("idle");
 
@@ -274,6 +277,15 @@ const JournalScreen: React.FC<JournalScreenProps> = ({
 
   const { displayed: typedInsight, done: insightDone } = useTypingEffect(insight);
 
+  // Trigger PostEntryFlow after insight finishes typing (or after save if no insight)
+  useEffect(() => {
+    if (!saved) return;
+    if (insight && !insightDone) return;
+    const delay = insight ? 600 : 800;
+    const timer = setTimeout(() => setShowPostFlow(true), delay);
+    return () => clearTimeout(timer);
+  }, [insightDone, saved, insight]);
+
   // SOS Grounding logic
   useEffect(() => {
     if (!grounding) return;
@@ -353,12 +365,34 @@ const JournalScreen: React.FC<JournalScreenProps> = ({
               </p>
             </div>
           )}
-          <button
-            onClick={onBack}
-            className="px-8 h-[52px] rounded-2xl bg-primary text-primary-foreground font-semibold text-[15px] press-spring shadow-[0_4px_20px_-4px_hsl(var(--primary)/0.4)]"
-          >
-            {t.done}
-          </button>
+
+          <AnimatePresence>
+            {showPostFlow ? (
+              <motion.div
+                key="post-flow"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ type: "spring", stiffness: 380, damping: 35 }}
+                className="mt-4 text-left"
+              >
+                <PostEntryFlow
+                  beforeMood={mood ?? 0}
+                  onDismiss={onBack}
+                  onSelfieCapture={onSelfieCapture}
+                />
+              </motion.div>
+            ) : (
+              <motion.button
+                key="done-btn"
+                initial={{ opacity: 1 }}
+                exit={{ opacity: 0, scale: 0.9 }}
+                onClick={onBack}
+                className="px-8 h-[52px] rounded-2xl bg-primary text-primary-foreground font-semibold text-[15px] press-spring shadow-[0_4px_20px_-4px_hsl(var(--primary)/0.4)]"
+              >
+                {t.done}
+              </motion.button>
+            )}
+          </AnimatePresence>
         </div>
 
         {showUpgradePopup && (
