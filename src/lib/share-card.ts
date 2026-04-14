@@ -554,7 +554,7 @@ export async function drawMoodMomentCard(data: MoodMomentCardData): Promise<Blob
 }
 
 export async function shareImage(blob: Blob, title: string, fileName = "nuju-mood.png") {
-  const file = new File([blob], fileName, { type: "image/png" });
+  const file = new File([blob], fileName, { type: blob.type || "image/png" });
 
   if (navigator.share && navigator.canShare?.({ files: [file] })) {
     await navigator.share({
@@ -564,11 +564,128 @@ export async function shareImage(blob: Blob, title: string, fileName = "nuju-moo
     });
   } else {
     // Fallback: download
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = fileName;
-    a.click();
-    URL.revokeObjectURL(url);
+    downloadBlob(blob, fileName);
+  }
+}
+
+export function downloadBlob(blob: Blob, fileName = "nuju-moment.jpg") {
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = fileName;
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+export type ShareTarget = "instagram" | "tiktok" | "whatsapp" | "x" | "save";
+
+export interface ShareTargetMeta {
+  id: ShareTarget;
+  label: string;
+  icon: string;
+  color: string;
+}
+
+export const SHARE_TARGETS: ShareTargetMeta[] = [
+  { id: "instagram", label: "IG Story",  icon: "📸", color: "#E1306C" },
+  { id: "tiktok",    label: "TikTok",    icon: "🎵", color: "#010101" },
+  { id: "whatsapp",  label: "WA Status", icon: "💬", color: "#25D366" },
+  { id: "x",         label: "X / Tweet", icon: "𝕏",  color: "#1DA1F2" },
+  { id: "save",      label: "Save",      icon: "💾", color: "#7C6EDB" },
+];
+
+/**
+ * Share to a specific social target.
+ *
+ * On mobile the approach is:
+ *  - Generate the share card image
+ *  - Use navigator.share / clipboard / deep-link depending on platform
+ *
+ * Instagram Stories: use the ig:// deep link with the image copied to clipboard
+ * and ask the user to paste, OR use the Web Share API with files targeting IG.
+ *
+ * For all platforms: we first try the Web Share API with the target hint,
+ * then fall back to opening the app deep-link after saving to clipboard,
+ * then fall back to download.
+ */
+export async function shareToTarget(
+  blob: Blob, 
+  target: ShareTarget,
+  caption = "My mood moment on Nuju 💜 nuju.app"
+) {
+  const file = new File([blob], "nuju-moment.jpg", { type: "image/jpeg" });
+  const canNativeShare = navigator.share && navigator.canShare?.({ files: [file] });
+
+  switch (target) {
+    case "save":
+      downloadBlob(blob, "nuju-moment.jpg");
+      return;
+
+    case "instagram": {
+      // Try native share (works on mobile — iOS/Android will show IG Stories as an option)
+      if (canNativeShare) {
+        await navigator.share({ files: [file] });
+        return;
+      }
+      // Fallback: copy image to clipboard and open IG
+      await copyImageToClipboard(blob);
+      window.open("https://www.instagram.com/stories/create/", "_blank");
+      return;
+    }
+
+    case "tiktok": {
+      if (canNativeShare) {
+        await navigator.share({ files: [file] });
+        return;
+      }
+      // TikTok doesn't have a direct web-to-story URL, so download + open
+      downloadBlob(blob, "nuju-moment.jpg");
+      window.open("https://www.tiktok.com/upload", "_blank");
+      return;
+    }
+
+    case "whatsapp": {
+      if (canNativeShare) {
+        await navigator.share({ files: [file], text: caption });
+        return;
+      }
+      // Fallback: send text link (WA Web cannot receive files from JS)
+      downloadBlob(blob, "nuju-moment.jpg");
+      window.open(`https://wa.me/?text=${encodeURIComponent(caption + "\n\n(image saved to your device — attach it!)")}`, "_blank");
+      return;
+    }
+
+    case "x": {
+      if (canNativeShare) {
+        await navigator.share({ files: [file], text: caption });
+        return;
+      }
+      // Fallback: open X tweet composer
+      downloadBlob(blob, "nuju-moment.jpg");
+      window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(caption + "\n\n(image saved — attach it to your tweet!)")}`, "_blank");
+      return;
+    }
+  }
+}
+
+/** Copy an image blob to the system clipboard (if supported). */
+async function copyImageToClipboard(blob: Blob) {
+  try {
+    // Convert to PNG if needed (clipboard API requires image/png)
+    let pngBlob = blob;
+    if (blob.type !== "image/png") {
+      const img = await createImageBitmap(blob);
+      const canvas = document.createElement("canvas");
+      canvas.width = img.width;
+      canvas.height = img.height;
+      const ctx = canvas.getContext("2d")!;
+      ctx.drawImage(img, 0, 0);
+      pngBlob = await new Promise<Blob>((resolve) => canvas.toBlob((b) => resolve(b!), "image/png"));
+    }
+    await navigator.clipboard.write([
+      new ClipboardItem({ "image/png": pngBlob }),
+    ]);
+  } catch {
+    // Clipboard write not supported — silently ignore
   }
 }

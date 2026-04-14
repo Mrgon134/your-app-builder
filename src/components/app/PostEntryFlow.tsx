@@ -6,7 +6,7 @@ import { JU_STICKERS } from "@/lib/stickers";
 import { useLang } from "@/lib/i18n";
 import { useFaceDetection } from "@/hooks/useFaceDetection";
 import { MOODS } from "@/lib/constants";
-import { drawMoodMomentCard, shareImage } from "@/lib/share-card";
+import { drawMoodMomentCard, shareToTarget, SHARE_TARGETS, type ShareTarget } from "@/lib/share-card";
 import { SUPABASE_URL, SUPABASE_ANON_KEY } from "@/integrations/supabase/client";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
@@ -153,6 +153,7 @@ export default function PostEntryFlow({ beforeMood, onDismiss, onSelfieCapture }
   const [isCapturing, setIsCapturing] = useState(false);
   const [isGeneratingCard, setIsGeneratingCard] = useState(false);
   const [shareBlob, setShareBlob] = useState<Blob | null>(null);
+  const [activeShareTarget, setActiveShareTarget] = useState<ShareTarget | null>(null);
 
   const selfieSrcRef = useRef<string | null>(null);
 
@@ -252,32 +253,18 @@ export default function PostEntryFlow({ beforeMood, onDismiss, onSelfieCapture }
     return blob;
   }, [shareBlob, selfieBlob, afterMood, beforeMood, t]);
 
-  const handleShare = async () => {
+  const handleShareTo = async (target: ShareTarget) => {
     setIsGeneratingCard(true);
+    setActiveShareTarget(target);
     try {
       const blob = await getOrGenerateCard();
-      await shareImage(blob, t.post_entry_journey_label || "My Emotional Journey", "nuju-moment.jpg");
+      const caption = t.post_entry_share_caption || "My mood moment on Nuju 💜 nuju.app";
+      await shareToTarget(blob, target, caption);
     } catch {
       // ignore
     } finally {
       setIsGeneratingCard(false);
-    }
-  };
-
-  const handleSaveImage = async () => {
-    setIsGeneratingCard(true);
-    try {
-      const blob = await getOrGenerateCard();
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = "nuju-moment.jpg";
-      a.click();
-      URL.revokeObjectURL(url);
-    } catch {
-      // ignore
-    } finally {
-      setIsGeneratingCard(false);
+      setActiveShareTarget(null);
     }
   };
 
@@ -562,26 +549,47 @@ export default function PostEntryFlow({ beforeMood, onDismiss, onSelfieCapture }
               </motion.p>
             )}
 
-            {/* Action buttons */}
-            <div className="flex gap-2 mt-1">
-              <button
-                onClick={handleShare}
-                disabled={isGeneratingCard}
-                className="flex-1 py-3 rounded-2xl font-semibold text-sm transition-all active:scale-95 flex items-center justify-center gap-1.5"
-                style={{ background: "#7C6EDB", color: "#fff", opacity: isGeneratingCard ? 0.7 : 1 }}
-              >
-                <span>↑</span>
-                {isGeneratingCard ? "..." : (t.post_entry_share || "Share moment")}
-              </button>
-              <button
-                onClick={handleSaveImage}
-                disabled={isGeneratingCard}
-                className="py-3 px-4 rounded-2xl font-medium text-sm transition-all active:scale-95"
-                style={{ background: "rgba(124,110,219,0.15)", color: "#B0A8D8", opacity: isGeneratingCard ? 0.7 : 1 }}
-                title={t.post_entry_save || "Save"}
-              >
-                ↓
-              </button>
+            {/* Share sheet */}
+            <div className="mt-1">
+              <p className="text-xs font-medium mb-2.5 text-center" style={{ color: "#9B93C0" }}>
+                {t.post_entry_share_to || "Share your moment"}
+              </p>
+              <div className="flex items-center justify-center gap-3">
+                {SHARE_TARGETS.map((target) => {
+                  const isActive = activeShareTarget === target.id;
+                  return (
+                    <motion.button
+                      key={target.id}
+                      whileTap={{ scale: 0.9 }}
+                      whileHover={{ scale: 1.08 }}
+                      onClick={() => handleShareTo(target.id)}
+                      disabled={isGeneratingCard}
+                      className="flex flex-col items-center gap-1.5 transition-opacity"
+                      style={{ opacity: isGeneratingCard && !isActive ? 0.4 : 1 }}
+                    >
+                      <div
+                        className="w-12 h-12 rounded-2xl flex items-center justify-center text-lg relative overflow-hidden"
+                        style={{
+                          background: target.color + "22",
+                          border: `1.5px solid ${target.color}40`,
+                        }}
+                      >
+                        {isActive ? (
+                          <div
+                            className="w-5 h-5 rounded-full border-2 border-t-transparent animate-spin"
+                            style={{ borderColor: target.color, borderTopColor: "transparent" }}
+                          />
+                        ) : (
+                          <span>{target.icon}</span>
+                        )}
+                      </div>
+                      <span className="text-[10px] font-medium" style={{ color: "#B0A8D8" }}>
+                        {target.label}
+                      </span>
+                    </motion.button>
+                  );
+                })}
+              </div>
             </div>
 
             <button
