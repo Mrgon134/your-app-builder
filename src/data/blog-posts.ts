@@ -3,6 +3,11 @@ export interface BlogSection {
   content: string | string[];
 }
 
+export interface BlogFAQ {
+  question: string;
+  answer: string;
+}
+
 export interface BlogPost {
   slug: string;
   title: string;
@@ -11,6 +16,7 @@ export interface BlogPost {
   readingTime: number;
   category: string;
   sections: BlogSection[];
+  faq?: BlogFAQ[];
 }
 
 export const BLOG_POSTS: BlogPost[] = [
@@ -139,6 +145,33 @@ export const BLOG_POSTS: BlogPost[] = [
         type: "p",
         content:
           "Open Nuju, pick your mood, and write one sentence about how today felt. That's your first entry. Come back tomorrow and do the same thing. After a week, you'll have more emotional data about yourself than most people collect in a year.",
+      },
+    ],
+    faq: [
+      {
+        question: "How often should I journal as a beginner?",
+        answer:
+          "Once a day, every day — but keep entries small. One mood rating plus one sentence is enough. Consistency beats length when you're building the habit. Miss a day? Just restart the next morning without guilt.",
+      },
+      {
+        question: "What should I write in my first journal entry?",
+        answer:
+          "Pick a mood (1–5), then finish one of these sentences: 'Today I felt ___ because ___.' or 'The heaviest thing today was ___.' You don't need narrative — just one honest observation is a complete entry.",
+      },
+      {
+        question: "Is it better to journal in the morning or at night?",
+        answer:
+          "Both work. Morning journaling helps you set intention and surface anxiety before the day starts. Night journaling helps you process what happened and sleep better. Choose the time that attaches most easily to an existing habit (coffee, brushing teeth).",
+      },
+      {
+        question: "How long does it take to build a journaling habit?",
+        answer:
+          "Most people need about two to three weeks of daily practice before journaling feels automatic. The key is keeping entries tiny during the habit-formation phase so missing a day feels easy to recover from.",
+      },
+      {
+        question: "Do I need a special journal or app to start?",
+        answer:
+          "No. Paper, a notes app, or a journaling app like Nuju all work. Apps add automatic pattern recognition (like noticing which days of the week feel harder) that paper can't. Start with whatever you'll actually use consistently.",
       },
     ],
   },
@@ -698,6 +731,28 @@ export const BLOG_POSTS: BlogPost[] = [
           "A paper notebook works fine. Digital is faster and searchable. AI journal apps like Nuju go further — automatically surfacing patterns from your mood data so you don't have to analyze it yourself. After a few weeks, the app can tell you things like 'your mood is consistently lower on Sundays' or 'you tend to feel better after you exercise' — without you having to spot it manually.",
       },
     ],
+    faq: [
+      {
+        question: "What is a mood journal?",
+        answer:
+          "A mood journal is a daily record that combines a simple emotion rating (usually 1–5) with a short note about what happened or what you were thinking. It's lighter than a traditional diary and designed to reveal patterns over time rather than capture full narratives.",
+      },
+      {
+        question: "What should you track in a mood journal?",
+        answer:
+          "At minimum: mood rating, the date, and one or two sentences of context. Optional but useful: energy level, sleep quality, who you were with, and the main event or thought driving the mood. More fields mean richer patterns but also more friction — keep it lean enough to do daily.",
+      },
+      {
+        question: "How is a mood journal different from a regular journal?",
+        answer:
+          "A regular journal captures narrative ('today I went to…'). A mood journal captures emotional data ('mood 2, anxious before the meeting'). The goal is trend analysis, not storytelling. It's why mood journals can be done in 30 seconds while traditional journaling takes 15 minutes.",
+      },
+      {
+        question: "How long before a mood journal shows useful patterns?",
+        answer:
+          "Two to four weeks of daily entries is usually enough to see first-level patterns: which days of the week feel hardest, which activities correlate with better moods, which people lift or drain your energy. AI-powered apps like Nuju can surface these patterns automatically.",
+      },
+    ],
   },
   {
     slug: "5-minute-daily-journaling-habit",
@@ -955,6 +1010,28 @@ export const BLOG_POSTS: BlogPost[] = [
         type: "p",
         content:
           "Nuju is free to try — the AI responds to your first entry, and within a few weeks surfaces patterns in your mood and emotional life that you wouldn't have spotted manually.",
+      },
+    ],
+    faq: [
+      {
+        question: "What is AI journaling?",
+        answer:
+          "AI journaling is a style of journaling where software analyzes your entries to surface emotional patterns, suggest reflections, and respond to what you wrote. The AI doesn't replace self-reflection — it augments it by spotting trends (mood by weekday, recurring themes, people correlated with stress) that would take months to see manually.",
+      },
+      {
+        question: "How is AI journaling different from ChatGPT or regular chatbots?",
+        answer:
+          "General chatbots forget your entries the moment the session ends. Purpose-built AI journals remember context across entries, track mood over time, and respond specifically to your history. A chatbot gives you a generic response to today's feelings. An AI journal notices that you've had three rough Sundays in a row.",
+      },
+      {
+        question: "Is AI journaling safe and private?",
+        answer:
+          "It depends on the app. A trustworthy AI journal has end-to-end encryption for entries, a written policy that your data is not used to train AI models, and no third-party data sales. Always read the privacy policy before writing anything personal — 'may use data to improve our services' is a red flag for journal content.",
+      },
+      {
+        question: "Does AI journaling replace therapy?",
+        answer:
+          "No. AI journaling is a self-awareness and pattern-recognition tool, not clinical care. It works well between therapy sessions — you arrive with clearer data about your week — but it cannot diagnose, treat, or replace a licensed therapist. If you're in crisis, contact a mental health professional.",
       },
     ],
   },
@@ -1453,6 +1530,28 @@ export const BLOG_POSTS: BlogPost[] = [
       { type: "ul", content: ["Does the AI reference something specific from your entry in its response?", "Does the privacy policy explicitly state entries are NOT used to train AI models?", "Is there a free tier to evaluate before paying?", "Does it track mood alongside entries?", "Does it surface patterns over time, or just respond to individual entries?"] },
       { type: "p", content: "Nuju's free tier requires no credit card — try it, see if the AI actually responds to what you wrote rather than giving you a template response." },
     ],
+    faq: [
+      {
+        question: "What is the best AI journaling app in 2026?",
+        answer:
+          "For overall depth — AI that reads your specific entries, remembers context, offers multiple coaching styles, and surfaces weekly patterns — Nuju ranked highest in our testing. Rosebud AI is the best pick for structured CBT reflection, and Reflectly is a solid starter app for people new to AI journaling.",
+      },
+      {
+        question: "Are AI journaling apps safe with my private data?",
+        answer:
+          "Only if the app explicitly commits to end-to-end encryption and states in writing that your entries are not used to train AI models. Avoid apps with vague privacy language like 'may use data to improve our services' — that can include reading your journal. Nuju encrypts entries end-to-end and does not train AI on your writing.",
+      },
+      {
+        question: "Do AI journaling apps have a free version?",
+        answer:
+          "Most of the ones worth trying do. Nuju has a free tier with no credit card required. Rosebud AI and Reflectly also offer free trials. If an app insists on payment before you can test whether the AI actually responds to your writing, skip it — you can't evaluate the quality beforehand.",
+      },
+      {
+        question: "What should I look for in an AI journaling app?",
+        answer:
+          "Four things: (1) the AI references something specific from your entry rather than giving templated replies, (2) it remembers context across past entries, (3) it surfaces patterns over weeks not just single-entry reactions, and (4) the privacy policy clearly states entries aren't used to train models.",
+      },
+    ],
   },
   {
     slug: "journaling-for-adhd",
@@ -1685,4 +1784,54 @@ export const BLOG_POSTS: BlogPost[] = [
 
 export const getBlogPost = (slug: string): BlogPost | undefined =>
   BLOG_POSTS.find((p) => p.slug === slug);
+
+/**
+ * Maps a post slug to its translation in the other language.
+ * Used to emit hreflang alternates for cross-language SEO.
+ */
+export const LANGUAGE_ALTERNATES: Record<string, { language: "en" | "id"; alternateSlug: string }> = {
+  "how-to-start-journaling": { language: "en", alternateSlug: "cara-mulai-journaling" },
+  "cara-mulai-journaling": { language: "id", alternateSlug: "how-to-start-journaling" },
+  "benefits-of-mood-tracking": { language: "en", alternateSlug: "manfaat-mood-tracking" },
+  "manfaat-mood-tracking": { language: "id", alternateSlug: "benefits-of-mood-tracking" },
+  "best-journaling-apps-2026": { language: "en", alternateSlug: "aplikasi-jurnal-terbaik" },
+  "aplikasi-jurnal-terbaik": { language: "id", alternateSlug: "best-journaling-apps-2026" },
+  "journaling-for-mental-health": { language: "en", alternateSlug: "journaling-untuk-kesehatan-mental" },
+  "journaling-untuk-kesehatan-mental": { language: "id", alternateSlug: "journaling-for-mental-health" },
+};
+
+const INDONESIAN_CATEGORIES = new Set(["Tips Journaling", "Kesehatan Mental", "Rekomendasi Aplikasi"]);
+
+export const getPostLanguage = (post: BlogPost): "en" | "id" => {
+  return LANGUAGE_ALTERNATES[post.slug]?.language ?? (INDONESIAN_CATEGORIES.has(post.category) ? "id" : "en");
+};
+
+/**
+ * Returns up to `limit` related posts. Prefers same category and same language,
+ * then fills remaining slots with other posts in the same language.
+ */
+export const getRelatedPosts = (currentSlug: string, limit = 3): BlogPost[] => {
+  const current = getBlogPost(currentSlug);
+  if (!current) return [];
+  const currentLang = getPostLanguage(current);
+
+  const sameLanguage = BLOG_POSTS.filter(
+    (p) => p.slug !== currentSlug && getPostLanguage(p) === currentLang,
+  );
+  const sameCategory = sameLanguage.filter((p) => p.category === current.category);
+  const otherCategory = sameLanguage.filter((p) => p.category !== current.category);
+
+  return [...sameCategory, ...otherCategory].slice(0, limit);
+};
+
+/**
+ * Converts a heading string to a URL-safe anchor slug (e.g. "Why Journaling Works" → "why-journaling-works").
+ */
+export const slugifyHeading = (text: string): string =>
+  text
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
 
