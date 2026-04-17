@@ -69,7 +69,7 @@ const SEOHead: React.FC<SEOHeadProps> = ({ title, description, canonical, noinde
       <meta name="twitter:creator" content="@nujuapp" />
 
       {/* hreflang */}
-      {canonical && <link rel="alternate" hrefLang="en" href={canonical} />}
+      {canonical && !alternates && <link rel="alternate" hrefLang="en" href={canonical} />}
       {canonical && <link rel="alternate" hrefLang="x-default" href={canonical} />}
       {alternates && alternates.map(({ lang, url }) => (
         <link key={lang} rel="alternate" hrefLang={lang} href={url} />
