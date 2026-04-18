@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { ArrowRight, Clock, Tag } from "lucide-react";
+import { ArrowRight, BookOpen, Clock, Tag } from "lucide-react";
 import SEOHead from "@/components/SEOHead";
 import { BLOG_POSTS } from "@/data/blog-posts";
 
@@ -45,6 +45,30 @@ const Blog: React.FC = () => {
             Practical guides to help you build self-awareness, understand your emotional patterns, and get more from your journaling practice.
           </p>
         </div>
+
+        {/* Pillar guide */}
+        <Link
+          to="/guides/journaling"
+          className="group mb-10 flex flex-col gap-3 rounded-2xl border border-primary/30 bg-gradient-to-br from-primary/10 to-primary/5 p-6 transition-all hover:border-primary/60 hover:shadow-lg sm:flex-row sm:items-center sm:justify-between"
+        >
+          <div className="flex items-start gap-4">
+            <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl bg-primary/15 text-primary">
+              <BookOpen className="h-6 w-6" />
+            </div>
+            <div>
+              <p className="mb-1 text-xs font-semibold uppercase tracking-widest text-primary">The complete guide</p>
+              <h2 className="font-serif text-xl font-bold text-foreground group-hover:text-primary transition-colors">
+                Journaling: Methods, Science &amp; Tools
+              </h2>
+              <p className="mt-1 text-sm text-muted-foreground">
+                Everything we know about journaling, distilled into one 18-minute read.
+              </p>
+            </div>
+          </div>
+          <span className="flex items-center gap-1 text-sm font-semibold text-primary whitespace-nowrap">
+            Read guide <ArrowRight className="h-4 w-4" />
+          </span>
+        </Link>
 
         {/* Article grid */}
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
