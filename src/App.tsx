@@ -14,6 +14,7 @@ import { GeoPricingProvider } from "@/hooks/use-geo-pricing";
 // This splits the bundle and dramatically improves LCP on the landing page.
 const Blog = lazy(() => import("./pages/Blog.tsx"));
 const BlogPost = lazy(() => import("./pages/BlogPost.tsx"));
+const JournalingGuide = lazy(() => import("./pages/JournalingGuide.tsx"));
 const Index = lazy(() => import("./pages/Index.tsx"));
 const AppPage = lazy(() => import("./pages/AppPage.tsx"));
 const AuthPage = lazy(() => import("./pages/AuthPage.tsx"));
@@ -59,6 +60,7 @@ const App = () => (
                   <Route path="/" element={<Index />} />
                   <Route path="/blog" element={<Blog />} />
                   <Route path="/blog/:slug" element={<BlogPost />} />
+                  <Route path="/guides/journaling" element={<JournalingGuide />} />
                   <Route path="/onboarding" element={<OnboardingScreen />} />
                   <Route path="/auth" element={<AuthPage />} />
                   <Route path="/auth/callback" element={<AuthCallback />} />

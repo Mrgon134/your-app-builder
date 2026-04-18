@@ -29,6 +29,7 @@ const STATIC_ROUTES = [
   { loc: "/terms", priority: "0.4", changefreq: "yearly" },
   { loc: "/medical-disclaimer", priority: "0.3", changefreq: "yearly" },
   { loc: "/blog", priority: "0.8", changefreq: "weekly" },
+  { loc: "/guides/journaling", priority: "0.9", changefreq: "monthly" },
 ];
 
 const escapeXml = (str) =>
