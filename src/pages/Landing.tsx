@@ -25,10 +25,23 @@ import {
 } from "lucide-react";
 import LifetimeScarcityMeter from "@/components/app/LifetimeScarcityMeter";
 import juMain from "@/assets/ju-main.webp";
+import juRough from "@/assets/ju-rough.webp";
+import juLow from "@/assets/ju-low.webp";
+import juOkay from "@/assets/ju-okay.webp";
+import juGood from "@/assets/ju-good.webp";
+import juGreat from "@/assets/ju-great.webp";
 import { useLifetimeScarcity } from "@/hooks/use-lifetime-scarcity";
 import HeroPatternPreview from "@/components/landing/HeroPatternPreview";
 import SEOHead from "@/components/SEOHead";
 import { Magnetic } from "@/components/ui/Magnetic";
+
+const MOOD_SHOWCASE = [
+  { label: "Rough", img: juRough, color: "#E8878C", line: "When everything feels too loud." },
+  { label: "Low", img: juLow, color: "#6C9BCF", line: "When you are quietly holding it together." },
+  { label: "Okay", img: juOkay, color: "#FFB347", line: "When the weight is steady, not loud." },
+  { label: "Good", img: juGood, color: "#95E1D3", line: "When softness is finally returning." },
+  { label: "Great", img: juGreat, color: "#4ECDC4", line: "When you feel yourself again." },
+];
 
 const Landing: React.FC = () => {
   const navigate = useNavigate();
@@ -37,10 +50,17 @@ const Landing: React.FC = () => {
   const { trackLandingView, trackWaitlistSignup } = usePostHogEvents();
   const ttk = useTikTokPixel();
   const { snapshot: lifetimeScarcity } = useLifetimeScarcity();
+  const [showStickyCta, setShowStickyCta] = useState(false);
 
   useEffect(() => {
     trackLandingView();
     ttk.trackPageView();
+  }, []);
+
+  useEffect(() => {
+    const onScroll = () => setShowStickyCta(window.scrollY > 600);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   const scrollToPricing = () =>
@@ -308,108 +328,266 @@ const Landing: React.FC = () => {
         </div>
       </nav>
 
-      <section className="relative overflow-hidden px-4 pb-20 pt-12">
+      <section className="relative overflow-hidden px-4 pb-24 pt-14 sm:pt-20">
+        {/* Aurora blobs — animated mood-coloured gradient clouds */}
         <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
-          <div className="absolute left-1/2 top-20 h-[30rem] w-[30rem] -translate-x-1/2 rounded-full bg-primary/15 blur-[130px]" />
-          <div className="absolute right-0 top-32 h-64 w-64 rounded-full bg-[#4ECDC4]/10 blur-[100px]" />
+          <div className="absolute inset-0 hero-grid-bg opacity-60" />
+          <div className="aurora-blob animate-aurora-a left-[-10%] top-[-8%] h-[34rem] w-[34rem] bg-[radial-gradient(circle,rgba(124,110,219,0.55),transparent_65%)]" />
+          <div className="aurora-blob animate-aurora-b right-[-12%] top-[4%] h-[30rem] w-[30rem] bg-[radial-gradient(circle,rgba(78,205,196,0.42),transparent_65%)]" />
+          <div className="aurora-blob animate-aurora-c left-[30%] top-[40%] h-[26rem] w-[26rem] bg-[radial-gradient(circle,rgba(255,179,71,0.28),transparent_65%)]" />
+          <div className="aurora-blob animate-aurora-a right-[10%] top-[55%] h-[22rem] w-[22rem] bg-[radial-gradient(circle,rgba(232,135,140,0.28),transparent_65%)]" />
         </div>
 
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="relative mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-[1.1fr_0.9fr]"
+          className="relative mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-[1.05fr_0.95fr]"
         >
           <div className="text-left">
             <Magnetic>
-              <motion.div 
-                whileHover={{ scale: 1.02 }}
+              <motion.div
+                whileHover={{ scale: 1.04 }}
                 onClick={() => startOnboarding("lifetime_one_time")}
-                className="mb-8 inline-flex cursor-pointer items-center gap-2 rounded-full border border-[#FFD166]/30 bg-[#FFD166]/10 px-5 py-2 text-sm font-bold text-[#FFD166] shadow-[0_0_20px_rgba(255,209,102,0.15)] transition-all hover:bg-[#FFD166]/20"
+                className="group mb-7 inline-flex cursor-pointer items-center gap-2 rounded-full border border-primary/20 bg-white/70 px-4 py-2 text-xs font-semibold text-foreground/85 shadow-[0_8px_24px_-12px_rgba(124,110,219,0.35)] backdrop-blur-xl transition-all hover:border-primary/40 hover:bg-white/90 dark:bg-white/5 dark:hover:bg-white/10"
               >
-                <Flame className="h-4 w-4" />
-                Start with the Ju Gets You reveal
+                <span className="relative flex h-2 w-2">
+                  <span className="absolute inset-0 animate-ping rounded-full bg-[#4ECDC4]/70" />
+                  <span className="relative h-2 w-2 rounded-full bg-[#4ECDC4]" />
+                </span>
+                <span className="tracking-wide uppercase text-[11px]">New · The Ju Gets You reveal</span>
+                <ArrowRight className="h-3.5 w-3.5 text-primary transition-transform group-hover:translate-x-0.5" />
               </motion.div>
             </Magnetic>
 
-            <motion.h1 
+            <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-              className="max-w-3xl text-balance font-serif text-5xl font-bold leading-[1.02] tracking-tight text-foreground sm:text-6xl lg:text-7xl"
+              className="max-w-3xl text-balance font-serif text-5xl font-bold leading-[1.02] tracking-tight text-foreground sm:text-6xl lg:text-[5.25rem]"
             >
-              When you feel a lot and cannot explain it, Ju helps you feel understood.
+              When your mind feels loud,
+              <br />
+              <span className="text-shimmer italic">Ju makes it feel understood.</span>
             </motion.h1>
 
-            <motion.p 
+            <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-              className="mt-6 max-w-2xl text-pretty text-lg leading-8 text-muted-foreground sm:text-xl"
+              className="mt-6 max-w-xl text-pretty text-lg leading-8 text-muted-foreground sm:text-xl"
             >
-              A few quick answers are enough for Ju to notice what is heavy, reflect it back clearly, and make you feel less alone in it.
+              A few honest answers are all it takes. Ju reflects what is really going on — gently, in under a minute — so you feel less alone in it.
             </motion.p>
 
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-              className="mt-8 flex flex-col gap-4 sm:flex-row"
+              className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center"
             >
               <Magnetic>
                 <button
                   onClick={() => startOnboarding()}
-                  className="inline-flex items-center justify-center gap-2 rounded-2xl bg-primary px-8 py-4 text-lg font-semibold text-primary-foreground transition-all hover:-translate-y-1 hover:shadow-xl hover:shadow-primary/30 active:scale-[0.97]"
+                  className="group relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-full bg-[linear-gradient(135deg,#8A7CE8_0%,#7C6EDB_45%,#6F5FE8_100%)] px-8 py-4 text-base font-semibold text-white shadow-[0_16px_40px_-12px_rgba(124,110,219,0.55)] transition-all hover:-translate-y-0.5 hover:shadow-[0_20px_55px_-12px_rgba(124,110,219,0.7)] active:scale-[0.97]"
                 >
-                  See what Ju notices
-                  <ArrowRight className="h-5 w-5" />
+                  <span className="absolute inset-0 bg-[linear-gradient(120deg,transparent_30%,rgba(255,255,255,0.4)_50%,transparent_70%)] bg-[length:200%_100%] opacity-0 transition-opacity duration-500 group-hover:opacity-100 group-hover:animate-[gradient-flow_1.5s_ease]" />
+                  <span className="relative">Start the Ju Gets You reveal</span>
+                  <ArrowRight className="relative h-5 w-5 transition-transform group-hover:translate-x-1" />
                 </button>
               </Magnetic>
               <Magnetic>
                 <button
                   onClick={scrollToPricing}
-                  className="inline-flex items-center justify-center gap-2 rounded-2xl border border-border bg-card px-6 py-4 text-base font-semibold text-foreground transition-all hover:-translate-y-1 hover:border-primary/30 hover:bg-primary/[0.04] hover:shadow-xl hover:shadow-black/5 active:scale-[0.97]"
+                  className="inline-flex items-center justify-center gap-2 rounded-full border border-border/70 bg-white/60 px-6 py-4 text-sm font-semibold text-foreground/90 backdrop-blur-md transition-all hover:border-primary/30 hover:bg-white/90 active:scale-[0.97] dark:bg-white/5 dark:hover:bg-white/10"
                 >
-                  Compare plans
+                  See plans
                 </button>
               </Magnetic>
             </motion.div>
 
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ delay: 0.5, duration: 1 }}
-              className="mt-8 grid gap-3 sm:grid-cols-3"
+              transition={{ delay: 0.55, duration: 1 }}
+              className="mt-5 flex flex-wrap items-center gap-x-5 gap-y-2 text-xs font-medium text-muted-foreground"
             >
-              {[
-                { label: "Feels personal fast", icon: Heart },
-                { label: "Ju Gets You reveal", icon: Mic },
-                { label: "Private by default", icon: Lock },
-              ].map((item) => {
-                const Icon = item.icon;
-                return (
-                  <motion.div
-                    whileHover={{ scale: 1.05 }}
-                    key={item.label}
-                    className="flex items-center gap-2 rounded-2xl border border-border/60 bg-card/75 px-4 py-3 text-sm text-foreground shadow-sm backdrop-blur-md"
-                  >
-                    <Icon className="h-4 w-4 text-primary" />
-                    <span>{item.label}</span>
-                  </motion.div>
-                );
-              })}
+              <span className="inline-flex items-center gap-1.5">
+                <span className="h-1.5 w-1.5 rounded-full bg-[#4ECDC4]" />
+                60-second reveal
+              </span>
+              <span className="inline-flex items-center gap-1.5">
+                <Lock className="h-3.5 w-3.5" />
+                Private by default
+              </span>
+              <span className="inline-flex items-center gap-1.5">
+                <Heart className="h-3.5 w-3.5 text-[#E8878C]" />
+                Warm, never clinical
+              </span>
             </motion.div>
           </div>
 
+          {/* Hero visual — preview card wrapped with floating mood Ju orbs */}
           <motion.div
              initial={{ opacity: 0, scale: 0.95 }}
              animate={{ opacity: 1, scale: 1 }}
              transition={{ delay: 0.3, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+             className="relative"
           >
+            {/* Floating mood orbs (desktop only) */}
+            <div className="pointer-events-none absolute inset-0 hidden lg:block" aria-hidden="true">
+              <motion.div
+                initial={{ opacity: 0, scale: 0.6 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.8, duration: 0.6, type: "spring" }}
+                className="absolute -left-10 top-8 animate-ju-orbit-a"
+              >
+                <div className="relative flex h-20 w-20 items-center justify-center rounded-full bg-white shadow-[0_20px_40px_-12px_rgba(108,155,207,0.55)] ring-4 ring-[#6C9BCF]/15">
+                  <div className="absolute inset-0 rounded-full bg-[#6C9BCF]/20 blur-xl" />
+                  <img src={juLow} alt="" className="relative h-14 w-14 object-contain" />
+                </div>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, scale: 0.6 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 1.0, duration: 0.6, type: "spring" }}
+                className="absolute -right-8 top-20 animate-ju-orbit-b"
+              >
+                <div className="relative flex h-16 w-16 items-center justify-center rounded-full bg-white shadow-[0_16px_36px_-12px_rgba(78,205,196,0.55)] ring-4 ring-[#4ECDC4]/15">
+                  <div className="absolute inset-0 rounded-full bg-[#4ECDC4]/20 blur-xl" />
+                  <img src={juGreat} alt="" className="relative h-11 w-11 object-contain" />
+                </div>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, scale: 0.6 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 1.2, duration: 0.6, type: "spring" }}
+                className="absolute -left-14 bottom-6 animate-ju-orbit-c"
+              >
+                <div className="relative flex h-14 w-14 items-center justify-center rounded-full bg-white shadow-[0_14px_30px_-12px_rgba(255,179,71,0.55)] ring-4 ring-[#FFB347]/15">
+                  <div className="absolute inset-0 rounded-full bg-[#FFB347]/20 blur-xl" />
+                  <img src={juOkay} alt="" className="relative h-10 w-10 object-contain" />
+                </div>
+              </motion.div>
+            </div>
+
              <HeroPatternPreview />
           </motion.div>
         </motion.div>
       </section>
+
+      {/* Social proof strip — right under hero */}
+      <section className="relative px-4 pb-10">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.6 }}
+          className="mx-auto flex max-w-4xl flex-col items-center justify-center gap-4 rounded-full border border-border/50 bg-card/80 px-6 py-4 text-center shadow-[0_8px_30px_-12px_rgba(0,0,0,0.06)] backdrop-blur-xl sm:flex-row sm:text-left"
+        >
+          <div className="flex -space-x-2">
+            {[juRough, juLow, juOkay, juGood, juGreat].map((src, i) => (
+              <div
+                key={i}
+                className="h-8 w-8 rounded-full bg-white ring-2 ring-white shadow-sm overflow-hidden"
+                style={{ zIndex: 5 - i }}
+              >
+                <img src={src} alt="" className="h-full w-full object-contain" />
+              </div>
+            ))}
+          </div>
+          <div className="flex items-center gap-1 text-[#FFB347]">
+            {[0,1,2,3,4].map((i) => (
+              <svg key={i} viewBox="0 0 20 20" className="h-4 w-4 fill-current">
+                <path d="M10 1.5l2.6 5.3 5.9.9-4.3 4.2 1 5.8L10 15l-5.3 2.8 1-5.8L1.4 7.7l5.9-.9z" />
+              </svg>
+            ))}
+          </div>
+          <p className="text-sm font-medium text-foreground/85">
+            Trusted by <span className="font-bold text-foreground">1,200+</span> quiet minds · "It noticed what I could not name."
+          </p>
+        </motion.div>
+      </section>
+
+      {/* Meet Ju — mood showcase */}
+      <motion.section
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+        className="relative overflow-hidden px-4 py-24"
+      >
+        <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
+          <div className="aurora-blob animate-aurora-c left-[10%] top-[20%] h-80 w-80 bg-[radial-gradient(circle,rgba(149,225,211,0.35),transparent_65%)]" />
+          <div className="aurora-blob animate-aurora-b right-[10%] bottom-[10%] h-80 w-80 bg-[radial-gradient(circle,rgba(232,135,140,0.25),transparent_65%)]" />
+        </div>
+
+        <div className="relative mx-auto max-w-6xl">
+          <div className="mx-auto max-w-2xl text-center">
+            <p className="text-sm font-semibold uppercase tracking-[0.22em] text-primary">Meet Ju</p>
+            <h2 className="mt-4 font-serif text-4xl font-bold leading-tight text-foreground sm:text-5xl">
+              Whichever mood shows up, <span className="font-writing italic text-primary">Ju meets you there.</span>
+            </h2>
+            <p className="mt-5 text-lg leading-8 text-muted-foreground">
+              Five tender expressions. One companion that changes with how you feel — so support never arrives the same when the moment isn't.
+            </p>
+          </div>
+
+          <div className="mt-14 grid grid-cols-2 gap-5 sm:grid-cols-3 lg:grid-cols-5">
+            {MOOD_SHOWCASE.map((mood, index) => (
+              <motion.div
+                key={mood.label}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                whileHover={{ y: -8, scale: 1.04 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.08, type: "spring", stiffness: 120 }}
+                className="group relative flex flex-col items-center rounded-[2rem] border border-border/50 bg-card/80 p-6 text-center shadow-[0_10px_30px_-14px_rgba(0,0,0,0.1)] backdrop-blur-xl transition-all hover:shadow-[0_20px_50px_-18px_rgba(0,0,0,0.2)]"
+                style={{
+                  background: `linear-gradient(180deg, ${mood.color}12 0%, transparent 55%), hsl(var(--card) / 0.8)`,
+                }}
+              >
+                <div
+                  className="absolute -top-10 left-1/2 -translate-x-1/2 h-24 w-24 rounded-full opacity-60 blur-2xl transition-opacity group-hover:opacity-90"
+                  style={{ background: mood.color }}
+                />
+                <div
+                  className="relative mb-4 flex h-24 w-24 items-center justify-center rounded-full bg-white shadow-[0_12px_30px_-10px_rgba(0,0,0,0.15)] ring-4 transition-transform group-hover:scale-105"
+                  style={{ boxShadow: `0 14px 32px -12px ${mood.color}88`, borderColor: `${mood.color}30` }}
+                >
+                  <img
+                    src={mood.img}
+                    alt={`Ju feeling ${mood.label}`}
+                    className="h-16 w-16 object-contain transition-transform duration-500 group-hover:animate-ju-float"
+                    loading="lazy"
+                  />
+                </div>
+                <span
+                  className="inline-flex items-center rounded-full px-3 py-1 text-xs font-bold uppercase tracking-[0.18em]"
+                  style={{ background: `${mood.color}1f`, color: mood.color }}
+                >
+                  {mood.label}
+                </span>
+                <p className="mt-4 text-sm leading-6 text-muted-foreground">{mood.line}</p>
+              </motion.div>
+            ))}
+          </div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mx-auto mt-14 max-w-2xl text-center"
+          >
+            <p className="font-writing text-xl italic leading-8 text-foreground/85 sm:text-2xl">
+              "The first time I opened it on a bad day, Ju looked like how I was feeling. That was the moment I knew."
+            </p>
+            <p className="mt-3 text-xs font-bold uppercase tracking-[0.22em] text-muted-foreground">— Early user · 4 months with Ju</p>
+          </motion.div>
+        </div>
+      </motion.section>
 
       <motion.section
         initial={{ opacity: 0, y: 40 }}
@@ -432,21 +610,34 @@ const Landing: React.FC = () => {
           <div className="mt-12 grid gap-6 lg:grid-cols-3">
             {emotionalMoments.map((moment, index) => {
               const Icon = moment.icon;
+              const accents = ["#E8878C", "#7C6EDB", "#4ECDC4"];
+              const accent = accents[index] ?? "#7C6EDB";
               return (
                 <motion.div
-                  whileHover={{ scale: 1.03, y: -5 }}
+                  whileHover={{ scale: 1.03, y: -6 }}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: index * 0.1, type: "spring", stiffness: 100 }}
                   key={moment.title}
-                  className="glass-card rounded-[2rem] p-7"
+                  className="group relative overflow-hidden glass-card rounded-[2rem] p-7"
                 >
-                  <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/10">
-                    <Icon className="h-6 w-6 text-primary" />
+                  <div
+                    className="absolute inset-x-0 top-0 h-1 opacity-80"
+                    style={{ background: `linear-gradient(90deg, transparent, ${accent}, transparent)` }}
+                  />
+                  <div
+                    className="absolute -top-16 -right-16 h-40 w-40 rounded-full opacity-30 blur-3xl transition-opacity group-hover:opacity-60"
+                    style={{ background: accent }}
+                  />
+                  <div
+                    className="relative mb-5 flex h-12 w-12 items-center justify-center rounded-2xl"
+                    style={{ background: `${accent}1a`, color: accent }}
+                  >
+                    <Icon className="h-6 w-6" style={{ color: accent }} />
                   </div>
-                  <h3 className="font-serif text-2xl font-semibold text-foreground">{moment.title}</h3>
-                  <p className="mt-4 text-base leading-7 text-muted-foreground">{moment.body}</p>
+                  <h3 className="relative font-serif text-2xl font-semibold text-foreground">{moment.title}</h3>
+                  <p className="relative mt-4 text-base leading-7 text-muted-foreground">{moment.body}</p>
                 </motion.div>
               );
             })}
@@ -497,12 +688,13 @@ const Landing: React.FC = () => {
               <p className="mt-5 max-w-xl text-lg leading-8 text-muted-foreground">
                 You do not need to understand the whole app first. You only need one moment where Ju reflects something true enough that you feel it.
               </p>
-              <motion.div 
+              <motion.div
                 whileHover={{ scale: 1.02 }}
-                className="mt-8 rounded-[1.75rem] border border-border/60 bg-secondary/40 p-6 shadow-[0_8px_30px_rgb(0,0,0,0.04)]"
+                className="relative mt-8 overflow-hidden rounded-[1.75rem] border border-primary/20 bg-[linear-gradient(135deg,rgba(124,110,219,0.08),rgba(78,205,196,0.05))] p-7 shadow-[0_14px_40px_-18px_rgba(124,110,219,0.35)]"
               >
-                <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-primary">Why it lands</p>
-                <p className="mt-3 font-serif text-2xl leading-9 text-foreground">
+                <div className="absolute -top-10 -right-10 h-32 w-32 rounded-full bg-primary/20 blur-3xl" />
+                <p className="relative text-[10px] font-bold uppercase tracking-[0.22em] text-primary">Why it lands</p>
+                <p className="relative mt-3 font-writing text-[1.6rem] italic leading-9 text-foreground">
                   Feel understood first.
                   <br />
                   The deeper support can come after.
@@ -510,25 +702,39 @@ const Landing: React.FC = () => {
               </motion.div>
             </div>
 
-            <div className="grid gap-5">
+            <div className="relative grid gap-5">
+              {/* Vertical connector line */}
+              <div className="absolute left-[32px] top-4 bottom-4 hidden w-px bg-gradient-to-b from-primary/30 via-primary/20 to-transparent sm:block" aria-hidden="true" />
               {steps.map((step, index) => {
                 const Icon = step.icon;
+                const stepAccents = ["#E8878C", "#7C6EDB", "#4ECDC4"];
+                const accent = stepAccents[index] ?? "#7C6EDB";
                 return (
                   <motion.div
-                    whileHover={{ scale: 1.02, x: 5 }}
+                    whileHover={{ scale: 1.02, x: 4 }}
                     initial={{ opacity: 0, x: -20 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.5, delay: index * 0.15, type: "spring", stiffness: 100 }}
                     key={step.title}
-                    className="rounded-[2rem] border border-border/60 bg-card p-6 shadow-sm hover:shadow-md"
+                    className="relative rounded-[2rem] border border-border/60 bg-card p-6 shadow-sm transition-all hover:shadow-xl"
                   >
                     <div className="flex items-start gap-4">
-                      <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-primary/10">
-                        <Icon className="h-6 w-6 text-primary" />
+                      <div
+                        className="relative flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl shadow-[0_10px_28px_-12px_rgba(0,0,0,0.15)]"
+                        style={{ background: `linear-gradient(135deg, ${accent}22, ${accent}0d)` }}
+                      >
+                        <Icon className="h-6 w-6" style={{ color: accent }} />
                       </div>
-                      <div>
-                        <p className="text-xs font-bold uppercase tracking-[0.2em] text-primary">0{index + 1}</p>
+                      <div className="flex-1">
+                        <div className="flex items-center gap-3">
+                          <p
+                            className="rounded-full px-2.5 py-0.5 text-[11px] font-bold uppercase tracking-[0.2em]"
+                            style={{ background: `${accent}15`, color: accent }}
+                          >
+                            Step 0{index + 1}
+                          </p>
+                        </div>
                         <h3 className="mt-2 font-serif text-2xl font-semibold text-foreground">{step.title}</h3>
                         <p className="mt-3 text-base leading-7 text-muted-foreground">{step.body}</p>
                       </div>
@@ -624,24 +830,42 @@ const Landing: React.FC = () => {
           </div>
 
           <div className="mt-12 grid gap-6 lg:grid-cols-3">
-            {testimonials.map((item, index) => (
-              <motion.div
-                whileHover={{ scale: 1.02 }}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.15 }}
-                key={item.name}
-                className="rounded-[2rem] border border-border/60 bg-card p-6 shadow-sm hover:shadow-md"
-              >
-                <Quote className="h-5 w-5 text-primary/35" />
-                <p className="mt-4 text-[15px] leading-7 text-foreground">{item.text}</p>
-                <div className="mt-5">
-                  <p className="font-semibold text-foreground">{item.name}</p>
-                  <p className="text-sm text-muted-foreground">{item.role}</p>
-                </div>
-              </motion.div>
-            ))}
+            {testimonials.map((item, index) => {
+              const avatars = [juGood, juOkay, juGreat];
+              const accents = ["#95E1D3", "#FFB347", "#4ECDC4"];
+              const avatar = avatars[index] ?? juMain;
+              const accent = accents[index] ?? "#7C6EDB";
+              return (
+                <motion.div
+                  whileHover={{ scale: 1.03, y: -6 }}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: index * 0.15 }}
+                  key={item.name}
+                  className="group relative overflow-hidden rounded-[2rem] border border-border/60 bg-card p-7 shadow-sm transition-all hover:shadow-xl"
+                >
+                  <div
+                    className="absolute -top-12 -right-12 h-32 w-32 rounded-full opacity-25 blur-3xl transition-opacity group-hover:opacity-50"
+                    style={{ background: accent }}
+                  />
+                  <Quote className="relative h-6 w-6" style={{ color: `${accent}99` }} />
+                  <p className="relative mt-4 font-writing text-[17px] italic leading-8 text-foreground">"{item.text}"</p>
+                  <div className="relative mt-6 flex items-center gap-3">
+                    <div
+                      className="flex h-11 w-11 items-center justify-center rounded-full bg-white shadow-sm ring-2"
+                      style={{ boxShadow: `0 6px 18px -6px ${accent}aa`, borderColor: accent }}
+                    >
+                      <img src={avatar} alt="" className="h-8 w-8 object-contain" loading="lazy" />
+                    </div>
+                    <div>
+                      <p className="font-semibold text-foreground">{item.name}</p>
+                      <p className="text-xs text-muted-foreground">{item.role}</p>
+                    </div>
+                  </div>
+                </motion.div>
+              );
+            })}
           </div>
 
           <motion.div 
@@ -691,16 +915,15 @@ const Landing: React.FC = () => {
       >
         <div className="mx-auto max-w-6xl">
           <div className="mx-auto max-w-2xl text-center">
-            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">Choose the pace that fits you</p>
-            <h2 className="mt-4 font-serif text-4xl font-bold text-foreground sm:text-5xl">
-              Choose how closely you want Ju to stay with you.
+            <p className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/[0.06] px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-primary">
+              <Sparkles className="h-3.5 w-3.5" />
+              Pricing
+            </p>
+            <h2 className="mt-5 font-serif text-4xl font-bold leading-tight text-foreground sm:text-5xl">
+              Choose how closely <span className="font-writing italic text-primary">Ju stays with you.</span>
             </h2>
             <p className="mt-5 text-lg leading-8 text-muted-foreground">
-              Start with the plan that matches your level of commitment, whether you want a cautious beginning, steady long-term support,
-              or one decision that keeps Ju close for good.
-            </p>
-            <p className="mt-2 text-sm leading-7 text-muted-foreground">
-              Weekly is the lightest start, Annual is the best value, and Lifetime is the premium one-time path.
+              A gentle start, a steady companion, or a one-time decision that keeps Ju close for good. No hidden fees, cancel anytime.
             </p>
             {geo.hasLocalizedDisplay ? (
               <div className="mt-5 inline-flex items-center gap-2 rounded-full border border-border bg-card px-4 py-2 text-xs font-medium text-muted-foreground">
@@ -718,22 +941,28 @@ const Landing: React.FC = () => {
           <div className="mt-12 grid gap-6 lg:grid-cols-2 xl:grid-cols-3">
             {pricingPlans.map((displayPlan, index) => {
               const isLifetime = displayPlan.name === "Lifetime";
+              const isAnnual = displayPlan.name === "Annual";
               return (
                 <motion.div
-                  whileHover={{ scale: 1.02, y: -5 }}
+                  whileHover={{ scale: 1.02, y: -6 }}
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: index * 0.1, type: "spring", stiffness: 100 }}
                   key={displayPlan.name}
-                  className={`relative rounded-[2rem] border p-8 flex flex-col hover:shadow-xl ${
+                  className={`relative rounded-[2rem] border p-8 flex flex-col transition-all ${
                     isLifetime
-                      ? "border-primary/35 bg-[linear-gradient(180deg,rgba(245,241,255,0.96),rgba(255,255,255,0.99))] shadow-[0_20px_50px_-24px_rgba(124,110,219,0.38)] dark:border-[#9385F6]/45 dark:bg-[radial-gradient(circle_at_top,rgba(156,137,255,0.22),transparent_45%),linear-gradient(180deg,#201934_0%,#161124_100%)] dark:shadow-[0_20px_50px_-24px_rgba(86,70,177,0.55)]"
+                      ? "border-primary/35 bg-[linear-gradient(180deg,rgba(245,241,255,0.96),rgba(255,255,255,0.99))] shadow-[0_20px_50px_-24px_rgba(124,110,219,0.38)] hover:shadow-[0_28px_60px_-24px_rgba(124,110,219,0.55)] dark:border-[#9385F6]/45 dark:bg-[radial-gradient(circle_at_top,rgba(156,137,255,0.22),transparent_45%),linear-gradient(180deg,#201934_0%,#161124_100%)] dark:shadow-[0_20px_50px_-24px_rgba(86,70,177,0.55)]"
+                      : isAnnual
+                      ? "border-primary/40 bg-card shadow-[0_20px_50px_-24px_rgba(124,110,219,0.35)] ring-1 ring-primary/15 hover:shadow-[0_28px_60px_-24px_rgba(124,110,219,0.5)] dark:border-primary/40 dark:bg-white/[0.04]"
                       : displayPlan.highlight
                       ? "border-primary/40 bg-primary text-primary-foreground shadow-[0_0_30px_rgba(124,110,219,0.25)]"
-                      : "border-border/60 bg-card shadow-sm dark:border-white/10 dark:bg-white/[0.03]"
+                      : "border-border/60 bg-card shadow-sm hover:shadow-lg dark:border-white/10 dark:bg-white/[0.03]"
                   }`}
                 >
+                  {isAnnual && (
+                    <div className="absolute inset-x-8 -top-px h-px bg-gradient-to-r from-transparent via-primary/60 to-transparent" aria-hidden="true" />
+                  )}
                   {displayPlan.badge && (
                     <div
                       className={`absolute -top-3 left-6 rounded-full px-3 py-1 text-xs font-bold shadow-sm ${
@@ -865,45 +1094,53 @@ const Landing: React.FC = () => {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-        className="px-4 pb-20 pt-6"
+        className="relative px-4 pb-24 pt-6"
       >
-        <div className="mx-auto max-w-4xl rounded-[2.5rem] border border-border/60 bg-card px-6 py-12 text-center shadow-xl sm:px-10">
-          <motion.div 
+        <div className="relative mx-auto max-w-4xl overflow-hidden rounded-[2.5rem] border border-primary/20 bg-[linear-gradient(135deg,#F5F3FF_0%,#FFFFFF_50%,#EEF9F7_100%)] px-6 py-14 text-center shadow-[0_40px_80px_-30px_rgba(124,110,219,0.35)] sm:px-10 dark:border-primary/30 dark:bg-[linear-gradient(135deg,#1E1A34_0%,#191527_55%,#14202A_100%)]">
+          <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
+            <div className="aurora-blob animate-aurora-a left-[-10%] top-[-20%] h-72 w-72 bg-[radial-gradient(circle,rgba(124,110,219,0.35),transparent_65%)]" />
+            <div className="aurora-blob animate-aurora-b right-[-10%] bottom-[-20%] h-72 w-72 bg-[radial-gradient(circle,rgba(78,205,196,0.3),transparent_65%)]" />
+          </div>
+
+          <motion.div
             whileHover={{ scale: 1.1, rotate: 5 }}
-            className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-primary/10 shadow-inner"
+            className="relative mx-auto flex h-24 w-24 items-center justify-center rounded-full bg-white shadow-[0_18px_40px_-14px_rgba(124,110,219,0.45)] ring-4 ring-primary/15"
           >
-            <img src={juMain} alt="Ju mascot celebrating — Nuju AI journal companion" className="h-14 w-14 animate-ju-float object-contain" width={56} height={56} loading="lazy" />
+            <div className="absolute inset-0 rounded-full bg-primary/15 blur-xl" />
+            <img src={juMain} alt="Ju mascot celebrating — Nuju AI journal companion" className="relative h-16 w-16 animate-ju-float object-contain" width={64} height={64} loading="lazy" />
           </motion.div>
-          <h2 className="mt-6 font-serif text-4xl font-bold text-foreground sm:text-5xl">
-            You do not need perfect words to feel understood.
+
+          <h2 className="relative mt-8 font-serif text-4xl font-bold leading-tight text-foreground sm:text-5xl">
+            You don't need perfect words
+            <br />
+            <span className="text-shimmer italic">to feel understood.</span>
           </h2>
-          <p className="mx-auto mt-5 max-w-2xl text-lg leading-8 text-muted-foreground">
+          <p className="relative mx-auto mt-5 max-w-2xl text-lg leading-8 text-muted-foreground">
             Open Nuju when your thoughts feel crowded. Answer a few quick prompts, see what Ju notices, and keep the support that feels right.
           </p>
-          <p className="mx-auto mt-4 max-w-xl text-sm uppercase tracking-[0.22em] text-primary/80">
-            Built for the moments you need to feel seen, not polished.
-          </p>
-          <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
+
+          <div className="relative mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <Magnetic>
               <button
                 onClick={() => startOnboarding()}
-                className="inline-flex items-center justify-center gap-2 rounded-2xl bg-primary px-8 py-4 text-lg font-semibold text-primary-foreground transition-all hover:-translate-y-1 hover:shadow-xl hover:shadow-primary/30 active:scale-[0.97]"
+                className="group relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-full bg-[linear-gradient(135deg,#8A7CE8_0%,#7C6EDB_45%,#6F5FE8_100%)] px-8 py-4 text-base font-semibold text-white shadow-[0_18px_45px_-14px_rgba(124,110,219,0.6)] transition-all hover:-translate-y-0.5 hover:shadow-[0_22px_55px_-14px_rgba(124,110,219,0.75)] active:scale-[0.97]"
               >
-                See what Ju notices
-                <ArrowRight className="h-5 w-5" />
+                <span className="absolute inset-0 bg-[linear-gradient(120deg,transparent_30%,rgba(255,255,255,0.4)_50%,transparent_70%)] bg-[length:200%_100%] opacity-0 transition-opacity duration-500 group-hover:opacity-100 group-hover:animate-[gradient-flow_1.5s_ease]" />
+                <span className="relative">Start the Ju Gets You reveal</span>
+                <ArrowRight className="relative h-5 w-5 transition-transform group-hover:translate-x-1" />
               </button>
             </Magnetic>
             <Magnetic>
               <button
                 onClick={scrollToPricing}
-                className="rounded-2xl border border-border bg-card px-6 py-4 text-base font-semibold text-foreground transition-all hover:-translate-y-1 hover:border-primary/30 hover:bg-primary/[0.04] hover:shadow-md active:scale-[0.97]"
+                className="rounded-full border border-border/70 bg-white/70 px-6 py-4 text-sm font-semibold text-foreground backdrop-blur-md transition-all hover:-translate-y-0.5 hover:border-primary/30 hover:bg-white active:scale-[0.97] dark:bg-white/5 dark:hover:bg-white/10"
               >
-                See pricing
+                See plans
               </button>
             </Magnetic>
           </div>
-          <p className="mt-4 text-sm font-medium text-muted-foreground">
-            Start with the reveal, then choose the support level that fits.
+          <p className="relative mt-5 text-xs font-medium uppercase tracking-[0.22em] text-muted-foreground">
+            60-second reveal · No credit card to start
           </p>
         </div>
       </motion.section>
@@ -968,6 +1205,30 @@ const Landing: React.FC = () => {
           </div>
         </div>
       </footer>
+
+      {/* Mobile sticky CTA — appears after scrolling past the hero */}
+      <AnimatePresence>
+        {showStickyCta && (
+          <motion.div
+            initial={{ y: 80, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            exit={{ y: 80, opacity: 0 }}
+            transition={{ type: "spring", stiffness: 200, damping: 22 }}
+            className="fixed inset-x-0 bottom-0 z-40 px-4 pb-[max(env(safe-area-inset-bottom,0px),0.75rem)] pt-2 sm:hidden"
+          >
+            <div className="mx-auto flex max-w-md items-center gap-2 rounded-full border border-border/60 bg-card/95 p-1.5 pl-4 shadow-[0_20px_50px_-18px_rgba(0,0,0,0.35)] backdrop-blur-xl">
+              <span className="text-xs font-semibold text-foreground">Feel understood in 60s</span>
+              <button
+                onClick={() => startOnboarding()}
+                className="ml-auto inline-flex items-center gap-1 rounded-full bg-[linear-gradient(135deg,#8A7CE8,#6F5FE8)] px-4 py-2.5 text-xs font-bold text-white shadow-[0_10px_24px_-10px_rgba(124,110,219,0.6)] active:scale-[0.97]"
+              >
+                Start reveal
+                <ArrowRight className="h-3.5 w-3.5" />
+              </button>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };
