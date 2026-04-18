@@ -1,56 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://nuju.app/</loc>
-    <lastmod>2026-04-11</lastmod>
+    <lastmod>2026-04-18</lastmod>
     <priority>1.0</priority>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://nuju.app/install</loc>
-    <lastmod>2026-04-11</lastmod>
+    <lastmod>2026-04-18</lastmod>
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
     <loc>https://nuju.app/about</loc>
-    <lastmod>2026-04-11</lastmod>
+    <lastmod>2026-04-18</lastmod>
     <priority>0.6</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
     <loc>https://nuju.app/support</loc>
-    <lastmod>2026-04-11</lastmod>
+    <lastmod>2026-04-18</lastmod>
     <priority>0.6</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
     <loc>https://nuju.app/contact</loc>
-    <lastmod>2026-04-11</lastmod>
+    <lastmod>2026-04-18</lastmod>
     <priority>0.5</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
     <loc>https://nuju.app/privacy</loc>
-    <lastmod>2026-04-11</lastmod>
+    <lastmod>2026-04-18</lastmod>
     <priority>0.4</priority>
     <changefreq>yearly</changefreq>
   </url>
   <url>
     <loc>https://nuju.app/terms</loc>
-    <lastmod>2026-04-11</lastmod>
+    <lastmod>2026-04-18</lastmod>
     <priority>0.4</priority>
     <changefreq>yearly</changefreq>
   </url>
   <url>
     <loc>https://nuju.app/medical-disclaimer</loc>
-    <lastmod>2026-04-11</lastmod>
+    <lastmod>2026-04-18</lastmod>
     <priority>0.3</priority>
     <changefreq>yearly</changefreq>
   </url>
   <url>
     <loc>https://nuju.app/blog</loc>
-    <lastmod>2026-04-11</lastmod>
+    <lastmod>2026-04-18</lastmod>
     <priority>0.8</priority>
     <changefreq>weekly</changefreq>
   </url>
@@ -59,155 +61,301 @@
     <lastmod>2026-04-08</lastmod>
     <priority>0.7</priority>
     <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>How to Start a Journaling Habit: A Complete Beginner&apos;s Guide</image:title>
+      <image:caption>Never journaled before? This beginner&apos;s guide covers everything — what to write, when to write, and how to make journaling a daily habit that actually sticks.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/how-to-start-journaling"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://nuju.app/blog/cara-mulai-journaling"/>
   </url>
   <url>
     <loc>https://nuju.app/blog/benefits-of-mood-tracking</loc>
     <lastmod>2026-04-09</lastmod>
     <priority>0.7</priority>
     <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>5 Science-Backed Benefits of Daily Mood Tracking</image:title>
+      <image:caption>Tracking your mood daily isn&apos;t about obsessing over feelings — it&apos;s about spotting patterns, improving decisions, and understanding yourself better.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/benefits-of-mood-tracking"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://nuju.app/blog/manfaat-mood-tracking"/>
   </url>
   <url>
     <loc>https://nuju.app/blog/ai-journal-vs-traditional</loc>
     <lastmod>2026-04-10</lastmod>
     <priority>0.7</priority>
     <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>AI Journal vs Traditional Journal: Which One Actually Works?</image:title>
+      <image:caption>Pen and paper vs AI-powered journaling apps — the honest comparison of what each is good at, where each falls short, and how to choose.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://nuju.app/blog/journaling-prompts-for-anxiety</loc>
     <lastmod>2026-04-11</lastmod>
     <priority>0.7</priority>
     <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>50 Journaling Prompts for Anxiety (That Actually Help)</image:title>
+      <image:caption>A curated list of journaling prompts designed specifically for managing anxiety — organized by situation, from 3AM panic to pre-presentation nerves.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://nuju.app/blog/journaling-for-mental-health</loc>
     <lastmod>2026-04-12</lastmod>
     <priority>0.7</priority>
     <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>How Journaling Improves Mental Health: What the Research Says</image:title>
+      <image:caption>Journaling is often called good for mental health — but is it actually backed by research? Yes, and the findings are more specific than you&apos;d think.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/journaling-for-mental-health"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://nuju.app/blog/journaling-untuk-kesehatan-mental"/>
   </url>
   <url>
     <loc>https://nuju.app/blog/what-is-a-mood-journal</loc>
     <lastmod>2026-04-13</lastmod>
     <priority>0.7</priority>
     <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>What Is a Mood Journal and How to Start One Today</image:title>
+      <image:caption>A mood journal is one of the simplest tools for emotional self-awareness. Here&apos;s what it is, what to track, and how to start in under a minute.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://nuju.app/blog/5-minute-daily-journaling-habit</loc>
     <lastmod>2026-04-14</lastmod>
     <priority>0.7</priority>
     <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>The 5-Minute Daily Journaling Habit (No Willpower Required)</image:title>
+      <image:caption>Most people fail at journaling because they make it too big. Here&apos;s a 5-minute daily system that actually sticks — backed by habit research.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://nuju.app/blog/bedtime-journaling-routine-for-sleep</loc>
     <lastmod>2026-04-15</lastmod>
     <priority>0.7</priority>
     <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>The Bedtime Journaling Routine That Actually Improves Sleep</image:title>
+      <image:caption>Writing before bed can dramatically improve sleep quality — if you do it right. Here&apos;s the research-backed routine that takes 5 minutes and works.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://nuju.app/blog/what-is-ai-journaling</loc>
     <lastmod>2026-04-16</lastmod>
     <priority>0.7</priority>
     <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>What Is AI Journaling? How It&apos;s Different from Regular Journaling</image:title>
+      <image:caption>AI journaling is a new category of mental wellness tool that combines personal journaling with intelligent pattern recognition. Here&apos;s what it actually does and why it works.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://nuju.app/blog/voice-journaling-guide</loc>
     <lastmod>2026-04-17</lastmod>
     <priority>0.7</priority>
     <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Voice Journaling: Why Talking Beats Writing for Some People</image:title>
+      <image:caption>For people who freeze up at a blank page, voice journaling unlocks a different kind of honesty. Here&apos;s how it works and why it often outperforms writing.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://nuju.app/blog/mood-tracking-for-anxiety</loc>
     <lastmod>2026-04-18</lastmod>
     <priority>0.7</priority>
     <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Using Mood Tracking to Understand Your Anxiety Triggers</image:title>
+      <image:caption>Anxiety feels unpredictable — but it rarely is. Mood tracking reveals your personal triggers and gives you the data to start managing them.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://nuju.app/blog/journaling-for-self-discovery</loc>
     <lastmod>2026-04-19</lastmod>
     <priority>0.7</priority>
     <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>7 Journaling Techniques for Deep Self-Discovery</image:title>
+      <image:caption>Most journaling stays on the surface. These 7 techniques — from morning pages to dialogue journaling — go deeper and reveal more.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://nuju.app/blog/how-to-track-emotions-daily</loc>
     <lastmod>2026-04-20</lastmod>
     <priority>0.7</priority>
     <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>How to Track Your Emotions Daily (and What to Do with the Data)</image:title>
+      <image:caption>Tracking emotions only helps if you use the data. Here&apos;s the system for collecting, analyzing, and acting on your emotional patterns.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://nuju.app/blog/best-journaling-apps-2026</loc>
     <lastmod>2026-04-21</lastmod>
     <priority>0.7</priority>
     <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>7 Best Journaling Apps in 2026 (Free &amp; Paid, Honestly Reviewed)</image:title>
+      <image:caption>We tested the top journaling apps for privacy, AI quality, design, and daily usability. Here are the 7 that stood out — and which one fits your style.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/best-journaling-apps-2026"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://nuju.app/blog/aplikasi-jurnal-terbaik"/>
   </url>
   <url>
     <loc>https://nuju.app/blog/daylio-alternatives</loc>
     <lastmod>2026-04-22</lastmod>
     <priority>0.7</priority>
     <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Best Daylio Alternatives for Mood Tracking in 2026</image:title>
+      <image:caption>Daylio is good but limited. Here are the best alternatives if you want more AI insight, deeper journaling, or better pattern analysis.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://nuju.app/blog/best-mood-tracker-apps</loc>
     <lastmod>2026-04-23</lastmod>
     <priority>0.7</priority>
     <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Best Mood Tracker Apps in 2026: Tested and Ranked</image:title>
+      <image:caption>We tested 12 mood tracker apps across privacy, simplicity, analytics, and long-term value. Here&apos;s the honest ranking — with the 4 best at the top.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://nuju.app/blog/best-ai-journaling-apps</loc>
     <lastmod>2026-04-24</lastmod>
     <priority>0.7</priority>
     <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Best AI Journaling Apps in 2026: We Tested 8, Kept 3</image:title>
+      <image:caption>AI journaling apps promise personalized insight and emotional coaching. Most disappoint. Here are the three that actually deliver — and what separates them from the rest.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://nuju.app/blog/journaling-for-adhd</loc>
     <lastmod>2026-04-25</lastmod>
     <priority>0.7</priority>
     <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>How to Journal with ADHD: Short, Flexible, and Actually Effective</image:title>
+      <image:caption>Traditional journaling doesn&apos;t work for ADHD brains — it&apos;s too rigid and time-consuming. Here&apos;s a flexible system built around how ADHD actually works.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://nuju.app/blog/journaling-for-relationships</loc>
     <lastmod>2026-04-26</lastmod>
     <priority>0.7</priority>
     <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>How Journaling Can Help You Understand Your Relationships</image:title>
+      <image:caption>Tracking your mood alongside who you spent time with reveals patterns in your relationships that are invisible from memory alone.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://nuju.app/blog/journaling-before-therapy</loc>
     <lastmod>2026-04-27</lastmod>
     <priority>0.7</priority>
     <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Why Journaling Between Therapy Sessions Makes Therapy More Effective</image:title>
+      <image:caption>The gap between therapy sessions is where most of the work happens. Journaling between sessions gives you concrete data to bring back — and accelerates progress.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://nuju.app/blog/mood-tracking-for-therapists</loc>
     <lastmod>2026-04-28</lastmod>
     <priority>0.7</priority>
     <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Why Therapists Recommend Mood Tracking to Their Patients</image:title>
+      <image:caption>Mood tracking between sessions gives therapists real data to work with — and patients clearer insight into their own patterns. Here&apos;s why it works.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://nuju.app/blog/3am-anxiety-journaling</loc>
     <lastmod>2026-04-29</lastmod>
     <priority>0.7</priority>
     <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Can&apos;t Sleep? Try This 3-Minute Journaling Technique for 3AM Anxiety</image:title>
+      <image:caption>3AM anxiety has a specific rhythm — and a specific antidote. This 3-minute journaling technique helps you offload the loop and fall back asleep.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://nuju.app/blog/cara-mulai-journaling</loc>
     <lastmod>2026-04-30</lastmod>
     <priority>0.6</priority>
     <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Cara Mulai Journaling untuk Pemula (Cukup 30 Detik Sehari)</image:title>
+      <image:caption>Belum pernah journaling? Panduan ini jelasin semua yang perlu kamu tahu — mau nulis apa, kapan, dan gimana biar kebiasaannya bertahan lama.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="id" href="https://nuju.app/blog/cara-mulai-journaling"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/how-to-start-journaling"/>
   </url>
   <url>
     <loc>https://nuju.app/blog/manfaat-mood-tracking</loc>
     <lastmod>2026-05-01</lastmod>
     <priority>0.6</priority>
     <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>5 Manfaat Mood Tracking yang Terbukti Secara Ilmiah</image:title>
+      <image:caption>Tracking mood setiap hari bukan cuma tahu kamu lagi senang atau sedih — tapi nemuin pola, bikin keputusan lebih baik, dan ngerti diri sendiri lebih dalam.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="id" href="https://nuju.app/blog/manfaat-mood-tracking"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/benefits-of-mood-tracking"/>
   </url>
   <url>
     <loc>https://nuju.app/blog/aplikasi-jurnal-terbaik</loc>
     <lastmod>2026-05-02</lastmod>
     <priority>0.6</priority>
     <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>7 Aplikasi Jurnal Terbaik 2026 untuk Android &amp; iPhone</image:title>
+      <image:caption>Mau mulai journaling tapi bingung pilih aplikasi? Kami review 7 aplikasi jurnal terbaik 2026 — dari yang gratis sampai premium, fitur-fitur, privasi, dan rekomendasi terbaik.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="id" href="https://nuju.app/blog/aplikasi-jurnal-terbaik"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/best-journaling-apps-2026"/>
   </url>
   <url>
     <loc>https://nuju.app/blog/journaling-untuk-kesehatan-mental</loc>
     <lastmod>2026-05-03</lastmod>
     <priority>0.6</priority>
     <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Kenapa Journaling Bisa Bantu Kesehatan Mental Kamu (Bukan Cuma Mitos)</image:title>
+      <image:caption>Journaling sering dibilang bagus untuk mental health, tapi beneran ada buktinya gak? Ternyata ada — dan penelitiannya cukup mengejutkan.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="id" href="https://nuju.app/blog/journaling-untuk-kesehatan-mental"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/journaling-for-mental-health"/>
   </url>
 </urlset>
