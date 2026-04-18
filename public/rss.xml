@@ -6,7 +6,7 @@
     <atom:link href="https://nuju.app/rss.xml" rel="self" type="application/rss+xml" />
     <description>Practical guides on journaling, mood tracking, and emotional wellness from the Nuju team.</description>
     <language>en</language>
-    <lastBuildDate>Sat, 18 Apr 2026 12:00:00 GMT</lastBuildDate>
+    <lastBuildDate>Sat, 18 Apr 2026 18:36:45 GMT</lastBuildDate>
     <item>
       <title>Kenapa Journaling Bisa Bantu Kesehatan Mental Kamu (Bukan Cuma Mitos)</title>
       <link>https://nuju.app/blog/journaling-untuk-kesehatan-mental</link>
@@ -20,7 +20,7 @@
       <title>7 Aplikasi Jurnal Terbaik 2026 untuk Android &amp; iPhone</title>
       <link>https://nuju.app/blog/aplikasi-jurnal-terbaik</link>
       <guid isPermaLink="true">https://nuju.app/blog/aplikasi-jurnal-terbaik</guid>
-      <description>Mau mulai journaling tapi bingung pilih aplikasi? Kami review 7 aplikasi jurnal terbaik 2026 — dari yang gratis sampai premium, fitur-fitur, privasi, dan rekomendasi terbaik.</description>
+      <description>Udah coba banyak aplikasi jurnal tapi gak cocok? Ini 7 aplikasi terbaik yang udah dicoba dan diranking berdasarkan kemudahan, fitur, privasi, dan harganya.</description>
       <category>Rekomendasi Aplikasi</category>
       <pubDate>Sat, 02 May 2026 12:00:00 GMT</pubDate>
       <dc:language>id</dc:language>
@@ -47,7 +47,7 @@
       <title>Can&apos;t Sleep? Try This 3-Minute Journaling Technique for 3AM Anxiety</title>
       <link>https://nuju.app/blog/3am-anxiety-journaling</link>
       <guid isPermaLink="true">https://nuju.app/blog/3am-anxiety-journaling</guid>
-      <description>3AM anxiety has a specific rhythm — and a specific antidote. This 3-minute journaling technique helps you offload the loop and fall back asleep.</description>
+      <description>When your brain won&apos;t stop at 3am, journaling is one of the few things that actually works. Here&apos;s the exact technique — and why it helps.</description>
       <category>Mental Wellness</category>
       <pubDate>Wed, 29 Apr 2026 12:00:00 GMT</pubDate>
       <dc:language>en</dc:language>
@@ -56,7 +56,7 @@
       <title>Why Therapists Recommend Mood Tracking to Their Patients</title>
       <link>https://nuju.app/blog/mood-tracking-for-therapists</link>
       <guid isPermaLink="true">https://nuju.app/blog/mood-tracking-for-therapists</guid>
-      <description>Mood tracking between sessions gives therapists real data to work with — and patients clearer insight into their own patterns. Here&apos;s why it works.</description>
+      <description>An increasing number of therapists integrate mood tracking into treatment. Here&apos;s what the clinical evidence says — and how to use mood data effectively in therapy.</description>
       <category>Mental Wellness</category>
       <pubDate>Tue, 28 Apr 2026 12:00:00 GMT</pubDate>
       <dc:language>en</dc:language>
@@ -65,7 +65,7 @@
       <title>Why Journaling Between Therapy Sessions Makes Therapy More Effective</title>
       <link>https://nuju.app/blog/journaling-before-therapy</link>
       <guid isPermaLink="true">https://nuju.app/blog/journaling-before-therapy</guid>
-      <description>The gap between therapy sessions is where most of the work happens. Journaling between sessions gives you concrete data to bring back — and accelerates progress.</description>
+      <description>Therapy is expensive and sessions are short. Journaling between appointments helps you show up prepared, process more, and get more from every session.</description>
       <category>Mental Wellness</category>
       <pubDate>Mon, 27 Apr 2026 12:00:00 GMT</pubDate>
       <dc:language>en</dc:language>
@@ -74,7 +74,7 @@
       <title>How Journaling Can Help You Understand Your Relationships</title>
       <link>https://nuju.app/blog/journaling-for-relationships</link>
       <guid isPermaLink="true">https://nuju.app/blog/journaling-for-relationships</guid>
-      <description>Tracking your mood alongside who you spent time with reveals patterns in your relationships that are invisible from memory alone.</description>
+      <description>The people in your life affect your mood more than almost anything else. Journaling helps you see those patterns clearly — and decide what to do about them.</description>
       <category>Mental Wellness</category>
       <pubDate>Sun, 26 Apr 2026 12:00:00 GMT</pubDate>
       <dc:language>en</dc:language>
@@ -83,7 +83,7 @@
       <title>How to Journal with ADHD: Short, Flexible, and Actually Effective</title>
       <link>https://nuju.app/blog/journaling-for-adhd</link>
       <guid isPermaLink="true">https://nuju.app/blog/journaling-for-adhd</guid>
-      <description>Traditional journaling doesn&apos;t work for ADHD brains — it&apos;s too rigid and time-consuming. Here&apos;s a flexible system built around how ADHD actually works.</description>
+      <description>Traditional journaling advice doesn&apos;t work for ADHD brains. Here&apos;s a system built around how your brain actually operates — not against it.</description>
       <category>Journaling Tips</category>
       <pubDate>Sat, 25 Apr 2026 12:00:00 GMT</pubDate>
       <dc:language>en</dc:language>
@@ -101,7 +101,7 @@
       <title>Best Mood Tracker Apps in 2026: Tested and Ranked</title>
       <link>https://nuju.app/blog/best-mood-tracker-apps</link>
       <guid isPermaLink="true">https://nuju.app/blog/best-mood-tracker-apps</guid>
-      <description>We tested 12 mood tracker apps across privacy, simplicity, analytics, and long-term value. Here&apos;s the honest ranking — with the 4 best at the top.</description>
+      <description>Mood tracking apps range from simple emoji logs to AI-powered insight engines. We tested 8 and ranked them by what actually helps you understand your emotions.</description>
       <category>App Comparison</category>
       <pubDate>Thu, 23 Apr 2026 12:00:00 GMT</pubDate>
       <dc:language>en</dc:language>
@@ -110,7 +110,7 @@
       <title>Best Daylio Alternatives for Mood Tracking in 2026</title>
       <link>https://nuju.app/blog/daylio-alternatives</link>
       <guid isPermaLink="true">https://nuju.app/blog/daylio-alternatives</guid>
-      <description>Daylio is good but limited. Here are the best alternatives if you want more AI insight, deeper journaling, or better pattern analysis.</description>
+      <description>Daylio is popular but limited. If you want AI analysis, deeper journaling, or more personalized insight from your mood data, these alternatives are worth trying.</description>
       <category>App Comparison</category>
       <pubDate>Wed, 22 Apr 2026 12:00:00 GMT</pubDate>
       <dc:language>en</dc:language>
@@ -119,7 +119,7 @@
       <title>7 Best Journaling Apps in 2026 (Free &amp; Paid, Honestly Reviewed)</title>
       <link>https://nuju.app/blog/best-journaling-apps-2026</link>
       <guid isPermaLink="true">https://nuju.app/blog/best-journaling-apps-2026</guid>
-      <description>We tested the top journaling apps for privacy, AI quality, design, and daily usability. Here are the 7 that stood out — and which one fits your style.</description>
+      <description>We tested the most popular journaling apps and ranked them by ease of use, AI features, privacy, and value. Here&apos;s what&apos;s actually worth downloading in 2026.</description>
       <category>App Comparison</category>
       <pubDate>Tue, 21 Apr 2026 12:00:00 GMT</pubDate>
       <dc:language>en</dc:language>
@@ -128,7 +128,7 @@
       <title>How to Track Your Emotions Daily (and What to Do with the Data)</title>
       <link>https://nuju.app/blog/how-to-track-emotions-daily</link>
       <guid isPermaLink="true">https://nuju.app/blog/how-to-track-emotions-daily</guid>
-      <description>Tracking emotions only helps if you use the data. Here&apos;s the system for collecting, analyzing, and acting on your emotional patterns.</description>
+      <description>Daily emotion tracking is one of the most underrated mental clarity habits. Here&apos;s a simple system that takes 60 seconds and actually tells you something useful.</description>
       <category>Mental Wellness</category>
       <pubDate>Mon, 20 Apr 2026 12:00:00 GMT</pubDate>
       <dc:language>en</dc:language>
@@ -137,7 +137,7 @@
       <title>7 Journaling Techniques for Deep Self-Discovery</title>
       <link>https://nuju.app/blog/journaling-for-self-discovery</link>
       <guid isPermaLink="true">https://nuju.app/blog/journaling-for-self-discovery</guid>
-      <description>Most journaling stays on the surface. These 7 techniques — from morning pages to dialogue journaling — go deeper and reveal more.</description>
+      <description>Journaling for self-discovery goes beyond writing about your day. These 7 techniques help you understand your values, emotional patterns, and what you actually want from life.</description>
       <category>Journaling Tips</category>
       <pubDate>Sun, 19 Apr 2026 12:00:00 GMT</pubDate>
       <dc:language>en</dc:language>
@@ -146,7 +146,7 @@
       <title>Using Mood Tracking to Understand Your Anxiety Triggers</title>
       <link>https://nuju.app/blog/mood-tracking-for-anxiety</link>
       <guid isPermaLink="true">https://nuju.app/blog/mood-tracking-for-anxiety</guid>
-      <description>Anxiety feels unpredictable — but it rarely is. Mood tracking reveals your personal triggers and gives you the data to start managing them.</description>
+      <description>Anxiety often feels random — until you start tracking it. Here&apos;s how daily mood tracking reveals the specific patterns driving your anxiety and what to do about them.</description>
       <category>Mental Wellness</category>
       <pubDate>Sat, 18 Apr 2026 12:00:00 GMT</pubDate>
       <dc:language>en</dc:language>
@@ -155,7 +155,7 @@
       <title>Voice Journaling: Why Talking Beats Writing for Some People</title>
       <link>https://nuju.app/blog/voice-journaling-guide</link>
       <guid isPermaLink="true">https://nuju.app/blog/voice-journaling-guide</guid>
-      <description>For people who freeze up at a blank page, voice journaling unlocks a different kind of honesty. Here&apos;s how it works and why it often outperforms writing.</description>
+      <description>Voice journaling — speaking your thoughts instead of writing them — is faster, more natural, and often more emotionally honest. Here&apos;s how it works and who it&apos;s best for.</description>
       <category>Journaling Tips</category>
       <pubDate>Fri, 17 Apr 2026 12:00:00 GMT</pubDate>
       <dc:language>en</dc:language>
@@ -173,7 +173,7 @@
       <title>The Bedtime Journaling Routine That Actually Improves Sleep</title>
       <link>https://nuju.app/blog/bedtime-journaling-routine-for-sleep</link>
       <guid isPermaLink="true">https://nuju.app/blog/bedtime-journaling-routine-for-sleep</guid>
-      <description>Writing before bed can dramatically improve sleep quality — if you do it right. Here&apos;s the research-backed routine that takes 5 minutes and works.</description>
+      <description>A 2018 study found that writing a to-do list before bed helped people fall asleep faster. Here&apos;s how a simple bedtime journaling routine can help you sleep better tonight.</description>
       <category>Mental Wellness</category>
       <pubDate>Wed, 15 Apr 2026 12:00:00 GMT</pubDate>
       <dc:language>en</dc:language>
@@ -182,7 +182,7 @@
       <title>The 5-Minute Daily Journaling Habit (No Willpower Required)</title>
       <link>https://nuju.app/blog/5-minute-daily-journaling-habit</link>
       <guid isPermaLink="true">https://nuju.app/blog/5-minute-daily-journaling-habit</guid>
-      <description>Most people fail at journaling because they make it too big. Here&apos;s a 5-minute daily system that actually sticks — backed by habit research.</description>
+      <description>Most people fail at journaling not because they lack dedication — but because their system requires too much. Here&apos;s how to build a daily habit that actually sticks.</description>
       <category>Journaling Tips</category>
       <pubDate>Tue, 14 Apr 2026 12:00:00 GMT</pubDate>
       <dc:language>en</dc:language>
@@ -200,7 +200,7 @@
       <title>How Journaling Improves Mental Health: What the Research Says</title>
       <link>https://nuju.app/blog/journaling-for-mental-health</link>
       <guid isPermaLink="true">https://nuju.app/blog/journaling-for-mental-health</guid>
-      <description>Journaling is often called good for mental health — but is it actually backed by research? Yes, and the findings are more specific than you&apos;d think.</description>
+      <description>From reducing anxiety to improving sleep, journaling has decades of science behind it. Here&apos;s what actually works — and why.</description>
       <category>Mental Wellness</category>
       <pubDate>Sun, 12 Apr 2026 12:00:00 GMT</pubDate>
       <dc:language>en</dc:language>
@@ -209,7 +209,7 @@
       <title>50 Journaling Prompts for Anxiety (That Actually Help)</title>
       <link>https://nuju.app/blog/journaling-prompts-for-anxiety</link>
       <guid isPermaLink="true">https://nuju.app/blog/journaling-prompts-for-anxiety</guid>
-      <description>A curated list of journaling prompts designed specifically for managing anxiety — organized by situation, from 3AM panic to pre-presentation nerves.</description>
+      <description>Blank page anxiety is real. These 50 prompts are designed to help you untangle anxious thoughts, identify triggers, and find clarity — no therapy degree required.</description>
       <category>Journaling Tips</category>
       <pubDate>Sat, 11 Apr 2026 12:00:00 GMT</pubDate>
       <dc:language>en</dc:language>
@@ -218,7 +218,7 @@
       <title>AI Journal vs Traditional Journal: Which One Actually Works?</title>
       <link>https://nuju.app/blog/ai-journal-vs-traditional</link>
       <guid isPermaLink="true">https://nuju.app/blog/ai-journal-vs-traditional</guid>
-      <description>Pen and paper vs AI-powered journaling apps — the honest comparison of what each is good at, where each falls short, and how to choose.</description>
+      <description>Paper journal, notes app, or AI journal — which is best for mental wellness? We compare the real differences and explain who each format works best for.</description>
       <category>App Comparison</category>
       <pubDate>Fri, 10 Apr 2026 12:00:00 GMT</pubDate>
       <dc:language>en</dc:language>
@@ -227,7 +227,7 @@
       <title>5 Science-Backed Benefits of Daily Mood Tracking</title>
       <link>https://nuju.app/blog/benefits-of-mood-tracking</link>
       <guid isPermaLink="true">https://nuju.app/blog/benefits-of-mood-tracking</guid>
-      <description>Tracking your mood daily isn&apos;t about obsessing over feelings — it&apos;s about spotting patterns, improving decisions, and understanding yourself better.</description>
+      <description>Tracking your mood daily does more than tell you how you feel — it reveals patterns, improves decision-making, and builds emotional self-awareness. Here&apos;s the science.</description>
       <category>Mental Wellness</category>
       <pubDate>Thu, 09 Apr 2026 12:00:00 GMT</pubDate>
       <dc:language>en</dc:language>
