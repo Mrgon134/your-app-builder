@@ -5,9 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build && node scripts/prerender.mjs",
-    "build:no-prerender": "vite build",
-    "build:dev": "vite build --mode development",
+    "build": "node scripts/generate-feeds.mjs && vite build && node scripts/prerender.mjs",
+    "build:no-prerender": "node scripts/generate-feeds.mjs && vite build",
+    "build:dev": "node scripts/generate-feeds.mjs && vite build --mode development",
     "lint": "eslint .",
     "preview": "vite preview",
     "test": "vitest run",
