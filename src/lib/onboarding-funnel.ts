@@ -10,7 +10,11 @@ export type FunnelCost = "sleep" | "relationships" | "focus" | "self_trust" | nu
 export type FunnelStyle = "gentle" | "direct" | "private" | "guided" | null;
 export type FunnelBaseline = "drained" | "holding" | "coping" | "hopeful" | null;
 export type FunnelRelief = "breathe" | "softer" | "clearer" | "less_alone" | null;
-export type FunnelPlan = "weekly" | "yearly" | "lifetime_one_time" | null;
+export type FunnelPlan = "yearly_trial" | "lifetime_one_time" | "free" | null;
+
+const LEGACY_PLAN_MAP: Record<string, FunnelPlan> = {
+  yearly: "yearly_trial",
+};
 
 export interface OnboardingFunnelAnswers {
   source: string;
@@ -80,15 +84,28 @@ export const createDefaultFunnelState = (source = "landing"): OnboardingFunnelSt
   },
 });
 
+const migrateSelectedPlan = (plan: unknown): FunnelPlan => {
+  if (plan === null || plan === undefined) return null;
+  if (typeof plan !== "string") return null;
+  if (plan === "yearly_trial" || plan === "lifetime_one_time" || plan === "free") {
+    return plan;
+  }
+  if (plan in LEGACY_PLAN_MAP) return LEGACY_PLAN_MAP[plan];
+  return null;
+};
+
 const normalizeState = (state: OnboardingFunnelState | null): OnboardingFunnelState | null => {
   if (!state) return null;
+
+  const defaults = createDefaultFunnelState(state.answers?.source || "landing").answers;
 
   return {
     step: Number.isFinite(state.step) ? state.step : 0,
     sessionId: state.sessionId || DEFAULT_SESSION_ID(),
     answers: {
-      ...createDefaultFunnelState(state.answers?.source || "landing").answers,
+      ...defaults,
       ...state.answers,
+      selectedPlan: migrateSelectedPlan(state.answers?.selectedPlan),
     },
   };
 };

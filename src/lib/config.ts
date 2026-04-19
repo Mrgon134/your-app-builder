@@ -23,6 +23,9 @@ export const PRICING_CONFIG = {
   lifetime: {
     flatPrice: readNumber(import.meta.env.VITE_LIFETIME_FLAT_PRICE, 25),
   },
+  trial: {
+    annualDays: readNumber(import.meta.env.VITE_ANNUAL_TRIAL_DAYS, 7),
+  },
   retention: {
     yearlyPrice: readNumber(import.meta.env.VITE_RETENTION_YEARLY_PRICE, 44.99),
     // Keep the cancellation offer live even if the deploy environment misses the env var.

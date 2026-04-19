@@ -1,6 +1,11 @@
-import { describe, expect, it } from "vitest";
+import { beforeEach, describe, expect, it } from "vitest";
 
-import { buildResultTeaser, createDefaultFunnelState } from "@/lib/onboarding-funnel";
+import {
+  buildResultTeaser,
+  createDefaultFunnelState,
+  loadFunnelState,
+  ONBOARDING_FUNNEL_STORAGE_KEY,
+} from "@/lib/onboarding-funnel";
 
 describe("onboarding funnel helpers", () => {
   it("creates a default funnel state for the given source", () => {
@@ -32,7 +37,7 @@ describe("onboarding funnel helpers", () => {
       ],
       baseline: "holding",
       relief: "clearer",
-      selectedPlan: "yearly",
+      selectedPlan: "yearly_trial",
     });
 
     expect(teaser.headline).toContain("Irfan");
@@ -41,5 +46,39 @@ describe("onboarding funnel helpers", () => {
     expect(teaser.firstSupportMove).toContain("pattern");
     expect(teaser.supportSignals).toHaveLength(3);
     expect(teaser.continuationLine).toContain("Irfan");
+  });
+
+  describe("loadFunnelState plan migration", () => {
+    beforeEach(() => {
+      localStorage.clear();
+    });
+
+    it("maps legacy yearly plan to yearly_trial", () => {
+      localStorage.setItem(
+        ONBOARDING_FUNNEL_STORAGE_KEY,
+        JSON.stringify({
+          step: 5,
+          sessionId: "test-session",
+          answers: { source: "landing", selectedPlan: "yearly" },
+        }),
+      );
+
+      const state = loadFunnelState();
+      expect(state?.answers.selectedPlan).toBe("yearly_trial");
+    });
+
+    it("resets removed weekly plan to null", () => {
+      localStorage.setItem(
+        ONBOARDING_FUNNEL_STORAGE_KEY,
+        JSON.stringify({
+          step: 5,
+          sessionId: "test-session",
+          answers: { source: "landing", selectedPlan: "weekly" },
+        }),
+      );
+
+      const state = loadFunnelState();
+      expect(state?.answers.selectedPlan).toBeNull();
+    });
   });
 });
