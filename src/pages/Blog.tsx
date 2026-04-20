@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight, BookOpen, Clock, Tag } from "lucide-react";
 import SEOHead from "@/components/SEOHead";
 import { getPublishedBlogPosts } from "@/data/blog-posts";
+import { usePostHogEvents } from "@/hooks/use-posthog-events";
 
 const RECOMMENDATION_HUB_ORDER = [
   "best-ai-journaling-apps",
@@ -32,11 +33,18 @@ const RECOMMENDATION_HUB_LABELS: Record<string, string> = {
 
 const Blog: React.FC = () => {
   const posts = getPublishedBlogPosts();
+  const events = usePostHogEvents();
   const recommendationPosts = RECOMMENDATION_HUB_ORDER
     .map((slug) => posts.find((post) => post.slug === slug))
     .filter((post): post is (typeof posts)[number] => Boolean(post));
   const recommendationSlugs = new Set(recommendationPosts.map((post) => post.slug));
   const remainingPosts = posts.filter((post) => !recommendationSlugs.has(post.slug));
+
+  useEffect(() => {
+    if (recommendationPosts.length > 0) {
+      events.trackRecommendationHubView();
+    }
+  }, [events, recommendationPosts.length]);
 
   return (
     <div className="min-h-screen bg-background">
@@ -130,6 +138,14 @@ const Blog: React.FC = () => {
                   key={post.slug}
                   to={`/blog/${post.slug}`}
                   className="group flex flex-col rounded-2xl border border-primary/15 bg-background/90 p-5 transition-all hover:border-primary/40 hover:shadow-md"
+                  onClick={() =>
+                    events.trackRecommendationCtaClick(
+                      post.slug,
+                      post.category,
+                      "blog_recommendation_hub_card",
+                      "article",
+                    )
+                  }
                 >
                   <div className="mb-3 flex flex-wrap items-center gap-2">
                     <span className="inline-flex items-center gap-1 rounded-full bg-primary/10 px-2.5 py-0.5 text-xs font-medium text-primary">
@@ -163,12 +179,28 @@ const Blog: React.FC = () => {
               <Link
                 to="/onboarding?source=blog_recommendation_hub"
                 className="inline-flex items-center gap-2 rounded-full bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground transition-all hover:opacity-90"
+                onClick={() =>
+                  events.trackRecommendationCtaClick(
+                    "blog_hub",
+                    "Recommendation Hub",
+                    "blog_recommendation_hub_primary",
+                    "reveal",
+                  )
+                }
               >
                 Start the free reveal <ArrowRight className="h-4 w-4" />
               </Link>
               <Link
                 to="/install"
                 className="inline-flex items-center gap-2 rounded-full border border-border/70 bg-background px-5 py-3 text-sm font-semibold text-foreground transition-colors hover:border-primary/40 hover:text-primary"
+                onClick={() =>
+                  events.trackRecommendationCtaClick(
+                    "blog_hub",
+                    "Recommendation Hub",
+                    "blog_recommendation_hub_secondary",
+                    "install",
+                  )
+                }
               >
                 See how Nuju works
               </Link>

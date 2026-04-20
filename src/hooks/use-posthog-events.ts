@@ -4,6 +4,37 @@ export const usePostHogEvents = () => {
   const posthog = usePostHog();
 
   return {
+    trackRecommendationHubView: () => {
+      posthog?.capture("recommendation_hub_view", {
+        timestamp: new Date().toISOString(),
+      });
+    },
+    trackRecommendationPageView: (
+      slug: string,
+      category: string,
+      pageType: "category" | "alternative" | "comparison" | "use_case",
+    ) => {
+      posthog?.capture("recommendation_page_view", {
+        slug,
+        category,
+        page_type: pageType,
+        timestamp: new Date().toISOString(),
+      });
+    },
+    trackRecommendationCtaClick: (
+      slug: string,
+      category: string,
+      placement: string,
+      destination: "reveal" | "install" | "article",
+    ) => {
+      posthog?.capture("recommendation_cta_click", {
+        slug,
+        category,
+        placement,
+        destination,
+        timestamp: new Date().toISOString(),
+      });
+    },
     // Landing page events
     trackLandingView: () => {
       posthog?.capture("landing_view", {
