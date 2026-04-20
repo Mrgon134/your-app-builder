@@ -1,16 +1,16 @@
 import React, { useEffect, useRef, useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { useGeoPricing } from "@/hooks/use-geo-pricing";
 import { usePostHogEvents } from "@/hooks/use-posthog-events";
 import { useTikTokPixel } from "@/hooks/use-tiktok-pixel";
+import { PRICING_CONFIG } from "@/lib/config";
 import { ROUTES } from "@/lib/routes";
 import {
   ArrowRight,
   BrainCircuit,
   Check,
   ChevronDown,
-  Flame,
   Globe,
   Heart,
   Lock,
@@ -43,14 +43,188 @@ const MOOD_SHOWCASE = [
   { label: "Great", img: juGreat, color: "#4ECDC4", line: "When you feel yourself again." },
 ];
 
+const benefitRows = [
+  {
+    eyebrow: "Outcome 01",
+    title: "Feel understood before you need a polished explanation.",
+    body: "Nuju turns a few honest answers into one readable emotional pattern, so the first reaction is relief instead of more effort.",
+    proof: "The Ju Gets You reveal is meant to land in one glance. That makes the first win emotional clarity, not homework.",
+    accent: "#E8878C",
+    icon: Heart,
+    image: juLow,
+    imageAlt: "Ju feeling low",
+    visualEyebrow: "What the reveal gives back",
+    visualLine: "\"You are carrying more than you let people see. That is why the moment feels heavier than it looks from the outside.\"",
+    chips: ["One clear read", "Under 1 minute"],
+  },
+  {
+    eyebrow: "Outcome 02",
+    title: "Get clarity that feels warm, not clinical.",
+    body: "The tone is gentle on purpose. Nuju is built to help you soften enough to keep going, not feel analyzed by a clever machine.",
+    proof: "Users stay when the first read feels emotionally safe. That is why the language prioritizes resonance before advice.",
+    accent: "#7C6EDB",
+    icon: Shield,
+    image: juMain,
+    imageAlt: "Ju mascot",
+    visualEyebrow: "Why it feels easier to trust",
+    visualLine: "\"Warm first. Honest second. That is what makes the deeper support feel believable instead of generic.\"",
+    chips: ["Private by default", "No performance required"],
+  },
+  {
+    eyebrow: "Outcome 03",
+    title: "Leave with one honest next step instead of vague comfort.",
+    body: "After the reveal, Ju points toward the kind of support that fits the moment, whether you need help naming it, calming it, or staying with it.",
+    proof: "The reveal does not stop at reflection. It gives the next move enough shape that coming back later still feels easy.",
+    accent: "#4ECDC4",
+    icon: TrendingUp,
+    image: juGreat,
+    imageAlt: "Ju feeling great",
+    visualEyebrow: "What happens after the click",
+    visualLine: "\"Name it. Soften it. Stay with it. The first step is clearer when the pattern is not hidden anymore.\"",
+    chips: ["A next step", "Easy to return to"],
+  },
+] as const;
+
+const quickFeatures = [
+  {
+    title: "Voice or text check-ins",
+    body: "Speak when words are thin, or type when you want quiet control.",
+    icon: Mic,
+  },
+  {
+    title: "Personal reveal",
+    body: "Get one clear read that reflects what Ju notices underneath the noise.",
+    icon: BrainCircuit,
+  },
+  {
+    title: "Mood-aware companion",
+    body: "Ju changes with how the moment feels, so the product never lands the same way every time.",
+    icon: Heart,
+  },
+  {
+    title: "Private by default",
+    body: "Your account keeps the reveal and follow-up support tied to you, not performed for anyone else.",
+    icon: Lock,
+  },
+  {
+    title: "Fast enough for hard days",
+    body: "Start in under a minute when your head is loud and your energy is low.",
+    icon: Zap,
+  },
+  {
+    title: "Support that stays close",
+    body: "Keep Ju on your home screen so the next heavy moment does not start from zero.",
+    icon: Smartphone,
+  },
+] as const;
+
+const whatYouGetItems = [
+  {
+    title: "Free reveal entry",
+    body: "You start with the Ju Gets You reveal. No credit card is needed just to see the first read.",
+    icon: Sparkles,
+  },
+  {
+    title: "One readable emotional pattern",
+    body: "Nuju reflects what it notices in plain language that clicks fast, even when your thoughts are messy.",
+    icon: PenLine,
+  },
+  {
+    title: "A next-step direction",
+    body: "The reveal points you toward the kind of support that fits the moment instead of leaving you with a vague summary.",
+    icon: TrendingUp,
+  },
+  {
+    title: "A path if you want Ju to stay",
+    body: "If the fit is real, you can keep Ju close with an annual plan or a lifetime unlock after the reveal.",
+    icon: Shield,
+  },
+] as const;
+
+const socialProofSignals = [
+  "Feels personal quickly",
+  "The reveal is the moment",
+  "Easy to come back on hard days",
+] as const;
+
+const secondaryProofStats = [
+  {
+    value: "1 clear read",
+    title: "An emotional read you can feel fast",
+    body: "The first win is seeing your inner state reflected back in a way that clicks immediately.",
+    icon: PenLine,
+  },
+  {
+    value: "< 1 minute",
+    title: "Fast enough for the moment you need it",
+    body: "When support starts quickly, it is much easier to come back before things spiral bigger.",
+    icon: TrendingUp,
+  },
+  {
+    value: "1 next step",
+    title: "Support that tells you where to begin",
+    body: "After the reveal, Ju keeps helping you name, calm, or stay with what is there instead of leaving you alone with it.",
+    icon: BrainCircuit,
+  },
+] as const;
+
+const testimonials = [
+  {
+    name: "Lena R.",
+    role: "Founder",
+    text: "It felt like the app noticed what I was carrying before I had fully figured out how to say it.",
+  },
+  {
+    name: "Marcus T.",
+    role: "Student",
+    text: "The reveal was the moment. It made me think, okay, this actually gets me and I want to keep going.",
+  },
+  {
+    name: "Aisha K.",
+    role: "Designer",
+    text: "I did not stay because it was a journal. I stayed because it felt like somewhere I could be understood quickly.",
+  },
+] as const;
+
+const comparisonRows = [
+  {
+    label: "Starting when your thoughts are messy",
+    nuju: "Guided prompts help you begin quickly",
+    journal: "You still have to create clarity from a blank page",
+  },
+  {
+    label: "Feeling understood fast",
+    nuju: "The reveal reflects the emotional pattern back to you",
+    journal: "You have to generate the interpretation yourself",
+  },
+  {
+    label: "Knowing what to do next",
+    nuju: "Ju points toward the next kind of support that fits",
+    journal: "The next move stays ambiguous unless you figure it out alone",
+  },
+  {
+    label: "Coming back on hard days",
+    nuju: "Fast, low-pressure, and designed for low energy moments",
+    journal: "The setup effort is still yours every single time",
+  },
+  {
+    label: "Emotional safety in the first minute",
+    nuju: "Warm language helps the support land without feeling clinical",
+    journal: "The page stays neutral until you do all the emotional work",
+  },
+] as const;
+
 const Landing: React.FC = () => {
   const navigate = useNavigate();
   const geo = useGeoPricing();
-  const pricingSectionRef = useRef<HTMLElement>(null);
-  const { trackLandingView, trackWaitlistSignup } = usePostHogEvents();
   const ttk = useTikTokPixel();
   const { snapshot: lifetimeScarcity } = useLifetimeScarcity();
+  const { trackLandingView, trackFunnelStart, trackPricingView } = usePostHogEvents();
   const [showStickyCta, setShowStickyCta] = useState(false);
+
+  const howItWorksRef = useRef<HTMLElement>(null);
+  const pricingSectionRef = useRef<HTMLDivElement>(null);
+  const hasTrackedPricingViewRef = useRef(false);
 
   useEffect(() => {
     trackLandingView();
@@ -63,41 +237,83 @@ const Landing: React.FC = () => {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  const scrollToHowItWorks = () =>
+    howItWorksRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+
   const scrollToPricing = () =>
     pricingSectionRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
 
-  const startOnboarding = (plan?: "weekly" | "yearly" | "lifetime_one_time") => {
+  const startOnboarding = (plan?: "yearly_trial" | "lifetime_one_time") => {
     const params = new URLSearchParams({ source: "landing" });
+
+    trackFunnelStart("landing");
+    ttk.trackWaitlistSignup();
+
     if (plan) {
       params.set("plan", plan);
       ttk.trackAddToCart(plan);
     }
-    ttk.trackWaitlistSignup();
+
     navigate(`${ROUTES.ONBOARDING}?${params.toString()}`);
   };
 
-  const emotionalMoments = [
+  const handlePricingVisible = () => {
+    if (hasTrackedPricingViewRef.current) return;
+    hasTrackedPricingViewRef.current = true;
+    trackPricingView(null);
+    ttk.trackPricingView();
+  };
+
+  const annualTrialDays = PRICING_CONFIG.trial.annualDays;
+
+  const pricingCards = [
     {
-      title: "When your thoughts feel too tangled to explain",
-      body: "Nuju starts by helping you put words around what feels blurry, heavy, or too loud to sort out alone.",
-      icon: Mic,
+      name: "Start free",
+      price: "$0",
+      unit: "",
+      badge: "Free reveal",
+      note: "See your personal reveal first. No credit card needed to start.",
+      cta: "Start free",
+      features: ["One personal read", "Keeps the first decision light"],
+      onClick: () => startOnboarding(),
     },
     {
-      title: "When you want to feel understood, not analyzed",
-      body: "Ju is designed to feel emotionally safe first, so you can soften before you start making sense of anything.",
-      icon: PenLine,
+      name: "Annual",
+      price: geo.formatPrice(geo.rates.yearly),
+      unit: "/year",
+      badge: annualTrialDays > 0 ? `${annualTrialDays}-day trial` : "Best value",
+      note: "Best value if you want Ju to stay in your life after the reveal feels real.",
+      cta: "Choose annual",
+      features: ["Best long-term value", "Made for ongoing support"],
+      onClick: () => startOnboarding("yearly_trial"),
     },
     {
-      title: "When you want proof that it really gets you",
-      body: "The Ju Gets You reveal turns a few honest answers into one clear emotional read you can feel immediately.",
-      icon: BrainCircuit,
+      name: "Lifetime",
+      price: geo.formatPrice(geo.rates.lifetime),
+      unit: "one-time",
+      badge: "One-time",
+      note: "A one-time unlock for people who already know this support should stay close.",
+      cta: "Choose lifetime",
+      features: ["One payment, no renewals", "Future premium updates included"],
+      onClick: () => startOnboarding("lifetime_one_time"),
     },
-  ];
+  ] as const;
+
+  const emotionalMoments = benefitRows.map((benefit) => ({
+    title: benefit.title,
+    body: benefit.body,
+    icon: benefit.icon,
+  }));
+
+  const differencePoints = benefitRows.map((benefit) => ({
+    title: benefit.visualEyebrow,
+    body: benefit.proof,
+  }));
 
   const steps = [
     {
       title: "Tell Ju what has been heavy",
-      body: "The onboarding stays light on purpose. It is there to understand what feels heavy, not make you do homework.",
+      body: "The opening prompts stay light on purpose. They are there to understand what feels hard, not make you perform self-awareness first.",
       icon: Mic,
     },
     {
@@ -107,151 +323,40 @@ const Landing: React.FC = () => {
     },
     {
       title: "Choose how closely Ju stays with you",
-      body: "Then choose the way you want Ju to stay close, whether you want to start gently or keep that support with you long term.",
+      body: "If the reveal feels real, decide whether you want Ju to stay close with an annual plan or a lifetime unlock.",
       icon: TrendingUp,
     },
   ];
 
-  const proofCards = [
-    {
-      title: "Private by default",
-      body: "The space belongs to you. Ju is there to reflect, not to turn your inner life into something performative.",
-      icon: Shield,
-    },
-    {
-      title: "Fast enough for real life",
-      body: "You can check in in under a minute, which matters when your mind is loud and your energy is low.",
-      icon: Zap,
-    },
-    {
-      title: "Easy to return to on heavy days",
-      body: "Nuju is soft enough to come back to when things feel messy, not just when you are already in a good headspace.",
-      icon: Sparkles,
-    },
-    {
-      title: "Support that stays close",
-      body: "Keep Nuju on your home screen so the next time things build up, Ju is already there waiting.",
-      icon: Smartphone,
-    },
-  ];
-
-  const differencePoints = [
-    {
-      title: "Not another self-improvement chore",
-      body: "Nuju is for the moments when your mind is loud and you do not have the energy to look polished or insightful first.",
-    },
-    {
-      title: "Not here to optimize you",
-      body: "Ju is warm on purpose. Feeling understood comes before advice, because that is what makes the deeper support actually land.",
-    },
-    {
-      title: "Not just a place to vent",
-      body: "Ju notices what is really happening underneath the noise, then helps you meet it more clearly over time.",
-    },
-  ];
-
-  const testimonials = [
-    {
-      name: "Lena R.",
-      role: "Founder",
-      text: "It felt like the app noticed what I was carrying before I had fully figured out how to say it.",
-    },
-    {
-      name: "Marcus T.",
-      role: "Student",
-      text: "The reveal was the moment. It made me think, okay, this actually gets me and I want to keep going.",
-    },
-    {
-      name: "Aisha K.",
-      role: "Designer",
-      text: "I did not stay because it was a journal. I stayed because it felt like somewhere I could be understood quickly.",
-    },
-  ];
-
-  const secondaryProofStats = [
-    {
-      value: "1 clear read",
-      title: "An emotional read you can feel fast",
-      body: "The first win is not a streak. It is the relief of seeing your inner state reflected back in a way that clicks.",
-      icon: PenLine,
-    },
-    {
-      value: "< 1 minute",
-      title: "Fast enough for the moment you need it",
-      body: "When support starts quickly, it becomes much easier to come back before things spiral into a bigger mess.",
-      icon: TrendingUp,
-    },
-    {
-      value: "1 honest next step",
-      title: "Support that tells you where to begin",
-      body: "After the reveal, Ju keeps helping you name, calm, or stay with what is there instead of leaving you alone with it.",
-      icon: BrainCircuit,
-    },
-  ];
-
-  const pricingPlans = [
-    {
-      name: "Weekly",
-      price: geo.formatPrice(geo.rates.weekly),
-      note: "A gentle start for when you want support now, but still want to keep the commitment light.",
-      badge: null as string | null,
-      highlight: false,
-      cta: "Choose weekly",
-      features: [
-        "Lightest way to begin",
-        "Full support while active",
-      ],
-      onClick: () => startOnboarding("weekly"),
-    },
-    {
-      name: "Annual",
-      price: geo.formatPrice(geo.rates.yearly),
-      note: "Best value for people who want this kind of support to stay part of their life.",
-      badge: "Best value",
-      highlight: false,
-      cta: "Choose annual",
-      features: [
-        "Best long-term value",
-        "Made for ongoing support",
-      ],
-      onClick: () => startOnboarding("yearly"),
-    },
-    {
-      name: "Lifetime",
-      price: geo.formatPrice(geo.rates.lifetime),
-      note: "One payment for people who already know this is the kind of support they want to keep close.",
-      badge: "One-time",
-      highlight: false,
-      cta: "Choose lifetime",
-      features: [
-        "One payment, no renewals",
-        "Future premium updates included",
-      ],
-      onClick: () => startOnboarding("lifetime_one_time"),
-    },
-  ];
+  const proofCards = quickFeatures.slice(0, 4).map((feature) => ({
+    title: feature.title,
+    body: feature.body,
+    icon: feature.icon,
+  }));
 
   const landingFaqs = [
     {
       q: "Do I need to pay before I can use Nuju?",
-      a: "You start with the Ju Gets You reveal, then choose Weekly, Annual, or Lifetime if you want Ju to stay with you beyond that first read."
+      a: "No. You start with the Ju Gets You reveal first. If the fit feels real after that, you can keep Ju close with an annual plan or a lifetime unlock.",
     },
     {
-      q: "How does the AI understand my journal?",
-      a: "Ju reads patterns in what you share, like when the weight hits, what makes it harder to say, and what kind of support feels safest for you. The goal is to reflect something emotionally true, not give you a generic summary."
+      q: "What exactly happens in the reveal?",
+      a: "You answer a few quick prompts, then Ju reflects back the emotional pattern it notices, why that read fits, and what kind of support would help first.",
     },
     {
       q: "Is my data private?",
-      a: "100% private. Your journal entries are encrypted and only you can access them. We never sell data or share personal information with third parties."
+      a: "Yes. Nuju is built around privacy. Your journal data is stored securely, protected with row-level access controls, and we do not sell your personal data.",
     },
     {
       q: "Why does Nuju ask for my name and email so early?",
-      a: "Because the reveal is meant to feel personal. Ju uses your name in the read, and your email lets you keep the support attached to the same account after checkout."
+      a: "Because the reveal is meant to feel personal. Your name helps the read feel like it belongs to you, and your email keeps that support attached to the same account if you decide to continue.",
     },
     {
-      q: "What's the difference between Weekly, Annual, and Lifetime?",
-      a: "Weekly is the lightest way to begin, Annual is the best value if you want Ju in your life consistently, and Lifetime is the one-time choice for people who already know the fit is real."
-    }
+      q: "What plans are available if I want Ju to stay with me?",
+      a: annualTrialDays > 0
+        ? `You can continue with an annual plan that starts with a ${annualTrialDays}-day trial, or unlock lifetime access with one payment.`
+        : "You can continue with an annual plan for long-term support, or unlock lifetime access with one payment.",
+    },
   ];
 
   const landingFaqSchema = {
@@ -270,26 +375,32 @@ const Landing: React.FC = () => {
   const howToSchema = {
     "@context": "https://schema.org",
     "@type": "HowTo",
-    "name": "How to Start Journaling with Nuju",
-    "description": "Learn how to use Nuju's AI journal in 3 simple steps",
+    "name": "How to start with Nuju",
+    "description": "Learn how Nuju helps you feel understood in three simple steps.",
     "step": [
       {
         "@type": "HowToStep",
-        "name": "Tap your mood",
-        "text": "Choose from 5 mood levels in just one tap. Track how you're feeling right now."
+        "name": "Share what feels heavy",
+        "text": "Answer a few gentle prompts so Ju can understand what has been hard to hold alone."
       },
       {
         "@type": "HowToStep",
-        "name": "Write or speak",
-        "text": "Journal for 30 seconds using text or voice. No pressure, just honest reflection."
+        "name": "See the Ju Gets You reveal",
+        "text": "Get one personal read on what Ju notices, why it fits, and what support would help first."
       },
       {
         "@type": "HowToStep",
-        "name": "Get AI insights",
-        "text": "Receive personalized patterns and insights about your emotional world."
+        "name": "Choose whether Ju stays close",
+        "text": "Keep the support going only if the reveal feels like a genuine fit for you."
       }
     ]
   };
+
+  const geoPricingNote = geo.hasLocalizedDisplay
+    ? `Approximate prices shown in ${geo.displayCurrency} for your region`
+    : geo.currency !== geo.displayCurrency
+      ? `Prices shown in ${geo.displayCurrency}. Regional checkout in ${geo.currency} may appear later.`
+      : null;
 
   return (
     <div className="min-h-screen bg-background">
@@ -304,7 +415,7 @@ const Landing: React.FC = () => {
         <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4">
           <div className="flex items-center gap-3">
             <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-primary/10 shadow-inner">
-              <img src={juMain} alt="Ju, the Nuju AI journal companion mascot" className="h-7 w-7 object-contain" width={28} height={28} />
+              <img src={juMain} alt="Ju, the Nuju mascot" className="h-7 w-7 object-contain" width={28} height={28} />
             </div>
             <div>
               <p className="font-serif text-xl font-bold text-foreground">Nuju</p>
@@ -322,14 +433,14 @@ const Landing: React.FC = () => {
               onClick={() => startOnboarding()}
               className="rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground transition-all hover:-translate-y-0.5 hover:shadow-lg hover:shadow-primary/25 active:scale-[0.97]"
             >
-              Get started
+              Start reveal
             </button>
           </div>
         </div>
       </nav>
 
-      <section className="relative overflow-hidden px-4 pb-24 pt-14 sm:pt-20">
-        {/* Aurora blobs — animated mood-coloured gradient clouds */}
+      <section data-testid="landing-hero" className="relative overflow-hidden px-4 pb-24 pt-14 sm:pt-20">
+        {/* Aurora blobs - animated mood-colored gradient clouds */}
         <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
           <div className="absolute inset-0 hero-grid-bg opacity-60" />
           <div className="aurora-blob animate-aurora-a left-[-10%] top-[-8%] h-[34rem] w-[34rem] bg-[radial-gradient(circle,rgba(124,110,219,0.55),transparent_65%)]" />
@@ -348,14 +459,14 @@ const Landing: React.FC = () => {
             <Magnetic>
               <motion.div
                 whileHover={{ scale: 1.04 }}
-                onClick={() => startOnboarding("lifetime_one_time")}
+                onClick={() => startOnboarding()}
                 className="group mb-7 inline-flex cursor-pointer items-center gap-2 rounded-full border border-primary/20 bg-white/70 px-4 py-2 text-xs font-semibold text-foreground/85 shadow-[0_8px_24px_-12px_rgba(124,110,219,0.35)] backdrop-blur-xl transition-all hover:border-primary/40 hover:bg-white/90 dark:bg-white/5 dark:hover:bg-white/10"
               >
                 <span className="relative flex h-2 w-2">
                   <span className="absolute inset-0 animate-ping rounded-full bg-[#4ECDC4]/70" />
                   <span className="relative h-2 w-2 rounded-full bg-[#4ECDC4]" />
                 </span>
-                <span className="tracking-wide uppercase text-[11px]">New · The Ju Gets You reveal</span>
+                <span className="tracking-wide uppercase text-[11px]">New - The Ju Gets You reveal</span>
                 <ArrowRight className="h-3.5 w-3.5 text-primary transition-transform group-hover:translate-x-0.5" />
               </motion.div>
             </Magnetic>
@@ -377,7 +488,7 @@ const Landing: React.FC = () => {
               transition={{ delay: 0.2, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
               className="mt-6 max-w-xl text-pretty text-lg leading-8 text-muted-foreground sm:text-xl"
             >
-              A few honest answers are all it takes. Ju reflects what is really going on — gently, in under a minute — so you feel less alone in it.
+              A few honest answers are all it takes. Ju reflects what is really going on gently, in under a minute, so you feel less alone in it.
             </motion.p>
 
             <motion.div
@@ -398,10 +509,10 @@ const Landing: React.FC = () => {
               </Magnetic>
               <Magnetic>
                 <button
-                  onClick={scrollToPricing}
+                  onClick={scrollToHowItWorks}
                   className="inline-flex items-center justify-center gap-2 rounded-full border border-border/70 bg-white/60 px-6 py-4 text-sm font-semibold text-foreground/90 backdrop-blur-md transition-all hover:border-primary/30 hover:bg-white/90 active:scale-[0.97] dark:bg-white/5 dark:hover:bg-white/10"
                 >
-                  See plans
+                  See how it works
                 </button>
               </Magnetic>
             </motion.div>
@@ -427,7 +538,7 @@ const Landing: React.FC = () => {
             </motion.div>
           </div>
 
-          {/* Hero visual — preview card wrapped with floating mood Ju orbs */}
+          {/* Hero visual - preview card wrapped with floating mood Ju orbs */}
           <motion.div
              initial={{ opacity: 0, scale: 0.95 }}
              animate={{ opacity: 1, scale: 1 }}
@@ -478,14 +589,14 @@ const Landing: React.FC = () => {
         </motion.div>
       </section>
 
-      {/* Social proof strip — right under hero */}
-      <section className="relative px-4 pb-10">
+      {/* Social proof strip - right under hero */}
+      <section data-testid="landing-proof-bar" className="relative px-4 pb-14">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.6 }}
-          className="mx-auto flex max-w-4xl flex-col items-center justify-center gap-4 rounded-full border border-border/50 bg-card/80 px-6 py-4 text-center shadow-[0_8px_30px_-12px_rgba(0,0,0,0.06)] backdrop-blur-xl sm:flex-row sm:text-left"
+          className="mx-auto flex max-w-5xl flex-col gap-4 rounded-[2rem] border border-border/50 bg-card/80 px-6 py-5 shadow-[0_12px_32px_-16px_rgba(0,0,0,0.12)] backdrop-blur-xl lg:flex-row lg:items-center lg:justify-between"
         >
           <div className="flex -space-x-2">
             {[juRough, juLow, juOkay, juGood, juGreat].map((src, i) => (
@@ -506,13 +617,24 @@ const Landing: React.FC = () => {
             ))}
           </div>
           <p className="text-sm font-medium text-foreground/85">
-            Trusted by <span className="font-bold text-foreground">1,200+</span> quiet minds · "It noticed what I could not name."
+            Early users keep saying the same thing: <span className="font-bold text-foreground">"It noticed what I could not name."</span>
           </p>
+          <div className="flex flex-wrap gap-2">
+            {["60-second reveal", "No credit card to start", "Private by default"].map((item) => (
+              <span
+                key={item}
+                className="inline-flex items-center rounded-full border border-border/60 bg-background/70 px-3 py-1.5 text-xs font-semibold text-foreground/80"
+              >
+                {item}
+              </span>
+            ))}
+          </div>
         </motion.div>
       </section>
 
-      {/* Meet Ju — mood showcase */}
+      {/* Meet Ju - mood showcase */}
       <motion.section
+        data-testid="landing-visual-strip"
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
@@ -526,12 +648,12 @@ const Landing: React.FC = () => {
 
         <div className="relative mx-auto max-w-6xl">
           <div className="mx-auto max-w-2xl text-center">
-            <p className="text-sm font-semibold uppercase tracking-[0.22em] text-primary">Meet Ju</p>
+            <p className="text-sm font-semibold uppercase tracking-[0.22em] text-primary">Product visual strip</p>
             <h2 className="mt-4 font-serif text-4xl font-bold leading-tight text-foreground sm:text-5xl">
-              Whichever mood shows up, <span className="font-writing italic text-primary">Ju meets you there.</span>
+              See Ju across the moods.
             </h2>
             <p className="mt-5 text-lg leading-8 text-muted-foreground">
-              Five tender expressions. One companion that changes with how you feel — so support never arrives the same when the moment isn't.
+              Five tender expressions. One companion that changes with how you feel, so support never arrives the same way every time.
             </p>
           </div>
 
@@ -576,6 +698,7 @@ const Landing: React.FC = () => {
           </div>
 
           <motion.div
+            data-testid="landing-proof-strip"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -584,12 +707,13 @@ const Landing: React.FC = () => {
             <p className="font-writing text-xl italic leading-8 text-foreground/85 sm:text-2xl">
               "The first time I opened it on a bad day, Ju looked like how I was feeling. That was the moment I knew."
             </p>
-            <p className="mt-3 text-xs font-bold uppercase tracking-[0.22em] text-muted-foreground">— Early user · 4 months with Ju</p>
+            <p className="mt-3 text-xs font-bold uppercase tracking-[0.22em] text-muted-foreground">- Early user - 4 months with Ju</p>
           </motion.div>
         </div>
       </motion.section>
 
       <motion.section
+        data-testid="landing-benefits"
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
@@ -598,9 +722,9 @@ const Landing: React.FC = () => {
       >
         <div className="mx-auto max-w-6xl">
           <div className="mx-auto max-w-2xl text-center">
-            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">Why Nuju feels different</p>
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">Outcome-led benefits</p>
             <h2 className="mt-4 font-serif text-4xl font-bold text-foreground sm:text-5xl">
-              Feel understood when what you carry is hard to explain.
+              What changes after the reveal starts landing.
             </h2>
             <p className="mt-5 text-lg leading-8 text-muted-foreground">
               The first relief is simple: feeling seen in a moment that usually stays trapped inside you.
@@ -672,6 +796,8 @@ const Landing: React.FC = () => {
       </motion.section>
 
       <motion.section
+        ref={howItWorksRef}
+        data-testid="landing-how-it-works"
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
@@ -693,7 +819,7 @@ const Landing: React.FC = () => {
                 className="relative mt-8 overflow-hidden rounded-[1.75rem] border border-primary/20 bg-[linear-gradient(135deg,rgba(124,110,219,0.08),rgba(78,205,196,0.05))] p-7 shadow-[0_14px_40px_-18px_rgba(124,110,219,0.35)]"
               >
                 <div className="absolute -top-10 -right-10 h-32 w-32 rounded-full bg-primary/20 blur-3xl" />
-                <p className="relative text-[10px] font-bold uppercase tracking-[0.22em] text-primary">Why it lands</p>
+                <p className="relative text-[10px] font-bold uppercase tracking-[0.22em] text-primary">Why it converts</p>
                 <p className="relative mt-3 font-writing text-[1.6rem] italic leading-9 text-foreground">
                   Feel understood first.
                   <br />
@@ -748,6 +874,7 @@ const Landing: React.FC = () => {
       </motion.section>
 
       <motion.section
+        data-testid="landing-social-proof"
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
@@ -756,9 +883,9 @@ const Landing: React.FC = () => {
       >
         <div className="mx-auto max-w-6xl">
           <div className="mx-auto max-w-2xl text-center">
-            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">Why people trust Nuju</p>
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">Layered social proof</p>
             <h2 className="mt-4 font-serif text-4xl font-bold text-foreground sm:text-5xl">
-              Warm enough to open up. Accurate enough to share.
+              What early users keep saying.
             </h2>
           </div>
 
@@ -905,8 +1032,102 @@ const Landing: React.FC = () => {
       </motion.section>
 
       <motion.section
+        data-testid="landing-features"
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+        className="px-4 py-20"
+      >
+        <div className="mx-auto max-w-6xl">
+          <div className="mx-auto max-w-2xl text-center">
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">Scannable feature layer</p>
+            <h2 className="mt-4 font-serif text-4xl font-bold text-foreground sm:text-5xl">
+              Scan the support in one glance.
+            </h2>
+            <p className="mt-5 text-lg leading-8 text-muted-foreground">
+              Not everyone reads every paragraph. This layer exists so a fast scroll still builds conviction.
+            </p>
+          </div>
+
+          <div className="mt-12 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+            {quickFeatures.map((feature, index) => {
+              const Icon = feature.icon;
+              return (
+                <motion.div
+                  key={feature.title}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.45, delay: index * 0.05 }}
+                  className="rounded-[2rem] border border-border/60 bg-card/90 p-6 shadow-sm"
+                >
+                  <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-primary/10">
+                    <Icon className="h-5 w-5 text-primary" />
+                  </div>
+                  <h3 className="mt-4 font-serif text-2xl font-semibold text-foreground">{feature.title}</h3>
+                  <p className="mt-3 text-sm leading-7 text-muted-foreground">{feature.body}</p>
+                </motion.div>
+              );
+            })}
+          </div>
+        </div>
+      </motion.section>
+
+      <motion.section
+        data-testid="landing-mid-cta"
+        initial={{ opacity: 0, y: 32 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+        className="px-4 py-6"
+      >
+        <div className="mx-auto max-w-5xl overflow-hidden rounded-[2.5rem] border border-primary/20 bg-[linear-gradient(135deg,#F5F3FF_0%,#FFFFFF_48%,#EEF9F7_100%)] px-6 py-10 shadow-[0_30px_70px_-30px_rgba(124,110,219,0.4)] sm:px-10 dark:border-primary/30 dark:bg-[linear-gradient(135deg,#1E1A34_0%,#191527_55%,#14202A_100%)]">
+          <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
+            <div>
+              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">Mid-page reset</p>
+              <h2 className="mt-3 font-serif text-3xl font-bold leading-tight text-foreground sm:text-4xl">
+                Start with the reveal. Decide on plans later.
+              </h2>
+              <p className="mt-4 max-w-2xl text-base leading-8 text-muted-foreground">
+                If the structure already feels right, take the lowest-friction next step now. The reveal proves the fit before you ever have to make a bigger commitment.
+              </p>
+            </div>
+
+            <div className="flex flex-col gap-3 sm:flex-row lg:flex-col">
+              <button
+                onClick={() => startOnboarding()}
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-[linear-gradient(135deg,#8A7CE8_0%,#7C6EDB_45%,#6F5FE8_100%)] px-6 py-4 text-sm font-semibold text-white shadow-[0_16px_40px_-20px_rgba(124,110,219,0.7)] transition-all hover:-translate-y-0.5 active:scale-[0.97]"
+              >
+                Start the Ju Gets You reveal
+                <ArrowRight className="h-4 w-4" />
+              </button>
+              <button
+                onClick={scrollToPricing}
+                className="inline-flex items-center justify-center rounded-full border border-border/70 bg-white/70 px-6 py-4 text-sm font-semibold text-foreground transition-all hover:border-primary/30 hover:bg-white active:scale-[0.97] dark:bg-white/5 dark:hover:bg-white/10"
+              >
+                See plans
+              </button>
+            </div>
+          </div>
+
+          <div className="mt-6 flex flex-wrap gap-2">
+            {["60-second reveal", "No credit card to start", "Private by default"].map((item) => (
+              <span
+                key={item}
+                className="inline-flex rounded-full border border-border/50 bg-white/70 px-3 py-1.5 text-xs font-semibold text-foreground/80 dark:bg-white/10"
+              >
+                {item}
+              </span>
+            ))}
+          </div>
+        </div>
+      </motion.section>
+
+      <motion.section
         ref={pricingSectionRef}
-        onViewportEnter={() => ttk.trackPricingView()}
+        data-testid="landing-pricing-teaser"
+        onViewportEnter={handlePricingVisible}
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
@@ -917,31 +1138,59 @@ const Landing: React.FC = () => {
           <div className="mx-auto max-w-2xl text-center">
             <p className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/[0.06] px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-primary">
               <Sparkles className="h-3.5 w-3.5" />
-              Pricing
+              What you get
             </p>
             <h2 className="mt-5 font-serif text-4xl font-bold leading-tight text-foreground sm:text-5xl">
-              Choose how closely <span className="font-writing italic text-primary">Ju stays with you.</span>
+              What you get when you start.
             </h2>
             <p className="mt-5 text-lg leading-8 text-muted-foreground">
-              A gentle start, a steady companion, or a one-time decision that keeps Ju close for good. No hidden fees, cancel anytime.
+              Start with the reveal, get one clear read, and only then decide whether you want Ju to stay close.
             </p>
-            {geo.hasLocalizedDisplay ? (
+          </div>
+
+          <div data-testid="landing-what-you-get" className="mt-12 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+            {whatYouGetItems.map((item, index) => {
+              const Icon = item.icon;
+              return (
+                <motion.div
+                  key={item.title}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.45, delay: index * 0.05 }}
+                  className="rounded-[2rem] border border-border/60 bg-card/90 p-6 shadow-sm"
+                >
+                  <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-primary/10">
+                    <Icon className="h-5 w-5 text-primary" />
+                  </div>
+                  <h3 className="mt-4 font-serif text-2xl font-semibold text-foreground">{item.title}</h3>
+                  <p className="mt-3 text-sm leading-7 text-muted-foreground">{item.body}</p>
+                </motion.div>
+              );
+            })}
+          </div>
+
+          <div className="mx-auto mt-12 max-w-2xl text-center">
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">Supportive pricing teaser</p>
+            <h3 className="mt-3 font-serif text-3xl font-semibold text-foreground sm:text-4xl">
+              If the reveal feels right, choose how Ju stays with you.
+            </h3>
+            <p className="mt-4 text-base leading-8 text-muted-foreground">
+              Pricing is here for clarity, not pressure. The job of the page is still to get you into the reveal first.
+            </p>
+            {geoPricingNote ? (
               <div className="mt-5 inline-flex items-center gap-2 rounded-full border border-border bg-card px-4 py-2 text-xs font-medium text-muted-foreground">
                 <Globe className="h-3.5 w-3.5" />
-                Approximate prices shown in {geo.displayCurrency} for your region
-              </div>
-            ) : geo.currency !== geo.displayCurrency ? (
-              <div className="mt-5 inline-flex items-center gap-2 rounded-full border border-border bg-card px-4 py-2 text-xs font-medium text-muted-foreground">
-                <Globe className="h-3.5 w-3.5" />
-                Prices shown in {geo.displayCurrency}. Regional checkout in {geo.currency} may appear later.
+                {geoPricingNote}
               </div>
             ) : null}
           </div>
 
           <div className="mt-12 grid gap-6 lg:grid-cols-2 xl:grid-cols-3">
-            {pricingPlans.map((displayPlan, index) => {
+            {pricingCards.map((displayPlan, index) => {
               const isLifetime = displayPlan.name === "Lifetime";
               const isAnnual = displayPlan.name === "Annual";
+              const isFree = displayPlan.name === "Start free";
               return (
                 <motion.div
                   whileHover={{ scale: 1.02, y: -6 }}
@@ -955,8 +1204,8 @@ const Landing: React.FC = () => {
                       ? "border-primary/35 bg-[linear-gradient(180deg,rgba(245,241,255,0.96),rgba(255,255,255,0.99))] shadow-[0_20px_50px_-24px_rgba(124,110,219,0.38)] hover:shadow-[0_28px_60px_-24px_rgba(124,110,219,0.55)] dark:border-[#9385F6]/45 dark:bg-[radial-gradient(circle_at_top,rgba(156,137,255,0.22),transparent_45%),linear-gradient(180deg,#201934_0%,#161124_100%)] dark:shadow-[0_20px_50px_-24px_rgba(86,70,177,0.55)]"
                       : isAnnual
                       ? "border-primary/40 bg-card shadow-[0_20px_50px_-24px_rgba(124,110,219,0.35)] ring-1 ring-primary/15 hover:shadow-[0_28px_60px_-24px_rgba(124,110,219,0.5)] dark:border-primary/40 dark:bg-white/[0.04]"
-                      : displayPlan.highlight
-                      ? "border-primary/40 bg-primary text-primary-foreground shadow-[0_0_30px_rgba(124,110,219,0.25)]"
+                      : isFree
+                      ? "border-[#4ECDC4]/25 bg-[linear-gradient(180deg,rgba(78,205,196,0.08),rgba(255,255,255,0.95))] shadow-sm"
                       : "border-border/60 bg-card shadow-sm hover:shadow-lg dark:border-white/10 dark:bg-white/[0.03]"
                   }`}
                 >
@@ -982,9 +1231,9 @@ const Landing: React.FC = () => {
                     <span className={`text-4xl font-bold ${isLifetime ? "text-foreground dark:text-white" : "text-foreground"}`}>
                       {displayPlan.price}
                     </span>
-                    {!isLifetime && (
-                      <span className={displayPlan.highlight ? "text-primary-foreground/75" : "text-muted-foreground"}>
-                        {displayPlan.name === "Weekly" ? "/week" : "/year"}
+                    {!isLifetime && displayPlan.unit && (
+                      <span className="text-muted-foreground">
+                        {displayPlan.unit}
                       </span>
                     )}
                     {isLifetime && (
@@ -994,9 +1243,7 @@ const Landing: React.FC = () => {
                   <p className={`mt-3 text-sm leading-6 ${
                     isLifetime
                       ? "text-muted-foreground dark:text-white/78"
-                      : displayPlan.highlight
-                        ? "text-primary-foreground/85"
-                        : "text-muted-foreground"
+                      : "text-muted-foreground"
                   }`}>
                     {displayPlan.note}
                   </p>
@@ -1015,18 +1262,14 @@ const Landing: React.FC = () => {
                         className={`flex items-start gap-2 text-sm ${
                           isLifetime
                             ? "text-muted-foreground dark:text-white/82"
-                            : displayPlan.highlight
-                              ? "text-primary-foreground/92"
-                              : "text-muted-foreground"
+                            : "text-muted-foreground"
                         }`}
                       >
                         <Check
                           className={`mt-0.5 h-4 w-4 shrink-0 ${
                             isLifetime
                               ? "text-primary dark:text-[#B8AEFF]"
-                              : displayPlan.highlight
-                                ? "text-primary-foreground"
-                                : "text-primary"
+                              : "text-primary"
                           }`}
                         />
                         <span>{feature}</span>
@@ -1039,9 +1282,9 @@ const Landing: React.FC = () => {
                     className={`mt-auto w-full rounded-2xl py-3.5 text-sm font-semibold transition-all active:scale-[0.97] ${
                       isLifetime
                         ? "bg-[linear-gradient(135deg,#9385F6,#6F5FE8)] text-white hover:shadow-[0_18px_35px_-18px_rgba(124,110,219,0.75)] dark:bg-[linear-gradient(135deg,#9B8FFF,#7767EA)]"
-                      : displayPlan.highlight
-                        ? "bg-primary-foreground text-primary hover:shadow-lg"
-                        : "border border-[#D8D0EE] bg-[#E9E4F6] text-[#2E2550] hover:bg-[#DED6F1] hover:shadow-[0_12px_24px_-18px_rgba(45,37,80,0.35)] dark:border-white/10 dark:bg-white/10 dark:text-white"
+                        : isFree
+                          ? "bg-[linear-gradient(135deg,#4ECDC4,#2EB8A6)] text-white hover:shadow-[0_18px_35px_-18px_rgba(46,184,166,0.7)]"
+                          : "border border-[#D8D0EE] bg-[#E9E4F6] text-[#2E2550] hover:bg-[#DED6F1] hover:shadow-[0_12px_24px_-18px_rgba(45,37,80,0.35)] dark:border-white/10 dark:bg-white/10 dark:text-white"
                     }`}
                   >
                     {displayPlan.cta}
@@ -1053,8 +1296,57 @@ const Landing: React.FC = () => {
         </div>
       </motion.section>
 
-      {/* FAQ Section */}
       <motion.section
+        data-testid="landing-comparison"
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+        className="border-y border-border/50 bg-secondary/35 px-4 py-20"
+      >
+        <div className="mx-auto max-w-6xl">
+          <div className="mx-auto max-w-2xl text-center">
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">Comparison table</p>
+            <h2 className="mt-4 font-serif text-4xl font-bold text-foreground sm:text-5xl">
+              Why Nuju beats journaling alone on hard days.
+            </h2>
+            <p className="mt-5 text-lg leading-8 text-muted-foreground">
+              This is the decision section: same intent, side by side, with the difference stated plainly.
+            </p>
+          </div>
+
+          <div className="mt-12 overflow-hidden rounded-[2rem] border border-border/60 bg-card shadow-sm">
+            <div className="overflow-x-auto">
+              <table className="min-w-full border-collapse">
+                <thead>
+                  <tr className="border-b border-border/60 bg-muted/30 text-left">
+                    <th className="px-5 py-4 text-sm font-semibold text-foreground">Decision point</th>
+                    <th className="px-5 py-4 text-sm font-semibold text-foreground">Nuju</th>
+                    <th className="px-5 py-4 text-sm font-semibold text-foreground">Journaling alone</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {comparisonRows.map((row) => (
+                    <tr key={row.label} className="border-b border-border/40 last:border-b-0">
+                      <th className="px-5 py-5 text-left align-top text-sm font-semibold text-foreground">{row.label}</th>
+                      <td className="px-5 py-5 align-top text-sm leading-7 text-muted-foreground">
+                        <span className="inline-flex items-start gap-2">
+                          <Check className="mt-1 h-4 w-4 shrink-0 text-primary" />
+                          <span>{row.nuju}</span>
+                        </span>
+                      </td>
+                      <td className="px-5 py-5 align-top text-sm leading-7 text-muted-foreground">{row.journal}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </motion.section>
+
+      <motion.section
+        data-testid="landing-faq"
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
@@ -1067,7 +1359,7 @@ const Landing: React.FC = () => {
             Frequently Asked Questions
           </h2>
           <p className="text-center text-muted-foreground mb-12 text-sm">
-            Got questions? We've got answers.
+            This is where the last doubts get handled before the final close.
           </p>
 
           <div className="space-y-4">
@@ -1090,6 +1382,7 @@ const Landing: React.FC = () => {
       </motion.section>
 
       <motion.section
+        data-testid="landing-final-cta"
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
@@ -1107,7 +1400,7 @@ const Landing: React.FC = () => {
             className="relative mx-auto flex h-24 w-24 items-center justify-center rounded-full bg-white shadow-[0_18px_40px_-14px_rgba(124,110,219,0.45)] ring-4 ring-primary/15"
           >
             <div className="absolute inset-0 rounded-full bg-primary/15 blur-xl" />
-            <img src={juMain} alt="Ju mascot celebrating — Nuju AI journal companion" className="relative h-16 w-16 animate-ju-float object-contain" width={64} height={64} loading="lazy" />
+            <img src={juMain} alt="Ju mascot celebrating - Nuju AI journal companion" className="relative h-16 w-16 animate-ju-float object-contain" width={64} height={64} loading="lazy" />
           </motion.div>
 
           <h2 className="relative mt-8 font-serif text-4xl font-bold leading-tight text-foreground sm:text-5xl">
@@ -1116,7 +1409,7 @@ const Landing: React.FC = () => {
             <span className="text-shimmer italic">to feel understood.</span>
           </h2>
           <p className="relative mx-auto mt-5 max-w-2xl text-lg leading-8 text-muted-foreground">
-            Open Nuju when your thoughts feel crowded. Answer a few quick prompts, see what Ju notices, and keep the support that feels right.
+            Open Nuju when your thoughts feel crowded. Answer a few quick prompts, see what Ju notices, and keep the support only if the reveal feels right.
           </p>
 
           <div className="relative mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
@@ -1140,19 +1433,19 @@ const Landing: React.FC = () => {
             </Magnetic>
           </div>
           <p className="relative mt-5 text-xs font-medium uppercase tracking-[0.22em] text-muted-foreground">
-            60-second reveal · No credit card to start
+            60-second reveal - No credit card to start - Private by default
           </p>
         </div>
       </motion.section>
 
-      {/* SEO content section — keyword-rich, indexed by Google */}
+      {/* SEO content section - keyword-rich, indexed by Google */}
       <section className="border-t border-border/40 bg-muted/30 px-4 py-16">
         <div className="mx-auto max-w-4xl">
           <h2 className="font-serif text-2xl font-bold text-foreground mb-4">
             The AI journal app built for everyday emotional wellness
           </h2>
           <p className="text-muted-foreground mb-6 leading-relaxed">
-            Nuju is a daily journaling app powered by artificial intelligence that helps you track your mood, understand emotional patterns, and get personalized insights — in as little as 30 seconds a day. Whether you want to start a mood journal, develop a daily reflection habit, or get support from an AI coach, Nuju adapts to how you feel right now.
+            Nuju is a daily journaling app powered by artificial intelligence that helps you track your mood, understand emotional patterns, and get personalized insights in as little as 30 seconds a day. Whether you want to start a mood journal, develop a daily reflection habit, or get support from an AI coach, Nuju adapts to how you feel right now.
           </p>
           <div className="grid gap-6 sm:grid-cols-3 mb-8">
             <div>
@@ -1161,11 +1454,11 @@ const Landing: React.FC = () => {
             </div>
             <div>
               <h3 className="font-semibold text-foreground mb-2">Personal AI coach</h3>
-              <p className="text-sm text-muted-foreground">Choose from four AI coaching personas — Gentle Guide, Tough Coach, Wise Sage, or Fun Friend — and get responses tailored to your journaling style.</p>
+              <p className="text-sm text-muted-foreground">Choose from four AI coaching personas - Gentle Guide, Tough Coach, Wise Sage, or Fun Friend - and get responses tailored to your journaling style.</p>
             </div>
             <div>
               <h3 className="font-semibold text-foreground mb-2">Daily journal prompts</h3>
-              <p className="text-sm text-muted-foreground">Stuck on what to write? Nuju surfaces a new journaling prompt each day to help you reflect on what matters — no blank-page anxiety.</p>
+              <p className="text-sm text-muted-foreground">Stuck on what to write? Nuju surfaces a new journaling prompt each day to help you reflect on what matters - no blank-page anxiety.</p>
             </div>
           </div>
           <p className="text-sm text-muted-foreground">
@@ -1180,7 +1473,7 @@ const Landing: React.FC = () => {
         <div className="mx-auto max-w-6xl space-y-6">
           <div className="flex flex-col items-center justify-between gap-4 sm:flex-row sm:text-left">
             <div className="flex items-center gap-3">
-              <img src={juMain} alt="Nuju logo — Ju the AI journal companion" className="h-8 w-8 object-contain" width={32} height={32} loading="lazy" />
+              <img src={juMain} alt="Nuju logo - Ju the AI journal companion" className="h-8 w-8 object-contain" width={32} height={32} loading="lazy" />
               <div>
                 <p className="font-serif text-lg font-bold text-foreground">Nuju</p>
                 <p className="text-sm text-muted-foreground">Support that helps you feel understood.</p>
@@ -1192,21 +1485,21 @@ const Landing: React.FC = () => {
           {/* Legal Links */}
           <div className="flex flex-wrap justify-center gap-4 text-xs border-t border-border/40 pt-6">
             <Link to="/about" state={{ from: "/" }} className="text-muted-foreground hover:text-foreground transition-colors">About</Link>
-            <span className="text-border/40">•</span>
+            <span className="text-border/40">-</span>
             <Link to="/support" state={{ from: "/" }} className="text-muted-foreground hover:text-foreground transition-colors">Support</Link>
-            <span className="text-border/40">•</span>
+            <span className="text-border/40">-</span>
             <Link to="/contact" state={{ from: "/" }} className="text-muted-foreground hover:text-foreground transition-colors">Contact</Link>
-            <span className="text-border/40">•</span>
+            <span className="text-border/40">-</span>
             <Link to="/privacy" state={{ from: "/" }} className="text-muted-foreground hover:text-foreground transition-colors">Privacy</Link>
-            <span className="text-border/40">•</span>
+            <span className="text-border/40">-</span>
             <Link to="/terms" state={{ from: "/" }} className="text-muted-foreground hover:text-foreground transition-colors">Terms</Link>
-            <span className="text-border/40">•</span>
+            <span className="text-border/40">-</span>
             <Link to="/medical-disclaimer" state={{ from: "/" }} className="text-muted-foreground hover:text-foreground transition-colors">Medical Disclaimer</Link>
           </div>
         </div>
       </footer>
 
-      {/* Mobile sticky CTA — appears after scrolling past the hero */}
+      {/* Mobile sticky CTA - appears after scrolling past the hero */}
       <AnimatePresence>
         {showStickyCta && (
           <motion.div

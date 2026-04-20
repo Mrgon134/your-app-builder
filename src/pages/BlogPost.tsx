@@ -4,7 +4,7 @@ import { ArrowRight, Clock, Tag, ArrowLeft, List } from "lucide-react";
 import { Helmet } from "react-helmet-async";
 import SEOHead from "@/components/SEOHead";
 import {
-  getBlogPost,
+  getPublishedBlogPost,
   getRelatedPosts,
   getPostLanguage,
   LANGUAGE_ALTERNATES,
@@ -75,7 +75,7 @@ const renderSection = (section: BlogSection, index: number) => {
 
 const BlogPost: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
-  const post = getBlogPost(slug ?? "");
+  const post = getPublishedBlogPost(slug ?? "");
 
   if (!post) return <Navigate to="/blog" replace />;
 

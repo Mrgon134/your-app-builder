@@ -19,7 +19,7 @@ export interface BlogPost {
   faq?: BlogFAQ[];
 }
 
-export const BLOG_POSTS: BlogPost[] = [
+const RAW_BLOG_POSTS: BlogPost[] = [
   {
     slug: "how-to-start-journaling",
     title: "How to Start a Journaling Habit: A Complete Beginner's Guide",
@@ -1782,8 +1782,58 @@ export const BLOG_POSTS: BlogPost[] = [
   },
 ];
 
+const normalizeCopy = (value: string): string =>
+  value
+    .replace(/â€”|â€“/g, "-")
+    .replace(/â†’/g, "->")
+    .replace(/â†/g, "<-")
+    .replace(/â‹®/g, "...")
+    .replace(/Â©/g, "©")
+    .replace(/Â/g, "");
+
+const normalizeSection = (section: BlogSection): BlogSection => ({
+  ...section,
+  content: Array.isArray(section.content)
+    ? section.content.map((item) => normalizeCopy(item))
+    : normalizeCopy(section.content),
+});
+
+const normalizeFaq = (faq: BlogFAQ): BlogFAQ => ({
+  ...faq,
+  question: normalizeCopy(faq.question),
+  answer: normalizeCopy(faq.answer),
+});
+
+export const BLOG_POSTS: BlogPost[] = RAW_BLOG_POSTS.map((post) => ({
+  ...post,
+  title: normalizeCopy(post.title),
+  description: normalizeCopy(post.description),
+  sections: post.sections.map(normalizeSection),
+  faq: post.faq?.map(normalizeFaq),
+}));
+
 export const getBlogPost = (slug: string): BlogPost | undefined =>
   BLOG_POSTS.find((p) => p.slug === slug);
+
+export const getTodayIsoDate = (now = new Date()): string =>
+  now.toISOString().slice(0, 10);
+
+export const isPublishedBlogPost = (post: BlogPost, now = new Date()): boolean =>
+  post.publishedAt <= getTodayIsoDate(now);
+
+export const getPublishedBlogPosts = (now = new Date()): BlogPost[] =>
+  BLOG_POSTS
+    .filter((post) => isPublishedBlogPost(post, now))
+    .slice()
+    .sort(
+      (a, b) =>
+        new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime(),
+    );
+
+export const getPublishedBlogPost = (
+  slug: string,
+  now = new Date(),
+): BlogPost | undefined => getPublishedBlogPosts(now).find((post) => post.slug === slug);
 
 /**
  * Maps a post slug to its translation in the other language.
@@ -1806,16 +1856,16 @@ export const getPostLanguage = (post: BlogPost): "en" | "id" => {
   return LANGUAGE_ALTERNATES[post.slug]?.language ?? (INDONESIAN_CATEGORIES.has(post.category) ? "id" : "en");
 };
 
-/**
- * Returns up to `limit` related posts. Prefers same category and same language,
- * then fills remaining slots with other posts in the same language.
- */
-export const getRelatedPosts = (currentSlug: string, limit = 3): BlogPost[] => {
-  const current = getBlogPost(currentSlug);
+export const getRelatedPosts = (
+  currentSlug: string,
+  limit = 3,
+  now = new Date(),
+): BlogPost[] => {
+  const current = getPublishedBlogPost(currentSlug, now);
   if (!current) return [];
   const currentLang = getPostLanguage(current);
 
-  const sameLanguage = BLOG_POSTS.filter(
+  const sameLanguage = getPublishedBlogPosts(now).filter(
     (p) => p.slug !== currentSlug && getPostLanguage(p) === currentLang,
   );
   const sameCategory = sameLanguage.filter((p) => p.category === current.category);
