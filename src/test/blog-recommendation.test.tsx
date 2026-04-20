@@ -8,9 +8,13 @@ const analyticsEvents = {
   trackRecommendationPageView: vi.fn(),
   trackRecommendationCtaClick: vi.fn(),
 };
+const seoHeadProps = vi.fn();
 
 vi.mock("@/components/SEOHead", () => ({
-  default: () => null,
+  default: (props: unknown) => {
+    seoHeadProps(props);
+    return null;
+  },
 }));
 
 vi.mock("react-helmet-async", () => ({
@@ -98,6 +102,21 @@ describe("Blog recommendation surfaces", () => {
       "App Comparison",
       "blog_recommendation_snapshot_primary",
       "reveal",
+    );
+  });
+
+  it("sharpens metadata for the best ai journaling apps comparison page", () => {
+    renderBlogPost("best-ai-journaling-apps");
+
+    expect(screen.getByRole("heading", { name: /best ai journaling apps in 2026: 8 tested, 3 worth using/i })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: /how we tested the 8 apps/i })).toBeInTheDocument();
+    expect(seoHeadProps).toHaveBeenCalledWith(
+      expect.objectContaining({
+        title: "Best AI Journaling Apps in 2026: 8 Tested, 3 Worth Using",
+        description:
+          "We compared 8 AI journaling apps for privacy, mood tracking, emotional insight, and ease of use. These are the 3 worth trying first — and when Nuju is the best fit.",
+        canonical: "https://nuju.app/blog/best-ai-journaling-apps",
+      }),
     );
   });
 });

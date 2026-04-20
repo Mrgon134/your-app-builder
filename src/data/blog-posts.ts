@@ -1559,13 +1559,15 @@ const RAW_BLOG_POSTS: BlogPost[] = [
   },
   {
     slug: "best-ai-journaling-apps",
-    title: "Best AI Journaling Apps in 2026: We Tested 8, Kept 3",
-    description: "AI journaling apps promise personalized insight and emotional coaching. Most disappoint. Here are the three that actually deliver — and what separates them from the rest.",
+    title: "Best AI Journaling Apps in 2026: 8 Tested, 3 Worth Using",
+    description: "We compared 8 AI journaling apps for privacy, mood tracking, emotional insight, and ease of use. These are the 3 worth trying first — and when Nuju is the best fit.",
     publishedAt: "2026-04-20",
     readingTime: 7,
     category: "App Comparison",
     sections: [
-      { type: "p", content: "The phrase 'AI journaling' now covers everything from genuinely useful coaching tools to apps that just slap 'AI' on a basic prompt generator. Here's how to tell the difference — and which apps are actually worth trying." },
+      { type: "p", content: "We tested eight AI journaling apps across the criteria that actually matter in real life: whether the AI responds to your actual writing, how useful the mood tracking is, whether the privacy policy is clear, and how quickly the app helps you reach a useful insight. Only three felt worth recommending." },
+      { type: "h2", content: "How we tested the 8 apps" },
+      { type: "p", content: "Each app was evaluated on response quality, memory across entries, mood tracking depth, privacy language, free-tier usefulness, and whether the product delivered real emotional clarity instead of generic AI encouragement. The winners are the ones that stayed useful after the novelty wore off." },
       { type: "h2", content: "What a good AI journaling app actually does" },
       { type: "ul", content: ["Responds to YOUR specific entries — not a template everyone gets", "Remembers context from past entries", "Identifies patterns you wouldn't notice manually", "Offers different coaching styles for different emotional needs", "Has a clear, verifiable privacy policy about encryption and data use"] },
       { type: "callout", content: "The difference between a good AI journal and a bad one: does it respond to what YOU specifically wrote, or does it give everyone the same response regardless of what they shared?" },
