@@ -1419,7 +1419,7 @@ const RAW_BLOG_POSTS: BlogPost[] = [
     title: "7 Best Journaling Apps in 2026 (Free & Paid, Honestly Reviewed)",
     description:
       "We tested the most popular journaling apps and ranked them by ease of use, AI features, privacy, and value. Here's what's actually worth downloading in 2026.",
-    publishedAt: "2026-04-21",
+    publishedAt: "2026-04-19",
     readingTime: 9,
     category: "App Comparison",
     sections: [
@@ -1449,7 +1449,7 @@ const RAW_BLOG_POSTS: BlogPost[] = [
     slug: "daylio-alternatives",
     title: "Best Daylio Alternatives for Mood Tracking in 2026",
     description: "Daylio is popular but limited. If you want AI analysis, deeper journaling, or more personalized insight from your mood data, these alternatives are worth trying.",
-    publishedAt: "2026-04-22",
+    publishedAt: "2026-04-20",
     readingTime: 7,
     category: "App Comparison",
     sections: [
@@ -1477,7 +1477,7 @@ const RAW_BLOG_POSTS: BlogPost[] = [
     slug: "best-mood-tracker-apps",
     title: "Best Mood Tracker Apps in 2026: Tested and Ranked",
     description: "Mood tracking apps range from simple emoji logs to AI-powered insight engines. We tested 8 and ranked them by what actually helps you understand your emotions.",
-    publishedAt: "2026-04-23",
+    publishedAt: "2026-04-20",
     readingTime: 8,
     category: "App Comparison",
     sections: [
@@ -1509,7 +1509,7 @@ const RAW_BLOG_POSTS: BlogPost[] = [
     slug: "best-ai-journaling-apps",
     title: "Best AI Journaling Apps in 2026: We Tested 8, Kept 3",
     description: "AI journaling apps promise personalized insight and emotional coaching. Most disappoint. Here are the three that actually deliver — and what separates them from the rest.",
-    publishedAt: "2026-04-24",
+    publishedAt: "2026-04-20",
     readingTime: 7,
     category: "App Comparison",
     sections: [
@@ -1557,7 +1557,7 @@ const RAW_BLOG_POSTS: BlogPost[] = [
     slug: "journaling-for-adhd",
     title: "How to Journal with ADHD: Short, Flexible, and Actually Effective",
     description: "Traditional journaling advice doesn't work for ADHD brains. Here's a system built around how your brain actually operates — not against it.",
-    publishedAt: "2026-04-25",
+    publishedAt: "2026-04-20",
     readingTime: 7,
     category: "Journaling Tips",
     sections: [

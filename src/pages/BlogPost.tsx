@@ -1,17 +1,99 @@
 import React from "react";
-import { Link, useParams, Navigate } from "react-router-dom";
-import { ArrowRight, Clock, Tag, ArrowLeft, List } from "lucide-react";
+import { Link, Navigate, useParams } from "react-router-dom";
+import { ArrowLeft, ArrowRight, Clock, List, Tag } from "lucide-react";
 import { Helmet } from "react-helmet-async";
 import SEOHead from "@/components/SEOHead";
 import {
+  BlogPost as BlogPostData,
+  BlogSection,
+  getPostLanguage,
   getPublishedBlogPost,
   getRelatedPosts,
-  getPostLanguage,
   LANGUAGE_ALTERNATES,
   slugifyHeading,
-  BlogSection,
-  BlogPost as BlogPostData,
 } from "@/data/blog-posts";
+
+const RECOMMENDATION_USE_CASE_SLUGS = new Set([
+  "mood-tracking-for-anxiety",
+  "journaling-for-adhd",
+]);
+
+type RecommendationSnapshot = {
+  eyebrow: string;
+  title: string;
+  points: Array<{ label: string; body: string }>;
+  primaryLabel: string;
+  primaryHref: string;
+  secondaryLabel: string;
+  secondaryHref: string;
+};
+
+const getRecommendationSnapshot = (
+  post: BlogPostData,
+  language: "en" | "id",
+): RecommendationSnapshot | null => {
+  if (language !== "en") return null;
+
+  if (post.category === "App Comparison") {
+    return {
+      eyebrow: "Nuju snapshot",
+      title: "When Nuju is the better fit",
+      points: [
+        {
+          label: "Best for",
+          body: "People who want journaling, mood tracking, and AI pattern recognition in one low-friction app.",
+        },
+        {
+          label: "Less ideal if",
+          body: "You want a fully offline journal, zero AI involvement, or a pure long-form diary experience.",
+        },
+        {
+          label: "Privacy",
+          body: "Entries stay in encrypted storage, Nuju does not sell journal data, and journal content is not used to train models.",
+        },
+        {
+          label: "Start here",
+          body: "Take the free Ju Gets You reveal first, then install if the reflection style feels useful for you.",
+        },
+      ],
+      primaryLabel: "Start the free reveal",
+      primaryHref: `/onboarding?source=blog_${post.slug}`,
+      secondaryLabel: "See how Nuju works",
+      secondaryHref: "/install",
+    };
+  }
+
+  if (RECOMMENDATION_USE_CASE_SLUGS.has(post.slug)) {
+    return {
+      eyebrow: "Nuju snapshot",
+      title: "When Nuju fits this use case",
+      points: [
+        {
+          label: "Best for",
+          body: "People who need a short daily check-in when anxiety, overthinking, or ADHD make long journaling sessions hard to sustain.",
+        },
+        {
+          label: "Support boundary",
+          body: "Nuju is reflection support, not therapy, crisis care, or medical treatment. It works best as a self-awareness tool alongside real-world support when needed.",
+        },
+        {
+          label: "Privacy",
+          body: "Journal entries are protected with encrypted storage and private access controls so your reflection data stays yours.",
+        },
+        {
+          label: "Start here",
+          body: "Begin with the free reveal, see whether the feedback style lands, then install if you want to keep the practice going.",
+        },
+      ],
+      primaryLabel: "Start the free reveal",
+      primaryHref: `/onboarding?source=blog_${post.slug}`,
+      secondaryLabel: "See how Nuju works",
+      secondaryHref: "/install",
+    };
+  }
+
+  return null;
+};
 
 const renderSection = (section: BlogSection, index: number) => {
   switch (section.type) {
@@ -20,20 +102,23 @@ const renderSection = (section: BlogSection, index: number) => {
         <h2
           key={index}
           id={slugifyHeading(section.content as string)}
-          className="font-serif text-2xl font-bold text-foreground mt-10 mb-4 scroll-mt-20"
+          className="mt-10 mb-4 scroll-mt-20 font-serif text-2xl font-bold text-foreground"
         >
           {section.content as string}
         </h2>
       );
     case "h3":
       return (
-        <h3 key={index} className="font-serif text-xl font-semibold text-foreground mt-8 mb-3">
+        <h3
+          key={index}
+          className="mt-8 mb-3 font-serif text-xl font-semibold text-foreground"
+        >
           {section.content as string}
         </h3>
       );
     case "p":
       return (
-        <p key={index} className="text-foreground/85 leading-relaxed mb-4">
+        <p key={index} className="mb-4 leading-relaxed text-foreground/85">
           {section.content as string}
         </p>
       );
@@ -41,7 +126,7 @@ const renderSection = (section: BlogSection, index: number) => {
       return (
         <ul key={index} className="mb-4 space-y-2 pl-4">
           {(section.content as string[]).map((item, i) => (
-            <li key={i} className="flex gap-2 text-foreground/85 leading-relaxed">
+            <li key={i} className="flex gap-2 leading-relaxed text-foreground/85">
               <span className="mt-2 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-primary" />
               {item}
             </li>
@@ -52,7 +137,7 @@ const renderSection = (section: BlogSection, index: number) => {
       return (
         <ol key={index} className="mb-4 space-y-2 pl-4">
           {(section.content as string[]).map((item, i) => (
-            <li key={i} className="flex gap-3 text-foreground/85 leading-relaxed">
+            <li key={i} className="flex gap-3 leading-relaxed text-foreground/85">
               <span className="flex-shrink-0 font-semibold text-primary">{i + 1}.</span>
               {item}
             </li>
@@ -63,7 +148,7 @@ const renderSection = (section: BlogSection, index: number) => {
       return (
         <blockquote
           key={index}
-          className="my-6 rounded-xl border-l-4 border-primary bg-primary/5 px-5 py-4 italic text-foreground/90 leading-relaxed"
+          className="my-6 rounded-xl border-l-4 border-primary bg-primary/5 px-5 py-4 italic leading-relaxed text-foreground/90"
         >
           {section.content as string}
         </blockquote>
@@ -104,6 +189,7 @@ const BlogPost: React.FC = () => {
   }, 0);
 
   const relatedPosts = getRelatedPosts(post.slug, 3);
+  const recommendationSnapshot = getRecommendationSnapshot(post, language);
 
   const articleSchema = {
     "@context": "https://schema.org",
@@ -136,20 +222,21 @@ const BlogPost: React.FC = () => {
     },
   };
 
-  const faqSchema = post.faq && post.faq.length > 0
-    ? {
-        "@context": "https://schema.org",
-        "@type": "FAQPage",
-        mainEntity: post.faq.map((f) => ({
-          "@type": "Question",
-          name: f.question,
-          acceptedAnswer: {
-            "@type": "Answer",
-            text: f.answer,
-          },
-        })),
-      }
-    : null;
+  const faqSchema =
+    post.faq && post.faq.length > 0
+      ? {
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: post.faq.map((f) => ({
+            "@type": "Question",
+            name: f.question,
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: f.answer,
+            },
+          })),
+        }
+      : null;
 
   const formattedDate = new Date(post.publishedAt).toLocaleDateString(locale, {
     year: "numeric",
@@ -157,39 +244,40 @@ const BlogPost: React.FC = () => {
     day: "numeric",
   });
 
-  const copy = language === "id"
-    ? {
-        allArticles: "Semua artikel",
-        tryFree: "Coba Nuju gratis",
-        minRead: "menit baca",
-        onThisPage: "Isi artikel",
-        faqTitle: "Pertanyaan yang sering ditanyakan",
-        relatedTitle: "Baca juga",
-        ctaEyebrow: "Coba sendiri",
-        ctaTitle: "Mulai entry jurnal pertamamu hari ini",
-        ctaBody: "Nuju cuma butuh 30 detik sehari. Pilih mood, tulis satu kalimat, dan mulai lihat pola emosimu — gratis untuk mulai.",
-        ctaButton: "Mulai journaling gratis",
-        backToBlog: "Kembali ke semua artikel",
-        footerAbout: "Tentang",
-        footerSupport: "Bantuan",
-        footerPrivacy: "Privasi",
-      }
-    : {
-        allArticles: "All articles",
-        tryFree: "Try Nuju free",
-        minRead: "min read",
-        onThisPage: "On this page",
-        faqTitle: "Frequently asked questions",
-        relatedTitle: "Keep reading",
-        ctaEyebrow: "Try it yourself",
-        ctaTitle: "Start your first journal entry today",
-        ctaBody: "Nuju takes 30 seconds a day. Track your mood, get AI insights, and start understanding your emotional patterns — free to start.",
-        ctaButton: "Start journaling free",
-        backToBlog: "Back to all articles",
-        footerAbout: "About",
-        footerSupport: "Support",
-        footerPrivacy: "Privacy",
-      };
+  const copy =
+    language === "id"
+      ? {
+          allArticles: "Semua artikel",
+          tryFree: "Coba Nuju gratis",
+          minRead: "menit baca",
+          onThisPage: "Isi artikel",
+          faqTitle: "Pertanyaan yang sering ditanyakan",
+          relatedTitle: "Baca juga",
+          ctaEyebrow: "Coba sendiri",
+          ctaTitle: "Mulai entry jurnal pertamamu hari ini",
+          ctaBody: "Nuju cuma butuh 30 detik sehari. Pilih mood, tulis satu kalimat, lalu mulai lihat pola emosimu secara lebih jelas.",
+          ctaButton: "Mulai journaling gratis",
+          backToBlog: "Kembali ke semua artikel",
+          footerAbout: "Tentang",
+          footerSupport: "Bantuan",
+          footerPrivacy: "Privasi",
+        }
+      : {
+          allArticles: "All articles",
+          tryFree: "Try Nuju free",
+          minRead: "min read",
+          onThisPage: "On this page",
+          faqTitle: "Frequently asked questions",
+          relatedTitle: "Keep reading",
+          ctaEyebrow: "Try it yourself",
+          ctaTitle: "Start your first journal entry today",
+          ctaBody: "Nuju takes 30 seconds a day. Track your mood, get AI insights, and start understanding your emotional patterns with less friction.",
+          ctaButton: "Start journaling free",
+          backToBlog: "Back to all articles",
+          footerAbout: "About",
+          footerSupport: "Support",
+          footerPrivacy: "Privacy",
+        };
 
   return (
     <div className="min-h-screen bg-background">
@@ -212,10 +300,12 @@ const BlogPost: React.FC = () => {
         )}
       </Helmet>
 
-      {/* Nav */}
       <nav className="sticky top-0 z-50 border-b border-border/60 bg-background/95">
         <div className="mx-auto flex h-14 max-w-3xl items-center justify-between px-4">
-          <Link to="/blog" className="flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors">
+          <Link
+            to="/blog"
+            className="flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
+          >
             <ArrowLeft className="h-4 w-4" /> {copy.allArticles}
           </Link>
           <Link
@@ -228,7 +318,6 @@ const BlogPost: React.FC = () => {
       </nav>
 
       <article className="mx-auto max-w-3xl px-4 py-12">
-        {/* Meta */}
         <div className="mb-6 flex flex-wrap items-center gap-3 text-sm text-muted-foreground">
           <span className="inline-flex items-center gap-1 rounded-full bg-primary/10 px-2.5 py-0.5 font-medium text-primary">
             <Tag className="h-3 w-3" />
@@ -241,16 +330,14 @@ const BlogPost: React.FC = () => {
           <time dateTime={post.publishedAt}>{formattedDate}</time>
         </div>
 
-        {/* Title */}
-        <h1 className="font-serif text-3xl font-bold text-foreground leading-tight mb-6 sm:text-4xl">
+        <h1 className="mb-6 font-serif text-3xl font-bold leading-tight text-foreground sm:text-4xl">
           {post.title}
         </h1>
 
-        <p className="text-lg text-muted-foreground leading-relaxed mb-10 border-b border-border/40 pb-10">
+        <p className="mb-10 border-b border-border/40 pb-10 text-lg leading-relaxed text-muted-foreground">
           {post.description}
         </p>
 
-        {/* Table of contents */}
         {tocItems.length >= 3 && (
           <nav
             aria-label={copy.onThisPage}
@@ -265,7 +352,7 @@ const BlogPost: React.FC = () => {
                 <li key={item.id}>
                   <a
                     href={`#${item.id}`}
-                    className="text-foreground/80 hover:text-primary transition-colors"
+                    className="text-foreground/80 transition-colors hover:text-primary"
                   >
                     {i + 1}. {item.label}
                   </a>
@@ -275,12 +362,56 @@ const BlogPost: React.FC = () => {
           </nav>
         )}
 
-        {/* Body */}
         <div className="prose-nuju">
           {post.sections.map((section, index) => renderSection(section, index))}
         </div>
 
-        {/* FAQ */}
+        {recommendationSnapshot && (
+          <section
+            data-testid="blog-recommendation-cta"
+            className="mt-12 rounded-3xl border border-primary/20 bg-primary/5 p-6 sm:p-8"
+          >
+            <p className="mb-2 text-xs font-semibold uppercase tracking-[0.24em] text-primary">
+              {recommendationSnapshot.eyebrow}
+            </p>
+            <h2 className="font-serif text-2xl font-bold text-foreground sm:text-3xl">
+              {recommendationSnapshot.title}
+            </h2>
+
+            <div className="mt-6 grid gap-4 sm:grid-cols-2">
+              {recommendationSnapshot.points.map((point) => (
+                <div
+                  key={point.label}
+                  className="rounded-2xl border border-primary/10 bg-background/80 p-4"
+                >
+                  <p className="text-sm font-semibold uppercase tracking-wide text-primary">
+                    {point.label}
+                  </p>
+                  <p className="mt-2 text-sm leading-relaxed text-foreground/85">
+                    {point.body}
+                  </p>
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+              <Link
+                to={recommendationSnapshot.primaryHref}
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground transition-all hover:opacity-90"
+              >
+                {recommendationSnapshot.primaryLabel}
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+              <Link
+                to={recommendationSnapshot.secondaryHref}
+                className="inline-flex items-center justify-center gap-2 rounded-full border border-border/70 bg-background px-5 py-3 text-sm font-semibold text-foreground transition-colors hover:border-primary/40 hover:text-primary"
+              >
+                {recommendationSnapshot.secondaryLabel}
+              </Link>
+            </div>
+          </section>
+        )}
+
         {post.faq && post.faq.length > 0 && (
           <section
             aria-labelledby="faq-heading"
@@ -288,7 +419,7 @@ const BlogPost: React.FC = () => {
           >
             <h2
               id="faq-heading"
-              className="font-serif text-2xl font-bold text-foreground mb-6"
+              className="mb-6 font-serif text-2xl font-bold text-foreground"
             >
               {copy.faqTitle}
             </h2>
@@ -301,7 +432,7 @@ const BlogPost: React.FC = () => {
                   <summary className="cursor-pointer list-none font-serif text-lg font-semibold text-foreground marker:hidden">
                     {item.question}
                   </summary>
-                  <p className="mt-3 text-foreground/85 leading-relaxed">
+                  <p className="mt-3 leading-relaxed text-foreground/85">
                     {item.answer}
                   </p>
                 </details>
@@ -310,15 +441,14 @@ const BlogPost: React.FC = () => {
           </section>
         )}
 
-        {/* CTA */}
         <div className="mt-16 rounded-2xl border border-primary/20 bg-primary/5 px-6 py-10 text-center">
-          <p className="text-sm font-semibold uppercase tracking-widest text-primary mb-2">
+          <p className="mb-2 text-sm font-semibold uppercase tracking-widest text-primary">
             {copy.ctaEyebrow}
           </p>
-          <h2 className="font-serif text-2xl font-bold text-foreground mb-3">
+          <h2 className="mb-3 font-serif text-2xl font-bold text-foreground">
             {copy.ctaTitle}
           </h2>
-          <p className="text-muted-foreground mb-6 max-w-md mx-auto">
+          <p className="mx-auto mb-6 max-w-md text-muted-foreground">
             {copy.ctaBody}
           </p>
           <Link
@@ -329,7 +459,6 @@ const BlogPost: React.FC = () => {
           </Link>
         </div>
 
-        {/* Related posts */}
         {relatedPosts.length > 0 && (
           <section
             aria-labelledby="related-heading"
@@ -337,7 +466,7 @@ const BlogPost: React.FC = () => {
           >
             <h2
               id="related-heading"
-              className="font-serif text-2xl font-bold text-foreground mb-6"
+              className="mb-6 font-serif text-2xl font-bold text-foreground"
             >
               {copy.relatedTitle}
             </h2>
@@ -352,7 +481,7 @@ const BlogPost: React.FC = () => {
                     <Tag className="h-3 w-3" />
                     {related.category}
                   </span>
-                  <h3 className="mb-2 font-serif text-base font-semibold leading-snug text-foreground group-hover:text-primary transition-colors">
+                  <h3 className="mb-2 font-serif text-base font-semibold leading-snug text-foreground transition-colors group-hover:text-primary">
                     {related.title}
                   </h3>
                   <span className="mt-auto flex items-center gap-1 text-xs text-muted-foreground">
@@ -365,28 +494,36 @@ const BlogPost: React.FC = () => {
           </section>
         )}
 
-        {/* Back to blog */}
         <div className="mt-10 text-center">
           <Link
             to="/blog"
-            className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors"
+            className="inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
           >
             <ArrowLeft className="h-4 w-4" /> {copy.backToBlog}
           </Link>
         </div>
       </article>
 
-      {/* Footer */}
       <footer className="border-t border-border/60 px-4 py-8">
         <div className="mx-auto flex max-w-3xl flex-wrap items-center justify-between gap-4 text-sm text-muted-foreground">
-          <Link to="/" className="font-serif font-bold text-foreground">Nuju</Link>
+          <Link to="/" className="font-serif font-bold text-foreground">
+            Nuju
+          </Link>
           <div className="flex flex-wrap gap-4">
-            <Link to="/blog" className="hover:text-foreground transition-colors">Blog</Link>
-            <Link to="/about" className="hover:text-foreground transition-colors">{copy.footerAbout}</Link>
-            <Link to="/support" className="hover:text-foreground transition-colors">{copy.footerSupport}</Link>
-            <Link to="/privacy" className="hover:text-foreground transition-colors">{copy.footerPrivacy}</Link>
+            <Link to="/blog" className="transition-colors hover:text-foreground">
+              Blog
+            </Link>
+            <Link to="/about" className="transition-colors hover:text-foreground">
+              {copy.footerAbout}
+            </Link>
+            <Link to="/support" className="transition-colors hover:text-foreground">
+              {copy.footerSupport}
+            </Link>
+            <Link to="/privacy" className="transition-colors hover:text-foreground">
+              {copy.footerPrivacy}
+            </Link>
           </div>
-          <p>© 2026 Nuju. All rights reserved.</p>
+          <p>&copy; 2026 Nuju. All rights reserved.</p>
         </div>
       </footer>
     </div>

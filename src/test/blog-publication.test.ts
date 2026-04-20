@@ -12,8 +12,12 @@ describe("blog publication helpers", () => {
     const slugs = posts.map((post) => post.slug);
 
     expect(slugs).toContain("how-to-track-emotions-daily");
-    expect(slugs).not.toContain("best-journaling-apps-2026");
-    expect(slugs).not.toContain("best-ai-journaling-apps");
+    expect(slugs).toContain("best-journaling-apps-2026");
+    expect(slugs).toContain("daylio-alternatives");
+    expect(slugs).toContain("best-mood-tracker-apps");
+    expect(slugs).toContain("best-ai-journaling-apps");
+    expect(slugs).toContain("journaling-for-adhd");
+    expect(slugs).not.toContain("aplikasi-jurnal-terbaik");
   });
 
   it("normalizes mojibake in published blog metadata", () => {
