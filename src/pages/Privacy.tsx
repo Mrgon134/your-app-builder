@@ -16,84 +16,164 @@ const Privacy: React.FC = () => {
     <div className="min-h-screen bg-background">
       <SEOHead
         title="Privacy Policy"
-        description="Learn how Nuju collects, uses, and protects your personal data and journal entries. Your privacy is our priority."
+        description="Learn how Nuju collects, uses, and protects your personal data and journal entries. Your privacy is a core part of the product."
         canonical="https://nuju.app/privacy"
-        noindex
         breadcrumbs={[
           { name: "Home", url: "https://nuju.app/" },
           { name: "Privacy Policy", url: "https://nuju.app/privacy" },
         ]}
       />
       <div className="max-w-2xl mx-auto px-6 py-12">
-        <button onClick={handleBack} className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors mb-8 bg-transparent border-none cursor-pointer">
+        <button
+          onClick={handleBack}
+          className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors mb-8 bg-transparent border-none cursor-pointer"
+        >
           <ArrowLeft className="w-4 h-4" />
           <span className="text-sm">Back</span>
         </button>
 
-        <h1 className="font-serif text-3xl font-bold text-foreground mb-2">Privacy Policy</h1>
-        <p className="text-sm text-muted-foreground mb-8">Last updated: March 24, 2026</p>
+        <h1 className="font-serif text-3xl font-bold text-foreground mb-2">
+          Privacy Policy
+        </h1>
+        <p className="text-sm text-muted-foreground mb-8">
+          Last updated: April 20, 2026
+        </p>
 
         <div className="prose prose-sm max-w-none space-y-6 text-foreground/90">
           <section>
-            <h2 className="font-serif text-xl font-semibold text-foreground">1. Introduction</h2>
-            <p>Nuju ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, store, and share your personal information when you use our AI journaling application.</p>
+            <h2 className="font-serif text-xl font-semibold text-foreground">
+              1. Introduction
+            </h2>
+            <p>
+              Nuju ("we," "our," or "us") is committed to protecting your
+              privacy. This Privacy Policy explains how we collect, use, store,
+              and share your personal information when you use our AI journaling
+              application.
+            </p>
           </section>
 
           <section>
-            <h2 className="font-serif text-xl font-semibold text-foreground">2. Information We Collect</h2>
-            <h3 className="font-semibold text-foreground mt-4">2.1 Information You Provide</h3>
+            <h2 className="font-serif text-xl font-semibold text-foreground">
+              2. Information We Collect
+            </h2>
+            <h3 className="font-semibold text-foreground mt-4">
+              2.1 Information You Provide
+            </h3>
             <ul className="list-disc pl-5 space-y-1">
-              <li><strong>Account Information:</strong> Email address, display name, and authentication credentials (including via Google OAuth).</li>
-              <li><strong>Journal Entries:</strong> Mood ratings, energy levels, text entries, and voice recordings (if applicable).</li>
-              <li><strong>Preferences:</strong> Language, dark mode setting, coach persona preference, and notification settings.</li>
+              <li>
+                <strong>Account Information:</strong> Email address, display
+                name, and authentication credentials, including via Google
+                OAuth.
+              </li>
+              <li>
+                <strong>Journal Entries:</strong> Mood ratings, energy levels,
+                text entries, and voice recordings when applicable.
+              </li>
+              <li>
+                <strong>Preferences:</strong> Language, theme, coach persona,
+                and notification settings.
+              </li>
             </ul>
-            <h3 className="font-semibold text-foreground mt-4">2.2 Information Collected Automatically</h3>
+            <h3 className="font-semibold text-foreground mt-4">
+              2.2 Information Collected Automatically
+            </h3>
             <ul className="list-disc pl-5 space-y-1">
-              <li><strong>Usage Data:</strong> App interactions, feature usage, session duration, and streak data.</li>
-              <li><strong>Device Information:</strong> Browser type, operating system, and device type.</li>
-              <li><strong>AI-Generated Data:</strong> Mood patterns, sentiment analysis, themes, and relationship insights derived from your entries.</li>
+              <li>
+                <strong>Usage Data:</strong> App interactions, feature usage,
+                session duration, and streak data.
+              </li>
+              <li>
+                <strong>Device Information:</strong> Browser type, operating
+                system, and device type.
+              </li>
+              <li>
+                <strong>AI-Generated Data:</strong> Mood patterns, sentiment
+                analysis, themes, and relationship insights derived from your
+                entries.
+              </li>
             </ul>
           </section>
 
           <section>
-            <h2 className="font-serif text-xl font-semibold text-foreground">3. How We Use Your Information</h2>
+            <h2 className="font-serif text-xl font-semibold text-foreground">
+              3. How We Use Your Information
+            </h2>
             <ul className="list-disc pl-5 space-y-1">
-              <li>Provide and improve the journaling and AI coaching services.</li>
-              <li>Generate personalized mood insights, trends, and weekly summaries.</li>
-              <li>Maintain your streak and progress statistics.</li>
-              <li>Send notifications and reminders (with your consent).</li>
-              <li>Process payments for subscription plans.</li>
+              <li>Provide and improve journaling and AI companion services.</li>
+              <li>Generate personalized mood insights, trends, and summaries.</li>
+              <li>Maintain account history, streaks, and progress statistics.</li>
+              <li>Send reminders and service messages with your consent.</li>
+              <li>Process payments for paid access plans.</li>
               <li>Ensure security and prevent abuse.</li>
             </ul>
           </section>
 
           <section>
-            <h2 className="font-serif text-xl font-semibold text-foreground">4. AI Processing</h2>
-            <p>Your journal entries are processed by AI models to provide insights, coaching responses, and pattern recognition. This processing is done to deliver the core features of the App. AI-generated insights are stored in your account and are only accessible to you. We do not use your personal journal content to train AI models.</p>
+            <h2 className="font-serif text-xl font-semibold text-foreground">
+              4. AI Processing
+            </h2>
+            <p>
+              Your journal entries are processed by AI models to provide
+              insights, supportive responses, and pattern recognition. This
+              processing is done to deliver the core features of the App.
+              AI-generated insights are stored in your account and are only
+              accessible to you. We do not use your personal journal content to
+              train general-purpose AI models.
+            </p>
           </section>
 
           <section>
-            <h2 className="font-serif text-xl font-semibold text-foreground">5. Data Sharing</h2>
+            <h2 className="font-serif text-xl font-semibold text-foreground">
+              5. Data Sharing
+            </h2>
             <p>We do not sell your personal data. We may share limited information with:</p>
             <ul className="list-disc pl-5 space-y-1">
-              <li><strong>Service Providers:</strong> Hosting (Supabase), authentication (Google), payment processing (Dodo Payments), and AI services used to operate the App.</li>
-              <li><strong>Social Platforms:</strong> When you voluntarily share mood cards or insights to platforms like TikTok, WhatsApp, X/Twitter, or Telegram, only the generated image/text is shared — not your raw journal data.</li>
-              <li><strong>Legal Requirements:</strong> When required by law, court order, or to protect our rights.</li>
+              <li>
+                <strong>Service Providers:</strong> Hosting, authentication,
+                payment processing, analytics, and AI services used to operate
+                the App.
+              </li>
+              <li>
+                <strong>Social Platforms:</strong> When you voluntarily share
+                cards or insights to external platforms, only the generated
+                share content is sent, not your raw journal data.
+              </li>
+              <li>
+                <strong>Legal Requirements:</strong> When required by law, court
+                order, or to protect our rights.
+              </li>
             </ul>
           </section>
 
           <section>
-            <h2 className="font-serif text-xl font-semibold text-foreground">6. Data Storage & Security</h2>
-            <p>Your data is stored securely using industry-standard encryption. Journal entries and personal data are protected with row-level security, ensuring only you can access your own data. We use HTTPS for all data transmission.</p>
+            <h2 className="font-serif text-xl font-semibold text-foreground">
+              6. Data Storage and Security
+            </h2>
+            <p>
+              Your data is stored securely using industry-standard protections.
+              Journal entries and personal data are protected with access
+              controls so only you can access your own account data. We use
+              HTTPS for data transmission.
+            </p>
           </section>
 
           <section>
-            <h2 className="font-serif text-xl font-semibold text-foreground">7. Data Retention</h2>
-            <p>We retain your data for as long as your account is active. You may request deletion of your account and all associated data at any time by contacting us. Upon account deletion, your data will be permanently removed within 30 days.</p>
+            <h2 className="font-serif text-xl font-semibold text-foreground">
+              7. Data Retention
+            </h2>
+            <p>
+              We retain your data for as long as your account is active. You
+              may request deletion of your account and associated data at any
+              time. Upon account deletion, your data will be permanently
+              removed within 30 days unless a longer retention period is
+              required by law.
+            </p>
           </section>
 
           <section>
-            <h2 className="font-serif text-xl font-semibold text-foreground">8. Your Rights</h2>
+            <h2 className="font-serif text-xl font-semibold text-foreground">
+              8. Your Rights
+            </h2>
             <p>Depending on your jurisdiction, you may have the right to:</p>
             <ul className="list-disc pl-5 space-y-1">
               <li>Access and download your personal data.</li>
@@ -101,33 +181,64 @@ const Privacy: React.FC = () => {
               <li>Delete your account and data.</li>
               <li>Withdraw consent for data processing.</li>
               <li>Object to or restrict certain processing activities.</li>
-              <li>Data portability.</li>
+              <li>Request data portability.</li>
             </ul>
           </section>
 
           <section>
-            <h2 className="font-serif text-xl font-semibold text-foreground">9. Children's Privacy</h2>
-            <p>Nuju is not intended for children under 13 years of age. We do not knowingly collect personal information from children under 13. If we discover that we have collected such information, we will delete it promptly.</p>
+            <h2 className="font-serif text-xl font-semibold text-foreground">
+              9. Children's Privacy
+            </h2>
+            <p>
+              Nuju is not intended for children under 13 years of age. We do
+              not knowingly collect personal information from children under 13.
+              If we discover that we have collected such information, we will
+              delete it promptly.
+            </p>
           </section>
 
           <section>
-            <h2 className="font-serif text-xl font-semibold text-foreground">10. Cookies & Local Storage</h2>
-            <p>We use browser local storage to save your preferences (theme, language, notification settings). We do not use third-party tracking cookies for advertising.</p>
+            <h2 className="font-serif text-xl font-semibold text-foreground">
+              10. Cookies and Local Storage
+            </h2>
+            <p>
+              We use browser storage to save preferences such as theme,
+              language, and notification settings. We may also use analytics or
+              attribution technologies needed to understand product usage and
+              measure marketing performance.
+            </p>
           </section>
 
           <section>
-            <h2 className="font-serif text-xl font-semibold text-foreground">11. Changes to This Policy</h2>
-            <p>We may update this Privacy Policy periodically. We will notify you of significant changes via email or in-app notification. The "Last updated" date at the top reflects the most recent revision.</p>
+            <h2 className="font-serif text-xl font-semibold text-foreground">
+              11. Changes to This Policy
+            </h2>
+            <p>
+              We may update this Privacy Policy periodically. We will notify you
+              of significant changes via email or in-app notification. The "Last
+              updated" date at the top reflects the most recent revision.
+            </p>
           </section>
 
           <section>
-            <h2 className="font-serif text-xl font-semibold text-foreground">12. Contact Us</h2>
-            <p>If you have questions or concerns about this Privacy Policy or your data, contact us at <a href="mailto:hello@nuju.app" className="text-primary hover:underline">hello@nuju.app</a>.</p>
+            <h2 className="font-serif text-xl font-semibold text-foreground">
+              12. Contact Us
+            </h2>
+            <p>
+              If you have questions or concerns about this Privacy Policy or
+              your data, contact us at{" "}
+              <a href="mailto:hello@nuju.app" className="text-primary hover:underline">
+                hello@nuju.app
+              </a>
+              .
+            </p>
           </section>
         </div>
 
         <div className="mt-12 pt-8 border-t border-border">
-          <p className="text-xs text-muted-foreground text-center">© 2026 Nuju. All rights reserved.</p>
+          <p className="text-xs text-muted-foreground text-center">
+            &copy; 2026 Nuju. All rights reserved.
+          </p>
         </div>
       </div>
     </div>

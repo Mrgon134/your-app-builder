@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { useLang } from "@/lib/i18n";
 import { JU_STICKERS } from "@/lib/stickers";
 import { Download, Share, MoreVertical, Plus, Check } from "lucide-react";
 import SEOHead from "@/components/SEOHead";
@@ -10,8 +9,8 @@ interface BeforeInstallPromptEvent extends Event {
 }
 
 const Install: React.FC = () => {
-  const { t } = useLang();
-  const [deferredPrompt, setDeferredPrompt] = useState<BeforeInstallPromptEvent | null>(null);
+  const [deferredPrompt, setDeferredPrompt] =
+    useState<BeforeInstallPromptEvent | null>(null);
   const [installed, setInstalled] = useState(false);
   const [isIOS, setIsIOS] = useState(false);
 
@@ -41,8 +40,8 @@ const Install: React.FC = () => {
   return (
     <div className="min-h-screen bg-background flex flex-col items-center justify-center px-6 py-12">
       <SEOHead
-        title="Install Nuju App – AI Journal for iOS, Android & Desktop"
-        description="Add Nuju AI journal to your home screen for the full app experience. Works offline on iOS, Android, and desktop — mood tracking and AI coaching always available."
+        title="Install Nuju App - AI Journal for iOS, Android, and Desktop"
+        description="Add Nuju to your home screen for the full AI journal experience. Works offline on iOS, Android, and desktop as a progressive web app."
         canonical="https://nuju.app/install"
         breadcrumbs={[
           { name: "Home", url: "https://nuju.app/" },
@@ -62,14 +61,21 @@ const Install: React.FC = () => {
           <div className="w-14 h-14 rounded-full bg-primary/15 flex items-center justify-center mx-auto mb-4">
             <Check className="w-7 h-7 text-primary" />
           </div>
-          <h1 className="font-serif text-2xl font-bold text-foreground mb-2">Installed!</h1>
-          <p className="text-muted-foreground text-sm">Nuju is now on your home screen. Open it anytime.</p>
+          <h1 className="font-serif text-2xl font-bold text-foreground mb-2">
+            Installed!
+          </h1>
+          <p className="text-muted-foreground text-sm">
+            Nuju is now on your home screen. Open it anytime.
+          </p>
         </div>
       ) : (
         <div className="text-center animate-fade-up max-w-xs">
-          <h1 className="font-serif text-2xl font-bold text-foreground mb-2">Install Nuju</h1>
+          <h1 className="font-serif text-2xl font-bold text-foreground mb-2">
+            Install Nuju
+          </h1>
           <p className="text-muted-foreground text-sm mb-8">
-            Add Nuju to your home screen for the full app experience — works offline, opens instantly.
+            Add Nuju to your home screen for the full app experience - works
+            offline and opens instantly.
           </p>
 
           {deferredPrompt ? (
@@ -82,34 +88,47 @@ const Install: React.FC = () => {
             </button>
           ) : isIOS ? (
             <div className="bg-card rounded-3xl p-6 border border-border/50 text-left space-y-4">
-              <p className="text-sm font-semibold text-foreground">To install on iPhone:</p>
+              <p className="text-sm font-semibold text-foreground">
+                To install on iPhone:
+              </p>
               <div className="flex items-center gap-3">
                 <div className="w-8 h-8 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
                   <Share className="w-4 h-4 text-primary" />
                 </div>
-                <p className="text-sm text-muted-foreground">Tap the <strong>Share</strong> button in Safari</p>
+                <p className="text-sm text-muted-foreground">
+                  Tap the <strong>Share</strong> button in Safari
+                </p>
               </div>
               <div className="flex items-center gap-3">
                 <div className="w-8 h-8 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
                   <Plus className="w-4 h-4 text-primary" />
                 </div>
-                <p className="text-sm text-muted-foreground">Tap <strong>Add to Home Screen</strong></p>
+                <p className="text-sm text-muted-foreground">
+                  Tap <strong>Add to Home Screen</strong>
+                </p>
               </div>
             </div>
           ) : (
             <div className="bg-card rounded-3xl p-6 border border-border/50 text-left space-y-4">
-              <p className="text-sm font-semibold text-foreground">To install on Android:</p>
+              <p className="text-sm font-semibold text-foreground">
+                To install on Android:
+              </p>
               <div className="flex items-center gap-3">
                 <div className="w-8 h-8 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
                   <MoreVertical className="w-4 h-4 text-primary" />
                 </div>
-                <p className="text-sm text-muted-foreground">Tap the <strong>⋮ menu</strong> in your browser</p>
+                <p className="text-sm text-muted-foreground">
+                  Tap the <strong>browser menu</strong>
+                </p>
               </div>
               <div className="flex items-center gap-3">
                 <div className="w-8 h-8 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
                   <Download className="w-4 h-4 text-primary" />
                 </div>
-                <p className="text-sm text-muted-foreground">Tap <strong>Install app</strong> or <strong>Add to Home Screen</strong></p>
+                <p className="text-sm text-muted-foreground">
+                  Tap <strong>Install app</strong> or{" "}
+                  <strong>Add to Home Screen</strong>
+                </p>
               </div>
             </div>
           )}

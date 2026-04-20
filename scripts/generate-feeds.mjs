@@ -131,7 +131,7 @@ function buildRss(posts, getPostLanguage) {
   return `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
   <channel>
-    <title>Nuju Blog — Journaling, Mood Tracking &amp; Emotional Wellness</title>
+    <title>Nuju Blog - Journaling, Mood Tracking &amp; Emotional Wellness</title>
     <link>${BASE_URL}/blog</link>
     <atom:link href="${BASE_URL}/rss.xml" rel="self" type="application/rss+xml" />
     <description>Practical guides on journaling, mood tracking, and emotional wellness from the Nuju team.</description>
@@ -146,18 +146,24 @@ ${items}
 async function main() {
   const mod = await loadBlogModule();
   const { BLOG_POSTS, getPostLanguage, LANGUAGE_ALTERNATES } = mod;
+  const today = new Date().toISOString().slice(0, 10);
+  const publishedPosts = BLOG_POSTS.filter((post) => post.publishedAt <= today);
 
-  const sitemap = buildSitemap(BLOG_POSTS, getPostLanguage, LANGUAGE_ALTERNATES);
-  const rss = buildRss(BLOG_POSTS, getPostLanguage);
+  const sitemap = buildSitemap(
+    publishedPosts,
+    getPostLanguage,
+    LANGUAGE_ALTERNATES,
+  );
+  const rss = buildRss(publishedPosts, getPostLanguage);
 
   mkdirSync(PUBLIC_DIR, { recursive: true });
   writeFileSync(join(PUBLIC_DIR, "sitemap.xml"), sitemap);
   writeFileSync(join(PUBLIC_DIR, "rss.xml"), rss);
 
   console.log(
-    `✓ sitemap.xml (${BLOG_POSTS.length} blog posts + ${STATIC_ROUTES.length} static routes)`,
+    `Generated sitemap.xml (${publishedPosts.length} blog posts + ${STATIC_ROUTES.length} static routes)`,
   );
-  console.log(`✓ rss.xml (${BLOG_POSTS.length} items)`);
+  console.log(`Generated rss.xml (${publishedPosts.length} items)`);
 }
 
 main().catch((err) => {

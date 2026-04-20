@@ -5,14 +5,15 @@
  */
 import { chromium } from "playwright";
 import { preview } from "vite";
-import { writeFileSync, mkdirSync } from "fs";
+import { writeFileSync, mkdirSync, readFileSync, existsSync } from "fs";
 import { join, dirname } from "path";
 import { fileURLToPath } from "url";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const DIST = join(__dirname, "..", "dist");
+const SITEMAP_PATH = join(__dirname, "..", "public", "sitemap.xml");
 
-const ROUTES = [
+const FALLBACK_ROUTES = [
   "/",
   "/about",
   "/support",
@@ -22,36 +23,32 @@ const ROUTES = [
   "/terms",
   "/medical-disclaimer",
   "/blog",
-  "/blog/how-to-start-journaling",
-  "/blog/benefits-of-mood-tracking",
-  "/blog/ai-journal-vs-traditional",
-  "/blog/journaling-prompts-for-anxiety",
-  "/blog/journaling-for-mental-health",
-  "/blog/what-is-a-mood-journal",
-  "/blog/5-minute-daily-journaling-habit",
-  "/blog/bedtime-journaling-routine-for-sleep",
-  "/blog/what-is-ai-journaling",
-  "/blog/voice-journaling-guide",
-  "/blog/mood-tracking-for-anxiety",
-  "/blog/journaling-for-self-discovery",
-  "/blog/how-to-track-emotions-daily",
-  "/blog/best-journaling-apps-2026",
-  "/blog/daylio-alternatives",
-  "/blog/best-mood-tracker-apps",
-  "/blog/best-ai-journaling-apps",
-  "/blog/journaling-for-adhd",
-  "/blog/journaling-for-relationships",
-  "/blog/journaling-before-therapy",
-  "/blog/mood-tracking-for-therapists",
-  "/blog/3am-anxiety-journaling",
-  "/blog/cara-mulai-journaling",
-  "/blog/manfaat-mood-tracking",
-  "/blog/aplikasi-jurnal-terbaik",
-  "/blog/journaling-untuk-kesehatan-mental",
+  "/guides/journaling",
 ];
 
+function getRoutesToPrerender() {
+  const routeSet = new Set(FALLBACK_ROUTES);
+
+  if (existsSync(SITEMAP_PATH)) {
+    const sitemap = readFileSync(SITEMAP_PATH, "utf8");
+    const matches = sitemap.matchAll(/<loc>https:\/\/nuju\.app([^<]*)<\/loc>/g);
+
+    for (const match of matches) {
+      const route = match[1]?.trim() || "/";
+      routeSet.add(route === "" ? "/" : route);
+    }
+  }
+
+  return Array.from(routeSet).sort((a, b) => {
+    if (a === "/") return -1;
+    if (b === "/") return 1;
+    return a.localeCompare(b);
+  });
+}
+
 async function prerender() {
-  // Start Vite preview server
+  const routes = getRoutesToPrerender();
+
   const server = await preview({
     preview: { port: 4174, strictPort: true, host: "127.0.0.1" },
     build: { outDir: "dist" },
@@ -61,19 +58,17 @@ async function prerender() {
   const browser = await chromium.launch({ headless: true });
   const context = await browser.newContext();
 
-  console.log(`Prerendering ${ROUTES.length} routes...`);
+  console.log(`Prerendering ${routes.length} routes...`);
 
-  for (const route of ROUTES) {
+  for (const route of routes) {
     const page = await context.newPage();
     const url = `${baseUrl}${route}`;
 
     await page.goto(url, { waitUntil: "networkidle" });
-    // Wait a bit for react-helmet-async to inject meta tags
+    // Wait a bit for react-helmet-async to inject meta tags.
     await page.waitForTimeout(800);
 
     const html = await page.content();
-
-    // Write to dist/route/index.html
     const outPath =
       route === "/"
         ? join(DIST, "index.html")
@@ -81,18 +76,18 @@ async function prerender() {
 
     mkdirSync(dirname(outPath), { recursive: true });
     writeFileSync(outPath, `<!DOCTYPE html>\n${html}`);
-    console.log(`  ✓ ${route} → ${outPath.replace(DIST, "dist")}`);
+    console.log(`  Rendered ${route} -> ${outPath.replace(DIST, "dist")}`);
 
     await page.close();
   }
 
   await browser.close();
   server.httpServer.close();
-  console.log("Prerendering complete!");
+  console.log("Prerendering complete.");
 }
 
 prerender().catch((err) => {
   console.error("Prerender failed:", err.message);
-  console.error("Skipping prerendering — the build is still valid without it.");
-  process.exit(0); // Don't fail the build
+  console.error("Skipping prerendering - the build is still valid without it.");
+  process.exit(0);
 });
