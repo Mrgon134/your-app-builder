@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate, useLocation, Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { ArrowLeft, Mail, Send } from "lucide-react";
 import { toast } from "sonner";
 import SEOHead from "@/components/SEOHead";
@@ -34,8 +34,6 @@ const Contact: React.FC = () => {
     setLoading(true);
 
     try {
-      // Send to backend - currently shows success message
-      // In production, implement actual email sending via API
       toast.success("Message sent! We'll get back to you within 24-48 hours.");
       setEmail("");
       setSubject("");
@@ -50,7 +48,7 @@ const Contact: React.FC = () => {
   return (
     <div className="min-h-screen bg-background">
       <SEOHead
-        title="Contact Nuju – AI Journal App Support & Feedback"
+        title="Contact Nuju - AI Journal App Support & Feedback"
         description="Reach out to the Nuju team for help with the AI journal app, subscription questions, feedback, or anything about your journaling experience."
         canonical="https://nuju.app/contact"
         breadcrumbs={[
@@ -58,42 +56,49 @@ const Contact: React.FC = () => {
           { name: "Contact", url: "https://nuju.app/contact" },
         ]}
       />
-      <div className="max-w-2xl mx-auto px-6 py-12">
-        <button onClick={handleBack} className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors mb-8 bg-transparent border-none cursor-pointer">
-          <ArrowLeft className="w-4 h-4" />
+      <div className="mx-auto max-w-2xl px-6 py-12">
+        <button
+          onClick={handleBack}
+          className="mb-8 inline-flex cursor-pointer items-center gap-2 border-none bg-transparent text-muted-foreground transition-colors hover:text-foreground"
+        >
+          <ArrowLeft className="h-4 w-4" />
           <span className="text-sm">Back</span>
         </button>
 
-        <h1 className="font-serif text-3xl font-bold text-foreground mb-2">Contact Us</h1>
-        <p className="text-sm text-muted-foreground mb-8">Have a question, suggestion, or feedback? We'd love to hear from you.</p>
+        <h1 className="mb-2 font-serif text-3xl font-bold text-foreground">Contact Us</h1>
+        <p className="mb-8 text-sm text-muted-foreground">
+          Have a question, suggestion, or feedback? We&apos;d love to hear from you.
+        </p>
 
         <div className="space-y-8">
-          {/* Direct Email */}
-          <div className="bg-card border border-border/40 rounded-2xl p-6">
-            <div className="flex items-start gap-3 mb-4">
-              <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
-                <Mail className="w-5 h-5 text-primary" />
+          <div className="rounded-2xl border border-border/40 bg-card p-6">
+            <div className="mb-4 flex items-start gap-3">
+              <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-primary/10">
+                <Mail className="h-5 w-5 text-primary" />
               </div>
               <div>
-                <h2 className="font-semibold text-foreground mb-1">Email Us Directly</h2>
+                <h2 className="mb-1 font-semibold text-foreground">Email Us Directly</h2>
                 <a
                   href="mailto:hello@nuju.app"
-                  className="text-primary hover:underline font-medium"
+                  className="font-medium text-primary hover:underline"
                 >
                   hello@nuju.app
                 </a>
               </div>
             </div>
-            <p className="text-sm text-muted-foreground">We typically respond within 24-48 hours.</p>
+            <p className="text-sm text-muted-foreground">
+              We typically respond within 24-48 hours.
+            </p>
           </div>
 
-          {/* Contact Form */}
-          <div className="bg-card border border-border/40 rounded-2xl p-6">
-            <h2 className="font-serif text-xl font-semibold text-foreground mb-6">Send us a message</h2>
+          <div className="rounded-2xl border border-border/40 bg-card p-6">
+            <h2 className="mb-6 font-serif text-xl font-semibold text-foreground">
+              Send us a message
+            </h2>
 
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
-                <label className="block text-sm font-medium text-foreground mb-2">
+                <label className="mb-2 block text-sm font-medium text-foreground">
                   Your Email
                 </label>
                 <input
@@ -101,13 +106,13 @@ const Contact: React.FC = () => {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="your@email.com"
-                  className="w-full px-4 py-3 rounded-lg bg-background border border-border/60 text-foreground placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all"
+                  className="w-full rounded-lg border border-border/60 bg-background px-4 py-3 text-foreground placeholder-muted-foreground transition-all focus:outline-none focus:ring-2 focus:ring-primary/20"
                   required
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-foreground mb-2">
+                <label className="mb-2 block text-sm font-medium text-foreground">
                   Subject
                 </label>
                 <input
@@ -115,13 +120,13 @@ const Contact: React.FC = () => {
                   value={subject}
                   onChange={(e) => setSubject(e.target.value)}
                   placeholder="How can we help?"
-                  className="w-full px-4 py-3 rounded-lg bg-background border border-border/60 text-foreground placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all"
+                  className="w-full rounded-lg border border-border/60 bg-background px-4 py-3 text-foreground placeholder-muted-foreground transition-all focus:outline-none focus:ring-2 focus:ring-primary/20"
                   required
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-foreground mb-2">
+                <label className="mb-2 block text-sm font-medium text-foreground">
                   Message
                 </label>
                 <textarea
@@ -129,7 +134,7 @@ const Contact: React.FC = () => {
                   onChange={(e) => setMessage(e.target.value)}
                   placeholder="Tell us what's on your mind..."
                   rows={6}
-                  className="w-full px-4 py-3 rounded-lg bg-background border border-border/60 text-foreground placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all resize-none"
+                  className="w-full resize-none rounded-lg border border-border/60 bg-background px-4 py-3 text-foreground placeholder-muted-foreground transition-all focus:outline-none focus:ring-2 focus:ring-primary/20"
                   required
                 />
               </div>
@@ -137,16 +142,16 @@ const Contact: React.FC = () => {
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full bg-primary text-primary-foreground py-3 rounded-lg font-semibold hover:bg-primary/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                className="flex w-full items-center justify-center gap-2 rounded-lg bg-primary py-3 font-semibold text-primary-foreground transition-colors hover:bg-primary/90 disabled:cursor-not-allowed disabled:opacity-50"
               >
                 {loading ? (
                   <>
-                    <span className="animate-spin rounded-full h-4 w-4 border-b-2 border-primary-foreground/50" />
+                    <span className="h-4 w-4 animate-spin rounded-full border-b-2 border-primary-foreground/50" />
                     Sending...
                   </>
                 ) : (
                   <>
-                    <Send className="w-4 h-4" />
+                    <Send className="h-4 w-4" />
                     Send Message
                   </>
                 )}
@@ -154,43 +159,66 @@ const Contact: React.FC = () => {
             </form>
           </div>
 
-          {/* Help Resources */}
-          <div className="bg-muted/50 rounded-2xl p-6">
-            <h2 className="font-serif text-lg font-semibold text-foreground mb-4">Other ways we can help</h2>
+          <div className="rounded-2xl bg-muted/50 p-6">
+            <h2 className="mb-4 font-serif text-lg font-semibold text-foreground">
+              Other ways we can help
+            </h2>
             <div className="space-y-3">
               <Link
                 to="/support"
-                className="block p-3 bg-background border border-border/40 rounded-lg hover:bg-muted/50 transition-colors"
+                className="block rounded-lg border border-border/40 bg-background p-3 transition-colors hover:bg-muted/50"
               >
-                <p className="font-semibold text-foreground">Support & FAQ</p>
-                <p className="text-sm text-muted-foreground">Check our frequently asked questions</p>
+                <p className="font-semibold text-foreground">Support &amp; FAQ</p>
+                <p className="text-sm text-muted-foreground">
+                  Check our frequently asked questions
+                </p>
               </Link>
               <Link
                 to="/medical-disclaimer"
-                className="block p-3 bg-background border border-border/40 rounded-lg hover:bg-muted/50 transition-colors"
+                className="block rounded-lg border border-border/40 bg-background p-3 transition-colors hover:bg-muted/50"
               >
                 <p className="font-semibold text-foreground">Medical Disclaimer</p>
-                <p className="text-sm text-muted-foreground">Learn about health & safety information</p>
+                <p className="text-sm text-muted-foreground">
+                  Learn about health and safety information
+                </p>
               </Link>
               <Link
                 to="/about"
-                className="block p-3 bg-background border border-border/40 rounded-lg hover:bg-muted/50 transition-colors"
+                className="block rounded-lg border border-border/40 bg-background p-3 transition-colors hover:bg-muted/50"
               >
                 <p className="font-semibold text-foreground">About Nuju</p>
-                <p className="text-sm text-muted-foreground">Learn about our mission and team</p>
+                <p className="text-sm text-muted-foreground">
+                  Learn about our mission and team
+                </p>
               </Link>
             </div>
           </div>
         </div>
 
-        <div className="mt-12 pt-8 border-t border-border">
-          <p className="text-xs text-muted-foreground text-center">© 2026 Nuju. All rights reserved.</p>
-          <div className="flex flex-wrap justify-center gap-4 mt-4 text-xs">
-            <Link to="/privacy" state={linkState} className="text-primary hover:underline">Privacy Policy</Link>
-            <Link to="/terms" state={linkState} className="text-primary hover:underline">Terms of Service</Link>
-            <Link to="/support" state={linkState} className="text-primary hover:underline">Support</Link>
-            <Link to="/medical-disclaimer" state={linkState} className="text-primary hover:underline">Medical Disclaimer</Link>
-            <Link to="/about" state={linkState} className="text-primary hover:underline">About</Link>
+        <div className="mt-12 border-t border-border pt-8">
+          <p className="text-center text-xs text-muted-foreground">
+            &copy; 2026 Nuju. All rights reserved.
+          </p>
+          <div className="mt-4 flex flex-wrap justify-center gap-4 text-xs">
+            <Link to="/privacy" state={linkState} className="text-primary hover:underline">
+              Privacy Policy
+            </Link>
+            <Link to="/terms" state={linkState} className="text-primary hover:underline">
+              Terms of Service
+            </Link>
+            <Link to="/support" state={linkState} className="text-primary hover:underline">
+              Support
+            </Link>
+            <Link
+              to="/medical-disclaimer"
+              state={linkState}
+              className="text-primary hover:underline"
+            >
+              Medical Disclaimer
+            </Link>
+            <Link to="/about" state={linkState} className="text-primary hover:underline">
+              About
+            </Link>
           </div>
         </div>
       </div>

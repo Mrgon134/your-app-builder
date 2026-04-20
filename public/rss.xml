@@ -6,7 +6,7 @@
     <atom:link href="https://nuju.app/rss.xml" rel="self" type="application/rss+xml" />
     <description>Practical guides on journaling, mood tracking, and emotional wellness from the Nuju team.</description>
     <language>en</language>
-    <lastBuildDate>Mon, 20 Apr 2026 02:39:07 GMT</lastBuildDate>
+    <lastBuildDate>Mon, 20 Apr 2026 07:33:20 GMT</lastBuildDate>
     <item>
       <title>How to Track Your Emotions Daily (and What to Do with the Data)</title>
       <link>https://nuju.app/blog/how-to-track-emotions-daily</link>
@@ -17,11 +17,56 @@
       <dc:language>en</dc:language>
     </item>
     <item>
+      <title>Best Daylio Alternatives for Mood Tracking in 2026</title>
+      <link>https://nuju.app/blog/daylio-alternatives</link>
+      <guid isPermaLink="true">https://nuju.app/blog/daylio-alternatives</guid>
+      <description>Daylio is popular but limited. If you want AI analysis, deeper journaling, or more personalized insight from your mood data, these alternatives are worth trying.</description>
+      <category>App Comparison</category>
+      <pubDate>Mon, 20 Apr 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Best Mood Tracker Apps in 2026: Tested and Ranked</title>
+      <link>https://nuju.app/blog/best-mood-tracker-apps</link>
+      <guid isPermaLink="true">https://nuju.app/blog/best-mood-tracker-apps</guid>
+      <description>Mood tracking apps range from simple emoji logs to AI-powered insight engines. We tested 8 and ranked them by what actually helps you understand your emotions.</description>
+      <category>App Comparison</category>
+      <pubDate>Mon, 20 Apr 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Best AI Journaling Apps in 2026: We Tested 8, Kept 3</title>
+      <link>https://nuju.app/blog/best-ai-journaling-apps</link>
+      <guid isPermaLink="true">https://nuju.app/blog/best-ai-journaling-apps</guid>
+      <description>AI journaling apps promise personalized insight and emotional coaching. Most disappoint. Here are the three that actually deliver — and what separates them from the rest.</description>
+      <category>App Comparison</category>
+      <pubDate>Mon, 20 Apr 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>How to Journal with ADHD: Short, Flexible, and Actually Effective</title>
+      <link>https://nuju.app/blog/journaling-for-adhd</link>
+      <guid isPermaLink="true">https://nuju.app/blog/journaling-for-adhd</guid>
+      <description>Traditional journaling advice doesn&apos;t work for ADHD brains. Here&apos;s a system built around how your brain actually operates — not against it.</description>
+      <category>Journaling Tips</category>
+      <pubDate>Mon, 20 Apr 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
       <title>7 Journaling Techniques for Deep Self-Discovery</title>
       <link>https://nuju.app/blog/journaling-for-self-discovery</link>
       <guid isPermaLink="true">https://nuju.app/blog/journaling-for-self-discovery</guid>
       <description>Journaling for self-discovery goes beyond writing about your day. These 7 techniques help you understand your values, emotional patterns, and what you actually want from life.</description>
       <category>Journaling Tips</category>
+      <pubDate>Sun, 19 Apr 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>7 Best Journaling Apps in 2026 (Free &amp; Paid, Honestly Reviewed)</title>
+      <link>https://nuju.app/blog/best-journaling-apps-2026</link>
+      <guid isPermaLink="true">https://nuju.app/blog/best-journaling-apps-2026</guid>
+      <description>We tested the most popular journaling apps and ranked them by ease of use, AI features, privacy, and value. Here&apos;s what&apos;s actually worth downloading in 2026.</description>
+      <category>App Comparison</category>
       <pubDate>Sun, 19 Apr 2026 12:00:00 GMT</pubDate>
       <dc:language>en</dc:language>
     </item>
