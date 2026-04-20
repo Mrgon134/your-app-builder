@@ -16,6 +16,8 @@ import {
 const RECOMMENDATION_USE_CASE_SLUGS = new Set([
   "mood-tracking-for-anxiety",
   "journaling-for-adhd",
+  "ai-journal-for-overthinking",
+  "mood-tracker-for-self-awareness",
 ]);
 
 type RecommendationSnapshot = {

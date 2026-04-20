@@ -6,7 +6,7 @@
     <atom:link href="https://nuju.app/rss.xml" rel="self" type="application/rss+xml" />
     <description>Practical guides on journaling, mood tracking, and emotional wellness from the Nuju team.</description>
     <language>en</language>
-    <lastBuildDate>Mon, 20 Apr 2026 07:33:20 GMT</lastBuildDate>
+    <lastBuildDate>Mon, 20 Apr 2026 08:15:14 GMT</lastBuildDate>
     <item>
       <title>How to Track Your Emotions Daily (and What to Do with the Data)</title>
       <link>https://nuju.app/blog/how-to-track-emotions-daily</link>
@@ -21,6 +21,15 @@
       <link>https://nuju.app/blog/daylio-alternatives</link>
       <guid isPermaLink="true">https://nuju.app/blog/daylio-alternatives</guid>
       <description>Daylio is popular but limited. If you want AI analysis, deeper journaling, or more personalized insight from your mood data, these alternatives are worth trying.</description>
+      <category>App Comparison</category>
+      <pubDate>Mon, 20 Apr 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Best Reflectly Alternatives in 2026 (If You Want More Than Prompts)</title>
+      <link>https://nuju.app/blog/reflectly-alternatives</link>
+      <guid isPermaLink="true">https://nuju.app/blog/reflectly-alternatives</guid>
+      <description>Reflectly is great for getting started, but many people outgrow it. If you want deeper insight, better mood tracking, or more useful AI reflection, start here.</description>
       <category>App Comparison</category>
       <pubDate>Mon, 20 Apr 2026 12:00:00 GMT</pubDate>
       <dc:language>en</dc:language>
@@ -49,6 +58,24 @@
       <guid isPermaLink="true">https://nuju.app/blog/journaling-for-adhd</guid>
       <description>Traditional journaling advice doesn&apos;t work for ADHD brains. Here&apos;s a system built around how your brain actually operates — not against it.</description>
       <category>Journaling Tips</category>
+      <pubDate>Mon, 20 Apr 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Best AI Journal for Overthinking in 2026: What Actually Helps</title>
+      <link>https://nuju.app/blog/ai-journal-for-overthinking</link>
+      <guid isPermaLink="true">https://nuju.app/blog/ai-journal-for-overthinking</guid>
+      <description>If your brain loops, spirals, and replays everything at night, the wrong journal can make it worse. Here&apos;s what an AI journal for overthinking should actually do.</description>
+      <category>Mental Wellness</category>
+      <pubDate>Mon, 20 Apr 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Best Mood Tracker for Self-Awareness in 2026</title>
+      <link>https://nuju.app/blog/mood-tracker-for-self-awareness</link>
+      <guid isPermaLink="true">https://nuju.app/blog/mood-tracker-for-self-awareness</guid>
+      <description>If your goal is self-awareness, a basic mood log is not enough. Here&apos;s what to track, what patterns matter, and why Nuju is the best fit for deeper reflection.</description>
+      <category>Mental Wellness</category>
       <pubDate>Mon, 20 Apr 2026 12:00:00 GMT</pubDate>
       <dc:language>en</dc:language>
     </item>

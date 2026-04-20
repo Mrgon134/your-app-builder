@@ -14,8 +14,11 @@ describe("blog publication helpers", () => {
     expect(slugs).toContain("how-to-track-emotions-daily");
     expect(slugs).toContain("best-journaling-apps-2026");
     expect(slugs).toContain("daylio-alternatives");
+    expect(slugs).toContain("reflectly-alternatives");
     expect(slugs).toContain("best-mood-tracker-apps");
     expect(slugs).toContain("best-ai-journaling-apps");
+    expect(slugs).toContain("ai-journal-for-overthinking");
+    expect(slugs).toContain("mood-tracker-for-self-awareness");
     expect(slugs).toContain("journaling-for-adhd");
     expect(slugs).not.toContain("aplikasi-jurnal-terbaik");
   });
