@@ -214,6 +214,27 @@ const comparisonRows = [
   },
 ] as const;
 
+const comparisonReadLinks = [
+  {
+    href: "/blog/best-ai-journaling-apps",
+    label: "Category guide",
+    title: "Best AI journaling apps",
+    body: "See how Nuju stacks up on privacy, mood tracking, and real emotional insight.",
+  },
+  {
+    href: "/blog/daylio-alternatives",
+    label: "Alternative guide",
+    title: "Best Daylio alternatives",
+    body: "For readers already comparing mood trackers and wondering where Nuju fits.",
+  },
+  {
+    href: "/blog/reflectly-alternatives",
+    label: "Alternative guide",
+    title: "Best Reflectly alternatives",
+    body: "Useful when someone wants more than prompts and beginner journaling structure.",
+  },
+] as const;
+
 const Landing: React.FC = () => {
   const navigate = useNavigate();
   const geo = useGeoPricing();
@@ -405,8 +426,8 @@ const Landing: React.FC = () => {
   return (
     <div className="min-h-screen bg-background">
       <SEOHead
-        title="Nuju | Feel Understood Faster"
-        description="Nuju helps people feel understood when their mind feels loud, heavy, or hard to explain. Start the Ju Gets You reveal and see what Ju notices."
+        title="AI Journaling App for Mood Tracking and Emotional Clarity"
+        description="Nuju is an AI journaling app and mood tracker for emotional clarity, private self-reflection, and fast daily check-ins. Start the Ju Gets You reveal free."
         canonical="https://nuju.app/"
       />
       <script type="application/ld+json">{JSON.stringify(howToSchema)}</script>
@@ -483,12 +504,21 @@ const Landing: React.FC = () => {
             </motion.h1>
 
             <motion.p
+              initial={{ opacity: 0, y: 18 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.16, duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
+              className="mt-6 max-w-2xl text-sm font-semibold uppercase tracking-[0.18em] text-primary"
+            >
+              AI journaling app and mood tracker for emotional clarity
+            </motion.p>
+
+            <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
               className="mt-6 max-w-xl text-pretty text-lg leading-8 text-muted-foreground sm:text-xl"
             >
-              A few honest answers are all it takes. Ju reflects what is really going on gently, in under a minute, so you feel less alone in it.
+              Start with a few honest answers. Nuju blends AI journaling, mood tracking, and gentle reflection into one fast check-in, so you can see what is really going on without forcing clarity from a blank page.
             </motion.p>
 
             <motion.div
@@ -1340,6 +1370,47 @@ const Landing: React.FC = () => {
                   ))}
                 </tbody>
               </table>
+            </div>
+          </div>
+
+          <div
+            data-testid="landing-internal-links"
+            className="mt-10 rounded-[2rem] border border-border/60 bg-card/80 p-6 shadow-sm sm:p-8"
+          >
+            <div className="max-w-2xl">
+              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">
+                Keep comparing
+              </p>
+              <h3 className="mt-3 font-serif text-3xl font-semibold text-foreground">
+                The pages people read before choosing a journaling app
+              </h3>
+              <p className="mt-4 text-base leading-8 text-muted-foreground">
+                If you want the category view before starting, these honest comparison pages
+                are the fastest way to understand where Nuju fits.
+              </p>
+            </div>
+
+            <div className="mt-8 grid gap-4 md:grid-cols-3">
+              {comparisonReadLinks.map((link) => (
+                <Link
+                  key={link.href}
+                  to={link.href}
+                  className="group rounded-[1.75rem] border border-border/50 bg-background/85 p-5 transition-all hover:border-primary/35 hover:shadow-md"
+                >
+                  <span className="inline-flex rounded-full border border-border/60 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
+                    {link.label}
+                  </span>
+                  <h4 className="mt-4 font-serif text-2xl font-semibold text-foreground transition-colors group-hover:text-primary">
+                    {link.title}
+                  </h4>
+                  <p className="mt-3 text-sm leading-7 text-muted-foreground">
+                    {link.body}
+                  </p>
+                  <span className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-primary">
+                    Read the comparison <ArrowRight className="h-4 w-4" />
+                  </span>
+                </Link>
+              ))}
             </div>
           </div>
         </div>

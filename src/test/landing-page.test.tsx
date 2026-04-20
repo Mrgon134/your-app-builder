@@ -1,9 +1,10 @@
 import React from "react";
-import { fireEvent, render, screen } from "@testing-library/react";
+import { fireEvent, render, screen, within } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import { beforeAll, beforeEach, describe, expect, it, vi } from "vitest";
 
 const navigateMock = vi.fn();
+const seoHeadProps = vi.fn();
 const posthogEvents = {
   trackLandingView: vi.fn(),
   trackFunnelStart: vi.fn(),
@@ -108,7 +109,10 @@ vi.mock("@/components/app/LifetimeScarcityMeter", () => ({
 }));
 
 vi.mock("@/components/SEOHead", () => ({
-  default: () => null,
+  default: (props: unknown) => {
+    seoHeadProps(props);
+    return null;
+  },
 }));
 
 vi.mock("@/components/ui/Magnetic", () => ({
@@ -163,7 +167,35 @@ describe("Landing page anatomy", () => {
     }
 
     expect(screen.getByTestId("landing-what-you-get")).toBeInTheDocument();
+    expect(screen.getByTestId("landing-internal-links")).toBeInTheDocument();
+    expect(
+      screen.getByText(/ai journaling app and mood tracker for emotional clarity/i),
+    ).toBeInTheDocument();
     expect(screen.getByText(/If the reveal feels right, choose how Ju stays with you\./i)).toBeInTheDocument();
+
+    const comparisonLinks = within(screen.getByTestId("landing-internal-links"));
+    expect(
+      comparisonLinks.getByRole("link", { name: /best ai journaling apps/i }),
+    ).toHaveAttribute("href", "/blog/best-ai-journaling-apps");
+    expect(
+      comparisonLinks.getByRole("link", { name: /best daylio alternatives/i }),
+    ).toHaveAttribute("href", "/blog/daylio-alternatives");
+    expect(
+      comparisonLinks.getByRole("link", { name: /best reflectly alternatives/i }),
+    ).toHaveAttribute("href", "/blog/reflectly-alternatives");
+  });
+
+  it("sets homepage metadata for category intent, not just brand language", () => {
+    renderLanding();
+
+    expect(seoHeadProps).toHaveBeenCalledWith(
+      expect.objectContaining({
+        title: "AI Journaling App for Mood Tracking and Emotional Clarity",
+        description:
+          "Nuju is an AI journaling app and mood tracker for emotional clarity, private self-reflection, and fast daily check-ins. Start the Ju Gets You reveal free.",
+        canonical: "https://nuju.app/",
+      }),
+    );
   });
 
   it("fires landing and pricing analytics on render", () => {
