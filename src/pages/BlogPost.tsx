@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link, Navigate, useParams } from "react-router-dom";
 import { ArrowLeft, ArrowRight, Clock, List, Tag } from "lucide-react";
 import { Helmet } from "react-helmet-async";
 import SEOHead from "@/components/SEOHead";
+import { usePostHogEvents } from "@/hooks/use-posthog-events";
 import {
   BlogPost as BlogPostData,
   BlogSection,
@@ -19,6 +20,16 @@ const RECOMMENDATION_USE_CASE_SLUGS = new Set([
   "ai-journal-for-overthinking",
   "mood-tracker-for-self-awareness",
 ]);
+
+const getRecommendationPageType = (
+  post: BlogPostData,
+): "category" | "alternative" | "comparison" | "use_case" | null => {
+  if (RECOMMENDATION_USE_CASE_SLUGS.has(post.slug)) return "use_case";
+  if (post.category !== "App Comparison") return null;
+  if (post.slug.includes("alternative")) return "alternative";
+  if (post.slug.startsWith("best-")) return "category";
+  return "comparison";
+};
 
 type RecommendationSnapshot = {
   eyebrow: string;
@@ -163,6 +174,7 @@ const renderSection = (section: BlogSection, index: number) => {
 const BlogPost: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
   const post = getPublishedBlogPost(slug ?? "");
+  const events = usePostHogEvents();
 
   if (!post) return <Navigate to="/blog" replace />;
 
@@ -192,6 +204,13 @@ const BlogPost: React.FC = () => {
 
   const relatedPosts = getRelatedPosts(post.slug, 3);
   const recommendationSnapshot = getRecommendationSnapshot(post, language);
+  const recommendationPageType = getRecommendationPageType(post);
+
+  useEffect(() => {
+    if (recommendationPageType) {
+      events.trackRecommendationPageView(post.slug, post.category, recommendationPageType);
+    }
+  }, [events, post.category, post.slug, recommendationPageType]);
 
   const articleSchema = {
     "@context": "https://schema.org",
@@ -311,8 +330,16 @@ const BlogPost: React.FC = () => {
             <ArrowLeft className="h-4 w-4" /> {copy.allArticles}
           </Link>
           <Link
-            to="/onboarding"
+            to={`/onboarding?source=blog_article_nav_${post.slug}`}
             className="rounded-full bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground transition-all hover:opacity-90"
+            onClick={() =>
+              events.trackRecommendationCtaClick(
+                post.slug,
+                post.category,
+                "blog_article_nav",
+                "reveal",
+              )
+            }
           >
             {copy.tryFree}
           </Link>
@@ -400,6 +427,14 @@ const BlogPost: React.FC = () => {
               <Link
                 to={recommendationSnapshot.primaryHref}
                 className="inline-flex items-center justify-center gap-2 rounded-full bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground transition-all hover:opacity-90"
+                onClick={() =>
+                  events.trackRecommendationCtaClick(
+                    post.slug,
+                    post.category,
+                    "blog_recommendation_snapshot_primary",
+                    "reveal",
+                  )
+                }
               >
                 {recommendationSnapshot.primaryLabel}
                 <ArrowRight className="h-4 w-4" />
@@ -407,6 +442,14 @@ const BlogPost: React.FC = () => {
               <Link
                 to={recommendationSnapshot.secondaryHref}
                 className="inline-flex items-center justify-center gap-2 rounded-full border border-border/70 bg-background px-5 py-3 text-sm font-semibold text-foreground transition-colors hover:border-primary/40 hover:text-primary"
+                onClick={() =>
+                  events.trackRecommendationCtaClick(
+                    post.slug,
+                    post.category,
+                    "blog_recommendation_snapshot_secondary",
+                    "install",
+                  )
+                }
               >
                 {recommendationSnapshot.secondaryLabel}
               </Link>
@@ -454,8 +497,16 @@ const BlogPost: React.FC = () => {
             {copy.ctaBody}
           </p>
           <Link
-            to="/onboarding"
+            to={`/onboarding?source=blog_article_cta_${post.slug}`}
             className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition-all hover:opacity-90"
+            onClick={() =>
+              events.trackRecommendationCtaClick(
+                post.slug,
+                post.category,
+                "blog_article_footer_cta",
+                "reveal",
+              )
+            }
           >
             {copy.ctaButton} <ArrowRight className="h-4 w-4" />
           </Link>
