@@ -7,17 +7,27 @@ import { getPublishedBlogPosts } from "@/data/blog-posts";
 const RECOMMENDATION_HUB_ORDER = [
   "best-ai-journaling-apps",
   "best-mood-tracker-apps",
+  "best-journaling-apps-2026",
   "daylio-alternatives",
+  "reflectly-alternatives",
   "ai-journal-vs-traditional",
   "mood-tracking-for-anxiety",
+  "ai-journal-for-overthinking",
+  "mood-tracker-for-self-awareness",
+  "journaling-for-adhd",
 ];
 
 const RECOMMENDATION_HUB_LABELS: Record<string, string> = {
   "best-ai-journaling-apps": "Category query",
   "best-mood-tracker-apps": "Category query",
+  "best-journaling-apps-2026": "Category query",
   "daylio-alternatives": "Alternative query",
+  "reflectly-alternatives": "Alternative query",
   "ai-journal-vs-traditional": "Comparison query",
   "mood-tracking-for-anxiety": "Use-case query",
+  "ai-journal-for-overthinking": "Use-case query",
+  "mood-tracker-for-self-awareness": "Use-case query",
+  "journaling-for-adhd": "Use-case query",
 };
 
 const Blog: React.FC = () => {

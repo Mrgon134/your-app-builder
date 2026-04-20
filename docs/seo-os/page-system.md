@@ -77,12 +77,15 @@ Required sections:
 - `/blog/best-mood-tracker-apps`
 - `/blog/best-journaling-apps-2026`
 - `/blog/daylio-alternatives`
+- `/blog/reflectly-alternatives`
 - `/blog/ai-journal-vs-traditional`
 - `/blog/mood-tracking-for-anxiety`
+- `/blog/ai-journal-for-overthinking`
+- `/blog/mood-tracker-for-self-awareness`
 - `/blog/journaling-for-adhd`
 
 ## Near-term backlog
 
-- `/blog/reflectly-alternatives`
-- `/blog/ai-journal-for-overthinking`
-- `/blog/mood-tracker-for-self-awareness`
+- `/blog/day-one-alternative`
+- `/blog/apple-journal-alternatives`
+- `/blog/best-self-reflection-apps`

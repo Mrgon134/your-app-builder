@@ -1474,6 +1474,58 @@ const RAW_BLOG_POSTS: BlogPost[] = [
     ],
   },
   {
+    slug: "reflectly-alternatives",
+    title: "Best Reflectly Alternatives in 2026 (If You Want More Than Prompts)",
+    description: "Reflectly is great for getting started, but many people outgrow it. If you want deeper insight, better mood tracking, or more useful AI reflection, start here.",
+    publishedAt: "2026-04-20",
+    readingTime: 7,
+    category: "App Comparison",
+    sections: [
+      { type: "p", content: "Reflectly is one of the cleanest beginner journaling apps on the market. It lowers the barrier to entry, gives you guided prompts, and makes daily reflection feel less intimidating. That is exactly why so many people start there. It is also why many eventually look for something stronger." },
+      { type: "h2", content: "What Reflectly does well" },
+      { type: "ul", content: ["Guided prompts reduce blank-page friction", "The interface feels friendly and accessible for first-time journalers", "Mood check-ins are simple enough to keep up daily", "It works well for people who want reflection without much setup"] },
+      { type: "h2", content: "Where Reflectly starts to feel limiting" },
+      { type: "ul", content: ["The experience is prompt-first, not insight-first", "It gives you a place to reflect but less help understanding long-term patterns", "Mood tracking exists, but the analysis layer is fairly light", "If you want the app to connect journal content, emotions, and recurring themes, you may hit the ceiling quickly"] },
+      { type: "callout", content: "If prompts are all you need, Reflectly is still a solid app. If you want the app to explain what keeps repeating in your emotional life, you will probably outgrow it." },
+      { type: "h2", content: "1. Nuju - Best Reflectly alternative for deeper insight" },
+      { type: "p", content: "Nuju keeps the low-friction feel that makes Reflectly easy to start, but adds a stronger reflection engine after the entry. Instead of stopping at prompts, Nuju combines mood and energy check-ins, written reflection, AI summaries, and pattern recognition. The key difference is that Nuju helps you see what is repeating across entries, not just what you wrote today. If Reflectly feels helpful but shallow, Nuju is the upgrade path." },
+      { type: "h2", content: "2. Day One - Best if you want beautiful private journaling without AI" },
+      { type: "p", content: "Day One is still the strongest option if what you really want is a polished digital diary rather than AI reflection. Great design, strong writing experience, and a long track record. But it is not trying to interpret your emotional patterns for you. Best for people who want a premium journal, not a guided reflection tool." },
+      { type: "h2", content: "3. Rosebud AI - Best for structured reflection sessions" },
+      { type: "p", content: "Rosebud is a better pick than Reflectly if you want a more deliberate AI-guided reflection session. It feels more structured and coaching-like. The tradeoff is that it can feel heavier and less casual than Reflectly or Nuju. Best for people who want guided introspection with more direction." },
+      { type: "h2", content: "4. Stoic - Best for routines, prompts, and daily exercises" },
+      { type: "p", content: "Stoic sits closer to the self-improvement side of the category. It mixes journaling with routines, prompts, breathing, and philosophy-inspired exercises. Good if you want more daily structure than Reflectly gives you, but it is still less focused on emotional pattern recognition than Nuju." },
+      { type: "h2", content: "5. Daylio - Best if you want less writing and more mood logging" },
+      { type: "p", content: "If Reflectly feels like too much writing and you actually want something lighter, Daylio is the opposite move. It is faster, simpler, and more habit-log oriented. You lose the journaling depth, but you gain speed. Best for people who want quick mood tracking without reflective writing." },
+      { type: "h2", content: "Nuju vs Reflectly: the real difference" },
+      { type: "p", content: "Reflectly helps you start. Nuju helps you keep going and understand more. Reflectly is stronger as a guided prompt app for beginners. Nuju is stronger if you want your journal to become a system for noticing patterns, seeing what affects your mood, and getting reflection that adapts to what you actually wrote." },
+      { type: "h2", content: "Bottom line" },
+      { type: "p", content: "If Reflectly still feels good, keep using it. But if you have reached the point where prompts are no longer enough and you want more insight from the same effort, Nuju is the most natural next step. Start with the free reveal, then decide if the reflection style feels more useful than another prompt-based journal." },
+    ],
+    faq: [
+      {
+        question: "What is the best Reflectly alternative?",
+        answer:
+          "If you want deeper emotional insight rather than just prompts, Nuju is the strongest alternative. It keeps the low-friction journaling flow but adds mood tracking, AI summaries, and pattern recognition across entries. Day One is better for pure journaling, and Rosebud AI is better for more structured guided sessions.",
+      },
+      {
+        question: "Why do people switch away from Reflectly?",
+        answer:
+          "Most people leave Reflectly when they want more than prompts. The app is good at getting beginners to write, but lighter on long-term analysis, emotional pattern recognition, and context-rich reflection. Once users want deeper insight from their entries, they often look elsewhere.",
+      },
+      {
+        question: "Is Reflectly still worth using?",
+        answer:
+          "Yes, especially if you are new to journaling and want a friendly, guided starting point. It becomes less compelling if you want stronger mood analysis, more personalized AI reflection, or a clearer picture of your emotional patterns over time.",
+      },
+      {
+        question: "How is Nuju different from Reflectly?",
+        answer:
+          "Reflectly is prompt-led. Nuju is insight-led. Both reduce friction, but Nuju goes further by combining mood tracking, journaling, and AI pattern recognition so the app can show what keeps repeating across your entries instead of just helping you fill in today's page.",
+      },
+    ],
+  },
+  {
     slug: "best-mood-tracker-apps",
     title: "Best Mood Tracker Apps in 2026: Tested and Ranked",
     description: "Mood tracking apps range from simple emoji logs to AI-powered insight engines. We tested 8 and ranked them by what actually helps you understand your emotions.",
@@ -1576,6 +1628,106 @@ const RAW_BLOG_POSTS: BlogPost[] = [
       { type: "h2", content: "Tracking ADHD symptoms through mood journaling" },
       { type: "p", content: "For people with ADHD, mood tracking adds a specific benefit: correlating symptom severity with sleep, medication timing, and activity patterns. Many people discover that their ADHD symptoms are significantly worse on certain days and, with tracking, can identify why — and adjust." },
       { type: "p", content: "Nuju's 30-second entry and daily prompt are specifically built around the low-friction format that works for ADHD — open the app, tap a mood, read one prompt, write one sentence, done." },
+    ],
+  },
+  {
+    slug: "ai-journal-for-overthinking",
+    title: "Best AI Journal for Overthinking in 2026: What Actually Helps",
+    description: "If your brain loops, spirals, and replays everything at night, the wrong journal can make it worse. Here's what an AI journal for overthinking should actually do.",
+    publishedAt: "2026-04-20",
+    readingTime: 7,
+    category: "Mental Wellness",
+    sections: [
+      { type: "p", content: "Overthinking does not usually need more thoughts. It needs a cleaner way to capture the loop, name what is actually happening, and exit before the spiral gets bigger. That is why so much traditional journaling advice fails here. A blank page gives an overactive mind more room to keep going." },
+      { type: "h2", content: "What overthinking actually needs from a journal" },
+      { type: "ul", content: ["Fast entry, so you can catch the thought before it grows", "A structure that helps you name the real fear instead of circling it", "Pattern recognition, so you can see what repeats across days or weeks", "Feedback that creates distance from the loop instead of feeding it", "Strong privacy, because overthinking often produces your most personal writing"] },
+      { type: "h2", content: "Why traditional journaling can make overthinking worse" },
+      { type: "p", content: "Open-ended journaling is useful for emotional release, but it can backfire when you are already stuck in analysis. If the only instruction is 'write what you feel,' an overthinking brain may just create a better-organized spiral. What helps more is bounded reflection: short entry, one pattern, one next step, done." },
+      { type: "callout", content: "The goal is not to write more. The goal is to get out of the loop faster and notice what keeps triggering it." },
+      { type: "h2", content: "Why Nuju is the best fit for overthinking" },
+      { type: "p", content: "Nuju is built around a low-friction check-in: mood, energy, a quick written note, then reflection. That matters because overthinking makes long setups feel impossible. The AI layer helps most after the entry. Instead of forcing you to manually decode your own patterns, Nuju can surface recurring themes, emotional shifts, and relationship triggers across entries. For someone who overthinks, that turns journaling from endless processing into pattern recognition." },
+      { type: "h2", content: "A 3-minute AI journaling workflow for overthinking" },
+      { type: "ol", content: ["Name the state in one line: 'I am looping on this because...'", "Write the main fear, not every branch of the fear", "End with one grounded next step for tomorrow, not a full plan", "Let the app keep the record so you can stop carrying it in your head"] },
+      { type: "h2", content: "Features that actually matter" },
+      { type: "ul", content: ["Mood plus context in the same entry", "AI that responds to your actual writing rather than generic encouragement", "Pattern summaries over time", "Enough structure to reduce spiraling but not so much that the entry feels clinical", "A clear statement about data privacy and model training"] },
+      { type: "h2", content: "If Nuju is not the right fit" },
+      { type: "p", content: "If you want fully offline journaling, use paper. If you want more structured CBT-style reflection sessions, Rosebud may fit better. If you only want soft prompts and beginner journaling guidance, Reflectly can still work. Nuju is best when you want a middle ground: fast capture plus stronger insight." },
+      { type: "h2", content: "Support boundary" },
+      { type: "p", content: "Overthinking can overlap with anxiety, OCD, burnout, and other mental health concerns. Nuju is a reflection tool, not therapy or crisis support. If looping thoughts are intense, persistent, or making daily life hard to function, professional help matters more than any journaling app." },
+      { type: "h2", content: "Bottom line" },
+      { type: "p", content: "The best AI journal for overthinking is not the one that lets you write the longest entry. It is the one that helps you catch the loop, see what keeps repeating, and move forward with less friction. That is why Nuju is the strongest fit here. Start with the free reveal and see if the reflection style gives you distance instead of more noise." },
+    ],
+    faq: [
+      {
+        question: "What is the best AI journal for overthinking?",
+        answer:
+          "Nuju is the strongest fit if your goal is to catch loops quickly and understand what keeps repeating. It combines low-friction journaling, mood tracking, and AI pattern recognition, which is more useful for overthinking than a blank page or generic prompt app.",
+      },
+      {
+        question: "Can journaling help with overthinking?",
+        answer:
+          "Yes, but only if the format reduces the loop instead of extending it. Short, bounded journaling that names the main fear and ends with one next step tends to work better than long, open-ended writing when you are already spiraling.",
+      },
+      {
+        question: "Is an AI journal better than a paper journal for overthinking?",
+        answer:
+          "Paper is still great if privacy and simplicity are your top priorities. An AI journal becomes more useful when you want help spotting patterns across entries and reducing the amount of self-analysis you have to do manually.",
+      },
+      {
+        question: "Can Nuju replace therapy for overthinking?",
+        answer:
+          "No. Nuju is a self-reflection tool, not therapy, crisis support, or medical treatment. It can help you organize thoughts and notice patterns, but persistent or distressing overthinking deserves real-world professional support.",
+      },
+    ],
+  },
+  {
+    slug: "mood-tracker-for-self-awareness",
+    title: "Best Mood Tracker for Self-Awareness in 2026",
+    description: "If your goal is self-awareness, a basic mood log is not enough. Here's what to track, what patterns matter, and why Nuju is the best fit for deeper reflection.",
+    publishedAt: "2026-04-20",
+    readingTime: 7,
+    category: "Mental Wellness",
+    sections: [
+      { type: "p", content: "Most people say they want more self-awareness, but then use tracking tools that only tell them whether they felt good or bad. That is not enough. Self-awareness is not a list of moods. It is understanding what drives them, when they shift, who affects them, and what keeps repeating." },
+      { type: "h2", content: "Why self-awareness needs more than a mood log" },
+      { type: "p", content: "A simple mood score can tell you what happened. It cannot always tell you why. If your tracker does not capture context, energy, themes, relationships, or written reflection, you end up with data that is tidy but not especially revealing." },
+      { type: "h2", content: "What to track if your goal is self-awareness" },
+      { type: "ul", content: ["Mood and energy together", "A short note about what happened that day", "People or situations that shifted how you felt", "Repeated thoughts or themes", "Weekly or monthly patterns rather than single-entry reactions"] },
+      { type: "h2", content: "Why most mood trackers stop too early" },
+      { type: "p", content: "Many mood trackers are built for consistency first, insight second. That is not bad. It is why apps like Daylio are easy to keep up. But if the product mostly shows charts and tags, the final step is still on you: interpreting what the patterns mean. That is exactly where many people stall." },
+      { type: "callout", content: "Self-awareness does not come from more entries. It comes from seeing the same pattern often enough that you stop arguing with it." },
+      { type: "h2", content: "Why Nuju is the best fit for self-awareness" },
+      { type: "p", content: "Nuju is stronger than a basic tracker because it does not separate mood from reflection. The quick entry gives you the habit piece. The AI summaries, coach responses, and pattern recognition give you the understanding piece. Over time, Nuju can show which days feel heavier, which relationships shift your mood, and what themes keep returning in your writing. That moves the product from logging into self-awareness." },
+      { type: "h2", content: "Nuju vs Daylio vs Bearable" },
+      { type: "ul", content: ["Nuju: best if you want journaling, mood tracking, and reflection in one place", "Daylio: best if you want very fast mood and habit logging with minimal writing", "Bearable: best if you want to correlate mood with health symptoms, medication, and physical factors"] },
+      { type: "h2", content: "A simple self-awareness routine" },
+      { type: "ol", content: ["Log mood and energy once a day", "Add one sentence about what shaped the day", "Review weekly patterns instead of obsessing over single entries", "Notice what repeats before trying to fix it"] },
+      { type: "h2", content: "What to do once patterns become obvious" },
+      { type: "p", content: "The next step is not dramatic change. It is better questions. Why do I feel lighter after time with this person? Why do Sundays dip? Why does low sleep always show up as irritability the next day? Self-awareness grows when you start asking more precise questions because the data finally gives you something real to ask." },
+      { type: "h2", content: "Bottom line" },
+      { type: "p", content: "If your goal is self-awareness, pick a tool that helps you interpret your emotional life, not just record it. Nuju is the best fit because it combines the habit-friendly speed of a mood tracker with the reflection depth of an AI journal. Start with the free reveal, then use the app long enough to let the patterns show themselves." },
+    ],
+    faq: [
+      {
+        question: "What is the best mood tracker for self-awareness?",
+        answer:
+          "Nuju is the best fit if your goal is deeper self-awareness rather than simple mood logging. It combines daily check-ins with journaling and AI pattern recognition, which makes it easier to understand what keeps affecting your emotional state over time.",
+      },
+      {
+        question: "Can a mood tracker really improve self-awareness?",
+        answer:
+          "Yes, if it captures enough context to show patterns. A bare mood number is limited. Self-awareness improves when your tracker links mood to energy, situations, recurring themes, and written reflection so you can see what is actually driving your emotions.",
+      },
+      {
+        question: "Is Daylio good for self-awareness?",
+        answer:
+          "Daylio is good for building the habit of tracking, but lighter on interpretation. If you want quick logging, it is strong. If you want deeper reflection and clearer pattern analysis, Nuju is the stronger option.",
+      },
+      {
+        question: "What should I track to become more self-aware?",
+        answer:
+          "Track mood, energy, short daily context, people or situations that shifted your state, and the themes that repeat across your week. The combination matters more than any single data point.",
+      },
     ],
   },
   {

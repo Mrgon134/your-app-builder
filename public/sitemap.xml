@@ -236,6 +236,17 @@
     </image:image>
   </url>
   <url>
+    <loc>https://nuju.app/blog/reflectly-alternatives</loc>
+    <lastmod>2026-04-20</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Best Reflectly Alternatives in 2026 (If You Want More Than Prompts)</image:title>
+      <image:caption>Reflectly is great for getting started, but many people outgrow it. If you want deeper insight, better mood tracking, or more useful AI reflection, start here.</image:caption>
+    </image:image>
+  </url>
+  <url>
     <loc>https://nuju.app/blog/best-mood-tracker-apps</loc>
     <lastmod>2026-04-20</lastmod>
     <priority>0.7</priority>
@@ -266,6 +277,28 @@
       <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
       <image:title>How to Journal with ADHD: Short, Flexible, and Actually Effective</image:title>
       <image:caption>Traditional journaling advice doesn&apos;t work for ADHD brains. Here&apos;s a system built around how your brain actually operates — not against it.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/ai-journal-for-overthinking</loc>
+    <lastmod>2026-04-20</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Best AI Journal for Overthinking in 2026: What Actually Helps</image:title>
+      <image:caption>If your brain loops, spirals, and replays everything at night, the wrong journal can make it worse. Here&apos;s what an AI journal for overthinking should actually do.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/mood-tracker-for-self-awareness</loc>
+    <lastmod>2026-04-20</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Best Mood Tracker for Self-Awareness in 2026</image:title>
+      <image:caption>If your goal is self-awareness, a basic mood log is not enough. Here&apos;s what to track, what patterns matter, and why Nuju is the best fit for deeper reflection.</image:caption>
     </image:image>
   </url>
 </urlset>
