@@ -1,6 +1,6 @@
 # NUJU.APP — COMPLETE BUILD SPECIFICATION
 # Copy this entire file as CLAUDE.md in your project root.
-# Claude Code / Bolt.new / Lovable will use this as the complete source of truth.
+# Claude Code and other coding agents will use this as the complete source of truth.
 # Last updated: March 2026
 
 ---
