@@ -32,6 +32,7 @@ Every recommendation page should answer six questions fast:
 3. [Prompt modules](./prompt-modules.md)
 4. [Page system](./page-system.md)
 5. [Entity and distribution checklist](./entity-distribution-checklist.md)
+6. [Execution roadmap (2026-04-22)](./execution-roadmap-2026-04-22.md)
 
 ## How to use this OS
 
