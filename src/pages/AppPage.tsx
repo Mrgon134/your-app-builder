@@ -246,6 +246,7 @@ const AppPage: React.FC = () => {
   // Dodo Payments checkout
   const handleCheckout = async (plan: string, options?: { couponCode?: string | null }) => {
     if (!user) return;
+    let checkoutWindow: Window | null = null;
     try {
       const variantMap: Record<string, string> = {
         weekly: PRICING_CONFIG.products.weekly,
@@ -261,6 +262,9 @@ const AppPage: React.FC = () => {
         toast.info(t.payments_coming_soon || "Payments coming soon! Stay tuned.");
         return;
       }
+      // Open a placeholder window during the click gesture so mobile browsers
+      // do not block the checkout tab after the async fetch completes.
+      checkoutWindow = window.open("about:blank", "_blank");
       const resp = await fetch(
         `${SUPABASE_URL}/functions/v1/dodo-checkout`,
         {
@@ -281,11 +285,22 @@ const AppPage: React.FC = () => {
       );
       if (resp.ok) {
         const data = await resp.json();
-        if (data.url) window.open(data.url, "_blank");
+        if (data.url) {
+          if (checkoutWindow) {
+            checkoutWindow.location.href = data.url;
+          } else {
+            window.location.assign(data.url);
+          }
+        } else {
+          checkoutWindow?.close();
+          toast.error(t.checkout_error || "Could not start checkout. Try again.");
+        }
       } else {
+        checkoutWindow?.close();
         toast.error(t.checkout_error || "Could not start checkout. Try again.");
       }
     } catch (err) {
+      checkoutWindow?.close();
       console.error("Checkout error:", err);
       toast.error(t.checkout_failed || "Checkout failed. Please try again.");
     }
