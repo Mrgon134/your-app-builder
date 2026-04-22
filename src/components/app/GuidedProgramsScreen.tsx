@@ -122,7 +122,6 @@ const GuidedProgramsScreen: React.FC<GuidedProgramsScreenProps> = ({
     }
 
     onWritePrompt(prompt);
-    onBack();
     if (completed) toast.success(`${t.programs_complete_desc || "Amazing work finishing"} ${program.title}!`);
   };
 

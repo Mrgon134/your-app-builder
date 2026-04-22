@@ -21,6 +21,7 @@ type SubScreen = "main" | "achievements" | "letters" | "breathing" | "prompts" |
 interface ExploreScreenProps {
   entries: EntryRow[];
   streak: number;
+  userId?: string | null;
   onWritePrompt?: (prompt: string) => void;
   onNavigate?: (screen: string) => void;
   plan?: string | null;
@@ -31,6 +32,7 @@ interface ExploreScreenProps {
 const ExploreScreen: React.FC<ExploreScreenProps> = ({
   entries,
   streak,
+  userId,
   onWritePrompt,
   onNavigate,
   plan,
@@ -39,8 +41,8 @@ const ExploreScreen: React.FC<ExploreScreenProps> = ({
 }) => {
   const [subScreen, setSubScreen] = useState<SubScreen>("main");
 
-  const allAchievements = getAllAchievementsWithStatus();
-  const unlockedCount = getUnlockedCount();
+  const allAchievements = getAllAchievementsWithStatus(userId);
+  const unlockedCount = getUnlockedCount(userId);
 
   if (subScreen === "achievements") {
     return (
@@ -139,7 +141,7 @@ const ExploreScreen: React.FC<ExploreScreenProps> = ({
           </button>
           <h2 className="text-[22px] font-bold text-foreground">Your Progress</h2>
         </div>
-        <ProgressDashboard entries={entries} streak={streak} />
+        <ProgressDashboard entries={entries} streak={streak} userId={userId} />
       </div>
     );
   }

@@ -22,6 +22,25 @@ export interface AchievementContext {
 
 const STORAGE_KEY = "nuju-achievements";
 
+const getStorageKey = (userId?: string | null) =>
+  userId ? `${STORAGE_KEY}:${userId}` : STORAGE_KEY;
+
+const readUnlockedAchievements = (storageKey: string): Record<string, string> => {
+  try {
+    const raw = localStorage.getItem(storageKey);
+    return raw ? JSON.parse(raw) : {};
+  } catch {
+    return {};
+  }
+};
+
+const writeUnlockedAchievements = (
+  storageKey: string,
+  unlocked: Record<string, string>
+) => {
+  localStorage.setItem(storageKey, JSON.stringify(unlocked));
+};
+
 export const ACHIEVEMENT_DEFINITIONS: Omit<Achievement, "unlockedAt">[] = [
   {
     id: "first_entry",
@@ -109,19 +128,41 @@ export const ACHIEVEMENT_DEFINITIONS: Omit<Achievement, "unlockedAt">[] = [
   },
 ];
 
-export function getUnlockedAchievements(): Record<string, string> {
-  try {
-    const raw = localStorage.getItem(STORAGE_KEY);
-    return raw ? JSON.parse(raw) : {};
-  } catch {
-    return {};
+export function getUnlockedAchievements(userId?: string | null): Record<string, string> {
+  return readUnlockedAchievements(getStorageKey(userId));
+}
+
+export function syncAchievementsFromHistory(
+  ctx: AchievementContext,
+  userId?: string | null
+): Record<string, string> {
+  const storageKey = getStorageKey(userId);
+  const unlocked = getUnlockedAchievements(userId);
+  const unlockedAt = new Date().toISOString();
+  let changed = false;
+
+  for (const def of ACHIEVEMENT_DEFINITIONS) {
+    if (unlocked[def.id]) continue;
+
+    if (def.condition(ctx)) {
+      unlocked[def.id] = unlockedAt;
+      changed = true;
+    }
   }
+
+  if (changed) {
+    writeUnlockedAchievements(storageKey, unlocked);
+  }
+
+  return unlocked;
 }
 
 export function checkAndUnlockAchievements(
-  ctx: AchievementContext
+  ctx: AchievementContext,
+  userId?: string | null
 ): Achievement | null {
-  const unlocked = getUnlockedAchievements();
+  const storageKey = getStorageKey(userId);
+  const unlocked = getUnlockedAchievements(userId);
   
   for (const def of ACHIEVEMENT_DEFINITIONS) {
     if (unlocked[def.id]) continue; // already unlocked
@@ -129,7 +170,7 @@ export function checkAndUnlockAchievements(
     if (def.condition(ctx)) {
       // Unlock it!
       unlocked[def.id] = new Date().toISOString();
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(unlocked));
+      writeUnlockedAchievements(storageKey, unlocked);
       return { ...def, unlockedAt: unlocked[def.id] };
     }
   }
@@ -137,8 +178,8 @@ export function checkAndUnlockAchievements(
   return null; // no new achievement
 }
 
-export function getAllAchievementsWithStatus(): (Achievement & { locked: boolean })[] {
-  const unlocked = getUnlockedAchievements();
+export function getAllAchievementsWithStatus(userId?: string | null): (Achievement & { locked: boolean })[] {
+  const unlocked = getUnlockedAchievements(userId);
   
   return ACHIEVEMENT_DEFINITIONS.map((def) => ({
     ...def,
@@ -147,6 +188,6 @@ export function getAllAchievementsWithStatus(): (Achievement & { locked: boolean
   }));
 }
 
-export function getUnlockedCount(): number {
-  return Object.keys(getUnlockedAchievements()).length;
+export function getUnlockedCount(userId?: string | null): number {
+  return Object.keys(getUnlockedAchievements(userId)).length;
 }

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, useRef, useMemo } from "react";
+import React, { useState, useEffect, useCallback, useMemo } from "react";
 import { initReminders } from "@/lib/notifications";
 import { useGeoPricing } from "@/hooks/use-geo-pricing";
 import { useLang } from "@/lib/i18n";
@@ -8,7 +8,7 @@ import { hasActivePremiumPlan, hasPlusAccess, hasProAccess } from "@/lib/trial";
 import { PRICING_CONFIG } from "@/lib/config";
 import { isNative, isIOS } from "@/lib/platform";
 import { SUPABASE_URL, SUPABASE_ANON_KEY } from "@/integrations/supabase/client";
-import { fetchEntries, createEntry, createQuickEntry, fetchProfile, updateProfile, checkEntryLimit, updateEntryInsight, uploadVoiceAudio, updateEntryVoice, uploadPhoto, updateEntryPhoto, uploadSelfiePhoto, EntryRow, ProfileRow } from "@/lib/api";
+import { fetchEntries, createEntry, createQuickEntry, fetchProfile, updateProfile, checkEntryLimit, updateEntryInsight, uploadVoiceAudio, updateEntryVoice, uploadPhoto, updateEntryPhoto, uploadSelfiePhoto, fetchCoachMessages, EntryRow, ProfileRow } from "@/lib/api";
 import HomeScreen from "@/components/app/HomeScreen";
 import JournalScreen from "@/components/app/JournalScreen";
 import InsightsScreen from "@/components/app/InsightsScreen";
@@ -27,7 +27,7 @@ import MomentCaptureModal from "@/components/moments/MomentCaptureModal";
 import { getTrialStatus } from "@/lib/trial";
 import Confetti from "@/components/app/Confetti";
 import AchievementPopup from "@/components/app/AchievementPopup";
-import { checkAndUnlockAchievements, type Achievement } from "@/lib/achievements";
+import { checkAndUnlockAchievements, syncAchievementsFromHistory, type Achievement } from "@/lib/achievements";
 import { consumeAuthIntent } from "@/lib/auth-intent";
 import { clearFunnelState } from "@/lib/onboarding-funnel";
 import { applyTestUserProfile, isTestUser } from "@/lib/test-user";
@@ -75,6 +75,7 @@ const AppPage: React.FC = () => {
   const [journalPrompt, setJournalPrompt] = useState<string>("");
   const [showTour, setShowTour] = useState(false);
   const [unlockedAchievement, setUnlockedAchievement] = useState<Achievement | null>(null);
+  const [hasCoachHistory, setHasCoachHistory] = useState(false);
   const [appLocked, setAppLocked] = useState(() => !!localStorage.getItem("nuju-pin-hash"));
   const [showMomentCapture, setShowMomentCapture] = useState(false);
   const [pendingPhoto, setPendingPhoto] = useState<File | null>(null);
@@ -99,6 +100,107 @@ const AppPage: React.FC = () => {
     history: "History",
   };
 
+  const getEntryTimestamp = useCallback((entry: EntryRow) => {
+    const source = entry.created_at || entry.entry_date;
+    return new Date(source);
+  }, []);
+
+  const getHistoricalGreatMoodStreak = useCallback((sourceEntries: EntryRow[]) => {
+    const dailyMood = new Map<string, number>();
+
+    sourceEntries.forEach((entry) => {
+      const dayKey = entry.entry_date.slice(0, 10);
+      const currentValue = dailyMood.get(dayKey) ?? 0;
+      dailyMood.set(dayKey, Math.max(currentValue, entry.mood));
+    });
+
+    const sortedDays = [...dailyMood.entries()].sort((a, b) =>
+      new Date(`${a[0]}T00:00:00`).getTime() - new Date(`${b[0]}T00:00:00`).getTime()
+    );
+
+    let best = 0;
+    let current = 0;
+    let previousDay: string | null = null;
+
+    for (const [dayKey, mood] of sortedDays) {
+      const isNextDay = previousDay
+        ? new Date(`${dayKey}T00:00:00`).getTime() - new Date(`${previousDay}T00:00:00`).getTime() === 86_400_000
+        : false;
+
+      if (mood === 5) {
+        current = isNextDay ? current + 1 : 1;
+        best = Math.max(best, current);
+      } else {
+        current = 0;
+      }
+
+      previousDay = dayKey;
+    }
+
+    return best;
+  }, []);
+
+  const buildAchievementContext = useCallback((
+    sourceEntries: EntryRow[],
+    options?: {
+      streak?: number;
+      currentMood?: number;
+      hour?: number;
+      hasUsedVoice?: boolean;
+      hasUsedCoach?: boolean;
+      consecutiveDays5Mood?: number;
+    }
+  ) => ({
+    totalEntries: sourceEntries.length,
+    streak: options?.streak ?? streak,
+    currentMood: options?.currentMood ?? selectedMood,
+    hour: options?.hour ?? new Date().getHours(),
+    consecutiveDays5Mood: options?.consecutiveDays5Mood ?? getHistoricalGreatMoodStreak(sourceEntries),
+    hasUsedVoice: options?.hasUsedVoice ?? sourceEntries.some(
+      (entry) => !!entry.audio_url || (entry.transcript_segments?.length || 0) > 0
+    ),
+    hasUsedCoach: options?.hasUsedCoach ?? hasCoachHistory,
+  }), [getHistoricalGreatMoodStreak, hasCoachHistory, selectedMood, streak]);
+
+  const syncAchievementState = useCallback((
+    sourceEntries: EntryRow[],
+    nextProfile: ProfileRow | null,
+    coachUsed: boolean
+  ) => {
+    const historicalStreak = Math.max(nextProfile?.streak_current || 0, nextProfile?.streak_longest || 0);
+    const baseContext = {
+      totalEntries: sourceEntries.length,
+      streak: historicalStreak,
+      currentMood: sourceEntries[0]?.mood ?? selectedMood,
+      hour: new Date().getHours(),
+      consecutiveDays5Mood: getHistoricalGreatMoodStreak(sourceEntries),
+      hasUsedVoice: sourceEntries.some(
+        (entry) => !!entry.audio_url || (entry.transcript_segments?.length || 0) > 0
+      ),
+      hasUsedCoach: coachUsed,
+    };
+
+    const hasNightOwlEntry = sourceEntries.some((entry) => {
+      const hour = getEntryTimestamp(entry).getHours();
+      return hour >= 0 && hour < 5;
+    });
+
+    const hasEarlyBirdEntry = sourceEntries.some((entry) => {
+      const hour = getEntryTimestamp(entry).getHours();
+      return hour >= 5 && hour < 7;
+    });
+
+    syncAchievementsFromHistory(baseContext, user?.id);
+
+    if (hasNightOwlEntry) {
+      syncAchievementsFromHistory({ ...baseContext, hour: 1 }, user?.id);
+    }
+
+    if (hasEarlyBirdEntry) {
+      syncAchievementsFromHistory({ ...baseContext, hour: 6 }, user?.id);
+    }
+  }, [getEntryTimestamp, getHistoricalGreatMoodStreak, selectedMood, user?.id]);
+
   // Screen ordering for directional transitions
   const screenOrder: Screen[] = ["home", "insights", "coach", "explore"];
 
@@ -121,14 +223,18 @@ const AppPage: React.FC = () => {
     if (!user) return;
     const load = async () => {
       try {
-        const [dbProfile, dbEntries] = await Promise.all([
+        const [dbProfile, dbEntries, coachMessages] = await Promise.all([
           fetchProfile(user.id),
           fetchEntries(user.id),
+          fetchCoachMessages(user.id, 1),
         ]);
         const nextProfile = applyTestUserProfile(dbProfile, user);
+        const hasCoachMessages = coachMessages.length > 0;
         setProfile(nextProfile);
         setStreak(nextProfile?.streak_current || 0);
         setEntries(dbEntries);
+        setHasCoachHistory(hasCoachMessages);
+        syncAchievementState(dbEntries, nextProfile, hasCoachMessages);
 
         if (nextProfile?.onboarded) {
           clearFunnelState();
@@ -154,7 +260,7 @@ const AppPage: React.FC = () => {
       }
     };
     load();
-  }, [user]);
+  }, [syncAchievementState, user]);
 
   useEffect(() => {
     if (!loading && user && !localStorage.getItem("nuju-tour-done-" + user.id)) {
@@ -187,15 +293,11 @@ const AppPage: React.FC = () => {
 
     // Check "coach_first" achievement when user opens coach
     if (newScreen === "coach") {
-      const achievement = checkAndUnlockAchievements({
-        totalEntries: entries.length,
-        streak,
-        currentMood: selectedMood,
-        hour: new Date().getHours(),
-        consecutiveDays5Mood: 0,
-        hasUsedVoice: false,
-        hasUsedCoach: true,
-      });
+      setHasCoachHistory(true);
+      const achievement = checkAndUnlockAchievements(
+        buildAchievementContext(entries, { hasUsedCoach: true }),
+        user?.id
+      );
       if (achievement) {
         setShowConfetti(true);
         setTimeout(() => setUnlockedAchievement(achievement), 300);
@@ -203,7 +305,7 @@ const AppPage: React.FC = () => {
     }
 
     if (navigator.vibrate) navigator.vibrate(6);
-  }, [screen, entries.length, streak, selectedMood, user, events]);
+  }, [screen, buildAchievementContext, entries, user, events]);
 
   const openJournalScreen = useCallback((options?: { prompt?: string; autoRecord?: boolean }) => {
     setJournalPrompt(options?.prompt || "");
@@ -345,15 +447,12 @@ const AppPage: React.FC = () => {
       if (navigator.vibrate) navigator.vibrate([10, 50, 20]);
 
       // Check achievements after quick log
-      const achievement = checkAndUnlockAchievements({
-        totalEntries: newEntries.length,
-        streak: updatedProfile?.streak_current || streak,
-        currentMood: selectedMood,
-        hour: new Date().getHours(),
-        consecutiveDays5Mood: newEntries.slice(0, 3).every(e => e.mood === 5) ? 3 : 0,
-        hasUsedVoice: false,
-        hasUsedCoach: false,
-      });
+      const achievement = checkAndUnlockAchievements(
+        buildAchievementContext(newEntries, {
+          streak: updatedProfile?.streak_current || streak,
+        }),
+        user.id
+      );
       if (achievement) {
         setShowConfetti(true);
         setTimeout(() => setUnlockedAchievement(achievement), 300);
@@ -439,6 +538,17 @@ const AppPage: React.FC = () => {
         setTimeout(() => setShowSignupAfterSave(true), 1500);
       }
 
+      const achievement = checkAndUnlockAchievements(
+        buildAchievementContext(newEntries, {
+          streak: updatedProfile?.streak_current || streak,
+        }),
+        user.id
+      );
+      if (achievement) {
+        setShowConfetti(true);
+        setTimeout(() => setUnlockedAchievement(achievement), 300);
+      }
+
       // P2: AI insight only for Plus/Pro — free users get no insight card
       const hasPlus = hasPlusAccess(effectiveProfile?.plan || null, effectiveProfile?.trial_started_at || null);
       if (!hasPlus) {
@@ -473,21 +583,6 @@ const AppPage: React.FC = () => {
     } catch (err) {
       console.error("Failed to save entry:", err);
       return null;
-    } finally {
-      // Check achievements after journal save (runs regardless of AI insight success/failure)
-      const achievement = checkAndUnlockAchievements({
-        totalEntries: entries.length + 1,
-        streak: streak,
-        currentMood: selectedMood,
-        hour: new Date().getHours(),
-        consecutiveDays5Mood: 0,
-        hasUsedVoice: journalAutoRecord,
-        hasUsedCoach: false,
-      });
-      if (achievement) {
-        setShowConfetti(true);
-        setTimeout(() => setUnlockedAchievement(achievement), 300);
-      }
     }
   };
 
@@ -844,6 +939,7 @@ const AppPage: React.FC = () => {
                       <ExploreScreen
                         entries={entries}
                         streak={streak}
+                        userId={user?.id}
                         onWritePrompt={(prompt) => openJournalScreen({ prompt })}
                         onNavigate={(s) => navigateTo(s as Screen)}
                         plan={effectiveProfile?.plan}

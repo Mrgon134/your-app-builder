@@ -9,9 +9,10 @@ import { getRitualStreak } from "@/lib/daily-ritual";
 interface ProgressDashboardProps {
   entries: EntryRow[];
   streak: number;
+  userId?: string | null;
 }
 
-const ProgressDashboard: React.FC<ProgressDashboardProps> = ({ entries, streak }) => {
+const ProgressDashboard: React.FC<ProgressDashboardProps> = ({ entries, streak, userId }) => {
   const [animatedValues, setAnimatedValues] = useState({
     entries: 0,
     streak: 0,
@@ -19,7 +20,7 @@ const ProgressDashboard: React.FC<ProgressDashboardProps> = ({ entries, streak }
     ritualStreak: 0,
   });
 
-  const achievementsCount = getUnlockedCount();
+  const achievementsCount = getUnlockedCount(userId);
   const ritualStreak = getRitualStreak();
 
   // Find most common mood
