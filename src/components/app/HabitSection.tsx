@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Plus, Check, Dumbbell, Wind, BookOpen, Droplets, Moon, Ban } from "lucide-react";
 import { toast } from "sonner";
 import { useLang } from "@/lib/i18n";
+import { hasPlusAccess } from "@/lib/trial";
 
 interface Habit {
   id: string;
@@ -13,6 +14,7 @@ interface Habit {
 interface HabitSectionProps {
   onUpgrade?: () => void;
   plan?: string | null;
+  trialStartedAt?: string | null;
 }
 
 const HABIT_ICONS: Record<string, React.FC<{ size?: number; color?: string; strokeWidth?: number }>> = {
@@ -70,12 +72,13 @@ const HabitIcon: React.FC<{ iconKey: string; color: string; active: boolean }> =
   return <Icon size={14} color={active ? "#fff" : color} strokeWidth={active ? 2.2 : 1.8} />;
 };
 
-const HabitSection: React.FC<HabitSectionProps> = ({ onUpgrade, plan }) => {
+const HabitSection: React.FC<HabitSectionProps> = ({ onUpgrade, plan, trialStartedAt = null }) => {
   const { t } = useLang();
   const [habits, setHabits] = useState<Habit[]>([]);
   const [completedToday, setCompletedToday] = useState<Set<string>>(new Set());
   const [showAdd, setShowAdd] = useState(false);
   const [newName, setNewName] = useState("");
+  const hasPremiumAccess = hasPlusAccess(plan ?? null, trialStartedAt);
 
   useEffect(() => {
     const storedHabits = loadHabits();
@@ -103,7 +106,7 @@ const HabitSection: React.FC<HabitSectionProps> = ({ onUpgrade, plan }) => {
   };
 
   const addPreset = (preset: typeof PRESET_HABITS[0]) => {
-    if (habits.length >= 6 && plan === "free") {
+    if (habits.length >= 6 && !hasPremiumAccess) {
       toast.error(t.habits_upgrade || "Upgrade to add more habits");
       onUpgrade?.();
       return;
@@ -122,6 +125,11 @@ const HabitSection: React.FC<HabitSectionProps> = ({ onUpgrade, plan }) => {
 
   const addCustom = () => {
     if (!newName.trim()) return;
+    if (habits.length >= 6 && !hasPremiumAccess) {
+      toast.error(t.habits_upgrade || "Upgrade to add more habits");
+      onUpgrade?.();
+      return;
+    }
     const newHabit: Habit = {
       id: `habit-${Date.now()}`,
       name: newName.trim(),

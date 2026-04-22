@@ -933,7 +933,15 @@ const AppPage: React.FC = () => {
                       />
                     )}
                     {screen === "insights" && <InsightsScreen shellMode={shellMode} entries={entries} streak={streak} onUpgrade={() => navigateTo("pro")} onNavigate={(s) => navigateTo(s as Screen)} plan={effectiveProfile?.plan} trialStartedAt={effectiveProfile?.trial_started_at} />}
-                    {screen === "history" && <HistoryScreen entries={entries} onNavigate={(s) => s === "journal" ? openJournalScreen() : navigateTo(s as Screen)} />}
+                    {screen === "history" && (
+                      <HistoryScreen
+                        entries={entries}
+                        onNavigate={(s) => s === "journal" ? openJournalScreen() : navigateTo(s as Screen)}
+                        onUpgrade={() => navigateTo("pro")}
+                        plan={effectiveProfile?.plan}
+                        trialStartedAt={effectiveProfile?.trial_started_at}
+                      />
+                    )}
                     {screen === "coach" && <CoachScreen shellMode={shellMode} displayName={displayName} onUpgrade={() => navigateTo("pro")} plan={effectiveProfile?.plan} trialStartedAt={effectiveProfile?.trial_started_at} />}
                     {screen === "explore" && (
                       <ExploreScreen

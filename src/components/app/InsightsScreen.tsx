@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { hasPlusAccess, hasProAccess } from "@/lib/trial";
 import { useLang } from "@/lib/i18n";
 import { MOODS } from "@/lib/constants";
@@ -26,131 +26,227 @@ interface InsightsScreenProps {
   trialStartedAt?: string | null;
 }
 
-const InsightsScreen: React.FC<InsightsScreenProps> = ({ shellMode = "phone", entries, streak = 0, onUpgrade, onNavigate, plan = "free", trialStartedAt = null }) => {
+const FREE_HISTORY_DAYS = 7;
+
+const InsightsScreen: React.FC<InsightsScreenProps> = ({
+  shellMode = "phone",
+  entries,
+  streak = 0,
+  onUpgrade,
+  onNavigate,
+  plan = "free",
+  trialStartedAt = null,
+}) => {
   const { t, lang } = useLang();
   const [aiSummary, setAiSummary] = useState<string | null>(null);
   const [summaryLoading, setSummaryLoading] = useState(false);
+  const hasPremiumInsights = hasPlusAccess(plan ?? null, trialStartedAt ?? null);
+  const hasPremiumCoach = hasProAccess(plan ?? null, trialStartedAt ?? null);
+
+  const visibleEntries = useMemo(() => {
+    if (hasPremiumInsights) return entries;
+
+    const cutoff = new Date();
+    cutoff.setHours(0, 0, 0, 0);
+    cutoff.setDate(cutoff.getDate() - (FREE_HISTORY_DAYS - 1));
+
+    return entries.filter((entry) => {
+      const entryDate = new Date(entry.entry_date);
+      return entryDate >= cutoff;
+    });
+  }, [entries, hasPremiumInsights]);
+
+  const hiddenEntryCount = Math.max(0, entries.length - visibleEntries.length);
 
   useEffect(() => {
-    if (entries.length < 2) return;
+    let cancelled = false;
+
+    if (!hasPremiumInsights || visibleEntries.length < 2) {
+      setAiSummary(null);
+      setSummaryLoading(false);
+      return () => {
+        cancelled = true;
+      };
+    }
+
     const fetchSummary = async () => {
       setSummaryLoading(true);
       try {
-        const resp = await fetch(
-          `${SUPABASE_URL}/functions/v1/ai-weekly-summary`,
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
-            },
-            body: JSON.stringify({ entries: entries.slice(0, 7), lang }),
-          }
-        );
-        if (resp.ok) {
+        const resp = await fetch(`${SUPABASE_URL}/functions/v1/ai-weekly-summary`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
+          },
+          body: JSON.stringify({ entries: visibleEntries.slice(0, 7), lang }),
+        });
+
+        if (!cancelled && resp.ok) {
           const data = await resp.json();
           if (data.summary) setAiSummary(data.summary);
         }
-      } catch (e) {
-        console.error("Weekly summary failed:", e);
+      } catch (error) {
+        if (!cancelled) {
+          console.error("Weekly summary failed:", error);
+        }
       } finally {
-        setSummaryLoading(false);
+        if (!cancelled) {
+          setSummaryLoading(false);
+        }
       }
     };
+
     fetchSummary();
-  }, [entries.length, lang]);
+
+    return () => {
+      cancelled = true;
+    };
+  }, [hasPremiumInsights, lang, visibleEntries]);
 
   const weekDays = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
-  const weekMoods = entries.length > 0
-    ? entries.slice(0, 7).map((e) => e.mood)
-    : [3, 4, 3, 2, 4, 5, 4];
+  const weekMoods = visibleEntries.slice(0, 7).map((entry) => entry.mood);
 
-  const avgMood = weekMoods.length > 0
-    ? (weekMoods.reduce((a, b) => a + b, 0) / weekMoods.length).toFixed(1)
-    : "0";
+  const avgMood =
+    weekMoods.length > 0
+      ? (weekMoods.reduce((sum, mood) => sum + mood, 0) / weekMoods.length).toFixed(1)
+      : "0";
 
-  // Compute mood trend from recent entries (last 7 vs previous 7)
   const getMoodTrend = (): { direction: "up" | "down" | "stable" | "seed" | "first" } => {
-    if (entries.length < 3) return { direction: "seed" };
-    const recent = entries.slice(0, Math.min(7, entries.length)).map((e) => e.mood);
-    const older = entries.slice(Math.min(7, entries.length), Math.min(14, entries.length)).map((e) => e.mood);
-    const recentAvg = recent.reduce((a, b) => a + b, 0) / recent.length;
+    if (visibleEntries.length < 3) return { direction: "seed" };
+
+    const recent = visibleEntries.slice(0, Math.min(7, visibleEntries.length)).map((entry) => entry.mood);
+    const older = visibleEntries
+      .slice(Math.min(7, visibleEntries.length), Math.min(14, visibleEntries.length))
+      .map((entry) => entry.mood);
+    const recentAvg = recent.reduce((sum, mood) => sum + mood, 0) / recent.length;
+
     if (older.length === 0) return { direction: "first" };
-    const olderAvg = older.reduce((a, b) => a + b, 0) / older.length;
+
+    const olderAvg = older.reduce((sum, mood) => sum + mood, 0) / older.length;
     const diff = recentAvg - olderAvg;
+
     if (diff >= 0.5) return { direction: "up" };
     if (diff <= -0.5) return { direction: "down" };
     return { direction: "stable" };
   };
+
   const moodTrend = getMoodTrend();
-  const MOOD_TREND_MESSAGES: Record<string, string> = {
+  const moodTrendMessages: Record<string, string> = {
     seed: t.mood_trend_seed || "Keep writing and I'll spot patterns in your mood.",
     first: t.mood_trend_first || "You've been showing up consistently. That's already a win.",
-    up: t.mood_trend_up || "Your mood has been climbing this week. Something's working — what is it?",
-    down: t.mood_trend_down || "Things have been heavier lately. That's okay — I'm here.",
+    up: t.mood_trend_up || "Your mood has been climbing this week. Something's working - what is it?",
+    down: t.mood_trend_down || "Things have been heavier lately. That's okay - I'm here.",
     stable: t.mood_trend_stable || "Your mood has been steady. Consistency is a kind of strength.",
   };
 
-  const moodHighlight = getMoodHighlight(entries, t);
-  const highlightMoodData = MOODS.find((m) => m.value === moodHighlight.mood) || MOODS[2];
+  const moodHighlight = getMoodHighlight(visibleEntries, t);
+  const highlightMoodData = MOODS.find((mood) => mood.value === moodHighlight.mood) || MOODS[2];
   const isLargeShell = shellMode !== "phone";
 
-  // Correlation Pattern
   const getBestDayOfWeek = () => {
-    if (entries.length < 5) return null;
+    if (visibleEntries.length < 5) return null;
+
     const dayScores: Record<number, number[]> = {};
-    entries.forEach(e => {
-      const d = new Date(e.entry_date).getDay();
-      if (!dayScores[d]) dayScores[d] = [];
-      dayScores[d].push(e.mood);
+    visibleEntries.forEach((entry) => {
+      const day = new Date(entry.entry_date).getDay();
+      if (!dayScores[day]) dayScores[day] = [];
+      dayScores[day].push(entry.mood);
     });
+
     let bestDayIdx = -1;
     let maxAvg = 0;
+
     Object.entries(dayScores).forEach(([dayStr, scores]) => {
       if (scores.length >= 2) {
-        const avg = scores.reduce((a, b) => a + b, 0) / scores.length;
+        const avg = scores.reduce((sum, mood) => sum + mood, 0) / scores.length;
         if (avg > maxAvg) {
           maxAvg = avg;
           bestDayIdx = Number(dayStr);
         }
       }
     });
+
     if (bestDayIdx === -1 || maxAvg < 4) return null;
+
     const dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
     return dayNames[bestDayIdx];
   };
+
   const bestDayOfWeek = getBestDayOfWeek();
 
-  // Mood Prediction
   const getPrediction = () => {
-    if (entries.length < 14) return null;
-    const recent = entries.slice(0, 3).map(e => e.mood).reduce((a, b) => a + b, 0) / 3;
-    const past = entries.slice(3, 14).map(e => e.mood).reduce((a, b) => a + b, 0) / 11;
+    if (visibleEntries.length < 14) return null;
+
+    const recent = visibleEntries.slice(0, 3).map((entry) => entry.mood).reduce((sum, mood) => sum + mood, 0) / 3;
+    const past = visibleEntries.slice(3, 14).map((entry) => entry.mood).reduce((sum, mood) => sum + mood, 0) / 11;
+
     if (recent < past - 0.4) {
-      return "Based on your patterns, you might feel a natural dip tomorrow — want to prep tonight?";
-    } else if (recent > past + 0.5) {
+      return "Based on your patterns, you might feel a natural dip tomorrow - want to prep tonight?";
+    }
+
+    if (recent > past + 0.5) {
       return "Your energy is climbing! Keep this momentum flowing into tomorrow.";
     }
+
     return null;
   };
+
   const prediction = getPrediction();
 
-  // Empty state — no entries yet
+  const renderPlusInsightsLock = (title: string, description: string) => (
+    <div className="relative overflow-hidden rounded-3xl">
+      <div
+        className="rounded-3xl border border-border/50 bg-card p-5 opacity-30 blur-[3px]"
+        aria-hidden
+      >
+        <div className="mb-4 h-3.5 w-32 rounded-full bg-foreground/10" />
+        <div className="mb-4 h-32 rounded-2xl bg-foreground/5" />
+        <div className="grid grid-cols-3 gap-3">
+          {[1, 2, 3].map((item) => (
+            <div key={item} className="rounded-2xl bg-foreground/5 p-4">
+              <div className="mx-auto h-5 w-10 rounded-full bg-foreground/10" />
+              <div className="mx-auto mt-2 h-2.5 w-14 rounded-full bg-foreground/10" />
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className="absolute inset-0 flex flex-col items-center justify-center rounded-3xl border border-primary/15 bg-card/88 p-6 text-center backdrop-blur-sm">
+        <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/10">
+          <Lock className="h-5 w-5 text-primary" />
+        </div>
+        <p className="text-[15px] font-semibold text-foreground">{title}</p>
+        <p className="mt-2 max-w-[260px] text-[12px] leading-relaxed text-muted-foreground">
+          {description}
+        </p>
+        <button
+          onClick={onUpgrade}
+          className="mt-4 inline-flex h-[40px] items-center gap-2 rounded-xl bg-primary px-5 text-[13px] font-semibold text-primary-foreground shadow-[0_2px_12px_-3px_hsl(var(--primary)/0.35)] transition-all active:scale-[0.97]"
+        >
+          <Sparkles className="h-3.5 w-3.5" />
+          {t.unlock_plus || t.unlock_ju || "Unlock with Plus"}
+        </button>
+      </div>
+    </div>
+  );
+
   if (entries.length === 0) {
     return (
-      <div className="animate-page-slide-in flex flex-col items-center justify-center py-16 text-center px-6">
-        <div className="relative w-28 h-28 mb-6">
+      <div className="animate-page-slide-in flex flex-col items-center justify-center px-6 py-16 text-center">
+        <div className="relative mb-6 h-28 w-28">
           <div className="absolute inset-[-12px] rounded-full bg-primary/8 animate-glow-pulse" />
-          <img src={JU_STICKERS.diary} alt="Ju" className="relative w-full h-full object-contain animate-ju-float" />
+          <img src={JU_STICKERS.diary} alt="Ju" className="relative h-full w-full animate-ju-float object-contain" />
         </div>
-        <h2 className="font-serif text-[22px] font-bold text-foreground mb-2">{t.insights_empty_title || "Your story starts here"}</h2>
-        <p className="text-[15px] text-muted-foreground leading-relaxed mb-8 max-w-[260px]">
+        <h2 className="mb-2 font-serif text-[22px] font-bold text-foreground">
+          {t.insights_empty_title || "Your story starts here"}
+        </h2>
+        <p className="mb-8 max-w-[260px] text-[15px] leading-relaxed text-muted-foreground">
           {t.insights_empty_desc || "Write your first entry and Ju will start discovering patterns in your mood and energy."}
         </p>
         {onNavigate && (
           <button
             onClick={() => onNavigate("home")}
-            className="h-[52px] px-8 rounded-2xl bg-primary text-primary-foreground font-semibold text-[15px] press-spring shadow-[0_4px_20px_-4px_hsl(var(--primary)/0.4)]"
+            className="h-[52px] rounded-2xl bg-primary px-8 text-[15px] font-semibold text-primary-foreground shadow-[0_4px_20px_-4px_hsl(var(--primary)/0.4)] press-spring"
           >
             {t.insights_empty_cta || "Write first entry"}
           </button>
@@ -159,224 +255,299 @@ const InsightsScreen: React.FC<InsightsScreenProps> = ({ shellMode = "phone", en
     );
   }
 
+  if (visibleEntries.length === 0 && !hasPremiumInsights) {
+    return (
+      <div className="animate-page-slide-in flex flex-col items-center justify-center px-6 py-16 text-center">
+        <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-[20px] bg-primary/10">
+          <Lock className="h-6 w-6 text-primary" />
+        </div>
+        <h2 className="mb-2 font-serif text-[22px] font-bold text-foreground">
+          {t.history_locked || "Full history locked"}
+        </h2>
+        <p className="mb-6 max-w-[280px] text-[15px] leading-relaxed text-muted-foreground">
+          {t.history_locked_desc || "Free plan shows 7 days. Upgrade to see all your entries."}
+        </p>
+        <button
+          onClick={onUpgrade}
+          className="inline-flex h-[48px] items-center gap-2 rounded-2xl bg-primary px-6 text-[14px] font-semibold text-primary-foreground transition-all active:scale-[0.97]"
+        >
+          <Sparkles className="h-4 w-4" />
+          {t.unlock_plus || t.unlock_ju || "Unlock with Plus"}
+        </button>
+      </div>
+    );
+  }
+
   return (
     <div className={`animate-page-slide-in space-y-5 ${isLargeShell ? "mx-auto max-w-app-content" : ""}`}>
-      <div className="flex items-center justify-between mb-2">
-        <h1 className="text-[34px] font-bold text-foreground tracking-tight">{t.mind_gallery}</h1>
+      <div className="mb-2 flex items-center justify-between">
+        <h1 className="text-[34px] font-bold tracking-tight text-foreground">{t.mind_gallery}</h1>
         <div className="flex gap-2">
-          {entries.length > 0 && (
+          {visibleEntries.length > 0 && (
             <ShareMenu
               type="daily"
-              data={{ mood: entries[0].mood, date: entries[0].entry_date, text: entries[0].text }}
+              data={{ mood: visibleEntries[0].mood, date: visibleEntries[0].entry_date, text: visibleEntries[0].text }}
               label={t.share_mood || "Share"}
             />
           )}
         </div>
       </div>
 
-      <div className={isLargeShell ? "grid gap-5 xl:grid-cols-[minmax(0,1.15fr)_minmax(320px,0.85fr)]" : "space-y-5"}>
-      <div className="space-y-5">
-      <MoodTrendChart entries={entries} />
-
-      {/* Weekly mood wave */}
-      <div className="glass-card rounded-2xl p-5">
-        <p className="text-[11px] font-semibold text-primary uppercase tracking-widest mb-4">{t.weekly_mood}</p>
-        <div className="flex items-end justify-between gap-2 h-28">
-          {weekMoods.map((mood, i) => {
-            const moodData = MOODS.find((m) => m.value === mood) || MOODS[2];
-            const barHeight = Math.max(mood * 16, 10);
-            return (
-              <div key={i} className="flex-1 flex flex-col items-center gap-1.5">
-                <div
-                  className="w-full rounded-lg transition-all duration-500"
-                  style={{
-                    height: `${barHeight}px`,
-                    background: moodData.color,
-                    opacity: 0.85,
-                    animationDelay: `${i * 0.08}s`,
-                  }}
-                />
-                <span className="text-[10px] text-muted-foreground font-medium">{weekDays[i]}</span>
-              </div>
-            );
-          })}
-        </div>
-        <div className="flex justify-end mt-3">
-          <ShareMenu
-            type="weekly"
-            data={{ moods: weekMoods, avgMood: parseFloat(avgMood), totalEntries: entries.length }}
-            label={t.share_week || "Share week"}
-            className="text-xs"
-          />
-        </div>
-      </div>
-
-      {/* Ju mood trend narration */}
-      {entries.length >= 3 && (
-        <div className="glass-card rounded-2xl p-5 flex items-start gap-3">
-          <img
-            src={moodTrend.direction === "up" ? JU_STICKERS.yay : moodTrend.direction === "down" ? JU_STICKERS.zen : JU_STICKERS.goodjob}
-            alt="Ju"
-            className="w-9 h-9 flex-shrink-0 mt-0.5"
-          />
-          <div>
-            <p className="text-[11px] font-semibold text-primary uppercase tracking-widest mb-1.5">I noticed...</p>
-            <p className="text-[14px] text-foreground leading-relaxed">{MOOD_TREND_MESSAGES[moodTrend.direction]}</p>
-          </div>
-        </div>
-      )}
-
-      {/* Stats row — Apple-style metrics */}
-      <div className="grid grid-cols-3 gap-3">
-        <div className="glass-card rounded-2xl p-4 text-center">
-          <p className="text-[22px] font-bold text-foreground tracking-tight">{avgMood}</p>
-          <p className="text-[10px] text-muted-foreground mt-0.5 font-medium">{t.mood_avg}</p>
-        </div>
-        <div className="glass-card rounded-2xl p-4 text-center">
-          <p className="text-[22px] font-bold text-foreground tracking-tight">{entries.length}</p>
-          <p className="text-[10px] text-muted-foreground mt-0.5 font-medium">{t.entries_total}</p>
-        </div>
-        <div className="glass-card rounded-2xl p-4 flex flex-col items-center justify-center">
-          <MoodIcon value={moodHighlight.mood} color={highlightMoodData.color} size={26} />
-          <p className="text-[10px] text-muted-foreground mt-1 font-medium">{moodHighlight.label}</p>
-        </div>
-      </div>
-
-      {/* Streak milestone */}
-      {streak >= 7 && (
-        <div className="glass-card rounded-2xl p-5 flex items-center justify-between">
-          <div>
-            <p className="text-[11px] font-semibold text-primary uppercase tracking-widest mb-0.5 flex items-center gap-1"><Flame className="w-3.5 h-3.5" /> {t.streak_milestone || "Streak Milestone"}</p>
-            <p className="text-[22px] font-bold text-foreground tracking-tight">{streak} {t.days_streak || "days"}</p>
-          </div>
-          <ShareMenu type="streak" data={{ streak }} label={t.share_streak || "Share"} />
-        </div>
-      )}
-
-      {/* AI Weekly Summary */}
-      <div className="glass-card rounded-2xl p-5">
-        <div className="flex items-center gap-2.5 mb-3">
-          <img src={JU_STICKERS.goodjob} alt="Ju" className="w-8 h-8" />
-          <p className="text-[11px] font-semibold text-primary uppercase tracking-widest">{t.weekly_summary}</p>
-        </div>
-        {summaryLoading ? (
-          <div className="flex items-center gap-2 text-muted-foreground">
-            <Loader2 className="w-4 h-4 animate-spin" />
-            <span className="text-[13px]">{t.analyzing_week || "Analyzing your week..."}</span>
-          </div>
-        ) : (
-          <p className="text-[14px] text-foreground leading-relaxed">
-            {aiSummary || (entries.length > 0 ? t.summary_has_entries : t.summary_no_entries)}
-          </p>
-        )}
-
-        {/* Ask Ju CTA */}
-        {entries.length > 2 && onNavigate && (
-          <button 
-            onClick={() => onNavigate("coach")}
-            className="mt-4 flex items-center justify-between w-full p-3 rounded-xl bg-primary/10 hover:bg-primary/15 transition-colors text-primary"
-          >
-            <span className="text-[13px] font-semibold">Ask Ju about your week</span>
-            <ArrowRight className="w-4 h-4" />
-          </button>
-        )}
-      </div>
-
-      {/* Smart Notifications Panel (Pro feature) */}
-      <SmartNotificationsPanel
-        entries={entries}
-        onUpgrade={onUpgrade}
-        hasProAccess={hasProAccess(plan ?? null, trialStartedAt ?? null)}
-      />
-      </div>
-
-      <div className="space-y-5">
-
-      {/* Mood Correlation Insights */}
-      {bestDayOfWeek && (
-        <div className="glass-card rounded-2xl p-5">
-          <p className="text-[11px] font-semibold text-primary uppercase tracking-widest mb-3">Hidden Pattern</p>
-          <p className="text-[15px] font-medium text-foreground leading-relaxed">
-            You tend to have your best days on <span className="text-primary font-bold">{bestDayOfWeek}s</span>.
-          </p>
-          {onNavigate && (
+      {!hasPremiumInsights && hiddenEntryCount > 0 && (
+        <div className="rounded-2xl border border-primary/15 bg-primary/6 px-4 py-4">
+          <div className="flex items-start gap-3">
+            <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-primary/10">
+              <Lock className="h-5 w-5 text-primary" />
+            </div>
+            <div className="min-w-0 flex-1">
+              <p className="text-sm font-semibold text-foreground">
+                {t.history_locked || "Full history locked"}
+              </p>
+              <p className="mt-1 text-xs text-muted-foreground">
+                {t.history_locked_desc || "Free plan shows 7 days. Upgrade to see all your entries."}
+              </p>
+            </div>
             <button
-              onClick={() => onNavigate("coach")}
-              className="mt-4 flex items-center gap-1.5 text-[13px] font-semibold text-muted-foreground hover:text-foreground transition-colors"
+              onClick={onUpgrade}
+              className="inline-flex items-center gap-1.5 rounded-lg bg-primary px-3 py-2 text-xs font-semibold text-primary-foreground transition-transform active:scale-[0.98]"
             >
-              Ask Ju why <ArrowRight className="w-3.5 h-3.5" />
+              <Sparkles className="h-3.5 w-3.5" />
+              {t.upgrade || "Upgrade"}
             </button>
+          </div>
+        </div>
+      )}
+
+      <div className={isLargeShell ? "grid gap-5 xl:grid-cols-[minmax(0,1.15fr)_minmax(320px,0.85fr)]" : "space-y-5"}>
+        <div className="space-y-5">
+          {hasPremiumInsights ? (
+            <MoodTrendChart entries={visibleEntries} />
+          ) : (
+            renderPlusInsightsLock(
+              t.mood_trend || "30-Day Mood Trend",
+              t.plus_feature_3_v2 || "Unlock Plus for 30-day mood trends and weekly summaries."
+            )
+          )}
+
+          <div className="glass-card rounded-2xl p-5">
+            <p className="mb-4 text-[11px] font-semibold uppercase tracking-widest text-primary">
+              {t.weekly_mood}
+            </p>
+            <div className="flex h-28 items-end justify-between gap-2">
+              {weekMoods.map((mood, index) => {
+                const moodData = MOODS.find((item) => item.value === mood) || MOODS[2];
+                const barHeight = Math.max(mood * 16, 10);
+
+                return (
+                  <div key={index} className="flex flex-1 flex-col items-center gap-1.5">
+                    <div
+                      className="w-full rounded-lg transition-all duration-500"
+                      style={{
+                        height: `${barHeight}px`,
+                        background: moodData.color,
+                        opacity: 0.85,
+                        animationDelay: `${index * 0.08}s`,
+                      }}
+                    />
+                    <span className="text-[10px] font-medium text-muted-foreground">{weekDays[index]}</span>
+                  </div>
+                );
+              })}
+            </div>
+            <div className="mt-3 flex justify-end">
+              <ShareMenu
+                type="weekly"
+                data={{ moods: weekMoods, avgMood: parseFloat(avgMood), totalEntries: visibleEntries.length }}
+                label={t.share_week || "Share week"}
+                className="text-xs"
+              />
+            </div>
+          </div>
+
+          {visibleEntries.length >= 3 && (
+            <div className="glass-card flex items-start gap-3 rounded-2xl p-5">
+              <img
+                src={
+                  moodTrend.direction === "up"
+                    ? JU_STICKERS.yay
+                    : moodTrend.direction === "down"
+                      ? JU_STICKERS.zen
+                      : JU_STICKERS.goodjob
+                }
+                alt="Ju"
+                className="mt-0.5 h-9 w-9 flex-shrink-0"
+              />
+              <div>
+                <p className="mb-1.5 text-[11px] font-semibold uppercase tracking-widest text-primary">I noticed...</p>
+                <p className="text-[14px] leading-relaxed text-foreground">
+                  {moodTrendMessages[moodTrend.direction]}
+                </p>
+              </div>
+            </div>
+          )}
+
+          <div className="grid grid-cols-3 gap-3">
+            <div className="glass-card rounded-2xl p-4 text-center">
+              <p className="text-[22px] font-bold tracking-tight text-foreground">{avgMood}</p>
+              <p className="mt-0.5 text-[10px] font-medium text-muted-foreground">{t.mood_avg}</p>
+            </div>
+            <div className="glass-card rounded-2xl p-4 text-center">
+              <p className="text-[22px] font-bold tracking-tight text-foreground">{visibleEntries.length}</p>
+              <p className="mt-0.5 text-[10px] font-medium text-muted-foreground">{t.entries_total}</p>
+            </div>
+            <div className="glass-card flex flex-col items-center justify-center rounded-2xl p-4 text-center">
+              <MoodIcon value={moodHighlight.mood} color={highlightMoodData.color} size={26} />
+              <p className="mt-1 text-[10px] font-medium text-muted-foreground">{moodHighlight.label}</p>
+            </div>
+          </div>
+
+          {streak >= 7 && (
+            <div className="glass-card flex items-center justify-between rounded-2xl p-5">
+              <div>
+                <p className="mb-0.5 flex items-center gap-1 text-[11px] font-semibold uppercase tracking-widest text-primary">
+                  <Flame className="h-3.5 w-3.5" /> {t.streak_milestone || "Streak Milestone"}
+                </p>
+                <p className="text-[22px] font-bold tracking-tight text-foreground">
+                  {streak} {t.days_streak || "days"}
+                </p>
+              </div>
+              <ShareMenu type="streak" data={{ streak }} label={t.share_streak || "Share"} />
+            </div>
+          )}
+
+          {hasPremiumInsights ? (
+            <div className="glass-card rounded-2xl p-5">
+              <div className="mb-3 flex items-center gap-2.5">
+                <img src={JU_STICKERS.goodjob} alt="Ju" className="h-8 w-8" />
+                <p className="text-[11px] font-semibold uppercase tracking-widest text-primary">
+                  {t.weekly_summary}
+                </p>
+              </div>
+              {summaryLoading ? (
+                <div className="flex items-center gap-2 text-muted-foreground">
+                  <Loader2 className="h-4 w-4 animate-spin" />
+                  <span className="text-[13px]">{t.analyzing_week || "Analyzing your week..."}</span>
+                </div>
+              ) : (
+                <p className="text-[14px] leading-relaxed text-foreground">
+                  {aiSummary || (visibleEntries.length > 0 ? t.summary_has_entries : t.summary_no_entries)}
+                </p>
+              )}
+
+              {visibleEntries.length > 2 && onNavigate && (
+                <button
+                  onClick={() => onNavigate("coach")}
+                  className="mt-4 flex w-full items-center justify-between rounded-xl bg-primary/10 p-3 text-primary transition-colors hover:bg-primary/15"
+                >
+                  <span className="text-[13px] font-semibold">Ask Ju about your week</span>
+                  <ArrowRight className="h-4 w-4" />
+                </button>
+              )}
+            </div>
+          ) : (
+            renderPlusInsightsLock(
+              t.weekly_summary || "Ju's weekly summary",
+              t.plus_feature_3_v2 || "Unlock Plus for 30-day mood trends and weekly summaries."
+            )
+          )}
+
+          <SmartNotificationsPanel
+            entries={entries}
+            onUpgrade={onUpgrade}
+            hasProAccess={hasPremiumCoach}
+          />
+        </div>
+
+        <div className="space-y-5">
+          {bestDayOfWeek && (
+            <div className="glass-card rounded-2xl p-5">
+              <p className="mb-3 text-[11px] font-semibold uppercase tracking-widest text-primary">Hidden Pattern</p>
+              <p className="text-[15px] font-medium leading-relaxed text-foreground">
+                You tend to have your best days on <span className="font-bold text-primary">{bestDayOfWeek}s</span>.
+              </p>
+              {onNavigate && (
+                <button
+                  onClick={() => onNavigate("coach")}
+                  className="mt-4 flex items-center gap-1.5 text-[13px] font-semibold text-muted-foreground transition-colors hover:text-foreground"
+                >
+                  Ask Ju why <ArrowRight className="h-3.5 w-3.5" />
+                </button>
+              )}
+            </div>
+          )}
+
+          {prediction && (
+            <div
+              className="glass-card rounded-2xl border border-primary/20 p-5"
+              style={{ background: "linear-gradient(180deg, hsl(var(--primary)/0.05) 0%, transparent 100%)" }}
+            >
+              <div className="mb-3 flex items-center gap-2">
+                <Sparkles className="h-4 w-4 text-primary" />
+                <p className="text-[11px] font-semibold uppercase tracking-widest text-primary">Ju's Forecast</p>
+              </div>
+              <p className="text-[15px] font-medium leading-relaxed text-foreground">{prediction}</p>
+              {onNavigate && (
+                <button
+                  onClick={() => onNavigate("coach")}
+                  className="mt-4 w-full rounded-xl bg-primary py-2.5 text-[13px] font-semibold text-primary-foreground transition-transform active:scale-95"
+                >
+                  Talk to Ju tonight
+                </button>
+              )}
+            </div>
+          )}
+
+          <AiMemoryCard entries={entries} hasProAccess={hasPremiumCoach} />
+
+          <div className={`grid gap-3 ${isLargeShell ? "sm:grid-cols-2" : "grid-cols-2"}`}>
+            <button
+              onClick={() => onNavigate?.("programs")}
+              className="glass-card flex flex-col items-start gap-2 rounded-2xl p-4 text-left press-spring"
+            >
+              <Target className="h-6 w-6 text-primary" />
+              <div>
+                <p className="text-[14px] font-semibold text-foreground">
+                  {t.guided_programs_title || "Guided Programs"}
+                </p>
+                <p className="mt-0.5 text-[11px] text-muted-foreground">
+                  {t.guided_programs_sub || "Structured challenges"}
+                </p>
+              </div>
+            </button>
+            <button
+              onClick={() => onNavigate?.("year-review")}
+              className="glass-card flex flex-col items-start gap-2 rounded-2xl p-4 text-left press-spring"
+            >
+              <CalendarDays className="h-6 w-6 text-primary" />
+              <div>
+                <p className="text-[14px] font-semibold text-foreground">
+                  {t.year_card_title || "Year in Review"}
+                </p>
+                <p className="mt-0.5 text-[11px] text-muted-foreground">
+                  {(t.year_card_sub || "{year} recap").replace("{year}", String(new Date().getFullYear()))}
+                </p>
+              </div>
+            </button>
+          </div>
+
+          <MoodCalendar entries={visibleEntries} />
+
+          <HistoryLock onUpgrade={onUpgrade} plan={plan} trialStartedAt={trialStartedAt} />
+
+          {!hasPremiumCoach && (
+            <div className="glass-card rounded-2xl p-6 text-center">
+              <Lock className="mx-auto mb-3 h-7 w-7 text-muted-foreground/30" />
+              <p className="mb-1 text-[17px] font-semibold text-foreground">{t.relationship_map}</p>
+              <p className="mb-4 text-[13px] text-muted-foreground">{t.rel_desc}</p>
+              <button
+                onClick={onUpgrade}
+                className="rounded-xl bg-primary/8 px-5 py-2.5 text-[13px] font-semibold text-primary transition-all active:scale-[0.97]"
+              >
+                {t.unlock_pro}
+              </button>
+            </div>
           )}
         </div>
-      )}
-
-      {/* Mood Forecast */}
-      {prediction && (
-        <div className="glass-card rounded-2xl p-5 border border-primary/20" style={{ background: "linear-gradient(180deg, hsl(var(--primary)/0.05) 0%, transparent 100%)" }}>
-          <div className="flex items-center gap-2 mb-3">
-            <Sparkles className="w-4 h-4 text-primary" />
-            <p className="text-[11px] font-semibold text-primary uppercase tracking-widest">Ju's Forecast</p>
-          </div>
-          <p className="text-[15px] font-medium text-foreground leading-relaxed">
-            {prediction}
-          </p>
-          {onNavigate && (
-            <button 
-              onClick={() => onNavigate("coach")}
-              className="mt-4 w-full py-2.5 rounded-xl bg-primary text-primary-foreground font-semibold text-[13px] transition-transform active:scale-95"
-            >
-              Talk to Ju tonight
-            </button>
-          )}
-        </div>
-      )}
-
-      <AiMemoryCard entries={entries} hasProAccess={hasProAccess(plan ?? null, trialStartedAt ?? null)} />
-
-      {/* Quick links — Programs + Year in Review */}
-      <div className={`grid gap-3 ${isLargeShell ? "sm:grid-cols-2" : "grid-cols-2"}`}>
-        <button
-          onClick={() => onNavigate?.("programs")}
-          className="glass-card rounded-2xl p-4 flex flex-col items-start gap-2 press-spring text-left"
-        >
-          <Target className="w-6 h-6 text-primary" />
-          <div>
-            <p className="text-[14px] font-semibold text-foreground">{t.guided_programs_title || "Guided Programs"}</p>
-            <p className="text-[11px] text-muted-foreground mt-0.5">{t.guided_programs_sub || "Structured challenges"}</p>
-          </div>
-        </button>
-        <button
-          onClick={() => onNavigate?.("year-review")}
-          className="glass-card rounded-2xl p-4 flex flex-col items-start gap-2 press-spring text-left"
-        >
-          <CalendarDays className="w-6 h-6 text-primary" />
-          <div>
-            <p className="text-[14px] font-semibold text-foreground">{t.year_card_title || "Year in Review"}</p>
-            <p className="text-[11px] text-muted-foreground mt-0.5">{(t.year_card_sub || "{year} recap").replace("{year}", String(new Date().getFullYear()))}</p>
-          </div>
-        </button>
-      </div>
-
-      {/* Mood Calendar Heatmap — visual engagement (inspired by Daylio, DailyBean) */}
-      <MoodCalendar entries={entries} />
-
-      <HistoryLock onUpgrade={onUpgrade} plan={plan} trialStartedAt={trialStartedAt} />
-
-      {/* Relationship map locked */}
-      {!hasProAccess(plan ?? null, trialStartedAt ?? null) && (
-        <div className="glass-card rounded-2xl p-6 text-center">
-          <Lock className="w-7 h-7 mx-auto text-muted-foreground/30 mb-3" />
-          <p className="font-semibold text-foreground text-[17px] mb-1">{t.relationship_map}</p>
-          <p className="text-[13px] text-muted-foreground mb-4">{t.rel_desc}</p>
-          <button
-            onClick={onUpgrade}
-            className="px-5 py-2.5 rounded-xl bg-primary/8 text-primary font-semibold text-[13px] transition-all active:scale-[0.97]"
-          >
-            {t.unlock_pro}
-          </button>
-        </div>
-      )}
-      </div>
       </div>
     </div>
   );

@@ -699,7 +699,7 @@ const HomeScreen: React.FC<HomeScreenProps> = ({
       )}
 
       {/* Daily Habits */}
-      <HabitSection plan={plan} onUpgrade={onUpgrade} />
+      <HabitSection plan={plan} trialStartedAt={trialStartedAt} onUpgrade={onUpgrade} />
         </div>
       </div>
 

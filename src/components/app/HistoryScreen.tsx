@@ -6,23 +6,50 @@ import { MOODS } from "@/lib/constants";
 import MoodIcon from "@/components/MoodIcon";
 import { EntryRow } from "@/lib/api";
 import { motion } from "framer-motion";
-import { Mic, Camera, MapPin, Calendar } from "lucide-react";
+import { Mic, Camera, MapPin, Calendar, Lock, Sparkles } from "lucide-react";
 import EntryDetailModal from "@/components/app/EntryDetailModal";
+import { hasPlusAccess } from "@/lib/trial";
 
 interface HistoryScreenProps {
   entries: EntryRow[];
   onNavigate: (screen: string) => void;
+  onUpgrade?: () => void;
+  plan?: string | null;
+  trialStartedAt?: string | null;
 }
 
-const HistoryScreen: React.FC<HistoryScreenProps> = ({ entries, onNavigate }) => {
+const FREE_HISTORY_DAYS = 7;
+
+const HistoryScreen: React.FC<HistoryScreenProps> = ({
+  entries,
+  onNavigate,
+  onUpgrade,
+  plan = "free",
+  trialStartedAt = null,
+}) => {
   const { t, lang } = useLang();
   const [selectedEntry, setSelectedEntry] = React.useState<EntryRow | null>(null);
+  const hasUnlockedHistory = hasPlusAccess(plan, trialStartedAt);
+
+  const visibleEntries = useMemo(() => {
+    if (hasUnlockedHistory) return entries;
+    const cutoff = new Date();
+    cutoff.setHours(0, 0, 0, 0);
+    cutoff.setDate(cutoff.getDate() - (FREE_HISTORY_DAYS - 1));
+
+    return entries.filter((entry) => {
+      const entryDate = new Date(entry.entry_date);
+      return entryDate >= cutoff;
+    });
+  }, [entries, hasUnlockedHistory]);
+
+  const hiddenCount = Math.max(0, entries.length - visibleEntries.length);
 
   // Group entries by month for better organization
   const groupedEntries = useMemo(() => {
     const grouped: Record<string, EntryRow[]> = {};
 
-    entries.forEach((entry) => {
+    visibleEntries.forEach((entry) => {
       const date = new Date(entry.entry_date);
       const monthKey = date.toLocaleDateString(lang || "en", { year: "numeric", month: "long" });
       if (!grouped[monthKey]) {
@@ -32,7 +59,7 @@ const HistoryScreen: React.FC<HistoryScreenProps> = ({ entries, onNavigate }) =>
     });
 
     return grouped;
-  }, [entries, lang]);
+  }, [lang, visibleEntries]);
 
   const formatDate = (dateStr: string) => {
     const date = new Date(dateStr);
@@ -62,6 +89,36 @@ const HistoryScreen: React.FC<HistoryScreenProps> = ({ entries, onNavigate }) =>
     );
   }
 
+  if (visibleEntries.length === 0 && !hasUnlockedHistory) {
+    return (
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: 20 }}
+        className="flex flex-col items-center justify-center min-h-screen bg-background px-4 py-8"
+      >
+        <div className="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center mb-4">
+          <Lock className="w-6 h-6 text-primary" />
+        </div>
+        <p className="text-foreground font-semibold text-center">
+          {t.history_locked || "Full history locked"}
+        </p>
+        <p className="text-muted-foreground text-center mt-2 max-w-[280px]">
+          {t.history_locked_desc || "Free plan shows 7 days. Upgrade to see all your entries."}
+        </p>
+        {onUpgrade && (
+          <button
+            onClick={onUpgrade}
+            className="mt-6 inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-primary text-primary-foreground font-semibold transition-transform active:scale-[0.98]"
+          >
+            <Sparkles className="w-4 h-4" />
+            {t.unlock_plus || t.unlock_ju || "Unlock with Plus"}
+          </button>
+        )}
+      </motion.div>
+    );
+  }
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -72,8 +129,35 @@ const HistoryScreen: React.FC<HistoryScreenProps> = ({ entries, onNavigate }) =>
       <div className="mx-auto max-w-4xl px-4 py-6 md:px-6">
         <h1 className="text-2xl font-bold text-foreground mb-2">{t.history_label || "Your History"}</h1>
         <p className="text-sm text-muted-foreground mb-6">
-          {entries.length} {entries.length === 1 ? "entry" : "entries"} total
+          {visibleEntries.length} {visibleEntries.length === 1 ? "entry" : "entries"} visible
         </p>
+
+        {!hasUnlockedHistory && hiddenCount > 0 && (
+          <div className="mb-6 rounded-2xl border border-primary/15 bg-primary/6 px-4 py-4">
+            <div className="flex items-start gap-3">
+              <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
+                <Lock className="w-5 h-5 text-primary" />
+              </div>
+              <div className="flex-1 min-w-0">
+                <p className="text-sm font-semibold text-foreground">
+                  {t.history_locked || "Full history locked"}
+                </p>
+                <p className="text-xs text-muted-foreground mt-1">
+                  {t.history_locked_desc || "Free plan shows 7 days. Upgrade to see all your entries."}
+                </p>
+              </div>
+              {onUpgrade && (
+                <button
+                  onClick={onUpgrade}
+                  className="inline-flex items-center gap-1.5 px-3 py-2 rounded-lg bg-primary text-primary-foreground text-xs font-semibold transition-transform active:scale-[0.98]"
+                >
+                  <Sparkles className="w-3.5 h-3.5" />
+                  {t.upgrade || "Upgrade"}
+                </button>
+              )}
+            </div>
+          </div>
+        )}
 
         <div className="space-y-8">
           {Object.entries(groupedEntries).map(([monthKey, monthEntries]) => (
