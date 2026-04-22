@@ -86,6 +86,18 @@ const AppPage: React.FC = () => {
   const { shellMode, isPhone, isDesktop } = useShellMode();
   const effectiveProfile = useMemo(() => applyTestUserProfile(profile, user), [profile, user]);
   const displayName = resolveDisplayName(effectiveProfile, user);
+  const screenTitles: Record<Screen, string> = {
+    home: "Home",
+    journal: "Journal",
+    insights: "Insights",
+    coach: "Coach",
+    explore: "Explore",
+    pro: "Pricing",
+    settings: "Settings",
+    programs: "Programs",
+    "year-review": "Year in Review",
+    history: "History",
+  };
 
   // Screen ordering for directional transitions
   const screenOrder: Screen[] = ["home", "insights", "coach", "explore"];
@@ -99,6 +111,11 @@ const AppPage: React.FC = () => {
       events.trackAppOpen(user.id);
     }
   }, [user, events]);
+
+  useEffect(() => {
+    const activeTitle = appLocked ? "Unlock" : screenTitles[screen];
+    document.title = `${activeTitle} | Nuju`;
+  }, [appLocked, screen]);
 
   useEffect(() => {
     if (!user) return;
