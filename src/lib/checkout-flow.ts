@@ -13,9 +13,31 @@ export interface CheckoutStatusPayload {
   claimedUserId: string | null;
 }
 
+export class CheckoutFlowError extends Error {
+  statusCode: number;
+
+  constructor(message: string, statusCode: number) {
+    super(message);
+    this.name = "CheckoutFlowError";
+    this.statusCode = statusCode;
+  }
+}
+
+export const isCheckoutFlowError = (value: unknown): value is CheckoutFlowError =>
+  value instanceof CheckoutFlowError;
+
 const jsonHeaders = {
   "Content-Type": "application/json",
   Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
+};
+
+const buildCheckoutFlowError = async (response: Response, fallbackMessage: string) => {
+  const payload = await response.json().catch(() => null) as { error?: unknown } | null;
+  const message = typeof payload?.error === "string" && payload.error.trim()
+    ? payload.error.trim()
+    : fallbackMessage;
+
+  return new CheckoutFlowError(message, response.status);
 };
 
 export const buildCheckoutCompletePath = (intentId: string) =>
@@ -47,7 +69,7 @@ export const fetchCheckoutStatus = async ({
   });
 
   if (!response.ok) {
-    throw new Error("Could not verify checkout status.");
+    throw await buildCheckoutFlowError(response, "Could not verify checkout status.");
   }
 
   return (await response.json()) as CheckoutStatusPayload;
@@ -64,8 +86,7 @@ export const claimCheckoutIntent = async (intentId: string, accessToken: string)
   });
 
   if (!response.ok) {
-    const payload = await response.json().catch(() => ({ error: "Could not claim purchase." }));
-    throw new Error(typeof payload?.error === "string" ? payload.error : "Could not claim purchase.");
+    throw await buildCheckoutFlowError(response, "Could not claim purchase.");
   }
 
   return (await response.json()) as { claimed: boolean; plan: string | null };
