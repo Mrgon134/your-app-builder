@@ -56,8 +56,8 @@ const JournalingGuide: React.FC = () => {
   return (
     <div className="min-h-screen bg-background">
       <SEOHead
-        title="The Complete Guide to Journaling: Methods, Science & Tools"
-        description="Everything you need to start, sustain, and get real value from a journaling practice — research-backed methods, prompts, mood tracking, and the best tools for 2026."
+        title="Complete Guide to Journaling: Science, Methods, Tools"
+        description="Learn how to start journaling, build a habit that lasts, track moods, and choose the right prompts, methods, and tools for 2026."
         canonical={canonical}
         breadcrumbs={[
           { name: "Home", url: "https://nuju.app/" },
@@ -352,3 +352,4 @@ const JournalingGuide: React.FC = () => {
 };
 
 export default JournalingGuide;
+

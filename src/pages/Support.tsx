@@ -3,6 +3,7 @@ import { useNavigate, useLocation, Link } from "react-router-dom";
 import { ArrowLeft, ChevronDown } from "lucide-react";
 import { Helmet } from "react-helmet-async";
 import SEOHead from "@/components/SEOHead";
+import PublicNextSteps from "@/components/PublicNextSteps";
 
 interface FAQItem {
   question: string;
@@ -126,8 +127,8 @@ const Support: React.FC = () => {
   return (
     <div className="min-h-screen bg-background">
       <SEOHead
-        title="Support & FAQ"
-        description="Get help with Nuju - frequently asked questions, contact info, and guidance for getting the most out of your AI journal."
+        title="Support and FAQ for Journaling, Billing, and Access"
+        description="Get help with Nuju journaling features, account access, billing, export questions, and the safest next step if you need more support."
         canonical="https://nuju.app/support"
         breadcrumbs={[
           { name: "Home", url: "https://nuju.app/" },
@@ -212,6 +213,38 @@ const Support: React.FC = () => {
             and contact emergency services or a mental health professional.
           </p>
         </div>
+
+        <PublicNextSteps
+          state={linkState}
+          title="Not the answer you needed?"
+          description="Use these pages if your next step is installation help, direct support, product context, or safety guidance."
+          links={[
+            {
+              to: "/contact",
+              title: "Contact Nuju",
+              description: "Send billing questions, bug reports, or account issues directly to the team.",
+              badge: "Support",
+            },
+            {
+              to: "/install",
+              title: "Install help",
+              description: "Follow platform-specific install steps and troubleshooting tips.",
+              badge: "Setup",
+            },
+            {
+              to: "/about",
+              title: "About Nuju",
+              description: "Read the mission, product values, and what makes Nuju different.",
+              badge: "Product",
+            },
+            {
+              to: "/medical-disclaimer",
+              title: "Medical disclaimer",
+              description: "Review the safety boundary if your concern is mental-health related.",
+              badge: "Safety",
+            },
+          ]}
+        />
 
         <div className="mt-12 pt-8 border-t border-border">
           <p className="text-xs text-muted-foreground text-center">

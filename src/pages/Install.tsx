@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { JU_STICKERS } from "@/lib/stickers";
+import { Link } from "react-router-dom";
 import { Download, Share, MoreVertical, Plus, Check } from "lucide-react";
 import SEOHead from "@/components/SEOHead";
+import PublicNextSteps from "@/components/PublicNextSteps";
 
 interface BeforeInstallPromptEvent extends Event {
   prompt: () => Promise<void>;
@@ -40,8 +42,8 @@ const Install: React.FC = () => {
   return (
     <div className="min-h-screen bg-background flex flex-col items-center justify-center px-6 py-12">
       <SEOHead
-        title="Install Nuju App - AI Journal for iOS, Android, and Desktop"
-        description="Add Nuju to your home screen for the full AI journal experience. Works offline on iOS, Android, and desktop as a progressive web app."
+        title="Install Nuju on iPhone, Android, and Desktop"
+        description="Install Nuju on iPhone, Android, or desktop for faster journaling, easier re-entry, and a smoother daily check-in flow."
         canonical="https://nuju.app/install"
         breadcrumbs={[
           { name: "Home", url: "https://nuju.app/" },
@@ -77,6 +79,23 @@ const Install: React.FC = () => {
             Add Nuju to your home screen for the full app experience - works
             offline and opens instantly.
           </p>
+
+          <div className="mb-8 rounded-3xl border border-border/50 bg-card p-6 text-left">
+            <h2 className="font-serif text-xl font-semibold text-foreground">
+              Why install Nuju?
+            </h2>
+            <ul className="mt-4 space-y-3 text-sm leading-relaxed text-muted-foreground">
+              <li>
+                Open Nuju like a real app instead of hunting for a browser tab when you want to check in quickly.
+              </li>
+              <li>
+                Make journaling easier to revisit every day, especially if you want a shorter path back into mood logging or reflection.
+              </li>
+              <li>
+                Keep the product one tap away on your phone or desktop so the reveal turns into an actual habit.
+              </li>
+            </ul>
+          </div>
 
           {deferredPrompt ? (
             <button
@@ -132,6 +151,62 @@ const Install: React.FC = () => {
               </div>
             </div>
           )}
+
+          <div className="mt-8 rounded-3xl border border-border/50 bg-card p-6 text-left">
+            <h2 className="font-serif text-xl font-semibold text-foreground">
+              If install does not appear
+            </h2>
+            <div className="mt-4 space-y-3 text-sm leading-relaxed text-muted-foreground">
+              <p>
+                Make sure you are using a supported browser and that you have opened Nuju directly, not inside another app&apos;s browser.
+              </p>
+              <p>
+                On iPhone, installation only works through Safari. On Android, Chrome usually shows the strongest install prompt. On desktop, try opening the main site and look for the browser install option near the address bar.
+              </p>
+              <p>
+                If you still cannot install it, go to{" "}
+                <Link to="/support" className="text-primary hover:underline">
+                  Support and FAQ
+                </Link>{" "}
+                or{" "}
+                <Link to="/contact" className="text-primary hover:underline">
+                  contact the team
+                </Link>
+                .
+              </p>
+            </div>
+          </div>
+
+          <PublicNextSteps
+            title="Keep going after install"
+            description="Use these pages if you want to start the reveal, understand the app better, or get help with setup."
+            links={[
+              {
+                to: "/onboarding",
+                title: "Start the Ju reveal",
+                description: "Jump straight into the onboarding flow and get your first emotional read.",
+                badge: "Reveal",
+              },
+              {
+                to: "/",
+                title: "Back to the homepage",
+                description: "See the full product story, category positioning, and what Nuju unlocks over time.",
+                badge: "Product",
+              },
+              {
+                to: "/support",
+                title: "Support and FAQ",
+                description: "Get self-serve answers if install, billing, or product basics are still unclear.",
+                badge: "Help",
+              },
+              {
+                to: "/privacy",
+                title: "Privacy Policy",
+                description: "Review how journal data, AI processing, and account details are handled.",
+                badge: "Trust",
+              },
+            ]}
+          />
         </div>
       )}
     </div>

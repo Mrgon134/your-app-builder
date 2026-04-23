@@ -190,9 +190,9 @@ describe("Landing page anatomy", () => {
 
     expect(seoHeadProps).toHaveBeenCalledWith(
       expect.objectContaining({
-        title: "AI Journaling App for Mood Tracking and Emotional Clarity",
+        title: "AI Journaling App and Mood Tracker",
         description:
-          "Nuju is an AI journaling app and mood tracker for emotional clarity, private self-reflection, and fast daily check-ins. Start the Ju Gets You reveal free.",
+          "Nuju is an AI journaling app and mood tracker for emotional clarity, private reflection, and fast daily check-ins. Start the Ju Gets You reveal free.",
         canonical: "https://nuju.app/",
       }),
     );

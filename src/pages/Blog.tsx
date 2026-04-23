@@ -49,8 +49,8 @@ const Blog: React.FC = () => {
   return (
     <div className="min-h-screen bg-background">
       <SEOHead
-        title="Nuju Blog - Best Journaling Apps, Mood Trackers, and Emotional Wellness Guides"
-        description="Recommendation pages, honest app comparisons, and practical guides on journaling, mood tracking, and emotional clarity."
+        title="Blog: Journaling, Mood Tracking, and Wellness Guides"
+        description="Read recommendation pages, honest app comparisons, and practical guides for journaling, mood tracking, emotional clarity, and building a reflection habit that sticks."
         canonical="https://nuju.app/blog"
         breadcrumbs={[
           { name: "Home", url: "https://nuju.app/" },

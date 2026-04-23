@@ -2,6 +2,7 @@ import React from "react";
 import { useNavigate, useLocation, Link } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
 import SEOHead from "@/components/SEOHead";
+import PublicNextSteps from "@/components/PublicNextSteps";
 
 const MedicalDisclaimer: React.FC = () => {
   const navigate = useNavigate();
@@ -115,6 +116,38 @@ const MedicalDisclaimer: React.FC = () => {
             <p>If you have questions about this disclaimer or how to use Nuju safely, please <Link to="/contact" state={linkState} className="text-primary hover:underline">contact us</Link>.</p>
           </section>
         </div>
+
+        <PublicNextSteps
+          state={linkState}
+          title="Use Nuju with the right safety context"
+          description="These pages help with support, privacy, and the practical boundaries around using Nuju as a wellness tool."
+          links={[
+            {
+              to: "/support",
+              title: "Support and FAQ",
+              description: "Get product help and common answers without losing the safety context.",
+              badge: "Help",
+            },
+            {
+              to: "/contact",
+              title: "Contact Nuju",
+              description: "Ask the team questions about safe product use, billing, or account access.",
+              badge: "Support",
+            },
+            {
+              to: "/privacy",
+              title: "Privacy Policy",
+              description: "See how journal data, account details, and AI processing are handled.",
+              badge: "Trust",
+            },
+            {
+              to: "/terms",
+              title: "Terms of Service",
+              description: "Review the rules, payment terms, and product boundaries in one place.",
+              badge: "Policy",
+            },
+          ]}
+        />
 
         <div className="mt-12 pt-8 border-t border-border">
           <p className="text-xs text-muted-foreground text-center">© 2026 Nuju. All rights reserved.</p>

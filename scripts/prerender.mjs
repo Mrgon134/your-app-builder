@@ -398,6 +398,24 @@ function renderSection(title, content) {
   `;
 }
 
+function renderLinkCardGrid(items) {
+  return `
+    <div class="nuju-card-grid">
+      ${items
+        .map(
+          (item) => `
+            <article class="nuju-mini-card">
+              ${item.badge ? `<p class="nuju-eyebrow">${escapeHtml(item.badge)}</p>` : ""}
+              <h3><a href="${escapeAttribute(item.href)}">${escapeHtml(item.title)}</a></h3>
+              <p>${escapeHtml(item.description)}</p>
+            </article>
+          `,
+        )
+        .join("")}
+    </div>
+  `;
+}
+
 function renderPageShell({ eyebrow, title, description, meta, sections, cta }) {
   return `
     <main class="nuju-prerender">
@@ -528,6 +546,39 @@ function renderAboutBody() {
           "Progressive web app support for phone and desktop install",
         ]),
       ),
+      renderSection(
+        "See how Nuju works in practice",
+        renderLinkCardGrid([
+          {
+            href: "/",
+            title: "Nuju homepage",
+            description:
+              "See the main product story, who Nuju is for, and how the reveal starts.",
+            badge: "Product",
+          },
+          {
+            href: "/install",
+            title: "Install Nuju",
+            description:
+              "Add Nuju to your home screen or desktop for faster daily check-ins.",
+            badge: "Setup",
+          },
+          {
+            href: "/guides/journaling",
+            title: "Read the journaling guide",
+            description:
+              "Go deeper on methods, science, prompts, and mood tracking.",
+            badge: "Guide",
+          },
+          {
+            href: "/support",
+            title: "Support and FAQ",
+            description:
+              "Get help with billing, exporting, account questions, and product basics.",
+            badge: "Help",
+          },
+        ]),
+      ),
     ],
     cta: renderCta({
       title: "Want to ask something directly?",
@@ -559,6 +610,39 @@ function renderSupportBody() {
           <p>Nuju is not a medical service. If you are in crisis or need immediate mental health support, contact emergency services or a qualified mental health professional.</p>
         `,
       ),
+      renderSection(
+        "Not the answer you needed?",
+        renderLinkCardGrid([
+          {
+            href: "/contact",
+            title: "Contact Nuju",
+            description:
+              "Send billing questions, bug reports, or account issues directly to the team.",
+            badge: "Support",
+          },
+          {
+            href: "/install",
+            title: "Install help",
+            description:
+              "Follow platform-specific install steps and troubleshooting tips.",
+            badge: "Setup",
+          },
+          {
+            href: "/about",
+            title: "About Nuju",
+            description:
+              "Read the mission, product values, and what makes Nuju different.",
+            badge: "Product",
+          },
+          {
+            href: "/medical-disclaimer",
+            title: "Medical disclaimer",
+            description:
+              "Review the safety boundary if your concern is mental-health related.",
+            badge: "Safety",
+          },
+        ]),
+      ),
     ],
     cta: renderCta({
       title: "Reach the team",
@@ -572,9 +656,9 @@ function renderSupportBody() {
 function renderContactBody() {
   return renderPageShell({
     eyebrow: "Contact",
-    title: "Talk to the Nuju team",
+    title: "Contact the Nuju team",
     description:
-      "Reach out for support, subscription questions, feedback, or anything about your journaling experience.",
+      "Reach out for support, billing questions, bug reports, or anything blocking your journaling experience.",
     meta: "Email: hello@nuju.app",
     sections: [
       renderSection(
@@ -585,20 +669,97 @@ function renderContactBody() {
         `,
       ),
       renderSection(
-        "Common reasons people write in",
-        renderList([
-          "Billing and plan questions",
-          "Account access issues",
-          "Product feedback and feature ideas",
-          "Help with exports or data deletion",
-          "Bug reports and strange behavior",
+        "What we can help with",
+        renderLinkCardGrid([
+          {
+            href: "/contact",
+            title: "Billing and paid access",
+            description:
+              "Questions about annual access, lifetime purchases, renewals, or checkout problems.",
+            badge: "Billing",
+          },
+          {
+            href: "/contact",
+            title: "Account and login issues",
+            description:
+              "Trouble signing in, changing your email, recovering access, or exporting your journal.",
+            badge: "Access",
+          },
+          {
+            href: "/contact",
+            title: "Bug reports",
+            description:
+              "Anything broken in journaling, install flow, coaching, pricing, or navigation.",
+            badge: "Product",
+          },
+          {
+            href: "/contact",
+            title: "Product feedback",
+            description:
+              "Suggestions, clarity issues, or ideas that would make Nuju more useful in real life.",
+            badge: "Feedback",
+          },
+        ]) +
+          `<p>The fastest way to help us reply well is to include what happened, what screen you were on, and the email tied to your account if the issue is billing or access related.</p>`,
+      ),
+      renderSection(
+        "Before you send a message",
+        renderLinkCardGrid([
+          {
+            href: "/support",
+            title: "Support and FAQ",
+            description:
+              "Best for account questions, export help, billing basics, and feature answers.",
+            badge: "Help",
+          },
+          {
+            href: "/install",
+            title: "Install Nuju",
+            description:
+              "Best if you need help adding Nuju to your phone or desktop.",
+            badge: "Setup",
+          },
+          {
+            href: "/privacy",
+            title: "Privacy Policy",
+            description:
+              "Best for questions about journal data, AI processing, or account deletion.",
+            badge: "Trust",
+          },
         ]),
       ),
       renderSection(
-        "Other helpful pages",
-        `
-          <p><a href="/support">Support and FAQ</a> for quick answers, <a href="/medical-disclaimer">Medical Disclaimer</a> for safety boundaries, and <a href="/about">About Nuju</a> for product context.</p>
-        `,
+        "Keep moving without waiting on email",
+        renderLinkCardGrid([
+          {
+            href: "/support",
+            title: "Support and FAQ",
+            description:
+              "Find quick answers about billing, export, entries, and account access.",
+            badge: "Help",
+          },
+          {
+            href: "/about",
+            title: "About Nuju",
+            description:
+              "Read the mission, product values, and how Nuju is designed to feel useful fast.",
+            badge: "Product",
+          },
+          {
+            href: "/privacy",
+            title: "Privacy Policy",
+            description:
+              "See how journal data, AI processing, and account deletion are handled.",
+            badge: "Trust",
+          },
+          {
+            href: "/terms",
+            title: "Terms of Service",
+            description:
+              "Review account rules, payment terms, and access basics.",
+            badge: "Policy",
+          },
+        ]),
       ),
     ],
   });
@@ -609,16 +770,15 @@ function renderInstallBody() {
     eyebrow: "Install Nuju",
     title: "Install Nuju on iPhone, Android, or desktop",
     description:
-      "Add Nuju to your home screen for a faster, more app-like journaling experience that can also work offline.",
+      "Add Nuju to your home screen for faster journaling, easier re-entry, and a smoother daily check-in flow.",
     meta: "Progressive web app install guide",
     sections: [
       renderSection(
-        "What installation gives you",
+        "Why install Nuju?",
         renderList([
-          "One-tap access from your home screen or dock",
-          "A cleaner, more native app feel",
-          "Offline support for core assets",
-          "Faster return visits when you need a quick check-in",
+          "Open Nuju like a real app instead of hunting for a browser tab when you want to check in quickly.",
+          "Make journaling easier to revisit every day, especially if you want a shorter path back into mood logging or reflection.",
+          "Keep the product one tap away on your phone or desktop so the reveal turns into an actual habit.",
         ]),
       ),
       renderSection(
@@ -635,6 +795,47 @@ function renderInstallBody() {
           "Open Nuju in your browser.",
           "Use the browser menu or install prompt.",
           "Choose Install app or Add to Home Screen.",
+        ]),
+      ),
+      renderSection(
+        "If install does not appear",
+        `
+          <p>Make sure you are using a supported browser and that you have opened Nuju directly, not inside another app's browser.</p>
+          <p>On iPhone, installation only works through Safari. On Android, Chrome usually shows the strongest install prompt. On desktop, try opening the main site and look for the browser install option near the address bar.</p>
+          <p>If you still cannot install it, go to <a href="/support">Support and FAQ</a> or <a href="/contact">contact the team</a>.</p>
+        `,
+      ),
+      renderSection(
+        "Keep going after install",
+        renderLinkCardGrid([
+          {
+            href: "/onboarding",
+            title: "Start the Ju reveal",
+            description:
+              "Jump straight into the onboarding flow and get your first emotional read.",
+            badge: "Reveal",
+          },
+          {
+            href: "/",
+            title: "Back to the homepage",
+            description:
+              "See the full product story, category positioning, and what Nuju unlocks over time.",
+            badge: "Product",
+          },
+          {
+            href: "/support",
+            title: "Support and FAQ",
+            description:
+              "Get self-serve answers if install, billing, or product basics are still unclear.",
+            badge: "Help",
+          },
+          {
+            href: "/privacy",
+            title: "Privacy Policy",
+            description:
+              "Review how journal data, AI processing, and account details are handled.",
+            badge: "Trust",
+          },
         ]),
       ),
     ],
@@ -694,6 +895,39 @@ function renderPrivacyBody() {
           <p>Email <a href="mailto:hello@nuju.app">hello@nuju.app</a> if you need help with privacy requests or data concerns.</p>
         `,
       ),
+      renderSection(
+        "Explore the trust pages around this policy",
+        renderLinkCardGrid([
+          {
+            href: "/terms",
+            title: "Terms of Service",
+            description:
+              "Review account rules, paid access terms, and how Nuju should be used.",
+            badge: "Policy",
+          },
+          {
+            href: "/support",
+            title: "Support and FAQ",
+            description:
+              "Find help with export, billing, account access, and everyday questions.",
+            badge: "Help",
+          },
+          {
+            href: "/contact",
+            title: "Contact Nuju",
+            description:
+              "Reach the team if you need help with data, account requests, or feedback.",
+            badge: "Support",
+          },
+          {
+            href: "/medical-disclaimer",
+            title: "Medical Disclaimer",
+            description:
+              "See the safety boundary between journaling support and professional mental health care.",
+            badge: "Safety",
+          },
+        ]),
+      ),
     ],
   });
 }
@@ -739,6 +973,39 @@ function renderTermsBody() {
         `
           <p>Nuju may rely on third-party services such as Google authentication, analytics vendors, infrastructure vendors, and payment processors. The app is provided as is without warranties to the maximum extent permitted by law.</p>
         `,
+      ),
+      renderSection(
+        "Need the practical side too?",
+        renderLinkCardGrid([
+          {
+            href: "/privacy",
+            title: "Privacy Policy",
+            description:
+              "See how Nuju handles journal data, account information, and AI processing.",
+            badge: "Trust",
+          },
+          {
+            href: "/support",
+            title: "Support and FAQ",
+            description:
+              "Get answers about billing, export, journaling features, and account access.",
+            badge: "Help",
+          },
+          {
+            href: "/contact",
+            title: "Contact Nuju",
+            description:
+              "Reach the team for billing questions, bug reports, or account help.",
+            badge: "Support",
+          },
+          {
+            href: "/install",
+            title: "Install Nuju",
+            description:
+              "Add Nuju to your phone or desktop and keep the app easy to reopen.",
+            badge: "Setup",
+          },
+        ]),
       ),
     ],
   });
@@ -788,6 +1055,39 @@ function renderMedicalDisclaimerBody() {
           "Seek professional help when you need clinical care",
           "Use Nuju as a supplement to, not a replacement for, professional support",
           "Contact a qualified professional or crisis service if you are in immediate danger",
+        ]),
+      ),
+      renderSection(
+        "Use Nuju with the right safety context",
+        renderLinkCardGrid([
+          {
+            href: "/support",
+            title: "Support and FAQ",
+            description:
+              "Get product help and common answers without losing the safety context.",
+            badge: "Help",
+          },
+          {
+            href: "/contact",
+            title: "Contact Nuju",
+            description:
+              "Ask the team questions about safe product use, billing, or account access.",
+            badge: "Support",
+          },
+          {
+            href: "/privacy",
+            title: "Privacy Policy",
+            description:
+              "See how journal data, account details, and AI processing are handled.",
+            badge: "Trust",
+          },
+          {
+            href: "/terms",
+            title: "Terms of Service",
+            description:
+              "Review the rules, payment terms, and product boundaries in one place.",
+            badge: "Policy",
+          },
         ]),
       ),
     ],
@@ -841,7 +1141,7 @@ function renderBlogIndexBody(posts) {
     eyebrow: "Nuju Blog",
     title: "Best journaling apps, mood trackers, and emotional wellness guides",
     description:
-      "Recommendation pages, honest app comparisons, and practical guides on journaling, mood tracking, and emotional clarity.",
+      "Recommendation pages, honest app comparisons, and practical guides for journaling, mood tracking, emotional clarity, and building a reflection habit that sticks.",
     meta: `${posts.length} published articles`,
     sections: [
       renderSection(
@@ -910,8 +1210,41 @@ function renderGuideBody() {
       renderSection(
         "Where to go next",
         `
-          <p>Use the Nuju blog for deeper dives on prompts, mood tracking, AI journaling, anxiety, ADHD, and app comparisons. This guide is the map. The linked articles are the deep dives.</p>
+          <p>Use the <a href="/blog">Nuju blog</a> for deeper dives on prompts, mood tracking, AI journaling, anxiety, ADHD, and app comparisons. This guide is the map. The linked articles are the deep dives.</p>
         `,
+      ),
+      renderSection(
+        "Continue with a more specific path",
+        renderLinkCardGrid([
+          {
+            href: "/blog/how-to-start-journaling",
+            title: "How to start journaling",
+            description:
+              "Use the simplest starting framework if you want a lower-pressure first habit.",
+            badge: "Beginner",
+          },
+          {
+            href: "/blog/voice-journaling-guide",
+            title: "Voice journaling guide",
+            description:
+              "See when voice notes beat typing and how to make voice reflection easier to sustain.",
+            badge: "Feature",
+          },
+          {
+            href: "/blog/mood-tracker-for-self-awareness",
+            title: "Mood tracking for self-awareness",
+            description:
+              "Learn how tracking patterns can reveal what is actually shaping your days.",
+            badge: "Use case",
+          },
+          {
+            href: "/onboarding",
+            title: "Start the Ju reveal",
+            description:
+              "Move from reading about journaling to trying a low-friction reflection flow.",
+            badge: "Product",
+          },
+        ]),
       ),
     ],
     cta: renderCta({
@@ -1274,9 +1607,9 @@ function buildStaticPages(posts) {
   const guideArticleSchema = {
     "@context": "https://schema.org",
     "@type": "Article",
-    headline: "The Complete Guide to Journaling: Methods, Science & Tools (2026)",
+    headline: "Complete Guide to Journaling: Science, Methods, Tools (2026)",
     description:
-      "Everything you need to start, sustain, and get real value from a journaling practice - research-backed methods, prompts, mood tracking, and the best tools for 2026.",
+      "Learn how to start journaling, build a habit that lasts, track moods, and choose the right prompts, methods, and tools for 2026.",
     datePublished: "2026-04-18",
     dateModified: "2026-04-18",
     inLanguage: "en",
@@ -1295,9 +1628,9 @@ function buildStaticPages(posts) {
   return [
     {
       route: "/",
-      title: "AI Journaling App for Mood Tracking and Emotional Clarity",
+      title: "AI Journaling App and Mood Tracker",
       description:
-        "Nuju is an AI journaling app and mood tracker for emotional clarity, private self-reflection, and fast daily check-ins. Start the Ju Gets You reveal free.",
+        "Nuju is an AI journaling app and mood tracker for emotional clarity, private reflection, and fast daily check-ins. Start the Ju Gets You reveal free.",
       canonical: `${BASE_URL}/`,
       breadcrumbs: [{ name: "Home", url: `${BASE_URL}/` }],
       schemas: [
@@ -1324,22 +1657,22 @@ function buildStaticPages(posts) {
     },
     {
       route: "/support",
-      title: "Support & FAQ",
+      title: "Support and FAQ for Journaling, Billing, and Access",
       description:
-        "Get help with Nuju - frequently asked questions, contact info, and guidance for getting the most out of your AI journal.",
+        "Get help with Nuju journaling features, account access, billing, export questions, and the safest next step if you need more support.",
       canonical: `${BASE_URL}/support`,
       breadcrumbs: [
         { name: "Home", url: `${BASE_URL}/` },
-        { name: "Support & FAQ", url: `${BASE_URL}/support` },
+        { name: "Support", url: `${BASE_URL}/support` },
       ],
       schemas: [supportFaqSchema],
       bodyHtml: renderSupportBody(),
     },
     {
       route: "/contact",
-      title: "Contact Nuju - AI Journal App Support & Feedback",
+      title: "Contact Nuju for Support, Billing, and Feedback",
       description:
-        "Reach out to the Nuju team for help with the AI journal app, subscription questions, feedback, or anything about your journaling experience.",
+        "Contact Nuju for account help, billing questions, bug reports, product feedback, or anything blocking your journaling experience.",
       canonical: `${BASE_URL}/contact`,
       breadcrumbs: [
         { name: "Home", url: `${BASE_URL}/` },
@@ -1349,9 +1682,9 @@ function buildStaticPages(posts) {
     },
     {
       route: "/install",
-      title: "Install Nuju App - AI Journal for iOS, Android, and Desktop",
+      title: "Install Nuju on iPhone, Android, and Desktop",
       description:
-        "Add Nuju to your home screen for the full AI journal experience. Works offline on iOS, Android, and desktop as a progressive web app.",
+        "Install Nuju on iPhone, Android, or desktop for faster journaling, easier re-entry, and a smoother daily check-in flow.",
       canonical: `${BASE_URL}/install`,
       breadcrumbs: [
         { name: "Home", url: `${BASE_URL}/` },
@@ -1361,9 +1694,9 @@ function buildStaticPages(posts) {
     },
     {
       route: "/privacy",
-      title: "Privacy Policy",
+      title: "Privacy Policy and Data Handling",
       description:
-        "Learn how Nuju collects, uses, and protects your personal data and journal entries. Your privacy is a core part of the product.",
+        "Learn how Nuju collects, stores, and protects journal data, account details, and AI-generated insights, plus what happens if you export or delete your account.",
       canonical: `${BASE_URL}/privacy`,
       breadcrumbs: [
         { name: "Home", url: `${BASE_URL}/` },
@@ -1373,9 +1706,9 @@ function buildStaticPages(posts) {
     },
     {
       route: "/terms",
-      title: "Terms of Service",
+      title: "Terms of Service and Paid Access Rules",
       description:
-        "Read Nuju's terms of service - the rules and guidelines for using the Nuju AI journaling app.",
+        "Read Nuju's terms of service, account rules, payment terms, and the boundaries of the AI journaling experience before you keep using the app.",
       canonical: `${BASE_URL}/terms`,
       breadcrumbs: [
         { name: "Home", url: `${BASE_URL}/` },
@@ -1397,10 +1730,9 @@ function buildStaticPages(posts) {
     },
     {
       route: "/blog",
-      title:
-        "Nuju Blog - Best Journaling Apps, Mood Trackers, and Emotional Wellness Guides",
+      title: "Blog: Journaling, Mood Tracking, and Wellness Guides",
       description:
-        "Recommendation pages, honest app comparisons, and practical guides on journaling, mood tracking, and emotional clarity.",
+        "Read recommendation pages, honest app comparisons, and practical guides for journaling, mood tracking, emotional clarity, and building a reflection habit that sticks.",
       canonical: `${BASE_URL}/blog`,
       breadcrumbs: [
         { name: "Home", url: `${BASE_URL}/` },
@@ -1410,9 +1742,9 @@ function buildStaticPages(posts) {
     },
     {
       route: "/guides/journaling",
-      title: "The Complete Guide to Journaling: Methods, Science & Tools",
+      title: "Complete Guide to Journaling: Science, Methods, Tools",
       description:
-        "Everything you need to start, sustain, and get real value from a journaling practice - research-backed methods, prompts, mood tracking, and the best tools for 2026.",
+        "Learn how to start journaling, build a habit that lasts, track moods, and choose the right prompts, methods, and tools for 2026.",
       canonical: `${BASE_URL}/guides/journaling`,
       breadcrumbs: [
         { name: "Home", url: `${BASE_URL}/` },

@@ -426,8 +426,8 @@ const Landing: React.FC = () => {
   return (
     <div className="min-h-screen bg-background">
       <SEOHead
-        title="AI Journaling App for Mood Tracking and Emotional Clarity"
-        description="Nuju is an AI journaling app and mood tracker for emotional clarity, private self-reflection, and fast daily check-ins. Start the Ju Gets You reveal free."
+        title="AI Journaling App and Mood Tracker"
+        description="Nuju is an AI journaling app and mood tracker for emotional clarity, private reflection, and fast daily check-ins. Start the Ju Gets You reveal free."
         canonical="https://nuju.app/"
       />
       <script type="application/ld+json">{JSON.stringify(howToSchema)}</script>

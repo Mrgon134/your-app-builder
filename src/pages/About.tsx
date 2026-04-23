@@ -2,6 +2,7 @@ import React from "react";
 import { useNavigate, useLocation, Link } from "react-router-dom";
 import { ArrowLeft, Heart, Shield, Sparkles, Code } from "lucide-react";
 import SEOHead from "@/components/SEOHead";
+import PublicNextSteps from "@/components/PublicNextSteps";
 
 const About: React.FC = () => {
   const navigate = useNavigate();
@@ -218,6 +219,38 @@ const About: React.FC = () => {
             </p>
           </section>
         </div>
+
+        <PublicNextSteps
+          state={linkState}
+          title="See how Nuju works in practice"
+          description="If you want the product path after the mission statement, start with the reveal, install instructions, or the journal guide."
+          links={[
+            {
+              to: "/",
+              title: "Nuju homepage",
+              description: "See the main product story, who Nuju is for, and how the reveal starts.",
+              badge: "Product",
+            },
+            {
+              to: "/install",
+              title: "Install Nuju",
+              description: "Add Nuju to your home screen or desktop for faster daily check-ins.",
+              badge: "Setup",
+            },
+            {
+              to: "/guides/journaling",
+              title: "Read the journaling guide",
+              description: "Go deeper on methods, science, prompts, and mood tracking.",
+              badge: "Guide",
+            },
+            {
+              to: "/support",
+              title: "Support and FAQ",
+              description: "Get help with billing, exporting, account questions, and product basics.",
+              badge: "Help",
+            },
+          ]}
+        />
 
         <div className="mt-12 pt-8 border-t border-border">
           <p className="text-xs text-muted-foreground text-center">

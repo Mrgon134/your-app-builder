@@ -2,6 +2,7 @@ import React from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
 import SEOHead from "@/components/SEOHead";
+import PublicNextSteps from "@/components/PublicNextSteps";
 
 const Privacy: React.FC = () => {
   const navigate = useNavigate();
@@ -15,8 +16,8 @@ const Privacy: React.FC = () => {
   return (
     <div className="min-h-screen bg-background">
       <SEOHead
-        title="Privacy Policy"
-        description="Learn how Nuju collects, uses, and protects your personal data and journal entries. Your privacy is a core part of the product."
+        title="Privacy Policy and Data Handling"
+        description="Learn how Nuju collects, stores, and protects journal data, account details, and AI-generated insights, plus what happens if you export or delete your account."
         canonical="https://nuju.app/privacy"
         breadcrumbs={[
           { name: "Home", url: "https://nuju.app/" },
@@ -234,6 +235,38 @@ const Privacy: React.FC = () => {
             </p>
           </section>
         </div>
+
+        <PublicNextSteps
+          state={{ from: "/privacy" }}
+          title="Explore the trust pages around this policy"
+          description="If you want the practical details behind privacy, these pages explain support, account rules, and how to use Nuju safely."
+          links={[
+            {
+              to: "/terms",
+              title: "Terms of Service",
+              description: "Review account rules, paid access terms, and how Nuju should be used.",
+              badge: "Policy",
+            },
+            {
+              to: "/support",
+              title: "Support and FAQ",
+              description: "Find help with export, billing, account access, and everyday questions.",
+              badge: "Help",
+            },
+            {
+              to: "/contact",
+              title: "Contact Nuju",
+              description: "Reach the team if you need help with data, account requests, or feedback.",
+              badge: "Support",
+            },
+            {
+              to: "/medical-disclaimer",
+              title: "Medical Disclaimer",
+              description: "See the safety boundary between journaling support and professional mental health care.",
+              badge: "Safety",
+            },
+          ]}
+        />
 
         <div className="mt-12 pt-8 border-t border-border">
           <p className="text-xs text-muted-foreground text-center">

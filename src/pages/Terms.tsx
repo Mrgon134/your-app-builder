@@ -2,6 +2,7 @@ import React from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
 import SEOHead from "@/components/SEOHead";
+import PublicNextSteps from "@/components/PublicNextSteps";
 
 const Terms: React.FC = () => {
   const navigate = useNavigate();
@@ -15,8 +16,8 @@ const Terms: React.FC = () => {
   return (
     <div className="min-h-screen bg-background">
       <SEOHead
-        title="Terms of Service"
-        description="Read Nuju's terms of service - the rules and guidelines for using the Nuju AI journaling app."
+        title="Terms of Service and Paid Access Rules"
+        description="Read Nuju's terms of service, account rules, payment terms, and the boundaries of the AI journaling experience before you keep using the app."
         canonical="https://nuju.app/terms"
         breadcrumbs={[
           { name: "Home", url: "https://nuju.app/" },
@@ -179,6 +180,38 @@ const Terms: React.FC = () => {
             </p>
           </section>
         </div>
+
+        <PublicNextSteps
+          state={{ from: "/terms" }}
+          title="Need the practical side too?"
+          description="Use these pages if you want help with privacy, support, or setting up Nuju after reading the legal basics."
+          links={[
+            {
+              to: "/privacy",
+              title: "Privacy Policy",
+              description: "See how Nuju handles journal data, account information, and AI processing.",
+              badge: "Trust",
+            },
+            {
+              to: "/support",
+              title: "Support and FAQ",
+              description: "Get answers about billing, export, journaling features, and account access.",
+              badge: "Help",
+            },
+            {
+              to: "/contact",
+              title: "Contact Nuju",
+              description: "Reach the team for billing questions, bug reports, or account help.",
+              badge: "Support",
+            },
+            {
+              to: "/install",
+              title: "Install Nuju",
+              description: "Add Nuju to your phone or desktop and keep the app easy to reopen.",
+              badge: "Setup",
+            },
+          ]}
+        />
 
         <div className="mt-12 pt-8 border-t border-border">
           <p className="text-xs text-muted-foreground text-center">
