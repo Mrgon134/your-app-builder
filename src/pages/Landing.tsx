@@ -147,6 +147,12 @@ const socialProofSignals = [
   "Easy to come back on hard days",
 ] as const;
 
+const heroEmotionalArc = [
+  { label: "Heavy", copy: "Say the messy part", color: "#6C9BCF" },
+  { label: "Seen", copy: "Get the first read", color: "#7C6EDB" },
+  { label: "Softer", copy: "Know what helps next", color: "#4ECDC4" },
+] as const;
+
 const secondaryProofStats = [
   {
     value: "1 clear read",
@@ -615,6 +621,33 @@ const Landing: React.FC = () => {
             </div>
 
              <HeroPatternPreview />
+
+             <motion.div
+              initial={{ opacity: 0, y: 18 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.95, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+              className="relative mx-auto mt-5 overflow-hidden rounded-[1.75rem] border border-white/70 bg-white/72 p-3 shadow-[0_20px_55px_-34px_rgba(80,63,153,0.55)] backdrop-blur-xl dark:border-white/10 dark:bg-white/8"
+             >
+              <div className="absolute left-8 right-8 top-8 h-px bg-[linear-gradient(90deg,rgba(108,155,207,0.08),rgba(124,110,219,0.55),rgba(78,205,196,0.08))]" aria-hidden />
+              <div className="grid gap-2 sm:grid-cols-3">
+                {heroEmotionalArc.map((item, index) => (
+                  <motion.div
+                    key={item.label}
+                    initial={{ opacity: 0, y: 12 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 1.05 + index * 0.1, duration: 0.45 }}
+                    className="relative rounded-[1.25rem] border border-border/50 bg-background/78 px-4 py-3 text-left dark:border-white/10 dark:bg-white/6"
+                  >
+                    <span
+                      className="mb-3 flex h-3 w-3 rounded-full shadow-[0_0_18px_currentColor]"
+                      style={{ backgroundColor: item.color, color: item.color }}
+                    />
+                    <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-muted-foreground">{item.label}</p>
+                    <p className="mt-1 text-sm font-semibold text-foreground">{item.copy}</p>
+                  </motion.div>
+                ))}
+              </div>
+             </motion.div>
           </motion.div>
         </motion.div>
       </section>

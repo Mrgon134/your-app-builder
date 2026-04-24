@@ -16,7 +16,12 @@ import {
   UserRound,
 } from "lucide-react";
 
+import juGood from "@/assets/ju-good.webp";
+import juGreat from "@/assets/ju-great.webp";
+import juLow from "@/assets/ju-low.webp";
 import juMain from "@/assets/ju-main.webp";
+import juOkay from "@/assets/ju-okay.webp";
+import juRough from "@/assets/ju-rough.webp";
 import LifetimeScarcityMeter from "@/components/app/LifetimeScarcityMeter";
 import { useGeoPricing } from "@/hooks/use-geo-pricing";
 import { useLifetimeScarcity } from "@/hooks/use-lifetime-scarcity";
@@ -69,6 +74,16 @@ const STEP_KEYS = [
 
 type CheckoutPlan = "yearly_trial" | "lifetime_one_time";
 const VALID_PLANS: CheckoutPlan[] = ["yearly_trial", "lifetime_one_time"];
+
+interface OnboardingVisualScene {
+  accent: string;
+  image: string;
+  eyebrow: string;
+  title: string;
+  body: string;
+  quote: string;
+  chips: string[];
+}
 
 const PHASE_LABELS: Record<number, string> = {
   0: "The softest start",
@@ -245,6 +260,97 @@ const StepMascot: React.FC<{ size?: number }> = ({ size = 40 }) => (
       style={{ animation: "ju-float 3.4s ease-in-out infinite" }}
     />
   </div>
+);
+
+const OnboardingCompanionVisual: React.FC<{ scene: OnboardingVisualScene; step: number }> = ({ scene, step }) => (
+  <aside
+    className="relative hidden min-h-[620px] overflow-hidden rounded-[2.75rem] border border-white/70 bg-[linear-gradient(155deg,rgba(255,255,255,0.78),rgba(248,246,255,0.92)_46%,rgba(237,250,247,0.82))] p-6 shadow-[0_35px_90px_-46px_rgba(80,63,153,0.55)] backdrop-blur-2xl dark:border-white/10 dark:bg-[linear-gradient(155deg,rgba(32,25,52,0.92),rgba(22,17,36,0.96)_52%,rgba(16,31,37,0.9))] lg:block"
+    aria-hidden="true"
+    style={{ "--scene-accent": scene.accent } as React.CSSProperties}
+  >
+    <div className="absolute inset-0 hero-grid-bg opacity-45" />
+    <div
+      className="aurora-blob animate-aurora-a left-[-24%] top-[-16%] h-80 w-80"
+      style={{ background: `radial-gradient(circle, ${scene.accent}66, transparent 66%)` }}
+    />
+    <div className="aurora-blob animate-aurora-b right-[-26%] top-[22%] h-72 w-72 bg-[radial-gradient(circle,rgba(78,205,196,0.35),transparent_66%)]" />
+    <div className="aurora-blob animate-aurora-c bottom-[-22%] left-[18%] h-80 w-80 bg-[radial-gradient(circle,rgba(255,179,71,0.28),transparent_66%)]" />
+
+    <motion.div
+      key={`${step}-${scene.title}`}
+      initial={{ opacity: 0, y: 20, scale: 0.98 }}
+      animate={{ opacity: 1, y: 0, scale: 1 }}
+      transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
+      className="relative flex h-full flex-col"
+    >
+      <div className="inline-flex w-fit items-center gap-2 rounded-full border border-white/70 bg-white/70 px-3 py-1.5 text-[11px] font-bold uppercase tracking-[0.18em] text-[#5B4DB5] shadow-sm backdrop-blur-xl dark:border-white/10 dark:bg-white/10 dark:text-white/80">
+        <span
+          className="h-2 w-2 rounded-full"
+          style={{ backgroundColor: scene.accent, boxShadow: `0 0 18px ${scene.accent}` }}
+        />
+        {scene.eyebrow}
+      </div>
+
+      <div className="relative mx-auto mt-10 flex h-56 w-56 items-center justify-center">
+        <div
+          className="absolute inset-0 rounded-full blur-3xl"
+          style={{ backgroundColor: `${scene.accent}33`, animation: "glow-pulse 3.6s ease-in-out infinite" }}
+        />
+        <div className="absolute h-52 w-52 rounded-full border border-white/80 bg-white/38 shadow-inner dark:border-white/10 dark:bg-white/5" />
+        <div className="absolute h-36 w-36 rounded-full border border-white/70 bg-white/50 dark:border-white/10 dark:bg-white/8" />
+        <img
+          src={scene.image}
+          alt=""
+          className="relative h-36 w-36 object-contain drop-shadow-[0_22px_32px_rgba(80,63,153,0.22)]"
+          style={{ animation: "ju-float 3.4s ease-in-out infinite" }}
+        />
+        <div className="absolute -right-2 top-9 h-4 w-4 rounded-full bg-[#4ECDC4] shadow-[0_0_22px_rgba(78,205,196,0.75)]" />
+        <div
+          className="absolute bottom-10 left-1 h-3 w-3 rounded-full shadow-[0_0_18px_var(--scene-accent)]"
+          style={{ backgroundColor: scene.accent }}
+        />
+      </div>
+
+      <div className="mt-8">
+        <h3 className="font-serif text-4xl font-semibold leading-tight text-foreground dark:text-white">
+          {scene.title}
+        </h3>
+        <p className="mt-4 text-sm leading-7 text-muted-foreground dark:text-white/68">
+          {scene.body}
+        </p>
+      </div>
+
+      <div className="mt-6 flex flex-wrap gap-2">
+        {scene.chips.map((chip) => (
+          <span
+            key={chip}
+            className="rounded-full border border-white/70 bg-white/62 px-3 py-1.5 text-[11px] font-semibold text-foreground/70 shadow-sm backdrop-blur dark:border-white/10 dark:bg-white/8 dark:text-white/72"
+          >
+            {chip}
+          </span>
+        ))}
+      </div>
+
+      <div className="mt-auto rounded-[2rem] border border-white/70 bg-white/72 p-5 shadow-[0_18px_42px_-30px_rgba(80,63,153,0.65)] backdrop-blur-xl dark:border-white/10 dark:bg-white/8">
+        <p className="font-writing text-xl italic leading-8 text-foreground dark:text-white/90">
+          "{scene.quote}"
+        </p>
+        <div className="mt-5 grid grid-cols-5 gap-1.5">
+          {Array.from({ length: 5 }).map((_, index) => (
+            <span
+              key={index}
+              className="h-1.5 rounded-full"
+              style={{
+                backgroundColor: index <= Math.min(4, Math.floor((step / (TOTAL_STEPS - 1)) * 4))
+                  ? scene.accent
+                  : "rgba(124,110,219,0.16)",
+              }}
+            />
+          ))}
+        </div>
+      </div>
+    </motion.div>
+  </aside>
 );
 
 const personalize = (line: string, firstName: string) =>
@@ -659,6 +765,127 @@ const OnboardingScreen: React.FC = () => {
 
   const firstName = funnelState.answers.name.trim();
   const trialDays = PRICING_CONFIG.trial.annualDays;
+  const onboardingScene = useMemo<OnboardingVisualScene>(() => {
+    const name = firstName || "you";
+
+    if (funnelState.step === 0) {
+      return {
+        accent: "#7C6EDB",
+        image: juMain,
+        eyebrow: "Start soft",
+        title: "This should feel like an exhale.",
+        body: "The first screen is not trying to impress you. It is here to make the next honest click feel safe.",
+        quote: "No perfect words yet. Just enough truth to begin.",
+        chips: ["60-second reveal", "Private start", "No pressure"],
+      };
+    }
+
+    if (funnelState.step <= 6) {
+      return {
+        accent: "#6C9BCF",
+        image: juLow,
+        eyebrow: "Listening mode",
+        title: "Ju is learning the shape of what feels heavy.",
+        body: "These early answers help the reveal feel specific instead of generic, without making you over-explain yourself.",
+        quote: `I am not asking ${name} to perform clarity. I am noticing the pattern underneath.`,
+        chips: ["Low effort", "Emotion-first", "Pattern forming"],
+      };
+    }
+
+    if (funnelState.step === CONTACT_STEP) {
+      return {
+        accent: "#7C6EDB",
+        image: juMain,
+        eyebrow: "Make it yours",
+        title: "A personal read needs a personal anchor.",
+        body: "Name and email are handled like a continuation point, so the reveal can belong to the same person later.",
+        quote: "This is where the app stops feeling like a page and starts feeling like it knows who came here.",
+        chips: ["Saved context", "Account-ready", "Still gentle"],
+      };
+    }
+
+    if (funnelState.step <= 10) {
+      return {
+        accent: "#E8878C",
+        image: juRough,
+        eyebrow: "Under the surface",
+        title: "The emotional cost is where the read gets real.",
+        body: "Nuju is paying attention to the invisible part: what this has been costing, when it shows up, and what kind of presence helps.",
+        quote: "The part that is hardest to say is usually the part that needs the softest room.",
+        chips: ["Deeper signal", "Less alone", "Warm honesty"],
+      };
+    }
+
+    if (funnelState.step <= 13) {
+      return {
+        accent: "#FFB347",
+        image: juOkay,
+        eyebrow: "Resonance check",
+        title: "This is where the user feels seen or bounces.",
+        body: "The resonance cards turn onboarding into an emotional mirror before the final reveal lands.",
+        quote: "If one line feels uncomfortably close, the reveal has earned more trust.",
+        chips: ["Mirror moment", "Trust building", "Not generic"],
+      };
+    }
+
+    if (funnelState.step <= 15) {
+      return {
+        accent: "#95E1D3",
+        image: juGood,
+        eyebrow: "Almost ready",
+        title: "Ju is tuning the read to the state you are in now.",
+        body: "Baseline and relief are small questions, but they shape whether the output feels caring or merely clever.",
+        quote: "The goal is not just insight. It is a first feeling of relief.",
+        chips: ["Energy-aware", "Relief target", "Reveal prep"],
+      };
+    }
+
+    if (funnelState.step === PROCESSING_STEP) {
+      return {
+        accent: "#7C6EDB",
+        image: juMain,
+        eyebrow: "Reading gently",
+        title: "The pause should feel intentional, not like loading.",
+        body: "This moment makes the reveal feel crafted, while showing the user that Ju is working with their exact context.",
+        quote: `Sitting with ${name}'s words before turning them into something clear.`,
+        chips: ["Context read", "Soft suspense", "Human pace"],
+      };
+    }
+
+    if (funnelState.step === RESULT_STEP) {
+      return {
+        accent: "#4ECDC4",
+        image: juGreat,
+        eyebrow: teaser.stateLabel,
+        title: "The reveal is the emotional payoff.",
+        body: "This is the point where Nuju has to feel different from a normal journal: specific, warm, and worth continuing.",
+        quote: teaser.headline,
+        chips: ["First read", "Pattern named", "Next step"],
+      };
+    }
+
+    if (funnelState.step === BRIDGE_STEP) {
+      return {
+        accent: "#95E1D3",
+        image: juGood,
+        eyebrow: "Keep it open",
+        title: "Now the product has permission to stay close.",
+        body: "The bridge connects the emotional read to a reason to keep Ju nearby before the pricing decision appears.",
+        quote: "The next heavy moment should not have to start from zero.",
+        chips: ["Memory", "Continuation", "Support path"],
+      };
+    }
+
+    return {
+      accent: "#7C6EDB",
+      image: juGreat,
+      eyebrow: "Stay with Ju",
+      title: "The paywall should feel like continuation, not interruption.",
+      body: "Pricing lands best when it feels like keeping the support that already understood them.",
+      quote: "If the reveal felt real, the next decision is simply how close Ju should stay.",
+      chips: [`${trialDays}-day trial`, "Lifetime option", "Free path"],
+    };
+  }, [firstName, funnelState.step, teaser.headline, teaser.stateLabel, trialDays]);
 
   type PaywallPlanCard = {
     id: CheckoutPlan;
@@ -1392,7 +1619,7 @@ const OnboardingScreen: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-[radial-gradient(circle_at_top,_rgba(124,110,219,0.18),_transparent_38%),linear-gradient(180deg,#f8f6ff_0%,#ffffff_46%,#f6f4ff_100%)] px-4 py-6 dark:bg-background">
-      <div className="mx-auto flex min-h-[calc(100vh-3rem)] w-full max-w-4xl flex-col">
+      <div className="mx-auto flex min-h-[calc(100vh-3rem)] w-full max-w-6xl flex-col">
         <div className="mb-6 flex items-center justify-between gap-4">
           <button
             onClick={goBack}
@@ -1421,19 +1648,22 @@ const OnboardingScreen: React.FC = () => {
           </p>
         </div>
 
-        <div className="flex flex-1 items-center">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={funnelState.step}
-              className="w-full"
-              initial={{ opacity: 0, y: 24 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -18 }}
-              transition={{ type: "spring", stiffness: 220, damping: 24 }}
-            >
-              {renderStep()}
-            </motion.div>
-          </AnimatePresence>
+        <div className="grid flex-1 items-center gap-6 lg:grid-cols-[0.9fr_1.1fr]">
+          <OnboardingCompanionVisual scene={onboardingScene} step={funnelState.step} />
+          <div className="flex min-w-0 items-center">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={funnelState.step}
+                className="w-full"
+                initial={{ opacity: 0, y: 24 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -18 }}
+                transition={{ type: "spring", stiffness: 220, damping: 24 }}
+              >
+                {renderStep()}
+              </motion.div>
+            </AnimatePresence>
+          </div>
         </div>
       </div>
     </div>
