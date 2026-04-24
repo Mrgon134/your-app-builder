@@ -154,7 +154,7 @@ serve(async (req) => {
 
     const data = JSON.parse(responseText);
     const checkoutUrl = safeText(data.checkout_url || data.payment_link || data.url);
-    const checkoutSessionId = safeText(data.id || data.checkout_id || data.checkout_session_id);
+    const checkoutSessionId = safeText(data.session_id || data.checkout_session_id || data.checkout_id || data.id);
 
     if (!checkoutUrl) throw new Error("No checkout URL returned");
 

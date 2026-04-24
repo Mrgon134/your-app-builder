@@ -18,6 +18,23 @@ const mergeJson = (current: unknown, patch: Record<string, unknown>) => ({
   ...patch,
 });
 
+const readCheckoutSessionId = (row: Record<string, unknown>) => {
+  const metadata = row.metadata_json && typeof row.metadata_json === "object" && !Array.isArray(row.metadata_json)
+    ? row.metadata_json as Record<string, unknown>
+    : {};
+  const checkoutResponse = metadata.checkout_response && typeof metadata.checkout_response === "object" && !Array.isArray(metadata.checkout_response)
+    ? metadata.checkout_response as Record<string, unknown>
+    : {};
+
+  return safeText(
+    row.checkout_session_id ||
+    checkoutResponse.session_id ||
+    checkoutResponse.checkout_session_id ||
+    checkoutResponse.checkout_id ||
+    checkoutResponse.id,
+  );
+};
+
 serve(async (req) => {
   if (req.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
@@ -84,10 +101,28 @@ serve(async (req) => {
       }
     }
 
-    if (!["paid", "claimed", "failed", "expired"].includes(nextStatus) && safeText(row.checkout_session_id)) {
+    const checkoutSessionId = readCheckoutSessionId(row);
+
+    if (!safeText(row.checkout_session_id) && checkoutSessionId) {
+      const { data: updatedRow } = await supabase
+        .from("checkout_purchase_intents")
+        .update({
+          checkout_session_id: checkoutSessionId,
+          updated_at: new Date().toISOString(),
+        })
+        .eq("id", normalizedIntentId)
+        .select("*")
+        .single();
+
+      if (updatedRow) {
+        Object.assign(row, updatedRow);
+      }
+    }
+
+    if (!["paid", "claimed", "failed", "expired"].includes(nextStatus) && checkoutSessionId) {
       const dodoKey = Deno.env.get("DODO_PAYMENTS_API_KEY");
       if (dodoKey) {
-        const checkoutResp = await fetch(`${getBaseUrl()}/checkouts/${encodeURIComponent(String(row.checkout_session_id))}`, {
+        const checkoutResp = await fetch(`${getBaseUrl()}/checkouts/${encodeURIComponent(checkoutSessionId)}`, {
           headers: {
             Authorization: `Bearer ${dodoKey}`,
           },

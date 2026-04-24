@@ -113,7 +113,13 @@ serve(async (req) => {
 
     const intentId = safeText(metadata.intent_id || payloadData.intent_id);
     const sessionId = safeText(metadata.session_id || payloadData.session_id);
-    const checkoutSessionId = safeText(payloadData.checkout_session_id || payloadData.checkout_id || (payloadData.checkout as Record<string, unknown>)?.id);
+    const checkoutSessionId = safeText(
+      payloadData.session_id ||
+      payloadData.checkout_session_id ||
+      payloadData.checkout_id ||
+      (payloadData.checkout as Record<string, unknown>)?.session_id ||
+      (payloadData.checkout as Record<string, unknown>)?.id,
+    );
     const paymentId = safeText(payloadData.payment_id || (eventName.startsWith("payment.") ? payloadData.id : ""));
     const subscriptionId = safeText(payloadData.subscription_id || (eventName.startsWith("subscription.") ? payloadData.id : ""));
     const customerId = safeText(payloadData.customer_id || (payloadData.customer as Record<string, unknown>)?.id);
