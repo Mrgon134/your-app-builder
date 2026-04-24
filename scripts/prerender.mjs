@@ -13,6 +13,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, "..");
 const DIST = join(ROOT, "dist");
 const BASE_URL = "https://nuju.app";
+const HELMET_ATTRIBUTE = 'data-rh="true"';
 const OG_IMAGE =
   "https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image";
 const OG_IMAGE_ALT = "Nuju AI journal companion app screenshot";
@@ -1388,14 +1389,16 @@ function buildSeoBlock(page) {
   const fullTitle = `${page.title} | Nuju`;
   const ogType = page.ogType ?? "website";
   const locale = page.locale ?? "en_US";
-  const robots = page.noindex ? `<meta name="robots" content="noindex, nofollow" />` : "";
+  const robots = page.noindex
+    ? `<meta ${HELMET_ATTRIBUTE} name="robots" content="noindex, nofollow" />`
+    : "";
   const alternateLinks = [
     ...(page.alternates ?? []),
     { lang: "x-default", url: page.canonical },
   ]
     .map(
       (alternate) =>
-        `<link rel="alternate" hrefLang="${escapeAttribute(alternate.lang)}" href="${escapeAttribute(alternate.url)}" />`,
+        `<link ${HELMET_ATTRIBUTE} rel="alternate" hrefLang="${escapeAttribute(alternate.lang)}" href="${escapeAttribute(alternate.url)}" />`,
     )
     .join("\n");
 
@@ -1406,32 +1409,32 @@ function buildSeoBlock(page) {
     .filter(Boolean)
     .map(
       (schema) =>
-        `<script type="application/ld+json">${JSON.stringify(schema)}</script>`,
+        `<script ${HELMET_ATTRIBUTE} type="application/ld+json">${JSON.stringify(schema)}</script>`,
     )
     .join("\n");
 
   return `
-    <title>${escapeHtml(fullTitle)}</title>
-    <meta name="description" content="${escapeAttribute(page.description)}" />
+    <title ${HELMET_ATTRIBUTE}>${escapeHtml(fullTitle)}</title>
+    <meta ${HELMET_ATTRIBUTE} name="description" content="${escapeAttribute(page.description)}" />
     ${robots}
-    <link rel="canonical" href="${escapeAttribute(page.canonical)}" />
-    <meta property="og:type" content="${escapeAttribute(ogType)}" />
-    <meta property="og:title" content="${escapeAttribute(fullTitle)}" />
-    <meta property="og:description" content="${escapeAttribute(page.description)}" />
-    <meta property="og:image" content="${escapeAttribute(OG_IMAGE)}" />
-    <meta property="og:image:alt" content="${escapeAttribute(OG_IMAGE_ALT)}" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-    <meta property="og:url" content="${escapeAttribute(page.canonical)}" />
-    <meta property="og:locale" content="${escapeAttribute(locale)}" />
-    <meta property="og:site_name" content="Nuju" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="${escapeAttribute(fullTitle)}" />
-    <meta name="twitter:description" content="${escapeAttribute(page.description)}" />
-    <meta name="twitter:image" content="${escapeAttribute(OG_IMAGE)}" />
-    <meta name="twitter:image:alt" content="${escapeAttribute(OG_IMAGE_ALT)}" />
-    <meta name="twitter:site" content="@nujuapp" />
-    <meta name="twitter:creator" content="@nujuapp" />
+    <link ${HELMET_ATTRIBUTE} rel="canonical" href="${escapeAttribute(page.canonical)}" />
+    <meta ${HELMET_ATTRIBUTE} property="og:type" content="${escapeAttribute(ogType)}" />
+    <meta ${HELMET_ATTRIBUTE} property="og:title" content="${escapeAttribute(fullTitle)}" />
+    <meta ${HELMET_ATTRIBUTE} property="og:description" content="${escapeAttribute(page.description)}" />
+    <meta ${HELMET_ATTRIBUTE} property="og:image" content="${escapeAttribute(OG_IMAGE)}" />
+    <meta ${HELMET_ATTRIBUTE} property="og:image:alt" content="${escapeAttribute(OG_IMAGE_ALT)}" />
+    <meta ${HELMET_ATTRIBUTE} property="og:image:width" content="1200" />
+    <meta ${HELMET_ATTRIBUTE} property="og:image:height" content="630" />
+    <meta ${HELMET_ATTRIBUTE} property="og:url" content="${escapeAttribute(page.canonical)}" />
+    <meta ${HELMET_ATTRIBUTE} property="og:locale" content="${escapeAttribute(locale)}" />
+    <meta ${HELMET_ATTRIBUTE} property="og:site_name" content="Nuju" />
+    <meta ${HELMET_ATTRIBUTE} name="twitter:card" content="summary_large_image" />
+    <meta ${HELMET_ATTRIBUTE} name="twitter:title" content="${escapeAttribute(fullTitle)}" />
+    <meta ${HELMET_ATTRIBUTE} name="twitter:description" content="${escapeAttribute(page.description)}" />
+    <meta ${HELMET_ATTRIBUTE} name="twitter:image" content="${escapeAttribute(OG_IMAGE)}" />
+    <meta ${HELMET_ATTRIBUTE} name="twitter:image:alt" content="${escapeAttribute(OG_IMAGE_ALT)}" />
+    <meta ${HELMET_ATTRIBUTE} name="twitter:site" content="@nujuapp" />
+    <meta ${HELMET_ATTRIBUTE} name="twitter:creator" content="@nujuapp" />
     ${alternateLinks}
     ${schemas}
     ${PRERENDER_STYLE}
