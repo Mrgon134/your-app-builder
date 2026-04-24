@@ -41,7 +41,8 @@ export const useLifetimeScarcity = () => {
           throw new Error(`RPC failed with status ${response.status}`);
         }
 
-        const payload = (await response.json()) as LifetimeOfferResponse;
+        const rawPayload = (await response.json()) as LifetimeOfferResponse | LifetimeOfferResponse[];
+        const payload = Array.isArray(rawPayload) ? rawPayload[0] : rawPayload;
         const actualCount = Number(payload?.actual_count);
 
         if (!Number.isFinite(actualCount)) {
