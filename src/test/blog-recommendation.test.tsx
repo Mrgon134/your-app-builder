@@ -109,14 +109,35 @@ describe("Blog recommendation surfaces", () => {
     renderBlogPost("best-ai-journaling-apps");
 
     expect(screen.getByRole("heading", { name: /best ai journaling apps in 2026: 8 tested, 3 worth using/i })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: /quick answer: which ai journaling app should you try first/i })).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: /how we tested the 8 apps/i })).toBeInTheDocument();
     expect(seoHeadProps).toHaveBeenCalledWith(
       expect.objectContaining({
         title: "Best AI Journaling Apps in 2026: 8 Tested, 3 Worth Using",
         description:
-          "We compared 8 AI journaling apps for privacy, mood tracking, emotional insight, and ease of use. These are the 3 worth trying first — and when Nuju is the best fit.",
+          "We tested 8 AI journaling apps for privacy, mood tracking, free access, and emotional insight. See the 3 worth trying first.",
         canonical: "https://nuju.app/blog/best-ai-journaling-apps",
       }),
+    );
+  });
+
+  it("adds targeted internal links to priority Search Console pages", () => {
+    renderBlogPost("best-ai-journaling-apps");
+
+    const cluster = screen.getByTestId("blog-internal-link-cluster");
+
+    expect(cluster).toBeInTheDocument();
+    expect(within(cluster).getByRole("link", { name: /best mood tracker apps in 2026/i })).toHaveAttribute(
+      "href",
+      "/blog/best-mood-tracker-apps",
+    );
+    expect(within(cluster).getByRole("link", { name: /best daylio alternatives/i })).toHaveAttribute(
+      "href",
+      "/blog/daylio-alternatives",
+    );
+    expect(within(cluster).getByRole("link", { name: /how to start a journaling habit/i })).toHaveAttribute(
+      "href",
+      "/blog/how-to-start-journaling",
     );
   });
 });

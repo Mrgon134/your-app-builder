@@ -41,6 +41,117 @@ type RecommendationSnapshot = {
   secondaryHref: string;
 };
 
+type InternalLinkRecommendation = {
+  slug: string;
+  eyebrow: string;
+  body: string;
+};
+
+type InternalLinkCard = InternalLinkRecommendation & {
+  post: BlogPostData;
+};
+
+const INTERNAL_LINK_RECOMMENDATIONS: Record<string, InternalLinkRecommendation[]> = {
+  "best-ai-journaling-apps": [
+    {
+      slug: "best-mood-tracker-apps",
+      eyebrow: "Mood tracker intent",
+      body: "Compare the broader mood tracker category before choosing an AI-first journal.",
+    },
+    {
+      slug: "daylio-alternatives",
+      eyebrow: "Daylio switchers",
+      body: "See what changes when you move from quick mood logging to deeper reflection.",
+    },
+    {
+      slug: "reflectly-alternatives",
+      eyebrow: "Prompt app switchers",
+      body: "Useful if guided prompts feel helpful but you want stronger pattern recognition.",
+    },
+    {
+      slug: "how-to-start-journaling",
+      eyebrow: "Habit setup",
+      body: "Start here if the blocker is consistency, not choosing another tool.",
+    },
+  ],
+  "best-mood-tracker-apps": [
+    {
+      slug: "daylio-alternatives",
+      eyebrow: "Alternative query",
+      body: "A focused comparison for readers already familiar with Daylio.",
+    },
+    {
+      slug: "mood-tracker-for-self-awareness",
+      eyebrow: "Use case",
+      body: "Go deeper on mood tracking when the goal is self-awareness, not just logging.",
+    },
+    {
+      slug: "best-ai-journaling-apps",
+      eyebrow: "AI journal intent",
+      body: "Compare AI journaling apps if you want mood data plus written reflection.",
+    },
+  ],
+  "daylio-alternatives": [
+    {
+      slug: "best-mood-tracker-apps",
+      eyebrow: "Category view",
+      body: "Step back and compare the full mood tracker category side by side.",
+    },
+    {
+      slug: "mood-tracker-for-self-awareness",
+      eyebrow: "Deeper use case",
+      body: "Read this if your real goal is understanding emotional patterns, not collecting stats.",
+    },
+    {
+      slug: "best-ai-journaling-apps",
+      eyebrow: "AI reflection",
+      body: "Compare AI journals if Daylio feels too light on interpretation.",
+    },
+  ],
+  "reflectly-alternatives": [
+    {
+      slug: "best-ai-journaling-apps",
+      eyebrow: "AI journal category",
+      body: "Compare the strongest AI journaling apps if prompts are no longer enough.",
+    },
+    {
+      slug: "how-to-start-journaling",
+      eyebrow: "Habit setup",
+      body: "Use this if you want the simplest possible daily journaling system.",
+    },
+    {
+      slug: "ai-journal-for-overthinking",
+      eyebrow: "Use case",
+      body: "A better next read if your main loop is rumination or nighttime replay.",
+    },
+  ],
+  "how-to-start-journaling": [
+    {
+      slug: "best-ai-journaling-apps",
+      eyebrow: "Choose a tool",
+      body: "Compare AI journaling apps once you know what kind of habit you want.",
+    },
+    {
+      slug: "best-mood-tracker-apps",
+      eyebrow: "Track feelings",
+      body: "Review mood tracker options if a quick daily check-in is easier than long entries.",
+    },
+    {
+      slug: "what-is-ai-journaling",
+      eyebrow: "Learn the category",
+      body: "Understand what AI journaling adds beyond a blank page or notes app.",
+    },
+  ],
+};
+
+const getInternalLinkCards = (slug: string): InternalLinkCard[] =>
+  (INTERNAL_LINK_RECOMMENDATIONS[slug] ?? [])
+    .map((link) => {
+      const linkedPost = getPublishedBlogPost(link.slug);
+      return linkedPost ? { ...link, post: linkedPost } : null;
+    })
+    .filter((link): link is InternalLinkCard => Boolean(link));
+
 const getRecommendationSnapshot = (
   post: BlogPostData,
   language: "en" | "id",
@@ -175,6 +286,13 @@ const BlogPost: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
   const post = getPublishedBlogPost(slug ?? "");
   const events = usePostHogEvents();
+  const recommendationPageType = post ? getRecommendationPageType(post) : null;
+
+  useEffect(() => {
+    if (post && recommendationPageType) {
+      events.trackRecommendationPageView(post.slug, post.category, recommendationPageType);
+    }
+  }, [events, post, recommendationPageType]);
 
   if (!post) return <Navigate to="/blog" replace />;
 
@@ -204,13 +322,7 @@ const BlogPost: React.FC = () => {
 
   const relatedPosts = getRelatedPosts(post.slug, 3);
   const recommendationSnapshot = getRecommendationSnapshot(post, language);
-  const recommendationPageType = getRecommendationPageType(post);
-
-  useEffect(() => {
-    if (recommendationPageType) {
-      events.trackRecommendationPageView(post.slug, post.category, recommendationPageType);
-    }
-  }, [events, post.category, post.slug, recommendationPageType]);
+  const internalLinkCards = getInternalLinkCards(post.slug);
 
   const articleSchema = {
     "@context": "https://schema.org",
@@ -394,6 +506,54 @@ const BlogPost: React.FC = () => {
         <div className="prose-nuju">
           {post.sections.map((section, index) => renderSection(section, index))}
         </div>
+
+        {internalLinkCards.length > 0 && (
+          <section
+            data-testid="blog-internal-link-cluster"
+            className="mt-12 rounded-3xl border border-border/60 bg-card/60 p-6 sm:p-8"
+          >
+            <div className="mb-6 max-w-2xl">
+              <p className="mb-2 text-xs font-semibold uppercase tracking-[0.24em] text-primary">
+                Useful next reads
+              </p>
+              <h2 className="font-serif text-2xl font-bold text-foreground">
+                Keep building the full picture
+              </h2>
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                These are the follow-up pages readers usually need before choosing a
+                journaling or mood tracking app.
+              </p>
+            </div>
+
+            <div className="grid gap-4 sm:grid-cols-2">
+              {internalLinkCards.map((link) => (
+                <Link
+                  key={link.slug}
+                  to={`/blog/${link.post.slug}`}
+                  className="group rounded-2xl border border-border/50 bg-background/80 p-5 transition-all hover:border-primary/35 hover:shadow-md"
+                  onClick={() =>
+                    events.trackRecommendationCtaClick(
+                      link.post.slug,
+                      link.post.category,
+                      "blog_internal_link_cluster",
+                      "article",
+                    )
+                  }
+                >
+                  <p className="mb-2 text-xs font-semibold uppercase tracking-[0.2em] text-primary">
+                    {link.eyebrow}
+                  </p>
+                  <h3 className="font-serif text-lg font-semibold leading-snug text-foreground transition-colors group-hover:text-primary">
+                    {link.post.title}
+                  </h3>
+                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                    {link.body}
+                  </p>
+                </Link>
+              ))}
+            </div>
+          </section>
+        )}
 
         {recommendationSnapshot && (
           <section

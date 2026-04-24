@@ -1560,20 +1560,27 @@ const RAW_BLOG_POSTS: BlogPost[] = [
   {
     slug: "best-ai-journaling-apps",
     title: "Best AI Journaling Apps in 2026: 8 Tested, 3 Worth Using",
-    description: "We compared 8 AI journaling apps for privacy, mood tracking, emotional insight, and ease of use. These are the 3 worth trying first — and when Nuju is the best fit.",
+    description: "We tested 8 AI journaling apps for privacy, mood tracking, free access, and emotional insight. See the 3 worth trying first.",
     publishedAt: "2026-04-20",
-    readingTime: 7,
+    readingTime: 8,
     category: "App Comparison",
     sections: [
       { type: "p", content: "We tested eight AI journaling apps across the criteria that actually matter in real life: whether the AI responds to your actual writing, how useful the mood tracking is, whether the privacy policy is clear, and how quickly the app helps you reach a useful insight. Only three felt worth recommending." },
+      { type: "h2", content: "Quick answer: which AI journaling app should you try first?" },
+      { type: "ul", content: ["Try Nuju first if you want AI reflection plus mood tracking, weekly patterns, and a free reveal before paying.", "Try Rosebud AI if you want a more structured CBT-style reflection session.", "Try Reflectly if you are brand new to journaling and mostly want guided prompts.", "Skip apps that are just generic chatbot wrappers with no mood data, no memory, and vague privacy language."] },
+      { type: "callout", content: "If you are searching for a free AI journal app, do not judge by price alone. Judge by whether the free experience lets you test the actual AI response before entering private long-term data." },
       { type: "h2", content: "How we tested the 8 apps" },
       { type: "p", content: "Each app was evaluated on response quality, memory across entries, mood tracking depth, privacy language, free-tier usefulness, and whether the product delivered real emotional clarity instead of generic AI encouragement. The winners are the ones that stayed useful after the novelty wore off." },
+      { type: "p", content: "We weighted mood tracking and privacy heavily because journal entries are not normal app data. A good AI journaling app should help you understand what you wrote without making you wonder where your most personal reflections are going." },
       { type: "h2", content: "What a good AI journaling app actually does" },
       { type: "ul", content: ["Responds to YOUR specific entries — not a template everyone gets", "Remembers context from past entries", "Identifies patterns you wouldn't notice manually", "Offers different coaching styles for different emotional needs", "Has a clear, verifiable privacy policy about encryption and data use"] },
       { type: "callout", content: "The difference between a good AI journal and a bad one: does it respond to what YOU specifically wrote, or does it give everyone the same response regardless of what they shared?" },
+      { type: "h2", content: "AI journaling app vs AI chatbot" },
+      { type: "p", content: "A dedicated AI journaling app is different from opening a chatbot and typing your feelings. The app should combine your written entry with mood data, streak context, previous patterns, and a safe feedback loop. A chatbot can respond to one message, but it usually will not build a useful emotional history unless the product is designed around journaling." },
+      { type: "p", content: "That matters because the value of journaling compounds. The first entry helps you name what happened today. The tenth entry starts showing what repeats. The thirtieth entry can reveal which situations, people, or routines keep affecting your mood." },
       { type: "h2", content: "The 3 that passed our test" },
       { type: "h2", content: "1. Nuju — Best overall" },
-      { type: "p", content: "Nuju is the most complete AI journaling app tested. The AI reads your entries and responds with specific observations — not a template. Four coach personas (Gentle Guide, Tough Coach, Wise Sage, Fun Friend) let you match coaching style to what you need that day. Pattern recognition surfaces weekly mood cycles and relationship correlations. Privacy: end-to-end encryption, no data sold, no AI training on your entries. Free tier is genuinely useful." },
+      { type: "p", content: "Nuju is the most complete AI journaling app tested. The AI reads your entries and responds with specific observations — not a template. Four coach personas (Gentle Guide, Tough Coach, Wise Sage, Fun Friend) let you match coaching style to what you need that day. Pattern recognition surfaces weekly mood cycles and relationship correlations. Privacy: encrypted storage, private access controls, no data sold, no AI training on your entries. Free tier is genuinely useful." },
       { type: "h2", content: "2. Rosebud AI — Best for structured CBT reflection" },
       { type: "p", content: "Rosebud takes a more structured approach — guided reflection sessions based on CBT frameworks, with AI that asks follow-up questions. Less free-form than Nuju; better scaffolded for people who want structured sessions. Good privacy practices. Best for: CBT-based reflection with AI guidance." },
       { type: "h2", content: "3. Reflectly — Best for beginners" },
@@ -1582,6 +1589,9 @@ const RAW_BLOG_POSTS: BlogPost[] = [
       { type: "ul", content: ["Generic prompt generators that give identical advice regardless of what you wrote", "Apps with vague privacy policies ('may use data to improve our services' is a red flag for journal content)", "Chatbot wrappers — apps that are just ChatGPT with a journaling skin and no memory", "Apps with no mood tracking (misses half the emotional picture)", "Subscription-only apps with no free tier (can't evaluate before committing)"] },
       { type: "h2", content: "What to check before downloading any AI journal app" },
       { type: "ul", content: ["Does the AI reference something specific from your entry in its response?", "Does the privacy policy explicitly state entries are NOT used to train AI models?", "Is there a free tier to evaluate before paying?", "Does it track mood alongside entries?", "Does it surface patterns over time, or just respond to individual entries?"] },
+      { type: "h2", content: "Best free AI journal app: what free should include" },
+      { type: "p", content: "A free AI journaling app does not need to give away every advanced feature, but it should let you test the core loop: mood check-in, one real journal entry, and a meaningful AI response. If the free tier only shows prompts but hides the actual reflection behind payment, you cannot judge whether the product works for you." },
+      { type: "p", content: "Nuju's free reveal is built around that idea. You write enough for the app to understand the emotional context, then get a first reflection before deciding whether to keep going. That is a healthier evaluation path than paying before you know whether the AI feels personal or generic." },
       { type: "p", content: "Nuju's free tier requires no credit card — try it, see if the AI actually responds to what you wrote rather than giving you a template response." },
     ],
     faq: [
@@ -1593,12 +1603,22 @@ const RAW_BLOG_POSTS: BlogPost[] = [
       {
         question: "Are AI journaling apps safe with my private data?",
         answer:
-          "Only if the app explicitly commits to end-to-end encryption and states in writing that your entries are not used to train AI models. Avoid apps with vague privacy language like 'may use data to improve our services' — that can include reading your journal. Nuju encrypts entries end-to-end and does not train AI on your writing.",
+          "Only if the app is specific about storage, access controls, data sales, and AI training. Avoid vague privacy language like 'may use data to improve our services' because that can include journal content. Nuju uses encrypted storage, private access controls, and does not train AI on your writing.",
       },
       {
         question: "Do AI journaling apps have a free version?",
         answer:
           "Most of the ones worth trying do. Nuju has a free tier with no credit card required. Rosebud AI and Reflectly also offer free trials. If an app insists on payment before you can test whether the AI actually responds to your writing, skip it — you can't evaluate the quality beforehand.",
+      },
+      {
+        question: "What is the best free AI journal app?",
+        answer:
+          "The best free AI journal app is the one that lets you test the actual reflection quality before paying. Nuju is built around a free reveal with no credit card required, so you can see whether the AI response feels specific to your entry before committing.",
+      },
+      {
+        question: "Is an AI journal better than a mood tracker?",
+        answer:
+          "It depends on the job. A mood tracker is best for fast daily logging. An AI journal is better when you want the app to interpret written context, surface emotional patterns, and explain what may be driving your mood. Nuju combines both, which is why it fits people who want insight rather than only stats.",
       },
       {
         question: "What should I look for in an AI journaling app?",
