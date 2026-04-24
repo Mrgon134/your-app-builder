@@ -1,7 +1,7 @@
 import React from "react";
 import { fireEvent, render, screen, within } from "@testing-library/react";
 import { MemoryRouter, Route, Routes } from "react-router-dom";
-import { beforeEach, describe, expect, it, vi } from "vitest";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 const analyticsEvents = {
   trackRecommendationHubView: vi.fn(),
@@ -52,6 +52,10 @@ const renderBlogPost = (slug: string) =>
 
 beforeEach(() => {
   vi.clearAllMocks();
+});
+
+afterEach(() => {
+  vi.useRealTimers();
 });
 
 describe("Blog recommendation surfaces", () => {
@@ -138,6 +142,28 @@ describe("Blog recommendation surfaces", () => {
     expect(within(cluster).getByRole("link", { name: /how to start a journaling habit/i })).toHaveAttribute(
       "href",
       "/blog/how-to-start-journaling",
+    );
+  });
+
+  it("marks scheduled future blog posts as noindex instead of redirecting to the blog", () => {
+    vi.useFakeTimers();
+    vi.setSystemTime(new Date("2026-04-24T08:00:00Z"));
+
+    renderBlogPost("3am-anxiety-journaling");
+
+    expect(
+      screen.getByRole("heading", {
+        name: /this article is scheduled for april 29, 2026/i,
+      }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("link", { name: /read published articles/i }),
+    ).toHaveAttribute("href", "/blog");
+    expect(seoHeadProps).toHaveBeenCalledWith(
+      expect.objectContaining({
+        canonical: "https://nuju.app/blog/3am-anxiety-journaling",
+        noindex: true,
+      }),
     );
   });
 });

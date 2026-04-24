@@ -7,9 +7,11 @@ import { usePostHogEvents } from "@/hooks/use-posthog-events";
 import {
   BlogPost as BlogPostData,
   BlogSection,
+  getBlogPost,
   getPostLanguage,
   getPublishedBlogPost,
   getRelatedPosts,
+  isPublishedBlogPost,
   LANGUAGE_ALTERNATES,
   slugifyHeading,
 } from "@/data/blog-posts";
@@ -152,6 +154,64 @@ const getInternalLinkCards = (slug: string): InternalLinkCard[] =>
     })
     .filter((link): link is InternalLinkCard => Boolean(link));
 
+const UnpublishedBlogPostNotice: React.FC<{ post: BlogPostData }> = ({ post }) => {
+  const language = getPostLanguage(post);
+  const locale = language === "id" ? "id-ID" : "en-US";
+  const canonical = `https://nuju.app/blog/${post.slug}`;
+  const formattedDate = new Date(post.publishedAt).toLocaleDateString(locale, {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+
+  return (
+    <div className="min-h-screen bg-background">
+      <SEOHead
+        title={`${post.title} - Scheduled`}
+        description={`This Nuju article is scheduled for ${formattedDate}. Browse the published journaling and mood tracking guides while it is being prepared.`}
+        canonical={canonical}
+        noindex
+        breadcrumbs={[
+          { name: "Home", url: "https://nuju.app/" },
+          { name: "Blog", url: "https://nuju.app/blog" },
+          { name: post.title, url: canonical },
+        ]}
+      />
+      <Helmet>
+        <html lang={language} />
+      </Helmet>
+
+      <main className="mx-auto flex min-h-screen max-w-2xl flex-col items-center justify-center px-4 py-16 text-center">
+        <p className="mb-3 text-xs font-semibold uppercase tracking-[0.24em] text-primary">
+          Scheduled article
+        </p>
+        <h1 className="font-serif text-3xl font-bold leading-tight text-foreground sm:text-4xl">
+          This article is scheduled for {formattedDate}
+        </h1>
+        <p className="mt-4 text-muted-foreground">
+          Google may discover future Nuju article URLs from the app bundle before
+          they are published. This page is intentionally marked noindex until the
+          article is live.
+        </p>
+        <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+          <Link
+            to="/blog"
+            className="inline-flex items-center justify-center rounded-full bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground transition-all hover:opacity-90"
+          >
+            Read published articles
+          </Link>
+          <Link
+            to="/guides/journaling"
+            className="inline-flex items-center justify-center rounded-full border border-border/70 bg-background px-5 py-3 text-sm font-semibold text-foreground transition-colors hover:border-primary/40 hover:text-primary"
+          >
+            Open journaling guide
+          </Link>
+        </div>
+      </main>
+    </div>
+  );
+};
+
 const getRecommendationSnapshot = (
   post: BlogPostData,
   language: "en" | "id",
@@ -284,7 +344,9 @@ const renderSection = (section: BlogSection, index: number) => {
 
 const BlogPost: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
-  const post = getPublishedBlogPost(slug ?? "");
+  const currentSlug = slug ?? "";
+  const scheduledPost = getBlogPost(currentSlug);
+  const post = getPublishedBlogPost(currentSlug);
   const events = usePostHogEvents();
   const recommendationPageType = post ? getRecommendationPageType(post) : null;
 
@@ -294,7 +356,13 @@ const BlogPost: React.FC = () => {
     }
   }, [events, post, recommendationPageType]);
 
-  if (!post) return <Navigate to="/blog" replace />;
+  if (!post) {
+    if (scheduledPost && !isPublishedBlogPost(scheduledPost)) {
+      return <UnpublishedBlogPostNotice post={scheduledPost} />;
+    }
+
+    return <Navigate to="/blog" replace />;
+  }
 
   const language = getPostLanguage(post);
   const locale = language === "id" ? "id-ID" : "en-US";
