@@ -4,11 +4,13 @@ import { ArrowLeft, Heart, Shield, Sparkles, Code } from "lucide-react";
 import SEOHead from "@/components/SEOHead";
 import PublicNextSteps from "@/components/PublicNextSteps";
 
+type RouteState = { from?: string };
+
 const About: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const from = (location.state as any)?.from || "/app?screen=settings";
+  const from = (location.state as RouteState | null)?.from || "/app?screen=settings";
   const linkState = { from };
 
   const handleBack = () => {

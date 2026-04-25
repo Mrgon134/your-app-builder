@@ -126,7 +126,9 @@ const JournalScreen: React.FC<JournalScreenProps> = ({
       try {
         if (text.trim()) localStorage.setItem(DRAFT_KEY, text);
         else localStorage.removeItem(DRAFT_KEY);
-      } catch {}
+      } catch {
+        // Ignore storage errors in private browsing or restricted webviews.
+      }
     }, 2000);
     return () => clearTimeout(timer);
   }, [text, saved]);
@@ -235,7 +237,7 @@ const JournalScreen: React.FC<JournalScreenProps> = ({
       const timer = setTimeout(() => setGrounding(true), 400);
       return () => clearTimeout(timer);
     }
-  }, [mood]);
+  }, [mood, grounding, saved]);
 
   // Cleanup on unmount
   useEffect(() => {
@@ -267,7 +269,11 @@ const JournalScreen: React.FC<JournalScreenProps> = ({
       if (!hasProAccess && !aiInsight) {
         setShowUpgradePopup(true);
       }
-      try { localStorage.removeItem(DRAFT_KEY); } catch {}
+      try {
+        localStorage.removeItem(DRAFT_KEY);
+      } catch {
+        // Ignore storage errors in private browsing or restricted webviews.
+      }
     } catch (err) {
       console.error("Save failed:", err);
     } finally {
@@ -556,7 +562,11 @@ const JournalScreen: React.FC<JournalScreenProps> = ({
                 onUpgrade();
                 return;
               }
-              isRecording ? stopRecording() : startRecording();
+              if (isRecording) {
+                stopRecording();
+              } else {
+                startRecording();
+              }
             }}
             disabled={isTranscribing}
             className={`flex items-center justify-center gap-2 h-[48px] px-5 rounded-xl font-medium text-[14px] transition-all active:scale-[0.97] disabled:opacity-50 ${

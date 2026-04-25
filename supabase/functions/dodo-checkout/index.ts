@@ -15,6 +15,7 @@ const getBaseUrl = () => (
 
 const getProductMap = () => ({
   weekly: Deno.env.get("VITE_DODO_WEEKLY") || Deno.env.get("DODO_WEEKLY_PRODUCT_ID") || "pdt_0NbhHW3W4gTSSif6PbYb8",
+  three_month: Deno.env.get("VITE_DODO_THREE_MONTH") || Deno.env.get("VITE_DODO_3_MONTH") || Deno.env.get("DODO_THREE_MONTH_PRODUCT_ID") || "pdt_0NdPqMYke9uZ1USDhjfvq",
   yearly: Deno.env.get("VITE_DODO_YEARLY") || Deno.env.get("DODO_YEARLY_PRODUCT_ID") || "pdt_0NbhHexts6edZvPqDnoqt",
   lifetime_one_time: Deno.env.get("VITE_DODO_LIFETIME") || Deno.env.get("DODO_LIFETIME_PRODUCT_ID") || "pdt_0NbhHzl2NQ8Dx0ntZsPQs",
 });
@@ -22,7 +23,7 @@ const getProductMap = () => ({
 const resolvePlanFromVariant = (variantId: string) => {
   const productMap = getProductMap();
   const entry = Object.entries(productMap).find(([, productId]) => productId === variantId);
-  return (entry?.[0] || "") as "weekly" | "yearly" | "lifetime_one_time" | "";
+  return (entry?.[0] || "") as "weekly" | "three_month" | "yearly" | "lifetime_one_time" | "";
 };
 
 serve(async (req) => {
@@ -49,7 +50,7 @@ serve(async (req) => {
     const source = safeText(payload.source) || "onboarding";
     const country = safeText(payload.country);
     const couponCode = safeText(payload.coupon_code);
-    const requestedPlan = safeText(payload.plan) as "weekly" | "yearly" | "lifetime_one_time" | "";
+    const requestedPlan = safeText(payload.plan) as "weekly" | "three_month" | "yearly" | "lifetime_one_time" | "";
     const resolvedPlan = requestedPlan || resolvePlanFromVariant(variantId);
     const isGuestCheckout = !userId;
 

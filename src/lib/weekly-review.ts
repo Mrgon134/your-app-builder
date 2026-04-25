@@ -5,6 +5,7 @@ import { type EntryRow } from "@/lib/api";
 import { MOODS } from "@/lib/constants";
 
 const STORAGE_KEY = "nuju-weekly-review-dismissed";
+type EntryWithActivities = EntryRow & { activities?: string[] };
 
 export interface WeeklyReview {
   weekStart: string;
@@ -40,7 +41,9 @@ export function shouldShowWeeklyReview(): boolean {
   try {
     const dismissed = localStorage.getItem(STORAGE_KEY);
     if (dismissed === weekKey) return false;
-  } catch {}
+  } catch {
+    // If storage is unavailable, still allow the review to show.
+  }
 
   return true;
 }
@@ -93,9 +96,9 @@ export function generateWeeklyReview(entries: EntryRow[]): WeeklyReview | null {
   // Top activities (from entries that have activities field)
   const activityCounts: Record<string, number> = {};
   weekEntries.forEach((e) => {
-    if ((e as any).activities) {
-      const acts = (e as any).activities as string[];
-      acts.forEach((a) => { activityCounts[a] = (activityCounts[a] || 0) + 1; });
+    const activities = (e as EntryWithActivities).activities;
+    if (activities) {
+      activities.forEach((a) => { activityCounts[a] = (activityCounts[a] || 0) + 1; });
     }
   });
   const topActivities = Object.entries(activityCounts)
@@ -114,7 +117,9 @@ export function generateWeeklyReview(entries: EntryRow[]): WeeklyReview | null {
         if (d >= start && d <= end) gratitudeCount++;
       });
     }
-  } catch {}
+  } catch {
+    // Gratitude data is optional local-only context.
+  }
 
   return {
     weekStart: start.toLocaleDateString("en-US", { month: "short", day: "numeric" }),

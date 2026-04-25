@@ -31,6 +31,7 @@ async function verifySignature(payload: string, signature: string, secret: strin
 
 const getProductPlanMap = () => ({
   [Deno.env.get("VITE_DODO_WEEKLY") || Deno.env.get("DODO_WEEKLY_PRODUCT_ID") || "pdt_0NbhHW3W4gTSSif6PbYb8"]: "weekly",
+  [Deno.env.get("VITE_DODO_THREE_MONTH") || Deno.env.get("VITE_DODO_3_MONTH") || Deno.env.get("DODO_THREE_MONTH_PRODUCT_ID") || "pdt_0NdPqMYke9uZ1USDhjfvq"]: "three_month",
   [Deno.env.get("VITE_DODO_YEARLY") || Deno.env.get("DODO_YEARLY_PRODUCT_ID") || "pdt_0NbhHexts6edZvPqDnoqt"]: "yearly",
   [Deno.env.get("VITE_DODO_LIFETIME") || Deno.env.get("DODO_LIFETIME_PRODUCT_ID") || "pdt_0NbhHzl2NQ8Dx0ntZsPQs"]: "lifetime",
 });

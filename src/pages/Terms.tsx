@@ -4,12 +4,14 @@ import { ArrowLeft } from "lucide-react";
 import SEOHead from "@/components/SEOHead";
 import PublicNextSteps from "@/components/PublicNextSteps";
 
+type RouteState = { from?: string };
+
 const Terms: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
   const handleBack = () => {
-    const from = (location.state as any)?.from || "/app?screen=settings";
+    const from = (location.state as RouteState | null)?.from || "/app?screen=settings";
     navigate(from);
   };
 
@@ -111,9 +113,10 @@ const Terms: React.FC = () => {
             </h2>
             <p>
               Nuju offers a free reveal entry and paid access plans. Paid access
-              may be offered as an annual subscription or a one-time lifetime
-              purchase. Annual plans renew automatically unless cancelled before
-              renewal. Lifetime access is billed once and does not renew.
+              may be offered as a weekly subscription, a 3-month subscription,
+              or a one-time lifetime purchase. Subscriptions renew automatically
+              unless cancelled before renewal. Lifetime access is billed once and
+              does not renew.
               Refunds are handled in accordance with our payment processor's
               policies.
             </p>

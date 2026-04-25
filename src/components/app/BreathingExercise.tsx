@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useMemo, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Play, Pause, RotateCcw } from "lucide-react";
 
@@ -57,12 +57,12 @@ const BreathingExercise: React.FC = () => {
   const pattern = PATTERNS[selectedPattern];
   const duration = DURATIONS[selectedDuration].seconds;
 
-  const phaseSeconds: Record<Phase, number> = {
+  const phaseSeconds: Record<Phase, number> = useMemo(() => ({
     inhale: pattern.inhale,
     hold: pattern.hold,
     exhale: pattern.exhale,
     holdAfter: pattern.holdAfter,
-  };
+  }), [pattern]);
 
   const phaseLabels: Record<Phase, string> = {
     inhale: "Breathe in",
@@ -71,9 +71,11 @@ const BreathingExercise: React.FC = () => {
     holdAfter: "Hold",
   };
 
-  const phaseOrder: Phase[] = pattern.holdAfter > 0
-    ? ["inhale", "hold", "exhale", "holdAfter"]
-    : ["inhale", "hold", "exhale"];
+  const phaseOrder: Phase[] = useMemo(() => (
+    pattern.holdAfter > 0
+      ? ["inhale", "hold", "exhale", "holdAfter"]
+      : ["inhale", "hold", "exhale"]
+  ), [pattern]);
 
   useEffect(() => {
     if (!isActive) {
@@ -110,7 +112,7 @@ const BreathingExercise: React.FC = () => {
     return () => {
       if (intervalRef.current) clearInterval(intervalRef.current);
     };
-  }, [isActive, phase, duration, pattern]);
+  }, [isActive, phase, duration, phaseOrder, phaseSeconds]);
 
   const handleStart = () => {
     if (moodBefore === null) {

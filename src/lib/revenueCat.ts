@@ -1,4 +1,5 @@
 import { Purchases, LOG_LEVEL } from "@revenuecat/purchases-capacitor";
+import type { CustomerInfo, PurchasesOffering, PurchasesPackage } from "@revenuecat/purchases-capacitor";
 import { isNative } from "./platform";
 
 // RevenueCat API key (from https://app.revenuecat.com)
@@ -6,19 +7,19 @@ const REVENUECAT_API_KEY = import.meta.env.VITE_REVENUECAT_API_KEY || "";
 
 // RevenueCat entitlement identifiers
 export const ENTITLEMENTS = {
-  plus: "plus",
-  pro: "pro",
+  plus: import.meta.env.VITE_REVENUECAT_PLUS_ENTITLEMENT_ID || "plus",
+  pro: import.meta.env.VITE_REVENUECAT_ENTITLEMENT_ID || "entlf84d73930a",
 } as const;
 
 // RevenueCat product identifiers (must match RevenueCat dashboard)
 export const PRODUCT_IDS = {
-  weekly: "prod7fb30aa1d7",
-  yearly: "prod4a76c3112a",
+  weekly: "nuju_weekly",
+  three_month: "3_month",
   plus_monthly: "prodd12cd5056a",
   plus_annual: "prodde2def8f68",
-  pro_monthly: "prod7fb30aa1d7",
-  pro_annual: "prod4a76c3112a",
-  pro_lifetime: "prodeae2f54491",
+  pro_monthly: "nuju_weekly",
+  pro_annual: "3_month",
+  pro_lifetime: "lifetime",
 } as const;
 
 export const initRevenueCat = async (appUserID?: string) => {
@@ -56,7 +57,7 @@ export const resetUser = async () => {
 };
 
 // Fetch available subscription offerings
-export const fetchOfferings = async () => {
+export const fetchOfferings = async (): Promise<PurchasesOffering | null> => {
   if (!isNative()) return null;
   try {
     const { offerings } = await Purchases.getOfferings();
@@ -68,15 +69,21 @@ export const fetchOfferings = async () => {
 };
 
 // Purchase a package
-export const purchasePackage = async (pkg: { identifier: string; offeringIdentifier: string; product: { identifier: string } }) => {
+const isPurchaseCancelled = (err: unknown) => {
+  if (!err || typeof err !== "object") return false;
+  const maybeError = err as { code?: unknown; userCancelled?: unknown };
+  return maybeError.code === "1" || maybeError.code === 1 || maybeError.userCancelled === true;
+};
+
+export const purchasePackage = async (pkg: PurchasesPackage): Promise<CustomerInfo | null> => {
   if (!isNative()) return null;
   try {
     const result = await Purchases.purchasePackage({
-      aPackage: pkg as any,
+      aPackage: pkg,
     });
     return result.customerInfo;
-  } catch (err: any) {
-    if (err?.code === "1" || err?.userCancelled) {
+  } catch (err: unknown) {
+    if (isPurchaseCancelled(err)) {
       // User cancelled - not an error
       return null;
     }
@@ -129,10 +136,11 @@ export const getPlanFromEntitlements = async (): Promise<string> => {
 // Usage: when user clicks checkout on web (Dodo), or on iOS we directly use RevenueCat
 export const getDodoToRevenueCatMap = (): Record<string, string> => ({
   "weekly": PRODUCT_IDS.weekly,
-  "yearly": PRODUCT_IDS.yearly,
+  "three_month": PRODUCT_IDS.three_month,
+  "yearly": PRODUCT_IDS.three_month,
   "plus_monthly": PRODUCT_IDS.plus_monthly,
   "plus_annual": PRODUCT_IDS.plus_annual,
   "pro_monthly": PRODUCT_IDS.pro_monthly,
-  "pro_annual": PRODUCT_IDS.pro_annual,
+  "pro_annual": PRODUCT_IDS.three_month,
   "lifetime_one_time": PRODUCT_IDS.pro_lifetime,
 });

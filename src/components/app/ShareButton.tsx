@@ -1,10 +1,10 @@
 import React from "react";
 import ShareMenu from "@/components/app/ShareMenu";
-import { ShareCardType } from "@/lib/share-card";
+import { type ShareCardData, type ShareCardType } from "@/lib/share-card";
 
 interface ShareButtonProps {
   type: ShareCardType;
-  data: any;
+  data: ShareCardData;
   label?: string;
   className?: string;
 }

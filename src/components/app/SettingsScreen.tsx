@@ -17,6 +17,7 @@ import {
 import { toast } from "sonner";
 import { hasActivePremiumPlan, hasPlusAccess } from "@/lib/trial";
 import { PRICING_CONFIG } from "@/lib/config";
+import { isIOS, isNative } from "@/lib/platform";
 import PinSetupScreen from "@/components/app/PinSetupScreen";
 import { hashPin } from "@/components/app/PinLockScreen";
 
@@ -66,7 +67,8 @@ const SettingsScreen: React.FC<SettingsScreenProps> = ({ onBack, onUpgrade, onCh
   }, [displayName]);
 
   const currentLang = LANG_META.find((l) => l.code === lang);
-  const isRecurringPlan = ["weekly", "yearly", "plus", "pro"].includes(plan || "");
+  const isRecurringPlan = ["weekly", "three_month", "yearly", "plus", "pro"].includes(plan || "");
+  const isNativeIOS = isNative() && isIOS();
   const hasPremiumPlan = hasActivePremiumPlan(plan);
   const retentionCouponCode = PRICING_CONFIG.retention.yearlyCouponCode || null;
   const hasRetentionCheckout = Boolean(retentionCouponCode);
@@ -75,17 +77,19 @@ const SettingsScreen: React.FC<SettingsScreenProps> = ({ onBack, onUpgrade, onCh
   const currentPlanLabel =
     plan === "weekly"
       ? "Weekly"
-      : plan === "yearly"
-        ? "Annual"
-        : plan === "lifetime"
-          ? "Lifetime"
-          : plan === "pro"
-            ? "Pro"
-            : plan === "plus"
-              ? "Plus"
-              : hasPlusAccess(plan, trialStartedAt)
-                ? "Premium trial"
-                : "Free";
+      : plan === "three_month"
+        ? "3 Month"
+        : plan === "yearly"
+          ? "Annual"
+          : plan === "lifetime"
+            ? "Lifetime"
+            : plan === "pro"
+              ? "Pro"
+              : plan === "plus"
+                ? "Plus"
+                : hasPlusAccess(plan, trialStartedAt)
+                  ? "Premium trial"
+                  : "Free";
 
   const downloadFile = (content: string, fileName: string, mimeType: string) => {
     const blob = new Blob([content], { type: mimeType });
@@ -187,7 +191,7 @@ const SettingsScreen: React.FC<SettingsScreenProps> = ({ onBack, onUpgrade, onCh
     localStorage.setItem("nuju-dark", newVal ? "1" : "0");
     if (user) {
       try {
-        await updateProfile(user.id, { dark_mode: newVal } as any);
+        await updateProfile(user.id, { dark_mode: newVal });
       } catch (e) {
         console.error("Failed to save dark mode:", e);
       }
@@ -246,6 +250,10 @@ const SettingsScreen: React.FC<SettingsScreenProps> = ({ onBack, onUpgrade, onCh
     } finally {
       setRetentionLoading(false);
     }
+  };
+
+  const openAppleSubscriptions = () => {
+    window.open("https://apps.apple.com/account/subscriptions", "_blank", "noopener,noreferrer");
   };
 
   return (
@@ -826,6 +834,25 @@ const SettingsScreen: React.FC<SettingsScreenProps> = ({ onBack, onUpgrade, onCh
             <p className="text-sm text-muted-foreground mb-6 leading-relaxed">
               {t.delete_account_desc || "This will permanently delete your profile, all journal entries, and settings. This action cannot be undone."}
             </p>
+            {isRecurringPlan ? (
+              <div className="mb-5 rounded-2xl border border-amber-500/20 bg-amber-500/10 px-4 py-3 text-left">
+                <p className="text-[12px] font-semibold text-foreground">
+                  Your subscription is separate from account deletion.
+                </p>
+                <p className="mt-1 text-[12px] leading-5 text-muted-foreground">
+                  Deleting your Nuju account removes your data, but your recurring subscription may continue through Apple or your payment provider until you cancel it.
+                </p>
+                {isNativeIOS ? (
+                  <button
+                    type="button"
+                    onClick={openAppleSubscriptions}
+                    className="mt-3 text-[12px] font-semibold text-primary"
+                  >
+                    Open Apple subscription settings
+                  </button>
+                ) : null}
+              </div>
+            ) : null}
             <div className="space-y-2.5">
               <button
                 disabled={deleteLoading}
@@ -833,23 +860,25 @@ const SettingsScreen: React.FC<SettingsScreenProps> = ({ onBack, onUpgrade, onCh
                   setDeleteLoading(true);
                   try {
                     // Delete account via RPC - this cascades and deletes all user data
-                    const { data, error } = await supabase.rpc("delete_user" as any);
+                    const { data, error } = await supabase.rpc("delete_user");
 
                     if (error) {
                       console.error("Delete user error:", error);
                       toast.error(error.message || "Failed to delete account. Please try again or contact support.");
                     } else {
-                      // Success - show detailed message
-                      toast.success(typeof data === "object" && data?.message
-                        ? data.message
-                        : "Account deleted successfully. Signing out...");
+                      const deleteResult = Array.isArray(data) ? data[0] : data;
+                      if (deleteResult?.success === false) {
+                        toast.error(deleteResult.message || "Failed to delete account. Please try again or contact support.");
+                        return;
+                      }
+                      toast.success(deleteResult?.message || "Account deleted successfully. Signing out...");
                       // Always sign out after deletion (handleSignOut clears PIN first)
                       await new Promise(r => setTimeout(r, 1000));
                       await handleSignOut();
                     }
-                  } catch (e: any) {
+                  } catch (e: unknown) {
                     console.error("Delete error:", e);
-                    toast.error(e.message || "Error deleting account. Please contact support.");
+                    toast.error(e instanceof Error ? e.message : "Error deleting account. Please contact support.");
                   } finally {
                     setDeleteLoading(false);
                     setShowDeleteConfirm(false);
@@ -950,16 +979,31 @@ const SettingsScreen: React.FC<SettingsScreenProps> = ({ onBack, onUpgrade, onCh
                 </p>
 
                 <div className="mt-5 rounded-[1.75rem] border border-border/60 bg-background p-5 text-sm leading-7 text-muted-foreground">
-                  Weekly and legacy recurring plans renew automatically until they are canceled. Changes take effect at the end of the current billing period.
+                  Weekly and 3-month recurring plans renew automatically until they are canceled. If you purchased on iOS, manage cancellation from your Apple subscription settings.
                 </div>
 
                 <div className="mt-5 space-y-2.5">
+                  {isNativeIOS ? (
+                    <button
+                      onClick={() => {
+                        setShowManageSubscription(false);
+                        openAppleSubscriptions();
+                      }}
+                      className="w-full rounded-2xl bg-primary py-3.5 text-sm font-semibold text-primary-foreground transition-all active:scale-[0.98]"
+                    >
+                      Open Apple subscription settings
+                    </button>
+                  ) : null}
                   <button
                     onClick={() => {
                       setShowManageSubscription(false);
                       onUpgrade?.();
                     }}
-                    className="w-full rounded-2xl bg-primary py-3.5 text-sm font-semibold text-primary-foreground transition-all active:scale-[0.98]"
+                    className={`w-full rounded-2xl py-3.5 text-sm font-semibold transition-all active:scale-[0.98] ${
+                      isNativeIOS
+                        ? "border border-border/60 bg-background text-foreground"
+                        : "bg-primary text-primary-foreground"
+                    }`}
                   >
                     View plans first
                   </button>

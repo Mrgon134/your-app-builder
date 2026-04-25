@@ -24,6 +24,15 @@ import WeeklyReviewCard from "@/components/app/WeeklyReviewCard";
 import { type ShellMode } from "@/hooks/use-shell-mode";
 import { getFirstName } from "@/lib/profile-name";
 
+interface BeforeInstallPromptEvent extends Event {
+  prompt: () => Promise<void>;
+  userChoice: Promise<{ outcome: "accepted" | "dismissed"; platform: string }>;
+}
+
+interface NavigatorWithStandalone extends Navigator {
+  standalone?: boolean;
+}
+
 // Preload all sticker images in memory on mount
 const preloadedImages: HTMLImageElement[] = [];
 const preloadStickers = () => {
@@ -151,14 +160,14 @@ const HomeScreen: React.FC<HomeScreenProps> = ({
   const firstName = getFirstName(displayName);
 
   // PWA Install Prompt State
-  const [installPrompt, setInstallPrompt] = useState<any>(null);
+  const [installPrompt, setInstallPrompt] = useState<BeforeInstallPromptEvent | null>(null);
   const [isIOS, setIsIOS] = useState(false);
   const [showInstallBanner, setShowInstallBanner] = useState(false);
 
   // Set localized prompt on mount / language change
   useEffect(() => {
     setPrompt(getLocalizedRandomPrompt(t));
-  }, [lang]);
+  }, [lang, t]);
 
   const greeting = getGreeting(t);
   const isNight = new Date().getHours() >= 21;
@@ -228,9 +237,9 @@ const HomeScreen: React.FC<HomeScreenProps> = ({
     window.addEventListener("scroll", handleScroll, { passive: true });
 
     // PWA Install Prompt Listener
-    const handleInstallPrompt = (e: any) => {
+    const handleInstallPrompt = (e: Event) => {
       e.preventDefault();
-      setInstallPrompt(e);
+      setInstallPrompt(e as BeforeInstallPromptEvent);
       if (!localStorage.getItem("nuju-dismiss-install")) setShowInstallBanner(true);
     };
     window.addEventListener("beforeinstallprompt", handleInstallPrompt);
@@ -238,7 +247,7 @@ const HomeScreen: React.FC<HomeScreenProps> = ({
     // iOS PWA Detection
     const userAgent = window.navigator.userAgent.toLowerCase();
     const isIosDevice = /iphone|ipad|ipod/.test(userAgent);
-    const isStandalone = ("standalone" in window.navigator) && (window.navigator as any).standalone;
+    const isStandalone = ("standalone" in window.navigator) && (window.navigator as NavigatorWithStandalone).standalone === true;
     if (isIosDevice && !isStandalone && !localStorage.getItem("nuju-dismiss-install")) {
       setIsIOS(true);
       setShowInstallBanner(true);
@@ -565,7 +574,11 @@ const HomeScreen: React.FC<HomeScreenProps> = ({
           <button
             onClick={() => {
               const nextPrompt = moodTouched ? prompt : undefined;
-              onWrite ? onWrite(nextPrompt) : onNavigate("journal");
+              if (onWrite) {
+                onWrite(nextPrompt);
+              } else {
+                onNavigate("journal");
+              }
             }}
             className="flex items-center justify-center gap-2.5 h-[54px] rounded-2xl bg-primary text-primary-foreground font-semibold text-[15px] press-spring shadow-[0_4px_20px_-4px_hsl(var(--primary)/0.4)]"
           >
@@ -579,7 +592,11 @@ const HomeScreen: React.FC<HomeScreenProps> = ({
                 return;
               }
               const nextPrompt = moodTouched ? prompt : undefined;
-              onTalk ? onTalk(nextPrompt) : onNavigate("journal");
+              if (onTalk) {
+                onTalk(nextPrompt);
+              } else {
+                onNavigate("journal");
+              }
             }}
             className="flex items-center justify-center gap-2.5 h-[54px] rounded-2xl bg-foreground/[0.06] dark:bg-foreground/[0.08] text-foreground font-semibold text-[15px] press-spring backdrop-blur-sm relative overflow-hidden"
           >

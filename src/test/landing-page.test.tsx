@@ -28,8 +28,20 @@ vi.mock("react-router-dom", async () => {
 vi.mock("framer-motion", async () => {
   const ReactModule = await vi.importActual<typeof import("react")>("react");
 
+  type MotionMockProps = React.HTMLAttributes<HTMLElement> & {
+    children?: React.ReactNode;
+    onViewportEnter?: () => void;
+    initial?: unknown;
+    animate?: unknown;
+    exit?: unknown;
+    transition?: unknown;
+    whileInView?: unknown;
+    whileHover?: unknown;
+    viewport?: unknown;
+  };
+
   const createMotionComponent = (tag: string) => {
-    const MotionComponent = ReactModule.forwardRef<HTMLElement, any>(function MotionComponent(
+    const MotionComponent = ReactModule.forwardRef<HTMLElement, MotionMockProps>(function MotionComponent(
       { children, onViewportEnter, initial, animate, exit, transition, whileInView, whileHover, viewport, ...rest },
       ref,
     ) {
@@ -67,12 +79,13 @@ vi.mock("@/hooks/use-geo-pricing", () => ({
     usdConversionRate: null,
     rates: {
       weekly: 4.99,
+      threeMonth: 19.99,
       yearly: 59.99,
       plusMonthly: 4.99,
       plusAnnual: 39.99,
       proMonthly: 9.99,
       proAnnual: 79.99,
-      lifetime: 25,
+      lifetime: 49.99,
     },
     isLoading: false,
     couponCode: null,

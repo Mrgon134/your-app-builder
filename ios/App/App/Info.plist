@@ -24,6 +24,14 @@
 	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSCameraUsageDescription</key>
+	<string>Nuju uses the camera only when you choose to take a selfie or attach a photo to a journal moment.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Nuju uses your location only when you choose to save a location with a journal moment.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Nuju uses the microphone only when you choose voice journaling or transcription.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Nuju lets you choose photos to attach to journal moments.</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

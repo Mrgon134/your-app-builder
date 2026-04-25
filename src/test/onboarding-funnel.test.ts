@@ -37,7 +37,7 @@ describe("onboarding funnel helpers", () => {
       ],
       baseline: "holding",
       relief: "clearer",
-      selectedPlan: "yearly_trial",
+      selectedPlan: "three_month",
     });
 
     expect(teaser.headline).toContain("Irfan");
@@ -53,7 +53,7 @@ describe("onboarding funnel helpers", () => {
       localStorage.clear();
     });
 
-    it("maps legacy yearly plan to yearly_trial", () => {
+    it("maps legacy yearly plan to three_month", () => {
       localStorage.setItem(
         ONBOARDING_FUNNEL_STORAGE_KEY,
         JSON.stringify({
@@ -64,10 +64,10 @@ describe("onboarding funnel helpers", () => {
       );
 
       const state = loadFunnelState();
-      expect(state?.answers.selectedPlan).toBe("yearly_trial");
+      expect(state?.answers.selectedPlan).toBe("three_month");
     });
 
-    it("resets removed weekly plan to null", () => {
+    it("keeps weekly plan selections", () => {
       localStorage.setItem(
         ONBOARDING_FUNNEL_STORAGE_KEY,
         JSON.stringify({
@@ -78,7 +78,7 @@ describe("onboarding funnel helpers", () => {
       );
 
       const state = loadFunnelState();
-      expect(state?.answers.selectedPlan).toBeNull();
+      expect(state?.answers.selectedPlan).toBe("weekly");
     });
   });
 });

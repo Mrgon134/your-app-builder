@@ -387,7 +387,10 @@ export type Database = {
     Functions: {
       check_coach_limit: { Args: { p_user_id: string }; Returns: boolean }
       check_entry_limit: { Args: { p_user_id: string }; Returns: boolean }
-      delete_user: { Args: Record<PropertyKey, never>; Returns: undefined }
+      delete_user: {
+        Args: Record<PropertyKey, never>
+        Returns: { success: boolean; message: string }[]
+      }
       get_lifetime_offer_status: { Args: Record<PropertyKey, never>; Returns: { actual_count: number } }
       update_streak: { Args: { p_user_id: string }; Returns: undefined }
     }

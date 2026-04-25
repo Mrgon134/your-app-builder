@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { Share2, Loader2, X } from "lucide-react";
-import { generateShareCard, type ShareCardType } from "@/lib/share-card";
+import { generateShareCard, type ShareCardData, type ShareCardType } from "@/lib/share-card";
 import { toast } from "sonner";
 
 interface ShareMenuProps {
   type: ShareCardType;
-  data: any;
+  data: ShareCardData;
   label?: string;
   className?: string;
 }

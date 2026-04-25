@@ -11,11 +11,13 @@ interface FAQItem {
   plainAnswer?: string;
 }
 
+type RouteState = { from?: string };
+
 const Support: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [openId, setOpenId] = useState<number | null>(0);
-  const from = (location.state as any)?.from || "/app?screen=settings";
+  const from = (location.state as RouteState | null)?.from || "/app?screen=settings";
   const linkState = { from };
 
   const handleBack = () => {
@@ -63,9 +65,9 @@ const Support: React.FC = () => {
         "Paid access keeps the full Ju experience open, including deeper reflection, longer history, and more ongoing support after your reveal.",
     },
     {
-      question: "What is the difference between annual and lifetime?",
+      question: "What is the difference between subscriptions and lifetime?",
       answer:
-        "Annual access renews once per year unless you cancel before renewal. Lifetime is a one-time purchase that keeps Ju unlocked without renewal. Pricing can vary by region.",
+        "Weekly and 3-month subscriptions renew unless you cancel before renewal. Lifetime is a one-time purchase that keeps Ju unlocked without renewal. Pricing can vary by region.",
     },
     {
       question: "How does the AI companion work?",
@@ -95,17 +97,17 @@ const Support: React.FC = () => {
     {
       question: "Is there a free trial?",
       answer:
-        "The main onboarding flow starts with the free Ju Gets You reveal. Depending on the offer shown in your region, annual access may include a trial before paid billing begins. Lifetime access is a one-time purchase and does not renew.",
+        "The main onboarding flow starts with the free Ju Gets You reveal. Depending on the offer shown in your region, paid subscriptions may include a trial before paid billing begins. Lifetime access is a one-time purchase and does not renew.",
     },
     {
       question: "Will my subscription auto-renew?",
       answer:
-        "Annual access renews automatically unless you cancel before renewal. Lifetime access is a one-time payment and does not auto-renew.",
+        "Weekly and 3-month subscriptions renew automatically unless you cancel before renewal. If you subscribed on iOS, manage or cancel from your Apple subscription settings. Lifetime access is a one-time payment and does not auto-renew.",
     },
     {
       question: "What if I want to delete my account?",
       answer:
-        "Go to Settings - Account - Delete Account. Your data will be permanently deleted within 30 days. This action cannot be undone.",
+        "Go to Settings - Account - Delete Account. Nuju will remove your profile, journal data, and saved media. If you have an active subscription, cancel it separately through Apple or your payment provider before deleting your account.",
     },
   ];
 

@@ -9,7 +9,7 @@ const Privacy: React.FC = () => {
   const location = useLocation();
 
   const handleBack = () => {
-    const from = (location.state as any)?.from || "/app?screen=settings";
+    const from = (location.state as { from?: string } | null)?.from || "/app?screen=settings";
     navigate(from);
   };
 
@@ -37,7 +37,7 @@ const Privacy: React.FC = () => {
           Privacy Policy
         </h1>
         <p className="text-sm text-muted-foreground mb-8">
-          Last updated: April 20, 2026
+          Last updated: April 25, 2026
         </p>
 
         <div className="prose prose-sm max-w-none space-y-6 text-foreground/90">
@@ -48,8 +48,8 @@ const Privacy: React.FC = () => {
             <p>
               Nuju ("we," "our," or "us") is committed to protecting your
               privacy. This Privacy Policy explains how we collect, use, store,
-              and share your personal information when you use our AI journaling
-              application.
+              and share information when you use Nuju's AI journaling app,
+              website, and related services.
             </p>
           </section>
 
@@ -62,35 +62,50 @@ const Privacy: React.FC = () => {
             </h3>
             <ul className="list-disc pl-5 space-y-1">
               <li>
-                <strong>Account Information:</strong> Email address, display
-                name, and authentication credentials, including via Google
-                OAuth.
+                <strong>Account information:</strong> Email address, display
+                name, authentication credentials, and optional sign-in provider
+                details such as Apple or Google, depending on the platform.
               </li>
               <li>
-                <strong>Journal Entries:</strong> Mood ratings, energy levels,
-                text entries, and voice recordings when applicable.
+                <strong>Journal information:</strong> Mood ratings, energy
+                levels, text entries, prompts, voice recordings, transcripts,
+                photos, selfies, optional location details, and timestamps that
+                you choose to save.
+              </li>
+              <li>
+                <strong>AI-generated information:</strong> Reflections,
+                summaries, sentiment signals, themes, relationship insights,
+                and pattern notes created from your entries.
               </li>
               <li>
                 <strong>Preferences:</strong> Language, theme, coach persona,
-                and notification settings.
+                notification choices, onboarding answers, and selected plan.
+              </li>
+              <li>
+                <strong>Billing information:</strong> Plan, purchase status,
+                product identifiers, and processor references. Full payment
+                details are handled by Apple, RevenueCat, Dodo Payments, or
+                their payment partners.
               </li>
             </ul>
+
             <h3 className="font-semibold text-foreground mt-4">
               2.2 Information Collected Automatically
             </h3>
             <ul className="list-disc pl-5 space-y-1">
               <li>
-                <strong>Usage Data:</strong> App interactions, feature usage,
-                session duration, and streak data.
+                <strong>Usage data:</strong> App interactions, feature usage,
+                session timing, streak data, and basic diagnostic events.
               </li>
               <li>
-                <strong>Device Information:</strong> Browser type, operating
-                system, and device type.
+                <strong>Device information:</strong> Browser type, operating
+                system, device type, app platform, and approximate region.
               </li>
               <li>
-                <strong>AI-Generated Data:</strong> Mood patterns, sentiment
-                analysis, themes, and relationship insights derived from your
-                entries.
+                <strong>Analytics and attribution:</strong> We use product
+                analytics to understand app behavior. Marketing attribution
+                tools such as the TikTok pixel are used only on web pages, not
+                inside the native iOS app.
               </li>
             </ul>
           </section>
@@ -100,12 +115,12 @@ const Privacy: React.FC = () => {
               3. How We Use Your Information
             </h2>
             <ul className="list-disc pl-5 space-y-1">
-              <li>Provide and improve journaling and AI companion services.</li>
-              <li>Generate personalized mood insights, trends, and summaries.</li>
-              <li>Maintain account history, streaks, and progress statistics.</li>
-              <li>Send reminders and service messages with your consent.</li>
-              <li>Process payments for paid access plans.</li>
-              <li>Ensure security and prevent abuse.</li>
+              <li>Provide journaling, mood tracking, and AI companion features.</li>
+              <li>Generate personalized reflections, trends, and summaries.</li>
+              <li>Maintain account history, streaks, settings, and saved media.</li>
+              <li>Process paid access, subscriptions, refunds, and support requests.</li>
+              <li>Send reminders and service messages when you enable them.</li>
+              <li>Improve reliability, safety, fraud prevention, and abuse detection.</li>
             </ul>
           </section>
 
@@ -114,73 +129,99 @@ const Privacy: React.FC = () => {
               4. AI Processing
             </h2>
             <p>
-              Your journal entries are processed by AI models to provide
-              insights, supportive responses, and pattern recognition. This
-              processing is done to deliver the core features of the App.
-              AI-generated insights are stored in your account and are only
-              accessible to you. We do not use your personal journal content to
-              train general-purpose AI models.
+              Nuju processes journal content with AI models to provide
+              reflections, supportive responses, transcription, pattern
+              recognition, and mood insights. AI-generated insights are stored
+              in your account and are intended for your use. We do not use your
+              personal journal content to train general-purpose AI models.
             </p>
           </section>
 
           <section>
             <h2 className="font-serif text-xl font-semibold text-foreground">
-              5. Data Sharing
+              5. Camera, Microphone, Photos, and Location
             </h2>
-            <p>We do not sell your personal data. We may share limited information with:</p>
+            <p>
+              Nuju asks for camera, microphone, photo library, or location
+              permission only when you choose a feature that needs it, such as
+              voice journaling, transcription, attaching a photo, taking a
+              selfie, or saving a location with a journal moment. You can
+              decline these permissions and still use text journaling.
+            </p>
+          </section>
+
+          <section>
+            <h2 className="font-serif text-xl font-semibold text-foreground">
+              6. Data Sharing
+            </h2>
+            <p>
+              We do not sell your personal data or raw journal content. We may
+              share limited information with:
+            </p>
             <ul className="list-disc pl-5 space-y-1">
               <li>
-                <strong>Service Providers:</strong> Hosting, authentication,
-                payment processing, analytics, and AI services used to operate
-                the App.
+                <strong>Service providers:</strong> Supabase for hosting,
+                authentication, database, and storage; AI providers for
+                reflections and transcription; RevenueCat and Apple for iOS
+                purchases; Dodo Payments for web purchases; and PostHog for
+                product analytics.
               </li>
               <li>
-                <strong>Social Platforms:</strong> When you voluntarily share
-                cards or insights to external platforms, only the generated
-                share content is sent, not your raw journal data.
+                <strong>Marketing tools:</strong> Web landing pages may use
+                attribution pixels to measure campaign performance. These tools
+                are not loaded in the native iOS app.
               </li>
               <li>
-                <strong>Legal Requirements:</strong> When required by law, court
-                order, or to protect our rights.
+                <strong>Voluntary sharing:</strong> If you share a card or
+                insight to another platform, only the content you choose to
+                share is sent.
+              </li>
+              <li>
+                <strong>Legal requirements:</strong> We may disclose
+                information when required by law, court order, or to protect
+                our rights, users, and service.
               </li>
             </ul>
           </section>
 
           <section>
             <h2 className="font-serif text-xl font-semibold text-foreground">
-              6. Data Storage and Security
+              7. Data Storage and Security
             </h2>
             <p>
-              Your data is stored securely using industry-standard protections.
-              Journal entries and personal data are protected with access
-              controls so only you can access your own account data. We use
-              HTTPS for data transmission.
+              Your data is stored with access controls intended to limit access
+              to your own account. We use HTTPS for data transmission and
+              user-scoped database and storage rules for journal content and
+              media. No internet-connected system can be guaranteed perfectly
+              secure, but we work to keep the amount of data we collect limited
+              and protected.
             </p>
           </section>
 
           <section>
             <h2 className="font-serif text-xl font-semibold text-foreground">
-              7. Data Retention
+              8. Data Retention and Account Deletion
             </h2>
             <p>
-              We retain your data for as long as your account is active. You
-              may request deletion of your account and associated data at any
-              time. Upon account deletion, your data will be permanently
-              removed within 30 days unless a longer retention period is
-              required by law.
+              We retain your data while your account is active. When you delete
+              your account in Settings, Nuju removes your profile, journal
+              entries, AI memories, coach messages, onboarding data, and stored
+              voice or photo media tied to your account. Some payment,
+              security, backup, or legal records may be retained for a limited
+              time when required by law or processor obligations.
             </p>
           </section>
 
           <section>
             <h2 className="font-serif text-xl font-semibold text-foreground">
-              8. Your Rights
+              9. Your Rights
             </h2>
             <p>Depending on your jurisdiction, you may have the right to:</p>
             <ul className="list-disc pl-5 space-y-1">
               <li>Access and download your personal data.</li>
               <li>Correct inaccurate data.</li>
-              <li>Delete your account and data.</li>
-              <li>Withdraw consent for data processing.</li>
+              <li>Delete your account and associated data.</li>
+              <li>Withdraw consent for optional processing.</li>
               <li>Object to or restrict certain processing activities.</li>
               <li>Request data portability.</li>
             </ul>
@@ -188,7 +229,7 @@ const Privacy: React.FC = () => {
 
           <section>
             <h2 className="font-serif text-xl font-semibold text-foreground">
-              9. Children's Privacy
+              10. Children's Privacy
             </h2>
             <p>
               Nuju is not intended for children under 13 years of age. We do
@@ -200,19 +241,20 @@ const Privacy: React.FC = () => {
 
           <section>
             <h2 className="font-serif text-xl font-semibold text-foreground">
-              10. Cookies and Local Storage
+              11. Cookies and Local Storage
             </h2>
             <p>
               We use browser storage to save preferences such as theme,
-              language, and notification settings. We may also use analytics or
-              attribution technologies needed to understand product usage and
-              measure marketing performance.
+              language, and notification settings. On the web, we may use
+              analytics cookies or attribution technologies to understand
+              product usage and measure marketing performance. The native iOS
+              app does not load web marketing pixels.
             </p>
           </section>
 
           <section>
             <h2 className="font-serif text-xl font-semibold text-foreground">
-              11. Changes to This Policy
+              12. Changes to This Policy
             </h2>
             <p>
               We may update this Privacy Policy periodically. We will notify you
@@ -223,7 +265,7 @@ const Privacy: React.FC = () => {
 
           <section>
             <h2 className="font-serif text-xl font-semibold text-foreground">
-              12. Contact Us
+              13. Contact Us
             </h2>
             <p>
               If you have questions or concerns about this Privacy Policy or

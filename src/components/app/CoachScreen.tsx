@@ -173,7 +173,8 @@ const CoachScreen: React.FC<{ onUpgrade?: () => void; plan?: string | null; tria
     ]).then(([msgsResult, limitResult, profileResult, countResult]) => {
       if (msgsResult.status === "fulfilled" && msgsResult.value.length > 0) {
         setMessages(msgsResult.value.map((m) => ({ role: m.role as "user" | "assistant", content: m.content })));
-        if ((msgsResult.value[0] as any)?.persona) setPersona((msgsResult.value[0] as any).persona);
+        const firstPersona = msgsResult.value[0]?.persona;
+        if (typeof firstPersona === "string") setPersona(firstPersona);
       }
       setCanSend(limitResult.status === "fulfilled" ? limitResult.value : true);
       setUserPlan(profileResult.status === "fulfilled" ? profileResult.value?.plan || "free" : "free");

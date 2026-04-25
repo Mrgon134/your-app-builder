@@ -5,11 +5,13 @@ import { toast } from "sonner";
 import SEOHead from "@/components/SEOHead";
 import PublicNextSteps from "@/components/PublicNextSteps";
 
+type RouteState = { from?: string };
+
 const Contact: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const from = (location.state as any)?.from || "/app?screen=settings";
+  const from = (location.state as RouteState | null)?.from || "/app?screen=settings";
   const linkState = { from };
   const handleBack = () => {
     navigate(from);
@@ -100,7 +102,7 @@ const Contact: React.FC = () => {
               <div className="rounded-xl border border-border/40 bg-background p-4">
                 <p className="text-sm font-semibold text-foreground">Billing and paid access</p>
                 <p className="mt-1 text-sm text-muted-foreground">
-                  Questions about annual access, lifetime purchases, renewals, or checkout problems.
+                  Questions about subscriptions, lifetime purchases, renewals, or checkout problems.
                 </p>
               </div>
               <div className="rounded-xl border border-border/40 bg-background p-4">

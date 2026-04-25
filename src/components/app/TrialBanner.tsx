@@ -29,7 +29,7 @@ const TrialBanner: React.FC<TrialBannerProps> = ({ trialStartedAt, plan, onUpgra
               {t.pro_trial_ended_title || "Your Pro trial has ended"}
             </p>
             <p className="text-[13px] text-muted-foreground leading-relaxed mb-3">
-              {t.pro_trial_ended_sub || "You've lost access to premium features. Choose weekly, yearly, or lifetime to keep full access."}
+              {t.pro_trial_ended_sub || "You've lost access to premium features. Choose weekly, 3 month, or lifetime to keep full access."}
             </p>
             <div className="flex gap-2">
               <button

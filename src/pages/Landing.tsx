@@ -4,7 +4,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useGeoPricing } from "@/hooks/use-geo-pricing";
 import { usePostHogEvents } from "@/hooks/use-posthog-events";
 import { useTikTokPixel } from "@/hooks/use-tiktok-pixel";
-import { PRICING_CONFIG } from "@/lib/config";
 import { ROUTES } from "@/lib/routes";
 import {
   ArrowRight,
@@ -136,7 +135,7 @@ const whatYouGetItems = [
   },
   {
     title: "A path if you want Ju to stay",
-    body: "If the fit is real, you can keep Ju close with an annual plan or a lifetime unlock after the reveal.",
+    body: "If the fit is real, you can keep Ju close weekly, for 3 months, or with a lifetime unlock after the reveal.",
     icon: Shield,
   },
 ] as const;
@@ -256,7 +255,7 @@ const Landing: React.FC = () => {
   useEffect(() => {
     trackLandingView();
     ttk.trackPageView();
-  }, []);
+  }, [trackLandingView, ttk]);
 
   useEffect(() => {
     const onScroll = () => setShowStickyCta(window.scrollY > 600);
@@ -270,7 +269,7 @@ const Landing: React.FC = () => {
   const scrollToPricing = () =>
     pricingSectionRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
 
-  const startOnboarding = (plan?: "yearly_trial" | "lifetime_one_time") => {
+  const startOnboarding = (plan?: "weekly" | "three_month" | "lifetime_one_time") => {
     const params = new URLSearchParams({ source: "landing" });
 
     trackFunnelStart("landing");
@@ -291,8 +290,6 @@ const Landing: React.FC = () => {
     ttk.trackPricingView();
   };
 
-  const annualTrialDays = PRICING_CONFIG.trial.annualDays;
-
   const pricingCards = [
     {
       name: "Start free",
@@ -305,14 +302,24 @@ const Landing: React.FC = () => {
       onClick: () => startOnboarding(),
     },
     {
-      name: "Annual",
-      price: geo.formatPrice(geo.rates.yearly),
-      unit: "/year",
-      badge: annualTrialDays > 0 ? `${annualTrialDays}-day trial` : "Best value",
-      note: "Best value if you want Ju to stay in your life after the reveal feels real.",
-      cta: "Choose annual",
-      features: ["Best long-term value", "Made for ongoing support"],
-      onClick: () => startOnboarding("yearly_trial"),
+      name: "Weekly",
+      price: geo.formatPrice(geo.rates.weekly),
+      unit: "/week",
+      badge: "Lowest commitment",
+      note: "The lightest way to keep Ju close while you test the fit.",
+      cta: "Choose weekly",
+      features: ["Full premium access", "Cancel anytime"],
+      onClick: () => startOnboarding("weekly"),
+    },
+    {
+      name: "3 Month",
+      price: geo.formatPrice(geo.rates.threeMonth),
+      unit: "/3 months",
+      badge: "Recommended",
+      note: "A calmer commitment window for seeing whether Ju becomes a real routine.",
+      cta: "Choose 3 month",
+      features: ["Best balance", "Built for habit formation"],
+      onClick: () => startOnboarding("three_month"),
     },
     {
       name: "Lifetime",
@@ -350,7 +357,7 @@ const Landing: React.FC = () => {
     },
     {
       title: "Choose how closely Ju stays with you",
-      body: "If the reveal feels real, decide whether you want Ju to stay close with an annual plan or a lifetime unlock.",
+      body: "If the reveal feels real, decide whether you want weekly, 3-month, or lifetime access.",
       icon: TrendingUp,
     },
   ];
@@ -364,7 +371,7 @@ const Landing: React.FC = () => {
   const landingFaqs = [
     {
       q: "Do I need to pay before I can use Nuju?",
-      a: "No. You start with the Ju Gets You reveal first. If the fit feels real after that, you can keep Ju close with an annual plan or a lifetime unlock.",
+      a: "No. You start with the Ju Gets You reveal first. If the fit feels real after that, you can keep Ju close with weekly, 3-month, or lifetime access.",
     },
     {
       q: "What exactly happens in the reveal?",
@@ -380,9 +387,7 @@ const Landing: React.FC = () => {
     },
     {
       q: "What plans are available if I want Ju to stay with me?",
-      a: annualTrialDays > 0
-        ? `You can continue with an annual plan that starts with a ${annualTrialDays}-day trial, or unlock lifetime access with one payment.`
-        : "You can continue with an annual plan for long-term support, or unlock lifetime access with one payment.",
+      a: "You can continue weekly, choose a 3-month subscription, or unlock lifetime access with one payment.",
     },
   ];
 
@@ -1249,10 +1254,10 @@ const Landing: React.FC = () => {
             ) : null}
           </div>
 
-          <div className="mt-12 grid gap-6 lg:grid-cols-2 xl:grid-cols-3">
+          <div className="mt-12 grid gap-6 lg:grid-cols-2 xl:grid-cols-4">
             {pricingCards.map((displayPlan, index) => {
               const isLifetime = displayPlan.name === "Lifetime";
-              const isAnnual = displayPlan.name === "Annual";
+              const isThreeMonth = displayPlan.name === "3 Month";
               const isFree = displayPlan.name === "Start free";
               return (
                 <motion.div
@@ -1265,14 +1270,14 @@ const Landing: React.FC = () => {
                   className={`relative rounded-[2rem] border p-8 flex flex-col transition-all ${
                     isLifetime
                       ? "border-primary/35 bg-[linear-gradient(180deg,rgba(245,241,255,0.96),rgba(255,255,255,0.99))] shadow-[0_20px_50px_-24px_rgba(124,110,219,0.38)] hover:shadow-[0_28px_60px_-24px_rgba(124,110,219,0.55)] dark:border-[#9385F6]/45 dark:bg-[radial-gradient(circle_at_top,rgba(156,137,255,0.22),transparent_45%),linear-gradient(180deg,#201934_0%,#161124_100%)] dark:shadow-[0_20px_50px_-24px_rgba(86,70,177,0.55)]"
-                      : isAnnual
+                      : isThreeMonth
                       ? "border-primary/40 bg-card shadow-[0_20px_50px_-24px_rgba(124,110,219,0.35)] ring-1 ring-primary/15 hover:shadow-[0_28px_60px_-24px_rgba(124,110,219,0.5)] dark:border-primary/40 dark:bg-white/[0.04]"
                       : isFree
                       ? "border-[#4ECDC4]/25 bg-[linear-gradient(180deg,rgba(78,205,196,0.08),rgba(255,255,255,0.95))] shadow-sm"
                       : "border-border/60 bg-card shadow-sm hover:shadow-lg dark:border-white/10 dark:bg-white/[0.03]"
                   }`}
                 >
-                  {isAnnual && (
+                  {isThreeMonth && (
                     <div className="absolute inset-x-8 -top-px h-px bg-gradient-to-r from-transparent via-primary/60 to-transparent" aria-hidden="true" />
                   )}
                   {displayPlan.badge && (

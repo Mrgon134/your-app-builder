@@ -10,10 +10,11 @@ export type FunnelCost = "sleep" | "relationships" | "focus" | "self_trust" | nu
 export type FunnelStyle = "gentle" | "direct" | "private" | "guided" | null;
 export type FunnelBaseline = "drained" | "holding" | "coping" | "hopeful" | null;
 export type FunnelRelief = "breathe" | "softer" | "clearer" | "less_alone" | null;
-export type FunnelPlan = "yearly_trial" | "lifetime_one_time" | "free" | null;
+export type FunnelPlan = "weekly" | "three_month" | "lifetime_one_time" | "free" | null;
 
 const LEGACY_PLAN_MAP: Record<string, FunnelPlan> = {
-  yearly: "yearly_trial",
+  yearly: "three_month",
+  yearly_trial: "three_month",
 };
 
 export interface OnboardingFunnelAnswers {
@@ -87,7 +88,7 @@ export const createDefaultFunnelState = (source = "landing"): OnboardingFunnelSt
 const migrateSelectedPlan = (plan: unknown): FunnelPlan => {
   if (plan === null || plan === undefined) return null;
   if (typeof plan !== "string") return null;
-  if (plan === "yearly_trial" || plan === "lifetime_one_time" || plan === "free") {
+  if (plan === "weekly" || plan === "three_month" || plan === "lifetime_one_time" || plan === "free") {
     return plan;
   }
   if (plan in LEGACY_PLAN_MAP) return LEGACY_PLAN_MAP[plan];

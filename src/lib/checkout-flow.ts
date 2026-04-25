@@ -6,7 +6,7 @@ export interface CheckoutStatusPayload {
   status: "initiated" | "processing" | "paid" | "claimed" | "failed" | "expired";
   email: string;
   name: string | null;
-  plan: "weekly" | "yearly" | "lifetime_one_time";
+  plan: "weekly" | "three_month" | "yearly" | "lifetime_one_time";
   paymentId: string | null;
   subscriptionId: string | null;
   checkoutSessionId: string | null;

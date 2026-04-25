@@ -3,6 +3,7 @@ import { useLang } from "@/lib/i18n";
 import { Check, ArrowLeft, Loader2, AlertCircle } from "lucide-react";
 import { useGeoPricing } from "@/hooks/use-geo-pricing";
 import { useNativePurchases } from "@/hooks/use-native-purchases";
+import type { NativePackage } from "@/hooks/use-native-purchases";
 import { getTrialStatus, formatTrialCountdown, TRIAL_DAYS } from "@/lib/trial";
 
 interface NativePricingScreenProps {
@@ -22,9 +23,9 @@ const NativePricingScreen: React.FC<NativePricingScreenProps> = ({
 }) => {
   const { t } = useLang();
   const geo = useGeoPricing();
-  const { packages, loading, purchasing, nativePlan, purchase } = useNativePurchases(userId);
+  const { packages, loading, purchasing, purchase } = useNativePurchases(userId);
   const trial = getTrialStatus(trialStartedAt);
-  const [selectedPackage, setSelectedPackage] = useState<any>(null);
+  const [selectedPackage, setSelectedPackage] = useState<NativePackage | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [showSuccess, setShowSuccess] = useState(false);
 
@@ -35,13 +36,13 @@ const NativePricingScreen: React.FC<NativePricingScreenProps> = ({
     }
   }, [packages, selectedPackage]);
 
-  const handlePurchase = async (pkg: any) => {
+  const handlePurchase = async (pkg: NativePackage) => {
     setError(null);
-    const success = await purchase(pkg);
-    if (success) {
+    const purchasedPlan = await purchase(pkg);
+    if (purchasedPlan) {
       setShowSuccess(true);
       setTimeout(() => {
-        onSuccess(nativePlan);
+        onSuccess(purchasedPlan);
       }, 1500);
     } else {
       setError(t.purchase_failed || "Purchase failed. Please try again.");

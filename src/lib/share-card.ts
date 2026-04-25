@@ -103,9 +103,11 @@ interface YearCardData {
   streak: number;
 }
 
+export type ShareCardData = DailyCardData | WeeklyCardData | StreakCardData | YearCardData;
+
 export async function generateShareCard(
   type: ShareCardType,
-  data: DailyCardData | WeeklyCardData | StreakCardData | YearCardData
+  data: ShareCardData
 ): Promise<Blob> {
   const W = 1080;
   const H = 1920;

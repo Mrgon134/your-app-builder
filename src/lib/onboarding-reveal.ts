@@ -6,6 +6,22 @@ interface OnboardingRevealResponse {
   ok?: boolean;
 }
 
+const REVEAL_REQUEST_TIMEOUT_MS = 6500;
+
+const fetchWithTimeout = async (input: RequestInfo | URL, init: RequestInit = {}) => {
+  const controller = new AbortController();
+  const timeout = window.setTimeout(() => controller.abort(), REVEAL_REQUEST_TIMEOUT_MS);
+
+  try {
+    return await fetch(input, {
+      ...init,
+      signal: controller.signal,
+    });
+  } finally {
+    window.clearTimeout(timeout);
+  }
+};
+
 const isValidReveal = (value: unknown): value is ResultTeaser => {
   if (!value || typeof value !== "object") return false;
 
@@ -31,7 +47,7 @@ export const requestOnboardingReveal = async ({
   userId?: string | null;
 }) => {
   try {
-    const response = await fetch(`${SUPABASE_URL}/functions/v1/onboarding-reveal`, {
+    const response = await fetchWithTimeout(`${SUPABASE_URL}/functions/v1/onboarding-reveal`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -69,7 +85,7 @@ export const persistOnboardingLead = async ({
   userId?: string | null;
 }) => {
   try {
-    await fetch(`${SUPABASE_URL}/functions/v1/onboarding-reveal`, {
+    await fetchWithTimeout(`${SUPABASE_URL}/functions/v1/onboarding-reveal`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

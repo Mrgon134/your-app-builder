@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
+import type { PurchasesPackage } from "@revenuecat/purchases-capacitor";
 import { isNative } from "@/lib/platform";
 import {
   initRevenueCat,
@@ -10,24 +11,13 @@ import {
   PRODUCT_IDS,
 } from "@/lib/revenueCat";
 
-export interface NativePackage {
-  identifier: string;
-  offeringIdentifier: string;
-  product: {
-    identifier: string;
-    title: string;
-    description: string;
-    priceString: string;
-    price: number;
-    currencyCode: string;
-  };
-}
+export type NativePackage = PurchasesPackage;
 
 // Map RevenueCat product ID to plan display name (for pricing screen)
 const getDisplayName = (productId: string): string => {
   const map: Record<string, string> = {
     [PRODUCT_IDS.weekly]: "weekly",
-    [PRODUCT_IDS.yearly]: "yearly",
+    [PRODUCT_IDS.three_month]: "three_month",
     [PRODUCT_IDS.plus_monthly]: "plus_monthly",
     [PRODUCT_IDS.plus_annual]: "plus_annual",
     [PRODUCT_IDS.pro_lifetime]: "lifetime_one_time",
@@ -41,7 +31,7 @@ interface UseNativePurchasesResult {
   loading: boolean;
   purchasing: boolean;
   nativePlan: string;
-  purchase: (pkg: NativePackage) => Promise<boolean>;
+  purchase: (pkg: NativePackage) => Promise<string | null>;
   restore: () => Promise<string>;
   refresh: () => Promise<void>;
 }
@@ -65,7 +55,7 @@ export function useNativePurchases(userId?: string): UseNativePurchasesResult {
 
         const offering = await fetchOfferings();
         if (offering?.availablePackages) {
-          setPackages(offering.availablePackages as NativePackage[]);
+          setPackages(offering.availablePackages);
         }
 
         const plan = await getPlanFromEntitlements();
@@ -80,19 +70,19 @@ export function useNativePurchases(userId?: string): UseNativePurchasesResult {
     init();
   }, [native, userId]);
 
-  const purchase = useCallback(async (pkg: NativePackage): Promise<boolean> => {
-    if (!native) return false;
+  const purchase = useCallback(async (pkg: NativePackage): Promise<string | null> => {
+    if (!native) return null;
     setPurchasing(true);
     try {
-      const info = await purchasePackage(pkg as any);
+      const info = await purchasePackage(pkg);
       if (info) {
         const plan = await getPlanFromEntitlements();
         setNativePlan(plan);
-        return true;
+        return plan;
       }
-      return false; // user cancelled
+      return null; // user cancelled
     } catch {
-      return false;
+      return null;
     } finally {
       setPurchasing(false);
     }

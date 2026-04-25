@@ -4,12 +4,16 @@ import App from "./App.tsx";
 import "./index.css";
 import posthog from "posthog-js";
 import { PostHogProvider } from "posthog-js/react";
+import { isNative } from "./lib/platform.ts";
+
+const nativePlatform = isNative();
 
 posthog.init('phc_BfFykDwtfmSnLZ7XFkp3nXk5BkLft2XVd8LsK7rjiC8b', {
   api_host: 'https://us.i.posthog.com',
   person_profiles: 'identified_only',
-  capture_pageview: true,
-  autocapture: true,
+  capture_pageview: !nativePlatform,
+  autocapture: !nativePlatform,
+  disable_session_recording: nativePlatform,
 });
 
 // Restore dark mode from localStorage

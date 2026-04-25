@@ -41,6 +41,21 @@ import juMain from "@/assets/ju-main.webp";
 
 type Screen = "home" | "journal" | "insights" | "coach" | "explore" | "pro" | "settings" | "programs" | "year-review" | "history";
 
+const SCREEN_TITLES: Record<Screen, string> = {
+  home: "Home",
+  journal: "Journal",
+  insights: "Insights",
+  coach: "Coach",
+  explore: "Explore",
+  pro: "Pricing",
+  settings: "Settings",
+  programs: "Programs",
+  "year-review": "Year in Review",
+  history: "History",
+};
+
+const SCREEN_ORDER: Screen[] = ["home", "insights", "coach", "explore"];
+
 const AppPage: React.FC = () => {
   const { t, lang } = useLang();
   const { user } = useAuth();
@@ -59,7 +74,9 @@ const AppPage: React.FC = () => {
       const saved = localStorage.getItem("nuju-screen") as Screen | null;
       const mainTabs: Screen[] = ["home", "insights", "coach", "explore"];
       return saved && mainTabs.includes(saved) ? saved : "home";
-    } catch { return "home"; }
+    } catch {
+      return "home";
+    }
   });
   const [prevScreen, setPrevScreen] = useState<Screen | null>(null);
   const [navDirection, setNavDirection] = useState<1 | -1>(1);
@@ -87,19 +104,6 @@ const AppPage: React.FC = () => {
   const { shellMode, isPhone, isDesktop } = useShellMode();
   const effectiveProfile = useMemo(() => applyTestUserProfile(profile, user), [profile, user]);
   const displayName = resolveDisplayName(effectiveProfile, user);
-  const screenTitles: Record<Screen, string> = {
-    home: "Home",
-    journal: "Journal",
-    insights: "Insights",
-    coach: "Coach",
-    explore: "Explore",
-    pro: "Pricing",
-    settings: "Settings",
-    programs: "Programs",
-    "year-review": "Year in Review",
-    history: "History",
-  };
-
   const getEntryTimestamp = useCallback((entry: EntryRow) => {
     const source = entry.created_at || entry.entry_date;
     return new Date(source);
@@ -201,9 +205,6 @@ const AppPage: React.FC = () => {
     }
   }, [getEntryTimestamp, getHistoricalGreatMoodStreak, selectedMood, user?.id]);
 
-  // Screen ordering for directional transitions
-  const screenOrder: Screen[] = ["home", "insights", "coach", "explore"];
-
   // Initialize notification reminders
   useEffect(() => { initReminders(); }, []);
 
@@ -215,7 +216,7 @@ const AppPage: React.FC = () => {
   }, [user, events]);
 
   useEffect(() => {
-    const activeTitle = appLocked ? "Unlock" : screenTitles[screen];
+    const activeTitle = appLocked ? "Unlock" : SCREEN_TITLES[screen];
     document.title = `${activeTitle} | Nuju`;
   }, [appLocked, screen]);
 
@@ -239,7 +240,7 @@ const AppPage: React.FC = () => {
         if (nextProfile?.onboarded) {
           clearFunnelState();
         } else {
-          updateProfile(user.id, { onboarded: true } as any).catch(() => {
+          updateProfile(user.id, { onboarded: true }).catch(() => {
             // Keep the app usable even if the profile sync fails.
           });
         }
@@ -274,8 +275,8 @@ const AppPage: React.FC = () => {
   const navigateTo = useCallback((newScreen: Screen) => {
     if (newScreen === screen) return;
 
-    const oldIdx = screenOrder.indexOf(screen);
-    const newIdx = screenOrder.indexOf(newScreen);
+    const oldIdx = SCREEN_ORDER.indexOf(screen);
+    const newIdx = SCREEN_ORDER.indexOf(newScreen);
     const isForward = newIdx > oldIdx || newScreen === "journal" || newScreen === "settings" || newScreen === "pro";
 
     setPrevScreen(screen);
@@ -288,7 +289,11 @@ const AppPage: React.FC = () => {
     // Persist main tab across refresh
     const mainTabs: Screen[] = ["home", "insights", "coach", "explore"];
     if (mainTabs.includes(newScreen)) {
-      try { localStorage.setItem("nuju-screen", newScreen); } catch {}
+      try {
+        localStorage.setItem("nuju-screen", newScreen);
+      } catch {
+        // Ignore storage errors in private browsing or restricted webviews.
+      }
     }
 
     // Check "coach_first" achievement when user opens coach
@@ -316,19 +321,6 @@ const AppPage: React.FC = () => {
       setTimeout(() => setJournalAutoRecord(false), 600);
     }
   }, [navigateTo]);
-
-  useEffect(() => {
-    if (!user || loading) return;
-
-    const intent = consumeAuthIntent();
-    if (!intent) return;
-
-    if (intent.plan === "lifetime_one_time") {
-      handleCheckout("lifetime_one_time");
-    } else if (intent.screen === "pro") {
-      navigateTo("pro");
-    }
-  }, [user, loading, navigateTo]);
 
   // Confetti on mood 5 selection
   const handleMoodSelect = useCallback((mood: number) => {
@@ -362,13 +354,20 @@ const AppPage: React.FC = () => {
     }
   };
 
-  // Dodo Payments checkout
-  const handleCheckout = async (plan: string, options?: { couponCode?: string | null }) => {
+  // Dodo Payments checkout on web; native iOS purchases stay inside StoreKit/RevenueCat.
+  const handleCheckout = useCallback(async (plan: string, options?: { couponCode?: string | null }) => {
     if (!user) return;
+    if (isNative() && isIOS()) {
+      navigateTo("pro");
+      toast.info("Choose a plan with Apple in-app purchase.");
+      return;
+    }
+
     let checkoutWindow: Window | null = null;
     try {
       const variantMap: Record<string, string> = {
         weekly: PRICING_CONFIG.products.weekly,
+        three_month: PRICING_CONFIG.products.three_month,
         yearly: PRICING_CONFIG.products.yearly,
         plus_monthly: PRICING_CONFIG.products.plus_monthly,
         plus_annual: PRICING_CONFIG.products.plus_annual,
@@ -397,6 +396,7 @@ const AppPage: React.FC = () => {
             user_id: user.id,
             user_email: user.email,
             user_name: displayName || user.user_metadata?.full_name || user.user_metadata?.name || user.email?.split("@")[0] || "User",
+            plan,
             country,
             coupon_code: options?.couponCode || couponCode || undefined,
           }),
@@ -423,7 +423,20 @@ const AppPage: React.FC = () => {
       console.error("Checkout error:", err);
       toast.error(t.checkout_failed || "Checkout failed. Please try again.");
     }
-  };
+  }, [couponCode, country, displayName, navigateTo, t, user]);
+
+  useEffect(() => {
+    if (!user || loading) return;
+
+    const intent = consumeAuthIntent();
+    if (!intent) return;
+
+    if (intent.plan === "weekly" || intent.plan === "three_month" || intent.plan === "lifetime_one_time") {
+      handleCheckout(intent.plan);
+    } else if (intent.screen === "pro") {
+      navigateTo("pro");
+    }
+  }, [handleCheckout, loading, navigateTo, user]);
 
   const handleQuickLog = async () => {
     if (!user) return;
@@ -436,7 +449,9 @@ const AppPage: React.FC = () => {
           const stored = JSON.parse(localStorage.getItem("nuju-activity-tags") || "{}");
           stored[entry.id] = selectedActivities;
           localStorage.setItem("nuju-activity-tags", JSON.stringify(stored));
-        } catch {}
+        } catch {
+          // Activity tags are optional local-only metadata.
+        }
       }
       setSelectedActivities([]);
       const newEntries = [entry, ...entries];
@@ -518,7 +533,9 @@ const AppPage: React.FC = () => {
           const stored = JSON.parse(localStorage.getItem("nuju-activity-tags") || "{}");
           stored[entry.id] = selectedActivities;
           localStorage.setItem("nuju-activity-tags", JSON.stringify(stored));
-        } catch {}
+        } catch {
+          // Activity tags are optional local-only metadata.
+        }
       }
       setSelectedActivities([]);
 

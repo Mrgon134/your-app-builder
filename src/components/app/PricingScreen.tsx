@@ -23,7 +23,7 @@ const PricingScreen: React.FC<PricingScreenProps> = ({
   const { t } = useLang();
   const geo = useGeoPricing();
   const trial = getTrialStatus(trialStartedAt);
-  const yearlySavings = Math.max(0, Math.round((1 - geo.rates.yearly / (geo.rates.weekly * 52)) * 100));
+  const threeMonthSavings = Math.max(0, Math.round((1 - geo.rates.threeMonth / (geo.rates.weekly * 13)) * 100));
   const hasPremium = hasActivePremiumPlan(currentPlan);
   const { snapshot: lifetimeScarcity } = useLifetimeScarcity();
 
@@ -33,23 +33,23 @@ const PricingScreen: React.FC<PricingScreenProps> = ({
       title: "Weekly",
       price: geo.formatPrice(geo.rates.weekly),
       unit: "/week",
-      description: "Start with the lightest commitment if you want support now but still want to stay cautious.",
+      description: "Start with the lightest commitment if you want support now and still want to stay cautious.",
       features: [
         "Lightest way to begin",
         "Full premium access while active",
       ],
     },
     {
-      id: "yearly",
-      title: "Annual",
-      price: geo.formatPrice(geo.rates.yearly),
-      unit: "/year",
-      badge: yearlySavings > 0 ? `Save ${yearlySavings}%` : "Best value",
-      highlight: false,
-      description: "Best value if you want the kind of support that stays with you long enough to make a real difference.",
+      id: "three_month",
+      title: "3 Month",
+      price: geo.formatPrice(geo.rates.threeMonth),
+      unit: "/3 months",
+      badge: threeMonthSavings > 0 ? `Save ${threeMonthSavings}%` : "Most popular",
+      highlight: true,
+      description: "A calmer commitment window for seeing whether Ju becomes part of your real emotional routine.",
       features: [
-        "Strongest value overall",
-        "Made for ongoing emotional support",
+        "Best balance of price and commitment",
+        "Made for building the habit",
       ],
     },
     {
@@ -69,7 +69,7 @@ const PricingScreen: React.FC<PricingScreenProps> = ({
 
   const getCurrentState = (planId: string) => {
     if (planId === "lifetime_one_time") return currentPlan === "lifetime";
-    if (planId === "yearly") return currentPlan === "yearly" || currentPlan === "plus" || currentPlan === "pro";
+    if (planId === "three_month") return currentPlan === "three_month";
     if (planId === "weekly") return currentPlan === "weekly";
     return false;
   };
@@ -86,7 +86,7 @@ const PricingScreen: React.FC<PricingScreenProps> = ({
         Choose how closely you want Ju to stay with you after the reveal.
       </p>
       <p className="mb-6 ml-8 text-[13px] text-muted-foreground">
-        Weekly is the cautious start, Annual is the best value, and Lifetime is the premium one-time path.
+        Weekly is the cautious start, 3 Month is the balanced commitment, and Lifetime is the one-time path.
       </p>
 
       {trial.isActive && !hasPremium && (
@@ -98,7 +98,7 @@ const PricingScreen: React.FC<PricingScreenProps> = ({
             )}
           </p>
           <p className="mt-1 text-xs text-muted-foreground">
-            Choose weekly, annual, or lifetime if you want Ju to keep supporting you without interruption.
+            Choose weekly, 3 month, or lifetime if you want Ju to keep supporting you without interruption.
           </p>
         </div>
       )}
@@ -107,7 +107,7 @@ const PricingScreen: React.FC<PricingScreenProps> = ({
         <div className="mb-5 rounded-2xl border border-destructive/20 bg-destructive/10 p-4">
           <p className="text-sm font-semibold text-foreground">{t.pro_trial_ended_title || "Your Pro trial ended"}</p>
           <p className="mt-1 text-xs text-muted-foreground">
-            Pick weekly, annual, or lifetime if you want to reopen full support.
+            Pick weekly, 3 month, or lifetime if you want to reopen full support.
           </p>
         </div>
       )}

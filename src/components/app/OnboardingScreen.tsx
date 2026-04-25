@@ -29,17 +29,18 @@ import { usePostHogEvents } from "@/hooks/use-posthog-events";
 import { SUPABASE_ANON_KEY, SUPABASE_URL } from "@/integrations/supabase/client";
 import { useAuth } from "@/lib/auth";
 import { updateProfile } from "@/lib/api";
+import { saveAuthIntent } from "@/lib/auth-intent";
 import { PRICING_CONFIG } from "@/lib/config";
 import {
   buildResultTeaser,
   createDefaultFunnelState,
-  FunnelPlan,
   loadFunnelState,
   OnboardingFunnelState,
   ResultTeaser,
   saveFunnelState,
 } from "@/lib/onboarding-funnel";
 import { persistOnboardingLead, requestOnboardingReveal } from "@/lib/onboarding-reveal";
+import { isIOS, isNative } from "@/lib/platform";
 import { ROUTES } from "@/lib/routes";
 
 const TOTAL_STEPS = 20;
@@ -72,8 +73,8 @@ const STEP_KEYS = [
   "paywall",
 ] as const;
 
-type CheckoutPlan = "yearly_trial" | "lifetime_one_time";
-const VALID_PLANS: CheckoutPlan[] = ["yearly_trial", "lifetime_one_time"];
+type CheckoutPlan = "weekly" | "three_month" | "lifetime_one_time";
+const VALID_PLANS: CheckoutPlan[] = ["weekly", "three_month", "lifetime_one_time"];
 
 interface OnboardingVisualScene {
   accent: string;
@@ -420,8 +421,9 @@ const OnboardingScreen: React.FC = () => {
   const query = useMemo(() => new URLSearchParams(location.search), [location.search]);
   const source = query.get("source") || "landing";
   const planFromQuery = query.get("plan");
-  const preferredPlan = VALID_PLANS.includes(planFromQuery as Exclude<FunnelPlan, null>)
-    ? (planFromQuery as Exclude<FunnelPlan, null>)
+  const normalizedQueryPlan = planFromQuery === "yearly" || planFromQuery === "yearly_trial" ? "three_month" : planFromQuery;
+  const preferredPlan = VALID_PLANS.includes(normalizedQueryPlan as CheckoutPlan)
+    ? (normalizedQueryPlan as CheckoutPlan)
     : null;
 
   const initialState = useMemo(() => {
@@ -556,6 +558,20 @@ const OnboardingScreen: React.FC = () => {
     processingStartedRef.current = true;
     setCheckoutError("");
 
+    let cancelled = false;
+    let settled = false;
+    const showReveal = (nextReveal: ResultTeaser) => {
+      if (cancelled || settled) return;
+      settled = true;
+      setReveal(nextReveal);
+      setFunnelState((prev) => ({ ...prev, step: RESULT_STEP }));
+      processingStartedRef.current = false;
+    };
+
+    const fallbackTimer = window.setTimeout(() => {
+      showReveal(buildResultTeaser(funnelState.answers));
+    }, 7500);
+
     const timer = window.setTimeout(async () => {
       const nextReveal = await requestOnboardingReveal({
         sessionId: funnelState.sessionId,
@@ -563,25 +579,29 @@ const OnboardingScreen: React.FC = () => {
         userId: user?.id || null,
       });
 
-      setReveal(nextReveal);
-      setFunnelState((prev) => ({ ...prev, step: RESULT_STEP }));
-      processingStartedRef.current = false;
+      window.clearTimeout(fallbackTimer);
+      showReveal(nextReveal);
     }, 900);
 
     return () => {
+      cancelled = true;
       window.clearTimeout(timer);
+      window.clearTimeout(fallbackTimer);
       processingStartedRef.current = false;
     };
   }, [funnelState.answers, funnelState.sessionId, funnelState.step, user?.id]);
 
   const teaser = reveal || buildResultTeaser(funnelState.answers);
-  const yearlySavings = Math.max(0, Math.round((1 - geo.rates.yearly / (geo.rates.weekly * 52)) * 100));
+  const threeMonthSavings = Math.max(0, Math.round((1 - geo.rates.threeMonth / (geo.rates.weekly * 13)) * 100));
   const { snapshot: lifetimeScarcity } = useLifetimeScarcity();
+  const useNativeStoreKit = isNative() && isIOS();
 
   const getProductId = (plan: CheckoutPlan) => {
     switch (plan) {
-      case "yearly_trial":
-        return PRICING_CONFIG.products.yearly;
+      case "weekly":
+        return PRICING_CONFIG.products.weekly;
+      case "three_month":
+        return PRICING_CONFIG.products.three_month;
       case "lifetime_one_time":
         return PRICING_CONFIG.products.lifetime_one_time;
       default:
@@ -590,6 +610,7 @@ const OnboardingScreen: React.FC = () => {
   };
 
   const isConfiguredProduct = (plan: CheckoutPlan) => {
+    if (useNativeStoreKit) return true;
     const productId = getProductId(plan);
     return Boolean(productId) && !productId.includes("VARIANT_ID");
   };
@@ -665,8 +686,7 @@ const OnboardingScreen: React.FC = () => {
     completeStep();
   };
 
-  const planForBackend = (plan: CheckoutPlan): "yearly" | "lifetime_one_time" =>
-    plan === "yearly_trial" ? "yearly" : "lifetime_one_time";
+  const planForBackend = (plan: CheckoutPlan): "weekly" | "three_month" | "lifetime_one_time" => plan;
 
   const handleContinueFree = () => {
     const freeName = funnelState.answers.name.trim();
@@ -710,7 +730,7 @@ const OnboardingScreen: React.FC = () => {
     }
 
     if (!isConfiguredProduct(plan)) {
-      setCheckoutError("This plan is not configured yet. Add the matching Dodo product ID first.");
+      setCheckoutError("This plan is not configured yet.");
       return;
     }
 
@@ -730,6 +750,20 @@ const OnboardingScreen: React.FC = () => {
         userId: user?.id || null,
       });
 
+      if (useNativeStoreKit) {
+        saveAuthIntent({
+          source: "onboarding",
+          screen: "pro",
+          plan,
+          resumePath: ROUTES.APP,
+          checkoutEmail,
+          checkoutName,
+        });
+        completedRef.current = true;
+        navigate(user ? `${ROUTES.APP}?screen=pro` : `${ROUTES.AUTH}?mode=signup`);
+        return;
+      }
+
       const response = await fetch(`${SUPABASE_URL}/functions/v1/dodo-checkout`, {
         method: "POST",
         headers: {
@@ -745,7 +779,6 @@ const OnboardingScreen: React.FC = () => {
           source: funnelState.answers.source,
           country: geo.country,
           coupon_code: geo.couponCode || undefined,
-          trial_period_days: plan === "yearly_trial" ? PRICING_CONFIG.trial.annualDays : undefined,
         }),
       });
 
@@ -764,7 +797,6 @@ const OnboardingScreen: React.FC = () => {
   }
 
   const firstName = funnelState.answers.name.trim();
-  const trialDays = PRICING_CONFIG.trial.annualDays;
   const onboardingScene = useMemo<OnboardingVisualScene>(() => {
     const name = firstName || "you";
 
@@ -883,9 +915,9 @@ const OnboardingScreen: React.FC = () => {
       title: "The paywall should feel like continuation, not interruption.",
       body: "Pricing lands best when it feels like keeping the support that already understood them.",
       quote: "If the reveal felt real, the next decision is simply how close Ju should stay.",
-      chips: [`${trialDays}-day trial`, "Lifetime option", "Free path"],
+      chips: ["Weekly", "3-month rhythm", "Lifetime option"],
     };
-  }, [firstName, funnelState.step, teaser.headline, teaser.stateLabel, trialDays]);
+  }, [firstName, funnelState.step, teaser.headline, teaser.stateLabel]);
 
   type PaywallPlanCard = {
     id: CheckoutPlan;
@@ -896,39 +928,60 @@ const OnboardingScreen: React.FC = () => {
     badge?: string;
     note: string;
     emphasis: string;
+    features: string[];
     ctaLabel: string;
+    recommended?: boolean;
   };
 
   const paywallPlans: PaywallPlanCard[] = [
     {
-      id: "yearly_trial",
-      title: "Annual",
-      priceDisplay: "$0 today",
-      unit: `Free for ${trialDays} days · then ${geo.formatPrice(geo.rates.yearly)}/year`,
-      secondaryLine: `Cancel anytime before day ${trialDays}. No charge if it is not for you.`,
-      badge: `${trialDays}-day free trial`,
+      id: "weekly",
+      title: "Weekly",
+      priceDisplay: geo.formatPrice(geo.rates.weekly),
+      unit: "per week",
+      badge: "Lowest commitment",
       emphasis: firstName
-        ? `${firstName}, start gentle. Try Ju fully for ${trialDays} days.`
-        : `Start gentle. Try Ju fully for ${trialDays} days.`,
-      note:
-        yearlySavings > 0
-          ? `After the trial, annual keeps Ju close at the best long-term value (Save ${yearlySavings}% vs weekly).`
-          : "After the trial, annual keeps Ju close at the best long-term value.",
-      ctaLabel: `Start ${trialDays}-day free trial`,
+        ? `${firstName}, keep it light while you test the fit.`
+        : "Keep it light while you test the fit.",
+      note: "A low-friction way to keep Ju open for the next heavy moment.",
+      features: ["Full premium access", "Cancel anytime"],
+      ctaLabel: "Start weekly",
+    },
+    {
+      id: "three_month",
+      title: "3 Month",
+      priceDisplay: geo.formatPrice(geo.rates.threeMonth),
+      unit: "every 3 months",
+      secondaryLine: threeMonthSavings > 0 ? `About ${threeMonthSavings}% less than staying weekly.` : undefined,
+      badge: "Recommended",
+      emphasis: firstName
+        ? `${firstName}, this gives Ju enough time to learn your rhythm.`
+        : "Give Ju enough time to learn your rhythm.",
+      note: "Best if the reveal felt real and you want a calmer commitment than weekly.",
+      features: ["Best balance", "Built for habit formation"],
+      ctaLabel: "Choose 3 month",
+      recommended: true,
     },
     {
       id: "lifetime_one_time",
       title: "Lifetime",
       priceDisplay: geo.formatPrice(geo.rates.lifetime),
-      unit: "One payment · Keep Ju close for good",
-      badge: "One payment · No renewals",
+      unit: "one payment",
+      badge: "No renewals",
       emphasis: firstName
         ? `${firstName}, if this already feels right, this is the strongest yes you can give.`
         : "The strongest yes if Ju already feels right.",
       note: "One payment for the people who already feel the fit and do not want renewals hanging over it later.",
+      features: ["Future premium updates", "No subscription renewal"],
       ctaLabel: "Keep Ju for life",
     },
   ];
+  const selectedPaywallPlan =
+    paywallPlans.find((plan) => plan.id === funnelState.answers.selectedPlan) ||
+    paywallPlans.find((plan) => plan.recommended && isConfiguredProduct(plan.id)) ||
+    paywallPlans.find((plan) => isConfiguredProduct(plan.id)) ||
+    paywallPlans.find((plan) => plan.recommended) ||
+    paywallPlans[0];
 
   const renderResonanceStep = (stepIndex: number) => {
     const prompt = RESONANCE_PROMPTS[stepIndex];
@@ -1508,7 +1561,7 @@ const OnboardingScreen: React.FC = () => {
       case PAYWALL_STEP:
       default:
         return (
-          <StepCard>
+          <StepCard className="overflow-visible pb-4">
             <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">Keep Ju close</p>
             <h2 className="mt-3 font-serif text-3xl font-bold text-foreground">
               {firstName
@@ -1517,8 +1570,8 @@ const OnboardingScreen: React.FC = () => {
             </h2>
             <p className="mt-3 text-base leading-8 text-muted-foreground">
               {firstName
-                ? `Start gentle, ${firstName}. Try Ju fully for ${trialDays} days — no charge if it is not for you.`
-                : `Start gentle. Try Ju fully for ${trialDays} days — no charge if it is not for you.`}
+                ? `Start gentle, ${firstName}. Pick the rhythm that feels safe enough to keep using.`
+                : "Start gentle. Pick the rhythm that feels safe enough to keep using."}
             </p>
 
             {checkoutError ? (
@@ -1527,76 +1580,101 @@ const OnboardingScreen: React.FC = () => {
               </div>
             ) : null}
 
-            <div className="mt-7 grid gap-4 md:grid-cols-2">
+            <div className="mt-7 overflow-hidden rounded-[1.5rem] border border-border/60 bg-background/55 dark:bg-white/[0.03]">
               {paywallPlans.map((plan) => {
-                const selected = funnelState.answers.selectedPlan === plan.id;
-                const isLoading = checkoutLoading === plan.id;
+                const selected = selectedPaywallPlan.id === plan.id;
                 const available = isConfiguredProduct(plan.id);
+                const isLoading = checkoutLoading === plan.id;
                 const isLifetime = plan.id === "lifetime_one_time";
 
                 return (
                   <div
                     key={plan.id}
-                    className={`rounded-[1.8rem] border p-5 transition-all ${
-                      isLifetime
-                        ? "border-primary/40 bg-[linear-gradient(180deg,rgba(245,241,255,0.97),rgba(255,255,255,0.99))] shadow-[0_24px_60px_-28px_rgba(124,110,219,0.5)] dark:border-[#9385F6]/50 dark:bg-[radial-gradient(circle_at_top,rgba(156,137,255,0.22),transparent_45%),linear-gradient(180deg,#201934_0%,#161124_100%)] dark:text-white"
-                        : "border-primary/25 bg-primary/[0.04] shadow-[0_18px_42px_-26px_rgba(124,110,219,0.35)] dark:border-white/10 dark:bg-white/[0.03]"
-                    } ${selected ? "ring-2 ring-primary/40" : ""}`}
+                    role="button"
+                    tabIndex={0}
+                    onClick={() => setAnswers({ selectedPlan: plan.id })}
+                    onKeyDown={(event) => {
+                      if (event.key === "Enter" || event.key === " ") {
+                        event.preventDefault();
+                        setAnswers({ selectedPlan: plan.id });
+                      }
+                    }}
+                    className={`w-full border-b border-border/50 px-4 py-4 text-left transition-all last:border-b-0 active:scale-[0.99] ${
+                      selected
+                        ? "bg-primary/[0.08] shadow-[inset_4px_0_0_hsl(var(--primary))]"
+                        : "bg-card/70 hover:bg-muted/50"
+                    } ${isLifetime ? "dark:bg-white/[0.04]" : ""}`}
                   >
-                    <div className="flex items-start justify-between gap-3">
-                      <div>
-                        <p className={`text-lg font-semibold ${isLifetime ? "text-foreground dark:text-white" : "text-foreground"}`}>
-                          {plan.title}
-                        </p>
-                        <p className={`mt-4 text-4xl font-bold tracking-tight ${isLifetime ? "text-foreground dark:text-white" : "text-foreground"}`}>
-                          {plan.priceDisplay}
-                        </p>
-                        <p className={`mt-1 text-sm font-medium ${isLifetime ? "text-muted-foreground dark:text-white/72" : "text-muted-foreground"}`}>
-                          {plan.unit}
-                        </p>
+                    <div className="flex gap-3">
+                      <span
+                        className={`mt-1 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full border ${
+                          selected ? "border-primary bg-primary text-primary-foreground" : "border-border bg-background"
+                        }`}
+                        aria-hidden
+                      >
+                        {selected ? <Check className="h-3.5 w-3.5" /> : null}
+                      </span>
+                      <div className="min-w-0 flex-1">
+                        <div className="flex flex-wrap items-center gap-2">
+                          <p className="text-base font-semibold text-foreground">{plan.title}</p>
+                          {plan.badge ? (
+                            <span
+                              className={`rounded-full px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.12em] ${
+                                plan.recommended
+                                  ? "bg-[#FFD166] text-[#1A1A2E]"
+                                  : "bg-primary/10 text-primary"
+                              }`}
+                            >
+                              {plan.badge}
+                            </span>
+                          ) : null}
+                          {!available ? (
+                            <span className="rounded-full bg-muted px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.12em] text-muted-foreground">
+                              Setup needed
+                            </span>
+                          ) : null}
+                        </div>
+                        <p className="mt-1 text-sm font-medium text-muted-foreground">{plan.emphasis}</p>
+                        <div className="mt-3 flex flex-wrap items-end gap-x-2 gap-y-1">
+                          <span className="font-serif text-3xl font-bold leading-none text-foreground">{plan.priceDisplay}</span>
+                          <span className="text-sm text-muted-foreground">{plan.unit}</span>
+                        </div>
                         {plan.secondaryLine ? (
-                          <p className={`mt-2 text-xs ${isLifetime ? "text-muted-foreground dark:text-white/60" : "text-muted-foreground"}`}>
-                            {plan.secondaryLine}
-                          </p>
+                          <p className="mt-2 text-xs font-medium text-primary">{plan.secondaryLine}</p>
+                        ) : null}
+                        <div className="mt-3 flex flex-wrap gap-2">
+                          {plan.features.map((feature) => (
+                            <span key={feature} className="rounded-full bg-muted px-2.5 py-1 text-[11px] font-medium text-muted-foreground">
+                              {feature}
+                            </span>
+                          ))}
+                        </div>
+                        {isLifetime && selected ? (
+                          <LifetimeScarcityMeter className="mt-4" scarcity={lifetimeScarcity} />
+                        ) : null}
+                        {selected ? (
+                          <div className="mt-4">
+                            <PrimaryButton
+                              className={
+                                isLifetime
+                                  ? "bg-[linear-gradient(135deg,#9385F6,#6F5FE8)] text-white hover:shadow-[0_18px_35px_-18px_rgba(124,110,219,0.75)] dark:bg-[linear-gradient(135deg,#9B8FFF,#7767EA)]"
+                                  : ""
+                              }
+                              onClick={(event) => {
+                                event.stopPropagation();
+                                handleCheckout(plan.id);
+                              }}
+                              disabled={!available || Boolean(checkoutLoading)}
+                            >
+                              {isLoading ? <Loader2 className="h-4 w-4 animate-spin" /> : null}
+                              {!available ? "Coming soon" : plan.ctaLabel}
+                            </PrimaryButton>
+                            <p className="mt-2 text-center text-[11px] leading-5 text-muted-foreground">
+                              {plan.note}
+                            </p>
+                          </div>
                         ) : null}
                       </div>
-                      {plan.badge ? (
-                        <span
-                          className={`rounded-full px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] ${
-                            isLifetime
-                              ? "bg-primary/12 text-primary dark:bg-white/12 dark:text-white"
-                              : "bg-primary/12 text-primary"
-                          }`}
-                        >
-                          {plan.badge}
-                        </span>
-                      ) : null}
-                    </div>
-
-                    <p className={`mt-4 text-sm font-semibold ${isLifetime ? "text-foreground dark:text-white" : "text-foreground"}`}>
-                      {plan.emphasis}
-                    </p>
-                    <p className={`mt-2 text-sm leading-7 ${isLifetime ? "text-muted-foreground dark:text-white/78" : "text-muted-foreground"}`}>
-                      {plan.note}
-                    </p>
-
-                    {isLifetime ? (
-                      <LifetimeScarcityMeter className="mt-4" scarcity={lifetimeScarcity} />
-                    ) : null}
-
-                    <div className="mt-6">
-                      <PrimaryButton
-                        className={
-                          isLifetime
-                            ? "bg-[linear-gradient(135deg,#9385F6,#6F5FE8)] text-white hover:shadow-[0_18px_35px_-18px_rgba(124,110,219,0.75)] dark:bg-[linear-gradient(135deg,#9B8FFF,#7767EA)]"
-                            : ""
-                        }
-                        onClick={() => handleCheckout(plan.id)}
-                        disabled={!available || Boolean(checkoutLoading)}
-                      >
-                        {isLoading ? <Loader2 className="h-4 w-4 animate-spin" /> : null}
-                        {!available ? "Coming soon" : plan.ctaLabel}
-                      </PrimaryButton>
                     </div>
                   </div>
                 );
