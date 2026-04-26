@@ -217,7 +217,7 @@ const BreathingExercise: React.FC = () => {
         <div className="bg-primary/5 border border-primary/20 rounded-2xl p-4 text-center animate-fade-in">
           <p className="text-sm font-semibold text-foreground">
             {moodImprovement > 0
-              ? `✨ You improved by ${moodImprovement} point${moodImprovement !== 1 ? 's' : ''}`
+              ? `You made ${moodImprovement} point${moodImprovement !== 1 ? 's' : ''} of room`
               : moodImprovement < 0
                 ? `Breath work in progress (${Math.abs(moodImprovement)} point adjustment)`
                 : "Same vibe, different energy"}
@@ -320,7 +320,7 @@ const BreathingExercise: React.FC = () => {
         {/* Timer */}
         {isActive && (
           <p className="text-[13px] text-muted-foreground mt-4 font-medium tabular-nums">
-            {mins}:{secs.toString().padStart(2, "0")} remaining · {cycleCount} cycles
+            {mins}:{secs.toString().padStart(2, "0")} remaining - {cycleCount} cycles
           </p>
         )}
       </div>

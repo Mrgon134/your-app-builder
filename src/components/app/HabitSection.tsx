@@ -107,7 +107,7 @@ const HabitSection: React.FC<HabitSectionProps> = ({ onUpgrade, plan, trialStart
 
   const addPreset = (preset: typeof PRESET_HABITS[0]) => {
     if (habits.length >= 6 && !hasPremiumAccess) {
-      toast.error(t.habits_upgrade || "Upgrade to add more habits");
+      toast.error(t.habits_upgrade || "Keep Ju close to add more habits.");
       onUpgrade?.();
       return;
     }
@@ -126,7 +126,7 @@ const HabitSection: React.FC<HabitSectionProps> = ({ onUpgrade, plan, trialStart
   const addCustom = () => {
     if (!newName.trim()) return;
     if (habits.length >= 6 && !hasPremiumAccess) {
-      toast.error(t.habits_upgrade || "Upgrade to add more habits");
+      toast.error(t.habits_upgrade || "Keep Ju close to add more habits.");
       onUpgrade?.();
       return;
     }
@@ -204,7 +204,7 @@ const HabitSection: React.FC<HabitSectionProps> = ({ onUpgrade, plan, trialStart
           })}
         </div>
       ) : (
-        <p className="text-[13px] text-muted-foreground text-center py-2">{t.habits_empty || "Tap + to add habits to track daily"}</p>
+            <p className="text-[13px] text-muted-foreground text-center py-2">{t.habits_empty || "Add one small thing you want to keep returning to."}</p>
       )}
 
       {/* Add habit panel */}

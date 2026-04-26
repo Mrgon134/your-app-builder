@@ -1,5 +1,5 @@
 import { MOODS } from "@/lib/constants";
-import { Capacitor } from "@capacitor/core";
+import { Capacitor, registerPlugin } from "@capacitor/core";
 import { Share as CapShare } from "@capacitor/share";
 import { Filesystem, Directory } from "@capacitor/filesystem";
 
@@ -7,6 +7,21 @@ const BRAND_COLOR = "#7C6EDB";
 const BG_LIGHT = "#F8F6FF";
 const TEXT_DARK = "#1A1A2E";
 const TEXT_MUTED = "#777777";
+const NUJU_SHARE_URL = "https://nuju.app";
+const INSTAGRAM_APP_ID = import.meta.env.VITE_INSTAGRAM_APP_ID || import.meta.env.VITE_FACEBOOK_APP_ID || "";
+
+export type ShareTarget = "tiktok" | "instagram_story" | "instagram_reels" | "whatsapp_status";
+
+interface NujuSharePlugin {
+  canOpen(options: { target: ShareTarget }): Promise<{ value: boolean }>;
+  shareInstagramStory(options: {
+    imageBase64: string;
+    facebookAppId?: string;
+    contentUrl?: string;
+  }): Promise<{ completed: boolean }>;
+}
+
+const NujuShare = registerPlugin<NujuSharePlugin>("NujuShare");
 
 // Draw rounded rect helper
 function roundRect(ctx: CanvasRenderingContext2D, x: number, y: number, w: number, h: number, r: number) {
@@ -562,12 +577,7 @@ export async function shareImage(blob: Blob, title: string, fileName = "nuju-moo
   if (Capacitor.isNativePlatform()) {
     await nativeShareFile(blob, fileName, title);
   } else {
-    const file = new File([blob], fileName, { type: blob.type || "image/png" });
-    if (navigator.share && navigator.canShare?.({ files: [file] })) {
-      await navigator.share({ title, text: "Check out my mood on Nuju 💜", files: [file] });
-    } else {
-      downloadBlob(blob, fileName);
-    }
+    await webShareFile(blob, fileName, title);
   }
 }
 
@@ -580,8 +590,6 @@ export function downloadBlob(blob: Blob, fileName = "nuju-moment.jpg") {
   URL.revokeObjectURL(url);
 }
 
-export type ShareTarget = "instagram" | "tiktok" | "whatsapp" | "x" | "save";
-
 export interface ShareTargetMeta {
   id: ShareTarget;
   label: string;
@@ -589,15 +597,14 @@ export interface ShareTargetMeta {
   color: string;
 }
 
-export const SHARE_TARGETS: ShareTargetMeta[] = [
-  { id: "instagram", label: "IG Story",  icon: "📸", color: "#E1306C" },
-  { id: "tiktok",    label: "TikTok",    icon: "🎵", color: "#010101" },
-  { id: "whatsapp",  label: "WA Status", icon: "💬", color: "#25D366" },
-  { id: "x",         label: "X / Tweet", icon: "𝕏",  color: "#1DA1F2" },
-  { id: "save",      label: "Save",      icon: "💾", color: "#7C6EDB" },
-];
-
 // ─── Helpers ──────────────────────────────────────────────────────────────────
+
+export const SHARE_TARGETS: ShareTargetMeta[] = [
+  { id: "tiktok", label: "TikTok", icon: "TT", color: "#010101" },
+  { id: "instagram_story", label: "IG Story", icon: "IG", color: "#E1306C" },
+  { id: "instagram_reels", label: "IG Reels", icon: "RL", color: "#C13584" },
+  { id: "whatsapp_status", label: "WA Status", icon: "WA", color: "#25D366" },
+];
 
 /** Convert a Blob to a base64 data string (without the data:... prefix). */
 async function blobToBase64(blob: Blob): Promise<string> {
@@ -622,17 +629,59 @@ async function nativeShareFile(blob: Blob, fileName: string, title?: string) {
   const base64Data = await blobToBase64(blob);
 
   const writeResult = await Filesystem.writeFile({
-    path: fileName,
+    path: `${Date.now()}-${fileName}`,
     data: base64Data,
     directory: Directory.Cache,
   });
 
   await CapShare.share({
     title: title || "My Nuju Moment",
-    text: "My mood moment on Nuju 💜",
-    url: writeResult.uri,
+    text: title || "My mood moment on Nuju",
+    files: [writeResult.uri],
     dialogTitle: "Share your moment",
   });
+}
+
+async function webShareFile(blob: Blob, fileName: string, caption: string) {
+  const file = new File([blob], fileName, { type: blob.type || "image/jpeg" });
+  if (navigator.share && navigator.canShare?.({ files: [file] })) {
+    await navigator.share({ files: [file], text: caption, title: "Nuju" });
+    return;
+  }
+
+  throw new Error("File sharing is not supported in this browser. Please share from the iOS app.");
+}
+
+async function tryInstagramStoryShare(blob: Blob): Promise<boolean> {
+  if (!INSTAGRAM_APP_ID || !Capacitor.isNativePlatform() || !Capacitor.isPluginAvailable("NujuShare")) {
+    return false;
+  }
+
+  try {
+    const canOpen = await NujuShare.canOpen({ target: "instagram_story" });
+    if (!canOpen.value) return false;
+
+    await NujuShare.shareInstagramStory({
+      imageBase64: await blobToBase64(blob),
+      facebookAppId: INSTAGRAM_APP_ID,
+      contentUrl: NUJU_SHARE_URL,
+    });
+    return true;
+  } catch (error) {
+    console.warn("Instagram story share failed, falling back to native share sheet:", error);
+    return false;
+  }
+}
+
+function openWebFallback(target: ShareTarget, caption: string) {
+  const fallbackUrls: Record<ShareTarget, string> = {
+    tiktok: "https://www.tiktok.com/upload",
+    instagram_story: "https://www.instagram.com/",
+    instagram_reels: "https://www.instagram.com/reels/create/",
+    whatsapp_status: `https://wa.me/?text=${encodeURIComponent(caption)}`,
+  };
+
+  window.open(fallbackUrls[target], "_blank", "noopener,noreferrer");
 }
 
 // ─── Share to specific target ─────────────────────────────────────────────────
@@ -647,50 +696,30 @@ async function nativeShareFile(blob: Blob, fileName: string, title?: string) {
  *
  * On web:
  *   We use the Web Share API (navigator.share) which on mobile browsers opens
- *   the same native share sheet. On desktop we fall back to download + open.
+ *   the same native share sheet. If file sharing is unavailable, we open the
+ *   target site without saving the image first.
  */
 export async function shareToTarget(
   blob: Blob,
   target: ShareTarget,
   caption = "My mood moment on Nuju 💜 nuju.app"
 ) {
-  // ── Save target ──
-  if (target === "save") {
-    if (Capacitor.isNativePlatform()) {
-      const base64Data = await blobToBase64(blob);
-      await Filesystem.writeFile({
-        path: `nuju-moment-${Date.now()}.jpg`,
-        data: base64Data,
-        directory: Directory.Documents,
-      });
-    } else {
-      downloadBlob(blob, "nuju-moment.jpg");
-    }
-    return;
-  }
-
   // ── Native (Capacitor iOS/Android) — triggers OS share sheet directly ──
   if (Capacitor.isNativePlatform()) {
+    if (target === "instagram_story" && await tryInstagramStoryShare(blob)) {
+      return;
+    }
+
     await nativeShareFile(blob, "nuju-moment.jpg", caption);
     return;
   }
 
   // ── Web: try Web Share API with file ──
-  const file = new File([blob], "nuju-moment.jpg", { type: "image/jpeg" });
-  if (navigator.share && navigator.canShare?.({ files: [file] })) {
-    await navigator.share({ files: [file], text: caption });
+  try {
+    await webShareFile(blob, "nuju-moment.jpg", caption);
     return;
+  } catch {
+    openWebFallback(target, caption);
   }
 
-  // ── Web fallback: download + open target URL ──
-  downloadBlob(blob, "nuju-moment.jpg");
-  const fallbackUrls: Record<string, string> = {
-    instagram: "https://www.instagram.com/",
-    tiktok: "https://www.tiktok.com/upload",
-    whatsapp: `https://wa.me/?text=${encodeURIComponent(caption)}`,
-    x: `https://twitter.com/intent/tweet?text=${encodeURIComponent(caption)}`,
-  };
-  if (fallbackUrls[target]) {
-    window.open(fallbackUrls[target], "_blank");
-  }
 }

@@ -181,9 +181,7 @@ describe("Landing page anatomy", () => {
 
     expect(screen.getByTestId("landing-what-you-get")).toBeInTheDocument();
     expect(screen.getByTestId("landing-internal-links")).toBeInTheDocument();
-    expect(
-      screen.getByText(/ai journaling app and mood tracker for emotional clarity/i),
-    ).toBeInTheDocument();
+    expect(screen.getByText(/For the moments you cannot explain cleanly yet/i)).toBeInTheDocument();
     expect(screen.getByText(/If the reveal feels right, choose how Ju stays with you\./i)).toBeInTheDocument();
 
     const comparisonLinks = within(screen.getByTestId("landing-internal-links"));
@@ -205,7 +203,7 @@ describe("Landing page anatomy", () => {
       expect.objectContaining({
         title: "AI Journaling App and Mood Tracker",
         description:
-          "Nuju is an AI journaling app and mood tracker for emotional clarity, private reflection, and fast daily check-ins. Start the Ju Gets You reveal free.",
+          "Nuju helps you turn hard-to-explain feelings into one private emotional read, gentle mood patterns, and a next step that feels close to you.",
         canonical: "https://nuju.app/",
       }),
     );

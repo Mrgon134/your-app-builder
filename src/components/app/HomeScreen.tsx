@@ -23,6 +23,7 @@ import DailyRitualCard from "@/components/app/DailyRitualCard";
 import WeeklyReviewCard from "@/components/app/WeeklyReviewCard";
 import { type ShellMode } from "@/hooks/use-shell-mode";
 import { getFirstName } from "@/lib/profile-name";
+import { isNative } from "@/lib/platform";
 
 interface BeforeInstallPromptEvent extends Event {
   prompt: () => Promise<void>;
@@ -66,7 +67,7 @@ const ACTIVITY_TAGS = [
 
 // Mood-reactive speech bubble messages — multilingual
 const JU_BUBBLES: Record<string, Record<string, string>> = {
-  en: { "1": "I'm right here with you. No pressure.", "2": "Let's take this one step at a time", "3": "A steady day has its own beauty", "4": "You're doing well today", "5": "What a wonderful feeling", default: "How are you today?" },
+  en: { "1": "I'm right here with you. No pressure.", "2": "One small check-in is enough.", "3": "Even steady days have something to say.", "4": "Something is lighter today. Let's notice it.", "5": "Let this good feeling have a little room.", default: "What feels most true right now?" },
   id: { "1": "Aku di sini bersamamu. Nggak ada tekanan.", "2": "Pelan-pelan aja, satu langkah sekaligus", "3": "Hari yang biasa pun ada indahnya", "4": "Kamu baik-baik aja hari ini", "5": "Perasaan yang luar biasa!", default: "Gimana kabar hari ini?" },
   ms: { "1": "Aku di sini bersamamu. Tiada tekanan.", "2": "Kita buat satu langkah dulu", "3": "Hari biasa pun ada keindahannya", "4": "Kamu baik-baik hari ini", "5": "Perasaan yang luar biasa!", default: "Apa khabar hari ini?" },
   es: { "1": "Estoy aquí contigo. Sin presión.", "2": "Vamos paso a paso", "3": "Un día tranquilo tiene su propia belleza", "4": "Lo estás haciendo bien hoy", "5": "¡Qué sensación tan maravillosa!", default: "¿Cómo estás hoy?" },
@@ -105,7 +106,7 @@ const ENERGY_LABEL_KEYS = ["drained", "low", "okay", "good", "energized"] as con
 
 // Streak milestone copy
 const getStreakMessage = (streak: number, t: Record<string, string>): string | null => {
-  if (streak >= 3) return (t.streak_milestone || "🔥 {n} days!").replace("{n}", String(streak));
+  if (streak >= 3) return (t.streak_milestone || "{n} days of showing up").replace("{n}", String(streak));
   return null;
 };
 
@@ -194,18 +195,18 @@ const HomeScreen: React.FC<HomeScreenProps> = ({
       ? "I'm Ju, and I'll learn your patterns the more you share."
       : "I'll learn your patterns the more you share.";
   } else if (streak > 0 && streak % 30 === 0 && !selectedMood) {
-    displayTitle = `${streak} days strong 🔥`;
-    displaySubtitle = "You're rewriting your story.";
+    displayTitle = `${streak} days strong`;
+    displaySubtitle = "You kept coming back to yourself.";
   } else if (streak > 0 && streak % 7 === 0 && !selectedMood) {
-    displayTitle = `Day ${streak} — impressive`;
-    displaySubtitle = "You're building something real.";
+    displayTitle = `Day ${streak}: you kept showing up`;
+    displaySubtitle = "That kind of return matters.";
   } else if (entries.length > 0 && !selectedMood) {
     const daysSinceLastEntry = Math.floor((new Date().getTime() - new Date(entries[0].created_at).getTime()) / (1000 * 60 * 60 * 24));
     const lastMoodData = MOODS.find(m => m.value === entries[0].mood);
 
     if (daysSinceLastEntry >= 3 && daysSinceLastEntry < 7) {
-      displayTitle = firstName ? `We've missed you, ${firstName}. 💙` : "We've missed you. 💙";
-      displaySubtitle = `It's been ${daysSinceLastEntry} days. What's changed?`;
+      displayTitle = firstName ? `Ju kept your place, ${firstName}.` : "Ju kept your place.";
+      displaySubtitle = `It has been ${daysSinceLastEntry} days. What feels different now?`;
     } else if (daysSinceLastEntry >= 7) {
       displayTitle = firstName ? `Welcome back, ${firstName}.` : "Welcome back.";
       displaySubtitle = "You last felt " + (lastMoodData?.label?.toLowerCase() || 'okay') + ". Let's check in.";
@@ -217,7 +218,7 @@ const HomeScreen: React.FC<HomeScreenProps> = ({
 
       displayTitle = firstName ? `Welcome back, ${firstName}.` : "Welcome back.";
       if (isMoodImproving && lastMood >= 4) {
-        displaySubtitle = "Your mood's been trending up. Let's keep it going. ⬆️";
+        displaySubtitle = "Something has been helping. Want to name it?";
       } else if (lastMood <= 2 && entries.length >= 3) {
         displaySubtitle = "You've been through tough days. I'm here to listen.";
       } else {
@@ -236,26 +237,32 @@ const HomeScreen: React.FC<HomeScreenProps> = ({
     };
     window.addEventListener("scroll", handleScroll, { passive: true });
 
-    // PWA Install Prompt Listener
-    const handleInstallPrompt = (e: Event) => {
-      e.preventDefault();
-      setInstallPrompt(e as BeforeInstallPromptEvent);
-      if (!localStorage.getItem("nuju-dismiss-install")) setShowInstallBanner(true);
-    };
-    window.addEventListener("beforeinstallprompt", handleInstallPrompt);
+    let handleInstallPrompt: ((e: Event) => void) | null = null;
 
-    // iOS PWA Detection
-    const userAgent = window.navigator.userAgent.toLowerCase();
-    const isIosDevice = /iphone|ipad|ipod/.test(userAgent);
-    const isStandalone = ("standalone" in window.navigator) && (window.navigator as NavigatorWithStandalone).standalone === true;
-    if (isIosDevice && !isStandalone && !localStorage.getItem("nuju-dismiss-install")) {
-      setIsIOS(true);
-      setShowInstallBanner(true);
+    if (!isNative()) {
+      // PWA Install Prompt Listener
+      handleInstallPrompt = (e: Event) => {
+        e.preventDefault();
+        setInstallPrompt(e as BeforeInstallPromptEvent);
+        if (!localStorage.getItem("nuju-dismiss-install")) setShowInstallBanner(true);
+      };
+      window.addEventListener("beforeinstallprompt", handleInstallPrompt);
+
+      // iOS PWA Detection
+      const userAgent = window.navigator.userAgent.toLowerCase();
+      const isIosDevice = /iphone|ipad|ipod/.test(userAgent);
+      const isStandalone = ("standalone" in window.navigator) && (window.navigator as NavigatorWithStandalone).standalone === true;
+      if (isIosDevice && !isStandalone && !localStorage.getItem("nuju-dismiss-install")) {
+        setIsIOS(true);
+        setShowInstallBanner(true);
+      }
     }
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
-      window.removeEventListener("beforeinstallprompt", handleInstallPrompt);
+      if (handleInstallPrompt) {
+        window.removeEventListener("beforeinstallprompt", handleInstallPrompt);
+      }
     };
   }, []);
 
@@ -343,11 +350,11 @@ const HomeScreen: React.FC<HomeScreenProps> = ({
       {showInstallBanner && (
         <div className="glass-card rounded-2xl p-4 flex items-center justify-between animate-fade-in border border-primary/20 bg-primary/5">
           <div>
-            <p className="font-semibold text-[14px] text-foreground text-primary">{t.install_app || "Add Nuju to Home Screen"}</p>
+            <p className="font-semibold text-[14px] text-foreground text-primary">{t.install_app || "Keep Ju one tap away"}</p>
             <p className="text-[12px] text-muted-foreground mt-0.5 max-w-[200px]">
               {isIOS 
-                ? "Tap Share > 'Add to Home Screen' for native performance."
-                : "Install the app for a native experience and notifications."}
+                ? "Add Nuju to your Home Screen for the moments you do not want to search."
+                : "Add Nuju so the next check-in starts faster."}
             </p>
           </div>
           {!isIOS && installPrompt ? (
@@ -360,7 +367,7 @@ const HomeScreen: React.FC<HomeScreenProps> = ({
               }}
               className="px-4 py-2 rounded-xl bg-primary text-primary-foreground text-[13px] font-bold shadow-[0_2px_10px_-2px_hsl(var(--primary)/0.4)] transition-transform active:scale-95"
             >
-              Install
+              Add
             </button>
           ) : (
             <button 
@@ -370,7 +377,7 @@ const HomeScreen: React.FC<HomeScreenProps> = ({
               }}
               className="text-[12px] text-muted-foreground font-medium px-2 py-1 uppercase tracking-wide opacity-70 hover:opacity-100"
             >
-              Dismiss
+              Not now
             </button>
           )}
         </div>

@@ -26,6 +26,8 @@ export const PRICING_CONFIG = {
   },
   trial: {
     annualDays: readNumber(import.meta.env.VITE_ANNUAL_TRIAL_DAYS, 7),
+    threeMonthDays: readNumber(import.meta.env.VITE_THREE_MONTH_TRIAL_DAYS, 7),
+    threeMonthIntroOfferEnabled: import.meta.env.VITE_THREE_MONTH_INTRO_TRIAL_ENABLED === "true",
   },
   retention: {
     yearlyPrice: readNumber(import.meta.env.VITE_RETENTION_YEARLY_PRICE, 44.99),

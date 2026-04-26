@@ -9,7 +9,15 @@ export function hasLegacyPlusPlan(plan: string | null): boolean {
 }
 
 export function hasActivePremiumPlan(plan: string | null): boolean {
-  return plan === "plus" || plan === "pro" || plan === "weekly" || plan === "three_month" || plan === "yearly" || plan === "lifetime";
+  return (
+    plan === "plus" ||
+    plan === "pro" ||
+    plan === "weekly" ||
+    plan === "three_month" ||
+    plan === "yearly" ||
+    plan === "lifetime" ||
+    plan === "lifetime_one_time"
+  );
 }
 
 export function getTrialStatus(trialStartedAt: string | null): {
@@ -59,7 +67,16 @@ export function hasPlusAccess(plan: string | null, trialStartedAt: string | null
 
 // Check if user has "pro-level" access: pro/lifetime plan OR active trial
 export function hasProAccess(plan: string | null, trialStartedAt: string | null): boolean {
-  if (plan === "pro" || plan === "weekly" || plan === "three_month" || plan === "yearly" || plan === "lifetime") return true;
+  if (
+    plan === "pro" ||
+    plan === "weekly" ||
+    plan === "three_month" ||
+    plan === "yearly" ||
+    plan === "lifetime" ||
+    plan === "lifetime_one_time"
+  ) {
+    return true;
+  }
   const trial = getTrialStatus(trialStartedAt);
   return trial.isActive;
 }

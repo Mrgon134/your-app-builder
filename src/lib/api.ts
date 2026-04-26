@@ -21,6 +21,61 @@ export interface EntryRow {
 }
 
 type TranscriptSegment = EntryRow["transcript_segments"] extends (infer T)[] | null ? T : never;
+type JournalMediaBucket = "voice-entries" | "photo-entries";
+
+const SIGNED_MEDIA_URL_TTL_SECONDS = 60 * 60;
+
+const storagePathFromUrl = (value: string | null, bucket: JournalMediaBucket): string | null => {
+  if (!value) return null;
+  if (!/^https?:\/\//i.test(value)) return value;
+
+  try {
+    const url = new URL(value);
+    const markers = [
+      `/storage/v1/object/public/${bucket}/`,
+      `/storage/v1/object/sign/${bucket}/`,
+    ];
+    const marker = markers.find((candidate) => url.pathname.includes(candidate));
+    if (!marker) return value;
+    const [, path] = url.pathname.split(marker);
+    return path ? decodeURIComponent(path) : value;
+  } catch {
+    return value;
+  }
+};
+
+export const getSignedMediaUrl = async (
+  bucket: JournalMediaBucket,
+  pathOrUrl: string | null
+): Promise<string | null> => {
+  const path = storagePathFromUrl(pathOrUrl, bucket);
+  if (!path) return null;
+  if (/^https?:\/\//i.test(path)) return path;
+
+  const { data, error } = await supabase.storage
+    .from(bucket)
+    .createSignedUrl(path, SIGNED_MEDIA_URL_TTL_SECONDS);
+
+  if (error) {
+    console.error(`Failed to sign ${bucket} media URL:`, error);
+    return null;
+  }
+
+  return data.signedUrl;
+};
+
+const hydrateEntryMediaUrls = async (entry: EntryRow): Promise<EntryRow> => {
+  const [audioUrl, photoUrl] = await Promise.all([
+    getSignedMediaUrl("voice-entries", entry.audio_url),
+    getSignedMediaUrl("photo-entries", entry.photo_url),
+  ]);
+
+  return {
+    ...entry,
+    audio_url: audioUrl,
+    photo_url: photoUrl,
+  };
+};
 
 export interface ProfileRow {
   id: string;
@@ -57,10 +112,11 @@ export const fetchEntries = async (userId: string): Promise<EntryRow[]> => {
     .order("entry_date", { ascending: false })
     .order("created_at", { ascending: false });
   if (error) throw error;
-  return (data as unknown as EntryRow[]) || [];
+  const entries = (data as unknown as EntryRow[]) || [];
+  return Promise.all(entries.map(hydrateEntryMediaUrls));
 };
 
-// Check entry limit (free = 3/week)
+// Legacy compatibility: journal and quick mood entries stay open on the free plan.
 export const checkEntryLimit = async (userId: string): Promise<boolean> => {
   const { data, error } = await supabase.rpc("check_entry_limit", { p_user_id: userId });
   if (error) throw error;
@@ -127,10 +183,7 @@ export const uploadVoiceAudio = async (
       upsert: true,
     });
   if (error) throw error;
-  const { data: urlData } = supabase.storage
-    .from("voice-entries")
-    .getPublicUrl(filePath);
-  return urlData.publicUrl;
+  return filePath;
 };
 
 // Update entry with voice data (audio URL + transcript segments)
@@ -142,7 +195,7 @@ export const updateEntryVoice = async (
   const { error } = await supabase
     .from("entries")
     .update({
-      audio_url: audioUrl,
+      audio_url: storagePathFromUrl(audioUrl, "voice-entries"),
       transcript_segments: transcriptSegments as Json,
     })
     .eq("id", entryId);
@@ -164,17 +217,14 @@ export const uploadPhoto = async (
       upsert: true,
     });
   if (error) throw error;
-  const { data: urlData } = supabase.storage
-    .from("photo-entries")
-    .getPublicUrl(filePath);
-  return urlData.publicUrl;
+  return filePath;
 };
 
 // Update entry with photo URL
 export const updateEntryPhoto = async (entryId: string, photoUrl: string) => {
   const { error } = await supabase
     .from("entries")
-    .update({ photo_url: photoUrl })
+    .update({ photo_url: storagePathFromUrl(photoUrl, "photo-entries") })
     .eq("id", entryId);
   if (error) throw error;
 };
@@ -193,10 +243,7 @@ export const uploadSelfiePhoto = async (
       upsert: true,
     });
   if (error) throw error;
-  const { data: urlData } = supabase.storage
-    .from("photo-entries")
-    .getPublicUrl(filePath);
-  return urlData.publicUrl;
+  return filePath;
 };
 
 // Quick entry (mood-only, no writing)
@@ -326,10 +373,11 @@ export const deleteHabit = async (habitId: string): Promise<void> => {
   if (error) throw error;
 };
 
-export const toggleHabitLog = async (habitId: string, date: string, completed: boolean): Promise<void> => {
+export const toggleHabitLog = async (userId: string, habitId: string, date: string, completed: boolean): Promise<void> => {
   const { error } = await supabase
     .from("habit_logs")
     .upsert({
+      user_id: userId,
       habit_id: habitId,
       logged_date: date,
       completed,

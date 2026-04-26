@@ -8,6 +8,8 @@ import { saveCoachMessage, fetchCoachMessages, checkCoachLimit, countCoachMessag
 import { hasPlusAccess } from "@/lib/trial";
 import { toast } from "sonner";
 import { Lock } from "lucide-react";
+import { SUPABASE_URL } from "@/integrations/supabase/client";
+import { getJsonFunctionHeaders } from "@/lib/function-auth";
 import coachGentle from "@/assets/coach-gentle.webp";
 import coachTough from "@/assets/coach-tough.webp";
 import coachWise from "@/assets/coach-wise.webp";
@@ -15,10 +17,10 @@ import coachFun from "@/assets/coach-fun.webp";
 import { type ShellMode } from "@/hooks/use-shell-mode";
 
 const PERSONA_GREETINGS: Record<string, string> = {
-  gentle: "Hey, I'm here now. Take your time — what's on your heart?",
+  gentle: "Hey, I'm here now. Take your time. What's on your heart?",
   tough: "Let's get real with each other. What are we actually dealing with?",
   wise: "I'm glad you found me. Every shift in perspective is its own kind of wisdom.",
-  fun: "Okay, new energy! Let's shake things up — what's going on?",
+  fun: "Okay, new energy. Let's shake things up. What's going on?",
 };
 
 const COACH_ICONS: Record<string, string> = {
@@ -51,8 +53,6 @@ const AnimatedGreeting: React.FC<{ text: string }> = ({ text }) => {
 
 type Msg = { role: "user" | "assistant"; content: string };
 
-import { SUPABASE_URL, SUPABASE_ANON_KEY } from "@/integrations/supabase/client";
-
 const CHAT_URL = `${SUPABASE_URL}/functions/v1/ai-coach`;
 
 async function streamChat({
@@ -74,16 +74,13 @@ async function streamChat({
 }) {
   const resp = await fetch(CHAT_URL, {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
-    },
+    headers: await getJsonFunctionHeaders(),
     body: JSON.stringify({ messages, persona, lang, userName }),
   });
 
   if (!resp.ok) {
-    const errBody = await resp.json().catch(() => ({ error: "Request failed" }));
-    onError(errBody.error || `Error ${resp.status}`);
+    const errBody = await resp.json().catch(() => ({ error: "Ju could not answer yet." }));
+    onError(errBody.error || "Ju could not answer yet.");
     return;
   }
 
@@ -263,7 +260,7 @@ const CoachScreen: React.FC<{ onUpgrade?: () => void; plan?: string | null; tria
     } catch (e) {
       console.error(e);
       setIsLoading(false);
-      toast.error("Failed to get AI response");
+      toast.error("Ju could not answer yet. Try again in a moment.");
     }
   };
 
@@ -324,9 +321,9 @@ const CoachScreen: React.FC<{ onUpgrade?: () => void; plan?: string | null; tria
             <div className="rounded-2xl bg-secondary/70 px-3 py-3 text-xs leading-6 text-muted-foreground">
               {hasPlusAccess(propPlan || userPlan, propTrialStartedAt || null)
                 ? (displayName
-                    ? `${t.coach_desktop_hint || "Use the side panel to switch tone, then keep the conversation flowing on the right."} Ju will remember your name too.`
-                    : (t.coach_desktop_hint || "Use the side panel to switch tone, then keep the conversation flowing on the right."))
-                : (t.coach_free_hint || "Free users can chat with Gentle Ju for 5 messages each week.")}
+                    ? `${t.coach_desktop_hint || "Choose the kind of voice you need, then keep the thread going on the right."} Ju will remember your name too.`
+                    : (t.coach_desktop_hint || "Choose the kind of voice you need, then keep the thread going on the right."))
+                : (t.coach_free_hint || "Free gives you 5 Gentle Ju messages each week.")}
             </div>
           </div>
         )}
@@ -408,7 +405,7 @@ const CoachScreen: React.FC<{ onUpgrade?: () => void; plan?: string | null; tria
             <span className="text-sm font-semibold text-foreground">{t.coach_limit_title || "Weekly limit reached"}</span>
           </div>
           <p className="text-xs text-muted-foreground mb-3">
-            {t.coach_limit_desc || "Free plan includes 5 messages per week. Upgrade for unlimited coaching."}
+            {t.coach_limit_desc || "Free gives you 5 messages each week. Keep Ju close for longer conversations."}
           </p>
           {onUpgrade && (
             <button
@@ -442,7 +439,7 @@ const CoachScreen: React.FC<{ onUpgrade?: () => void; plan?: string | null; tria
           value={input}
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={(e) => e.key === "Enter" && sendMessage()}
-          placeholder={!canSend && !hasPlusAccess(propPlan || userPlan, propTrialStartedAt || null) ? (t.upgrade_to_chat || "Upgrade to keep chatting...") : t.talk_to_ju}
+          placeholder={!canSend && !hasPlusAccess(propPlan || userPlan, propTrialStartedAt || null) ? (t.upgrade_to_chat || "Keep Ju close to continue...") : t.talk_to_ju}
           disabled={isLoading || (!canSend && !hasPlusAccess(propPlan || userPlan, propTrialStartedAt || null))}
           className="flex-1 px-5 h-[48px] rounded-xl bg-card border border-border/40 text-foreground placeholder:text-muted-foreground/40 focus:outline-none focus:ring-2 focus:ring-primary/15 focus:border-primary/30 text-[15px] transition-all disabled:opacity-50"
         />

@@ -81,7 +81,7 @@ const SettingsScreen: React.FC<SettingsScreenProps> = ({ onBack, onUpgrade, onCh
         ? "3 Month"
         : plan === "yearly"
           ? "Annual"
-          : plan === "lifetime"
+          : plan === "lifetime" || plan === "lifetime_one_time"
             ? "Lifetime"
             : plan === "pro"
               ? "Pro"
@@ -561,7 +561,7 @@ const SettingsScreen: React.FC<SettingsScreenProps> = ({ onBack, onUpgrade, onCh
                 <ChevronRight className="w-4 h-4 text-muted-foreground/40" />
               </button>
             )}
-            {plan === "lifetime" && (
+            {(plan === "lifetime" || plan === "lifetime_one_time") && (
               <div className="ios-group-item">
                 <span className="text-[15px] text-foreground">Access</span>
                 <span className="text-[15px] text-muted-foreground">One payment, no renewals</span>
@@ -582,7 +582,7 @@ const SettingsScreen: React.FC<SettingsScreenProps> = ({ onBack, onUpgrade, onCh
                   <Crown className="w-6 h-6 text-white" />
                 </div>
                 <p className="font-semibold text-foreground text-[17px] mb-0.5">{t.unlock_ju}</p>
-                <p className="text-[13px] text-muted-foreground mb-3">{t.pro_feature_desc || "Unlimited entries, all coaches, full history"}</p>
+                <p className="text-[13px] text-muted-foreground mb-3">{t.pro_feature_desc || "Voice, memory, all coaches, and full history"}</p>
                 <div className="w-full py-3 rounded-xl bg-primary text-primary-foreground font-semibold text-[15px] transition-all active:scale-[0.97]">
                   {t.start_trial}
                 </div>

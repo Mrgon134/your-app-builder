@@ -59,11 +59,11 @@ const Terms: React.FC = () => {
               2. Description of Service
             </h2>
             <p>
-              Nuju is an AI-powered journaling web application that helps users
+              Nuju is an AI-powered journaling application that helps users
               track moods, write journal entries, receive AI-generated insights,
               and interact with an AI companion named Ju. The App is available
-              on the web and may also be installed as a progressive web app on
-              supported devices.
+              on iOS and the web, and may also be installed as a progressive web
+              app on supported devices.
             </p>
           </section>
 

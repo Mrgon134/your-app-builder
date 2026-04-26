@@ -10,7 +10,8 @@ import AiMemoryCard from "@/components/app/AiMemoryCard";
 import ShareMenu from "@/components/app/ShareMenu";
 import SmartNotificationsPanel from "@/components/insights/SmartNotificationsPanel";
 import { JU_STICKERS } from "@/lib/stickers";
-import { SUPABASE_URL, SUPABASE_ANON_KEY } from "@/integrations/supabase/client";
+import { SUPABASE_URL } from "@/integrations/supabase/client";
+import { getJsonFunctionHeaders } from "@/lib/function-auth";
 import { EntryRow } from "@/lib/api";
 import MoodCalendar from "@/components/app/MoodCalendar";
 import { getMoodHighlight } from "@/lib/mood-highlights";
@@ -74,10 +75,7 @@ const InsightsScreen: React.FC<InsightsScreenProps> = ({
       try {
         const resp = await fetch(`${SUPABASE_URL}/functions/v1/ai-weekly-summary`, {
           method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
-          },
+          headers: await getJsonFunctionHeaders(),
           body: JSON.stringify({ entries: visibleEntries.slice(0, 7), lang }),
         });
 
@@ -132,11 +130,11 @@ const InsightsScreen: React.FC<InsightsScreenProps> = ({
 
   const moodTrend = getMoodTrend();
   const moodTrendMessages: Record<string, string> = {
-    seed: t.mood_trend_seed || "Keep writing and I'll spot patterns in your mood.",
-    first: t.mood_trend_first || "You've been showing up consistently. That's already a win.",
-    up: t.mood_trend_up || "Your mood has been climbing this week. Something's working - what is it?",
-    down: t.mood_trend_down || "Things have been heavier lately. That's okay - I'm here.",
-    stable: t.mood_trend_stable || "Your mood has been steady. Consistency is a kind of strength.",
+    seed: t.mood_trend_seed || "Keep checking in. Ju needs a few honest moments before patterns can show.",
+    first: t.mood_trend_first || "You have been showing up enough for the first thread to appear.",
+    up: t.mood_trend_up || "Something has been helping this week. Ju can help you name what changed.",
+    down: t.mood_trend_down || "Things have been heavier lately. You do not have to turn that into insight alone.",
+    stable: t.mood_trend_stable || "Your mood has been steady. That steadiness is still information.",
   };
 
   const moodHighlight = getMoodHighlight(visibleEntries, t);
@@ -181,11 +179,11 @@ const InsightsScreen: React.FC<InsightsScreenProps> = ({
     const past = visibleEntries.slice(3, 14).map((entry) => entry.mood).reduce((sum, mood) => sum + mood, 0) / 11;
 
     if (recent < past - 0.4) {
-      return "Based on your patterns, you might feel a natural dip tomorrow - want to prep tonight?";
+      return "Tomorrow may need a softer landing. Want to prepare a small check-in tonight?";
     }
 
     if (recent > past + 0.5) {
-      return "Your energy is climbing! Keep this momentum flowing into tomorrow.";
+      return "Your energy has been lifting. Want to name what has been giving you room?";
     }
 
     return null;
@@ -224,7 +222,7 @@ const InsightsScreen: React.FC<InsightsScreenProps> = ({
           className="mt-4 inline-flex h-[40px] items-center gap-2 rounded-xl bg-primary px-5 text-[13px] font-semibold text-primary-foreground shadow-[0_2px_12px_-3px_hsl(var(--primary)/0.35)] transition-all active:scale-[0.97]"
         >
           <Sparkles className="h-3.5 w-3.5" />
-          {t.unlock_plus || t.unlock_ju || "Unlock with Plus"}
+          {t.unlock_plus || t.unlock_ju || "Open longer patterns"}
         </button>
       </div>
     </div>
@@ -262,17 +260,17 @@ const InsightsScreen: React.FC<InsightsScreenProps> = ({
           <Lock className="h-6 w-6 text-primary" />
         </div>
         <h2 className="mb-2 font-serif text-[22px] font-bold text-foreground">
-          {t.history_locked || "Full history locked"}
+          {t.history_locked || "Your older patterns are waiting"}
         </h2>
         <p className="mb-6 max-w-[280px] text-[15px] leading-relaxed text-muted-foreground">
-          {t.history_locked_desc || "Free plan shows 7 days. Upgrade to see all your entries."}
+          {t.history_locked_desc || "Free keeps the last 7 days. Plus opens the longer thread so Ju can spot what repeats."}
         </p>
         <button
           onClick={onUpgrade}
           className="inline-flex h-[48px] items-center gap-2 rounded-2xl bg-primary px-6 text-[14px] font-semibold text-primary-foreground transition-all active:scale-[0.97]"
         >
           <Sparkles className="h-4 w-4" />
-          {t.unlock_plus || t.unlock_ju || "Unlock with Plus"}
+          {t.unlock_plus || t.unlock_ju || "Open longer patterns"}
         </button>
       </div>
     );
@@ -301,10 +299,10 @@ const InsightsScreen: React.FC<InsightsScreenProps> = ({
             </div>
             <div className="min-w-0 flex-1">
               <p className="text-sm font-semibold text-foreground">
-                {t.history_locked || "Full history locked"}
+                {t.history_locked || "Your older patterns are waiting"}
               </p>
               <p className="mt-1 text-xs text-muted-foreground">
-                {t.history_locked_desc || "Free plan shows 7 days. Upgrade to see all your entries."}
+                {t.history_locked_desc || "Free keeps the last 7 days. Plus opens the longer thread so Ju can spot what repeats."}
               </p>
             </div>
             <button
@@ -324,8 +322,8 @@ const InsightsScreen: React.FC<InsightsScreenProps> = ({
             <MoodTrendChart entries={visibleEntries} />
           ) : (
             renderPlusInsightsLock(
-              t.mood_trend || "30-Day Mood Trend",
-              t.plus_feature_3_v2 || "Unlock Plus for 30-day mood trends and weekly summaries."
+              t.mood_trend || "30-day mood thread",
+              t.plus_feature_3_v2 || "Open the longer view so Ju can notice what keeps repeating."
             )
           )}
 
@@ -378,7 +376,7 @@ const InsightsScreen: React.FC<InsightsScreenProps> = ({
                 className="mt-0.5 h-9 w-9 flex-shrink-0"
               />
               <div>
-                <p className="mb-1.5 text-[11px] font-semibold uppercase tracking-widest text-primary">I noticed...</p>
+                <p className="mb-1.5 text-[11px] font-semibold uppercase tracking-widest text-primary">Ju noticed</p>
                 <p className="text-[14px] leading-relaxed text-foreground">
                   {moodTrendMessages[moodTrend.direction]}
                 </p>
@@ -405,7 +403,7 @@ const InsightsScreen: React.FC<InsightsScreenProps> = ({
             <div className="glass-card flex items-center justify-between rounded-2xl p-5">
               <div>
                 <p className="mb-0.5 flex items-center gap-1 text-[11px] font-semibold uppercase tracking-widest text-primary">
-                  <Flame className="h-3.5 w-3.5" /> {t.streak_milestone || "Streak Milestone"}
+                  <Flame className="h-3.5 w-3.5" /> {t.streak_milestone || "You kept the thread"}
                 </p>
                 <p className="text-[22px] font-bold tracking-tight text-foreground">
                   {streak} {t.days_streak || "days"}
@@ -426,7 +424,7 @@ const InsightsScreen: React.FC<InsightsScreenProps> = ({
               {summaryLoading ? (
                 <div className="flex items-center gap-2 text-muted-foreground">
                   <Loader2 className="h-4 w-4 animate-spin" />
-                  <span className="text-[13px]">{t.analyzing_week || "Analyzing your week..."}</span>
+                  <span className="text-[13px]">{t.analyzing_week || "Reading the week gently..."}</span>
                 </div>
               ) : (
                 <p className="text-[14px] leading-relaxed text-foreground">
@@ -439,7 +437,7 @@ const InsightsScreen: React.FC<InsightsScreenProps> = ({
                   onClick={() => onNavigate("coach")}
                   className="mt-4 flex w-full items-center justify-between rounded-xl bg-primary/10 p-3 text-primary transition-colors hover:bg-primary/15"
                 >
-                  <span className="text-[13px] font-semibold">Ask Ju about your week</span>
+                  <span className="text-[13px] font-semibold">Ask Ju what this week was trying to show you</span>
                   <ArrowRight className="h-4 w-4" />
                 </button>
               )}
@@ -447,7 +445,7 @@ const InsightsScreen: React.FC<InsightsScreenProps> = ({
           ) : (
             renderPlusInsightsLock(
               t.weekly_summary || "Ju's weekly summary",
-              t.plus_feature_3_v2 || "Unlock Plus for 30-day mood trends and weekly summaries."
+              t.plus_feature_3_v2 || "Open the longer view so Ju can notice what keeps repeating."
             )
           )}
 
@@ -461,7 +459,7 @@ const InsightsScreen: React.FC<InsightsScreenProps> = ({
         <div className="space-y-5">
           {bestDayOfWeek && (
             <div className="glass-card rounded-2xl p-5">
-              <p className="mb-3 text-[11px] font-semibold uppercase tracking-widest text-primary">Hidden Pattern</p>
+              <p className="mb-3 text-[11px] font-semibold uppercase tracking-widest text-primary">A small pattern</p>
               <p className="text-[15px] font-medium leading-relaxed text-foreground">
                 You tend to have your best days on <span className="font-bold text-primary">{bestDayOfWeek}s</span>.
               </p>
@@ -483,7 +481,7 @@ const InsightsScreen: React.FC<InsightsScreenProps> = ({
             >
               <div className="mb-3 flex items-center gap-2">
                 <Sparkles className="h-4 w-4 text-primary" />
-                <p className="text-[11px] font-semibold uppercase tracking-widest text-primary">Ju's Forecast</p>
+                <p className="text-[11px] font-semibold uppercase tracking-widest text-primary">A gentle heads-up</p>
               </div>
               <p className="text-[15px] font-medium leading-relaxed text-foreground">{prediction}</p>
               {onNavigate && (
@@ -491,7 +489,7 @@ const InsightsScreen: React.FC<InsightsScreenProps> = ({
                   onClick={() => onNavigate("coach")}
                   className="mt-4 w-full rounded-xl bg-primary py-2.5 text-[13px] font-semibold text-primary-foreground transition-transform active:scale-95"
                 >
-                  Talk to Ju tonight
+                  Plan a softer check-in
                 </button>
               )}
             </div>
@@ -507,10 +505,10 @@ const InsightsScreen: React.FC<InsightsScreenProps> = ({
               <Target className="h-6 w-6 text-primary" />
               <div>
                 <p className="text-[14px] font-semibold text-foreground">
-                  {t.guided_programs_title || "Guided Programs"}
+                  {t.guided_programs_title || "Guided paths"}
                 </p>
                 <p className="mt-0.5 text-[11px] text-muted-foreground">
-                  {t.guided_programs_sub || "Structured challenges"}
+                  {t.guided_programs_sub || "Small rituals for hard weeks"}
                 </p>
               </div>
             </button>

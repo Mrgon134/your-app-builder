@@ -1,4 +1,5 @@
-import { SUPABASE_ANON_KEY, SUPABASE_URL } from "@/integrations/supabase/client";
+import { SUPABASE_URL } from "@/integrations/supabase/client";
+import { getJsonFunctionHeaders } from "@/lib/function-auth";
 import { buildResultTeaser, type OnboardingFunnelAnswers, type ResultTeaser } from "@/lib/onboarding-funnel";
 
 interface OnboardingRevealResponse {
@@ -49,10 +50,7 @@ export const requestOnboardingReveal = async ({
   try {
     const response = await fetchWithTimeout(`${SUPABASE_URL}/functions/v1/onboarding-reveal`, {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
-      },
+      headers: await getJsonFunctionHeaders(),
       body: JSON.stringify({
         sessionId,
         userId: userId || null,
@@ -87,10 +85,7 @@ export const persistOnboardingLead = async ({
   try {
     await fetchWithTimeout(`${SUPABASE_URL}/functions/v1/onboarding-reveal`, {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
-      },
+      headers: await getJsonFunctionHeaders(),
       body: JSON.stringify({
         sessionId,
         userId: userId || null,

@@ -22,6 +22,11 @@ export const PRODUCT_IDS = {
   pro_lifetime: "lifetime",
 } as const;
 
+let revenueCatConfigured = false;
+let revenueCatAppUserID: string | undefined;
+
+const revenueCatLogLevel = import.meta.env.DEV ? LOG_LEVEL.DEBUG : LOG_LEVEL.WARN;
+
 export const initRevenueCat = async (appUserID?: string) => {
   if (!isNative()) return;
   if (!REVENUECAT_API_KEY) {
@@ -29,18 +34,29 @@ export const initRevenueCat = async (appUserID?: string) => {
     return;
   }
 
-  await Purchases.setLogLevel({ level: LOG_LEVEL.DEBUG });
-  await Purchases.configure({
-    apiKey: REVENUECAT_API_KEY,
-    appUserID: appUserID ?? undefined,
-  });
+  if (!revenueCatConfigured) {
+    await Purchases.setLogLevel({ level: revenueCatLogLevel });
+    await Purchases.configure({
+      apiKey: REVENUECAT_API_KEY,
+      appUserID: appUserID ?? undefined,
+    });
+    revenueCatConfigured = true;
+    revenueCatAppUserID = appUserID;
+    return;
+  }
+
+  if (appUserID && revenueCatAppUserID !== appUserID) {
+    await identifyUser(appUserID);
+  }
 };
 
 // Link Supabase user ID to RevenueCat after login
 export const identifyUser = async (userId: string) => {
   if (!isNative()) return;
+  if (revenueCatAppUserID === userId) return;
   try {
     await Purchases.logIn({ appUserID: userId });
+    revenueCatAppUserID = userId;
   } catch (err) {
     console.error("[RevenueCat] identify error:", err);
   }
@@ -51,6 +67,7 @@ export const resetUser = async () => {
   if (!isNative()) return;
   try {
     await Purchases.logOut();
+    revenueCatAppUserID = undefined;
   } catch (err) {
     console.error("[RevenueCat] logout error:", err);
   }
@@ -123,13 +140,38 @@ export const hasActiveEntitlement = async (entitlementId: string): Promise<boole
   return info.entitlements.active[entitlementId]?.isActive === true;
 };
 
-// Derive plan name from RevenueCat entitlements
-export const getPlanFromEntitlements = async (): Promise<string> => {
-  const info = await getCustomerInfo();
+const planFromProductId = (productId: string): string | null => {
+  if (productId === PRODUCT_IDS.pro_lifetime) return "lifetime";
+  if (productId === PRODUCT_IDS.three_month) return "three_month";
+  if (productId === PRODUCT_IDS.weekly) return "weekly";
+  if (productId === PRODUCT_IDS.plus_monthly || productId === PRODUCT_IDS.plus_annual) return "plus";
+  if (productId === PRODUCT_IDS.pro_monthly || productId === PRODUCT_IDS.pro_annual) return "pro";
+  return null;
+};
+
+export const getPlanFromCustomerInfo = (info: CustomerInfo | null): string => {
   if (!info) return "free";
+
+  const hasLifetimePurchase =
+    info.allPurchasedProductIdentifiers?.includes(PRODUCT_IDS.pro_lifetime) ||
+    info.nonSubscriptionTransactions?.some((transaction) => transaction.productIdentifier === PRODUCT_IDS.pro_lifetime);
+
+  if (hasLifetimePurchase) return "lifetime";
+
+  const activeSubscriptionPlan = info.activeSubscriptions
+    ?.map(planFromProductId)
+    .find((plan): plan is string => Boolean(plan));
+
+  if (activeSubscriptionPlan) return activeSubscriptionPlan;
   if (info.entitlements.active[ENTITLEMENTS.pro]?.isActive) return "pro";
   if (info.entitlements.active[ENTITLEMENTS.plus]?.isActive) return "plus";
   return "free";
+};
+
+// Derive plan name from RevenueCat entitlements
+export const getPlanFromEntitlements = async (): Promise<string> => {
+  const info = await getCustomerInfo();
+  return getPlanFromCustomerInfo(info);
 };
 
 // Map Dodo plan IDs to RevenueCat product IDs

@@ -1,4 +1,5 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
+import { getAuthenticatedUser, unauthorized } from "../_shared/function-auth.ts";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -202,6 +203,8 @@ serve(async (req) => {
   try {
     const { expressions, regionScores, moodValue, dominantExpression, confidence, lang } =
       await req.json();
+    const user = await getAuthenticatedUser(req);
+    if (!user) return unauthorized();
 
     const prompt = buildPrompt(
       expressions,

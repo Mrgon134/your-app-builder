@@ -39,17 +39,17 @@ const HistoryLock: React.FC<HistoryLockProps> = ({ onUpgrade, plan = "free", tri
           <Lock className="w-5 h-5 text-primary" />
         </div>
         <p className="font-semibold text-foreground text-[15px] mb-1">
-          {t.history_locked || "Full history locked"}
+          {t.history_locked || "Your older patterns are waiting"}
         </p>
         <p className="text-[12px] text-muted-foreground mb-4 text-center max-w-[200px]">
-          {t.history_locked_desc || "Free plan shows 7 days. Upgrade to see all your entries."}
+          {t.history_locked_desc || "Free keeps the last 7 days. Plus opens the longer thread so Ju can spot what repeats."}
         </p>
         <button
           onClick={onUpgrade}
           className="flex items-center gap-2 px-5 h-[40px] rounded-xl bg-primary text-primary-foreground text-[13px] font-semibold transition-all active:scale-[0.97] shadow-[0_2px_12px_-3px_hsl(var(--primary)/0.35)]"
         >
           <Sparkles className="w-3.5 h-3.5" />
-          {t.unlock_plus || t.unlock_ju || "Unlock with Plus"}
+          {t.unlock_plus || t.unlock_ju || "Open longer patterns"}
         </button>
       </div>
     </div>

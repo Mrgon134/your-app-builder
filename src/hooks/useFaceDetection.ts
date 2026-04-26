@@ -1,6 +1,7 @@
 import { useRef, useState } from "react";
 import { useLang } from "@/lib/i18n";
-import { SUPABASE_URL, SUPABASE_ANON_KEY } from "@/integrations/supabase/client";
+import { SUPABASE_URL } from "@/integrations/supabase/client";
+import { getJsonFunctionHeaders } from "@/lib/function-auth";
 
 // Module-level cache — survives React component lifecycle so models load only once per session
 let modelsLoaded = false;
@@ -75,10 +76,7 @@ async function fetchAISummary(
 ): Promise<string> {
   const res = await fetch(FACE_SUMMARY_URL, {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
-    },
+    headers: await getJsonFunctionHeaders(),
     body: JSON.stringify({ expressions, regionScores, moodValue, dominantExpression, confidence, lang }),
   });
 

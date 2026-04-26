@@ -79,6 +79,7 @@ vi.mock("@/integrations/supabase/client", () => ({
 vi.mock("@/lib/api", () => ({
   fetchProfile: vi.fn(async () => profile),
   fetchEntries: vi.fn(async () => []),
+  fetchCoachMessages: vi.fn(async () => []),
   updateProfile: vi.fn(),
   checkEntryLimit: vi.fn(async () => true),
   createEntry: vi.fn(),
@@ -88,6 +89,8 @@ vi.mock("@/lib/api", () => ({
   updateEntryVoice: vi.fn(),
   uploadPhoto: vi.fn(),
   updateEntryPhoto: vi.fn(),
+  uploadSelfiePhoto: vi.fn(),
+  getSignedMediaUrl: vi.fn(async () => null),
 }));
 
 vi.mock("@/components/app/OnboardingScreen", () => ({ default: () => <div data-testid="onboarding-screen" /> }));
@@ -113,6 +116,7 @@ vi.mock("@/lib/notifications", () => ({ initReminders: vi.fn() }));
 vi.mock("@/lib/auth-intent", () => ({ consumeAuthIntent: vi.fn(() => null) }));
 vi.mock("@/lib/achievements", () => ({
   checkAndUnlockAchievements: vi.fn(() => null),
+  syncAchievementsFromHistory: vi.fn(),
 }));
 
 import AppPage from "@/pages/AppPage";

@@ -1,4 +1,5 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
+import { getAuthenticatedUser, hasCoachAccess, paymentRequired, unauthorized } from "../_shared/function-auth.ts";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -316,8 +317,16 @@ serve(async (req) => {
 
   try {
     const { messages, persona, lang, userName } = await req.json();
+    const user = await getAuthenticatedUser(req);
+    if (!user) return unauthorized();
+
+    const selectedPersona = persona || "gentle";
+    if (!(await hasCoachAccess(user.id, selectedPersona))) {
+      return paymentRequired("Upgrade to keep chatting with Ju.");
+    }
+
     const safeUserName = sanitizeUserName(userName);
-    const systemPrompt = getPersonaPrompt(persona || "gentle", lang || "en", safeUserName);
+    const systemPrompt = getPersonaPrompt(selectedPersona, lang || "en", safeUserName);
     const stream = await getStream(systemPrompt, messages);
 
     return new Response(stream, {

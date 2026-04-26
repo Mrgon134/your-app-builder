@@ -20,7 +20,7 @@ const MedicalDisclaimer: React.FC = () => {
     <div className="min-h-screen bg-background">
       <SEOHead
         title="Medical Disclaimer"
-        description="Important medical disclaimer for Nuju — the app is not a medical service and should not replace professional mental health support."
+        description="Important medical disclaimer for Nuju - the app is not a medical service and should not replace professional mental health support."
         canonical="https://nuju.app/medical-disclaimer"
         breadcrumbs={[
           { name: "Home", url: "https://nuju.app/" },
@@ -64,7 +64,7 @@ const MedicalDisclaimer: React.FC = () => {
           </section>
 
           <section className="bg-red-500/10 border border-red-500/30 rounded-lg p-4">
-            <h2 className="font-serif text-xl font-semibold text-red-600 mb-3">⚠️ If You Are In Crisis</h2>
+            <h2 className="font-serif text-xl font-semibold text-red-600 mb-3">If You Are In Crisis</h2>
             <p className="mb-4 font-semibold text-foreground">If you are experiencing a mental health crisis, suicidal thoughts, or need immediate help, please:</p>
             <ul className="space-y-2 text-foreground">
               <li><strong>Call emergency services immediately:</strong> 911 (US), 999 (UK), 112 (EU)</li>
@@ -152,7 +152,7 @@ const MedicalDisclaimer: React.FC = () => {
         />
 
         <div className="mt-12 pt-8 border-t border-border">
-          <p className="text-xs text-muted-foreground text-center">© 2026 Nuju. All rights reserved.</p>
+          <p className="text-xs text-muted-foreground text-center">Copyright 2026 Nuju. All rights reserved.</p>
           <div className="flex flex-wrap justify-center gap-4 mt-4 text-xs">
             <Link to="/privacy" state={linkState} className="text-primary hover:underline">Privacy Policy</Link>
             <Link to="/terms" state={linkState} className="text-primary hover:underline">Terms of Service</Link>

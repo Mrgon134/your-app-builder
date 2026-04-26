@@ -89,7 +89,7 @@ const GuidedTour: React.FC<GuidedTourProps> = ({ onDone, currentScreen, onNaviga
 
   return (
     <div className="fixed inset-0 z-[99999] overflow-hidden pointer-events-none">
-      {/* 4 Blockers with dark overlay and pointer-events-auto to catch all fake clicks */}
+      {/* Overlay blockers keep taps focused on the highlighted area. */}
       <div 
         className="absolute top-0 left-0 right-0 bg-background/85 backdrop-blur-sm pointer-events-auto transition-all duration-300" 
         style={{ height: holeTop }} 
@@ -137,7 +137,7 @@ const GuidedTour: React.FC<GuidedTourProps> = ({ onDone, currentScreen, onNaviga
                 <p className="text-[13px] text-muted-foreground leading-relaxed font-medium">{current.desc}</p>
               </div>
             </div>
-            <p className="text-[11px] text-primary font-semibold text-center">Tap to continue →</p>
+            <p className="text-[11px] text-primary font-semibold text-center">Tap to continue</p>
           </button>
 
           {/* Progress & Skip */}

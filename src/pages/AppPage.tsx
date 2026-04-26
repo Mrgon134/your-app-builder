@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, useMemo } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { initReminders } from "@/lib/notifications";
 import { useGeoPricing } from "@/hooks/use-geo-pricing";
 import { useLang } from "@/lib/i18n";
@@ -7,8 +7,9 @@ import { usePostHogEvents } from "@/hooks/use-posthog-events";
 import { hasActivePremiumPlan, hasPlusAccess, hasProAccess } from "@/lib/trial";
 import { PRICING_CONFIG } from "@/lib/config";
 import { isNative, isIOS } from "@/lib/platform";
-import { SUPABASE_URL, SUPABASE_ANON_KEY } from "@/integrations/supabase/client";
-import { fetchEntries, createEntry, createQuickEntry, fetchProfile, updateProfile, checkEntryLimit, updateEntryInsight, uploadVoiceAudio, updateEntryVoice, uploadPhoto, updateEntryPhoto, uploadSelfiePhoto, fetchCoachMessages, EntryRow, ProfileRow } from "@/lib/api";
+import { SUPABASE_URL } from "@/integrations/supabase/client";
+import { getJsonFunctionHeaders } from "@/lib/function-auth";
+import { fetchEntries, createEntry, createQuickEntry, fetchProfile, updateProfile, updateEntryInsight, uploadVoiceAudio, updateEntryVoice, uploadPhoto, updateEntryPhoto, uploadSelfiePhoto, fetchCoachMessages, getSignedMediaUrl, EntryRow, ProfileRow } from "@/lib/api";
 import HomeScreen from "@/components/app/HomeScreen";
 import JournalScreen from "@/components/app/JournalScreen";
 import InsightsScreen from "@/components/app/InsightsScreen";
@@ -30,7 +31,7 @@ import AchievementPopup from "@/components/app/AchievementPopup";
 import { checkAndUnlockAchievements, syncAchievementsFromHistory, type Achievement } from "@/lib/achievements";
 import { consumeAuthIntent } from "@/lib/auth-intent";
 import { clearFunnelState } from "@/lib/onboarding-funnel";
-import { applyTestUserProfile, isTestUser } from "@/lib/test-user";
+import { getPlanFromEntitlements, initRevenueCat } from "@/lib/revenueCat";
 import { Home, BarChart3, MessageCircle, Compass, Loader2 } from "lucide-react";
 import { toast } from "sonner";
 import { AnimatePresence, motion } from "framer-motion";
@@ -55,6 +56,9 @@ const SCREEN_TITLES: Record<Screen, string> = {
 };
 
 const SCREEN_ORDER: Screen[] = ["home", "insights", "coach", "explore"];
+
+const normalizeNativeProfilePlan = (plan: string) =>
+  plan === "lifetime_one_time" ? "lifetime" : plan;
 
 const AppPage: React.FC = () => {
   const { t, lang } = useLang();
@@ -102,7 +106,7 @@ const AppPage: React.FC = () => {
   const biometricEnabled = localStorage.getItem("nuju-biometric") === "1";
   const biometricSupported = typeof window !== "undefined" && window.PublicKeyCredential !== undefined;
   const { shellMode, isPhone, isDesktop } = useShellMode();
-  const effectiveProfile = useMemo(() => applyTestUserProfile(profile, user), [profile, user]);
+  const effectiveProfile = profile;
   const displayName = resolveDisplayName(effectiveProfile, user);
   const getEntryTimestamp = useCallback((entry: EntryRow) => {
     const source = entry.created_at || entry.entry_date;
@@ -229,7 +233,7 @@ const AppPage: React.FC = () => {
           fetchEntries(user.id),
           fetchCoachMessages(user.id, 1),
         ]);
-        const nextProfile = applyTestUserProfile(dbProfile, user);
+        const nextProfile = dbProfile;
         const hasCoachMessages = coachMessages.length > 0;
         setProfile(nextProfile);
         setStreak(nextProfile?.streak_current || 0);
@@ -343,7 +347,7 @@ const AppPage: React.FC = () => {
 
     try {
       await updateProfile(user.id, { display_name: normalizedName } as Partial<ProfileRow>);
-      const refreshedProfile = applyTestUserProfile(await fetchProfile(user.id), user);
+      const refreshedProfile = await fetchProfile(user.id);
       setProfile((prev) => refreshedProfile || (prev ? { ...prev, display_name: normalizedName } : prev));
       toast.success("Ju will remember your name now.");
       return true;
@@ -353,6 +357,21 @@ const AppPage: React.FC = () => {
       return false;
     }
   };
+
+  const persistNativePurchasePlan = useCallback(async (plan: string) => {
+    if (!user) return;
+
+    const normalizedPlan = normalizeNativeProfilePlan(plan);
+    if (!hasActivePremiumPlan(normalizedPlan)) return;
+
+    setProfile((prev) => prev ? { ...prev, plan: normalizedPlan } : prev);
+
+    try {
+      await updateProfile(user.id, { plan: normalizedPlan } as Partial<ProfileRow>);
+    } catch (err) {
+      console.error("Native purchase profile sync failed:", err);
+    }
+  }, [user]);
 
   // Dodo Payments checkout on web; native iOS purchases stay inside StoreKit/RevenueCat.
   const handleCheckout = useCallback(async (plan: string, options?: { couponCode?: string | null }) => {
@@ -377,20 +396,17 @@ const AppPage: React.FC = () => {
       };
       const variantId = variantMap[plan];
       if (!variantId || variantId.includes("VARIANT_ID")) {
-        toast.info(t.payments_coming_soon || "Payments coming soon! Stay tuned.");
+        toast.info(t.payments_coming_soon || "This plan is not ready yet. Pick another way to keep Ju close for now.");
         return;
       }
-      // Open a placeholder window during the click gesture so mobile browsers
+      // Open a temporary window during the click gesture so mobile browsers
       // do not block the checkout tab after the async fetch completes.
       checkoutWindow = window.open("about:blank", "_blank");
       const resp = await fetch(
         `${SUPABASE_URL}/functions/v1/dodo-checkout`,
         {
           method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
-          },
+          headers: await getJsonFunctionHeaders(),
           body: JSON.stringify({
             variant_id: variantId,
             user_id: user.id,
@@ -438,11 +454,36 @@ const AppPage: React.FC = () => {
     }
   }, [handleCheckout, loading, navigateTo, user]);
 
+  useEffect(() => {
+    if (!user || loading || !isNative() || !isIOS()) return;
+
+    let cancelled = false;
+
+    const syncNativeEntitlement = async () => {
+      try {
+        await initRevenueCat(user.id);
+        const nativePlan = await getPlanFromEntitlements();
+        if (cancelled || !hasActivePremiumPlan(nativePlan)) return;
+
+        const normalizedPlan = normalizeNativeProfilePlan(nativePlan);
+        if (effectiveProfile?.plan !== normalizedPlan) {
+          await persistNativePurchasePlan(normalizedPlan);
+        }
+      } catch (err) {
+        console.error("Native entitlement refresh failed:", err);
+      }
+    };
+
+    void syncNativeEntitlement();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [effectiveProfile?.plan, loading, persistNativePurchasePlan, user]);
+
   const handleQuickLog = async () => {
     if (!user) return;
     try {
-      const canWrite = isTestUser(user) ? true : await checkEntryLimit(user.id);
-      if (!canWrite) { toast.error(t.history_locked || "Entry limit reached."); return; }
       const entry = await createQuickEntry(user.id, selectedMood, energy);
       if (selectedActivities.length > 0) {
         try {
@@ -456,7 +497,7 @@ const AppPage: React.FC = () => {
       setSelectedActivities([]);
       const newEntries = [entry, ...entries];
       setEntries(newEntries);
-      const updatedProfile = applyTestUserProfile(await fetchProfile(user.id), user);
+      const updatedProfile = await fetchProfile(user.id);
       if (updatedProfile) { setStreak(updatedProfile.streak_current); setProfile(updatedProfile); }
       toast.success("Mood logged");
       if (navigator.vibrate) navigator.vibrate([10, 50, 20]);
@@ -480,7 +521,7 @@ const AppPage: React.FC = () => {
   const handleSaveEntry = async (text: string, audioBlob?: Blob | null, segments?: { start: number; end: number; text: string }[] | null): Promise<string | null> => {
     if (!user) return null;
     try {
-      // P2: Unlimited entries for all users — gate AI insight instead of input
+      // Private writing stays available for every user; premium gates the AI read.
       const entry = await createEntry(
         user.id, selectedMood, text, energy, journalPrompt || undefined,
         pendingCaptureType,
@@ -494,9 +535,9 @@ const AppPage: React.FC = () => {
       // Upload photo if present
       if (pendingPhoto) {
         try {
-          const photoUrl = await uploadPhoto(user.id, entry.id, pendingPhoto);
-          await updateEntryPhoto(entry.id, photoUrl);
-          entry.photo_url = photoUrl;
+          const photoPath = await uploadPhoto(user.id, entry.id, pendingPhoto);
+          await updateEntryPhoto(entry.id, photoPath);
+          entry.photo_url = await getSignedMediaUrl("photo-entries", photoPath);
         } catch (photoErr) {
           console.error("Photo upload failed:", photoErr);
         }
@@ -518,9 +559,9 @@ const AppPage: React.FC = () => {
       // Upload voice audio if present (Pro feature)
       if (audioBlob && audioBlob.size > 1000) {
         try {
-          const audioUrl = await uploadVoiceAudio(user.id, entry.id, audioBlob);
-          await updateEntryVoice(entry.id, audioUrl, segments || []);
-          entry.audio_url = audioUrl;
+          const audioPath = await uploadVoiceAudio(user.id, entry.id, audioBlob);
+          await updateEntryVoice(entry.id, audioPath, segments || []);
+          entry.audio_url = await getSignedMediaUrl("voice-entries", audioPath);
           entry.transcript_segments = segments || null;
         } catch (voiceErr) {
           console.error("Voice upload failed:", voiceErr);
@@ -545,7 +586,7 @@ const AppPage: React.FC = () => {
       ];
       setEntries(newEntries);
 
-      const updatedProfile = applyTestUserProfile(await fetchProfile(user.id), user);
+      const updatedProfile = await fetchProfile(user.id);
       if (updatedProfile) {
         setStreak(updatedProfile.streak_current);
         setProfile(updatedProfile);
@@ -577,10 +618,7 @@ const AppPage: React.FC = () => {
           `${SUPABASE_URL}/functions/v1/ai-insight`,
           {
             method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
-            },
+            headers: await getJsonFunctionHeaders(),
             body: JSON.stringify({ text, mood: selectedMood, energy, lang }),
           }
         );
@@ -1006,7 +1044,7 @@ const AppPage: React.FC = () => {
                         userId={user?.id}
                         onClose={() => navigateTo("home")}
                         onSuccess={(plan) => {
-                          setProfile((p) => p ? { ...p, plan } : null);
+                          void persistNativePurchasePlan(plan);
                           toast.success(t.subscription_updated || "Subscription updated!");
                           navigateTo("home");
                         }}

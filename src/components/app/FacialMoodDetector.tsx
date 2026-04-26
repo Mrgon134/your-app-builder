@@ -30,12 +30,12 @@ const REGION_LABELS: Record<string, Record<string, string>> = {
 };
 
 const REGIONS = [
-  { key: "eyes",     emoji: "👁"  },
-  { key: "eyebrows", emoji: "🤨" },
-  { key: "cheeks",   emoji: "😊" },
-  { key: "forehead", emoji: "🧠" },
-  { key: "chin",     emoji: "💬" },
-  { key: "aura",     emoji: "✨" },
+  { key: "eyes" },
+  { key: "eyebrows" },
+  { key: "cheeks" },
+  { key: "forehead" },
+  { key: "chin" },
+  { key: "aura" },
 ] as const;
 
 type RegionKey = typeof REGIONS[number]["key"];
@@ -107,7 +107,7 @@ const FacialMoodDetector: React.FC<FacialMoodDetectorProps> = ({
                     {t.face_detect_title || "Detect your mood"}
                   </h3>
                   <p className="text-[12px] text-muted-foreground mt-0.5">
-                    {t.face_detect_subtitle || "AI reads your facial expression"}
+                    {t.face_detect_subtitle || "Ju reads the mood your face is carrying"}
                   </p>
                 </div>
                 <button
@@ -131,7 +131,7 @@ const FacialMoodDetector: React.FC<FacialMoodDetectorProps> = ({
                         <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/80 z-10 gap-3">
                           <Loader2 className="w-8 h-8 text-primary animate-spin" />
                           <p className="text-[13px] text-white/70">
-                            {t.face_loading_ai || "Loading AI model..."}
+                            {t.face_loading_ai || "Getting the mood reader ready..."}
                           </p>
                         </div>
                       )}
@@ -245,7 +245,7 @@ const FacialMoodDetector: React.FC<FacialMoodDetectorProps> = ({
                                 >
                                   <div className="flex items-center justify-between">
                                     <span className="text-[12px] font-semibold text-foreground">
-                                      {region.emoji} {REGION_LABELS[region.key]?.[lang] ?? REGION_LABELS[region.key]?.default}
+                                      {REGION_LABELS[region.key]?.[lang] ?? REGION_LABELS[region.key]?.default}
                                     </span>
                                     <span
                                       className="text-[13px] font-bold tabular-nums"

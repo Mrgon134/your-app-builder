@@ -67,7 +67,7 @@ const TrialBanner: React.FC<TrialBannerProps> = ({ trialStartedAt, plan, onUpgra
           <p className="text-[12px] text-muted-foreground">
             {urgentColor
               ? (t.pro_trial_urgent_sub || "Decide soon if you want to keep premium access after the trial ends.")
-              : (t.pro_trial_active_sub || "You currently have premium access: voice journaling, AI memory, all coach personas, and unlimited history.")
+              : (t.pro_trial_active_sub || "You currently have premium access: voice journaling, AI memory, all coach personas, and full history.")
             }
           </p>
         </div>

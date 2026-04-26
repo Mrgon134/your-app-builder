@@ -67,14 +67,18 @@ const GuidedProgramsScreen: React.FC<GuidedProgramsScreenProps> = ({
 
   useEffect(() => {
     if (user) {
-      fetchUserPrograms(user.id).then((data) => {
-        if (data.length > 0) {
-          setUserPrograms(data);
-          savePrograms(data);
-        } else {
+      fetchUserPrograms(user.id)
+        .then((data) => {
+          if (data.length > 0) {
+            setUserPrograms(data);
+            savePrograms(data);
+          } else {
+            setUserPrograms(loadPrograms());
+          }
+        })
+        .catch(() => {
           setUserPrograms(loadPrograms());
-        }
-      });
+        });
     } else {
       setUserPrograms(loadPrograms());
     }
@@ -95,9 +99,9 @@ const GuidedProgramsScreen: React.FC<GuidedProgramsScreenProps> = ({
     const updated = [...userPrograms, newProgram];
     setUserPrograms(updated);
     savePrograms(updated);
-    if (user) upsertUserProgram(user.id, newProgram);
+    if (user) upsertUserProgram(user.id, newProgram).catch(() => undefined);
     setActiveProgram(programId);
-    toast.success(t.programs_started || "Program started!");
+    toast.success(t.programs_started || "This path is open now.");
   };
 
   const startTodayPrompt = (programId: string) => {
@@ -118,11 +122,11 @@ const GuidedProgramsScreen: React.FC<GuidedProgramsScreenProps> = ({
     savePrograms(updated);
     if (user) {
       const updatedProgram = updated.find(p => p.program_id === programId);
-      if (updatedProgram) upsertUserProgram(user.id, updatedProgram);
+      if (updatedProgram) upsertUserProgram(user.id, updatedProgram).catch(() => undefined);
     }
 
     onWritePrompt(prompt);
-    if (completed) toast.success(`${t.programs_complete_desc || "Amazing work finishing"} ${program.title}!`);
+    if (completed) toast.success(`${t.programs_complete_desc || "You stayed with"} ${program.title}.`);
   };
 
   // Show active program detail
@@ -192,7 +196,7 @@ const GuidedProgramsScreen: React.FC<GuidedProgramsScreenProps> = ({
               className="w-full h-[52px] rounded-2xl font-semibold text-[15px] text-white press-spring shadow-lg"
               style={{ background: program.color }}
             >
-              {t.programs_write_entry || "Write today's entry"} →
+              {t.programs_write_entry || "Write with this prompt"} {"->"}
             </button>
           </div>
         ) : (
@@ -200,8 +204,8 @@ const GuidedProgramsScreen: React.FC<GuidedProgramsScreenProps> = ({
             <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4" style={{ background: `${program.color}18`, border: `2px solid ${program.color}40` }}>
               <CheckCircle2 className="w-9 h-9" style={{ color: program.color }} />
             </div>
-            <h3 className="text-[20px] font-bold text-foreground mb-1">{t.programs_complete_title || "Program Complete"}</h3>
-            <p className="text-[14px] text-muted-foreground">{t.programs_complete_desc || "Amazing work finishing"} {program.title}.</p>
+            <h3 className="text-[20px] font-bold text-foreground mb-1">{t.programs_complete_title || "You stayed with it"}</h3>
+            <p className="text-[14px] text-muted-foreground">{t.programs_complete_desc || "You made room for"} {program.title}.</p>
           </div>
         )}
       </div>
@@ -218,8 +222,8 @@ const GuidedProgramsScreen: React.FC<GuidedProgramsScreenProps> = ({
         <span className="text-[15px] font-medium">{t.programs_back || "Back"}</span>
       </button>
 
-      <h1 className="text-[34px] font-bold text-foreground tracking-tight mb-1">{t.programs_title || "Programs"}</h1>
-      <p className="text-[15px] text-muted-foreground mb-6">{t.programs_subtitle || "Guided journaling challenges"}</p>
+      <h1 className="text-[34px] font-bold text-foreground tracking-tight mb-1">{t.programs_title || "Guided paths"}</h1>
+      <p className="text-[15px] text-muted-foreground mb-6">{t.programs_subtitle || "Small rituals for the weeks that ask more of you."}</p>
 
       {/* Active programs */}
       {activePrograms.length > 0 && (
@@ -298,8 +302,8 @@ const GuidedProgramsScreen: React.FC<GuidedProgramsScreenProps> = ({
 
       {!isPro && (
         <div className="mt-4 p-4 rounded-2xl border border-primary/20 bg-primary/5 text-center">
-          <p className="text-[13px] text-muted-foreground mb-2">3 {t.programs_unlock || "more programs unlocked with Plus"}</p>
-          <button onClick={onUpgrade} className="text-[13px] font-semibold text-primary press-spring">{t.programs_upgrade || "Upgrade"} →</button>
+          <p className="text-[13px] text-muted-foreground mb-2">3 {t.programs_unlock || "more paths open with Plus"}</p>
+          <button onClick={onUpgrade} className="text-[13px] font-semibold text-primary press-spring">{t.programs_upgrade || "Keep Ju close"} {"->"}</button>
         </div>
       )}
 

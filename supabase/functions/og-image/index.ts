@@ -40,7 +40,7 @@ function buildSVG(title = "Nuju", subtitle = "The 30-second AI journal that unde
 
   <!-- Icon box -->
   <rect x="552" y="60" width="96" height="96" rx="28" fill="#7C6EDB" fill-opacity="0.12" stroke="#7C6EDB" stroke-opacity="0.3" stroke-width="1.5"/>
-  <!-- J letter as mascot placeholder -->
+  <!-- Ju wordmark mark -->
   <text x="600" y="130" font-family="Georgia, serif" font-size="52" font-weight="bold" fill="#7C6EDB" text-anchor="middle">Ju</text>
 
   <!-- App name -->

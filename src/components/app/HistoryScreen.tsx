@@ -78,7 +78,7 @@ const HistoryScreen: React.FC<HistoryScreenProps> = ({
         exit={{ opacity: 0, y: 20 }}
         className="flex flex-col items-center justify-center min-h-screen bg-background px-4 py-8"
       >
-        <p className="text-muted-foreground text-center">{t.no_entries || "No entries yet. Start journaling to build your history!"}</p>
+        <p className="text-muted-foreground text-center">{t.no_entries || "No entries yet. Start with one honest check-in."}</p>
         <button
           onClick={() => onNavigate("journal")}
           className="mt-6 px-6 py-2 bg-primary text-primary-foreground rounded-lg hover:opacity-90 transition-opacity"
@@ -101,10 +101,10 @@ const HistoryScreen: React.FC<HistoryScreenProps> = ({
           <Lock className="w-6 h-6 text-primary" />
         </div>
         <p className="text-foreground font-semibold text-center">
-          {t.history_locked || "Full history locked"}
+          {t.history_locked || "Your older patterns are waiting"}
         </p>
         <p className="text-muted-foreground text-center mt-2 max-w-[280px]">
-          {t.history_locked_desc || "Free plan shows 7 days. Upgrade to see all your entries."}
+          {t.history_locked_desc || "Free keeps the last 7 days. Plus opens the longer thread so Ju can spot what repeats."}
         </p>
         {onUpgrade && (
           <button
@@ -112,7 +112,7 @@ const HistoryScreen: React.FC<HistoryScreenProps> = ({
             className="mt-6 inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-primary text-primary-foreground font-semibold transition-transform active:scale-[0.98]"
           >
             <Sparkles className="w-4 h-4" />
-            {t.unlock_plus || t.unlock_ju || "Unlock with Plus"}
+            {t.unlock_plus || t.unlock_ju || "Open longer patterns"}
           </button>
         )}
       </motion.div>
@@ -127,7 +127,7 @@ const HistoryScreen: React.FC<HistoryScreenProps> = ({
       className="min-h-screen bg-background"
     >
       <div className="mx-auto max-w-4xl px-4 py-6 md:px-6">
-        <h1 className="text-2xl font-bold text-foreground mb-2">{t.history_label || "Your History"}</h1>
+        <h1 className="text-2xl font-bold text-foreground mb-2">{t.history_label || "Your saved moments"}</h1>
         <p className="text-sm text-muted-foreground mb-6">
           {visibleEntries.length} {visibleEntries.length === 1 ? "entry" : "entries"} visible
         </p>
@@ -140,10 +140,10 @@ const HistoryScreen: React.FC<HistoryScreenProps> = ({
               </div>
               <div className="flex-1 min-w-0">
                 <p className="text-sm font-semibold text-foreground">
-                  {t.history_locked || "Full history locked"}
+                  {t.history_locked || "Your older patterns are waiting"}
                 </p>
                 <p className="text-xs text-muted-foreground mt-1">
-                  {t.history_locked_desc || "Free plan shows 7 days. Upgrade to see all your entries."}
+                  {t.history_locked_desc || "Free keeps the last 7 days. Plus opens the longer thread so Ju can spot what repeats."}
                 </p>
               </div>
               {onUpgrade && (

@@ -35,9 +35,11 @@ serve(async (req) => {
     const DODO_API_KEY = Deno.env.get("DODO_PAYMENTS_API_KEY");
     const SUPABASE_URL = Deno.env.get("SUPABASE_URL");
     const SUPABASE_SERVICE_ROLE_KEY = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY");
+    const SUPABASE_ANON_KEY = Deno.env.get("SUPABASE_ANON_KEY");
 
     if (!DODO_API_KEY) throw new Error("DODO_PAYMENTS_API_KEY not set");
     if (!SUPABASE_URL || !SUPABASE_SERVICE_ROLE_KEY) throw new Error("Supabase service role credentials are missing");
+    if (!SUPABASE_ANON_KEY) throw new Error("SUPABASE_ANON_KEY not set");
 
     const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY);
     const payload = await req.json();
@@ -53,6 +55,22 @@ serve(async (req) => {
     const requestedPlan = safeText(payload.plan) as "weekly" | "three_month" | "yearly" | "lifetime_one_time" | "";
     const resolvedPlan = requestedPlan || resolvePlanFromVariant(variantId);
     const isGuestCheckout = !userId;
+
+    if (userId) {
+      const userClient = createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
+        global: {
+          headers: { Authorization: req.headers.get("Authorization") || "" },
+        },
+      });
+      const { data: authData, error: authError } = await userClient.auth.getUser();
+
+      if (authError || authData.user?.id !== userId) {
+        return new Response(JSON.stringify({ error: "Unauthorized checkout user" }), {
+          status: 401,
+          headers: { ...corsHeaders, "Content-Type": "application/json" },
+        });
+      }
+    }
 
     if (!variantId) {
       return new Response(JSON.stringify({ error: "variant_id required" }), {

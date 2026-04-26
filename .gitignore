@@ -9,6 +9,15 @@ lerna-debug.log*
 
 node_modules
 ios/
+!ios/
+ios/*
+!ios/App/
+ios/App/*
+!ios/App/App/
+ios/App/App/*
+!ios/App/App/MainViewController.swift
+!ios/App/App/NujuSharePlugin.swift
+!ios/App/App/PrivacyInfo.xcprivacy
 android/
 dist/
 .DS_Store
@@ -18,6 +27,7 @@ dist-ssr
 .vercel
 supabase/.temp/
 output/
+tmp-visual-checks/
 
 # Editor directories and files
 .vscode/*

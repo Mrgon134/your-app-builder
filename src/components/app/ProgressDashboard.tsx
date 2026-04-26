@@ -166,7 +166,7 @@ const ProgressDashboard: React.FC<ProgressDashboardProps> = ({ entries, streak, 
             <p className="text-[12px] text-muted-foreground mt-1">
               {journaledDays > 0
                 ? `${thisMonth.length} entries on ${journaledDays} days`
-                : "Start journaling this month!"}
+                : "Start with one honest check-in this month."}
             </p>
             {topMood && (
               <p className="text-[12px] mt-2" style={{ color: topMood.color }}>

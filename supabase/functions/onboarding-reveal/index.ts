@@ -36,6 +36,8 @@ type ResultTeaser = {
   continuationLine: string;
 };
 
+const MAX_REQUEST_BYTES = 25_000;
+
 const safeText = (value: unknown, fallback = "") => {
   if (typeof value !== "string") return fallback;
   return value.replace(/\s+/g, " ").trim();
@@ -474,7 +476,28 @@ serve(async (req) => {
   }
 
   try {
-    const { sessionId, userId, answers, draftOnly } = await req.json();
+    const bodyText = await req.text();
+    if (bodyText.length > MAX_REQUEST_BYTES) {
+      return new Response(JSON.stringify({ error: "Request body is too large" }), {
+        status: 413,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+
+    let body: Record<string, unknown>;
+    try {
+      body = JSON.parse(bodyText || "{}");
+    } catch {
+      return new Response(JSON.stringify({ error: "Invalid JSON body" }), {
+        status: 400,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+
+    const { sessionId, userId, answers: rawAnswers, draftOnly } = body;
+    const answers = rawAnswers && typeof rawAnswers === "object" && !Array.isArray(rawAnswers)
+      ? rawAnswers as OnboardingAnswers
+      : {};
     if (!sessionId || typeof sessionId !== "string") {
       return new Response(JSON.stringify({ error: "sessionId is required" }), {
         status: 400,
@@ -482,15 +505,35 @@ serve(async (req) => {
       });
     }
 
+    if (sessionId.length > 128) {
+      return new Response(JSON.stringify({ error: "sessionId is too long" }), {
+        status: 400,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+
     const supabaseUrl = Deno.env.get("SUPABASE_URL");
     const supabaseServiceRole = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY");
+    const supabaseAnonKey = Deno.env.get("SUPABASE_ANON_KEY");
+    let verifiedUserId: string | null = null;
+
+    if (typeof userId === "string" && userId && supabaseUrl && supabaseAnonKey) {
+      const userClient = createClient(supabaseUrl, supabaseAnonKey, {
+        global: {
+          headers: { Authorization: req.headers.get("Authorization") || "" },
+        },
+      });
+      const { data: authData } = await userClient.auth.getUser();
+      verifiedUserId = authData.user?.id === userId ? userId : null;
+    }
+
     if (supabaseUrl && supabaseServiceRole) {
       const supabase = createClient(supabaseUrl, supabaseServiceRole);
       if (draftOnly) {
         await supabase.from("onboarding_leads").upsert(
           {
             session_id: sessionId,
-            user_id: typeof userId === "string" ? userId : null,
+            user_id: verifiedUserId,
             source: safeText(answers?.source, "landing"),
             email: safeText(answers?.email) || null,
             name: sanitizeName(answers?.name) || null,
@@ -527,7 +570,7 @@ serve(async (req) => {
       await supabase.from("onboarding_leads").upsert(
         {
           session_id: sessionId,
-          user_id: typeof userId === "string" ? userId : null,
+          user_id: verifiedUserId,
           source: safeText(answers?.source, "landing"),
           email: safeText(answers?.email) || null,
           name: sanitizeName(answers?.name) || null,

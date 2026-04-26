@@ -3,10 +3,10 @@ import type { PurchasesPackage } from "@revenuecat/purchases-capacitor";
 import { isNative } from "@/lib/platform";
 import {
   initRevenueCat,
-  identifyUser,
   fetchOfferings,
   purchasePackage,
   restorePurchases,
+  getPlanFromCustomerInfo,
   getPlanFromEntitlements,
   PRODUCT_IDS,
 } from "@/lib/revenueCat";
@@ -51,7 +51,6 @@ export function useNativePurchases(userId?: string): UseNativePurchasesResult {
       setLoading(true);
       try {
         await initRevenueCat(userId);
-        if (userId) await identifyUser(userId);
 
         const offering = await fetchOfferings();
         if (offering?.availablePackages) {
@@ -76,7 +75,7 @@ export function useNativePurchases(userId?: string): UseNativePurchasesResult {
     try {
       const info = await purchasePackage(pkg);
       if (info) {
-        const plan = await getPlanFromEntitlements();
+        const plan = getPlanFromCustomerInfo(info);
         setNativePlan(plan);
         return plan;
       }
@@ -92,8 +91,8 @@ export function useNativePurchases(userId?: string): UseNativePurchasesResult {
     if (!native) return "free";
     setLoading(true);
     try {
-      await restorePurchases();
-      const plan = await getPlanFromEntitlements();
+      const info = await restorePurchases();
+      const plan = getPlanFromCustomerInfo(info);
       setNativePlan(plan);
       return plan;
     } finally {

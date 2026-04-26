@@ -126,6 +126,18 @@ serve(async (req) => {
 
   try {
     const RESEND_API_KEY = Deno.env.get("RESEND_API_KEY");
+    const SUPABASE_URL = Deno.env.get("SUPABASE_URL")!;
+    const SUPABASE_SERVICE_ROLE_KEY = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
+    const REMINDER_CRON_SECRET = Deno.env.get("REMINDER_CRON_SECRET");
+    const authToken = (req.headers.get("Authorization") || "").replace(/^Bearer\s+/i, "").trim();
+    const expectedTokens = [SUPABASE_SERVICE_ROLE_KEY, REMINDER_CRON_SECRET].filter(Boolean);
+
+    if (!authToken || !expectedTokens.includes(authToken)) {
+      return new Response(JSON.stringify({ error: "Unauthorized" }), {
+        status: 401,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
     if (!RESEND_API_KEY) {
       console.warn("RESEND_API_KEY not set — skipping email sends");
       return new Response(JSON.stringify({ skipped: true, reason: "RESEND_API_KEY not configured" }), {
@@ -133,8 +145,6 @@ serve(async (req) => {
       });
     }
 
-    const SUPABASE_URL = Deno.env.get("SUPABASE_URL")!;
-    const SUPABASE_SERVICE_ROLE_KEY = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
     const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY);
 
     const now = new Date();
@@ -192,7 +202,7 @@ serve(async (req) => {
       }
     }
 
-    console.log(`Reminders sent: ${sent2Day} 2-day warnings, ${sentExpired} expired nudges`);
+    console.info("Trial reminders completed", { sent2Day, sentExpired });
 
     return new Response(
       JSON.stringify({ success: true, sent2Day, sentExpired }),

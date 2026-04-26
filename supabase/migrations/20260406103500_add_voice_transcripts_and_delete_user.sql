@@ -9,14 +9,18 @@ BEGIN
     WHERE id = 'voice-entries'
   ) THEN
     INSERT INTO storage.buckets (id, name, public)
-    VALUES ('voice-entries', 'voice-entries', true);
+    VALUES ('voice-entries', 'voice-entries', false);
   END IF;
 END $$;
 
 DROP POLICY IF EXISTS "Voice entries are publicly readable" ON storage.objects;
-CREATE POLICY "Voice entries are publicly readable"
-ON storage.objects FOR SELECT
-USING (bucket_id = 'voice-entries');
+DROP POLICY IF EXISTS "Users can read own voice entries" ON storage.objects;
+CREATE POLICY "Users can read own voice entries"
+ON storage.objects FOR SELECT TO authenticated
+USING (
+  bucket_id = 'voice-entries'
+  AND (storage.foldername(name))[1] = auth.uid()::text
+);
 
 DROP POLICY IF EXISTS "Users can upload own voice entries" ON storage.objects;
 CREATE POLICY "Users can upload own voice entries"

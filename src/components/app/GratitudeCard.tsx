@@ -49,9 +49,9 @@ const GratitudeCard: React.FC = () => {
             <Heart className="w-5 h-5 text-pink-500" />
           </div>
           <div>
-            <p className="text-[14px] font-semibold text-foreground">Today's Gratitude</p>
+            <p className="text-[14px] font-semibold text-foreground">A small good thing</p>
             <p className="text-[12px] text-muted-foreground mt-0.5">
-              What are 3 things you're thankful for?
+              What felt kind, steady, or worth keeping today?
             </p>
           </div>
           {streak > 0 && (
@@ -71,10 +71,10 @@ const GratitudeCard: React.FC = () => {
       <div className="glass-card rounded-2xl p-5">
         <div className="flex items-center gap-2 mb-3">
           <Heart className="w-4 h-4 text-pink-500 fill-pink-500" />
-          <span className="text-[11px] font-bold text-pink-500 uppercase tracking-widest">Today's Gratitude</span>
+          <span className="text-[11px] font-bold text-pink-500 uppercase tracking-widest">A small good thing</span>
           {streak > 1 && (
             <span className="ml-auto text-[11px] font-medium text-muted-foreground">
-              🔥 {streak} day streak
+              {streak} day streak
             </span>
           )}
         </div>
@@ -112,7 +112,7 @@ const GratitudeCard: React.FC = () => {
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-2">
           <Heart className="w-4 h-4 text-pink-500" />
-          <span className="text-[11px] font-bold text-pink-500 uppercase tracking-widest">Gratitude</span>
+          <span className="text-[11px] font-bold text-pink-500 uppercase tracking-widest">A small good thing</span>
         </div>
         <button
           onClick={() => setExpanded(false)}
@@ -123,7 +123,7 @@ const GratitudeCard: React.FC = () => {
       </div>
 
       <p className="text-[13px] text-muted-foreground mb-4">
-        Name 3 things you're thankful for today. Takes 30 seconds.
+        Name up to 3 things that felt kind, steady, or worth keeping today.
       </p>
 
       <div className="space-y-2.5">
@@ -135,9 +135,9 @@ const GratitudeCard: React.FC = () => {
               value={item}
               onChange={(e) => handleChange(i, e.target.value)}
               placeholder={
-                i === 0 ? "Something that made you smile..." :
-                i === 1 ? "Someone you appreciate..." :
-                "A small win from today..."
+                i === 0 ? "Something that softened the day..." :
+                i === 1 ? "Someone or something that helped..." :
+                "A small moment worth keeping..."
               }
               className="gratitude-input flex-1 px-3 py-2.5 rounded-xl bg-background border border-border/50 text-[14px] text-foreground placeholder:text-muted-foreground/40 focus:outline-none focus:ring-2 focus:ring-pink-500/20 focus:border-pink-500/30 transition-all"
               onKeyDown={(e) => {
@@ -163,7 +163,7 @@ const GratitudeCard: React.FC = () => {
             className="mt-4 w-full py-3 rounded-2xl bg-pink-500 text-white font-semibold text-[14px] press-spring shadow-[0_4px_20px_-4px_rgba(236,72,153,0.4)] flex items-center justify-center gap-2"
           >
             <Check className="w-4 h-4" />
-            Save
+            Save this
           </motion.button>
         )}
       </AnimatePresence>

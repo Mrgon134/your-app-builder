@@ -8,7 +8,6 @@ import { isIOS, isNative } from "@/lib/platform";
 import { ROUTES } from "@/lib/routes";
 import { supabase } from "@/integrations/supabase/client";
 import { JU_STICKERS } from "@/lib/stickers";
-import { getTestUserCredentials } from "@/lib/test-user";
 import { Mail, Lock, User, ArrowRight, Loader2, ChevronLeft } from "lucide-react";
 import SEOHead from "@/components/SEOHead";
 
@@ -52,7 +51,6 @@ const AuthPage: React.FC = () => {
   const [appleLoading, setAppleLoading] = useState(false);
   const [error, setError] = useState(searchParams.get("error") || "");
   const [success, setSuccess] = useState("");
-  const testUser = getTestUserCredentials();
   const funnelPrefill = getFunnelContactPrefill();
   const authIntent = peekAuthIntent();
   const isOnboardingResume = authIntent?.resumePath === ROUTES.ONBOARDING;
@@ -150,30 +148,6 @@ const AuthPage: React.FC = () => {
       setError(error.message || "Apple sign-in failed");
       setAppleLoading(false);
     }
-  };
-
-  const handleTestUserLogin = async () => {
-    if (!testUser.enabled) return;
-
-    setLoading(true);
-    setError("");
-    setSuccess("");
-
-    setEmail(testUser.email);
-    setPassword(testUser.password);
-    setName(testUser.name);
-
-    const result = await signIn(testUser.email, testUser.password);
-    if (result.error) {
-      const signUpResult = await signUp(testUser.email, testUser.password, testUser.name);
-      if (signUpResult.error) {
-        setError(signUpResult.error.message);
-      } else {
-        setSuccess("Test account created. If confirmation is required, check that inbox once, then this shortcut will keep working.");
-      }
-    }
-
-    setLoading(false);
   };
 
   const resetMode = (m: Mode) => {
@@ -367,16 +341,6 @@ const AuthPage: React.FC = () => {
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-3">
-          {mode === "login" && testUser.enabled && (
-            <button
-              type="button"
-              onClick={handleTestUserLogin}
-              disabled={loading || googleLoading || appleLoading}
-              className="w-full rounded-xl border border-primary/20 bg-primary/6 px-4 py-3 text-sm font-semibold text-primary transition-all active:scale-[0.98] disabled:opacity-50"
-            >
-              Use test account with all features unlocked
-            </button>
-          )}
           {mode === "signup" && (
             <div className="relative">
               <User className="absolute left-4 top-1/2 -translate-y-1/2 w-[18px] h-[18px] text-muted-foreground/60" />

@@ -22,9 +22,7 @@ import juLow from "@/assets/ju-low.webp";
 import juMain from "@/assets/ju-main.webp";
 import juOkay from "@/assets/ju-okay.webp";
 import juRough from "@/assets/ju-rough.webp";
-import LifetimeScarcityMeter from "@/components/app/LifetimeScarcityMeter";
 import { useGeoPricing } from "@/hooks/use-geo-pricing";
-import { useLifetimeScarcity } from "@/hooks/use-lifetime-scarcity";
 import { usePostHogEvents } from "@/hooks/use-posthog-events";
 import { SUPABASE_ANON_KEY, SUPABASE_URL } from "@/integrations/supabase/client";
 import { useAuth } from "@/lib/auth";
@@ -593,8 +591,9 @@ const OnboardingScreen: React.FC = () => {
 
   const teaser = reveal || buildResultTeaser(funnelState.answers);
   const threeMonthSavings = Math.max(0, Math.round((1 - geo.rates.threeMonth / (geo.rates.weekly * 13)) * 100));
-  const { snapshot: lifetimeScarcity } = useLifetimeScarcity();
   const useNativeStoreKit = isNative() && isIOS();
+  const threeMonthTrialEnabled = PRICING_CONFIG.trial.threeMonthIntroOfferEnabled;
+  const threeMonthTrialDays = PRICING_CONFIG.trial.threeMonthDays;
 
   const getProductId = (plan: CheckoutPlan) => {
     switch (plan) {
@@ -730,7 +729,7 @@ const OnboardingScreen: React.FC = () => {
     }
 
     if (!isConfiguredProduct(plan)) {
-      setCheckoutError("This plan is not configured yet.");
+      setCheckoutError("This plan is not ready yet. Pick another way to keep Ju close for now.");
       return;
     }
 
@@ -790,7 +789,7 @@ const OnboardingScreen: React.FC = () => {
       completedRef.current = true;
       window.location.assign(data.url);
     } catch (error) {
-      setCheckoutError(error instanceof Error ? error.message : "Checkout failed.");
+      setCheckoutError(error instanceof Error ? error.message : "Checkout could not open. Try again in a moment.");
     } finally {
       setCheckoutLoading(null);
     }
@@ -805,8 +804,8 @@ const OnboardingScreen: React.FC = () => {
         accent: "#7C6EDB",
         image: juMain,
         eyebrow: "Start soft",
-        title: "This should feel like an exhale.",
-        body: "The first screen is not trying to impress you. It is here to make the next honest click feel safe.",
+        title: "This can start gently.",
+        body: "No polished story needed. Just one honest click at a time, until Ju can give the weight a clearer shape.",
         quote: "No perfect words yet. Just enough truth to begin.",
         chips: ["60-second reveal", "Private start", "No pressure"],
       };
@@ -818,8 +817,8 @@ const OnboardingScreen: React.FC = () => {
         image: juLow,
         eyebrow: "Listening mode",
         title: "Ju is learning the shape of what feels heavy.",
-        body: "These early answers help the reveal feel specific instead of generic, without making you over-explain yourself.",
-        quote: `I am not asking ${name} to perform clarity. I am noticing the pattern underneath.`,
+        body: "These early answers help the read feel specific, without making you over-explain what already feels tiring.",
+        quote: `I am not asking ${name} to perform clarity. I am listening for what sits underneath.`,
         chips: ["Low effort", "Emotion-first", "Pattern forming"],
       };
     }
@@ -830,9 +829,9 @@ const OnboardingScreen: React.FC = () => {
         image: juMain,
         eyebrow: "Make it yours",
         title: "A personal read needs a personal anchor.",
-        body: "Name and email are handled like a continuation point, so the reveal can belong to the same person later.",
-        quote: "This is where the app stops feeling like a page and starts feeling like it knows who came here.",
-        chips: ["Saved context", "Account-ready", "Still gentle"],
+        body: "Your name helps the read feel like it belongs to you. Your email keeps it attached if you come back later.",
+        quote: "The read starts belonging to you here.",
+        chips: ["Saved for you", "Private by default", "Easy to return"],
       };
     }
 
@@ -853,10 +852,10 @@ const OnboardingScreen: React.FC = () => {
         accent: "#FFB347",
         image: juOkay,
         eyebrow: "Resonance check",
-        title: "This is where the user feels seen or bounces.",
-        body: "The resonance cards turn onboarding into an emotional mirror before the final reveal lands.",
-        quote: "If one line feels uncomfortably close, the reveal has earned more trust.",
-        chips: ["Mirror moment", "Trust building", "Not generic"],
+        title: "Notice the line that makes you pause.",
+        body: "These are not tests. They are small mirrors, here to help Ju understand what feels true enough to stay with.",
+        quote: "If one line feels close, you do not have to explain why yet.",
+        chips: ["Read slowly", "Choose by feeling", "No perfect answer"],
       };
     }
 
@@ -866,9 +865,9 @@ const OnboardingScreen: React.FC = () => {
         image: juGood,
         eyebrow: "Almost ready",
         title: "Ju is tuning the read to the state you are in now.",
-        body: "Baseline and relief are small questions, but they shape whether the output feels caring or merely clever.",
-        quote: "The goal is not just insight. It is a first feeling of relief.",
-        chips: ["Energy-aware", "Relief target", "Reveal prep"],
+        body: "Your energy matters. The read should meet the state you are actually in, not the version of you that can explain everything calmly.",
+        quote: "The goal is a first feeling of relief, not a perfect insight.",
+        chips: ["Energy-aware", "Relief first", "Almost there"],
       };
     }
 
@@ -876,11 +875,11 @@ const OnboardingScreen: React.FC = () => {
       return {
         accent: "#7C6EDB",
         image: juMain,
-        eyebrow: "Reading gently",
-        title: "The pause should feel intentional, not like loading.",
-        body: "This moment makes the reveal feel crafted, while showing the user that Ju is working with their exact context.",
+        eyebrow: "Taking this in",
+        title: "Ju is holding the thread before speaking back.",
+        body: "This pause is here so the read can feel careful with what you shared.",
         quote: `Sitting with ${name}'s words before turning them into something clear.`,
-        chips: ["Context read", "Soft suspense", "Human pace"],
+        chips: ["Reading gently", "Finding the thread", "Almost ready"],
       };
     }
 
@@ -889,10 +888,10 @@ const OnboardingScreen: React.FC = () => {
         accent: "#4ECDC4",
         image: juGreat,
         eyebrow: teaser.stateLabel,
-        title: "The reveal is the emotional payoff.",
-        body: "This is the point where Nuju has to feel different from a normal journal: specific, warm, and worth continuing.",
+        title: "This is what Ju heard underneath it.",
+        body: "Not a diagnosis. Not advice first. Just a warm read on the part of the weight that has been hard to say out loud.",
         quote: teaser.headline,
-        chips: ["First read", "Pattern named", "Next step"],
+        chips: ["Seen clearly", "Pattern named", "First support"],
       };
     }
 
@@ -900,24 +899,24 @@ const OnboardingScreen: React.FC = () => {
       return {
         accent: "#95E1D3",
         image: juGood,
-        eyebrow: "Keep it open",
-        title: "Now the product has permission to stay close.",
-        body: "The bridge connects the emotional read to a reason to keep Ju nearby before the pricing decision appears.",
-        quote: "The next heavy moment should not have to start from zero.",
-        chips: ["Memory", "Continuation", "Support path"],
+        eyebrow: "Before life gets loud again",
+        title: "Stay with the part of you that finally felt seen.",
+        body: "You have a read that felt personal. The next step is keeping that support close before the next heavy moment asks you to start from zero.",
+        quote: "The next heavy moment should not have to meet you alone.",
+        chips: ["Keep the thread", "Come back softly", "Ready when it hits"],
       };
     }
 
     return {
       accent: "#7C6EDB",
       image: juGreat,
-      eyebrow: "Stay with Ju",
-      title: "The paywall should feel like continuation, not interruption.",
-      body: "Pricing lands best when it feels like keeping the support that already understood them.",
-      quote: "If the reveal felt real, the next decision is simply how close Ju should stay.",
-      chips: ["Weekly", "3-month rhythm", "Lifetime option"],
+      eyebrow: "Keep the quiet open",
+      title: "Keep Ju close for the moments you usually carry alone.",
+      body: "Start with the path that lets Ju stay nearby long enough to become a real place to return to.",
+      quote: "You are not buying a feature list. You are keeping the support that already found you.",
+      chips: [threeMonthTrialEnabled ? `${threeMonthTrialDays}-day trial` : "3-month rhythm", "Cancel anytime", "Private support"],
     };
-  }, [firstName, funnelState.step, teaser.headline, teaser.stateLabel]);
+  }, [firstName, funnelState.step, teaser.headline, teaser.stateLabel, threeMonthTrialDays, threeMonthTrialEnabled]);
 
   type PaywallPlanCard = {
     id: CheckoutPlan;
@@ -939,12 +938,12 @@ const OnboardingScreen: React.FC = () => {
       title: "Weekly",
       priceDisplay: geo.formatPrice(geo.rates.weekly),
       unit: "per week",
-      badge: "Lowest commitment",
+      badge: "Flexible",
       emphasis: firstName
-        ? `${firstName}, keep it light while you test the fit.`
-        : "Keep it light while you test the fit.",
-      note: "A low-friction way to keep Ju open for the next heavy moment.",
-      features: ["Full premium access", "Cancel anytime"],
+        ? `${firstName}, keep Ju close for the week ahead.`
+        : "Keep Ju close for the week ahead.",
+      note: `${geo.formatPrice(geo.rates.weekly)} billed weekly. Cancel anytime in Apple Subscriptions.`,
+      features: ["Voice, memory, coach, and full history", "Cancel anytime"],
       ctaLabel: "Start weekly",
     },
     {
@@ -953,13 +952,19 @@ const OnboardingScreen: React.FC = () => {
       priceDisplay: geo.formatPrice(geo.rates.threeMonth),
       unit: "every 3 months",
       secondaryLine: threeMonthSavings > 0 ? `About ${threeMonthSavings}% less than staying weekly.` : undefined,
-      badge: "Recommended",
+      badge: threeMonthTrialEnabled ? `${threeMonthTrialDays}-day trial` : "Recommended",
       emphasis: firstName
-        ? `${firstName}, this gives Ju enough time to learn your rhythm.`
-        : "Give Ju enough time to learn your rhythm.",
-      note: "Best if the reveal felt real and you want a calmer commitment than weekly.",
-      features: ["Best balance", "Built for habit formation"],
-      ctaLabel: "Choose 3 month",
+        ? threeMonthTrialEnabled
+          ? `${firstName}, give Ju one quiet week to prove it can stay useful.`
+          : `${firstName}, keep Ju close long enough for the pattern to become real support.`
+        : threeMonthTrialEnabled
+          ? "Give Ju one quiet week to prove it can stay useful."
+          : "Keep Ju close long enough for the pattern to become real support.",
+      note: threeMonthTrialEnabled
+        ? `${threeMonthTrialDays} days free for eligible users, then ${geo.formatPrice(geo.rates.threeMonth)} every 3 months. Cancel anytime in Apple Subscriptions.`
+        : `${geo.formatPrice(geo.rates.threeMonth)} every 3 months. Cancel anytime in Apple Subscriptions.`,
+      features: ["Voice, memory, coach, and full history", "Best for habit formation", "Clear renewal terms"],
+      ctaLabel: threeMonthTrialEnabled ? `Start ${threeMonthTrialDays}-day free trial` : "Choose 3 Month",
       recommended: true,
     },
     {
@@ -971,8 +976,8 @@ const OnboardingScreen: React.FC = () => {
       emphasis: firstName
         ? `${firstName}, if this already feels right, this is the strongest yes you can give.`
         : "The strongest yes if Ju already feels right.",
-      note: "One payment for the people who already feel the fit and do not want renewals hanging over it later.",
-      features: ["Future premium updates", "No subscription renewal"],
+      note: `${geo.formatPrice(geo.rates.lifetime)} one-time purchase. No subscription renewal.`,
+      features: ["One payment", "Future premium updates"],
       ctaLabel: "Keep Ju for life",
     },
   ];
@@ -982,6 +987,7 @@ const OnboardingScreen: React.FC = () => {
     paywallPlans.find((plan) => isConfiguredProduct(plan.id)) ||
     paywallPlans.find((plan) => plan.recommended) ||
     paywallPlans[0];
+  const selectedPlanAvailable = isConfiguredProduct(selectedPaywallPlan.id);
 
   const renderResonanceStep = (stepIndex: number) => {
     const prompt = RESONANCE_PROMPTS[stepIndex];
@@ -1039,7 +1045,7 @@ const OnboardingScreen: React.FC = () => {
               className="mt-3 font-serif text-4xl font-bold leading-tight text-foreground"
               style={{ fontFamily: "var(--font-serif), Georgia, serif" }}
             >
-              When it is heavy and hard to explain, Ju starts by listening — not asking you to explain first.
+              When it is heavy and hard to explain, Ju starts by listening first.
             </h1>
             <p className="mt-4 text-base leading-8 text-muted-foreground">
               A few honest answers, then Ju builds a quiet emotional read that sounds like <em>you</em>, not a template.
@@ -1047,7 +1053,7 @@ const OnboardingScreen: React.FC = () => {
             <div className="mt-8 rounded-[1.85rem] border border-primary/20 bg-primary/[0.06] px-5 py-5 text-left">
               <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary">What you get first</p>
               <p className="mt-3 text-lg font-semibold leading-8 text-foreground">
-                Being understood — before you have anything figured out.
+                Being understood before you have anything figured out.
               </p>
               <p className="mt-2 text-sm leading-7 text-muted-foreground">
                 Ju listens for what feels heavy, what feels lonely, and what kind of presence helps first.
@@ -1100,7 +1106,7 @@ const OnboardingScreen: React.FC = () => {
               When this hits, what feels hardest?
             </h2>
             <p className="mt-3 text-center text-base leading-8 text-muted-foreground">
-              Pick whichever feel true. You can choose more than one — Ju is listening for the whole shape of it.
+              Pick whichever feel true. You can choose more than one. Ju is listening for the whole shape of it.
             </p>
             <div className="mt-7 space-y-3">
               {STRUGGLE_OPTIONS.map((option) => (
@@ -1213,7 +1219,7 @@ const OnboardingScreen: React.FC = () => {
               What do you need most from Ju first?
             </h2>
             <p className="mt-3 text-center text-sm leading-7 text-muted-foreground">
-              Whatever you choose, Ju will start there — slowly, nothing else asked of you.
+              Whatever you choose, Ju will start there slowly, nothing else asked of you.
             </p>
             <div className="mt-7 grid gap-3 sm:grid-cols-2">
               {FOCUS_OPTIONS.map((option) => (
@@ -1241,7 +1247,7 @@ const OnboardingScreen: React.FC = () => {
               So Ju can actually speak to you
             </h2>
             <p className="mt-3 text-center text-base leading-8 text-muted-foreground">
-              Your name makes this feel like a real conversation — not copy written for everyone. Your email keeps your read safe with you.
+              Your name makes this feel like a real conversation, not copy written for everyone. Your email keeps your read safe with you.
             </p>
             <div className="mt-7 grid gap-3">
               <div className="relative">
@@ -1284,7 +1290,7 @@ const OnboardingScreen: React.FC = () => {
             <StepMascot />
             <h2 className="text-center font-serif text-3xl font-bold leading-snug text-foreground">
               {personalize(
-                "{name}, what do you wish someone would just… know — without you having to spell it out?",
+                "{name}, what do you wish someone would just know without you having to spell it out?",
                 firstName,
               ).replace(/^, ?/, "")}
             </h2>
@@ -1319,7 +1325,7 @@ const OnboardingScreen: React.FC = () => {
                 : "What has carrying this been costing you most?"}
             </h2>
             <p className="mt-3 text-center text-sm leading-7 text-muted-foreground">
-              Not to make you sad — just so Ju can see what the weight has been touching.
+              Not to make you sad. Just so Ju can see what the weight has been touching.
             </p>
             <div className="mt-7 grid gap-3 sm:grid-cols-2">
               {COST_OPTIONS.map((option) => (
@@ -1383,8 +1389,8 @@ const OnboardingScreen: React.FC = () => {
             <StepMascot />
             <h2 className="text-center font-serif text-3xl font-bold leading-snug text-foreground">
               {firstName
-                ? `${firstName}, before Ju finishes your read — how are you arriving right now?`
-                : "Before Ju finishes your read — how are you arriving right now?"}
+                ? `${firstName}, before Ju finishes your read, how are you arriving right now?`
+                : "Before Ju finishes your read, how are you arriving right now?"}
             </h2>
             <p className="mt-3 text-center text-sm leading-7 text-muted-foreground">
               This helps Ju meet you at your actual energy, not a pretend one.
@@ -1413,7 +1419,7 @@ const OnboardingScreen: React.FC = () => {
             <StepMascot />
             <h2 className="text-center font-serif text-3xl font-bold leading-snug text-foreground">
               {firstName
-                ? `If Ju does this right, ${firstName} — what is the first thing you want to feel?`
+                ? `If Ju does this right, ${firstName}, what is the first thing you want to feel?`
                 : "If Ju does this right, what is the first thing you want to feel?"}
             </h2>
             <p className="mt-3 text-center text-sm leading-7 text-muted-foreground">
@@ -1454,18 +1460,18 @@ const OnboardingScreen: React.FC = () => {
               />
             </div>
             <h2 className="mt-6 font-serif text-3xl font-bold text-foreground">
-              {firstName ? `Ju is sitting with what you shared, ${firstName}…` : "Ju is sitting with what you shared…"}
+              {firstName ? `Ju is sitting with what you shared, ${firstName}...` : "Ju is sitting with what you shared..."}
             </h2>
             <p className="mt-4 text-base leading-8 text-muted-foreground">
-              Ju is turning it into a read that sounds like <em>you</em> — not a template.
+              Ju is turning it into a read that sounds like <em>you</em>, not a template.
             </p>
             <div className="mt-6 space-y-3 text-left">
               {[
                 "Tracing what hurts most beneath the surface",
                 "Noticing what kind of presence feels safest for you",
                 firstName
-                  ? `Writing a read that uses ${firstName}'s emotional context, not copy for everyone`
-                  : "Writing a read that uses your name and emotional context",
+                  ? `Writing a read that remembers ${firstName}'s emotional context`
+                  : "Writing a read that remembers your emotional context",
               ].map((item) => (
                 <div key={item} className="flex items-center gap-3 rounded-2xl border border-border/60 bg-background px-4 py-4">
                   <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary/10">
@@ -1532,27 +1538,31 @@ const OnboardingScreen: React.FC = () => {
       case BRIDGE_STEP:
         return (
           <StepCard>
-            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">Keep this feeling open</p>
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">Before life gets loud again</p>
             <h2 className="mt-3 font-serif text-3xl font-bold text-foreground">
               {firstName
-                ? `${firstName}, this is your first read. The deeper care starts when Ju can stay.`
-                : "This is your first read. The deeper care starts when Ju can stay."}
+                ? `${firstName}, this is the quiet second before everything starts asking for you again.`
+                : "This is the quiet second before everything starts asking for you again."}
             </h2>
-            <p className="mt-3 text-base leading-8 text-muted-foreground">{teaser.continuationLine}</p>
-            <div className="mt-7 grid gap-3">
+            <p className="mt-3 text-base leading-8 text-muted-foreground">
+              {teaser.continuationLine} Keep Ju open for the next heavy moment, before it turns into a whole night of carrying it alone.
+            </p>
+            <div className="mt-6 grid gap-2">
               {[
                 firstName
-                  ? `Ju remembers how this catches in you, ${firstName}, so the next heavy moment does not have to start from scratch.`
-                  : "Ju remembers how this catches in you, so the next heavy moment does not have to start from scratch.",
-                "Support that begins from your real emotional pattern instead of generic comfort that misses the point.",
-                "Turn being understood into something you can reach for before the next hard moment gets bigger.",
+                  ? `The late thought. The message you reread. The small ache you almost ignore. Ju keeps the thread, ${firstName}.`
+                  : "The late thought. The message you reread. The small ache you almost ignore. Ju keeps the thread.",
+                "The goal is not more journaling pressure. It is a softer place to land when your head gets crowded.",
+                threeMonthTrialEnabled
+                  ? `${threeMonthTrialDays} days is enough to see whether Ju becomes the thing you reach for before spiraling wins.`
+                  : "A three-month rhythm gives Ju enough room to become the thing you reach for before spiraling wins.",
               ].map((item) => (
-                <div key={item} className="rounded-[1.5rem] border border-border/60 bg-background px-5 py-5">
-                  <p className="text-sm leading-7 text-foreground">{item}</p>
+                <div key={item} className="rounded-[1.35rem] border border-border/60 bg-background px-4 py-4">
+                  <p className="text-sm leading-6 text-foreground">{item}</p>
                 </div>
               ))}
             </div>
-            <div className="mt-7">
+            <div className="mt-6">
               <PrimaryButton onClick={completeStep}>Show me how Ju stays</PrimaryButton>
             </div>
           </StepCard>
@@ -1561,133 +1571,117 @@ const OnboardingScreen: React.FC = () => {
       case PAYWALL_STEP:
       default:
         return (
-          <StepCard className="overflow-visible pb-4">
-            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">Keep Ju close</p>
-            <h2 className="mt-3 font-serif text-3xl font-bold text-foreground">
-              {firstName
-                ? `${firstName}, keep the version of Ju that already gets you.`
-                : "Keep the version of Ju that already gets you."}
-            </h2>
-            <p className="mt-3 text-base leading-8 text-muted-foreground">
-              {firstName
-                ? `Start gentle, ${firstName}. Pick the rhythm that feels safe enough to keep using.`
-                : "Start gentle. Pick the rhythm that feels safe enough to keep using."}
-            </p>
-
-            {checkoutError ? (
-              <div className="mt-5 rounded-2xl border border-destructive/20 bg-destructive/8 px-4 py-4 text-sm text-destructive">
-                {checkoutError}
+          <StepCard className="mx-auto max-w-md overflow-hidden p-0">
+            <div className="relative h-32 overflow-hidden bg-[linear-gradient(135deg,#211D34_0%,#443B72_48%,#95E1D3_130%)]">
+              <div className="absolute inset-x-0 bottom-0 h-16 bg-[linear-gradient(180deg,transparent,rgba(255,255,255,0.92))]" />
+              <div className="absolute left-5 top-5 max-w-[12rem]">
+                <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-white/70">Your read is open</p>
+                <p className="mt-2 text-xl font-semibold leading-tight text-white">
+                  Begin the place that feels like yours.
+                </p>
               </div>
-            ) : null}
-
-            <div className="mt-7 overflow-hidden rounded-[1.5rem] border border-border/60 bg-background/55 dark:bg-white/[0.03]">
-              {paywallPlans.map((plan) => {
-                const selected = selectedPaywallPlan.id === plan.id;
-                const available = isConfiguredProduct(plan.id);
-                const isLoading = checkoutLoading === plan.id;
-                const isLifetime = plan.id === "lifetime_one_time";
-
-                return (
-                  <div
-                    key={plan.id}
-                    role="button"
-                    tabIndex={0}
-                    onClick={() => setAnswers({ selectedPlan: plan.id })}
-                    onKeyDown={(event) => {
-                      if (event.key === "Enter" || event.key === " ") {
-                        event.preventDefault();
-                        setAnswers({ selectedPlan: plan.id });
-                      }
-                    }}
-                    className={`w-full border-b border-border/50 px-4 py-4 text-left transition-all last:border-b-0 active:scale-[0.99] ${
-                      selected
-                        ? "bg-primary/[0.08] shadow-[inset_4px_0_0_hsl(var(--primary))]"
-                        : "bg-card/70 hover:bg-muted/50"
-                    } ${isLifetime ? "dark:bg-white/[0.04]" : ""}`}
-                  >
-                    <div className="flex gap-3">
-                      <span
-                        className={`mt-1 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full border ${
-                          selected ? "border-primary bg-primary text-primary-foreground" : "border-border bg-background"
-                        }`}
-                        aria-hidden
-                      >
-                        {selected ? <Check className="h-3.5 w-3.5" /> : null}
-                      </span>
-                      <div className="min-w-0 flex-1">
-                        <div className="flex flex-wrap items-center gap-2">
-                          <p className="text-base font-semibold text-foreground">{plan.title}</p>
-                          {plan.badge ? (
-                            <span
-                              className={`rounded-full px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.12em] ${
-                                plan.recommended
-                                  ? "bg-[#FFD166] text-[#1A1A2E]"
-                                  : "bg-primary/10 text-primary"
-                              }`}
-                            >
-                              {plan.badge}
-                            </span>
-                          ) : null}
-                          {!available ? (
-                            <span className="rounded-full bg-muted px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.12em] text-muted-foreground">
-                              Setup needed
-                            </span>
-                          ) : null}
-                        </div>
-                        <p className="mt-1 text-sm font-medium text-muted-foreground">{plan.emphasis}</p>
-                        <div className="mt-3 flex flex-wrap items-end gap-x-2 gap-y-1">
-                          <span className="font-serif text-3xl font-bold leading-none text-foreground">{plan.priceDisplay}</span>
-                          <span className="text-sm text-muted-foreground">{plan.unit}</span>
-                        </div>
-                        {plan.secondaryLine ? (
-                          <p className="mt-2 text-xs font-medium text-primary">{plan.secondaryLine}</p>
-                        ) : null}
-                        <div className="mt-3 flex flex-wrap gap-2">
-                          {plan.features.map((feature) => (
-                            <span key={feature} className="rounded-full bg-muted px-2.5 py-1 text-[11px] font-medium text-muted-foreground">
-                              {feature}
-                            </span>
-                          ))}
-                        </div>
-                        {isLifetime && selected ? (
-                          <LifetimeScarcityMeter className="mt-4" scarcity={lifetimeScarcity} />
-                        ) : null}
-                        {selected ? (
-                          <div className="mt-4">
-                            <PrimaryButton
-                              className={
-                                isLifetime
-                                  ? "bg-[linear-gradient(135deg,#9385F6,#6F5FE8)] text-white hover:shadow-[0_18px_35px_-18px_rgba(124,110,219,0.75)] dark:bg-[linear-gradient(135deg,#9B8FFF,#7767EA)]"
-                                  : ""
-                              }
-                              onClick={(event) => {
-                                event.stopPropagation();
-                                handleCheckout(plan.id);
-                              }}
-                              disabled={!available || Boolean(checkoutLoading)}
-                            >
-                              {isLoading ? <Loader2 className="h-4 w-4 animate-spin" /> : null}
-                              {!available ? "Coming soon" : plan.ctaLabel}
-                            </PrimaryButton>
-                            <p className="mt-2 text-center text-[11px] leading-5 text-muted-foreground">
-                              {plan.note}
-                            </p>
-                          </div>
-                        ) : null}
-                      </div>
-                    </div>
-                  </div>
-                );
-              })}
+              <img
+                src={juGreat}
+                alt=""
+                className="absolute bottom-2 right-7 h-24 w-24 object-contain drop-shadow-[0_18px_30px_rgba(0,0,0,0.25)]"
+              />
             </div>
 
-            <div className="mt-6 text-center">
+            <div className="px-4 pb-4 pt-3">
+              <h2 className="text-center font-serif text-[1.55rem] font-bold leading-tight text-foreground">
+                {firstName ? `${firstName}, keep Ju close.` : "Keep Ju close."}
+              </h2>
+              <p className="mx-auto mt-1 max-w-[19rem] text-center text-xs leading-5 text-muted-foreground">
+                Start with a quiet week. If Ju does not become the thing you reach for when your head gets crowded, cancel anytime.
+              </p>
+
+              <div className="mt-3 space-y-2">
+                {[
+                  "Your private Ju Gets You read stays open",
+                  "Premium voice notes, AI memory, and deeper coach support",
+                  "Older patterns, relationship maps, and weekly reads",
+                ].map((benefit) => (
+                  <div key={benefit} className="flex items-start gap-2 text-xs leading-5 text-foreground">
+                    <Check className="mt-0.5 h-3.5 w-3.5 flex-shrink-0 text-primary" />
+                    <span>{benefit}</span>
+                  </div>
+                ))}
+              </div>
+
+              {checkoutError ? (
+                <div className="mt-3 rounded-2xl border border-destructive/20 bg-destructive/8 px-4 py-3 text-sm text-destructive">
+                  {checkoutError}
+                </div>
+              ) : null}
+
+              <div className="mt-3 grid grid-cols-3 gap-1.5">
+                {paywallPlans.map((plan) => {
+                  const selected = plan.id === selectedPaywallPlan.id;
+                  return (
+                    <button
+                      key={plan.id}
+                      type="button"
+                      onClick={() => setAnswers({ selectedPlan: plan.id })}
+                      disabled={!isConfiguredProduct(plan.id)}
+                      className={`relative min-h-[76px] rounded-xl border px-1.5 py-2 text-center transition-all active:scale-[0.98] disabled:opacity-50 ${
+                        selected
+                          ? "border-primary bg-primary/[0.08] shadow-[0_14px_28px_-22px_hsl(var(--primary)/0.75)]"
+                          : "border-border/70 bg-background"
+                      }`}
+                    >
+                      {plan.recommended ? (
+                        <span className="absolute -top-2 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-[#FFD166] px-2 py-0.5 text-[8px] font-bold uppercase text-[#1A1A2E]">
+                          Trial
+                        </span>
+                      ) : null}
+                      <span className="block text-[11px] font-bold text-foreground">{plan.title}</span>
+                      <span className="mt-1 block text-xs font-semibold text-foreground">{plan.priceDisplay}</span>
+                      <span className="mt-0.5 block text-[9px] leading-3 text-muted-foreground">
+                        {plan.id === "lifetime_one_time" ? "once" : plan.unit}
+                      </span>
+                    </button>
+                  );
+                })}
+              </div>
+
+              <div className="mt-3 rounded-2xl border border-primary/15 bg-primary/[0.06] px-3 py-2">
+                <div className="flex items-center justify-between gap-3">
+                  <span className="text-xs font-bold text-foreground">{selectedPaywallPlan.badge || "Selected"}</span>
+                  {selectedPaywallPlan.id === "three_month" && threeMonthTrialEnabled ? (
+                    <span className="text-xs font-semibold text-primary">No charge today if eligible</span>
+                  ) : null}
+                </div>
+                <p className="mt-1 text-[11px] leading-4 text-muted-foreground">{selectedPaywallPlan.emphasis}</p>
+                {selectedPaywallPlan.secondaryLine ? (
+                  <p className="mt-1 text-[11px] font-semibold text-primary">{selectedPaywallPlan.secondaryLine}</p>
+                ) : null}
+              </div>
+
+              <PrimaryButton
+                className="mt-3 py-3.5"
+                onClick={() => handleCheckout(selectedPaywallPlan.id)}
+                disabled={!selectedPlanAvailable || Boolean(checkoutLoading)}
+              >
+                {checkoutLoading === selectedPaywallPlan.id ? <Loader2 className="h-4 w-4 animate-spin" /> : null}
+                {!selectedPlanAvailable ? "Not ready yet" : selectedPaywallPlan.ctaLabel}
+              </PrimaryButton>
+
+              <p className="mt-2 text-center text-[10px] leading-4 text-muted-foreground">
+                {selectedPaywallPlan.note}
+              </p>
+
+              <div className="mt-3 flex items-center justify-center gap-3 text-[10px] font-medium text-muted-foreground">
+                <Link to={ROUTES.TERMS} className="underline-offset-4 hover:text-foreground hover:underline">Terms</Link>
+                <span aria-hidden="true">-</span>
+                <Link to={ROUTES.PRIVACY} className="underline-offset-4 hover:text-foreground hover:underline">Privacy</Link>
+              </div>
+
               <button
                 type="button"
                 onClick={handleContinueFree}
-                className="text-sm text-muted-foreground underline-offset-4 transition-colors hover:text-foreground hover:underline"
+                className="mt-2 w-full text-center text-xs font-medium text-muted-foreground underline-offset-4 transition-colors hover:text-foreground hover:underline"
               >
-                Maybe later, continue free
+                Not now, keep writing free
               </button>
             </div>
           </StepCard>
@@ -1696,9 +1690,9 @@ const OnboardingScreen: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[radial-gradient(circle_at_top,_rgba(124,110,219,0.18),_transparent_38%),linear-gradient(180deg,#f8f6ff_0%,#ffffff_46%,#f6f4ff_100%)] px-4 py-6 dark:bg-background">
-      <div className="mx-auto flex min-h-[calc(100vh-3rem)] w-full max-w-6xl flex-col">
-        <div className="mb-6 flex items-center justify-between gap-4">
+    <div className={`min-h-[100dvh] bg-[radial-gradient(circle_at_top,_rgba(124,110,219,0.18),_transparent_38%),linear-gradient(180deg,#f8f6ff_0%,#ffffff_46%,#f6f4ff_100%)] px-4 dark:bg-background ${funnelState.step === PAYWALL_STEP ? "py-3 sm:py-6" : "py-6"}`}>
+      <div className={`mx-auto flex w-full max-w-6xl flex-col ${funnelState.step === PAYWALL_STEP ? "min-h-[calc(100dvh-1.5rem)] sm:min-h-[calc(100dvh-3rem)]" : "min-h-[calc(100dvh-3rem)]"}`}>
+        <div className={`flex items-center justify-between gap-4 ${funnelState.step === PAYWALL_STEP ? "mb-4" : "mb-6"}`}>
           <button
             onClick={goBack}
             disabled={funnelState.step === 0 || funnelState.step === PROCESSING_STEP}
@@ -1720,13 +1714,13 @@ const OnboardingScreen: React.FC = () => {
           </Link>
         </div>
 
-        <div className="mb-5 text-center">
+        <div className={funnelState.step === PAYWALL_STEP ? "sr-only" : "mb-5 text-center"}>
           <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary">
             {PHASE_LABELS[funnelState.step] || `Step ${Math.min(funnelState.step + 1, TOTAL_STEPS)} of ${TOTAL_STEPS}`}
           </p>
         </div>
 
-        <div className="grid flex-1 items-center gap-6 lg:grid-cols-[0.9fr_1.1fr]">
+        <div className={`grid flex-1 gap-6 lg:grid-cols-[0.9fr_1.1fr] ${funnelState.step === PAYWALL_STEP ? "items-start sm:items-center" : "items-center"}`}>
           <OnboardingCompanionVisual scene={onboardingScene} step={funnelState.step} />
           <div className="flex min-w-0 items-center">
             <AnimatePresence mode="wait">

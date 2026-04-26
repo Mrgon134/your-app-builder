@@ -12,13 +12,13 @@ interface SignupPromptProps {
   trialStartedAt?: string | null;
 }
 
-const FREE_ENTRY_LIMIT = 3;
+const UPGRADE_PROMPT_ENTRY_COUNT = 3;
 
 const SignupPrompt: React.FC<SignupPromptProps> = ({ entriesCount, onDismiss, onUpgrade, plan = "free", trialStartedAt = null }) => {
   const { t } = useLang();
   const [dismissed, setDismissed] = useState(false);
 
-  if (dismissed || entriesCount < FREE_ENTRY_LIMIT || hasPlusAccess(plan, trialStartedAt)) return null;
+  if (dismissed || entriesCount < UPGRADE_PROMPT_ENTRY_COUNT || hasPlusAccess(plan, trialStartedAt)) return null;
 
   return (
     <div className="relative bg-primary/[0.06] border border-primary/20 rounded-3xl p-5 mb-4 animate-fade-in">
@@ -37,17 +37,17 @@ const SignupPrompt: React.FC<SignupPromptProps> = ({ entriesCount, onDismiss, on
         />
         <div className="flex-1 min-w-0">
           <h3 className="font-serif text-base font-bold text-foreground mb-1">
-            {t.signup_title || "Ju is getting to know you!"}
+            {t.signup_title || "Ju is starting to notice your thread."}
           </h3>
           <p className="text-sm text-muted-foreground leading-relaxed mb-3">
-            {(t.signup_desc_v2 || "You've written {n} entries. Unlock AI insights, unlimited coach chats, and your full history when you're ready.").replace("{n}", String(entriesCount))}
+            {(t.signup_desc_v2 || "You have written {n} entries. Keep Ju close when you want the longer patterns, voice notes, and conversations to stay open.").replace("{n}", String(entriesCount))}
           </p>
           <button
             onClick={onUpgrade}
             className="flex items-center gap-2 px-5 py-2.5 rounded-2xl bg-primary text-primary-foreground text-sm font-semibold transition-all hover:shadow-lg hover:shadow-primary/20 active:scale-[0.97]"
           >
             <Sparkles className="w-4 h-4" />
-            {t.signup_cta_v2 || "See paid plans"}
+            {t.signup_cta_v2 || "Keep Ju close"}
           </button>
         </div>
       </div>
@@ -55,5 +55,4 @@ const SignupPrompt: React.FC<SignupPromptProps> = ({ entriesCount, onDismiss, on
   );
 };
 
-export { FREE_ENTRY_LIMIT };
 export default SignupPrompt;

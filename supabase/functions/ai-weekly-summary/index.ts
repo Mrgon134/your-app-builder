@@ -1,4 +1,5 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
+import { getAuthenticatedUser, hasPaidAccess, paymentRequired, unauthorized } from "../_shared/function-auth.ts";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -100,6 +101,11 @@ serve(async (req) => {
 
   try {
     const { entries, lang } = await req.json();
+    const user = await getAuthenticatedUser(req);
+    if (!user) return unauthorized();
+    if (!(await hasPaidAccess(user.id, "plus"))) {
+      return paymentRequired("Upgrade to unlock weekly AI summaries.");
+    }
 
     if (!entries || entries.length === 0) {
       return new Response(

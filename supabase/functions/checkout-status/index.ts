@@ -76,9 +76,9 @@ serve(async (req) => {
     const safeSubscriptionId = safeText(subscriptionId);
     const safeIncomingEmail = normalizeEmail(email);
 
-    if ((safeIncomingStatus === "succeeded" || safeIncomingStatus === "success" || safeIncomingStatus === "paid") && nextStatus !== "claimed") {
-      nextStatus = "paid";
-    } else if ((safeIncomingStatus === "cancelled" || safeIncomingStatus === "failed") && !["paid", "claimed"].includes(nextStatus)) {
+    // Do not trust success status from a browser return URL. Paid/claimed must
+    // come from the Dodo API lookup below or the signed webhook.
+    if ((safeIncomingStatus === "cancelled" || safeIncomingStatus === "failed") && !["paid", "claimed"].includes(nextStatus)) {
       nextStatus = "failed";
     }
 

@@ -19,8 +19,6 @@ serve(async (req) => {
       req.headers.get("cf-connecting-ip") ||
       "";
 
-    console.log("ParityDeals lookup for IP:", clientIp);
-
     const pdUrl = `https://api.paritydeals.com/api/v1/deals/discount/?pd_identifier=${PD_IDENTIFIER}&ip_address=${clientIp}`;
 
     const resp = await fetch(pdUrl, {
@@ -28,7 +26,7 @@ serve(async (req) => {
     });
 
     if (!resp.ok) {
-      console.log("ParityDeals returned non-OK:", resp.status);
+      console.warn("ParityDeals returned non-OK status:", resp.status);
       return new Response(
         JSON.stringify({ discountPercentage: 0, couponCode: null, countryCode: "US" }),
         { headers: { ...corsHeaders, "Content-Type": "application/json" } }
@@ -36,7 +34,6 @@ serve(async (req) => {
     }
 
     const data = await resp.json();
-    console.log("ParityDeals raw response:", JSON.stringify(data));
 
     // Try top-level fields first
     let discountPct = parseFloat(data.discountPercentage) || 0;
@@ -62,7 +59,11 @@ serve(async (req) => {
       }
     }
 
-    console.log(`Parsed PPP: country=${data.countryCode}, discount=${discountPct}%, coupon=${coupon}`);
+    console.info("ParityDeals lookup completed", {
+      hasDiscount: discountPct > 0,
+      hasCoupon: Boolean(coupon),
+      countryCode: data.countryCode || "US",
+    });
 
     return new Response(
       JSON.stringify({

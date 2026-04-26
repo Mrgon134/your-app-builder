@@ -6,7 +6,16 @@
     <atom:link href="https://nuju.app/rss.xml" rel="self" type="application/rss+xml" />
     <description>Practical guides on journaling, mood tracking, and emotional wellness from the Nuju team.</description>
     <language>en</language>
-    <lastBuildDate>Sat, 25 Apr 2026 05:19:44 GMT</lastBuildDate>
+    <lastBuildDate>Sun, 26 Apr 2026 03:36:35 GMT</lastBuildDate>
+    <item>
+      <title>How Journaling Can Help You Understand Your Relationships</title>
+      <link>https://nuju.app/blog/journaling-for-relationships</link>
+      <guid isPermaLink="true">https://nuju.app/blog/journaling-for-relationships</guid>
+      <description>The people in your life affect your mood more than almost anything else. Journaling helps you see those patterns clearly — and decide what to do about them.</description>
+      <category>Mental Wellness</category>
+      <pubDate>Sun, 26 Apr 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
     <item>
       <title>How to Track Your Emotions Daily (and What to Do with the Data)</title>
       <link>https://nuju.app/blog/how-to-track-emotions-daily</link>
@@ -164,7 +173,7 @@
       <title>50 Journaling Prompts for Anxiety (That Actually Help)</title>
       <link>https://nuju.app/blog/journaling-prompts-for-anxiety</link>
       <guid isPermaLink="true">https://nuju.app/blog/journaling-prompts-for-anxiety</guid>
-      <description>Blank page anxiety is real. These 50 prompts are designed to help you untangle anxious thoughts, identify triggers, and find clarity — no therapy degree required.</description>
+      <description>Blank page anxiety is real. These 50 prompts are designed to help you untangle anxious thoughts, identify triggers, and find clarity — no clinical jargon required.</description>
       <category>Journaling Tips</category>
       <pubDate>Sat, 11 Apr 2026 12:00:00 GMT</pubDate>
       <dc:language>en</dc:language>

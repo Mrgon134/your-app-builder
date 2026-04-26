@@ -76,7 +76,7 @@ const LetterToFutureSelf: React.FC<LetterToFutureSelfProps> = ({ onClose }) => {
           transition={{ delay: 0.2 }}
           className="text-[22px] font-bold text-foreground tracking-tight mb-2"
         >
-          Letter Sealed 💌
+          Letter Sealed
         </motion.h3>
         <motion.p
           initial={{ opacity: 0, y: 10 }}
@@ -203,7 +203,7 @@ const LetterToFutureSelf: React.FC<LetterToFutureSelfProps> = ({ onClose }) => {
                     <Mail className="w-5 h-5 text-amber-500" />
                   </div>
                   <div>
-                    <p className="text-[14px] font-semibold text-foreground">A letter from past you 💌</p>
+                    <p className="text-[14px] font-semibold text-foreground">A letter from past you</p>
                     <p className="text-[12px] text-muted-foreground mt-0.5">Written {writtenDate} — tap to open</p>
                   </div>
                 </div>
@@ -254,7 +254,7 @@ const LetterToFutureSelf: React.FC<LetterToFutureSelfProps> = ({ onClose }) => {
 
       {readyLetters.length === 0 && sealedLetters.length === 0 && (
         <p className="text-[13px] text-muted-foreground text-center py-4">
-          Write your first letter — Ju will keep it safe until it's time. 💌
+          Write your first letter. Ju will keep it safe until it's time.
         </p>
       )}
     </div>

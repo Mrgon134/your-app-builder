@@ -83,7 +83,13 @@
     </noscript>
 
     <script>
-      if (!window.Capacitor?.isNativePlatform?.()) {
+      {
+        var isNativeShell =
+          window.location.protocol === "capacitor:" ||
+          window.location.protocol === "ionic:" ||
+          window.location.hostname === "localhost" ||
+          window.location.hostname === "127.0.0.1";
+        if (!isNativeShell && !window.Capacitor?.isNativePlatform?.()) {
         !function (w, d, t) {
           w.TiktokAnalyticsObject = t;
           var ttq = w[t] = w[t] || [];
@@ -122,6 +128,7 @@
           ttq.load("D7B5H4BC77UA3MO3O75G");
           ttq.page();
         }(window, document, "ttq");
+        }
       }
     </script>
 

@@ -224,7 +224,7 @@ const LANDING_FAQS = [
   {
     question: "Do I need to pay before I can use Nuju?",
     answer:
-      "No. You start with the Ju Gets You reveal first. If the fit feels real after that, you can keep Ju close with an annual plan or a lifetime unlock.",
+      "No. You start with the Ju Gets You reveal first. If the fit feels real after that, you can keep Ju close with weekly, 3-month, or lifetime access.",
   },
   {
     question: "What exactly happens in the reveal?",
@@ -244,7 +244,7 @@ const LANDING_FAQS = [
   {
     question: "What plans are available if I want Ju to stay with me?",
     answer:
-      "You can continue with an annual plan for long-term support, or unlock lifetime access with one payment.",
+      "You can continue weekly, choose a 3-month subscription, or unlock lifetime access with one payment.",
   },
 ];
 
@@ -275,9 +275,9 @@ const SUPPORT_FAQS = [
       "Paid access keeps the full Ju experience open, including deeper reflection, longer history, and more ongoing support after your reveal.",
   },
   {
-    question: "What is the difference between annual and lifetime?",
+    question: "What is the difference between subscriptions and lifetime?",
     answer:
-      "Annual access renews once per year unless you cancel before renewal. Lifetime is a one-time purchase that keeps Ju unlocked without renewal.",
+      "Weekly and 3-month subscriptions renew unless you cancel before renewal. Lifetime is a one-time purchase that keeps Ju unlocked without renewal.",
   },
   {
     question: "Can I use voice journaling?",
@@ -482,7 +482,7 @@ function renderLandingBody() {
         ${renderOrdered([
           "Answer a few gentle prompts so Ju can understand what has been heavy.",
           "See the Ju Gets You reveal with one clear emotional pattern and why it fits.",
-          "Choose whether you want Ju to stay with you through an annual plan or a lifetime unlock.",
+          "Choose whether you want Ju to stay with you weekly, for 3 months, or with a lifetime unlock.",
         ])}
       `,
     ),
@@ -676,7 +676,7 @@ function renderContactBody() {
             href: "/contact",
             title: "Billing and paid access",
             description:
-              "Questions about annual access, lifetime purchases, renewals, or checkout problems.",
+              "Questions about subscription access, lifetime purchases, renewals, or checkout problems.",
             badge: "Billing",
           },
           {
@@ -957,7 +957,7 @@ function renderTermsBody() {
         "AI features and payments",
         `
           <p>AI-generated content is for informational and wellness purposes only and should not be treated as medical, psychological, or therapeutic advice.</p>
-          <p>Nuju offers a free reveal entry and paid access plans. Annual plans renew automatically unless cancelled before renewal. Lifetime access is a one-time purchase.</p>
+          <p>Nuju offers a free reveal entry and paid access plans. Weekly and 3-month subscriptions renew automatically unless cancelled before renewal. Lifetime access is a one-time purchase.</p>
         `,
       ),
       renderSection(
@@ -1531,9 +1531,9 @@ function buildStaticPages(posts) {
     offers: {
       "@type": "AggregateOffer",
       lowPrice: "0",
-      highPrice: "59.99",
+      highPrice: "49.99",
       priceCurrency: "USD",
-      offerCount: "3",
+      offerCount: "4",
     },
     featureList: [
       "Ju Gets You reveal",

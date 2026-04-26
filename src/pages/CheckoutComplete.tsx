@@ -51,8 +51,8 @@ const CheckoutComplete: React.FC = () => {
     }
     if (statusFallbackActive) {
       return user
-        ? "Let's attach your plan to your Nuju account."
-        : "Your payment came through. Let's finish opening Ju.";
+        ? "We're still verifying your payment."
+        : "We're still verifying your payment.";
     }
     if (isFailedReturn) {
       return "This checkout was not completed.";
@@ -141,21 +141,19 @@ const CheckoutComplete: React.FC = () => {
 
   useEffect(() => {
     const canClaimFromConfirmedStatus = Boolean(statusPayload && ["paid", "claimed"].includes(statusPayload.status));
-    const canClaimFromFallback = statusFallbackActive && hasSuccessfulReturnSignal;
-
     if (
       authLoading ||
       !user ||
       !session?.access_token ||
       emailMismatch ||
       claimStartedRef.current ||
-      (!canClaimFromConfirmedStatus && !canClaimFromFallback)
+      !canClaimFromConfirmedStatus
     ) {
       return;
     }
 
     void attemptClaim();
-  }, [attemptClaim, authLoading, emailMismatch, hasSuccessfulReturnSignal, session?.access_token, statusFallbackActive, statusPayload, user]);
+  }, [attemptClaim, authLoading, emailMismatch, session?.access_token, statusPayload, user]);
 
   const continueToAuth = (mode: "signup" | "login") => {
     const authEmail = checkoutEmail;
@@ -174,15 +172,15 @@ const CheckoutComplete: React.FC = () => {
   };
 
   const showAuthCtas = !user && (
-    (Boolean(statusPayload) && ["paid", "claimed"].includes(statusPayload.status)) ||
-    statusFallbackActive
+    Boolean(statusPayload) && ["paid", "claimed"].includes(statusPayload.status)
   );
   const showClaimButton = Boolean(
     user &&
     session?.access_token &&
     !emailMismatch &&
     screenState !== "claiming" &&
-    ((statusPayload && ["paid", "claimed"].includes(statusPayload.status)) || (statusFallbackActive && hasSuccessfulReturnSignal))
+    statusPayload &&
+    ["paid", "claimed"].includes(statusPayload.status)
   );
 
   return (

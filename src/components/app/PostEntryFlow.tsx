@@ -2,12 +2,14 @@
 
 import { useState, useEffect, useRef, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { Camera } from "lucide-react";
 import { JU_STICKERS } from "@/lib/stickers";
 import { useLang } from "@/lib/i18n";
 import { useFaceDetection } from "@/hooks/useFaceDetection";
 import { MOODS } from "@/lib/constants";
 import { drawMoodMomentCard, shareToTarget, SHARE_TARGETS, type ShareTarget } from "@/lib/share-card";
-import { SUPABASE_URL, SUPABASE_ANON_KEY } from "@/integrations/supabase/client";
+import { SUPABASE_URL } from "@/integrations/supabase/client";
+import { getJsonFunctionHeaders } from "@/lib/function-auth";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -21,6 +23,49 @@ interface PostEntryFlowProps {
 }
 
 type Step = "checkin" | "selfie-invite" | "camera" | "comparison";
+
+const readCoachStreamText = async (res: Response) => {
+  const contentType = res.headers.get("content-type") || "";
+  if (contentType.includes("application/json")) {
+    const data = await res.json();
+    return String(data.message || data.content || data.reply || "").trim();
+  }
+
+  if (!res.body) return "";
+
+  const reader = res.body.getReader();
+  const decoder = new TextDecoder();
+  let buffer = "";
+  let output = "";
+
+  const consumeLine = (rawLine: string) => {
+    const line = rawLine.endsWith("\r") ? rawLine.slice(0, -1) : rawLine;
+    if (!line.startsWith("data: ")) return;
+    const jsonStr = line.slice(6).trim();
+    if (!jsonStr || jsonStr === "[DONE]") return;
+    try {
+      const parsed = JSON.parse(jsonStr);
+      output += parsed.choices?.[0]?.delta?.content || "";
+    } catch {
+      // Ignore malformed stream fragments; the next chunk may complete them.
+    }
+  };
+
+  while (true) {
+    const { done, value } = await reader.read();
+    if (done) break;
+    buffer += decoder.decode(value, { stream: true });
+    let newlineIndex = buffer.indexOf("\n");
+    while (newlineIndex !== -1) {
+      consumeLine(buffer.slice(0, newlineIndex));
+      buffer = buffer.slice(newlineIndex + 1);
+      newlineIndex = buffer.indexOf("\n");
+    }
+  }
+
+  if (buffer.trim()) consumeLine(buffer);
+  return output.trim();
+};
 
 // ─── AI Check-in message ─────────────────────────────────────────────────────
 
@@ -61,10 +106,7 @@ Ask if they feel a bit better now. Under 25 words. No bullet points.`;
 
   const res = await fetch(`${SUPABASE_URL}/functions/v1/ai-coach`, {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
-    },
+    headers: await getJsonFunctionHeaders(),
     body: JSON.stringify({
       messages: [{ role: "user", content: prompt }],
       persona: "gentle",
@@ -73,8 +115,7 @@ Ask if they feel a bit better now. Under 25 words. No bullet points.`;
     }),
   });
   if (!res.ok) throw new Error(`ai-coach ${res.status}`);
-  const data = await res.json();
-  return (data.message || data.content || data.reply || "").trim();
+  return readCoachStreamText(res);
 }
 
 async function fetchComparisonMessage(
@@ -100,10 +141,7 @@ Give a warm, honest 1-sentence reaction. Sound like a real friend. Under 20 word
 
   const res = await fetch(`${SUPABASE_URL}/functions/v1/ai-coach`, {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
-    },
+    headers: await getJsonFunctionHeaders(),
     body: JSON.stringify({
       messages: [{ role: "user", content: prompt }],
       persona: "gentle",
@@ -112,8 +150,7 @@ Give a warm, honest 1-sentence reaction. Sound like a real friend. Under 20 word
     }),
   });
   if (!res.ok) throw new Error(`ai-coach ${res.status}`);
-  const data = await res.json();
-  return (data.message || data.content || data.reply || "").trim();
+  return readCoachStreamText(res);
 }
 
 // ─── Mood badge (vertical layout for comparison) ──────────────────────────────
@@ -177,7 +214,7 @@ export default function PostEntryFlow({ beforeMood, onDismiss, onSelfieCapture }
       .catch(() => {
         // Fallback
         const fallbacks: Record<string, string> = {
-          en: "Hey, how are you feeling now that you've written it all out?",
+          en: "Hey, did writing give the feeling a little more room?",
           id: "Gimana, sekarang sudah sedikit lebih baik setelah nulis?",
         };
         setCheckinMsg(fallbacks[lang] ?? fallbacks["en"]);
@@ -225,7 +262,7 @@ export default function PostEntryFlow({ beforeMood, onDismiss, onSelfieCapture }
         .then(setComparisonMsg)
         .catch(() => {
           const fallbacks: Record<string, string> = {
-            en: "Your face tells a story — and you just wrote a beautiful chapter.",
+            en: "Your face still tells a story, and you gave part of it somewhere to go.",
             id: "Wajahmu bercerita — dan kamu baru saja menulis bab yang indah.",
           };
           setComparisonMsg(fallbacks[lang] ?? fallbacks["en"]);
@@ -258,7 +295,7 @@ export default function PostEntryFlow({ beforeMood, onDismiss, onSelfieCapture }
     setActiveShareTarget(target);
     try {
       const blob = await getOrGenerateCard();
-      const caption = t.post_entry_share_caption || "My mood moment on Nuju 💜 nuju.app";
+      const caption = t.post_entry_share_caption || "My mood moment on Nuju - nuju.app";
       await shareToTarget(blob, target, caption);
     } catch {
       // ignore
@@ -297,7 +334,7 @@ export default function PostEntryFlow({ beforeMood, onDismiss, onSelfieCapture }
             <img src={JU_STICKERS.love} alt="Ju" className="w-16 h-16 object-contain" />
             <div className="text-center space-y-1">
               <p className="font-semibold text-base" style={{ color: "#E8E4F8" }}>
-                {t.post_entry_checkin_title || "Feeling any better?"}
+                {t.post_entry_checkin_title || "Did that give you a little room?"}
               </p>
               {checkinLoading ? (
                 <div className="h-4 rounded-full animate-pulse mx-auto w-3/4" style={{ background: "rgba(124,110,219,0.2)" }} />
@@ -318,7 +355,7 @@ export default function PostEntryFlow({ beforeMood, onDismiss, onSelfieCapture }
                 className="w-full py-3 rounded-2xl font-semibold text-sm transition-all active:scale-95"
                 style={{ background: "#7C6EDB", color: "#fff" }}
               >
-                {t.post_entry_checkin_yes || "Yes, I feel better 😊"}
+                {t.post_entry_checkin_yes || "Yes, a little lighter"}
               </button>
               <div className="flex gap-2">
                 <button
@@ -326,14 +363,14 @@ export default function PostEntryFlow({ beforeMood, onDismiss, onSelfieCapture }
                   className="flex-1 py-3 rounded-2xl font-medium text-sm transition-all active:scale-95"
                   style={{ background: "rgba(124,110,219,0.15)", color: "#B0A8D8" }}
                 >
-                  {t.post_entry_checkin_kinda || "Kind of..."}
+                  {t.post_entry_checkin_kinda || "A little"}
                 </button>
                 <button
                   onClick={goToSelfieInvite}
                   className="flex-1 py-3 rounded-2xl font-medium text-sm transition-all active:scale-95"
                   style={{ background: "rgba(124,110,219,0.15)", color: "#B0A8D8" }}
                 >
-                  {t.post_entry_checkin_no || "Not really..."}
+                  {t.post_entry_checkin_no || "Not yet"}
                 </button>
               </div>
             </div>
@@ -348,10 +385,10 @@ export default function PostEntryFlow({ beforeMood, onDismiss, onSelfieCapture }
             <img src={JU_STICKERS.hmm} alt="Ju" className="w-16 h-16 object-contain" />
             <div className="text-center space-y-1">
               <p className="font-semibold text-base" style={{ color: "#E8E4F8" }}>
-                {t.post_entry_selfie_title || "Show your mood!"}
+                {t.post_entry_selfie_title || "See the shift?"}
               </p>
               <p className="text-sm leading-relaxed" style={{ color: "#9B93C0" }}>
-                {t.post_entry_selfie_desc || "Want to express your mood with a selfie? This moment can help you feel more relieved."}
+                {t.post_entry_selfie_desc || "A quick selfie can help you notice what changed after writing."}
               </p>
             </div>
             <div className="flex flex-col gap-2 w-full mt-1">
@@ -360,7 +397,7 @@ export default function PostEntryFlow({ beforeMood, onDismiss, onSelfieCapture }
                 className="w-full py-3 rounded-2xl font-semibold text-sm transition-all active:scale-95 flex items-center justify-center gap-2"
                 style={{ background: "#7C6EDB", color: "#fff" }}
               >
-                <span>📸</span>
+                <Camera className="h-4 w-4" />
                 {t.post_entry_selfie_cta || "Take a selfie"}
               </button>
               <button
@@ -400,7 +437,7 @@ export default function PostEntryFlow({ beforeMood, onDismiss, onSelfieCapture }
                 <div className="absolute inset-0 flex flex-col items-center justify-center gap-3" style={{ background: "rgba(19,17,28,0.85)" }}>
                   <div className="w-8 h-8 rounded-full border-2 border-t-transparent animate-spin" style={{ borderColor: "#7C6EDB", borderTopColor: "transparent" }} />
                   <p className="text-sm" style={{ color: "#B0A8D8" }}>
-                    {faceStatus === "loading-models" ? (t.face_loading_ai || "Loading AI model...") : (t.face_requesting_camera || "Opening camera...")}
+                    {faceStatus === "loading-models" ? (t.face_loading_ai || "Getting the mood reader ready...") : (t.face_requesting_camera || "Opening camera...")}
                   </p>
                 </div>
               )}
@@ -528,7 +565,7 @@ export default function PostEntryFlow({ beforeMood, onDismiss, onSelfieCapture }
                   {t.post_entry_before || "Before writing"}
                 </span>
               </div>
-              <div className="text-xl" style={{ color: "#7C6EDB" }}>→</div>
+              <div className="text-xl" style={{ color: "#7C6EDB" }}>-&gt;</div>
               <div className="flex flex-col items-center gap-1">
                 <MoodBadgeVertical mood={afterMood} />
                 <span className="text-xs mt-0.5" style={{ color: "#6B6499" }}>
@@ -545,14 +582,14 @@ export default function PostEntryFlow({ beforeMood, onDismiss, onSelfieCapture }
                 className="text-center text-sm font-medium"
                 style={{ color: "#4ECDC4" }}
               >
-                {t.post_entry_mood_improved || "You look better! Writing helps ✨"}
+                {t.post_entry_mood_improved || "There is a little more room on your face now."}
               </motion.p>
             )}
 
             {/* Share sheet */}
             <div className="mt-1">
               <p className="text-xs font-medium mb-2.5 text-center" style={{ color: "#9B93C0" }}>
-                {t.post_entry_share_to || "Share your moment"}
+                {t.post_entry_share_to || "Share this shift"}
               </p>
               <div className="flex items-center justify-center gap-3">
                 {SHARE_TARGETS.map((target) => {

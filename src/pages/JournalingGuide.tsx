@@ -263,7 +263,7 @@ const JournalingGuide: React.FC = () => {
             <li className="flex gap-2"><Brain className="mt-1 h-4 w-4 flex-shrink-0 text-primary" /> <InlineLink to="/blog/journaling-for-adhd">Journaling for ADHD</InlineLink> — low-friction systems built for executive-function reality.</li>
             <li className="flex gap-2"><Heart className="mt-1 h-4 w-4 flex-shrink-0 text-primary" /> <InlineLink to="/blog/journaling-for-relationships">Journaling for relationships</InlineLink> — prompts for couples and conflict repair.</li>
             <li className="flex gap-2"><Sparkles className="mt-1 h-4 w-4 flex-shrink-0 text-primary" /> <InlineLink to="/blog/mood-tracking-for-anxiety">Mood tracking for anxiety</InlineLink> — turn racing thoughts into data.</li>
-            <li className="flex gap-2"><BookOpen className="mt-1 h-4 w-4 flex-shrink-0 text-primary" /> <InlineLink to="/blog/journaling-before-therapy">Journaling before therapy</InlineLink> — make your 50-minute session 3× more useful.</li>
+            <li className="flex gap-2"><BookOpen className="mt-1 h-4 w-4 flex-shrink-0 text-primary" /> <InlineLink to="/blog/journaling-before-therapy">Journaling before therapy</InlineLink> — arrive with clearer notes and patterns.</li>
           </ul>
         </Chapter>
 

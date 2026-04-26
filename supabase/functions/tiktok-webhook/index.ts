@@ -13,15 +13,14 @@ serve(async (req) => {
 
   try {
     const body = await req.json();
-    console.log("TikTok webhook received:", JSON.stringify(body));
 
     // Handle TikTok webhook events
     const { event, user } = body;
 
     if (event === "authorize") {
-      console.log("TikTok authorization event for user:", user?.open_id);
+      console.info("TikTok authorization event received", { hasUser: Boolean(user?.open_id) });
     } else if (event === "deauthorize") {
-      console.log("TikTok deauthorization event for user:", user?.open_id);
+      console.info("TikTok deauthorization event received", { hasUser: Boolean(user?.open_id) });
     }
 
     return new Response(JSON.stringify({ success: true }), {

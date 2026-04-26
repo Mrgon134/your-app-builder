@@ -4,7 +4,8 @@ import { JU_STICKERS } from "@/lib/stickers";
 import { MOODS } from "@/lib/constants";
 import { ArrowLeft, Mic, Square, Loader2, Sparkles } from "lucide-react";
 import MoodIcon from "@/components/MoodIcon";
-import { SUPABASE_URL, SUPABASE_ANON_KEY } from "@/integrations/supabase/client";
+import { SUPABASE_URL } from "@/integrations/supabase/client";
+import { getJsonFunctionHeaders } from "@/lib/function-auth";
 import { motion, AnimatePresence } from "framer-motion";
 import { type ShellMode } from "@/hooks/use-shell-mode";
 import PostEntryFlow from "@/components/app/PostEntryFlow";
@@ -52,9 +53,9 @@ const getMoodPlaceholder = (mood: number | undefined, t: Record<string, string>)
   const map: Record<number, string> = {
     1: t.mood_placeholder_1 || "No filter needed. This is just for you.",
     2: t.mood_placeholder_2 || "Even a few words is enough.",
-    3: t.mood_placeholder_3 || "What's been on your mind today?",
-    4: t.mood_placeholder_4 || "You seem good — what's making it that way?",
-    5: t.mood_placeholder_5 || "Tell me everything — I want to hear it.",
+    3: t.mood_placeholder_3 || "What feels most true right now?",
+    4: t.mood_placeholder_4 || "What made today feel a little lighter?",
+    5: t.mood_placeholder_5 || "Let the good part have detail.",
   };
   return mood ? (map[mood] || map[3]) : map[3];
 };
@@ -185,7 +186,7 @@ const JournalScreen: React.FC<JournalScreenProps> = ({
           const base64 = await blobToBase64(audioBlob);
           const resp = await fetch(`${SUPABASE_URL}/functions/v1/ai-transcribe`, {
             method: "POST",
-            headers: { "Content-Type": "application/json", Authorization: `Bearer ${SUPABASE_ANON_KEY}` },
+            headers: await getJsonFunctionHeaders(),
             body: JSON.stringify({ audioBase64: base64, mimeType: audioBlob.type.split(";")[0], lang }),
           });
           if (resp.ok) {
@@ -357,8 +358,8 @@ const JournalScreen: React.FC<JournalScreenProps> = ({
     return (
       <>
         <div className="animate-spring-in text-center py-10">
-          <img src={JU_STICKERS.yay} alt="Yay!" className="w-24 h-24 mx-auto mb-5 animate-[mascot-swap_0.3s_ease-out]" />
-          <h2 className="text-[24px] font-bold text-foreground tracking-tight mb-6">{t.done}!</h2>
+          <img src={JU_STICKERS.yay} alt="Ju" className="w-24 h-24 mx-auto mb-5 animate-[mascot-swap_0.3s_ease-out]" />
+          <h2 className="text-[24px] font-bold text-foreground tracking-tight mb-6">Saved. Ju is sitting with it.</h2>
           {insight && (
             <div className="glass-card rounded-2xl p-6 mb-5 text-left">
               <div className="flex items-center gap-2 mb-3">
@@ -406,10 +407,10 @@ const JournalScreen: React.FC<JournalScreenProps> = ({
             <div className="bg-card rounded-3xl p-7 max-w-sm w-full shadow-2xl border border-border/50 text-center animate-spring-in relative overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent pointer-events-none" />
               <div className="relative z-10">
-                <img src={JU_STICKERS.yay} alt="Premium" className="w-20 h-20 mx-auto mb-5 drop-shadow-md" />
-                <h3 className="text-[20px] font-bold text-foreground mb-3 font-serif">Unlock Ju's Insights ✨</h3>
+                <img src={JU_STICKERS.yay} alt="Ju" className="w-20 h-20 mx-auto mb-5 drop-shadow-md" />
+                <h3 className="text-[20px] font-bold text-foreground mb-3 font-serif">Keep Ju's read open</h3>
                 <p className="text-[14px] text-muted-foreground leading-relaxed mb-6">
-                  Your entry is safely saved! Upgrade to Plus to get personalized emotional feedback, deep reflections, and unlimited AI voice journaling.
+                  Your entry is saved. Upgrade when you want Ju to keep reflecting patterns, voice notes, and the thread beneath your moods.
                 </p>
                 <div className="space-y-3">
                   <button
@@ -420,13 +421,13 @@ const JournalScreen: React.FC<JournalScreenProps> = ({
                     className="w-full h-[52px] rounded-2xl bg-primary text-primary-foreground font-semibold text-[15px] press-spring shadow-[0_4px_20px_-4px_hsl(var(--primary)/0.4)] flex items-center justify-center gap-2"
                   >
                     <Sparkles className="w-4 h-4" />
-                    See Plans
+                    Keep Ju close
                   </button>
                   <button
                     onClick={() => setShowUpgradePopup(false)}
                     className="w-full h-[44px] rounded-xl text-muted-foreground font-medium text-[14px] transition-colors hover:text-foreground hover:bg-secondary/50 press-spring"
                   >
-                    Maybe Later
+                    Stay free for now
                   </button>
                 </div>
               </div>
@@ -477,7 +478,7 @@ const JournalScreen: React.FC<JournalScreenProps> = ({
               {wordCount}w
             </span>
           )}
-          <img src={JU_STICKERS.diary} alt="Writing" className="w-9 h-9 animate-ju-float" />
+          <img src={JU_STICKERS.diary} alt="Ju" className="w-9 h-9 animate-ju-float" />
         </div>
       </div>
 
@@ -516,8 +517,8 @@ const JournalScreen: React.FC<JournalScreenProps> = ({
               <span className="text-destructive text-xs font-black">SOS</span>
             </div>
             <div>
-              <p className="text-[13px] font-bold text-destructive">Feeling overwhelmed?</p>
-              <p className="text-[12px] text-muted-foreground/80">Take a guided breathing break before writing.</p>
+              <p className="text-[13px] font-bold text-destructive">This feels heavy right now?</p>
+              <p className="text-[12px] text-muted-foreground/80">Take one quiet breathing break before you write.</p>
             </div>
           </div>
         </button>

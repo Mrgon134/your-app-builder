@@ -243,7 +243,7 @@ const RAW_BLOG_POSTS: BlogPost[] = [
       },
       {
         type: "h2",
-        content: "4. It improves therapy and self-reflection",
+        content: "4. It supports reflection between sessions",
       },
       {
         type: "p",
@@ -376,12 +376,12 @@ const RAW_BLOG_POSTS: BlogPost[] = [
       {
         type: "p",
         content:
-          "The most common concern about AI journaling is privacy. It's a fair concern — journal entries are among the most personal data that exists. Reputable AI journal apps use end-to-end encryption, row-level database security, and explicit policies against selling data or using entries for AI training.",
+          "The most common concern about AI journaling is privacy. It's a fair concern — journal entries are among the most personal data that exists. Reputable AI journal apps should explain their storage security, user-scoped access controls, and policies against selling data or using entries for AI training.",
       },
       {
         type: "p",
         content:
-          "Nuju stores all entries encrypted via Supabase, applies row-level security so only you can access your data, and explicitly does not use journal content for model training. The AI processes your entries to generate insights, but that data stays yours.",
+          "Nuju stores entries in Supabase with row-level security, keeps journal media private with signed URLs, and explicitly does not use journal content for model training. The AI processes your entries to generate insights, but that data stays yours.",
       },
       {
         type: "h2",
@@ -398,7 +398,7 @@ const RAW_BLOG_POSTS: BlogPost[] = [
           "Want pure privacy and no technology? Paper is the right choice",
           "Want to process thoughts quickly with no commitment? A notes app works",
           "Want to actually understand your emotional patterns over time? An AI journal is significantly more effective",
-          "Want to see whether therapy is working or track a specific life change? AI journaling with mood tracking is the most useful tool available",
+          "Want to prepare for a therapy session or track a specific life change? AI journaling with mood tracking can be a useful support tool",
         ],
       },
       {
@@ -413,7 +413,7 @@ const RAW_BLOG_POSTS: BlogPost[] = [
       {
         type: "p",
         content:
-          "Nuju is free to start. The onboarding takes about two minutes, and you'll have your first AI-generated insight after your first entry. No commitment required to see whether it works for you.",
+          "Nuju is free to start. The onboarding takes about two minutes, gives you a personal reveal before payment, and keeps private writing open. Premium unlocks the deeper AI reads, voice, memory, and longer pattern history.",
       },
     ],
   },
@@ -421,7 +421,7 @@ const RAW_BLOG_POSTS: BlogPost[] = [
     slug: "journaling-prompts-for-anxiety",
     title: "50 Journaling Prompts for Anxiety (That Actually Help)",
     description:
-      "Blank page anxiety is real. These 50 prompts are designed to help you untangle anxious thoughts, identify triggers, and find clarity — no therapy degree required.",
+      "Blank page anxiety is real. These 50 prompts are designed to help you untangle anxious thoughts, identify triggers, and find clarity — no clinical jargon required.",
     publishedAt: "2026-04-11",
     readingTime: 8,
     category: "Journaling Tips",
@@ -429,7 +429,7 @@ const RAW_BLOG_POSTS: BlogPost[] = [
       {
         type: "p",
         content:
-          "When anxiety hits, the last thing your brain wants to do is sit down and write. But journaling is one of the few evidence-based tools for anxiety that you can do anywhere, anytime, for free. The catch: a blank page makes it worse. That's why prompts exist.",
+          "When anxiety hits, the last thing your brain wants to do is sit down and write. But journaling can be a simple way to name anxious thoughts anywhere, anytime, for free. The catch: a blank page can make it harder. That's why prompts exist.",
       },
       {
         type: "p",
@@ -993,7 +993,7 @@ const RAW_BLOG_POSTS: BlogPost[] = [
       {
         type: "p",
         content:
-          "Journal entries are among the most sensitive data that exists. Reputable AI journaling apps use end-to-end encryption and explicit policies against selling your data or using entries to train AI models. When evaluating any AI journal app, look for those specifics — not vague 'we care about your privacy' language. Check whether the policy says entries are used to improve the AI model: that's a red flag.",
+          "Journal entries are among the most sensitive data that exists. Reputable AI journaling apps should clearly explain storage security, access controls, and policies against selling your data or using entries to train AI models. When evaluating any AI journal app, look for those specifics — not vague 'we care about your privacy' language. Check whether the policy says entries are used to improve the AI model: that's a red flag.",
       },
       {
         type: "h2",
@@ -1009,7 +1009,7 @@ const RAW_BLOG_POSTS: BlogPost[] = [
       {
         type: "p",
         content:
-          "Nuju is free to try — the AI responds to your first entry, and within a few weeks surfaces patterns in your mood and emotional life that you wouldn't have spotted manually.",
+          "Nuju is free to try — start with a personal reveal and keep private writing open. Premium unlocks the AI reads that connect entries over time and surface patterns you would not have spotted manually.",
       },
     ],
     faq: [
@@ -1026,7 +1026,7 @@ const RAW_BLOG_POSTS: BlogPost[] = [
       {
         question: "Is AI journaling safe and private?",
         answer:
-          "It depends on the app. A trustworthy AI journal has end-to-end encryption for entries, a written policy that your data is not used to train AI models, and no third-party data sales. Always read the privacy policy before writing anything personal — 'may use data to improve our services' is a red flag for journal content.",
+          "It depends on the app. A trustworthy AI journal has clear storage security, user-scoped access controls, a written policy that your data is not used to train AI models, and no third-party data sales. Always read the privacy policy before writing anything personal — 'may use data to improve our services' is a red flag for journal content.",
       },
       {
         question: "Does AI journaling replace therapy?",
@@ -1213,7 +1213,7 @@ const RAW_BLOG_POSTS: BlogPost[] = [
       {
         type: "p",
         content:
-          "If you work with a therapist, 30 days of mood data is genuinely valuable in session. Instead of reconstructing how you felt from memory — notoriously unreliable — you arrive with a record. Therapists using CBT or DBT frameworks often incorporate mood tracking formally into treatment.",
+          "If you work with a therapist, 30 days of mood data can be useful in session. Instead of reconstructing how you felt from memory — notoriously unreliable — you arrive with a record. Some therapists using CBT or DBT frameworks incorporate mood tracking into the process.",
       },
       {
         type: "h2",
@@ -1425,10 +1425,10 @@ const RAW_BLOG_POSTS: BlogPost[] = [
     sections: [
       { type: "p", content: "The journaling app market has exploded. There are now dozens of options, each promising to help you reflect, grow, and feel better. Most of them are fine. A few are genuinely useful. Here's an honest breakdown of the best options in 2026." },
       { type: "h2", content: "What actually matters in a journaling app" },
-      { type: "ul", content: ["Friction to open and write — this determines whether you'll use it daily", "AI quality, if any — does it respond to what YOU wrote or give generic advice?", "Privacy specifics — encryption, data use, AI training on your entries", "Mood tracking capability", "Price vs. feature ratio"] },
+      { type: "ul", content: ["Friction to open and write — this determines whether you'll use it daily", "AI quality, if any — does it respond to what YOU wrote or give generic advice?", "Privacy specifics — storage security, data use, AI training on your entries", "Mood tracking capability", "Price vs. feature ratio"] },
       { type: "callout", content: "The best journaling app is the one you'll open every day. A beautiful app you never use is worth less than a plain one you use consistently." },
       { type: "h2", content: "1. Nuju — Best for AI coaching + mood insight" },
-      { type: "p", content: "Nuju is the strongest option if you want AI-powered emotional insight alongside journaling. The app combines mood tracking (1–5 scale with energy tracking), written or voice entries, and an AI coach with four distinct personas: Gentle Guide, Tough Coach, Wise Sage, or Fun Friend. After a few weeks, the AI surfaces patterns you'd miss manually — weekly mood cycles, relationship correlations, recurring emotional themes. Privacy is solid: all entries encrypted, no data sold, no AI training on your content. The free tier is genuinely useful. Best for: anyone wanting insight and coaching, not just a digital diary." },
+      { type: "p", content: "Nuju is the strongest option if you want AI-powered emotional insight alongside journaling. The app combines mood tracking (1–5 scale with energy tracking), written or voice entries, and an AI coach with four distinct personas: Gentle Guide, Tough Coach, Wise Sage, or Fun Friend. After a few weeks, the AI surfaces patterns you'd miss manually — weekly mood cycles, relationship correlations, recurring emotional themes. Privacy is clear: private database access controls, private media URLs, no data sold, no AI training on your content. The free tier is genuinely useful. Best for: anyone wanting insight and coaching, not just a digital diary." },
       { type: "h2", content: "2. Day One — Best for traditional journaling" },
       { type: "p", content: "Day One is the gold standard for traditional journaling: beautiful interface, excellent photo and multimedia support, solid encryption, available across all Apple devices and Android. No mood tracking, no AI analysis — it's a polished private journal. If you want a beautiful diary with no AI involvement, Day One is the best option (~$35/year). Best for: writers, people who want a private journal without AI." },
       { type: "h2", content: "3. Reflectly — Best for AI prompts for beginners" },
@@ -1538,7 +1538,7 @@ const RAW_BLOG_POSTS: BlogPost[] = [
       { type: "ul", content: ["Does it surface patterns automatically, or just show raw data?", "Does it combine mood with context (journaling, notes, activities)?", "Is the daily entry friction low enough to actually maintain?", "Does it offer any personalized insight or coaching?", "What does it do with your data? (privacy policy specifics matter)"] },
       { type: "callout", content: "A mood tracker that only records data is a diary. One that finds patterns and explains them is a tool for change." },
       { type: "h2", content: "#1 Nuju — Best for insight depth" },
-      { type: "p", content: "Nuju combines mood tracking with journaling and AI coaching more completely than any other app tested. The 30-second entry (mood + energy + optional written note) has low enough friction for daily use; the AI analysis is deep enough to actually inform you. Standout: four coach personas, relationship mood mapping (which people affect your mood?), weekly AI summaries, 30-day trend visualization. Privacy: encrypted, no data selling, no AI training on entries." },
+      { type: "p", content: "Nuju combines mood tracking with journaling and AI coaching more completely than any other app tested. The 30-second entry (mood + energy + optional written note) has low enough friction for daily use; the AI analysis is deep enough to actually inform you. Standout: four coach personas, relationship mood mapping (which people affect your mood?), weekly AI summaries, 30-day trend visualization. Privacy: private access controls, no data selling, no AI training on entries." },
       { type: "h2", content: "#2 Daylio — Best for quick habit logging" },
       { type: "p", content: "The most popular pure mood tracker. Extremely fast entry, good activity correlation, solid streak tracking. No journaling, no AI interpretation. Best for people who want a minimal mood and habit log without any complexity." },
       { type: "h2", content: "#3 Bearable — Best for health correlation" },
@@ -1573,14 +1573,14 @@ const RAW_BLOG_POSTS: BlogPost[] = [
       { type: "p", content: "Each app was evaluated on response quality, memory across entries, mood tracking depth, privacy language, free-tier usefulness, and whether the product delivered real emotional clarity instead of generic AI encouragement. The winners are the ones that stayed useful after the novelty wore off." },
       { type: "p", content: "We weighted mood tracking and privacy heavily because journal entries are not normal app data. A good AI journaling app should help you understand what you wrote without making you wonder where your most personal reflections are going." },
       { type: "h2", content: "What a good AI journaling app actually does" },
-      { type: "ul", content: ["Responds to YOUR specific entries — not a template everyone gets", "Remembers context from past entries", "Identifies patterns you wouldn't notice manually", "Offers different coaching styles for different emotional needs", "Has a clear, verifiable privacy policy about encryption and data use"] },
+      { type: "ul", content: ["Responds to YOUR specific entries — not a template everyone gets", "Remembers context from past entries", "Identifies patterns you wouldn't notice manually", "Offers different coaching styles for different emotional needs", "Has a clear, verifiable privacy policy about storage security and data use"] },
       { type: "callout", content: "The difference between a good AI journal and a bad one: does it respond to what YOU specifically wrote, or does it give everyone the same response regardless of what they shared?" },
       { type: "h2", content: "AI journaling app vs AI chatbot" },
       { type: "p", content: "A dedicated AI journaling app is different from opening a chatbot and typing your feelings. The app should combine your written entry with mood data, streak context, previous patterns, and a safe feedback loop. A chatbot can respond to one message, but it usually will not build a useful emotional history unless the product is designed around journaling." },
       { type: "p", content: "That matters because the value of journaling compounds. The first entry helps you name what happened today. The tenth entry starts showing what repeats. The thirtieth entry can reveal which situations, people, or routines keep affecting your mood." },
       { type: "h2", content: "The 3 that passed our test" },
       { type: "h2", content: "1. Nuju — Best overall" },
-      { type: "p", content: "Nuju is the most complete AI journaling app tested. The AI reads your entries and responds with specific observations — not a template. Four coach personas (Gentle Guide, Tough Coach, Wise Sage, Fun Friend) let you match coaching style to what you need that day. Pattern recognition surfaces weekly mood cycles and relationship correlations. Privacy: encrypted storage, private access controls, no data sold, no AI training on your entries. Free tier is genuinely useful." },
+      { type: "p", content: "Nuju is the most complete AI journaling app tested. The AI reads your entries and responds with specific observations — not a template. Four coach personas (Gentle Guide, Tough Coach, Wise Sage, Fun Friend) let you match coaching style to what you need that day. Pattern recognition surfaces weekly mood cycles and relationship correlations. Privacy: private database access controls, signed media URLs, no data sold, no AI training on your entries. Free tier is genuinely useful." },
       { type: "h2", content: "2. Rosebud AI — Best for structured CBT reflection" },
       { type: "p", content: "Rosebud takes a more structured approach — guided reflection sessions based on CBT frameworks, with AI that asks follow-up questions. Less free-form than Nuju; better scaffolded for people who want structured sessions. Good privacy practices. Best for: CBT-based reflection with AI guidance." },
       { type: "h2", content: "3. Reflectly — Best for beginners" },
@@ -1590,9 +1590,9 @@ const RAW_BLOG_POSTS: BlogPost[] = [
       { type: "h2", content: "What to check before downloading any AI journal app" },
       { type: "ul", content: ["Does the AI reference something specific from your entry in its response?", "Does the privacy policy explicitly state entries are NOT used to train AI models?", "Is there a free tier to evaluate before paying?", "Does it track mood alongside entries?", "Does it surface patterns over time, or just respond to individual entries?"] },
       { type: "h2", content: "Best free AI journal app: what free should include" },
-      { type: "p", content: "A free AI journaling app does not need to give away every advanced feature, but it should let you test the core loop: mood check-in, one real journal entry, and a meaningful AI response. If the free tier only shows prompts but hides the actual reflection behind payment, you cannot judge whether the product works for you." },
+      { type: "p", content: "A free AI journaling app does not need to give away every advanced feature, but it should let you feel the product before payment: mood check-in, a real personal reveal, and a private place to keep writing. The paid tier should be clear about what it adds: deeper AI reads, memory, voice, coaching, and longer pattern history." },
       { type: "p", content: "Nuju's free reveal is built around that idea. You write enough for the app to understand the emotional context, then get a first reflection before deciding whether to keep going. That is a healthier evaluation path than paying before you know whether the AI feels personal or generic." },
-      { type: "p", content: "Nuju's free tier requires no credit card — try it, see if the AI actually responds to what you wrote rather than giving you a template response." },
+      { type: "p", content: "Nuju's free tier requires no credit card — try the reveal, keep writing privately, then upgrade only if you want Ju to connect the longer patterns for you." },
     ],
     faq: [
       {
@@ -1603,17 +1603,17 @@ const RAW_BLOG_POSTS: BlogPost[] = [
       {
         question: "Are AI journaling apps safe with my private data?",
         answer:
-          "Only if the app is specific about storage, access controls, data sales, and AI training. Avoid vague privacy language like 'may use data to improve our services' because that can include journal content. Nuju uses encrypted storage, private access controls, and does not train AI on your writing.",
+          "Only if the app is specific about storage, access controls, data sales, and AI training. Avoid vague privacy language like 'may use data to improve our services' because that can include journal content. Nuju uses private access controls, signed media URLs, and does not train AI on your writing.",
       },
       {
         question: "Do AI journaling apps have a free version?",
         answer:
-          "Most of the ones worth trying do. Nuju has a free tier with no credit card required. Rosebud AI and Reflectly also offer free trials. If an app insists on payment before you can test whether the AI actually responds to your writing, skip it — you can't evaluate the quality beforehand.",
+          "Most of the ones worth trying do. Nuju has a free tier with no credit card required. Rosebud AI and Reflectly also offer free trials. If an app insists on payment before you can understand its reflection style or privacy model, skip it — you cannot evaluate the fit beforehand.",
       },
       {
         question: "What is the best free AI journal app?",
         answer:
-          "The best free AI journal app is the one that lets you test the actual reflection quality before paying. Nuju is built around a free reveal with no credit card required, so you can see whether the AI response feels specific to your entry before committing.",
+          "The best free AI journal app is the one that lets you understand the reflection style before paying. Nuju is built around a free reveal with no credit card required, so you can feel whether the experience is personal before committing.",
       },
       {
         question: "Is an AI journal better than a mood tracker?",
@@ -1777,13 +1777,13 @@ const RAW_BLOG_POSTS: BlogPost[] = [
   },
   {
     slug: "journaling-before-therapy",
-    title: "Why Journaling Between Therapy Sessions Makes Therapy More Effective",
-    description: "Therapy is expensive and sessions are short. Journaling between appointments helps you show up prepared, process more, and get more from every session.",
+    title: "Why Journaling Between Therapy Sessions Helps You Show Up Prepared",
+    description: "Sessions are short. Journaling between appointments helps you remember what mattered, arrive prepared, and use the time more intentionally.",
     publishedAt: "2026-04-27",
     readingTime: 6,
     category: "Mental Wellness",
     sections: [
-      { type: "p", content: "A typical therapy session is 45–50 minutes, once a week. That leaves 10,035 minutes a week when you're on your own. What you do in those other minutes matters. Journaling between sessions is one of the highest-leverage habits for people in therapy — and it's consistently underused." },
+      { type: "p", content: "A typical therapy session is 45–50 minutes, once a week. That leaves 10,035 minutes a week when you're on your own. What you notice in those other minutes matters. Journaling between sessions can help you remember patterns, examples, and questions that are easy to lose by the next appointment." },
       { type: "h2", content: "The problem with therapy without journaling" },
       { type: "p", content: "Memory is unreliable, especially for emotional experiences. By the time your next session arrives, you're likely to remember the most recent event and the most dramatic one — not necessarily the most important or revealing ones. Trying to reconstruct how you felt over the past two weeks from memory takes up session time and produces incomplete data. A journal solves both problems." },
       { type: "h2", content: "What journaling gives your therapist" },
@@ -1796,23 +1796,23 @@ const RAW_BLOG_POSTS: BlogPost[] = [
       { type: "h2", content: "CBT journaling prompts for between sessions" },
       { type: "ul", content: ["Describe the situation, your automatic thought, and the emotion it created", "What's the evidence for and against this thought?", "What's a more balanced way to see this situation?", "What would I tell a friend who had this thought?", "What behavior did this thought lead to, and was it helpful?"] },
       { type: "h2", content: "Journaling as complement, not replacement" },
-      { type: "p", content: "Journaling supplements therapy — it doesn't replace it. If you're dealing with significant mental health challenges, professional support is essential. Journaling makes that support more effective by giving you and your therapist better material to work with." },
+      { type: "p", content: "Journaling can complement therapy — it doesn't replace it. If you're dealing with significant mental health challenges, professional support is essential. Journaling can give you and your therapist clearer material to work with." },
       { type: "p", content: "Nuju's mood tracking and journaling give you exactly the kind of data therapists find most useful — consistent daily records with context, automatically organized." },
     ],
   },
   {
     slug: "mood-tracking-for-therapists",
     title: "Why Therapists Recommend Mood Tracking to Their Patients",
-    description: "An increasing number of therapists integrate mood tracking into treatment. Here's what the clinical evidence says — and how to use mood data effectively in therapy.",
+    description: "Mood tracking can make emotional patterns easier to discuss. Here's how to use mood data thoughtfully between therapy sessions.",
     publishedAt: "2026-04-28",
     readingTime: 6,
     category: "Mental Wellness",
     sections: [
-      { type: "p", content: "Mood tracking has moved from self-help habit to clinical tool. Therapists working in CBT, DBT, and behavioral activation frameworks increasingly recommend or require mood tracking between sessions. Here's why — and how to do it in a way that's actually useful." },
+      { type: "p", content: "Mood tracking can make therapy conversations more concrete. Some therapists working in CBT, DBT, and behavioral activation frameworks ask clients to notice mood patterns between sessions. Here's why — and how to do it in a way that's actually useful." },
       { type: "h2", content: "Why therapists care about mood data" },
       { type: "p", content: "Human memory for emotional experiences is notoriously unreliable. We remember the most recent and most extreme experiences, and we're heavily influenced by how we feel right now when recalling how we felt last week. A patient who arrives at therapy after a good day may report the past week as generally fine — even if most of it was difficult. Mood tracking data corrects for this bias." },
       { type: "h2", content: "What mood data reveals that conversation misses" },
-      { type: "ul", content: ["Weekly mood cycles invisible to memory (e.g., consistently worse on Thursdays)", "Correlations between specific activities and emotional state", "Whether a new habit, medication, or intervention is actually improving mood vs. appearing to", "The gap between perceived and actual progress over months of treatment", "Specific triggering situations rather than general themes"] },
+      { type: "ul", content: ["Weekly mood cycles invisible to memory (e.g., consistently worse on Thursdays)", "Correlations between specific activities and emotional state", "Whether a new habit or routine may be associated with mood changes", "The gap between perceived and actual progress over time", "Specific triggering situations rather than general themes"] },
       { type: "h2", content: "How therapists use mood tracking in CBT and DBT" },
       { type: "p", content: "In CBT, mood tracking supports thought records — connecting specific situations to automatic thoughts and emotional responses. In DBT, mood charts help identify emotional dysregulation patterns. In behavioral activation (used for depression), mood tracking provides the evidence that specific activities improve mood — critical for motivating continued engagement when motivation is low." },
       { type: "callout", content: "Memory is unreliable for emotional experiences. A mood log from the past two weeks is worth 30 minutes of trying to reconstruct how you felt." },
@@ -1821,8 +1821,8 @@ const RAW_BLOG_POSTS: BlogPost[] = [
       { type: "h2", content: "How to share mood data with your therapist" },
       { type: "p", content: "Most therapists don't need to see every entry — they need the patterns. A weekly summary showing average mood, notable highs and lows, and any clear correlations is enough. Apps like Nuju generate these summaries automatically. Bring your phone to session or screenshot the weekly summary." },
       { type: "h2", content: "The clinical evidence" },
-      { type: "p", content: "Multiple studies have found that patients who track mood between sessions show better treatment outcomes in CBT for depression and anxiety than those who don't. The mechanism: tracking keeps therapy present in day-to-day life, creates accountability, and provides the specific material that makes sessions more productive." },
-      { type: "p", content: "Nuju's mood tracking was designed with therapeutic use in mind — consistent daily check-ins, 30-day trend visualization, and weekly summaries that are easy to share with a therapist." },
+      { type: "p", content: "For many people, tracking keeps reflection present in day-to-day life and provides specific material for sessions. The value is practical: instead of relying on memory alone, you bring examples, patterns, and questions you can discuss with a professional." },
+      { type: "p", content: "Nuju's mood tracking is designed for practical reflection — consistent daily check-ins, 30-day trend visualization, and weekly summaries that are easy to review or share if you choose." },
     ],
   },
   {
@@ -1909,9 +1909,9 @@ const RAW_BLOG_POSTS: BlogPost[] = [
     sections: [
       { type: "p", content: "Journaling app market sekarang penuh banget. Ada puluhan opsi, semuanya promise kamu bakal reflect, grow, feel better. Kebanyakan fine aja. Beberapa genuinely useful. Ini breakdown jujur aplikasi terbaik di 2026." },
       { type: "h2", content: "Apa yang actually penting dalam journaling app" },
-      { type: "ul", content: ["Friction to open — ini yang determine kamu bakal pake daily atau nggak", "AI quality if any — respond ke what YOU wrote atau generic advice?", "Privacy policy specifics — encryption, data use, AI training", "Mood tracking capability", "Price vs features"] },
+      { type: "ul", content: ["Friction to open — ini yang determine kamu bakal pake daily atau nggak", "AI quality if any — respond ke what YOU wrote atau generic advice?", "Privacy policy specifics — storage security, data use, AI training", "Mood tracking capability", "Price vs features"] },
       { type: "h2", content: "1. Nuju — Best untuk AI coaching + mood insight" },
-      { type: "p", content: "Nuju paling strong kalau kamu want AI emotional insight. Combine mood tracking (1-5 + energy), write atau voice entries, AI coach dengan 4 persona: Gentle Guide, Tough Coach, Wise Sage, Fun Friend. Setelah seminggu, AI surface patterns kamu gak bakal lihat — mood cycles, relationship stuff, recurring themes. Privacy solid: encrypted, no data sold, no AI training on entries. Free tier genuinely useful." },
+      { type: "p", content: "Nuju paling strong kalau kamu want AI emotional insight. Combine mood tracking (1-5 + energy), write atau voice entries, AI coach dengan 4 persona: Gentle Guide, Tough Coach, Wise Sage, Fun Friend. Setelah seminggu, AI surface patterns kamu gak bakal lihat — mood cycles, relationship stuff, recurring themes. Privacy jelas: private access controls, no data sold, no AI training on entries. Free tier genuinely useful." },
       { type: "h2", content: "2. Day One — Best untuk traditional journaling" },
       { type: "p", content: "Day One gold standard: beautiful UI, excellent photo support, solid encryption, available semua Apple device + Android. No mood tracking, no AI — polished private journal. Kalau mau beautiful diary tanpa AI, Day One best (~$35/year)." },
       { type: "h2", content: "3. Reflectly — Best untuk beginner dengan guided prompts" },

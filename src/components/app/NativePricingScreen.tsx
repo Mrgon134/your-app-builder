@@ -1,10 +1,16 @@
-import React, { useState, useEffect } from "react";
-import { useLang } from "@/lib/i18n";
-import { Check, ArrowLeft, Loader2, AlertCircle } from "lucide-react";
+import React, { useEffect, useMemo, useState } from "react";
+import { Link } from "react-router-dom";
+import { INTRO_ELIGIBILITY_STATUS, Purchases } from "@revenuecat/purchases-capacitor";
+import { AlertCircle, ArrowLeft, Check, Loader2 } from "lucide-react";
+
 import { useGeoPricing } from "@/hooks/use-geo-pricing";
 import { useNativePurchases } from "@/hooks/use-native-purchases";
 import type { NativePackage } from "@/hooks/use-native-purchases";
-import { getTrialStatus, formatTrialCountdown, TRIAL_DAYS } from "@/lib/trial";
+import { useLang } from "@/lib/i18n";
+import { PRODUCT_IDS } from "@/lib/revenueCat";
+import { ROUTES } from "@/lib/routes";
+import { formatTrialCountdown, getTrialStatus, TRIAL_DAYS } from "@/lib/trial";
+import juGreat from "@/assets/ju-great.webp";
 
 interface NativePricingScreenProps {
   currentPlan?: string;
@@ -14,8 +20,38 @@ interface NativePricingScreenProps {
   onSuccess: (plan: string) => void;
 }
 
+const planIdForPackage = (pkg: NativePackage) => {
+  switch (pkg.product.identifier) {
+    case PRODUCT_IDS.weekly:
+      return "weekly";
+    case PRODUCT_IDS.three_month:
+      return "three_month";
+    case PRODUCT_IDS.pro_lifetime:
+      return "lifetime_one_time";
+    default:
+      return pkg.identifier;
+  }
+};
+
+const labelForPackage = (pkg: NativePackage) => {
+  const planId = planIdForPackage(pkg);
+  if (planId === "weekly") return "Weekly";
+  if (planId === "three_month") return "3 Month";
+  if (planId === "lifetime_one_time") return "Lifetime";
+  return pkg.product.title || pkg.identifier;
+};
+
+const unitForPackage = (pkg: NativePackage) => {
+  const planId = planIdForPackage(pkg);
+  if (planId === "weekly") return "per week";
+  if (planId === "three_month") return "every 3 months";
+  if (planId === "lifetime_one_time") return "one-time";
+  return pkg.product.subscriptionPeriod ? "subscription" : "one-time";
+};
+
+const hasFreeIntroTrial = (pkg: NativePackage) => Boolean(pkg.product.introPrice && pkg.product.introPrice.price === 0);
+
 const NativePricingScreen: React.FC<NativePricingScreenProps> = ({
-  currentPlan = "free",
   trialStartedAt = null,
   userId,
   onClose,
@@ -23,37 +59,130 @@ const NativePricingScreen: React.FC<NativePricingScreenProps> = ({
 }) => {
   const { t } = useLang();
   const geo = useGeoPricing();
-  const { packages, loading, purchasing, purchase } = useNativePurchases(userId);
+  const { packages, loading, purchasing, purchase, restore } = useNativePurchases(userId);
   const trial = getTrialStatus(trialStartedAt);
   const [selectedPackage, setSelectedPackage] = useState<NativePackage | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [showSuccess, setShowSuccess] = useState(false);
+  const [restoring, setRestoring] = useState(false);
+  const [introEligibility, setIntroEligibility] = useState<Record<string, INTRO_ELIGIBILITY_STATUS>>({});
+  const nativeBenefits = [
+    "Your private Ju Gets You read stays open",
+    "Premium voice notes, AI memory, and deeper coach support",
+    "Older patterns, relationship maps, and weekly reports",
+  ];
 
-  // Auto-select first package on load
+  const preferredPackage = useMemo(
+    () =>
+      packages.find((pkg) => pkg.product.identifier === PRODUCT_IDS.three_month) ||
+      packages.find((pkg) => pkg.product.identifier === PRODUCT_IDS.weekly) ||
+      packages[0] ||
+      null,
+    [packages],
+  );
+  const displayPackages = useMemo(
+    () =>
+      [...packages].sort((a, b) => {
+        const order: Record<string, number> = {
+          [PRODUCT_IDS.weekly]: 0,
+          [PRODUCT_IDS.three_month]: 1,
+          [PRODUCT_IDS.pro_lifetime]: 2,
+        };
+        return (order[a.product.identifier] ?? 9) - (order[b.product.identifier] ?? 9);
+      }),
+    [packages],
+  );
+
   useEffect(() => {
-    if (packages.length > 0 && !selectedPackage) {
-      setSelectedPackage(packages[0]);
+    if (preferredPackage && !selectedPackage) {
+      setSelectedPackage(preferredPackage);
     }
-  }, [packages, selectedPackage]);
+  }, [preferredPackage, selectedPackage]);
+
+  useEffect(() => {
+    const productIdentifiers = packages
+      .filter((pkg) => pkg.product.subscriptionPeriod)
+      .map((pkg) => pkg.product.identifier);
+
+    if (productIdentifiers.length === 0) {
+      setIntroEligibility({});
+      return;
+    }
+
+    let cancelled = false;
+
+    Purchases.checkTrialOrIntroductoryPriceEligibility({ productIdentifiers })
+      .then((eligibility) => {
+        if (cancelled) return;
+        setIntroEligibility(
+          Object.fromEntries(
+            Object.entries(eligibility).map(([productId, info]) => [productId, info.status]),
+          ) as Record<string, INTRO_ELIGIBILITY_STATUS>,
+        );
+      })
+      .catch(() => {
+        if (!cancelled) {
+          setIntroEligibility({});
+        }
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [packages]);
+
+  const selectedPlanId = selectedPackage ? planIdForPackage(selectedPackage) : "";
+  const selectedHasTrial = selectedPackage
+    ? hasFreeIntroTrial(selectedPackage) &&
+      introEligibility[selectedPackage.product.identifier] === INTRO_ELIGIBILITY_STATUS.INTRO_ELIGIBILITY_STATUS_ELIGIBLE
+    : false;
+  const selectedTitle = selectedPackage ? labelForPackage(selectedPackage) : "3 Month";
+  const selectedUnit = selectedPackage ? unitForPackage(selectedPackage) : "every 3 months";
+  const selectedPrice = selectedPackage?.product.priceString || geo.formatPrice(geo.rates.threeMonth);
+  const selectedTrialCopy =
+    selectedPlanId === "three_month"
+      ? selectedHasTrial
+        ? `7 days free, then ${selectedPrice} every 3 months. Cancel anytime in Apple Subscriptions.`
+        : `${selectedPrice} every 3 months. Cancel anytime in Apple Subscriptions.`
+      : selectedPlanId === "weekly"
+        ? `${selectedPrice} billed weekly. Cancel anytime.`
+        : `${selectedPrice} one-time purchase. No renewal.`;
 
   const handlePurchase = async (pkg: NativePackage) => {
     setError(null);
     const purchasedPlan = await purchase(pkg);
     if (purchasedPlan) {
       setShowSuccess(true);
-      setTimeout(() => {
+      window.setTimeout(() => {
         onSuccess(purchasedPlan);
-      }, 1500);
+      }, 1200);
     } else {
       setError(t.purchase_failed || "Purchase failed. Please try again.");
     }
   };
 
+  const handleRestore = async () => {
+    setError(null);
+    setRestoring(true);
+    try {
+      const restoredPlan = await restore();
+      if (restoredPlan && restoredPlan !== "free") {
+        onSuccess(restoredPlan);
+      } else {
+        setError("No previous purchase was found for this Apple ID.");
+      }
+    } catch {
+      setError("Restore failed. Please try again.");
+    } finally {
+      setRestoring(false);
+    }
+  };
+
   if (loading) {
     return (
-      <div className="fixed inset-0 z-50 bg-background/80 backdrop-blur-sm flex items-center justify-center">
-        <div className="text-center">
-          <Loader2 className="w-8 h-8 animate-spin text-primary mx-auto mb-3" />
+      <div className="fixed inset-0 z-50 flex items-center justify-center bg-background/80 backdrop-blur-sm">
+        <div className="rounded-3xl border border-border/60 bg-card px-6 py-5 text-center shadow-2xl">
+          <Loader2 className="mx-auto mb-3 h-8 w-8 animate-spin text-primary" />
           <p className="text-sm text-muted-foreground">{t.loading || "Loading..."}</p>
         </div>
       </div>
@@ -61,95 +190,141 @@ const NativePricingScreen: React.FC<NativePricingScreenProps> = ({
   }
 
   return (
-    <div className="fixed inset-0 z-50 bg-background/80 backdrop-blur-sm p-4 flex items-end sm:items-center justify-center animate-fade-in">
-      <div className="w-full max-w-md bg-card rounded-3xl p-6 shadow-2xl border border-border/50 max-h-[90vh] overflow-y-auto animate-spring-up">
-        {/* Header */}
-        <div className="flex items-center gap-3 mb-6">
-          <button onClick={onClose} className="text-muted-foreground transition-all active:scale-[0.97]">
-            <ArrowLeft className="w-5 h-5" />
-          </button>
-          <h1 className="font-serif text-xl font-bold flex-1">{t.unlock_ju}</h1>
-        </div>
-
-        {/* Trial Status */}
-        {trial.isActive && (
-          <div className="bg-primary/[0.06] border border-primary/15 rounded-2xl p-3 mb-5">
-            <p className="text-xs font-semibold text-primary mb-1">
-              {(t.pro_trial_days_left || "{time} left in your Pro trial").replace(
-                "{time}",
-                formatTrialCountdown(trial.daysLeft, t)
-              )}
-            </p>
-            <div className="h-1 bg-muted rounded-full overflow-hidden">
-              <div
-                className="h-full bg-primary rounded-full"
-                style={{ width: `${(trial.daysUsed / TRIAL_DAYS) * 100}%` }}
-              />
-            </div>
-          </div>
-        )}
-
-        {/* Error Message */}
-        {error && (
-          <div className="bg-destructive/10 border border-destructive/20 rounded-2xl p-3 mb-4 flex gap-2">
-            <AlertCircle className="w-4 h-4 text-destructive flex-shrink-0 mt-0.5" />
-            <p className="text-xs text-destructive">{error}</p>
-          </div>
-        )}
-
-        {/* Success Message */}
-        {showSuccess && (
-          <div className="bg-green-500/10 border border-green-500/20 rounded-2xl p-3 mb-4 flex gap-2 animate-fade-in">
-            <Check className="w-4 h-4 text-green-500 flex-shrink-0 mt-0.5" />
-            <p className="text-xs text-green-600">{t.payment_successful || "Payment successful!"}</p>
-          </div>
-        )}
-
-        {/* Products List */}
-        <div className="space-y-3 mb-6">
-          {packages.map((pkg) => (
-            <div
-              key={pkg.identifier}
-              onClick={() => setSelectedPackage(pkg)}
-              className={`p-4 rounded-2xl border-2 cursor-pointer transition-all ${
-                selectedPackage?.identifier === pkg.identifier
-                  ? "border-primary bg-primary/5"
-                  : "border-border/50 bg-muted/30"
-              }`}
+    <div className="fixed inset-0 z-50 flex items-end justify-center bg-background/80 p-3 backdrop-blur-sm sm:items-center">
+      <div className="w-full max-w-md overflow-hidden rounded-[1.9rem] border border-border/50 bg-card shadow-2xl animate-spring-up">
+        <div className="max-h-[calc(100dvh-1rem)] overflow-y-auto">
+          <div className="relative h-36 overflow-hidden bg-[linear-gradient(135deg,#211D34_0%,#443B72_48%,#95E1D3_130%)]">
+            <button
+              onClick={onClose}
+              className="absolute left-3 top-3 flex h-9 w-9 items-center justify-center rounded-full border border-white/20 bg-white/15 text-white backdrop-blur-md transition-all active:scale-[0.97]"
+              aria-label="Back"
             >
-              <div className="flex items-start justify-between">
-                <div>
-                  <h3 className="font-semibold text-sm text-foreground">{pkg.product.title}</h3>
-                  <p className="text-xs text-muted-foreground mt-0.5">{pkg.product.description}</p>
-                </div>
-                <div className="text-right">
-                  <p className="font-bold text-lg text-foreground">{pkg.product.priceString}</p>
-                  <p className="text-[10px] text-muted-foreground">per {pkg.product.currencyCode}</p>
-                </div>
+              <ArrowLeft className="h-4 w-4" />
+            </button>
+            <div className="absolute inset-x-0 bottom-0 h-16 bg-[linear-gradient(180deg,transparent,rgba(255,255,255,0.92))]" />
+            <div className="absolute left-5 top-16 max-w-[12rem]">
+              <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-white/70">Apple secure checkout</p>
+              <p className="mt-2 text-xl font-semibold leading-tight text-white">Begin the place that feels like yours.</p>
+            </div>
+            <img src={juGreat} alt="" className="absolute bottom-2 right-7 h-24 w-24 object-contain drop-shadow-[0_18px_30px_rgba(0,0,0,0.25)]" />
+          </div>
+
+          <div className="px-4 pb-4 pt-3">
+          <h1 className="text-center font-serif text-[1.55rem] font-bold leading-tight text-foreground">
+            Keep Ju close when the next heavy moment starts.
+          </h1>
+          <p className="mx-auto mt-1 max-w-[19rem] text-center text-xs leading-5 text-muted-foreground">
+            Start with the plan that gives Ju time to learn your rhythm. Cancel anytime in Apple Subscriptions.
+          </p>
+
+          {trial.isActive ? (
+            <div className="mt-3 rounded-2xl border border-primary/15 bg-primary/[0.06] px-3 py-2">
+              <p className="text-xs font-semibold text-primary">
+                {(t.pro_trial_days_left || "{time} left in your Pro trial").replace(
+                  "{time}",
+                  formatTrialCountdown(trial.daysLeft, t),
+                )}
+              </p>
+              <div className="mt-1.5 h-1 overflow-hidden rounded-full bg-muted">
+                <div className="h-full rounded-full bg-primary" style={{ width: `${(trial.daysUsed / TRIAL_DAYS) * 100}%` }} />
               </div>
             </div>
-          ))}
+          ) : null}
+
+          {error ? (
+            <div className="mt-3 flex gap-2 rounded-2xl border border-destructive/20 bg-destructive/10 p-3">
+              <AlertCircle className="mt-0.5 h-4 w-4 flex-shrink-0 text-destructive" />
+              <p className="text-xs text-destructive">{error}</p>
+            </div>
+          ) : null}
+
+          {showSuccess ? (
+            <div className="mt-3 flex gap-2 rounded-2xl border border-green-500/20 bg-green-500/10 p-3 animate-fade-in">
+              <Check className="mt-0.5 h-4 w-4 flex-shrink-0 text-green-600" />
+              <p className="text-xs text-green-700">{t.payment_successful || "Payment successful!"}</p>
+            </div>
+          ) : null}
+
+          <div className="mt-3 space-y-2">
+            {nativeBenefits.map((benefit) => (
+              <div key={benefit} className="flex items-start gap-2 text-xs leading-5 text-foreground">
+                <Check className="mt-0.5 h-3.5 w-3.5 flex-shrink-0 text-primary" />
+                <span>{benefit}</span>
+              </div>
+            ))}
+          </div>
+
+          {selectedPackage ? (
+            <>
+              <div className="mt-3 grid grid-cols-3 gap-1.5">
+                {displayPackages.slice(0, 3).map((pkg) => {
+                  const selected = pkg.identifier === selectedPackage.identifier;
+                  const planId = planIdForPackage(pkg);
+                  return (
+                    <button
+                      key={pkg.identifier}
+                      type="button"
+                      onClick={() => setSelectedPackage(pkg)}
+                      className={`relative min-h-[76px] rounded-xl border px-1.5 py-2 text-center transition-all active:scale-[0.98] ${
+                        selected
+                          ? "border-primary bg-primary/[0.08] shadow-[0_14px_28px_-22px_hsl(var(--primary)/0.75)]"
+                          : "border-border/70 bg-background"
+                      }`}
+                    >
+                      {planId === "three_month" ? (
+                        <span className="absolute -top-2 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-[#FFD166] px-2 py-0.5 text-[8px] font-bold uppercase text-[#1A1A2E]">
+                          Trial
+                        </span>
+                      ) : null}
+                      <span className="block text-[11px] font-bold text-foreground">{labelForPackage(pkg)}</span>
+                      <span className="mt-1 block text-xs font-semibold text-foreground">{pkg.product.priceString}</span>
+                      <span className="mt-0.5 block text-[9px] leading-3 text-muted-foreground">
+                        {planId === "lifetime_one_time" ? "once" : unitForPackage(pkg)}
+                      </span>
+                    </button>
+                  );
+                })}
+              </div>
+
+              <div className="mt-3 rounded-2xl border border-primary/15 bg-primary/[0.06] px-3 py-2">
+                <div className="flex items-center justify-between gap-3">
+                  <span className="text-xs font-bold text-foreground">{selectedTitle}</span>
+                  <span className="text-xs font-semibold text-primary">{selectedHasTrial ? "7-day free trial" : selectedUnit}</span>
+                </div>
+                <p className="mt-1 text-[11px] leading-4 text-muted-foreground">{selectedTrialCopy}</p>
+              </div>
+
+              <button
+                disabled={purchasing}
+                onClick={() => handlePurchase(selectedPackage)}
+                className="mt-3 flex w-full items-center justify-center gap-2 rounded-2xl bg-primary px-5 py-3.5 text-sm font-semibold text-primary-foreground transition-all active:scale-[0.98] disabled:opacity-50"
+              >
+                {purchasing ? <Loader2 className="h-4 w-4 animate-spin" /> : null}
+                {selectedHasTrial && selectedPlanId === "three_month" ? "Start 7-day free trial" : `Choose ${selectedTitle}`}
+              </button>
+            </>
+          ) : (
+            <div className="mt-4 rounded-2xl border border-border/60 bg-muted/30 p-4 text-sm text-muted-foreground">
+              No App Store products loaded yet. Try again in a moment.
+            </div>
+          )}
+
+          <div className="mt-3 flex items-center justify-center gap-3 text-[10px] font-medium text-muted-foreground">
+            <button
+              type="button"
+              onClick={handleRestore}
+              disabled={restoring || purchasing}
+              className="underline-offset-4 hover:text-foreground hover:underline disabled:opacity-50"
+            >
+              {restoring ? "Restoring..." : "Restore"}
+            </button>
+            <span aria-hidden="true">-</span>
+            <Link to={ROUTES.TERMS} className="underline-offset-4 hover:text-foreground hover:underline">Terms</Link>
+            <span aria-hidden="true">-</span>
+            <Link to={ROUTES.PRIVACY} className="underline-offset-4 hover:text-foreground hover:underline">Privacy</Link>
+          </div>
+          </div>
         </div>
-
-        {/* Purchase Button */}
-        {selectedPackage && (
-          <button
-            disabled={purchasing}
-            onClick={() => handlePurchase(selectedPackage)}
-            className="w-full py-3.5 rounded-2xl font-semibold text-sm transition-all active:scale-[0.98] bg-primary text-primary-foreground shadow-[0_4px_20px_-4px_hsl(var(--primary)/0.45)] disabled:opacity-50"
-          >
-            {purchasing ? (
-              <Loader2 className="w-4 h-4 animate-spin mx-auto" />
-            ) : (
-              `Get ${selectedPackage.product.title}`
-            )}
-          </button>
-        )}
-
-        {/* Footer Text */}
-        <p className="text-center text-[11px] text-muted-foreground mt-4">
-          {t.no_payment_today || "No payment due today. Cancel anytime."}
-        </p>
       </div>
     </div>
   );

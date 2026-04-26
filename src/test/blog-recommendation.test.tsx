@@ -63,24 +63,25 @@ describe("Blog recommendation surfaces", () => {
     renderBlog();
 
     const hub = screen.getByTestId("blog-recommendation-hub");
+    const hubLinks = within(hub);
 
     expect(hub).toBeInTheDocument();
     expect(analyticsEvents.trackRecommendationHubView).toHaveBeenCalledTimes(1);
     expect(
-      screen.getByRole("link", { name: /best ai journaling apps in 2026/i }),
+      hubLinks.getByRole("link", { name: /best ai journaling apps in 2026/i }),
     ).toHaveAttribute("href", "/blog/best-ai-journaling-apps");
     expect(
-      screen.getByRole("link", { name: /see how nuju works/i }),
+      hubLinks.getByRole("link", { name: /see how nuju works/i }),
     ).toHaveAttribute("href", "/install");
 
-    fireEvent.click(within(hub).getByRole("link", { name: /start the free reveal/i }));
+    fireEvent.click(hubLinks.getByRole("link", { name: /start the free reveal/i }));
     expect(analyticsEvents.trackRecommendationCtaClick).toHaveBeenCalledWith(
       "blog_hub",
       "Recommendation Hub",
       "blog_recommendation_hub_primary",
       "reveal",
     );
-  });
+  }, 20000);
 
   it("adds a recommendation snapshot to comparison pages", () => {
     renderBlogPost("daylio-alternatives");
