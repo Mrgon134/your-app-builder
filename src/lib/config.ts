@@ -29,11 +29,6 @@ export const PRICING_CONFIG = {
     threeMonthDays: readNumber(import.meta.env.VITE_THREE_MONTH_TRIAL_DAYS, 7),
     threeMonthIntroOfferEnabled: import.meta.env.VITE_THREE_MONTH_INTRO_TRIAL_ENABLED === "true",
   },
-  retention: {
-    yearlyPrice: readNumber(import.meta.env.VITE_RETENTION_YEARLY_PRICE, 44.99),
-    // Keep the cancellation offer live even if the deploy environment misses the env var.
-    yearlyCouponCode: import.meta.env.VITE_DODO_RETENTION_YEARLY_COUPON || "KEEPJU",
-  },
   // Legacy scarcity fallback if live purchase count is unavailable.
   lifetimeSlots: {
     total: 25,

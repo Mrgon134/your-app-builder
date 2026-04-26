@@ -1018,7 +1018,6 @@ const AppPage: React.FC = () => {
                       <SettingsScreen
                         onBack={() => navigateTo("home")}
                         onUpgrade={() => navigateTo("pro")}
-                        onCheckout={handleCheckout}
                         onSaveDisplayName={handleDisplayNameSave}
                         displayName={displayName}
                         plan={effectiveProfile?.plan}

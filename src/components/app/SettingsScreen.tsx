@@ -6,7 +6,6 @@ import { updateProfile, fetchEntries, type EntryRow } from "@/lib/api";
 import { ArrowLeft, Moon, Sun, Globe, Crown, LogOut, Bell, BellOff, ChevronRight, Fingerprint, KeyRound, AtSign, Trash2, AlertTriangle, Download, HelpCircle, Mail, Info, FileText, Lock, UserRound } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { ROUTES } from "@/lib/routes";
-import { useGeoPricing } from "@/hooks/use-geo-pricing";
 import {
   requestNotificationPermission,
   getNotificationPermission,
@@ -16,7 +15,6 @@ import {
 } from "@/lib/notifications";
 import { toast } from "sonner";
 import { hasActivePremiumPlan, hasPlusAccess } from "@/lib/trial";
-import { PRICING_CONFIG } from "@/lib/config";
 import { isIOS, isNative } from "@/lib/platform";
 import PinSetupScreen from "@/components/app/PinSetupScreen";
 import { hashPin } from "@/components/app/PinLockScreen";
@@ -24,22 +22,19 @@ import { hashPin } from "@/components/app/PinLockScreen";
 interface SettingsScreenProps {
   onBack: () => void;
   onUpgrade?: () => void;
-  onCheckout?: (plan: string, options?: { couponCode?: string | null }) => Promise<void> | void;
   onSaveDisplayName?: (displayName: string) => Promise<boolean> | boolean;
   displayName?: string | null;
   plan?: string | null;
   trialStartedAt?: string | null;
 }
 
-const SettingsScreen: React.FC<SettingsScreenProps> = ({ onBack, onUpgrade, onCheckout, onSaveDisplayName, displayName = null, plan = "free", trialStartedAt = null }) => {
+const SettingsScreen: React.FC<SettingsScreenProps> = ({ onBack, onUpgrade, onSaveDisplayName, displayName = null, plan = "free", trialStartedAt = null }) => {
   const navigate = useNavigate();
   const { t, lang, setLang } = useLang();
   const { signOut, user, resetPassword, updateEmail } = useAuth();
-  const geo = useGeoPricing();
   const [showChangeEmail, setShowChangeEmail] = useState(false);
   const [showChangeName, setShowChangeName] = useState(false);
   const [showManageSubscription, setShowManageSubscription] = useState(false);
-  const [retentionLoading, setRetentionLoading] = useState(false);
   const [nameDraft, setNameDraft] = useState(displayName || "");
   const [nameLoading, setNameLoading] = useState(false);
   const [newEmail, setNewEmail] = useState("");
@@ -70,9 +65,6 @@ const SettingsScreen: React.FC<SettingsScreenProps> = ({ onBack, onUpgrade, onCh
   const isRecurringPlan = ["weekly", "three_month", "yearly", "plus", "pro"].includes(plan || "");
   const isNativeIOS = isNative() && isIOS();
   const hasPremiumPlan = hasActivePremiumPlan(plan);
-  const retentionCouponCode = PRICING_CONFIG.retention.yearlyCouponCode || null;
-  const hasRetentionCheckout = Boolean(retentionCouponCode);
-  const formattedRetentionPrice = geo.formatPrice(PRICING_CONFIG.retention.yearlyPrice);
 
   const currentPlanLabel =
     plan === "weekly"
@@ -233,22 +225,6 @@ const SettingsScreen: React.FC<SettingsScreenProps> = ({ onBack, onUpgrade, onCh
       toast.error("Failed to export CSV");
     } finally {
       setExportingCsv(false);
-    }
-  };
-
-  const handleRetentionOffer = async () => {
-    if (!onCheckout || retentionLoading) return;
-    if (!hasRetentionCheckout) {
-      navigate(ROUTES.CONTACT, { state: { from: "/app?screen=settings", intent: "retention-offer" } });
-      return;
-    }
-
-    setRetentionLoading(true);
-    try {
-      await onCheckout("yearly", { couponCode: retentionCouponCode });
-      setShowManageSubscription(false);
-    } finally {
-      setRetentionLoading(false);
     }
   };
 
@@ -552,9 +528,7 @@ const SettingsScreen: React.FC<SettingsScreenProps> = ({ onBack, onUpgrade, onCh
                   <div className="text-left">
                     <span className="block text-[15px] font-normal text-foreground">Manage subscription</span>
                     <span className="block text-[12px] text-muted-foreground">
-                      {plan === "yearly"
-                        ? "See your lower annual keep-going offer before canceling."
-                        : "Get help changing or ending your recurring plan."}
+                      Get help changing or ending your recurring plan.
                     </span>
                   </div>
                 </div>
@@ -903,128 +877,54 @@ const SettingsScreen: React.FC<SettingsScreenProps> = ({ onBack, onUpgrade, onCh
       {showManageSubscription && (
         <div
           className="fixed inset-0 z-50 flex items-center justify-center bg-foreground/30 backdrop-blur-sm p-6 animate-fade-in"
-          onClick={() => {
-            if (retentionLoading) return;
-            setShowManageSubscription(false);
-          }}
+          onClick={() => setShowManageSubscription(false)}
         >
           <div
             className="w-full max-w-[360px] rounded-3xl border border-border/50 bg-card p-6 shadow-2xl animate-spring-in"
             onClick={(event) => event.stopPropagation()}
           >
-            {plan === "yearly" ? (
-              <>
-                <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-primary">Before you cancel</p>
-                <h3 className="mt-3 font-serif text-2xl font-bold text-foreground">Keep Ju with you for less</h3>
-                <p className="mt-3 text-sm leading-7 text-muted-foreground">
-                  If price is the reason you might leave, you can keep the same annual support at a lower rate before you cancel.
-                </p>
+            <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-primary">Manage subscription</p>
+            <h3 className="mt-3 font-serif text-2xl font-bold text-foreground">Need help with your plan?</h3>
+            <p className="mt-3 text-sm leading-7 text-muted-foreground">
+              Weekly and 3-month plans renew automatically until canceled. If you purchased on iOS, Apple handles cancellation in your subscription settings.
+            </p>
 
-                <div className="mt-5 rounded-[1.75rem] border border-primary/20 bg-primary/6 p-5">
-                  <div className="flex items-start justify-between gap-3">
-                    <div>
-                      <p className="text-sm font-semibold text-foreground">Special annual keep-going offer</p>
-                      <p className="mt-2 text-3xl font-bold text-foreground">{formattedRetentionPrice}<span className="ml-1 text-sm font-medium text-muted-foreground">/year</span></p>
-                    </div>
-                    <span className="rounded-full bg-primary/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-primary">
-                      Retention
-                    </span>
-                  </div>
-                  <p className="mt-3 text-sm leading-7 text-muted-foreground">
-                    Same premium support, just a softer annual rate if you want to stay.
-                  </p>
-                </div>
+            <div className="mt-5 rounded-[1.75rem] border border-border/60 bg-background p-5 text-sm leading-7 text-muted-foreground">
+              Changing plans, canceling, or checking renewal dates should be done from the store or payment provider that processed your purchase.
+            </div>
 
-                {!hasRetentionCheckout && (
-                  <div className="mt-4 rounded-2xl border border-border/60 bg-background px-4 py-4 text-sm leading-7 text-muted-foreground">
-                    This reduced rate is ready in the cancellation flow, but billing still needs the retention coupon connected before it can auto-apply in-app.
-                  </div>
-                )}
-
-                <div className="mt-5 space-y-2.5">
-                  <button
-                    onClick={handleRetentionOffer}
-                    disabled={retentionLoading}
-                    className="w-full rounded-2xl bg-primary py-3.5 text-sm font-semibold text-primary-foreground transition-all active:scale-[0.98] disabled:opacity-50"
-                  >
-                    {retentionLoading
-                      ? "Opening checkout..."
-                      : hasRetentionCheckout
-                        ? "Keep Ju for less"
-                        : "Contact us for this rate"}
-                  </button>
-                  <button
-                    onClick={() => {
-                      setShowManageSubscription(false);
-                      navigate(ROUTES.CONTACT, { state: { from: "/app?screen=settings", intent: "cancel-subscription" } });
-                    }}
-                    className="w-full rounded-2xl border border-border/60 bg-background py-3.5 text-sm font-semibold text-foreground transition-all active:scale-[0.98]"
-                  >
-                    Continue to cancellation help
-                  </button>
-                  <button
-                    onClick={() => setShowManageSubscription(false)}
-                    className="w-full rounded-2xl bg-muted py-3.5 text-sm font-medium text-muted-foreground transition-all active:scale-[0.98]"
-                  >
-                    Keep current plan
-                  </button>
-                </div>
-              </>
-            ) : (
-              <>
-                <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-primary">Manage subscription</p>
-                <h3 className="mt-3 font-serif text-2xl font-bold text-foreground">Need help with your plan?</h3>
-                <p className="mt-3 text-sm leading-7 text-muted-foreground">
-                  If you want to change, pause, or end your recurring plan, we will help you from here.
-                </p>
-
-                <div className="mt-5 rounded-[1.75rem] border border-border/60 bg-background p-5 text-sm leading-7 text-muted-foreground">
-                  Weekly and 3-month recurring plans renew automatically until they are canceled. If you purchased on iOS, manage cancellation from your Apple subscription settings.
-                </div>
-
-                <div className="mt-5 space-y-2.5">
-                  {isNativeIOS ? (
-                    <button
-                      onClick={() => {
-                        setShowManageSubscription(false);
-                        openAppleSubscriptions();
-                      }}
-                      className="w-full rounded-2xl bg-primary py-3.5 text-sm font-semibold text-primary-foreground transition-all active:scale-[0.98]"
-                    >
-                      Open Apple subscription settings
-                    </button>
-                  ) : null}
-                  <button
-                    onClick={() => {
-                      setShowManageSubscription(false);
-                      onUpgrade?.();
-                    }}
-                    className={`w-full rounded-2xl py-3.5 text-sm font-semibold transition-all active:scale-[0.98] ${
-                      isNativeIOS
-                        ? "border border-border/60 bg-background text-foreground"
-                        : "bg-primary text-primary-foreground"
-                    }`}
-                  >
-                    View plans first
-                  </button>
-                  <button
-                    onClick={() => {
-                      setShowManageSubscription(false);
-                      navigate(ROUTES.CONTACT, { state: { from: "/app?screen=settings", intent: "cancel-subscription" } });
-                    }}
-                    className="w-full rounded-2xl border border-border/60 bg-background py-3.5 text-sm font-semibold text-foreground transition-all active:scale-[0.98]"
-                  >
-                    Get cancellation help
-                  </button>
-                  <button
-                    onClick={() => setShowManageSubscription(false)}
-                    className="w-full rounded-2xl bg-muted py-3.5 text-sm font-medium text-muted-foreground transition-all active:scale-[0.98]"
-                  >
-                    Not now
-                  </button>
-                </div>
-              </>
-            )}
+            <div className="mt-5 space-y-2.5">
+              {isNativeIOS ? (
+                <button
+                  onClick={() => {
+                    setShowManageSubscription(false);
+                    openAppleSubscriptions();
+                  }}
+                  className="w-full rounded-2xl bg-primary py-3.5 text-sm font-semibold text-primary-foreground transition-all active:scale-[0.98]"
+                >
+                  Open Apple subscription settings
+                </button>
+              ) : null}
+              <button
+                onClick={() => {
+                  setShowManageSubscription(false);
+                  navigate(ROUTES.CONTACT, { state: { from: "/app?screen=settings", intent: "cancel-subscription" } });
+                }}
+                className={`w-full rounded-2xl py-3.5 text-sm font-semibold transition-all active:scale-[0.98] ${
+                  isNativeIOS
+                    ? "border border-border/60 bg-background text-foreground"
+                    : "bg-primary text-primary-foreground"
+                }`}
+              >
+                Get cancellation help
+              </button>
+              <button
+                onClick={() => setShowManageSubscription(false)}
+                className="w-full rounded-2xl bg-muted py-3.5 text-sm font-medium text-muted-foreground transition-all active:scale-[0.98]"
+              >
+                Not now
+              </button>
+            </div>
           </div>
         </div>
       )}
