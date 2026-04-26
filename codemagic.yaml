@@ -54,11 +54,18 @@ workflows:
         script: |
           set -e
           if [ -n "$APP_STORE_CONNECT_PRIVATE_KEY" ] && [ -n "$APP_STORE_CONNECT_KEY_IDENTIFIER" ] && [ -n "$APP_STORE_CONNECT_ISSUER_ID" ]; then
-            LATEST_BUILD_NUMBER=$(app-store-connect get-latest-app-store-build-number "$APP_STORE_APPLE_ID" || echo 0)
+            LATEST_APP_STORE_BUILD_NUMBER=$(app-store-connect get-latest-app-store-build-number "$APP_STORE_APPLE_ID" --platform IOS || echo 0)
+            LATEST_TESTFLIGHT_BUILD_NUMBER=$(app-store-connect get-latest-testflight-build-number "$APP_STORE_APPLE_ID" --platform IOS || echo 0)
+            if [ "$LATEST_TESTFLIGHT_BUILD_NUMBER" -gt "$LATEST_APP_STORE_BUILD_NUMBER" ]; then
+              LATEST_BUILD_NUMBER="$LATEST_TESTFLIGHT_BUILD_NUMBER"
+            else
+              LATEST_BUILD_NUMBER="$LATEST_APP_STORE_BUILD_NUMBER"
+            fi
             BUILD_NUMBER=$((LATEST_BUILD_NUMBER + 1))
           else
             BUILD_NUMBER=$(($(date +%s) / 60))
           fi
+          echo "Using iOS build number: $BUILD_NUMBER"
           cd "$CM_BUILD_DIR/ios/App"
           agvtool new-version -all "$BUILD_NUMBER"
 
