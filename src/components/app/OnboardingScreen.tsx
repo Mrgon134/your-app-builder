@@ -736,7 +736,15 @@ const OnboardingScreen: React.FC = () => {
     setCheckoutLoading(plan);
     events.trackFunnelCheckoutStarted(plan, funnelState.answers.source, user?.id || null);
 
+    let checkoutWindow: Window | null = null;
+
     try {
+      if (!useNativeStoreKit) {
+        // Open during the click gesture so mobile browsers do not block the
+        // Dodo checkout redirect after the async lead save finishes.
+        checkoutWindow = window.open("about:blank", "_blank");
+      }
+
       await persistOnboardingLead({
         sessionId: funnelState.sessionId,
         answers: {
@@ -782,13 +790,24 @@ const OnboardingScreen: React.FC = () => {
       });
 
       if (!response.ok) {
+        checkoutWindow?.close();
         throw new Error("Checkout could not be created.");
       }
 
       const data = await response.json();
+      if (!data.url) {
+        checkoutWindow?.close();
+        throw new Error("Checkout could not open. Try again in a moment.");
+      }
+
       completedRef.current = true;
-      window.location.assign(data.url);
+      if (checkoutWindow) {
+        checkoutWindow.location.href = data.url;
+      } else {
+        window.location.assign(data.url);
+      }
     } catch (error) {
+      checkoutWindow?.close();
       setCheckoutError(error instanceof Error ? error.message : "Checkout could not open. Try again in a moment.");
     } finally {
       setCheckoutLoading(null);
