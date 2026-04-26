@@ -158,6 +158,12 @@ const CoachScreen: React.FC<{ onUpgrade?: () => void; plan?: string | null; tria
   const [messagesUsed, setMessagesUsed] = useState(0);
   const scrollRef = useRef<HTMLDivElement>(null);
   const splitLayout = shellMode !== "phone";
+  const phoneShellStyle: React.CSSProperties | undefined = splitLayout
+    ? undefined
+    : {
+        height: "calc(100dvh - 6.25rem - env(safe-area-inset-bottom, 0px))",
+        maxHeight: "calc(100dvh - 6.25rem - env(safe-area-inset-bottom, 0px))",
+      };
 
   // Load previous messages + check limit — use allSettled so DB errors don't break the screen
   useEffect(() => {
@@ -182,6 +188,23 @@ const CoachScreen: React.FC<{ onUpgrade?: () => void; plan?: string | null; tria
   useEffect(() => {
     scrollRef.current?.scrollTo({ top: scrollRef.current.scrollHeight, behavior: "smooth" });
   }, [messages, isLoading]);
+
+  useEffect(() => {
+    if (splitLayout || typeof window === "undefined" || !window.visualViewport) return;
+    const viewport = window.visualViewport;
+    const keepInputVisible = () => {
+      window.requestAnimationFrame(() => {
+        scrollRef.current?.scrollTo({ top: scrollRef.current.scrollHeight });
+      });
+    };
+
+    viewport.addEventListener("resize", keepInputVisible);
+    viewport.addEventListener("scroll", keepInputVisible);
+    return () => {
+      viewport.removeEventListener("resize", keepInputVisible);
+      viewport.removeEventListener("scroll", keepInputVisible);
+    };
+  }, [splitLayout]);
 
   const handlePersonaSwitch = useCallback(
     (id: string) => {
@@ -267,19 +290,22 @@ const CoachScreen: React.FC<{ onUpgrade?: () => void; plan?: string | null; tria
   const currentPersona = AI_PERSONAS.find((p) => p.id === persona)!;
 
   return (
-    <div className={`animate-page-slide-in ${splitLayout ? "grid gap-6 md:grid-cols-[280px_minmax(0,1fr)]" : "flex flex-col h-[calc(100vh-180px)]"}`}>
-      <div className={`${splitLayout ? "space-y-4" : ""}`}>
-        <h1 className="text-[34px] font-bold text-foreground tracking-tight mb-4">{t.ai_coach}</h1>
+    <div
+      className={`animate-page-slide-in ${splitLayout ? "grid gap-6 md:grid-cols-[280px_minmax(0,1fr)]" : "flex min-h-0 flex-col overflow-hidden"}`}
+      style={phoneShellStyle}
+    >
+      <div className={`${splitLayout ? "space-y-4" : "shrink-0 bg-background/95 pb-3 backdrop-blur-xl"}`}>
+        <h1 className={`${splitLayout ? "mb-4 text-[34px]" : "mb-3 text-[28px]"} font-bold text-foreground tracking-tight`}>{t.ai_coach}</h1>
 
         {/* Persona pills */}
-        <div className={`flex flex-wrap gap-2 ${splitLayout ? "rounded-[1.75rem] border border-border/60 bg-card/50 p-4" : "mb-4 pb-2"}`}>
+        <div className={`flex gap-2 ${splitLayout ? "flex-wrap rounded-[1.75rem] border border-border/60 bg-card/50 p-4" : "-mx-1 overflow-x-auto px-1 pb-1"}`}>
         {AI_PERSONAS.map((p) => {
           const isActive = persona === p.id;
           return (
             <button
               key={p.id}
               onClick={() => handlePersonaSwitch(p.id)}
-              className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-all duration-300 ease-out active:scale-[0.95] ${
+              className={`flex shrink-0 items-center gap-2 px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-all duration-300 ease-out active:scale-[0.95] ${
                 isActive
                   ? "shadow-md text-foreground scale-[1.03]"
                   : "bg-secondary text-muted-foreground hover:scale-[1.02]"
@@ -329,8 +355,8 @@ const CoachScreen: React.FC<{ onUpgrade?: () => void; plan?: string | null; tria
         )}
       </div>
 
-      <div className={`${splitLayout ? "flex min-h-[620px] min-w-0 flex-col rounded-[2rem] border border-border/60 bg-card/55 p-4 md:p-6" : ""}`}>
-      <div ref={scrollRef} className={`space-y-3 ${splitLayout ? "min-h-0 flex-1 overflow-y-auto pr-1" : "mb-4 flex-1 overflow-y-auto"}`}>
+      <div className={`${splitLayout ? "flex min-h-[620px] min-w-0 flex-col rounded-[2rem] border border-border/60 bg-card/55 p-4 md:p-6" : "flex min-h-0 flex-1 flex-col"}`}>
+      <div ref={scrollRef} className={`space-y-3 ${splitLayout ? "min-h-0 flex-1 overflow-y-auto pr-1" : "min-h-0 flex-1 overflow-y-auto overscroll-contain pb-4"}`}>
         {messages.length === 0 && (
           <div
             className="text-center py-12 transition-all duration-500 ease-out"
@@ -434,11 +460,16 @@ const CoachScreen: React.FC<{ onUpgrade?: () => void; plan?: string | null; tria
       )}
 
       {/* Input */}
-      <div className={`flex gap-2 ${splitLayout ? "border-t border-border/50 pt-4" : ""}`}>
+      <div className={`flex shrink-0 gap-2 ${splitLayout ? "border-t border-border/50 pt-4" : "border-t border-border/40 bg-background/95 pt-3 backdrop-blur-xl"}`}>
         <input
           value={input}
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={(e) => e.key === "Enter" && sendMessage()}
+          onFocus={() => {
+            window.setTimeout(() => {
+              scrollRef.current?.scrollTo({ top: scrollRef.current.scrollHeight, behavior: "smooth" });
+            }, 80);
+          }}
           placeholder={!canSend && !hasPlusAccess(propPlan || userPlan, propTrialStartedAt || null) ? (t.upgrade_to_chat || "Keep Ju close to continue...") : t.talk_to_ju}
           disabled={isLoading || (!canSend && !hasPlusAccess(propPlan || userPlan, propTrialStartedAt || null))}
           className="flex-1 px-5 h-[48px] rounded-xl bg-card border border-border/40 text-foreground placeholder:text-muted-foreground/40 focus:outline-none focus:ring-2 focus:ring-primary/15 focus:border-primary/30 text-[15px] transition-all disabled:opacity-50"

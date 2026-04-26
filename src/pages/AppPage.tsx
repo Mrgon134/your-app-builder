@@ -751,8 +751,9 @@ const AppPage: React.FC = () => {
   const showDesktopTopbar = isDesktop;
   const showBottomNav = isPhone && screen !== "journal" && screen !== "settings";
   const showDesktopChrome = !isPhone;
+  const isCoachPhone = isPhone && screen === "coach";
   const contentShellClass = screen === "coach"
-    ? "max-w-[1400px]"
+    ? `max-w-[1400px] ${isCoachPhone ? "h-full" : ""}`
     : screen === "journal"
       ? "max-w-[1100px]"
       : isDesktop
@@ -763,7 +764,9 @@ const AppPage: React.FC = () => {
     : "";
   const contentPaddingClass = showDesktopChrome
     ? "px-4 py-4 md:px-6 md:py-6 lg:px-8 lg:py-8"
-    : "px-4 pt-6 pb-24";
+    : isCoachPhone
+      ? "h-full px-4 pt-3 pb-0"
+      : "px-4 pt-6 pb-24";
 
   return (
     <div className="min-h-screen bg-background">
@@ -909,7 +912,7 @@ const AppPage: React.FC = () => {
 
           <div
             data-testid="app-shell-main"
-            className={`app-shell app-shell-scroll flex-1 ${showBottomNav ? "pb-24" : "pb-6 md:pb-8"}`}
+            className={`app-shell flex-1 min-h-0 ${isCoachPhone ? "overflow-hidden pb-0" : `app-shell-scroll ${showBottomNav ? "pb-24" : "pb-6 md:pb-8"}`}`}
           >
             <div data-testid="app-shell-content" className={`app-shell-content ${contentShellClass} ${contentPaddingClass}`}>
               <div className={surfaceClass}>
@@ -927,6 +930,7 @@ const AppPage: React.FC = () => {
                   <AnimatePresence mode="popLayout" initial={false}>
                     <motion.div
                       key={screen}
+                      className={isCoachPhone ? "h-full" : undefined}
                       initial={{ opacity: 0, x: navDirection * 60 }}
                       animate={{ opacity: 1, x: 0 }}
                       exit={{ opacity: 0, x: navDirection * -30 }}
@@ -1080,11 +1084,13 @@ const AppPage: React.FC = () => {
       )}
 
       {/* Moment Capture Floating Button (Pro feature) */}
-      <MomentCaptureButton
-        onClick={() => setShowMomentCapture(true)}
-        hasProAccess={hasProAccess(effectiveProfile?.plan || "free", effectiveProfile?.trial_started_at || null)}
-        shellMode={shellMode}
-      />
+      {screen !== "coach" && (
+        <MomentCaptureButton
+          onClick={() => setShowMomentCapture(true)}
+          hasProAccess={hasProAccess(effectiveProfile?.plan || "free", effectiveProfile?.trial_started_at || null)}
+          shellMode={shellMode}
+        />
+      )}
 
       {/* Floating glass tab bar with spring animations */}
       {showBottomNav && (
