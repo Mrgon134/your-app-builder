@@ -118,9 +118,9 @@ describe("Blog recommendation surfaces", () => {
     expect(screen.getByRole("heading", { name: /how we tested the 8 apps/i })).toBeInTheDocument();
     expect(seoHeadProps).toHaveBeenCalledWith(
       expect.objectContaining({
-        title: "Best AI Journaling Apps in 2026: 8 Tested, 3 Worth Using",
+        title: "Best AI Journaling Apps 2026: 8 Tested, Only 3 Worth It",
         description:
-          "We tested 8 AI journaling apps for privacy, mood tracking, free access, and emotional insight. See the 3 worth trying first.",
+          "We tested 8 AI journaling apps for privacy, real AI insight, and free access. Only 3 passed. See how Nuju, Rosebud, and Reflectly compared and which to try first.",
         canonical: "https://nuju.app/blog/best-ai-journaling-apps",
       }),
     );

@@ -17,6 +17,8 @@ export interface BlogPost {
   category: string;
   sections: BlogSection[];
   faq?: BlogFAQ[];
+  metaTitle?: string;
+  metaDescription?: string;
 }
 
 const RAW_BLOG_POSTS: BlogPost[] = [
@@ -1449,6 +1451,8 @@ const RAW_BLOG_POSTS: BlogPost[] = [
     slug: "daylio-alternatives",
     title: "Best Daylio Alternatives for Mood Tracking in 2026",
     description: "Daylio is popular but limited. If you want AI analysis, deeper journaling, or more personalized insight from your mood data, these alternatives are worth trying.",
+    metaTitle: "5 Best Daylio Alternatives in 2026 (Free + AI-Powered)",
+    metaDescription: "Daylio is fast but shallow. We tested 5 mood tracker alternatives including AI-powered apps that explain your patterns. See which is worth switching to.",
     publishedAt: "2026-04-20",
     readingTime: 7,
     category: "App Comparison",
@@ -1529,6 +1533,8 @@ const RAW_BLOG_POSTS: BlogPost[] = [
     slug: "best-mood-tracker-apps",
     title: "Best Mood Tracker Apps in 2026: Tested and Ranked",
     description: "Mood tracking apps range from simple emoji logs to AI-powered insight engines. We tested 8 and ranked them by what actually helps you understand your emotions.",
+    metaTitle: "8 Best Mood Tracker Apps in 2026 (Free + Paid, Tested)",
+    metaDescription: "We tested 8 mood tracker apps from simple emoji logs to AI pattern detection. Ranked by what actually helps you understand your emotions. Free and paid picks.",
     publishedAt: "2026-04-20",
     readingTime: 8,
     category: "App Comparison",
@@ -1561,6 +1567,8 @@ const RAW_BLOG_POSTS: BlogPost[] = [
     slug: "best-ai-journaling-apps",
     title: "Best AI Journaling Apps in 2026: 8 Tested, 3 Worth Using",
     description: "We tested 8 AI journaling apps for privacy, mood tracking, free access, and emotional insight. See the 3 worth trying first.",
+    metaTitle: "Best AI Journaling Apps 2026: 8 Tested, Only 3 Worth It",
+    metaDescription: "We tested 8 AI journaling apps for privacy, real AI insight, and free access. Only 3 passed. See how Nuju, Rosebud, and Reflectly compared and which to try first.",
     publishedAt: "2026-04-20",
     readingTime: 8,
     category: "App Comparison",
@@ -1982,6 +1990,8 @@ export const BLOG_POSTS: BlogPost[] = RAW_BLOG_POSTS.map((post) => ({
   ...post,
   title: normalizeCopy(post.title),
   description: normalizeCopy(post.description),
+  metaTitle: post.metaTitle ? normalizeCopy(post.metaTitle) : undefined,
+  metaDescription: post.metaDescription ? normalizeCopy(post.metaDescription) : undefined,
   sections: post.sections.map(normalizeSection),
   faq: post.faq?.map(normalizeFaq),
 }));

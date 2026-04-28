@@ -196,15 +196,16 @@ describe("Landing page anatomy", () => {
     ).toHaveAttribute("href", "/blog/reflectly-alternatives");
   });
 
-  it("sets homepage metadata for category intent, not just brand language", () => {
+  it("sets homepage metadata with brand-led title for branded SERP CTR and category relevance", () => {
     renderLanding();
 
     expect(seoHeadProps).toHaveBeenCalledWith(
       expect.objectContaining({
-        title: "AI Journaling App and Mood Tracker",
+        title: "Nuju — AI Journal App for Mood Tracking & Emotional Clarity",
         description:
-          "Nuju helps you turn hard-to-explain feelings into one private emotional read, gentle mood patterns, and a next step that feels close to you.",
+          "Nuju is the AI journal app that turns hard-to-explain feelings into a private emotional read, gentle mood patterns, and a soft next step. Start the free Ju Gets You reveal.",
         canonical: "https://nuju.app/",
+        noSuffix: true,
       }),
     );
   });

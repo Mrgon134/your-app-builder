@@ -483,8 +483,8 @@ const BlogPost: React.FC = () => {
   return (
     <div className="min-h-screen bg-background">
       <SEOHead
-        title={post.title}
-        description={post.description}
+        title={post.metaTitle ?? post.title}
+        description={post.metaDescription ?? post.description}
         canonical={canonical}
         alternates={alternates}
         breadcrumbs={[

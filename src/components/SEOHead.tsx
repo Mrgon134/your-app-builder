@@ -18,6 +18,7 @@ interface SEOHeadProps {
   noindex?: boolean;
   breadcrumbs?: BreadcrumbItem[];
   alternates?: AlternateLink[];
+  noSuffix?: boolean;
 }
 
 const BASE_TITLE = "Nuju";
@@ -32,8 +33,9 @@ const SEOHead: React.FC<SEOHeadProps> = ({
   noindex,
   breadcrumbs,
   alternates,
+  noSuffix,
 }) => {
-  const fullTitle = `${title} | ${BASE_TITLE}`;
+  const fullTitle = noSuffix ? title : `${title} | ${BASE_TITLE}`;
 
   const breadcrumbSchema = breadcrumbs
     ? {
