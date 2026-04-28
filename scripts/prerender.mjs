@@ -326,6 +326,8 @@ function normalizeBlogPost(post) {
     ...post,
     title: normalizeText(post.title),
     description: normalizeText(post.description),
+    metaTitle: post.metaTitle ? normalizeText(post.metaTitle) : undefined,
+    metaDescription: post.metaDescription ? normalizeText(post.metaDescription) : undefined,
     category: normalizeText(post.category),
     sections: post.sections.map((section) => ({
       ...section,
@@ -1386,7 +1388,7 @@ function stripExistingSeo(headHtml) {
 }
 
 function buildSeoBlock(page) {
-  const fullTitle = `${page.title} | Nuju`;
+  const fullTitle = page.noSuffix ? page.title : `${page.title} | Nuju`;
   const ogType = page.ogType ?? "website";
   const locale = page.locale ?? "en_US";
   const robots = page.noindex
@@ -1631,10 +1633,11 @@ function buildStaticPages(posts) {
   return [
     {
       route: "/",
-      title: "AI Journaling App and Mood Tracker",
+      title: "Nuju — AI Journal App for Mood Tracking & Emotional Clarity",
       description:
-        "Nuju is an AI journaling app and mood tracker for emotional clarity, private reflection, and fast daily check-ins. Start the Ju Gets You reveal free.",
+        "Nuju is the AI journal app that turns hard-to-explain feelings into a private emotional read, gentle mood patterns, and a soft next step. Start the free Ju Gets You reveal.",
       canonical: `${BASE_URL}/`,
+      noSuffix: true,
       breadcrumbs: [{ name: "Home", url: `${BASE_URL}/` }],
       schemas: [
         softwareApplicationSchema,
@@ -1843,8 +1846,8 @@ function buildBlogPages(helpers) {
 
     return {
       route: `/blog/${post.slug}`,
-      title: post.title,
-      description: post.description,
+      title: post.metaTitle || post.title,
+      description: post.metaDescription || post.description,
       canonical,
       lang: language,
       locale,

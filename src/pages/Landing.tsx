@@ -445,9 +445,10 @@ const Landing: React.FC = () => {
   return (
     <div className="min-h-screen bg-background">
       <SEOHead
-        title="AI Journaling App and Mood Tracker"
-        description="Nuju helps you turn hard-to-explain feelings into one private emotional read, gentle mood patterns, and a next step that feels close to you."
+        title="Nuju — AI Journal App for Mood Tracking & Emotional Clarity"
+        description="Nuju is the AI journal app that turns hard-to-explain feelings into a private emotional read, gentle mood patterns, and a soft next step. Start the free Ju Gets You reveal."
         canonical="https://nuju.app/"
+        noSuffix
       />
       <script type="application/ld+json">{JSON.stringify(howToSchema)}</script>
       <script type="application/ld+json">{JSON.stringify(landingFaqSchema)}</script>
