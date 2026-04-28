@@ -47,5 +47,6 @@ Checked with App Store Connect API after the rejection:
 - `lifetime` non-consumable state is `DEVELOPER_ACTION_NEEDED`; localization state is `REJECTED`.
 - App Description metadata now includes the Apple Standard EULA link.
 - App Store Connect API rejected product localization edits while the localizations are in `REJECTED` state, so product cleanup must happen in App Store Connect before resubmission.
+- Review screenshots were uploaded through App Store Connect API for `3_month`, `nuju_weekly`, and `lifetime`. Each screenshot is `1170x2532`, asset delivery state `COMPLETE`, with no reported errors or warnings.
 
 These product states can prevent StoreKit/RevenueCat from returning purchase packages during App Review, even when the app code is configured correctly.
