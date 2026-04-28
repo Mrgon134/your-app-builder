@@ -98,7 +98,7 @@ describe("Blog recommendation surfaces", () => {
     ).toHaveAttribute("href", expect.stringContaining("/onboarding?source=blog_daylio-alternatives"));
     expect(
       screen.getByRole("link", { name: /see how nuju works/i }),
-    ).toHaveAttribute("href", "/install");
+    ).toHaveAttribute("href", "/ai-journal");
     expect(screen.getByText(/encrypted storage/i)).toBeInTheDocument();
 
     fireEvent.click(screen.getByRole("link", { name: /start the free reveal/i }));

@@ -9,6 +9,12 @@
     <changefreq>weekly</changefreq>
   </url>
   <url>
+    <loc>https://nuju.app/ai-journal</loc>
+    <lastmod>2026-04-28</lastmod>
+    <priority>0.9</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
     <loc>https://nuju.app/install</loc>
     <lastmod>2026-04-28</lastmod>
     <priority>0.8</priority>

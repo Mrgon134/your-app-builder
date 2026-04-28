@@ -222,6 +222,12 @@ const comparisonRows = [
 
 const comparisonReadLinks = [
   {
+    href: "/ai-journal",
+    label: "Product overview",
+    title: "Nuju as an AI journal",
+    body: "The full feature breakdown, free vs paid, coach personas, and privacy stance in one page.",
+  },
+  {
     href: "/blog/best-ai-journaling-apps",
     label: "Category guide",
     title: "Best AI journaling apps",

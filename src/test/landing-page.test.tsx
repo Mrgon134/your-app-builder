@@ -186,6 +186,9 @@ describe("Landing page anatomy", () => {
 
     const comparisonLinks = within(screen.getByTestId("landing-internal-links"));
     expect(
+      comparisonLinks.getByRole("link", { name: /nuju as an ai journal/i }),
+    ).toHaveAttribute("href", "/ai-journal");
+    expect(
       comparisonLinks.getByRole("link", { name: /best ai journaling apps/i }),
     ).toHaveAttribute("href", "/blog/best-ai-journaling-apps");
     expect(
