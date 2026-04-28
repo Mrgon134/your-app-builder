@@ -39,7 +39,28 @@ VITE_THREE_MONTH_TRIAL_DAYS=7
 
 If an item is missing, open Monetization > Subscriptions or Monetization > In-App Purchases and complete missing metadata until it is Ready to Submit.
 
-## 3. Fill App Privacy
+## 3. Resolve Rejected Product Metadata
+
+Use this when the App Review page shows the submission as `Unresolved Issues`.
+
+1. Go to Apps > Nuju > App Review.
+2. Open the unresolved iOS submission.
+3. Click `Edit` for the rejected `iOS App 1.0` item.
+4. In the version edit view, scroll to In-App Purchases and Subscriptions.
+5. Open and confirm the rejected product metadata:
+   - Subscription group `Nuju Pro`
+   - Weekly subscription `nuju_weekly`
+   - Lifetime non-consumable `lifetime`
+6. Save each item so the rejected localization is re-added for review.
+7. Confirm all three products are attached to version 1.0:
+   - `nuju_weekly`
+   - `3_month`
+   - `lifetime`
+8. Click `Add for Review`, then return to the unresolved submission and click `Resubmit to App Review`.
+
+Apple currently locks rejected `nuju_weekly` and `lifetime` localizations from the App Store Connect API, so this step must be completed in the App Store Connect UI.
+
+## 4. Fill App Privacy
 
 1. Go to Apps > Nuju > App Privacy.
 2. Add Privacy Policy URL: `https://nuju.app/privacy`.
@@ -48,7 +69,7 @@ If an item is missing, open Monetization > Subscriptions or Monetization > In-Ap
 5. Set Tracking to No.
 6. Publish the privacy responses.
 
-## 4. Upload Screenshots
+## 5. Upload Screenshots
 
 1. Open Apps > Nuju > iOS version 1.0.
 2. In iOS Previews and Screenshots, upload iPhone screenshots.
@@ -56,7 +77,7 @@ If an item is missing, open Monetization > Subscriptions or Monetization > In-Ap
 4. Upload 5 screenshots from `screenshots-shot-list.md`.
 5. Do not show trial copy unless the 7-day intro offer is active.
 
-## 5. Add Demo Account and Review Notes
+## 6. Add Demo Account and Review Notes
 
 1. Open Apps > Nuju > iOS version 1.0.
 2. Scroll to App Review Information.
@@ -65,7 +86,7 @@ If an item is missing, open Monetization > Subscriptions or Monetization > In-Ap
 5. Paste the text from `review-notes.md` into Notes.
 6. Do not store the demo password in this repository.
 
-## 6. Submit the Build
+## 7. Submit the Build
 
 1. On iOS version 1.0, scroll to Build.
 2. Select the processed Codemagic build.

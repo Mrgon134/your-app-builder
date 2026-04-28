@@ -34,6 +34,11 @@ workflows:
           set -e
           npm ci
 
+      - name: Validate iOS release environment
+        script: |
+          set -e
+          node scripts/validate-ios-release-env.mjs
+
       - name: Build React app
         script: |
           set -e

@@ -1703,6 +1703,15 @@ const OnboardingScreen: React.FC = () => {
               <div className="mt-3 flex items-center justify-center gap-3 text-[10px] font-medium text-muted-foreground">
                 <Link to={ROUTES.TERMS} className="underline-offset-4 hover:text-foreground hover:underline">Terms</Link>
                 <span aria-hidden="true">-</span>
+                <a
+                  href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="underline-offset-4 hover:text-foreground hover:underline"
+                >
+                  EULA
+                </a>
+                <span aria-hidden="true">-</span>
                 <Link to={ROUTES.PRIVACY} className="underline-offset-4 hover:text-foreground hover:underline">Privacy</Link>
               </div>
 

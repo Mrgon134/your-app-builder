@@ -29,7 +29,7 @@ Products:
 
 The 3-month plan should only advertise a 7-day free trial when the App Store Connect introductory offer is configured and the user is eligible. Otherwise, the app shows the normal 3-month billing terms.
 
-The native iOS paywall includes product title, subscription duration, localized Apple price, Restore Purchase, Privacy, Terms, and the Apple Standard EULA link.
+The native iOS paywall includes product title, subscription duration, localized Apple price, Restore Purchase, Privacy, Terms, and the Apple Standard EULA link. The onboarding paywall also includes Terms, Privacy, and the Apple Standard EULA link before the user proceeds to Apple checkout.
 
 Existing users who previously purchased lifetime access on Nuju's web/PWA version can sign in with the same account and access their existing entitlement in the iOS app. The iOS app does not direct users to purchase digital access outside the app and uses Apple In-App Purchase for new iOS purchases.
 
