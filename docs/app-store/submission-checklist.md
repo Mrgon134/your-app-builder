@@ -5,6 +5,7 @@
 - [x] Paywall fits on mobile without forcing a long scroll.
 - [x] Paywall includes plain billing terms.
 - [x] Native paywall includes Restore.
+- [x] Native paywall includes Privacy, Terms, and Apple Standard EULA links.
 - [x] Native paywall checks RevenueCat intro-trial eligibility before showing trial CTA.
 - [x] Trial copy is gated by config and StoreKit/RevenueCat state.
 - [x] Public legal pages exist: Privacy, Terms, Medical Disclaimer, Support.
@@ -34,6 +35,7 @@ Manual-only: these cannot be completed safely from this repo because they requir
   - `nuju_weekly`
   - `3_month`
   - `lifetime`
+- [ ] Resolve App Store Connect product states. API check after rejection showed all three products are `DEVELOPER_ACTION_NEEDED`, with rejected localizations.
 - [ ] Create a 7-day introductory free trial for `3_month` if using trial-first positioning.
 - [ ] Set App Privacy answers using `privacy-label-draft.md`.
 - [ ] Add Support URL: `https://nuju.app/support`
@@ -41,6 +43,7 @@ Manual-only: these cannot be completed safely from this repo because they requir
 - [ ] Add marketing URL: `https://nuju.app/`
 - [ ] Add screenshots.
 - [ ] Add description, subtitle, keywords, category, copyright, and SKU from `metadata-draft.md`.
+- [ ] Add the Apple Standard EULA link to the App Description or EULA field.
 - [ ] Add demo account credentials in App Review Information. Do not commit the demo password to the repo; paste it directly in App Store Connect.
 - [ ] Add an optional existing lifetime demo account for reviewer verification.
 - [ ] Paste reviewer notes from `review-notes.md`.

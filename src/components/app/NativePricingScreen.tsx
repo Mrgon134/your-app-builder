@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { INTRO_ELIGIBILITY_STATUS, Purchases } from "@revenuecat/purchases-capacitor";
-import { AlertCircle, ArrowLeft, Check, Loader2 } from "lucide-react";
+import { AlertCircle, ArrowLeft, Check, Loader2, RefreshCw } from "lucide-react";
 
 import { useGeoPricing } from "@/hooks/use-geo-pricing";
 import { useNativePurchases } from "@/hooks/use-native-purchases";
@@ -16,6 +16,7 @@ interface NativePricingScreenProps {
   currentPlan?: string;
   trialStartedAt?: string | null;
   userId?: string;
+  presentation?: "modal" | "page";
   onClose: () => void;
   onSuccess: (plan: string) => void;
 }
@@ -54,18 +55,20 @@ const hasFreeIntroTrial = (pkg: NativePackage) => Boolean(pkg.product.introPrice
 const NativePricingScreen: React.FC<NativePricingScreenProps> = ({
   trialStartedAt = null,
   userId,
+  presentation = "modal",
   onClose,
   onSuccess,
 }) => {
   const { t } = useLang();
   const geo = useGeoPricing();
-  const { packages, loading, purchasing, purchase, restore } = useNativePurchases(userId);
+  const { packages, loading, purchasing, error: productsError, purchase, restore, refresh } = useNativePurchases(userId);
   const trial = getTrialStatus(trialStartedAt);
   const [selectedPackage, setSelectedPackage] = useState<NativePackage | null>(null);
-  const [error, setError] = useState<string | null>(null);
+  const [actionError, setActionError] = useState<string | null>(null);
   const [showSuccess, setShowSuccess] = useState(false);
   const [restoring, setRestoring] = useState(false);
   const [introEligibility, setIntroEligibility] = useState<Record<string, INTRO_ELIGIBILITY_STATUS>>({});
+  const isPage = presentation === "page";
   const nativeBenefits = [
     "Your private Ju Gets You read stays open",
     "Premium voice notes, AI memory, and deeper coach support",
@@ -149,7 +152,7 @@ const NativePricingScreen: React.FC<NativePricingScreenProps> = ({
         : `${selectedPrice} one-time purchase. No renewal.`;
 
   const handlePurchase = async (pkg: NativePackage) => {
-    setError(null);
+    setActionError(null);
     const purchasedPlan = await purchase(pkg);
     if (purchasedPlan) {
       setShowSuccess(true);
@@ -157,30 +160,40 @@ const NativePricingScreen: React.FC<NativePricingScreenProps> = ({
         onSuccess(purchasedPlan);
       }, 1200);
     } else {
-      setError(t.purchase_failed || "Purchase failed. Please try again.");
+      setActionError(t.purchase_failed || "Purchase failed. Please try again.");
     }
   };
 
   const handleRestore = async () => {
-    setError(null);
+    setActionError(null);
     setRestoring(true);
     try {
       const restoredPlan = await restore();
       if (restoredPlan && restoredPlan !== "free") {
         onSuccess(restoredPlan);
       } else {
-        setError("No previous purchase was found for this Apple ID.");
+        setActionError("No previous purchase was found for this Apple ID.");
       }
     } catch {
-      setError("Restore failed. Please try again.");
+      setActionError("Restore failed. Please try again.");
     } finally {
       setRestoring(false);
     }
   };
 
+  const shellClass = isPage
+    ? "mx-auto flex min-h-[calc(100dvh-8rem)] w-full items-start justify-center px-2 pb-[max(1.5rem,env(safe-area-inset-bottom))] pt-[max(1rem,env(safe-area-inset-top))]"
+    : "fixed inset-0 z-50 flex items-end justify-center bg-background/80 p-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] pt-[max(0.75rem,env(safe-area-inset-top))] backdrop-blur-sm sm:items-center";
+  const cardClass = isPage
+    ? "w-full max-w-2xl overflow-hidden rounded-[1.9rem] border border-border/50 bg-card shadow-[0_24px_70px_-38px_rgba(15,23,42,0.35)]"
+    : "w-full max-w-md overflow-hidden rounded-[1.9rem] border border-border/50 bg-card shadow-2xl animate-spring-up";
+  const scrollClass = isPage
+    ? "overflow-visible"
+    : "max-h-[calc(100dvh_-_1.5rem_-_env(safe-area-inset-top)_-_env(safe-area-inset-bottom))] overflow-y-auto";
+
   if (loading) {
     return (
-      <div className="fixed inset-0 z-50 flex items-center justify-center bg-background/80 backdrop-blur-sm">
+      <div className={isPage ? shellClass : "fixed inset-0 z-50 flex items-center justify-center bg-background/80 backdrop-blur-sm"}>
         <div className="rounded-3xl border border-border/60 bg-card px-6 py-5 text-center shadow-2xl">
           <Loader2 className="mx-auto mb-3 h-8 w-8 animate-spin text-primary" />
           <p className="text-sm text-muted-foreground">{t.loading || "Loading..."}</p>
@@ -190,9 +203,9 @@ const NativePricingScreen: React.FC<NativePricingScreenProps> = ({
   }
 
   return (
-    <div className="fixed inset-0 z-50 flex items-end justify-center bg-background/80 p-3 backdrop-blur-sm sm:items-center">
-      <div className="w-full max-w-md overflow-hidden rounded-[1.9rem] border border-border/50 bg-card shadow-2xl animate-spring-up">
-        <div className="max-h-[calc(100dvh-1rem)] overflow-y-auto">
+    <div className={shellClass}>
+      <div className={cardClass}>
+        <div className={scrollClass}>
           <div className="relative h-36 overflow-hidden bg-[linear-gradient(135deg,#211D34_0%,#443B72_48%,#95E1D3_130%)]">
             <button
               onClick={onClose}
@@ -231,10 +244,10 @@ const NativePricingScreen: React.FC<NativePricingScreenProps> = ({
             </div>
           ) : null}
 
-          {error ? (
+          {actionError ? (
             <div className="mt-3 flex gap-2 rounded-2xl border border-destructive/20 bg-destructive/10 p-3">
               <AlertCircle className="mt-0.5 h-4 w-4 flex-shrink-0 text-destructive" />
-              <p className="text-xs text-destructive">{error}</p>
+              <p className="text-xs text-destructive">{actionError}</p>
             </div>
           ) : null}
 
@@ -260,6 +273,9 @@ const NativePricingScreen: React.FC<NativePricingScreenProps> = ({
                 {displayPackages.slice(0, 3).map((pkg) => {
                   const selected = pkg.identifier === selectedPackage.identifier;
                   const planId = planIdForPackage(pkg);
+                  const trialEligible =
+                    hasFreeIntroTrial(pkg) &&
+                    introEligibility[pkg.product.identifier] === INTRO_ELIGIBILITY_STATUS.INTRO_ELIGIBILITY_STATUS_ELIGIBLE;
                   return (
                     <button
                       key={pkg.identifier}
@@ -269,9 +285,9 @@ const NativePricingScreen: React.FC<NativePricingScreenProps> = ({
                         selected
                           ? "border-primary bg-primary/[0.08] shadow-[0_14px_28px_-22px_hsl(var(--primary)/0.75)]"
                           : "border-border/70 bg-background"
-                      }`}
+                        }`}
                     >
-                      {planId === "three_month" ? (
+                      {planId === "three_month" && trialEligible ? (
                         <span className="absolute -top-2 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-[#FFD166] px-2 py-0.5 text-[8px] font-bold uppercase text-[#1A1A2E]">
                           Trial
                         </span>
@@ -305,7 +321,15 @@ const NativePricingScreen: React.FC<NativePricingScreenProps> = ({
             </>
           ) : (
             <div className="mt-4 rounded-2xl border border-border/60 bg-muted/30 p-4 text-sm text-muted-foreground">
-              No App Store products loaded yet. Try again in a moment.
+              <p>{productsError || "No App Store products loaded yet. Try again in a moment."}</p>
+              <button
+                type="button"
+                onClick={() => void refresh()}
+                className="mt-3 inline-flex items-center gap-2 rounded-full border border-border/70 bg-background px-3 py-2 text-xs font-semibold text-foreground transition-all active:scale-[0.98]"
+              >
+                <RefreshCw className="h-3.5 w-3.5" />
+                Try again
+              </button>
             </div>
           )}
 
@@ -320,6 +344,15 @@ const NativePricingScreen: React.FC<NativePricingScreenProps> = ({
             </button>
             <span aria-hidden="true">-</span>
             <Link to={ROUTES.TERMS} className="underline-offset-4 hover:text-foreground hover:underline">Terms</Link>
+            <span aria-hidden="true">-</span>
+            <a
+              href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/"
+              target="_blank"
+              rel="noreferrer"
+              className="underline-offset-4 hover:text-foreground hover:underline"
+            >
+              EULA
+            </a>
             <span aria-hidden="true">-</span>
             <Link to={ROUTES.PRIVACY} className="underline-offset-4 hover:text-foreground hover:underline">Privacy</Link>
           </div>

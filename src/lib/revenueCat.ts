@@ -5,6 +5,8 @@ import { isNative } from "./platform";
 // RevenueCat API key (from https://app.revenuecat.com)
 const REVENUECAT_API_KEY = import.meta.env.VITE_REVENUECAT_API_KEY || "";
 
+export const hasRevenueCatApiKey = () => Boolean(REVENUECAT_API_KEY);
+
 // RevenueCat entitlement identifiers
 export const ENTITLEMENTS = {
   plus: import.meta.env.VITE_REVENUECAT_PLUS_ENTITLEMENT_ID || "plus",

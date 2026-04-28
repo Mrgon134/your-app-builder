@@ -1049,6 +1049,7 @@ const AppPage: React.FC = () => {
                         currentPlan={effectiveProfile?.plan || "free"}
                         trialStartedAt={effectiveProfile?.trial_started_at || null}
                         userId={user?.id}
+                        presentation={shellMode === "phone" ? "modal" : "page"}
                         onClose={() => navigateTo("home")}
                         onSuccess={(plan) => {
                           void persistNativePurchasePlan(plan);

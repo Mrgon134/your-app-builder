@@ -37,6 +37,9 @@ Nuju is designed for reflection, self-awareness, and everyday emotional wellness
 
 Subscription options may include weekly access, 3-month access, and a one-time lifetime unlock. Subscriptions renew automatically unless canceled in Apple Subscriptions before renewal. Any free trial or introductory offer is available only to eligible users and will be shown with Apple checkout terms before purchase.
 
+Terms of Use (EULA): https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
+Privacy Policy: https://nuju.app/privacy
+
 ## Keywords
 
 `tracker,diary,feelings,self care,wellness,voice,mental clarity,gratitude,habits,overthinking`
@@ -70,6 +73,9 @@ Marketing URL:
 
 Terms:
 `https://nuju.app/terms`
+
+Apple Standard EULA:
+`https://www.apple.com/legal/internet-services/itunes/dev/stdeula/`
 
 Medical Disclaimer:
 `https://nuju.app/medical-disclaimer`

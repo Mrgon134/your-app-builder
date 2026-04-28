@@ -22,7 +22,7 @@ export default defineConfig({
         globPatterns: ["**/*.{js,css,html,ico,png,svg,webp}"],
       },
       manifest: {
-        name: "Nuju — AI Journal Companion",
+        name: "Nuju - AI Journal Companion",
         short_name: "Nuju",
         description: "The 30-second AI journal that understands your life. Track moods, discover patterns, talk to Ju.",
         theme_color: "#7C6EDB",

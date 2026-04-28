@@ -8,6 +8,7 @@ import {
   restorePurchases,
   getPlanFromCustomerInfo,
   getPlanFromEntitlements,
+  hasRevenueCatApiKey,
   PRODUCT_IDS,
 } from "@/lib/revenueCat";
 
@@ -30,6 +31,7 @@ interface UseNativePurchasesResult {
   packages: NativePackage[];
   loading: boolean;
   purchasing: boolean;
+  error: string | null;
   nativePlan: string;
   purchase: (pkg: NativePackage) => Promise<string | null>;
   restore: () => Promise<string>;
@@ -40,34 +42,49 @@ export function useNativePurchases(userId?: string): UseNativePurchasesResult {
   const [packages, setPackages] = useState<NativePackage[]>([]);
   const [loading, setLoading] = useState(false);
   const [purchasing, setPurchasing] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const [nativePlan, setNativePlan] = useState("free");
   const native = isNative();
 
-  // Initialize RevenueCat + fetch offerings
-  useEffect(() => {
+  const loadPurchases = useCallback(async () => {
     if (!native) return;
 
-    const init = async () => {
-      setLoading(true);
-      try {
-        await initRevenueCat(userId);
-
-        const offering = await fetchOfferings();
-        if (offering?.availablePackages) {
-          setPackages(offering.availablePackages);
-        }
-
-        const plan = await getPlanFromEntitlements();
-        setNativePlan(plan);
-      } catch (err) {
-        console.error("[useNativePurchases] init error:", err);
-      } finally {
-        setLoading(false);
+    setLoading(true);
+    setError(null);
+    try {
+      if (!hasRevenueCatApiKey()) {
+        setPackages([]);
+        setError("App Store purchases are not configured in this build yet.");
+        return;
       }
-    };
 
-    init();
+      await initRevenueCat(userId);
+
+      const offering = await fetchOfferings();
+      const nextPackages = offering?.availablePackages ?? [];
+      setPackages(nextPackages);
+
+      if (!offering) {
+        setError("Could not reach App Store products. Please try again.");
+      } else if (nextPackages.length === 0) {
+        setError("App Store products are not attached to the current offering yet.");
+      }
+
+      const plan = await getPlanFromEntitlements();
+      setNativePlan(plan);
+    } catch (err) {
+      console.error("[useNativePurchases] init error:", err);
+      setPackages([]);
+      setError("Could not load App Store products. Please try again.");
+    } finally {
+      setLoading(false);
+    }
   }, [native, userId]);
+
+  // Initialize RevenueCat + fetch offerings
+  useEffect(() => {
+    void loadPurchases();
+  }, [loadPurchases]);
 
   const purchase = useCallback(async (pkg: NativePackage): Promise<string | null> => {
     if (!native) return null;
@@ -101,16 +118,15 @@ export function useNativePurchases(userId?: string): UseNativePurchasesResult {
   }, [native]);
 
   const refresh = useCallback(async () => {
-    if (!native) return;
-    const plan = await getPlanFromEntitlements();
-    setNativePlan(plan);
-  }, [native]);
+    await loadPurchases();
+  }, [loadPurchases]);
 
   return {
     isNativeApp: native,
     packages,
     loading,
     purchasing,
+    error,
     nativePlan,
     purchase,
     restore,
