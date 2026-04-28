@@ -489,6 +489,39 @@ function renderLandingBody() {
       `,
     ),
     renderSection(
+      "Compare Nuju before you commit",
+      renderLinkCardGrid([
+        {
+          href: "/ai-journal",
+          title: "Nuju as an AI journal",
+          description:
+            "Full feature breakdown, free vs paid, coach personas, and privacy stance in one product page.",
+          badge: "Product overview",
+        },
+        {
+          href: "/blog/best-ai-journaling-apps",
+          title: "Best AI journaling apps in 2026",
+          description:
+            "How Nuju compares to other AI journaling apps on privacy, mood tracking, and real emotional insight.",
+          badge: "Category guide",
+        },
+        {
+          href: "/blog/best-mood-tracker-apps",
+          title: "Best mood tracker apps in 2026",
+          description:
+            "Where Nuju fits when you want a mood tracker that actually interprets your data.",
+          badge: "Category guide",
+        },
+        {
+          href: "/blog/daylio-alternatives",
+          title: "Best Daylio alternatives",
+          description:
+            "If you have outgrown Daylio's tap-only logging and want reflection plus AI patterns, start here.",
+          badge: "Switch guide",
+        },
+      ]),
+    ),
+    renderSection(
       "Frequently asked questions",
       renderFaq(LANDING_FAQS),
     ),
@@ -765,6 +798,125 @@ function renderContactBody() {
         ]),
       ),
     ],
+  });
+}
+
+function renderAiJournalBody() {
+  return renderPageShell({
+    eyebrow: "AI journaling app",
+    title: "The AI journal that reads what you actually wrote",
+    description:
+      "Nuju pairs a 30-second mood check-in with written reflection, then uses AI to surface what is repeating underneath your entries - moods, themes, and relationships that shift your week.",
+    meta: "Mood tracking, written reflection, and AI patterns in one app",
+    sections: [
+      renderSection(
+        "Who Nuju is for",
+        renderList([
+          "Overthinkers who want a fast way to capture a thought before it spirals.",
+          "Mood tracker users who want AI that interprets what is moving, not just collects it.",
+          "People between therapy sessions who want a private space for reflection support.",
+          "ADHD and low-energy days when 30 seconds is the only journaling that actually happens.",
+        ]),
+      ),
+      renderSection(
+        "How Nuju works in 30 seconds",
+        renderOrdered([
+          "Tap your mood and energy and optionally write a few sentences.",
+          "Ju reflects on your specific words, not a template, and surfaces the feeling underneath.",
+          "Patterns appear over time as Ju connects moods, themes, and people across entries.",
+        ]),
+      ),
+      renderSection(
+        "What makes Nuju different",
+        renderList([
+          "AI reflection on your actual writing, not a generic prompt response.",
+          "Mood and energy paired with text so trends stay grounded in real context.",
+          "Weekly summaries surface what kept repeating across your entries.",
+          "Voice journaling for days when typing feels heavy.",
+          "Four coach personas - Gentle Guide, Tough Coach, Wise Sage, Fun Friend.",
+          "Encrypted storage, signed media URLs, no journal data sold, no AI training on your entries.",
+        ]),
+      ),
+      renderSection(
+        "What you get free vs paid",
+        `
+          <h3>Free</h3>
+          ${renderList([
+            "30-second mood and energy check-ins.",
+            "Written journaling with AI reflection on each entry.",
+            "Recent insights from your last few entries.",
+            "Limited entry history.",
+          ])}
+          <h3>Paid</h3>
+          ${renderList([
+            "Full journal history, no week cap.",
+            "30-day mood and energy trends.",
+            "Weekly AI summaries of what changed.",
+            "All four coach personas, unlimited use.",
+            "Voice journaling and AI memory across weeks.",
+            "Relationship mood map: who shifts your mood.",
+          ])}
+        `,
+      ),
+      renderSection(
+        "Nuju vs other ways to journal with AI",
+        renderLinkCardGrid([
+          {
+            href: "/blog/best-ai-journaling-apps",
+            title: "AI journaling apps compared",
+            description:
+              "We tested 8 AI journaling apps. See where Nuju stands against Rosebud, Reflectly, and the rest.",
+            badge: "Comparison",
+          },
+          {
+            href: "/blog/best-mood-tracker-apps",
+            title: "Mood tracker apps compared",
+            description:
+              "How Nuju compares to Daylio, Bearable, and other mood trackers when you want depth, not just logging.",
+            badge: "Comparison",
+          },
+          {
+            href: "/blog/daylio-alternatives",
+            title: "Daylio alternatives",
+            description:
+              "If Daylio feels too shallow once you want reflection, see why people switch to Nuju.",
+            badge: "Switch",
+          },
+          {
+            href: "/blog/ai-journal-for-overthinking",
+            title: "AI journal for overthinking",
+            description:
+              "How Nuju helps when the loop is rumination, not lack of motivation.",
+            badge: "Use case",
+          },
+        ]),
+      ),
+      renderSection(
+        "Privacy is the default, not an upsell",
+        `
+          <p>Journal entries live in encrypted storage with private access controls. Media URLs are signed. Journal content is not sold and is not used to train AI models. Read the full handling on the <a href="/privacy">privacy page</a>.</p>
+        `,
+      ),
+      renderSection(
+        "Frequently asked questions",
+        `
+          <h3>What is an AI journaling app?</h3>
+          <p>An AI journaling app is a journal that combines your writing with mood data and uses AI to reflect on what you wrote. Instead of a blank page, you get a private read on what is happening underneath an entry, plus pattern detection across weeks.</p>
+          <h3>Is Nuju free?</h3>
+          <p>Yes. The Ju Gets You reveal and core mood and writing flow are free. Paid access unlocks full history, 30-day trends, weekly summaries, voice journaling, AI memory, and the relationship mood map.</p>
+          <h3>How is Nuju different from a generic AI chatbot?</h3>
+          <p>A chatbot replies to a single message. Nuju is a journaling system: it pairs writing with mood and energy, remembers context across entries, and surfaces trends you cannot see from any one conversation.</p>
+          <h3>Does Nuju replace therapy?</h3>
+          <p>No. Nuju is a reflection and self-awareness tool, not therapy, crisis care, or medical treatment. It works best alongside real-world support when you need it.</p>
+        `,
+      ),
+    ],
+    cta: renderCta({
+      title: "Start your first 30-second entry",
+      body: "Try the free Ju Gets You reveal. If the reflection style feels right, keep going. If not, your data is yours either way.",
+      href: "/onboarding?source=ai_journal_prerender",
+      label: "Start the free reveal",
+    }),
   });
 }
 
@@ -1334,6 +1486,14 @@ function renderBlogPostBody(post, relatedPosts, helpers) {
           label: "Start journaling free",
         };
 
+  const productLinkHtml =
+    language === "en" && post.category === "App Comparison"
+      ? renderSection(
+          "See how Nuju works",
+          `<p>For the full feature breakdown, free vs paid, coach personas, and privacy stance in one place, read the <a href="/ai-journal">Nuju AI journal product page</a>.</p>`,
+        )
+      : "";
+
   return `
     <main class="nuju-prerender">
       <article class="nuju-card">
@@ -1353,6 +1513,7 @@ function renderBlogPostBody(post, relatedPosts, helpers) {
             .join("")}
         </div>
         ${faqHtml}
+        ${productLinkHtml}
         ${renderCta({
           title: ctaCopy.title,
           body: ctaCopy.body,
@@ -1633,7 +1794,7 @@ function buildStaticPages(posts) {
   return [
     {
       route: "/",
-      title: "Nuju — AI Journal App for Mood Tracking & Emotional Clarity",
+      title: "Nuju - AI Journal App for Mood Tracking & Emotional Clarity",
       description:
         "Nuju is the AI journal app that turns hard-to-explain feelings into a private emotional read, gentle mood patterns, and a soft next step. Start the free Ju Gets You reveal.",
       canonical: `${BASE_URL}/`,
@@ -1648,6 +1809,102 @@ function buildStaticPages(posts) {
         landingFaqSchema,
       ],
       bodyHtml: renderLandingBody(),
+    },
+    {
+      route: "/ai-journal",
+      title: "AI Journaling App for Mood Tracking and Pattern Discovery",
+      description:
+        "Nuju is the AI journaling app that turns 30-second mood check-ins and written reflection into weekly patterns, AI summaries, and a coach that fits your style. Start free.",
+      canonical: `${BASE_URL}/ai-journal`,
+      breadcrumbs: [
+        { name: "Home", url: `${BASE_URL}/` },
+        { name: "AI Journal", url: `${BASE_URL}/ai-journal` },
+      ],
+      schemas: [
+        {
+          "@context": "https://schema.org",
+          "@type": "SoftwareApplication",
+          name: "Nuju",
+          alternateName: "Nuju AI Journal",
+          applicationCategory: "HealthApplication",
+          applicationSubCategory: "AI Journaling and Mood Tracking",
+          operatingSystem: "Web browser, iOS, Android",
+          url: `${BASE_URL}/ai-journal`,
+          description:
+            "Nuju is the AI journaling app that pairs 30-second mood check-ins with written reflection, four coach personas, weekly AI summaries, and pattern discovery across your entries.",
+          image: OG_IMAGE,
+          featureList: [
+            "AI reflection on your actual writing",
+            "30-second mood and energy check-ins",
+            "Four coach personas",
+            "Weekly summaries and 30-day trends",
+            "Voice journaling",
+            "Relationship mood map",
+            "Encrypted storage, no AI training on journal entries",
+          ],
+          offers: {
+            "@type": "Offer",
+            price: "0",
+            priceCurrency: "USD",
+            description: "Free Ju Gets You reveal and core mood + journaling flow.",
+          },
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: [
+            {
+              "@type": "Question",
+              name: "What is an AI journaling app?",
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: "An AI journaling app is a journal that combines your writing with mood data and uses AI to reflect on what you wrote. Instead of a blank page, you get a private read on what is happening underneath an entry, plus pattern detection across weeks of entries.",
+              },
+            },
+            {
+              "@type": "Question",
+              name: "Is Nuju free?",
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: "Yes. The Ju Gets You reveal and core mood + writing flow are free. Paid access unlocks full history, 30-day trends, weekly summaries, voice journaling, AI memory, and the relationship mood map.",
+              },
+            },
+            {
+              "@type": "Question",
+              name: "Is my journal private?",
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: "Yes. Entries live in encrypted storage with private access controls, media URLs are signed, journal data is not sold, and your writing is not used to train AI models.",
+              },
+            },
+            {
+              "@type": "Question",
+              name: "How is Nuju different from a generic AI chatbot?",
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: "A chatbot replies to a single message. Nuju is a journaling system: it pairs writing with mood and energy, remembers context across entries, and surfaces trends you cannot see from any one conversation.",
+              },
+            },
+            {
+              "@type": "Question",
+              name: "Does Nuju replace therapy?",
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: "No. Nuju is a reflection and self-awareness tool, not therapy, crisis care, or medical treatment. It works best alongside real-world support when you need it.",
+              },
+            },
+            {
+              "@type": "Question",
+              name: "Can I journal by voice?",
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: "Yes. Voice journaling is part of the upper premium tier - useful when typing feels heavy or when you want to capture a thought before it slips.",
+              },
+            },
+          ],
+        },
+      ],
+      bodyHtml: renderAiJournalBody(),
     },
     {
       route: "/about",

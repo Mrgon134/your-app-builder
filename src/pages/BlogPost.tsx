@@ -243,7 +243,7 @@ const getRecommendationSnapshot = (
       primaryLabel: "Start the free reveal",
       primaryHref: `/onboarding?source=blog_${post.slug}`,
       secondaryLabel: "See how Nuju works",
-      secondaryHref: "/install",
+      secondaryHref: "/ai-journal",
     };
   }
 
@@ -272,7 +272,7 @@ const getRecommendationSnapshot = (
       primaryLabel: "Start the free reveal",
       primaryHref: `/onboarding?source=blog_${post.slug}`,
       secondaryLabel: "See how Nuju works",
-      secondaryHref: "/install",
+      secondaryHref: "/ai-journal",
     };
   }
 
@@ -675,7 +675,7 @@ const BlogPost: React.FC = () => {
                     post.slug,
                     post.category,
                     "blog_recommendation_snapshot_secondary",
-                    "install",
+                    "product",
                   )
                 }
               >

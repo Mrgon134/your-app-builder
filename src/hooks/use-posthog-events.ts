@@ -25,7 +25,7 @@ export const usePostHogEvents = () => {
       slug: string,
       category: string,
       placement: string,
-      destination: "reveal" | "install" | "article",
+      destination: "reveal" | "install" | "article" | "product",
     ) => {
       posthog?.capture("recommendation_cta_click", {
         slug,

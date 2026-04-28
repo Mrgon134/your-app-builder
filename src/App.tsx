@@ -27,6 +27,7 @@ const MedicalDisclaimer = lazy(() => import("./pages/MedicalDisclaimer.tsx"));
 const Support = lazy(() => import("./pages/Support.tsx"));
 const Contact = lazy(() => import("./pages/Contact.tsx"));
 const About = lazy(() => import("./pages/About.tsx"));
+const AiJournal = lazy(() => import("./pages/AiJournal.tsx"));
 const NotFound = lazy(() => import("./pages/NotFound.tsx"));
 const AuthCallback = lazy(() => import("./pages/AuthCallback.tsx"));
 
@@ -72,6 +73,7 @@ const App = () => (
                   <Route path="/support" element={<Support />} />
                   <Route path="/contact" element={<Contact />} />
                   <Route path="/about" element={<About />} />
+                  <Route path="/ai-journal" element={<AiJournal />} />
                   <Route
                     path="/app"
                     element={
