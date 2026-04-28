@@ -24,6 +24,7 @@ import juOkay from "@/assets/ju-okay.webp";
 import juRough from "@/assets/ju-rough.webp";
 import { useGeoPricing } from "@/hooks/use-geo-pricing";
 import { usePostHogEvents } from "@/hooks/use-posthog-events";
+import { useTikTokPixel } from "@/hooks/use-tiktok-pixel";
 import { SUPABASE_ANON_KEY, SUPABASE_URL } from "@/integrations/supabase/client";
 import { useAuth } from "@/lib/auth";
 import { updateProfile } from "@/lib/api";
@@ -414,6 +415,7 @@ const OnboardingScreen: React.FC = () => {
   const location = useLocation();
   const geo = useGeoPricing();
   const events = usePostHogEvents();
+  const tiktok = useTikTokPixel();
   const { user } = useAuth();
 
   const query = useMemo(() => new URLSearchParams(location.search), [location.search]);
@@ -452,6 +454,7 @@ const OnboardingScreen: React.FC = () => {
   const abandonmentUserRef = useRef<string | null>(null);
   const processingStartedRef = useRef(false);
   const leadSyncKeyRef = useRef("");
+  const paywallTrackedKeyRef = useRef("");
 
   useEffect(() => {
     saveFunnelState(funnelState);
@@ -546,9 +549,16 @@ const OnboardingScreen: React.FC = () => {
     }
 
     if (funnelState.step === PAYWALL_STEP) {
-      events.trackFunnelPaywallShown(funnelState.answers.source, user?.id || null);
+      const selectedPlan = funnelState.answers.selectedPlan;
+      const paywallKey = `${funnelState.sessionId}:${funnelState.answers.source}`;
+
+      if (paywallTrackedKeyRef.current !== paywallKey) {
+        paywallTrackedKeyRef.current = paywallKey;
+        events.trackFunnelPaywallShown(funnelState.answers.source, user?.id || null);
+        tiktok.trackPaywallView(funnelState.answers.source, selectedPlan);
+      }
     }
-  }, [events, funnelState.answers, funnelState.step, reveal, user?.id]);
+  }, [events, funnelState.answers, funnelState.sessionId, funnelState.step, reveal, tiktok, user?.id]);
 
   useEffect(() => {
     if (funnelState.step !== PROCESSING_STEP || processingStartedRef.current) return;
@@ -735,6 +745,7 @@ const OnboardingScreen: React.FC = () => {
 
     setCheckoutLoading(plan);
     events.trackFunnelCheckoutStarted(plan, funnelState.answers.source, user?.id || null);
+    tiktok.trackCheckoutStarted(plan, funnelState.answers.source);
 
     let checkoutWindow: Window | null = null;
 

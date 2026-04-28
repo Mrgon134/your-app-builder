@@ -1,10 +1,11 @@
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { ArrowLeft, Check, Globe } from "lucide-react";
 
 import LifetimeScarcityMeter from "@/components/app/LifetimeScarcityMeter";
 import { useGeoPricing } from "@/hooks/use-geo-pricing";
 import { useLifetimeScarcity } from "@/hooks/use-lifetime-scarcity";
+import { useTikTokPixel } from "@/hooks/use-tiktok-pixel";
 import { PRICING_CONFIG } from "@/lib/config";
 import { useLang } from "@/lib/i18n";
 import { ROUTES } from "@/lib/routes";
@@ -26,11 +27,13 @@ const PricingScreen: React.FC<PricingScreenProps> = ({
 }) => {
   const { t } = useLang();
   const geo = useGeoPricing();
+  const tiktok = useTikTokPixel();
   const trial = getTrialStatus(trialStartedAt);
   const threeMonthSavings = Math.max(0, Math.round((1 - geo.rates.threeMonth / (geo.rates.weekly * 13)) * 100));
   const hasPremium = hasActivePremiumPlan(currentPlan);
   const { snapshot: lifetimeScarcity } = useLifetimeScarcity();
   const [selectedPlanId, setSelectedPlanId] = useState("three_month");
+  const paywallTrackedRef = useRef(false);
   const threeMonthTrialEnabled = PRICING_CONFIG.trial.threeMonthIntroOfferEnabled;
   const threeMonthTrialDays = PRICING_CONFIG.trial.threeMonthDays;
   const paywallBenefits = [
@@ -79,6 +82,13 @@ const PricingScreen: React.FC<PricingScreenProps> = ({
   );
 
   const selectedPlan = plans.find((plan) => plan.id === selectedPlanId) || plans[1];
+
+  useEffect(() => {
+    if (paywallTrackedRef.current) return;
+    paywallTrackedRef.current = true;
+    tiktok.trackPaywallView("app_pricing", selectedPlan.id);
+  }, [selectedPlan.id, tiktok]);
+
   const getCurrentState = (planId: string) => {
     if (planId === "lifetime_one_time") return currentPlan === "lifetime" || currentPlan === "lifetime_one_time";
     if (planId === "three_month") return currentPlan === "three_month";

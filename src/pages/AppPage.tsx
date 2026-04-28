@@ -4,6 +4,7 @@ import { useGeoPricing } from "@/hooks/use-geo-pricing";
 import { useLang } from "@/lib/i18n";
 import { useAuth } from "@/lib/auth";
 import { usePostHogEvents } from "@/hooks/use-posthog-events";
+import { useTikTokPixel } from "@/hooks/use-tiktok-pixel";
 import { hasActivePremiumPlan, hasPlusAccess, hasProAccess } from "@/lib/trial";
 import { PRICING_CONFIG } from "@/lib/config";
 import { isNative, isIOS } from "@/lib/platform";
@@ -65,6 +66,7 @@ const AppPage: React.FC = () => {
   const { user } = useAuth();
   const { country, couponCode } = useGeoPricing();
   const events = usePostHogEvents();
+  const tiktok = useTikTokPixel();
   const [profile, setProfile] = useState<ProfileRow | null>(null);
   const [screen, setScreen] = useState<Screen>(() => {
     try {
@@ -399,6 +401,8 @@ const AppPage: React.FC = () => {
         toast.info(t.payments_coming_soon || "This plan is not ready yet. Pick another way to keep Ju close for now.");
         return;
       }
+      tiktok.trackCheckoutStarted(plan, "app_pricing");
+
       // Open a temporary window during the click gesture so mobile browsers
       // do not block the checkout tab after the async fetch completes.
       checkoutWindow = window.open("about:blank", "_blank");
@@ -439,7 +443,7 @@ const AppPage: React.FC = () => {
       console.error("Checkout error:", err);
       toast.error(t.checkout_failed || "Checkout failed. Please try again.");
     }
-  }, [couponCode, country, displayName, navigateTo, t, user]);
+  }, [couponCode, country, displayName, navigateTo, t, tiktok, user]);
 
   useEffect(() => {
     if (!user || loading) return;

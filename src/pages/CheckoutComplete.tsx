@@ -3,6 +3,7 @@ import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { Loader2, LogOut, Mail, ShieldCheck } from "lucide-react";
 
 import SEOHead from "@/components/SEOHead";
+import { useTikTokPixel } from "@/hooks/use-tiktok-pixel";
 import { useAuth } from "@/lib/auth";
 import { saveAuthIntent } from "@/lib/auth-intent";
 import { claimCheckoutIntent, fetchCheckoutStatus, isCheckoutFlowError } from "@/lib/checkout-flow";
@@ -14,12 +15,14 @@ type FlowStatus = "loading" | "ready" | "claiming" | "error";
 const CheckoutComplete: React.FC = () => {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
+  const tiktok = useTikTokPixel();
   const { user, session, loading: authLoading, signOut } = useAuth();
   const [screenState, setScreenState] = useState<FlowStatus>("loading");
   const [error, setError] = useState("");
   const [statusPayload, setStatusPayload] = useState<Awaited<ReturnType<typeof fetchCheckoutStatus>> | null>(null);
   const [statusFallbackActive, setStatusFallbackActive] = useState(false);
   const claimStartedRef = useRef(false);
+  const subscribeTrackedRef = useRef(false);
 
   const intentId = searchParams.get("intent_id") || "";
   const dodoStatus = searchParams.get("status");
@@ -138,6 +141,23 @@ const CheckoutComplete: React.FC = () => {
       if (timer) window.clearTimeout(timer);
     };
   }, [checkoutEmail, dodoStatus, hasSuccessfulReturnSignal, intentId, paymentId, returnEmail, subscriptionId]);
+
+  useEffect(() => {
+    if (!statusPayload || !["paid", "claimed"].includes(statusPayload.status) || subscribeTrackedRef.current) {
+      return;
+    }
+
+    const trackingKey = `nuju-tiktok-subscribe:${statusPayload.intentId || intentId}`;
+    try {
+      if (window.sessionStorage.getItem(trackingKey)) return;
+      window.sessionStorage.setItem(trackingKey, "1");
+    } catch {
+      // Keep the conversion event working even if storage is unavailable.
+    }
+
+    subscribeTrackedRef.current = true;
+    tiktok.trackSubscribe(statusPayload.plan);
+  }, [intentId, statusPayload, tiktok]);
 
   useEffect(() => {
     const canClaimFromConfirmedStatus = Boolean(statusPayload && ["paid", "claimed"].includes(statusPayload.status));
