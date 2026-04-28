@@ -6,7 +6,25 @@
     <atom:link href="https://nuju.app/rss.xml" rel="self" type="application/rss+xml" />
     <description>Practical guides on journaling, mood tracking, and emotional wellness from the Nuju team.</description>
     <language>en</language>
-    <lastBuildDate>Sun, 26 Apr 2026 03:36:35 GMT</lastBuildDate>
+    <lastBuildDate>Tue, 28 Apr 2026 05:03:16 GMT</lastBuildDate>
+    <item>
+      <title>Why Therapists Recommend Mood Tracking to Their Patients</title>
+      <link>https://nuju.app/blog/mood-tracking-for-therapists</link>
+      <guid isPermaLink="true">https://nuju.app/blog/mood-tracking-for-therapists</guid>
+      <description>Mood tracking can make emotional patterns easier to discuss. Here&apos;s how to use mood data thoughtfully between therapy sessions.</description>
+      <category>Mental Wellness</category>
+      <pubDate>Tue, 28 Apr 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Why Journaling Between Therapy Sessions Helps You Show Up Prepared</title>
+      <link>https://nuju.app/blog/journaling-before-therapy</link>
+      <guid isPermaLink="true">https://nuju.app/blog/journaling-before-therapy</guid>
+      <description>Sessions are short. Journaling between appointments helps you remember what mattered, arrive prepared, and use the time more intentionally.</description>
+      <category>Mental Wellness</category>
+      <pubDate>Mon, 27 Apr 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
     <item>
       <title>How Journaling Can Help You Understand Your Relationships</title>
       <link>https://nuju.app/blog/journaling-for-relationships</link>
