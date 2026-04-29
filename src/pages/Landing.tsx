@@ -1,39 +1,38 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { motion, AnimatePresence } from "framer-motion";
-import { useGeoPricing } from "@/hooks/use-geo-pricing";
-import { usePostHogEvents } from "@/hooks/use-posthog-events";
-import { useTikTokPixel } from "@/hooks/use-tiktok-pixel";
-import { PRICING_CONFIG } from "@/lib/config";
-import { ROUTES } from "@/lib/routes";
+import { AnimatePresence, motion } from "framer-motion";
 import {
   ArrowRight,
   BrainCircuit,
   Check,
   ChevronDown,
-  Globe,
   Heart,
   Lock,
   Mic,
   PenLine,
-  Quote,
   Shield,
   Sparkles,
   Smartphone,
   TrendingUp,
   Zap,
 } from "lucide-react";
+
 import LifetimeScarcityMeter from "@/components/app/LifetimeScarcityMeter";
-import juMain from "@/assets/ju-main.webp";
-import juRough from "@/assets/ju-rough.webp";
-import juLow from "@/assets/ju-low.webp";
-import juOkay from "@/assets/ju-okay.webp";
-import juGood from "@/assets/ju-good.webp";
-import juGreat from "@/assets/ju-great.webp";
-import { useLifetimeScarcity } from "@/hooks/use-lifetime-scarcity";
 import HeroPatternPreview from "@/components/landing/HeroPatternPreview";
 import SEOHead from "@/components/SEOHead";
 import { Magnetic } from "@/components/ui/Magnetic";
+import { useGeoPricing } from "@/hooks/use-geo-pricing";
+import { useLifetimeScarcity } from "@/hooks/use-lifetime-scarcity";
+import { usePostHogEvents } from "@/hooks/use-posthog-events";
+import { useTikTokPixel } from "@/hooks/use-tiktok-pixel";
+import { PRICING_CONFIG } from "@/lib/config";
+import { ROUTES } from "@/lib/routes";
+import juGood from "@/assets/ju-good.webp";
+import juGreat from "@/assets/ju-great.webp";
+import juLow from "@/assets/ju-low.webp";
+import juMain from "@/assets/ju-main.webp";
+import juOkay from "@/assets/ju-okay.webp";
+import juRough from "@/assets/ju-rough.webp";
 
 const MOOD_SHOWCASE = [
   { label: "Rough", img: juRough, color: "#E8878C", line: "When everything feels too loud." },
@@ -41,136 +40,161 @@ const MOOD_SHOWCASE = [
   { label: "Okay", img: juOkay, color: "#FFB347", line: "When the weight is steady, not loud." },
   { label: "Good", img: juGood, color: "#95E1D3", line: "When softness is finally returning." },
   { label: "Great", img: juGreat, color: "#4ECDC4", line: "When you feel yourself again." },
-];
+] as const;
+
+const heroSignals = [
+  { label: "Private", value: "Your words stay yours", icon: Lock },
+  { label: "Fast", value: "A read in about a minute", icon: Zap },
+  { label: "Warm", value: "Clarity without clinical distance", icon: Heart },
+] as const;
+
+const heroEmotionalArc = [
+  { label: "Name it", copy: "Say the messy version", color: "#6C9BCF" },
+  { label: "Feel seen", copy: "Watch the pattern emerge", color: "#7C6EDB" },
+  { label: "Soften", copy: "Leave with one next step", color: "#4ECDC4" },
+] as const;
 
 const benefitRows = [
   {
-    eyebrow: "Outcome 01",
-    title: "Feel understood before you need a polished explanation.",
-    body: "Nuju turns a few honest answers into one readable emotional pattern, so the first reaction is relief instead of more effort.",
-    proof: "The Ju Gets You reveal is meant to land in one glance. That makes the first win emotional clarity, not homework.",
-    accent: "#E8878C",
-    icon: Heart,
+    eyebrow: "Start softer",
+    title: "No blank page to fight.",
+    body: "Say the messy version. Ju helps turn it into something you can hold.",
+    proof: "A gentle read in the first minute.",
+    accent: "#6C9BCF",
+    icon: Mic,
     image: juLow,
-    imageAlt: "Ju feeling low",
-    visualEyebrow: "What the reveal gives back",
-    visualLine: "\"You are carrying more than you let people see. That is why the moment feels heavier than it looks from the outside.\"",
-    chips: ["One clear read", "Under 1 minute"],
+    imageAlt: "Ju holding a low mood moment",
   },
   {
-    eyebrow: "Outcome 02",
-    title: "Get clarity that feels warm, not clinical.",
-    body: "The tone is gentle on purpose. Nuju is built to help you soften enough to keep going, not feel analyzed by a clever machine.",
-    proof: "The first read should feel safe before it becomes useful. That is why Ju starts with resonance before advice.",
+    eyebrow: "Feel seen",
+    title: "A read that sounds like you.",
+    body: "Nuju reflects what feels heavy and what may be underneath it.",
+    proof: "Clear enough to land. Soft enough to trust.",
     accent: "#7C6EDB",
-    icon: Shield,
+    icon: BrainCircuit,
     image: juMain,
-    imageAlt: "Ju mascot",
-    visualEyebrow: "Why it feels easier to trust",
-    visualLine: "\"Warm first. Honest second. That is what makes the deeper support feel believable instead of generic.\"",
-    chips: ["Private by default", "No performance required"],
+    imageAlt: "Ju mascot giving a gentle reflection",
   },
   {
-    eyebrow: "Outcome 03",
-    title: "Leave with one honest next step instead of vague comfort.",
-    body: "After the reveal, Ju points toward the kind of support that fits the moment, whether you need help naming it, calming it, or staying with it.",
-    proof: "The reveal does not stop at reflection. It gives the next move enough shape that coming back later still feels easy.",
+    eyebrow: "Stay close",
+    title: "One small step after the read.",
+    body: "Keep writing, speak it out, or follow the next gentle move.",
+    proof: "No pressure. Just a quieter way back to yourself.",
     accent: "#4ECDC4",
     icon: TrendingUp,
     image: juGreat,
     imageAlt: "Ju feeling great",
-    visualEyebrow: "What happens after the click",
-    visualLine: "\"Name it. Soften it. Stay with it. The first step is clearer when the pattern is not hidden anymore.\"",
-    chips: ["A next step", "Easy to return to"],
+  },
+] as const;
+
+const storyMoments = [
+  {
+    phase: "01",
+    title: "The messy version is enough.",
+    body: "Start with the sentence you would normally keep inside. It can be fragmented, tired, or hard to explain.",
+    sample: "I feel tangled today. Everything feels too loud and I just want to disappear for a bit.",
+    signal: "Overstimulated",
+    metric: "Low energy, high noise",
+    reflection: "Ju hears a nervous system asking for quiet, not a person failing to cope.",
+    action: "Start with two minutes of silence.",
+    accent: "#6C9BCF",
+    icon: Mic,
+    bars: [36, 72, 48, 84, 58, 74],
+  },
+  {
+    phase: "02",
+    title: "Ju reads between the lines.",
+    body: "A warm read appears without making you explain everything perfectly.",
+    sample: "The heaviness is not nothing. It sounds like your body has been holding too much input for too long.",
+    signal: "Pattern forming",
+    metric: "Emotion tagged gently",
+    reflection: "Your words are enough. Ju gives them back with a softer shape.",
+    action: "Name the loudest feeling first.",
+    accent: "#7C6EDB",
+    icon: BrainCircuit,
+    bars: [42, 50, 78, 62, 88, 70],
+  },
+  {
+    phase: "03",
+    title: "A pattern appears without pressure.",
+    body: "Nuju quietly notices what keeps coming back.",
+    sample: "This kind of fog keeps showing up after days where you keep saying yes while needing quiet.",
+    signal: "Recurring arc",
+    metric: "Tuesday spikes noticed",
+    reflection: "The day starts to feel less random when the pattern has a name.",
+    action: "Protect one low-input hour.",
+    accent: "#4ECDC4",
+    icon: TrendingUp,
+    bars: [34, 46, 66, 92, 54, 76],
+  },
+  {
+    phase: "04",
+    title: "The next step feels small enough to take.",
+    body: "End with one soft move that feels small enough to try.",
+    sample: "You do not need to solve the whole day. Lower the noise first, then come back to the story.",
+    signal: "Relief direction",
+    metric: "One soft move",
+    reflection: "You do not have to solve the whole day. Start with one breath.",
+    action: "Drop your shoulders and breathe once.",
+    accent: "#FFB347",
+    icon: Sparkles,
+    bars: [48, 58, 64, 74, 86, 92],
   },
 ] as const;
 
 const quickFeatures = [
   {
     title: "Voice or text check-ins",
-    body: "Say the messy version out loud, or type quietly when you need more control.",
+    body: "Start with whatever feels easiest in the moment.",
     icon: Mic,
   },
   {
     title: "Personal reveal",
-    body: "Ju reflects the pattern it hears beneath the noise, in language meant to feel like yours.",
+    body: "A short reflection that helps the feeling make sense.",
     icon: BrainCircuit,
   },
   {
     title: "Mood-aware companion",
-    body: "Ju changes with the moment, so support does not feel like the same script every day.",
+    body: "Ju changes with the moment instead of repeating the same script.",
     icon: Heart,
   },
   {
     title: "Private by default",
-    body: "Your entries, reveal, and check-ins stay attached to your account and your choices.",
+    body: "Your entries and emotional reads stay tied to your account and your choices.",
     icon: Lock,
   },
   {
     title: "Fast enough for hard days",
-    body: "Begin before the spiral grows. A few taps is enough to get Ju listening.",
+    body: "A few taps is enough to get support started before the spiral grows.",
     icon: Zap,
   },
   {
-    title: "Support that stays close",
-    body: "Keep Ju on your home screen so the next heavy moment does not start from zero.",
+    title: "Close on every screen",
+    body: "Install Nuju and keep the support nearby when the day gets loud.",
     icon: Smartphone,
   },
 ] as const;
 
 const whatYouGetItems = [
   {
-    title: "Free reveal, then private writing",
-    body: "You can start with the Ju Gets You reveal and keep writing privately without a card.",
+    title: "Free reveal first",
+    body: "Start with the Ju Gets You reveal and decide after the read lands.",
     icon: Sparkles,
   },
   {
-    title: "One readable emotional pattern",
-    body: "Nuju reflects what it notices in plain language that clicks fast, even when your thoughts are messy.",
+    title: "Private writing",
+    body: "Keep a quiet place for the feelings that are not ready for anyone else.",
     icon: PenLine,
+  },
+  {
+    title: "One readable pattern",
+    body: "See the emotional throughline without needing to self-diagnose.",
+    icon: BrainCircuit,
   },
   {
     title: "A next-step direction",
-    body: "The reveal points you toward the kind of support that fits the moment instead of leaving you with a vague summary.",
+    body: "Know what would help first instead of leaving with vague comfort.",
     icon: TrendingUp,
-  },
-  {
-    title: "A path if you want Ju to stay",
-    body: "If the fit is real, you can keep Ju close weekly, for 3 months, or with a lifetime unlock after the reveal.",
-    icon: Shield,
-  },
-] as const;
-
-const socialProofSignals = [
-  "Feels personal quickly",
-  "The reveal is the moment",
-  "Easy to come back on hard days",
-] as const;
-
-const heroEmotionalArc = [
-  { label: "Heavy", copy: "Say the messy part", color: "#6C9BCF" },
-  { label: "Seen", copy: "Feel the read land", color: "#7C6EDB" },
-  { label: "Softer", copy: "Know what helps first", color: "#4ECDC4" },
-] as const;
-
-const secondaryProofStats = [
-  {
-    value: "1 clear read",
-    title: "An emotional read you can feel fast",
-    body: "The first win is seeing your inner state reflected back in a way that clicks immediately.",
-    icon: PenLine,
-  },
-  {
-    value: "< 1 minute",
-    title: "Fast enough for the moment you need it",
-    body: "When support starts quickly, it is much easier to come back before things spiral bigger.",
-    icon: TrendingUp,
-  },
-  {
-    value: "1 next step",
-    title: "Support that tells you where to begin",
-    body: "After the reveal, Ju keeps helping you name, calm, or stay with what is there instead of leaving you alone with it.",
-    icon: BrainCircuit,
   },
 ] as const;
 
@@ -259,6 +283,29 @@ const comparisonReadLinks = [
   },
 ] as const;
 
+const landingFaqs = [
+  {
+    q: "Do I need to pay before I can use Nuju?",
+    a: "No. You start with the Ju Gets You reveal first. If the fit feels real after that, you can keep Ju close with weekly, 3-month, or lifetime access.",
+  },
+  {
+    q: "What exactly happens in the reveal?",
+    a: "You answer a few quick prompts, then Ju reflects back the emotional pattern it notices, why that read fits, and what kind of support would help first.",
+  },
+  {
+    q: "Is my data private?",
+    a: "Yes. Nuju is built around privacy. Your journal data is stored securely, protected with row-level access controls, and we do not sell your personal data.",
+  },
+  {
+    q: "Why does Nuju ask for my name and email so early?",
+    a: "Because the reveal is meant to feel personal. Your name helps the read feel like it belongs to you, and your email keeps that support attached to the same account if you decide to continue.",
+  },
+  {
+    q: "What plans are available if I want Ju to stay with me?",
+    a: "You can continue weekly, choose a 3-month subscription, or unlock lifetime access with one payment.",
+  },
+] as const;
+
 const Landing: React.FC = () => {
   const navigate = useNavigate();
   const geo = useGeoPricing();
@@ -266,6 +313,9 @@ const Landing: React.FC = () => {
   const { snapshot: lifetimeScarcity } = useLifetimeScarcity();
   const { trackLandingView, trackFunnelStart, trackPricingView } = usePostHogEvents();
   const [showStickyCta, setShowStickyCta] = useState(false);
+  const [heroPointer, setHeroPointer] = useState({ x: 50, y: 34 });
+  const [activeStoryIndex, setActiveStoryIndex] = useState(0);
+  const activeStory = storyMoments[activeStoryIndex] ?? storyMoments[0];
   const threeMonthTrialEnabled = PRICING_CONFIG.trial.threeMonthIntroOfferEnabled;
   const threeMonthTrialDays = PRICING_CONFIG.trial.threeMonthDays;
 
@@ -279,7 +329,7 @@ const Landing: React.FC = () => {
   }, [trackLandingView, ttk]);
 
   useEffect(() => {
-    const onScroll = () => setShowStickyCta(window.scrollY > 600);
+    const onScroll = () => setShowStickyCta(window.scrollY > 560);
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
@@ -309,6 +359,14 @@ const Landing: React.FC = () => {
     hasTrackedPricingViewRef.current = true;
     trackPricingView(null);
     ttk.trackPricingView();
+  };
+
+  const handleHeroPointer = (event: React.PointerEvent<HTMLElement>) => {
+    const rect = event.currentTarget.getBoundingClientRect();
+    setHeroPointer({
+      x: Math.round(((event.clientX - rect.left) / rect.width) * 100),
+      y: Math.round(((event.clientY - rect.top) / rect.height) * 100),
+    });
   };
 
   const pricingCards = [
@@ -359,75 +417,17 @@ const Landing: React.FC = () => {
     },
   ] as const;
 
-  const emotionalMoments = benefitRows.map((benefit) => ({
-    title: benefit.title,
-    body: benefit.body,
-    icon: benefit.icon,
-  }));
-
-  const differencePoints = benefitRows.map((benefit) => ({
-    title: benefit.visualEyebrow,
-    body: benefit.proof,
-  }));
-
-  const steps = [
-    {
-      title: "Tell Ju what has been heavy",
-      body: "The opening prompts stay light on purpose. They are there to understand what feels hard, not make you perform self-awareness first.",
-      icon: Mic,
-    },
-    {
-      title: "See the Ju Gets You reveal",
-      body: "You get one clear read on what Ju notices, why it fits, and what kind of support would help first.",
-      icon: Heart,
-    },
-    {
-      title: "Choose how closely Ju stays with you",
-      body: "If the reveal feels real, decide whether you want weekly, 3-month, or lifetime access.",
-      icon: TrendingUp,
-    },
-  ];
-
-  const proofCards = quickFeatures.slice(0, 4).map((feature) => ({
-    title: feature.title,
-    body: feature.body,
-    icon: feature.icon,
-  }));
-
-  const landingFaqs = [
-    {
-      q: "Do I need to pay before I can use Nuju?",
-      a: "No. You start with the Ju Gets You reveal first. If the fit feels real after that, you can keep Ju close with weekly, 3-month, or lifetime access.",
-    },
-    {
-      q: "What exactly happens in the reveal?",
-      a: "You answer a few quick prompts, then Ju reflects back the emotional pattern it notices, why that read fits, and what kind of support would help first.",
-    },
-    {
-      q: "Is my data private?",
-      a: "Yes. Nuju is built around privacy. Your journal data is stored securely, protected with row-level access controls, and we do not sell your personal data.",
-    },
-    {
-      q: "Why does Nuju ask for my name and email so early?",
-      a: "Because the reveal is meant to feel personal. Your name helps the read feel like it belongs to you, and your email keeps that support attached to the same account if you decide to continue.",
-    },
-    {
-      q: "What plans are available if I want Ju to stay with me?",
-      a: "You can continue weekly, choose a 3-month subscription, or unlock lifetime access with one payment.",
-    },
-  ];
-
   const landingFaqSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    "mainEntity": landingFaqs.map(faq => ({
+    "mainEntity": landingFaqs.map((faq) => ({
       "@type": "Question",
       "name": faq.q,
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": faq.a
-      }
-    }))
+        "text": faq.a,
+      },
+    })),
   };
 
   const howToSchema = {
@@ -439,19 +439,19 @@ const Landing: React.FC = () => {
       {
         "@type": "HowToStep",
         "name": "Share what feels heavy",
-        "text": "Answer a few gentle prompts so Ju can understand what has been hard to hold alone."
+        "text": "Answer a few gentle prompts so Ju can understand what has been hard to hold alone.",
       },
       {
         "@type": "HowToStep",
         "name": "See the Ju Gets You reveal",
-        "text": "Get one personal read on what Ju notices, why it fits, and what support would help first."
+        "text": "Get one personal read on what Ju notices, why it fits, and what support would help first.",
       },
       {
         "@type": "HowToStep",
         "name": "Choose whether Ju stays close",
-        "text": "Keep the support going only if the reveal feels like a genuine fit for you."
-      }
-    ]
+        "text": "Keep the support going only if the reveal feels like a genuine fit for you.",
+      },
+    ],
   };
 
   const geoPricingNote = geo.hasLocalizedDisplay
@@ -461,7 +461,15 @@ const Landing: React.FC = () => {
       : null;
 
   return (
-    <div className="min-h-screen bg-background">
+    <div
+      className="min-h-screen bg-[#FAF9F6] text-[#3f3a52] dark:bg-background dark:text-foreground"
+      style={
+        {
+          "--foreground": "252 18% 27%",
+          "--muted-foreground": "246 8% 48%",
+        } as React.CSSProperties
+      }
+    >
       <SEOHead
         title="Nuju — AI Journal App for Mood Tracking & Emotional Clarity"
         description="Nuju is the AI journal app that turns hard-to-explain feelings into a private emotional read, gentle mood patterns, and a soft next step. Start the free Ju Gets You reveal."
@@ -470,499 +478,424 @@ const Landing: React.FC = () => {
       />
       <script type="application/ld+json">{JSON.stringify(howToSchema)}</script>
       <script type="application/ld+json">{JSON.stringify(landingFaqSchema)}</script>
-      <nav className="sticky top-0 z-50 border-b border-border/60 bg-background/78 backdrop-blur-xl">
-        <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4">
-          <div className="flex items-center gap-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-primary/10 shadow-inner">
-              <img src={juMain} alt="Ju, the Nuju mascot" className="h-7 w-7 object-contain" width={28} height={28} />
-            </div>
-            <div>
-              <p className="font-serif text-xl font-bold text-foreground">Nuju</p>
-              <p className="text-xs font-medium text-muted-foreground">A softer way to feel understood</p>
-            </div>
+
+      <nav className="fixed inset-x-0 top-4 z-50 flex justify-center px-4 sm:top-6">
+        <div className="flex h-14 w-full max-w-[620px] items-center justify-between rounded-full border border-white/70 bg-white/72 px-2.5 shadow-[0_18px_50px_-32px_rgba(28,25,23,0.45)] backdrop-blur-2xl dark:border-white/10 dark:bg-background/75">
+          <Link to="/" className="flex items-center gap-2.5 pl-2" aria-label="Nuju home">
+            <span className="flex h-9 w-9 items-center justify-center rounded-full bg-[#F6F2FF] dark:bg-white/8">
+              <img src={juMain} alt="" className="h-6 w-6 object-contain" width={24} height={24} />
+            </span>
+            <span className="block text-[17px] font-semibold text-foreground">
+              Nuju
+            </span>
+          </Link>
+
+          <div className="hidden items-center gap-6 text-sm font-semibold text-muted-foreground md:flex">
+            <button onClick={scrollToHowItWorks} className="transition hover:text-foreground">Approach</button>
+            <button onClick={scrollToPricing} className="transition hover:text-foreground">Plans</button>
+            <a href="#faq" className="transition hover:text-foreground">FAQ</a>
           </div>
-          <div className="flex items-center gap-2">
-            <button
-              onClick={scrollToPricing}
-              className="hidden rounded-full border border-border bg-card px-4 py-2 text-sm font-semibold text-foreground transition-all hover:border-primary/30 hover:bg-primary/[0.04] sm:inline-flex"
-            >
-              See plans
-            </button>
-            <button
-              onClick={() => startOnboarding()}
-              className="rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground transition-all hover:-translate-y-0.5 hover:shadow-lg hover:shadow-primary/25 active:scale-[0.97]"
-            >
-              Start reveal
-            </button>
-          </div>
+
+          <button
+            onClick={() => startOnboarding()}
+            className="nuju-brand-button h-10 rounded-full px-5 text-sm font-semibold transition hover:-translate-y-0.5 active:scale-[0.98]"
+          >
+            Try Nuju free
+          </button>
         </div>
       </nav>
 
-      <section data-testid="landing-hero" className="relative overflow-hidden px-4 pb-24 pt-14 sm:pt-20">
-        {/* Aurora blobs - animated mood-colored gradient clouds */}
-        <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
-          <div className="absolute inset-0 hero-grid-bg opacity-60" />
-          <div className="aurora-blob animate-aurora-a left-[-10%] top-[-8%] h-[34rem] w-[34rem] bg-[radial-gradient(circle,rgba(124,110,219,0.55),transparent_65%)]" />
-          <div className="aurora-blob animate-aurora-b right-[-12%] top-[4%] h-[30rem] w-[30rem] bg-[radial-gradient(circle,rgba(78,205,196,0.42),transparent_65%)]" />
-          <div className="aurora-blob animate-aurora-c left-[30%] top-[40%] h-[26rem] w-[26rem] bg-[radial-gradient(circle,rgba(255,179,71,0.28),transparent_65%)]" />
-          <div className="aurora-blob animate-aurora-a right-[10%] top-[55%] h-[22rem] w-[22rem] bg-[radial-gradient(circle,rgba(232,135,140,0.28),transparent_65%)]" />
+      <section
+        data-testid="landing-hero"
+        onPointerMove={handleHeroPointer}
+        style={
+          {
+            "--hero-x": `${heroPointer.x}%`,
+            "--hero-y": `${heroPointer.y}%`,
+          } as React.CSSProperties
+        }
+        className="relative isolate overflow-hidden px-4 pb-16 pt-28 sm:px-6 sm:pb-20 sm:pt-36"
+      >
+        <div className="absolute inset-0 -z-10" aria-hidden="true">
+          <div className="absolute inset-0 hero-ambient-field" />
+          <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(250,249,246,0.34),rgba(250,249,246,0.86)_64%,#FAF9F6)] dark:bg-[linear-gradient(180deg,rgba(15,14,20,0.58),rgba(15,14,20,0.9)_70%,hsl(var(--background)))]" />
+          <div className="absolute inset-0 nuju-grain opacity-[0.035]" />
         </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="relative mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-[1.05fr_0.95fr]"
-        >
-          <div className="text-left">
-            <Magnetic>
-              <motion.div
-                whileHover={{ scale: 1.04 }}
-                onClick={() => startOnboarding()}
-                className="group mb-7 inline-flex cursor-pointer items-center gap-2 rounded-full border border-primary/20 bg-white/70 px-4 py-2 text-xs font-semibold text-foreground/85 shadow-[0_8px_24px_-12px_rgba(124,110,219,0.35)] backdrop-blur-xl transition-all hover:border-primary/40 hover:bg-white/90 dark:bg-white/5 dark:hover:bg-white/10"
-              >
-                <span className="relative flex h-2 w-2">
-                  <span className="absolute inset-0 animate-ping rounded-full bg-[#4ECDC4]/70" />
-                  <span className="relative h-2 w-2 rounded-full bg-[#4ECDC4]" />
-                </span>
-                <span className="tracking-wide uppercase text-[11px]">Start with the Ju Gets You reveal</span>
-                <ArrowRight className="h-3.5 w-3.5 text-primary transition-transform group-hover:translate-x-0.5" />
-              </motion.div>
-            </Magnetic>
+        <div className="mx-auto max-w-7xl">
+          <motion.div
+            initial={{ opacity: 0, y: 22 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+            className="mx-auto max-w-5xl text-center"
+          >
+            <div className="inline-flex items-center gap-2 rounded-full border border-black/[0.06] bg-white/70 px-3.5 py-1.5 text-xs font-semibold text-muted-foreground shadow-[0_12px_34px_-26px_rgba(28,25,23,0.45)] backdrop-blur-xl dark:border-white/10 dark:bg-white/6">
+              <span className="h-1.5 w-1.5 rounded-full bg-[#4ECDC4]" />
+              Messy feeling in, warm read out
+            </div>
 
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-              className="max-w-3xl text-balance font-serif text-5xl font-bold leading-[1.02] tracking-tight text-foreground sm:text-6xl lg:text-[5.25rem]"
-            >
-              When your mind feels loud,
-              <br />
-              <span className="text-shimmer italic">Ju makes it feel understood.</span>
-            </motion.h1>
+            <h1 className="mx-auto mt-8 max-w-5xl text-5xl font-semibold leading-[0.98] text-foreground sm:text-7xl lg:text-[92px]">
+              Name what you feel. Even when you can't.
+            </h1>
 
-            <motion.p
-              initial={{ opacity: 0, y: 18 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.16, duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
-              className="mt-6 max-w-2xl text-sm font-semibold uppercase tracking-[0.18em] text-primary"
-            >
-              For the moments you cannot explain cleanly yet
-            </motion.p>
+            <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-muted-foreground sm:text-xl sm:leading-9">
+              For the moments you cannot explain cleanly yet, Nuju turns the messy version into a warm read, a clearer pattern, and one gentle next step. No perfect words needed.
+            </p>
 
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-              className="mt-6 max-w-xl text-pretty text-lg leading-8 text-muted-foreground sm:text-xl"
-            >
-              Answer a few honest prompts. Ju reflects the pattern underneath the noise, then gives you one soft next step so you do not have to force clarity from a blank page.
-            </motion.p>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-              className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center"
-            >
+            <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row sm:items-center">
               <Magnetic>
                 <button
                   onClick={() => startOnboarding()}
-                  className="group relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-full bg-[linear-gradient(135deg,#8A7CE8_0%,#7C6EDB_45%,#6F5FE8_100%)] px-8 py-4 text-base font-semibold text-white shadow-[0_16px_40px_-12px_rgba(124,110,219,0.55)] transition-all hover:-translate-y-0.5 hover:shadow-[0_20px_55px_-12px_rgba(124,110,219,0.7)] active:scale-[0.97]"
+                  className="nuju-brand-button group inline-flex h-14 items-center justify-center gap-2 rounded-full px-7 text-base font-semibold transition hover:-translate-y-0.5 active:scale-[0.98]"
                 >
-                  <span className="absolute inset-0 bg-[linear-gradient(120deg,transparent_30%,rgba(255,255,255,0.4)_50%,transparent_70%)] bg-[length:200%_100%] opacity-0 transition-opacity duration-500 group-hover:opacity-100 group-hover:animate-[gradient-flow_1.5s_ease]" />
-                  <span className="relative">Start the Ju Gets You reveal</span>
-                  <ArrowRight className="relative h-5 w-5 transition-transform group-hover:translate-x-1" />
+                  Start the Ju Gets You reveal
+                  <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
                 </button>
               </Magnetic>
-              <Magnetic>
-                <button
-                  onClick={scrollToHowItWorks}
-                  className="inline-flex items-center justify-center gap-2 rounded-full border border-border/70 bg-white/60 px-6 py-4 text-sm font-semibold text-foreground/90 backdrop-blur-md transition-all hover:border-primary/30 hover:bg-white/90 active:scale-[0.97] dark:bg-white/5 dark:hover:bg-white/10"
-                >
-                  See how it works
-                </button>
-              </Magnetic>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.55, duration: 1 }}
-              className="mt-5 flex flex-wrap items-center gap-x-5 gap-y-2 text-xs font-medium text-muted-foreground"
-            >
-              <span className="inline-flex items-center gap-1.5">
-                <span className="h-1.5 w-1.5 rounded-full bg-[#4ECDC4]" />
-                60-second reveal
-              </span>
-              <span className="inline-flex items-center gap-1.5">
-                <Lock className="h-3.5 w-3.5" />
-                Private by default
-              </span>
-              <span className="inline-flex items-center gap-1.5">
-                <Heart className="h-3.5 w-3.5 text-[#E8878C]" />
-                Warm, never clinical
-              </span>
-            </motion.div>
-          </div>
-
-          {/* Hero visual - preview card wrapped with floating mood Ju orbs */}
-          <motion.div
-             initial={{ opacity: 0, scale: 0.95 }}
-             animate={{ opacity: 1, scale: 1 }}
-             transition={{ delay: 0.3, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-             className="relative"
-          >
-            {/* Floating mood orbs (desktop only) */}
-            <div className="pointer-events-none absolute inset-0 hidden lg:block" aria-hidden="true">
-              <motion.div
-                initial={{ opacity: 0, scale: 0.6 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.8, duration: 0.6, type: "spring" }}
-                className="absolute -left-10 top-8 animate-ju-orbit-a"
+              <button
+                onClick={scrollToHowItWorks}
+                className="inline-flex h-14 items-center justify-center rounded-full border border-black/[0.08] bg-white/72 px-6 text-sm font-semibold text-foreground backdrop-blur-xl transition hover:bg-white active:scale-[0.98] dark:border-white/10 dark:bg-white/6 dark:hover:bg-white/10"
               >
-                <div className="relative flex h-20 w-20 items-center justify-center rounded-full bg-white shadow-[0_20px_40px_-12px_rgba(108,155,207,0.55)] ring-4 ring-[#6C9BCF]/15">
-                  <div className="absolute inset-0 rounded-full bg-[#6C9BCF]/20 blur-xl" />
-                  <img src={juLow} alt="" className="relative h-14 w-14 object-contain" />
-                </div>
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, scale: 0.6 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 1.0, duration: 0.6, type: "spring" }}
-                className="absolute -right-8 top-20 animate-ju-orbit-b"
-              >
-                <div className="relative flex h-16 w-16 items-center justify-center rounded-full bg-white shadow-[0_16px_36px_-12px_rgba(78,205,196,0.55)] ring-4 ring-[#4ECDC4]/15">
-                  <div className="absolute inset-0 rounded-full bg-[#4ECDC4]/20 blur-xl" />
-                  <img src={juGreat} alt="" className="relative h-11 w-11 object-contain" />
-                </div>
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, scale: 0.6 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 1.2, duration: 0.6, type: "spring" }}
-                className="absolute -left-14 bottom-6 animate-ju-orbit-c"
-              >
-                <div className="relative flex h-14 w-14 items-center justify-center rounded-full bg-white shadow-[0_14px_30px_-12px_rgba(255,179,71,0.55)] ring-4 ring-[#FFB347]/15">
-                  <div className="absolute inset-0 rounded-full bg-[#FFB347]/20 blur-xl" />
-                  <img src={juOkay} alt="" className="relative h-10 w-10 object-contain" />
-                </div>
-              </motion.div>
+                Watch how it works
+              </button>
             </div>
 
-             <HeroPatternPreview />
-
-             <motion.div
-              initial={{ opacity: 0, y: 18 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.95, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-              className="relative mx-auto mt-5 overflow-hidden rounded-[1.75rem] border border-white/70 bg-white/72 p-3 shadow-[0_20px_55px_-34px_rgba(80,63,153,0.55)] backdrop-blur-xl dark:border-white/10 dark:bg-white/8"
-             >
-              <div className="absolute left-8 right-8 top-8 h-px bg-[linear-gradient(90deg,rgba(108,155,207,0.08),rgba(124,110,219,0.55),rgba(78,205,196,0.08))]" aria-hidden />
-              <div className="grid gap-2 sm:grid-cols-3">
-                {heroEmotionalArc.map((item, index) => (
-                  <motion.div
-                    key={item.label}
-                    initial={{ opacity: 0, y: 12 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 1.05 + index * 0.1, duration: 0.45 }}
-                    className="relative rounded-[1.25rem] border border-border/50 bg-background/78 px-4 py-3 text-left dark:border-white/10 dark:bg-white/6"
+            <div className="mx-auto mt-8 hidden max-w-3xl gap-2 sm:grid sm:grid-cols-3">
+              {heroSignals.map((signal) => {
+                const Icon = signal.icon;
+                return (
+                  <div
+                    key={signal.label}
+                    className="rounded-full border border-black/[0.06] bg-white/54 px-4 py-3 backdrop-blur-xl dark:border-white/10 dark:bg-white/5"
                   >
-                    <span
-                      className="mb-3 flex h-3 w-3 rounded-full shadow-[0_0_18px_currentColor]"
-                      style={{ backgroundColor: item.color, color: item.color }}
-                    />
-                    <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-muted-foreground">{item.label}</p>
-                    <p className="mt-1 text-sm font-semibold text-foreground">{item.copy}</p>
-                  </motion.div>
-                ))}
-              </div>
-             </motion.div>
+                    <div className="flex items-center justify-center gap-2 text-sm font-semibold text-foreground">
+                      <Icon className="h-4 w-4 text-primary" />
+                      <span>{signal.label}</span>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
           </motion.div>
-        </motion.div>
-      </section>
 
-      {/* Social proof strip - right under hero */}
-      <section data-testid="landing-proof-bar" className="relative px-4 pb-14">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.6 }}
-          className="mx-auto flex max-w-5xl flex-col gap-4 rounded-[2rem] border border-border/50 bg-card/80 px-6 py-5 shadow-[0_12px_32px_-16px_rgba(0,0,0,0.12)] backdrop-blur-xl lg:flex-row lg:items-center lg:justify-between"
-        >
-          <div className="flex -space-x-2">
-            {[juRough, juLow, juOkay, juGood, juGreat].map((src, i) => (
-              <div
-                key={i}
-                className="h-8 w-8 rounded-full bg-white ring-2 ring-white shadow-sm overflow-hidden"
-                style={{ zIndex: 5 - i }}
-              >
-                <img src={src} alt="" className="h-full w-full object-contain" />
-              </div>
-            ))}
-          </div>
-          <div className="flex items-center gap-1 text-[#FFB347]">
-            {[0,1,2,3,4].map((i) => (
-              <svg key={i} viewBox="0 0 20 20" className="h-4 w-4 fill-current">
-                <path d="M10 1.5l2.6 5.3 5.9.9-4.3 4.2 1 5.8L10 15l-5.3 2.8 1-5.8L1.4 7.7l5.9-.9z" />
-              </svg>
-            ))}
-          </div>
-          <p className="text-sm font-medium text-foreground/85">
-            The moment that matters: <span className="font-bold text-foreground">"It noticed what I could not name."</span>
-          </p>
-          <div className="flex flex-wrap gap-2">
-            {["60-second reveal", "No credit card to start", "Private by default"].map((item) => (
-              <span
-                key={item}
-                className="inline-flex items-center rounded-full border border-border/60 bg-background/70 px-3 py-1.5 text-xs font-semibold text-foreground/80"
-              >
-                {item}
-              </span>
-            ))}
-          </div>
-        </motion.div>
-      </section>
-
-      {/* Meet Ju - mood showcase */}
-      <motion.section
-        data-testid="landing-visual-strip"
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-100px" }}
-        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-        className="relative overflow-hidden px-4 py-24"
-      >
-        <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
-          <div className="aurora-blob animate-aurora-c left-[10%] top-[20%] h-80 w-80 bg-[radial-gradient(circle,rgba(149,225,211,0.35),transparent_65%)]" />
-          <div className="aurora-blob animate-aurora-b right-[10%] bottom-[10%] h-80 w-80 bg-[radial-gradient(circle,rgba(232,135,140,0.25),transparent_65%)]" />
+          <motion.div
+            initial={{ opacity: 0, y: 28, scale: 0.98 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{ delay: 0.12, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            className="relative mx-auto mt-10 max-w-3xl sm:mt-14"
+          >
+            <HeroPatternPreview />
+          </motion.div>
         </div>
 
-        <div className="relative mx-auto max-w-6xl">
-          <div className="mx-auto max-w-2xl text-center">
-            <p className="text-sm font-semibold uppercase tracking-[0.22em] text-primary">Meet Ju in the moment</p>
-            <h2 className="mt-4 font-serif text-4xl font-bold leading-tight text-foreground sm:text-5xl">
-              See Ju across the moods.
-            </h2>
-            <p className="mt-5 text-lg leading-8 text-muted-foreground">
-              Five tender expressions. One companion that changes with how you feel, so support never arrives the same way every time.
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.35, duration: 0.65 }}
+          className="relative mx-auto mt-12 grid max-w-5xl gap-3 sm:grid-cols-3"
+        >
+          {heroEmotionalArc.map((item, index) => (
+            <div
+              key={item.label}
+              className="group rounded-[18px] border border-black/[0.06] bg-white/58 px-4 py-4 shadow-[0_18px_48px_-34px_rgba(0,0,0,0.5)] backdrop-blur-xl dark:border-white/10 dark:bg-white/5"
+            >
+              <div className="flex items-center gap-3">
+                <span
+                  className="flex h-8 w-8 items-center justify-center rounded-full text-xs font-bold text-white"
+                  style={{ backgroundColor: item.color }}
+                >
+                  {index + 1}
+                </span>
+                <div>
+                  <p className="text-sm font-semibold text-foreground">{item.label}</p>
+                  <p className="text-sm text-muted-foreground">{item.copy}</p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </motion.div>
+      </section>
+
+      <section data-testid="landing-proof-bar" className="px-4 pb-12 sm:px-6">
+        <div className="nuju-neu-surface mx-auto grid max-w-6xl gap-3 rounded-[24px] p-3 backdrop-blur-2xl md:grid-cols-3">
+          {["Feel seen before you pay", "No credit card to start", "Made for low-energy days"].map((signal) => (
+            <div key={signal} className="flex items-center gap-3 rounded-[18px] px-4 py-3">
+              <Check className="h-5 w-5 text-[#4ECDC4]" />
+              <span className="text-sm font-semibold text-foreground">{signal}</span>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <motion.section
+        data-testid="landing-visual-strip"
+        initial={{ opacity: 0, y: 36 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
+        className="px-4 py-20 sm:px-6"
+      >
+        <div className="mx-auto max-w-7xl">
+          <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
+            <div>
+              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">Meet Ju</p>
+              <h2 className="mt-4 text-4xl font-semibold leading-tight text-foreground sm:text-5xl">
+                One companion, tuned to the moment you are actually in.
+              </h2>
+            </div>
+            <p className="max-w-2xl text-lg leading-8 text-muted-foreground">
+              Ju changes with the emotional weather of the moment, so Nuju feels less like a blank page and more like a companion that meets you where you are.
             </p>
           </div>
 
-          <div className="mt-14 grid grid-cols-2 gap-5 sm:grid-cols-3 lg:grid-cols-5">
+          <div className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
             {MOOD_SHOWCASE.map((mood, index) => (
               <motion.div
                 key={mood.label}
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                whileHover={{ y: -8, scale: 1.04 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.08, type: "spring", stiffness: 120 }}
-                className="group relative flex flex-col items-center rounded-[2rem] border border-border/50 bg-card/80 p-6 text-center shadow-[0_10px_30px_-14px_rgba(0,0,0,0.1)] backdrop-blur-xl transition-all hover:shadow-[0_20px_50px_-18px_rgba(0,0,0,0.2)]"
-                style={{
-                  background: `linear-gradient(180deg, ${mood.color}12 0%, transparent 55%), hsl(var(--card) / 0.8)`,
-                }}
+                transition={{ delay: index * 0.06, duration: 0.55 }}
+                className="group rounded-[24px] border border-black/[0.06] bg-white p-5 shadow-[0_24px_70px_-52px_rgba(0,0,0,0.55)] transition hover:-translate-y-1 dark:border-white/10 dark:bg-white/[0.04]"
               >
-                <div
-                  className="absolute -top-10 left-1/2 -translate-x-1/2 h-24 w-24 rounded-full opacity-60 blur-2xl transition-opacity group-hover:opacity-90"
-                  style={{ background: mood.color }}
-                />
-                <div
-                  className="relative mb-4 flex h-24 w-24 items-center justify-center rounded-full bg-white shadow-[0_12px_30px_-10px_rgba(0,0,0,0.15)] ring-4 transition-transform group-hover:scale-105"
-                  style={{ boxShadow: `0 14px 32px -12px ${mood.color}88`, borderColor: `${mood.color}30` }}
-                >
-                  <img
-                    src={mood.img}
-                    alt={`Ju feeling ${mood.label}`}
-                    className="h-16 w-16 object-contain transition-transform duration-500 group-hover:animate-ju-float"
-                    loading="lazy"
-                  />
+                <div className="flex h-32 items-center justify-center rounded-[18px] bg-[#F4F1EC] dark:bg-white/[0.05]">
+                  <img src={mood.img} alt={`Ju feeling ${mood.label}`} className="h-24 w-24 object-contain transition duration-500 group-hover:scale-105" loading="lazy" />
                 </div>
-                <span
-                  className="inline-flex items-center rounded-full px-3 py-1 text-xs font-bold uppercase tracking-[0.18em]"
-                  style={{ background: `${mood.color}1f`, color: mood.color }}
-                >
-                  {mood.label}
-                </span>
-                <p className="mt-4 text-sm leading-6 text-muted-foreground">{mood.line}</p>
+                <div className="mt-4 flex items-center gap-2">
+                  <span className="h-2 w-2 rounded-full" style={{ backgroundColor: mood.color }} />
+                  <h3 className="font-semibold text-foreground">{mood.label}</h3>
+                </div>
+                <p className="mt-2 text-sm leading-6 text-muted-foreground">{mood.line}</p>
               </motion.div>
             ))}
           </div>
-
-          <motion.div
-            data-testid="landing-proof-strip"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="mx-auto mt-14 max-w-2xl text-center"
-          >
-            <p className="font-writing text-xl italic leading-8 text-foreground/85 sm:text-2xl">
-              "The first time I opened it on a bad day, Ju looked like how I was feeling. That was the moment I knew."
-            </p>
-            <p className="mt-3 text-xs font-bold uppercase tracking-[0.22em] text-muted-foreground">- Early user - 4 months with Ju</p>
-          </motion.div>
         </div>
       </motion.section>
 
       <motion.section
         data-testid="landing-benefits"
-        initial={{ opacity: 0, y: 40 }}
+        initial={{ opacity: 0, y: 36 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
-        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-        className="border-y border-border/50 bg-secondary/35 px-4 py-20"
+        transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
+        className="border-y border-black/[0.06] bg-white/58 px-4 py-20 sm:px-6 dark:border-white/10 dark:bg-white/[0.03]"
       >
-        <div className="mx-auto max-w-6xl">
-          <div className="mx-auto max-w-2xl text-center">
-            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">When the feeling finally has words</p>
-            <h2 className="mt-4 font-serif text-4xl font-bold text-foreground sm:text-5xl">
-              What changes after the reveal starts landing.
+        <div className="mx-auto max-w-7xl">
+          <div className="mx-auto max-w-3xl text-center">
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">Why it helps</p>
+            <h2 className="mt-4 text-4xl font-semibold leading-tight text-foreground sm:text-5xl">
+              The first relief is feeling accurately seen.
             </h2>
             <p className="mt-5 text-lg leading-8 text-muted-foreground">
-              The first relief is simple: feeling seen in a moment that usually stays trapped inside you.
+              Nuju turns a small honest check-in into a softer read on what is really happening underneath the day.
             </p>
           </div>
 
-          <div className="mt-12 grid gap-6 lg:grid-cols-3">
-            {emotionalMoments.map((moment, index) => {
-              const Icon = moment.icon;
-              const accents = ["#E8878C", "#7C6EDB", "#4ECDC4"];
-              const accent = accents[index] ?? "#7C6EDB";
+          <div className="mt-14 space-y-5">
+            {benefitRows.map((benefit, index) => {
+              const Icon = benefit.icon;
               return (
                 <motion.div
-                  whileHover={{ scale: 1.03, y: -6 }}
-                  initial={{ opacity: 0, y: 20 }}
+                  key={benefit.title}
+                  initial={{ opacity: 0, y: 22 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: index * 0.1, type: "spring", stiffness: 100 }}
-                  key={moment.title}
-                  className="group relative overflow-hidden glass-card rounded-[2rem] p-7"
+                  viewport={{ once: true, margin: "-80px" }}
+                  transition={{ delay: index * 0.08, duration: 0.65 }}
+                  className="nuju-neu-surface grid gap-8 rounded-[28px] p-5 md:grid-cols-[1fr_0.8fr] md:p-8"
                 >
-                  <div
-                    className="absolute inset-x-0 top-0 h-1 opacity-80"
-                    style={{ background: `linear-gradient(90deg, transparent, ${accent}, transparent)` }}
-                  />
-                  <div
-                    className="absolute -top-16 -right-16 h-40 w-40 rounded-full opacity-30 blur-3xl transition-opacity group-hover:opacity-60"
-                    style={{ background: accent }}
-                  />
-                  <div
-                    className="relative mb-5 flex h-12 w-12 items-center justify-center rounded-2xl"
-                    style={{ background: `${accent}1a`, color: accent }}
-                  >
-                    <Icon className="h-6 w-6" style={{ color: accent }} />
+                  <div>
+                    <div className="inline-flex items-center gap-2 rounded-full bg-white px-3 py-1.5 text-xs font-bold uppercase tracking-[0.16em] text-muted-foreground dark:bg-white/[0.06]">
+                      <Icon className="h-4 w-4" style={{ color: benefit.accent }} />
+                      {benefit.eyebrow}
+                    </div>
+                    <h3 className="mt-5 max-w-2xl text-3xl font-semibold leading-tight text-foreground sm:text-4xl">
+                      {benefit.title}
+                    </h3>
+                    <p className="mt-4 max-w-2xl text-base leading-8 text-muted-foreground">{benefit.body}</p>
+                    <p className="mt-6 max-w-2xl border-l-2 pl-4 text-sm leading-7 text-foreground/78" style={{ borderColor: benefit.accent }}>
+                      {benefit.proof}
+                    </p>
                   </div>
-                  <h3 className="relative font-serif text-2xl font-semibold text-foreground">{moment.title}</h3>
-                  <p className="relative mt-4 text-base leading-7 text-muted-foreground">{moment.body}</p>
+                  <div className="nuju-neu-pressed flex items-center justify-center rounded-[22px] p-8">
+                    <img src={benefit.image} alt={benefit.imageAlt} className="h-40 w-40 object-contain sm:h-52 sm:w-52" loading="lazy" />
+                  </div>
                 </motion.div>
               );
             })}
           </div>
-
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="mt-12 grid gap-8 rounded-[2rem] border border-border/60 bg-card/80 p-8 shadow-[0_8px_30px_rgb(0,0,0,0.04)] lg:grid-cols-[0.85fr_1.15fr]"
-          >
-            <div>
-              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">The real shift</p>
-              <h3 className="mt-4 max-w-md font-serif text-3xl font-semibold leading-tight text-foreground sm:text-4xl">
-                You are not being asked to perform self-awareness first.
-              </h3>
-              <p className="mt-4 max-w-md text-base leading-8 text-muted-foreground">
-                Nuju is meant to meet you before the polished insight. The first job is helping you feel understood quickly enough that you want to keep going.
-              </p>
-            </div>
-            <div className="grid gap-5">
-              {differencePoints.map((point) => (
-                <div key={point.title} className="border-b border-border/60 pb-5 last:border-b-0 last:pb-0">
-                  <p className="text-lg font-semibold text-foreground">{point.title}</p>
-                  <p className="mt-2 text-sm leading-7 text-muted-foreground">{point.body}</p>
-                </div>
-              ))}
-            </div>
-          </motion.div>
         </div>
       </motion.section>
 
       <motion.section
         ref={howItWorksRef}
         data-testid="landing-how-it-works"
-        initial={{ opacity: 0, y: 40 }}
+        initial={{ opacity: 0, y: 36 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
-        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-        className="px-4 py-20"
+        transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
+        className="relative scroll-mt-28 overflow-hidden border-y border-black/[0.06] bg-white/64 px-4 py-24 sm:px-6 dark:border-white/10 dark:bg-white/[0.03]"
       >
-        <div className="mx-auto max-w-6xl">
-          <div className="grid gap-12 lg:grid-cols-[0.82fr_1.18fr] lg:items-start">
-            <div>
-              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">How it works</p>
-              <h2 className="mt-4 font-serif text-4xl font-bold text-foreground sm:text-5xl">
-                A few honest answers. One deeply personal read.
-              </h2>
-              <p className="mt-5 max-w-xl text-lg leading-8 text-muted-foreground">
-                You do not need to understand the whole app first. You only need one moment where Ju reflects something true enough that you feel it.
-              </p>
-              <motion.div
-                whileHover={{ scale: 1.02 }}
-                className="relative mt-8 overflow-hidden rounded-[1.75rem] border border-primary/20 bg-[linear-gradient(135deg,rgba(124,110,219,0.08),rgba(78,205,196,0.05))] p-7 shadow-[0_14px_40px_-18px_rgba(124,110,219,0.35)]"
-              >
-                <div className="absolute -top-10 -right-10 h-32 w-32 rounded-full bg-primary/20 blur-3xl" />
-                <p className="relative text-[10px] font-bold uppercase tracking-[0.22em] text-primary">Why it feels different</p>
-                <p className="relative mt-3 font-writing text-[1.6rem] italic leading-9 text-foreground">
-                  Feel understood first.
-                  <br />
-                  The deeper support can come after.
-                </p>
-              </motion.div>
-            </div>
+        <div className="absolute inset-0 story-ambient-field opacity-80" aria-hidden="true" />
+        <div className="absolute inset-0 nuju-grain opacity-[0.025]" aria-hidden="true" />
 
-            <div className="relative grid gap-5">
-              {/* Vertical connector line */}
-              <div className="absolute left-[32px] top-4 bottom-4 hidden w-px bg-gradient-to-b from-primary/30 via-primary/20 to-transparent sm:block" aria-hidden="true" />
-              {steps.map((step, index) => {
-                const Icon = step.icon;
-                const stepAccents = ["#E8878C", "#7C6EDB", "#4ECDC4"];
-                const accent = stepAccents[index] ?? "#7C6EDB";
+        <div className="relative mx-auto max-w-7xl">
+          <div className="mx-auto max-w-3xl text-center">
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">How it works</p>
+            <h2 className="mt-4 text-4xl font-semibold leading-tight text-foreground sm:text-5xl">
+              A scrollable emotional journey, not another blank page.
+            </h2>
+            <p className="mt-5 text-lg leading-8 text-muted-foreground">
+              Raw words become a soft read, a pattern, and one gentle move.
+            </p>
+          </div>
+
+          <div className="mt-16 grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
+            <div className="space-y-4 lg:py-10">
+              {storyMoments.map((moment, index) => {
+                const Icon = moment.icon;
+                const isActive = activeStoryIndex === index;
+
                 return (
-                  <motion.div
-                    whileHover={{ scale: 1.02, x: 4 }}
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: index * 0.15, type: "spring", stiffness: 100 }}
-                    key={step.title}
-                    className="relative rounded-[2rem] border border-border/60 bg-card p-6 shadow-sm transition-all hover:shadow-xl"
+                  <motion.button
+                    key={moment.title}
+                    type="button"
+                    onClick={() => setActiveStoryIndex(index)}
+                    onFocus={() => setActiveStoryIndex(index)}
+                    onMouseEnter={() => setActiveStoryIndex(index)}
+                    onViewportEnter={() => setActiveStoryIndex(index)}
+                    animate={{ opacity: isActive ? 1 : 0.74, y: isActive ? 0 : 4, scale: isActive ? 1 : 0.992 }}
+                    viewport={{ once: false, margin: "-28% 0px -42% 0px" }}
+                    transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
+                    className={`group w-full rounded-[24px] p-5 text-left transition duration-500 ${
+                      isActive
+                        ? "nuju-neu-surface"
+                        : "border border-white/70 bg-white/48 hover:bg-white/74 dark:border-white/10 dark:bg-white/[0.04]"
+                    }`}
+                    style={isActive ? { boxShadow: `0 28px 86px -66px ${moment.accent}` } : undefined}
+                    aria-pressed={isActive}
                   >
-                    <div className="flex items-start gap-4">
+                    <div className="flex gap-4">
                       <div
-                        className="relative flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl shadow-[0_10px_28px_-12px_rgba(0,0,0,0.15)]"
-                        style={{ background: `linear-gradient(135deg, ${accent}22, ${accent}0d)` }}
+                        className="flex h-12 w-12 shrink-0 items-center justify-center rounded-[18px] text-white shadow-[0_16px_36px_-26px_rgba(28,25,23,0.7)]"
+                        style={{ backgroundColor: moment.accent }}
                       >
-                        <Icon className="h-6 w-6" style={{ color: accent }} />
+                        <Icon className="h-5 w-5" />
                       </div>
-                      <div className="flex-1">
-                        <div className="flex items-center gap-3">
-                          <p
-                            className="rounded-full px-2.5 py-0.5 text-[11px] font-bold uppercase tracking-[0.2em]"
-                            style={{ background: `${accent}15`, color: accent }}
-                          >
-                            Step 0{index + 1}
-                          </p>
-                        </div>
-                        <h3 className="mt-2 font-serif text-2xl font-semibold text-foreground">{step.title}</h3>
-                        <p className="mt-3 text-base leading-7 text-muted-foreground">{step.body}</p>
+                      <div>
+                        <p className="text-xs font-bold uppercase tracking-[0.18em] text-muted-foreground">
+                          Phase {moment.phase}
+                        </p>
+                        <h3 className="mt-2 text-2xl font-semibold leading-tight text-foreground">
+                          {moment.title}
+                        </h3>
+                        <p className="mt-3 text-sm leading-7 text-muted-foreground">{moment.body}</p>
                       </div>
                     </div>
-                  </motion.div>
+                  </motion.button>
                 );
               })}
+            </div>
+
+            <div className="lg:sticky lg:top-28">
+              <div className="nuju-neu-surface relative overflow-hidden rounded-[36px] p-4 backdrop-blur-2xl sm:p-5">
+                <div className="absolute inset-0 hero-demo-field" aria-hidden="true" />
+
+                <div className="relative overflow-hidden rounded-[30px] border border-white/80 bg-[#FBFAF7]/82 p-5 dark:border-white/10 dark:bg-white/[0.04] sm:p-6">
+                  <div className="flex flex-wrap items-center justify-between gap-3">
+                    <div>
+                      <p className="text-xs font-bold uppercase tracking-[0.18em] text-muted-foreground">
+                        Live story preview
+                      </p>
+                      <h3 className="mt-2 text-2xl font-semibold text-foreground">Ju gets the moment</h3>
+                    </div>
+                    <div className="flex items-center gap-1.5 rounded-full border border-black/[0.06] bg-white/80 px-3 py-2 text-xs font-semibold text-muted-foreground">
+                      <span className="h-2 w-2 rounded-full" style={{ backgroundColor: activeStory.accent }} />
+                      {activeStory.signal}
+                    </div>
+                  </div>
+
+                  <div className="mt-5 grid grid-cols-4 gap-2">
+                    {storyMoments.map((moment, index) => (
+                      <button
+                        key={moment.phase}
+                        type="button"
+                        onClick={() => setActiveStoryIndex(index)}
+                        className={`h-2 rounded-full transition ${
+                          activeStoryIndex === index ? "opacity-100" : "opacity-25 hover:opacity-60"
+                        }`}
+                        style={{ backgroundColor: moment.accent }}
+                        aria-label={`Show phase ${moment.phase}`}
+                      />
+                    ))}
+                  </div>
+
+                  <AnimatePresence mode="wait">
+                    <motion.div
+                      key={activeStory.title}
+                      initial={{ opacity: 0, y: 22, scale: 0.98 }}
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                      exit={{ opacity: 0, y: -18, scale: 0.98 }}
+                      transition={{ duration: 0.42, ease: [0.16, 1, 0.3, 1] }}
+                      className="mt-6"
+                    >
+                      <div className="nuju-neu-pressed rounded-[26px] p-4">
+                        <p className="text-xs font-bold uppercase tracking-[0.16em] text-muted-foreground">
+                          Honest check-in
+                        </p>
+                        <p className="mt-3 text-base leading-7 text-foreground">{activeStory.sample}</p>
+                      </div>
+
+                      <div className="mt-4 grid gap-3 sm:grid-cols-[1fr_0.78fr]">
+                        <div className="nuju-neu-surface rounded-[26px] p-5 text-[#4c4569]">
+                          <div className="flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.16em] text-[#7C6EDB]/70">
+                            <BrainCircuit className="h-4 w-4" style={{ color: activeStory.accent }} />
+                            Ju noticed
+                          </div>
+                          <p className="mt-4 text-sm leading-7 text-[#4c4569]/82">{activeStory.reflection}</p>
+                          <div className="nuju-neu-pressed mt-5 rounded-[20px] p-3">
+                            <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-[#7C6EDB]/60">
+                              Next gentle move
+                            </p>
+                            <p className="mt-2 text-sm leading-6 text-[#4c4569]/78">{activeStory.action}</p>
+                          </div>
+                        </div>
+
+                        <div className="nuju-neu-surface rounded-[26px] p-4">
+                          <p className="text-xs font-bold uppercase tracking-[0.16em] text-muted-foreground">
+                            Pattern signal
+                          </p>
+                          <p className="mt-2 text-sm font-semibold text-foreground">{activeStory.metric}</p>
+                          <div className="mt-5 flex h-28 items-end gap-2">
+                            {activeStory.bars.map((height, index) => (
+                              <motion.span
+                                key={`${activeStory.phase}-${index}`}
+                                initial={{ height: 12 }}
+                                animate={{ height }}
+                                transition={{ duration: 0.5, delay: index * 0.04, ease: [0.16, 1, 0.3, 1] }}
+                                className="min-w-0 flex-1 rounded-full"
+                                style={{
+                                  background: `linear-gradient(180deg, ${activeStory.accent}, rgba(21,21,24,0.12))`,
+                                }}
+                              />
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+
+                      <svg className="mt-5 h-16 w-full overflow-visible" viewBox="0 0 480 80" aria-hidden="true">
+                        <path
+                          d="M4 56 C 72 20, 126 74, 190 38 S 318 30, 374 48 S 442 62, 476 22"
+                          fill="none"
+                          stroke={activeStory.accent}
+                          strokeWidth="3"
+                          strokeLinecap="round"
+                          className="story-path-draw"
+                        />
+                      </svg>
+                    </motion.div>
+                  </AnimatePresence>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -970,199 +903,66 @@ const Landing: React.FC = () => {
 
       <motion.section
         data-testid="landing-social-proof"
-        initial={{ opacity: 0, y: 40 }}
+        initial={{ opacity: 0, y: 36 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
-        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-        className="bg-[#f7f5ff] px-4 py-20 dark:bg-[#18152a]"
+        transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
+        className="border-y border-black/[0.06] bg-[#F4F1EC] px-4 py-20 sm:px-6 dark:border-white/10 dark:bg-white/[0.03]"
       >
-        <div className="mx-auto max-w-6xl">
-          <div className="mx-auto max-w-2xl text-center">
-            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">Early notes</p>
-            <h2 className="mt-4 font-serif text-4xl font-bold text-foreground sm:text-5xl">
-              What early users keep saying.
+        <div className="mx-auto max-w-7xl">
+          <div className="mx-auto max-w-3xl text-center">
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">What people feel</p>
+            <h2 className="mt-4 text-4xl font-semibold leading-tight text-foreground sm:text-5xl">
+              It feels personal quickly because the read starts with your real words.
             </h2>
           </div>
 
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="mt-12 rounded-[2rem] border border-border/60 bg-card/90 p-6 shadow-[0_8px_30px_rgb(0,0,0,0.04)] sm:p-8"
-          >
-            <div className="flex flex-col gap-3 text-left sm:flex-row sm:items-end sm:justify-between">
-              <div>
-                <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">After a few weeks</p>
-                <h3 className="mt-2 font-serif text-3xl font-semibold text-foreground">
-                  That first read becomes something you can return to.
-                </h3>
-              </div>
-              <p className="max-w-md text-sm leading-7 text-muted-foreground">
-                Once the trust is there, the deeper patterns start to matter more. But the first win is still the feeling of being understood quickly.
-              </p>
-            </div>
-
-            <div className="mt-8 grid gap-4 md:grid-cols-3">
-              {secondaryProofStats.map((stat, index) => {
-                const Icon = stat.icon;
-                return (
-                  <motion.div 
-                    whileHover={{ scale: 1.02 }}
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: index * 0.1, type: "spring", stiffness: 100 }}
-                    key={stat.value} 
-                    className="rounded-[1.6rem] bg-secondary/45 p-5 shadow-sm"
-                  >
-                    <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-primary/10">
-                      <Icon className="h-5 w-5 text-primary" />
-                    </div>
-                    <p className="mt-5 font-serif text-3xl font-semibold text-foreground">{stat.value}</p>
-                    <p className="mt-2 text-lg font-semibold text-foreground">{stat.title}</p>
-                    <p className="mt-3 text-sm leading-7 text-muted-foreground">{stat.body}</p>
-                  </motion.div>
-                );
-              })}
-            </div>
-          </motion.div>
-
-          <div className="mt-12 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
-            {proofCards.map((card, index) => {
-              const Icon = card.icon;
-              return (
-                <motion.div
-                  whileHover={{ scale: 1.03, y: -5 }}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: index * 0.1, type: "spring" }}
-                  key={card.title}
-                  className="rounded-[2rem] border border-border/60 bg-card/90 p-6 shadow-sm hover:shadow-md"
-                >
-                  <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-2xl bg-primary/10">
-                    <Icon className="h-5 w-5 text-primary" />
+          <div className="mt-12 grid gap-4 md:grid-cols-3">
+            {testimonials.map((testimonial) => (
+              <div key={testimonial.name} className="rounded-[24px] border border-black/[0.06] bg-white p-6 shadow-[0_22px_70px_-56px_rgba(0,0,0,0.56)] dark:border-white/10 dark:bg-white/[0.04]">
+                <p className="text-base leading-8 text-foreground">"{testimonial.text}"</p>
+                <div className="mt-6 flex items-center gap-3">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#EDE9FE] text-sm font-bold text-primary">
+                    {testimonial.name.slice(0, 1)}
                   </div>
-                  <h3 className="font-serif text-xl font-semibold text-foreground">{card.title}</h3>
-                  <p className="mt-3 text-sm leading-7 text-muted-foreground">{card.body}</p>
-                </motion.div>
-              );
-            })}
-          </div>
-
-          <div className="mt-12 grid gap-6 lg:grid-cols-3">
-            {testimonials.map((item, index) => {
-              const avatars = [juGood, juOkay, juGreat];
-              const accents = ["#95E1D3", "#FFB347", "#4ECDC4"];
-              const avatar = avatars[index] ?? juMain;
-              const accent = accents[index] ?? "#7C6EDB";
-              return (
-                <motion.div
-                  whileHover={{ scale: 1.03, y: -6 }}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: index * 0.15 }}
-                  key={item.name}
-                  className="group relative overflow-hidden rounded-[2rem] border border-border/60 bg-card p-7 shadow-sm transition-all hover:shadow-xl"
-                >
-                  <div
-                    className="absolute -top-12 -right-12 h-32 w-32 rounded-full opacity-25 blur-3xl transition-opacity group-hover:opacity-50"
-                    style={{ background: accent }}
-                  />
-                  <Quote className="relative h-6 w-6" style={{ color: `${accent}99` }} />
-                  <p className="relative mt-4 font-writing text-[17px] italic leading-8 text-foreground">"{item.text}"</p>
-                  <div className="relative mt-6 flex items-center gap-3">
-                    <div
-                      className="flex h-11 w-11 items-center justify-center rounded-full bg-white shadow-sm ring-2"
-                      style={{ boxShadow: `0 6px 18px -6px ${accent}aa`, borderColor: accent }}
-                    >
-                      <img src={avatar} alt="" className="h-8 w-8 object-contain" loading="lazy" />
-                    </div>
-                    <div>
-                      <p className="font-semibold text-foreground">{item.name}</p>
-                      <p className="text-xs text-muted-foreground">{item.role}</p>
-                    </div>
+                  <div>
+                    <p className="text-sm font-semibold text-foreground">{testimonial.name}</p>
+                    <p className="text-xs text-muted-foreground">{testimonial.role}</p>
                   </div>
-                </motion.div>
-              );
-            })}
+                </div>
+              </div>
+            ))}
           </div>
-
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="mt-10 rounded-[2rem] border border-border/60 bg-card px-6 py-7 shadow-sm sm:px-8"
-          >
-            <div className="grid gap-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
-              <div>
-                <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">Why people keep going</p>
-                <h3 className="mt-3 font-serif text-3xl font-semibold text-foreground">
-                  The experience works when you feel seen fast.
-                </h3>
-              </div>
-              <div className="grid gap-4 sm:grid-cols-3">
-                {[
-                  "It feels personal quickly",
-                  "The first read lands in one glance",
-                  "Coming back still feels easy on hard days",
-                ].map((line, index) => (
-                  <motion.div 
-                    initial={{ opacity: 0, x: 10 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ delay: index * 0.1 }}
-                    viewport={{ once: true }}
-                    key={line} 
-                    className="rounded-[1.5rem] bg-secondary/45 px-4 py-4 text-sm leading-6 text-foreground"
-                  >
-                    {line}
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-          </motion.div>
         </div>
       </motion.section>
 
       <motion.section
         data-testid="landing-features"
-        initial={{ opacity: 0, y: 40 }}
+        initial={{ opacity: 0, y: 36 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
-        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-        className="px-4 py-20"
+        transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
+        className="px-4 py-20 sm:px-6"
       >
-        <div className="mx-auto max-w-6xl">
-          <div className="mx-auto max-w-2xl text-center">
-            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">What stays with you</p>
-            <h2 className="mt-4 font-serif text-4xl font-bold text-foreground sm:text-5xl">
-              The support stays small enough to use.
+        <div className="mx-auto max-w-7xl">
+          <div className="max-w-3xl">
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">Product depth</p>
+            <h2 className="mt-4 text-4xl font-semibold leading-tight text-foreground sm:text-5xl">
+              Clean enough to trust. Useful enough to return to.
             </h2>
-            <p className="mt-5 text-lg leading-8 text-muted-foreground">
-              A hard day needs fewer decisions, clearer words, and a place that does not ask you to become articulate first.
-            </p>
           </div>
 
-          <div className="mt-12 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-            {quickFeatures.map((feature, index) => {
+          <div className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {quickFeatures.map((feature) => {
               const Icon = feature.icon;
               return (
-                <motion.div
-                  key={feature.title}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.45, delay: index * 0.05 }}
-                  className="rounded-[2rem] border border-border/60 bg-card/90 p-6 shadow-sm"
-                >
-                  <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-primary/10">
+                <div key={feature.title} className="rounded-[22px] border border-black/[0.06] bg-white p-5 dark:border-white/10 dark:bg-white/[0.04]">
+                  <div className="flex h-11 w-11 items-center justify-center rounded-[15px] bg-[#F4F1EC] dark:bg-white/[0.06]">
                     <Icon className="h-5 w-5 text-primary" />
                   </div>
-                  <h3 className="mt-4 font-serif text-2xl font-semibold text-foreground">{feature.title}</h3>
-                  <p className="mt-3 text-sm leading-7 text-muted-foreground">{feature.body}</p>
-                </motion.div>
+                  <h3 className="mt-5 text-lg font-semibold text-foreground">{feature.title}</h3>
+                  <p className="mt-2 text-sm leading-7 text-muted-foreground">{feature.body}</p>
+                </div>
               );
             })}
           </div>
@@ -1171,51 +971,29 @@ const Landing: React.FC = () => {
 
       <motion.section
         data-testid="landing-mid-cta"
-        initial={{ opacity: 0, y: 32 }}
+        initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
         transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-        className="px-4 py-6"
+        className="px-4 py-8 sm:px-6"
       >
-        <div className="mx-auto max-w-5xl overflow-hidden rounded-[2.5rem] border border-primary/20 bg-[linear-gradient(135deg,#F5F3FF_0%,#FFFFFF_48%,#EEF9F7_100%)] px-6 py-10 shadow-[0_30px_70px_-30px_rgba(124,110,219,0.4)] sm:px-10 dark:border-primary/30 dark:bg-[linear-gradient(135deg,#1E1A34_0%,#191527_55%,#14202A_100%)]">
-          <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
-            <div>
-              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">Start gently</p>
-              <h2 className="mt-3 font-serif text-3xl font-bold leading-tight text-foreground sm:text-4xl">
-                Start with the reveal. Decide on plans later.
-              </h2>
-              <p className="mt-4 max-w-2xl text-base leading-8 text-muted-foreground">
-                If the read feels close, take the lowest-friction next step. You can decide how long Ju stays after you feel the fit.
-              </p>
-            </div>
-
-            <div className="flex flex-col gap-3 sm:flex-row lg:flex-col">
-              <button
-                onClick={() => startOnboarding()}
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-[linear-gradient(135deg,#8A7CE8_0%,#7C6EDB_45%,#6F5FE8_100%)] px-6 py-4 text-sm font-semibold text-white shadow-[0_16px_40px_-20px_rgba(124,110,219,0.7)] transition-all hover:-translate-y-0.5 active:scale-[0.97]"
-              >
-                Start the Ju Gets You reveal
-                <ArrowRight className="h-4 w-4" />
-              </button>
-              <button
-                onClick={scrollToPricing}
-                className="inline-flex items-center justify-center rounded-full border border-border/70 bg-white/70 px-6 py-4 text-sm font-semibold text-foreground transition-all hover:border-primary/30 hover:bg-white active:scale-[0.97] dark:bg-white/5 dark:hover:bg-white/10"
-              >
-                See plans
-              </button>
-            </div>
+        <div className="nuju-neu-surface mx-auto grid max-w-6xl gap-8 rounded-[30px] p-6 text-[#4c4569] md:grid-cols-[1fr_auto] md:items-center md:p-10">
+          <div>
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">Begin softly</p>
+            <h2 className="mt-4 max-w-2xl text-3xl font-semibold leading-tight sm:text-4xl">
+              Start with the moment you are in.
+            </h2>
+            <p className="mt-4 max-w-2xl text-base leading-8 text-muted-foreground">
+              Answer a few gentle prompts, see what Ju notices, then decide whether this support should stay close.
+            </p>
           </div>
-
-          <div className="mt-6 flex flex-wrap gap-2">
-            {["60-second reveal", "No credit card to start", "Private by default"].map((item) => (
-              <span
-                key={item}
-                className="inline-flex rounded-full border border-border/50 bg-white/70 px-3 py-1.5 text-xs font-semibold text-foreground/80 dark:bg-white/10"
-              >
-                {item}
-              </span>
-            ))}
-          </div>
+          <button
+            onClick={() => startOnboarding()}
+            className="nuju-brand-button inline-flex h-14 items-center justify-center gap-2 rounded-full px-7 text-base font-semibold transition hover:-translate-y-0.5 active:scale-[0.98]"
+          >
+            Start the Ju Gets You reveal
+            <ArrowRight className="h-5 w-5" />
+          </button>
         </div>
       </motion.section>
 
@@ -1223,150 +1001,71 @@ const Landing: React.FC = () => {
         ref={pricingSectionRef}
         data-testid="landing-pricing-teaser"
         onViewportEnter={handlePricingVisible}
-        initial={{ opacity: 0, y: 40 }}
+        initial={{ opacity: 0, y: 36 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
-        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-        className="px-4 py-20"
+        transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
+        className="px-4 py-20 sm:px-6"
       >
-        <div className="mx-auto max-w-6xl">
-          <div className="mx-auto max-w-2xl text-center">
-            <p className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/[0.06] px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-primary">
-              <Sparkles className="h-3.5 w-3.5" />
-              What you get
-            </p>
-            <h2 className="mt-5 font-serif text-4xl font-bold leading-tight text-foreground sm:text-5xl">
-              What you get when you start.
-            </h2>
-            <p className="mt-5 text-lg leading-8 text-muted-foreground">
-              Start with the reveal, get one clear read, and only then decide whether you want Ju to stay close.
-            </p>
-          </div>
+        <div className="mx-auto max-w-7xl">
+          <div className="grid gap-8 lg:grid-cols-[0.78fr_1.22fr]">
+            <div>
+              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">Choose after the reveal</p>
+              <h2 className="mt-4 text-4xl font-semibold leading-tight text-foreground sm:text-5xl">
+                If the reveal feels right, choose how Ju stays with you.
+              </h2>
+              <p className="mt-5 text-lg leading-8 text-muted-foreground">
+                Keep the first step free. Then make the upgrade feel calm, transparent, and easy to understand.
+              </p>
+              {geoPricingNote && <p className="mt-4 text-sm text-muted-foreground">{geoPricingNote}</p>}
+            </div>
 
-          <div data-testid="landing-what-you-get" className="mt-12 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
-            {whatYouGetItems.map((item, index) => {
-              const Icon = item.icon;
-              return (
-                <motion.div
-                  key={item.title}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.45, delay: index * 0.05 }}
-                  className="rounded-[2rem] border border-border/60 bg-card/90 p-6 shadow-sm"
-                >
-                  <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-primary/10">
-                    <Icon className="h-5 w-5 text-primary" />
-                  </div>
-                  <h3 className="mt-4 font-serif text-2xl font-semibold text-foreground">{item.title}</h3>
-                  <p className="mt-3 text-sm leading-7 text-muted-foreground">{item.body}</p>
-                </motion.div>
-              );
-            })}
-          </div>
-
-          <div className="mx-auto mt-12 max-w-2xl text-center">
-            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">Plans after the reveal</p>
-            <h3 className="mt-3 font-serif text-3xl font-semibold text-foreground sm:text-4xl">
-              If the reveal feels right, choose how Ju stays with you.
-            </h3>
-            <p className="mt-4 text-base leading-8 text-muted-foreground">
-              Pricing is here for clarity, not pressure. The job of the page is still to get you into the reveal first.
-            </p>
-            {geoPricingNote ? (
-              <div className="mt-5 inline-flex items-center gap-2 rounded-full border border-border bg-card px-4 py-2 text-xs font-medium text-muted-foreground">
-                <Globe className="h-3.5 w-3.5" />
-                {geoPricingNote}
+            <div>
+              <div data-testid="landing-what-you-get" className="grid gap-3 sm:grid-cols-2">
+                {whatYouGetItems.map((item) => {
+                  const Icon = item.icon;
+                  return (
+                    <div key={item.title} className="rounded-[22px] border border-black/[0.06] bg-white p-5 dark:border-white/10 dark:bg-white/[0.04]">
+                      <Icon className="h-5 w-5 text-primary" />
+                      <h3 className="mt-4 text-base font-semibold text-foreground">{item.title}</h3>
+                      <p className="mt-2 text-sm leading-7 text-muted-foreground">{item.body}</p>
+                    </div>
+                  );
+                })}
               </div>
-            ) : null}
+            </div>
           </div>
 
-          <div className="mt-12 grid gap-6 lg:grid-cols-2 xl:grid-cols-4">
-            {pricingCards.map((displayPlan, index) => {
+          <div className="mt-10 grid gap-4 lg:grid-cols-4">
+            {pricingCards.map((displayPlan) => {
               const isLifetime = displayPlan.name === "Lifetime";
-              const isThreeMonth = displayPlan.name === "3 Month";
-              const isFree = displayPlan.name === "Start free";
               return (
-                <motion.div
-                  whileHover={{ scale: 1.02, y: -6 }}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: index * 0.1, type: "spring", stiffness: 100 }}
+                <div
                   key={displayPlan.name}
-                  className={`relative rounded-[2rem] border p-8 flex flex-col transition-all ${
+                  className={`flex min-h-[420px] flex-col rounded-[26px] border p-6 ${
                     isLifetime
-                      ? "border-primary/35 bg-[linear-gradient(180deg,rgba(245,241,255,0.96),rgba(255,255,255,0.99))] shadow-[0_20px_50px_-24px_rgba(124,110,219,0.38)] hover:shadow-[0_28px_60px_-24px_rgba(124,110,219,0.55)] dark:border-[#9385F6]/45 dark:bg-[radial-gradient(circle_at_top,rgba(156,137,255,0.22),transparent_45%),linear-gradient(180deg,#201934_0%,#161124_100%)] dark:shadow-[0_20px_50px_-24px_rgba(86,70,177,0.55)]"
-                      : isThreeMonth
-                      ? "border-primary/40 bg-card shadow-[0_20px_50px_-24px_rgba(124,110,219,0.35)] ring-1 ring-primary/15 hover:shadow-[0_28px_60px_-24px_rgba(124,110,219,0.5)] dark:border-primary/40 dark:bg-white/[0.04]"
-                      : isFree
-                      ? "border-[#4ECDC4]/25 bg-[linear-gradient(180deg,rgba(78,205,196,0.08),rgba(255,255,255,0.95))] shadow-sm"
-                      : "border-border/60 bg-card shadow-sm hover:shadow-lg dark:border-white/10 dark:bg-white/[0.03]"
+                      ? "nuju-neu-surface border-[#7C6EDB]/18 bg-[linear-gradient(145deg,rgba(246,242,255,0.88),rgba(234,250,249,0.72))] text-[#4c4569]"
+                      : "nuju-neu-surface text-foreground"
                   }`}
                 >
-                  {isThreeMonth && (
-                    <div className="absolute inset-x-8 -top-px h-px bg-gradient-to-r from-transparent via-primary/60 to-transparent" aria-hidden="true" />
-                  )}
-                  {displayPlan.badge && (
-                    <div
-                      className={`absolute -top-3 left-6 rounded-full px-3 py-1 text-xs font-bold shadow-sm ${
-                        isLifetime
-                          ? "bg-[#FFD166] text-[#1A1A2E]"
-                          : "bg-[#FFD166] text-[#1A1A2E]"
-                      }`}
-                    >
-                      {displayPlan.badge}
-                    </div>
-                  )}
-
-                  <h3 className={`font-serif text-2xl font-semibold ${isLifetime ? "text-foreground dark:text-white" : "text-foreground"}`}>
-                    {displayPlan.name}
-                  </h3>
-                  <div className="mt-4 flex items-end gap-1">
-                    <span className={`text-4xl font-bold ${isLifetime ? "text-foreground dark:text-white" : "text-foreground"}`}>
-                      {displayPlan.price}
-                    </span>
-                    {!isLifetime && displayPlan.unit && (
-                      <span className="text-muted-foreground">
-                        {displayPlan.unit}
-                      </span>
-                    )}
-                    {isLifetime && (
-                      <span className="text-muted-foreground dark:text-white/70">one-time</span>
-                    )}
+                  <div className={`w-fit rounded-full px-3 py-1 text-xs font-bold uppercase tracking-[0.16em] ${isLifetime ? "bg-[#7C6EDB]/12 text-[#7C6EDB]" : "bg-[#F4F1EC] text-muted-foreground dark:bg-white/[0.06]"}`}>
+                    {displayPlan.badge}
                   </div>
-                  <p className={`mt-3 text-sm leading-6 ${
-                    isLifetime
-                      ? "text-muted-foreground dark:text-white/78"
-                      : "text-muted-foreground"
-                  }`}>
+                  <h3 className="mt-5 text-2xl font-semibold">{displayPlan.name}</h3>
+                  <div className="mt-4 flex items-end gap-1">
+                    <span className="text-4xl font-semibold">{displayPlan.price}</span>
+                    {displayPlan.unit && <span className={isLifetime ? "text-[#7C6EDB]/70" : "text-muted-foreground"}>{displayPlan.unit}</span>}
+                  </div>
+                  <p className={`mt-4 text-sm leading-7 ${isLifetime ? "text-[#4c4569]/68" : "text-muted-foreground"}`}>
                     {displayPlan.note}
                   </p>
 
-                  {isLifetime && (
-                    <LifetimeScarcityMeter
-                      className="mt-4"
-                      scarcity={lifetimeScarcity}
-                    />
-                  )}
+                  {isLifetime && <LifetimeScarcityMeter className="mt-4" scarcity={lifetimeScarcity} />}
 
-                  <ul className="mt-6 mb-8 flex-1 space-y-3">
+                  <ul className="mt-6 flex-1 space-y-3">
                     {displayPlan.features.map((feature) => (
-                      <li
-                        key={feature}
-                        className={`flex items-start gap-2 text-sm ${
-                          isLifetime
-                            ? "text-muted-foreground dark:text-white/82"
-                            : "text-muted-foreground"
-                        }`}
-                      >
-                        <Check
-                          className={`mt-0.5 h-4 w-4 shrink-0 ${
-                            isLifetime
-                              ? "text-primary dark:text-[#B8AEFF]"
-                              : "text-primary"
-                          }`}
-                        />
+                      <li key={feature} className={`flex gap-2 text-sm ${isLifetime ? "text-[#4c4569]/72" : "text-muted-foreground"}`}>
+                        <Check className="mt-0.5 h-4 w-4 shrink-0 text-[#4ECDC4]" />
                         <span>{feature}</span>
                       </li>
                     ))}
@@ -1374,17 +1073,15 @@ const Landing: React.FC = () => {
 
                   <button
                     onClick={displayPlan.onClick}
-                    className={`mt-auto w-full rounded-2xl py-3.5 text-sm font-semibold transition-all active:scale-[0.97] ${
+                    className={`mt-8 h-12 rounded-full text-sm font-semibold transition hover:-translate-y-0.5 active:scale-[0.98] ${
                       isLifetime
-                        ? "bg-[linear-gradient(135deg,#9385F6,#6F5FE8)] text-white hover:shadow-[0_18px_35px_-18px_rgba(124,110,219,0.75)] dark:bg-[linear-gradient(135deg,#9B8FFF,#7767EA)]"
-                        : isFree
-                          ? "bg-[linear-gradient(135deg,#4ECDC4,#2EB8A6)] text-white hover:shadow-[0_18px_35px_-18px_rgba(46,184,166,0.7)]"
-                          : "border border-[#D8D0EE] bg-[#E9E4F6] text-[#2E2550] hover:bg-[#DED6F1] hover:shadow-[0_12px_24px_-18px_rgba(45,37,80,0.35)] dark:border-white/10 dark:bg-white/10 dark:text-white"
+                        ? "nuju-brand-button"
+                        : "nuju-brand-button"
                     }`}
                   >
                     {displayPlan.cta}
                   </button>
-                </motion.div>
+                </div>
               );
             })}
           </div>
@@ -1393,16 +1090,16 @@ const Landing: React.FC = () => {
 
       <motion.section
         data-testid="landing-comparison"
-        initial={{ opacity: 0, y: 40 }}
+        initial={{ opacity: 0, y: 36 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
-        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-        className="border-y border-border/50 bg-secondary/35 px-4 py-20"
+        transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
+        className="border-y border-black/[0.06] bg-white/58 px-4 py-20 sm:px-6 dark:border-white/10 dark:bg-white/[0.03]"
       >
-        <div className="mx-auto max-w-6xl">
-          <div className="mx-auto max-w-2xl text-center">
+        <div className="mx-auto max-w-7xl">
+          <div className="mx-auto max-w-3xl text-center">
             <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">Nuju vs. blank-page journaling</p>
-            <h2 className="mt-4 font-serif text-4xl font-bold text-foreground sm:text-5xl">
+            <h2 className="mt-4 text-4xl font-semibold leading-tight text-foreground sm:text-5xl">
               Why Nuju beats journaling alone on hard days.
             </h2>
             <p className="mt-5 text-lg leading-8 text-muted-foreground">
@@ -1410,11 +1107,11 @@ const Landing: React.FC = () => {
             </p>
           </div>
 
-          <div className="mt-12 overflow-hidden rounded-[2rem] border border-border/60 bg-card shadow-sm">
+          <div className="mt-12 overflow-hidden rounded-[24px] border border-black/[0.06] bg-white dark:border-white/10 dark:bg-white/[0.04]">
             <div className="overflow-x-auto">
               <table className="min-w-full border-collapse">
                 <thead>
-                  <tr className="border-b border-border/60 bg-muted/30 text-left">
+                  <tr className="border-b border-black/[0.06] bg-[#FAF9F6] text-left dark:border-white/10 dark:bg-white/[0.04]">
                     <th className="px-5 py-4 text-sm font-semibold text-foreground">Decision point</th>
                     <th className="px-5 py-4 text-sm font-semibold text-foreground">Nuju</th>
                     <th className="px-5 py-4 text-sm font-semibold text-foreground">Journaling alone</th>
@@ -1422,11 +1119,11 @@ const Landing: React.FC = () => {
                 </thead>
                 <tbody>
                   {comparisonRows.map((row) => (
-                    <tr key={row.label} className="border-b border-border/40 last:border-b-0">
+                    <tr key={row.label} className="border-b border-black/[0.06] last:border-b-0 dark:border-white/10">
                       <th className="px-5 py-5 text-left align-top text-sm font-semibold text-foreground">{row.label}</th>
                       <td className="px-5 py-5 align-top text-sm leading-7 text-muted-foreground">
                         <span className="inline-flex items-start gap-2">
-                          <Check className="mt-1 h-4 w-4 shrink-0 text-primary" />
+                          <Check className="mt-1 h-4 w-4 shrink-0 text-[#4ECDC4]" />
                           <span>{row.nuju}</span>
                         </span>
                       </td>
@@ -1438,41 +1135,24 @@ const Landing: React.FC = () => {
             </div>
           </div>
 
-          <div
-            data-testid="landing-internal-links"
-            className="mt-10 rounded-[2rem] border border-border/60 bg-card/80 p-6 shadow-sm sm:p-8"
-          >
+          <div data-testid="landing-internal-links" className="mt-10">
             <div className="max-w-2xl">
-              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">
-                Keep comparing
-              </p>
-              <h3 className="mt-3 font-serif text-3xl font-semibold text-foreground">
-                The pages people read before choosing a journaling app
-              </h3>
-              <p className="mt-4 text-base leading-8 text-muted-foreground">
-                If you want the category view before starting, these honest comparison pages
-                are the fastest way to understand where Nuju fits.
-              </p>
+              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">Keep comparing</p>
+              <h3 className="mt-3 text-3xl font-semibold text-foreground">The pages people read before choosing a journaling app</h3>
             </div>
 
-            <div className="mt-8 grid gap-4 md:grid-cols-3">
+            <div className="mt-8 grid gap-3 md:grid-cols-2 xl:grid-cols-4">
               {comparisonReadLinks.map((link) => (
                 <Link
                   key={link.href}
                   to={link.href}
-                  className="group rounded-[1.75rem] border border-border/50 bg-background/85 p-5 transition-all hover:border-primary/35 hover:shadow-md"
+                  className="group rounded-[22px] border border-black/[0.06] bg-white p-5 transition hover:-translate-y-1 dark:border-white/10 dark:bg-white/[0.04]"
                 >
-                  <span className="inline-flex rounded-full border border-border/60 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
-                    {link.label}
-                  </span>
-                  <h4 className="mt-4 font-serif text-2xl font-semibold text-foreground transition-colors group-hover:text-primary">
-                    {link.title}
-                  </h4>
-                  <p className="mt-3 text-sm leading-7 text-muted-foreground">
-                    {link.body}
-                  </p>
+                  <span className="text-xs font-bold uppercase tracking-[0.18em] text-muted-foreground">{link.label}</span>
+                  <h4 className="mt-4 text-xl font-semibold text-foreground transition-colors group-hover:text-primary">{link.title}</h4>
+                  <p className="mt-3 text-sm leading-7 text-muted-foreground">{link.body}</p>
                   <span className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-primary">
-                    Read the comparison <ArrowRight className="h-4 w-4" />
+                    Read more <ArrowRight className="h-4 w-4" />
                   </span>
                 </Link>
               ))}
@@ -1483,34 +1163,29 @@ const Landing: React.FC = () => {
 
       <motion.section
         data-testid="landing-faq"
-        initial={{ opacity: 0, y: 40 }}
+        initial={{ opacity: 0, y: 36 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
-        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-        className="py-20 bg-background"
+        transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
+        className="px-4 py-20 sm:px-6"
         id="faq"
       >
-        <div className="container mx-auto px-4 max-w-3xl">
-          <h2 className="text-4xl font-serif text-center mb-6 font-bold">
+        <div className="mx-auto max-w-3xl">
+          <h2 className="text-center text-4xl font-semibold text-foreground sm:text-5xl">
             Frequently Asked Questions
           </h2>
-          <p className="text-center text-muted-foreground mb-12 text-sm">
+          <p className="mt-4 text-center text-base leading-7 text-muted-foreground">
             Quick answers before you begin.
           </p>
 
-          <div className="space-y-4">
-            {landingFaqs.map((faq, i) => (
-              <details
-                key={i}
-                className="group bg-card/50 rounded-xl overflow-hidden border border-border/40 hover:border-border/60 transition-all"
-              >
-                <summary className="flex justify-between items-center p-6 cursor-pointer font-medium text-[15px] list-none">
+          <div className="mt-10 space-y-3">
+            {landingFaqs.map((faq) => (
+              <details key={faq.q} className="group rounded-[20px] border border-black/[0.06] bg-white dark:border-white/10 dark:bg-white/[0.04]">
+                <summary className="flex cursor-pointer list-none items-center justify-between gap-4 p-5 text-sm font-semibold text-foreground">
                   {faq.q}
-                  <ChevronDown className="w-5 h-5 transition-transform group-open:rotate-180 shrink-0 ml-4" />
+                  <ChevronDown className="h-5 w-5 shrink-0 text-muted-foreground transition-transform group-open:rotate-180" />
                 </summary>
-                <p className="px-6 pb-6 text-muted-foreground leading-relaxed text-sm">
-                  {faq.a}
-                </p>
+                <p className="px-5 pb-5 text-sm leading-7 text-muted-foreground">{faq.a}</p>
               </details>
             ))}
           </div>
@@ -1519,82 +1194,63 @@ const Landing: React.FC = () => {
 
       <motion.section
         data-testid="landing-final-cta"
-        initial={{ opacity: 0, y: 40 }}
+        initial={{ opacity: 0, y: 36 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
-        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-        className="relative px-4 pb-24 pt-6"
+        transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
+        className="px-4 pb-24 pt-6 sm:px-6"
       >
-        <div className="relative mx-auto max-w-4xl overflow-hidden rounded-[2.5rem] border border-primary/20 bg-[linear-gradient(135deg,#F5F3FF_0%,#FFFFFF_50%,#EEF9F7_100%)] px-6 py-14 text-center shadow-[0_40px_80px_-30px_rgba(124,110,219,0.35)] sm:px-10 dark:border-primary/30 dark:bg-[linear-gradient(135deg,#1E1A34_0%,#191527_55%,#14202A_100%)]">
-          <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
-            <div className="aurora-blob animate-aurora-a left-[-10%] top-[-20%] h-72 w-72 bg-[radial-gradient(circle,rgba(124,110,219,0.35),transparent_65%)]" />
-            <div className="aurora-blob animate-aurora-b right-[-10%] bottom-[-20%] h-72 w-72 bg-[radial-gradient(circle,rgba(78,205,196,0.3),transparent_65%)]" />
+        <div className="nuju-neu-surface mx-auto max-w-5xl overflow-hidden rounded-[32px] p-8 text-center sm:p-12">
+          <div className="nuju-neu-pressed mx-auto flex h-20 w-20 items-center justify-center rounded-[24px]">
+            <img src={juMain} alt="Ju mascot" className="h-14 w-14 animate-ju-float object-contain" width={56} height={56} loading="lazy" />
           </div>
-
-          <motion.div
-            whileHover={{ scale: 1.1, rotate: 5 }}
-            className="relative mx-auto flex h-24 w-24 items-center justify-center rounded-full bg-white shadow-[0_18px_40px_-14px_rgba(124,110,219,0.45)] ring-4 ring-primary/15"
-          >
-            <div className="absolute inset-0 rounded-full bg-primary/15 blur-xl" />
-            <img src={juMain} alt="Ju mascot celebrating - Nuju AI journal companion" className="relative h-16 w-16 animate-ju-float object-contain" width={64} height={64} loading="lazy" />
-          </motion.div>
-
-          <h2 className="relative mt-8 font-serif text-4xl font-bold leading-tight text-foreground sm:text-5xl">
-            You don't need perfect words
-            <br />
-            <span className="text-shimmer italic">to feel understood.</span>
+          <h2 className="mx-auto mt-7 max-w-3xl text-4xl font-semibold leading-tight text-foreground sm:text-5xl">
+            You do not need perfect words to feel understood.
           </h2>
-          <p className="relative mx-auto mt-5 max-w-2xl text-lg leading-8 text-muted-foreground">
-            Open Nuju when your thoughts feel crowded. Answer a few quick prompts, see what Ju notices, and keep the support only if the reveal feels right.
+          <p className="mx-auto mt-5 max-w-2xl text-lg leading-8 text-muted-foreground">
+            Start with one honest sentence. Ju will help turn it into a clearer, softer next step.
           </p>
-
-          <div className="relative mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
-            <Magnetic>
-              <button
-                onClick={() => startOnboarding()}
-                className="group relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-full bg-[linear-gradient(135deg,#8A7CE8_0%,#7C6EDB_45%,#6F5FE8_100%)] px-8 py-4 text-base font-semibold text-white shadow-[0_18px_45px_-14px_rgba(124,110,219,0.6)] transition-all hover:-translate-y-0.5 hover:shadow-[0_22px_55px_-14px_rgba(124,110,219,0.75)] active:scale-[0.97]"
-              >
-                <span className="absolute inset-0 bg-[linear-gradient(120deg,transparent_30%,rgba(255,255,255,0.4)_50%,transparent_70%)] bg-[length:200%_100%] opacity-0 transition-opacity duration-500 group-hover:opacity-100 group-hover:animate-[gradient-flow_1.5s_ease]" />
-                <span className="relative">Start the Ju Gets You reveal</span>
-                <ArrowRight className="relative h-5 w-5 transition-transform group-hover:translate-x-1" />
-              </button>
-            </Magnetic>
-            <Magnetic>
-              <button
-                onClick={scrollToPricing}
-                className="rounded-full border border-border/70 bg-white/70 px-6 py-4 text-sm font-semibold text-foreground backdrop-blur-md transition-all hover:-translate-y-0.5 hover:border-primary/30 hover:bg-white active:scale-[0.97] dark:bg-white/5 dark:hover:bg-white/10"
-              >
-                See plans
-              </button>
-            </Magnetic>
+          <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+            <button
+              onClick={() => startOnboarding()}
+              className="nuju-brand-button inline-flex h-14 items-center justify-center gap-2 rounded-full px-7 text-base font-semibold transition hover:-translate-y-0.5 active:scale-[0.98]"
+            >
+              Start the Ju Gets You reveal
+              <ArrowRight className="h-5 w-5" />
+            </button>
+            <button
+              onClick={scrollToPricing}
+              className="nuju-soft-button inline-flex h-14 items-center justify-center rounded-full px-6 text-sm font-semibold transition hover:-translate-y-0.5 active:scale-[0.98]"
+            >
+              See plans
+            </button>
           </div>
-          <p className="relative mt-5 text-xs font-medium uppercase tracking-[0.22em] text-muted-foreground">
-            60-second reveal - No credit card to start - Private by default
+          <p className="mt-5 text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
+            60-second reveal · No credit card to start · Private by default
           </p>
         </div>
       </motion.section>
 
-      {/* SEO content section - keyword-rich, indexed by Google */}
-      <section className="border-t border-border/40 bg-muted/30 px-4 py-16">
+      <section className="border-t border-black/[0.06] bg-white/58 px-4 py-16 sm:px-6 dark:border-white/10 dark:bg-white/[0.03]">
         <div className="mx-auto max-w-4xl">
-          <h2 className="font-serif text-2xl font-bold text-foreground mb-4">
+          <h2 className="mb-4 text-2xl font-semibold text-foreground">
             The AI journal app built for everyday emotional wellness
           </h2>
-          <p className="text-muted-foreground mb-6 leading-relaxed">
+          <p className="mb-6 leading-relaxed text-muted-foreground">
             Nuju is a daily journaling app powered by artificial intelligence that helps you track your mood, understand emotional patterns, and get personalized insights in as little as 30 seconds a day. Whether you want to start a mood journal, develop a daily reflection habit, or get support from an AI coach, Nuju adapts to how you feel right now.
           </p>
-          <div className="grid gap-6 sm:grid-cols-3 mb-8">
+          <div className="mb-8 grid gap-6 sm:grid-cols-3">
             <div>
-              <h3 className="font-semibold text-foreground mb-2">AI mood tracker</h3>
-              <p className="text-sm text-muted-foreground">Log your mood daily and see 30-day trends, weekly summaries, and emotional patterns you'd never notice on your own.</p>
+              <h3 className="mb-2 font-semibold text-foreground">AI mood tracker</h3>
+              <p className="text-sm text-muted-foreground">Log your mood daily and see 30-day trends, weekly summaries, and emotional patterns you would never notice on your own.</p>
             </div>
             <div>
-              <h3 className="font-semibold text-foreground mb-2">Personal AI coach</h3>
-              <p className="text-sm text-muted-foreground">Choose from four AI coaching personas - Gentle Guide, Tough Coach, Wise Sage, or Fun Friend - and get responses tailored to your journaling style.</p>
+              <h3 className="mb-2 font-semibold text-foreground">Personal AI coach</h3>
+              <p className="text-sm text-muted-foreground">Choose from four AI coaching personas and get responses tailored to your journaling style.</p>
             </div>
             <div>
-              <h3 className="font-semibold text-foreground mb-2">Daily journal prompts</h3>
-              <p className="text-sm text-muted-foreground">Stuck on what to write? Nuju surfaces a new journaling prompt each day to help you reflect on what matters - no blank-page anxiety.</p>
+              <h3 className="mb-2 font-semibold text-foreground">Daily journal prompts</h3>
+              <p className="text-sm text-muted-foreground">Stuck on what to write? Nuju surfaces journaling prompts that help you reflect without blank-page anxiety.</p>
             </div>
           </div>
           <p className="text-sm text-muted-foreground">
@@ -1605,37 +1261,30 @@ const Landing: React.FC = () => {
         </div>
       </section>
 
-      <footer className="border-t border-border/60 px-4 py-10 bg-card/50">
-        <div className="mx-auto max-w-6xl space-y-6">
+      <footer className="border-t border-black/[0.06] bg-[#FAF9F6] px-4 py-10 sm:px-6 dark:border-white/10 dark:bg-background">
+        <div className="mx-auto max-w-7xl space-y-6">
           <div className="flex flex-col items-center justify-between gap-4 sm:flex-row sm:text-left">
             <div className="flex items-center gap-3">
               <img src={juMain} alt="Nuju logo - Ju the AI journal companion" className="h-8 w-8 object-contain" width={32} height={32} loading="lazy" />
               <div>
-                <p className="font-serif text-lg font-bold text-foreground">Nuju</p>
+                <p className="text-lg font-semibold text-foreground">Nuju</p>
                 <p className="text-sm text-muted-foreground">Support that helps you feel understood.</p>
               </div>
             </div>
             <p className="text-xs text-muted-foreground/80">Copyright 2026 Nuju. Built for quieter minds and more understood moments.</p>
           </div>
 
-          {/* Legal Links */}
-          <div className="flex flex-wrap justify-center gap-4 text-xs border-t border-border/40 pt-6">
-            <Link to="/about" state={{ from: "/" }} className="text-muted-foreground hover:text-foreground transition-colors">About</Link>
-            <span className="text-border/40">-</span>
-            <Link to="/support" state={{ from: "/" }} className="text-muted-foreground hover:text-foreground transition-colors">Support</Link>
-            <span className="text-border/40">-</span>
-            <Link to="/contact" state={{ from: "/" }} className="text-muted-foreground hover:text-foreground transition-colors">Contact</Link>
-            <span className="text-border/40">-</span>
-            <Link to="/privacy" state={{ from: "/" }} className="text-muted-foreground hover:text-foreground transition-colors">Privacy</Link>
-            <span className="text-border/40">-</span>
-            <Link to="/terms" state={{ from: "/" }} className="text-muted-foreground hover:text-foreground transition-colors">Terms</Link>
-            <span className="text-border/40">-</span>
-            <Link to="/medical-disclaimer" state={{ from: "/" }} className="text-muted-foreground hover:text-foreground transition-colors">Medical Disclaimer</Link>
+          <div className="flex flex-wrap justify-center gap-4 border-t border-black/[0.06] pt-6 text-xs dark:border-white/10">
+            <Link to="/about" state={{ from: "/" }} className="text-muted-foreground transition-colors hover:text-foreground">About</Link>
+            <Link to="/support" state={{ from: "/" }} className="text-muted-foreground transition-colors hover:text-foreground">Support</Link>
+            <Link to="/contact" state={{ from: "/" }} className="text-muted-foreground transition-colors hover:text-foreground">Contact</Link>
+            <Link to="/privacy" state={{ from: "/" }} className="text-muted-foreground transition-colors hover:text-foreground">Privacy</Link>
+            <Link to="/terms" state={{ from: "/" }} className="text-muted-foreground transition-colors hover:text-foreground">Terms</Link>
+            <Link to="/medical-disclaimer" state={{ from: "/" }} className="text-muted-foreground transition-colors hover:text-foreground">Medical Disclaimer</Link>
           </div>
         </div>
       </footer>
 
-      {/* Mobile sticky CTA - appears after scrolling past the hero */}
       <AnimatePresence>
         {showStickyCta && (
           <motion.div
@@ -1645,11 +1294,11 @@ const Landing: React.FC = () => {
             transition={{ type: "spring", stiffness: 200, damping: 22 }}
             className="fixed inset-x-0 bottom-0 z-40 px-4 pb-[max(env(safe-area-inset-bottom,0px),0.75rem)] pt-2 sm:hidden"
           >
-            <div className="mx-auto flex max-w-md items-center gap-2 rounded-full border border-border/60 bg-card/95 p-1.5 pl-4 shadow-[0_20px_50px_-18px_rgba(0,0,0,0.35)] backdrop-blur-xl">
+            <div className="mx-auto flex max-w-md items-center gap-2 rounded-full border border-black/[0.08] bg-white/95 p-1.5 pl-4 shadow-[0_20px_54px_-26px_rgba(0,0,0,0.45)] backdrop-blur-2xl dark:border-white/10 dark:bg-background/95">
               <span className="text-xs font-semibold text-foreground">Feel understood in 60s</span>
               <button
                 onClick={() => startOnboarding()}
-                className="ml-auto inline-flex items-center gap-1 rounded-full bg-[linear-gradient(135deg,#8A7CE8,#6F5FE8)] px-4 py-2.5 text-xs font-bold text-white shadow-[0_10px_24px_-10px_rgba(124,110,219,0.6)] active:scale-[0.97]"
+              className="nuju-brand-button ml-auto inline-flex items-center gap-1 rounded-full px-4 py-2.5 text-xs font-bold active:scale-[0.98]"
               >
                 Start reveal
                 <ArrowRight className="h-3.5 w-3.5" />

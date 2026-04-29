@@ -39,3 +39,6 @@ tmp-visual-checks/
 *.njsproj
 *.sln
 *.sw?
+.aidesigner/
+.agents/
+.codex/

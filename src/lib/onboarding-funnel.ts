@@ -148,86 +148,86 @@ export const getFunnelContactPrefill = () => {
 const GOAL_COPY: Record<Exclude<FunnelGoal, null>, { label: string; headline: string; mirror: string }> = {
   overwhelmed: {
     label: "Carrying too much",
-    headline: "Ju notices how much you have been holding while still trying to look okay on the outside.",
-    mirror: "This reads like someone who has stayed functional for longer than their heart or mind really had room for.",
+    headline: "Ju sees how much you have been holding while still trying to look okay.",
+    mirror: "You may have been staying functional while carrying more than you had room for.",
   },
   unseen: {
     label: "Wanting to feel understood",
-    headline: "Ju notices how tired you are of needing perfect words before anyone really gets it.",
-    mirror: "It feels less like you want advice and more like you want something to recognize the feeling before you have to translate it.",
+    headline: "Ju sees how tired you are of needing perfect words before you feel understood.",
+    mirror: "You may not need advice first. You may need the feeling recognized before you translate it.",
   },
   disconnected: {
     label: "Far from yourself",
-    headline: "Ju notices that part of you has gone quiet just to keep getting through the day.",
-    mirror: "There is a distance between what you show on the surface and what is actually happening inside you right now.",
+    headline: "Ju sees that part of you has gone quiet just to get through the day.",
+    mirror: "What you show on the surface may not match what is happening inside right now.",
   },
   spiraling: {
     label: "Mind running ahead",
-    headline: "Ju notices how fast the feeling becomes noise before you even get a chance to name it.",
-    mirror: "This feels like the kind of emotional spiral that gets louder the longer you are left alone with it.",
+    headline: "Ju sees how fast the feeling becomes noise before you can name it.",
+    mirror: "When you are left alone with it, the noise can get louder fast.",
   },
 };
 
 const FOCUS_COPY: Record<Exclude<FunnelFocus, null>, string> = {
-  name_it: "Ju would help you catch the feeling before it blurs together, then put honest words around it so it stops sitting in your chest as one heavy knot.",
-  calm_me: "Ju would help the emotional noise come down first, because nothing feels clear while everything is still this loud inside.",
-  stay_with_me: "Ju would stay with the feeling gently enough that you do not have to carry the rawest part of it alone.",
-  show_pattern: "Ju would help connect this moment to the pattern under it, so it starts making sense instead of just hurting again.",
+  name_it: "First, name the feeling clearly enough that it stops sitting in your chest as one heavy knot.",
+  calm_me: "First, bring the noise down so there is room to breathe.",
+  stay_with_me: "First, stay with the feeling gently so you do not have to hold the rawest part alone.",
+  show_pattern: "First, connect this moment to the pattern under it so it starts making sense.",
 };
 
 const HARD_MOMENT_COPY: Record<Exclude<FunnelHardestMoment, null>, string> = {
-  late_night: "It sounds like this gets louder in the quiet moments, especially when there is finally room to feel what the day kept buried.",
-  after_conflict: "Conflict seems to leave a deeper emotional residue for you than people usually see on the surface.",
-  while_busy: "A lot of this seems to hit hardest while you are still trying to hold everything together and keep moving.",
-  when_alone: "Being alone with it seems to make the emotional weight expand, not because you are dramatic, but because there is no one there to help you hold it.",
+  late_night: "This may get louder in quiet moments, when the day finally leaves room to feel it.",
+  after_conflict: "Conflict may leave a deeper after-feeling than people see.",
+  while_busy: "A lot of this may hit hardest while you are still trying to keep moving.",
+  when_alone: "Being alone with it can make the weight feel bigger, especially without a soft place to put it.",
 };
 
 const BLOCKER_COPY: Record<Exclude<FunnelBlocker, null>, string> = {
-  burden: "You seem used to protecting other people from the full weight of what you feel.",
-  words: "A big part of the pain may be how hard it is to find words before the feeling gets even bigger.",
-  functioning: "You have probably learned to stay functional even when something inside you is quietly fraying.",
-  privacy: "Feeling emotionally safe matters before you can be fully honest, and that has probably made opening up slower and harder.",
+  burden: "You may be used to protecting other people from how much you feel.",
+  words: "Finding words can be hard when the feeling is already getting big.",
+  functioning: "You may have learned to stay functional even when something inside feels frayed.",
+  privacy: "Emotional safety matters before you can be fully honest.",
 };
 
 const UNSEEN_WISH_COPY: Record<Exclude<FunnelUnseenWish, null>, string> = {
-  notice_tired: "A part of you wishes someone would notice how tired you are before you have to say it out loud.",
-  see_pain: "A part of you wants to be seen beneath the version of you that keeps saying you are fine.",
-  stay_without_fixing: "You want presence before solutions. Something that stays close before trying to tidy the feeling away.",
-  help_me_name_it: "You want help finding the truest words for this, because naming it would already make it feel less lonely.",
+  notice_tired: "A part of you wants your tiredness noticed before you have to say it out loud.",
+  see_pain: "A part of you wants to be seen beneath the version that keeps saying you are fine.",
+  stay_without_fixing: "You may want presence before solutions.",
+  help_me_name_it: "Finding the truest words could already make this feel less lonely.",
 };
 
 const COST_COPY: Record<Exclude<FunnelCost, null>, string> = {
-  sleep: "This has likely been following you into your sleep and stealing softness from the hours that are supposed to help you recover.",
-  relationships: "This seems to be shaping how close you can feel to other people, even when you still want connection.",
-  focus: "It is probably taking up more mental space than most people realize, which makes everyday focus feel heavier than it should.",
-  self_trust: "The longer this stays blurred, the easier it is to doubt your own feelings or tell yourself you should be handling it better.",
+  sleep: "This may be following you into the hours that are supposed to help you recover.",
+  relationships: "This may be shaping how close you can feel to people, even when you still want connection.",
+  focus: "It may be taking up more mental space than people realize.",
+  self_trust: "When this stays blurred, it can get harder to trust what you feel.",
 };
 
 const STYLE_COPY: Record<Exclude<FunnelStyle, null>, string> = {
-  gentle: "Ju should feel soft and reassuring first, because you open up more honestly when the space feels emotionally safe.",
-  direct: "Ju should stay clear and grounded, because warmth works better for you when it still feels honest and real.",
-  private: "Ju should keep the tone quiet and low-pressure, because privacy helps you say the truer thing underneath.",
-  guided: "Ju should use gentle structure, because having a thoughtful way in makes it easier to begin before the moment passes.",
+  gentle: "A soft, reassuring tone may help you open up more honestly.",
+  direct: "Warmth may feel best when it stays clear and grounded.",
+  private: "A quiet, low-pressure space may help you say the truer thing.",
+  guided: "A little structure may make it easier to begin before the moment passes.",
 };
 
 const BASELINE_COPY: Record<Exclude<FunnelBaseline, null>, string> = {
-  drained: "Right now the support has to meet you at a low battery level, not ask you to be more organized or emotionally articulate first.",
-  holding: "It feels like you have been holding a lot in, and what you need first is somewhere that lets some of that pressure soften.",
-  coping: "You are getting through it, but not in a way that feels settled yet. Ju would meet that middle state gently instead of forcing a bigger breakthrough than you have energy for.",
-  hopeful: "There is still a hopeful part of you here. Ju would protect that without pretending everything already feels fine.",
+  drained: "Start low-effort, without needing to be organized or articulate first.",
+  holding: "You may need somewhere that lets some of the pressure soften.",
+  coping: "You are getting through it, but not in a way that feels fully settled yet.",
+  hopeful: "There is still a hopeful part of you here, even if everything does not feel fine yet.",
 };
 
 const RELIEF_COPY: Record<Exclude<FunnelRelief, null>, string> = {
-  breathe: "The first win should be breathing a little easier.",
-  softer: "The first win should be feeling less hard on yourself.",
-  clearer: "The first win should be having clearer words for what is happening.",
-  less_alone: "The first win should be not feeling alone inside the moment anymore.",
+  breathe: "Start with breathing a little easier.",
+  softer: "Start with feeling less hard on yourself.",
+  clearer: "Start with clearer words for what is happening.",
+  less_alone: "Start with feeling less alone inside the moment.",
 };
 
 const CONSISTENCY_COPY: Record<Exclude<FunnelConsistency, null>, string> = {
-  rarely: "Even if this does not happen every day, it still cuts deep when it does.",
-  sometimes: "This seems to come and go, which can make it harder because the weight never feels fully predictable.",
-  often: "This sounds close to a recurring emotional pattern, not just one hard day.",
+  rarely: "Even if this does not happen every day, it still matters when it does.",
+  sometimes: "This may come and go, which can make the weight feel hard to predict.",
+  often: "This sounds like a recurring pattern, not just one hard day.",
 };
 
 export const buildResultTeaser = (answers: OnboardingFunnelAnswers): ResultTeaser => {
@@ -243,22 +243,23 @@ export const buildResultTeaser = (answers: OnboardingFunnelAnswers): ResultTease
     answers.unseenWish ? UNSEEN_WISH_COPY[answers.unseenWish] : null,
     answers.cost ? COST_COPY[answers.cost] : null,
   ].filter(Boolean) as string[];
+  const whySummary = whyParts.slice(0, 3).join(" ");
 
   return {
     headline: `${namePrefix}${stateCopy.headline}`,
     stateLabel: stateCopy.label,
     mirror: stateCopy.mirror,
-    whyItFits: whyParts.join(" "),
+    whyItFits: whySummary,
     firstSupportMove: answers.focus
       ? FOCUS_COPY[answers.focus]
-      : "Ju would help you put words around what is heaviest first, so the feeling stops staying alone and shapeless inside you.",
+      : "Start by putting words around what feels heaviest, so it stops staying alone and shapeless.",
     supportSignals: [
-      answers.style ? STYLE_COPY[answers.style] : "Ju should feel safe enough that you can be real quickly.",
-      answers.baseline ? BASELINE_COPY[answers.baseline] : "Ju should meet you gently where you actually are, not where people expect you to be.",
-      answers.relief ? RELIEF_COPY[answers.relief] : "The first step should feel like emotional relief, not homework.",
+      answers.style ? STYLE_COPY[answers.style] : "Keep it simple and safe enough to be honest.",
+      answers.baseline ? BASELINE_COPY[answers.baseline] : "Meet the way you actually feel right now.",
+      answers.relief ? RELIEF_COPY[answers.relief] : "Let the first step feel like relief, not homework.",
     ],
     continuationLine: firstName
-      ? `${firstName}, if this already feels true, the next step is keeping Ju close enough that the next heavy moment does not have to start from scratch.`
-      : "If this already feels true, the next step is keeping Ju close enough that the next heavy moment does not have to start from scratch.",
+      ? `${firstName}, this does not have to disappear when the page closes.`
+      : "This does not have to disappear when the page closes.",
   };
 };

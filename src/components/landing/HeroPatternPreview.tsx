@@ -1,120 +1,199 @@
-import React from "react";
-import { BrainCircuit, Mic, Sparkles, TrendingUp } from "lucide-react";
+import React, { useMemo, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import { ArrowUp, BrainCircuit, HeartPulse, Mic, Sparkles } from "lucide-react";
+
 import juMain from "@/assets/ju-main.webp";
 
-const moodBars = [28, 44, 38, 58, 66, 62, 78];
-
-const patternChips = ["Overwhelmed", "Most honest", "Trying to cope"];
+const demoStates = [
+  {
+    label: "Heavy",
+    prompt: "I keep saying I am fine, but I feel incredibly blank.",
+    tone: "high emotional load",
+    reflection:
+      "That blankness sounds less like nothing and more like your system has been carrying too much for too long.",
+    nextStep: "Rest for ten minutes without trying to earn it.",
+    accent: "#6C9BCF",
+    bars: [28, 44, 36, 58, 48, 72, 62],
+  },
+  {
+    label: "Foggy",
+    prompt: "I cannot tell what I feel. Everything is just blurred.",
+    tone: "pattern detected",
+    reflection:
+      "There may be too many feelings arriving at once. You do not need the whole answer yet. Start with the loudest one.",
+    nextStep: "Choose one feeling word and let it be enough.",
+    accent: "#7C6EDB",
+    bars: [34, 42, 54, 50, 66, 58, 76],
+  },
+  {
+    label: "Softer",
+    prompt: "I think I am finally okay enough to be honest.",
+    tone: "space opening",
+    reflection:
+      "A softer truth is starting to show up. You do not have to fix the whole story today, just protect the honest part.",
+    nextStep: "Write the sentence you would say to a friend.",
+    accent: "#4ECDC4",
+    bars: [40, 50, 56, 62, 68, 76, 84],
+  },
+] as const;
 
 const HeroPatternPreview: React.FC = () => {
+  const [activeIndex, setActiveIndex] = useState(1);
+  const active = demoStates[activeIndex];
+
+  const visualStyle = useMemo(
+    () => ({
+      background: `linear-gradient(145deg, rgba(255,255,255,0.74), ${active.accent}10 46%, rgba(250,249,246,0.86))`,
+      borderColor: `${active.accent}30`,
+    }),
+    [active],
+  );
+
   return (
-    <div className="relative">
-      <div className="absolute inset-x-8 top-6 h-72 rounded-full bg-primary/15 blur-[100px]" />
+    <div data-testid="hero-pattern-preview" className="relative">
+      <motion.div
+        animate={{ y: [0, -6, 0], opacity: [0.84, 1, 0.84] }}
+        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute -left-8 top-44 z-10 hidden rounded-full border border-white/70 bg-white/82 px-4 py-2 text-sm font-semibold text-stone-500 shadow-[0_18px_44px_-30px_rgba(28,25,23,0.5)] backdrop-blur-2xl md:flex"
+      >
+        <HeartPulse className="mr-2 h-4 w-4 text-[#E8878C]" />
+        {active.tone}
+      </motion.div>
 
-      <div className="relative overflow-hidden rounded-[2.25rem] border border-border/60 bg-card/85 p-5 shadow-2xl backdrop-blur-2xl sm:p-6">
-        <div className="flex items-center justify-between gap-3">
-          <div className="flex items-center gap-3">
-            <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-primary/10">
-              <img src={juMain} alt="Ju mascot" className="h-7 w-7 animate-ju-float object-contain" width={28} height={28} />
+      <motion.div
+        animate={{ y: [0, 7, 0], opacity: [0.78, 1, 0.78] }}
+        transition={{ duration: 7, repeat: Infinity, ease: "easeInOut", delay: 0.6 }}
+        className="absolute -right-10 top-20 z-10 hidden rounded-full border border-white/70 bg-white/82 px-4 py-2 text-sm font-semibold text-stone-500 shadow-[0_18px_44px_-30px_rgba(28,25,23,0.5)] backdrop-blur-2xl md:flex"
+      >
+        <Sparkles className="mr-2 h-4 w-4 text-primary" />
+        Ju noticed a pattern
+      </motion.div>
+
+      <div
+        className="relative overflow-hidden rounded-[32px] border bg-white/70 p-4 shadow-[0_44px_120px_-74px_rgba(28,25,23,0.74)] backdrop-blur-2xl sm:p-5"
+        style={visualStyle}
+      >
+        <div className="absolute inset-0 hero-demo-field" aria-hidden="true" />
+
+        <div className="relative overflow-hidden rounded-[26px] border border-white/80 bg-white/72 p-4 backdrop-blur-2xl dark:border-white/10 dark:bg-background/60 sm:p-6">
+          <div className="flex items-center justify-between gap-3">
+            <div className="flex items-center gap-3">
+              <div className="flex h-11 w-11 items-center justify-center rounded-full bg-[#F6F2FF]">
+                <img src={juMain} alt="Ju mascot" className="h-7 w-7 animate-ju-float object-contain" width={28} height={28} />
+              </div>
+              <div>
+                <p className="font-semibold text-foreground">Ju live reveal</p>
+                <p className="text-xs text-muted-foreground">Tap a feeling to see the read shift</p>
+              </div>
             </div>
-            <div>
-              <p className="font-semibold text-foreground">Ju is listening</p>
-              <p className="text-xs font-medium text-muted-foreground">From messy feelings to gentle clarity</p>
-            </div>
+            <span className="rounded-full border border-black/[0.06] bg-white/76 px-3 py-1 text-xs font-semibold text-muted-foreground">
+              Private
+            </span>
           </div>
 
-          <div className="rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold text-primary">
-            Safe and private
+          <div className="mt-5 grid grid-cols-3 gap-2 rounded-full border border-black/[0.06] bg-[#FAF9F6]/78 p-1.5">
+            {demoStates.map((state, index) => (
+              <button
+                key={state.label}
+                type="button"
+                onClick={() => setActiveIndex(index)}
+                className={`rounded-full px-3 py-2.5 text-sm font-semibold transition ${
+                  activeIndex === index
+                    ? "bg-white text-foreground shadow-[0_14px_34px_-26px_rgba(28,25,23,0.56)]"
+                    : "text-muted-foreground hover:bg-white/62 hover:text-foreground"
+                }`}
+                aria-pressed={activeIndex === index}
+              >
+                <span className="inline-flex items-center gap-2">
+                  <span className="h-2 w-2 rounded-full" style={{ backgroundColor: state.accent }} />
+                  {state.label}
+                </span>
+              </button>
+            ))}
           </div>
-        </div>
 
-        <div className="mt-5 space-y-4">
-          <div className="rounded-[1.6rem] border border-primary/15 bg-primary/[0.06] p-5">
-            <div className="mb-3 flex items-center gap-2">
-              <Mic className="h-4 w-4 text-primary" />
-              <span className="text-xs font-bold uppercase tracking-[0.18em] text-primary">One-minute check-in</span>
-            </div>
+          <div className="mt-6 flex items-center justify-between border-y border-black/[0.06] py-4 text-[11px] font-bold uppercase tracking-[0.18em] text-muted-foreground">
+            <span>Today, 10:42 AM</span>
+            <span className="inline-flex items-center gap-2">
+              <span className="h-1.5 w-1.5 rounded-full bg-[#4ECDC4] shadow-[0_0_0_5px_rgba(78,205,196,0.12)]" />
+              Live read
+            </span>
+          </div>
 
-            <div className="mb-4 flex h-8 items-end gap-[3px]">
-              {moodBars.map((height, index) => (
-                <span
-                  key={index}
-                  className="w-[4px] rounded-full bg-primary/40"
-                  style={{
-                    height: `${height}%`,
-                    animation: "typing-dots 1.6s ease-in-out infinite alternate",
-                    animationDelay: `${index * 0.08}s`,
+          <div className="mt-5 min-h-[312px] space-y-5 sm:min-h-[286px]">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={`${active.label}-prompt`}
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -12 }}
+                transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
+                className="ml-auto max-w-[86%] rounded-2xl rounded-tr-md border border-black/[0.06] bg-[#F7F7F5] px-4 py-3 text-base leading-7 text-foreground shadow-sm"
+              >
+                {active.prompt}
+              </motion.div>
+            </AnimatePresence>
+
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={`${active.label}-reply`}
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -12 }}
+                transition={{ duration: 0.32, delay: 0.05, ease: [0.16, 1, 0.3, 1] }}
+                className="flex gap-3"
+              >
+                <div className="mt-1 flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white shadow-sm">
+                  <Sparkles className="h-4 w-4" style={{ color: active.accent }} />
+                </div>
+                <div className="nuju-neu-surface rounded-2xl rounded-tl-md px-4 py-4 text-[#4c4569]">
+                  <div className="mb-3 flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.16em] text-[#7C6EDB]/70">
+                    <BrainCircuit className="h-4 w-4 text-[#4ECDC4]" />
+                    Ju noticed
+                  </div>
+                  <p className="text-sm leading-7 text-[#4c4569]/88 sm:text-base sm:leading-8">
+                    {active.reflection}
+                  </p>
+                  <div className="nuju-neu-pressed mt-4 rounded-[18px] p-3">
+                    <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-[#7C6EDB]/60">Next gentle move</p>
+                    <p className="mt-2 text-sm leading-6 text-[#4c4569]/78">{active.nextStep}</p>
+                  </div>
+                </div>
+              </motion.div>
+            </AnimatePresence>
+
+            <div className="flex h-12 items-end gap-1.5">
+              {active.bars.map((height, index) => (
+                <motion.span
+                  key={`${active.label}-${index}`}
+                  initial={{ height: 10 }}
+                  animate={{ height: [Math.max(18, height - 20), height, Math.max(22, height - 10)] }}
+                  transition={{
+                    duration: 1.35,
+                    delay: index * 0.08,
+                    ease: "easeInOut",
+                    repeat: Infinity,
+                    repeatType: "mirror",
                   }}
+                  className="w-full rounded-full"
+                  style={{ background: `linear-gradient(180deg, ${active.accent}, rgba(28,25,23,0.14))` }}
                 />
               ))}
             </div>
-
-            <p className="text-sm leading-7 text-foreground/85">
-              "I keep acting like I'm fine, but I think I'm mostly just tired and trying not to fall apart."
-            </p>
           </div>
 
-          <div className="rounded-[1.6rem] border border-[#4ECDC4]/20 bg-gradient-to-br from-[#4ECDC4]/10 via-primary/[0.05] to-transparent p-5">
-            <div className="mb-3 flex items-center gap-2">
-              <BrainCircuit className="h-4 w-4 text-[#4ECDC4]" />
-              <span className="text-xs font-bold uppercase tracking-[0.18em] text-[#4ECDC4]">Ju noticed</span>
+          <div className="mt-5 flex items-center gap-3 rounded-full border border-black/[0.06] bg-white/82 p-2 shadow-sm">
+            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#F4F1EC] text-muted-foreground">
+              <Mic className="h-4 w-4" />
             </div>
-
-            <p className="text-[15px] leading-7 text-foreground">
-              "You open up most honestly when you're overwhelmed. That's not failure. It's you trying to take care of yourself."
-            </p>
-
-            <div className="mt-4 flex flex-wrap gap-2">
-              {patternChips.map((chip) => (
-                <span
-                  key={chip}
-                  className="rounded-full border border-[#4ECDC4]/20 bg-white/70 px-3 py-1 text-[11px] font-semibold text-foreground/80 dark:bg-card/80"
-                >
-                  {chip}
-                </span>
-              ))}
-            </div>
-          </div>
-
-          <div className="grid gap-3 sm:grid-cols-[1.05fr_0.95fr]">
-            <div className="rounded-[1.5rem] border border-border/60 bg-card p-4">
-              <div className="flex items-center justify-between gap-3">
-                <p className="text-xs font-bold uppercase tracking-[0.18em] text-primary">Mood trend</p>
-                <div className="inline-flex items-center gap-1 rounded-full bg-primary/10 px-2.5 py-1 text-[11px] font-semibold text-primary">
-                  <TrendingUp className="h-3.5 w-3.5" />
-                  Steadier
-                </div>
-              </div>
-
-              <div className="mt-4 flex items-end gap-2">
-                {[34, 48, 44, 60, 72, 68, 82].map((height, index) => (
-                  <div
-                    key={index}
-                    className="flex-1 rounded-t-xl bg-gradient-to-t from-primary to-[#4ECDC4]"
-                    style={{ height: `${height}px`, opacity: 0.88 - index * 0.05 }}
-                  />
-                ))}
-              </div>
-
-              <p className="mt-3 text-xs leading-6 text-muted-foreground">
-                This week feels steadier than the last one.
-              </p>
-            </div>
-
-            <div className="rounded-[1.5rem] border border-border/60 bg-card p-4">
-              <div className="mb-3 flex items-center gap-2">
-                <Sparkles className="h-4 w-4 text-primary" />
-                <p className="text-xs font-bold uppercase tracking-[0.18em] text-primary">Hidden pattern</p>
-              </div>
-
-              <p className="text-sm leading-7 text-foreground">
-                You tend to write more on the days you feel low. That's a healthy outlet, not something to hide.
-              </p>
-
-              <div className="mt-4 rounded-[1.2rem] bg-secondary/50 px-3 py-3 text-xs leading-6 text-foreground">
-                The first relief is feeling seen. The deeper clarity grows from there.
-              </div>
-            </div>
+            <p className="min-w-0 flex-1 truncate text-sm text-muted-foreground">Type or speak the messy version...</p>
+            <button
+              type="button"
+              className="nuju-brand-button flex h-9 w-9 shrink-0 items-center justify-center rounded-full transition hover:-translate-y-0.5 active:scale-[0.96]"
+              aria-label="Submit demo message"
+            >
+              <ArrowUp className="h-4 w-4" />
+            </button>
           </div>
         </div>
       </div>

@@ -110,7 +110,7 @@
   body {
     @apply bg-background text-foreground;
     font-family: var(--font-body);
-    letter-spacing: -0.011em;
+    letter-spacing: 0;
     /* Smooth dark/light mode transitions */
     transition: background-color 0.4s ease, color 0.3s ease;
     /* iOS-native momentum scrolling */
@@ -291,6 +291,18 @@
   from { opacity: 0; transform: translateY(14px); }
   to { opacity: 1; transform: translateY(0); }
 }
+@keyframes nuju-field-shift {
+  0%, 100% { background-position: 0% 45%, 50% 50%, 0 0; }
+  50% { background-position: 100% 55%, 48% 42%, 0 0; }
+}
+@keyframes nuju-demo-breathe {
+  0%, 100% { opacity: 0.55; transform: translateY(0); }
+  50% { opacity: 0.9; transform: translateY(-2%); }
+}
+@keyframes story-line-draw {
+  from { stroke-dashoffset: 520; }
+  to { stroke-dashoffset: 0; }
+}
 
 @layer utilities {
   .animate-ju-float {
@@ -397,6 +409,80 @@
     background-size: 48px 48px;
     mask-image: radial-gradient(ellipse at center, black 40%, transparent 75%);
     -webkit-mask-image: radial-gradient(ellipse at center, black 40%, transparent 75%);
+  }
+  .hero-ambient-field {
+    background-image:
+      conic-gradient(from 130deg at var(--hero-x, 50%) var(--hero-y, 34%), rgba(124, 110, 219, 0.16), rgba(78, 205, 196, 0.1), rgba(255, 179, 71, 0.12), rgba(232, 135, 140, 0.11), rgba(124, 110, 219, 0.16)),
+      linear-gradient(115deg, rgba(250, 249, 246, 0.94), rgba(255, 255, 255, 0.62) 38%, rgba(246, 242, 255, 0.52) 62%, rgba(250, 249, 246, 0.98));
+    background-size: 240% 240%, 220% 220%;
+    animation: nuju-field-shift 18s ease-in-out infinite;
+  }
+  .dark .hero-ambient-field {
+    background-image:
+      conic-gradient(from 130deg at var(--hero-x, 50%) var(--hero-y, 34%), rgba(124, 110, 219, 0.28), rgba(78, 205, 196, 0.14), rgba(255, 179, 71, 0.1), rgba(232, 135, 140, 0.12), rgba(124, 110, 219, 0.28)),
+      linear-gradient(115deg, rgba(15, 14, 20, 0.96), rgba(28, 25, 39, 0.72) 38%, rgba(34, 31, 45, 0.56) 62%, rgba(15, 14, 20, 0.98));
+  }
+  .hero-demo-field {
+    background:
+      linear-gradient(115deg, transparent 0%, rgba(255, 255, 255, 0.72) 42%, transparent 72%),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.24), transparent);
+    background-size: 240% 240%, auto;
+    animation: nuju-demo-breathe 7s ease-in-out infinite;
+    pointer-events: none;
+  }
+  .nuju-grain {
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    pointer-events: none;
+  }
+  .story-ambient-field {
+    background-image:
+      linear-gradient(128deg, rgba(124, 110, 219, 0.09), rgba(78, 205, 196, 0.08) 32%, rgba(250, 249, 246, 0.84) 52%, rgba(255, 179, 71, 0.08) 76%, rgba(232, 135, 140, 0.08)),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.5), rgba(250, 249, 246, 0.88));
+    background-size: 260% 260%, auto;
+    animation: nuju-field-shift 22s ease-in-out infinite;
+    pointer-events: none;
+  }
+  .story-path-draw {
+    stroke-dasharray: 520;
+    stroke-dashoffset: 520;
+    animation: story-line-draw 1.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+  .onboarding-page-field {
+    background-image:
+      radial-gradient(circle at 20% 0%, rgba(124, 110, 219, 0.14), transparent 34%),
+      radial-gradient(circle at 86% 18%, rgba(78, 205, 196, 0.12), transparent 30%),
+      linear-gradient(135deg, rgba(250, 249, 246, 0.96), rgba(255, 255, 255, 0.88) 42%, rgba(247, 244, 255, 0.76) 100%);
+    background-size: 180% 180%, 180% 180%, auto;
+    animation: nuju-field-shift 24s ease-in-out infinite;
+  }
+  .nuju-neu-surface {
+    background: rgba(255, 255, 255, 0.68);
+    border: 1px solid rgba(255, 255, 255, 0.82);
+    box-shadow:
+      -14px -14px 34px rgba(255, 255, 255, 0.82),
+      16px 18px 44px rgba(124, 110, 219, 0.1),
+      inset 1px 1px 2px rgba(255, 255, 255, 0.92);
+  }
+  .nuju-neu-pressed {
+    background: rgba(250, 249, 246, 0.78);
+    box-shadow:
+      inset 7px 7px 18px rgba(124, 110, 219, 0.08),
+      inset -7px -7px 18px rgba(255, 255, 255, 0.9);
+  }
+  .nuju-brand-button {
+    background: linear-gradient(135deg, #8f82ea 0%, #7c6edb 46%, #4ecdc4 100%);
+    color: white;
+    box-shadow: 0 20px 44px -24px rgba(124, 110, 219, 0.86);
+  }
+  .nuju-brand-button:hover {
+    box-shadow: 0 24px 54px -24px rgba(78, 205, 196, 0.72);
+  }
+  .nuju-soft-button {
+    background: rgba(255, 255, 255, 0.76);
+    color: #5c547f;
+    box-shadow:
+      -6px -6px 16px rgba(255, 255, 255, 0.82),
+      7px 8px 18px rgba(124, 110, 219, 0.09);
   }
   .font-serif {
     font-family: var(--font-serif);
