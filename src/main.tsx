@@ -7,13 +7,24 @@ import { PostHogProvider } from "posthog-js/react";
 import { isNative } from "./lib/platform.ts";
 
 const nativePlatform = isNative();
+const posthogKey = import.meta.env.VITE_POSTHOG_KEY || "phc_BfFykDwtfmSnLZ7XFkp3nXk5BkLft2XVd8LsK7rjiC8b";
+const posthogHost = import.meta.env.VITE_POSTHOG_HOST || "https://us.i.posthog.com";
+const localPostHogEnabled = import.meta.env.VITE_POSTHOG_ENABLE_LOCAL === "true";
+const isLocalhost = ["localhost", "127.0.0.1", "::1"].includes(window.location.hostname);
+const posthogCaptureEnabled = Boolean(posthogKey) && (!isLocalhost || localPostHogEnabled);
 
-posthog.init('phc_BfFykDwtfmSnLZ7XFkp3nXk5BkLft2XVd8LsK7rjiC8b', {
-  api_host: 'https://us.i.posthog.com',
-  person_profiles: 'identified_only',
-  capture_pageview: !nativePlatform,
-  autocapture: !nativePlatform,
+posthog.init(posthogKey, {
+  api_host: posthogHost,
+  person_profiles: "identified_only",
+  capture_pageview: posthogCaptureEnabled && !nativePlatform,
+  autocapture: posthogCaptureEnabled && !nativePlatform,
+  opt_out_capturing_by_default: !posthogCaptureEnabled,
   disable_session_recording: nativePlatform,
+  loaded: (client) => {
+    if (!posthogCaptureEnabled) {
+      client.opt_out_capturing();
+    }
+  },
 });
 
 // Restore dark mode from localStorage

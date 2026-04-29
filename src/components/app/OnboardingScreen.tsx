@@ -540,7 +540,10 @@ const OnboardingScreen: React.FC = () => {
 
   const initialState = useMemo(() => {
     const stored = loadFunnelState();
-    const baseState = stored || createDefaultFunnelState(source);
+    const baseState = stored || {
+      ...createDefaultFunnelState(source),
+      step: 1,
+    };
 
     return {
       ...baseState,
@@ -562,8 +565,11 @@ const OnboardingScreen: React.FC = () => {
   const startTrackedRef = useRef(false);
   const completedRef = useRef(false);
   const abandonmentStepRef = useRef(STEP_KEYS[initialState.step] || "entry");
+  const abandonmentStepIndexRef = useRef(initialState.step);
   const abandonmentSourceRef = useRef(initialState.answers.source);
+  const abandonmentSessionRef = useRef(initialState.sessionId);
   const abandonmentUserRef = useRef<string | null>(null);
+  const stepViewedKeyRef = useRef("");
   const processingStartedRef = useRef(false);
   const leadSyncKeyRef = useRef("");
   const paywallTrackedKeyRef = useRef("");
@@ -574,21 +580,45 @@ const OnboardingScreen: React.FC = () => {
 
   useEffect(() => {
     abandonmentStepRef.current = STEP_KEYS[funnelState.step] || "unknown";
+    abandonmentStepIndexRef.current = funnelState.step;
     abandonmentSourceRef.current = funnelState.answers.source;
+    abandonmentSessionRef.current = funnelState.sessionId;
     abandonmentUserRef.current = user?.id || null;
-  }, [funnelState.answers.source, funnelState.step, user?.id]);
+  }, [funnelState.answers.source, funnelState.sessionId, funnelState.step, user?.id]);
 
   useEffect(() => {
     if (!startTrackedRef.current) {
       startTrackedRef.current = true;
-      events.trackFunnelStart(funnelState.answers.source);
+      events.trackFunnelStart(funnelState.answers.source, funnelState.sessionId, user?.id || null);
     }
-  }, [events, funnelState.answers.source]);
+  }, [events, funnelState.answers.source, funnelState.sessionId, user?.id]);
+
+  useEffect(() => {
+    const stepKey = STEP_KEYS[funnelState.step] || "unknown";
+    const viewedKey = `${funnelState.sessionId}:${funnelState.answers.source}:${funnelState.step}:${stepKey}`;
+
+    if (stepViewedKeyRef.current === viewedKey) return;
+    stepViewedKeyRef.current = viewedKey;
+
+    events.trackFunnelStepViewed(
+      stepKey,
+      funnelState.answers.source,
+      user?.id || null,
+      funnelState.step,
+      funnelState.sessionId,
+    );
+  }, [events, funnelState.answers.source, funnelState.sessionId, funnelState.step, user?.id]);
 
   useEffect(() => {
     return () => {
       if (!completedRef.current) {
-        events.trackFunnelAbandoned(abandonmentStepRef.current, abandonmentSourceRef.current, abandonmentUserRef.current);
+        events.trackFunnelAbandoned(
+          abandonmentStepRef.current,
+          abandonmentSourceRef.current,
+          abandonmentUserRef.current,
+          abandonmentStepIndexRef.current,
+          abandonmentSessionRef.current,
+        );
       }
     };
   }, [events]);
@@ -657,7 +687,7 @@ const OnboardingScreen: React.FC = () => {
   useEffect(() => {
     if (funnelState.step === RESULT_STEP) {
       const teaser = reveal || buildResultTeaser(funnelState.answers);
-      events.trackFunnelResultShown(teaser.stateLabel, funnelState.answers.source, user?.id || null);
+      events.trackFunnelResultShown(teaser.stateLabel, funnelState.answers.source, user?.id || null, funnelState.sessionId);
     }
 
     if (funnelState.step === PAYWALL_STEP) {
@@ -666,7 +696,7 @@ const OnboardingScreen: React.FC = () => {
 
       if (paywallTrackedKeyRef.current !== paywallKey) {
         paywallTrackedKeyRef.current = paywallKey;
-        events.trackFunnelPaywallShown(funnelState.answers.source, user?.id || null);
+        events.trackFunnelPaywallShown(funnelState.answers.source, user?.id || null, funnelState.sessionId);
         tiktok.trackPaywallView(funnelState.answers.source, selectedPlan);
       }
     }
@@ -747,7 +777,13 @@ const OnboardingScreen: React.FC = () => {
   };
 
   const completeStep = () => {
-    events.trackFunnelStep(STEP_KEYS[funnelState.step], funnelState.answers.source, user?.id || null);
+    events.trackFunnelStep(
+      STEP_KEYS[funnelState.step],
+      funnelState.answers.source,
+      user?.id || null,
+      funnelState.step,
+      funnelState.sessionId,
+    );
     setFunnelState((prev) => ({ ...prev, step: Math.min(prev.step + 1, TOTAL_STEPS - 1) }));
   };
 
@@ -814,7 +850,7 @@ const OnboardingScreen: React.FC = () => {
     const freeEmail = funnelState.answers.email.trim();
 
     setAnswers({ selectedPlan: "free" });
-    events.trackFunnelPlanSelected("free", funnelState.answers.source, user?.id || null);
+    events.trackFunnelPlanSelected("free", funnelState.answers.source, user?.id || null, funnelState.sessionId);
     completedRef.current = true;
 
     void persistOnboardingLead({
@@ -838,7 +874,7 @@ const OnboardingScreen: React.FC = () => {
 
     setAnswers({ selectedPlan: plan });
     setCheckoutError("");
-    events.trackFunnelPlanSelected(plan, funnelState.answers.source, user?.id || null);
+    events.trackFunnelPlanSelected(plan, funnelState.answers.source, user?.id || null, funnelState.sessionId);
 
     if (!checkoutName) {
       setCheckoutError("Add your name first so this stays personal.");
@@ -856,7 +892,7 @@ const OnboardingScreen: React.FC = () => {
     }
 
     setCheckoutLoading(plan);
-    events.trackFunnelCheckoutStarted(plan, funnelState.answers.source, user?.id || null);
+    events.trackFunnelCheckoutStarted(plan, funnelState.answers.source, user?.id || null, funnelState.sessionId);
     tiktok.trackCheckoutStarted(plan, funnelState.answers.source);
 
     let checkoutWindow: Window | null = null;

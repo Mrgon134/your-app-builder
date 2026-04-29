@@ -1,9 +1,10 @@
+import { useMemo } from "react";
 import { usePostHog } from "posthog-js/react";
 
 export const usePostHogEvents = () => {
   const posthog = usePostHog();
 
-  return {
+  return useMemo(() => ({
     trackRecommendationHubView: () => {
       posthog?.capture("recommendation_hub_view", {
         timestamp: new Date().toISOString(),
@@ -47,16 +48,42 @@ export const usePostHogEvents = () => {
         timestamp: new Date().toISOString(),
       });
     },
-    trackFunnelStart: (source: string) => {
+    trackFunnelStart: (source: string, sessionId?: string, userId?: string | null) => {
       posthog?.capture("funnel_start", {
         source,
+        session_id: sessionId,
+        user_id: userId,
         timestamp: new Date().toISOString(),
       });
     },
-    trackFunnelStep: (step: string, source: string, userId: string | null) => {
+    trackFunnelStepViewed: (
+      step: string,
+      source: string,
+      userId: string | null,
+      stepIndex?: number,
+      sessionId?: string,
+    ) => {
+      posthog?.capture("funnel_step_viewed", {
+        step,
+        step_index: stepIndex,
+        source,
+        session_id: sessionId,
+        user_id: userId,
+        timestamp: new Date().toISOString(),
+      });
+    },
+    trackFunnelStep: (
+      step: string,
+      source: string,
+      userId: string | null,
+      stepIndex?: number,
+      sessionId?: string,
+    ) => {
       posthog?.capture("funnel_step_completed", {
         step,
+        step_index: stepIndex,
         source,
+        session_id: sessionId,
         user_id: userId,
         timestamp: new Date().toISOString(),
       });
@@ -75,49 +102,62 @@ export const usePostHogEvents = () => {
         timestamp: new Date().toISOString(),
       });
     },
-    trackFunnelResultShown: (profile: string, source: string, userId: string | null) => {
+    trackFunnelResultShown: (profile: string, source: string, userId: string | null, sessionId?: string) => {
       posthog?.capture("funnel_result_revealed", {
         profile,
         source,
+        session_id: sessionId,
         user_id: userId,
         timestamp: new Date().toISOString(),
       });
     },
-    trackFunnelPaywallShown: (source: string, userId: string | null) => {
+    trackFunnelPaywallShown: (source: string, userId: string | null, sessionId?: string) => {
       posthog?.capture("funnel_paywall_shown", {
         source,
+        session_id: sessionId,
         user_id: userId,
         timestamp: new Date().toISOString(),
       });
     },
-    trackFunnelPlanSelected: (plan: string, source: string, userId: string | null) => {
+    trackFunnelPlanSelected: (plan: string, source: string, userId: string | null, sessionId?: string) => {
       posthog?.capture("funnel_plan_selected", {
         plan,
         source,
+        session_id: sessionId,
         user_id: userId,
         timestamp: new Date().toISOString(),
       });
     },
-    trackFunnelCheckoutStarted: (plan: string, source: string, userId: string | null) => {
+    trackFunnelCheckoutStarted: (plan: string, source: string, userId: string | null, sessionId?: string) => {
       posthog?.capture("funnel_checkout_started", {
         plan,
         source,
+        session_id: sessionId,
         user_id: userId,
         timestamp: new Date().toISOString(),
       });
     },
-    trackFunnelCheckoutCompleted: (plan: string, source: string, userId: string | null) => {
+    trackFunnelCheckoutCompleted: (plan: string, source: string, userId: string | null, sessionId?: string) => {
       posthog?.capture("funnel_checkout_completed", {
         plan,
         source,
+        session_id: sessionId,
         user_id: userId,
         timestamp: new Date().toISOString(),
       });
     },
-    trackFunnelAbandoned: (step: string, source: string, userId: string | null) => {
+    trackFunnelAbandoned: (
+      step: string,
+      source: string,
+      userId: string | null,
+      stepIndex?: number,
+      sessionId?: string,
+    ) => {
       posthog?.capture("funnel_abandoned", {
         step,
+        step_index: stepIndex,
         source,
+        session_id: sessionId,
         user_id: userId,
         timestamp: new Date().toISOString(),
       });
@@ -261,5 +301,5 @@ export const usePostHogEvents = () => {
         timestamp: new Date().toISOString(),
       });
     },
-  };
+  }), [posthog]);
 };
