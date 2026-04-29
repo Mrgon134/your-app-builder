@@ -33,6 +33,7 @@ import {
   buildResultTeaser,
   createDefaultFunnelState,
   loadFunnelState,
+  OnboardingFunnelAnswers,
   OnboardingFunnelState,
   ResultTeaser,
   saveFunnelState,
@@ -47,6 +48,17 @@ const PROCESSING_STEP = 16;
 const RESULT_STEP = 17;
 const BRIDGE_STEP = 18;
 const PAYWALL_STEP = 19;
+const MILESTONE_STEPS = new Set([5, 10, 15]);
+
+const triggerHaptic = (pattern: number | number[] = 12) => {
+  if (typeof navigator === "undefined") return;
+  if (typeof navigator.vibrate !== "function") return;
+  try {
+    navigator.vibrate(pattern);
+  } catch {
+    // Some browsers throw on background tabs; ignore.
+  }
+};
 
 const STEP_KEYS = [
   "entry",
@@ -120,103 +132,103 @@ const GOAL_OPTIONS = [
   {
     id: "overwhelmed",
     title: "Everything feels like too much",
-    description: "I am still moving, but inside it feels like I am carrying more than I can really hold.",
+    description: "I'm still showing up, but inside I'm carrying more than I can hold.",
     icon: Heart,
   },
   {
     id: "unseen",
-    title: "I want to feel understood",
-    description: "I do not want to explain myself perfectly first. I want something that just gets it.",
+    title: "I'm tired of explaining myself",
+    description: "I want something that just gets it. Without me having to translate first.",
     icon: BrainCircuit,
   },
   {
     id: "disconnected",
-    title: "I feel far from myself lately",
-    description: "I want help getting closer to what is actually happening inside me again.",
+    title: "I've lost touch with me",
+    description: "I want to feel close to what's actually happening inside again.",
     icon: Sparkles,
   },
   {
     id: "spiraling",
-    title: "My thoughts run ahead of me",
-    description: "The noise gets big fast, and I need something to help me settle before it takes over.",
+    title: "My head won't slow down",
+    description: "The noise gets loud fast. I need something that can settle me before it takes over.",
     icon: Shield,
   },
 ] as const;
 
 const STRUGGLE_OPTIONS = [
-  { id: "overthinking", label: "My thoughts go in circles before I can even say what hurts." },
-  { id: "blank", label: "I go blank when I try to explain what I am feeling." },
-  { id: "privacy", label: "I hold a lot in because emotional safety matters before I can be real." },
-  { id: "time", label: "When it hits, I need support fast. I do not have energy for a whole process." },
-  { id: "consistency", label: "I want support, but I disappear when life gets heavy." },
+  { id: "overthinking", label: "My thoughts loop before I can even name what hurts." },
+  { id: "blank", label: "I go completely blank when I try to explain it." },
+  { id: "privacy", label: "I won't open up until I feel safe." },
+  { id: "time", label: "When it hits, I need help fast. Not a whole process." },
+  { id: "consistency", label: "I want support, but I vanish when life gets heavy." },
 ] as const;
 
 const CONSISTENCY_OPTIONS = [
-  { id: "rarely", label: "Not all the time, but when it hits, it really stays with me." },
-  { id: "sometimes", label: "It comes and goes, but I never feel fully ahead of it." },
-  { id: "often", label: "Pretty often. A lot of what I feel stays inside me." },
+  { id: "rarely", label: "Rarely. But when it hits, it stays with me for days." },
+  { id: "sometimes", label: "It comes and goes. I'm never fully ahead of it." },
+  { id: "often", label: "A lot. Most of what I feel stays locked inside." },
 ] as const;
 
 const HARDEST_MOMENT_OPTIONS = [
-  { id: "late_night", label: "Late at night, when everything finally gets quiet" },
-  { id: "after_conflict", label: "After conflict, when I replay everything alone" },
-  { id: "while_busy", label: "While I am still trying to function and keep moving" },
-  { id: "when_alone", label: "When I am alone with it and there is no one nearby" },
+  { id: "late_night", label: "At 2am, when everything finally goes quiet" },
+  { id: "after_conflict", label: "After a fight, replaying every word alone" },
+  { id: "while_busy", label: "While I'm still trying to function and keep moving" },
+  { id: "when_alone", label: "When I'm alone with it and no one is near" },
 ] as const;
 
 const BLOCKER_OPTIONS = [
-  { id: "burden", label: "I do not want to feel like a burden to people" },
-  { id: "words", label: "I cannot find the real words in time" },
-  { id: "functioning", label: "I am too busy trying to stay functional" },
-  { id: "privacy", label: "I need privacy before I can be truly honest" },
+  { id: "burden", label: "I don't want to be a burden" },
+  { id: "words", label: "The right words never come in time" },
+  { id: "functioning", label: "I'm too busy holding it together" },
+  { id: "privacy", label: "I need privacy before I can be honest" },
 ] as const;
 
 const FOCUS_OPTIONS = [
-  { id: "name_it", label: "Help me name what I am actually feeling" },
-  { id: "calm_me", label: "Help me slow the emotional noise down" },
-  { id: "stay_with_me", label: "Stay with me gently until I can breathe again" },
-  { id: "show_pattern", label: "Help me see the pattern underneath this" },
+  { id: "name_it", label: "Help me name what I'm actually feeling" },
+  { id: "calm_me", label: "Help me slow the noise down" },
+  { id: "stay_with_me", label: "Stay with me until I can breathe again" },
+  { id: "show_pattern", label: "Show me the pattern underneath this" },
 ] as const;
 
 const UNSEEN_WISH_OPTIONS = [
-  { id: "notice_tired", label: "I wish someone noticed how tired I am before I say it" },
-  { id: "see_pain", label: "I wish someone could see what hurts underneath the surface" },
-  { id: "stay_without_fixing", label: "I wish someone stayed with me before trying to fix it" },
-  { id: "help_me_name_it", label: "I wish someone helped me find the words for it" },
+  { id: "notice_tired", label: "How tired I am, before I say it" },
+  { id: "see_pain", label: "What's hurting underneath the surface" },
+  { id: "stay_without_fixing", label: "That I need them to stay, not fix" },
+  { id: "help_me_name_it", label: "The words I can't find on my own" },
 ] as const;
 
 const COST_OPTIONS = [
   { id: "sleep", label: "It follows me into my sleep" },
-  { id: "relationships", label: "It affects how close I can feel to people" },
-  { id: "focus", label: "It eats up my focus and mental space" },
-  { id: "self_trust", label: "It makes it harder to trust myself" },
+  { id: "relationships", label: "I feel further from the people I love" },
+  { id: "focus", label: "It steals my focus all day long" },
+  { id: "self_trust", label: "I've stopped trusting my own gut" },
 ] as const;
 
 const STYLE_OPTIONS = [
   { id: "gentle", label: "Soft and reassuring", blurb: "I open up more when the space feels gentle first." },
-  { id: "direct", label: "Clear and honest", blurb: "I still want warmth, but I do not want vague comfort." },
-  { id: "private", label: "Quiet and low-pressure", blurb: "I need it to feel private before I can be fully real." },
-  { id: "guided", label: "Held with a little structure", blurb: "Thoughtful prompts make it easier for me to begin." },
+  { id: "direct", label: "Warm but no fluff", blurb: "Just say the real thing. I don't need vague comfort." },
+  { id: "private", label: "Quiet and low-pressure", blurb: "I need it to feel private before I can be real." },
+  { id: "guided", label: "Guide me with prompts", blurb: "I freeze without something to hold onto." },
 ] as const;
 
 const RESONANCE_PROMPTS = [
-  "Sometimes I do not need advice first. I need to feel like something truly understands what is happening inside me.",
-  "The hardest part is not always the feeling itself. It is trying to carry it with no clear words and no soft place to put it.",
-  "If something could make me feel understood quickly, I would trust it enough to come back before things got worse.",
+  "Sometimes I don't need advice. I just need someone to get it before I have to explain.",
+  "The hardest part isn't the feeling itself. It's having nowhere safe to put it down.",
+  "If something could make me feel seen fast, I'd come back before things got dark.",
 ] as const;
 
 const BASELINE_OPTIONS = [
   { id: "drained", label: "Drained and stretched thin" },
-  { id: "holding", label: "Holding a lot in" },
-  { id: "coping", label: "Getting by, but not really settled" },
-  { id: "hopeful", label: "Hopeful that something could feel different" },
+  { id: "holding", label: "Holding way too much in" },
+  { id: "coping", label: "Getting by. Not really okay." },
+  { id: "hopeful", label: "Hopeful something could finally shift" },
 ] as const;
 
 const RELIEF_OPTIONS = [
   { id: "breathe", label: "Breathe a little easier" },
   { id: "softer", label: "Feel softer toward myself" },
-  { id: "clearer", label: "Get clearer words for what is happening" },
-  { id: "less_alone", label: "Feel less alone inside the moment" },
+  { id: "clearer", label: "Find the words I've been missing" },
+  { id: "less_alone", label: "Feel less alone in this moment" },
 ] as const;
 
 const getStepPercent = (step: number) => Math.round(((step + 1) / TOTAL_STEPS) * 100);
@@ -297,7 +309,7 @@ const StepCard: React.FC<{ children: React.ReactNode; className?: string; tint?:
   </div>
 );
 
-const StepMascot: React.FC<{ size?: number }> = ({ size = 40 }) => (
+const StepMascot: React.FC<{ size?: number; image?: string }> = ({ size = 40, image = juMain }) => (
   <div
     className="relative mx-auto mb-4 flex items-center justify-center"
     style={{ width: size, height: size }}
@@ -307,14 +319,79 @@ const StepMascot: React.FC<{ size?: number }> = ({ size = 40 }) => (
       style={{ animation: "glow-pulse 3.2s ease-in-out infinite" }}
       aria-hidden
     />
-    <img
-      src={juMain}
-      alt=""
-      className="relative h-full w-full object-contain"
-      style={{ animation: "ju-float 3.4s ease-in-out infinite" }}
-    />
+    <AnimatePresence mode="wait" initial={false}>
+      <motion.img
+        key={image}
+        src={image}
+        alt=""
+        className="relative h-full w-full object-contain"
+        style={{ animation: "ju-float 3.4s ease-in-out infinite" }}
+        initial={{ opacity: 0, scale: 0.6, rotate: -8 }}
+        animate={{ opacity: 1, scale: 1, rotate: 0 }}
+        exit={{ opacity: 0, scale: 0.85 }}
+        transition={{ type: "spring", stiffness: 380, damping: 18 }}
+      />
+    </AnimatePresence>
   </div>
 );
+
+const getStepMascot = (step: number, answers: OnboardingFunnelAnswers): string => {
+  switch (step) {
+    case 0:
+      return juMain;
+    case 1: {
+      if (!answers.goal) return juMain;
+      if (answers.goal === "overwhelmed" || answers.goal === "spiraling") return juRough;
+      return juLow;
+    }
+    case 2:
+      return answers.struggles.length > 0 ? juLow : juMain;
+    case 3: {
+      if (answers.consistency === "often") return juRough;
+      if (answers.consistency === "sometimes") return juLow;
+      if (answers.consistency === "rarely") return juOkay;
+      return juMain;
+    }
+    case 4:
+      return answers.hardestMoment ? juLow : juMain;
+    case 5:
+      return answers.blocker ? juLow : juMain;
+    case 6:
+      return answers.focus ? juOkay : juMain;
+    case CONTACT_STEP:
+      return juMain;
+    case 8:
+      return answers.unseenWish ? juLow : juMain;
+    case 9:
+      return answers.cost ? juRough : juMain;
+    case 10:
+      return answers.style ? juOkay : juMain;
+    case 11:
+    case 12:
+    case 13: {
+      const prompt = RESONANCE_PROMPTS[step - 11];
+      return answers.resonance.includes(prompt) ? juGood : juMain;
+    }
+    case 14: {
+      if (answers.baseline === "drained") return juRough;
+      if (answers.baseline === "holding") return juLow;
+      if (answers.baseline === "coping") return juOkay;
+      if (answers.baseline === "hopeful") return juGood;
+      return juMain;
+    }
+    case 15:
+      return answers.relief ? juGood : juOkay;
+    case PROCESSING_STEP:
+      return juMain;
+    case RESULT_STEP:
+      return juGreat;
+    case BRIDGE_STEP:
+      return juGood;
+    case PAYWALL_STEP:
+    default:
+      return juGreat;
+  }
+};
 
 const OnboardingCompanionVisual: React.FC<{ scene: OnboardingVisualScene; step: number }> = ({ scene, step }) => {
   const percent = getStepPercent(step);
@@ -468,17 +545,29 @@ const OnboardingMiniCompanion: React.FC<{ scene: OnboardingVisualScene; step: nu
 const personalize = (line: string, firstName: string) =>
   firstName ? line.replace(/\{name\}/g, firstName) : line.replace(/\{name\}, ?/g, "").replace(/, \{name\}/g, "");
 
-const PrimaryButton: React.FC<React.ButtonHTMLAttributes<HTMLButtonElement>> = ({ className = "", ...props }) => (
-  <button
-    {...props}
-    className={`nuju-brand-button inline-flex w-full items-center justify-center gap-2 rounded-full px-5 py-4 text-sm font-semibold transition-all hover:-translate-y-0.5 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-40 ${className}`}
+const PrimaryButton: React.FC<React.ButtonHTMLAttributes<HTMLButtonElement>> = ({ className = "", onClick, ...props }) => (
+  <motion.button
+    {...(props as React.HTMLAttributes<HTMLButtonElement>)}
+    onClick={(event) => {
+      triggerHaptic([8, 30, 14]);
+      onClick?.(event);
+    }}
+    whileTap={{ scale: 0.96 }}
+    transition={{ type: "spring", stiffness: 480, damping: 22 }}
+    className={`nuju-brand-button inline-flex w-full items-center justify-center gap-2 rounded-full px-5 py-4 text-sm font-semibold transition-all hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-40 ${className}`}
   />
 );
 
-const SecondaryButton: React.FC<React.ButtonHTMLAttributes<HTMLButtonElement>> = ({ className = "", ...props }) => (
-  <button
-    {...props}
-    className={`nuju-soft-button inline-flex w-full items-center justify-center gap-2 rounded-full px-5 py-3.5 text-sm font-semibold transition-all hover:-translate-y-0.5 active:scale-[0.98] ${className}`}
+const SecondaryButton: React.FC<React.ButtonHTMLAttributes<HTMLButtonElement>> = ({ className = "", onClick, ...props }) => (
+  <motion.button
+    {...(props as React.HTMLAttributes<HTMLButtonElement>)}
+    onClick={(event) => {
+      triggerHaptic(8);
+      onClick?.(event);
+    }}
+    whileTap={{ scale: 0.97 }}
+    transition={{ type: "spring", stiffness: 480, damping: 22 }}
+    className={`nuju-soft-button inline-flex w-full items-center justify-center gap-2 rounded-full px-5 py-3.5 text-sm font-semibold transition-all hover:-translate-y-0.5 ${className}`}
   />
 );
 
@@ -487,17 +576,27 @@ const MultiSelectButton: React.FC<{
   onClick: () => void;
   children: React.ReactNode;
 }> = ({ active, onClick, children }) => (
-  <button
-    onClick={onClick}
-    className={`flex w-full items-center gap-3 rounded-[1.5rem] border px-4 py-4 text-left transition-all active:scale-[0.99] ${
+  <motion.button
+    onClick={() => {
+      triggerHaptic(active ? 6 : 12);
+      onClick();
+    }}
+    whileTap={{ scale: 0.985 }}
+    animate={{ scale: active ? 1.015 : 1 }}
+    transition={{ type: "spring", stiffness: 420, damping: 22 }}
+    className={`flex w-full items-center gap-3 rounded-[1.5rem] border px-4 py-4 text-left transition-all ${
       active ? "nuju-neu-pressed border-primary/35 bg-primary/8" : "nuju-neu-surface border-white/70 hover:-translate-y-0.5"
     }`}
   >
-    <div className={`flex h-5 w-5 shrink-0 items-center justify-center rounded-full border ${active ? "border-primary bg-primary" : "border-primary/20 bg-white/60"}`}>
+    <motion.div
+      className={`flex h-5 w-5 shrink-0 items-center justify-center rounded-full border ${active ? "border-primary bg-primary" : "border-primary/20 bg-white/60"}`}
+      animate={active ? { scale: [1, 1.25, 1] } : { scale: 1 }}
+      transition={{ duration: 0.34, ease: [0.34, 1.56, 0.64, 1] }}
+    >
       {active ? <Check className="h-3.5 w-3.5 text-primary-foreground" /> : null}
-    </div>
+    </motion.div>
     <p className="text-sm leading-7 text-foreground">{children}</p>
-  </button>
+  </motion.button>
 );
 
 const ChoiceCard: React.FC<{
@@ -507,21 +606,108 @@ const ChoiceCard: React.FC<{
   description?: string;
   icon?: React.ComponentType<{ className?: string }>;
 }> = ({ active, onClick, title, description, icon: Icon }) => (
-  <button
-    onClick={onClick}
-    className={`rounded-[1.75rem] border p-5 text-left transition-all active:scale-[0.99] ${
+  <motion.button
+    onClick={() => {
+      triggerHaptic(active ? 6 : 14);
+      onClick();
+    }}
+    whileTap={{ scale: 0.97 }}
+    animate={{ scale: active ? 1.02 : 1, y: active ? -2 : 0 }}
+    transition={{ type: "spring", stiffness: 360, damping: 20 }}
+    className={`rounded-[1.75rem] border p-5 text-left transition-colors ${
       active ? "nuju-neu-pressed border-primary/35 bg-primary/8" : "nuju-neu-surface border-white/70 hover:-translate-y-0.5"
     }`}
   >
     {Icon ? (
-      <div className="flex h-11 w-11 items-center justify-center rounded-2xl border border-white/70 bg-white/62 shadow-[inset_4px_4px_10px_rgba(124,110,219,0.07),inset_-4px_-4px_10px_rgba(255,255,255,0.9)]">
+      <motion.div
+        className="flex h-11 w-11 items-center justify-center rounded-2xl border border-white/70 bg-white/62 shadow-[inset_4px_4px_10px_rgba(124,110,219,0.07),inset_-4px_-4px_10px_rgba(255,255,255,0.9)]"
+        animate={active ? { rotate: [0, -8, 8, 0], scale: [1, 1.12, 1] } : { rotate: 0, scale: 1 }}
+        transition={{ duration: 0.5, ease: [0.34, 1.56, 0.64, 1] }}
+      >
         <Icon className="h-5 w-5 text-primary" />
-      </div>
+      </motion.div>
     ) : null}
     <p className={`${Icon ? "mt-4" : ""} text-lg font-semibold text-foreground`}>{title}</p>
     {description ? <p className="mt-2 text-sm leading-7 text-muted-foreground">{description}</p> : null}
-  </button>
+  </motion.button>
 );
+
+const MILESTONE_COPY: Record<number, { eyebrow: string; headline: string }> = {
+  5: { eyebrow: "Halfway through the heavy part", headline: "Ju is starting to see the shape." },
+  10: { eyebrow: "You named the hidden cost", headline: "The hard part is done. Mirror time next." },
+  15: { eyebrow: "Read coming up", headline: "Ju has everything it needs to meet you." },
+};
+
+const MILESTONE_PARTICLES = Array.from({ length: 14 }, (_, index) => {
+  const angle = (index / 14) * Math.PI * 2;
+  const distance = 70 + (index % 3) * 18;
+  return {
+    x: Math.cos(angle) * distance,
+    y: Math.sin(angle) * distance,
+    delay: (index % 5) * 0.04,
+    color: ["#7C6EDB", "#4ECDC4", "#FFB347", "#95E1D3", "#E8878C"][index % 5],
+    size: 8 + (index % 3) * 4,
+  };
+});
+
+const MilestoneCelebration: React.FC<{ step: number; onDone: () => void }> = ({ step, onDone }) => {
+  const copy = MILESTONE_COPY[step];
+
+  useEffect(() => {
+    triggerHaptic([15, 40, 15, 40, 30]);
+    const timer = window.setTimeout(onDone, 1700);
+    return () => window.clearTimeout(timer);
+  }, [onDone]);
+
+  if (!copy) return null;
+
+  return (
+    <motion.div
+      className="pointer-events-none fixed inset-0 z-50 flex items-center justify-center px-4"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.2 }}
+      aria-hidden
+    >
+      <div className="absolute inset-0 bg-[rgba(124,110,219,0.06)] backdrop-blur-[2px]" />
+      <div className="relative flex flex-col items-center">
+        <div className="relative h-0 w-0">
+          {MILESTONE_PARTICLES.map((particle, index) => (
+            <motion.span
+              key={index}
+              className="absolute left-0 top-0 rounded-full"
+              style={{
+                width: particle.size,
+                height: particle.size,
+                background: particle.color,
+                boxShadow: `0 8px 22px -6px ${particle.color}`,
+              }}
+              initial={{ x: 0, y: 0, opacity: 0, scale: 0.4 }}
+              animate={{
+                x: particle.x,
+                y: particle.y,
+                opacity: [0, 1, 0],
+                scale: [0.4, 1.1, 0.6],
+              }}
+              transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1], delay: particle.delay }}
+            />
+          ))}
+        </div>
+        <motion.div
+          className="nuju-neu-surface relative max-w-[20rem] rounded-3xl border border-white/70 px-6 py-5 text-center shadow-[0_24px_60px_-30px_rgba(80,63,153,0.4)]"
+          initial={{ scale: 0.7, opacity: 0, y: 12 }}
+          animate={{ scale: 1, opacity: 1, y: 0 }}
+          exit={{ scale: 0.85, opacity: 0 }}
+          transition={{ type: "spring", stiffness: 320, damping: 18 }}
+        >
+          <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-primary">{copy.eyebrow}</p>
+          <p className="mt-2 font-serif text-lg font-semibold leading-snug text-foreground">{copy.headline}</p>
+        </motion.div>
+      </div>
+    </motion.div>
+  );
+};
 
 const OnboardingScreen: React.FC = () => {
   const location = useLocation();
@@ -560,6 +746,8 @@ const OnboardingScreen: React.FC = () => {
   const [contactError, setContactError] = useState("");
   const [checkoutError, setCheckoutError] = useState("");
   const [checkoutLoading, setCheckoutLoading] = useState<CheckoutPlan | null>(null);
+  const [milestoneStep, setMilestoneStep] = useState<number | null>(null);
+  const milestoneShownRef = useRef<Set<number>>(new Set());
   const navigate = useNavigate();
   const [profileSynced, setProfileSynced] = useState(false);
   const startTrackedRef = useRef(false);
@@ -577,6 +765,13 @@ const OnboardingScreen: React.FC = () => {
   useEffect(() => {
     saveFunnelState(funnelState);
   }, [funnelState]);
+
+  useEffect(() => {
+    if (!MILESTONE_STEPS.has(funnelState.step)) return;
+    if (milestoneShownRef.current.has(funnelState.step)) return;
+    milestoneShownRef.current.add(funnelState.step);
+    setMilestoneStep(funnelState.step);
+  }, [funnelState.step]);
 
   useEffect(() => {
     abandonmentStepRef.current = STEP_KEYS[funnelState.step] || "unknown";
@@ -981,9 +1176,9 @@ const OnboardingScreen: React.FC = () => {
         image: juMain,
         eyebrow: "Start soft",
         title: "This can start gently.",
-        body: "No polished story needed. Just one honest click at a time, until the weight starts to feel less shapeless.",
-        quote: "No perfect words yet. Just enough truth to begin.",
-        chips: ["Quick start", "Private start", "No pressure"],
+        body: "No story needed yet. Just one tap at a time, until the weight starts to feel less shapeless.",
+        quote: "You don't have to explain. Just point.",
+        chips: ["30 seconds", "Private start", "No pressure"],
       };
     }
 
@@ -991,11 +1186,11 @@ const OnboardingScreen: React.FC = () => {
       return {
         accent: "#6C9BCF",
         image: juLow,
-        eyebrow: "Listening mode",
-        title: "Ju is learning the shape of what feels heavy.",
-        body: "These early answers help Ju meet the real moment, without asking you to explain everything perfectly.",
+        eyebrow: "Listening",
+        title: "Ju is learning the shape of what's heavy.",
+        body: "These early taps help Ju meet the real you. Not a polished version of you.",
         quote: "You can be unclear and still be understood.",
-        chips: ["Low effort", "Emotion-first", "Finding the shape"],
+        chips: ["Low effort", "Emotion-first", "No wrong answer"],
       };
     }
 
@@ -1004,9 +1199,9 @@ const OnboardingScreen: React.FC = () => {
         accent: "#7C6EDB",
         image: juMain,
         eyebrow: "Make it yours",
-        title: "A personal read needs a personal anchor.",
-        body: "Your name helps Ju speak to you more naturally. Your email keeps the read waiting if you come back later.",
-        quote: "This is where the read starts feeling like yours.",
+        title: "A personal read needs a name to land in.",
+        body: "Just your name and email. So this read finds its way back to you when you need it.",
+        quote: "This is where it starts feeling like yours.",
         chips: ["Saved for you", "Private by default", "Easy to return"],
       };
     }
@@ -1015,10 +1210,10 @@ const OnboardingScreen: React.FC = () => {
       return {
         accent: "#E8878C",
         image: juRough,
-        eyebrow: "Under the surface",
-        title: "The hidden cost deserves a softer place to land.",
-        body: "Ju is paying attention to when this shows up, what it touches, and what kind of presence helps you feel safer.",
-        quote: "The part that is hardest to say is usually the part that needs the softest room.",
+        eyebrow: "Underneath",
+        title: "What it's been costing you matters.",
+        body: "Ju is paying attention to when it shows up, what it eats, and the voice that lets you breathe.",
+        quote: "The hardest part to say is usually the part that needs the softest room.",
         chips: ["What it touches", "Less alone", "Warm honesty"],
       };
     }
@@ -1027,11 +1222,11 @@ const OnboardingScreen: React.FC = () => {
       return {
         accent: "#FFB347",
         image: juOkay,
-        eyebrow: "Resonance check",
-        title: "Notice the line that makes you pause.",
-        body: "These are small mirrors. Choose by feeling, not by trying to get it right.",
-        quote: "If one line feels close, you do not have to explain why yet.",
-        chips: ["Read slowly", "Choose by feeling", "No perfect answer"],
+        eyebrow: "Mirror check",
+        title: "Notice the line that makes your chest move.",
+        body: "These are small mirrors. Trust your gut. Don't try to get it right.",
+        quote: "If one line feels close, that's enough.",
+        chips: ["Read slow", "Trust your gut", "No right answer"],
       };
     }
 
@@ -1039,11 +1234,11 @@ const OnboardingScreen: React.FC = () => {
       return {
         accent: "#95E1D3",
         image: juGood,
-        eyebrow: "Almost ready",
-        title: "Ju is tuning the read to the state you are in now.",
-        body: "Your energy matters. The read should meet the version of you who is here right now.",
-        quote: "The goal is a first feeling of relief, not a perfect insight.",
-        chips: ["Your pace", "Relief first", "Almost there"],
+        eyebrow: "Almost there",
+        title: "Ju is tuning the read to the you that's here right now.",
+        body: "Your energy matters. The read should meet the real version of you. Not yesterday's you.",
+        quote: "The goal is one breath of relief. Not a perfect insight.",
+        chips: ["Your pace", "Relief first", "Almost done"],
       };
     }
 
@@ -1051,11 +1246,11 @@ const OnboardingScreen: React.FC = () => {
       return {
         accent: "#7C6EDB",
         image: juMain,
-        eyebrow: "Taking this in",
-        title: "Ju is holding the thread with care.",
-        body: "This small pause helps the read stay gentle, specific, and close to what you shared.",
-        quote: "A careful answer can take one quiet breath.",
-        chips: ["Reading gently", "Finding the thread", "Almost ready"],
+        eyebrow: "Reading you",
+        title: "Ju is holding every word you gave.",
+        body: "This pause is on purpose. It keeps the read close to what you actually said.",
+        quote: "A careful answer takes one quiet breath.",
+        chips: ["Listening", "Finding the thread", "Almost ready"],
       };
     }
 
@@ -1064,10 +1259,10 @@ const OnboardingScreen: React.FC = () => {
         accent: "#4ECDC4",
         image: juGreat,
         eyebrow: teaser.stateLabel,
-        title: "This is what Ju heard underneath it.",
-        body: "A warm first read on the part of the weight that has been hard to say out loud.",
+        title: "This is what Ju heard underneath.",
+        body: "A first read on the part you've been quietly carrying alone.",
         quote: teaser.headline,
-        chips: ["Seen clearly", "Pattern named", "First support"],
+        chips: ["Seen clearly", "Pattern named", "First relief"],
       };
     }
 
@@ -1075,21 +1270,21 @@ const OnboardingScreen: React.FC = () => {
       return {
         accent: "#95E1D3",
         image: juGood,
-        eyebrow: "Keep the thread",
+        eyebrow: "Don't lose this",
         title: "Stay with the part of you that finally felt seen.",
-        body: "You have a read that belongs to this moment. Ju can keep that thread close for the next time the feeling returns.",
-        quote: "The next heavy moment should not have to meet you alone.",
-        chips: ["Keep the thread", "Come back softly", "Ready when it hits"],
+        body: "This read belongs to this moment. Ju can keep it close for the next time it hits.",
+        quote: "The next heavy moment shouldn't have to meet you alone.",
+        chips: ["Keep the thread", "Come back anytime", "Ready when it hits"],
       };
     }
 
     return {
       accent: "#7C6EDB",
       image: juGreat,
-      eyebrow: "Keep the quiet open",
+      eyebrow: "Keep it close",
         title: "Keep Ju close for the moments you usually carry alone.",
-        body: "Choose the path that lets Ju stay close enough to become a place you can return to when you need it.",
-        quote: "A softer place can stay within reach.",
+        body: "Pick the path that lets Ju stay near. A place to land, not another app to perform in.",
+        quote: "A softer place. Always within reach.",
       chips: [threeMonthTrialEnabled ? `${threeMonthTrialDays}-day trial` : "3-month rhythm", "Return anytime", "Private support"],
     };
   }, [funnelState.step, teaser.headline, teaser.stateLabel, threeMonthTrialDays, threeMonthTrialEnabled]);
@@ -1116,8 +1311,8 @@ const OnboardingScreen: React.FC = () => {
       unit: "per week",
       badge: "Flexible",
       emphasis: firstName
-        ? `${firstName}, keep Ju close for the week ahead.`
-        : "Keep Ju close for the week ahead.",
+        ? `${firstName}, just one quiet week. See how it lands.`
+        : "One quiet week. See how it lands.",
       note: `${geo.formatPrice(geo.rates.weekly)} billed weekly. Cancel anytime in Apple Subscriptions.`,
       features: ["Saved read and voice notes", "Cancel anytime"],
       ctaLabel: "Start weekly",
@@ -1131,11 +1326,11 @@ const OnboardingScreen: React.FC = () => {
       badge: threeMonthTrialEnabled ? `${threeMonthTrialDays}-day trial` : "Recommended",
       emphasis: firstName
         ? threeMonthTrialEnabled
-          ? `${firstName}, take one quiet week and see how it feels.`
-          : `${firstName}, keep Ju close long enough for it to feel familiar.`
+          ? `${firstName}, try a free week. No pressure if it's not for you.`
+          : `${firstName}, three months is enough to make Ju feel like home.`
         : threeMonthTrialEnabled
-          ? "Take one quiet week and see how it feels."
-          : "Keep Ju close long enough for it to feel familiar.",
+          ? "Try a free week. No pressure if it's not for you."
+          : "Three months is enough to make Ju feel like home.",
       note: threeMonthTrialEnabled
         ? `${threeMonthTrialDays} days free for eligible users, then ${geo.formatPrice(geo.rates.threeMonth)} every 3 months. Cancel anytime in Apple Subscriptions.`
         : `${geo.formatPrice(geo.rates.threeMonth)} every 3 months. Cancel anytime in Apple Subscriptions.`,
@@ -1150,8 +1345,8 @@ const OnboardingScreen: React.FC = () => {
       unit: "one payment",
       badge: "No renewals",
       emphasis: firstName
-        ? `${firstName}, keep Ju close without another renewal.`
-        : "Keep Ju close without another renewal.",
+        ? `${firstName}, pay once. Keep Ju close for good.`
+        : "Pay once. Keep Ju close for good.",
       note: `${geo.formatPrice(geo.rates.lifetime)} one-time purchase. No subscription renewal.`,
       features: ["One payment", "Future updates"],
       ctaLabel: "Keep Ju for life",
@@ -1168,12 +1363,12 @@ const OnboardingScreen: React.FC = () => {
   const renderResonanceStep = (stepIndex: number) => {
     const prompt = RESONANCE_PROMPTS[stepIndex];
     const intro = firstName
-      ? `${firstName}, read this slowly. If it feels like you, just say so.`
-      : "Read this slowly. If it feels like you, just say so.";
+      ? `${firstName}, read this slowly. Trust the first thing your chest does.`
+      : "Read this slowly. Trust the first thing your chest does.";
     return (
       <StepCard className="text-center" tint={STEP_TINT[stepIndex + 11]}>
-        <StepMascot size={36} />
-        <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">Does this feel like you?</p>
+        <StepMascot size={36} image={getStepMascot(stepIndex + 11, funnelState.answers)} />
+        <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">Is this you?</p>
         <p className="mt-2 text-sm leading-7 text-muted-foreground">{intro}</p>
         <div className="mt-8 rounded-[2rem] border border-border/60 bg-background px-6 py-10">
           <p
@@ -1189,19 +1384,26 @@ const OnboardingScreen: React.FC = () => {
           ))}
         </div>
         <div className="mt-8 grid gap-3 sm:grid-cols-2">
-          <SecondaryButton onClick={() => handleResonance(prompt, false)}>Not really</SecondaryButton>
-          <PrimaryButton onClick={() => handleResonance(prompt, true)}>That feels like me</PrimaryButton>
+          <SecondaryButton onClick={() => handleResonance(prompt, false)}>Not quite</SecondaryButton>
+          <PrimaryButton onClick={() => handleResonance(prompt, true)}>That's me</PrimaryButton>
         </div>
       </StepCard>
     );
   };
+
+  const currentMascot = getStepMascot(funnelState.step, funnelState.answers);
 
   const renderStep = () => {
     switch (funnelState.step) {
       case 0:
         return (
           <StepCard className="text-center">
-            <div className="relative mx-auto flex h-28 w-28 items-center justify-center">
+            <motion.div
+              className="relative mx-auto flex h-28 w-28 items-center justify-center"
+              initial={{ scale: 0.7, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ type: "spring", stiffness: 260, damping: 18, delay: 0.1 }}
+            >
               <div
                 className="absolute inset-0 rounded-full bg-primary/20 blur-xl"
                 style={{ animation: "glow-pulse 3.2s ease-in-out infinite" }}
@@ -1213,31 +1415,31 @@ const OnboardingScreen: React.FC = () => {
                 className="relative h-24 w-24 object-contain"
                 style={{ animation: "ju-float 3.4s ease-in-out infinite" }}
               />
-            </div>
+            </motion.div>
             <p className="mt-6 text-xs font-semibold uppercase tracking-[0.22em] text-primary">
-              Take a breath. Ju is already here.
+              Breathe out. Ju is already here.
             </p>
             <h1
               className="mt-3 font-serif text-4xl font-bold leading-tight text-foreground"
               style={{ fontFamily: "var(--font-serif), Georgia, serif" }}
             >
-              When it is heavy and hard to explain, Ju starts by listening first.
+              You don't have to find the words yet. Just point. Ju will meet you there.
             </h1>
             <p className="mt-4 text-base leading-8 text-muted-foreground">
-              A few honest answers, then Ju reflects the feeling back in words that are easier to hold.
+              30 seconds. No journaling. No pressure. Just one honest tap at a time.
             </p>
             <div className="mt-8 rounded-[1.85rem] border border-primary/20 bg-primary/[0.06] px-5 py-5 text-left">
-              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary">What you get first</p>
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary">What happens next</p>
               <p className="mt-3 text-lg font-semibold leading-8 text-foreground">
-                Being understood before you have anything figured out.
+                You'll feel understood before you've figured anything out.
               </p>
               <p className="mt-2 text-sm leading-7 text-muted-foreground">
-                Ju listens for what feels heavy, what feels lonely, and what kind of presence helps first.
+                Ju listens for what's heavy, what feels lonely, and the kind of voice that lets you exhale.
               </p>
             </div>
             <div className="mt-8">
               <PrimaryButton onClick={completeStep}>
-                Begin softly
+                Start here
                 <ArrowRight className="h-4 w-4" />
               </PrimaryButton>
             </div>
@@ -1247,12 +1449,12 @@ const OnboardingScreen: React.FC = () => {
       case 1:
         return (
           <StepCard>
-            <StepMascot />
+            <StepMascot image={currentMascot} />
             <h2 className="text-center font-serif text-3xl font-bold leading-snug text-foreground">
-              What has been feeling the heaviest lately?
+              Something has been sitting on your chest. Which one?
             </h2>
             <p className="mt-3 text-center text-base leading-8 text-muted-foreground">
-              No need for perfect words. Pick whichever one sits closest to your chest right now.
+              Pick the one that made you pause. That's the real one.
             </p>
             <div className="mt-7 grid gap-3 sm:grid-cols-2">
               {GOAL_OPTIONS.map((option) => (
@@ -1277,12 +1479,12 @@ const OnboardingScreen: React.FC = () => {
       case 2:
         return (
           <StepCard>
-            <StepMascot />
+            <StepMascot image={currentMascot} />
             <h2 className="text-center font-serif text-3xl font-bold leading-snug text-foreground">
-              When this hits, what feels hardest?
+              When it hits, what stops you from saying it?
             </h2>
             <p className="mt-3 text-center text-base leading-8 text-muted-foreground">
-              Pick whichever feel true. You can choose more than one. Ju is listening for the whole shape of it.
+              Pick every one that's true. Ju is listening for the whole shape of it.
             </p>
             <div className="mt-7 space-y-3">
               {STRUGGLE_OPTIONS.map((option) => (
@@ -1306,12 +1508,12 @@ const OnboardingScreen: React.FC = () => {
       case 3:
         return (
           <StepCard>
-            <StepMascot />
+            <StepMascot image={currentMascot} />
             <h2 className="text-center font-serif text-3xl font-bold leading-snug text-foreground">
-              How often do you feel misunderstood in moments like this?
+              How often do you feel like nobody's really hearing you?
             </h2>
             <p className="mt-3 text-center text-sm leading-7 text-muted-foreground">
-              This helps Ju understand how often you need support.
+              No judgment. Just so Ju knows how often you need a soft place to land.
             </p>
             <div className="mt-7 grid gap-3">
               {CONSISTENCY_OPTIONS.map((option) => (
@@ -1334,12 +1536,12 @@ const OnboardingScreen: React.FC = () => {
       case 4:
         return (
           <StepCard>
-            <StepMascot />
+            <StepMascot image={currentMascot} />
             <h2 className="text-center font-serif text-3xl font-bold leading-snug text-foreground">
-              When does this usually hit the hardest?
+              When does it always find you?
             </h2>
             <p className="mt-3 text-center text-sm leading-7 text-muted-foreground">
-              There is no wrong answer. Ju is just learning the rhythm of when you need support most.
+              The exact moment your chest gets tight. Ju wants to be there before it does.
             </p>
             <div className="mt-7 grid gap-3">
               {HARDEST_MOMENT_OPTIONS.map((option) => (
@@ -1362,12 +1564,12 @@ const OnboardingScreen: React.FC = () => {
       case 5:
         return (
           <StepCard>
-            <StepMascot />
+            <StepMascot image={currentMascot} />
             <h2 className="text-center font-serif text-3xl font-bold leading-snug text-foreground">
-              What usually keeps you from opening up fully?
+              What's the wall that keeps you from saying it out loud?
             </h2>
             <p className="mt-3 text-center text-sm leading-7 text-muted-foreground">
-              Whatever it is, it just shows Ju where to be gentle first.
+              Whatever it is, it just shows Ju where to be soft first.
             </p>
             <div className="mt-7 grid gap-3 sm:grid-cols-2">
               {BLOCKER_OPTIONS.map((option) => (
@@ -1390,12 +1592,12 @@ const OnboardingScreen: React.FC = () => {
       case 6:
         return (
           <StepCard>
-            <StepMascot />
+            <StepMascot image={currentMascot} />
             <h2 className="text-center font-serif text-3xl font-bold leading-snug text-foreground">
-              What do you need most from Ju first?
+              If Ju could only do one thing for you tonight, which would matter most?
             </h2>
             <p className="mt-3 text-center text-sm leading-7 text-muted-foreground">
-              Whatever you choose, Ju will start there slowly, nothing else asked of you.
+              That's the one Ju will start with. Nothing else asked of you.
             </p>
             <div className="mt-7 grid gap-3 sm:grid-cols-2">
               {FOCUS_OPTIONS.map((option) => (
@@ -1418,12 +1620,12 @@ const OnboardingScreen: React.FC = () => {
       case CONTACT_STEP:
         return (
           <StepCard>
-            <StepMascot />
+            <StepMascot image={currentMascot} />
             <h2 className="text-center font-serif text-3xl font-bold leading-snug text-foreground">
-              Give this read a place to return to
+              Before Ju shows you what it heard...
             </h2>
             <p className="mt-3 text-center text-base leading-8 text-muted-foreground">
-              Your name helps Ju speak to you more naturally. Your email keeps the read saved for when you come back.
+              Just your name, so this can feel personal. And an email, so this read finds you again — even if today gets loud.
             </p>
             <div className="mt-7 grid gap-3">
               <div className="relative">
@@ -1447,7 +1649,7 @@ const OnboardingScreen: React.FC = () => {
               </div>
             </div>
             <div className="nuju-soft-button mt-4 rounded-2xl px-4 py-4 text-sm leading-7 text-[#5c547f]">
-              This keeps the read close to you without adding pressure to explain more than you want to.
+              Private by default. No newsletters. No noise. Just yours to come back to.
             </div>
             {contactError ? (
               <div className="mt-4 rounded-2xl border border-destructive/20 bg-destructive/8 px-4 py-4 text-sm text-destructive">
@@ -1463,15 +1665,15 @@ const OnboardingScreen: React.FC = () => {
       case 8:
         return (
           <StepCard>
-            <StepMascot />
+            <StepMascot image={currentMascot} />
             <h2 className="text-center font-serif text-3xl font-bold leading-snug text-foreground">
               {personalize(
-                "{name}, what do you wish someone would just know without you having to spell it out?",
+                "{name}, if one person could just *get it* without you explaining — what would they finally see?",
                 firstName,
               ).replace(/^, ?/, "")}
             </h2>
             <p className="mt-3 text-center text-sm leading-7 text-muted-foreground">
-              The truest one. The one you rarely get to say out loud.
+              The truest one. The thing you stopped trying to say out loud.
             </p>
             <div className="mt-7 grid gap-3 sm:grid-cols-2">
               {UNSEEN_WISH_OPTIONS.map((option) => (
@@ -1494,14 +1696,14 @@ const OnboardingScreen: React.FC = () => {
       case 9:
         return (
           <StepCard>
-            <StepMascot />
+            <StepMascot image={currentMascot} />
             <h2 className="text-center font-serif text-3xl font-bold leading-snug text-foreground">
               {firstName
-                ? `${firstName}, what has carrying this been costing you most?`
-                : "What has carrying this been costing you most?"}
+                ? `${firstName}, carrying this has a price. Where do you feel it most?`
+                : "Carrying this has a price. Where do you feel it most?"}
             </h2>
             <p className="mt-3 text-center text-sm leading-7 text-muted-foreground">
-              So Ju can understand what this has been touching.
+              The part of your life it's been quietly eating. Ju needs to know.
             </p>
             <div className="mt-7 grid gap-3 sm:grid-cols-2">
               {COST_OPTIONS.map((option) => (
@@ -1524,14 +1726,14 @@ const OnboardingScreen: React.FC = () => {
       case 10:
         return (
           <StepCard>
-            <StepMascot />
+            <StepMascot image={currentMascot} />
             <h2 className="text-center font-serif text-3xl font-bold leading-snug text-foreground">
               {firstName
-                ? `${firstName}, what kind of presence helps you open up most honestly?`
-                : "What kind of presence helps you open up most honestly?"}
+                ? `${firstName}, how do you need Ju to talk to you?`
+                : "How do you need Ju to talk to you?"}
             </h2>
             <p className="mt-3 text-center text-sm leading-7 text-muted-foreground">
-              Ju will match the tone that feels easiest to trust.
+              This is the voice Ju will use. Every time. So pick the one your shoulders drop hearing.
             </p>
             <div className="mt-7 grid gap-3 sm:grid-cols-2">
               {STYLE_OPTIONS.map((option) => (
@@ -1562,14 +1764,14 @@ const OnboardingScreen: React.FC = () => {
       case 14:
         return (
           <StepCard tint={STEP_TINT[14]}>
-            <StepMascot />
+            <StepMascot image={currentMascot} />
             <h2 className="text-center font-serif text-3xl font-bold leading-snug text-foreground">
               {firstName
-                ? `${firstName}, before Ju finishes your read, how are you arriving right now?`
-                : "Before Ju finishes your read, how are you arriving right now?"}
+                ? `${firstName}, before Ju reads this back to you — how are you, really?`
+                : "Before Ju reads this back to you — how are you, really?"}
             </h2>
             <p className="mt-3 text-center text-sm leading-7 text-muted-foreground">
-              This helps Ju meet the way you really feel right now.
+              Not the version you tell people. The one underneath.
             </p>
             <div className="mt-7 grid gap-3 sm:grid-cols-2">
               {BASELINE_OPTIONS.map((option) => (
@@ -1592,14 +1794,14 @@ const OnboardingScreen: React.FC = () => {
       case 15:
         return (
           <StepCard tint={STEP_TINT[15]}>
-            <StepMascot />
+            <StepMascot image={currentMascot} />
             <h2 className="text-center font-serif text-3xl font-bold leading-snug text-foreground">
               {firstName
-                ? `${firstName}, what is the first thing you want to feel from this?`
-                : "What is the first thing you want to feel from this?"}
+                ? `${firstName}, what's the first thing you want to feel — even if it's small?`
+                : "What's the first thing you want to feel — even if it's small?"}
             </h2>
             <p className="mt-3 text-center text-sm leading-7 text-muted-foreground">
-              Choose the feeling you want Ju to protect first.
+              That's the feeling Ju will protect first. Pick one and Ju will hold the line.
             </p>
             <div className="mt-7 grid gap-3 sm:grid-cols-2">
               {RELIEF_OPTIONS.map((option) => (
@@ -1613,7 +1815,7 @@ const OnboardingScreen: React.FC = () => {
             </div>
             <div className="mt-7">
               <PrimaryButton onClick={completeStep} disabled={!funnelState.answers.relief}>
-                Let Ju read this
+                Show me what Ju heard
               </PrimaryButton>
             </div>
           </StepCard>
@@ -1636,18 +1838,18 @@ const OnboardingScreen: React.FC = () => {
               />
             </div>
             <h2 className="mt-6 font-serif text-3xl font-bold text-foreground">
-              {firstName ? `Ju is making room for what you shared, ${firstName}...` : "Ju is making room for what you shared..."}
+              {firstName ? `Reading every word you gave me, ${firstName}...` : "Reading every word you gave me..."}
             </h2>
             <p className="mt-4 text-base leading-8 text-muted-foreground">
-              Ju is shaping a first read around what felt heaviest.
+              Ju is finding the part of this that needs to be said back to you first.
             </p>
             <div className="mt-6 space-y-3 text-left">
               {[
-                "Making the feeling easier to hold",
-                "Finding the safest place to begin",
+                "Listening past the words",
+                "Finding what's hurting most",
                 firstName
-                  ? `Keeping ${firstName}'s words close`
-                  : "Keeping your words close",
+                  ? `Holding ${firstName}'s answers with care`
+                  : "Holding your answers with care",
               ].map((item) => (
                 <div key={item} className="nuju-soft-button flex items-center gap-3 rounded-2xl px-4 py-4">
                   <div className="flex h-8 w-8 items-center justify-center rounded-full bg-white/70 shadow-[inset_3px_3px_8px_rgba(124,110,219,0.08),inset_-3px_-3px_8px_rgba(255,255,255,0.9)]">
@@ -1665,10 +1867,10 @@ const OnboardingScreen: React.FC = () => {
           <StepCard>
             <div className="flex flex-col gap-5 sm:flex-row sm:items-start sm:justify-between">
               <div>
-                <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">Ju Gets You</p>
+                <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">Ju heard you</p>
                 <h2 className="mt-3 font-serif text-3xl font-bold text-foreground">{teaser.headline}</h2>
                 <p className="mt-3 text-base leading-8 text-muted-foreground">
-                  This is Ju's first read on the part that has been hard to put into words.
+                  This is what Ju picked up underneath what you said. Read slow.
                 </p>
               </div>
               <div className="rounded-full border border-primary/20 bg-primary/6 px-4 py-2 text-sm font-semibold text-primary">
@@ -1678,17 +1880,17 @@ const OnboardingScreen: React.FC = () => {
 
             <div className="mt-7 grid gap-4 lg:grid-cols-[1.05fr_0.95fr]">
               <div className="nuju-neu-pressed rounded-[1.75rem] border border-primary/20 px-5 py-5">
-                <p className="text-sm font-semibold text-foreground">What Ju notices first</p>
+                <p className="text-sm font-semibold text-foreground">The part Ju saw first</p>
                 <p className="mt-3 text-[15px] leading-8 text-foreground">{teaser.mirror}</p>
               </div>
               <div className="nuju-soft-button rounded-[1.75rem] px-5 py-5 text-left">
-                <p className="text-sm font-semibold text-foreground">Why this fits</p>
+                <p className="text-sm font-semibold text-foreground">Why this fits you</p>
                 <p className="mt-3 text-sm leading-8 text-muted-foreground">{teaser.whyItFits}</p>
               </div>
             </div>
 
             <div className="nuju-soft-button mt-4 rounded-[1.75rem] px-5 py-5 text-left">
-              <p className="text-sm font-semibold text-foreground">What Ju would help with first</p>
+              <p className="text-sm font-semibold text-foreground">Where Ju would meet you first</p>
               <p className="mt-3 text-sm leading-8 text-muted-foreground">{teaser.firstSupportMove}</p>
               <div className="mt-5 space-y-3">
                 {teaser.supportSignals.map((step) => (
@@ -1704,7 +1906,7 @@ const OnboardingScreen: React.FC = () => {
 
             <div className="mt-7">
               <PrimaryButton onClick={completeStep}>
-                Keep going
+                Keep this with me
                 <ChevronRight className="h-4 w-4" />
               </PrimaryButton>
             </div>
@@ -1714,24 +1916,24 @@ const OnboardingScreen: React.FC = () => {
       case BRIDGE_STEP:
         return (
           <StepCard>
-            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">Keep the thread close</p>
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">Don't lose this</p>
             <h2 className="mt-3 font-serif text-3xl font-bold text-foreground">
               {firstName
-                ? `${firstName}, this is the moment to keep what felt clear within reach.`
-                : "This is the moment to keep what felt clear within reach."}
+                ? `${firstName}, this is the part most people forget to save.`
+                : "This is the part most people forget to save."}
             </h2>
             <p className="mt-3 text-base leading-8 text-muted-foreground">
-              {teaser.continuationLine} Ju can stay close for the next heavy moment, so you do not have to begin from zero again.
+              {teaser.continuationLine} The next time your chest gets tight, Ju will already know where to start. You won't have to explain yourself from scratch.
             </p>
             <div className="mt-6 grid gap-2">
               {[
                 firstName
-                  ? `When the feeling comes back, Ju keeps your place, ${firstName}.`
-                  : "When the feeling comes back, Ju keeps your place.",
-                "The goal is not more journaling pressure. It is a softer place to land when your head gets crowded.",
+                  ? `When it hits again, Ju picks up where you left off, ${firstName}.`
+                  : "When it hits again, Ju picks up where you left off.",
+                "No journaling pressure. Just a soft place to land when your head gets loud.",
                 threeMonthTrialEnabled
-                  ? `${threeMonthTrialDays} days gives you room to feel whether Ju becomes something you naturally reach for.`
-                  : "A three-month rhythm gives Ju room to become something you naturally reach for.",
+                  ? `${threeMonthTrialDays} days is enough to feel whether Ju becomes the thing you reach for first.`
+                  : "Three months is enough to make Ju feel like home.",
               ].map((item) => (
                 <div key={item} className="nuju-soft-button rounded-[1.35rem] px-4 py-4">
                   <p className="text-sm leading-6 text-foreground">{item}</p>
@@ -1739,7 +1941,7 @@ const OnboardingScreen: React.FC = () => {
               ))}
             </div>
             <div className="mt-6">
-              <PrimaryButton onClick={completeStep}>See options</PrimaryButton>
+              <PrimaryButton onClick={completeStep}>Keep Ju close</PrimaryButton>
             </div>
           </StepCard>
         );
@@ -1754,7 +1956,7 @@ const OnboardingScreen: React.FC = () => {
               <div className="absolute left-5 top-5 max-w-[9.75rem] sm:max-w-[12rem]">
                 <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-[#746B8F]">Your read is open</p>
                 <p className="mt-2 text-xl font-semibold leading-tight text-foreground">
-                  Keep this softer place within reach.
+                  Don't lose what just opened.
                 </p>
               </div>
               <img
@@ -1766,17 +1968,17 @@ const OnboardingScreen: React.FC = () => {
 
             <div className="px-4 pb-4 pt-3">
               <h2 className="text-center font-serif text-[1.55rem] font-bold leading-tight text-foreground">
-                {firstName ? `${firstName}, keep Ju close.` : "Keep Ju close."}
+                {firstName ? `${firstName}, this is the part you keep.` : "This is the part you keep."}
               </h2>
               <p className="mx-auto mt-1 max-w-[19rem] text-center text-xs leading-5 text-muted-foreground">
-                Start with a quiet week. See whether Ju becomes the place you reach for when your head gets crowded.
+                Try it for a quiet week. See if Ju becomes the place you go to first when your head gets loud.
               </p>
 
               <div className="mt-3 space-y-2">
                 {[
-                  "Keep this read saved and easy to return to",
-                  "Come back when the feeling gets loud again",
-                  "Let Ju remember the thread so you do not start over",
+                  "Your read stays saved — no starting over",
+                  "Come back the moment it hits, day or night",
+                  "Ju remembers the thread, so you don't have to",
                 ].map((benefit) => (
                   <div key={benefit} className="flex items-start gap-2 text-xs leading-5 text-foreground">
                     <Check className="mt-0.5 h-3.5 w-3.5 flex-shrink-0 text-primary" />
@@ -1867,7 +2069,7 @@ const OnboardingScreen: React.FC = () => {
                 onClick={handleContinueFree}
                 className="mt-2 w-full text-center text-xs font-medium text-muted-foreground underline-offset-4 transition-colors hover:text-foreground hover:underline"
               >
-                Not now, continue free
+                Maybe later — let me try the free version
               </button>
             </div>
           </StepCard>
@@ -1877,6 +2079,15 @@ const OnboardingScreen: React.FC = () => {
 
   return (
     <div className={`onboarding-page-field min-h-[100dvh] bg-[#FAF9F6] px-4 dark:bg-background ${funnelState.step === PAYWALL_STEP ? "py-3 sm:py-6" : "py-6"}`}>
+      <AnimatePresence>
+        {milestoneStep !== null ? (
+          <MilestoneCelebration
+            key={milestoneStep}
+            step={milestoneStep}
+            onDone={() => setMilestoneStep(null)}
+          />
+        ) : null}
+      </AnimatePresence>
       <div className={`mx-auto flex w-full max-w-6xl flex-col ${funnelState.step === PAYWALL_STEP ? "min-h-[calc(100dvh-1.5rem)] sm:min-h-[calc(100dvh-3rem)]" : "min-h-[calc(100dvh-3rem)]"}`}>
         <div className={`flex items-center justify-between gap-4 ${funnelState.step === PAYWALL_STEP ? "mb-4" : "mb-6"}`}>
           <button
@@ -1916,10 +2127,14 @@ const OnboardingScreen: React.FC = () => {
               <motion.div
                 key={funnelState.step}
                 className="w-full"
-                initial={{ opacity: 0, y: 24 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -18 }}
-                transition={{ type: "spring", stiffness: 220, damping: 24 }}
+                initial={{ opacity: 0, y: 32, scale: 0.96 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: -22, scale: 0.97 }}
+                transition={{
+                  duration: 0.55,
+                  ease: [0.34, 1.56, 0.64, 1],
+                  opacity: { duration: 0.32 },
+                }}
               >
                 {renderStep()}
               </motion.div>
