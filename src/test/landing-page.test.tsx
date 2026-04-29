@@ -162,6 +162,9 @@ describe("Landing page anatomy", () => {
       "landing-visual-strip",
       "landing-benefits",
       "landing-how-it-works",
+      "landing-social-proof",
+      "landing-features",
+      "landing-mid-cta",
       "landing-pricing-teaser",
       "landing-comparison",
       "landing-faq",
@@ -178,10 +181,19 @@ describe("Landing page anatomy", () => {
 
     expect(screen.getByTestId("landing-what-you-get")).toBeInTheDocument();
     expect(screen.getByTestId("landing-internal-links")).toBeInTheDocument();
-    expect(screen.getByText(/Journaling, but it gets/i)).toBeInTheDocument();
-    expect(screen.getByText(/Start free\. Stay only if it fits\./i)).toBeInTheDocument();
+    expect(screen.getByText(/For the moments you cannot explain cleanly yet/i)).toBeInTheDocument();
+    expect(screen.getByText(/If the reveal feels right, choose how Ju stays with you\./i)).toBeInTheDocument();
 
     const comparisonLinks = within(screen.getByTestId("landing-internal-links"));
+    expect(
+      comparisonLinks.getByRole("link", { name: /nuju as an ai journal/i }),
+    ).toHaveAttribute("href", "/ai-journal");
+    expect(
+      comparisonLinks.getByRole("link", { name: /nuju as a mood tracker/i }),
+    ).toHaveAttribute("href", "/mood-tracker");
+    expect(
+      comparisonLinks.getByRole("link", { name: /voice journaling in nuju/i }),
+    ).toHaveAttribute("href", "/voice-journaling");
     expect(
       comparisonLinks.getByRole("link", { name: /best ai journaling apps/i }),
     ).toHaveAttribute("href", "/blog/best-ai-journaling-apps");
@@ -193,15 +205,16 @@ describe("Landing page anatomy", () => {
     ).toHaveAttribute("href", "/blog/reflectly-alternatives");
   });
 
-  it("sets homepage metadata for category intent, not just brand language", () => {
+  it("sets homepage metadata with brand-led title for branded SERP CTR and category relevance", () => {
     renderLanding();
 
     expect(seoHeadProps).toHaveBeenCalledWith(
       expect.objectContaining({
-        title: "AI Journaling App and Mood Tracker",
+        title: "Nuju — AI Journal App for Mood Tracking & Emotional Clarity",
         description:
-          "Nuju is the 30-second AI journal that reads between your lines, reflects what is underneath, and gives you one next step that fits.",
+          "Nuju is the AI journal app that turns hard-to-explain feelings into a private emotional read, gentle mood patterns, and a soft next step. Start the free Ju Gets You reveal.",
         canonical: "https://nuju.app/",
+        noSuffix: true,
       }),
     );
   });
