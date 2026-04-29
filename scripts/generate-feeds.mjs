@@ -22,6 +22,8 @@ const OG_IMAGE =
 const STATIC_ROUTES = [
   { loc: "/", priority: "1.0", changefreq: "weekly" },
   { loc: "/ai-journal", priority: "0.9", changefreq: "weekly" },
+  { loc: "/mood-tracker", priority: "0.9", changefreq: "weekly" },
+  { loc: "/voice-journaling", priority: "0.8", changefreq: "weekly" },
   { loc: "/install", priority: "0.8", changefreq: "monthly" },
   { loc: "/about", priority: "0.6", changefreq: "monthly" },
   { loc: "/support", priority: "0.6", changefreq: "monthly" },

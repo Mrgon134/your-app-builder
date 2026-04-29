@@ -399,6 +399,44 @@ const AiJournal: React.FC = () => {
           </p>
         </section>
 
+        <section className="mt-16" aria-labelledby="related-products">
+          <h2 id="related-products" className="font-serif text-2xl font-bold text-foreground">
+            More on how Nuju works
+          </h2>
+          <div className="mt-6 grid gap-4 sm:grid-cols-2">
+            <Link
+              to="/mood-tracker"
+              className="rounded-2xl border border-border/60 bg-card/60 p-5 transition-all hover:border-primary/35 hover:shadow-md"
+            >
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">
+                Mood tracking
+              </p>
+              <p className="mt-1 font-serif text-lg font-semibold text-foreground">
+                Nuju as a mood tracker
+              </p>
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                How the 10-second mood and energy check-in turns into 30-day trends, AI summaries, and pattern
+                detection.
+              </p>
+            </Link>
+            <Link
+              to="/voice-journaling"
+              className="rounded-2xl border border-border/60 bg-card/60 p-5 transition-all hover:border-primary/35 hover:shadow-md"
+            >
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">
+                Voice journaling
+              </p>
+              <p className="mt-1 font-serif text-lg font-semibold text-foreground">
+                Talk-first journaling in Nuju
+              </p>
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                Talk for a minute, get an automatic transcript and AI reflection, and keep mood patterns connected to
+                spoken entries.
+              </p>
+            </Link>
+          </div>
+        </section>
+
         <section className="mt-16" aria-labelledby="privacy">
           <h2 id="privacy" className="font-serif text-2xl font-bold text-foreground">
             Privacy is the default, not an upsell

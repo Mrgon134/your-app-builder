@@ -4,67 +4,79 @@
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://nuju.app/</loc>
-    <lastmod>2026-04-28</lastmod>
+    <lastmod>2026-04-29</lastmod>
     <priority>1.0</priority>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://nuju.app/ai-journal</loc>
-    <lastmod>2026-04-28</lastmod>
+    <lastmod>2026-04-29</lastmod>
     <priority>0.9</priority>
     <changefreq>weekly</changefreq>
   </url>
   <url>
+    <loc>https://nuju.app/mood-tracker</loc>
+    <lastmod>2026-04-29</lastmod>
+    <priority>0.9</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/voice-journaling</loc>
+    <lastmod>2026-04-29</lastmod>
+    <priority>0.8</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
     <loc>https://nuju.app/install</loc>
-    <lastmod>2026-04-28</lastmod>
+    <lastmod>2026-04-29</lastmod>
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
     <loc>https://nuju.app/about</loc>
-    <lastmod>2026-04-28</lastmod>
+    <lastmod>2026-04-29</lastmod>
     <priority>0.6</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
     <loc>https://nuju.app/support</loc>
-    <lastmod>2026-04-28</lastmod>
+    <lastmod>2026-04-29</lastmod>
     <priority>0.6</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
     <loc>https://nuju.app/contact</loc>
-    <lastmod>2026-04-28</lastmod>
+    <lastmod>2026-04-29</lastmod>
     <priority>0.5</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
     <loc>https://nuju.app/privacy</loc>
-    <lastmod>2026-04-28</lastmod>
+    <lastmod>2026-04-29</lastmod>
     <priority>0.4</priority>
     <changefreq>yearly</changefreq>
   </url>
   <url>
     <loc>https://nuju.app/terms</loc>
-    <lastmod>2026-04-28</lastmod>
+    <lastmod>2026-04-29</lastmod>
     <priority>0.4</priority>
     <changefreq>yearly</changefreq>
   </url>
   <url>
     <loc>https://nuju.app/medical-disclaimer</loc>
-    <lastmod>2026-04-28</lastmod>
+    <lastmod>2026-04-29</lastmod>
     <priority>0.3</priority>
     <changefreq>yearly</changefreq>
   </url>
   <url>
     <loc>https://nuju.app/blog</loc>
-    <lastmod>2026-04-28</lastmod>
+    <lastmod>2026-04-29</lastmod>
     <priority>0.8</priority>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://nuju.app/guides/journaling</loc>
-    <lastmod>2026-04-28</lastmod>
+    <lastmod>2026-04-29</lastmod>
     <priority>0.9</priority>
     <changefreq>monthly</changefreq>
   </url>
@@ -338,6 +350,17 @@
       <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
       <image:title>Why Therapists Recommend Mood Tracking to Their Patients</image:title>
       <image:caption>Mood tracking can make emotional patterns easier to discuss. Here&apos;s how to use mood data thoughtfully between therapy sessions.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/3am-anxiety-journaling</loc>
+    <lastmod>2026-04-29</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Can&apos;t Sleep? Try This 3-Minute Journaling Technique for 3AM Anxiety</image:title>
+      <image:caption>When your brain won&apos;t stop at 3am, journaling is one of the few things that actually works. Here&apos;s the exact technique — and why it helps.</image:caption>
     </image:image>
   </url>
 </urlset>

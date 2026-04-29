@@ -28,6 +28,8 @@ const Support = lazy(() => import("./pages/Support.tsx"));
 const Contact = lazy(() => import("./pages/Contact.tsx"));
 const About = lazy(() => import("./pages/About.tsx"));
 const AiJournal = lazy(() => import("./pages/AiJournal.tsx"));
+const MoodTracker = lazy(() => import("./pages/MoodTracker.tsx"));
+const VoiceJournaling = lazy(() => import("./pages/VoiceJournaling.tsx"));
 const NotFound = lazy(() => import("./pages/NotFound.tsx"));
 const AuthCallback = lazy(() => import("./pages/AuthCallback.tsx"));
 
@@ -74,6 +76,8 @@ const App = () => (
                   <Route path="/contact" element={<Contact />} />
                   <Route path="/about" element={<About />} />
                   <Route path="/ai-journal" element={<AiJournal />} />
+                  <Route path="/mood-tracker" element={<MoodTracker />} />
+                  <Route path="/voice-journaling" element={<VoiceJournaling />} />
                   <Route
                     path="/app"
                     element={
