@@ -189,6 +189,12 @@ describe("Landing page anatomy", () => {
       comparisonLinks.getByRole("link", { name: /nuju as an ai journal/i }),
     ).toHaveAttribute("href", "/ai-journal");
     expect(
+      comparisonLinks.getByRole("link", { name: /nuju as a mood tracker/i }),
+    ).toHaveAttribute("href", "/mood-tracker");
+    expect(
+      comparisonLinks.getByRole("link", { name: /voice journaling in nuju/i }),
+    ).toHaveAttribute("href", "/voice-journaling");
+    expect(
       comparisonLinks.getByRole("link", { name: /best ai journaling apps/i }),
     ).toHaveAttribute("href", "/blog/best-ai-journaling-apps");
     expect(

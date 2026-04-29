@@ -499,6 +499,20 @@ function renderLandingBody() {
           badge: "Product overview",
         },
         {
+          href: "/mood-tracker",
+          title: "Nuju as a mood tracker",
+          description:
+            "How the 10-second check-in turns into 30-day trends, AI summaries, and pattern detection.",
+          badge: "Product overview",
+        },
+        {
+          href: "/voice-journaling",
+          title: "Voice journaling in Nuju",
+          description:
+            "Talk for a minute, get a transcript with AI reflection, and feed spoken entries into your mood patterns.",
+          badge: "Product overview",
+        },
+        {
           href: "/blog/best-ai-journaling-apps",
           title: "Best AI journaling apps in 2026",
           description:
@@ -898,6 +912,25 @@ function renderAiJournalBody() {
         `,
       ),
       renderSection(
+        "More on how Nuju works",
+        renderLinkCardGrid([
+          {
+            href: "/mood-tracker",
+            title: "Nuju as a mood tracker",
+            description:
+              "How the 10-second mood and energy check-in turns into 30-day trends, AI summaries, and pattern detection.",
+            badge: "Mood tracking",
+          },
+          {
+            href: "/voice-journaling",
+            title: "Talk-first journaling in Nuju",
+            description:
+              "Talk for a minute, get an automatic transcript and AI reflection, and keep mood patterns connected to spoken entries.",
+            badge: "Voice journaling",
+          },
+        ]),
+      ),
+      renderSection(
         "Frequently asked questions",
         `
           <h3>What is an AI journaling app?</h3>
@@ -915,6 +948,223 @@ function renderAiJournalBody() {
       title: "Start your first 30-second entry",
       body: "Try the free Ju Gets You reveal. If the reflection style feels right, keep going. If not, your data is yours either way.",
       href: "/onboarding?source=ai_journal_prerender",
+      label: "Start the free reveal",
+    }),
+  });
+}
+
+function renderMoodTrackerBody() {
+  return renderPageShell({
+    eyebrow: "Mood tracker app",
+    title: "The mood tracker that explains what is moving you",
+    description:
+      "Most mood trackers stop at emoji and activity tags. Nuju pairs a 10-second check-in with optional written reflection, then uses AI to surface the patterns underneath - moods, themes, and people that keep moving your week.",
+    meta: "Mood tracking with AI pattern detection and 30-day trends",
+    sections: [
+      renderSection(
+        "Who Nuju is for",
+        renderList([
+          "Self-awareness seekers who want to understand emotional patterns instead of just logging them.",
+          "Daylio users who have outgrown emoji-only logging and want AI that interprets the data.",
+          "People between therapy sessions who want grounded mood data to bring into the next appointment.",
+          "Anxiety and overthinking patterns where seeing the rhythm of your week makes the spirals less surprising.",
+        ]),
+      ),
+      renderSection(
+        "How Nuju tracks mood in 10 seconds",
+        renderOrdered([
+          "Tap a mood (Rough to Great) and slide your energy level.",
+          "Add a sentence of context if you want, so the AI can read for trends and themes.",
+          "Patterns build over weeks: 30-day charts, weekly summaries, and AI-detected cycles show up after a few entries.",
+        ]),
+      ),
+      renderSection(
+        "What you actually get from Nuju",
+        renderList([
+          "30-day mood and energy trend charts.",
+          "Pixel calendar of your full month, color-coded by mood.",
+          "Weekly AI summaries that interpret what changed, not just plot it.",
+          "Pattern detection across moods, themes, and people.",
+          "Mood paired with optional reflection so trends carry context.",
+          "Encrypted storage, signed media URLs, no mood data sold, no AI training on your entries.",
+        ]),
+      ),
+      renderSection(
+        "What you get free vs paid",
+        `
+          <h3>Free</h3>
+          ${renderList([
+            "10-second mood and energy check-ins.",
+            "Five-mood scale plus optional written reflection.",
+            "Recent mood history at a glance.",
+            "Basic AI insight on each entry.",
+          ])}
+          <h3>Paid</h3>
+          ${renderList([
+            "30-day mood and energy trend charts.",
+            "Pixel calendar of your full month.",
+            "Weekly AI summaries of what changed.",
+            "Pattern detection across themes and people.",
+            "Relationship mood map: who shifts your mood.",
+            "Full mood history, no week cap.",
+          ])}
+        `,
+      ),
+      renderSection(
+        "Nuju vs other mood tracker apps",
+        renderLinkCardGrid([
+          {
+            href: "/blog/best-mood-tracker-apps",
+            title: "8 best mood tracker apps in 2026",
+            description:
+              "Where Nuju fits when you compare 8 mood trackers from emoji loggers to AI-powered systems.",
+            badge: "Comparison",
+          },
+          {
+            href: "/blog/daylio-alternatives",
+            title: "Daylio alternatives",
+            description:
+              "If Daylio feels too shallow once you want reflection, see why people switch to Nuju.",
+            badge: "Switch",
+          },
+          {
+            href: "/blog/benefits-of-mood-tracking",
+            title: "Science-backed benefits of mood tracking",
+            description:
+              "Why daily mood tracking is worth the small effort and what changes after a few weeks.",
+            badge: "Guide",
+          },
+          {
+            href: "/blog/mood-tracker-for-self-awareness",
+            title: "Mood tracker for self-awareness",
+            description:
+              "How mood data becomes self-awareness once you start surfacing the patterns underneath.",
+            badge: "Use case",
+          },
+        ]),
+      ),
+      renderSection(
+        "Mood data is yours, not a product",
+        `
+          <p>Mood entries live in encrypted storage with private access controls. Media URLs are signed. Mood data is not sold and is not used to train AI models. Read the full handling on the <a href="/privacy">privacy page</a>.</p>
+        `,
+      ),
+      renderSection(
+        "Frequently asked questions",
+        `
+          <h3>What is a mood tracker app?</h3>
+          <p>A mood tracker app is a tool for logging how you feel over time so you can spot patterns, triggers, and trends. The good ones do more than collect data - they pair mood with context like written reflection or activities and surface what is actually moving your emotional baseline.</p>
+          <h3>Is Nuju free to use as a mood tracker?</h3>
+          <p>Yes. The 10-second mood and energy check-in and basic recent insight are free. Paid access unlocks 30-day trend charts, the pixel calendar, weekly AI summaries, pattern detection, and the relationship mood map.</p>
+          <h3>How is Nuju different from Daylio?</h3>
+          <p>Daylio is fast emoji and activity logging. Nuju adds optional written reflection, AI summaries that interpret what changed, and pattern detection that connects mood to themes and people. Use Daylio if you want pure speed; use Nuju if you want understanding.</p>
+          <h3>Will my mood data be private?</h3>
+          <p>Yes. Mood entries live in encrypted storage with private access controls, media URLs are signed, mood data is not sold, and your entries are not used to train AI models.</p>
+        `,
+      ),
+    ],
+    cta: renderCta({
+      title: "Start tracking mood with context today",
+      body: "Try the free Ju Gets You reveal. After a few entries, mood patterns start showing up that you would not catch yourself.",
+      href: "/onboarding?source=mood_tracker_prerender",
+      label: "Start the free reveal",
+    }),
+  });
+}
+
+function renderVoiceJournalingBody() {
+  return renderPageShell({
+    eyebrow: "Voice journaling app",
+    title: "Journal by talking when typing feels heavy",
+    description:
+      "Tap the mic, talk for a minute, and Nuju turns your voice into a private journal entry with an AI reflection - so spoken thoughts feed the same mood patterns as your written ones.",
+    meta: "Voice journaling with AI transcription and reflection",
+    sections: [
+      renderSection(
+        "When voice journaling actually helps",
+        renderList([
+          "When typing feels heavy - ADHD, low energy, post-therapy decompression, or just a long day.",
+          "When emotion lives in tone, pace, and pauses that the page would lose.",
+          "When you want the fastest way to journal honestly on a phone.",
+          "Late-night and bedtime entries you do not want to type out on a bright screen.",
+        ]),
+      ),
+      renderSection(
+        "How voice journaling works in Nuju",
+        renderOrdered([
+          "Tap the mic and talk for a minute. Speak the way you actually think; no prompts, no formatting pressure.",
+          "Get an automatic transcript and an AI reflection from one of the four coach personas.",
+          "Spoken entries share the same mood, energy, and trend layer as written ones - so they feed weekly summaries too.",
+        ]),
+      ),
+      renderSection(
+        "What makes Nuju voice journaling different",
+        renderList([
+          "Talk-first capture for the raw thought before you have to package it.",
+          "Automatic transcription, fully editable like a normal entry.",
+          "Same AI reads spoken transcripts and surfaces themes.",
+          "Mood and energy stay paired with every voice entry.",
+          "Designed for low-energy days when you only have thirty seconds.",
+          "Audio stored with signed media URLs and encrypted at rest. Never sold, never used to train AI.",
+        ]),
+      ),
+      renderSection(
+        "Where voice fits in the rest of Nuju",
+        renderLinkCardGrid([
+          {
+            href: "/ai-journal",
+            title: "Nuju as an AI journal",
+            description:
+              "How voice entries feed the same AI reflection and pattern layer as written entries.",
+            badge: "Product",
+          },
+          {
+            href: "/mood-tracker",
+            title: "Nuju as a mood tracker",
+            description:
+              "Voice entries are tagged with mood and energy so trends include spoken reflection too.",
+            badge: "Product",
+          },
+          {
+            href: "/blog/voice-journaling-guide",
+            title: "Voice journaling guide",
+            description:
+              "Why talking beats writing for some people and how to build the habit.",
+            badge: "Guide",
+          },
+          {
+            href: "/blog/journaling-for-adhd",
+            title: "Journaling for ADHD",
+            description:
+              "Why low-friction capture matters more than length when typing is hard.",
+            badge: "Use case",
+          },
+        ]),
+      ),
+      renderSection(
+        "Audio handled like the private data it is",
+        `
+          <p>Voice recordings are stored with signed media URLs and encrypted at rest. Audio is never sold and never used to train AI models. Transcripts follow the same privacy rules as your written entries. Full handling is documented on our <a href="/privacy">privacy page</a>.</p>
+        `,
+      ),
+      renderSection(
+        "Frequently asked questions",
+        `
+          <h3>What is voice journaling?</h3>
+          <p>Voice journaling is journaling by speaking instead of typing. You record what you want to reflect on, the app transcribes it into a text entry, and you get a written record plus the original audio. It is faster than typing on a phone and captures the texture of how you actually talk to yourself.</p>
+          <h3>Is voice journaling included for free in Nuju?</h3>
+          <p>Voice journaling is part of Nuju's premium tier alongside AI memory, the relationship mood map, and 30-day trend charts. The free tier covers mood and energy check-ins plus written journaling so you can evaluate the reflection style before paying.</p>
+          <h3>Where is my voice data stored?</h3>
+          <p>Voice recordings are stored with signed media URLs and encrypted at rest. The audio is private to your account, is not sold, and is never used to train AI models.</p>
+          <h3>Can I edit a voice transcript after it is created?</h3>
+          <p>Yes. After Nuju transcribes your audio, the text becomes a normal journal entry you can edit, search, and add to. The original recording is kept alongside the entry.</p>
+        `,
+      ),
+    ],
+    cta: renderCta({
+      title: "Talk through what is on your mind tonight",
+      body: "Try the free Ju Gets You reveal first. Voice journaling unlocks with premium once you know the reflection style fits.",
+      href: "/onboarding?source=voice_journaling_prerender",
       label: "Start the free reveal",
     }),
   });
@@ -1905,6 +2155,197 @@ function buildStaticPages(posts) {
         },
       ],
       bodyHtml: renderAiJournalBody(),
+    },
+    {
+      route: "/mood-tracker",
+      title: "Mood Tracker App with AI Pattern Detection and Trends",
+      description:
+        "Nuju is the mood tracker app that pairs 10-second check-ins with optional reflection, 30-day trend charts, and AI summaries that interpret what is moving your mood. Start free.",
+      canonical: `${BASE_URL}/mood-tracker`,
+      breadcrumbs: [
+        { name: "Home", url: `${BASE_URL}/` },
+        { name: "Mood Tracker", url: `${BASE_URL}/mood-tracker` },
+      ],
+      schemas: [
+        {
+          "@context": "https://schema.org",
+          "@type": "SoftwareApplication",
+          name: "Nuju",
+          alternateName: "Nuju Mood Tracker",
+          applicationCategory: "HealthApplication",
+          applicationSubCategory: "Mood Tracking and Emotional Wellness",
+          operatingSystem: "Web browser, iOS, Android",
+          url: `${BASE_URL}/mood-tracker`,
+          description:
+            "Nuju is the mood tracker app that pairs 10-second mood and energy check-ins with optional written reflection, 30-day trend charts, and AI summaries that interpret what changed.",
+          image: OG_IMAGE,
+          featureList: [
+            "10-second mood and energy check-ins",
+            "Five-mood scale with optional written reflection",
+            "30-day mood and energy trend charts",
+            "Pixel calendar of your month",
+            "Weekly AI summaries",
+            "Pattern detection across themes and people",
+            "Encrypted storage, no AI training on mood data",
+          ],
+          offers: {
+            "@type": "Offer",
+            price: "0",
+            priceCurrency: "USD",
+            description: "Free Ju Gets You reveal and 10-second mood check-in flow.",
+          },
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: [
+            {
+              "@type": "Question",
+              name: "What is a mood tracker app?",
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: "A mood tracker app is a tool for logging how you feel over time so you can spot patterns, triggers, and trends. The good ones do more than collect data - they pair mood with context (like written reflection or activities) and surface what is actually moving your emotional baseline.",
+              },
+            },
+            {
+              "@type": "Question",
+              name: "Is Nuju free to use as a mood tracker?",
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: "Yes. The 10-second mood + energy check-in and basic recent insight are free. Paid access unlocks 30-day trend charts, the pixel calendar, weekly AI summaries, pattern detection, and the relationship mood map.",
+              },
+            },
+            {
+              "@type": "Question",
+              name: "How is Nuju different from Daylio?",
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: "Daylio is fast emoji + activity logging. Nuju adds optional written reflection, AI summaries that interpret what changed, and pattern detection that connects mood to themes and people. Use Daylio if you want pure speed; use Nuju if you want understanding.",
+              },
+            },
+            {
+              "@type": "Question",
+              name: "Will my mood data be private?",
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: "Yes. Mood entries live in encrypted storage with private access controls, media URLs are signed, mood data is not sold, and your entries are not used to train AI models.",
+              },
+            },
+            {
+              "@type": "Question",
+              name: "Does Nuju replace therapy?",
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: "No. Nuju is a mood tracking and self-awareness tool, not therapy, crisis care, or medical treatment.",
+              },
+            },
+            {
+              "@type": "Question",
+              name: "How often should I log my mood?",
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: "Once a day is enough for most people, ideally at the same time so the data stays comparable. Even logging every other day will start surfacing trends after two to three weeks.",
+              },
+            },
+          ],
+        },
+      ],
+      bodyHtml: renderMoodTrackerBody(),
+    },
+    {
+      route: "/voice-journaling",
+      title: "Voice Journaling App with AI Transcription and Reflection",
+      description:
+        "Nuju voice journaling lets you talk for a minute, get an instant transcript with AI reflection, and feed spoken entries into your mood patterns. Try the free reveal.",
+      canonical: `${BASE_URL}/voice-journaling`,
+      breadcrumbs: [
+        { name: "Home", url: `${BASE_URL}/` },
+        { name: "Voice Journaling", url: `${BASE_URL}/voice-journaling` },
+      ],
+      schemas: [
+        {
+          "@context": "https://schema.org",
+          "@type": "SoftwareApplication",
+          name: "Nuju",
+          alternateName: "Nuju Voice Journaling",
+          applicationCategory: "HealthApplication",
+          applicationSubCategory: "Voice Journaling and Reflection",
+          operatingSystem: "Web browser, iOS, Android",
+          url: `${BASE_URL}/voice-journaling`,
+          description:
+            "Nuju voice journaling lets you talk for a minute, get an automatic transcript and AI reflection, and feed spoken entries into the same mood and pattern layer as your written journal.",
+          image: OG_IMAGE,
+          featureList: [
+            "Voice journaling with automatic transcription",
+            "AI reflection on what you said",
+            "Mood and energy paired with every voice entry",
+            "Original audio preserved with the transcript",
+            "Encrypted storage and signed media URLs",
+            "No voice data sold or used to train AI",
+          ],
+          offers: {
+            "@type": "Offer",
+            price: "0",
+            priceCurrency: "USD",
+            description: "Free Ju Gets You reveal. Voice journaling is part of premium access.",
+          },
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: [
+            {
+              "@type": "Question",
+              name: "What is voice journaling?",
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: "Voice journaling is journaling by speaking instead of typing. You record what you want to reflect on, the app transcribes it into a text entry, and you get a written record plus the original audio.",
+              },
+            },
+            {
+              "@type": "Question",
+              name: "Is voice journaling included for free in Nuju?",
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: "Voice journaling is part of Nuju's premium tier, alongside AI memory, the relationship mood map, and 30-day trend charts. The free tier covers mood and energy check-ins plus written journaling so you can evaluate the reflection style before paying.",
+              },
+            },
+            {
+              "@type": "Question",
+              name: "Where is my voice data stored?",
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: "Voice recordings are stored with signed media URLs and encrypted at rest. The audio is private to your account, is not sold, and is never used to train AI models.",
+              },
+            },
+            {
+              "@type": "Question",
+              name: "Can I edit a voice transcript after it is created?",
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: "Yes. After Nuju transcribes your audio, the text becomes a normal journal entry you can edit, search, and add to. The original recording is kept alongside the entry.",
+              },
+            },
+            {
+              "@type": "Question",
+              name: "How long can a voice entry be?",
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: "Most useful voice entries are a single minute or two - long enough to talk through a thought, short enough to keep the habit sustainable.",
+              },
+            },
+            {
+              "@type": "Question",
+              name: "Does Nuju voice journaling replace therapy?",
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: "No. Voice journaling is a self-reflection and pattern-tracking tool, not therapy or crisis care.",
+              },
+            },
+          ],
+        },
+      ],
+      bodyHtml: renderVoiceJournalingBody(),
     },
     {
       route: "/about",

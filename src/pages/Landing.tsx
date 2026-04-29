@@ -228,6 +228,18 @@ const comparisonReadLinks = [
     body: "The full feature breakdown, free vs paid, coach personas, and privacy stance in one page.",
   },
   {
+    href: "/mood-tracker",
+    label: "Product overview",
+    title: "Nuju as a mood tracker",
+    body: "How the 10-second check-in turns into 30-day trends, AI summaries, and pattern detection.",
+  },
+  {
+    href: "/voice-journaling",
+    label: "Product overview",
+    title: "Voice journaling in Nuju",
+    body: "Talk for a minute, get an automatic transcript and AI reflection, and feed spoken entries into your mood patterns.",
+  },
+  {
     href: "/blog/best-ai-journaling-apps",
     label: "Category guide",
     title: "Best AI journaling apps",
