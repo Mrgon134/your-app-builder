@@ -10,20 +10,19 @@ import {
   getPlanFromEntitlements,
   hasRevenueCatApiKey,
   PRODUCT_IDS,
+  PRODUCT_ID_GROUPS,
 } from "@/lib/revenueCat";
 
 export type NativePackage = PurchasesPackage;
 
 // Map RevenueCat product ID to plan display name (for pricing screen)
 const getDisplayName = (productId: string): string => {
-  const map: Record<string, string> = {
-    [PRODUCT_IDS.weekly]: "weekly",
-    [PRODUCT_IDS.three_month]: "three_month",
-    [PRODUCT_IDS.plus_monthly]: "plus_monthly",
-    [PRODUCT_IDS.plus_annual]: "plus_annual",
-    [PRODUCT_IDS.pro_lifetime]: "lifetime_one_time",
-  };
-  return map[productId] || productId;
+  if (PRODUCT_ID_GROUPS.weekly.includes(productId)) return "weekly";
+  if (PRODUCT_ID_GROUPS.three_month.includes(productId)) return "three_month";
+  if (PRODUCT_ID_GROUPS.pro_lifetime.includes(productId)) return "lifetime_one_time";
+  if (productId === PRODUCT_IDS.plus_monthly) return "plus_monthly";
+  if (productId === PRODUCT_IDS.plus_annual) return "plus_annual";
+  return productId;
 };
 
 interface UseNativePurchasesResult {

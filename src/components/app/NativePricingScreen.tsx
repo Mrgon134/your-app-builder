@@ -7,7 +7,7 @@ import { useGeoPricing } from "@/hooks/use-geo-pricing";
 import { useNativePurchases } from "@/hooks/use-native-purchases";
 import type { NativePackage } from "@/hooks/use-native-purchases";
 import { useLang } from "@/lib/i18n";
-import { PRODUCT_IDS } from "@/lib/revenueCat";
+import { PRODUCT_ID_GROUPS } from "@/lib/revenueCat";
 import { ROUTES } from "@/lib/routes";
 import { formatTrialCountdown, getTrialStatus, TRIAL_DAYS } from "@/lib/trial";
 import juGreat from "@/assets/ju-great.webp";
@@ -23,16 +23,10 @@ interface NativePricingScreenProps {
 }
 
 const planIdForPackage = (pkg: NativePackage) => {
-  switch (pkg.product.identifier) {
-    case PRODUCT_IDS.weekly:
-      return "weekly";
-    case PRODUCT_IDS.three_month:
-      return "three_month";
-    case PRODUCT_IDS.pro_lifetime:
-      return "lifetime_one_time";
-    default:
-      return pkg.identifier;
-  }
+  if (PRODUCT_ID_GROUPS.weekly.includes(pkg.product.identifier)) return "weekly";
+  if (PRODUCT_ID_GROUPS.three_month.includes(pkg.product.identifier)) return "three_month";
+  if (PRODUCT_ID_GROUPS.pro_lifetime.includes(pkg.product.identifier)) return "lifetime_one_time";
+  return pkg.identifier;
 };
 
 const labelForPackage = (pkg: NativePackage) => {
@@ -79,8 +73,8 @@ const NativePricingScreen: React.FC<NativePricingScreenProps> = ({
 
   const preferredPackage = useMemo(
     () =>
-      packages.find((pkg) => pkg.product.identifier === PRODUCT_IDS.three_month) ||
-      packages.find((pkg) => pkg.product.identifier === PRODUCT_IDS.weekly) ||
+      packages.find((pkg) => PRODUCT_ID_GROUPS.three_month.includes(pkg.product.identifier)) ||
+      packages.find((pkg) => PRODUCT_ID_GROUPS.weekly.includes(pkg.product.identifier)) ||
       packages[0] ||
       null,
     [packages],
@@ -88,12 +82,13 @@ const NativePricingScreen: React.FC<NativePricingScreenProps> = ({
   const displayPackages = useMemo(
     () =>
       [...packages].sort((a, b) => {
-        const order: Record<string, number> = {
-          [PRODUCT_IDS.weekly]: 0,
-          [PRODUCT_IDS.three_month]: 1,
-          [PRODUCT_IDS.pro_lifetime]: 2,
+        const order = (identifier: string) => {
+          if (PRODUCT_ID_GROUPS.weekly.includes(identifier)) return 0;
+          if (PRODUCT_ID_GROUPS.three_month.includes(identifier)) return 1;
+          if (PRODUCT_ID_GROUPS.pro_lifetime.includes(identifier)) return 2;
+          return 9;
         };
-        return (order[a.product.identifier] ?? 9) - (order[b.product.identifier] ?? 9);
+        return order(a.product.identifier) - order(b.product.identifier);
       }),
     [packages],
   );

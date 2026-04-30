@@ -37,13 +37,13 @@ Manual-only: these cannot be completed safely from this repo because they requir
 - [ ] Add `VITE_REVENUECAT_API_KEY` to the Codemagic `ios_app_store` environment group. It should be the RevenueCat public Apple SDK key, usually starting with `appl_`.
 - [ ] Add `APP_STORE_CONNECT_KEY_IDENTIFIER`, `APP_STORE_CONNECT_ISSUER_ID`, and `APP_STORE_CONNECT_PRIVATE_KEY` to the Codemagic `ios_app_store` environment group.
 - [ ] Attach these in-app purchases/subscriptions to version 1.0:
-  - `nuju_weekly`
-  - `3_month`
+  - `nuju_weekly_v2`
+  - `nuju_3_month_v2`
   - `lifetime`
-- [ ] Resolve the rejected `Nuju Pro` subscription group localization. Live API check on April 28, 2026 showed subscription group `22051872` localization `en-US` is `REJECTED`; API accepted `customAppName=Nuju` but did not clear the rejected state.
-- [ ] Resolve App Store Connect product states. Live API check on April 28, 2026 showed all three products are `DEVELOPER_ACTION_NEEDED`. `nuju_weekly` and `lifetime` have rejected `en-US` localizations that App Store Connect API cannot edit in their current state.
-- [x] Add a review note to `nuju_weekly`.
-- [x] Create a 7-day introductory free trial for `3_month` if using trial-first positioning.
+- [x] Confirm `Nuju Pro` subscription group localization is no longer blocked. Live API check on May 1, 2026 showed subscription group `22051872` localization `en-US` is `PREPARE_FOR_SUBMISSION`.
+- [x] Resolve App Store Connect product states for the replacement subscriptions. `nuju_weekly_v2` and `nuju_3_month_v2` are ready to submit with complete localization, availability, pricing, review screenshots, and review notes.
+- [x] Add a review note to `nuju_weekly_v2`.
+- [x] Create a 7-day introductory free trial for `nuju_3_month_v2` if using trial-first positioning.
 - [ ] Set App Privacy answers using `privacy-label-draft.md`. App Store Connect API does not expose the full privacy questionnaire for this audit, so confirm it in the UI.
 - [x] Add Support URL: `https://nuju.app/support`
 - [x] Add Privacy Policy URL: `https://nuju.app/privacy`

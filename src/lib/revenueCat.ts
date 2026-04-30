@@ -15,14 +15,28 @@ export const ENTITLEMENTS = {
 
 // RevenueCat product identifiers (must match RevenueCat dashboard)
 export const PRODUCT_IDS = {
-  weekly: "nuju_weekly",
-  three_month: "3_month",
+  weekly: "nuju_weekly_v2",
+  three_month: "nuju_3_month_v2",
   plus_monthly: "prodd12cd5056a",
   plus_annual: "prodde2def8f68",
-  pro_monthly: "nuju_weekly",
-  pro_annual: "3_month",
+  pro_monthly: "nuju_weekly_v2",
+  pro_annual: "nuju_3_month_v2",
   pro_lifetime: "lifetime",
 } as const;
+
+const LEGACY_PRODUCT_IDS = {
+  weekly: ["nuju_weekly"],
+  three_month: ["3_month"],
+} as const;
+
+export const PRODUCT_ID_GROUPS = {
+  weekly: [PRODUCT_IDS.weekly, ...LEGACY_PRODUCT_IDS.weekly],
+  three_month: [PRODUCT_IDS.three_month, ...LEGACY_PRODUCT_IDS.three_month],
+  pro_lifetime: [PRODUCT_IDS.pro_lifetime],
+} as const;
+
+const productIdMatches = (productId: string, candidates: readonly string[]) =>
+  candidates.includes(productId);
 
 let revenueCatConfigured = false;
 let revenueCatAppUserID: string | undefined;
@@ -143,9 +157,9 @@ export const hasActiveEntitlement = async (entitlementId: string): Promise<boole
 };
 
 const planFromProductId = (productId: string): string | null => {
-  if (productId === PRODUCT_IDS.pro_lifetime) return "lifetime";
-  if (productId === PRODUCT_IDS.three_month) return "three_month";
-  if (productId === PRODUCT_IDS.weekly) return "weekly";
+  if (productIdMatches(productId, PRODUCT_ID_GROUPS.pro_lifetime)) return "lifetime";
+  if (productIdMatches(productId, PRODUCT_ID_GROUPS.three_month)) return "three_month";
+  if (productIdMatches(productId, PRODUCT_ID_GROUPS.weekly)) return "weekly";
   if (productId === PRODUCT_IDS.plus_monthly || productId === PRODUCT_IDS.plus_annual) return "plus";
   if (productId === PRODUCT_IDS.pro_monthly || productId === PRODUCT_IDS.pro_annual) return "pro";
   return null;
@@ -155,8 +169,12 @@ export const getPlanFromCustomerInfo = (info: CustomerInfo | null): string => {
   if (!info) return "free";
 
   const hasLifetimePurchase =
-    info.allPurchasedProductIdentifiers?.includes(PRODUCT_IDS.pro_lifetime) ||
-    info.nonSubscriptionTransactions?.some((transaction) => transaction.productIdentifier === PRODUCT_IDS.pro_lifetime);
+    info.allPurchasedProductIdentifiers?.some((productId) =>
+      productIdMatches(productId, PRODUCT_ID_GROUPS.pro_lifetime),
+    ) ||
+    info.nonSubscriptionTransactions?.some((transaction) =>
+      productIdMatches(transaction.productIdentifier, PRODUCT_ID_GROUPS.pro_lifetime),
+    );
 
   if (hasLifetimePurchase) return "lifetime";
 

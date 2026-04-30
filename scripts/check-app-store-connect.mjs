@@ -4,7 +4,7 @@ import fs from "node:fs";
 const API_BASE = "https://api.appstoreconnect.apple.com";
 const bundleId = process.env.ASC_BUNDLE_ID || process.env.BUNDLE_ID || "app.nuju.journal";
 const targetVersionString = process.env.ASC_VERSION_STRING || "1.0";
-const expectedProductIds = (process.env.ASC_EXPECTED_PRODUCTS || "nuju_weekly,3_month,lifetime")
+const expectedProductIds = (process.env.ASC_EXPECTED_PRODUCTS || "nuju_weekly_v2,nuju_3_month_v2,lifetime")
   .split(",")
   .map((value) => value.trim())
   .filter(Boolean);

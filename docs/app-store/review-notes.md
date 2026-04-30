@@ -23,8 +23,8 @@ Nuju is not a medical device, therapy service, crisis intervention service, diag
 The app uses Apple In-App Purchase for iOS subscriptions and lifetime unlocks through RevenueCat.
 
 Products:
-- Weekly subscription: `nuju_weekly`
-- 3-month subscription: `3_month`
+- Weekly subscription: `nuju_weekly_v2`
+- 3-month subscription: `nuju_3_month_v2`
 - Lifetime non-consumable: `lifetime`
 
 The 3-month plan should only advertise a 7-day free trial when the App Store Connect introductory offer is configured and the user is eligible. Otherwise, the app shows the normal 3-month billing terms.

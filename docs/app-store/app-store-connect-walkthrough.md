@@ -2,13 +2,13 @@
 
 Use this for the first Nuju iOS submission.
 
-## 1. Create the 7-Day Intro Offer for `3_month`
+## 1. Create the 7-Day Intro Offer for `nuju_3_month_v2`
 
 1. Open App Store Connect.
 2. Go to Apps > Nuju.
 3. In the sidebar, open Monetization > Subscriptions.
-4. Open the subscription group that contains `3_month`.
-5. Click the `3_month` subscription.
+4. Open the subscription group that contains `nuju_3_month_v2`.
+5. Click the `nuju_3_month_v2` subscription.
 6. In Subscription Prices, click View all Subscription Pricing.
 7. Click Set up Introductory Offer.
 8. Select all countries or the countries where Nuju will launch.
@@ -32,8 +32,8 @@ VITE_THREE_MONTH_TRIAL_DAYS=7
 3. Scroll to In-App Purchases and Subscriptions.
 4. Click Select In-App Purchases or Subscriptions, or Edit if already started.
 5. Select:
-   - `nuju_weekly`
-   - `3_month`
+   - `nuju_weekly_v2`
+   - `nuju_3_month_v2`
    - `lifetime`
 6. Click Done.
 
@@ -49,16 +49,16 @@ Use this when the App Review page shows the submission as `Unresolved Issues`.
 4. In the version edit view, scroll to In-App Purchases and Subscriptions.
 5. Open and confirm the rejected product metadata:
    - Subscription group `Nuju Pro`
-   - Weekly subscription `nuju_weekly`
+   - Weekly subscription `nuju_weekly_v2`
    - Lifetime non-consumable `lifetime`
 6. Save each item so the rejected localization is re-added for review.
 7. Confirm all three products are attached to version 1.0:
-   - `nuju_weekly`
-   - `3_month`
+   - `nuju_weekly_v2`
+   - `nuju_3_month_v2`
    - `lifetime`
 8. Click `Add for Review`, then return to the unresolved submission and click `Resubmit to App Review`.
 
-Apple currently locks rejected `nuju_weekly` and `lifetime` localizations from the App Store Connect API, so this step must be completed in the App Store Connect UI.
+Apple currently locks rejected legacy subscription localizations from the App Store Connect API. Use the replacement subscriptions above when attaching products to the app version.
 
 ## 4. Fill App Privacy
 
