@@ -47,6 +47,10 @@ const unitForPackage = (pkg: NativePackage) => {
 
 const hasFreeIntroTrial = (pkg: NativePackage) => Boolean(pkg.product.introPrice && pkg.product.introPrice.price === 0);
 
+const isVisibleReviewPackage = (pkg: NativePackage) =>
+  PRODUCT_ID_GROUPS.weekly.includes(pkg.product.identifier) ||
+  PRODUCT_ID_GROUPS.three_month.includes(pkg.product.identifier);
+
 const NativePricingScreen: React.FC<NativePricingScreenProps> = ({
   trialStartedAt = null,
   userId,
@@ -70,34 +74,39 @@ const NativePricingScreen: React.FC<NativePricingScreenProps> = ({
     "Premium voice notes, AI memory, and deeper coach support",
     "Older patterns, relationship maps, and weekly reports",
   ];
+  const reviewPackages = useMemo(() => packages.filter(isVisibleReviewPackage), [packages]);
 
   const preferredPackage = useMemo(
     () =>
-      packages.find((pkg) => PRODUCT_ID_GROUPS.three_month.includes(pkg.product.identifier)) ||
-      packages.find((pkg) => PRODUCT_ID_GROUPS.weekly.includes(pkg.product.identifier)) ||
-      packages[0] ||
+      reviewPackages.find((pkg) => PRODUCT_ID_GROUPS.three_month.includes(pkg.product.identifier)) ||
+      reviewPackages.find((pkg) => PRODUCT_ID_GROUPS.weekly.includes(pkg.product.identifier)) ||
+      reviewPackages[0] ||
       null,
-    [packages],
+    [reviewPackages],
   );
   const displayPackages = useMemo(
     () =>
-      [...packages].sort((a, b) => {
+      [...reviewPackages].sort((a, b) => {
         const order = (identifier: string) => {
           if (PRODUCT_ID_GROUPS.weekly.includes(identifier)) return 0;
           if (PRODUCT_ID_GROUPS.three_month.includes(identifier)) return 1;
-          if (PRODUCT_ID_GROUPS.pro_lifetime.includes(identifier)) return 2;
           return 9;
         };
         return order(a.product.identifier) - order(b.product.identifier);
       }),
-    [packages],
+    [reviewPackages],
   );
+  const planGridClass = displayPackages.length <= 2 ? "grid-cols-2" : "grid-cols-3";
 
   useEffect(() => {
-    if (preferredPackage && !selectedPackage) {
+    const selectedIsVisible = selectedPackage
+      ? displayPackages.some((pkg) => pkg.identifier === selectedPackage.identifier)
+      : false;
+
+    if (preferredPackage && !selectedIsVisible) {
       setSelectedPackage(preferredPackage);
     }
-  }, [preferredPackage, selectedPackage]);
+  }, [displayPackages, preferredPackage, selectedPackage]);
 
   useEffect(() => {
     const productIdentifiers = packages
@@ -267,7 +276,7 @@ const NativePricingScreen: React.FC<NativePricingScreenProps> = ({
 
           {selectedPackage ? (
             <>
-              <div className="mt-3 grid grid-cols-3 gap-1.5">
+              <div className={`mt-3 grid ${planGridClass} gap-1.5`}>
                 {displayPackages.slice(0, 3).map((pkg) => {
                   const selected = pkg.identifier === selectedPackage.identifier;
                   const planId = planIdForPackage(pkg);
