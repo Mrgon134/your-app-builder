@@ -18,6 +18,7 @@ interface NativePricingScreenProps {
   userId?: string;
   presentation?: "modal" | "page";
   onClose: () => void;
+  onPurchaseStart?: (plan: string) => void;
   onSuccess: (plan: string) => void;
 }
 
@@ -57,6 +58,7 @@ const NativePricingScreen: React.FC<NativePricingScreenProps> = ({
   userId,
   presentation = "modal",
   onClose,
+  onPurchaseStart,
   onSuccess,
 }) => {
   const { t } = useLang();
@@ -153,6 +155,7 @@ const NativePricingScreen: React.FC<NativePricingScreenProps> = ({
 
   const handlePurchase = async (pkg: NativePackage) => {
     setActionError(null);
+    onPurchaseStart?.(planIdForPackage(pkg));
     const purchasedPlan = await purchase(pkg);
     if (purchasedPlan) {
       setShowSuccess(true);

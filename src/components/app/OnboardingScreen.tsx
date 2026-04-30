@@ -21,6 +21,7 @@ import juLow from "@/assets/ju-low.webp";
 import juMain from "@/assets/ju-main.webp";
 import juOkay from "@/assets/ju-okay.webp";
 import juRough from "@/assets/ju-rough.webp";
+import NativePricingScreen from "@/components/app/NativePricingScreen";
 import { useGeoPricing } from "@/hooks/use-geo-pricing";
 import { usePostHogEvents } from "@/hooks/use-posthog-events";
 import { useTikTokPixel } from "@/hooks/use-tiktok-pixel";
@@ -31,6 +32,7 @@ import { saveAuthIntent } from "@/lib/auth-intent";
 import { PRICING_CONFIG } from "@/lib/config";
 import {
   buildResultTeaser,
+  clearFunnelState,
   createDefaultFunnelState,
   loadFunnelState,
   OnboardingFunnelAnswers,
@@ -85,6 +87,14 @@ const STEP_KEYS = [
 
 type CheckoutPlan = "weekly" | "three_month" | "lifetime_one_time";
 const VALID_PLANS: CheckoutPlan[] = ["weekly", "three_month", "lifetime_one_time"];
+
+const normalizeNativeCheckoutPlan = (plan: string): CheckoutPlan => {
+  if (plan === "lifetime") return "lifetime_one_time";
+  if (VALID_PLANS.includes(plan as CheckoutPlan)) return plan as CheckoutPlan;
+  return "three_month";
+};
+
+const normalizeProfilePlan = (plan: CheckoutPlan) => (plan === "lifetime_one_time" ? "lifetime" : plan);
 
 interface OnboardingVisualScene {
   accent: string;
@@ -939,6 +949,7 @@ const OnboardingScreen: React.FC = () => {
   const teaser = reveal || buildResultTeaser(funnelState.answers);
   const threeMonthSavings = Math.max(0, Math.round((1 - geo.rates.threeMonth / (geo.rates.weekly * 13)) * 100));
   const useNativeStoreKit = isNative() && isIOS();
+  const showNativePaywall = useNativeStoreKit && funnelState.step === PAYWALL_STEP;
   const threeMonthTrialEnabled = PRICING_CONFIG.trial.threeMonthIntroOfferEnabled;
   const threeMonthTrialDays = PRICING_CONFIG.trial.threeMonthDays;
 
@@ -1063,6 +1074,60 @@ const OnboardingScreen: React.FC = () => {
     navigate(ROUTES.APP);
   };
 
+  const handleNativePurchaseStarted = (plan: string) => {
+    const checkoutPlan = normalizeNativeCheckoutPlan(plan);
+
+    setCheckoutError("");
+    setAnswers({ selectedPlan: checkoutPlan });
+    events.trackFunnelPlanSelected(checkoutPlan, funnelState.answers.source, user?.id || null, funnelState.sessionId);
+    events.trackFunnelCheckoutStarted(checkoutPlan, funnelState.answers.source, user?.id || null, funnelState.sessionId);
+    tiktok.trackCheckoutStarted(checkoutPlan, funnelState.answers.source);
+  };
+
+  const handleNativePurchaseSuccess = (plan: string) => {
+    const checkoutPlan = normalizeNativeCheckoutPlan(plan);
+    const checkoutName = funnelState.answers.name.trim();
+    const checkoutEmail = funnelState.answers.email.trim();
+    const nextAnswers = {
+      ...funnelState.answers,
+      authCaptured: funnelState.answers.authCaptured || Boolean(checkoutName || checkoutEmail),
+      name: checkoutName,
+      email: checkoutEmail,
+      selectedPlan: checkoutPlan,
+    };
+
+    events.trackFunnelCheckoutCompleted(checkoutPlan, funnelState.answers.source, user?.id || null, funnelState.sessionId);
+    tiktok.trackSubscribe(checkoutPlan);
+    completedRef.current = true;
+
+    void persistOnboardingLead({
+      sessionId: funnelState.sessionId,
+      answers: nextAnswers,
+      userId: user?.id || null,
+    });
+
+    if (user) {
+      void updateProfile(user.id, {
+        onboarded: true,
+        plan: normalizeProfilePlan(checkoutPlan),
+      } as never).catch(() => {
+        // RevenueCat is the source of truth; profile sync can retry after app load.
+      });
+      clearFunnelState();
+      navigate(ROUTES.APP, { replace: true });
+      return;
+    }
+
+    saveAuthIntent({
+      source: "onboarding",
+      resumePath: ROUTES.APP,
+      checkoutEmail: checkoutEmail || undefined,
+      checkoutName: checkoutName || undefined,
+    });
+    clearFunnelState();
+    navigate(`${ROUTES.AUTH}?mode=signup`, { replace: true });
+  };
+
   async function handleCheckout(plan: CheckoutPlan) {
     const checkoutName = funnelState.answers.name.trim();
     const checkoutEmail = funnelState.answers.email.trim();
@@ -1083,6 +1148,11 @@ const OnboardingScreen: React.FC = () => {
 
     if (!isConfiguredProduct(plan)) {
       setCheckoutError("This plan is not ready yet. Pick another way to keep Ju close for now.");
+      return;
+    }
+
+    if (useNativeStoreKit) {
+      setCheckoutError("Apple checkout is loading. Please try again in a moment.");
       return;
     }
 
@@ -1110,20 +1180,6 @@ const OnboardingScreen: React.FC = () => {
         },
         userId: user?.id || null,
       });
-
-      if (useNativeStoreKit) {
-        saveAuthIntent({
-          source: "onboarding",
-          screen: "pro",
-          plan,
-          resumePath: ROUTES.APP,
-          checkoutEmail,
-          checkoutName,
-        });
-        completedRef.current = true;
-        navigate(user ? `${ROUTES.APP}?screen=pro` : `${ROUTES.AUTH}?mode=signup`);
-        return;
-      }
 
       const response = await fetch(`${SUPABASE_URL}/functions/v1/dodo-checkout`, {
         method: "POST",
@@ -1948,6 +2004,19 @@ const OnboardingScreen: React.FC = () => {
 
       case PAYWALL_STEP:
       default:
+        if (useNativeStoreKit) {
+          return (
+            <NativePricingScreen
+              currentPlan="free"
+              userId={user?.id || funnelState.sessionId}
+              presentation="page"
+              onClose={goBack}
+              onPurchaseStart={handleNativePurchaseStarted}
+              onSuccess={handleNativePurchaseSuccess}
+            />
+          );
+        }
+
         return (
           <StepCard className="mx-auto max-w-md overflow-hidden p-0">
             <div className="hero-ambient-field relative h-36 overflow-hidden border-b border-white/70">
@@ -2117,10 +2186,10 @@ const OnboardingScreen: React.FC = () => {
           </p>
         </div>
 
-        <div className={`grid flex-1 gap-6 lg:grid-cols-[0.9fr_1.1fr] ${funnelState.step === PAYWALL_STEP ? "items-start sm:items-center" : "items-center"}`}>
-          <OnboardingCompanionVisual scene={onboardingScene} step={funnelState.step} />
-          <div className="flex min-w-0 flex-col justify-center">
-            {funnelState.step !== PAYWALL_STEP ? (
+        <div className={showNativePaywall ? "flex flex-1 items-start justify-center" : `grid flex-1 gap-6 lg:grid-cols-[0.9fr_1.1fr] ${funnelState.step === PAYWALL_STEP ? "items-start sm:items-center" : "items-center"}`}>
+          {showNativePaywall ? null : <OnboardingCompanionVisual scene={onboardingScene} step={funnelState.step} />}
+          <div className={showNativePaywall ? "flex w-full min-w-0 max-w-3xl flex-col justify-center" : "flex min-w-0 flex-col justify-center"}>
+            {!showNativePaywall && funnelState.step !== PAYWALL_STEP ? (
               <OnboardingMiniCompanion scene={onboardingScene} step={funnelState.step} />
             ) : null}
             <AnimatePresence mode="wait">
