@@ -13,6 +13,7 @@ import {
   hasRevenueCatApiKey,
   PRODUCT_IDS,
   PRODUCT_ID_GROUPS,
+  isReviewProductId,
 } from "@/lib/revenueCat";
 
 export interface NativePackage {
@@ -67,12 +68,14 @@ export function useNativePurchases(userId?: string): UseNativePurchasesResult {
       await initRevenueCat(userId);
 
       const offering = await fetchOfferings();
-      let nextPackages: NativePackage[] = (offering?.availablePackages ?? []).map((pkg) => ({
-        identifier: pkg.identifier,
-        product: pkg.product,
-        revenueCatPackage: pkg,
-        source: "offering",
-      }));
+      let nextPackages: NativePackage[] = (offering?.availablePackages ?? [])
+        .filter((pkg) => isReviewProductId(pkg.product.identifier))
+        .map((pkg) => ({
+          identifier: pkg.identifier,
+          product: pkg.product,
+          revenueCatPackage: pkg,
+          source: "offering",
+        }));
 
       if (nextPackages.length === 0) {
         const directProducts = await fetchReviewStoreProducts();

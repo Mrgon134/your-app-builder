@@ -48,6 +48,10 @@ export const PRODUCT_ID_GROUPS = {
   pro_lifetime: [PRODUCT_IDS.pro_lifetime],
 } as const;
 
+export const REVIEW_PRODUCT_IDS = uniqueIds([PRODUCT_IDS.weekly], [PRODUCT_IDS.three_month]);
+
+export const isReviewProductId = (productId: string) => REVIEW_PRODUCT_IDS.includes(productId);
+
 const productIdMatches = (productId: string, candidates: readonly string[]) =>
   candidates.includes(productId);
 
@@ -118,7 +122,7 @@ export const fetchReviewStoreProducts = async (): Promise<PurchasesStoreProduct[
   if (!isNative()) return [];
   try {
     const { products } = await Purchases.getProducts({
-      productIdentifiers: uniqueIds(PRODUCT_ID_GROUPS.weekly, PRODUCT_ID_GROUPS.three_month),
+      productIdentifiers: REVIEW_PRODUCT_IDS,
       type: PRODUCT_CATEGORY.SUBSCRIPTION,
     });
     return products ?? [];
