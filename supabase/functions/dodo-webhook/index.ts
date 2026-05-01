@@ -145,6 +145,9 @@ const extractPurchaseStatus = (eventName: string, payloadData: Record<string, un
   return "";
 };
 
+const extractNextBillingDate = (payloadData: Record<string, unknown>) =>
+  safeText(payloadData.next_billing_date || payloadData.current_period_end) || null;
+
 serve(async (req) => {
   if (req.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
@@ -213,6 +216,7 @@ serve(async (req) => {
 
     const directUserId = safeText(metadata.user_id);
     let targetUserId = directUserId;
+    let purchaseIntentId = "";
 
     let purchaseIntent: Record<string, unknown> | null = null;
     const findBySingleField = async (field: string, value: string) => {
@@ -246,6 +250,7 @@ serve(async (req) => {
     }
 
     if (purchaseIntent) {
+      purchaseIntentId = String(purchaseIntent.id);
       targetUserId = targetUserId || safeText(purchaseIntent.claimed_user_id);
 
       const nextStatus =
@@ -289,6 +294,21 @@ serve(async (req) => {
           payload: payloadData,
         },
       });
+      purchaseIntentId = intentId;
+    }
+
+    if (!targetUserId && purchaseIntentId && customerEmail && purchaseStatus === "paid") {
+      const { data: claimedUserId, error: claimError } = await supabase.rpc("claim_paid_checkout_by_email", {
+        p_intent_id: purchaseIntentId,
+        p_email: customerEmail,
+        p_plan: plan === "lifetime" ? "lifetime_one_time" : plan,
+        p_customer_id: customerId || null,
+        p_subscription_id: subscriptionId || null,
+        p_next_billing_date: extractNextBillingDate(payloadData),
+      });
+
+      if (claimError) throw claimError;
+      targetUserId = safeText(claimedUserId);
     }
 
     if (targetUserId) {
@@ -296,7 +316,7 @@ serve(async (req) => {
         case "subscription.active":
         case "subscription.renewed":
         case "subscription.updated": {
-          const nextBillingDate = safeText(payloadData.next_billing_date || payloadData.current_period_end) || null;
+          const nextBillingDate = extractNextBillingDate(payloadData);
           await supabase.from("profiles").update({
             plan: planToProfilePlan(plan),
             dodo_customer_id: customerId || null,
