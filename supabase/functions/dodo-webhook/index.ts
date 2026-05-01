@@ -3,30 +3,86 @@ import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
-  "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
+  "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type, webhook-id, webhook-signature, webhook-timestamp, dodo-signature",
 };
 
 const safeText = (value: unknown) => (typeof value === "string" ? value.trim() : "");
 const normalizeEmail = (value: unknown) => safeText(value).toLowerCase();
 
+const bytesToHex = (bytes: ArrayBuffer) =>
+  Array.from(new Uint8Array(bytes))
+    .map((byte) => byte.toString(16).padStart(2, "0"))
+    .join("");
+
+const bytesToBase64 = (bytes: ArrayBuffer) => {
+  let binary = "";
+  for (const byte of new Uint8Array(bytes)) binary += String.fromCharCode(byte);
+  return btoa(binary);
+};
+
+const toBase64Url = (value: string) => value.replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/g, "");
+
+const safeBase64Decode = (value: string) => {
+  try {
+    const normalized = value.replace(/-/g, "+").replace(/_/g, "/");
+    const padded = normalized.padEnd(Math.ceil(normalized.length / 4) * 4, "=");
+    return atob(padded);
+  } catch {
+    return "";
+  }
+};
+
+const secretCandidates = (secret: string) => {
+  const trimmed = secret.trim();
+  const prefixed = trimmed.startsWith("whsec_") ? safeBase64Decode(trimmed.slice("whsec_".length)) : "";
+  return [trimmed, prefixed].filter(Boolean);
+};
+
+const signatureCandidates = (signatureHeader: string) =>
+  signatureHeader
+    .split(/\s+/)
+    .flatMap((part) => part.split(","))
+    .map((part) => part.trim())
+    .filter(Boolean)
+    .map((part) => part.replace(/^v\d+[=,]/, "").trim())
+    .filter(Boolean);
+
+async function signPayload(payload: string, secret: string): Promise<ArrayBuffer> {
+  const encoder = new TextEncoder();
+  const key = await crypto.subtle.importKey(
+    "raw",
+    encoder.encode(secret),
+    { name: "HMAC", hash: "SHA-256" },
+    false,
+    ["sign"],
+  );
+  return crypto.subtle.sign("HMAC", key, encoder.encode(payload));
+}
+
 async function verifySignature(payload: string, signature: string, secret: string): Promise<boolean> {
   try {
-    const encoder = new TextEncoder();
-    const key = await crypto.subtle.importKey(
-      "raw",
-      encoder.encode(secret),
-      { name: "HMAC", hash: "SHA-256" },
-      false,
-      ["sign"],
-    );
-    const sig = await crypto.subtle.sign("HMAC", key, encoder.encode(payload));
-    const hex = Array.from(new Uint8Array(sig))
-      .map((byte) => byte.toString(16).padStart(2, "0"))
-      .join("");
-    return hex === signature;
+    const candidates = signatureCandidates(signature);
+    for (const candidateSecret of secretCandidates(secret)) {
+      const sig = await signPayload(payload, candidateSecret);
+      const hex = bytesToHex(sig);
+      const base64 = bytesToBase64(sig);
+      const base64Url = toBase64Url(base64);
+      if (candidates.some((candidate) => candidate === hex || candidate === base64 || candidate === base64Url)) {
+        return true;
+      }
+    }
+    return false;
   } catch {
     return false;
   }
+}
+
+async function verifyStandardWebhook(payload: string, req: Request, secret: string): Promise<boolean> {
+  const webhookId = req.headers.get("webhook-id") || "";
+  const timestamp = req.headers.get("webhook-timestamp") || "";
+  const signature = req.headers.get("webhook-signature") || "";
+  if (!webhookId || !timestamp || !signature) return false;
+  return verifySignature(`${webhookId}.${timestamp}.${payload}`, signature, secret);
 }
 
 const getProductPlanMap = () => ({
@@ -90,11 +146,13 @@ serve(async (req) => {
 
     const supabase = createClient(supabaseUrl, supabaseServiceRoleKey);
     const rawBody = await req.text();
-    const signature = req.headers.get("dodo-signature") || req.headers.get("authorization")?.replace("Bearer ", "") || "";
+    const legacySignature = req.headers.get("dodo-signature") || "";
+    const bearerSecret = req.headers.get("authorization")?.replace("Bearer ", "") || "";
 
-    const isBearerCheck = signature === webhookSecret;
-    const isHmacCheck = await verifySignature(rawBody, signature, webhookSecret);
-    if (!isBearerCheck && !isHmacCheck) {
+    const isBearerCheck = bearerSecret === webhookSecret;
+    const isStandardWebhookCheck = await verifyStandardWebhook(rawBody, req, webhookSecret);
+    const isLegacyHmacCheck = legacySignature ? await verifySignature(rawBody, legacySignature, webhookSecret) : false;
+    if (!isBearerCheck && !isStandardWebhookCheck && !isLegacyHmacCheck) {
       return new Response(JSON.stringify({ error: "Invalid signature" }), {
         status: 401,
         headers: { ...corsHeaders, "Content-Type": "application/json" },
