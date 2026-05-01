@@ -19,12 +19,12 @@ const uniqueIds = (...groups: readonly string[][]) =>
 const configuredWeeklyProductId =
   import.meta.env.VITE_REVENUECAT_WEEKLY_PRODUCT_ID ||
   import.meta.env.VITE_APP_STORE_WEEKLY_PRODUCT_ID ||
-  "nuju_weekly_v2";
+  "nuju_weekly_v3";
 
 const configuredThreeMonthProductId =
   import.meta.env.VITE_REVENUECAT_THREE_MONTH_PRODUCT_ID ||
   import.meta.env.VITE_APP_STORE_THREE_MONTH_PRODUCT_ID ||
-  "nuju_3_month_v2";
+  "nuju_3_month_v3";
 
 // RevenueCat product identifiers (must match RevenueCat dashboard)
 export const PRODUCT_IDS = {
