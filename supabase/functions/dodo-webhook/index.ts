@@ -33,9 +33,23 @@ const safeBase64Decode = (value: string) => {
 };
 
 const secretCandidates = (secret: string) => {
+  const encoder = new TextEncoder();
   const trimmed = secret.trim();
-  const prefixed = trimmed.startsWith("whsec_") ? safeBase64Decode(trimmed.slice("whsec_".length)) : "";
-  return [trimmed, prefixed].filter(Boolean);
+  const candidates: Uint8Array[] = [];
+  if (trimmed) candidates.push(encoder.encode(trimmed));
+
+  if (trimmed.startsWith("whsec_")) {
+    const decoded = safeBase64Decode(trimmed.slice("whsec_".length));
+    if (decoded) {
+      const decodedBytes = new Uint8Array(decoded.length);
+      for (let index = 0; index < decoded.length; index += 1) {
+        decodedBytes[index] = decoded.charCodeAt(index);
+      }
+      candidates.push(decodedBytes);
+    }
+  }
+
+  return candidates;
 };
 
 const signatureCandidates = (signatureHeader: string) =>
@@ -47,11 +61,11 @@ const signatureCandidates = (signatureHeader: string) =>
     .map((part) => part.replace(/^v\d+[=,]/, "").trim())
     .filter(Boolean);
 
-async function signPayload(payload: string, secret: string): Promise<ArrayBuffer> {
+async function signPayload(payload: string, secret: Uint8Array): Promise<ArrayBuffer> {
   const encoder = new TextEncoder();
   const key = await crypto.subtle.importKey(
     "raw",
-    encoder.encode(secret),
+    secret,
     { name: "HMAC", hash: "SHA-256" },
     false,
     ["sign"],
@@ -181,7 +195,11 @@ serve(async (req) => {
     );
     const paymentId = safeText(payloadData.payment_id || (eventName.startsWith("payment.") ? payloadData.id : ""));
     const subscriptionId = safeText(payloadData.subscription_id || (eventName.startsWith("subscription.") ? payloadData.id : ""));
-    const customerId = safeText(payloadData.customer_id || (payloadData.customer as Record<string, unknown>)?.id);
+    const customerId = safeText(
+      payloadData.customer_id ||
+      (payloadData.customer as Record<string, unknown>)?.id ||
+      (payloadData.customer as Record<string, unknown>)?.customer_id,
+    );
     const customerEmail = normalizeEmail(
       payloadData.customer_email ||
       (payloadData.customer as Record<string, unknown>)?.email ||
