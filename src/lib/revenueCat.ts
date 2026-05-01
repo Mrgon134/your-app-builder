@@ -13,25 +13,38 @@ export const ENTITLEMENTS = {
   pro: import.meta.env.VITE_REVENUECAT_ENTITLEMENT_ID || "entlf84d73930a",
 } as const;
 
+const uniqueIds = (...groups: readonly string[][]) =>
+  Array.from(new Set(groups.flat().map((id) => id.trim()).filter(Boolean)));
+
+const configuredWeeklyProductId =
+  import.meta.env.VITE_REVENUECAT_WEEKLY_PRODUCT_ID ||
+  import.meta.env.VITE_APP_STORE_WEEKLY_PRODUCT_ID ||
+  "nuju_weekly_v2";
+
+const configuredThreeMonthProductId =
+  import.meta.env.VITE_REVENUECAT_THREE_MONTH_PRODUCT_ID ||
+  import.meta.env.VITE_APP_STORE_THREE_MONTH_PRODUCT_ID ||
+  "nuju_3_month_v2";
+
 // RevenueCat product identifiers (must match RevenueCat dashboard)
 export const PRODUCT_IDS = {
-  weekly: "nuju_weekly_v2",
-  three_month: "nuju_3_month_v2",
+  weekly: configuredWeeklyProductId,
+  three_month: configuredThreeMonthProductId,
   plus_monthly: "prodd12cd5056a",
   plus_annual: "prodde2def8f68",
-  pro_monthly: "nuju_weekly_v2",
-  pro_annual: "nuju_3_month_v2",
+  pro_monthly: configuredWeeklyProductId,
+  pro_annual: configuredThreeMonthProductId,
   pro_lifetime: "lifetime",
 } as const;
 
 const LEGACY_PRODUCT_IDS = {
-  weekly: ["nuju_weekly"],
-  three_month: ["3_month"],
+  weekly: ["nuju_weekly_v3", "nuju_weekly_v2", "nuju_weekly"],
+  three_month: ["nuju_3_month_v3", "nuju_3_month_v2", "3_month"],
 } as const;
 
 export const PRODUCT_ID_GROUPS = {
-  weekly: [PRODUCT_IDS.weekly, ...LEGACY_PRODUCT_IDS.weekly],
-  three_month: [PRODUCT_IDS.three_month, ...LEGACY_PRODUCT_IDS.three_month],
+  weekly: uniqueIds([PRODUCT_IDS.weekly], LEGACY_PRODUCT_IDS.weekly),
+  three_month: uniqueIds([PRODUCT_IDS.three_month], LEGACY_PRODUCT_IDS.three_month),
   pro_lifetime: [PRODUCT_IDS.pro_lifetime],
 } as const;
 
@@ -105,7 +118,7 @@ export const fetchReviewStoreProducts = async (): Promise<PurchasesStoreProduct[
   if (!isNative()) return [];
   try {
     const { products } = await Purchases.getProducts({
-      productIdentifiers: [PRODUCT_IDS.weekly, PRODUCT_IDS.three_month],
+      productIdentifiers: uniqueIds(PRODUCT_ID_GROUPS.weekly, PRODUCT_ID_GROUPS.three_month),
       type: PRODUCT_CATEGORY.SUBSCRIPTION,
     });
     return products ?? [];
