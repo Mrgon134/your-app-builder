@@ -1,5 +1,5 @@
-import { Purchases, LOG_LEVEL } from "@revenuecat/purchases-capacitor";
-import type { CustomerInfo, PurchasesOffering, PurchasesPackage } from "@revenuecat/purchases-capacitor";
+import { PRODUCT_CATEGORY, Purchases, LOG_LEVEL } from "@revenuecat/purchases-capacitor";
+import type { CustomerInfo, PurchasesOffering, PurchasesPackage, PurchasesStoreProduct } from "@revenuecat/purchases-capacitor";
 import { isNative } from "./platform";
 
 // RevenueCat API key (from https://app.revenuecat.com)
@@ -101,6 +101,20 @@ export const fetchOfferings = async (): Promise<PurchasesOffering | null> => {
   }
 };
 
+export const fetchReviewStoreProducts = async (): Promise<PurchasesStoreProduct[]> => {
+  if (!isNative()) return [];
+  try {
+    const { products } = await Purchases.getProducts({
+      productIdentifiers: [PRODUCT_IDS.weekly, PRODUCT_IDS.three_month],
+      type: PRODUCT_CATEGORY.SUBSCRIPTION,
+    });
+    return products ?? [];
+  } catch (err) {
+    console.error("[RevenueCat] direct products error:", err);
+    return [];
+  }
+};
+
 // Purchase a package
 const isPurchaseCancelled = (err: unknown) => {
   if (!err || typeof err !== "object") return false;
@@ -121,6 +135,20 @@ export const purchasePackage = async (pkg: PurchasesPackage): Promise<CustomerIn
       return null;
     }
     console.error("[RevenueCat] purchase error:", err);
+    throw err;
+  }
+};
+
+export const purchaseStoreProduct = async (product: PurchasesStoreProduct): Promise<CustomerInfo | null> => {
+  if (!isNative()) return null;
+  try {
+    const result = await Purchases.purchaseStoreProduct({ product });
+    return result.customerInfo;
+  } catch (err: unknown) {
+    if (isPurchaseCancelled(err)) {
+      return null;
+    }
+    console.error("[RevenueCat] purchase product error:", err);
     throw err;
   }
 };

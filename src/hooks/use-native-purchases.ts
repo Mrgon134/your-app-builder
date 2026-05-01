@@ -1,10 +1,12 @@
 import { useState, useEffect, useCallback } from "react";
-import type { PurchasesPackage } from "@revenuecat/purchases-capacitor";
+import type { PurchasesPackage, PurchasesStoreProduct } from "@revenuecat/purchases-capacitor";
 import { isNative } from "@/lib/platform";
 import {
   initRevenueCat,
   fetchOfferings,
+  fetchReviewStoreProducts,
   purchasePackage,
+  purchaseStoreProduct,
   restorePurchases,
   getPlanFromCustomerInfo,
   getPlanFromEntitlements,
@@ -13,7 +15,12 @@ import {
   PRODUCT_ID_GROUPS,
 } from "@/lib/revenueCat";
 
-export type NativePackage = PurchasesPackage;
+export interface NativePackage {
+  identifier: string;
+  product: PurchasesStoreProduct;
+  revenueCatPackage?: PurchasesPackage;
+  source: "offering" | "store_product_fallback";
+}
 
 // Map RevenueCat product ID to plan display name (for pricing screen)
 const getDisplayName = (productId: string): string => {
@@ -60,13 +67,30 @@ export function useNativePurchases(userId?: string): UseNativePurchasesResult {
       await initRevenueCat(userId);
 
       const offering = await fetchOfferings();
-      const nextPackages = offering?.availablePackages ?? [];
+      let nextPackages: NativePackage[] = (offering?.availablePackages ?? []).map((pkg) => ({
+        identifier: pkg.identifier,
+        product: pkg.product,
+        revenueCatPackage: pkg,
+        source: "offering",
+      }));
+
+      if (nextPackages.length === 0) {
+        const directProducts = await fetchReviewStoreProducts();
+        nextPackages = directProducts.map((product) => ({
+          identifier: product.identifier,
+          product,
+          source: "store_product_fallback",
+        }));
+      }
+
       setPackages(nextPackages);
 
-      if (!offering) {
-        setError("Could not reach App Store products. Please try again.");
-      } else if (nextPackages.length === 0) {
-        setError("App Store products are not attached to the current offering yet.");
+      if (nextPackages.length === 0) {
+        setError(
+          offering
+            ? "App Store products are not attached to the current offering yet."
+            : "Could not reach App Store products. Please try again.",
+        );
       }
 
       const plan = await getPlanFromEntitlements();
@@ -89,7 +113,9 @@ export function useNativePurchases(userId?: string): UseNativePurchasesResult {
     if (!native) return null;
     setPurchasing(true);
     try {
-      const info = await purchasePackage(pkg);
+      const info = pkg.revenueCatPackage
+        ? await purchasePackage(pkg.revenueCatPackage)
+        : await purchaseStoreProduct(pkg.product);
       if (info) {
         const plan = getPlanFromCustomerInfo(info);
         setNativePlan(plan);

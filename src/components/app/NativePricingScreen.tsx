@@ -1,4 +1,5 @@
 import React, { useEffect, useMemo, useState } from "react";
+import { createPortal } from "react-dom";
 import { Link } from "react-router-dom";
 import { INTRO_ELIGIBILITY_STATUS, Purchases } from "@revenuecat/purchases-capacitor";
 import { AlertCircle, ArrowLeft, Check, Loader2, RefreshCw } from "lucide-react";
@@ -190,7 +191,7 @@ const NativePricingScreen: React.FC<NativePricingScreenProps> = ({
 
   const shellClass = isPage
     ? "mx-auto flex min-h-[calc(100dvh-8rem)] w-full items-start justify-center px-2 pb-[max(1.5rem,env(safe-area-inset-bottom))] pt-[max(1rem,env(safe-area-inset-top))]"
-    : "fixed inset-0 z-50 flex items-end justify-center bg-background/80 p-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] pt-[max(0.75rem,env(safe-area-inset-top))] backdrop-blur-sm sm:items-center";
+    : "fixed inset-0 z-[100] flex items-end justify-center bg-background/95 p-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] pt-[max(0.75rem,env(safe-area-inset-top))] backdrop-blur-sm sm:items-center";
   const cardClass = isPage
     ? "w-full max-w-2xl overflow-hidden rounded-[1.9rem] border border-border/50 bg-card shadow-[0_24px_70px_-38px_rgba(15,23,42,0.35)]"
     : "w-full max-w-md overflow-hidden rounded-[1.9rem] border border-border/50 bg-card shadow-2xl animate-spring-up";
@@ -199,17 +200,19 @@ const NativePricingScreen: React.FC<NativePricingScreenProps> = ({
     : "max-h-[calc(100dvh_-_1.5rem_-_env(safe-area-inset-top)_-_env(safe-area-inset-bottom))] overflow-y-auto";
 
   if (loading) {
-    return (
-      <div className={isPage ? shellClass : "fixed inset-0 z-50 flex items-center justify-center bg-background/80 backdrop-blur-sm"}>
+    const loadingContent = (
+      <div className={isPage ? shellClass : "fixed inset-0 z-[100] flex items-center justify-center bg-background/80 backdrop-blur-sm"}>
         <div className="rounded-3xl border border-border/60 bg-card px-6 py-5 text-center shadow-2xl">
           <Loader2 className="mx-auto mb-3 h-8 w-8 animate-spin text-primary" />
           <p className="text-sm text-muted-foreground">{t.loading || "Loading..."}</p>
         </div>
       </div>
     );
+
+    return isPage ? loadingContent : createPortal(loadingContent, document.body);
   }
 
-  return (
+  const content = (
     <div className={shellClass}>
       <div className={cardClass}>
         <div className={scrollClass}>
@@ -368,6 +371,8 @@ const NativePricingScreen: React.FC<NativePricingScreenProps> = ({
       </div>
     </div>
   );
+
+  return isPage ? content : createPortal(content, document.body);
 };
 
 export default NativePricingScreen;

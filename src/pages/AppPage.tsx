@@ -753,7 +753,7 @@ const AppPage: React.FC = () => {
 
   const showTabletSidebar = shellMode === "tablet";
   const showDesktopTopbar = isDesktop;
-  const showBottomNav = isPhone && screen !== "journal" && screen !== "settings";
+  const showBottomNav = isPhone && screen !== "journal" && screen !== "settings" && screen !== "pro";
   const showDesktopChrome = !isPhone;
   const isCoachPhone = isPhone && screen === "coach";
   const contentShellClass = screen === "coach"
@@ -1088,7 +1088,7 @@ const AppPage: React.FC = () => {
       )}
 
       {/* Moment Capture Floating Button (Pro feature) */}
-      {screen !== "coach" && (
+      {screen !== "coach" && screen !== "pro" && (
         <MomentCaptureButton
           onClick={() => setShowMomentCapture(true)}
           hasProAccess={hasProAccess(effectiveProfile?.plan || "free", effectiveProfile?.trial_started_at || null)}
