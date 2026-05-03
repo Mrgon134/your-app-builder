@@ -217,14 +217,18 @@ const JournalingGuide: React.FC = () => {
           <p>
             Often 3–5× faster than typing, and captures the emotional tone you&rsquo;d filter out when writing. Great
             for people who think out loud. Full deep-dive:{" "}
-            <InlineLink to="/blog/voice-journaling-guide">the voice journaling guide</InlineLink>.
+            <InlineLink to="/blog/voice-journaling-guide">the voice journaling guide</InlineLink>. To see how Nuju
+            handles voice capture, visit{" "}
+            <InlineLink to="/voice-journaling">voice journaling on Nuju</InlineLink>.
           </p>
           <h3 className="font-serif text-xl font-semibold text-foreground mt-6 mb-2">AI journaling</h3>
           <p>
             AI journaling apps don&rsquo;t replace the writing — they surface what a human couldn&rsquo;t see across
             hundreds of entries. Pattern recognition, sentiment trends, relationship mapping. More on what it actually
             is: <InlineLink to="/blog/what-is-ai-journaling">What is AI journaling?</InlineLink> and a head-to-head
-            comparison: <InlineLink to="/blog/ai-journal-vs-traditional">AI journal vs. traditional</InlineLink>.
+            comparison: <InlineLink to="/blog/ai-journal-vs-traditional">AI journal vs. traditional</InlineLink>. To
+            see Nuju&rsquo;s approach, open{" "}
+            <InlineLink to="/ai-journal">the AI journal page</InlineLink>.
           </p>
         </Chapter>
 
@@ -238,6 +242,8 @@ const JournalingGuide: React.FC = () => {
             <InlineLink to="/blog/what-is-a-mood-journal">What is a mood journal?</InlineLink> Then the case for
             tracking: <InlineLink to="/blog/benefits-of-mood-tracking">benefits of mood tracking</InlineLink>. For a
             daily system: <InlineLink to="/blog/how-to-track-emotions-daily">how to track emotions daily</InlineLink>.
+            If you want to see what a structured tracker looks like in practice, open{" "}
+            <InlineLink to="/mood-tracker">the Nuju mood tracker</InlineLink>.
           </p>
           <p>
             Clinicians also use structured mood data as session prep — see{" "}

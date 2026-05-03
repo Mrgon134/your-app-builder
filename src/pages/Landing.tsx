@@ -454,6 +454,34 @@ const Landing: React.FC = () => {
     ],
   };
 
+  const softwareApplicationSchema = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    name: "Nuju",
+    alternateName: "Nuju AI Journal",
+    applicationCategory: "HealthApplication",
+    applicationSubCategory: "AI Journaling and Mood Tracking",
+    operatingSystem: "Web browser, iOS, Android",
+    url: "https://nuju.app/",
+    description:
+      "Nuju is the AI journal app that pairs quick mood and energy check-ins with optional written reflection, AI summaries, weekly patterns, and a private read of what feels hard to explain.",
+    image: "https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image",
+    featureList: [
+      "Quick mood and energy check-ins",
+      "Written and voice journaling",
+      "AI summaries and weekly patterns",
+      "30-day mood and energy trend charts",
+      "Four coach personas for different reflection styles",
+      "Private storage with no AI training on entries",
+    ],
+    offers: {
+      "@type": "Offer",
+      price: "0",
+      priceCurrency: "USD",
+      description: "Free Ju Gets You reveal and quick mood check-in flow.",
+    },
+  };
+
   const geoPricingNote = geo.hasLocalizedDisplay
     ? `Approximate prices shown in ${geo.displayCurrency} for your region`
     : geo.currency !== geo.displayCurrency
@@ -476,6 +504,7 @@ const Landing: React.FC = () => {
         canonical="https://nuju.app/"
         noSuffix
       />
+      <script type="application/ld+json">{JSON.stringify(softwareApplicationSchema)}</script>
       <script type="application/ld+json">{JSON.stringify(howToSchema)}</script>
       <script type="application/ld+json">{JSON.stringify(landingFaqSchema)}</script>
 

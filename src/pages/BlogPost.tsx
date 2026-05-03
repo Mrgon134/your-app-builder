@@ -212,11 +212,34 @@ const UnpublishedBlogPostNotice: React.FC<{ post: BlogPostData }> = ({ post }) =
   );
 };
 
+type CommercialDestination = {
+  href: string;
+  label: string;
+};
+
+const COMMERCIAL_DESTINATION_BY_SLUG: Record<string, CommercialDestination> = {
+  "best-mood-tracker-apps": { href: "/mood-tracker", label: "See the Nuju mood tracker" },
+  "daylio-alternatives": { href: "/mood-tracker", label: "See the Nuju mood tracker" },
+  "mood-tracker-for-self-awareness": { href: "/mood-tracker", label: "See the Nuju mood tracker" },
+  "mood-tracking-for-anxiety": { href: "/mood-tracker", label: "See the Nuju mood tracker" },
+  "journaling-for-adhd": { href: "/voice-journaling", label: "See voice journaling on Nuju" },
+};
+
+const DEFAULT_COMMERCIAL_DESTINATION: CommercialDestination = {
+  href: "/ai-journal",
+  label: "See how Nuju works",
+};
+
+const getCommercialDestination = (slug: string): CommercialDestination =>
+  COMMERCIAL_DESTINATION_BY_SLUG[slug] ?? DEFAULT_COMMERCIAL_DESTINATION;
+
 const getRecommendationSnapshot = (
   post: BlogPostData,
   language: "en" | "id",
 ): RecommendationSnapshot | null => {
   if (language !== "en") return null;
+
+  const commercial = getCommercialDestination(post.slug);
 
   if (post.category === "App Comparison") {
     return {
@@ -242,8 +265,8 @@ const getRecommendationSnapshot = (
       ],
       primaryLabel: "Start the free reveal",
       primaryHref: `/onboarding?source=blog_${post.slug}`,
-      secondaryLabel: "See how Nuju works",
-      secondaryHref: "/ai-journal",
+      secondaryLabel: commercial.label,
+      secondaryHref: commercial.href,
     };
   }
 
@@ -271,8 +294,8 @@ const getRecommendationSnapshot = (
       ],
       primaryLabel: "Start the free reveal",
       primaryHref: `/onboarding?source=blog_${post.slug}`,
-      secondaryLabel: "See how Nuju works",
-      secondaryHref: "/ai-journal",
+      secondaryLabel: commercial.label,
+      secondaryHref: commercial.href,
     };
   }
 
