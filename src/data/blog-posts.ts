@@ -1966,6 +1966,187 @@ const RAW_BLOG_POSTS: BlogPost[] = [
       { type: "p", content: "Nuju built around principle ini — consistent daily check-in (30 detik) dengan AI yang help surface pattern across entry over time." },
     ],
   },
+  {
+    slug: "apple-journal-alternatives",
+    title: "Best Apple Journal Alternatives in 2026 (Cross-Platform + AI Insight)",
+    description: "Apple Journal is clean and private, but locked to iOS and light on insight. If you want mood tracking, AI reflection, or a journal that works across devices, start here.",
+    metaTitle: "5 Best Apple Journal Alternatives 2026 — AI + Cross-Platform",
+    metaDescription: "Apple Journal is iOS-only with no mood tracking or AI insight. We tested 5 alternatives that work on Android too — see the best AI journal pick for 2026.",
+    publishedAt: "2026-05-03",
+    readingTime: 7,
+    category: "App Comparison",
+    sections: [
+      { type: "p", content: "Apple Journal arrived as a clean, native option for iPhone users — free, private, and well-integrated with Photos, Music, and Health. For many people that is enough. But the moment you want mood tracking, AI reflection, an Android device, or a journal that interprets what you wrote, Apple Journal stops short. Here is what to switch to and why." },
+      { type: "h2", content: "What Apple Journal does well" },
+      { type: "ul", content: ["Free, native, and zero setup if you already use iPhone", "On-device privacy with end-to-end encrypted iCloud sync", "Smart Suggestions pull from photos, music, workouts, and locations to reduce blank-page friction", "Lightweight enough to keep up daily without feeling like another app"] },
+      { type: "h2", content: "Where Apple Journal falls short" },
+      { type: "ul", content: ["iOS-only — no Android, no web, no cross-device journaling for mixed households", "No mood tracking, no energy logging, no daily emotional data", "No AI reflection on what you wrote — Suggestions surface memories, not insight", "No pattern recognition across entries, no weekly summaries, no relationship signal", "Search and analytics are minimal compared to dedicated journaling apps"] },
+      { type: "callout", content: "Apple Journal is a memory keeper, not a reflection tool. If you want the app to tell you something back about your week, you need something else." },
+      { type: "h2", content: "1. Nuju — Best overall Apple Journal alternative" },
+      { type: "p", content: "Nuju keeps Apple Journal's low-friction feel (under 30 seconds for a quick entry) but adds the layers Apple deliberately leaves out: mood and energy tracking, AI summaries, weekly pattern recognition, and four coach personas you can switch between. It runs on iOS, Android, and web, so it follows you across devices. Privacy is explicit: encrypted storage, private access controls, no AI training on your entries. Free reveal available without a credit card." },
+      { type: "h2", content: "2. Day One — Best for premium digital diary writing" },
+      { type: "p", content: "Day One is the strongest pick if what you really want is a polished, multimedia journal across iOS, Mac, Android, and web. Beautiful writing experience, photos, audio, location tagging. It is not trying to interpret your emotional patterns, so the analytics layer is light. Best for people who want a long-form diary, not an AI reflection tool." },
+      { type: "h2", content: "3. Daylio — Best for fast mood-only logging" },
+      { type: "p", content: "If the missing piece in Apple Journal is mood data, Daylio is the lightest fix. Emoji mood plus activity tags in under 10 seconds, solid streak tracking, decent correlation stats. No journaling, no AI interpretation. Best for people who want a habit-friendly mood log alongside Apple Journal, not a replacement for the writing." },
+      { type: "h2", content: "4. Reflectly — Best for prompt-led reflection" },
+      { type: "p", content: "Reflectly leans on guided prompts and a friendly UX. Useful if Apple Journal's blank canvas feels too open and you want more scaffolding. Less analytical depth than Nuju and limited cross-platform support, but lower commitment for beginners." },
+      { type: "h2", content: "5. Journey — Best for power users who want maximum cross-platform" },
+      { type: "p", content: "Journey runs on iOS, Android, Mac, Windows, web, and Chrome. Strong writing experience, calendar view, password lock. Mood tagging exists but is shallow versus Nuju or Daylio. Best for people whose first need is platform coverage." },
+      { type: "h2", content: "Apple Journal vs Nuju: the real comparison" },
+      { type: "p", content: "Apple Journal wins on price (free), native integration, and on-device privacy. Nuju wins on emotional insight, mood and energy data, AI pattern recognition across weeks, coach personas, and cross-platform availability. If you want a memory keeper attached to your phone, Apple Journal is fine. If you want the app to read what you wrote and surface what is repeating in your emotional life, Nuju is the upgrade." },
+      { type: "h2", content: "Who should stay with Apple Journal" },
+      { type: "p", content: "Stay with Apple Journal if you only use Apple devices, you mostly journal as a memory archive (photos plus a note), you do not want any AI involvement, and you do not need mood data over time. Skip the switch if all you want is a private digital diary tied to your existing iCloud setup." },
+      { type: "h2", content: "Bottom line" },
+      { type: "p", content: "Apple Journal is the best free starting point on iOS. But it is intentionally narrow. The moment you want mood tracking, AI reflection, cross-platform access, or pattern recognition, you have outgrown it. Nuju is the most natural next step if your goal is to actually understand your emotional life — not just record fragments of it." },
+    ],
+    faq: [
+      {
+        question: "What is the best Apple Journal alternative in 2026?",
+        answer:
+          "For most people who want what Apple Journal lacks — mood tracking, AI reflection, weekly patterns, and cross-platform access — Nuju is the strongest alternative. Day One is better for premium long-form writing, Daylio is better for fast mood-only logging, and Journey is better if platform coverage is your top priority.",
+      },
+      {
+        question: "Is there an Apple Journal app for Android?",
+        answer:
+          "No. Apple Journal is iOS-only and there is no official Android version. If you need cross-platform journaling, switch to an app like Nuju, Day One, or Journey, all of which run on Android, iOS, and the web.",
+      },
+      {
+        question: "Does Apple Journal track mood?",
+        answer:
+          "Not in any meaningful way. Apple Journal lets you write entries and surfaces Smart Suggestions from photos and activity, but there is no mood scale, no energy logging, and no pattern analysis across entries. For mood data you need a dedicated tool like Nuju or Daylio.",
+      },
+      {
+        question: "Is Apple Journal private?",
+        answer:
+          "Yes — entries are stored on-device and synced through iCloud with end-to-end encryption when enabled. Privacy is one of Apple Journal's strongest points. Most quality alternatives match this with encrypted storage and clear data policies; check that any switch you make explicitly states entries are not used to train AI.",
+      },
+      {
+        question: "Why switch from Apple Journal to Nuju?",
+        answer:
+          "Switch when you want the app to tell you something back. Nuju adds mood and energy tracking, AI summaries, weekly pattern recognition, and four coach personas — all things Apple Journal deliberately does not do. It also works on Android and web, so the journal follows you across devices.",
+      },
+    ],
+  },
+  {
+    slug: "day-one-alternative",
+    title: "Best Day One Alternatives in 2026 (Cheaper, AI-Powered, or Both)",
+    description: "Day One is a beautiful digital diary, but the subscription is steep and the insight layer is thin. Here are the best alternatives if you want AI reflection or a lower price.",
+    metaTitle: "5 Best Day One Alternatives 2026 — AI Insight + Cheaper",
+    metaDescription: "Day One looks great but charges $35/year for sync and offers no AI insight. We tested 5 alternatives — see which AI journal actually reads your entries, free.",
+    publishedAt: "2026-05-03",
+    readingTime: 7,
+    category: "App Comparison",
+    sections: [
+      { type: "p", content: "Day One has been the gold standard for digital journaling for over a decade. Beautiful UI, strong multimedia support, encryption, sync across iOS, Mac, Android, and web. But it has two real weaknesses in 2026: it is built around the writing, not interpreting it, and the subscription is hard to justify when AI journaling apps now do far more for less." },
+      { type: "h2", content: "What Day One does well" },
+      { type: "ul", content: ["One of the most polished writing experiences in any journal app", "Multi-device sync across iOS, Mac, Android, and web", "Strong multimedia: photos, audio, video, location, weather, music tags", "End-to-end encryption on premium plans", "Long-term track record — entries from 2014 still open cleanly today"] },
+      { type: "h2", content: "Where Day One starts to feel limiting" },
+      { type: "ul", content: ["Subscription required for sync and most premium features (around $35/year)", "No AI reflection that reads your entries — recent AI features are auxiliary, not central", "No real mood tracking or energy logging — mood tags exist but do not drive insight", "No pattern recognition across entries, no weekly summaries, no relationship signal", "Daily friction is higher than 30-second mood-first apps"] },
+      { type: "callout", content: "Day One is a beautiful place to write. It is not a tool that helps you understand what you wrote. If insight is the goal, you have likely outgrown it." },
+      { type: "h2", content: "1. Nuju — Best Day One alternative for AI insight + lower price" },
+      { type: "p", content: "Nuju is the strongest replacement if what you actually want from Day One is reflection, not just a beautiful diary. Quick mood and energy check-ins, optional written entries, AI summaries, weekly pattern recognition, and four coach personas you can switch between. The free reveal lets you test the AI before paying anything, and the paid plans are typically cheaper than Day One's subscription. Cross-platform on iOS, Android, and web. Privacy: encrypted storage, no AI training on entries." },
+      { type: "h2", content: "2. Reflectly — Best for prompt-led journaling at lower friction" },
+      { type: "p", content: "Reflectly is friendlier than Day One for casual reflection. AI-generated prompts based on previous entries, mood check-ins, simple UX. Less analytical depth than Nuju but cheaper and easier to maintain than a full Day One workflow. Best for people who liked Day One but rarely actually wrote." },
+      { type: "h2", content: "3. Rosebud AI — Best for structured CBT-style reflection" },
+      { type: "p", content: "Rosebud takes a more guided approach — AI follow-up questions and CBT-inspired session structure. More deliberate than Day One's free-form writing. Best if you want structured introspection sessions rather than a long-form diary." },
+      { type: "h2", content: "4. Journey — Best Day One clone if you only want cheaper writing" },
+      { type: "p", content: "Journey is the closest direct competitor to Day One on writing experience and platform coverage. Often cheaper, with similar multimedia features. Mood tagging is light and there is no real AI insight, but if you only want the diary half of Day One at a lower price, this is the swap." },
+      { type: "h2", content: "5. Apple Journal — Best free Day One alternative on iOS" },
+      { type: "p", content: "Apple Journal is free, native, and surprisingly capable for memory-style journaling. iOS-only, no AI interpretation, no mood tracking, no Android — but free. Best for iPhone users who want a private journal without paying anything and do not need cross-platform support." },
+      { type: "h2", content: "Day One vs Nuju: the real comparison" },
+      { type: "p", content: "Day One wins on writing polish, multimedia depth, and long-form diary feel. Nuju wins on emotional insight, mood and energy data, AI pattern recognition, coach personas, free tier, and price. If your relationship with Day One is mostly about writing beautifully formatted entries with photos, stay. If you want the app to read what you wrote and explain your patterns, Nuju is the natural next step." },
+      { type: "h2", content: "Who should stay with Day One" },
+      { type: "p", content: "Stay with Day One if you primarily journal long-form, you value the multimedia archive (photos, audio, video, location), you want a polished diary experience with no AI involvement, and the subscription cost is not a friction. Day One is still the best premium digital diary. It is just not the best reflection tool." },
+      { type: "h2", content: "Bottom line" },
+      { type: "p", content: "Day One earned its reputation. But journaling apps in 2026 do more than collect entries — the strongest ones interpret them. If your goal is a beautiful place to write, Day One still leads. If your goal is to actually understand your emotional life, Nuju is a better fit, with a free reveal and cross-platform access at a lower price than Day One's subscription." },
+    ],
+    faq: [
+      {
+        question: "What is the best Day One alternative in 2026?",
+        answer:
+          "Nuju is the best alternative for people who want AI reflection, mood tracking, and weekly pattern recognition — features Day One does not focus on. Journey is the closest direct clone if you only want the writing experience cheaper, and Reflectly is a lighter prompt-led option.",
+      },
+      {
+        question: "Is Day One worth the subscription in 2026?",
+        answer:
+          "It depends on the job you want done. For long-form digital diary writing with multimedia, yes — Day One is still polished. For AI insight, mood tracking, or pattern recognition over weeks, no — newer AI journaling apps like Nuju do far more for the same or less money.",
+      },
+      {
+        question: "Is there a free Day One alternative?",
+        answer:
+          "Yes. Nuju has a free reveal with no credit card required, Apple Journal is free on iOS, and Reflectly offers a free tier. None match Day One's multimedia depth on the free tier, but if you want to journal and reflect without paying, those are the strongest free options.",
+      },
+      {
+        question: "Does Day One have AI features?",
+        answer:
+          "Day One has added some AI features (like writing assistance and tagging help), but they are auxiliary, not central. The app is still designed around the writing experience rather than interpreting your entries. For AI that reads what you wrote and surfaces patterns, switch to a tool built around that — Nuju or Rosebud.",
+      },
+      {
+        question: "Why switch from Day One to Nuju?",
+        answer:
+          "Switch when you want the journal to tell you something back. Nuju adds mood and energy tracking, AI summaries, weekly pattern recognition, and coach personas — and the free reveal lets you test the AI before paying. It also tends to be cheaper than Day One's subscription.",
+      },
+    ],
+  },
+  {
+    slug: "best-self-reflection-apps",
+    title: "Best Self-Reflection Apps in 2026: 7 Tested for Real Insight",
+    description: "Most self-reflection apps just ask you how you feel. We tested 7 to find the ones that actually help you see patterns, name what is repeating, and reflect more clearly.",
+    metaTitle: "7 Best Self-Reflection Apps 2026 — Tested for Real Insight",
+    metaDescription: "Self-reflection apps range from prompt journals to AI pattern engines. We tested 7 — see which ones actually surface patterns and which just collect data.",
+    publishedAt: "2026-05-03",
+    readingTime: 8,
+    category: "App Comparison",
+    sections: [
+      { type: "p", content: "Most apps marketed as self-reflection tools do one of two things: hand you a prompt, or ask you to rate how you feel. Both are useful. Neither, on their own, builds real self-awareness. The strongest self-reflection apps in 2026 combine quick capture with something that reads your entries back to you — patterns, summaries, recurring themes — so reflection turns into recognition over time." },
+      { type: "h2", content: "What separates a useful self-reflection app from a journal with extra steps" },
+      { type: "ul", content: ["Does it surface patterns automatically, or just store entries?", "Can it combine mood, energy, and written context in the same place?", "Does it respond to your specific entries, or hand out templated replies?", "Is the daily friction low enough to actually maintain?", "What does it do with your data? (privacy specifics matter for reflection content)"] },
+      { type: "callout", content: "Self-reflection compounds. The first entry helps you name today. The thirtieth entry can show what keeps repeating. Pick a tool that grows with the data, not one that just stores it." },
+      { type: "h2", content: "#1 Nuju — Best for self-reflection with AI pattern recognition" },
+      { type: "p", content: "Nuju ranks first because it does the rare thing: combines fast daily capture (mood, energy, optional written note) with AI that reads back what you wrote. Weekly summaries, pattern detection across themes and people, four coach personas you can switch between based on what you need that day. Cross-platform across iOS, Android, and web. Free reveal with no credit card. Privacy is explicit: encrypted storage, private access controls, no AI training on entries." },
+      { type: "h2", content: "#2 Stoic — Best for routines, prompts, and philosophy-led reflection" },
+      { type: "p", content: "Stoic mixes journaling with breathing exercises, daily prompts, and Stoic philosophy quotes. The structure is appealing if you respond to routines and want guided introspection. Less depth on AI pattern recognition than Nuju, but more daily scaffolding than a blank-page tool." },
+      { type: "h2", content: "#3 Rosebud AI — Best for structured CBT-style reflection sessions" },
+      { type: "p", content: "Rosebud takes a more deliberate approach — AI follow-up questions, CBT-inspired session structure, longer reflection prompts. Best if you want a directed introspection session rather than a quick check-in. Heavier than Nuju or Reflectly for daily use." },
+      { type: "h2", content: "#4 Reflectly — Best beginner self-reflection app" },
+      { type: "p", content: "Reflectly is the friendliest entry point. AI-generated prompts based on previous entries, simple mood check-in, accessible UX. Less analytical depth — no pattern recognition, no coach personas — but the lowest barrier to building a reflection habit for total beginners." },
+      { type: "h2", content: "#5 Day One — Best for long-form reflective writing" },
+      { type: "p", content: "Day One is the polished digital diary if your reflection style is long-form writing rather than quick capture plus AI. Multi-device, multimedia, well-designed. Limited AI insight, but unmatched as a place to actually write. Best for people who reflect by writing, not by reviewing patterns." },
+      { type: "h2", content: "#6 Daylio — Best for stat-driven reflection" },
+      { type: "p", content: "Daylio is not a writing app — it is a mood and habit logger with strong correlation stats. The 'reflection' is in reading the charts, not in any AI interpretation. Best for people who reflect through data, not language." },
+      { type: "h2", content: "#7 Headspace journaling — Best inside a meditation routine" },
+      { type: "p", content: "Headspace's journaling features sit inside its broader meditation app. Useful if you already use Headspace for mindfulness and want a built-in journal nearby. Less depth than dedicated reflection tools, but no extra app to maintain." },
+      { type: "h2", content: "Bottom line" },
+      { type: "p", content: "If you want the app to actually reflect with you — surface patterns, name themes, point out what is repeating — pick Nuju. If you want philosophy-led routines, Stoic fits. For structured CBT sessions, Rosebud. For beginners, Reflectly. For long-form writing, Day One. For pure stat reflection, Daylio. The real question: do you want to record your reflection, or do you want help interpreting it? Those goals need different apps." },
+    ],
+    faq: [
+      {
+        question: "What is the best self-reflection app in 2026?",
+        answer:
+          "Nuju ranks highest for combining fast daily capture (mood, energy, optional written note) with AI pattern recognition, weekly summaries, and four coach personas. Stoic is strongest for philosophy-led routines, Rosebud for CBT-style sessions, and Reflectly for total beginners.",
+      },
+      {
+        question: "Is there a free self-reflection app?",
+        answer:
+          "Yes. Nuju has a free reveal with no credit card required, Reflectly offers a free tier, and Daylio is genuinely usable for free. Apple Journal is also free on iOS for memory-style reflection. Most quality apps with AI insight charge for the deeper features but let you try the experience first.",
+      },
+      {
+        question: "How is a self-reflection app different from a journal?",
+        answer:
+          "A journal collects entries. A self-reflection app aims to interpret them. The strongest self-reflection apps add mood and energy data, AI summaries, and pattern recognition so that you can see what keeps repeating across days or weeks instead of just storing what you wrote.",
+      },
+      {
+        question: "Are self-reflection apps a substitute for therapy?",
+        answer:
+          "No. Self-reflection apps support self-awareness — they are not therapy, crisis care, or medical treatment. Many people use them alongside therapy to bring more grounded context to sessions. If reflection surfaces patterns that feel hard to handle alone, professional support matters more than any app.",
+      },
+      {
+        question: "What should I look for in a self-reflection app?",
+        answer:
+          "Four things: (1) low daily friction so you actually keep it up, (2) the ability to combine mood and written context in the same entry, (3) some form of pattern recognition or summary across entries, and (4) clear privacy — entries should not be used to train AI models or sold to third parties.",
+      },
+    ],
+  },
 ];
 
 const normalizeCopy = (value: string): string =>

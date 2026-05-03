@@ -144,6 +144,57 @@ const INTERNAL_LINK_RECOMMENDATIONS: Record<string, InternalLinkRecommendation[]
       body: "Understand what AI journaling adds beyond a blank page or notes app.",
     },
   ],
+  "apple-journal-alternatives": [
+    {
+      slug: "day-one-alternative",
+      eyebrow: "Premium diary switch",
+      body: "Compare Day One if you want a more polished cross-platform diary than Apple Journal.",
+    },
+    {
+      slug: "best-ai-journaling-apps",
+      eyebrow: "AI journal category",
+      body: "Look at AI journaling apps if you want reflection that Apple Journal does not provide.",
+    },
+    {
+      slug: "best-mood-tracker-apps",
+      eyebrow: "Add mood data",
+      body: "Read this if the missing piece in Apple Journal is mood and energy tracking.",
+    },
+  ],
+  "day-one-alternative": [
+    {
+      slug: "best-ai-journaling-apps",
+      eyebrow: "AI insight upgrade",
+      body: "Compare AI journaling apps if you have outgrown Day One's writing-only focus.",
+    },
+    {
+      slug: "apple-journal-alternatives",
+      eyebrow: "Free iOS option",
+      body: "Read this if you want a free Apple-native option before paying Day One's subscription.",
+    },
+    {
+      slug: "best-self-reflection-apps",
+      eyebrow: "Reflection category",
+      body: "Step back and compare the broader self-reflection app category side by side.",
+    },
+  ],
+  "best-self-reflection-apps": [
+    {
+      slug: "best-ai-journaling-apps",
+      eyebrow: "AI journal intent",
+      body: "Go deeper on AI journaling apps when reflection means pattern recognition.",
+    },
+    {
+      slug: "best-mood-tracker-apps",
+      eyebrow: "Stat-driven reflection",
+      body: "Compare mood trackers if your reflection style is data over written entries.",
+    },
+    {
+      slug: "mood-tracker-for-self-awareness",
+      eyebrow: "Use case",
+      body: "Read this if your real goal is self-awareness, not collecting reflection stats.",
+    },
+  ],
 };
 
 const getInternalLinkCards = (slug: string): InternalLinkCard[] =>
