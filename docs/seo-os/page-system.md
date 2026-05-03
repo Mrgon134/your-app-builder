@@ -83,9 +83,10 @@ Required sections:
 - `/blog/ai-journal-for-overthinking`
 - `/blog/mood-tracker-for-self-awareness`
 - `/blog/journaling-for-adhd`
+- `/blog/apple-journal-alternatives`
+- `/blog/day-one-alternative`
+- `/blog/best-self-reflection-apps`
 
 ## Near-term backlog
 
-- `/blog/day-one-alternative`
-- `/blog/apple-journal-alternatives`
-- `/blog/best-self-reflection-apps`
+- TBD — re-evaluate after GSC shows which intents from the 2026-05 launch convert.
