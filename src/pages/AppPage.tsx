@@ -31,6 +31,7 @@ import Confetti from "@/components/app/Confetti";
 import AchievementPopup from "@/components/app/AchievementPopup";
 import { checkAndUnlockAchievements, syncAchievementsFromHistory, type Achievement } from "@/lib/achievements";
 import { consumeAuthIntent } from "@/lib/auth-intent";
+import { claimPendingCheckoutForCurrentUser } from "@/lib/checkout-flow";
 import { clearFunnelState } from "@/lib/onboarding-funnel";
 import { getPlanFromEntitlements, initRevenueCat } from "@/lib/revenueCat";
 import { Home, BarChart3, MessageCircle, Compass, Loader2 } from "lucide-react";
@@ -235,7 +236,20 @@ const AppPage: React.FC = () => {
           fetchEntries(user.id),
           fetchCoachMessages(user.id, 1),
         ]);
-        const nextProfile = dbProfile;
+        let nextProfile = dbProfile;
+
+        if (!hasActivePremiumPlan(nextProfile?.plan || null)) {
+          try {
+            const pendingClaim = await claimPendingCheckoutForCurrentUser();
+            if (pendingClaim.claimed) {
+              nextProfile = await fetchProfile(user.id);
+              toast.success("Your paid plan is now unlocked.");
+            }
+          } catch (claimError) {
+            console.warn("Pending checkout claim check failed:", claimError);
+          }
+        }
+
         const hasCoachMessages = coachMessages.length > 0;
         setProfile(nextProfile);
         setStreak(nextProfile?.streak_current || 0);

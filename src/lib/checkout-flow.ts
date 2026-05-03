@@ -1,4 +1,4 @@
-import { SUPABASE_ANON_KEY, SUPABASE_URL } from "@/integrations/supabase/client";
+import { supabase, SUPABASE_ANON_KEY, SUPABASE_URL } from "@/integrations/supabase/client";
 import { ROUTES } from "@/lib/routes";
 
 export interface CheckoutStatusPayload {
@@ -90,4 +90,33 @@ export const claimCheckoutIntent = async (intentId: string, accessToken: string)
   }
 
   return (await response.json()) as { claimed: boolean; plan: string | null };
+};
+
+export const claimPendingCheckoutForCurrentUser = async () => {
+  const { data } = await supabase.auth.getSession();
+  const accessToken = data.session?.access_token;
+
+  if (!accessToken) {
+    return { claimed: false, reason: "missing_session" } as const;
+  }
+
+  const response = await fetch(`${SUPABASE_URL}/functions/v1/checkout-claim-pending`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${accessToken}`,
+    },
+    body: JSON.stringify({}),
+  });
+
+  if (!response.ok) {
+    throw await buildCheckoutFlowError(response, "Could not claim pending purchase.");
+  }
+
+  return (await response.json()) as {
+    claimed: boolean;
+    reason?: string;
+    intentId?: string;
+    plan?: string;
+  };
 };
