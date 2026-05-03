@@ -1,5 +1,6 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
+import { sendPurchaseActivatedEmail } from "../_shared/resend.ts";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -89,9 +90,19 @@ serve(async (req) => {
 
     if (claimError) throw claimError;
     const normalizedClaimedUserId = safeText(claimedUserId);
+    const claimed = normalizedClaimedUserId === user.id;
+
+    if (claimed) {
+      await sendPurchaseActivatedEmail(adminClient, {
+        intentId: String(purchaseIntent.id),
+        to: userEmail,
+        name: safeText(purchaseIntent.name) || safeText(user.user_metadata?.display_name),
+        plan: String(purchaseIntent.plan),
+      });
+    }
 
     return new Response(JSON.stringify({
-      claimed: normalizedClaimedUserId === user.id,
+      claimed,
       intentId: String(purchaseIntent.id),
       plan: String(purchaseIntent.plan),
     }), {

@@ -1,5 +1,6 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
+import { sendPurchaseActivatedEmail } from "../_shared/resend.ts";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -309,6 +310,15 @@ serve(async (req) => {
 
       if (claimError) throw claimError;
       targetUserId = safeText(claimedUserId);
+    }
+
+    if (targetUserId && purchaseIntentId && customerEmail && purchaseStatus === "paid") {
+      await sendPurchaseActivatedEmail(supabase, {
+        intentId: purchaseIntentId,
+        to: customerEmail,
+        name: customerName,
+        plan: plan === "lifetime" ? "lifetime_one_time" : plan,
+      });
     }
 
     if (targetUserId) {
