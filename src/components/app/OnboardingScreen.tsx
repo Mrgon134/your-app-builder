@@ -43,6 +43,7 @@ import {
 import { persistOnboardingLead, requestOnboardingReveal } from "@/lib/onboarding-reveal";
 import { isIOS, isNative } from "@/lib/platform";
 import { ROUTES } from "@/lib/routes";
+import { lightImpact } from "@/lib/native-feedback";
 
 const TOTAL_STEPS = 20;
 const CONTACT_STEP = 7;
@@ -53,13 +54,7 @@ const PAYWALL_STEP = 19;
 const MILESTONE_STEPS = new Set([5, 10, 15]);
 
 const triggerHaptic = (pattern: number | number[] = 12) => {
-  if (typeof navigator === "undefined") return;
-  if (typeof navigator.vibrate !== "function") return;
-  try {
-    navigator.vibrate(pattern);
-  } catch {
-    // Some browsers throw on background tabs; ignore.
-  }
+  void lightImpact(pattern);
 };
 
 const STEP_KEYS = [

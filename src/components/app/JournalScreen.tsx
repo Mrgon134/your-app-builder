@@ -9,6 +9,7 @@ import { getJsonFunctionHeaders } from "@/lib/function-auth";
 import { motion, AnimatePresence } from "framer-motion";
 import { type ShellMode } from "@/hooks/use-shell-mode";
 import PostEntryFlow from "@/components/app/PostEntryFlow";
+import { lightImpact, mediumImpact } from "@/lib/native-feedback";
 const DRAFT_KEY = "nuju-journal-draft";
 
 const langToLocale: Record<string, string> = {
@@ -210,7 +211,7 @@ const JournalScreen: React.FC<JournalScreenProps> = ({
       recorder.start(250);
       mediaRecorderRef.current = recorder;
       setRecordState("recording");
-      if (navigator.vibrate) navigator.vibrate([10, 50, 10]);
+      void mediumImpact([10, 50, 10]);
     } catch (err) {
       console.error("Mic access denied:", err);
       setRecordState("idle");
@@ -220,7 +221,7 @@ const JournalScreen: React.FC<JournalScreenProps> = ({
   const stopRecording = useCallback(() => {
     if (mediaRecorderRef.current && mediaRecorderRef.current.state !== "inactive") {
       mediaRecorderRef.current.stop();
-      if (navigator.vibrate) navigator.vibrate([10]);
+      void lightImpact([10]);
     }
   }, []);
 

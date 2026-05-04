@@ -37,9 +37,11 @@ import { getPlanFromEntitlements, initRevenueCat } from "@/lib/revenueCat";
 import { Home, BarChart3, MessageCircle, Compass, Loader2 } from "lucide-react";
 import { toast } from "sonner";
 import { AnimatePresence, motion } from "framer-motion";
+import { LocalNotifications } from "@capacitor/local-notifications";
 import PinLockScreen from "@/components/app/PinLockScreen";
 import { useShellMode } from "@/hooks/use-shell-mode";
 import { resolveDisplayName } from "@/lib/profile-name";
+import { lightImpact, successFeedback } from "@/lib/native-feedback";
 import juMain from "@/assets/ju-main.webp";
 
 type Screen = "home" | "journal" | "insights" | "coach" | "explore" | "pro" | "settings" | "programs" | "year-review" | "history";
@@ -329,7 +331,7 @@ const AppPage: React.FC = () => {
       }
     }
 
-    if (navigator.vibrate) navigator.vibrate(6);
+    void lightImpact(6);
   }, [screen, buildAchievementContext, entries, user, events]);
 
   const openJournalScreen = useCallback((options?: { prompt?: string; autoRecord?: boolean }) => {
@@ -341,6 +343,26 @@ const AppPage: React.FC = () => {
       setTimeout(() => setJournalAutoRecord(false), 600);
     }
   }, [navigateTo]);
+
+  useEffect(() => {
+    if (!isNative() || !isIOS()) return;
+
+    let listener: { remove: () => Promise<void> } | null = null;
+    void LocalNotifications.addListener("localNotificationActionPerformed", (event) => {
+      const targetScreen = event.notification.extra?.screen;
+      if (targetScreen === "journal") {
+        openJournalScreen();
+      } else {
+        navigateTo("home");
+      }
+    }).then((handle) => {
+      listener = handle;
+    });
+
+    return () => {
+      void listener?.remove();
+    };
+  }, [navigateTo, openJournalScreen]);
 
   // Confetti on mood 5 selection
   const handleMoodSelect = useCallback((mood: number) => {
@@ -518,7 +540,7 @@ const AppPage: React.FC = () => {
       const updatedProfile = await fetchProfile(user.id);
       if (updatedProfile) { setStreak(updatedProfile.streak_current); setProfile(updatedProfile); }
       toast.success("Mood logged");
-      if (navigator.vibrate) navigator.vibrate([10, 50, 20]);
+      void successFeedback([10, 50, 20]);
 
       // Check achievements after quick log
       const achievement = checkAndUnlockAchievements(
@@ -624,6 +646,8 @@ const AppPage: React.FC = () => {
         setShowConfetti(true);
         setTimeout(() => setUnlockedAchievement(achievement), 300);
       }
+
+      void successFeedback([10, 50, 20]);
 
       // P2: AI insight only for Plus/Pro — free users get no insight card
       const hasPlus = hasPlusAccess(effectiveProfile?.plan || null, effectiveProfile?.trial_started_at || null);

@@ -8,7 +8,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { ROUTES } from "@/lib/routes";
 import {
   requestNotificationPermission,
-  getNotificationPermission,
+  isNotificationSupported,
   getReminderSettings,
   scheduleLocalReminder,
   disableReminder,
@@ -45,7 +45,7 @@ const SettingsScreen: React.FC<SettingsScreenProps> = ({ onBack, onUpgrade, onSa
   const reminderDefaults = getReminderSettings();
   const [reminderEnabled, setReminderEnabled] = useState(reminderDefaults.enabled);
   const [reminderHour, setReminderHour] = useState(reminderDefaults.hour);
-  const notifSupported = getNotificationPermission() !== "unsupported";
+  const notifSupported = isNotificationSupported();
   const [showLangPicker, setShowLangPicker] = useState(false);
   const [biometricEnabled, setBiometricEnabled] = useState(() => localStorage.getItem("nuju-biometric") === "1");
   const biometricSupported = typeof window !== "undefined" && window.PublicKeyCredential !== undefined;
@@ -289,7 +289,11 @@ const SettingsScreen: React.FC<SettingsScreenProps> = ({ onBack, onUpgrade, onSa
                         toast.error(t.notif_denied || "Notifications blocked. Enable in browser settings.");
                         return;
                       }
-                      scheduleLocalReminder(reminderHour);
+                      const scheduled = await scheduleLocalReminder(reminderHour);
+                      if (!scheduled) {
+                        toast.error(t.notif_denied || "Notifications blocked. Enable in settings.");
+                        return;
+                      }
                       setReminderEnabled(true);
                       toast.success(t.notif_enabled || "Reminder set");
                     } else {
@@ -310,7 +314,7 @@ const SettingsScreen: React.FC<SettingsScreenProps> = ({ onBack, onUpgrade, onSa
                     onChange={(e) => {
                       const h = Number(e.target.value);
                       setReminderHour(h);
-                      scheduleLocalReminder(h);
+                      void scheduleLocalReminder(h);
                     }}
                     className="text-[15px] text-primary font-medium bg-transparent border-none outline-none cursor-pointer text-right"
                   >

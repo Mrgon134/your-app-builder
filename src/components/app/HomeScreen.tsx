@@ -11,19 +11,22 @@ import {
   Settings, Flame, PenLine, Mic, RefreshCw,
   BedDouble, BatteryLow, Zap, Sparkles, Check,
   Dumbbell, Moon, Utensils, Briefcase, Users, Gamepad2,
-  Wind, ScanFace,
+  Wind, ScanFace, Bell,
 } from "lucide-react";
 import FacialMoodDetector from "@/components/app/FacialMoodDetector";
 import HabitSection from "@/components/app/HabitSection";
 import EntryDetailModal from "@/components/app/EntryDetailModal";
 import { EntryRow } from "@/lib/api";
 import { motion, AnimatePresence } from "framer-motion";
+import { lightImpact, selectionFeedback } from "@/lib/native-feedback";
 
 import DailyRitualCard from "@/components/app/DailyRitualCard";
 import WeeklyReviewCard from "@/components/app/WeeklyReviewCard";
 import { type ShellMode } from "@/hooks/use-shell-mode";
 import { getFirstName } from "@/lib/profile-name";
 import { isNative } from "@/lib/platform";
+import { getReminderSettings, isNotificationSupported, scheduleLocalReminder } from "@/lib/notifications";
+import { toast } from "sonner";
 
 interface BeforeInstallPromptEvent extends Event {
   prompt: () => Promise<void>;
@@ -150,6 +153,7 @@ const HomeScreen: React.FC<HomeScreenProps> = ({
   const [localActivities, setLocalActivities] = useState<string[]>([]);
   const [moodTouched, setMoodTouched] = useState(false);
   const [showFaceDetector, setShowFaceDetector] = useState(false);
+  const [reminder, setReminder] = useState(() => getReminderSettings());
   const selectedActivities = controlledActivities ?? localActivities;
   const scrollRef = useRef<HTMLDivElement>(null);
   const [scrollY, setScrollY] = useState(0);
@@ -159,6 +163,7 @@ const HomeScreen: React.FC<HomeScreenProps> = ({
   const [selectedEntry, setSelectedEntry] = useState<EntryRow | null>(null);
   const isLargeShell = shellMode !== "phone";
   const firstName = getFirstName(displayName);
+  const showNativeReminder = isNative() && isNotificationSupported();
 
   // PWA Install Prompt State
   const [installPrompt, setInstallPrompt] = useState<BeforeInstallPromptEvent | null>(null);
@@ -272,13 +277,13 @@ const HomeScreen: React.FC<HomeScreenProps> = ({
     setMoodAnimating(value);
     setMoodTouched(true);
     setTimeout(() => setMoodAnimating(null), 400);
-    if (navigator.vibrate) navigator.vibrate(10);
+    void selectionFeedback(10);
   };
 
   const handleEnergySelect = (value: number) => {
     if (controlledEnergyChange) controlledEnergyChange(value);
     else setLocalEnergy(value);
-    if (navigator.vibrate) navigator.vibrate(6);
+    void lightImpact(6);
   };
 
   const toggleActivity = (id: string) => {
@@ -287,7 +292,20 @@ const HomeScreen: React.FC<HomeScreenProps> = ({
       : [...selectedActivities, id];
     if (onActivitiesChange) onActivitiesChange(next);
     else setLocalActivities(next);
-    if (navigator.vibrate) navigator.vibrate(6);
+    void lightImpact(6);
+  };
+
+  const handleSetReminder = async () => {
+    const hour = reminder.hour || 20;
+    const scheduled = await scheduleLocalReminder(hour);
+    if (!scheduled) {
+      toast.error("Reminder permission is off. Enable notifications in Settings.");
+      return;
+    }
+
+    setReminder(getReminderSettings());
+    void lightImpact(8);
+    toast.success(`Check-in reminder set for ${hour.toString().padStart(2, "0")}:00`);
   };
 
   // Dynamic title size based on scroll
@@ -424,6 +442,32 @@ const HomeScreen: React.FC<HomeScreenProps> = ({
           )}
         </div>
       </div>
+
+      {showNativeReminder && (
+        <div className="glass-card flex items-center justify-between gap-4 rounded-2xl border border-primary/15 bg-primary/[0.04] p-4">
+          <div className="flex min-w-0 items-center gap-3">
+            <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-2xl bg-primary/10">
+              <Bell className="h-5 w-5 text-primary" />
+            </div>
+            <div className="min-w-0">
+              <p className="text-[13px] font-semibold text-foreground">
+                {reminder.enabled ? "Tonight's check-in is set" : "A quiet reminder tonight?"}
+              </p>
+              <p className="mt-0.5 truncate text-[12px] text-muted-foreground">
+                {reminder.enabled
+                  ? `Ju will check in at ${reminder.hour.toString().padStart(2, "0")}:${reminder.minute.toString().padStart(2, "0")}.`
+                  : "Let Ju bring you back for one small reflection."}
+              </p>
+            </div>
+          </div>
+          <button
+            onClick={handleSetReminder}
+            className="h-9 flex-shrink-0 rounded-full bg-primary px-4 text-[12px] font-bold text-primary-foreground transition-transform active:scale-95"
+          >
+            {reminder.enabled ? "Reset" : "Set 8 PM"}
+          </button>
+        </div>
+      )}
 
       {/* Mood selector — taller gradient cards with glow ring */}
       <div>
