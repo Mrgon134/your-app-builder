@@ -8,6 +8,7 @@ import { useLang } from "@/lib/i18n";
 import { useFaceDetection } from "@/hooks/useFaceDetection";
 import { MOODS } from "@/lib/constants";
 import { drawMoodMomentCard, shareToTarget, SHARE_TARGETS, type ShareTarget } from "@/lib/share-card";
+import SocialBrandIcon from "@/components/app/SocialBrandIcon";
 import { SUPABASE_URL } from "@/integrations/supabase/client";
 import { getJsonFunctionHeaders } from "@/lib/function-auth";
 
@@ -609,6 +610,7 @@ export default function PostEntryFlow({ beforeMood, onDismiss, onSelfieCapture }
                         style={{
                           background: target.color + "22",
                           border: `1.5px solid ${target.color}40`,
+                          color: target.id === "tiktok" ? "#fff" : target.color,
                         }}
                       >
                         {isActive ? (
@@ -617,7 +619,11 @@ export default function PostEntryFlow({ beforeMood, onDismiss, onSelfieCapture }
                             style={{ borderColor: target.color, borderTopColor: "transparent" }}
                           />
                         ) : (
-                          <span>{target.icon}</span>
+                          <SocialBrandIcon
+                            target={target.id}
+                            className="w-5 h-5"
+                            title={target.label}
+                          />
                         )}
                       </div>
                       <span className="text-[10px] font-medium" style={{ color: "#B0A8D8" }}>

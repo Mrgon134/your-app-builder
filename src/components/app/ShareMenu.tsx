@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Camera, Clapperboard, Loader2, MessageCircle, Music2, Share2, X } from "lucide-react";
+import { Loader2, Share2, X } from "lucide-react";
 import {
   generateShareCard,
   shareToTarget,
@@ -9,6 +9,7 @@ import {
   type ShareTarget,
 } from "@/lib/share-card";
 import { toast } from "sonner";
+import SocialBrandIcon from "@/components/app/SocialBrandIcon";
 
 interface ShareMenuProps {
   type: ShareCardType;
@@ -17,22 +18,22 @@ interface ShareMenuProps {
   className?: string;
 }
 
-const TARGET_STYLES: Record<ShareTarget, { icon: React.ReactNode; colorClass: string }> = {
+const TARGET_STYLES: Record<ShareTarget, { colorClass: string; iconClass: string }> = {
   tiktok: {
-    icon: <Music2 className="w-4 h-4" />,
     colorClass: "bg-[#010101]/10 text-[#010101] dark:bg-white/10 dark:text-white",
+    iconClass: "text-[#010101] dark:text-white",
   },
   instagram_story: {
-    icon: <Camera className="w-4 h-4" />,
     colorClass: "bg-[#E1306C]/10 text-[#E1306C]",
+    iconClass: "text-[#E1306C]",
   },
   instagram_reels: {
-    icon: <Clapperboard className="w-4 h-4" />,
     colorClass: "bg-[#C13584]/10 text-[#C13584]",
+    iconClass: "text-[#C13584]",
   },
   whatsapp_status: {
-    icon: <MessageCircle className="w-4 h-4" />,
     colorClass: "bg-[#25D366]/10 text-[#128C4A]",
+    iconClass: "text-[#25D366]",
   },
 };
 
@@ -90,7 +91,11 @@ const ShareMenu: React.FC<ShareMenuProps> = ({ type, data, label, className }) =
                   disabled={loading !== null}
                   className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all active:scale-[0.97] hover:bg-muted/50 ${style.colorClass}`}
                 >
-                  {loading === target.id ? <Loader2 className="w-4 h-4 animate-spin" /> : style.icon}
+                  {loading === target.id ? (
+                    <Loader2 className="w-4 h-4 animate-spin" />
+                  ) : (
+                    <SocialBrandIcon target={target.id} className={`w-4 h-4 ${style.iconClass}`} />
+                  )}
                   {target.label}
                 </button>
               );
