@@ -97,8 +97,8 @@ describe("Blog recommendation surfaces", () => {
       screen.getByRole("link", { name: /start the free reveal/i }),
     ).toHaveAttribute("href", expect.stringContaining("/onboarding?source=blog_daylio-alternatives"));
     expect(
-      screen.getByRole("link", { name: /see how nuju works/i }),
-    ).toHaveAttribute("href", "/ai-journal");
+      screen.getByRole("link", { name: /see the nuju mood tracker/i }),
+    ).toHaveAttribute("href", "/mood-tracker");
     expect(screen.getByText(/encrypted storage/i)).toBeInTheDocument();
 
     fireEvent.click(screen.getByRole("link", { name: /start the free reveal/i }));
@@ -118,9 +118,9 @@ describe("Blog recommendation surfaces", () => {
     expect(screen.getByRole("heading", { name: /how we tested the 8 apps/i })).toBeInTheDocument();
     expect(seoHeadProps).toHaveBeenCalledWith(
       expect.objectContaining({
-        title: "Best AI Journaling Apps 2026: 8 Tested, Only 3 Worth It",
+        title: "8 Best AI Journaling Apps 2026 (3 Free + Worth It)",
         description:
-          "We tested 8 AI journaling apps for privacy, real AI insight, and free access. Only 3 passed. See how Nuju, Rosebud, and Reflectly compared and which to try first.",
+          "We tested 8 AI journaling apps for real AI insight, privacy, and free access. Only 3 passed — see the best free AI journal and which to try first.",
         canonical: "https://nuju.app/blog/best-ai-journaling-apps",
       }),
     );
