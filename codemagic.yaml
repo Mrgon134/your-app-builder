@@ -7,6 +7,9 @@ workflows:
     environment:
       groups:
         - ios_app_store
+      ios_signing:
+        distribution_type: app_store
+        bundle_identifier: app.nuju.journal
       vars:
         APP_STORE_APPLE_ID: "6763682187"
         XCODE_PROJECT: "ios/App/App.xcodeproj"
@@ -49,15 +52,6 @@ workflows:
       - name: Set up code signing settings
         script: |
           set -e
-          keychain initialize
-          app-store-connect fetch-signing-files "$BUNDLE_ID" \
-            --type IOS_APP_STORE \
-            --issuer-id "$APP_STORE_CONNECT_ISSUER_ID" \
-            --key-id "$APP_STORE_CONNECT_KEY_IDENTIFIER" \
-            --private-key "@env:APP_STORE_CONNECT_PRIVATE_KEY" \
-            --certificate-key "@env:CERTIFICATE_PRIVATE_KEY" \
-            --create
-          keychain add-certificates
           xcode-project use-profiles \
             --project "$CM_BUILD_DIR/$XCODE_PROJECT"
 
