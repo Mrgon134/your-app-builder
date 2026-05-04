@@ -17,6 +17,9 @@
 | `daylio alternative` | Live | `/blog/daylio-alternatives` | Reveal |
 | `reflectly alternative` | Live | `/blog/reflectly-alternatives` | Reveal |
 | `ai journal vs traditional journal` | Live | `/blog/ai-journal-vs-traditional` | Reveal |
+| `apple journal alternative` | Live | `/blog/apple-journal-alternatives` | Reveal |
+| `day one alternative` | Live | `/blog/day-one-alternative` | Reveal |
+| `best self-reflection app` | Live | `/blog/best-self-reflection-apps` | Reveal |
 
 ### Use-case queries
 
@@ -41,12 +44,13 @@ Live recommendation-intent pages after this update:
 8. `/blog/ai-journal-for-overthinking`
 9. `/blog/mood-tracker-for-self-awareness`
 10. `/blog/journaling-for-adhd`
+11. `/blog/apple-journal-alternatives`
+12. `/blog/day-one-alternative`
+13. `/blog/best-self-reflection-apps`
 
 ## Next pages to add
 
-1. `day one alternative`
-2. `apple journal alternative`
-3. `best self-reflection app`
+- TBD — re-evaluate after the 2026-05 backlog ships and GSC shows which intents convert.
 
 ## Targeting rule
 
