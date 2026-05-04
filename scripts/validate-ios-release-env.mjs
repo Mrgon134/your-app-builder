@@ -5,6 +5,7 @@ const requiredVariables = [
   ["APP_STORE_CONNECT_KEY_IDENTIFIER", "App Store Connect API key ID"],
   ["APP_STORE_CONNECT_ISSUER_ID", "App Store Connect issuer ID"],
   ["APP_STORE_CONNECT_PRIVATE_KEY", "App Store Connect private key"],
+  ["CERTIFICATE_PRIVATE_KEY", "iOS Distribution certificate private key for Codemagic automatic signing"],
 ];
 
 const missing = requiredVariables.filter(([name]) => !process.env[name]?.trim());
@@ -23,6 +24,11 @@ if (appStoreKeyId && !/^[A-Z0-9]{10}$/.test(appStoreKeyId)) {
 const appStorePrivateKey = process.env.APP_STORE_CONNECT_PRIVATE_KEY?.replace(/\\n/g, "\n") || "";
 if (appStorePrivateKey && !appStorePrivateKey.includes("BEGIN PRIVATE KEY")) {
   invalid.push("APP_STORE_CONNECT_PRIVATE_KEY must contain the .p8 private key contents, not just the filename.");
+}
+
+const certificatePrivateKey = process.env.CERTIFICATE_PRIVATE_KEY?.replace(/\\n/g, "\n") || "";
+if (certificatePrivateKey && !/BEGIN (?:RSA |EC )?PRIVATE KEY/.test(certificatePrivateKey)) {
+  invalid.push("CERTIFICATE_PRIVATE_KEY must contain the private key for the iOS Distribution certificate.");
 }
 
 if (missing.length || invalid.length) {
