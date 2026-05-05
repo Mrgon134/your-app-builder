@@ -27,8 +27,14 @@ posthog.init(posthogKey, {
   },
 });
 
-// Restore dark mode from localStorage
-if (localStorage.getItem("nuju-dark") === "1") {
+// Restore dark mode from localStorage, but only on in-app routes.
+// Public marketing pages (Landing, Onboarding, blog, etc.) are designed
+// for the light cream theme only — they share the dark CSS variables
+// that the in-app screens use, but their layouts assume light.
+if (
+  window.location.pathname.startsWith("/app") &&
+  localStorage.getItem("nuju-dark") === "1"
+) {
   document.documentElement.classList.add("dark");
 }
 
