@@ -1,6 +1,6 @@
-import React, { Suspense, lazy } from "react";
+import React, { Suspense, lazy, useEffect } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes, useLocation } from "react-router-dom";
 
 import { ErrorBoundary } from "@/components/ErrorBoundary";
 import { Toaster as Sonner } from "@/components/ui/sonner";
@@ -48,6 +48,20 @@ const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({ children }) =
   return <>{children}</>;
 };
 
+// Dark mode is only valid for the in-app screens. On any public marketing
+// or content route, strip the `dark` class so light-only layouts (Landing,
+// Onboarding, blog, etc.) are not pulled into the dark CSS-variable theme
+// the in-app screens use.
+const ThemeScope: React.FC = () => {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    if (!pathname.startsWith("/app")) {
+      document.documentElement.classList.remove("dark");
+    }
+  }, [pathname]);
+  return null;
+};
+
 const App = () => (
   <ErrorBoundary>
     <QueryClientProvider client={queryClient}>
@@ -58,6 +72,7 @@ const App = () => (
               <Toaster />
             <Sonner />
             <BrowserRouter>
+              <ThemeScope />
               <Suspense fallback={<PageLoader />}>
                 <Routes>
                   <Route path="/" element={<Index />} />
