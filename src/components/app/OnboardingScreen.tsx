@@ -777,6 +777,15 @@ const OnboardingScreen: React.FC = () => {
   }, [funnelState]);
 
   useEffect(() => {
+    const root = document.documentElement;
+    const wasDark = root.classList.contains("dark");
+    root.classList.remove("dark");
+    return () => {
+      if (wasDark) root.classList.add("dark");
+    };
+  }, []);
+
+  useEffect(() => {
     if (!MILESTONE_STEPS.has(funnelState.step)) return;
     if (milestoneShownRef.current.has(funnelState.step)) return;
     milestoneShownRef.current.add(funnelState.step);
