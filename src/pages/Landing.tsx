@@ -329,6 +329,15 @@ const Landing: React.FC = () => {
   }, [trackLandingView, ttk]);
 
   useEffect(() => {
+    const root = document.documentElement;
+    const wasDark = root.classList.contains("dark");
+    root.classList.remove("dark");
+    return () => {
+      if (wasDark) root.classList.add("dark");
+    };
+  }, []);
+
+  useEffect(() => {
     const onScroll = () => setShowStickyCta(window.scrollY > 560);
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
