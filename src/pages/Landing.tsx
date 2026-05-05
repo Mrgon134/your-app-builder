@@ -491,12 +491,6 @@ const Landing: React.FC = () => {
   return (
     <div
       className="min-h-screen bg-[#FAF9F6] text-[#3f3a52] dark:bg-background dark:text-foreground"
-      style={
-        {
-          "--foreground": "252 18% 27%",
-          "--muted-foreground": "246 8% 48%",
-        } as React.CSSProperties
-      }
     >
       <SEOHead
         title="Nuju — AI Journal App for Mood Tracking & Emotional Clarity"
