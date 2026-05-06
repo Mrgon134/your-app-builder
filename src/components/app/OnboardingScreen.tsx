@@ -2142,7 +2142,7 @@ const OnboardingScreen: React.FC = () => {
   };
 
   return (
-    <div className={`onboarding-page-field min-h-[100dvh] bg-[#FAF9F6] px-4 dark:bg-background ${funnelState.step === PAYWALL_STEP ? "py-3 sm:py-6" : "py-6"}`}>
+    <div className={`onboarding-page-field min-h-[100dvh] bg-[#FAF9F6] px-4 ${funnelState.step === PAYWALL_STEP ? "py-3 sm:py-6" : "py-6"}`}>
       <AnimatePresence>
         {milestoneStep !== null ? (
           <MilestoneCelebration
