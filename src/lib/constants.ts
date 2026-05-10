@@ -6,6 +6,8 @@ export const MOODS = [
   { label: "Great", value: 5, color: "#4ECDC4", key: "great" as const },
 ];
 
+export const APP_STORE_URL = "https://apps.apple.com/us/app/nuju/id6763682187";
+
 export const AI_PERSONAS = [
   { id: "gentle" as const, name: "Gentle Guide", color: "#B8C4F0", desc: "Warm, understanding, nurturing" },
   { id: "tough" as const, name: "Tough Coach", color: "#D4A0D0", desc: "Direct, motivating, no excuses" },

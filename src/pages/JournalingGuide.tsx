@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight, Clock, BookOpen, Brain, Sparkles, Heart, List } from "lucide-react";
 import { Helmet } from "react-helmet-async";
+import AppStoreCta from "@/components/AppStoreCta";
 import SEOHead from "@/components/SEOHead";
 
 const CHAPTERS = [
@@ -75,12 +76,15 @@ const JournalingGuide: React.FC = () => {
           <Link to="/blog" className="flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground">
             ← Blog
           </Link>
-          <Link
-            to="/onboarding"
-            className="rounded-full bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground transition-all hover:opacity-90"
-          >
-            Try Nuju free
-          </Link>
+          <div className="flex items-center gap-2">
+            <Link
+              to="/onboarding"
+              className="rounded-full bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground transition-all hover:opacity-90"
+            >
+              Try Nuju free
+            </Link>
+            <AppStoreCta label="App Store" size="sm" className="hidden sm:inline-flex" />
+          </div>
         </div>
       </nav>
 
@@ -326,12 +330,15 @@ const JournalingGuide: React.FC = () => {
             Nuju does everything in this guide — mood tracking, prompts, voice entries, and AI pattern discovery — in
             one app. Free to start.
           </p>
-          <Link
-            to="/onboarding"
-            className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition-all hover:opacity-90"
-          >
-            Start journaling free <ArrowRight className="h-4 w-4" />
-          </Link>
+          <div className="flex flex-col items-center justify-center gap-3 sm:flex-row">
+            <Link
+              to="/onboarding"
+              className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition-all hover:opacity-90"
+            >
+              Start journaling free <ArrowRight className="h-4 w-4" />
+            </Link>
+            <AppStoreCta />
+          </div>
         </div>
 
         <div className="mt-10 text-center">

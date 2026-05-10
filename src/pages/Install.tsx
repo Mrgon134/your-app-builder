@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { JU_STICKERS } from "@/lib/stickers";
 import { Link } from "react-router-dom";
 import { Download, Share, MoreVertical, Plus, Check } from "lucide-react";
+import AppStoreCta from "@/components/AppStoreCta";
 import SEOHead from "@/components/SEOHead";
 import PublicNextSteps from "@/components/PublicNextSteps";
 
@@ -79,6 +80,8 @@ const Install: React.FC = () => {
             Add Nuju to your home screen for the full app experience - works
             offline and opens instantly.
           </p>
+
+          <AppStoreCta className="mb-6 w-full" />
 
           <div className="mb-8 rounded-3xl border border-border/50 bg-card p-6 text-left">
             <h2 className="font-serif text-xl font-semibold text-foreground">

@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { Link, Navigate, useParams } from "react-router-dom";
 import { ArrowLeft, ArrowRight, Clock, List, Tag } from "lucide-react";
 import { Helmet } from "react-helmet-async";
+import AppStoreCta from "@/components/AppStoreCta";
 import SEOHead from "@/components/SEOHead";
 import { usePostHogEvents } from "@/hooks/use-posthog-events";
 import {
@@ -583,20 +584,35 @@ const BlogPost: React.FC = () => {
           >
             <ArrowLeft className="h-4 w-4" /> {copy.allArticles}
           </Link>
-          <Link
-            to={`/onboarding?source=blog_article_nav_${post.slug}`}
-            className="rounded-full bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground transition-all hover:opacity-90"
-            onClick={() =>
-              events.trackRecommendationCtaClick(
-                post.slug,
-                post.category,
-                "blog_article_nav",
-                "reveal",
-              )
-            }
-          >
-            {copy.tryFree}
-          </Link>
+          <div className="flex items-center gap-2">
+            <Link
+              to={`/onboarding?source=blog_article_nav_${post.slug}`}
+              className="rounded-full bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground transition-all hover:opacity-90"
+              onClick={() =>
+                events.trackRecommendationCtaClick(
+                  post.slug,
+                  post.category,
+                  "blog_article_nav",
+                  "reveal",
+                )
+              }
+            >
+              {copy.tryFree}
+            </Link>
+            <AppStoreCta
+              label="App Store"
+              size="sm"
+              className="hidden sm:inline-flex"
+              onClick={() =>
+                events.trackRecommendationCtaClick(
+                  post.slug,
+                  post.category,
+                  "blog_article_nav_app_store",
+                  "app_store",
+                )
+              }
+            />
+          </div>
         </div>
       </nav>
 
@@ -755,6 +771,16 @@ const BlogPost: React.FC = () => {
               >
                 {recommendationSnapshot.secondaryLabel}
               </Link>
+              <AppStoreCta
+                onClick={() =>
+                  events.trackRecommendationCtaClick(
+                    post.slug,
+                    post.category,
+                    "blog_recommendation_snapshot_app_store",
+                    "app_store",
+                  )
+                }
+              />
             </div>
           </section>
         )}
@@ -798,20 +824,32 @@ const BlogPost: React.FC = () => {
           <p className="mx-auto mb-6 max-w-md text-muted-foreground">
             {copy.ctaBody}
           </p>
-          <Link
-            to={`/onboarding?source=blog_article_cta_${post.slug}`}
-            className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition-all hover:opacity-90"
-            onClick={() =>
-              events.trackRecommendationCtaClick(
-                post.slug,
-                post.category,
-                "blog_article_footer_cta",
-                "reveal",
-              )
-            }
-          >
-            {copy.ctaButton} <ArrowRight className="h-4 w-4" />
-          </Link>
+          <div className="flex flex-col items-center justify-center gap-3 sm:flex-row">
+            <Link
+              to={`/onboarding?source=blog_article_cta_${post.slug}`}
+              className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition-all hover:opacity-90"
+              onClick={() =>
+                events.trackRecommendationCtaClick(
+                  post.slug,
+                  post.category,
+                  "blog_article_footer_cta",
+                  "reveal",
+                )
+              }
+            >
+              {copy.ctaButton} <ArrowRight className="h-4 w-4" />
+            </Link>
+            <AppStoreCta
+              onClick={() =>
+                events.trackRecommendationCtaClick(
+                  post.slug,
+                  post.category,
+                  "blog_article_footer_app_store",
+                  "app_store",
+                )
+              }
+            />
+          </div>
         </div>
 
         {relatedPosts.length > 0 && (

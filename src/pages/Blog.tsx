@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight, BookOpen, Clock, Tag } from "lucide-react";
+import AppStoreCta from "@/components/AppStoreCta";
 import SEOHead from "@/components/SEOHead";
 import { getPublishedBlogPosts } from "@/data/blog-posts";
 import { usePostHogEvents } from "@/hooks/use-posthog-events";
@@ -66,12 +67,15 @@ const Blog: React.FC = () => {
           >
             Nuju
           </Link>
-          <Link
-            to="/onboarding"
-            className="rounded-full bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground transition-all hover:opacity-90"
-          >
-            Try free
-          </Link>
+          <div className="flex items-center gap-2">
+            <Link
+              to="/onboarding"
+              className="rounded-full bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground transition-all hover:opacity-90"
+            >
+              Try free
+            </Link>
+            <AppStoreCta label="App Store" size="sm" className="hidden sm:inline-flex" />
+          </div>
         </div>
       </nav>
 
@@ -204,6 +208,16 @@ const Blog: React.FC = () => {
               >
                 See how Nuju works
               </Link>
+              <AppStoreCta
+                onClick={() =>
+                  events.trackRecommendationCtaClick(
+                    "blog_hub",
+                    "Recommendation Hub",
+                    "blog_recommendation_hub_app_store",
+                    "app_store",
+                  )
+                }
+              />
             </div>
           </section>
         )}
@@ -278,6 +292,7 @@ const Blog: React.FC = () => {
             >
               See install options
             </Link>
+            <AppStoreCta />
           </div>
         </div>
       </div>

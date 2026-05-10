@@ -17,6 +17,7 @@ import {
   Zap,
 } from "lucide-react";
 
+import AppStoreCta from "@/components/AppStoreCta";
 import LifetimeScarcityMeter from "@/components/app/LifetimeScarcityMeter";
 import HeroPatternPreview from "@/components/landing/HeroPatternPreview";
 import SEOHead from "@/components/SEOHead";
@@ -26,6 +27,7 @@ import { useLifetimeScarcity } from "@/hooks/use-lifetime-scarcity";
 import { usePostHogEvents } from "@/hooks/use-posthog-events";
 import { useTikTokPixel } from "@/hooks/use-tiktok-pixel";
 import { PRICING_CONFIG } from "@/lib/config";
+import { APP_STORE_URL } from "@/lib/constants";
 import { ROUTES } from "@/lib/routes";
 import juGood from "@/assets/ju-good.webp";
 import juGreat from "@/assets/ju-great.webp";
@@ -528,12 +530,15 @@ const Landing: React.FC = () => {
             <a href="#faq" className="transition hover:text-foreground">FAQ</a>
           </div>
 
-          <button
-            onClick={() => startOnboarding()}
-            className="nuju-brand-button h-10 rounded-full px-5 text-sm font-semibold transition hover:-translate-y-0.5 active:scale-[0.98]"
-          >
-            Try Nuju free
-          </button>
+          <div className="flex items-center gap-2">
+            <button
+              onClick={() => startOnboarding()}
+              className="nuju-brand-button h-10 rounded-full px-5 text-sm font-semibold transition hover:-translate-y-0.5 active:scale-[0.98]"
+            >
+              Try Nuju free
+            </button>
+            <AppStoreCta label="App Store" size="sm" className="hidden h-10 px-4 sm:inline-flex" />
+          </div>
         </div>
       </nav>
 
@@ -590,6 +595,7 @@ const Landing: React.FC = () => {
               >
                 Watch how it works
               </button>
+              <AppStoreCta variant="soft" className="h-14 bg-white/72 backdrop-blur-xl dark:bg-white/6" />
             </div>
 
             <div className="mx-auto mt-8 hidden max-w-3xl gap-2 sm:grid sm:grid-cols-3">
@@ -1019,13 +1025,16 @@ const Landing: React.FC = () => {
               Answer a few gentle prompts, see what Ju notices, then decide whether this support should stay close.
             </p>
           </div>
-          <button
-            onClick={() => startOnboarding()}
-            className="nuju-brand-button inline-flex h-14 items-center justify-center gap-2 rounded-full px-7 text-base font-semibold transition hover:-translate-y-0.5 active:scale-[0.98]"
-          >
-            Start the Ju Gets You reveal
-            <ArrowRight className="h-5 w-5" />
-          </button>
+          <div className="flex flex-col gap-3 sm:flex-row md:justify-self-end">
+            <button
+              onClick={() => startOnboarding()}
+              className="nuju-brand-button inline-flex h-14 items-center justify-center gap-2 rounded-full px-7 text-base font-semibold transition hover:-translate-y-0.5 active:scale-[0.98]"
+            >
+              Start the Ju Gets You reveal
+              <ArrowRight className="h-5 w-5" />
+            </button>
+            <AppStoreCta className="h-14 bg-white/72" />
+          </div>
         </div>
       </motion.section>
 
@@ -1256,6 +1265,7 @@ const Landing: React.FC = () => {
             >
               See plans
             </button>
+            <AppStoreCta className="h-14 bg-white/72" />
           </div>
           <p className="mt-5 text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
             60-second reveal · No credit card to start · Private by default
@@ -1286,7 +1296,8 @@ const Landing: React.FC = () => {
             </div>
           </div>
           <p className="text-sm text-muted-foreground">
-            Available as a <Link to="/install" state={{ from: "/" }} className="text-primary hover:underline">progressive web app</Link> on iOS, Android, and desktop.
+            Available as a <Link to="/install" state={{ from: "/" }} className="text-primary hover:underline">progressive web app</Link> on iOS, Android, and desktop, plus a native iPhone app on the{" "}
+            <a href={APP_STORE_URL} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">App Store</a>.
             Read more on our <Link to="/about" state={{ from: "/" }} className="text-primary hover:underline">about page</Link>, or visit the <Link to="/support" state={{ from: "/" }} className="text-primary hover:underline">support center</Link> if you have questions.
             Looking for tips? Read our <Link to="/blog" className="text-primary hover:underline">journaling and wellness blog</Link>.
           </p>
@@ -1335,6 +1346,7 @@ const Landing: React.FC = () => {
                 Start reveal
                 <ArrowRight className="h-3.5 w-3.5" />
               </button>
+              <AppStoreCta label="App Store" size="sm" className="h-10 px-3 text-xs" />
             </div>
           </motion.div>
         )}

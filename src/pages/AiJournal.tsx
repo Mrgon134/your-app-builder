@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight, Brain, Lock, Sparkles, Heart, Mic, LineChart } from "lucide-react";
 import { Helmet } from "react-helmet-async";
+import AppStoreCta from "@/components/AppStoreCta";
 import SEOHead from "@/components/SEOHead";
 import juMain from "@/assets/ju-main.webp";
 import juGreat from "@/assets/ju-great.webp";
@@ -197,12 +198,15 @@ const AiJournal: React.FC = () => {
             <img src={juMain} alt="Ju mascot" className="h-7 w-7 object-contain" width={28} height={28} />
             Nuju
           </Link>
-          <Link
-            to="/onboarding?source=ai_journal_nav"
-            className="rounded-full bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground transition-all hover:opacity-90"
-          >
-            Start free reveal
-          </Link>
+          <div className="flex items-center gap-2">
+            <Link
+              to="/onboarding?source=ai_journal_nav"
+              className="rounded-full bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground transition-all hover:opacity-90"
+            >
+              Start free reveal
+            </Link>
+            <AppStoreCta label="App Store" size="sm" className="hidden sm:inline-flex" />
+          </div>
         </div>
       </nav>
 
@@ -233,6 +237,7 @@ const AiJournal: React.FC = () => {
             >
               See how Nuju installs
             </Link>
+            <AppStoreCta />
           </div>
 
           <img
@@ -493,6 +498,7 @@ const AiJournal: React.FC = () => {
             >
               Install Nuju
             </Link>
+            <AppStoreCta />
           </div>
         </section>
       </main>
