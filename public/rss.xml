@@ -6,7 +6,70 @@
     <atom:link href="https://nuju.app/rss.xml" rel="self" type="application/rss+xml" />
     <description>Practical guides on journaling, mood tracking, and emotional wellness from the Nuju team.</description>
     <language>en</language>
-    <lastBuildDate>Wed, 29 Apr 2026 15:40:20 GMT</lastBuildDate>
+    <lastBuildDate>Mon, 11 May 2026 19:23:23 GMT</lastBuildDate>
+    <item>
+      <title>Kenapa Journaling Bisa Bantu Kesehatan Mental Kamu (Bukan Cuma Mitos)</title>
+      <link>https://nuju.app/blog/journaling-untuk-kesehatan-mental</link>
+      <guid isPermaLink="true">https://nuju.app/blog/journaling-untuk-kesehatan-mental</guid>
+      <description>Journaling sering dibilang bagus untuk mental health, tapi beneran ada buktinya gak? Ternyata ada — dan penelitiannya cukup mengejutkan.</description>
+      <category>Kesehatan Mental</category>
+      <pubDate>Sun, 03 May 2026 12:00:00 GMT</pubDate>
+      <dc:language>id</dc:language>
+    </item>
+    <item>
+      <title>Best Apple Journal Alternatives in 2026 (Cross-Platform + AI Insight)</title>
+      <link>https://nuju.app/blog/apple-journal-alternatives</link>
+      <guid isPermaLink="true">https://nuju.app/blog/apple-journal-alternatives</guid>
+      <description>Apple Journal is clean and private, but locked to iOS and light on insight. If you want mood tracking, AI reflection, or a journal that works across devices, start here.</description>
+      <category>App Comparison</category>
+      <pubDate>Sun, 03 May 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Best Day One Alternatives in 2026 (Cheaper, AI-Powered, or Both)</title>
+      <link>https://nuju.app/blog/day-one-alternative</link>
+      <guid isPermaLink="true">https://nuju.app/blog/day-one-alternative</guid>
+      <description>Day One is a beautiful digital diary, but the subscription is steep and the insight layer is thin. Here are the best alternatives if you want AI reflection or a lower price.</description>
+      <category>App Comparison</category>
+      <pubDate>Sun, 03 May 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Best Self-Reflection Apps in 2026: 7 Tested for Real Insight</title>
+      <link>https://nuju.app/blog/best-self-reflection-apps</link>
+      <guid isPermaLink="true">https://nuju.app/blog/best-self-reflection-apps</guid>
+      <description>Most self-reflection apps just ask you how you feel. We tested 7 to find the ones that actually help you see patterns, name what is repeating, and reflect more clearly.</description>
+      <category>App Comparison</category>
+      <pubDate>Sun, 03 May 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>7 Aplikasi Jurnal Terbaik 2026 untuk Android &amp; iPhone</title>
+      <link>https://nuju.app/blog/aplikasi-jurnal-terbaik</link>
+      <guid isPermaLink="true">https://nuju.app/blog/aplikasi-jurnal-terbaik</guid>
+      <description>Udah coba banyak aplikasi jurnal tapi gak cocok? Ini 7 aplikasi terbaik yang udah dicoba dan diranking berdasarkan kemudahan, fitur, privasi, dan harganya.</description>
+      <category>Rekomendasi Aplikasi</category>
+      <pubDate>Sat, 02 May 2026 12:00:00 GMT</pubDate>
+      <dc:language>id</dc:language>
+    </item>
+    <item>
+      <title>5 Manfaat Mood Tracking yang Terbukti Secara Ilmiah</title>
+      <link>https://nuju.app/blog/manfaat-mood-tracking</link>
+      <guid isPermaLink="true">https://nuju.app/blog/manfaat-mood-tracking</guid>
+      <description>Tracking mood setiap hari bukan cuma tahu kamu lagi senang atau sedih — tapi nemuin pola, bikin keputusan lebih baik, dan ngerti diri sendiri lebih dalam.</description>
+      <category>Kesehatan Mental</category>
+      <pubDate>Fri, 01 May 2026 12:00:00 GMT</pubDate>
+      <dc:language>id</dc:language>
+    </item>
+    <item>
+      <title>Cara Mulai Journaling untuk Pemula (Cukup 30 Detik Sehari)</title>
+      <link>https://nuju.app/blog/cara-mulai-journaling</link>
+      <guid isPermaLink="true">https://nuju.app/blog/cara-mulai-journaling</guid>
+      <description>Belum pernah journaling? Panduan ini jelasin semua yang perlu kamu tahu — mau nulis apa, kapan, dan gimana biar kebiasaannya bertahan lama.</description>
+      <category>Tips Journaling</category>
+      <pubDate>Thu, 30 Apr 2026 12:00:00 GMT</pubDate>
+      <dc:language>id</dc:language>
+    </item>
     <item>
       <title>Can&apos;t Sleep? Try This 3-Minute Journaling Technique for 3AM Anxiety</title>
       <link>https://nuju.app/blog/3am-anxiety-journaling</link>

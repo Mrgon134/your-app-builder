@@ -19,7 +19,6 @@ type LeadRow = {
   email: string | null;
   name: string | null;
   answers: Record<string, unknown> | null;
-  reveal: Record<string, unknown> | null;
   selected_plan: string | null;
   created_at: string;
   updated_at: string;
@@ -34,15 +33,12 @@ type CheckoutIntentRow = {
   status: "initiated" | "processing" | "paid" | "claimed" | "failed" | "expired";
   claimed_user_id: string | null;
   created_at: string;
-  updated_at: string;
 };
 
 type LifecycleEventRow = {
   recipient_email: string;
   campaign: Campaign;
   status: "queued" | "sent" | "skipped" | "failed";
-  sent_at: string | null;
-  created_at: string;
 };
 
 type ProfileRow = {
@@ -58,18 +54,70 @@ type Candidate = {
   email: string;
 };
 
-const campaignLabels: Record<Campaign, string> = {
-  plan_ready: "Plan ready",
-  checkout_still_open: "Checkout still open",
-  payment_failed: "Payment failed",
-  still_here: "Still here",
+const campaignNames: Record<Campaign, string> = {
+  plan_ready: "Your next step is ready",
+  checkout_still_open: "Your plan is still here",
+  payment_failed: "Your payment did not go through",
+  still_here: "Still here when you are ready",
 };
 
-const safeText = (value: unknown, fallback = "") => (
-  typeof value === "string" ? value.replace(/\s+/g, " ").trim() : fallback
-);
+const campaignSet = new Set(Object.keys(campaignNames));
+
+const safeText = (value: unknown, fallback = "") =>
+  typeof value === "string" ? value.replace(/\s+/g, " ").trim() : fallback;
 
 const normalizeEmail = (value: unknown) => safeText(value).toLowerCase();
+
+const escapeHtml = (value: string) =>
+  value
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+
+const clampNumber = (value: unknown, fallback: number, min: number, max: number) => {
+  const parsed = typeof value === "number" ? value : Number(value);
+  if (!Number.isFinite(parsed)) return fallback;
+  return Math.min(max, Math.max(min, parsed));
+};
+
+const getBearerToken = (req: Request) =>
+  (req.headers.get("Authorization") || "").replace(/^Bearer\s+/i, "").trim();
+
+const getServiceClient = () => {
+  const supabaseUrl = Deno.env.get("SUPABASE_URL");
+  const serviceRoleKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY");
+  if (!supabaseUrl || !serviceRoleKey) {
+    throw new Error("Supabase service role credentials are missing");
+  }
+  return createClient(supabaseUrl, serviceRoleKey);
+};
+
+const isAuthorized = async (req: Request, supabase: ReturnType<typeof createClient>) => {
+  const token = getBearerToken(req);
+  if (!token) return false;
+
+  const allowedTokens = [
+    Deno.env.get("SUPABASE_SERVICE_ROLE_KEY"),
+    Deno.env.get("UNPAID_NUDGE_CRON_SECRET"),
+  ].filter((value): value is string => Boolean(value));
+
+  if (allowedTokens.includes(token)) return true;
+
+  const { data, error } = await supabase
+    .from("edge_function_cron_secrets")
+    .select("secret")
+    .eq("name", "send-unpaid-onboarding-nudges")
+    .maybeSingle();
+
+  if (error) {
+    console.error("Cron secret lookup failed:", error);
+    return false;
+  }
+
+  return Boolean(data?.secret && data.secret === token);
+};
 
 const isExcludedRecipient = (email: string) => {
   const normalized = normalizeEmail(email);
@@ -85,49 +133,54 @@ const isExcludedRecipient = (email: string) => {
   ];
 
   if (excludedDomains.some((domain) => normalized.endsWith(domain))) return true;
-  if (normalized === "test@test.com") return true;
-  if (normalized === "skyjonay@gmail.com") return true;
-  if (normalized === "irfanzaen@gmail.com" || normalized === "irfanzaenjr@gmail.com") return true;
+  if (["test@test.com", "skyjonay@gmail.com", "irfanzaen@gmail.com", "irfanzaenjr@gmail.com"].includes(normalized)) return true;
   if (normalized.startsWith("debug+") || normalized.startsWith("reviewer+")) return true;
   if (normalized.includes("+test")) return true;
 
   return false;
 };
 
-const clampNumber = (value: unknown, fallback: number, min: number, max: number) => {
-  const parsed = typeof value === "number" ? value : Number(value);
-  if (!Number.isFinite(parsed)) return fallback;
-  return Math.min(max, Math.max(min, parsed));
+const buildEventKey = (email: string, campaign: Campaign) => `${email}:${campaign}`;
+
+const getLatestIntent = (lead: LeadRow, intentsByEmail: Map<string, CheckoutIntentRow[]>) => {
+  const intents = intentsByEmail.get(normalizeEmail(lead.email)) || [];
+  return intents.find((intent) => intent.session_id === lead.session_id) || intents[0] || null;
 };
 
-const escapeHtml = (value: string) =>
-  value
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#39;");
-
-const getBearerToken = (req: Request) =>
-  (req.headers.get("Authorization") || "").replace(/^Bearer\s+/i, "").trim();
-
-const isAuthorized = (req: Request) => {
-  const token = getBearerToken(req);
-  const allowedTokens = [
-    Deno.env.get("SUPABASE_SERVICE_ROLE_KEY"),
-    Deno.env.get("UNPAID_NUDGE_CRON_SECRET"),
-  ].filter((value): value is string => Boolean(value));
-
-  return Boolean(token && allowedTokens.includes(token));
+const hasPaidIntent = (lead: LeadRow, intentsByEmail: Map<string, CheckoutIntentRow[]>) => {
+  const intents = intentsByEmail.get(normalizeEmail(lead.email)) || [];
+  return intents.some((intent) =>
+    ["paid", "claimed"].includes(intent.status) ||
+    (intent.claimed_user_id && intent.claimed_user_id === lead.user_id)
+  );
 };
 
-const getServiceClient = () => {
-  const supabaseUrl = Deno.env.get("SUPABASE_URL");
-  const serviceRoleKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY");
-  if (!supabaseUrl || !serviceRoleKey) {
-    throw new Error("Supabase service role credentials are missing");
-  }
-  return createClient(supabaseUrl, serviceRoleKey);
+const hasActivePremiumProfile = (lead: LeadRow, profilesById: Map<string, ProfileRow>) => {
+  if (!lead.user_id) return false;
+
+  const profile = profilesById.get(lead.user_id);
+  if (!profile) return false;
+
+  const plan = safeText(profile.plan);
+  if (plan === "lifetime") return true;
+  if (!["weekly", "three_month", "yearly"].includes(plan)) return false;
+
+  const expiresAt = profile.plan_expires_at ? Date.parse(profile.plan_expires_at) : NaN;
+  return Number.isFinite(expiresAt) && expiresAt > Date.now();
+};
+
+const pickCampaign = (
+  lead: LeadRow,
+  intent: CheckoutIntentRow | null,
+  sentEvents: Map<string, LifecycleEventRow>,
+  forcedCampaign: Campaign | null,
+): Campaign => {
+  if (forcedCampaign) return forcedCampaign;
+  if (intent?.status === "failed") return "payment_failed";
+  if (intent && ["initiated", "processing"].includes(intent.status)) return "checkout_still_open";
+
+  const planReadySent = sentEvents.get(buildEventKey(normalizeEmail(lead.email), "plan_ready"));
+  return planReadySent ? "still_here" : "plan_ready";
 };
 
 const answerLabel = (answers: Record<string, unknown> | null, key: string) => {
@@ -172,55 +225,36 @@ const buildStateLine = (lead: LeadRow) => {
     return "you have been trying to find a gentler way to understand what is going on inside";
   }
 
-  if (parts.length === 1) return parts[0];
-  return `${parts[0]}, and ${parts[1]}`;
+  return parts.length === 1 ? parts[0] : `${parts[0]}, and ${parts[1]}`;
 };
 
 const buildEmail = (candidate: Candidate) => {
   const { lead, intent, campaign, email } = candidate;
   const name = safeText(lead.name || intent?.name) || "there";
   const stateLine = buildStateLine(lead);
-  const plan = safeText(lead.selected_plan || intent?.plan);
-  const planLine = plan
-    ? `The plan you chose is still ready when you want to continue.`
-    : "Your next step is still ready when you want to continue.";
   const continueUrl = `${APP_URL}/onboarding?source=email&campaign=${encodeURIComponent(campaign)}`;
-
-  const subjects: Record<Campaign, string> = {
-    plan_ready: "Your next step is ready",
-    checkout_still_open: "Your plan is still here",
-    payment_failed: "Your payment did not go through",
-    still_here: "Still here when you are ready",
-  };
-
-  const intros: Record<Campaign, string> = {
-    plan_ready: `Based on what you shared, it sounds like ${stateLine}.`,
-    checkout_still_open: `You were close to starting, and based on what you shared, it sounds like ${stateLine}.`,
-    payment_failed: `Your payment did not go through, but nothing about your plan was lost. Based on what you shared, it sounds like ${stateLine}.`,
-    still_here: `No pressure from this side. Based on what you shared, it sounds like ${stateLine}.`,
-  };
-
-  const subject = subjects[campaign];
-  const preview = "A quieter way to start is ready for you.";
-  const escapedName = escapeHtml(name);
-  const escapedIntro = escapeHtml(intros[campaign]);
-  const escapedPlanLine = escapeHtml(planLine);
-  const escapedEmail = escapeHtml(email);
+  const subject = campaignNames[campaign];
+  const intro = campaign === "payment_failed"
+    ? "Your payment did not go through, but nothing about your plan was lost."
+    : campaign === "checkout_still_open"
+      ? "You were close to starting, and your next step is still ready."
+      : campaign === "still_here"
+        ? "No pressure from this side. Your Nuju path is still here."
+        : "Based on what you shared, your next step is ready.";
 
   const html = `<!doctype html>
 <html>
   <body style="margin:0;background:#f6f2ec;padding:28px 16px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#241f1a">
     <div style="max-width:560px;margin:0 auto;background:#fffaf4;border:1px solid #eadfce;border-radius:24px;padding:28px">
-      <p style="margin:0 0 18px;color:#7a6b5c;font-size:13px;letter-spacing:.08em;text-transform:uppercase">Nuju</p>
-      <h1 style="margin:0 0 18px;font-size:28px;line-height:1.18;font-weight:700;color:#241f1a">Hi ${escapedName}, your next step is ready.</h1>
-      <p style="margin:0 0 16px;font-size:16px;line-height:1.7;color:#3b332b">${escapedIntro}</p>
-      <p style="margin:0 0 16px;font-size:16px;line-height:1.7;color:#3b332b">Nuju prepared a softer way to begin: small steps, clear guidance, and support that meets you where you are now.</p>
-      <p style="margin:0 0 24px;font-size:16px;line-height:1.7;color:#3b332b">${escapedPlanLine}</p>
+      <p style="margin:0 0 18px;color:#7a6b5c;font-size:13px;letter-spacing:.08em;text-transform:uppercase;font-weight:800">Nuju</p>
+      <h1 style="margin:0 0 18px;font-size:28px;line-height:1.18;font-weight:700;color:#241f1a">Hi ${escapeHtml(name)}, your next step is ready.</h1>
+      <p style="margin:0 0 16px;font-size:16px;line-height:1.7;color:#3b332b">${escapeHtml(intro)}</p>
+      <p style="margin:0 0 16px;font-size:16px;line-height:1.7;color:#3b332b">It sounds like ${escapeHtml(stateLine)}.</p>
+      <p style="margin:0 0 24px;font-size:16px;line-height:1.7;color:#3b332b">Nuju prepared a softer way to begin: small steps, clear guidance, and support that meets you where you are now.</p>
       <a href="${continueUrl}" style="display:inline-block;background:#8f7762;color:#fff;text-decoration:none;border-radius:999px;padding:13px 20px;font-weight:700;font-size:15px">Continue my plan</a>
       <p style="margin:24px 0 0;font-size:13px;line-height:1.6;color:#8b7d70">If now is not a good time, you can leave this for later. To stop these emails, reply with unsubscribe.</p>
-      <p style="margin:18px 0 0;font-size:12px;line-height:1.5;color:#a19487">Sent to ${escapedEmail} by Nuju.</p>
+      <p style="margin:18px 0 0;font-size:12px;line-height:1.5;color:#a19487">Sent to ${escapeHtml(email)} by Nuju.</p>
     </div>
-    <div style="display:none;max-height:0;overflow:hidden">${escapeHtml(preview)}</div>
   </body>
 </html>`;
 
@@ -239,12 +273,7 @@ const sendEmail = async (to: string, subject: string, html: string) => {
       Authorization: `Bearer ${resendApiKey}`,
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({
-      from: FROM_EMAIL,
-      to: [to],
-      subject,
-      html,
-    }),
+    body: JSON.stringify({ from: FROM_EMAIL, to: [to], subject, html }),
   });
 
   const text = await response.text();
@@ -266,63 +295,15 @@ const sendEmail = async (to: string, subject: string, html: string) => {
   return { ok: true, error: null as string | null, id: safeText(payload?.id) || null };
 };
 
-const buildEventKey = (email: string, campaign: Campaign) => `${email}:${campaign}`;
-
-const getLatestIntent = (lead: LeadRow, intentsByEmail: Map<string, CheckoutIntentRow[]>) => {
-  const email = normalizeEmail(lead.email);
-  const intents = intentsByEmail.get(email) || [];
-  const sameSession = intents.find((intent) => intent.session_id === lead.session_id);
-  return sameSession || intents[0] || null;
-};
-
-const hasPaidIntent = (lead: LeadRow, intentsByEmail: Map<string, CheckoutIntentRow[]>) => {
-  const email = normalizeEmail(lead.email);
-  const intents = intentsByEmail.get(email) || [];
-  return intents.some((intent) =>
-    ["paid", "claimed"].includes(intent.status) ||
-    (intent.claimed_user_id && intent.claimed_user_id === lead.user_id)
-  );
-};
-
-const hasActivePremiumProfile = (lead: LeadRow, profilesById: Map<string, ProfileRow>) => {
-  if (!lead.user_id) return false;
-
-  const profile = profilesById.get(lead.user_id);
-  if (!profile) return false;
-
-  const plan = safeText(profile.plan);
-  if (plan === "lifetime") return true;
-  if (!["weekly", "three_month", "yearly"].includes(plan)) return false;
-
-  const expiresAt = profile.plan_expires_at ? Date.parse(profile.plan_expires_at) : NaN;
-  return Number.isFinite(expiresAt) && expiresAt > Date.now();
-};
-
-const pickCampaign = (
-  lead: LeadRow,
-  intent: CheckoutIntentRow | null,
-  sentEvents: Map<string, LifecycleEventRow>,
-  forcedCampaign: Campaign | null,
-): Campaign => {
-  if (forcedCampaign) return forcedCampaign;
-
-  if (intent?.status === "failed") return "payment_failed";
-  if (intent && ["initiated", "processing"].includes(intent.status)) return "checkout_still_open";
-
-  const email = normalizeEmail(lead.email);
-  const planReadySent = sentEvents.get(buildEventKey(email, "plan_ready"));
-  if (planReadySent) return "still_here";
-
-  return "plan_ready";
-};
-
 serve(async (req) => {
   if (req.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
   }
 
   try {
-    if (!isAuthorized(req)) {
+    const supabase = getServiceClient();
+
+    if (!(await isAuthorized(req, supabase))) {
       return new Response(JSON.stringify({ error: "Unauthorized" }), {
         status: 401,
         headers: { ...corsHeaders, "Content-Type": "application/json" },
@@ -335,16 +316,14 @@ serve(async (req) => {
     const minAgeHours = clampNumber(body.minAgeHours, 4, 0, 168);
     const maxLeadAgeDays = clampNumber(body.maxLeadAgeDays, 14, 1, 180);
     const forcedCampaign = safeText(body.campaign) as Campaign;
-    const campaign = campaignLabels[forcedCampaign] ? forcedCampaign : null;
-
-    const supabase = getServiceClient();
+    const campaign = campaignSet.has(forcedCampaign) ? forcedCampaign : null;
     const now = Date.now();
     const olderThan = new Date(now - minAgeHours * 60 * 60 * 1000).toISOString();
     const newerThan = new Date(now - maxLeadAgeDays * 24 * 60 * 60 * 1000).toISOString();
 
     const { data: leads, error: leadsError } = await supabase
       .from("onboarding_leads")
-      .select("id, session_id, user_id, source, email, name, answers, reveal, selected_plan, created_at, updated_at")
+      .select("id, session_id, user_id, source, email, name, answers, selected_plan, created_at, updated_at")
       .not("email", "is", null)
       .gte("created_at", newerThan)
       .lte("updated_at", olderThan)
@@ -368,15 +347,15 @@ serve(async (req) => {
       await Promise.all([
         supabase
           .from("checkout_purchase_intents")
-          .select("id, session_id, email, name, plan, status, claimed_user_id, created_at, updated_at")
+          .select("id, session_id, email, name, plan, status, claimed_user_id, created_at")
           .in("email", emails)
           .order("created_at", { ascending: false })
           .limit(500),
         supabase
           .from("lifecycle_email_events")
-          .select("recipient_email, campaign, status, sent_at, created_at")
+          .select("recipient_email, campaign, status")
           .in("recipient_email", emails)
-          .in("campaign", Object.keys(campaignLabels)),
+          .in("campaign", Object.keys(campaignNames)),
         supabase
           .from("email_suppression_list")
           .select("email")
@@ -387,9 +366,7 @@ serve(async (req) => {
     if (eventsError) throw eventsError;
     if (suppressionsError) throw suppressionsError;
 
-    const profileIds = [
-      ...new Set(normalizedLeads.map((lead) => lead.user_id).filter((value): value is string => Boolean(value))),
-    ];
+    const profileIds = [...new Set(normalizedLeads.map((lead) => lead.user_id).filter((value): value is string => Boolean(value)))];
     const { data: profiles, error: profilesError } = profileIds.length > 0
       ? await supabase
           .from("profiles")
@@ -399,12 +376,10 @@ serve(async (req) => {
 
     if (profilesError) throw profilesError;
 
-    const profilesById = new Map<string, ProfileRow>();
-    for (const profile of ((profiles || []) as ProfileRow[])) {
-      profilesById.set(profile.id, profile);
-    }
-
     const suppressedEmails = new Set(((suppressions || []) as { email: string }[]).map((row) => normalizeEmail(row.email)));
+    const profilesById = new Map<string, ProfileRow>();
+    for (const profile of ((profiles || []) as ProfileRow[])) profilesById.set(profile.id, profile);
+
     const intentsByEmail = new Map<string, CheckoutIntentRow[]>();
     for (const intent of ((intents || []) as CheckoutIntentRow[])) {
       const email = normalizeEmail(intent.email);
@@ -441,8 +416,6 @@ serve(async (req) => {
         recipient_email: email,
         campaign: nextCampaign,
         status: "queued",
-        sent_at: null,
-        created_at: new Date().toISOString(),
       });
 
       if (candidates.length >= limit) break;
@@ -469,7 +442,6 @@ serve(async (req) => {
 
     for (const candidate of candidates) {
       const { subject, html } = buildEmail(candidate);
-
       const { data: event, error: eventError } = await supabase
         .from("lifecycle_email_events")
         .insert({
@@ -491,12 +463,7 @@ serve(async (req) => {
 
       if (eventError) {
         skipped++;
-        results.push({
-          email: candidate.email,
-          campaign: candidate.campaign,
-          status: "skipped",
-          reason: eventError.message,
-        });
+        results.push({ email: candidate.email, campaign: candidate.campaign, status: "skipped", reason: eventError.message });
         continue;
       }
 
