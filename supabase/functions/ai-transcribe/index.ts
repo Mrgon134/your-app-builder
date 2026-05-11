@@ -18,17 +18,21 @@ interface GroqTranscriptionResponse {
   segments?: GroqTranscriptionSegment[];
 }
 
+interface OpenRouterTranscriptionResponse {
+  text?: string;
+}
+
 // ─── Transcription config ─────────────────────────────────────────────────────
 //
 //  GROQ_API_KEY     = Groq API key (free at console.groq.com)
 //                     → Uses whisper-large-v3, auto-detects language
 //                     → Primary provider (fast, accurate, global)
 //
-//  GEMINI_API_KEY   = Google Gemini API key (fallback)
-//                     → Uses gemini-1.5-flash multimodal audio input
+//  OPENROUTER_API_KEY = OpenRouter API key (fallback)
+//                     → Uses openai/gpt-4o-transcribe by default
 //                     → Auto-detects language from audio
 //
-//  Priority: GROQ_API_KEY → GEMINI_API_KEY → error
+//  Priority: GROQ_API_KEY → OPENROUTER_API_KEY → error
 //
 // ─────────────────────────────────────────────────────────────────────────────
 
@@ -77,37 +81,48 @@ async function transcribeGroq(audioBase64: string, mimeType: string, apiKey: str
   return { transcript, segments };
 }
 
-/** Gemini 1.5 Flash — multimodal audio, auto language detection (fallback) */
-async function transcribeGemini(audioBase64: string, mimeType: string, apiKey: string): Promise<string> {
-  const res = await fetch(
-    `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`,
-    {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        contents: [
-          {
-            parts: [
-              { inlineData: { mimeType, data: audioBase64 } },
-              {
-                text: "Transcribe this audio exactly as spoken. Return ONLY the transcript text, in the same language as the audio. Do not add any explanation, labels, or formatting.",
-              },
-            ],
-          },
-        ],
-        generationConfig: { temperature: 0, maxOutputTokens: 1000 },
-      }),
-    }
-  );
+/** OpenRouter transcription fallback. */
+function formatFromMimeType(mimeType: string): string {
+  if (mimeType.includes("webm")) return "webm";
+  if (mimeType.includes("ogg")) return "ogg";
+  if (mimeType.includes("wav")) return "wav";
+  if (mimeType.includes("mpeg")) return "mp3";
+  if (mimeType.includes("mp3")) return "mp3";
+  if (mimeType.includes("mp4")) return "m4a";
+  return "m4a";
+}
+
+async function transcribeOpenRouter(
+  audioBase64: string,
+  mimeType: string,
+  apiKey: string,
+): Promise<{ transcript: string; segments: { start: number; end: number; text: string }[] }> {
+  const model = Deno.env.get("OPENROUTER_TRANSCRIBE_MODEL") || "openai/gpt-4o-transcribe";
+  const res = await fetch("https://openrouter.ai/api/v1/audio/transcriptions", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${apiKey}`,
+      "HTTP-Referer": Deno.env.get("OPENROUTER_APP_URL") || "https://nuju.app",
+      "X-Title": Deno.env.get("OPENROUTER_APP_TITLE") || "Nuju",
+    },
+    body: JSON.stringify({
+      input_audio: {
+        data: audioBase64,
+        format: formatFromMimeType(mimeType),
+      },
+      model,
+      temperature: 0,
+    }),
+  });
 
   if (!res.ok) {
     const err = await res.text();
-    throw new Error(`Gemini transcription failed ${res.status}: ${err}`);
+    throw new Error(`OpenRouter transcription failed ${res.status}: ${err}`);
   }
 
-  const data = await res.json();
-  const text = data.candidates?.[0]?.content?.parts?.[0]?.text ?? "";
-  return text.trim();
+  const data = (await res.json()) as OpenRouterTranscriptionResponse;
+  return { transcript: (data.text || "").trim(), segments: [] };
 }
 
 // ── Handler ───────────────────────────────────────────────────────────────────
@@ -130,24 +145,39 @@ serve(async (req) => {
     }
 
     const groqKey = Deno.env.get("GROQ_API_KEY");
-    const geminiKey = Deno.env.get("GEMINI_API_KEY");
+    const openRouterKey = Deno.env.get("OPENROUTER_API_KEY") || Deno.env.get("AI_FALLBACK_API_KEY");
 
     let transcript = "";
     let segments: { start: number; end: number; text: string }[] = [];
 
     if (groqKey) {
-      // Primary: Groq Whisper (free, fastest, best multilingual accuracy + timestamps)
-      const result = await transcribeGroq(audioBase64, mimeType, groqKey);
+      try {
+        const result = await transcribeGroq(audioBase64, mimeType, groqKey);
+        transcript = result.transcript;
+        segments = result.segments;
+      } catch (error) {
+        if (!openRouterKey) throw error;
+        console.warn("Groq transcription failed, falling back to OpenRouter:", error);
+        const result = await transcribeOpenRouter(audioBase64, mimeType, openRouterKey);
+        transcript = result.transcript;
+        segments = result.segments;
+      }
+    } else if (openRouterKey) {
+      const result = await transcribeOpenRouter(audioBase64, mimeType, openRouterKey);
       transcript = result.transcript;
       segments = result.segments;
-    } else if (geminiKey) {
-      // Fallback: Gemini 1.5 Flash multimodal (no timestamps available)
-      transcript = await transcribeGemini(audioBase64, mimeType, geminiKey);
     } else {
       return new Response(
-        JSON.stringify({ error: "No transcription API key set. Add GROQ_API_KEY or GEMINI_API_KEY in Supabase secrets." }),
+        JSON.stringify({ error: "No transcription API key set. Add GROQ_API_KEY and OPENROUTER_API_KEY in Supabase secrets." }),
         { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
       );
+    }
+
+    if (!transcript && openRouterKey) {
+      console.warn("Groq transcription returned empty text, retrying with OpenRouter.");
+      const result = await transcribeOpenRouter(audioBase64, mimeType, openRouterKey);
+      transcript = result.transcript;
+      segments = result.segments;
     }
 
     return new Response(

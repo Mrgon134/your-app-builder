@@ -1,5 +1,6 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 import { getAuthenticatedUser, hasPaidAccess, paymentRequired, unauthorized } from "../_shared/function-auth.ts";
+import { callChatWithGroqFallback } from "../_shared/ai-fallback.ts";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -7,92 +8,16 @@ const corsHeaders = {
     "authorization, x-client-info, apikey, content-type",
 };
 
-// ─── Provider config via Supabase Dashboard > Edge Functions > Secrets ────────
-// Same config as ai-coach and ai-insight:
-//  AI_PROVIDER  = "gemini" | "openai" | "groq" | "anthropic" | "openai-compatible"
-//  AI_MODEL     = model name
-//  AI_API_KEY   = API key for the chosen provider
-//  AI_BASE_URL  = (optional) custom OpenAI-compatible base URL
-//  GEMINI_API_KEY = legacy fallback
-// ─────────────────────────────────────────────────────────────────────────────
-
-async function callGemini(prompt: string, system: string, model: string, apiKey: string): Promise<string> {
-  const res = await fetch(
-    `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`,
-    {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        system_instruction: { parts: [{ text: system }] },
-        contents: [{ parts: [{ text: prompt }] }],
-        generationConfig: { maxOutputTokens: 300, temperature: 0.7 },
-      }),
-    }
-  );
-  if (!res.ok) throw new Error(`Gemini ${res.status}: ${await res.text()}`);
-  const data = await res.json();
-  return data.candidates?.[0]?.content?.parts?.[0]?.text || "";
-}
-
-async function callOpenAICompat(prompt: string, system: string, model: string, apiKey: string, baseUrl: string): Promise<string> {
-  const res = await fetch(`${baseUrl}/chat/completions`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json", Authorization: `Bearer ${apiKey}` },
-    body: JSON.stringify({
-      model,
-      messages: [{ role: "system", content: system }, { role: "user", content: prompt }],
-      max_tokens: 300,
-      temperature: 0.7,
-    }),
-  });
-  if (!res.ok) throw new Error(`OpenAI-compat ${res.status}: ${await res.text()}`);
-  const data = await res.json();
-  return data.choices?.[0]?.message?.content || "";
-}
-
-async function callAnthropic(prompt: string, system: string, model: string, apiKey: string): Promise<string> {
-  const res = await fetch("https://api.anthropic.com/v1/messages", {
-    method: "POST",
-    headers: { "Content-Type": "application/json", "x-api-key": apiKey, "anthropic-version": "2023-06-01" },
-    body: JSON.stringify({ model, max_tokens: 300, system, messages: [{ role: "user", content: prompt }] }),
-  });
-  if (!res.ok) throw new Error(`Anthropic ${res.status}: ${await res.text()}`);
-  const data = await res.json();
-  return data.content?.[0]?.text || "";
-}
-
 async function getSummary(prompt: string, system: string): Promise<string> {
-  const provider = Deno.env.get("AI_PROVIDER") || "gemini";
-  const apiKey = Deno.env.get("AI_API_KEY") || Deno.env.get("GEMINI_API_KEY") || "";
-  if (!apiKey) throw new Error("No API key set. Add AI_API_KEY in Supabase secrets.");
-
-  switch (provider) {
-    case "gemini": {
-      const model = Deno.env.get("AI_MODEL") || "gemini-2.0-flash-lite";
-      return callGemini(prompt, system, model, apiKey);
-    }
-    case "openai":
-    case "groq": {
-      const defaultBase = provider === "groq" ? "https://api.groq.com/openai/v1" : "https://api.openai.com/v1";
-      const baseUrl = Deno.env.get("AI_BASE_URL") || defaultBase;
-      const defaultModel = provider === "groq" ? "llama-3.3-70b-versatile" : "gpt-4o-mini";
-      const model = Deno.env.get("AI_MODEL") || defaultModel;
-      return callOpenAICompat(prompt, system, model, apiKey, baseUrl);
-    }
-    case "anthropic": {
-      const model = Deno.env.get("AI_MODEL") || "claude-haiku-4-5-20251001";
-      return callAnthropic(prompt, system, model, apiKey);
-    }
-    case "openai-compatible": {
-      const baseUrl = Deno.env.get("AI_BASE_URL");
-      const model = Deno.env.get("AI_MODEL");
-      if (!baseUrl) throw new Error("openai-compatible requires AI_BASE_URL in secrets.");
-      if (!model) throw new Error("openai-compatible requires AI_MODEL in secrets.");
-      return callOpenAICompat(prompt, system, model, apiKey, baseUrl);
-    }
-    default:
-      throw new Error(`Unknown AI_PROVIDER: "${provider}".`);
-  }
+  return callChatWithGroqFallback({
+    label: "ai-weekly-summary",
+    maxTokens: 300,
+    temperature: 0.7,
+    messages: [
+      { role: "system", content: system },
+      { role: "user", content: prompt },
+    ],
+  });
 }
 
 serve(async (req) => {
