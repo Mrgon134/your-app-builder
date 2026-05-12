@@ -1,8 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { Plus, Check, Dumbbell, Wind, BookOpen, Droplets, Moon, Ban } from "lucide-react";
+import { Plus, Check, Dumbbell, Wind, BookOpen, Droplets, Moon, Ban, Sparkles } from "lucide-react";
 import { toast } from "sonner";
 import { useLang } from "@/lib/i18n";
 import { hasPlusAccess } from "@/lib/trial";
+import {
+  createHabit,
+  deleteHabit,
+  fetchHabitLogsToday,
+  fetchHabits,
+  toggleHabitLog,
+  type HabitRow,
+} from "@/lib/api";
 
 interface Habit {
   id: string;
@@ -15,6 +23,7 @@ interface HabitSectionProps {
   onUpgrade?: () => void;
   plan?: string | null;
   trialStartedAt?: string | null;
+  userId?: string | null;
 }
 
 const HABIT_ICONS: Record<string, React.FC<{ size?: number; color?: string; strokeWidth?: number }>> = {
@@ -24,6 +33,7 @@ const HABIT_ICONS: Record<string, React.FC<{ size?: number; color?: string; stro
   droplets: ({ size = 14, color, strokeWidth = 1.8 }) => <Droplets size={size} color={color} strokeWidth={strokeWidth} />,
   moon: ({ size = 14, color, strokeWidth = 1.8 }) => <Moon size={size} color={color} strokeWidth={strokeWidth} />,
   ban: ({ size = 14, color, strokeWidth = 1.8 }) => <Ban size={size} color={color} strokeWidth={strokeWidth} />,
+  sparkles: ({ size = 14, color, strokeWidth = 1.8 }) => <Sparkles size={size} color={color} strokeWidth={strokeWidth} />,
 };
 
 // Preset keys map to translation keys habit_exercise, habit_meditate, etc.
@@ -38,8 +48,9 @@ const PRESET_HABITS: { nameKey: string; fallback: string; iconKey: string; color
 
 const STORAGE_KEY = "nuju-habits";
 const LOGS_KEY = "nuju-habit-logs";
+const MIGRATION_KEY = "nuju-habits-migrated";
 
-const today = new Date().toISOString().split("T")[0];
+const getTodayKey = () => new Date().toISOString().split("T")[0];
 
 const loadHabits = (): Habit[] => {
   try {
@@ -67,12 +78,40 @@ const saveLogsToStorage = (logs: Record<string, string[]>) => {
   localStorage.setItem(LOGS_KEY, JSON.stringify(logs));
 };
 
+const normalizeName = (value: string) => value.trim().toLowerCase().replace(/\s+/g, " ");
+
+const normalizeIconKey = (value?: string | null): string => {
+  const raw = (value || "").trim();
+  const key = raw.toLowerCase();
+  if (key in HABIT_ICONS) return key;
+
+  const emojiMap: Record<string, string> = {
+    "\u2728": "sparkles",
+    "\ud83d\udcaa": "dumbbell",
+    "\ud83c\udf2c\ufe0f": "wind",
+    "\ud83c\udf2c": "wind",
+    "\ud83d\udcd6": "book",
+    "\ud83d\udca7": "droplets",
+    "\ud83c\udf19": "moon",
+    "\ud83d\udeab": "ban",
+  };
+
+  return emojiMap[raw] || "dumbbell";
+};
+
+const toHabit = (row: HabitRow): Habit => ({
+  id: row.id,
+  name: row.name,
+  iconKey: normalizeIconKey(row.emoji),
+  color: row.color || "#7C6EDB",
+});
+
 const HabitIcon: React.FC<{ iconKey: string; color: string; active: boolean }> = ({ iconKey, color, active }) => {
   const Icon = HABIT_ICONS[iconKey] || HABIT_ICONS["dumbbell"];
   return <Icon size={14} color={active ? "#fff" : color} strokeWidth={active ? 2.2 : 1.8} />;
 };
 
-const HabitSection: React.FC<HabitSectionProps> = ({ onUpgrade, plan, trialStartedAt = null }) => {
+const HabitSection: React.FC<HabitSectionProps> = ({ onUpgrade, plan, trialStartedAt = null, userId = null }) => {
   const { t } = useLang();
   const [habits, setHabits] = useState<Habit[]>([]);
   const [completedToday, setCompletedToday] = useState<Set<string>>(new Set());
@@ -81,17 +120,84 @@ const HabitSection: React.FC<HabitSectionProps> = ({ onUpgrade, plan, trialStart
   const hasPremiumAccess = hasPlusAccess(plan ?? null, trialStartedAt);
 
   useEffect(() => {
+    let cancelled = false;
+    const today = getTodayKey();
     const storedHabits = loadHabits();
     const logs = loadLogs();
-    const todayLogs = logs[today] || [];
-    setHabits(storedHabits);
-    setCompletedToday(new Set(todayLogs));
-  }, []);
+    const localTodayLogs = new Set(logs[today] || []);
 
-  const toggleHabit = (habitId: string) => {
+    const loadRemoteHabits = async () => {
+      if (!userId) {
+        setHabits(storedHabits);
+        setCompletedToday(localTodayLogs);
+        return;
+      }
+
+      try {
+        const rows = await fetchHabits(userId);
+        let remoteHabits = rows.map(toHabit);
+        const migrationKey = `${MIGRATION_KEY}:${userId}`;
+
+        if (storedHabits.length > 0 && localStorage.getItem(migrationKey) !== "1") {
+          const existingByName = new Map(remoteHabits.map((habit) => [normalizeName(habit.name), habit]));
+          const localToRemote = new Map<string, string>();
+
+          for (const localHabit of storedHabits) {
+            const existing = existingByName.get(normalizeName(localHabit.name));
+            if (existing) {
+              localToRemote.set(localHabit.id, existing.id);
+              continue;
+            }
+
+            const created = toHabit(await createHabit(
+              userId,
+              localHabit.name,
+              normalizeIconKey(localHabit.iconKey),
+              localHabit.color || "#7C6EDB"
+            ));
+            remoteHabits = [created, ...remoteHabits];
+            existingByName.set(normalizeName(created.name), created);
+            localToRemote.set(localHabit.id, created.id);
+          }
+
+          const migratedTodayLogs = Array.from(localTodayLogs)
+            .map((localHabitId) => localToRemote.get(localHabitId))
+            .filter((habitId): habitId is string => Boolean(habitId));
+
+          await Promise.all(migratedTodayLogs.map((habitId) =>
+            toggleHabitLog(userId, habitId, today, true)
+          ));
+
+          localStorage.setItem(migrationKey, "1");
+          localStorage.removeItem(STORAGE_KEY);
+          localStorage.removeItem(LOGS_KEY);
+        }
+
+        const remoteTodayLogs = await fetchHabitLogsToday(userId, today);
+        if (!cancelled) {
+          setHabits(remoteHabits);
+          setCompletedToday(new Set(remoteTodayLogs));
+        }
+      } catch (err) {
+        console.warn("Habit sync failed; using local habit cache.", err);
+        if (!cancelled) {
+          setHabits(storedHabits);
+          setCompletedToday(localTodayLogs);
+        }
+      }
+    };
+
+    void loadRemoteHabits();
+    return () => {
+      cancelled = true;
+    };
+  }, [userId]);
+
+  const toggleHabit = async (habitId: string) => {
+    const today = getTodayKey();
     const done = completedToday.has(habitId);
-    const logs = loadLogs();
-    const todayLogs = new Set(logs[today] || []);
+    const previous = new Set(completedToday);
+    const todayLogs = new Set(completedToday);
 
     if (done) {
       todayLogs.delete(habitId);
@@ -100,12 +206,25 @@ const HabitSection: React.FC<HabitSectionProps> = ({ onUpgrade, plan, trialStart
       if (navigator.vibrate) navigator.vibrate([10, 30, 10]);
     }
 
-    logs[today] = Array.from(todayLogs);
-    saveLogsToStorage(logs);
     setCompletedToday(new Set(todayLogs));
+
+    if (!userId) {
+      const logs = loadLogs();
+      logs[today] = Array.from(todayLogs);
+      saveLogsToStorage(logs);
+      return;
+    }
+
+    try {
+      await toggleHabitLog(userId, habitId, today, !done);
+    } catch (err) {
+      console.error("Habit log sync failed:", err);
+      setCompletedToday(previous);
+      toast.error("Couldn't update that habit just yet.");
+    }
   };
 
-  const addPreset = (preset: typeof PRESET_HABITS[0]) => {
+  const addPreset = async (preset: typeof PRESET_HABITS[0]) => {
     if (habits.length >= 6 && !hasPremiumAccess) {
       toast.error(t.habits_upgrade || "Keep Ju close to add more habits.");
       onUpgrade?.();
@@ -117,13 +236,25 @@ const HabitSection: React.FC<HabitSectionProps> = ({ onUpgrade, plan, trialStart
       iconKey: preset.iconKey,
       color: preset.color,
     };
-    const updated = [...habits, newHabit];
-    setHabits(updated);
-    saveHabitsToStorage(updated);
-    setShowAdd(false);
+    if (!userId) {
+      const updated = [...habits, newHabit];
+      setHabits(updated);
+      saveHabitsToStorage(updated);
+      setShowAdd(false);
+      return;
+    }
+
+    try {
+      const created = toHabit(await createHabit(userId, newHabit.name, newHabit.iconKey, newHabit.color));
+      setHabits((current) => [created, ...current]);
+      setShowAdd(false);
+    } catch (err) {
+      console.error("Habit create failed:", err);
+      toast.error("Couldn't add that habit just yet.");
+    }
   };
 
-  const addCustom = () => {
+  const addCustom = async () => {
     if (!newName.trim()) return;
     if (habits.length >= 6 && !hasPremiumAccess) {
       toast.error(t.habits_upgrade || "Keep Ju close to add more habits.");
@@ -136,17 +267,49 @@ const HabitSection: React.FC<HabitSectionProps> = ({ onUpgrade, plan, trialStart
       iconKey: "dumbbell",
       color: "#7C6EDB",
     };
-    const updated = [...habits, newHabit];
-    setHabits(updated);
-    saveHabitsToStorage(updated);
-    setNewName("");
-    setShowAdd(false);
+    if (!userId) {
+      const updated = [...habits, newHabit];
+      setHabits(updated);
+      saveHabitsToStorage(updated);
+      setNewName("");
+      setShowAdd(false);
+      return;
+    }
+
+    try {
+      const created = toHabit(await createHabit(userId, newHabit.name, newHabit.iconKey, newHabit.color));
+      setHabits((current) => [created, ...current]);
+      setNewName("");
+      setShowAdd(false);
+    } catch (err) {
+      console.error("Habit create failed:", err);
+      toast.error("Couldn't add that habit just yet.");
+    }
   };
 
-  const removeHabit = (habitId: string) => {
+  const removeHabit = async (habitId: string) => {
+    const previousHabits = habits;
+    const previousCompleted = new Set(completedToday);
     const updated = habits.filter((h) => h.id !== habitId);
+    const nextCompleted = new Set(completedToday);
+    nextCompleted.delete(habitId);
     setHabits(updated);
-    saveHabitsToStorage(updated);
+    setCompletedToday(nextCompleted);
+
+    if (!userId) {
+      setHabits(updated);
+      saveHabitsToStorage(updated);
+      return;
+    }
+
+    try {
+      await deleteHabit(habitId);
+    } catch (err) {
+      console.error("Habit delete failed:", err);
+      setHabits(previousHabits);
+      setCompletedToday(previousCompleted);
+      toast.error("Couldn't remove that habit just yet.");
+    }
   };
 
   const doneCount = completedToday.size;
@@ -187,8 +350,8 @@ const HabitSection: React.FC<HabitSectionProps> = ({ onUpgrade, plan, trialStart
             return (
               <button
                 key={habit.id}
-                onClick={() => toggleHabit(habit.id)}
-                onContextMenu={(e) => { e.preventDefault(); removeHabit(habit.id); }}
+                onClick={() => { void toggleHabit(habit.id); }}
+                onContextMenu={(e) => { e.preventDefault(); void removeHabit(habit.id); }}
                 className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[13px] font-medium transition-all duration-200 press-spring ${
                   done
                     ? "text-white shadow-sm"
@@ -217,7 +380,7 @@ const HabitSection: React.FC<HabitSectionProps> = ({ onUpgrade, plan, trialStart
               return (
                 <button
                   key={preset.nameKey}
-                  onClick={() => addPreset(preset)}
+                  onClick={() => { void addPreset(preset); }}
                   className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-full bg-foreground/[0.05] text-[12px] text-foreground press-spring"
                 >
                   <Icon size={12} color={preset.color} strokeWidth={1.8} />
@@ -233,9 +396,9 @@ const HabitSection: React.FC<HabitSectionProps> = ({ onUpgrade, plan, trialStart
               onChange={(e) => setNewName(e.target.value)}
               placeholder={t.habits_custom_placeholder || "Custom habit..."}
               className="flex-1 px-3 py-2 rounded-xl bg-background border border-border text-[14px] focus:outline-none focus:ring-2 focus:ring-primary/20"
-              onKeyDown={(e) => e.key === "Enter" && addCustom()}
+              onKeyDown={(e) => { if (e.key === "Enter") void addCustom(); }}
             />
-            <button onClick={addCustom} className="px-3 py-2 rounded-xl bg-primary text-white text-[13px] font-medium press-spring">
+            <button onClick={() => { void addCustom(); }} className="px-3 py-2 rounded-xl bg-primary text-white text-[13px] font-medium press-spring">
               {t.habits_add_btn || "Add"}
             </button>
           </div>

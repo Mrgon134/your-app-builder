@@ -1004,6 +1004,7 @@ const AppPage: React.FC = () => {
                         onActivitiesChange={setSelectedActivities}
                         plan={effectiveProfile?.plan}
                         trialStartedAt={effectiveProfile?.trial_started_at}
+                        userId={user.id}
                         hasBanner={(() => {
                           const p = effectiveProfile?.plan;
                           if (hasActivePremiumPlan(p || null)) return false;

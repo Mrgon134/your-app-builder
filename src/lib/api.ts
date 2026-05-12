@@ -355,7 +355,7 @@ export const fetchHabits = async (userId: string): Promise<HabitRow[]> => {
   return data || [];
 };
 
-export const createHabit = async (userId: string, name: string, emoji: string = "✨", color: string = "#7C6EDB"): Promise<HabitRow> => {
+export const createHabit = async (userId: string, name: string, emoji: string = "sparkles", color: string = "#7C6EDB"): Promise<HabitRow> => {
   const { data, error } = await supabase
     .from("habits")
     .insert([{ user_id: userId, name, emoji, color, frequency: "daily", is_active: true }])

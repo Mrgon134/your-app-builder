@@ -133,6 +133,7 @@ interface HomeScreenProps {
   plan?: string | null;
   trialStartedAt?: string | null;
   hasBanner?: boolean;
+  userId?: string | null;
 }
 
 const HomeScreen: React.FC<HomeScreenProps> = ({
@@ -143,7 +144,7 @@ const HomeScreen: React.FC<HomeScreenProps> = ({
   selectedMood: controlledMood, onMoodSelect: controlledMoodSelect,
   energy: controlledEnergy, onEnergyChange: controlledEnergyChange,
   selectedActivities: controlledActivities, onActivitiesChange,
-  plan, trialStartedAt, hasBanner,
+  plan, trialStartedAt, hasBanner, userId = null,
 }) => {
   const { t, lang } = useLang();
   const [localMood, setLocalMood] = useState<number | null>(null);
@@ -767,7 +768,7 @@ const HomeScreen: React.FC<HomeScreenProps> = ({
       )}
 
       {/* Daily Habits */}
-      <HabitSection plan={plan} trialStartedAt={trialStartedAt} onUpgrade={onUpgrade} />
+      <HabitSection userId={userId} plan={plan} trialStartedAt={trialStartedAt} onUpgrade={onUpgrade} />
         </div>
       </div>
 
