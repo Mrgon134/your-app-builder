@@ -1,5 +1,5 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
-import { getAuthenticatedUser, hasPaidAccess, paymentRequired, unauthorized } from "../_shared/function-auth.ts";
+import { getAuthenticatedUser, hasPaidAccessForRequest, paymentRequired, unauthorized } from "../_shared/function-auth.ts";
 import { callChatWithGroqFallback } from "../_shared/ai-fallback.ts";
 
 const corsHeaders = {
@@ -28,7 +28,7 @@ serve(async (req) => {
     const { entries, lang } = await req.json();
     const user = await getAuthenticatedUser(req);
     if (!user) return unauthorized();
-    if (!(await hasPaidAccess(user.id, "plus"))) {
+    if (!(await hasPaidAccessForRequest(req, user.id, "plus"))) {
       return paymentRequired("Upgrade to unlock weekly AI summaries.");
     }
 

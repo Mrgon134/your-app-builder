@@ -1,5 +1,5 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
-import { getAuthenticatedUser, hasPaidAccess, paymentRequired, unauthorized } from "../_shared/function-auth.ts";
+import { getAuthenticatedUser, unauthorized } from "../_shared/function-auth.ts";
 import { callChatWithGroqFallback } from "../_shared/ai-fallback.ts";
 
 const corsHeaders = {
@@ -9,15 +9,29 @@ const corsHeaders = {
 };
 
 const moodLabels: Record<number, string> = {
-  1: "Rough", 2: "Low", 3: "Okay", 4: "Good", 5: "Great",
+  1: "Rough",
+  2: "Low",
+  3: "Okay",
+  4: "Good",
+  5: "Great",
 };
 
 const langNames: Record<string, string> = {
-  en: "English", id: "Indonesian (Bahasa Indonesia)", es: "Spanish (Español)",
-  pt: "Portuguese (Português)", ja: "Japanese (日本語)", ko: "Korean (한국어)",
-  zh: "Chinese (中文)", hi: "Hindi (हिन्दी)", ar: "Arabic (العربية)",
-  fr: "French (Français)", de: "German (Deutsch)", ms: "Malay (Bahasa Melayu)",
-  th: "Thai (ไทย)", vi: "Vietnamese (Tiếng Việt)", fil: "Filipino",
+  en: "English",
+  id: "Indonesian (Bahasa Indonesia)",
+  es: "Spanish",
+  pt: "Portuguese",
+  ja: "Japanese",
+  ko: "Korean",
+  zh: "Chinese",
+  hi: "Hindi",
+  ar: "Arabic",
+  fr: "French",
+  de: "German",
+  ms: "Malay",
+  th: "Thai",
+  vi: "Vietnamese",
+  fil: "Filipino",
 };
 
 function buildPrompt(text: string, mood: number, energy: number, lang: string): string {
@@ -27,7 +41,7 @@ function buildPrompt(text: string, mood: number, energy: number, lang: string): 
 You are Ju, a private, trusted emotional space. The user just poured their heart out into their journal. Your job is to provide a brief (2-3 sentences max) reflection that makes them feel deeply seen and heard.
 
 FRAMEWORK TO FOLLOW:
-1. VALIDATE FIRST: Never rush to "fix" it or offer toxic positivity like "Stay strong!" or "Tomorrow is another day." Just sit in the feeling with them. 
+1. VALIDATE FIRST: Never rush to "fix" it or offer toxic positivity like "Stay strong!" or "Tomorrow is another day." Just sit in the feeling with them.
 2. BE SPECIFIC: Reflect on an exact metaphor, emotion, or situation they mentioned. Show you actually listened.
 3. CONTEXT (Mood: ${moodLabels[mood] || "Unknown"} ${mood}/5 | Energy: ${energy}/100):
    - If mood is 1-2 (Rough/Low): Use gentle, trauma-informed language. It's okay that things suck right now. Give them permission to rest.
@@ -48,7 +62,6 @@ async function getInsight(prompt: string): Promise<string> {
   });
 }
 
-// ── Handler ───────────────────────────────────────────────────────────────────
 serve(async (req) => {
   if (req.method === "OPTIONS") return new Response(null, { headers: corsHeaders });
 
@@ -56,9 +69,6 @@ serve(async (req) => {
     const { text, mood, energy, lang } = await req.json();
     const user = await getAuthenticatedUser(req);
     if (!user) return unauthorized();
-    if (!(await hasPaidAccess(user.id, "plus"))) {
-      return paymentRequired("Upgrade to unlock AI insights.");
-    }
 
     const prompt = buildPrompt(text, mood ?? 3, energy ?? 50, lang || "en");
     const insight = await getInsight(prompt);

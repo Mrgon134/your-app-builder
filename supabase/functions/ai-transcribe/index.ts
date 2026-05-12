@@ -1,5 +1,5 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
-import { getAuthenticatedUser, hasPaidAccess, paymentRequired, unauthorized } from "../_shared/function-auth.ts";
+import { getAuthenticatedUser, hasPaidAccessForRequest, paymentRequired, unauthorized } from "../_shared/function-auth.ts";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -133,7 +133,7 @@ serve(async (req) => {
     const { audioBase64, mimeType } = await req.json();
     const user = await getAuthenticatedUser(req);
     if (!user) return unauthorized();
-    if (!(await hasPaidAccess(user.id, "pro"))) {
+    if (!(await hasPaidAccessForRequest(req, user.id, "pro"))) {
       return paymentRequired("Upgrade to unlock voice journaling.");
     }
 

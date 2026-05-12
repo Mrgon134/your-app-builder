@@ -1,5 +1,5 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
-import { getAuthenticatedUser, hasCoachAccess, paymentRequired, unauthorized } from "../_shared/function-auth.ts";
+import { getAuthenticatedUser, hasCoachAccessForRequest, paymentRequired, unauthorized } from "../_shared/function-auth.ts";
 import { streamChatWithGroqFallback } from "../_shared/ai-fallback.ts";
 
 const corsHeaders = {
@@ -8,21 +8,25 @@ const corsHeaders = {
     "authorization, x-client-info, apikey, content-type, x-supabase-client-platform, x-supabase-client-platform-version, x-supabase-client-runtime, x-supabase-client-runtime-version",
 };
 
-// ─── Provider config via Supabase Dashboard > Edge Functions > Secrets ────────
-//
-//  AI_MODEL     = model name
-//  AI_API_KEY   = API key for the provider
-//  AI_BASE_URL  = (optional) custom OpenAI-compatible base URL
-//
-// ─────────────────────────────────────────────────────────────────────────────
-
 const langNames: Record<string, string> = {
-  en: "English", id: "Indonesian (Bahasa Indonesia)", es: "Spanish (Español)",
-  pt: "Portuguese (Português)", ja: "Japanese (日本語)", ko: "Korean (한국어)",
-  zh: "Chinese (中文)", hi: "Hindi (हिन्दी)", ar: "Arabic (العربية)",
-  fr: "French (Français)", de: "German (Deutsch)", ms: "Malay (Bahasa Melayu)",
-  th: "Thai (ไทย)", vi: "Vietnamese (Tiếng Việt)", fil: "Filipino",
+  en: "English",
+  id: "Indonesian (Bahasa Indonesia)",
+  es: "Spanish",
+  pt: "Portuguese",
+  ja: "Japanese",
+  ko: "Korean",
+  zh: "Chinese",
+  hi: "Hindi",
+  ar: "Arabic",
+  fr: "French",
+  de: "German",
+  ms: "Malay",
+  th: "Thai",
+  vi: "Vietnamese",
+  fil: "Filipino",
 };
+
+type ChatMessage = { role: string; content: string };
 
 function sanitizeUserName(value: unknown): string | null {
   if (typeof value !== "string") return null;
@@ -35,185 +39,70 @@ function sanitizeUserName(value: unknown): string | null {
   return cleaned || null;
 }
 
+function normalizeMessages(value: unknown): ChatMessage[] {
+  if (!Array.isArray(value)) return [];
+  return value
+    .map((message) => {
+      if (!message || typeof message !== "object") return null;
+      const raw = message as Record<string, unknown>;
+      const content = typeof raw.content === "string" ? raw.content : "";
+      if (!content.trim()) return null;
+      return {
+        role: raw.role === "assistant" ? "assistant" : "user",
+        content,
+      };
+    })
+    .filter((message): message is ChatMessage => Boolean(message));
+}
+
+function isPostEntryUtility(messages: ChatMessage[]) {
+  const joined = messages.map((message) => message.content).join("\n").toLowerCase();
+  return [
+    "just saved a nuju journal entry",
+    "just finished writing their journal entry",
+    "user journaled and then checked in",
+    "user just journaled and took a selfie",
+  ].some((needle) => joined.includes(needle));
+}
+
 function getPersonaPrompt(persona: string, lang: string, userName?: string | null): string {
   const langName = langNames[lang] || "English";
   const langRule = `CRITICAL INSTRUCTION: You MUST respond ONLY in ${langName}. Talk exactly like a human best friend via text. No robotic "As an AI..." disclaimers.`;
   const memoryRule = userName
-    ? `- PERSONAL MEMORY: The user's name is ${userName}. Remember it and use their name naturally sometimes when it adds warmth or grounding, especially in greetings, reassurance, or check-ins. Do not force their name into every reply.`
-    : "";
-  
+    ? `- PERSONAL MEMORY: The user's name is ${userName}. Remember it and use their name naturally when it adds warmth. Do not force their name into every reply.`
+    : "If the user's name is unknown, stay warm without inventing one.";
+
   const prompts: Record<string, string> = {
-    gentle: `${langRule} 
-You are Ju, the 'Gentle Guide'. Your core psychological framework is Active Listening and Trauma-Informed Care.
-- VIBE: Warm, patient, validating, like a mug of hot tea on a rainy day.
-- RULES: Never invalidate pain. Never rush to solve problems. Use phrases that hold space (e.g., "It makes total sense you feel that way," "I'm just sitting here with you"). 
-- MEMORY: ${memoryRule || "If the user's name is unknown, stay warm without using a name."}
-- FORMAT: Keep responses to 2-3 short, conversational sentences. Ask ONE gentle, open-ended question at the end to help them unpack.`,
-    
-    tough: `${langRule} 
-You are Ju, the 'Tough Coach'. Your core framework is Radical Candor—caring personally while challenging directly.
-- VIBE: Direct, sharp, no-bullshit, but grounded in fierce love. You believe in their agency.
-- RULES: Cut through excuses and victim mentalities without being insulting. Call out cognitive distortions directly. Shift focus strictly to what is within their control. Refuse to let them wallow.
-- MEMORY: ${memoryRule || "If the user's name is unknown, stay direct without inventing one."}
-- FORMAT: 2-3 punchy sentences. End with a firm, action-oriented question or a challenge.`,
-    
-    wise: `${langRule} 
-You are Ju, the 'Wise Sage'. Your core framework is Cognitive Reframing and Stoic Philosophy.
-- VIBE: Grounded, detached yet deeply compassionate, observant. Like speaking to an ancient philosopher or a zen master.
-- RULES: Zoom out. Help them see the impermanence of the situation. Connect their specific problem to universal human experiences. Focus on the dichotomy of control.
-- MEMORY: ${memoryRule || "If the user's name is unknown, stay grounded without naming them."}
-- FORMAT: 2-3 contemplative sentences. Ask deep, paradigm-shifting questions that make them pause and think neutrally.`,
-    
-    fun: `${langRule} 
-You are Ju, the 'Fun Friend'. Your core framework is Emotional Mirroring and Positive Psychology.
-- VIBE: High energy, chaotic good, colloquial, slightly Gen-Z but relatable. Like a voice note from a bestie hyping them up.
-- RULES: Match their energy if they're happy. If they're sad, use gentle humor to de-escalate without being dismissive. Celebrate tiny wins ridiculously hard. Use current slang naturally (not cringe).
-- MEMORY: ${memoryRule || "If the user's name is unknown, keep it playful without making one up."}
-- FORMAT: 2-3 casual sentences. Fast-paced. Feel free to use appropriate emojis. Keep the momentum going.`
+    gentle: `${langRule}
+You are Ju, the Gentle Guide. Your framework is active listening and trauma-informed care.
+- VIBE: Warm, patient, validating, grounded.
+- RULES: Never invalidate pain. Never rush to solve. Hold space and ask one gentle question when useful.
+- MEMORY: ${memoryRule}
+- FORMAT: 2-3 short conversational sentences.`,
+    tough: `${langRule}
+You are Ju, the Tough Coach. Your framework is radical candor with care.
+- VIBE: Direct, sharp, no-bullshit, but loving.
+- RULES: Challenge excuses without insulting. Focus on what is within their control.
+- MEMORY: ${memoryRule}
+- FORMAT: 2-3 punchy sentences. End with a grounded action question or challenge.`,
+    wise: `${langRule}
+You are Ju, the Wise Sage. Your framework is cognitive reframing and grounded perspective.
+- VIBE: Calm, observant, compassionate.
+- RULES: Zoom out, name the pattern, and help them see what can be held lightly.
+- MEMORY: ${memoryRule}
+- FORMAT: 2-3 contemplative sentences. Ask one thoughtful question if useful.`,
+    fun: `${langRule}
+You are Ju, the Fun Friend. Your framework is emotional mirroring and playful encouragement.
+- VIBE: Casual, lively, warm.
+- RULES: Match their energy. If they are sad, use softness before humor. Do not be dismissive.
+- MEMORY: ${memoryRule}
+- FORMAT: 2-3 casual sentences. Keep it human and momentum-building.`,
   };
+
   return prompts[persona] || prompts.gentle;
 }
 
-type ChatMessage = { role: string; content: string };
-
-// ── Helpers: SSE encoder ──────────────────────────────────────────────────────
-const encoder = new TextEncoder();
-function sseChunk(text: string): Uint8Array {
-  const chunk = JSON.stringify({ choices: [{ delta: { content: text } }] });
-  return encoder.encode(`data: ${chunk}\n\n`);
-}
-const sseDone = encoder.encode("data: [DONE]\n\n");
-
-// ── OpenAI-compatible streaming (OpenAI, Groq, DashScope, Azure, Together…) ──
-async function streamOpenAICompat(
-  systemPrompt: string,
-  messages: ChatMessage[],
-  model: string,
-  apiKey: string,
-  baseUrl: string
-): Promise<ReadableStream> {
-  const res = await fetch(`${baseUrl}/chat/completions`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json", Authorization: `Bearer ${apiKey}` },
-    body: JSON.stringify({
-      model,
-      stream: true,
-      max_tokens: 250,
-      temperature: 0.8,
-      messages: [
-        { role: "system", content: systemPrompt },
-        ...messages.map((m) => ({ role: m.role === "assistant" ? "assistant" : "user", content: m.content })),
-      ],
-    }),
-  });
-  if (!res.ok || !res.body) throw new Error(`OpenAI-compat ${res.status}: ${await res.text()}`);
-
-  // OpenAI SSE is already in our target format — pass through directly
-  const reader = res.body.getReader();
-  const decoder = new TextDecoder();
-
-  return new ReadableStream({
-    async start(controller) {
-      let buffer = "";
-      try {
-        while (true) {
-          const { done, value } = await reader.read();
-          if (done) break;
-          buffer += decoder.decode(value, { stream: true });
-          let nlIdx: number;
-          while ((nlIdx = buffer.indexOf("\n")) !== -1) {
-            const line = buffer.slice(0, nlIdx).replace(/\r$/, "");
-            buffer = buffer.slice(nlIdx + 1);
-            if (!line.startsWith("data: ")) continue;
-            const jsonStr = line.slice(6).trim();
-            if (jsonStr === "[DONE]") {
-              controller.enqueue(sseDone);
-              continue;
-            }
-            if (!jsonStr) continue;
-            try {
-              const data = JSON.parse(jsonStr);
-              const text = data.choices?.[0]?.delta?.content;
-              if (text) controller.enqueue(sseChunk(text));
-            } catch { /* skip malformed */ }
-          }
-        }
-      } finally {
-        controller.enqueue(sseDone);
-        controller.close();
-      }
-    },
-  });
-}
-
-// ── Anthropic streaming ───────────────────────────────────────────────────────
-async function streamAnthropic(
-  systemPrompt: string,
-  messages: ChatMessage[],
-  model: string,
-  apiKey: string
-): Promise<ReadableStream> {
-  const res = await fetch("https://api.anthropic.com/v1/messages", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      "x-api-key": apiKey,
-      "anthropic-version": "2023-06-01",
-    },
-    body: JSON.stringify({
-      model,
-      max_tokens: 250,
-      stream: true,
-      system: systemPrompt,
-      messages: messages.map((m) => ({
-        role: m.role === "assistant" ? "assistant" : "user",
-        content: m.content,
-      })),
-    }),
-  });
-  if (!res.ok || !res.body) throw new Error(`Anthropic ${res.status}: ${await res.text()}`);
-
-  const reader = res.body.getReader();
-  const decoder = new TextDecoder();
-
-  return new ReadableStream({
-    async start(controller) {
-      let buffer = "";
-      try {
-        while (true) {
-          const { done, value } = await reader.read();
-          if (done) break;
-          buffer += decoder.decode(value, { stream: true });
-          let nlIdx: number;
-          while ((nlIdx = buffer.indexOf("\n")) !== -1) {
-            const line = buffer.slice(0, nlIdx).replace(/\r$/, "");
-            buffer = buffer.slice(nlIdx + 1);
-            if (!line.startsWith("data: ")) continue;
-            const jsonStr = line.slice(6).trim();
-            if (!jsonStr) continue;
-            try {
-              const data = JSON.parse(jsonStr);
-              // Anthropic streams: { type: "content_block_delta", delta: { type: "text_delta", text: "..." } }
-              if (data.type === "content_block_delta" && data.delta?.type === "text_delta") {
-                const text = data.delta.text;
-                if (text) controller.enqueue(sseChunk(text));
-              }
-            } catch { /* skip malformed */ }
-          }
-        }
-      } finally {
-        controller.enqueue(sseDone);
-        controller.close();
-      }
-    },
-  });
-}
-
-// ── Provider router ───────────────────────────────────────────────────────────
-async function getStream(
-  systemPrompt: string,
-  messages: ChatMessage[]
-): Promise<ReadableStream> {
+async function getStream(systemPrompt: string, messages: ChatMessage[]): Promise<ReadableStream> {
   return streamChatWithGroqFallback({
     label: "ai-coach",
     maxTokens: 250,
@@ -228,23 +117,24 @@ async function getStream(
   });
 }
 
-// ── Handler ───────────────────────────────────────────────────────────────────
 serve(async (req) => {
   if (req.method === "OPTIONS") return new Response(null, { headers: corsHeaders });
 
   try {
     const { messages, persona, lang, userName } = await req.json();
+    const inputMessages = normalizeMessages(messages);
     const user = await getAuthenticatedUser(req);
     if (!user) return unauthorized();
 
-    const selectedPersona = persona || "gentle";
-    if (!(await hasCoachAccess(user.id, selectedPersona))) {
+    const selectedPersona = typeof persona === "string" && persona.trim() ? persona : "gentle";
+    const allowPostEntryUtility = selectedPersona === "gentle" && isPostEntryUtility(inputMessages);
+    if (!allowPostEntryUtility && !(await hasCoachAccessForRequest(req, user.id, selectedPersona))) {
       return paymentRequired("Upgrade to keep chatting with Ju.");
     }
 
     const safeUserName = sanitizeUserName(userName);
-    const systemPrompt = getPersonaPrompt(selectedPersona, lang || "en", safeUserName);
-    const stream = await getStream(systemPrompt, messages);
+    const systemPrompt = getPersonaPrompt(selectedPersona, typeof lang === "string" ? lang : "en", safeUserName);
+    const stream = await getStream(systemPrompt, inputMessages);
 
     return new Response(stream, {
       headers: { ...corsHeaders, "Content-Type": "text/event-stream", "Cache-Control": "no-cache" },
