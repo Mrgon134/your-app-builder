@@ -86,7 +86,7 @@ function buildSitemap(posts, getPostLanguage, LANGUAGE_ALTERNATES) {
     urlBlocks.push(
       `  <url>
     <loc>${BASE_URL}/blog/${post.slug}</loc>
-    <lastmod>${post.publishedAt}</lastmod>
+    <lastmod>${post.updatedAt ?? post.publishedAt}</lastmod>
     <priority>${priority}</priority>
     <changefreq>monthly</changefreq>
     <image:image>
