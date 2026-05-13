@@ -533,6 +533,20 @@ function renderLandingBody() {
             "If you have outgrown Daylio's tap-only logging and want reflection plus AI patterns, start here.",
           badge: "Switch guide",
         },
+        {
+          href: "/blog/apple-journal-alternatives",
+          title: "Best Apple Journal alternatives",
+          description:
+            "Cross-platform options for iPhone users who outgrow Apple Journal's iOS-only, no-AI limits.",
+          badge: "Switch guide",
+        },
+        {
+          href: "/blog/best-self-reflection-apps",
+          title: "Best self-reflection apps",
+          description:
+            "Seven self-reflection apps tested — only the ones that read your entries back built real awareness.",
+          badge: "Category guide",
+        },
       ]),
     ),
     renderSection(
@@ -2360,9 +2374,9 @@ function buildStaticPages(posts) {
     },
     {
       route: "/about",
-      title: "About Nuju - AI Journaling App for Emotional Wellness",
+      title: "About Nuju: AI Journal That Reads What You Wrote",
       description:
-        "Learn how Nuju was built - an AI journaling app with mood tracking, private reflection, and a personal AI companion for emotional clarity.",
+        "Why Nuju is built differently — an AI journaling app that reads what you actually wrote, tracks patterns across weeks, and starts free with no signup wall.",
       canonical: `${BASE_URL}/about`,
       breadcrumbs: [
         { name: "Home", url: `${BASE_URL}/` },
@@ -2397,9 +2411,9 @@ function buildStaticPages(posts) {
     },
     {
       route: "/install",
-      title: "Install Nuju on iPhone, Android, and Desktop",
+      title: "Get Nuju Free: iPhone, Android, or Web in 30 Seconds",
       description:
-        "Install Nuju on iPhone, Android, or desktop for faster journaling, easier re-entry, and a smoother daily check-in flow.",
+        "Install Nuju free on iPhone, Android, or web. 30 seconds, no signup wall, opens straight to the mood check-in. AI reflection ready on first entry.",
       canonical: `${BASE_URL}/install`,
       breadcrumbs: [
         { name: "Home", url: `${BASE_URL}/` },
@@ -2459,7 +2473,7 @@ function buildStaticPages(posts) {
       route: "/guides/journaling",
       title: "Complete Guide to Journaling: Science, Methods, Tools",
       description:
-        "Learn how to start journaling, build a habit that lasts, track moods, and choose the right prompts, methods, and tools for 2026.",
+        "How to journal in 30 seconds a day, stick with the habit, and track moods. Methods, prompts, and tools for 2026 — for people who keep failing.",
       canonical: `${BASE_URL}/guides/journaling`,
       breadcrumbs: [
         { name: "Home", url: `${BASE_URL}/` },

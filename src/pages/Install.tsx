@@ -43,8 +43,8 @@ const Install: React.FC = () => {
   return (
     <div className="min-h-screen bg-background flex flex-col items-center justify-center px-6 py-12">
       <SEOHead
-        title="Install Nuju on iPhone, Android, and Desktop"
-        description="Install Nuju on iPhone, Android, or desktop for faster journaling, easier re-entry, and a smoother daily check-in flow."
+        title="Get Nuju Free: iPhone, Android, or Web in 30 Seconds"
+        description="Install Nuju free on iPhone, Android, or web. 30 seconds, no signup wall, opens straight to the mood check-in. AI reflection ready on first entry."
         canonical="https://nuju.app/install"
         breadcrumbs={[
           { name: "Home", url: "https://nuju.app/" },

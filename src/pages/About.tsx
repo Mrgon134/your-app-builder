@@ -20,8 +20,8 @@ const About: React.FC = () => {
   return (
     <div className="min-h-screen bg-background">
       <SEOHead
-        title="About Nuju - AI Journaling App for Emotional Wellness"
-        description="Learn how Nuju was built - an AI journaling app with mood tracking, private reflection, and a personal AI companion for emotional clarity."
+        title="About Nuju: AI Journal That Reads What You Wrote"
+        description="Why Nuju is built differently — an AI journaling app that reads what you actually wrote, tracks patterns across weeks, and starts free with no signup wall."
         canonical="https://nuju.app/about"
         breadcrumbs={[
           { name: "Home", url: "https://nuju.app/" },

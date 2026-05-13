@@ -84,6 +84,11 @@ const INTERNAL_LINK_RECOMMENDATIONS: Record<string, InternalLinkRecommendation[]
       body: "A focused comparison for readers already familiar with Daylio.",
     },
     {
+      slug: "emoko-alternatives",
+      eyebrow: "Cute mood tracker switch",
+      body: "For readers who started with Emoko and want a tracker that actually reads their entries.",
+    },
+    {
       slug: "mood-tracker-for-self-awareness",
       eyebrow: "Use case",
       body: "Go deeper on mood tracking when the goal is self-awareness, not just logging.",
@@ -101,6 +106,11 @@ const INTERNAL_LINK_RECOMMENDATIONS: Record<string, InternalLinkRecommendation[]
       body: "Step back and compare the full mood tracker category side by side.",
     },
     {
+      slug: "emoko-alternatives",
+      eyebrow: "Similar switch",
+      body: "Compared Daylio with Emoko already? See how both stack up against deeper AI alternatives.",
+    },
+    {
       slug: "mood-tracker-for-self-awareness",
       eyebrow: "Deeper use case",
       body: "Read this if your real goal is understanding emotional patterns, not collecting stats.",
@@ -109,6 +119,23 @@ const INTERNAL_LINK_RECOMMENDATIONS: Record<string, InternalLinkRecommendation[]
       slug: "best-ai-journaling-apps",
       eyebrow: "AI reflection",
       body: "Compare AI journals if Daylio feels too light on interpretation.",
+    },
+  ],
+  "emoko-alternatives": [
+    {
+      slug: "daylio-alternatives",
+      eyebrow: "Compared head-to-head",
+      body: "If you searched 'emoko vs daylio', see why people switch from Daylio too once they want depth.",
+    },
+    {
+      slug: "best-mood-tracker-apps",
+      eyebrow: "Category view",
+      body: "Step back and compare the full mood tracker category before picking a long-term tool.",
+    },
+    {
+      slug: "best-ai-journaling-apps",
+      eyebrow: "AI reflection",
+      body: "Read this if the missing piece in Emoko is the AI that reads your entries back to you.",
     },
   ],
   "reflectly-alternatives": [
@@ -323,6 +350,7 @@ type CommercialDestination = {
 const COMMERCIAL_DESTINATION_BY_SLUG: Record<string, CommercialDestination> = {
   "best-mood-tracker-apps": { href: "/mood-tracker", label: "See the Nuju mood tracker" },
   "daylio-alternatives": { href: "/mood-tracker", label: "See the Nuju mood tracker" },
+  "emoko-alternatives": { href: "/mood-tracker", label: "See the Nuju mood tracker" },
   "mood-tracker-for-self-awareness": { href: "/mood-tracker", label: "See the Nuju mood tracker" },
   "mood-tracking-for-anxiety": { href: "/mood-tracker", label: "See the Nuju mood tracker" },
   "journaling-for-adhd": { href: "/voice-journaling", label: "See voice journaling on Nuju" },
