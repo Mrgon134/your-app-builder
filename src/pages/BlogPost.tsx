@@ -196,6 +196,57 @@ const INTERNAL_LINK_RECOMMENDATIONS: Record<string, InternalLinkRecommendation[]
       body: "Read this if your real goal is self-awareness, not collecting reflection stats.",
     },
   ],
+  "mood-tracking-for-anxiety": [
+    {
+      slug: "3am-anxiety-journaling",
+      eyebrow: "When anxiety hits at night",
+      body: "The 3-step technique for the 3am thought loop that mood tracking alone won't stop.",
+    },
+    {
+      slug: "ai-journal-for-overthinking",
+      eyebrow: "Overthinking loop",
+      body: "Read this if anxiety mostly shows up as rumination rather than a body symptom.",
+    },
+    {
+      slug: "mood-tracker-for-self-awareness",
+      eyebrow: "Use case",
+      body: "Go deeper on mood tracking when the goal is understanding triggers, not just logging.",
+    },
+  ],
+  "ai-journal-for-overthinking": [
+    {
+      slug: "3am-anxiety-journaling",
+      eyebrow: "Night-time replay",
+      body: "Use this exact 3-minute technique when overthinking spikes at 3am.",
+    },
+    {
+      slug: "mood-tracking-for-anxiety",
+      eyebrow: "Anxiety patterns",
+      body: "Add a mood tracking layer when the rumination is anxiety wearing a thinking costume.",
+    },
+    {
+      slug: "best-ai-journaling-apps",
+      eyebrow: "Choose a tool",
+      body: "Compare AI journals when guided reflection beats writing into a blank page.",
+    },
+  ],
+  "3am-anxiety-journaling": [
+    {
+      slug: "ai-journal-for-overthinking",
+      eyebrow: "Same loop, different time",
+      body: "Read this when the 3am loop also shows up during the day as overthinking.",
+    },
+    {
+      slug: "mood-tracking-for-anxiety",
+      eyebrow: "Anxiety patterns",
+      body: "Track mood alongside journaling to see what is actually driving the night-time spikes.",
+    },
+    {
+      slug: "how-to-start-journaling",
+      eyebrow: "Habit setup",
+      body: "Turn the 3am technique into a daily habit before the next bad night.",
+    },
+  ],
 };
 
 const getInternalLinkCards = (slug: string): InternalLinkCard[] =>
@@ -473,7 +524,7 @@ const BlogPost: React.FC = () => {
     headline: post.title,
     description: post.description,
     datePublished: post.publishedAt,
-    dateModified: post.publishedAt,
+    dateModified: post.updatedAt ?? post.publishedAt,
     inLanguage: language,
     wordCount,
     articleSection: post.category,
@@ -519,6 +570,14 @@ const BlogPost: React.FC = () => {
     month: "long",
     day: "numeric",
   });
+  const formattedUpdatedDate =
+    post.updatedAt && post.updatedAt !== post.publishedAt
+      ? new Date(post.updatedAt).toLocaleDateString(locale, {
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+        })
+      : null;
 
   const copy =
     language === "id"
@@ -627,6 +686,15 @@ const BlogPost: React.FC = () => {
             {post.readingTime} {copy.minRead}
           </span>
           <time dateTime={post.publishedAt}>{formattedDate}</time>
+          {formattedUpdatedDate && (
+            <span className="flex items-center gap-1">
+              <span aria-hidden>·</span>
+              <span>
+                {language === "id" ? "Diperbarui" : "Updated"}{" "}
+                <time dateTime={post.updatedAt}>{formattedUpdatedDate}</time>
+              </span>
+            </span>
+          )}
         </div>
 
         <h1 className="mb-6 font-serif text-3xl font-bold leading-tight text-foreground sm:text-4xl">

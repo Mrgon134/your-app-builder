@@ -89,4 +89,12 @@ Required sections:
 
 ## Near-term backlog
 
-- TBD — re-evaluate after GSC shows which intents from the 2026-05 launch convert.
+Sequenced from the 2026-05-10 GSC snapshot. Do sprint items in order — earn clicks on what already ranks before adding new inventory.
+
+1. Click-fix `/blog/best-mood-tracker-apps`, `/blog/best-ai-journaling-apps`, `/blog/daylio-alternatives` (684 impressions, <1% CTR combined).
+2. Title/meta audit on `/mood-tracker` and `/voice-journaling` — both page 1, zero clicks.
+3. Resolve the 22 "Discovered – currently not indexed" URLs and the 3 redirect / 1 canonical failures in Coverage.
+4. Internal links from `/blog/mood-tracking-for-anxiety` and `/blog/ai-journal-for-overthinking` into `/blog/3am-anxiety-journaling` (20% CTR, position 3.2).
+5. Only after the four items above ship: publish `/blog/emoko-alternatives` to capture the "emoko vs daylio" intent surfaced at position 6.5.
+
+See [gsc-snapshot-2026-05-10.md](./gsc-snapshot-2026-05-10.md) for the underlying data.
