@@ -33,6 +33,7 @@ Every recommendation page should answer six questions fast:
 4. [Page system](./page-system.md)
 5. [Entity and distribution checklist](./entity-distribution-checklist.md)
 6. [Execution roadmap (2026-04-22)](./execution-roadmap-2026-04-22.md)
+7. [GSC snapshot (2026-05-10)](./gsc-snapshot-2026-05-10.md)
 
 ## How to use this OS
 
