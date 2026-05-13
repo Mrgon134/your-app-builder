@@ -272,6 +272,12 @@ const comparisonReadLinks = [
     body: "See how Nuju stacks up on privacy, mood tracking, and real emotional insight.",
   },
   {
+    href: "/blog/best-mood-tracker-apps",
+    label: "Category guide",
+    title: "Best mood tracker apps",
+    body: "Eight mood trackers tested across 30 days — three actually explained patterns instead of just storing them.",
+  },
+  {
     href: "/blog/daylio-alternatives",
     label: "Alternative guide",
     title: "Best Daylio alternatives",
@@ -282,6 +288,18 @@ const comparisonReadLinks = [
     label: "Alternative guide",
     title: "Best Reflectly alternatives",
     body: "Useful when someone wants more than prompts and beginner journaling structure.",
+  },
+  {
+    href: "/blog/apple-journal-alternatives",
+    label: "Alternative guide",
+    title: "Best Apple Journal alternatives",
+    body: "Cross-platform options for iPhone users who outgrow Apple Journal's iOS-only, no-AI limits.",
+  },
+  {
+    href: "/blog/best-self-reflection-apps",
+    label: "Category guide",
+    title: "Best self-reflection apps",
+    body: "Seven self-reflection apps tested — only the ones that read your entries back built real awareness.",
   },
 ] as const;
 

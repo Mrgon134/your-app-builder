@@ -533,6 +533,20 @@ function renderLandingBody() {
             "If you have outgrown Daylio's tap-only logging and want reflection plus AI patterns, start here.",
           badge: "Switch guide",
         },
+        {
+          href: "/blog/apple-journal-alternatives",
+          title: "Best Apple Journal alternatives",
+          description:
+            "Cross-platform options for iPhone users who outgrow Apple Journal's iOS-only, no-AI limits.",
+          badge: "Switch guide",
+        },
+        {
+          href: "/blog/best-self-reflection-apps",
+          title: "Best self-reflection apps",
+          description:
+            "Seven self-reflection apps tested — only the ones that read your entries back built real awareness.",
+          badge: "Category guide",
+        },
       ]),
     ),
     renderSection(
