@@ -1691,6 +1691,10 @@ function renderBlogPostBody(post, relatedPosts, helpers) {
   const language = getPostLanguage(post);
   const locale = language === "id" ? "id-ID" : "en-US";
   const formattedDate = formatDate(post.publishedAt, locale);
+  const formattedUpdatedDate =
+    post.updatedAt && post.updatedAt !== post.publishedAt
+      ? formatDate(post.updatedAt, locale)
+      : null;
 
   const relatedHtml =
     relatedPosts.length > 0
@@ -1753,6 +1757,13 @@ function renderBlogPostBody(post, relatedPosts, helpers) {
           <p>${escapeHtml(post.description)}</p>
           <div class="nuju-chip-row">
             <span class="nuju-chip">${escapeHtml(formattedDate)}</span>
+            ${
+              formattedUpdatedDate
+                ? `<span class="nuju-chip">${escapeHtml(
+                    `${language === "id" ? "Diperbarui" : "Updated"} ${formattedUpdatedDate}`,
+                  )}</span>`
+                : ""
+            }
             <span class="nuju-chip">${escapeHtml(`${post.readingTime} min read`)}</span>
             <span class="nuju-chip">${escapeHtml(language === "id" ? "Bahasa Indonesia" : "English")}</span>
           </div>
@@ -2501,7 +2512,7 @@ function buildBlogPages(helpers) {
       headline: post.title,
       description: post.description,
       datePublished: post.publishedAt,
-      dateModified: post.publishedAt,
+      dateModified: post.updatedAt ?? post.publishedAt,
       inLanguage: language,
       wordCount,
       articleSection: post.category,

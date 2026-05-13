@@ -524,7 +524,7 @@ const BlogPost: React.FC = () => {
     headline: post.title,
     description: post.description,
     datePublished: post.publishedAt,
-    dateModified: post.publishedAt,
+    dateModified: post.updatedAt ?? post.publishedAt,
     inLanguage: language,
     wordCount,
     articleSection: post.category,
@@ -570,6 +570,14 @@ const BlogPost: React.FC = () => {
     month: "long",
     day: "numeric",
   });
+  const formattedUpdatedDate =
+    post.updatedAt && post.updatedAt !== post.publishedAt
+      ? new Date(post.updatedAt).toLocaleDateString(locale, {
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+        })
+      : null;
 
   const copy =
     language === "id"
@@ -678,6 +686,15 @@ const BlogPost: React.FC = () => {
             {post.readingTime} {copy.minRead}
           </span>
           <time dateTime={post.publishedAt}>{formattedDate}</time>
+          {formattedUpdatedDate && (
+            <span className="flex items-center gap-1">
+              <span aria-hidden>·</span>
+              <span>
+                {language === "id" ? "Diperbarui" : "Updated"}{" "}
+                <time dateTime={post.updatedAt}>{formattedUpdatedDate}</time>
+              </span>
+            </span>
+          )}
         </div>
 
         <h1 className="mb-6 font-serif text-3xl font-bold leading-tight text-foreground sm:text-4xl">

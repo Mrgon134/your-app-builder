@@ -13,6 +13,7 @@ export interface BlogPost {
   title: string;
   description: string;
   publishedAt: string;
+  updatedAt?: string;
   readingTime: number;
   category: string;
   sections: BlogSection[];
@@ -1454,9 +1455,11 @@ const RAW_BLOG_POSTS: BlogPost[] = [
     metaTitle: "Daylio Alternatives 2026: 5 Mood Apps That Go Deeper",
     metaDescription: "Outgrew Daylio's tag-only mood logs? We tested 5 alternatives — 2 use AI to explain WHY your mood shifts. See the best free pick for 2026.",
     publishedAt: "2026-04-20",
+    updatedAt: "2026-05-13",
     readingTime: 7,
     category: "App Comparison",
     sections: [
+      { type: "p", content: "Short answer: if Daylio's tag-only mood logs feel too shallow, Nuju is the closest free alternative in 2026 — same 30-second entry, but with written reflection and AI that explains why your mood is shifting, not just that it shifted." },
       { type: "p", content: "Daylio is one of the most popular mood tracking apps and for good reason — it's fast, clean, and easy to maintain as a daily habit. But it has real limitations. Here's where it works, where it falls short, and what to switch to if you need more." },
       { type: "h2", content: "What Daylio does well" },
       { type: "ul", content: ["Very low-friction entry: emoji mood + activity tags in under 10 seconds", "Clean streak tracking and statistics", "Activity correlation: see which habits correlate with better mood", "Free tier is genuinely functional"] },
@@ -1538,9 +1541,11 @@ const RAW_BLOG_POSTS: BlogPost[] = [
     metaTitle: "8 Best Mood Tracker Apps 2026 — Only 3 Actually Help",
     metaDescription: "We logged 30 days in 8 mood tracker apps. Most just collect emojis. Only 3 explain your patterns — including the best free AI pick for 2026.",
     publishedAt: "2026-04-20",
+    updatedAt: "2026-05-13",
     readingTime: 8,
     category: "App Comparison",
     sections: [
+      { type: "p", content: "Short answer: most mood tracker apps in 2026 just collect emoji logs. Only three explain your patterns — and Nuju is the only one that pairs 30-second mood entry with AI that interprets your trends, free to start." },
       { type: "p", content: "There are now dozens of mood tracking apps. Most collect data. Few actually help you understand it. Here's how to tell the difference — and which apps are worth your time in 2026." },
       { type: "h2", content: "What separates a useful mood tracker from a useless one" },
       { type: "ul", content: ["Does it surface patterns automatically, or just show raw data?", "Does it combine mood with context (journaling, notes, activities)?", "Is the daily entry friction low enough to actually maintain?", "Does it offer any personalized insight or coaching?", "What does it do with your data? (privacy policy specifics matter)"] },
@@ -1572,9 +1577,11 @@ const RAW_BLOG_POSTS: BlogPost[] = [
     metaTitle: "8 Best AI Journaling Apps 2026 (3 Free + Worth It)",
     metaDescription: "We tested 8 AI journaling apps for real AI insight, privacy, and free access. Only 3 passed — see the best free AI journal and which to try first.",
     publishedAt: "2026-04-20",
+    updatedAt: "2026-05-13",
     readingTime: 8,
     category: "App Comparison",
     sections: [
+      { type: "p", content: "Short answer: most AI journaling apps in 2026 are chatbot wrappers with no memory and vague privacy. Only three passed our test — Nuju leads for free AI reflection plus mood patterns, no credit card required." },
       { type: "p", content: "We tested eight AI journaling apps across the criteria that actually matter in real life: whether the AI responds to your actual writing, how useful the mood tracking is, whether the privacy policy is clear, and how quickly the app helps you reach a useful insight. Only three felt worth recommending." },
       { type: "h2", content: "Quick answer: which AI journaling app should you try first?" },
       { type: "ul", content: ["Try Nuju first if you want AI reflection plus mood tracking, weekly patterns, and a free reveal before paying.", "Try Rosebud AI if you want a more structured CBT-style reflection session.", "Try Reflectly if you are brand new to journaling and mostly want guided prompts.", "Skip apps that are just generic chatbot wrappers with no mood data, no memory, and vague privacy language."] },
