@@ -36,9 +36,10 @@ interface OpenRouterTranscriptionResponse {
 //
 // ─────────────────────────────────────────────────────────────────────────────
 
-function transcriptionLanguageHint(value: unknown): string | null {
+function transcriptionLanguageHint(value: unknown, source: unknown): string | null {
   if (typeof value !== "string") return "en";
   const raw = value.trim().toLowerCase().replace("_", "-");
+  if (!raw || raw === "auto" || raw === "und" || raw === "mul") return null;
   const lang = raw.split("-")[0];
   const aliases: Record<string, string> = {
     fil: "tl",
@@ -47,16 +48,43 @@ function transcriptionLanguageHint(value: unknown): string | null {
   const normalized = aliases[lang] || lang;
   const supported = new Set(["en", "id", "es", "pt", "ja", "ko", "zh", "hi", "ar", "fr", "de", "ms", "th", "vi", "tl"]);
   if (!supported.has(normalized)) return "en";
+  if (source === "spoken") return normalized;
   // UI language is not always the language being spoken. Keep English pinned
   // because Nuju defaults to English, but let other languages auto-detect so
   // English speech is not forced into Indonesian/Malay after a UI language test.
   return normalized === "en" ? "en" : null;
 }
 
-const transcriptionPrompt = (language: string | null) =>
-  language === "en"
-    ? "Transcribe the user's English speech exactly. Prefer English when ambiguous. Do not translate to Malay or Indonesian."
-    : "Transcribe the speech exactly in the language spoken. Do not translate it. If the speech is English or ambiguous, prefer English over Malay or Indonesian.";
+const languageName = (language: string) => {
+  const names: Record<string, string> = {
+    en: "English",
+    id: "Indonesian",
+    ms: "Malay",
+    es: "Spanish",
+    pt: "Portuguese",
+    fr: "French",
+    de: "German",
+    ja: "Japanese",
+    ko: "Korean",
+    zh: "Chinese",
+    hi: "Hindi",
+    ar: "Arabic",
+    th: "Thai",
+    vi: "Vietnamese",
+    tl: "Tagalog",
+  };
+  return names[language] || language;
+};
+
+const transcriptionPrompt = (language: string | null) => {
+  if (language === "en") {
+    return "Transcribe the user's English speech exactly. Prefer English when ambiguous. Do not translate to Malay or Indonesian.";
+  }
+  if (language) {
+    return `Transcribe the user's ${languageName(language)} speech exactly. Do not translate it into another language.`;
+  }
+  return "Transcribe the speech exactly in the language spoken. Do not translate it. If the speech is English or ambiguous, prefer English over Malay or Indonesian.";
+};
 
 /** Groq Whisper large-v3 with language hint and timestamps. */
 async function transcribeGroq(
@@ -162,7 +190,7 @@ serve(async (req) => {
   if (req.method === "OPTIONS") return new Response(null, { headers: corsHeaders });
 
   try {
-    const { audioBase64, mimeType, lang } = await req.json();
+    const { audioBase64, mimeType, lang, langSource } = await req.json();
     const user = await getAuthenticatedUser(req);
     if (!user) return unauthorized();
     if (!(await hasPaidAccessForRequest(req, user.id, "pro"))) {
@@ -178,7 +206,7 @@ serve(async (req) => {
 
     const groqKey = Deno.env.get("GROQ_API_KEY");
     const openRouterKey = Deno.env.get("OPENROUTER_API_KEY") || Deno.env.get("AI_FALLBACK_API_KEY");
-    const language = transcriptionLanguageHint(lang);
+    const language = transcriptionLanguageHint(lang, langSource);
 
     let transcript = "";
     let segments: { start: number; end: number; text: string }[] = [];
