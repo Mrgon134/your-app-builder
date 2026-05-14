@@ -15,6 +15,7 @@ import BreathingExercise from "@/components/app/BreathingExercise";
 import PromptPacksScreen from "@/components/app/PromptPacksScreen";
 import ProgressDashboard from "@/components/app/ProgressDashboard";
 import { type EntryRow } from "@/lib/api";
+import { hasPlusAccess } from "@/lib/trial";
 
 type SubScreen = "main" | "achievements" | "letters" | "breathing" | "prompts" | "progress";
 
@@ -22,6 +23,7 @@ interface ExploreScreenProps {
   entries: EntryRow[];
   streak: number;
   userId?: string | null;
+  initialSubScreen?: SubScreen;
   onWritePrompt?: (prompt: string) => void;
   onNavigate?: (screen: string) => void;
   plan?: string | null;
@@ -33,16 +35,22 @@ const ExploreScreen: React.FC<ExploreScreenProps> = ({
   entries,
   streak,
   userId,
+  initialSubScreen = "main",
   onWritePrompt,
   onNavigate,
   plan,
   trialStartedAt,
   onUpgrade,
 }) => {
-  const [subScreen, setSubScreen] = useState<SubScreen>("main");
+  const [subScreen, setSubScreen] = useState<SubScreen>(initialSubScreen);
+  const hasPremiumAccess = hasPlusAccess(plan ?? null, trialStartedAt ?? null);
 
   const allAchievements = getAllAchievementsWithStatus(userId);
   const unlockedCount = getUnlockedCount(userId);
+
+  useEffect(() => {
+    setSubScreen(initialSubScreen);
+  }, [initialSubScreen]);
 
   if (subScreen === "achievements") {
     return (
@@ -99,7 +107,7 @@ const ExploreScreen: React.FC<ExploreScreenProps> = ({
           </button>
           <h2 className="text-[22px] font-bold text-foreground">Letters to Future Self</h2>
         </div>
-        <LetterToFutureSelf />
+        <LetterToFutureSelf userId={userId} hasProAccess={hasPremiumAccess} onUpgrade={onUpgrade} />
       </div>
     );
   }
@@ -192,6 +200,7 @@ const ExploreScreen: React.FC<ExploreScreenProps> = ({
       color: "rgb(251,191,36)",
       bg: "rgba(251,191,36,0.08)",
       border: "rgba(251,191,36,0.15)",
+      proOnly: true,
     },
     {
       id: "programs",
@@ -220,6 +229,10 @@ const ExploreScreen: React.FC<ExploreScreenProps> = ({
           <motion.button
             key={card.id}
             onClick={() => {
+              if (card.proOnly && !hasPremiumAccess) {
+                onUpgrade?.();
+                return;
+              }
               if (card.id === "programs") {
                 onNavigate?.("programs");
               } else {

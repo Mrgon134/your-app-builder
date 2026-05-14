@@ -45,6 +45,8 @@ import { lightImpact, successFeedback } from "@/lib/native-feedback";
 import juMain from "@/assets/ju-main.webp";
 
 type Screen = "home" | "journal" | "insights" | "coach" | "explore" | "pro" | "settings" | "programs" | "year-review" | "history";
+type RitualEntryPayload = { text: string; promptText: string; captureType: string };
+type ExploreInitialSubScreen = "main" | "breathing";
 
 const SCREEN_TITLES: Record<Screen, string> = {
   home: "Home",
@@ -65,7 +67,7 @@ const normalizeNativeProfilePlan = (plan: string) =>
   plan === "lifetime_one_time" ? "lifetime" : plan;
 
 const AppPage: React.FC = () => {
-  const { t, lang } = useLang();
+  const { t, lang, setLang } = useLang();
   const { user } = useAuth();
   const { country, couponCode } = useGeoPricing();
   const events = usePostHogEvents();
@@ -87,6 +89,7 @@ const AppPage: React.FC = () => {
       return "home";
     }
   });
+  const [exploreInitialSubScreen, setExploreInitialSubScreen] = useState<ExploreInitialSubScreen>("main");
   const [prevScreen, setPrevScreen] = useState<Screen | null>(null);
   const [navDirection, setNavDirection] = useState<1 | -1>(1);
   const [entries, setEntries] = useState<EntryRow[]>([]);
@@ -254,6 +257,9 @@ const AppPage: React.FC = () => {
 
         const hasCoachMessages = coachMessages.length > 0;
         setProfile(nextProfile);
+        if (nextProfile?.language && !localStorage.getItem("nuju-lang")) {
+          setLang(nextProfile.language);
+        }
         setStreak(nextProfile?.streak_current || 0);
         setEntries(dbEntries);
         setHasCoachHistory(hasCoachMessages);
@@ -283,7 +289,7 @@ const AppPage: React.FC = () => {
       }
     };
     load();
-  }, [syncAchievementState, user]);
+  }, [setLang, syncAchievementState, user]);
 
   useEffect(() => {
     if (!loading && user && !localStorage.getItem("nuju-tour-done-" + user.id)) {
@@ -342,6 +348,11 @@ const AppPage: React.FC = () => {
     if (options?.autoRecord) {
       setTimeout(() => setJournalAutoRecord(false), 600);
     }
+  }, [navigateTo]);
+
+  const openExploreScreen = useCallback((initialSubScreen: ExploreInitialSubScreen = "main") => {
+    setExploreInitialSubScreen(initialSubScreen);
+    navigateTo("explore");
   }, [navigateTo]);
 
   useEffect(() => {
@@ -555,6 +566,32 @@ const AppPage: React.FC = () => {
       }
     } catch (err) {
       console.error("Quick log failed:", err);
+    }
+  };
+
+  const handleRitualEntrySave = async ({ text, promptText, captureType }: RitualEntryPayload): Promise<void> => {
+    if (!user || !text.trim()) return;
+
+    const entry = await createEntry(
+      user.id,
+      selectedMood,
+      text,
+      energy,
+      promptText,
+      captureType || "daily_ritual"
+    );
+
+    events.trackEntryCreated(selectedMood, text.length, user.id);
+    setEntries((current) => [entry, ...current]);
+
+    try {
+      const updatedProfile = await fetchProfile(user.id);
+      if (updatedProfile) {
+        setStreak(updatedProfile.streak_current);
+        setProfile(updatedProfile);
+      }
+    } catch (error) {
+      console.warn("Ritual entry saved; profile refresh failed:", error);
     }
   };
 
@@ -988,12 +1025,23 @@ const AppPage: React.FC = () => {
                       <HomeScreen
                         shellMode={shellMode}
                         displayName={displayName}
-                        onNavigate={(s) => navigateTo(s as Screen)}
+                        onNavigate={(s) => {
+                          if (s === "breathing") {
+                            openExploreScreen("breathing");
+                            return;
+                          }
+                          if (s === "explore") {
+                            openExploreScreen("main");
+                            return;
+                          }
+                          navigateTo(s as Screen);
+                        }}
                         onWrite={(prompt) => openJournalScreen(prompt ? { prompt } : undefined)}
                         onTalk={(prompt) => openJournalScreen(prompt ? { prompt, autoRecord: true } : { autoRecord: true })}
                         onSettings={() => navigateTo("settings")}
                         onUpgrade={() => navigateTo("pro")}
                         onQuickLog={handleQuickLog}
+                        onRitualSave={handleRitualEntrySave}
                         streak={streak}
                         entries={entries}
                         selectedMood={selectedMood}
@@ -1034,7 +1082,7 @@ const AppPage: React.FC = () => {
                         }}
                       />
                     )}
-                    {screen === "insights" && <InsightsScreen shellMode={shellMode} entries={entries} streak={streak} onUpgrade={() => navigateTo("pro")} onNavigate={(s) => navigateTo(s as Screen)} plan={effectiveProfile?.plan} trialStartedAt={effectiveProfile?.trial_started_at} />}
+                    {screen === "insights" && <InsightsScreen shellMode={shellMode} entries={entries} streak={streak} onUpgrade={() => navigateTo("pro")} onNavigate={(s) => navigateTo(s as Screen)} plan={effectiveProfile?.plan} trialStartedAt={effectiveProfile?.trial_started_at} displayName={displayName} />}
                     {screen === "history" && (
                       <HistoryScreen
                         entries={entries}
@@ -1050,6 +1098,7 @@ const AppPage: React.FC = () => {
                         entries={entries}
                         streak={streak}
                         userId={user?.id}
+                        initialSubScreen={exploreInitialSubScreen}
                         onWritePrompt={(prompt) => openJournalScreen({ prompt })}
                         onNavigate={(s) => navigateTo(s as Screen)}
                         plan={effectiveProfile?.plan}
@@ -1147,7 +1196,13 @@ const AppPage: React.FC = () => {
                   <motion.button
                     id={`tour-nav-${item.id}`}
                     key={item.id}
-                    onClick={() => navigateTo(item.id)}
+                    onClick={() => {
+                      if (item.id === "explore") {
+                        openExploreScreen("main");
+                        return;
+                      }
+                      navigateTo(item.id);
+                    }}
                     className={`flex-1 flex flex-col items-center gap-0.5 py-2.5 transition-colors duration-200 ${
                       active ? "text-primary" : "text-muted-foreground/50"
                     }`}

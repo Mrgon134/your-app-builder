@@ -11,7 +11,17 @@ import {
 } from "@/lib/daily-ritual";
 import { useLang } from "@/lib/i18n";
 
-const DailyRitualCard: React.FC = () => {
+export type DailyRitualEntryPayload = {
+  text: string;
+  promptText: string;
+  captureType: string;
+};
+
+interface DailyRitualCardProps {
+  onSaveEntry?: (payload: DailyRitualEntryPayload) => Promise<void>;
+}
+
+const DailyRitualCard: React.FC<DailyRitualCardProps> = ({ onSaveEntry }) => {
   const { t } = useLang();
   const ritualType = getCurrentRitualType();
   const [expanded, setExpanded] = useState(false);
@@ -41,20 +51,54 @@ const DailyRitualCard: React.FC = () => {
     }
   }, [ritualType]);
 
+  const syncRitualEntry = async (payload: DailyRitualEntryPayload) => {
+    if (!onSaveEntry) return;
+    try {
+      await onSaveEntry(payload);
+    } catch (error) {
+      console.warn("Daily ritual saved locally; journal sync failed:", error);
+    }
+  };
+
+  const buildMorningEntryText = (filledGratitude: string[], nextIntention: string) => [
+    "Morning Check-in",
+    filledGratitude.length ? `Grateful for:\n${filledGratitude.map((item) => `- ${item}`).join("\n")}` : "",
+    nextIntention ? `Intention: ${nextIntention}` : "",
+  ].filter(Boolean).join("\n\n");
+
+  const buildEveningEntryText = (nextHighlight: string, nextLearned: string) => [
+    "Evening Reflection",
+    nextHighlight ? `Moment to remember: ${nextHighlight}` : "",
+    nextLearned ? `Something I noticed: ${nextLearned}` : "",
+  ].filter(Boolean).join("\n\n");
+
   const handleSaveMorning = () => {
     const filled = gratitude.filter(g => g.trim().length > 0);
-    if (filled.length === 0 && !intention.trim()) return;
+    const nextIntention = intention.trim();
+    if (filled.length === 0 && !nextIntention) return;
     saveMorningRitual(gratitude, intention);
     setSaved(true);
     setStreak(getRitualStreak());
+    void syncRitualEntry({
+      text: buildMorningEntryText(filled, nextIntention),
+      promptText: "Morning Check-in",
+      captureType: "daily_ritual",
+    });
     if (navigator.vibrate) navigator.vibrate([10, 40, 10]);
   };
 
   const handleSaveEvening = () => {
-    if (!highlight.trim() && !learned.trim()) return;
+    const nextHighlight = highlight.trim();
+    const nextLearned = learned.trim();
+    if (!nextHighlight && !nextLearned) return;
     saveEveningRitual(highlight, learned);
     setSaved(true);
     setStreak(getRitualStreak());
+    void syncRitualEntry({
+      text: buildEveningEntryText(nextHighlight, nextLearned),
+      promptText: "Evening Reflection",
+      captureType: "daily_ritual",
+    });
     if (navigator.vibrate) navigator.vibrate([10, 40, 10]);
   };
 

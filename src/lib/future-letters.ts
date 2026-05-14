@@ -2,6 +2,8 @@
 // Inspired by Tangerine + Gratitude (4.9★)
 // Users won't delete the app because their sealed letters live inside it
 
+import { supabase } from "@/integrations/supabase/client";
+
 const STORAGE_KEY = "nuju-future-letters";
 
 export interface FutureLetter {
@@ -12,6 +14,35 @@ export interface FutureLetter {
   opened: boolean;
   openedAt?: string; // ISO — when it was actually opened
 }
+
+type FutureLetterRow = {
+  id: string;
+  user_id: string;
+  deliver_at: string;
+  body: string;
+  created_at: string;
+  updated_at: string;
+};
+
+const createFutureLetterId = () => {
+  if (typeof crypto !== "undefined" && "randomUUID" in crypto) {
+    return crypto.randomUUID();
+  }
+
+  return "10000000-1000-4000-8000-100000000000".replace(/[018]/g, (char) =>
+    (Number(char) ^ (Math.random() * 16 >> (Number(char) / 4))).toString(16)
+  );
+};
+
+const dateOnly = (value: string) => value.slice(0, 10);
+
+const toFutureLetter = (row: FutureLetterRow): FutureLetter => ({
+  id: row.id,
+  text: row.body,
+  writtenAt: row.created_at,
+  openDate: dateOnly(row.deliver_at),
+  opened: false,
+});
 
 function loadAll(): FutureLetter[] {
   try {
@@ -26,9 +57,9 @@ function saveAll(letters: FutureLetter[]) {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(letters));
 }
 
-export function createLetter(text: string, openDate: string): FutureLetter {
+export function createLetter(text: string, openDate: string, id = createFutureLetterId()): FutureLetter {
   const letter: FutureLetter = {
-    id: `letter-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`,
+    id,
     text,
     writtenAt: new Date().toISOString(),
     openDate,
@@ -68,6 +99,56 @@ export function openLetter(id: string): FutureLetter | null {
 
 export function getAllLetters(): FutureLetter[] {
   return loadAll();
+}
+
+export function saveLocalLetter(letter: FutureLetter): void {
+  const all = loadAll();
+  const index = all.findIndex((item) => item.id === letter.id);
+  if (index >= 0) {
+    all[index] = letter;
+  } else {
+    all.unshift(letter);
+  }
+  saveAll(all);
+}
+
+export function mergeFutureLetters(localLetters: FutureLetter[], remoteLetters: FutureLetter[]): FutureLetter[] {
+  const byId = new Map<string, FutureLetter>();
+
+  for (const letter of remoteLetters) {
+    byId.set(letter.id, letter);
+  }
+
+  for (const letter of localLetters) {
+    const remote = byId.get(letter.id);
+    byId.set(letter.id, remote ? { ...remote, ...letter } : letter);
+  }
+
+  return [...byId.values()].sort((a, b) => b.writtenAt.localeCompare(a.writtenAt));
+}
+
+export async function fetchRemoteLetters(userId: string): Promise<FutureLetter[]> {
+  const { data, error } = await supabase
+    .from("future_letters")
+    .select("id,user_id,deliver_at,body,created_at,updated_at")
+    .eq("user_id", userId)
+    .order("deliver_at", { ascending: true });
+
+  if (error) throw error;
+  return ((data || []) as FutureLetterRow[]).map(toFutureLetter);
+}
+
+export async function createRemoteLetter(userId: string, letter: FutureLetter): Promise<void> {
+  const { error } = await supabase
+    .from("future_letters")
+    .upsert({
+      id: letter.id,
+      user_id: userId,
+      body: letter.text,
+      deliver_at: new Date(`${letter.openDate}T12:00:00`).toISOString(),
+    }, { onConflict: "id" });
+
+  if (error) throw error;
 }
 
 export function getLetterCount(): {

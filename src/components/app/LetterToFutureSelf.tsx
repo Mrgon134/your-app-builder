@@ -1,20 +1,31 @@
-import React, { useState, useEffect } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Mail, MailOpen, Lock, Send, ArrowLeft, Calendar } from "lucide-react";
 import {
   createLetter,
-  getReadyToOpenLetters,
-  getSealedLetters,
+  createRemoteLetter,
+  fetchRemoteLetters,
+  getAllLetters,
   openLetter,
   getOpenDateOptions,
+  mergeFutureLetters,
+  saveLocalLetter,
   FutureLetter,
 } from "@/lib/future-letters";
 
 interface LetterToFutureSelfProps {
   onClose?: () => void;
+  userId?: string | null;
+  hasProAccess?: boolean;
+  onUpgrade?: () => void;
 }
 
-const LetterToFutureSelf: React.FC<LetterToFutureSelfProps> = ({ onClose }) => {
+const LetterToFutureSelf: React.FC<LetterToFutureSelfProps> = ({
+  onClose,
+  userId = null,
+  hasProAccess = true,
+  onUpgrade,
+}) => {
   const [mode, setMode] = useState<"list" | "write" | "read">("list");
   const [text, setText] = useState("");
   const [selectedDate, setSelectedDate] = useState<string>("");
@@ -25,18 +36,36 @@ const LetterToFutureSelf: React.FC<LetterToFutureSelfProps> = ({ onClose }) => {
 
   const dateOptions = getOpenDateOptions();
 
-  const refresh = () => {
-    setReadyLetters(getReadyToOpenLetters());
-    setSealedLetters(getSealedLetters());
-  };
+  const refresh = useCallback(async () => {
+    const today = new Date().toISOString().split("T")[0];
+    const localLetters = getAllLetters();
+    let letters = localLetters;
+
+    if (userId) {
+      try {
+        const remoteLetters = await fetchRemoteLetters(userId);
+        letters = mergeFutureLetters(localLetters, remoteLetters);
+      } catch (error) {
+        console.warn("Future letters remote sync failed; using local cache:", error);
+      }
+    }
+
+    setReadyLetters(letters.filter((letter) => !letter.opened && letter.openDate <= today));
+    setSealedLetters(letters.filter((letter) => !letter.opened && letter.openDate > today));
+  }, [userId]);
 
   useEffect(() => {
-    refresh();
-  }, []);
+    void refresh();
+  }, [refresh]);
 
-  const handleSend = () => {
+  const handleSend = async () => {
     if (!text.trim() || !selectedDate) return;
-    createLetter(text.trim(), selectedDate);
+    const letter = createLetter(text.trim(), selectedDate);
+    if (userId) {
+      createRemoteLetter(userId, letter).catch((error) => {
+        console.warn("Future letter saved locally; remote sync failed:", error);
+      });
+    }
     setText("");
     setSelectedDate("");
     setJustSealed(true);
@@ -44,19 +73,43 @@ const LetterToFutureSelf: React.FC<LetterToFutureSelfProps> = ({ onClose }) => {
     setTimeout(() => {
       setJustSealed(false);
       setMode("list");
-      refresh();
+      void refresh();
     }, 2000);
   };
 
   const handleOpen = (letter: FutureLetter) => {
-    const opened = openLetter(letter.id);
+    let opened = openLetter(letter.id);
+    if (!opened) {
+      opened = { ...letter, opened: true, openedAt: new Date().toISOString() };
+      saveLocalLetter(opened);
+    }
     if (opened) {
       setOpenedLetter(opened);
       setMode("read");
-      refresh();
+      void refresh();
       if (navigator.vibrate) navigator.vibrate([10, 30, 10, 30, 10]);
     }
   };
+
+  if (!hasProAccess) {
+    return (
+      <div className="rounded-3xl border border-amber-500/20 bg-amber-500/5 p-6 text-center">
+        <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-amber-500/10">
+          <Lock className="h-7 w-7 text-amber-500" />
+        </div>
+        <h3 className="text-[20px] font-bold text-foreground">Future Letters are Pro</h3>
+        <p className="mt-2 text-[13px] leading-6 text-muted-foreground">
+          Keep letters to your future self synced and sealed with Ju.
+        </p>
+        <button
+          onClick={onUpgrade}
+          className="mt-5 w-full rounded-2xl bg-primary py-3 text-[14px] font-semibold text-primary-foreground press-spring"
+        >
+          Keep Ju close
+        </button>
+      </div>
+    );
+  }
 
   // Just sealed animation
   if (justSealed) {

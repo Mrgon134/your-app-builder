@@ -20,7 +20,7 @@ import { EntryRow } from "@/lib/api";
 import { motion, AnimatePresence } from "framer-motion";
 import { lightImpact, selectionFeedback } from "@/lib/native-feedback";
 
-import DailyRitualCard from "@/components/app/DailyRitualCard";
+import DailyRitualCard, { type DailyRitualEntryPayload } from "@/components/app/DailyRitualCard";
 import WeeklyReviewCard from "@/components/app/WeeklyReviewCard";
 import { type ShellMode } from "@/hooks/use-shell-mode";
 import { getFirstName } from "@/lib/profile-name";
@@ -122,6 +122,7 @@ interface HomeScreenProps {
   onSettings: () => void;
   onUpgrade: () => void;
   onQuickLog?: () => void;
+  onRitualSave?: (payload: DailyRitualEntryPayload) => Promise<void>;
   streak: number;
   entries: EntryRow[];
   selectedMood?: number;
@@ -140,6 +141,7 @@ const HomeScreen: React.FC<HomeScreenProps> = ({
   shellMode = "phone",
   displayName = null,
   onNavigate, onWrite, onTalk, onSettings, onUpgrade, onQuickLog,
+  onRitualSave,
   streak, entries,
   selectedMood: controlledMood, onMoodSelect: controlledMoodSelect,
   energy: controlledEnergy, onEnergyChange: controlledEnergyChange,
@@ -659,7 +661,7 @@ const HomeScreen: React.FC<HomeScreenProps> = ({
 
         {/* Breathing exercise quick action */}
         <button
-          onClick={() => onNavigate("explore")}
+          onClick={() => onNavigate("breathing")}
           className="w-full flex items-center justify-center gap-2 h-[44px] rounded-2xl border border-primary/20 bg-primary/5 text-primary font-medium text-[13px] press-spring transition-all hover:border-primary/40 hover:bg-primary/10"
         >
           <Wind className="w-4 h-4" />
@@ -717,9 +719,9 @@ const HomeScreen: React.FC<HomeScreenProps> = ({
       <WeeklyReviewCard entries={entries} />
 
       {/* Morning/Evening Check-in — replaces GratitudeCard (inspired by 5MJ + Rosebud) */}
-      <DailyRitualCard />
+      <DailyRitualCard onSaveEntry={onRitualSave} />
       
-      <AiMemoryCard entries={entries} hasProAccess={hasProAccess(plan ?? null, trialStartedAt ?? null)} />
+      <AiMemoryCard entries={entries} hasProAccess={hasProAccess(plan ?? null, trialStartedAt ?? null)} userName={displayName} />
 
       {/* Recent entries — clean iOS-list style, no cards */}
       {entries.length > 0 && (

@@ -428,3 +428,34 @@ export const upsertUserProgram = async (userId: string, program: UserProgramRow)
     }, { onConflict: "user_id,program_id" });
   if (error) throw error;
 };
+
+export const fetchAiMemoryLines = async ({
+  entries,
+  lang,
+  userName,
+}: {
+  entries: EntryRow[];
+  lang: string;
+  userName?: string | null;
+}): Promise<string[]> => {
+  const payload = {
+    lang,
+    userName: userName || null,
+    entries: entries.slice(0, 12).map((entry) => ({
+      mood: entry.mood,
+      text: entry.text || "",
+      date: entry.entry_date,
+      kind: entry.capture_type || "journal",
+    })),
+  };
+
+  const { data, error } = await supabase.functions.invoke<{ memories?: string[] }>(
+    "ai-memory-card",
+    { body: payload }
+  );
+
+  if (error) throw error;
+  return Array.isArray(data?.memories)
+    ? data.memories.filter((line): line is string => typeof line === "string" && line.trim().length > 0)
+    : [];
+};

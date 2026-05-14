@@ -1,12 +1,13 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { Brain } from "lucide-react";
 import { useLang } from "@/lib/i18n";
-import { type EntryRow } from "@/lib/api";
+import { fetchAiMemoryLines, type EntryRow } from "@/lib/api";
 import { JU_STICKERS } from "@/lib/stickers";
 
 interface AiMemoryCardProps {
   entries: EntryRow[];
   hasProAccess: boolean;
+  userName?: string | null;
 }
 
 type PatternKey =
@@ -100,9 +101,10 @@ const derivePatternKeys = (entries: EntryRow[]): PatternKey[] => {
   return result.slice(0, 3);
 };
 
-const AiMemoryCard: React.FC<AiMemoryCardProps> = ({ entries, hasProAccess }) => {
+const AiMemoryCard: React.FC<AiMemoryCardProps> = ({ entries, hasProAccess, userName = null }) => {
   const { t, lang } = useLang();
   const [visible, setVisible] = useState(false);
+  const [aiMemories, setAiMemories] = useState<string[] | null>(null);
 
   useEffect(() => {
     const timer = setTimeout(() => setVisible(true), 600);
@@ -110,13 +112,58 @@ const AiMemoryCard: React.FC<AiMemoryCardProps> = ({ entries, hasProAccess }) =>
   }, []);
 
   const patternKeys = useMemo(() => derivePatternKeys(entries), [entries]);
-  const memories = useMemo(
+  const fallbackMemories = useMemo(
     () => patternKeys.map((key) => getPatternCopy(key, lang)),
     [lang, patternKeys]
   );
+  const memoryCacheKey = useMemo(() => {
+    const latestIds = entries.slice(0, 6).map((entry) => entry.id).join(".");
+    return `nuju-ai-memory-card:${lang}:${userName || "anon"}:${entries.length}:${latestIds}`;
+  }, [entries, lang, userName]);
+  const memories = aiMemories?.length ? aiMemories : fallbackMemories;
   const primarySticker = patternKeys.length > 0
     ? JU_STICKERS[PATTERN_STICKERS[patternKeys[0]]]
     : JU_STICKERS.goodjob;
+
+  useEffect(() => {
+    if (!hasProAccess || entries.length < 3) {
+      setAiMemories(null);
+      return;
+    }
+
+    let cancelled = false;
+    try {
+      const cached = sessionStorage.getItem(memoryCacheKey);
+      if (cached) {
+        const parsed = JSON.parse(cached);
+        if (Array.isArray(parsed) && parsed.length > 0) {
+          setAiMemories(parsed);
+          return;
+        }
+      }
+    } catch {
+      // Cache is optional; the local rule-based copy remains the fallback.
+    }
+
+    fetchAiMemoryLines({ entries, lang, userName })
+      .then((lines) => {
+        if (cancelled || lines.length === 0) return;
+        setAiMemories(lines);
+        try {
+          sessionStorage.setItem(memoryCacheKey, JSON.stringify(lines));
+        } catch {
+          // Ignore cache write failures.
+        }
+      })
+      .catch((error) => {
+        console.warn("AI memory card fallback used:", error);
+        if (!cancelled) setAiMemories(null);
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [entries, hasProAccess, lang, memoryCacheKey, userName]);
 
   if (!hasProAccess || entries.length < 3 || memories.length === 0 || !visible) return null;
 

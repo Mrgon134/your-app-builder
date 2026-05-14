@@ -25,6 +25,7 @@ interface InsightsScreenProps {
   onNavigate?: (screen: string) => void;
   plan?: string | null;
   trialStartedAt?: string | null;
+  displayName?: string | null;
 }
 
 const FREE_HISTORY_DAYS = 7;
@@ -37,6 +38,7 @@ const InsightsScreen: React.FC<InsightsScreenProps> = ({
   onNavigate,
   plan = "free",
   trialStartedAt = null,
+  displayName = null,
 }) => {
   const { t, lang } = useLang();
   const [aiSummary, setAiSummary] = useState<string | null>(null);
@@ -495,7 +497,7 @@ const InsightsScreen: React.FC<InsightsScreenProps> = ({
             </div>
           )}
 
-          <AiMemoryCard entries={entries} hasProAccess={hasPremiumCoach} />
+          <AiMemoryCard entries={entries} hasProAccess={hasPremiumCoach} userName={displayName} />
 
           <div className={`grid gap-3 ${isLargeShell ? "sm:grid-cols-2" : "grid-cols-2"}`}>
             <button

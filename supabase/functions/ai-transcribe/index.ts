@@ -36,7 +36,7 @@ interface OpenRouterTranscriptionResponse {
 //
 // ─────────────────────────────────────────────────────────────────────────────
 
-function normalizeTranscriptionLanguage(value: unknown): string {
+function transcriptionLanguageHint(value: unknown): string | null {
   if (typeof value !== "string") return "en";
   const raw = value.trim().toLowerCase().replace("_", "-");
   const lang = raw.split("-")[0];
@@ -46,20 +46,24 @@ function normalizeTranscriptionLanguage(value: unknown): string {
   };
   const normalized = aliases[lang] || lang;
   const supported = new Set(["en", "id", "es", "pt", "ja", "ko", "zh", "hi", "ar", "fr", "de", "ms", "th", "vi", "tl"]);
-  return supported.has(normalized) ? normalized : "en";
+  if (!supported.has(normalized)) return "en";
+  // UI language is not always the language being spoken. Keep English pinned
+  // because Nuju defaults to English, but let other languages auto-detect so
+  // English speech is not forced into Indonesian/Malay after a UI language test.
+  return normalized === "en" ? "en" : null;
 }
 
-const transcriptionPrompt = (language: string) =>
+const transcriptionPrompt = (language: string | null) =>
   language === "en"
     ? "Transcribe the user's English speech exactly. Prefer English when ambiguous. Do not translate to Malay or Indonesian."
-    : null;
+    : "Transcribe the speech exactly in the language spoken. Do not translate it. If the speech is English or ambiguous, prefer English over Malay or Indonesian.";
 
 /** Groq Whisper large-v3 with language hint and timestamps. */
 async function transcribeGroq(
   audioBase64: string,
   mimeType: string,
   apiKey: string,
-  language: string,
+  language: string | null,
 ): Promise<{ transcript: string; segments: { start: number; end: number; text: string }[] }> {
   // Decode base64 → binary
   const audioBytes = Uint8Array.from(atob(audioBase64), (c) => c.charCodeAt(0));
@@ -80,7 +84,7 @@ async function transcribeGroq(
   form.append("model", "whisper-large-v3");
   form.append("response_format", "verbose_json");
   form.append("timestamp_granularities[]", "segment");
-  form.append("language", language);
+  if (language) form.append("language", language);
   const prompt = transcriptionPrompt(language);
   if (prompt) form.append("prompt", prompt);
   form.append("temperature", "0");
@@ -122,7 +126,7 @@ async function transcribeOpenRouter(
   audioBase64: string,
   mimeType: string,
   apiKey: string,
-  language: string,
+  language: string | null,
 ): Promise<{ transcript: string; segments: { start: number; end: number; text: string }[] }> {
   const model = Deno.env.get("OPENROUTER_TRANSCRIBE_MODEL") || "openai/gpt-4o-transcribe";
   const res = await fetch("https://openrouter.ai/api/v1/audio/transcriptions", {
@@ -139,7 +143,7 @@ async function transcribeOpenRouter(
         format: formatFromMimeType(mimeType),
       },
       model,
-      language,
+      ...(language ? { language } : {}),
       temperature: 0,
     }),
   });
@@ -174,7 +178,7 @@ serve(async (req) => {
 
     const groqKey = Deno.env.get("GROQ_API_KEY");
     const openRouterKey = Deno.env.get("OPENROUTER_API_KEY") || Deno.env.get("AI_FALLBACK_API_KEY");
-    const language = normalizeTranscriptionLanguage(lang);
+    const language = transcriptionLanguageHint(lang);
 
     let transcript = "";
     let segments: { start: number; end: number; text: string }[] = [];

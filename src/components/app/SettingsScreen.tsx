@@ -228,6 +228,19 @@ const SettingsScreen: React.FC<SettingsScreenProps> = ({ onBack, onUpgrade, onSa
     }
   };
 
+  const handleLanguageSelect = async (languageCode: string) => {
+    setLang(languageCode);
+    setShowLangPicker(false);
+    if (!user) return;
+
+    try {
+      await updateProfile(user.id, { language: languageCode });
+    } catch (err) {
+      console.error("Failed to save language:", err);
+      toast.error("Couldn't save language preference just yet.");
+    }
+  };
+
   const openAppleSubscriptions = () => {
     window.open("https://apps.apple.com/account/subscriptions", "_blank", "noopener,noreferrer");
   };
@@ -478,7 +491,7 @@ const SettingsScreen: React.FC<SettingsScreenProps> = ({ onBack, onUpgrade, onSa
                 {LANG_META.map((l) => (
                   <button
                     key={l.code}
-                    onClick={() => { setLang(l.code); setShowLangPicker(false); }}
+                    onClick={() => { void handleLanguageSelect(l.code); }}
                     className={`w-full flex items-center justify-between px-3 py-2.5 rounded-lg text-[15px] transition-colors ${
                       lang === l.code
                         ? "bg-primary/8 text-primary font-medium"
