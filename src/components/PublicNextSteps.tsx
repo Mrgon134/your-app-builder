@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
+import { siApple } from "simple-icons";
 
 import { APP_STORE_URL } from "@/lib/constants";
 
@@ -32,8 +33,8 @@ const PublicNextSteps: React.FC<PublicNextStepsProps> = ({
         ...links,
         {
           href: APP_STORE_URL,
-          title: "Available on the App Store",
-          description: "Open Nuju on the iPhone App Store when you want the native app.",
+          title: "Download in App Store",
+          description: "Open Nuju on the iPhone App Store and install the native app.",
           badge: "iOS App",
         },
       ]
@@ -57,27 +58,38 @@ const PublicNextSteps: React.FC<PublicNextStepsProps> = ({
 
       <div className="mt-6 grid gap-3 sm:grid-cols-2">
         {displayLinks.map((link) => {
+          const isAppStoreLink = link.href === APP_STORE_URL;
           const content = (
             <div className="flex items-start justify-between gap-3">
               <div>
-                {link.badge && (
-                  <span className="inline-flex rounded-full bg-primary/10 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider text-primary">
+                {isAppStoreLink ? (
+                  <span className="inline-flex items-center gap-1.5 rounded-full bg-white px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider text-black">
+                    <svg viewBox="0 0 24 24" aria-hidden="true" className="h-3 w-3" fill="currentColor">
+                      <path d={siApple.path} />
+                    </svg>
                     {link.badge}
                   </span>
+                ) : (
+                  link.badge && (
+                    <span className="inline-flex rounded-full bg-primary/10 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider text-primary">
+                      {link.badge}
+                    </span>
+                  )
                 )}
-                <p className="mt-2 text-sm font-semibold text-foreground">
+                <p className={`mt-2 text-sm font-semibold ${isAppStoreLink ? "text-white" : "text-foreground"}`}>
                   {link.title}
                 </p>
-                <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
+                <p className={`mt-1 text-sm leading-relaxed ${isAppStoreLink ? "text-white/74" : "text-muted-foreground"}`}>
                   {link.description}
                 </p>
               </div>
-              <ArrowRight className="mt-0.5 h-4 w-4 flex-shrink-0 text-primary transition-transform group-hover:translate-x-0.5" />
+              <ArrowRight className={`mt-0.5 h-4 w-4 flex-shrink-0 transition-transform group-hover:translate-x-0.5 ${isAppStoreLink ? "text-white" : "text-primary"}`} />
             </div>
           );
 
-          const className =
-            "group rounded-xl border border-border/50 bg-background/80 p-4 transition-all hover:border-primary/30 hover:bg-primary/[0.04]";
+          const className = isAppStoreLink
+            ? "group rounded-xl border border-black bg-black p-4 shadow-[0_14px_34px_-22px_rgba(0,0,0,0.68)] transition-all hover:-translate-y-0.5 hover:bg-neutral-900"
+            : "group rounded-xl border border-border/50 bg-background/80 p-4 transition-all hover:border-primary/30 hover:bg-primary/[0.04]";
 
           return link.href ? (
             <a

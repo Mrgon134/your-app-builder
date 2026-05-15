@@ -74,7 +74,7 @@ const Blog: React.FC = () => {
             >
               Try free
             </Link>
-            <AppStoreCta label="App Store" size="sm" className="hidden sm:inline-flex" />
+            <AppStoreCta size="sm" className="hidden sm:inline-flex" />
           </div>
         </div>
       </nav>

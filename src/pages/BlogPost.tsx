@@ -687,7 +687,6 @@ const BlogPost: React.FC = () => {
               {copy.tryFree}
             </Link>
             <AppStoreCta
-              label="App Store"
               size="sm"
               className="hidden sm:inline-flex"
               onClick={() =>

@@ -83,7 +83,7 @@ const JournalingGuide: React.FC = () => {
             >
               Try Nuju free
             </Link>
-            <AppStoreCta label="App Store" size="sm" className="hidden sm:inline-flex" />
+            <AppStoreCta size="sm" className="hidden sm:inline-flex" />
           </div>
         </div>
       </nav>

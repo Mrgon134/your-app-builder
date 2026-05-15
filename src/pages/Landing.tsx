@@ -555,7 +555,7 @@ const Landing: React.FC = () => {
             >
               Try Nuju free
             </button>
-            <AppStoreCta label="App Store" size="sm" className="hidden h-10 px-4 sm:inline-flex" />
+            <AppStoreCta size="sm" className="hidden h-10 px-4 sm:inline-flex" />
           </div>
         </div>
       </nav>
@@ -613,7 +613,7 @@ const Landing: React.FC = () => {
               >
                 Watch how it works
               </button>
-              <AppStoreCta variant="soft" className="h-14 bg-white/72 backdrop-blur-xl dark:bg-white/6" />
+              <AppStoreCta variant="soft" className="h-14 backdrop-blur-xl" />
             </div>
 
             <div className="mx-auto mt-8 hidden max-w-3xl gap-2 sm:grid sm:grid-cols-3">
@@ -1051,7 +1051,7 @@ const Landing: React.FC = () => {
               Start the Ju Gets You reveal
               <ArrowRight className="h-5 w-5" />
             </button>
-            <AppStoreCta className="h-14 bg-white/72" />
+            <AppStoreCta className="h-14" />
           </div>
         </div>
       </motion.section>
@@ -1283,7 +1283,7 @@ const Landing: React.FC = () => {
             >
               See plans
             </button>
-            <AppStoreCta className="h-14 bg-white/72" />
+            <AppStoreCta className="h-14" />
           </div>
           <p className="mt-5 text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
             60-second reveal · No credit card to start · Private by default
@@ -1364,7 +1364,7 @@ const Landing: React.FC = () => {
                 Start reveal
                 <ArrowRight className="h-3.5 w-3.5" />
               </button>
-              <AppStoreCta label="App Store" size="sm" className="h-10 px-3 text-xs" />
+              <AppStoreCta size="sm" className="h-10 px-3 text-xs" />
             </div>
           </motion.div>
         )}
