@@ -473,7 +473,9 @@ function renderLandingBody() {
           "Fast enough for hard days",
           "Private by default",
           "Voice or text check-ins",
+          "Free AI journal reveal before payment",
           "Mood-aware AI reflection",
+          "Mood tracking apps with AI insights",
           "Installable on iOS, Android, and desktop",
         ])}
       `,
@@ -847,9 +849,16 @@ function renderAiJournalBody() {
         ]),
       ),
       renderSection(
+        "How to choose an AI journal app",
+        `
+          <p>The best AI journal app should do more than answer one message. Look for a free way to test the reflection, mood tracking that gives the AI emotional context, clear pricing before upgrade, and privacy language that says your entries are not used to train models.</p>
+          <p>Nuju is built around that checklist: free reveal first, mood and energy with every entry, then deeper memory and voice journaling only if you want the paid layer.</p>
+        `,
+      ),
+      renderSection(
         "How Nuju works in 30 seconds",
         renderOrdered([
-          "Tap your mood and energy and optionally write a few sentences.",
+          "Tap your mood and energy and optionally write a few sentences so the AI journal has mood tracking context from the start.",
           "Ju reflects on your specific words, not a template, and surfaces the feeling underneath.",
           "Patterns appear over time as Ju connects moods, themes, and people across entries.",
         ]),
@@ -950,7 +959,7 @@ function renderAiJournalBody() {
           <h3>What is an AI journaling app?</h3>
           <p>An AI journaling app is a journal that combines your writing with mood data and uses AI to reflect on what you wrote. Instead of a blank page, you get a private read on what is happening underneath an entry, plus pattern detection across weeks.</p>
           <h3>Is Nuju free?</h3>
-          <p>Yes. The Ju Gets You reveal and core mood and writing flow are free. Paid access unlocks full history, 30-day trends, weekly summaries, voice journaling, AI memory, and the relationship mood map.</p>
+          <p>Yes. Nuju works as a free AI journal app to start: the Ju Gets You reveal and core mood and writing flow are free. Paid access unlocks full history, 30-day trends, weekly summaries, voice journaling, AI memory, and the relationship mood map.</p>
           <h3>How is Nuju different from a generic AI chatbot?</h3>
           <p>A chatbot replies to a single message. Nuju is a journaling system: it pairs writing with mood and energy, remembers context across entries, and surfaces trends you cannot see from any one conversation.</p>
           <h3>Does Nuju replace therapy?</h3>
@@ -985,6 +994,13 @@ function renderMoodTrackerBody() {
         ]),
       ),
       renderSection(
+        "What kind of mood tracking app do you need?",
+        `
+          <p>If you only need speed, a simple mood tracker app or emoji log can be enough. If you want to understand why the pattern keeps happening, choose a mood tracking app with AI insights that also captures written context.</p>
+          <p>Nuju sits in that second category: fast enough for daily check-ins, but built to explain trends instead of only storing them.</p>
+        `,
+      ),
+      renderSection(
         "How Nuju tracks mood in 10 seconds",
         renderOrdered([
           "Tap a mood (Rough to Great) and slide your energy level.",
@@ -997,7 +1013,7 @@ function renderMoodTrackerBody() {
         renderList([
           "30-day mood and energy trend charts.",
           "Pixel calendar of your full month, color-coded by mood.",
-          "Weekly AI summaries that interpret what changed, not just plot it.",
+          "Weekly AI summaries that interpret what changed, not just plot it - the layer missing from most mood tracking apps with AI insights in name only.",
           "Pattern detection across moods, themes, and people.",
           "Mood paired with optional reflection so trends carry context.",
           "Encrypted storage, signed media URLs, no mood data sold, no AI training on your entries.",
@@ -1068,6 +1084,8 @@ function renderMoodTrackerBody() {
         `
           <h3>What is a mood tracker app?</h3>
           <p>A mood tracker app is a tool for logging how you feel over time so you can spot patterns, triggers, and trends. The good ones do more than collect data - they pair mood with context like written reflection or activities and surface what is actually moving your emotional baseline.</p>
+          <h3>What are mood tracking apps with AI insights?</h3>
+          <p>Mood tracking apps with AI insights combine a daily mood score with context, such as written reflection, energy, activities, or people. The AI should explain patterns over time, not just label a single mood entry. Nuju does this by pairing quick mood check-ins with written reflection and weekly summaries.</p>
           <h3>Is Nuju free to use as a mood tracker?</h3>
           <p>Yes. The 10-second mood and energy check-in and basic recent insight are free. Paid access unlocks 30-day trend charts, the pixel calendar, weekly AI summaries, pattern detection, and the relationship mood map.</p>
           <h3>How is Nuju different from Daylio?</h3>
@@ -1958,7 +1976,7 @@ function buildStaticPages(posts) {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
     name: "Nuju",
-    alternateName: "Nuju AI Journal",
+    alternateName: ["Nuju AI Journal", "Nu Ju", "Nuju Mood Tracker"],
     applicationCategory: "HealthApplication",
     applicationSubCategory: "Emotional Wellness",
     operatingSystem: "Web browser, iOS, Android",
@@ -1976,6 +1994,8 @@ function buildStaticPages(posts) {
     featureList: [
       "Ju Gets You reveal",
       "AI mood tracking",
+      "Free AI journal reveal before payment",
+      "Mood tracking apps with AI insights",
       "Voice or text journaling",
       "Emotional pattern detection",
       "30-day mood trends",
@@ -2021,7 +2041,7 @@ function buildStaticPages(posts) {
     "@context": "https://schema.org",
     "@type": "WebSite",
     name: "Nuju",
-    alternateName: "Nuju AI Journal",
+    alternateName: ["Nuju AI Journal", "Nu Ju", "Nuju Mood Tracker"],
     url: BASE_URL,
     description:
       "The AI journal app for mood tracking, emotional clarity, and gentle reflection.",
@@ -2110,6 +2130,8 @@ function buildStaticPages(posts) {
           image: OG_IMAGE,
           featureList: [
             "AI reflection on your actual writing",
+            "Free AI journal app reveal",
+            "AI journaling app with mood tracking",
             "30-second mood and energy check-ins",
             "Four coach personas",
             "Weekly summaries and 30-day trends",
@@ -2141,7 +2163,7 @@ function buildStaticPages(posts) {
               name: "Is Nuju free?",
               acceptedAnswer: {
                 "@type": "Answer",
-                text: "Yes. The Ju Gets You reveal and core mood + writing flow are free. Paid access unlocks full history, 30-day trends, weekly summaries, voice journaling, AI memory, and the relationship mood map.",
+                text: "Yes. Nuju works as a free AI journal app to start: the Ju Gets You reveal and core mood + writing flow are free. Paid access unlocks full history, 30-day trends, weekly summaries, voice journaling, AI memory, and the relationship mood map.",
               },
             },
             {
@@ -2206,6 +2228,8 @@ function buildStaticPages(posts) {
           image: OG_IMAGE,
           featureList: [
             "10-second mood and energy check-ins",
+            "Mood tracking app with AI insights",
+            "Best mood tracking apps 2026 comparison support",
             "Five-mood scale with optional written reflection",
             "30-day mood and energy trend charts",
             "Pixel calendar of your month",
@@ -2230,6 +2254,14 @@ function buildStaticPages(posts) {
               acceptedAnswer: {
                 "@type": "Answer",
                 text: "A mood tracker app is a tool for logging how you feel over time so you can spot patterns, triggers, and trends. The good ones do more than collect data - they pair mood with context (like written reflection or activities) and surface what is actually moving your emotional baseline.",
+              },
+            },
+            {
+              "@type": "Question",
+              name: "What are mood tracking apps with AI insights?",
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: "Mood tracking apps with AI insights combine a daily mood score with context, such as written reflection, energy, activities, or people. The AI should explain patterns over time, not just label a single mood entry. Nuju does this by pairing quick mood check-ins with written reflection and weekly summaries.",
               },
             },
             {
