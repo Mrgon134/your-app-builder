@@ -38,7 +38,7 @@ const FEATURES = [
   {
     icon: Brain,
     title: "AI summaries that interpret, not just plot",
-    body: "Weekly AI summaries explain what changed and why — not just where the line went up or down.",
+    body: "Weekly AI summaries explain what changed and why — not just where the line went up or down. This is the layer missing from most mood tracking apps with AI insights in name only.",
   },
   {
     icon: Sparkles,
@@ -100,6 +100,10 @@ const FAQS = [
     a: "A mood tracker app is a tool for logging how you feel over time so you can spot patterns, triggers, and trends. The good ones do more than collect data — they pair mood with context (like written reflection or activities) and surface what is actually moving your emotional baseline.",
   },
   {
+    q: "What are mood tracking apps with AI insights?",
+    a: "Mood tracking apps with AI insights combine a daily mood score with context, such as written reflection, energy, activities, or people. The AI should explain patterns over time, not just label a single mood entry. Nuju does this by pairing quick mood check-ins with written reflection and weekly summaries.",
+  },
+  {
     q: "Is Nuju free to use as a mood tracker?",
     a: "Yes. The 10-second mood + energy check-in and basic recent insight are free. Paid access unlocks 30-day trend charts, the pixel calendar, weekly AI summaries, pattern detection, and the relationship mood map.",
   },
@@ -135,6 +139,8 @@ const softwareApplicationSchema = {
   image: "https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image",
   featureList: [
     "10-second mood and energy check-ins",
+    "Mood tracking app with AI insights",
+    "Best mood tracking apps 2026 comparison support",
     "Five-mood scale with optional written reflection",
     "30-day mood and energy trend charts",
     "Pixel calendar of your month",
@@ -260,6 +266,18 @@ const MoodTracker: React.FC = () => {
               less surprising.
             </li>
           </ul>
+        </section>
+
+        <section className="mt-16" aria-labelledby="choose-mood-tracker">
+          <h2 id="choose-mood-tracker" className="font-serif text-2xl font-bold text-foreground">
+            What kind of mood tracking app do you need?
+          </h2>
+          <p className="mt-3 text-foreground/85">
+            If you only need speed, a simple mood tracker app or emoji log can be enough. If you want to understand why
+            the pattern keeps happening, choose a mood tracking app with AI insights that also captures written context.
+            Nuju sits in that second category: fast enough for daily check-ins, but built to explain trends instead of
+            only storing them.
+          </p>
         </section>
 
         <section className="mt-16" aria-labelledby="how-it-works">

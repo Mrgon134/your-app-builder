@@ -16,7 +16,7 @@ const CANONICAL = "https://nuju.app/ai-journal";
 const STEPS = [
   {
     label: "Tap your mood",
-    body: "Pick a mood, set energy, optionally write a few sentences. The whole entry takes about 30 seconds.",
+    body: "Pick a mood, set energy, optionally write a few sentences. The whole entry takes about 30 seconds, so the AI journal has mood tracking context from the start.",
   },
   {
     label: "Ju reads what you wrote",
@@ -105,7 +105,7 @@ const FAQS = [
   },
   {
     q: "Is Nuju free?",
-    a: "Yes. The Ju Gets You reveal and core mood + writing flow are free. Paid access unlocks full history, 30-day trends, weekly summaries, voice journaling, AI memory, and the relationship mood map.",
+    a: "Yes. Nuju works as a free AI journal app to start: the Ju Gets You reveal and core mood + writing flow are free. Paid access unlocks full history, 30-day trends, weekly summaries, voice journaling, AI memory, and the relationship mood map.",
   },
   {
     q: "Is my journal private?",
@@ -139,6 +139,8 @@ const softwareApplicationSchema = {
   image: "https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image",
   featureList: [
     "AI reflection on your actual writing",
+    "Free AI journal app reveal",
+    "AI journaling app with mood tracking",
     "30-second mood and energy check-ins",
     "Four coach personas",
     "Weekly summaries and 30-day trends",
@@ -270,6 +272,18 @@ const AiJournal: React.FC = () => {
               <strong>ADHD and low-energy days</strong> where 30 seconds is the only journaling that actually happens.
             </li>
           </ul>
+        </section>
+
+        <section className="mt-16" aria-labelledby="choose-ai-journal">
+          <h2 id="choose-ai-journal" className="font-serif text-2xl font-bold text-foreground">
+            How to choose an AI journal app
+          </h2>
+          <p className="mt-3 text-foreground/85">
+            The best AI journal app should do more than answer one message. Look for a free way to test the reflection,
+            mood tracking that gives the AI emotional context, clear pricing before upgrade, and privacy language that
+            says your entries are not used to train models. Nuju is built around that checklist: free reveal first,
+            mood and energy with every entry, then deeper memory and voice journaling only if you want the paid layer.
+          </p>
         </section>
 
         <section className="mt-16" aria-labelledby="how-it-works">

@@ -487,7 +487,7 @@ const Landing: React.FC = () => {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
     name: "Nuju",
-    alternateName: "Nuju AI Journal",
+    alternateName: ["Nuju AI Journal", "Nu Ju", "Nuju Mood Tracker"],
     applicationCategory: "HealthApplication",
     applicationSubCategory: "AI Journaling and Mood Tracking",
     operatingSystem: "Web browser, iOS, Android",
@@ -498,6 +498,8 @@ const Landing: React.FC = () => {
     featureList: [
       "Quick mood and energy check-ins",
       "Written and voice journaling",
+      "Free AI journal reveal before payment",
+      "Mood tracking apps with AI insights",
       "AI summaries and weekly patterns",
       "30-day mood and energy trend charts",
       "Four coach personas for different reflection styles",
