@@ -21,13 +21,8 @@ const Landing: React.FC = () => {
       .then((html) => {
         if (cancelled) return;
 
-        const normalizedHtml = html.replace(
-          "<head>",
-          '<head><base href="/landing-exact/">'
-        );
-
         document.open();
-        document.write(normalizedHtml);
+        document.write(html);
         document.close();
       })
       .catch(() => {
