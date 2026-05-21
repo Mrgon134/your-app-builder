@@ -10,10 +10,10 @@ const MedicalDisclaimer: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const from = (location.state as RouteState | null)?.from || "/app?screen=settings";
+  const from = (location.state as RouteState | null)?.from || "/";
   const linkState = { from };
   const handleBack = () => {
-    navigate(from);
+    navigate(from, { replace: true });
   };
 
   return (

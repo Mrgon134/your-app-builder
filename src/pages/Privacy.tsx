@@ -9,8 +9,8 @@ const Privacy: React.FC = () => {
   const location = useLocation();
 
   const handleBack = () => {
-    const from = (location.state as { from?: string } | null)?.from || "/app?screen=settings";
-    navigate(from);
+    const from = (location.state as { from?: string } | null)?.from || "/";
+    navigate(from, { replace: true });
   };
 
   return (

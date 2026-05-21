@@ -11,10 +11,10 @@ const Contact: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const from = (location.state as RouteState | null)?.from || "/app?screen=settings";
+  const from = (location.state as RouteState | null)?.from || "/";
   const linkState = { from };
   const handleBack = () => {
-    navigate(from);
+    navigate(from, { replace: true });
   };
   const [email, setEmail] = useState("");
   const [subject, setSubject] = useState("");

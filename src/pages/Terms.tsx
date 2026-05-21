@@ -11,8 +11,8 @@ const Terms: React.FC = () => {
   const location = useLocation();
 
   const handleBack = () => {
-    const from = (location.state as RouteState | null)?.from || "/app?screen=settings";
-    navigate(from);
+    const from = (location.state as RouteState | null)?.from || "/";
+    navigate(from, { replace: true });
   };
 
   return (
