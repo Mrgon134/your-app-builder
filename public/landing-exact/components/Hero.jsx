@@ -100,6 +100,7 @@ const Hero = ({ onStart }) => {
                 <button className="btn-glass" onClick={() => document.getElementById('how')?.scrollIntoView({ behavior: 'smooth' })}>
                   <Icon.Play size={12} /> Watch how it works
                 </button>
+                <AppStoreButton />
               </div>
             </Reveal>
 

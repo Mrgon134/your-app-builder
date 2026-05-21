@@ -57,9 +57,7 @@ const Footer = ({ onStart }) => {
                     Start the Ju Gets You reveal
                     <Icon.Arrow size={16} />
                   </button>
-                  <a href="https://apps.apple.com/us/app/nuju/id6763682187" target="_blank" rel="noopener noreferrer" className="btn-glass" style={{ background: 'rgba(255,255,255,0.12)', color: 'white', borderColor: 'rgba(255,255,255,0.2)' }}>
-                    <Icon.Phone size={14} /> Download in App Store
-                  </a>
+                  <AppStoreButton />
                 </div>
               </div>
               <div className="final-cta-ju">

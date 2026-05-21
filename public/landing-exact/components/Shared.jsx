@@ -97,9 +97,27 @@ const VoiceWave = ({ color = '#7C6EDB', count = 24 }) => (
   </div>
 );
 
+const APP_STORE_URL = 'https://apps.apple.com/us/app/nuju/id6763682187';
+
+const AppStoreButton = ({ label = 'Download in App Store', compact = false, className = '' }) => (
+  <a
+    href={APP_STORE_URL}
+    target="_blank"
+    rel="noopener noreferrer"
+    className={`app-store-cta ${compact ? 'app-store-cta-sm' : ''} ${className}`}
+    aria-label="Download Nuju in the App Store"
+  >
+    <Icon.Apple size={compact ? 15 : 18} />
+    <span>{label}</span>
+    {!compact && <Icon.Arrow size={14} />}
+  </a>
+);
+
 window.Aurora = Aurora;
 window.Reveal = Reveal;
 window.Eyebrow = Eyebrow;
 window.Glass = Glass;
 window.Stars = Stars;
 window.VoiceWave = VoiceWave;
+window.APP_STORE_URL = APP_STORE_URL;
+window.AppStoreButton = AppStoreButton;

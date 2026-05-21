@@ -19,6 +19,7 @@ const Nav = ({ onStart, onTheme, dark }) => {
             Try Nuju free
             <Icon.Arrow size={14} />
           </button>
+          <AppStoreButton label="App Store" compact className="nav-appstore" />
         </div>
       </div>
     </div>
