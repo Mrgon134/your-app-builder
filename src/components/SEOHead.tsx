@@ -19,6 +19,7 @@ interface SEOHeadProps {
   breadcrumbs?: BreadcrumbItem[];
   alternates?: AlternateLink[];
   noSuffix?: boolean;
+  language?: "en" | "id";
 }
 
 const BASE_TITLE = "Nuju";
@@ -34,6 +35,7 @@ const SEOHead: React.FC<SEOHeadProps> = ({
   breadcrumbs,
   alternates,
   noSuffix,
+  language = "en",
 }) => {
   const fullTitle = noSuffix ? title : `${title} | ${BASE_TITLE}`;
 
@@ -65,7 +67,7 @@ const SEOHead: React.FC<SEOHeadProps> = ({
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />
       {canonical && <meta property="og:url" content={canonical} />}
-      <meta property="og:locale" content="en_US" />
+      <meta property="og:locale" content={language === "id" ? "id_ID" : "en_US"} />
       <meta property="og:site_name" content="Nuju" />
 
       <meta name="twitter:card" content="summary_large_image" />
@@ -77,7 +79,7 @@ const SEOHead: React.FC<SEOHeadProps> = ({
       <meta name="twitter:creator" content="@nujuapp" />
 
       {canonical && !alternates && (
-        <link rel="alternate" hrefLang="en" href={canonical} />
+        <link rel="alternate" hrefLang={language} href={canonical} />
       )}
       {canonical && <link rel="alternate" hrefLang="x-default" href={canonical} />}
       {alternates?.map(({ lang, url }) => (

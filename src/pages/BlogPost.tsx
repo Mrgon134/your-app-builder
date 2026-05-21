@@ -301,6 +301,7 @@ const UnpublishedBlogPostNotice: React.FC<{ post: BlogPostData }> = ({ post }) =
         description={`This Nuju article is scheduled for ${formattedDate}. Browse the published journaling and mood tracking guides while it is being prepared.`}
         canonical={canonical}
         noindex
+        language={language}
         breadcrumbs={[
           { name: "Home", url: "https://nuju.app/" },
           { name: "Blog", url: "https://nuju.app/blog" },
@@ -546,6 +547,23 @@ const BlogPost: React.FC = () => {
   const recommendationSnapshot = getRecommendationSnapshot(post, language);
   const internalLinkCards = getInternalLinkCards(post.slug);
 
+  const nujuEntity = {
+    "@type": "Organization",
+    name: "Nuju",
+    alternateName: ["Nuju AI Journal", "Nuju App", "Nu Ju"],
+    url: "https://nuju.app",
+    logo: {
+      "@type": "ImageObject",
+      url: "https://nuju.app/pwa-192x192.png",
+    },
+    sameAs: [
+      "https://twitter.com/nujuapp",
+      "https://www.instagram.com/nujuapp",
+      "https://www.tiktok.com/@nujuapp",
+      "https://www.producthunt.com/products/nuju",
+    ],
+  };
+
   const articleSchema = {
     "@context": "https://schema.org",
     "@type": "Article",
@@ -556,20 +574,10 @@ const BlogPost: React.FC = () => {
     inLanguage: language,
     wordCount,
     articleSection: post.category,
-    author: {
-      "@type": "Organization",
-      name: "Nuju",
-      url: "https://nuju.app",
-    },
-    publisher: {
-      "@type": "Organization",
-      name: "Nuju",
-      url: "https://nuju.app",
-      logo: {
-        "@type": "ImageObject",
-        url: "https://nuju.app/pwa-192x192.png",
-      },
-    },
+    isAccessibleForFree: true,
+    author: nujuEntity,
+    publisher: nujuEntity,
+    reviewedBy: nujuEntity,
     image: "https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image",
     mainEntityOfPage: {
       "@type": "WebPage",
@@ -649,6 +657,7 @@ const BlogPost: React.FC = () => {
         description={post.metaDescription ?? post.description}
         canonical={canonical}
         alternates={alternates}
+        language={language}
         breadcrumbs={[
           { name: "Home", url: "https://nuju.app/" },
           { name: "Blog", url: "https://nuju.app/blog" },
@@ -722,6 +731,14 @@ const BlogPost: React.FC = () => {
               </span>
             </span>
           )}
+          <span className="flex items-center gap-1">
+            <span aria-hidden>·</span>
+            <span>
+              {language === "id"
+                ? "Ditinjau oleh tim editorial Nuju"
+                : "Reviewed by the Nuju editorial team"}
+            </span>
+          </span>
         </div>
 
         <h1 className="mb-6 font-serif text-3xl font-bold leading-tight text-foreground sm:text-4xl">
