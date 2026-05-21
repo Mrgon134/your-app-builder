@@ -273,6 +273,33 @@ const INTERNAL_LINK_RECOMMENDATIONS: Record<string, InternalLinkRecommendation[]
       eyebrow: "Habit setup",
       body: "Turn the 3am technique into a daily habit before the next bad night.",
     },
+    {
+      slug: "sunday-scaries-mood-data",
+      eyebrow: "Weekly anxiety pattern",
+      body: "See the journal data on why Sunday evenings hit the hardest — and the 3-step reset that works on Sunday too.",
+    },
+  ],
+  "sunday-scaries-mood-data": [
+    {
+      slug: "3am-anxiety-journaling",
+      eyebrow: "When the Scaries hit at night",
+      body: "If Sunday anxiety bleeds into 3am wakeups, this 3-minute technique stops the loop in bed.",
+    },
+    {
+      slug: "ai-journal-for-overthinking",
+      eyebrow: "Sunday overthinking",
+      body: "When Sunday Scaries are really Sunday overthinking, this guide breaks the loop pattern.",
+    },
+    {
+      slug: "mood-tracking-for-anxiety",
+      eyebrow: "Track the weekly pattern",
+      body: "Add mood tracking to see if Sunday is your specific anxiety peak — or if the pattern is different.",
+    },
+    {
+      slug: "best-mood-tracker-apps",
+      eyebrow: "Tools to track this",
+      body: "Compare mood trackers that surface weekly patterns instead of just logging single days.",
+    },
   ],
 };
 
@@ -301,6 +328,7 @@ const UnpublishedBlogPostNotice: React.FC<{ post: BlogPostData }> = ({ post }) =
         description={`This Nuju article is scheduled for ${formattedDate}. Browse the published journaling and mood tracking guides while it is being prepared.`}
         canonical={canonical}
         noindex
+        language={language}
         breadcrumbs={[
           { name: "Home", url: "https://nuju.app/" },
           { name: "Blog", url: "https://nuju.app/blog" },
@@ -546,6 +574,24 @@ const BlogPost: React.FC = () => {
   const recommendationSnapshot = getRecommendationSnapshot(post, language);
   const internalLinkCards = getInternalLinkCards(post.slug);
 
+  const nujuEntity = {
+    "@type": "Organization",
+    name: "Nuju",
+    alternateName: ["Nuju AI Journal", "Nuju App", "Nu Ju"],
+    url: "https://nuju.app",
+    logo: {
+      "@type": "ImageObject",
+      url: "https://nuju.app/pwa-192x192.png",
+    },
+    sameAs: [
+      "https://x.com/nujuapp",
+      "https://www.instagram.com/nujuapp",
+      "https://www.tiktok.com/@nujuappofficial",
+      "https://www.youtube.com/@Nujuapp",
+      "https://www.producthunt.com/products/nuju",
+    ],
+  };
+
   const articleSchema = {
     "@context": "https://schema.org",
     "@type": "Article",
@@ -556,20 +602,10 @@ const BlogPost: React.FC = () => {
     inLanguage: language,
     wordCount,
     articleSection: post.category,
-    author: {
-      "@type": "Organization",
-      name: "Nuju",
-      url: "https://nuju.app",
-    },
-    publisher: {
-      "@type": "Organization",
-      name: "Nuju",
-      url: "https://nuju.app",
-      logo: {
-        "@type": "ImageObject",
-        url: "https://nuju.app/pwa-192x192.png",
-      },
-    },
+    isAccessibleForFree: true,
+    author: nujuEntity,
+    publisher: nujuEntity,
+    reviewedBy: nujuEntity,
     image: "https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image",
     mainEntityOfPage: {
       "@type": "WebPage",
@@ -649,6 +685,7 @@ const BlogPost: React.FC = () => {
         description={post.metaDescription ?? post.description}
         canonical={canonical}
         alternates={alternates}
+        language={language}
         breadcrumbs={[
           { name: "Home", url: "https://nuju.app/" },
           { name: "Blog", url: "https://nuju.app/blog" },
@@ -722,6 +759,14 @@ const BlogPost: React.FC = () => {
               </span>
             </span>
           )}
+          <span className="flex items-center gap-1">
+            <span aria-hidden>·</span>
+            <span>
+              {language === "id"
+                ? "Ditinjau oleh tim editorial Nuju"
+                : "Reviewed by the Nuju editorial team"}
+            </span>
+          </span>
         </div>
 
         <h1 className="mb-6 font-serif text-3xl font-bold leading-tight text-foreground sm:text-4xl">
