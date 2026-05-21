@@ -470,4 +470,15 @@
       <image:caption>Pengen curhat tapi takut di-judge atau bocor ke orang? Aplikasi curhat AI bisa dengerin 24/7, anonim, dan nggak nge-judge. Ini pilihan terbaik 2026.</image:caption>
     </image:image>
   </url>
+  <url>
+    <loc>https://nuju.app/blog/sunday-scaries-mood-data</loc>
+    <lastmod>2026-05-21</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Sunday Scaries Are Real: What Journal Data Reveals About Weekly Mood Patterns</image:title>
+      <image:caption>Sunday Scaries aren&apos;t a meme — research and journal data show a measurable mood drop on Sunday evenings. Here&apos;s the pattern, the cause, and how to reset before Monday.</image:caption>
+    </image:image>
+  </url>
 </urlset>

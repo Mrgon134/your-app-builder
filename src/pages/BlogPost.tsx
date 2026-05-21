@@ -273,6 +273,33 @@ const INTERNAL_LINK_RECOMMENDATIONS: Record<string, InternalLinkRecommendation[]
       eyebrow: "Habit setup",
       body: "Turn the 3am technique into a daily habit before the next bad night.",
     },
+    {
+      slug: "sunday-scaries-mood-data",
+      eyebrow: "Weekly anxiety pattern",
+      body: "See the journal data on why Sunday evenings hit the hardest — and the 3-step reset that works on Sunday too.",
+    },
+  ],
+  "sunday-scaries-mood-data": [
+    {
+      slug: "3am-anxiety-journaling",
+      eyebrow: "When the Scaries hit at night",
+      body: "If Sunday anxiety bleeds into 3am wakeups, this 3-minute technique stops the loop in bed.",
+    },
+    {
+      slug: "ai-journal-for-overthinking",
+      eyebrow: "Sunday overthinking",
+      body: "When Sunday Scaries are really Sunday overthinking, this guide breaks the loop pattern.",
+    },
+    {
+      slug: "mood-tracking-for-anxiety",
+      eyebrow: "Track the weekly pattern",
+      body: "Add mood tracking to see if Sunday is your specific anxiety peak — or if the pattern is different.",
+    },
+    {
+      slug: "best-mood-tracker-apps",
+      eyebrow: "Tools to track this",
+      body: "Compare mood trackers that surface weekly patterns instead of just logging single days.",
+    },
   ],
 };
 
