@@ -37,51 +37,51 @@ import juOkay from "@/assets/ju-okay.webp";
 import juRough from "@/assets/ju-rough.webp";
 
 const MOOD_SHOWCASE = [
-  { label: "Rough", img: juRough, color: "#E8878C", line: "When everything feels too loud." },
-  { label: "Low", img: juLow, color: "#6C9BCF", line: "When you are quietly holding it together." },
-  { label: "Okay", img: juOkay, color: "#FFB347", line: "When the weight is steady, not loud." },
-  { label: "Good", img: juGood, color: "#95E1D3", line: "When softness is finally returning." },
-  { label: "Great", img: juGreat, color: "#4ECDC4", line: "When you feel yourself again." },
+  { label: "Rough", img: juRough, color: "#E8878C", line: "Chest tight, brain too loud, can't tell why." },
+  { label: "Low", img: juLow, color: "#6C9BCF", line: "Functioning on autopilot. Holding it together for everyone but you." },
+  { label: "Okay", img: juOkay, color: "#FFB347", line: "The numbness day. Not bad. Not anything." },
+  { label: "Good", img: juGood, color: "#95E1D3", line: "First time you've actually exhaled this week." },
+  { label: "Great", img: juGreat, color: "#4ECDC4", line: "Brain quiet. You feel like a person again." },
 ] as const;
 
 const heroSignals = [
-  { label: "Private", value: "Your words stay yours", icon: Lock },
-  { label: "Fast", value: "A read in about a minute", icon: Zap },
-  { label: "Warm", value: "Clarity without clinical distance", icon: Heart },
+  { label: "Private", value: "Encrypted. Never trained on. Never sold.", icon: Lock },
+  { label: "30 seconds", value: "Faster than your brain can spiral.", icon: Zap },
+  { label: "Free first", value: "No card. No paywall. Reveal first.", icon: Heart },
 ] as const;
 
 const heroEmotionalArc = [
-  { label: "Name it", copy: "Say the messy version", color: "#6C9BCF" },
-  { label: "Feel seen", copy: "Watch the pattern emerge", color: "#7C6EDB" },
-  { label: "Soften", copy: "Leave with one next step", color: "#4ECDC4" },
+  { label: "Dump the noise", copy: "Voice or text. Messy is fine.", color: "#6C9BCF" },
+  { label: "See yourself", copy: "Ju names the feeling you couldn't.", color: "#7C6EDB" },
+  { label: "One next move", copy: "Small enough to actually do tonight.", color: "#4ECDC4" },
 ] as const;
 
 const benefitRows = [
   {
-    eyebrow: "Start softer",
-    title: "No blank page to fight.",
-    body: "Say the messy version. Ju helps turn it into something you can hold.",
-    proof: "A gentle read in the first minute.",
+    eyebrow: "No blank page",
+    title: "You don't have to know what's wrong to start.",
+    body: "Say it messy. Voice memo, half-sentence, whatever falls out at 11pm. Ju does the sorting so your brain doesn't have to.",
+    proof: "Most reveals land in under 60 seconds.",
     accent: "#6C9BCF",
     icon: Mic,
     image: juLow,
     imageAlt: "Ju holding a low mood moment",
   },
   {
-    eyebrow: "Feel seen",
-    title: "A read that sounds like you.",
-    body: "Nuju reflects what feels heavy and what may be underneath it.",
-    proof: "Clear enough to land. Soft enough to trust.",
+    eyebrow: "Finally accurate",
+    title: "The read that makes you go 'yeah, that's it.'",
+    body: "Ju mirrors back what you actually meant — including the part you couldn't quite say. No vague affirmations. No therapy-speak.",
+    proof: "It sounds like you, because it started with your words.",
     accent: "#7C6EDB",
     icon: BrainCircuit,
     image: juMain,
     imageAlt: "Ju mascot giving a gentle reflection",
   },
   {
-    eyebrow: "Stay close",
-    title: "One small step after the read.",
-    body: "Keep writing, speak it out, or follow the next gentle move.",
-    proof: "No pressure. Just a quieter way back to yourself.",
+    eyebrow: "One small move",
+    title: "End with one thing you can actually do tonight.",
+    body: "Not a 12-step plan. One specific next move, sized for the energy you have right now — even if that's a single breath.",
+    proof: "Built for the days you can barely open your phone.",
     accent: "#4ECDC4",
     icon: TrendingUp,
     image: juGreat,
@@ -92,52 +92,52 @@ const benefitRows = [
 const storyMoments = [
   {
     phase: "01",
-    title: "The messy version is enough.",
-    body: "Start with the sentence you would normally keep inside. It can be fragmented, tired, or hard to explain.",
+    title: "Type what you'd normally keep inside.",
+    body: "Half-sentences. Fragments. A voice memo while you pace the kitchen. Whatever your brain actually sounds like at 11pm — that's the input.",
     sample: "I feel tangled today. Everything feels too loud and I just want to disappear for a bit.",
     signal: "Overstimulated",
     metric: "Low energy, high noise",
-    reflection: "Ju hears a nervous system asking for quiet, not a person failing to cope.",
-    action: "Start with two minutes of silence.",
+    reflection: "Ju hears a nervous system that's been pushed too far — not a person who's failing to cope.",
+    action: "Phone face-down. Two minutes of nothing.",
     accent: "#6C9BCF",
     icon: Mic,
     bars: [36, 72, 48, 84, 58, 74],
   },
   {
     phase: "02",
-    title: "Ju reads between the lines.",
-    body: "A warm read appears without making you explain everything perfectly.",
-    sample: "The heaviness is not nothing. It sounds like your body has been holding too much input for too long.",
-    signal: "Pattern forming",
-    metric: "Emotion tagged gently",
-    reflection: "Your words are enough. Ju gives them back with a softer shape.",
-    action: "Name the loudest feeling first.",
+    title: "Ju hands you the word you were chasing.",
+    body: "A short read appears. Specific to you, not a wellness quote. It's the moment the feeling finally has a name.",
+    sample: "The heaviness isn't 'just sadness.' Your nervous system has been processing too much input for too long and ran out of bandwidth.",
+    signal: "Named, not just tagged",
+    metric: "The 'oh that's it' moment",
+    reflection: "Naming it doesn't fix it. But it stops the loop of 'why do I even feel like this.'",
+    action: "Say the loudest feeling out loud, once.",
     accent: "#7C6EDB",
     icon: BrainCircuit,
     bars: [42, 50, 78, 62, 88, 70],
   },
   {
     phase: "03",
-    title: "A pattern appears without pressure.",
-    body: "Nuju quietly notices what keeps coming back.",
-    sample: "This kind of fog keeps showing up after days where you keep saying yes while needing quiet.",
+    title: "The pattern you keep missing.",
+    body: "After a few entries, Ju starts pointing at the loop you're stuck in — the trigger, the day, the person, the time of week.",
+    sample: "This fog shows up the day after you say yes to back-to-back plans. Three weeks in a row now.",
     signal: "Recurring arc",
-    metric: "Tuesday spikes noticed",
-    reflection: "The day starts to feel less random when the pattern has a name.",
-    action: "Protect one low-input hour.",
+    metric: "Tuesday spikes you didn't notice",
+    reflection: "The week stops feeling random once the pattern has a name.",
+    action: "Block one low-input hour this week.",
     accent: "#4ECDC4",
     icon: TrendingUp,
     bars: [34, 46, 66, 92, 54, 76],
   },
   {
     phase: "04",
-    title: "The next step feels small enough to take.",
-    body: "End with one soft move that feels small enough to try.",
-    sample: "You do not need to solve the whole day. Lower the noise first, then come back to the story.",
+    title: "One move small enough to actually do.",
+    body: "No 12-step plan. One specific thing, sized for low-energy you. Something you can finish before bed without negotiating with yourself.",
+    sample: "You don't have to solve today. Lower the input first. The story can wait until your nervous system catches up.",
     signal: "Relief direction",
-    metric: "One soft move",
-    reflection: "You do not have to solve the whole day. Start with one breath.",
-    action: "Drop your shoulders and breathe once.",
+    metric: "One small move",
+    reflection: "You don't have to solve the whole day. Start with one breath.",
+    action: "Shoulders down. One slow exhale. That counts.",
     accent: "#FFB347",
     icon: Sparkles,
     bars: [48, 58, 64, 74, 86, 92],
@@ -146,56 +146,56 @@ const storyMoments = [
 
 const quickFeatures = [
   {
-    title: "Voice or text check-ins",
-    body: "Start with whatever feels easiest in the moment.",
+    title: "Voice or text. Your call.",
+    body: "Talk it out while pacing. Type it in bed. Whatever your brain can manage right now.",
     icon: Mic,
   },
   {
-    title: "Personal reveal",
-    body: "A short reflection that helps the feeling make sense.",
+    title: "The 'finally accurate' read",
+    body: "A reflection that sounds like you — not a Google search, not a wellness quote. Specific enough to actually land.",
     icon: BrainCircuit,
   },
   {
-    title: "Mood-aware companion",
-    body: "Ju changes with the moment instead of repeating the same script.",
+    title: "Ju shifts with your mood",
+    body: "A rough Tuesday doesn't get the same response as a regular one. Four coach personas, picked by you.",
     icon: Heart,
   },
   {
-    title: "Private by default",
-    body: "Your entries and emotional reads stay tied to your account and your choices.",
+    title: "Private. Yours. Period.",
+    body: "Row-level encryption. We don't train on your entries. No selling, no ads, no leaks. Ever.",
     icon: Lock,
   },
   {
-    title: "Fast enough for hard days",
-    body: "A few taps is enough to get support started before the spiral grows.",
+    title: "Built for 3am brain",
+    body: "Three taps to start. Designed for when you have zero bandwidth and the thoughts still need to go somewhere.",
     icon: Zap,
   },
   {
-    title: "Close on every screen",
-    body: "Install Nuju and keep the support nearby when the day gets loud.",
+    title: "One tap from your home screen",
+    body: "Install on iOS, Android, or desktop. Opens faster than your spiral can build.",
     icon: Smartphone,
   },
 ] as const;
 
 const whatYouGetItems = [
   {
-    title: "Free reveal first",
-    body: "Start with the Ju Gets You reveal and decide after the read lands.",
+    title: "The free Ju Gets You read",
+    body: "Get the reveal before you pay anything. Test the fit. If it doesn't land, you owe nothing.",
     icon: Sparkles,
   },
   {
-    title: "Private writing",
-    body: "Keep a quiet place for the feelings that are not ready for anyone else.",
+    title: "Private writing, always free",
+    body: "A quiet space for the stuff that's not ready for anyone else stays open even without a plan.",
     icon: PenLine,
   },
   {
-    title: "One readable pattern",
-    body: "See the emotional throughline without needing to self-diagnose.",
+    title: "A pattern you can actually use",
+    body: "Not a diagnosis. The throughline that explains why this week keeps repeating itself.",
     icon: BrainCircuit,
   },
   {
-    title: "A next-step direction",
-    body: "Know what would help first instead of leaving with vague comfort.",
+    title: "A next move, not a vibe",
+    body: "Know what would actually help first. Stop leaving with 'just breathe' and zero plan.",
     icon: TrendingUp,
   },
 ] as const;
@@ -203,46 +203,46 @@ const whatYouGetItems = [
 const testimonials = [
   {
     name: "Lena R.",
-    role: "Late-night overthinker",
-    text: "It felt like the app noticed what I was carrying before I had fully figured out how to say it.",
+    role: "Couldn't sleep at 2am",
+    text: "I'd type one messy sentence and Ju would hand me back the word I'd been chasing for three days. That's when I stayed.",
   },
   {
     name: "Marcus T.",
-    role: "Keeps things inside",
-    text: "The reveal was the moment. It made me think, okay, this actually gets me and I want to keep going.",
+    role: "Bottles everything up",
+    text: "First app that didn't try to therapize me. It just told me what I was actually feeling, without dressing it up.",
   },
   {
     name: "Aisha K.",
-    role: "Trying to come back to herself",
-    text: "I did not stay because it was a journal. I stayed because it felt like somewhere I could be understood quickly.",
+    role: "Out of words that week",
+    text: "I opened it on a day I couldn't even text my best friend. Thirty seconds later I knew what to do next.",
   },
 ] as const;
 
 const comparisonRows = [
   {
-    label: "Starting when your thoughts are messy",
-    nuju: "Guided prompts help you begin quickly",
-    journal: "You still have to create clarity from a blank page",
+    label: "When your brain is too loud to start",
+    nuju: "Three taps. Voice or text. Ju handles the noise from here.",
+    journal: "You have to organize your thoughts before you can even begin.",
   },
   {
-    label: "Feeling understood fast",
-    nuju: "The reveal reflects the emotional pattern back to you",
-    journal: "You have to generate the interpretation yourself",
+    label: "Feeling actually understood, fast",
+    nuju: "Ju hands you the word you couldn't find — in under a minute.",
+    journal: "You write. You re-read. You guess at the meaning yourself.",
   },
   {
-    label: "Knowing what to do next",
-    nuju: "Ju points toward the next kind of support that fits",
-    journal: "The next move stays ambiguous unless you figure it out alone",
+    label: "Knowing what would actually help",
+    nuju: "One small move at the end, sized for the energy you have tonight.",
+    journal: "The notebook closes. You're still alone with the question.",
   },
   {
-    label: "Coming back on hard days",
-    nuju: "Fast, low-pressure, and designed for low energy moments",
-    journal: "The setup effort is still yours every single time",
+    label: "Showing up on the bad days",
+    nuju: "Zero setup. Built for the days you can barely open your phone.",
+    journal: "Every entry starts from scratch. The friction wins on hard days.",
   },
   {
-    label: "Emotional safety in the first minute",
-    nuju: "Warm language helps the support land without feeling clinical",
-    journal: "The page stays neutral until you do all the emotional work",
+    label: "Not feeling worse after writing",
+    nuju: "Ju reflects without judgment. The first line is the hardest — then it gets easier.",
+    journal: "Some days the blank page makes the spiral worse, not better.",
   },
 ] as const;
 
@@ -251,78 +251,78 @@ const comparisonReadLinks = [
     href: "/ai-journal",
     label: "Product overview",
     title: "Nuju as an AI journal",
-    body: "The full feature breakdown, free vs paid, coach personas, and privacy stance in one page.",
+    body: "Full feature breakdown, free vs paid, coach personas, and exactly how your privacy is handled.",
   },
   {
     href: "/mood-tracker",
     label: "Product overview",
     title: "Nuju as a mood tracker",
-    body: "How the 10-second check-in turns into 30-day trends, AI summaries, and pattern detection.",
+    body: "How a 10-second check-in becomes 30-day trends, AI summaries, and the patterns you keep missing.",
   },
   {
     href: "/voice-journaling",
     label: "Product overview",
     title: "Voice journaling in Nuju",
-    body: "Talk for a minute, get an automatic transcript and AI reflection, and feed spoken entries into your mood patterns.",
+    body: "Talk for a minute. Get a transcript and a real AI reflection. Spoken entries feed your mood patterns.",
   },
   {
     href: "/blog/best-ai-journaling-apps",
     label: "Category guide",
     title: "Best AI journaling apps",
-    body: "See how Nuju stacks up on privacy, mood tracking, and real emotional insight.",
+    body: "How Nuju stacks up on privacy, mood tracking, and whether the AI actually understands you.",
   },
   {
     href: "/blog/best-mood-tracker-apps",
     label: "Category guide",
     title: "Best mood tracker apps",
-    body: "Eight mood trackers tested across 30 days — three actually explained patterns instead of just storing them.",
+    body: "Eight trackers tested over 30 days. Only three explained patterns — the rest just stored them.",
   },
   {
     href: "/blog/daylio-alternatives",
     label: "Alternative guide",
     title: "Best Daylio alternatives",
-    body: "For readers already comparing mood trackers and wondering where Nuju fits.",
+    body: "If you've outgrown emoji logs and want a tracker that actually tells you what's going on.",
   },
   {
     href: "/blog/reflectly-alternatives",
     label: "Alternative guide",
     title: "Best Reflectly alternatives",
-    body: "Useful when someone wants more than prompts and beginner journaling structure.",
+    body: "When you need more than canned prompts and beginner structure to feel any different.",
   },
   {
     href: "/blog/apple-journal-alternatives",
     label: "Alternative guide",
     title: "Best Apple Journal alternatives",
-    body: "Cross-platform options for iPhone users who outgrow Apple Journal's iOS-only, no-AI limits.",
+    body: "Cross-platform options for iPhone users hitting Apple Journal's iOS-only, zero-AI wall.",
   },
   {
     href: "/blog/best-self-reflection-apps",
     label: "Category guide",
     title: "Best self-reflection apps",
-    body: "Seven self-reflection apps tested — only the ones that read your entries back built real awareness.",
+    body: "Seven apps tested. Only the ones that read your entries back built any real self-awareness.",
   },
 ] as const;
 
 const landingFaqs = [
   {
     q: "Do I need to pay before I can use Nuju?",
-    a: "No. You start with the Ju Gets You reveal first. If the fit feels real after that, you can keep Ju close with weekly, 3-month, or lifetime access.",
+    a: "No. The Ju Gets You reveal is free — no credit card, no signup paywall. If the read actually lands, you can keep Ju close with weekly, 3-month, or lifetime access. If it doesn't, you owe nothing.",
   },
   {
     q: "What exactly happens in the reveal?",
-    a: "You answer a few quick prompts, then Ju reflects back the emotional pattern it notices, why that read fits, and what kind of support would help first.",
+    a: "A few quick prompts, then Ju hands back the emotional pattern it picked up on, why that read fits you, and the first move that would actually help. Most people finish in under 60 seconds.",
   },
   {
     q: "Is my data private?",
-    a: "Yes. Nuju is built around privacy. Your journal data is stored securely, protected with row-level access controls, and we do not sell your personal data.",
+    a: "Yes. Entries are encrypted, locked to your account with row-level security, and never used to train any AI model. We don't sell your data. We don't run ads. That's the whole policy.",
   },
   {
     q: "Why does Nuju ask for my name and email so early?",
-    a: "Because the reveal is meant to feel personal. Your name helps the read feel like it belongs to you, and your email keeps that support attached to the same account if you decide to continue.",
+    a: "Because a generic read isn't a read. Your name lets the reflection sound like it was written for you, and your email keeps that read attached to the same account if you decide to come back tomorrow.",
   },
   {
     q: "What plans are available if I want Ju to stay with me?",
-    a: "You can continue weekly, choose a 3-month subscription, or unlock lifetime access with one payment.",
+    a: "Weekly if you want to test the rhythm. 3-month if you're building the habit. Lifetime if you already know this is the support that should stick around — one payment, no renewals.",
   },
 ] as const;
 
@@ -404,7 +404,7 @@ const Landing: React.FC = () => {
       price: "$0",
       unit: "",
       badge: "Free start",
-      note: "See your personal reveal and keep private writing open. No credit card needed.",
+      note: "Get the Ju Gets You read. Keep a private writing space. No card, no gate, no email-required wall.",
       cta: "Start free",
       features: ["Personal reveal", "Private writing stays free"],
       onClick: () => startOnboarding(),
@@ -414,7 +414,7 @@ const Landing: React.FC = () => {
       price: geo.formatPrice(geo.rates.weekly),
       unit: "/week",
       badge: "Lowest commitment",
-      note: "For trying Ju without making the week feel bigger than it is.",
+      note: "Cheapest way to test if Ju actually helps your week — not just your one bad night.",
       cta: "Choose weekly",
       features: ["Voice, memory, coach, and full history", "Cancel anytime"],
       onClick: () => startOnboarding("weekly"),
@@ -425,8 +425,8 @@ const Landing: React.FC = () => {
       unit: "/3 months",
       badge: threeMonthTrialEnabled ? `${threeMonthTrialDays}-day trial` : "Recommended",
       note: threeMonthTrialEnabled
-        ? `Start with ${threeMonthTrialDays} days free if you are eligible, then let Ju become a place you return to.`
-        : "The calmest path if you want Ju to become a place you return to.",
+        ? `Start free for ${threeMonthTrialDays} days if you qualify, then let Ju become the place you check in.`
+        : "Long enough to build the rhythm. Long enough to actually notice the patterns shifting.",
       cta: threeMonthTrialEnabled ? `Start ${threeMonthTrialDays}-day trial path` : "Choose 3 month",
       features: [
         "Best balance",
@@ -439,7 +439,7 @@ const Landing: React.FC = () => {
       price: geo.formatPrice(geo.rates.lifetime),
       unit: "one-time",
       badge: "One-time",
-      note: "A one-time unlock for people who already know this support should stay close.",
+      note: "One payment. Never billed again. For people who already know this is the support that should stick around.",
       cta: "Choose lifetime",
       features: ["One payment, no renewals", "Future premium updates included"],
       onClick: () => startOnboarding("lifetime_one_time"),
@@ -463,22 +463,22 @@ const Landing: React.FC = () => {
     "@context": "https://schema.org",
     "@type": "HowTo",
     "name": "How to start with Nuju",
-    "description": "Learn how Nuju helps you feel understood in three simple steps.",
+    "description": "How Nuju turns a messy 30-second check-in into a read that finally fits, in three steps.",
     "step": [
       {
         "@type": "HowToStep",
-        "name": "Share what feels heavy",
-        "text": "Answer a few gentle prompts so Ju can understand what has been hard to hold alone.",
+        "name": "Dump the noise",
+        "text": "Type or voice-record whatever your brain actually sounds like right now. Messy is the point — Ju does the sorting.",
       },
       {
         "@type": "HowToStep",
         "name": "See the Ju Gets You reveal",
-        "text": "Get one personal read on what Ju notices, why it fits, and what support would help first.",
+        "text": "Get one personal read on what Ju notices, why it fits you, and the first move that would actually help.",
       },
       {
         "@type": "HowToStep",
         "name": "Choose whether Ju stays close",
-        "text": "Keep the support going only if the reveal feels like a genuine fit for you.",
+        "text": "Keep going only if the reveal actually landed. No pressure, no card required to find out.",
       },
     ],
   };
@@ -493,7 +493,7 @@ const Landing: React.FC = () => {
     operatingSystem: "Web browser, iOS, Android",
     url: "https://nuju.app/",
     description:
-      "Nuju is the AI journal app that pairs quick mood and energy check-ins with optional written reflection, AI summaries, weekly patterns, and a private read of what feels hard to explain.",
+      "Nuju is the AI journal and mood tracker app for racing thoughts and feelings you can't put into words yet. Voice or text check-ins, AI-generated reads, weekly patterns, and one small next move per entry — built for 3am brain.",
     image: "https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image",
     featureList: [
       "Quick mood and energy check-ins",
@@ -525,7 +525,7 @@ const Landing: React.FC = () => {
     >
       <SEOHead
         title="Nuju — AI Journal App for Mood Tracking & Emotional Clarity"
-        description="Nuju is the AI journal app that turns hard-to-explain feelings into a private emotional read, gentle mood patterns, and a soft next step. Start the free Ju Gets You reveal."
+        description="Nuju is the AI journal and mood tracker app for racing thoughts, 3am overthinking, and feelings you can't name yet. Turn 30 seconds of mess into a read that lands. Start the Ju Gets You reveal free."
         canonical="https://nuju.app/"
         noSuffix
       />
@@ -588,15 +588,15 @@ const Landing: React.FC = () => {
           >
             <div className="inline-flex items-center gap-2 rounded-full border border-black/[0.06] bg-white/70 px-3.5 py-1.5 text-xs font-semibold text-muted-foreground shadow-[0_12px_34px_-26px_rgba(28,25,23,0.45)] backdrop-blur-xl dark:border-white/10 dark:bg-white/6">
               <span className="h-1.5 w-1.5 rounded-full bg-[#4ECDC4]" />
-              Messy feeling in, warm read out
+              For the 3am "I don't know what's wrong"
             </div>
 
             <h1 className="mx-auto mt-8 max-w-5xl text-5xl font-semibold leading-[0.98] text-foreground sm:text-7xl lg:text-[92px]">
-              Name what you feel. Even when you can't.
+              Your brain won't shut up at 3am. Tell Ju, not your screen.
             </h1>
 
             <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-muted-foreground sm:text-xl sm:leading-9">
-              For the moments you cannot explain cleanly yet, Nuju turns the messy version into a warm read, a clearer pattern, and one gentle next step. No perfect words needed.
+              For the moments you cannot explain cleanly yet — when the noise hits and the words won't come — Nuju turns 30 seconds of mess into a read that finally feels accurate. Voice or text. No blank page. No therapy bill.
             </p>
 
             <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row sm:items-center">
@@ -676,7 +676,7 @@ const Landing: React.FC = () => {
 
       <section data-testid="landing-proof-bar" className="px-4 pb-12 sm:px-6">
         <div className="nuju-neu-surface mx-auto grid max-w-6xl gap-3 rounded-[24px] p-3 backdrop-blur-2xl md:grid-cols-3">
-          {["Feel seen before you pay", "No credit card to start", "Made for low-energy days"].map((signal) => (
+          {["Free reveal, no card required", "Built for the days you can barely open your phone", "Faster than your brain can spiral"].map((signal) => (
             <div key={signal} className="flex items-center gap-3 rounded-[18px] px-4 py-3">
               <Check className="h-5 w-5 text-[#4ECDC4]" />
               <span className="text-sm font-semibold text-foreground">{signal}</span>
@@ -698,11 +698,11 @@ const Landing: React.FC = () => {
             <div>
               <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">Meet Ju</p>
               <h2 className="mt-4 text-4xl font-semibold leading-tight text-foreground sm:text-5xl">
-                One companion, tuned to the moment you are actually in.
+                Five moods. Five Jus. Whichever one you are tonight.
               </h2>
             </div>
             <p className="max-w-2xl text-lg leading-8 text-muted-foreground">
-              Ju changes with the emotional weather of the moment, so Nuju feels less like a blank page and more like a companion that meets you where you are.
+              Ju isn't a chatbot script on loop. The voice shifts with the state you're actually in — so a rough night doesn't get the same response as a regular Tuesday, and "I'm fine" gets read for what it really is.
             </p>
           </div>
 
@@ -740,12 +740,12 @@ const Landing: React.FC = () => {
       >
         <div className="mx-auto max-w-7xl">
           <div className="mx-auto max-w-3xl text-center">
-            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">Why it helps</p>
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">Why it actually works</p>
             <h2 className="mt-4 text-4xl font-semibold leading-tight text-foreground sm:text-5xl">
-              The first relief is feeling accurately seen.
+              The first relief is being read back accurately.
             </h2>
             <p className="mt-5 text-lg leading-8 text-muted-foreground">
-              Nuju turns a small honest check-in into a softer read on what is really happening underneath the day.
+              Most journaling apps hand you a blank box and wish you luck. Nuju turns 30 seconds of mess into the sentence you'd been chasing all day.
             </p>
           </div>
 
@@ -800,10 +800,10 @@ const Landing: React.FC = () => {
           <div className="mx-auto max-w-3xl text-center">
             <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">How it works</p>
             <h2 className="mt-4 text-4xl font-semibold leading-tight text-foreground sm:text-5xl">
-              A scrollable emotional journey, not another blank page.
+              From "I don't know what's wrong" to "oh — that's what's wrong" in four steps.
             </h2>
             <p className="mt-5 text-lg leading-8 text-muted-foreground">
-              Raw words become a soft read, a pattern, and one gentle move.
+              Raw words in. A read, a pattern, and one move you can actually take, out.
             </p>
           </div>
 
@@ -862,9 +862,9 @@ const Landing: React.FC = () => {
                   <div className="flex flex-wrap items-center justify-between gap-3">
                     <div>
                       <p className="text-xs font-bold uppercase tracking-[0.18em] text-muted-foreground">
-                        Live story preview
+                        Live preview
                       </p>
-                      <h3 className="mt-2 text-2xl font-semibold text-foreground">Ju gets the moment</h3>
+                      <h3 className="mt-2 text-2xl font-semibold text-foreground">What Ju actually does with one messy sentence</h3>
                     </div>
                     <div className="flex items-center gap-1.5 rounded-full border border-black/[0.06] bg-white/80 px-3 py-2 text-xs font-semibold text-muted-foreground">
                       <span className="h-2 w-2 rounded-full" style={{ backgroundColor: activeStory.accent }} />
@@ -898,7 +898,7 @@ const Landing: React.FC = () => {
                     >
                       <div className="nuju-neu-pressed rounded-[26px] p-4">
                         <p className="text-xs font-bold uppercase tracking-[0.16em] text-muted-foreground">
-                          Honest check-in
+                          What you typed
                         </p>
                         <p className="mt-3 text-base leading-7 text-foreground">{activeStory.sample}</p>
                       </div>
@@ -912,7 +912,7 @@ const Landing: React.FC = () => {
                           <p className="mt-4 text-sm leading-7 text-[#4c4569]/82">{activeStory.reflection}</p>
                           <div className="nuju-neu-pressed mt-5 rounded-[20px] p-3">
                             <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-[#7C6EDB]/60">
-                              Next gentle move
+                              One small next move
                             </p>
                             <p className="mt-2 text-sm leading-6 text-[#4c4569]/78">{activeStory.action}</p>
                           </div>
@@ -969,9 +969,9 @@ const Landing: React.FC = () => {
       >
         <div className="mx-auto max-w-7xl">
           <div className="mx-auto max-w-3xl text-center">
-            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">What people feel</p>
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">What people say after the first read</p>
             <h2 className="mt-4 text-4xl font-semibold leading-tight text-foreground sm:text-5xl">
-              It feels personal quickly because the read starts with your real words.
+              People stay because the first read actually fits — not because the app is cute.
             </h2>
           </div>
 
@@ -1004,9 +1004,9 @@ const Landing: React.FC = () => {
       >
         <div className="mx-auto max-w-7xl">
           <div className="max-w-3xl">
-            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">Product depth</p>
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">What you're getting</p>
             <h2 className="mt-4 text-4xl font-semibold leading-tight text-foreground sm:text-5xl">
-              Clean enough to trust. Useful enough to return to.
+              Built for the messy version of you. Not the polished one.
             </h2>
           </div>
 
@@ -1037,12 +1037,12 @@ const Landing: React.FC = () => {
       >
         <div className="nuju-neu-surface mx-auto grid max-w-6xl gap-8 rounded-[30px] p-6 text-[#4c4569] md:grid-cols-[1fr_auto] md:items-center md:p-10">
           <div>
-            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">Begin softly</p>
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">Start where you are</p>
             <h2 className="mt-4 max-w-2xl text-3xl font-semibold leading-tight sm:text-4xl">
-              Start with the moment you are in.
+              Don't wait until you "feel ready." That day rarely shows up.
             </h2>
             <p className="mt-4 max-w-2xl text-base leading-8 text-muted-foreground">
-              Answer a few gentle prompts, see what Ju notices, then decide whether this support should stay close.
+              Three quick prompts. One read. Then you decide if Ju should stay close. The whole thing takes less time than your next scroll session — and you owe nothing if it doesn't land.
             </p>
           </div>
           <div className="flex flex-col gap-3 sm:flex-row md:justify-self-end">
@@ -1071,12 +1071,12 @@ const Landing: React.FC = () => {
         <div className="mx-auto max-w-7xl">
           <div className="grid gap-8 lg:grid-cols-[0.78fr_1.22fr]">
             <div>
-              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">Choose after the reveal</p>
+              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">Decide after the read</p>
               <h2 className="mt-4 text-4xl font-semibold leading-tight text-foreground sm:text-5xl">
                 If the reveal feels right, choose how Ju stays with you.
               </h2>
               <p className="mt-5 text-lg leading-8 text-muted-foreground">
-                Keep the first step free. Then make the upgrade feel calm, transparent, and easy to understand.
+                The first read is always free. The plans below are for when "oh that actually helped" kicks in and you want Ju there tomorrow night too.
               </p>
               {geoPricingNote && <p className="mt-4 text-sm text-muted-foreground">{geoPricingNote}</p>}
             </div>
@@ -1161,10 +1161,10 @@ const Landing: React.FC = () => {
           <div className="mx-auto max-w-3xl text-center">
             <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">Nuju vs. blank-page journaling</p>
             <h2 className="mt-4 text-4xl font-semibold leading-tight text-foreground sm:text-5xl">
-              Why Nuju beats journaling alone on hard days.
+              Why blank-page journaling fails on the days you need it most.
             </h2>
             <p className="mt-5 text-lg leading-8 text-muted-foreground">
-              When the day is heavy, the difference is how much effort you need before the support starts.
+              On a rough night, the friction between "open notebook" and "feel any better" is the whole problem. Nuju collapses that gap.
             </p>
           </div>
 
@@ -1198,8 +1198,8 @@ const Landing: React.FC = () => {
 
           <div data-testid="landing-internal-links" className="mt-10">
             <div className="max-w-2xl">
-              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">Keep comparing</p>
-              <h3 className="mt-3 text-3xl font-semibold text-foreground">The pages people read before choosing a journaling app</h3>
+              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">Still deciding?</p>
+              <h3 className="mt-3 text-3xl font-semibold text-foreground">The pages people read before they commit to a journaling app</h3>
             </div>
 
             <div className="mt-8 grid gap-3 md:grid-cols-2 xl:grid-cols-4">
@@ -1236,7 +1236,7 @@ const Landing: React.FC = () => {
             Frequently Asked Questions
           </h2>
           <p className="mt-4 text-center text-base leading-7 text-muted-foreground">
-            Quick answers before you begin.
+            The straight answers, before you start.
           </p>
 
           <div className="mt-10 space-y-3">
@@ -1266,10 +1266,10 @@ const Landing: React.FC = () => {
             <img src={juMain} alt="Ju mascot" className="h-14 w-14 animate-ju-float object-contain" width={56} height={56} loading="lazy" />
           </div>
           <h2 className="mx-auto mt-7 max-w-3xl text-4xl font-semibold leading-tight text-foreground sm:text-5xl">
-            You do not need perfect words to feel understood.
+            Don't wait for the right words. They're not coming tonight.
           </h2>
           <p className="mx-auto mt-5 max-w-2xl text-lg leading-8 text-muted-foreground">
-            Start with one honest sentence. Ju will help turn it into a clearer, softer next step.
+            One messy sentence is enough. Ju turns it into a read, a pattern, and one thing you can actually do before bed — for free.
           </p>
           <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <button
@@ -1288,7 +1288,7 @@ const Landing: React.FC = () => {
             <AppStoreCta className="h-14" />
           </div>
           <p className="mt-5 text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
-            60-second reveal · No credit card to start · Private by default
+            60-second reveal · No card required · Encrypted &amp; never trained on
           </p>
         </div>
       </motion.section>
@@ -1296,23 +1296,23 @@ const Landing: React.FC = () => {
       <section className="border-t border-black/[0.06] bg-white/58 px-4 py-16 sm:px-6 dark:border-white/10 dark:bg-white/[0.03]">
         <div className="mx-auto max-w-4xl">
           <h2 className="mb-4 text-2xl font-semibold text-foreground">
-            The AI journal app built for everyday emotional wellness
+            The AI journal app for racing thoughts and feelings that don't fit words yet
           </h2>
           <p className="mb-6 leading-relaxed text-muted-foreground">
-            Nuju is a daily journaling app powered by artificial intelligence that helps you track your mood, understand emotional patterns, and get personalized insights in as little as 30 seconds a day. Whether you want to start a mood journal, develop a daily reflection habit, or get support from an AI coach, Nuju adapts to how you feel right now.
+            Nuju is an AI journal and mood tracker built for the 30-second moments — when your brain won't slow down, when "I'm fine" isn't quite true, or when you can't pin down what's actually wrong. Track your mood, name what you're feeling, spot the pattern you keep missing, and leave with one move you can actually do. The AI coach adapts to whichever version of you opens the app — gentle when you need it, blunt when you don't.
           </p>
           <div className="mb-8 grid gap-6 sm:grid-cols-3">
             <div>
               <h3 className="mb-2 font-semibold text-foreground">AI mood tracker</h3>
-              <p className="text-sm text-muted-foreground">Log your mood daily and see 30-day trends, weekly summaries, and emotional patterns you would never notice on your own.</p>
+              <p className="text-sm text-muted-foreground">Log mood and energy in seconds. Get 30-day trends, weekly AI summaries, and the patterns you'd never spot alone — like why every Tuesday feels heavy.</p>
             </div>
             <div>
               <h3 className="mb-2 font-semibold text-foreground">Personal AI coach</h3>
-              <p className="text-sm text-muted-foreground">Choose from four AI coaching personas and get responses tailored to your journaling style.</p>
+              <p className="text-sm text-muted-foreground">Pick from four coaching personas — gentle, direct, philosophical, or blunt-best-friend — and get a response that matches who you actually trust at 2am.</p>
             </div>
             <div>
               <h3 className="mb-2 font-semibold text-foreground">Daily journal prompts</h3>
-              <p className="text-sm text-muted-foreground">Stuck on what to write? Nuju surfaces journaling prompts that help you reflect without blank-page anxiety.</p>
+              <p className="text-sm text-muted-foreground">Stuck on what to write? Nuju surfaces the prompt that fits the mood you just logged. No blank-page paralysis.</p>
             </div>
           </div>
           <p className="text-sm text-muted-foreground">
@@ -1331,10 +1331,10 @@ const Landing: React.FC = () => {
               <img src={juMain} alt="Nuju logo - Ju the AI journal companion" className="h-8 w-8 object-contain" width={32} height={32} loading="lazy" />
               <div>
                 <p className="text-lg font-semibold text-foreground">Nuju</p>
-                <p className="text-sm text-muted-foreground">Support that helps you feel understood.</p>
+                <p className="text-sm text-muted-foreground">For the people who think too loud at night.</p>
               </div>
             </div>
-            <p className="text-xs text-muted-foreground/80">Copyright 2026 Nuju. Built for quieter minds and more understood moments.</p>
+            <p className="text-xs text-muted-foreground/80">Copyright 2026 Nuju. Built for the brains that won't quiet down at 3am.</p>
           </div>
 
           <div className="flex flex-wrap justify-center gap-4 border-t border-black/[0.06] pt-6 text-xs dark:border-white/10">
@@ -1358,7 +1358,7 @@ const Landing: React.FC = () => {
             className="fixed inset-x-0 bottom-0 z-40 px-4 pb-[max(env(safe-area-inset-bottom,0px),0.75rem)] pt-2 sm:hidden"
           >
             <div className="mx-auto flex max-w-md items-center gap-2 rounded-full border border-black/[0.08] bg-white/95 p-1.5 pl-4 shadow-[0_20px_54px_-26px_rgba(0,0,0,0.45)] backdrop-blur-2xl dark:border-white/10 dark:bg-background/95">
-              <span className="text-xs font-semibold text-foreground">Feel understood in 60s</span>
+              <span className="text-xs font-semibold text-foreground">From spiral to clear in 60s</span>
               <button
                 onClick={() => startOnboarding()}
               className="nuju-brand-button ml-auto inline-flex items-center gap-1 rounded-full px-4 py-2.5 text-xs font-bold active:scale-[0.98]"
