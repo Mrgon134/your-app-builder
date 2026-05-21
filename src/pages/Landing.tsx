@@ -13,10 +13,6 @@ const Landing: React.FC = () => {
     ttk.trackPageView();
   }, [trackLandingView, ttk]);
 
-  useEffect(() => {
-    window.location.replace("/landing-exact/index.html");
-  }, []);
-
   return (
     <>
       <SEOHead
@@ -25,14 +21,11 @@ const Landing: React.FC = () => {
         canonical="https://nuju.app/"
         noSuffix
       />
-      <div className="grid min-h-[100dvh] place-items-center bg-[#FAF9F6] px-6 text-center text-[#1A1726]">
-        <div>
-          <p className="text-sm font-semibold text-[#7C6EDB]">Loading Nuju landing...</p>
-          <a className="mt-3 inline-block text-sm text-[#5B4FBE] underline" href="/landing-exact/index.html">
-            Open landing preview
-          </a>
-        </div>
-      </div>
+      <iframe
+        title="Nuju landing"
+        src="/landing-exact/index.html"
+        className="fixed inset-0 h-[100dvh] w-screen border-0"
+      />
     </>
   );
 };

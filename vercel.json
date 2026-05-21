@@ -6,6 +6,10 @@
   "outputDirectory": "dist",
   "rewrites": [
     {
+      "source": "/",
+      "destination": "/landing-exact/index.html"
+    },
+    {
       "source": "/:path*",
       "destination": "/index.html"
     }
