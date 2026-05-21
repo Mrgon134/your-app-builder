@@ -4,7 +4,7 @@ const Nav = ({ onStart, onTheme, dark }) => {
       <div className="nav">
         <a className="nav-logo" href="/" aria-label="Nuju home">
           <div className="nav-logo-orb">
-            <img src="src/assets/ju-main.png" alt="" />
+            <img src="/landing-exact/src/assets/ju-main.png" alt="" />
           </div>
           <span>Nuju</span>
         </a>

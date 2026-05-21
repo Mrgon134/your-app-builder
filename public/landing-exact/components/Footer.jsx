@@ -63,7 +63,7 @@ const Footer = ({ onStart }) => {
                 </div>
               </div>
               <div className="final-cta-ju">
-                <img src="src/assets/ju-good.png" alt="Ju" className="float-slow" />
+                <img src="/landing-exact/src/assets/ju-good.png" alt="Ju" className="float-slow" />
               </div>
             </div>
           </div>
@@ -72,7 +72,7 @@ const Footer = ({ onStart }) => {
         <div className="footer-cols">
           <div>
             <a className="nav-logo" href="/" aria-label="Nuju home" style={{ marginBottom: 18 }}>
-              <div className="nav-logo-orb"><img src="src/assets/ju-main.png" alt="" /></div>
+              <div className="nav-logo-orb"><img src="/landing-exact/src/assets/ju-main.png" alt="" /></div>
               <span>Nuju</span>
             </a>
             <p style={{ fontSize: 13, lineHeight: 1.55, color: 'var(--ink-soft)', maxWidth: 280, margin: 0 }}>

@@ -130,7 +130,7 @@ const ScreenOpen = () => (
       </span>
     </div>
     <div style={{ textAlign: 'center', paddingTop: 30 }}>
-      <img src="src/assets/ju-main.png" style={{ width: 110, height: 110, margin: '0 auto', filter: 'drop-shadow(0 12px 24px rgba(124,110,219,0.3))' }} />
+      <img src="/landing-exact/src/assets/ju-main.png" style={{ width: 110, height: 110, margin: '0 auto', filter: 'drop-shadow(0 12px 24px rgba(124,110,219,0.3))' }} />
       <div style={{ fontFamily: 'var(--display)', fontSize: 26, fontWeight: 600, letterSpacing: '-0.02em', marginTop: 18, color: 'var(--ink)' }}>
         Hi. How's now?
       </div>

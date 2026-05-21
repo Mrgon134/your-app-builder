@@ -147,7 +147,7 @@ const HeroOrbit = ({ phase, revealed, onStart }) => {
 
       {/* Ju mascot */}
       <div className="orbit-ju float">
-        <img src="src/assets/ju-main.png" alt="Ju" />
+        <img src="/landing-exact/src/assets/ju-main.png" alt="Ju" />
         <div className="orbit-ju-glow" />
       </div>
 

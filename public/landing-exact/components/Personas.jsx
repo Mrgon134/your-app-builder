@@ -5,7 +5,7 @@ const PERSONAS = [
   {
     key: 'gentle',
     name: 'Gentle',
-    img: 'src/assets/coach-gentle.png',
+    img: '/landing-exact/src/assets/coach-gentle.png',
     color: '#B8C4F0',
     tag: 'Soft + warm',
     line: "You don't have to earn the rest. Today is allowed to be small.",
@@ -14,7 +14,7 @@ const PERSONAS = [
   {
     key: 'wise',
     name: 'Wise',
-    img: 'src/assets/coach-wise.png',
+    img: '/landing-exact/src/assets/coach-wise.png',
     color: '#E8D5A3',
     tag: 'Slow + true',
     line: "What you're calling laziness is your body protecting the part of you that's still trying.",
@@ -23,7 +23,7 @@ const PERSONAS = [
   {
     key: 'tough',
     name: 'Tough',
-    img: 'src/assets/coach-tough.png',
+    img: '/landing-exact/src/assets/coach-tough.png',
     color: '#D4A0D0',
     tag: 'Direct + honest',
     line: "Stop apologizing for needing what every nervous system needs. Eat. Sleep. Cancel one thing.",
@@ -32,7 +32,7 @@ const PERSONAS = [
   {
     key: 'fun',
     name: 'Fun',
-    img: 'src/assets/coach-fun.png',
+    img: '/landing-exact/src/assets/coach-fun.png',
     color: '#A8E6CF',
     tag: 'Light + lifting',
     line: "Bestie this is just a Tuesday in a costume. Put on the playlist, we're walking.",

@@ -2,11 +2,11 @@
 // liquid glass overlay panels and progress dots.
 
 const MOODS = [
-  { key: 'rough', img: 'src/assets/ju-rough.png', label: 'Rough', color: '#E8878C', headline: "When everything's too loud.", body: "Ju gets it. You don't need to be productive about this. We start by lowering the volume, not finding the answer." },
-  { key: 'low',   img: 'src/assets/ju-low.png',   label: 'Low',   color: '#6C9BCF', headline: "When you're holding it quietly.", body: "Holding it together still counts as holding it. Ju notices the weight you didn't put into words yet." },
-  { key: 'okay',  img: 'src/assets/ju-okay.png',  label: 'Okay',  color: '#FFB347', headline: "When the day is just… a day.",   body: "Okay is its own real feeling. Not flat, not failing — just a level surface to walk on for a while." },
-  { key: 'good',  img: 'src/assets/ju-good.png',  label: 'Good',  color: '#95E1D3', headline: "When softness is returning.",     body: "The kind of good that doesn't have to be earned. Ju marks the day so future-you remembers this version existed." },
-  { key: 'great', img: 'src/assets/ju-great.png', label: 'Great', color: '#4ECDC4', headline: "When you feel like yourself again.", body: "These are the days the harder ones were waiting for. Ju saves the shape so you can find your way back." },
+  { key: 'rough', img: '/landing-exact/src/assets/ju-rough.png', label: 'Rough', color: '#E8878C', headline: "When everything's too loud.", body: "Ju gets it. You don't need to be productive about this. We start by lowering the volume, not finding the answer." },
+  { key: 'low',   img: '/landing-exact/src/assets/ju-low.png',   label: 'Low',   color: '#6C9BCF', headline: "When you're holding it quietly.", body: "Holding it together still counts as holding it. Ju notices the weight you didn't put into words yet." },
+  { key: 'okay',  img: '/landing-exact/src/assets/ju-okay.png',  label: 'Okay',  color: '#FFB347', headline: "When the day is just… a day.",   body: "Okay is its own real feeling. Not flat, not failing — just a level surface to walk on for a while." },
+  { key: 'good',  img: '/landing-exact/src/assets/ju-good.png',  label: 'Good',  color: '#95E1D3', headline: "When softness is returning.",     body: "The kind of good that doesn't have to be earned. Ju marks the day so future-you remembers this version existed." },
+  { key: 'great', img: '/landing-exact/src/assets/ju-great.png', label: 'Great', color: '#4ECDC4', headline: "When you feel like yourself again.", body: "These are the days the harder ones were waiting for. Ju saves the shape so you can find your way back." },
 ];
 
 const Moods = () => {
