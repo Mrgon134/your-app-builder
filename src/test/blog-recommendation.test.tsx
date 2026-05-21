@@ -118,9 +118,9 @@ describe("Blog recommendation surfaces", () => {
     expect(screen.getByRole("heading", { name: /how we tested the 8 apps/i })).toBeInTheDocument();
     expect(seoHeadProps).toHaveBeenCalledWith(
       expect.objectContaining({
-        title: "8 Best AI Journaling Apps 2026 (3 Free + Worth It)",
+        title: "8 Best AI Journaling Apps in 2026 (We Tested All — 3 Worth It)",
         description:
-          "We tested 8 AI journaling apps for real AI insight, privacy, and free access. Only 3 passed — see the best free AI journal and which to try first.",
+          "We tested 8 AI journaling apps for real AI insight, privacy, and free access. Only 3 passed our 30-day test — see the best free AI journal first.",
         canonical: "https://nuju.app/blog/best-ai-journaling-apps",
       }),
     );
