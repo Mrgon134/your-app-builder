@@ -13,6 +13,32 @@ const Landing: React.FC = () => {
     ttk.trackPageView();
   }, [trackLandingView, ttk]);
 
+  useEffect(() => {
+    let cancelled = false;
+
+    fetch("/landing-exact/index.html", { cache: "no-store" })
+      .then((response) => response.text())
+      .then((html) => {
+        if (cancelled) return;
+
+        const normalizedHtml = html.replace(
+          "<head>",
+          '<head><base href="/landing-exact/">'
+        );
+
+        document.open();
+        document.write(normalizedHtml);
+        document.close();
+      })
+      .catch(() => {
+        // Keep the fallback visible if the static landing cannot be loaded.
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
   return (
     <>
       <SEOHead
@@ -21,11 +47,9 @@ const Landing: React.FC = () => {
         canonical="https://nuju.app/"
         noSuffix
       />
-      <iframe
-        title="Nuju landing"
-        src="/landing-exact/index.html"
-        className="fixed inset-0 h-[100dvh] w-screen border-0"
-      />
+      <div className="grid min-h-[100dvh] place-items-center bg-[#FAF9F6] px-6 text-center text-[#1A1726]">
+        <p className="text-sm font-semibold text-[#7C6EDB]">Loading Nuju landing...</p>
+      </div>
     </>
   );
 };
