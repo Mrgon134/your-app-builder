@@ -557,9 +557,10 @@ const BlogPost: React.FC = () => {
       url: "https://nuju.app/pwa-192x192.png",
     },
     sameAs: [
-      "https://twitter.com/nujuapp",
+      "https://x.com/nujuapp",
       "https://www.instagram.com/nujuapp",
-      "https://www.tiktok.com/@nujuapp",
+      "https://www.tiktok.com/@nujuappofficial",
+      "https://www.youtube.com/@Nujuapp",
       "https://www.producthunt.com/products/nuju",
     ],
   };
