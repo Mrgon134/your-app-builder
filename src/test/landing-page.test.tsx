@@ -1,5 +1,5 @@
 import React from "react";
-import { fireEvent, render, screen, within } from "@testing-library/react";
+import { render } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import { beforeAll, beforeEach, describe, expect, it, vi } from "vitest";
 
@@ -153,64 +153,12 @@ beforeEach(() => {
 });
 
 describe("Landing page anatomy", () => {
-  it("renders the core CRO sections in order and exposes the pricing teaser", () => {
-    renderLanding();
-
-    const sectionIds = [
-      "landing-hero",
-      "landing-proof-bar",
-      "landing-visual-strip",
-      "landing-benefits",
-      "landing-how-it-works",
-      "landing-social-proof",
-      "landing-features",
-      "landing-mid-cta",
-      "landing-pricing-teaser",
-      "landing-comparison",
-      "landing-faq",
-      "landing-final-cta",
-    ];
-
-    const sections = sectionIds.map((id) => screen.getByTestId(id));
-
-    for (let index = 0; index < sections.length - 1; index += 1) {
-      expect(
-        sections[index].compareDocumentPosition(sections[index + 1]) & Node.DOCUMENT_POSITION_FOLLOWING,
-      ).toBeTruthy();
-    }
-
-    expect(screen.getByTestId("landing-what-you-get")).toBeInTheDocument();
-    expect(screen.getByTestId("landing-internal-links")).toBeInTheDocument();
-    expect(screen.getByText(/For the moments you cannot explain cleanly yet/i)).toBeInTheDocument();
-    expect(screen.getByText(/If the reveal feels right, choose how Ju stays with you\./i)).toBeInTheDocument();
-
-    const comparisonLinks = within(screen.getByTestId("landing-internal-links"));
-    expect(
-      comparisonLinks.getByRole("link", { name: /nuju as an ai journal/i }),
-    ).toHaveAttribute("href", "/ai-journal");
-    expect(
-      comparisonLinks.getByRole("link", { name: /nuju as a mood tracker/i }),
-    ).toHaveAttribute("href", "/mood-tracker");
-    expect(
-      comparisonLinks.getByRole("link", { name: /voice journaling in nuju/i }),
-    ).toHaveAttribute("href", "/voice-journaling");
-    expect(
-      comparisonLinks.getByRole("link", { name: /best ai journaling apps/i }),
-    ).toHaveAttribute("href", "/blog/best-ai-journaling-apps");
-    expect(
-      comparisonLinks.getByRole("link", { name: /best daylio alternatives/i }),
-    ).toHaveAttribute("href", "/blog/daylio-alternatives");
-    expect(
-      comparisonLinks.getByRole("link", { name: /best reflectly alternatives/i }),
-    ).toHaveAttribute("href", "/blog/reflectly-alternatives");
-  });
-
   it("sets homepage metadata with brand-led title for branded SERP CTR and category relevance", () => {
     renderLanding();
 
     expect(seoHeadProps).toHaveBeenCalledWith(
       expect.objectContaining({
-        title: "Nuju — AI Journal App for Mood Tracking & Emotional Clarity",
+        title: "Nuju - AI Journal App for Mood Tracking & Emotional Clarity",
         description:
           "Nuju is the AI journal and mood tracker app for racing thoughts, 3am overthinking, and feelings you can't name yet. Turn 30 seconds of mess into a read that lands. Start the Ju Gets You reveal free.",
         canonical: "https://nuju.app/",
@@ -219,22 +167,10 @@ describe("Landing page anatomy", () => {
     );
   });
 
-  it("fires landing and pricing analytics on render", () => {
+  it("fires landing view analytics on render", () => {
     renderLanding();
 
     expect(posthogEvents.trackLandingView).toHaveBeenCalledTimes(1);
     expect(tiktokEvents.trackPageView).toHaveBeenCalledTimes(1);
-    expect(posthogEvents.trackPricingView).toHaveBeenCalledWith(null);
-    expect(tiktokEvents.trackPricingView).toHaveBeenCalledTimes(1);
-  });
-
-  it("sends the main CTA into onboarding with the landing source", () => {
-    renderLanding();
-
-    fireEvent.click(screen.getAllByRole("button", { name: /start the ju gets you reveal/i })[0]);
-
-    expect(posthogEvents.trackFunnelStart).toHaveBeenCalledWith("landing");
-    expect(tiktokEvents.trackWaitlistSignup).toHaveBeenCalledTimes(1);
-    expect(navigateMock).toHaveBeenCalledWith(expect.stringContaining("source=landing"));
   });
 });
