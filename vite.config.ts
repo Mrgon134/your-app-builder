@@ -18,7 +18,7 @@ export default defineConfig({
       registerType: "autoUpdate",
       includeAssets: ["robots.txt"],
       workbox: {
-        navigateFallbackDenylist: [/^\/~oauth/],
+        navigateFallbackDenylist: [/^\/$/, /^\/landing-exact(?:\/|$)/, /^\/~oauth/],
         globPatterns: ["**/*.{js,css,html,ico,png,svg,webp}"],
       },
       manifest: {
