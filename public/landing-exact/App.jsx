@@ -41,8 +41,9 @@ const App = () => {
   }, [tweaks.blur]);
 
   const start = (plan) => {
+    const selectedPlan = typeof plan === 'string' ? plan : '';
     const params = new URLSearchParams({ source: 'landing' });
-    if (plan) params.set('plan', plan);
+    if (selectedPlan) params.set('plan', selectedPlan);
     window.top.location.href = `/onboarding?${params.toString()}`;
   };
 
