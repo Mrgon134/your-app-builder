@@ -3227,6 +3227,503 @@ const RAW_BLOG_POSTS: BlogPost[] = [
       },
     ],
   },
+  // SEASONAL POST — Mental Health Awareness Month is MAY 2026, running NOW.
+  // Theme per SAMHSA: "More Good Days, Together" / Mental Health America:
+  // "You matter". 4 weekly campaign frames. Targets seasonal spike in
+  // "mental health month journal", "mental health awareness journal prompts"
+  // searches that compound during May annually.
+  {
+    slug: "mental-health-awareness-month-2026-journaling",
+    title: "Mental Health Awareness Month 2026: Your 31-Day Journaling Guide (With 31 Prompts)",
+    description: "Mental Health Awareness Month is May 2026 — this year's theme is 'More Good Days, Together.' Use it as your kickoff: 31 daily prompts mapped to SAMHSA's 4 weekly themes, with research-backed reasons each works.",
+    metaTitle: "Mental Health Awareness Month 2026: 31-Day Journal (31 Prompts)",
+    metaDescription: "Mental Health Awareness Month May 2026: 31-day journaling challenge with prompts mapped to SAMHSA's 4 weekly themes. Free, no signup, research-backed.",
+    publishedAt: "2026-05-22",
+    readingTime: 10,
+    category: "Mental Wellness",
+    sections: [
+      { type: "p", content: "Mental Health Awareness Month is May 2026, and the 2026 theme — 'More Good Days, Together' from Mental Health America, paired with SAMHSA's 'You matter' campaign — is unusually well-suited to journaling. Both frames invite reflection on what a good day actually looks like for you, and what gets in its way. This guide turns the month into a 31-day journaling challenge: one prompt per day, mapped to SAMHSA's four weekly themes, with each prompt designed to take 5 minutes or less." },
+      { type: "p", content: "No signup, no app required. Use any notebook, notes app, or AI journal you prefer. The whole point of Mental Health Awareness Month is removing barriers to mental health practice, so this guide stays free, bookmarkable, and skimmable. If you're starting late in the month, the prompts work standalone — pick any day and start there. The 31-day arc is a frame, not a rule." },
+      { type: "callout", content: "About the 2026 theme: SAMHSA breaks May into 4 weekly themes — (Week 1) Understanding Mental Illness, (Week 2) Mental Wellness, (Week 3) Connection, (Week 4) Action. The prompts below follow this arc, moving from self-understanding to community-aware action. If you only do one week, week 2 (Mental Wellness) tends to produce the most immediate impact." },
+      { type: "h2", content: "Why a 31-day journaling challenge actually works" },
+      { type: "p", content: "Three things make a structured monthly challenge more effective than 'I'll start journaling someday':" },
+      { type: "ul", content: [
+        "External anchor: Mental Health Awareness Month is a public calendar event. You're not asking yourself to start; you're joining something already happening.",
+        "Daily prompts remove the blank-page problem: 31 specific questions mean you never have to wonder what to write.",
+        "Compound effect: research (Pennebaker, UT Austin, 35+ years) shows the strongest gains from journaling appear at the 2-3 week mark. A 31-day arc lands you exactly in the high-payoff window.",
+      ] },
+      { type: "p", content: "Nuju's own user data from the first 161 journal entries supports this: the median entry is just 31 characters and 87% are logged on Rough, Low, or Okay days. Translation: short entries on average days are what build the habit. The prompts below are written to be answerable in 1-2 sentences — not 1-2 pages." },
+      { type: "h2", content: "Week 1 (May 1-8): Understanding Mental Illness — 8 prompts" },
+      { type: "p", content: "Week 1 is about self-understanding. SAMHSA frames it as understanding mental illness; the journaling version is understanding your own mental health baseline — without judgment, without diagnosis, just observation." },
+      { type: "ol", content: [
+        "Day 1: What does a good mental health day feel like for me specifically? (Not the textbook definition — yours.)",
+        "Day 2: When did I last feel mentally well for more than two days in a row? What was different then?",
+        "Day 3: What's one thing I believe about my mental health that might not actually be true?",
+        "Day 4: When I'm not doing well mentally, what's the first sign I notice in my body?",
+        "Day 5: Which emotions do I let myself feel openly? Which do I push down?",
+        "Day 6: Who in my life seems to genuinely understand mental health? What do they get that others don't?",
+        "Day 7: If I described my current mental state to a doctor, what would I say?",
+        "Day 8: What's one mental health belief I grew up with that I want to question now?",
+      ] },
+      { type: "h2", content: "Week 2 (May 9-15): Mental Wellness — 7 prompts" },
+      { type: "p", content: "Week 2 shifts from understanding to practice. What actually keeps you well? The prompts here surface your personal wellness toolkit — often things you already do but don't consciously credit." },
+      { type: "ol", content: [
+        "Day 9: List 3 things that consistently lift my mood, even on a bad day.",
+        "Day 10: What's the smallest action I can take when I feel myself slipping?",
+        "Day 11: When did I take care of myself this week — even in a tiny way?",
+        "Day 12: What stops me from doing more of what I know makes me feel better?",
+        "Day 13: If I had to design a 'good day' from scratch, what would be in it?",
+        "Day 14: What's one self-care idea I've dismissed because it felt too small to count?",
+        "Day 15: How does my body feel right now? Where am I holding tension?",
+      ] },
+      { type: "h2", content: "Week 3 (May 16-22): Connection — 8 prompts" },
+      { type: "p", content: "Week 3 focuses on relationships and connection — one of the strongest protective factors for mental health, but also the most tangled. Loneliness research shows Gen Z experiences regular loneliness at nearly twice the rate of older generations, making this week especially relevant." },
+      { type: "ol", content: [
+        "Day 16: Who in my life makes me feel most like myself? When did I last spend real time with them?",
+        "Day 17: Is there someone I keep meaning to reach out to but haven't? Why?",
+        "Day 18: When do I feel lonely even around people? What's missing in those moments?",
+        "Day 19: Who lifts my mood when we talk? Who depletes it? (No judgment — just observation.)",
+        "Day 20: What's one relationship that needs more honesty from me?",
+        "Day 21: When did someone show me they cared this week, even in a small way?",
+        "Day 22: What kind of support do I actually want — and how often do I ask for it directly?",
+        "Day 23: If I could be more honest with one person in my life, who would it be and about what?",
+      ] },
+      { type: "h2", content: "Week 4 (May 24-31): Action — 8 prompts" },
+      { type: "p", content: "Week 4 turns reflection into action. The 'You matter' frame is operationalized: what does mattering look like in your specific life? What's one thing you'd do if you took your own mental health seriously this month?" },
+      { type: "ol", content: [
+        "Day 24: Looking at weeks 1-3, what's the single biggest pattern I see?",
+        "Day 25: What's one boundary I need to set in the next 7 days?",
+        "Day 26: Is there professional support I've been avoiding? What's the real reason?",
+        "Day 27: What's one habit I want to start tomorrow — small enough I'll actually do it?",
+        "Day 28: Who do I want to be by next May? What's one step toward that this week?",
+        "Day 29: What am I willing to stop doing because it hurts my mental health?",
+        "Day 30: What's the message my future self most needs to hear from present me?",
+        "Day 31: Looking at all 31 entries — what did I learn that I want to keep with me?",
+      ] },
+      { type: "h2", content: "How to actually finish the 31 days (without forcing it)" },
+      { type: "p", content: "Most challenges fail in week 2. Here's what makes finishing realistic:" },
+      { type: "ul", content: [
+        "Set a time, not a target. Same 5-minute window every day (morning coffee, lunch, before bed) — not 'when I have time'.",
+        "Skip a day if you have to. The 'never miss twice' rule from habit-formation research is the most realistic version of consistency.",
+        "Use whatever feels least clunky. Notes app on your phone is fine. Notebook is fine. AI journal is fine. The tool is not the practice.",
+        "Don't re-read entries this month. Reading them back in June is part of the value — read-while-writing is performance, not reflection.",
+      ] },
+      { type: "h2", content: "If a week's theme hits hard" },
+      { type: "p", content: "Some weeks will land lighter, some heavier. Week 3 (connection) is often the hardest because loneliness is uncomfortable to name directly. Week 4 (action) can surface things you've been avoiding. If a prompt opens something bigger than a 5-minute entry can hold, it's worth taking seriously — that's a signal, not a failure of the prompt. Specific paths if certain themes hit hard:" },
+      { type: "ul", content: [
+        "Anxiety surfacing repeatedly: see our anxiety-specific guide at /blog/mood-tracking-for-anxiety",
+        "Overthinking the prompts themselves: see /blog/ai-journal-for-overthinking",
+        "3am-style worry waking you up: see /blog/3am-anxiety-journaling",
+        "Pattern of low Sunday-evening mood: see /blog/sunday-scaries-mood-data",
+        "Want to make this a permanent habit, not just a month: see /blog/5-minute-daily-journaling-habit",
+      ] },
+      { type: "h2", content: "Bottom line" },
+      { type: "p", content: "Mental Health Awareness Month works best as a kickoff, not a sprint. The 31 prompts above are 31 chances to notice something — about your mind, your relationships, your patterns, your toolkit. The compound value is in finishing the month. The compound value beyond that is in noticing which prompts felt important enough to keep using past May. If you want a tool that holds the structure for you — mood tap + short entry + AI reflection — Nuju's free Ju Gets You reveal takes 60 seconds and works on any of these prompts. No credit card. Just answer one and see what comes back." },
+    ],
+    faq: [
+      {
+        question: "When is Mental Health Awareness Month 2026?",
+        answer:
+          "Mental Health Awareness Month is May 2026 — running May 1 through May 31. It was founded by Mental Health America in 1949. The 2026 theme is 'More Good Days, Together' from MHA, paired with SAMHSA's 'You matter' campaign. SAMHSA breaks the month into 4 weekly themes (Understanding Mental Illness, Mental Wellness, Connection, Action).",
+      },
+      {
+        question: "Is journaling actually backed by research for mental health?",
+        answer:
+          "Yes — and the research is substantial. James Pennebaker's expressive writing studies at UT Austin (1986-present) have shown across thousands of participants that 15-20 minutes of writing about emotional experiences reduces stress, improves immune function, lowers blood pressure, and reduces doctor visits over weeks. Newer 2018 Baylor research showed writing a to-do list before bed reduces sleep latency by 9 minutes.",
+      },
+      {
+        question: "What if I miss a day during the 31-day challenge?",
+        answer:
+          "Skip it and move on. The 'never miss twice' rule from habit-formation research is the most realistic version of consistency — one missed day is normal; two in a row starts feeling like quitting. Don't try to make up missed days by doing two prompts at once. Pick up wherever you are in the calendar.",
+      },
+      {
+        question: "Do I need an app to do this challenge?",
+        answer:
+          "No. Any notebook, notes app, or document works. The challenge is the practice, not the tool. If you want AI feedback on each entry, an AI journaling app (Nuju, Rosebud, Mindsera) helps — but the prompts work standalone. Many people start with a free notes app and switch to a dedicated journal app once the habit feels real.",
+      },
+      {
+        question: "How long should each daily entry be?",
+        answer:
+          "Aim for 1-2 sentences. Real-world journal data shows the median entry is about 31 characters — half a tweet. Forcing longer entries usually kills the habit. If a prompt produces a longer entry naturally, great. If you can answer in one line, that's also great.",
+      },
+      {
+        question: "What if a prompt brings up something big I'm not ready for?",
+        answer:
+          "Pause and trust the signal. A prompt that opens something bigger than a 5-minute entry can hold is often pointing at something worth professional support. Make a note, skip the prompt, and consider talking to a therapist or counselor. Mental Health Awareness Month is partly about reducing stigma around exactly this kind of help-seeking.",
+      },
+    ],
+  },
+  // RESEARCH-LED POST — Digital fatigue + journaling. Hot Gen Z trending
+  // topic per 2026 trend research. Gen Z = 6h27m/day phone time, 55% have
+  // done a social media detox. Largely untapped by competitors.
+  {
+    slug: "digital-fatigue-journaling-reset",
+    title: "Digital Fatigue Is Real: How 5 Minutes of Journaling Resets Your Overstimulated Brain",
+    description: "Gen Z averages 6 hours 27 minutes on their phones daily — the highest of any generation. 55% have already taken a social media detox. This guide explains digital fatigue, why writing beats scrolling for nervous-system reset, and a 5-minute protocol that works.",
+    metaTitle: "Digital Fatigue: The 5-Minute Journal Reset (Backed by Research, 2026)",
+    metaDescription: "Gen Z averages 6h27m on phones daily, the highest of any generation. Digital fatigue is real. Here's why journaling 5 min resets the brain — research + protocol.",
+    publishedAt: "2026-05-22",
+    readingTime: 8,
+    category: "Mental Wellness",
+    sections: [
+      { type: "p", content: "Digital fatigue is the cognitive and emotional exhaustion that comes from sustained screen time — and it's now well-documented enough to be considered a real syndrome, not a buzzword. Gen Z averages 6 hours 27 minutes on their phones every day, the highest of any generation; 55% have already taken at least one 'social media detox' in the past year. The fatigue is real, the data is in, and journaling is one of the few low-tech interventions that consistently helps reset the brain in under 5 minutes." },
+      { type: "p", content: "This is not a 'put down your phone' lecture. The reality is most people can't, and won't, dramatically cut screen time. What changes is what you do for 5 minutes after the screen time — and journaling is one of the few activities that interrupts the cognitive load pattern without requiring you to disconnect entirely. Here's what the research shows, why writing works in a way scrolling can't, and the 5-minute protocol that actually delivers." },
+      { type: "callout", content: "Methodology: this piece pulls from 2026 Gen Z screen-time research, Pennebaker's 35+ years of expressive writing studies, default-mode-network neuroscience (Buckner et al.), and Nuju's own user data from the first 161 entries. Specific stats are cited inline." },
+      { type: "h2", content: "What digital fatigue actually does to your brain" },
+      { type: "p", content: "Three things stack when you scroll continuously:" },
+      { type: "ul", content: [
+        "Cognitive load saturation: each notification, swipe, or context switch demands a small attention shift. By hour 4-5 of phone time, the prefrontal cortex (decision-making, focus) is measurably depleted — same effect as decision fatigue from a long day of meetings.",
+        "Default-mode network disruption: the brain's 'rest' mode (mind-wandering, processing emotion, integrating memory) only activates during gaps in stimulation. Continuous scrolling eliminates those gaps. The brain never processes — it just consumes.",
+        "Dopamine cycle exhaustion: short-form video and feeds train the dopamine system to expect novelty every 7-15 seconds. After hours of this, the baseline reward signal drops, leaving the user feeling flat and unable to enjoy slower activities.",
+      ] },
+      { type: "p", content: "The result: you finish a 2-hour scroll feeling tired, low-mood, and oddly unable to remember much of what you saw. That's not laziness — that's a real neurological state. And it's the state in which most people open mental health apps. Nuju's own data shows 87% of entries are logged on Rough, Low, or Okay days — exactly the bandwidth that follows heavy digital consumption." },
+      { type: "h2", content: "Why journaling specifically resets it" },
+      { type: "p", content: "Journaling does three things that scrolling can't:" },
+      { type: "ol", content: [
+        "It forces sequential thinking. Writing is linear; scrolling is parallel and fragmented. Forcing a sentence to completion engages the prefrontal cortex differently than passive consumption, which begins reversing the cognitive load saturation.",
+        "It creates a gap. Even a 5-minute writing window introduces a stimulation pause long enough for the default-mode network to begin firing — the same network that processes the emotion and content you absorbed.",
+        "It's effortful but bounded. The dopamine system gets a small reward from completing a task, recalibrating away from the novelty-every-7-seconds baseline.",
+      ] },
+      { type: "p", content: "This is why 5 minutes of writing produces a measurably different state than 5 minutes of meditation for most people — meditation requires silencing the brain, which is hard right after heavy stimulation. Writing gives the brain something to do that uses the same machinery in a more sustainable way." },
+      { type: "h2", content: "The 5-minute digital fatigue reset (3 steps)" },
+      { type: "p", content: "Use this immediately after closing a stimulating app or finishing a heavy screen session. The whole protocol takes 5 minutes." },
+      { type: "ol", content: [
+        "Brain dump (3 minutes): Write everything that's currently in your head — what you saw, what you felt, who you compared yourself to, what notifications you're still thinking about. No structure. No edits. Just dump.",
+        "Body check (1 minute): Write one sentence about how your body feels right now. Tight shoulders? Tired eyes? Restless? Naming it physically grounds the entry.",
+        "One real thing (1 minute): Write one thing you want to do, see, or feel in the next hour that is not on a screen. A walk. A snack. A call to someone. Then close the journal and do that thing.",
+      ] },
+      { type: "callout", content: "The order matters. Brain dump first (releases cognitive load), body check second (grounds attention), then one real thing (redirects to the physical). Doing them out of order is less effective; this sequence works because each step prepares the next." },
+      { type: "h2", content: "What about social media detox?" },
+      { type: "p", content: "Social media detoxes work — 55% of Gen Z have done at least one in the past year and most report measurable mood improvement. But they're not sustainable for most people, especially when work, school, or social life runs through the same apps. The journaling reset above is designed for the days you can't detox: a small intervention you can do without dramatically changing your phone use. Use it daily. If you also detox occasionally, that compounds. If you don't, the daily reset still helps significantly." },
+      { type: "h2", content: "Doesn't using a journal app contradict the point?" },
+      { type: "p", content: "It's a fair question. The answer: journal apps optimized for short entries don't add to digital fatigue the way social apps do. There's no infinite scroll, no comparison, no notifications pulling you back. The screen-time is bounded by design — 30 seconds to log a mood, 1-2 minutes to write a sentence, then the entry is done. Compared to 4 hours of TikTok, 5 minutes in a journal app is the recovery, not the cause. The shape of the screen time matters more than the duration." },
+      { type: "p", content: "If you want the journal-app version of this protocol, Nuju is built around exactly this pattern — short-entry, low-stimulation, no infinite scroll. The Ju Gets You reveal works as a 60-second taste of the format." },
+      { type: "h2", content: "Compounding effects (what 30 days looks like)" },
+      { type: "p", content: "If you run the 5-minute reset daily for 30 days, three things tend to happen, based on user reports and what the broader research predicts:" },
+      { type: "ul", content: [
+        "Phone use feels lighter — same hours, less drain. The reset interrupts the saturation loop daily, preventing it from compounding week-over-week.",
+        "Sleep latency drops. The 2018 Baylor study showed pre-bedtime journaling cuts sleep latency by 9 minutes; for digital-fatigued users, the effect tends to be larger because phone-use is one of the biggest sleep-latency drivers.",
+        "Mood baseline rises slightly. Not from positivity — from cognitive reset. The same baseline that was previously masked by fatigue starts surfacing.",
+      ] },
+      { type: "h2", content: "Bottom line" },
+      { type: "p", content: "Digital fatigue is one of the defining mental wellness problems of the 2020s, and especially of Gen Z. The fix is not 'use your phone less' — most readers already know they should and can't make it stick. The fix is 5 minutes of structured writing after heavy screen sessions, run daily for at least 2-3 weeks, until the brain re-learns what a stimulation pause feels like. The protocol is free, the science is solid, and the result compounds. If you want a tool that holds the 5-minute window for you — mood tap, short entry, no notifications pulling you back — Nuju is purpose-built for that. Try the free Ju Gets You reveal." },
+    ],
+    faq: [
+      {
+        question: "What is digital fatigue?",
+        answer:
+          "Digital fatigue is the cognitive and emotional exhaustion from sustained screen time — particularly continuous scrolling and notification-heavy app use. Symptoms include tiredness despite no physical activity, low mood after long phone sessions, difficulty concentrating, and trouble enjoying slower activities. It's now well-documented enough to be considered a real syndrome, not a buzzword.",
+      },
+      {
+        question: "How much screen time causes digital fatigue?",
+        answer:
+          "There's no exact threshold, but research shows measurable cognitive load saturation around hour 4-5 of continuous phone use. Gen Z averages 6 hours 27 minutes daily — well above that threshold. Sustained use of short-form video apps (TikTok, Reels, Shorts) tends to produce fatigue faster than text-heavy apps because of the higher novelty rate and dopamine cycling.",
+      },
+      {
+        question: "Does journaling on a phone defeat the purpose?",
+        answer:
+          "Not if the journal app is built for short entries without infinite scroll, notifications, or comparison features. The shape of the screen time matters more than the duration. 5 minutes in a journal app is recovery — 5 minutes in TikTok is the cause. Look for journal apps that explicitly minimize engagement loops.",
+      },
+      {
+        question: "How long until I notice a difference from the 5-minute reset?",
+        answer:
+          "Most users report feeling better within the first session — the brain dump alone interrupts the loop. Compounding effects (lighter phone use, better sleep, slightly higher mood baseline) typically show up at 2-3 weeks of daily practice. The 2018 Baylor sleep study showed 9-minute sleep latency reductions from a single pre-bedtime journaling session.",
+      },
+      {
+        question: "What if I can't reduce my phone use at all?",
+        answer:
+          "Don't try. The 5-minute reset protocol is designed for people who can't or won't dramatically cut screen time. It runs alongside heavy use, not instead of it. Most measurable benefit comes from running the reset daily after the heaviest usage windows — typically late afternoon and pre-bedtime.",
+      },
+      {
+        question: "Is digital fatigue different from burnout?",
+        answer:
+          "Related but distinct. Burnout is broader — work, life, relationships, screens all contribute. Digital fatigue is specifically the screen-time component. Many people experience both simultaneously. The 5-minute reset addresses digital fatigue; for full burnout, see broader self-care research and consider professional support if symptoms persist.",
+      },
+    ],
+  },
+  // RESEARCH-LED POST — Morning Pages. High search volume topic. Research
+  // evidence is mixed for the specific 3-page-by-hand format, but the
+  // underlying expressive-writing science is strong. Position as nuanced
+  // explainer = ranks better than competing breathless "morning pages
+  // changed my life" content.
+  {
+    slug: "morning-pages-research-explained",
+    title: "Morning Pages: The 30-Year-Old Writing Practice and What Modern Research Actually Says",
+    description: "Julia Cameron's Morning Pages — three handwritten pages of stream-of-consciousness every morning — has been a creativity classic since 1992. But what does the research actually support? The honest answer, plus an adapted 5-minute version that works.",
+    metaTitle: "Morning Pages: What Modern Research Says (Honest Guide 2026)",
+    metaDescription: "Morning Pages by Julia Cameron — what 30+ years of research actually supports, what's hype, and a 5-minute adapted version backed by expressive writing science.",
+    publishedAt: "2026-05-22",
+    readingTime: 8,
+    category: "Journaling Tips",
+    sections: [
+      { type: "p", content: "Morning Pages — Julia Cameron's instruction to write three handwritten pages of stream-of-consciousness every morning, introduced in her 1992 book 'The Artist's Way' — has become one of the most-recommended writing practices in self-help. Millions of people have tried it. Many report life-changing results. But the research evidence for the specific 3-pages-by-hand format is, honestly, thin. The expressive-writing science underneath is strong; the dose-response claim (must be 3 pages, must be morning, must be handwritten) is not. This guide separates the two." },
+      { type: "p", content: "If you've tried Morning Pages and bounced, this is for you. If you're considering trying them, this is also for you. The point isn't to dismiss the practice — it's to extract what the research actually supports, drop what's ritual rather than science, and end up with a version that's easier to start and finish." },
+      { type: "callout", content: "Quick summary: the core mechanic (stream-of-consciousness writing) is well-supported by 35+ years of expressive-writing research. The specific format (3 pages, morning, by hand) is Cameron's personal preference, presented as essential but not clinically validated. A 5-minute typed version delivers most of the same benefit for most users." },
+      { type: "h2", content: "What Morning Pages actually are" },
+      { type: "p", content: "Julia Cameron defined Morning Pages as: three pages of longhand, stream-of-consciousness writing, done first thing in the morning, before any other activity. No editing, no censoring, no skipping. The pages are not meant to be read, certainly not to be artful — they exist solely to clear the mind. Cameron's claim: by externalizing whatever clutter is in your head (worries, lists, complaints, random thoughts), you free up cognitive bandwidth for the rest of the day, particularly for creative work." },
+      { type: "p", content: "The practice has been adopted (and adapted) widely. There are typed versions, evening versions, 1-page versions, voice versions. Most variations still claim the core 'clearing' benefit. Cameron's original position: the 3-page handwritten morning format produces results the others don't. The research, as you'll see, doesn't fully support that — but doesn't fully refute it either." },
+      { type: "h2", content: "What the research actually supports" },
+      { type: "p", content: "Three claims are well-supported by independent research:" },
+      { type: "ul", content: [
+        "Stream-of-consciousness writing reduces rumination. James Pennebaker's 35+ years of expressive-writing research at UT Austin shows 15-20 minutes of unedited writing about emotional content reduces the intensity of that content over the following 24 hours. This is the strongest mechanism behind Morning Pages.",
+        "Cognitive offloading frees working memory. The 2011 Levine study on 'cognitive offloading' showed that writing down concerns reduces the mental energy spent maintaining them. For a person waking with a busy mind, this offload effect is real and measurable.",
+        "Pre-task writing improves subsequent focus. Multiple studies show that brief writing before a complex task improves performance — likely because it reduces the background processing demand on working memory.",
+      ] },
+      { type: "h2", content: "What the research does NOT support" },
+      { type: "p", content: "Three of Cameron's more specific claims are not well-validated:" },
+      { type: "ul", content: [
+        "The 3-page threshold. There is no research showing 3 pages specifically produces better results than 1 page or 30 minutes of any other length. The Pennebaker studies that anchor the field used 15-20 minute sessions, which for most writers is roughly 1-1.5 pages.",
+        "Handwriting required. Some studies show handwriting engages slightly different brain regions than typing (Mueller & Oppenheimer 2014), but for the emotional-processing benefits, typed and handwritten entries produce equivalent results.",
+        "Morning timing. Cameron's argument that morning is essential because the mind is uncluttered is conceptually appealing but not clinically established. Evening journaling has at least equal evidence for sleep and mood benefits.",
+      ] },
+      { type: "p", content: "This is not a knock on the practice — it's calibration. The strong recommendations are well-grounded; the specific dosage is preference. Plenty of people genuinely benefit from the 3-page handwritten morning ritual. Many others have benefited from typed evening entries of similar length. The research doesn't pick a winner." },
+      { type: "h2", content: "Why the 3-page format causes so many people to quit" },
+      { type: "p", content: "The 3-pages-every-morning format has high friction:" },
+      { type: "ul", content: [
+        "Time cost: 25-40 minutes of writing first thing, before coffee or commute. Many people simply can't.",
+        "Volume target: a fixed page count means a 5-minute insight gets stretched to 30 minutes of filler. The padding often produces worse-quality entries.",
+        "Daily-streak pressure: missing a day in Cameron's framing means 'restart' — guilt-heavy versions of habit pressure produce reliable dropout.",
+        "Handwriting: digital natives, especially under 30, often write so much slower by hand than they type that the 3-page target becomes 50+ minutes.",
+      ] },
+      { type: "p", content: "Nuju's own user data from the first 153 non-empty entries shows the median entry is just 31 characters — half a tweet. That's the natural length when there's no page-count target. The format that's most likely to be sustained is the format that meets users where they actually are." },
+      { type: "h2", content: "The adapted 5-minute version (preserves most of the benefit)" },
+      { type: "p", content: "Based on what the research actually supports, here's a Morning Pages adaptation that preserves the core mechanism without the friction:" },
+      { type: "ol", content: [
+        "5 minutes, any time (morning preferred, but not required). Set a timer.",
+        "Stream-of-consciousness writing — no edits, no structure, no censoring. This is the core Pennebaker mechanism and the non-negotiable part.",
+        "Type or handwrite — whichever you'll actually do daily. Sustained practice beats the format trade-off either way.",
+        "Length is whatever fills 5 minutes naturally. Could be 50 words or 300. Don't pad to a target.",
+        "Skip days if you have to. 'Never miss twice' is the most realistic version of consistency, per habit-formation research.",
+      ] },
+      { type: "p", content: "This version produces 80%+ of the expressive-writing benefit at roughly 15-20% of the time cost. For more on the habit-formation side, see /blog/5-minute-daily-journaling-habit." },
+      { type: "h2", content: "When the full 3-page morning version actually makes sense" },
+      { type: "p", content: "The original 3-page format is genuinely better for a subset of users:" },
+      { type: "ul", content: [
+        "Heavy creative workers (writers, artists, designers) who need to clear pre-creative-work clutter. The pre-task focus research supports the longer pre-creative dump.",
+        "People in major life transitions where there's a lot to process and the longer container is welcome rather than burdensome.",
+        "People who specifically enjoy the meditative quality of long-form writing — for whom the time cost is part of the value, not a drawback.",
+      ] },
+      { type: "p", content: "If you're in one of these groups, do the full format. If you're not, the 5-minute version is honestly equivalent for most measurable outcomes." },
+      { type: "h2", content: "Bottom line" },
+      { type: "p", content: "Morning Pages is a real and useful practice — but the part that's useful is the stream-of-consciousness writing, not the 3-page-morning-handwritten ritual. The research supports the mechanism; the ritual is Cameron's preference. If the full format works for you, keep doing it. If you've tried and bounced, the 5-minute adapted version delivers most of the benefit with a fraction of the friction. Either way, the core move — unedited writing, daily, for at least 2-3 weeks — is what produces results. Nuju is built for the short-form daily version; the Ju Gets You reveal lets you try the format in 60 seconds. The point is the practice, not the ritual." },
+    ],
+    faq: [
+      {
+        question: "What are Morning Pages?",
+        answer:
+          "Morning Pages is a writing practice introduced by Julia Cameron in her 1992 book 'The Artist's Way.' The instruction: write 3 pages of stream-of-consciousness, by hand, first thing in the morning, before any other activity. The pages are not meant to be read or artful — they exist to clear the mind. The practice has become a self-help classic and has been widely adapted into shorter and typed versions.",
+      },
+      {
+        question: "Are Morning Pages backed by research?",
+        answer:
+          "The underlying mechanism (stream-of-consciousness expressive writing) is well-backed by 35+ years of Pennebaker research at UT Austin. The specific format (3 pages, morning, by hand) is Cameron's preference and not clinically validated. A 5-minute typed version produces equivalent expressive-writing benefits for most users. The strong claim has weak support; the moderate claim has strong support.",
+      },
+      {
+        question: "How long do Morning Pages take?",
+        answer:
+          "The traditional 3-page handwritten format takes 25-40 minutes for most people, more if you write slowly by hand. This is the main reason people quit. The adapted 5-minute typed version preserves 80%+ of the benefit at roughly 15-20% of the time cost. Pick the version you'll actually sustain.",
+      },
+      {
+        question: "Can I do Morning Pages in the evening?",
+        answer:
+          "Yes. Cameron argued morning is essential, but the research doesn't support that claim strongly. Evening expressive writing has at least equal evidence for mood and sleep benefits — see the 2018 Baylor study on pre-bedtime journaling reducing sleep latency by 9 minutes. Do them when you'll actually do them.",
+      },
+      {
+        question: "Should I type or write by hand?",
+        answer:
+          "Whichever you'll do daily. Some research shows handwriting engages slightly different brain regions (Mueller & Oppenheimer 2014), but for the emotional-processing benefits, typed and handwritten entries produce equivalent results. For most people under 30, typing is faster and more sustainable.",
+      },
+      {
+        question: "What if I have nothing to write about?",
+        answer:
+          "Write 'I have nothing to write about' until something else comes. The stream-of-consciousness mechanism works specifically because you don't curate what comes out — including the gap-filler. Most blocks resolve in 60-90 seconds if you keep the hand moving. The point is not to have something interesting to say; the point is to write without editing.",
+      },
+    ],
+  },
+  // RESEARCH-LED POST — Gen Z burnout, trending Gen Z topic per Glimpse +
+  // Grow Therapy 2026 data. Gen Z 44% more burnout than average. Mostly
+  // covered by think-piece content; specific journal-led intervention is
+  // a gap.
+  {
+    slug: "gen-z-burnout-journaling",
+    title: "Gen Z Burnout: Why You Feel Tired After Doing Nothing (and the 5-Minute Journal Fix)",
+    description: "Gen Z workers are 44% more likely to report burnout than average. 35% say they feel depressed at work. The exhaustion is real — but rest doesn't fix it. Here's what does, and the 5-minute journaling protocol that interrupts the cycle.",
+    metaTitle: "Gen Z Burnout: Why Rest Doesn't Fix It (Journal Fix, 2026)",
+    metaDescription: "Gen Z is 44% more burned out than average. Rest doesn't fix it. Here's why burnout feels like exhaustion-after-rest — and the 5-minute journal protocol that works.",
+    publishedAt: "2026-05-22",
+    readingTime: 8,
+    category: "Mental Wellness",
+    sections: [
+      { type: "p", content: "Gen Z workers are 44% more likely to report burnout than the average employee (44% vs 34%). 35% say they feel depressed at work. The exhaustion is real, documented, and accelerating — and the most common 'fix' (just rest more) does not work. People rest, they take long weekends, they sleep 9 hours — and they wake up just as tired. That's the defining symptom of burnout: rest doesn't restore. This piece explains why, and walks through a 5-minute journaling protocol that interrupts the cycle when sleep alone can't." },
+      { type: "p", content: "Important up front: severe burnout — the kind that includes depression, hopelessness, or inability to function — needs more than journaling. It often needs medical, therapeutic, or workplace intervention. The protocol below is for mild-to-moderate burnout, the kind most Gen Z workers experience as a chronic background drag. For severe cases, journaling can be supportive, but it's not a substitute for talking to a professional." },
+      { type: "callout", content: "Methodology: 2026 burnout statistics from Grow Therapy and Glimpse trend research. Mechanism explanations from Maslach Burnout Inventory research (Christina Maslach, 1981-present), and from default-mode-network neuroscience. Practical journaling protocol grounded in Pennebaker expressive-writing research and 2018 Baylor pre-bedtime journaling study." },
+      { type: "h2", content: "Why Gen Z burnout is structurally different" },
+      { type: "p", content: "Burnout in older generations was usually job-shaped: too many hours, too much pressure, too little recognition. Gen Z burnout has those components plus three new ones:" },
+      { type: "ul", content: [
+        "Always-on work: remote and hybrid blur the start/end of the workday. The cognitive load never fully drops.",
+        "Comparison floor: social media exposes Gen Z workers to constant peer comparison — career success, lifestyle, productivity, body, relationships. The baseline mental tax is higher than any previous generation faced.",
+        "Identity stakes: more than older generations, Gen Z workers tie identity to their work output. Burnout doesn't just feel like tiredness — it feels like personal failure.",
+      ] },
+      { type: "p", content: "This combination — high cognitive load + constant comparison + identity stakes — produces burnout that's resistant to standard 'just rest' advice. Rest restores the body, but doesn't reset the cognitive and emotional architecture that produced the burnout in the first place." },
+      { type: "h2", content: "Why rest alone doesn't fix it" },
+      { type: "p", content: "Maslach Burnout Inventory research identifies three components of burnout: emotional exhaustion, depersonalization (feeling disconnected from your work or self), and reduced personal accomplishment (feeling like nothing you do matters). Sleep and rest address emotional exhaustion partially — but the other two components don't respond to rest. You can sleep 12 hours and still feel disconnected and like nothing matters." },
+      { type: "p", content: "What does address the other two: structured reflection. Specifically, writing that surfaces what you actually care about, what you've actually accomplished, and what specifically feels disconnected. Most burned-out workers cannot answer these questions from inside the burnout state — but they can write toward them, which is enough to start producing answers." },
+      { type: "h2", content: "The 5-minute burnout journal protocol (4 prompts)" },
+      { type: "p", content: "Use one of these four prompts daily for 14 days, then evaluate. Each takes 5 minutes. The four are designed to address different burnout components — pick the one that lands hardest each day." },
+      { type: "h2", content: "Prompt 1 (emotional exhaustion): 'What drained me today, and what was the actual smallest thing?'" },
+      { type: "p", content: "Burned-out workers often say 'everything' drains them — which is true and unhelpful. Forcing yourself to identify the smallest specific drain ('the third Slack message from X', 'the 3pm meeting that ran 20 min over') makes the drain concrete and addressable. Over 14 days, patterns emerge." },
+      { type: "h2", content: "Prompt 2 (depersonalization): 'What did I do today that actually felt like me?'" },
+      { type: "p", content: "If you can't answer, write 'nothing — I was on autopilot all day.' That's still data. Depersonalization is hard to notice from inside it; the prompt forces a check. Over time, identifying the moments that 'felt like you' shows what you need more of." },
+      { type: "h2", content: "Prompt 3 (reduced accomplishment): 'What's one thing I did this week that mattered, even slightly?'" },
+      { type: "p", content: "Reduced personal accomplishment is the most insidious burnout component because it tells you nothing matters even when things do. Force-listing one thing — sent a thoughtful message, helped a colleague, finished a small task — interrupts the narrative. The brain catalogs more accomplishment than burnout admits." },
+      { type: "h2", content: "Prompt 4 (the most important one): 'If I gave myself permission to not do something tomorrow, what would it be?'" },
+      { type: "p", content: "Most burnout patterns are sustained by things that seem necessary but aren't. The prompt is hypothetical, so the brain can answer honestly without guilt. Often the answer surprises — 'I don't actually need to attend the daily standup; I could just read the doc afterward.' Over 14 days, this prompt reveals the structural changes that would help." },
+      { type: "h2", content: "What changes at 14 days" },
+      { type: "p", content: "Daily 5-minute journaling on these prompts for 14 days produces three measurable shifts based on user reports and underlying research:" },
+      { type: "ul", content: [
+        "Pattern recognition: you start noticing the same drains, same depersonalization moments, same flat days. Pattern recognition is the prerequisite for change.",
+        "Permission expansion: prompts 4 in particular tend to surface 2-3 things you can actually stop doing. Even small stops produce outsized recovery.",
+        "Identity restoration: as you accumulate evidence of moments that 'felt like you' and things you did that mattered, the depersonalization component starts to thin. This is the slowest change but often the deepest.",
+      ] },
+      { type: "p", content: "The 5-minute protocol won't reverse severe burnout on its own. It does reliably interrupt the cycle in mild-to-moderate cases, and produces enough self-knowledge to make better decisions about workload, boundaries, and when to escalate." },
+      { type: "h2", content: "When to escalate beyond journaling" },
+      { type: "p", content: "Signs that burnout has crossed into territory where journaling isn't enough:" },
+      { type: "ul", content: [
+        "Symptoms persist after 4-6 weeks of consistent journaling + adequate sleep.",
+        "Hopelessness or thoughts of self-harm — even fleeting. This is non-negotiable: talk to a professional.",
+        "Physical symptoms (chronic headaches, gut issues, sleep disturbance) lasting more than a month.",
+        "Inability to perform basic work tasks you used to do easily.",
+        "Increased reliance on alcohol or other substances to cope.",
+      ] },
+      { type: "p", content: "For any of these, the right move is a therapist, psychiatrist, or workplace mental health resource — not more journaling. Many companies now have Employee Assistance Programs (EAPs) covering free initial therapy sessions; most insurance covers ongoing mental health care. Journaling can still help alongside, but should not be the primary intervention." },
+      { type: "h2", content: "Bottom line" },
+      { type: "p", content: "Gen Z burnout is real, structural, and worse than what older generations dealt with — not because Gen Z is weaker, but because the workload + comparison + identity stack is heavier. Rest helps the body; it doesn't fix the cognitive and emotional architecture underneath. Five minutes of daily journaling on the four prompts above interrupts the burnout cycle in mild-to-moderate cases and produces the self-knowledge needed to either fix the structure or get the right help. Nuju's free Ju Gets You reveal works on any of these prompts; try one tonight and see what surfaces. If symptoms are severe or persistent, please talk to a professional — burnout is a real medical issue and getting help is the smartest move, not a failure." },
+    ],
+    faq: [
+      {
+        question: "How is Gen Z burnout different from regular work stress?",
+        answer:
+          "Burnout is chronic exhaustion that rest doesn't fully restore, combined with feeling disconnected from your work and like nothing you do matters. Gen Z burnout adds three modern components: always-on remote work blurring boundaries, social-media-driven comparison loops, and tighter identification of identity with work output. Gen Z workers report burnout at 44% — significantly higher than the 34% average.",
+      },
+      {
+        question: "Can journaling alone cure burnout?",
+        answer:
+          "For mild-to-moderate burnout, daily 5-minute journaling for 2-3 weeks tends to produce measurable improvement — pattern recognition, permission to stop unhelpful things, identity restoration. For severe burnout (especially with depression, hopelessness, or physical symptoms), journaling can be supportive but is not sufficient. Severe cases need professional support — therapist, psychiatrist, or workplace mental health resource.",
+      },
+      {
+        question: "Why doesn't sleep fix burnout?",
+        answer:
+          "Sleep addresses emotional exhaustion partially, but not the other two burnout components — depersonalization (feeling disconnected) and reduced personal accomplishment (feeling like nothing matters). You can sleep 12 hours and still feel disconnected and like nothing you do matters. The cognitive and emotional architecture underneath burnout doesn't respond to rest alone; it needs structured reflection.",
+      },
+      {
+        question: "How long until journaling helps with burnout?",
+        answer:
+          "Most users report noticeable shifts within 2 weeks of consistent daily 5-minute journaling. Pattern recognition appears first (week 1), permission to stop things in week 2, identity restoration in weeks 3-4. If symptoms haven't improved after 4-6 weeks of consistent practice plus adequate sleep, the burnout may be severe enough to need professional support — that's the threshold to escalate.",
+      },
+      {
+        question: "What if my workplace is the cause?",
+        answer:
+          "Many burnout cases are workplace-structural — too much workload, toxic culture, unclear expectations. Journaling can identify exactly which structural factors are driving the burnout, which makes it possible to either advocate for change, set firmer boundaries, or decide to leave. The 'what would I give myself permission to not do?' prompt is particularly useful here. For workplace-structural burnout, an EAP counselor or therapist can also help strategize.",
+      },
+      {
+        question: "Is journaling about work going to make me think about work more?",
+        answer:
+          "Counterintuitively, no. Research on cognitive offloading shows that writing about ongoing concerns reduces the mental energy spent maintaining them. The 5-minute window is bounded — you write, you close the journal, you stop thinking about it. The cognitive load drops compared to not writing, because the brain is no longer holding the open loop.",
+      },
+    ],
+  },
+  // BAHASA INDONESIA — Gen Z burnout for Indonesian market. Indonesia has
+  // huge Gen Z workforce, growing burnout discussion, untapped journaling
+  // angle. Direct adaptation, not translation, of the EN burnout post.
+  {
+    slug: "cara-mengatasi-burnout-gen-z",
+    title: "Cara Mengatasi Burnout Gen Z: 5 Teknik Journaling yang Terbukti (Panduan 2026)",
+    description: "Gen Z 44% lebih sering burnout dibanding rata-rata pekerja. Istirahat aja nggak cukup karena burnout punya 3 komponen. 5 teknik journaling yang menargetkan ketiganya, plus kapan harus minta bantuan profesional.",
+    metaTitle: "Cara Mengatasi Burnout Gen Z: 5 Teknik Journaling Terbukti (2026)",
+    metaDescription: "Burnout Gen Z 44% lebih tinggi dari rata-rata. Istirahat aja nggak cukup. 5 teknik journaling khusus untuk 3 komponen burnout, plus kapan harus ke profesional.",
+    publishedAt: "2026-05-22",
+    readingTime: 8,
+    category: "Mental Wellness",
+    sections: [
+      { type: "p", content: "Jawaban singkat: burnout bukan cuma 'capek lebih banyak dari biasanya'. Burnout punya tiga komponen — kelelahan emosional, depersonalisasi (merasa kosong / nggak terhubung sama kerjaan), dan rasa nggak ada yang penting dari yang lo lakukan. Riset 2026 menunjukkan Gen Z 44% lebih sering mengalami burnout dibanding pekerja rata-rata. Yang penting dipahami: istirahat doang nggak cukup buat memperbaikinya. Lima menit journaling per hari yang menargetkan ketiga komponen lebih efektif dari weekend gateway sebulan sekali." },
+      { type: "p", content: "Tulisan ini bukan untuk burnout berat yang udah masuk wilayah depresi atau nggak bisa berfungsi normal — kondisi itu butuh psikolog, psikiater, atau dokter, bukan cuma jurnal. Tapi untuk burnout ringan-sedang yang banyak Gen Z alami sebagai 'background drag' setiap hari, 5 teknik journaling berikut adalah salah satu intervensi paling murah dan paling terbukti." },
+      { type: "callout", content: "Catatan: kalau burnout lo udah bikin pikiran ngerusak diri sendiri, susah tidur kronis lebih dari sebulan, atau lo butuh alkohol/obat untuk fungsi — langsung hubungi psikolog atau psikiater. Banyak platform Indonesia (Halodoc, KALM, Riliv) menawarkan konsultasi terjangkau. Burnout berat adalah masalah medis nyata. Minta bantuan bukan kegagalan." },
+      { type: "h2", content: "Kenapa burnout Gen Z Indonesia struktural berbeda" },
+      { type: "p", content: "Burnout generasi sebelumnya biasanya soal kerjaan: terlalu banyak jam, tekanan tinggi, kurang penghargaan. Burnout Gen Z punya tiga tambahan struktural yang nggak dimiliki generasi sebelumnya:" },
+      { type: "ul", content: [
+        "Always-on work: WFH dan hybrid menghilangkan batas mulai-selesai kerja. Notifikasi Slack/WhatsApp Group jam 10 malam jadi norma. Otak nggak pernah benar-benar 'off'.",
+        "Comparison floor di sosmed: Instagram, TikTok, LinkedIn menampilkan teman seangkatan yang keliatan sukses terus. Beban mental dari membandingkan diri jauh lebih tinggi dari generasi yang nggak punya akses real-time ke pencapaian semua orang.",
+        "Identitas terikat ke kerjaan: lebih dari generasi sebelumnya, Gen Z mengikat identitas ke output kerja. Burnout nggak cuma terasa capek — terasa kayak kegagalan personal.",
+      ] },
+      { type: "p", content: "Kombinasi ini menghasilkan burnout yang resisten terhadap saran 'istirahat lebih banyak'. Istirahat memulihkan tubuh, tapi nggak memperbaiki arsitektur kognitif dan emosional yang bikin burnout pertama kali." },
+      { type: "h2", content: "Kenapa istirahat aja nggak cukup" },
+      { type: "p", content: "Riset Maslach Burnout Inventory (Christina Maslach, sejak 1981) mengidentifikasi tiga komponen burnout. Tidur dan istirahat hanya menyelesaikan satu — kelelahan emosional. Dua komponen lain (depersonalisasi dan rasa nggak ada yang penting) nggak respon ke istirahat. Lo bisa tidur 12 jam dan tetap merasa kosong dan kerjaan terasa sia-sia." },
+      { type: "p", content: "Yang menyelesaikan dua komponen lain: refleksi terstruktur. Lebih spesifik lagi, menulis yang menggali apa yang sebenernya lo pedulikan, apa yang sebenernya udah lo capai, dan apa yang spesifik terasa terputus. Pas lagi burnout, otak nggak bisa jawab pertanyaan ini langsung — tapi otak bisa nulis ke arahnya, dan itu udah cukup untuk mulai memproduksi jawaban." },
+      { type: "h2", content: "5 prompt journaling khusus burnout (5 menit/hari)" },
+      { type: "p", content: "Pilih satu prompt setiap malam. Set timer 5 menit. Tulis tanpa edit. Lakukan rutin 14 hari, lalu evaluasi. Lima prompt ini dirancang menyasar komponen burnout yang berbeda — bisa rotasi atau pilih yang paling relevan tiap hari." },
+      { type: "h2", content: "Prompt 1 (kelelahan emosional): 'Apa yang menguras energi gue hari ini — yang paling KECIL?'" },
+      { type: "p", content: "Pas burnout, jawabannya gampang: 'semua nguras'. Itu benar, tapi nggak bisa diapain. Prompt ini memaksa spesifik: 'pesan Slack ketiga dari atasan jam 5 sore', 'meeting jam 3 yang molor 30 menit', 'WhatsApp grup kerja jam 8 malam'. Spesifik bikin penguras energi konkret dan bisa ditangani. Setelah 14 hari, pattern muncul — biasanya 2-3 hal yang sama berulang." },
+      { type: "h2", content: "Prompt 2 (depersonalisasi): 'Apa yang gue lakuin hari ini yang BENERAN terasa kayak gue?'" },
+      { type: "p", content: "Kalau lo nggak bisa jawab, tulis 'nggak ada — gue autopilot seharian'. Itu juga data. Depersonalisasi sulit disadari dari dalam; prompt ini memaksa cek. Setelah beberapa hari, momen-momen yang 'terasa kayak gue' nunjukin apa yang sebenernya lo butuhkan lebih banyak dalam hidup." },
+      { type: "h2", content: "Prompt 3 (rasa pencapaian rendah): 'Apa 1 hal yang gue lakukan minggu ini yang penting, sekecil apapun?'" },
+      { type: "p", content: "Burnout meyakinkan otak bahwa nggak ada yang penting, padahal banyak hal yang sebenernya penting. Memaksa nulis SATU hal — kirim pesan yang baik ke kolega, bantu junior, selesain tugas kecil yang tertunda — memutus narasi 'semuanya sia-sia'. Otak sebenernya menyimpan lebih banyak pencapaian dari yang burnout bilang." },
+      { type: "h2", content: "Prompt 4 (yang paling penting): 'Kalau besok gue izinin diri sendiri NGGAK ngelakuin satu hal, apa itu?'" },
+      { type: "p", content: "Banyak pola burnout dipertahankan oleh hal yang terasa wajib padahal nggak. Prompt ini hipotetis, jadi otak bisa jawab jujur tanpa rasa bersalah. Sering jawabannya bikin kaget — 'gue nggak benar-benar perlu hadir di standup harian, gue bisa baca catatan setelahnya'. Setelah 14 hari, prompt ini sering nunjukin perubahan struktural yang akan benar-benar membantu." },
+      { type: "h2", content: "Prompt 5 (untuk Gen Z Indonesia spesifik): 'Apa ekspektasi keluarga / sosial yang gue ikuti sekarang yang sebenernya nggak cocok sama gue?'" },
+      { type: "p", content: "Gen Z Indonesia punya tekanan tambahan dari ekspektasi keluarga (karir tertentu, jadwal nikah, output yang terlihat sukses di mata orang tua) dan ekspektasi sosial (postingan, gaya hidup yang dipamerkan). Banyak burnout Indonesia akarnya bukan di pekerjaan — tapi di membawa ekspektasi orang lain seolah-olah itu standar diri. Prompt ini menggali yang sering nggak disebut secara langsung. Tulis jujur — buku jurnal nggak akan share ke siapa-siapa." },
+      { type: "h2", content: "Apa yang berubah setelah 14 hari" },
+      { type: "p", content: "Journaling 5 menit per hari tentang prompt-prompt ini selama 14 hari biasanya menghasilkan tiga perubahan terukur:" },
+      { type: "ul", content: [
+        "Pengenalan pattern: lo mulai notice penguras energi yang sama, momen autopilot yang sama, hari-hari kosong yang sama. Pattern adalah prasyarat perubahan.",
+        "Izin untuk berhenti: prompt 4 khususnya sering memunculkan 2-3 hal yang sebenernya bisa lo stop lakuin. Pemberhentian kecil aja menghasilkan recovery yang nggak proporsional.",
+        "Pemulihan identitas: seiring bukti momen yang 'terasa kayak gue' dan hal-hal yang lo lakukan yang penting menumpuk, komponen depersonalisasi mulai menipis. Ini perubahan paling lambat tapi paling dalam.",
+      ] },
+      { type: "h2", content: "Kapan burnout butuh lebih dari journaling" },
+      { type: "p", content: "Tanda-tanda burnout sudah lewat batas yang bisa ditangani sendiri dengan journaling:" },
+      { type: "ul", content: [
+        "Gejala bertahan setelah 4-6 minggu journaling konsisten + tidur cukup.",
+        "Putus asa atau pikiran ngerusak diri sendiri — sekecil apapun. Ini non-negotiable: langsung hubungi profesional.",
+        "Gejala fisik (sakit kepala kronis, masalah pencernaan, gangguan tidur) lebih dari sebulan.",
+        "Nggak bisa lakuin tugas kerja dasar yang sebelumnya gampang.",
+        "Ketergantungan alkohol atau zat lain untuk coping yang meningkat.",
+      ] },
+      { type: "p", content: "Untuk kondisi ini, langkah yang tepat: psikolog, psikiater, atau resource kesehatan mental kantor (kalau ada EAP). Platform Indonesia seperti Halodoc, KALM, Riliv menawarkan konsultasi terjangkau dari Rp 50.000-150.000 per sesi. Banyak asuransi juga sekarang cover mental health. Journaling tetap bisa membantu paralel, tapi jangan jadi intervensi utama." },
+      { type: "h2", content: "Bottom line" },
+      { type: "p", content: "Burnout Gen Z adalah masalah nyata, struktural, dan lebih berat dari yang dihadapi generasi sebelumnya — bukan karena Gen Z lemah, tapi karena workload + comparison + identity stack lebih berat. Istirahat membantu tubuh; nggak memperbaiki arsitektur kognitif dan emosional di bawahnya. Lima menit journaling per hari pada 5 prompt di atas memutus loop burnout di kasus ringan-sedang dan menghasilkan self-knowledge yang dibutuhkan untuk memperbaiki struktur atau cari bantuan yang tepat. Nuju gratis, support Bahasa Indonesia, dan persona 'Gentle' (yang paling banyak dipake user untuk kondisi serupa) udah jadi default. Mulai dengan satu prompt malam ini." },
+    ],
+    faq: [
+      {
+        question: "Apa beda burnout sama capek biasa atau stress kerja?",
+        answer:
+          "Burnout adalah kelelahan kronis yang nggak sepenuhnya pulih dengan istirahat, ditambah perasaan terputus dari kerjaan dan rasa nggak ada yang penting dari yang lo lakuin. Bedanya dengan stress: stress hilang setelah masalah selesai. Burnout tetep ada walaupun lo udah liburan seminggu. Gen Z mengalami burnout 44% lebih sering dari rata-rata pekerja.",
+      },
+      {
+        question: "Apakah journaling beneran bisa nyembuhin burnout?",
+        answer:
+          "Untuk burnout ringan-sedang, journaling 5 menit per hari selama 2-3 minggu cenderung menghasilkan perbaikan terukur — pengenalan pattern, izin berhenti hal yang nggak membantu, pemulihan identitas. Untuk burnout berat (terutama dengan depresi, putus asa, atau gejala fisik), journaling bisa membantu tapi nggak cukup. Kasus berat butuh dukungan profesional — psikolog, psikiater, atau EAP kantor.",
+      },
+      {
+        question: "Kenapa tidur banyak nggak ngebantu burnout?",
+        answer:
+          "Tidur menangani sebagian kelelahan emosional, tapi nggak dua komponen burnout yang lain — depersonalisasi (merasa terputus) dan rasa pencapaian rendah (merasa nggak ada yang penting). Lo bisa tidur 12 jam dan tetap merasa terputus dan kerjaan terasa sia-sia. Arsitektur kognitif dan emosional di bawah burnout nggak respon ke istirahat aja — butuh refleksi terstruktur.",
+      },
+      {
+        question: "Berapa lama sampai journaling membantu burnout?",
+        answer:
+          "Kebanyakan user melaporkan perubahan terasa dalam 2 minggu journaling konsisten. Pengenalan pattern muncul pertama (minggu 1), izin berhenti hal di minggu 2, pemulihan identitas di minggu 3-4. Kalau setelah 4-6 minggu konsisten + tidur cukup gejala nggak berkurang, burnout-nya kemungkinan sudah berat dan butuh profesional — itu threshold untuk escalate.",
+      },
+      {
+        question: "Gimana kalau kantor gue penyebabnya?",
+        answer:
+          "Banyak kasus burnout struktural-kantor — beban kerja berlebihan, budaya toxic, ekspektasi nggak jelas. Journaling bisa mengidentifikasi faktor struktural mana yang menyebabkan burnout — yang memungkinkan lo untuk advocate perubahan, set batasan lebih tegas, atau memutuskan keluar. Prompt 'kalau gue izinin diri sendiri NGGAK ngelakuin satu hal, apa itu?' sangat berguna di sini.",
+      },
+      {
+        question: "Apakah journaling tentang kerjaan bakal bikin gue mikirin kerjaan lebih banyak?",
+        answer:
+          "Justru sebaliknya. Riset 'cognitive offloading' menunjukkan menulis tentang kekhawatiran berkelanjutan mengurangi energi mental yang dihabiskan untuk mempertahankannya. Lima menit journaling adalah window yang dibatasi — lo nulis, lo tutup jurnal, lo berhenti mikirin. Beban kognitif justru turun dibanding nggak journaling, karena otak nggak lagi mempertahankan loop yang belum selesai.",
+      },
+    ],
+  },
 ];
 
 const normalizeCopy = (value: string): string =>
