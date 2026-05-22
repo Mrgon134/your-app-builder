@@ -1445,6 +1445,138 @@ const INTERNAL_LINK_RECOMMENDATIONS: Record<string, InternalLinkRecommendation[]
       body: "5 aplikasi journal terbaik untuk mahasiswa Indonesia — termasuk untuk siswa persiapan PTN.",
     },
   ],
+  "why-do-i-feel-disconnected-from-everyone": [
+    {
+      slug: "ai-journaling-for-loneliness",
+      eyebrow: "Lonely while connected",
+      body: "Disconnection often shows up as loneliness even with friends around. The deeper guide.",
+    },
+    {
+      slug: "journaling-for-depression",
+      eyebrow: "When it's depression",
+      body: "Depression-driven disconnection needs professional treatment. Honest framing.",
+    },
+    {
+      slug: "gen-z-burnout-journaling",
+      eyebrow: "When it's burnout",
+      body: "Burnout-driven disconnection responds to rest. The 4-prompt protocol.",
+    },
+    {
+      slug: "digital-fatigue-journaling-reset",
+      eyebrow: "Social media driver",
+      body: "Comparison-driven disconnection often comes from social media. The 5-min reset.",
+    },
+  ],
+  "why-do-i-procrastinate-even-when-i-want-to-do-it": [
+    {
+      slug: "journaling-for-perfectionism-procrastination",
+      eyebrow: "The loop deeper",
+      body: "Perfectionism-procrastination loop is often what drives 'want but won't.' Full protocol.",
+    },
+    {
+      slug: "ai-journal-for-overthinking",
+      eyebrow: "Overthinking root",
+      body: "Procrastination often starts with overthinking. The AI journal angle for the loop.",
+    },
+    {
+      slug: "gen-z-burnout-journaling",
+      eyebrow: "When it's burnout",
+      body: "Burnout makes everything you want to do feel impossible. The 4-prompt protocol.",
+    },
+    {
+      slug: "5-minute-daily-journaling-habit",
+      eyebrow: "Habit building",
+      body: "Build the 5-min unblock protocol into a daily habit that survives.",
+    },
+  ],
+  "best-journal-app-for-entrepreneurs-2026": [
+    {
+      slug: "gen-z-burnout-journaling",
+      eyebrow: "Founder burnout",
+      body: "Founder burnout has specific patterns. The 4-prompt protocol with Maslach framework.",
+    },
+    {
+      slug: "best-ai-journal-apps-for-anxiety-2026",
+      eyebrow: "Founder anxiety",
+      body: "Founder anxiety = chronic anxiety. Anxiety-specific app comparison.",
+    },
+    {
+      slug: "best-free-mental-wellness-apps-2026",
+      eyebrow: "Free toolkit",
+      body: "Bootstrap founders — 7 truly-free apps for the founder toolkit.",
+    },
+    {
+      slug: "complete-guide-ai-journaling-2026",
+      eyebrow: "Category guide",
+      body: "Full 2026 guide to AI journaling — what the category is, how to pick.",
+    },
+  ],
+  "best-journal-app-for-couples-2026": [
+    {
+      slug: "journaling-for-relationships",
+      eyebrow: "Relationship journaling deeper",
+      body: "Beyond couples apps — how to journal about relationships in general.",
+    },
+    {
+      slug: "journaling-for-breakup",
+      eyebrow: "If breakup happens",
+      body: "If the relationship ends — the 7-prompt protocol for first 30 days post-breakup.",
+    },
+    {
+      slug: "best-ai-journal-apps-for-anxiety-2026",
+      eyebrow: "Anxiety affecting relationship",
+      body: "When anxiety affects your relationship — the anxiety-specific app comparison.",
+    },
+    {
+      slug: "complete-guide-ai-journaling-2026",
+      eyebrow: "Category guide",
+      body: "Full 2026 guide to AI journaling — what the category is, how to pick a tool.",
+    },
+  ],
+  "cara-move-on-dari-mantan": [
+    {
+      slug: "cara-journaling-setelah-putus",
+      eyebrow: "Versi lebih detail",
+      body: "7 prompt detail untuk 30 hari pertama pasca-putus dengan riset attachment UCLA.",
+    },
+    {
+      slug: "journaling-untuk-hubungan-toxic",
+      eyebrow: "Kalau hubungan toxic",
+      body: "Kalau yang lo putusin adalah hubungan toxic — guide spesifik untuk pemulihan.",
+    },
+    {
+      slug: "self-healing-dengan-jurnal",
+      eyebrow: "Self healing pasca-putus",
+      body: "Move on adalah self healing yang lebih luas. Panduan praktis dengan prompt.",
+    },
+    {
+      slug: "cara-curhat-ke-diri-sendiri",
+      eyebrow: "Saat butuh outlet",
+      body: "Saat butuh curhat tapi nggak mau bebanin teman — 5 metode curhat ke diri sendiri.",
+    },
+  ],
+  "mengatasi-anxiety-wawancara-kerja": [
+    {
+      slug: "journaling-untuk-anxiety",
+      eyebrow: "Anxiety umum",
+      body: "Anxiety wawancara adalah jenis anxiety spesifik. 7 prompt untuk anxiety umum berlaku.",
+    },
+    {
+      slug: "perfeksionisme-dan-procrastination-indonesia",
+      eyebrow: "Perfeksionisme pre-event",
+      body: "Anxiety wawancara sering dari perfeksionisme. 6 prompt loop-breaker.",
+    },
+    {
+      slug: "mengatasi-stres-kerja-journaling",
+      eyebrow: "Stres kerja umum",
+      body: "Setelah dapet kerja — 5 prompt khusus stres kerja Indonesia.",
+    },
+    {
+      slug: "aplikasi-journal-ai-gratis-indonesia",
+      eyebrow: "Aplikasi yang cocok",
+      body: "5 aplikasi journal AI gratis Indonesia untuk practice harian sebelum interview.",
+    },
+  ],
 };
 
 const getInternalLinkCards = (slug: string): InternalLinkCard[] =>

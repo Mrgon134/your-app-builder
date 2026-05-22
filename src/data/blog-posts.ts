@@ -7506,6 +7506,546 @@ const RAW_BLOG_POSTS: BlogPost[] = [
       },
     ],
   },
+  // Q-BASED LONG-TAIL — Feeling disconnected. High volume modern query.
+  {
+    slug: "why-do-i-feel-disconnected-from-everyone",
+    title: "Why Do I Feel Disconnected from Everyone? The Real Causes (and What Actually Helps)",
+    description: "Feeling disconnected even when surrounded by people is a documented experience — not character flaw. 5 most common causes (depression, burnout, identity shift, social-media-driven comparison, suppressed emotion). 5-min diagnostic + what helps.",
+    metaTitle: "Why Do I Feel Disconnected from Everyone? Real Causes (2026)",
+    metaDescription: "Feeling disconnected even around people has 5 documented causes. Diagnostic + what actually helps. Honest YMYL guide for when it's depression.",
+    publishedAt: "2026-05-22",
+    readingTime: 6,
+    category: "Mental Wellness",
+    sections: [
+      { type: "p", content: "Short answer: feeling disconnected from everyone — even when surrounded by people — has 5 most common causes: depression (anhedonia and emotional flattening), burnout (no bandwidth for connection), identity shift (after major life change you don't know who you are with others), social-media-driven comparison (you feel inferior in every interaction), or suppressed emotion (walls up to manage what you can't process). Not character flaw. Each cause needs a different response." },
+      { type: "callout", content: "Quick start: try the 5-minute diagnostic below to identify your specific cause. The right response depends on which one is firing. Nuju's free Ju Gets You reveal (/onboarding) supports identifying patterns — 60 seconds, no credit card." },
+      { type: "h2", content: "5 most common causes" },
+      { type: "ul", content: [
+        "Depression (anhedonia): loss of pleasure and emotional flattening makes connection feel impossible. Often paired with persistent low mood, sleep changes, lasting 2+ weeks. Needs professional evaluation.",
+        "Burnout: when emotional bandwidth is depleted, you can't be present with others even when you want to. Different from depression — responds to rest, not treatment.",
+        "Identity shift: after major life change (breakup, job loss, becoming parent, moving), you don't know who you are with others yet. Old roles don't fit; new ones aren't formed.",
+        "Social-media-driven comparison: when every interaction triggers comparison to curated highlight reels of others, real interaction feels insufficient. The disconnection is the brain protecting itself from constant inferiority feeling.",
+        "Suppressed emotion: walls go up to manage what you can't process. The walls keep distance from everyone, not just the originally painful thing.",
+      ] },
+      { type: "h2", content: "The 5-minute diagnostic" },
+      { type: "ol", content: [
+        "Pleasure check (1 min): do things still bring you joy? If no for 2+ weeks → possible depression, see doctor.",
+        "Recent workload (1 min): overworking for 3+ months? Sleep <6 hours often? If yes → burnout.",
+        "Recent transitions (1 min): major life change in last 6 months? If yes → identity shift.",
+        "Social media (1 min): hours per day? Comparison feeling after using? If yes → comparison spiral.",
+        "Emotional access (1 min): when did you last cry, laugh hard, feel angry? If can't remember → suppression.",
+      ] },
+      { type: "p", content: "More than one usually applies. The diagnostic helps identify the dominant cause to address first." },
+      { type: "h2", content: "What helps for each cause" },
+      { type: "ul", content: [
+        "Depression: professional treatment (therapy + sometimes medication). Journaling as supportive practice — see /blog/journaling-for-depression.",
+        "Burnout: protected weeks of actual rest, not 'slowing down.' See /blog/gen-z-burnout-journaling.",
+        "Identity shift: small experiments toward who you're becoming. Reconnect with values from before role. See /blog/journaling-for-job-loss if specific.",
+        "Comparison spiral: reduce comparison-source exposure (mute, unfollow), structured journaling — see /blog/journaling-for-jealousy-and-comparison.",
+        "Suppressed emotion: structured release (therapy, journaling that gives emotions permission to surface).",
+      ] },
+      { type: "h2", content: "When disconnection needs professional help" },
+      { type: "p", content: "Talk to a doctor or therapist if:" },
+      { type: "ul", content: [
+        "Disconnection has lasted more than 4-6 weeks despite self-help.",
+        "Thoughts of self-harm — even brief, even ambiguous.",
+        "Loss of interest in everything you used to care about.",
+        "Sleep, appetite, or weight changes significant.",
+        "Inability to function at work or in close relationships.",
+      ] },
+      { type: "p", content: "Crisis lines: US 988. Indonesia Into The Light (intothelightid.org), 119 ext 8. UK Samaritans 116 123." },
+      { type: "h2", content: "Bottom line" },
+      { type: "p", content: "Feeling disconnected from everyone has documented causes — depression, burnout, identity shift, comparison spiral, suppressed emotion. Right response depends on which one. Run the 5-min diagnostic to identify yours. For most causes, structured journaling helps; for depression specifically, professional treatment alongside. If disconnection persists past 4-6 weeks, see a clinician. Nuju's free Ju Gets You reveal (/onboarding) supports identifying patterns over weeks." },
+    ],
+    faq: [
+      {
+        question: "Is feeling disconnected the same as depression?",
+        answer:
+          "Not necessarily. Depression is one of 5 common causes of disconnection (the others: burnout, identity shift, comparison spiral, suppressed emotion). Depression-driven disconnection comes with anhedonia (loss of pleasure), persistent low mood, sleep/appetite changes lasting 2+ weeks. The 5-min diagnostic helps distinguish. If you suspect depression, see a doctor — it's highly treatable.",
+      },
+      {
+        question: "Why do I feel lonely even with friends around me?",
+        answer:
+          "Loneliness is not the absence of people — it's the absence of being known. You can have many friends and still feel lonely if the relationships are surface-level, if you don't disclose your real inner life, or if you're carrying things you haven't told anyone. See /blog/ai-journaling-for-loneliness for deeper coverage and the 'I don't want to burden anyone' loop.",
+      },
+      {
+        question: "Can social media cause me to feel disconnected from people?",
+        answer:
+          "Yes — research consistently shows heavy social media use correlates with increased loneliness and disconnection feelings, particularly in Gen Z (2x boomer loneliness rate). Mechanism: every interaction triggers comparison to curated highlight reels of others, making real interaction feel insufficient. Reducing comparison-source exposure helps. See /blog/digital-fatigue-journaling-reset.",
+      },
+      {
+        question: "How long does it take to feel reconnected?",
+        answer:
+          "Depends on cause. Burnout-driven disconnection: weeks of actual rest, typically 4-8 weeks. Depression: with treatment, 4-12 weeks typical. Identity shift: 3-12 months as new identity forms. Suppressed emotion: weeks of structured release. Comparison spiral: 2-4 weeks of reduced exposure. If disconnection persists past 4-6 weeks despite addressing likely causes, see a professional.",
+      },
+      {
+        question: "Should I see a therapist if I feel disconnected from everyone?",
+        answer:
+          "If disconnection has lasted more than 4-6 weeks despite self-help, comes with depression symptoms (loss of interest, persistent low mood, hopelessness), or includes thoughts of self-harm — yes, see a clinician. Search 'therapist for depression' or 'CBT for depression.' Crisis lines: US 988, Indonesia Into The Light, UK Samaritans 116 123.",
+      },
+      {
+        question: "Does journaling help with feeling disconnected?",
+        answer:
+          "For 3 of the 5 causes (identity shift, comparison spiral, suppressed emotion), structured journaling significantly helps. For burnout, journaling is supportive but rest is primary. For depression, journaling is adjunctive — primary treatment is professional. The diagnostic in this article identifies which cause is yours, which determines whether journaling alone is enough or needs to pair with other interventions.",
+      },
+    ],
+  },
+  // Q-BASED LONG-TAIL — Procrastination paradox.
+  {
+    slug: "why-do-i-procrastinate-even-when-i-want-to-do-it",
+    title: "Why Do I Procrastinate Even When I Want to Do It? The Hidden Mechanism",
+    description: "Procrastinating things you want to do feels paradoxical — but it's actually the same mechanism as procrastinating things you hate. It's not about wanting or willpower. It's emotion regulation. Here's the real cause and a 5-minute fix.",
+    metaTitle: "Why Do I Procrastinate Things I Want to Do? Real Mechanism (2026)",
+    metaDescription: "Procrastinating things you WANT to do isn't paradox — it's emotion regulation. Real cause + 5-min fix backed by Pychyl/Sirois research.",
+    publishedAt: "2026-05-22",
+    readingTime: 6,
+    category: "Mental Wellness",
+    sections: [
+      { type: "p", content: "Short answer: you procrastinate things you want to do for the same reason you procrastinate things you hate — it's emotion regulation, not motivation or willpower. Research from Tim Pychyl (Carleton) and Fuschia Sirois (Sheffield) consistently shows procrastination is about avoiding the negative feelings the task triggers (fear of failure, fear of not doing it well enough, fear of finishing and then what), not about whether you want the outcome." },
+      { type: "callout", content: "Quick start: skip to '5-minute unblock protocol' below if you're procrastinating right now. Often the unblock happens within minutes. Nuju's free Ju Gets You reveal (/onboarding) supports the protocol — 60 seconds." },
+      { type: "h2", content: "The paradox isn't a paradox" },
+      { type: "p", content: "Wanting something doesn't reduce the feelings around doing it. Often it increases them. The more you want it to be good, the more fear of it not being good enough. The bigger the stakes (even self-imposed), the heavier the emotional weight. This is why people procrastinate creative projects, business ventures, and writing things they care about — the wanting amplifies the avoidance." },
+      { type: "h2", content: "The actual mechanism" },
+      { type: "p", content: "Pychyl and Sirois's research (2010-2020 multiple studies) identifies the loop:" },
+      { type: "ol", content: [
+        "Task triggers negative emotion (fear of not being good enough, fear of effort, fear of finishing).",
+        "Brain seeks to escape the emotion. Easiest escape: don't start.",
+        "Avoidance produces short-term relief (no negative feelings while not doing the task).",
+        "Long-term: shame about not doing it accumulates, often paired with the wanting to do it.",
+        "Shame + wanting + avoidance = the painful loop that traps you.",
+      ] },
+      { type: "h2", content: "Why willpower doesn't break it" },
+      { type: "p", content: "Willpower targets the wrong layer. The loop is sustained by emotion regulation, not motivation. Telling yourself 'just do it' addresses the doing without addressing the feelings driving the avoidance. The fear is still there; you're now trying to push through it instead of work with it. Sometimes that works briefly. Long-term it doesn't because the next time the same task comes up, the same emotions fire." },
+      { type: "h2", content: "5-minute unblock protocol" },
+      { type: "p", content: "Use when procrastinating something you want to do:" },
+      { type: "ol", content: [
+        "Name the feeling (1 min): what's the specific emotion when you think about doing this? Fear of failure? Fear of effort? Fear of finishing? Overwhelm? Specifically.",
+        "Name what you're afraid of (1 min): what's the worst that could happen if you start? Usually 1-2 specific concerns underneath the avoidance.",
+        "Define minimum-viable first step (1 min): what's the SMALLEST thing that would count as starting? Not 'finish the project' — 'open the document and write the title.' Tiny.",
+        "Set a 25-minute timer (Pomodoro): commit to ONLY the minimum-viable step for 25 minutes. Permission to stop after.",
+        "Notice: most procrastination breaks once you're 5 minutes in. The threshold is the avoidance, not the doing.",
+      ] },
+      { type: "h2", content: "When procrastination is something deeper" },
+      { type: "p", content: "Some patterns need professional support:" },
+      { type: "ul", content: [
+        "Procrastinating things you genuinely care about for months without progress.",
+        "Procrastination paired with depression symptoms (loss of interest, hopelessness, persistent low mood).",
+        "Procrastination causing significant disruption to work, school, or relationships.",
+        "Procrastination tied to ADHD (executive function challenges) — diagnosable and treatable.",
+        "Procrastination with self-harm thoughts — talk to a clinician this week.",
+      ] },
+      { type: "p", content: "Therapists who specialize in ACT (Acceptance and Commitment Therapy) often work well with chronic procrastination — the framework addresses both the feelings and the avoidance. Crisis lines if needed: US 988, Indonesia Into The Light, UK Samaritans 116 123." },
+      { type: "h2", content: "Bottom line" },
+      { type: "p", content: "Procrastinating things you want to do isn't paradox — it's the wanting amplifying the emotional weight. Loop is sustained by emotion regulation, not motivation. 5-min unblock protocol addresses the right layer (feelings + minimum-viable step). For chronic patterns or paired depression, professional support. Nuju's free Ju Gets You reveal (/onboarding) supports the protocol — 60 seconds, no credit card." },
+    ],
+    faq: [
+      {
+        question: "Why do I procrastinate things I want to do?",
+        answer:
+          "Because wanting amplifies the emotional weight, not reduces it. The more you want something to be good, the more fear of it not being good enough. Pychyl + Sirois research (Carleton, Sheffield) shows procrastination is emotion regulation — avoiding negative feelings the task triggers, not avoiding the task itself. Wanting doesn't bypass that mechanism.",
+      },
+      {
+        question: "Is procrastination laziness?",
+        answer:
+          "No, and the laziness framing actively makes procrastination worse by adding shame on top. Research consistently shows procrastination is an emotion-regulation strategy, not a character flaw. Lazy people don't typically experience shame about not doing things; procrastinators almost always do. The shame is itself part of the loop that maintains the pattern.",
+      },
+      {
+        question: "How do I stop procrastinating long-term?",
+        answer:
+          "Address the emotional layer first. The 5-min unblock protocol works for immediate situations. For chronic patterns: identify what feelings the task triggers (fear of failure, of effort, of finishing), work with them rather than push through. For perfectionism-driven procrastination specifically, see /blog/journaling-for-perfectionism-procrastination. For ADHD-driven procrastination, professional evaluation helps.",
+      },
+      {
+        question: "Could my procrastination be ADHD?",
+        answer:
+          "Possibly. ADHD includes executive-function challenges that look like procrastination but have different roots — task-switching difficulty, time blindness, dopamine-driven attention. If procrastination is severe, paired with other ADHD signs (focus issues, hyperfocus on wrong things, emotional dysregulation), talk to a doctor about evaluation. ADHD is highly treatable but undiagnosed in many adults.",
+      },
+      {
+        question: "Why does the deadline feeling make me suddenly able to work?",
+        answer:
+          "Deadline pressure produces enough negative emotion (fear of consequences) that the brain stops trying to avoid the original task — the avoidance now feels worse than the doing. This is why deadlines work but aren't a sustainable system. The Pomodoro 25-minute timer is a softer version of the same mechanism — creates time-bounded pressure without crisis.",
+      },
+      {
+        question: "When should I see a professional about procrastination?",
+        answer:
+          "If procrastination is causing significant disruption to work/school/relationships, lasting months on things you care about, paired with depression or anxiety symptoms, accompanied by self-harm thoughts, or fits an ADHD profile (lifetime pattern, executive function issues) — see a clinician. ACT therapy works well for chronic procrastination. Crisis lines: US 988, Indonesia Into The Light, UK Samaritans 116 123.",
+      },
+    ],
+  },
+  // COMMERCIAL — Best journal app for entrepreneurs.
+  {
+    slug: "best-journal-app-for-entrepreneurs-2026",
+    title: "Best Journal App for Entrepreneurs in 2026: 5 Picks for Founders, Solopreneurs, and Builders",
+    description: "Entrepreneurs need a journal app that fits between sprints, surfaces patterns under chaos, and respects strategic thinking time. We tested 5 picks for 2026 — Nuju, Stoic, Reflection, Day One, Mindsera. Honest comparison.",
+    metaTitle: "Best Journal App for Entrepreneurs 2026: 5 Picks for Founders",
+    metaDescription: "Best journal apps for entrepreneurs 2026: Nuju, Stoic, Reflection, Day One, Mindsera. Honest comparison for founders, solopreneurs, builders.",
+    publishedAt: "2026-05-22",
+    readingTime: 7,
+    category: "App Comparison",
+    sections: [
+      { type: "p", content: "Best journal app for entrepreneurs in 2026: Nuju for short daily entries between sprints with AI pattern recognition. Stoic for philosophical / strategic-thinking frame. Reflection for guided weekly/monthly/annual reviews. Day One for long-form decision documentation and reflection. Mindsera for cognitive-distortion identification under entrepreneurial stress. The right pick depends on your specific founder rhythm." },
+      { type: "callout", content: "Quick start for founders: most entrepreneurs benefit from Nuju Free for daily 30-second entries + Reflection for monthly strategic review. Combined cost: $0/month for daily + ~$5-10/month for monthly reviews if you upgrade Reflection. Try Nuju at /onboarding — 60 seconds, no credit card." },
+      { type: "h2", content: "What entrepreneurs specifically need" },
+      { type: "ul", content: [
+        "Fast entries: founders are time-constrained. 30-second entries between meetings beats 30-minute weekly sessions.",
+        "Pattern recognition under chaos: entrepreneurship produces emotional whiplash. Pattern data over weeks reveals what specifically drains you.",
+        "Decision documentation: future-you will want to remember how you reasoned about hard calls.",
+        "Strategic thinking time: structured reflection forces synthesis that the daily grind suppresses.",
+        "Stress management: founder anxiety and isolation are real. Journal-as-release-valve matters.",
+      ] },
+      { type: "h2", content: "1. Nuju — best for daily founder check-ins" },
+      { type: "p", content: "Nuju's 30-second mood-plus-text format fits between meetings, after pitch calls, before bed. The Gentle AI persona handles founder anxiety, isolation, and decision fatigue. Pattern recognition over 30+ entries reveals what specifically drains your energy (which customers, which meetings, which workflows)." },
+      { type: "p", content: "Founder-relevant features: free tier covers daily entries with AI insights. Multi-language (8 languages) for international founders. Privacy: encrypted, no AI training on entries — important for sensitive business content. Mood + energy tracking surfaces burnout signals early." },
+      { type: "p", content: "Limits: Nuju is reflective, not strategic-framework-based. For structured strategic thinking (mental models, decision frameworks), pair with Stoic or Mindsera." },
+      { type: "h2", content: "2. Stoic — best for strategic/philosophical thinking" },
+      { type: "p", content: "Stoic Journal uses Stoicism-inspired prompts (Marcus Aurelius, Epictetus, Seneca frameworks). For founders who think in mental models and value philosophical reflection, the structure resonates. Morning/evening routines + breathing + meditation integrated. ~$30/year." },
+      { type: "p", content: "Founder fit: prompts like 'what would you do if today were your last?' fit founder existential thinking. Used by Naval Ravikant and others in entrepreneur circles." },
+      { type: "p", content: "Limits: longer prompts mean longer entries. Not for users who need 30-second entries between meetings — more for committed morning routines." },
+      { type: "h2", content: "3. Reflection — best for weekly/monthly strategic review" },
+      { type: "p", content: "Reflection.app generates automatic weekly, monthly, and annual review documents from your entries. For founders running quarterly retrospectives, this automation is uniquely valuable. ~$5-10/month for premium." },
+      { type: "p", content: "Founder fit: pairs well with Nuju (daily entries + Reflection's review automation). The narrative review format works for founder year-end reflection and investor communications." },
+      { type: "p", content: "Limits: longer-form expected per entry than Nuju's 30-second pattern. Best as secondary tool, not primary daily." },
+      { type: "h2", content: "4. Day One — best for long-form decision documentation" },
+      { type: "p", content: "Day One is the heritage long-form diary. For founders who want to document major decisions in depth (pivots, hires, key conversations), Day One's editor is built for this. Beautiful exports for printing later. ~$35/year." },
+      { type: "p", content: "Founder fit: serves founders who treat journaling as decision archive rather than emotional regulation. Less common pattern but real." },
+      { type: "p", content: "Limits: no AI for pattern detection. Requires actual long-form writing time. Most founders don't have it consistently." },
+      { type: "h2", content: "5. Mindsera — best for cognitive-distortion identification" },
+      { type: "p", content: "Mindsera analyzes entries for cognitive distortions (catastrophizing, all-or-nothing thinking, mind-reading). For founders under chronic stress where distorted thinking compounds (catastrophizing missed sales, mind-reading investor reactions), the CBT-based framework is genuinely useful. $8-12/month." },
+      { type: "p", content: "Founder fit: best for founders aware of their own thinking patterns and wanting structured reframing. Some find the tone clinical." },
+      { type: "h2", content: "Combinations that work for founders" },
+      { type: "ul", content: [
+        "Bootstrap solopreneur on budget: Nuju Free only.",
+        "Mid-size startup founder: Nuju Free (daily) + Reflection Premium (monthly review).",
+        "Philosophical founder: Stoic + Nuju Free for daily moments Stoic doesn't catch.",
+        "Stressed founder doing CBT: Mindsera + Nuju (cognitive work + general reflection).",
+        "Long-form decision archive: Day One + Nuju Free (long-form when needed + daily quick entries).",
+      ] },
+      { type: "h2", content: "Bottom line" },
+      { type: "p", content: "For most founders in 2026, Nuju Free is the strongest starting point — fastest daily entries, AI pattern recognition for founder-specific drains, multi-language, strong privacy. Pair with Reflection for monthly strategic review if budget allows. Pair with Stoic if philosophical reflection is your style. Try Nuju at /onboarding — 60 seconds, no credit card. Pick based on actual founder rhythm, not feature checklists." },
+    ],
+    faq: [
+      {
+        question: "What is the best journal app for startup founders?",
+        answer:
+          "For most founders, Nuju Free for daily 30-second entries (fits between meetings, AI pattern recognition, strong privacy) paired with Reflection (~$5-10/month) for monthly strategic reviews. Combined: $0-10/month covering daily + monthly reflection. Solo bootstrappers can use just Nuju Free. Strategic-philosophical founders may prefer Stoic for the philosophical frame.",
+      },
+      {
+        question: "Should founders journal daily or weekly?",
+        answer:
+          "Daily is more sustainable for most founders — 30-second entries between meetings beat 30-minute weekly sessions. Pattern recognition requires consistent data. Many founders journal daily for state-tracking + weekly or monthly for strategic synthesis. Don't force daily long-form — that gets abandoned within weeks.",
+      },
+      {
+        question: "Is journaling really useful for founders or just self-help?",
+        answer:
+          "Multiple research traditions support journaling for entrepreneurs. Pennebaker's expressive writing research (UT Austin, 35+ years) shows it reduces stress measurably. Decision documentation helps avoid repeating mistakes. Pattern recognition surfaces what specifically drains founder energy. Many high-profile founders (Naval Ravikant, Tim Ferriss, Sahil Bloom) credit journaling as core practice.",
+      },
+      {
+        question: "Does journaling help with founder burnout?",
+        answer:
+          "Yes, for prevention and early detection. Mood tracking over weeks surfaces burnout signals (sustained low mood, declining energy, increasing 'tough day' frequency) before they become acute. The Maslach Burnout Inventory components (emotional exhaustion, depersonalization, reduced personal accomplishment) all show up in journal entries. For active burnout, see /blog/gen-z-burnout-journaling.",
+      },
+      {
+        question: "What about privacy for sensitive business journal entries?",
+        answer:
+          "Critical for founders. Look for explicit no-AI-training policy, encryption, easy export/delete, and privacy policies that specifically address journal content. Nuju and Reflection both meet these standards. Avoid apps with data-training clauses in their TOS — Rosebud's 2026 TOS includes this, worth disclosing for sensitive content.",
+      },
+      {
+        question: "How much should a founder spend on journal apps?",
+        answer:
+          "For most founders, $0-15/month covers everything. Nuju Free covers daily journaling with AI insights. Add Reflection Premium (~$5-10/mo) for automated monthly/annual reviews. Add Mindsera or Stoic if specific framework fits. Don't pay for multiple overlapping apps. Most founders find 1-2 apps + free tiers is the sweet spot.",
+      },
+    ],
+  },
+  // COMMERCIAL — Best journal app for couples.
+  {
+    slug: "best-journal-app-for-couples-2026",
+    title: "Best Journal App for Couples in 2026: 5 Picks for Shared Reflection",
+    description: "Couples journaling improves communication, processes conflict, and deepens connection. We tested 5 apps for couples — Nuju (parallel use), Two of Us, Paired, Couplete, and Lasting. Each app's approach + when each one works.",
+    metaTitle: "Best Journal App for Couples 2026: 5 Picks for Shared Reflection",
+    metaDescription: "Best journal apps for couples 2026: Nuju (parallel use), Two of Us, Paired, Couplete, Lasting. Couples journaling that actually deepens connection.",
+    publishedAt: "2026-05-22",
+    readingTime: 7,
+    category: "App Comparison",
+    sections: [
+      { type: "p", content: "Best journal app for couples in 2026: Nuju (parallel use — each partner journals separately with AI insights, share insights selectively). Two of Us for shared interactive prompts. Paired for daily relationship questions. Couplete for love language tracking. Lasting for marriage-focused therapy-style exercises. The right pick depends on whether you want shared journaling, parallel journaling with selective sharing, or relationship-coaching prompts." },
+      { type: "callout", content: "Quick start for couples: most couples benefit from parallel journaling (each partner using Nuju separately) + occasional shared sessions, rather than one couples-app together. Privacy + autonomy + shared deepening — all three matter. Try Nuju at /onboarding — 60 seconds." },
+      { type: "h2", content: "Three philosophies of couples journaling" },
+      { type: "p", content: "Couples apps split into three approaches:" },
+      { type: "ul", content: [
+        "Shared journaling: both partners journal in the same shared document/app. Maximum visibility. Risks: less honesty when entries are co-visible.",
+        "Parallel journaling: each partner journals privately, occasionally shares insights or specific entries. Maximum privacy. Risks: less togetherness.",
+        "Interactive prompts: app generates prompts both partners answer separately, then compare. Hybrid approach.",
+      ] },
+      { type: "p", content: "Research from John Gottman (University of Washington, 40+ years on couples) generally supports parallel + selective-sharing over fully-shared journaling — privacy preserves honesty, which preserves repair work. But individual couples have different preferences." },
+      { type: "h2", content: "1. Nuju (parallel use) — best for privacy + selective sharing" },
+      { type: "p", content: "Both partners use Nuju separately (each has their own encrypted journal). When ready, share specific insights or weekly summaries with partner verbally — not full journal access. This preserves the honesty benefits of private journaling while building shared reflection practice." },
+      { type: "p", content: "Couples-relevant features: each partner's entries are encrypted, no AI training. Weekly Mind Gallery summaries can be shared verbally during scheduled relationship check-ins. Multi-language support (8 languages) — important if partners speak different primary languages." },
+      { type: "p", content: "Practical setup: each partner installs Nuju, sets up own account. Weekly couples check-in (e.g., Sunday evening 30 min): each partner shares 1-2 insights from the week. Free tier covers this fully." },
+      { type: "h2", content: "2. Two of Us — best for shared interactive prompts" },
+      { type: "p", content: "Two of Us delivers daily prompts both partners answer separately, then reveal to each other. Light, gamified approach. Free tier limited; Premium ~$10/month." },
+      { type: "p", content: "Couple fit: works well for couples wanting low-stakes daily connection ritual without heavy emotional processing. Good for newer relationships or rebuilding after distance." },
+      { type: "p", content: "Limits: prompts are light — not great for processing serious relationship issues. Better as supplement than primary tool." },
+      { type: "h2", content: "3. Paired — best for daily relationship questions" },
+      { type: "p", content: "Paired (paired.com) sends daily questions and quizzes both partners answer. Focus on building connection through curiosity about partner. Designed with relationship therapists. ~$8/month per couple." },
+      { type: "p", content: "Couple fit: good for couples in established relationships wanting structured daily curiosity practice. Particularly useful when life has become routine and conversations have narrowed." },
+      { type: "p", content: "Limits: prompt-driven, not journal-driven. Less suited for processing individual emotions that affect the relationship." },
+      { type: "h2", content: "4. Couplete — best for love language tracking" },
+      { type: "p", content: "Couplete focuses on Gary Chapman's 5 Love Languages framework. Track which love languages each partner uses and receives. ~$5/month." },
+      { type: "p", content: "Couple fit: useful for couples doing active love-language work or struggling with mismatched expressions of affection." },
+      { type: "p", content: "Limits: narrow framework (love languages specifically). Not a general couples journal." },
+      { type: "h2", content: "5. Lasting — best for marriage-focused exercises" },
+      { type: "p", content: "Lasting (lasting.app) is closer to marriage counseling than journaling — structured exercises designed by therapists. Free tier limited; Premium ~$12/month." },
+      { type: "p", content: "Couple fit: best for couples experiencing significant relationship distress wanting structured intervention. Not journaling per se — more like guided couples therapy homework." },
+      { type: "p", content: "Limits: more intensive commitment than typical journaling. If relationship distress is severe, see a therapist alongside Lasting — apps complement but don't replace couples therapy." },
+      { type: "h2", content: "What about sharing one journal account?" },
+      { type: "p", content: "Avoid this pattern. Multiple research findings (Sandra Petronio communication privacy management, Gottman couples research) suggest co-visible journals reduce honesty, which reduces the therapeutic benefit of journaling for both partners. Parallel + selective sharing produces better outcomes than fully-shared." },
+      { type: "h2", content: "When couples journaling isn't enough" },
+      { type: "p", content: "Apps don't replace couples therapy for significant relationship distress. See a couples therapist if:" },
+      { type: "ul", content: [
+        "Recurring fights about the same issues for months.",
+        "Communication has become hostile or dismissive.",
+        "Infidelity, trust violations, or major betrayals.",
+        "Considering separation or divorce.",
+        "One or both partners experiencing depression, anxiety, or trauma affecting the relationship.",
+      ] },
+      { type: "p", content: "Couples therapy resources: Gottman Method couples therapists (gottman.com), Emotionally Focused Therapy (EFT) couples therapists. In Indonesia: Halodoc, KALM, Riliv have therapists with couples specialization. Crisis lines apply if individual mental health is affected: US 988, Indonesia Into The Light, UK Samaritans." },
+      { type: "h2", content: "Bottom line" },
+      { type: "p", content: "For most couples in 2026, parallel journaling (each partner uses Nuju separately + selective sharing during scheduled check-ins) produces better outcomes than fully-shared apps. Nuju Free covers this — each partner can use it independently. Add Paired or Two of Us if you want structured daily prompts on top. For significant distress, couples therapy alongside any app. Try Nuju at /onboarding — 60 seconds, no credit card." },
+    ],
+    faq: [
+      {
+        question: "Should couples share a journal account?",
+        answer:
+          "Generally no. Research from Gottman (University of Washington couples research) and Sandra Petronio (communication privacy management) suggests co-visible journals reduce honesty, which reduces the therapeutic benefit for both partners. Parallel journaling (each partner has own private journal) + selective sharing during scheduled check-ins produces better outcomes than fully-shared accounts.",
+      },
+      {
+        question: "What is the best couples journal app for new relationships?",
+        answer:
+          "Two of Us or Paired for daily relationship-curiosity prompts — light, low-stakes, builds connection ritual. For privacy + individual processing, each partner uses Nuju Free separately. Combination works well: Paired for shared curiosity + Nuju for individual depth.",
+      },
+      {
+        question: "Can journaling help save a struggling relationship?",
+        answer:
+          "Journaling can support couples therapy but rarely saves a relationship alone. If you're in significant distress (recurring fights, hostile communication, considering separation), see a couples therapist — Gottman Method or Emotionally Focused Therapy (EFT) are evidence-based approaches. Journaling apps work alongside therapy, not as substitute.",
+      },
+      {
+        question: "How do we journal together without invading privacy?",
+        answer:
+          "Parallel + selective sharing pattern: each partner journals privately, then chooses what to share verbally during scheduled couples check-ins (e.g., Sunday evening 30 min). Nuju supports this naturally — each partner has own encrypted account, summaries can be shared verbally. This preserves privacy while building shared reflection practice.",
+      },
+      {
+        question: "What if my partner doesn't want to use a journal app?",
+        answer:
+          "Don't force it. Use Nuju yourself — individual journaling improves your communication, emotional regulation, and patience, which benefits the relationship regardless of partner participation. After a few months, share your experience genuinely (not as 'you should also do this') and let them decide.",
+      },
+      {
+        question: "Are couples journal apps better than just talking?",
+        answer:
+          "Different tools for different jobs. Journal apps capture data over time (mood patterns, recurring themes) that conversations don't. Conversations process in real-time in ways journals can't. Most couples benefit from both — journal data informs better conversations. Don't replace direct communication with app-mediated communication; use both.",
+      },
+    ],
+  },
+  // BAHASA INDONESIA — Cara move on dari mantan. Massive Indonesian search.
+  {
+    slug: "cara-move-on-dari-mantan",
+    title: "Cara Move On dari Mantan: Panduan Jujur 90 Hari (Bukan 'Cepet Move On')",
+    description: "Move on dari mantan bukan proses 1 minggu — riset menunjukkan 3-18 bulan untuk hubungan jangka panjang. Yang membantu: structured journaling, bukan 'cepet move on' atau replacement therapy. Panduan jujur 90 hari + sumber Indonesia.",
+    metaTitle: "Cara Move On dari Mantan: Panduan Jujur 90 Hari (2026)",
+    metaDescription: "Move on dari mantan butuh 3-18 bulan. Structured journaling 90 hari + sumber Indonesia. Yang membantu vs yang malah memperburuk.",
+    publishedAt: "2026-05-22",
+    readingTime: 7,
+    category: "Mental Wellness",
+    sections: [
+      { type: "p", content: "Move on dari mantan bukan proses 1 minggu, bukan juga proses yang lo bisa paksain. Riset Naomi Eisenberger dan Matthew Lieberman di UCLA (2003+) menunjukkan putus mengaktifkan area otak yang sama dengan rasa sakit fisik. Riset attachment Bowlby menunjukkan kehilangan partner adalah grief, bukan kelemahan. Timeline realistic: 3-6 bulan untuk hubungan pendek, 6-18 bulan untuk hubungan panjang. Yang membantu mempercepat (bukan menghindari): structured journaling 90 hari." },
+      { type: "callout", content: "Quick start: kalau lo baru putus dan baca ini — skip ke 'Hari 1-7' di bawah. Tools yang paling penting di minggu pertama: brain dump 5 menit setiap malam. Nuju free Ju Gets You reveal di /onboarding — 60 detik untuk mulai, support Bahasa Indonesia." },
+      { type: "h2", content: "Kenapa 'cepet move on' biasanya backfire" },
+      { type: "p", content: "Tiga pendekatan yang sering dipakai tapi backfire:" },
+      { type: "ul", content: [
+        "Replacement therapy (cepet cari pengganti): otak belum proses kehilangan. Hubungan baru jadi rebound yang sering nggak bertahan dan menghindari grief asli.",
+        "Pure venting ke teman: bermanfaat tapi nggak cukup — teman akhirnya capek, dan venting tanpa struktur bisa amplify rumination.",
+        "Distraksi total (kerja keras, party, scroll): suppress feelings yang akhirnya surface bulan berikutnya, biasanya lebih intens.",
+      ] },
+      { type: "p", content: "Yang bekerja: feel + process + integrate. Bukan rush. Structured journaling 90 hari memberi struktur tanpa memaksa timeline." },
+      { type: "h2", content: "90 hari pertama: 4 fase" },
+      { type: "p", content: "Hari 1-7: shock dan release" },
+      { type: "p", content: "Tools: brain dump 5 menit setiap malam. Tulis apapun yang muncul — marah, sedih, nggak percaya, kenangan. Tanpa struktur. Tanpa edit. Yang penting keluar. Riset Pennebaker menunjukkan ekspresi tanpa filter di minggu pertama menurunkan intensitas selama berbulan-bulan berikutnya." },
+      { type: "p", content: "Hari 8-30: naming dan recognition" },
+      { type: "p", content: "Prompt: 'Apa SPESIFIK yang gue kehilangan?' Bukan 'gue kehilangan mereka' — tulis spesifiknya: rutinitas (pesan pagi, makan bareng), rencana yang dibatalkan, identitas bersama. Spesifik menghormati apa yang nyata. Generalitas memflatten kehilangan, yang justru memperpanjang grief." },
+      { type: "p", content: "Hari 30-60: pattern dan learning" },
+      { type: "p", content: "Prompt: 'Tanda peringatan apa yang gue lihat dan abaikan?' Hanya coba ini setelah acute pain turun. Tulis jujur — bukan untuk menyalahkan diri tapi untuk belajar. Sering tanda-tanda udah ada dan terlihat. Menamai sekarang melindungi diri untuk hubungan berikutnya." },
+      { type: "p", content: "Hari 60-90: identity rebuild" },
+      { type: "p", content: "Prompt: 'Siapa yang gue jadi pelan-pelan dalam hubungan itu yang gue mau kembalikan?' Teman yang udah jarang ditemui. Hobi yang ditinggal. Bagian personality yang dipendam. Window pasca-putus = window terbaik untuk reklamasi. Tulis spesifik apa yang lo mau hidupkan lagi." },
+      { type: "h2", content: "Yang harus dihindari di 90 hari pertama" },
+      { type: "ul", content: [
+        "Stalking sosmed mantan — setiap kali bikin recovery mundur 3-7 hari. Mute atau unfollow sampai stabil.",
+        "Hookup atau rebound dini (3 bulan pertama) — biasanya distract dari grief, nggak menyelesaikan.",
+        "Long discussion replays ke teman tentang detail yang sama berulang — itu rumination, bukan processing.",
+        "Decisions besar (pindah kota, resign kerja) — emotional state nggak ideal untuk keputusan besar.",
+        "Self-blame berlebihan tentang 'kenapa gue terima itu' — itu untuk kerja therapy, bukan untuk diri pas masih sakit.",
+      ] },
+      { type: "h2", content: "Yang membantu (selain journaling)" },
+      { type: "ul", content: [
+        "Olahraga teratur — endorphins membantu mood, recovery sleep.",
+        "Reconnection dengan support sistem yang udah diisolasi pelan-pelan oleh hubungan.",
+        "Habit baru yang konsisten (kelas yoga, kursus, klub buku) — bangun identitas baru lewat pengalaman baru.",
+        "Therapy individual kalau bisa diakses — sangat membantu untuk processing yang lebih dalam.",
+        "Sleep, nutrition, hydration — basic tapi sering diabaikan saat heartbreak. Body recovery = mind recovery.",
+      ] },
+      { type: "h2", content: "Kapan butuh psikolog" },
+      { type: "p", content: "Tanda yang menunjukkan butuh dukungan profesional:" },
+      { type: "ul", content: [
+        "Nggak bisa makan atau tidur lebih dari 3 minggu.",
+        "Pikiran ngerusak diri sendiri — sekecil apapun.",
+        "Nggak bisa lakuin tugas dasar (kerja, kuliah, hygiene) waktu yang lama.",
+        "Gejala lebih kelihatan depresi (putus asa berkelanjutan, kehilangan minat pada semua) daripada grief akut.",
+        "Hubungan melibatkan kekerasan, kontrol, atau trauma — terapis trauma-informed sangat penting.",
+      ] },
+      { type: "p", content: "Sumber Indonesia 2026: Halodoc, KALM, Riliv (Rp 50.000-150.000 per sesi). Krisis: Into The Light (intothelightid.org), 119 ext 8. Untuk hubungan yang involve kekerasan: Komnas Perempuan (komnasperempuan.go.id), Yayasan Pulih (yayasanpulih.org), LBH APIK (lbhapik.org)." },
+      { type: "h2", content: "Setelah 90 hari" },
+      { type: "p", content: "Recovery nggak selesai di hari 90. Tapi kebanyakan orang mulai notice: intrusive thought berkurang, energi balik untuk hal-hal baru, kemampuan ingat mantan tanpa pain akut. Periodic resurgences (anniversary, lagu, tempat) normal selama bertahun-tahun. Goal: integrasi, bukan absence. Lo bisa ingat tanpa undone." },
+      { type: "h2", content: "Bottom line" },
+      { type: "p", content: "Move on dari mantan butuh 3-18 bulan, bukan 1 minggu. Structured journaling 90 hari memberi struktur tanpa memaksa timeline. 4 fase: shock release → naming → pattern → identity rebuild. Hindari rebound, stalking sosmed, dan keputusan besar pas masih sakit. Untuk gejala berat, konsultasi profesional. Nuju gratis dengan support Bahasa Indonesia di /onboarding — 60 detik untuk mulai." },
+    ],
+    faq: [
+      {
+        question: "Berapa lama sebenernya butuh move on dari mantan?",
+        answer:
+          "Realistic: 3-6 bulan untuk hubungan pendek (kurang dari 1 tahun), 6-18 bulan untuk hubungan panjang. Acute pain biasanya puncak di 2-4 minggu pertama, lalu bertahap turun. 'Move on' juga menyesatkan — kebanyakan orang nggak sepenuhnya lupa hubungan penting; mereka integrasi. Goal: bisa ingat tanpa undone, bukan absence of feeling.",
+      },
+      {
+        question: "Bagusan no-contact atau tetap berteman sama mantan?",
+        answer:
+          "Riset secara umum mendukung no-contact (minimum 3-6 bulan) untuk recovery yang lebih cepat dan klin. Berteman terlalu cepat sering memperpanjang grief karena nggak ada closure yang clean. Setelah 6+ bulan stabil, beberapa pasangan bisa jadi teman jika kedua pihak udah benar-benar move on. Tapi jangan paksain di awal.",
+      },
+      {
+        question: "Apakah rebound (hubungan baru cepet) buruk?",
+        answer:
+          "Tergantung. Rebound sering distract dari grief yang belum diproses — yang akhirnya surface lagi nanti. Tapi nggak semua hubungan post-putus adalah rebound. Sinyal rebound: lo cari pengganti spesifik untuk mantan, lo banding-bandingin partner baru sama mantan, atau lo masuk hubungan baru tanpa proses kehilangan dulu. Kalau lo benar-benar tertarik orang baru setelah grief diproses (3+ bulan minimal), itu bukan rebound.",
+      },
+      {
+        question: "Apakah journaling soal mantan bikin sakit lebih lama?",
+        answer:
+          "Tergantung cara. Brain dump terstruktur (5 menit, no edit, close and move on) menutup loop dan menurunkan intensitas — Pennebaker research. Long-form rumination tentang detail yang sama berulang amplify pain — Wegner ironic process theory. Bedanya: structure. Tulis untuk release, bukan untuk solve. Tutup jurnal, jangan re-read di minggu pertama.",
+      },
+      {
+        question: "Apa yang harus dilakukan kalau gue masih cinta sama mantan?",
+        answer:
+          "Normal — perasaan nggak hilang otomatis setelah putus. Yang harus dipisahkan: cinta vs kompatibilitas vs siap melanjutkan hubungan. Lo bisa cinta seseorang dan tetap putus karena hubungan nggak sehat atau nggak compatible. Cinta yang persisten 6+ bulan dengan banyak missing yang konstan = butuh therapy untuk processing yang lebih dalam. Jangan kembali ke hubungan karena 'masih cinta' tanpa addressing alasan putus.",
+      },
+      {
+        question: "Kapan butuh psikolog soal breakup?",
+        answer:
+          "Kalau lo nggak bisa makan atau tidur 3+ minggu, punya pikiran ngerusak diri, nggak bisa lakuin tugas dasar dalam waktu yang lama, depresi persisten, atau kalau hubungan melibatkan kekerasan/kontrol — temui terapis. Halodoc/KALM/Riliv (Rp 50.000-150.000) atau psikolog kampus. Krisis: Into The Light Indonesia, 119 ext 8. Untuk hubungan abusive: Komnas Perempuan, Yayasan Pulih, LBH APIK.",
+      },
+    ],
+  },
+  // BAHASA INDONESIA — Anxiety wawancara kerja. Timely + practical.
+  {
+    slug: "mengatasi-anxiety-wawancara-kerja",
+    title: "Cara Mengatasi Anxiety Wawancara Kerja: 5 Teknik Berbasis Riset (Indonesia 2026)",
+    description: "Anxiety wawancara kerja umum dan terdokumentasi. Yang membantu: structured preparation + 10 menit brain dump pre-interview + 5 reframing prompts. Plus konteks Indonesia: ekspektasi keluarga, comparison, ketidakpastian.",
+    metaTitle: "Mengatasi Anxiety Wawancara Kerja: 5 Teknik Berbasis Riset (Indonesia)",
+    metaDescription: "Anxiety wawancara kerja umum. 5 teknik berbasis riset Beilock: brain dump pre-interview + 5 reframing prompts + konteks Indonesia.",
+    publishedAt: "2026-05-22",
+    readingTime: 6,
+    category: "Mental Wellness",
+    sections: [
+      { type: "p", content: "Anxiety wawancara kerja umum dan terdokumentasi — bukan tanda lo nggak siap atau nggak qualified. Riset Sian Beilock (University of Chicago, 2011) menunjukkan: anxiety pre-event sebenarnya dapat meningkatkan performa kalau diproses dengan benar. Yang membantu: 10 menit brain dump tepat sebelum wawancara (terbukti meningkatkan performa secara signifikan), structured preparation, dan 5 reframing prompts untuk mengubah anxiety menjadi readiness." },
+      { type: "callout", content: "Quick start: kalau lo wawancara minggu ini — skip ke '10 menit pre-interview brain dump' di bawah. Riset Beilock 2011 menunjukkan ini meningkatkan performa wawancara secara signifikan. Nuju free Ju Gets You reveal di /onboarding tool yang cocok — 60 detik untuk mulai." },
+      { type: "h2", content: "Kenapa wawancara bikin anxiety berat" },
+      { type: "p", content: "Tiga komponen yang bikin wawancara spesifik berat untuk pekerja Indonesia:" },
+      { type: "ul", content: [
+        "Performa di depan otoritas: dinamika hierarki Indonesia bikin 'menjual diri' ke calon atasan terasa nggak nyaman.",
+        "Ketidakpastian outcome: dependensi pada keputusan orang lain yang nggak bisa lo kontrol.",
+        "Ekspektasi keluarga: pressure untuk dapet kerja yang 'layak' di mata orang tua dan saudara.",
+        "Comparison sosial: temen seangkatan yang udah dapet kerja, gaji yang dipamerkan di LinkedIn.",
+        "Identity stakes: 'gagal interview' terasa seperti gagal sebagai orang, bukan cuma satu peluang.",
+      ] },
+      { type: "h2", content: "10 menit pre-interview brain dump (Beilock 2011)" },
+      { type: "p", content: "Riset Beilock dengan ratusan peserta menunjukkan: menulis 10 menit tentang anxiety sebelum performance event meningkatkan performa secara signifikan, terutama untuk orang dengan test anxiety tinggi. Mekanismenya: mengeksternalisasi anxiety membebaskan working memory yang sebelumnya digunakan untuk mengelola kekhawatiran. Working memory yang bebas tersedia untuk recall dan problem-solving." },
+      { type: "p", content: "Cara aplikasi untuk wawancara kerja:" },
+      { type: "ol", content: [
+        "30-60 menit sebelum wawancara, cari tempat tenang.",
+        "Set timer 10 menit. Buka aplikasi notes atau jurnal.",
+        "Tulis: 'Gue nervous wawancara ini karena...' Lalu lanjut tanpa edit.",
+        "Tulis ketakutan spesifik. Pertanyaan yang takut nggak bisa jawab. Image gue di mata interviewer. Apa yang akan terjadi kalau ditolak.",
+        "Setelah 10 menit, BERHENTI. Tutup. Jangan re-read. Ke wawancara.",
+      ] },
+      { type: "p", content: "Hasilnya: working memory yang sebelumnya pakai untuk maintain anxiety sekarang bebas untuk wawancara aktual. Banyak peserta riset Beilock melaporkan 'feeling clearer' setelah brain dump." },
+      { type: "h2", content: "5 reframing prompts (gunakan H-7 sampai H-1)" },
+      { type: "h2", content: "Prompt 1: 'Apa skill spesifik yang gue bawa yang relevant?'" },
+      { type: "p", content: "Anxiety wawancara sering bias ke kelemahan. Force-list 3-5 skill spesifik yang relevant untuk posisi. Bukan 'gue kreatif' — 'gue pernah handle X project dengan hasil Y' atau 'gue familiar dengan tools Z yang disebutkan di job desc.' Spesifik bikin confidence lebih tahan saat anxiety hit." },
+      { type: "h2", content: "Prompt 2: 'Pertanyaan apa yang paling gue takut ditanya?'" },
+      { type: "p", content: "Tulis spesifik. 'Why do you want to work here?' kalau lo applied karena butuh kerja, bukan passion specific company. 'Tell me about a weakness' kalau lo nggak comfortable mention weakness. Tulis pertanyaan, lalu draft jawaban yang jujur tapi profesional. Persiapan ini menurunkan unknown yang bikin anxiety." },
+      { type: "h2", content: "Prompt 3: 'Apa yang akan gue lakukan kalau gue nggak dapet kerjaan ini?'" },
+      { type: "p", content: "Counterintuitive tapi powerful. Punya rencana untuk worst case mengurangi anxiety karena outcome nggak terasa 'all or nothing.' Apply ke 5 perusahaan lain? Lanjut interview di yang udah scheduled? Tetap kerja freelance sementara? Tulis 2-3 alternatif konkret. Wawancara sekarang jadi 'salah satu opsi' bukan 'satu-satunya harapan.'" },
+      { type: "h2", content: "Prompt 4: 'Kenapa interviewer juga mungkin nervous?'" },
+      { type: "p", content: "Reframe yang sering miss. Interviewer juga punya stakes — mereka harus pilih kandidat yang tepat, accountability ke atasan mereka, takut salah hire. Wawancara bukan satu pihak menilai pihak lain — itu dua orang mencari fit. Reframing ini menurunkan power imbalance yang sering memperkuat anxiety." },
+      { type: "h2", content: "Prompt 5: 'Kalau gue jadi interviewer dengan resume gue, gimana?'" },
+      { type: "p", content: "Force external perspective. Tulis resume lo seperti orang lain melihat. Achievement spesifik. Pengalaman relevant. Skill yang berkembang. Sering lo realize lo lebih qualified dari yang lo rasain saat anxiety." },
+      { type: "h2", content: "Praktis: hari-H tips" },
+      { type: "ul", content: [
+        "Tidur 7-8 jam malam sebelum — riset Walker konsisten menunjukkan ini mengalahkan late-night cramming.",
+        "Sarapan dengan protein + karbohidrat kompleks — gula darah stabil mengurangi anxiety.",
+        "Datang 15-20 menit lebih awal — mengurangi panic dari macet.",
+        "10 menit brain dump 30-60 menit sebelum wawancara.",
+        "Power pose 2 menit (Amy Cuddy research) — efek kontroversial tapi banyak melaporkan helpful.",
+        "Bawa air mineral — sip saat berpikir untuk jawaban, beli waktu tanpa terlihat panic.",
+      ] },
+      { type: "h2", content: "Setelah wawancara: jangan langsung analisis berlebihan" },
+      { type: "p", content: "Pasca-wawancara anxiety menunggu hasil sering lebih berat dari pre-interview. Strategi:" },
+      { type: "ul", content: [
+        "Beri diri 24 jam off total dari mikirin wawancara.",
+        "Hindari replay pertanyaan dengan teman secara detail (rumination amplifier).",
+        "Tulis journal tentang apa yang lo rasain — relief, mixed, hopeful, exhausted. Semua valid.",
+        "Kalau ditolak, jangan personalize. Banyak alasan rejection nggak terkait kualifikasi lo.",
+        "Lanjutkan apply ke posisi lain — momentum penting selama job search.",
+      ] },
+      { type: "h2", content: "Kapan anxiety wawancara butuh psikolog" },
+      { type: "p", content: "Tanda yang menunjukkan butuh dukungan profesional:" },
+      { type: "ul", content: [
+        "Anxiety bikin lo cancel wawancara berulang.",
+        "Gangguan tidur kronis 1-2 minggu sebelum setiap wawancara.",
+        "Serangan panik fisik (sesak, jantung berdetak cepat) yang bikin lo nggak bisa hadir.",
+        "Pikiran ngerusak diri sendiri terkait rejection.",
+        "Anxiety wawancara udah berlangsung berbulan-bulan dan menghalangi karir lo.",
+      ] },
+      { type: "p", content: "Akses Indonesia: Halodoc, KALM, Riliv menawarkan konsultasi mulai Rp 50.000-150.000. Untuk anxiety wawancara spesifik, cari psikolog dengan spesialisasi CBT atau performance anxiety. Krisis: Into The Light Indonesia, 119 ext 8." },
+      { type: "h2", content: "Bottom line" },
+      { type: "p", content: "Anxiety wawancara kerja umum dan terdokumentasi — bukan tanda nggak siap. 10 menit brain dump pre-interview (Beilock 2011) terbukti meningkatkan performa. 5 reframing prompts untuk H-7 sampai H-1. Untuk anxiety berat yang menghalangi karir, konsultasi profesional. Nuju free dengan support Bahasa Indonesia di /onboarding — 60 detik untuk mulai." },
+    ],
+    faq: [
+      {
+        question: "Apakah journaling beneran membantu anxiety wawancara?",
+        answer:
+          "Ya — riset Sian Beilock (University of Chicago, 2011) menunjukkan menulis 10 menit tentang anxiety sebelum performance event secara signifikan meningkatkan performa, terutama untuk orang dengan test anxiety tinggi. Mekanismenya: mengeksternalisasi anxiety membebaskan working memory yang sebelumnya digunakan untuk mengelola kekhawatiran, yang bisa dipakai untuk recall dan problem-solving aktual.",
+      },
+      {
+        question: "Berapa lama sebelum wawancara harus brain dump?",
+        answer:
+          "30-60 menit sebelum wawancara ideal. Beri waktu cukup untuk efek (working memory recovery), tapi jangan terlalu lama supaya momentum masih ada. Lakuin di tempat tenang — coffee shop, mobil, ruang tunggu. Set timer 10 menit, tulis, berhenti, lanjut ke wawancara. Banyak kandidat lapor 'feeling clearer' setelah brain dump.",
+      },
+      {
+        question: "Gimana kalau anxiety bikin gue blank saat ditanya?",
+        answer:
+          "Beberapa strategi: (1) Sip air mineral saat berpikir — beli waktu tanpa terlihat panic. (2) 'Itu pertanyaan menarik, boleh saya pikirkan sebentar?' — buy 10-15 detik. (3) Restate pertanyaan: 'Jadi maksudnya...' — clarify sambil otak recover. (4) Kalau benar-benar blank, jujur: 'Maaf saya lupa sebentar — bisa diulang?' Honest beats panic guessing. Brain dump pre-interview mengurangi probabilitas blank.",
+      },
+      {
+        question: "Apakah pre-interview anxiety tanda gue nggak qualified?",
+        answer:
+          "Sama sekali enggak. Riset menunjukkan anxiety pre-event normal bahkan untuk professional senior. Sering yang paling qualified justru paling anxious karena stakes terasa lebih tinggi. Yang membedakan: bagaimana lo proses anxiety, bukan ketidakhadiran anxiety. Brain dump dan reframing membantu proses dengan baik.",
+      },
+      {
+        question: "Gimana mengatasi rejection setelah wawancara?",
+        answer:
+          "(1) Beri diri 24 jam untuk rasain — rejection sakit, normal. (2) Jangan personalize — banyak alasan rejection nggak terkait kualifikasi lo (budget freeze, internal candidate, fit beda). (3) Minta feedback kalau mungkin (banyak HR mau kasih). (4) Apply ke posisi lain dalam 48 jam — momentum penting. (5) Kalau rejection bertumpuk berbulan-bulan dan mood drop persisten, konsultasi psikolog.",
+      },
+      {
+        question: "Kapan anxiety wawancara butuh psikolog?",
+        answer:
+          "Kalau anxiety bikin lo cancel wawancara berulang, gangguan tidur kronis sebelum tiap wawancara, serangan panik fisik yang bikin nggak bisa hadir, pikiran ngerusak diri terkait rejection, atau anxiety udah berbulan-bulan menghalangi karir — konsultasi profesional. Halodoc/KALM/Riliv (Rp 50.000-150.000) dengan psikolog spesialisasi CBT atau performance anxiety. Krisis: Into The Light Indonesia.",
+      },
+    ],
+  },
 ];
 
 const normalizeCopy = (value: string): string =>
