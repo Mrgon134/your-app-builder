@@ -5884,6 +5884,458 @@ const RAW_BLOG_POSTS: BlogPost[] = [
       },
     ],
   },
+  // Q-BASED LONG-TAIL — "Why do I cry in the shower" matches AI Overview
+  // query pattern. James Gross emotion regulation + Stanford studies.
+  {
+    slug: "why-do-i-cry-in-the-shower",
+    title: "Why Do I Cry in the Shower? The Psychology — and the Journal Practice That Helps",
+    description: "Shower crying isn't random. It's a documented emotional-regulation pattern: privacy + sensory dampening + permission. Here's the psychology, why it's actually healthy, and the 5-minute journal practice that completes the release.",
+    metaTitle: "Why Do I Cry in the Shower? Psychology + Journal Practice (2026)",
+    metaDescription: "Shower crying is a real documented pattern — privacy + sensory dampening + permission. The psychology behind it, why it's healthy, and how to journal after.",
+    publishedAt: "2026-05-22",
+    readingTime: 6,
+    category: "Mental Wellness",
+    sections: [
+      { type: "p", content: "Short answer: shower crying is a documented emotional-regulation pattern, not a sign something is wrong. Three things combine to make the shower one of the few private spaces where the body finally permits emotional release: total privacy (no one will see or judge), sensory dampening (water sound + temperature blocks other inputs), and tacit permission (you're already not 'productive,' so being not-okay is allowed). The crying is the body catching up on processing that got delayed during the rest of the day." },
+      { type: "p", content: "James Gross at Stanford has been studying emotional regulation since the 1990s. His research consistently shows that suppression — pushing down feelings during the day — produces a measurable rebound when the suppression cue is removed. The shower removes most cues. The rebound happens. That's not dysfunction; it's the system working." },
+      { type: "callout", content: "Methodology: James Gross emotion regulation research (Stanford, 1990s+), Ad Vingerhoets crying research (Tilburg University, Why Only Humans Weep, 2013), Tania Hershman + others on dissociative privacy in showering. Inline citations." },
+      { type: "h2", content: "The three forces that combine in the shower" },
+      { type: "p", content: "Why specifically the shower:" },
+      { type: "ul", content: [
+        "Privacy: no one sees you. Crying in front of others activates social monitoring; alone in the shower, that monitor is off. The body relaxes.",
+        "Sensory dampening: shower noise blocks out external stimuli. The default mode network (mind-wandering, emotional processing) gets airtime. Feelings that were filtered all day finally surface.",
+        "Tacit permission: showering is already 'non-productive' time. The implicit pressure to be functional drops. Whatever you've been holding back is allowed to come up.",
+      ] },
+      { type: "p", content: "Add water masking tears physically — most people report that crying in the shower 'doesn't feel like crying as much' because the water cushions the sensation. The body experiences less of the social marker of crying, so resistance drops further." },
+      { type: "h2", content: "Is shower crying healthy?" },
+      { type: "p", content: "Generally yes. Ad Vingerhoets (Tilburg University) has spent decades researching crying and consistently finds emotional crying serves regulatory functions — releasing stress hormones, signaling for support (in social contexts), and producing physiological calming effects via parasympathetic activation. Crying alone, including in the shower, is still useful for the physiological component; you just don't get the social-support side." },
+      { type: "p", content: "When shower crying becomes a concern: if it's daily for weeks, if you can't stop once it starts, if it's accompanied by other depression symptoms (sleep changes, loss of interest, hopelessness), or if you feel worse rather than relieved afterward. In those cases, talk to a doctor — the shower crying may be a symptom of something larger." },
+      { type: "h2", content: "The 5-minute journal practice that completes the release" },
+      { type: "p", content: "Crying releases the physiological pressure but doesn't usually surface what specifically was being held. A 5-minute journal session in the half-hour after a shower-cry often does what the cry alone couldn't:" },
+      { type: "ol", content: [
+        "Right after the shower, before you scroll or check messages, sit with a notebook or phone journal.",
+        "Write: 'What needed to come out today?' Don't pre-plan the answer. Just write.",
+        "Then write: 'What's one thing I've been carrying that I haven't told anyone?' Be honest. The journal isn't anyone.",
+        "Optional: 'What's the smallest step I could take in the next 24 hours to address what I just wrote?' One step. Not the whole plan.",
+      ] },
+      { type: "h2", content: "Why this combination works" },
+      { type: "p", content: "Crying handles the physiological discharge. Journaling handles the cognitive processing. Pennebaker's 35+ years of expressive writing research consistently shows that naming what you feel — and what you've been carrying — produces measurable benefits in mood, sleep, and immune function over weeks. Doing it right after a shower-cry catches you at the point of maximum emotional clarity, before the day's defenses re-engage." },
+      { type: "h2", content: "When to talk to someone" },
+      { type: "p", content: "Most shower crying is normal regulatory behavior. Signs it's worth talking to a professional about:" },
+      { type: "ul", content: [
+        "Daily or near-daily for more than 2-3 weeks.",
+        "You can't stop the cry once it starts.",
+        "Sleep, appetite, or daily function affected for more than 2 weeks.",
+        "Other depression symptoms (lost interest, hopelessness, low energy).",
+        "Thoughts of self-harm — even brief, even ambiguous.",
+      ] },
+      { type: "p", content: "Resources: US 988 Suicide and Crisis Lifeline. Indonesia: Into The Light (intothelightid.org) or Halodoc/KALM/Riliv for psychologist consultations. UK: Samaritans 116 123. Talking to your GP is often the easiest first step — they can screen and refer." },
+      { type: "h2", content: "Bottom line" },
+      { type: "p", content: "Shower crying is documented, regulatory, and usually healthy — a sign your emotional system is working through what got delayed during the day, in the one space your body trusts as safe enough. Combining the cry with a 5-minute journal session in the half-hour after captures the cognitive insight that the cry alone leaves behind. If shower crying has become daily or comes with other concerning symptoms, talk to a clinician. Nuju's free Ju Gets You reveal works on the 4-step protocol above; the Gentle persona was designed for exactly this kind of soft post-release reflection." },
+    ],
+    faq: [
+      {
+        question: "Why do I only cry in the shower and nowhere else?",
+        answer:
+          "Three forces combine in the shower: total privacy (no one to see or judge), sensory dampening (water sound blocks other inputs), and tacit permission (you're already not 'productive'). Add water physically masking the tears and crying-related muscle tension, and the result is one of the few spaces your body trusts as safe enough to release. It's not random — it's the body using the one window of safety it has.",
+      },
+      {
+        question: "Is shower crying a sign of depression?",
+        answer:
+          "Usually not on its own — shower crying is more often emotional regulation working as designed. Concern signs: daily for more than 2-3 weeks, can't stop once started, feeling worse rather than relieved after, accompanied by other depression symptoms (sleep changes, loss of interest, hopelessness for more than 2 weeks), or thoughts of self-harm. If those apply, talk to a doctor or therapist.",
+      },
+      {
+        question: "Is it bad to suppress crying during the day?",
+        answer:
+          "Suppression is normal and sometimes necessary (you can't cry in every meeting). But research from James Gross (Stanford) shows chronic suppression produces a measurable emotional rebound when the suppression cue is removed — which is part of why shower crying happens. The healthiest pattern is some suppression during day-to-day function with intentional release windows (shower, journaling, exercise, conversation) where the held material can surface.",
+      },
+      {
+        question: "Why do I feel better after crying in the shower?",
+        answer:
+          "Crying involves measurable physiological changes including release of stress hormones and activation of the parasympathetic nervous system (the 'rest and recover' system). Ad Vingerhoets at Tilburg University has documented these effects for decades. The post-cry calm is your nervous system shifting out of activated state. Combined with the privacy + sensory dampening of the shower, the recovery is often faster than crying in other contexts.",
+      },
+      {
+        question: "Should I journal right after I cry?",
+        answer:
+          "Yes if it feels possible. The 30-minute window after a shower-cry is often the clearest you'll be all day. Crying releases the physiological pressure; journaling captures the cognitive insight that would otherwise dissipate. A 5-minute entry asking 'what needed to come out today?' often surfaces something the cry alone didn't articulate. Pennebaker's research strongly supports brief writing right after emotional events.",
+      },
+      {
+        question: "What if I cry every time I shower?",
+        answer:
+          "Daily shower crying for more than 2-3 weeks is worth attention. Not necessarily a problem, but a signal that the system is processing more than it can handle during the rest of the day. Try adding intentional release windows earlier (5-minute journal break mid-day, brief walk after work, conversation with a trusted friend). If the daily pattern persists and is paired with other symptoms (low mood, sleep changes), talk to a clinician.",
+      },
+    ],
+  },
+  // EMOTION-SPECIFIC — Journaling for jealousy and comparison. Festinger
+  // social comparison theory + Helmuth research.
+  {
+    slug: "journaling-for-jealousy-and-comparison",
+    title: "Journaling for Jealousy and Comparison: 6 Prompts That Quiet the 'Why Not Me' Voice (2026)",
+    description: "Jealousy and comparison aren't character flaws — they're the comparison brain firing in environments designed to provoke it. Social comparison theory + 6 research-backed journal prompts that interrupt the loop. Plus when comparison signals something deeper.",
+    metaTitle: "Journaling for Jealousy: 6 Prompts That Quiet the 'Why Not Me' Voice",
+    metaDescription: "Jealousy is the comparison brain firing in environments built to provoke it. 6 research-backed journal prompts that interrupt the loop. Festinger theory.",
+    publishedAt: "2026-05-22",
+    readingTime: 7,
+    category: "Mental Wellness",
+    sections: [
+      { type: "p", content: "Jealousy and comparison aren't character flaws — they're the brain's social-comparison system firing in environments engineered to provoke it. Leon Festinger's 1954 social comparison theory established that humans automatically compare themselves to others as a way to assess their own standing. Most of human history this happened with the dozen people in your village. In 2026, the comparison set is infinite — every successful person on Instagram, LinkedIn, and TikTok. The system is the same; the load is unprecedented." },
+      { type: "p", content: "Structured journaling helps interrupt the comparison loop. Not by suppressing jealousy (suppression backfires) but by externalizing it, identifying what specifically is being envied, and reframing the data the brain is mistakenly using as 'evidence of inferiority.' The 6 prompts below are designed for that work." },
+      { type: "callout", content: "Methodology: Leon Festinger social comparison theory (1954, foundational), Mark Leary self-esteem and social monitoring research, Brené Brown shame and comparison work (University of Houston), 2024-2026 research on social media and comparison. The 'comparison is the thief of joy' framing (often attributed to Theodore Roosevelt) is folk wisdom — the underlying psychology is documented." },
+      { type: "h2", content: "Why your brain compares automatically" },
+      { type: "p", content: "Festinger's original insight: humans need a baseline for self-assessment. Without external reference, you can't tell if you're doing 'well' or 'poorly.' The brain solves this by automatically comparing to similar others — peers, colleagues, people in adjacent life stages. This is mostly unconscious and largely outside willpower control." },
+      { type: "p", content: "The problem in 2026: the comparison set has expanded from your immediate community (a healthy reference group) to a curated highlight reel of millions of strangers. Their best moments vs. your average moments. The math doesn't work — you can't win that comparison no matter how well you're actually doing." },
+      { type: "h2", content: "What jealousy is actually telling you" },
+      { type: "p", content: "Jealousy is usually a signal about you, not them. It points at unmet wants you haven't articulated:" },
+      { type: "ul", content: [
+        "Jealousy of someone's career = a value you hold about work that you're not living.",
+        "Jealousy of someone's relationship = a need for connection or qualities you want in your own life.",
+        "Jealousy of someone's body = often a deeper insecurity about being seen or accepted.",
+        "Jealousy of someone's freedom = a constraint you're carrying that you haven't named.",
+      ] },
+      { type: "p", content: "The data is useful once you decode it. The jealousy itself is misery; the underlying signal can guide action." },
+      { type: "h2", content: "6 journal prompts for jealousy and comparison" },
+      { type: "h2", content: "Prompt 1: 'Who am I comparing myself to today, and what specifically?'" },
+      { type: "p", content: "Force specifics. Not 'I feel bad about everyone' — 'I felt bad after seeing X's promotion announcement.' Name the person. Name the specific trigger. This step alone reduces the diffuse heaviness by making it concrete and bounded." },
+      { type: "h2", content: "Prompt 2: 'What am I actually envying about them?'" },
+      { type: "p", content: "Look beneath the surface. Not 'their job' — what about the job? The status? The financial security? The sense of 'making it'? The visible success their parents can finally see? Drill down to what specifically you want, not what they have." },
+      { type: "h2", content: "Prompt 3: 'What do I actually know about their life?'" },
+      { type: "p", content: "Comparison runs on incomplete data. Write what you actually know vs. what you're inferring from a curated post. Usually 90% is inference. You don't know if they're happy. You don't know what they sacrificed. You don't know what's missing. Naming the gap between data and assumption is part of the reset." },
+      { type: "h2", content: "Prompt 4: 'What do I have that they don't see?'" },
+      { type: "p", content: "Symmetry check. Your life is also a curated reel from the outside. You have things they can't see — relationships, freedoms, peace, specific small joys. Write three of them. Specific. Not a manifesto — just three things that exist in your life that wouldn't show in your social media feed." },
+      { type: "h2", content: "Prompt 5: 'What would I need to do to move toward what I actually want?'" },
+      { type: "p", content: "This is the action prompt. If the jealousy is signaling a real desire (which it often is), what's the smallest step you could take toward that thing? Not the full plan. One step. Then the next time the jealousy hits, you have a place to redirect the energy." },
+      { type: "h2", content: "Prompt 6: 'What boundary do I need to set with social media or comparison sources?'" },
+      { type: "p", content: "Some comparison sources are net-negative. The colleague whose updates always make you feel worse. The Instagram account that consistently triggers spiral. Naming them honestly is the first step to choosing what to mute, unfollow, or limit. This is not avoidance — it's curation. The brain can only compare with what it's exposed to." },
+      { type: "h2", content: "When jealousy is louder than the prompts can handle" },
+      { type: "p", content: "Some patterns need more than journaling:" },
+      { type: "ul", content: [
+        "Jealousy that has become resentment toward specific people in your life that's affecting the relationship.",
+        "Comparison spirals that significantly affect work, sleep, or daily function for more than 4 weeks.",
+        "Jealousy paired with depressive symptoms (loss of interest, hopelessness, low mood).",
+        "Comparison-driven thoughts of self-harm — even brief, even infrequent.",
+        "Pattern of jealousy in romantic relationships that's becoming controlling or harmful.",
+      ] },
+      { type: "p", content: "For these patterns, work with a therapist. CBT specifically addresses comparison distortions effectively. Crisis lines: US 988, Indonesia Into The Light, UK Samaritans 116 123. For romantic jealousy that's escalating, work with a couples or individual therapist before the pattern damages the relationship beyond repair." },
+      { type: "h2", content: "Bottom line" },
+      { type: "p", content: "Jealousy and comparison are the social-comparison system firing in environments engineered to amplify it. Not a character flaw — a calibration problem. Structured journaling helps by externalizing the jealousy, identifying the underlying want, distinguishing data from assumption, and converting the energy into action. The 6 prompts above are designed for that work. Run them for 2-3 weeks and the comparison loop usually loosens significantly. Nuju's free Ju Gets You reveal works on any of these prompts; the Gentle persona handles this work without judgment." },
+    ],
+    faq: [
+      {
+        question: "Why do I feel so jealous when I see other people succeed?",
+        answer:
+          "Your brain automatically compares to similar others — Leon Festinger's social comparison theory (1954) established this as a normal cognitive function. In 2026, the comparison set has expanded from your immediate community to millions of curated highlight reels online. The math is impossible; you can't win that comparison even when you're doing well. The jealousy is the system firing in an environment built to provoke it, not a character flaw.",
+      },
+      {
+        question: "Is comparison always bad?",
+        answer:
+          "No. Healthy comparison includes 'upward comparison' that motivates growth (seeing someone achieve something and treating it as proof it's possible) and 'downward comparison' that produces gratitude. Toxic comparison is reflexive, unconscious, and uses incomplete data (curated highlights). The difference is awareness — chosen comparisons can help; automatic ones usually hurt.",
+      },
+      {
+        question: "How do I stop comparing myself to people on social media?",
+        answer:
+          "Three things help. (1) Reduce exposure to consistent trigger accounts — mute or unfollow without guilt. (2) When comparison hits, run the 6 prompts above, especially 'what do I actually know about their life?' which surfaces how much is inference. (3) Build awareness over weeks — most comparison is unconscious; making it conscious is the first step to choice. Full elimination isn't realistic; the goal is dominance reduction.",
+      },
+      {
+        question: "What is jealousy actually telling me?",
+        answer:
+          "Usually it's pointing at an unmet want you haven't articulated. Jealousy of someone's career = a value about work you're not living. Jealousy of a relationship = a need for connection. Jealousy of freedom = a constraint you're carrying. The jealousy itself is misery, but the underlying signal can guide action — if you decode it. Prompt 2 above ('what am I actually envying?') is designed for the decoding.",
+      },
+      {
+        question: "When is jealousy a sign of something deeper?",
+        answer:
+          "If jealousy has become resentment toward specific people that's affecting the relationship; if comparison spirals significantly affect work, sleep, or daily function for 4+ weeks; if paired with depressive symptoms; or if there are thoughts of self-harm — talk to a clinician. Romantic jealousy that's becoming controlling needs immediate professional support. Most jealousy is normal; persistent, severe, or relationship-damaging jealousy warrants therapy.",
+      },
+      {
+        question: "Does journaling actually help with jealousy?",
+        answer:
+          "Yes, when structured. Pure venting about how unfair life is tends to amplify comparison. Structured journaling — externalizing the specific trigger, identifying the underlying want, distinguishing data from assumption, and converting energy into action — interrupts the loop. Brené Brown's research on shame and comparison and CBT-based approaches to social comparison both support the structured approach. Run the 6 prompts for 2-3 weeks for measurable shift.",
+      },
+    ],
+  },
+  // EMOTION-SPECIFIC — Journaling after losing a pet. Disenfranchised grief
+  // research. High search volume sympathy query.
+  {
+    slug: "journaling-after-losing-a-pet",
+    title: "Journaling After Losing a Pet: 6 Prompts for Grief That Others Don't Always Recognize",
+    description: "Pet loss is real grief — and one of the most under-recognized forms ('disenfranchised grief'). Research from Kenneth Doka + AVMA. 6 journal prompts to honor what was real, including when others don't understand the depth.",
+    metaTitle: "Journaling After Losing a Pet: 6 Prompts for Real Grief (2026)",
+    metaDescription: "Pet loss is real grief — research-recognized 'disenfranchised grief.' 6 journal prompts to honor the relationship others may not understand.",
+    publishedAt: "2026-05-22",
+    readingTime: 7,
+    category: "Mental Wellness",
+    sections: [
+      { type: "p", content: "Pet grief is real. Kenneth Doka, the researcher who coined 'disenfranchised grief' (1989), identified pet loss as one of the most under-recognized forms — grief that society doesn't fully acknowledge, which can intensify the experience because the bereaved person doesn't get the social support extended to other losses. The American Veterinary Medical Association (AVMA) and dozens of veterinary schools now run pet-loss support hotlines because the grief is real and the support gap is real." },
+      { type: "p", content: "If you've lost a pet and someone has said 'it was just a dog' or 'you can get another one,' you know the gap. This guide is for you. 6 prompts to honor the relationship, work through the loss, and integrate it — without needing anyone else to understand first." },
+      { type: "callout", content: "Methodology: Kenneth Doka 'disenfranchised grief' research (1989+), AVMA pet loss resources, Sandra Barker (Virginia Commonwealth University) human-animal bond research, attachment research applied to companion animals. Pet loss hotlines listed at bottom." },
+      { type: "h2", content: "Why pet grief hits as hard as it does" },
+      { type: "p", content: "Three reasons:" },
+      { type: "ul", content: [
+        "Daily interaction: a pet is present for thousands of small moments — wake-up, meals, evenings, weekends. Even small absences are felt across the entire day's routine.",
+        "Unconditional bond: pets don't carry the complications human relationships do. Their love is uncomplicated, which makes the loss uncomplicated grief — pure, with fewer mixed feelings to dilute it.",
+        "Witness role: many pets witnessed years of your life that no human did. They were present during heartbreaks, illnesses, late-night work sessions, the move, the breakup. Losing them is losing a witness to your own story.",
+      ] },
+      { type: "p", content: "Sandra Barker at Virginia Commonwealth has researched human-animal bonds extensively. The depth of attachment to pets often equals or exceeds attachment to extended family members — measurable in physiological response, time spent, and quality of interaction." },
+      { type: "h2", content: "6 prompts for pet grief" },
+      { type: "h2", content: "Prompt 1: 'What specifically did they bring to my days?'" },
+      { type: "p", content: "Beyond 'they were my best friend.' What specifically? The exact way they greeted you. The morning ritual. The sounds they made. The spot they always claimed. The walks. The expression when you came home. Specific details honor what was real and can't be flattened by 'it was just a pet.'" },
+      { type: "h2", content: "Prompt 2: 'What did they witness about my life that no one else did?'" },
+      { type: "p", content: "Pets see the unguarded versions of us. What did yours witness? The breakup tears. The work-from-home reality. The quiet evenings. Naming this helps you understand the depth of the loss — they weren't just a pet, they were a witness to a specific period of your life." },
+      { type: "h2", content: "Prompt 3: 'What did I give them that mattered?'" },
+      { type: "p", content: "Pet grief often comes with guilt about what you should have done more of. Counter it with what you did do. The walks. The vet visits. The meals. The patience during illness. The home they had. Specifically. Most pet owners gave their pets more love than they realize." },
+      { type: "h2", content: "Prompt 4: 'What do I still carry from this relationship?'" },
+      { type: "p", content: "Continuing bonds research applies to pet relationships too. What did your pet teach you, change in you, or leave with you? Routines you keep. Lessons in patience or presence. Ways you now see other animals. Aspects of your personality they helped form. The pet is gone; the imprint stays." },
+      { type: "h2", content: "Prompt 5: 'What do I want to do to honor them?'" },
+      { type: "p", content: "Specific, doable. A memorial photo. A donation to an animal rescue. A walk on a route you used to take with them. A small ritual. Honoring something specific is part of integrating the loss into the present — not 'moving on' but moving with." },
+      { type: "h2", content: "Prompt 6: 'When does someone else not understanding hurt the most?'" },
+      { type: "p", content: "This addresses disenfranchised grief directly. When does the social response (or non-response) sting most? At work, when you can't take 'pet bereavement leave'? With family members who minimize? With friends who say 'just get another one'? Naming the secondary grief — grief about not having your grief acknowledged — is part of moving through it." },
+      { type: "h2", content: "How long does pet grief last" },
+      { type: "p", content: "Variable, but research and clinical experience suggest most acute grief reduces over 1-3 months for sudden losses and 3-6 months for anticipated losses (after illness). Periodic resurgences (anniversaries, finding old photos, seeing similar pets) continue for years. This is normal. The goal is integration — being able to remember without being undone — not absence of feeling." },
+      { type: "h2", content: "Resources if grief becomes overwhelming" },
+      { type: "p", content: "Pet loss support resources:" },
+      { type: "ul", content: [
+        "ASPCA Pet Loss Hotline (US): 1-877-474-3310.",
+        "Cornell University Pet Loss Support Hotline: 607-218-7457.",
+        "Most veterinary schools run free pet-loss support hotlines — search 'pet loss hotline [your country].'",
+        "In Indonesia, animal welfare groups (Garda Satwa, JAAN) sometimes offer community support.",
+      ] },
+      { type: "p", content: "When pet grief needs professional support: if symptoms last more than 6 months with no shift; if grief is causing significant work, sleep, or relationship disruption; if it's tangled with prior unprocessed losses; or if depressive symptoms develop. Therapists who specialize in grief work include pet loss in their practice. Crisis lines if needed: US 988, Indonesia Into The Light, UK Samaritans 116 123." },
+      { type: "h2", content: "Bottom line" },
+      { type: "p", content: "Pet grief is real, documented, and often under-recognized. The 6 prompts above honor what was real without requiring anyone else to validate it first. The relationship doesn't end with the loss — it shifts. Continuing bonds research applies. Use the prompts when needed, not on a schedule. If grief stays acute past 6 months or develops into depression, talk to a clinician. Nuju's Gentle persona was designed for exactly this kind of soft grief work; the free Ju Gets You reveal takes 60 seconds." },
+    ],
+    faq: [
+      {
+        question: "Is it normal to grieve a pet as much as a person?",
+        answer:
+          "Yes. Kenneth Doka's research on 'disenfranchised grief' (1989+) established that pet loss is one of the most under-recognized forms of real grief. Sandra Barker at Virginia Commonwealth has documented that depth of attachment to pets often equals attachment to extended family. The intensity of grief reflects the depth of the bond, not the species. Social non-recognition doesn't make the grief less real.",
+      },
+      {
+        question: "How long does pet grief last?",
+        answer:
+          "Variable. Most acute grief reduces over 1-3 months for sudden losses and 3-6 months for anticipated losses after illness. Periodic resurgences (anniversaries, photos, similar pets) continue for years. The goal isn't absence of feeling but integration — being able to remember without being undone. If acute grief persists past 6 months with no shift, talk to a grief counselor.",
+      },
+      {
+        question: "Why do people say 'it was just a pet' and how do I respond?",
+        answer:
+          "It's disenfranchised grief — society systematically under-recognizes pet loss. The people saying it often haven't experienced the depth of human-animal bond themselves. You don't have to defend the grief. A quiet 'they meant a lot to me' is often enough. The grief is real whether or not it's recognized. Find people who do understand — grief support groups, online pet loss communities, or a therapist familiar with the work.",
+      },
+      {
+        question: "Should I get another pet right away?",
+        answer:
+          "Personal choice with no universal answer. Some people benefit from a new pet within weeks (especially if isolation is severe). Others need months to grieve before they have capacity to bond again. Neither is wrong. What matters: not getting a new pet to replace the one lost (they're not replaceable), and not expecting the new pet to grieve the previous one (they're a new relationship). When you're ready, you'll likely know.",
+      },
+      {
+        question: "Is journaling about a lost pet better than just trying to move on?",
+        answer:
+          "Yes. Research on grief consistently shows that processing — naming what was lost, what continues, what's still felt — produces better long-term integration than avoidance. 'Just moving on' often means pushing grief underground where it resurfaces later. Journaling structures the processing without overwhelming. The 6 prompts above are designed for that.",
+      },
+      {
+        question: "When should I see a therapist about pet loss grief?",
+        answer:
+          "If acute grief persists more than 6 months without shift; if it's significantly affecting work, sleep, or relationships; if it's tangled with prior unprocessed losses (parents, siblings, past pets); if depressive symptoms develop (loss of interest, hopelessness, low mood for 2+ weeks); or if there are self-harm thoughts. Look for therapists with grief work specialization — most include pet loss. Crisis lines: US 988, Indonesia Into The Light, UK Samaritans 116 123.",
+      },
+    ],
+  },
+  // BAHASA INDONESIA — Hubungan toxic. Indonesian Gen Z hot topic. Lundy
+  // Bancroft framework + Indonesian context.
+  {
+    slug: "journaling-untuk-hubungan-toxic",
+    title: "Journaling untuk Hubungan Toxic: Mengenali Pola dan Mulai Memulihkan (2026)",
+    description: "Hubungan toxic punya pola yang bisa dikenali — kontrol, manipulasi, gaslighting, isolasi. Journaling membantu lo mengenali pola dari dalam, melacak insiden, dan akhirnya memulihkan diri sendiri. 6 prompt + sumber krisis Indonesia.",
+    metaTitle: "Journaling untuk Hubungan Toxic: Kenali Pola + Pulih (2026)",
+    metaDescription: "Hubungan toxic punya pola yang bisa dikenali. 6 prompt journaling untuk identifikasi, dokumentasi, dan pemulihan. Sumber krisis Indonesia.",
+    publishedAt: "2026-05-22",
+    readingTime: 8,
+    category: "Mental Wellness",
+    sections: [
+      { type: "p", content: "Hubungan toxic punya pola yang bisa dikenali — kontrol, manipulasi, gaslighting, isolasi dari teman dan keluarga, kemarahan tak terprediksi, blame yang konstan. Riset Lundy Bancroft (penulis 'Why Does He Do That?', 2002) dan Patricia Evans (verbal abuse research) mendokumentasikan pola-pola ini di hubungan abusive. Yang sering luput: pola-pola yang sama bisa muncul di hubungan platonik (teman, keluarga, atasan) — tidak hanya romantis. Journaling membantu lo mengenali pola dari dalam, melacak insiden, dan akhirnya memulihkan diri." },
+      { type: "p", content: "Tulisan ini bukan diagnostik — kalau lo curiga hubungan lo toxic atau abusive, sumber profesional jauh lebih akurat daripada artikel mana pun. Tapi journaling bisa jadi langkah pertama yang aman ketika ngomong langsung belum mungkin. 6 prompt di bawah dirancang untuk: (1) mengenali pola, (2) dokumentasi insiden, (3) memutus rasa tidak realis yang diciptakan gaslighting, (4) memulai pemulihan." },
+      { type: "callout", content: "Penting: kalau lo sedang dalam situasi yang melibatkan kekerasan fisik, ancaman, atau bahaya langsung — keluar dari rumah ke tempat aman, hubungi 119 (Indonesia darurat), atau Komnas Perempuan (komnasperempuan.go.id) untuk dukungan kekerasan terhadap perempuan. Journaling adalah pelengkap, bukan pengganti, untuk situasi darurat." },
+      { type: "h2", content: "Pola umum di hubungan toxic" },
+      { type: "p", content: "Bukan semua hubungan yang bermasalah toxic — semua hubungan punya konflik. Tapi hubungan toxic punya pola spesifik:" },
+      { type: "ul", content: [
+        "Kontrol: monitoring lokasi, kontak, finansial, atau keputusan kecil lo.",
+        "Gaslighting: secara konsisten bikin lo ragu pada persepsi atau memori lo sendiri ('itu nggak terjadi,' 'kamu yang mulai,' 'kamu terlalu sensitif').",
+        "Isolasi: secara bertahap memutus lo dari teman dan keluarga — sering dibungkus 'mereka nggak baik untuk kita.'",
+        "Blame konstan: hal yang salah selalu salah lo, bahkan ketika tidak masuk akal.",
+        "Cycle of abuse: episode marah/menghukum diikuti hadiah/permintaan maaf, lalu kembali ke tegang dan kemudian episode baru. Lendy Bancroft mendokumentasikan cycle ini ekstensif.",
+        "Walking on eggshells: lo selalu hati-hati supaya nggak memicu reaksi.",
+        "Mood lo dikendalikan: lo merasa baik atau buruk berdasarkan mood mereka, bukan kondisi lo sendiri.",
+      ] },
+      { type: "p", content: "Satu atau dua dari ini sesekali bisa muncul di hubungan stres-sehat. Pola konsisten dari 3+ tanda di atas selama berbulan-bulan adalah sinyal toxic." },
+      { type: "h2", content: "Kenapa journaling spesifik membantu di hubungan toxic" },
+      { type: "p", content: "Tiga alasan:" },
+      { type: "ol", content: [
+        "Dokumentasi: ketika gaslighting konsisten, lo mulai meragukan memori sendiri. Journal dengan tanggal, waktu, dan detail spesifik adalah catatan yang tidak bisa dimanipulasi pelaku.",
+        "Pengenalan pola: insiden tunggal terasa kecil. Pola di puluhan insiden selama berbulan-bulan tidak. Journal membuat pola tidak bisa disangkal.",
+        "Validasi internal: orang dalam hubungan toxic sering kehilangan kemampuan tahu apa yang adil. Journal yang konsisten menulis 'ini tidak normal' membangun internal compass kembali.",
+      ] },
+      { type: "h2", content: "6 prompt untuk hubungan toxic" },
+      { type: "h2", content: "Prompt 1: 'Apa yang terjadi spesifiknya hari ini?'" },
+      { type: "p", content: "Dokumentasi sederhana. Tanggal, waktu, tempat, kata-kata yang spesifik, reaksi. Bukan untuk dibaca pelaku. Bukan untuk diadili. Untuk diri sendiri, dengan tanggal yang tidak bisa dimanipulasi. Mulai sekarang — file privat di HP, password-protected." },
+      { type: "h2", content: "Prompt 2: 'Apa yang biasanya gue katakan ke teman kalau hal yang sama terjadi ke mereka?'" },
+      { type: "p", content: "Kita sering lebih jelas tentang hubungan teman daripada hubungan sendiri. Tulis nasihat yang akan lo kasih ke teman kalau cerita yang lo tulis di Prompt 1 datang dari mereka. Biasanya nasihatnya jauh lebih protektif dari yang lo kasih ke diri sendiri." },
+      { type: "h2", content: "Prompt 3: 'Mood gue sekarang vs. sebelum ketemu mereka tadi?'" },
+      { type: "p", content: "Track mood sebelum dan setelah interaksi. Selama 2-4 minggu, pola muncul. Kalau mood lo konsisten turun setelah ketemu seseorang, itu data. Bukan persepsi yang bisa dibantah." },
+      { type: "h2", content: "Prompt 4: 'Siapa yang gue jadi pelan-pelan?'" },
+      { type: "p", content: "Hubungan toxic mengikis identitas pelan-pelan. Apa hobi yang udah lo tinggal? Teman mana yang udah lo nggak sering temui? Bagian diri yang dulu lo sukai apa? Pendapat yang dulu lo punya yang sekarang lo simpan? Daftar. Lihat. Itu data tentang seberapa banyak diri lo udah hilang." },
+      { type: "h2", content: "Prompt 5: 'Apa yang akan gue lakukan kalau gue punya semua dukungan yang gue butuhkan?'" },
+      { type: "p", content: "Tulis tanpa filter realitas. Pindah? Cerita ke keluarga? Putus? Lapor? Ini bukan rencana — ini map. Lihat apa yang muncul. Sering jawabannya menunjukkan apa yang sebenernya lo ingin tapi merasa tidak bisa." },
+      { type: "h2", content: "Prompt 6: 'Tiga orang yang bisa gue kontak kalau gue butuh bantuan'" },
+      { type: "p", content: "Tulis tiga nama dengan nomor mereka. Bisa keluarga, teman lama, kolega, atau organisasi (Komnas Perempuan, Yayasan Pulih, dll). Memiliki daftar ditulis sebelum krisis bikin akses lebih mudah saat krisis. Pelaku sering memantau kontak lo — pikirin orang yang nggak ada di phone contact biasa." },
+      { type: "h2", content: "Kapan ini darurat" },
+      { type: "p", content: "Kalau ada salah satu dari ini, ini darurat dan butuh tindakan langsung, bukan menunggu untuk journaling lebih lama:" },
+      { type: "ul", content: [
+        "Kekerasan fisik atau ancaman kekerasan fisik.",
+        "Ancaman terhadap nyawa lo atau orang yang lo sayang.",
+        "Lo merasa terjebak (paspor diambil, akses keuangan diblok, tidak bisa keluar).",
+        "Kekerasan terhadap anak atau hewan peliharaan.",
+        "Lo sendiri punya pikiran ngerusak diri.",
+      ] },
+      { type: "p", content: "Sumber krisis Indonesia: 119 darurat. Komnas Perempuan (komnasperempuan.go.id) untuk kekerasan terhadap perempuan. Yayasan Pulih (yayasanpulih.org) untuk dukungan trauma. LBH APIK (lbhapik.org) untuk bantuan hukum gratis kasus KDRT. Into The Light (intothelightid.org) untuk pikiran ngerusak diri." },
+      { type: "h2", content: "Pemulihan setelah keluar dari hubungan toxic" },
+      { type: "p", content: "Keluar adalah langkah, bukan akhir. Pemulihan setelahnya melibatkan:" },
+      { type: "ul", content: [
+        "Self-trust rebuilding: gaslighting mengerosi kepercayaan pada persepsi sendiri. Journal yang konsisten 'apa yang gue rasakan/lihat?' membantu reconstruct.",
+        "Mengenali pola untuk hubungan masa depan: 6 prompt di atas tetap berguna setelah keluar — untuk memastikan lo tidak masuk pola yang sama dengan orang baru.",
+        "Trauma processing: hubungan toxic sering trauma. Pemrosesan ideal dengan psikolog yang berpengalaman trauma. Halodoc, KALM, Riliv menawarkan konsultasi.",
+        "Reconnection: menemui kembali teman/keluarga yang diisolasi. Hobi yang ditinggal. Bagian diri yang dipendam.",
+      ] },
+      { type: "h2", content: "Bottom line" },
+      { type: "p", content: "Hubungan toxic punya pola yang bisa dikenali, dan journaling membantu mengenalinya dari dalam — dokumentasi, pengenalan pola, validasi internal yang gaslighting coba erosi. 6 prompt di atas dirancang untuk pengenalan, dokumentasi, dan pemulihan. Untuk situasi darurat (kekerasan, ancaman), journaling pelengkap — yang utama adalah keluar ke tempat aman dan menghubungi sumber krisis. Sumber Indonesia di bagian atas. Persona Gentle Nuju cocok untuk kerja ini, dengan privasi terjamin (entri enkripsi, tidak digunakan training AI)." },
+    ],
+    faq: [
+      {
+        question: "Gimana cara tahu hubungan gue toxic atau cuma sulit?",
+        answer:
+          "Semua hubungan ada konflik. Hubungan toxic punya pola spesifik: kontrol, gaslighting (bikin lo ragu memori sendiri), isolasi dari support sistem, blame konstan, cycle abuse (marah → permintaan maaf → tegang → marah lagi). Satu atau dua sesekali bisa muncul di hubungan sehat-stres. Pola konsisten dari 3+ tanda ini selama berbulan-bulan adalah sinyal toxic. Lundy Bancroft 'Why Does He Do That?' (2002) referensi yang sangat jelas.",
+      },
+      {
+        question: "Apakah journaling soal hubungan toxic aman?",
+        answer:
+          "Aman kalau privasinya dijaga. Pakai aplikasi dengan enkripsi (Nuju mengenkripsi entri, tidak digunakan training AI). Jangan pakai journal kertas yang bisa ditemukan pelaku. Jangan login ke aplikasi journal di device pelaku punya akses. Pakai password yang berbeda dari yang dia tahu. Kalau lo curiga pelaku punya akses ke phone lo, gunakan aplikasi journal di device yang dia tidak tahu (kantor, perpustakaan, teman).",
+      },
+      {
+        question: "Bagaimana journaling membantu kalau gue sedang gaslighting?",
+        answer:
+          "Gaslighting konsisten mengikis kepercayaan pada memori sendiri. Journal dengan tanggal, waktu, kata-kata spesifik adalah catatan yang tidak bisa dimanipulasi pelaku. Setelah 2-4 minggu mendokumentasi, lo bisa lihat pola yang gaslighting coba bantah. Itu external evidence yang otak lo butuhkan untuk percaya persepsi sendiri lagi.",
+      },
+      {
+        question: "Gue tidak siap keluar — apakah journaling tetap berguna?",
+        answer:
+          "Sangat. Banyak orang dalam hubungan toxic butuh berbulan-bulan atau bertahun-tahun untuk siap keluar (alasan ekonomi, anak, keluarga, takut). Selama waktu itu, journaling adalah: dokumentasi (untuk diri sendiri dan jika nantinya butuh bukti hukum), self-validation (mempertahankan kepercayaan pada persepsi sendiri), pengenalan pola (mempersiapkan keputusan yang harus dibuat). Tidak ada timeline yang benar. Mulai dari mana lo sekarang.",
+      },
+      {
+        question: "Siapa yang bisa gue hubungi di Indonesia untuk dukungan?",
+        answer:
+          "Komnas Perempuan (komnasperempuan.go.id) untuk kekerasan terhadap perempuan. Yayasan Pulih (yayasanpulih.org) untuk dukungan trauma. LBH APIK (lbhapik.org) untuk bantuan hukum gratis kasus KDRT. Into The Light (intothelightid.org) untuk pikiran ngerusak diri. 119 untuk darurat. Halodoc/KALM/Riliv untuk konsultasi psikolog terjangkau (Rp 50.000-150.000/sesi).",
+      },
+      {
+        question: "Apa pemulihan setelah keluar dari hubungan toxic terlihat seperti apa?",
+        answer:
+          "Bertahap dan non-linier. Komponen utama: self-trust rebuilding (mengembalikan kepercayaan pada persepsi sendiri yang gaslighting erosi), reconnection (menemui kembali teman/keluarga yang diisolasi, hobi yang ditinggal, bagian diri yang dipendam), trauma processing (ideally dengan psikolog yang berpengalaman trauma), dan pattern recognition untuk hubungan masa depan. 6 prompt di artikel ini tetap berguna setelah keluar. Pemulihan biasanya 1-3 tahun untuk hubungan toxic panjang.",
+      },
+    ],
+  },
+  // BAHASA INDONESIA — Perfeksionisme + procrastination. Indonesian
+  // adaptation with cultural context (academic pressure, family expectation).
+  {
+    slug: "perfeksionisme-dan-procrastination-indonesia",
+    title: "Loop Perfeksionisme-Procrastination: 6 Prompt Jurnal yang Bekerja (Gen Z Indonesia 2026)",
+    description: "Perfeksionisme dan procrastination adalah satu loop, bukan dua masalah terpisah. Untuk Gen Z Indonesia, ditambah tekanan keluarga dan akademik. 6 prompt jurnal berbasis riset yang memutus loop + konteks Indonesia.",
+    metaTitle: "Perfeksionisme-Procrastination Indonesia: 6 Prompt Jurnal (2026)",
+    metaDescription: "Perfeksionisme + procrastination = satu loop. Konteks Indonesia: tekanan keluarga + akademik. 6 prompt jurnal berbasis riset Stoeber yang memutus loop.",
+    publishedAt: "2026-05-22",
+    readingTime: 8,
+    category: "Mental Wellness",
+    sections: [
+      { type: "p", content: "Perfeksionisme dan procrastination bukan dua masalah terpisah — itu satu loop. Perfeksionisme menciptakan standar internal yang tidak mungkin; otak yang menghadapi tugas yang tidak bisa memenuhi standar tersebut menghindari memulai; procrastination menghasilkan shame; shame menguatkan perfeksionisme. Loop ini terdokumentasi di riset klinis (Stoeber & Otto 2006 meta-analisis di Kent University; Sirois & Pychyl 2013 di Carleton University) dan menghasilkan efek downstream yang terukur: burnout, anxiety, dan depresi." },
+      { type: "p", content: "Untuk Gen Z Indonesia, loop ini punya komponen tambahan: tekanan keluarga (ekspektasi orang tua dari investasi mereka dalam pendidikan lo), tekanan akademik kompetitif (PTN, IPK, ranking), tekanan sosial budaya (perbandingan di sosmed dengan teman seangkatan yang 'lebih sukses'). Generik konten internasional sering miss bagian ini. Tulisan ini menambahkannya." },
+      { type: "callout", content: "Catatan: kalau perfeksionisme dan procrastination udah bikin ketidakmampuan fungsi (nggak bisa lakuin tugas dasar lebih dari 3-4 minggu, depresi persisten, burnout berat) — itu butuh psikolog. Halodoc, KALM, Riliv menawarkan konsultasi mulai Rp 50.000-150.000. Banyak psikolog Indonesia spesialisasi CBT untuk perfeksionisme. Journaling pelengkap, bukan pengganti." },
+      { type: "h2", content: "Kenapa willpower tidak memutus loop ini" },
+      { type: "p", content: "Most procrastination advice menganggap masalahnya motivasi atau disiplin. Riset Pychyl dan Sirois (2010-2020 multiple studies) merebrame ini sebagai emotion regulation: lo procrastinate untuk menghindari perasaan negatif yang dipicu tugas (takut gagal, shame, kewalahan), bukan karena males. Willpower menargetkan layer yang salah." },
+      { type: "p", content: "Perfeksionisme memperkuat ini — Stoeber dan Otto 2006 meta-analisis membedakan 'perfectionistic concerns' (takut gagal, tekanan sosial) dari 'perfectionistic strivings' (standar pribadi tinggi). Concerns memprediksi procrastination dan depresi. Strivings bisa netral atau positif. Journaling membantu kebanyakan dengan concerns, bukan strivings." },
+      { type: "h2", content: "Komponen Indonesia: 3 tekanan tambahan" },
+      { type: "p", content: "Untuk Gen Z Indonesia, loop perfeksionisme-procrastination diperkuat oleh:" },
+      { type: "ul", content: [
+        "Investasi orang tua: pendidikan lo sering hasil pengorbanan finansial signifikan. Gagal terasa seperti gagal mereka, bukan cuma diri lo.",
+        "Comparison di lingkaran budaya: tetangga, sepupu, teman kampus jadi reference points yang konstan. 'Anak Bu X udah jadi manager.' Otak menyimpan ini.",
+        "Budaya 'nggak boleh ngeluh': mengakui kesulitan terasa seperti kelemahan moral, terutama di keluarga yang menekan ketahanan. Beban menumpuk tanpa katup pelepasan.",
+      ] },
+      { type: "p", content: "Ketiganya menambahkan layer 'tidak bisa mengeluh' di atas perfeksionisme generik. Procrastination jadi cara senyap menghindari yang lo tidak diizinkan untuk akui mengganggu lo." },
+      { type: "h2", content: "Apa yang loop ini biaya selama waktu" },
+      { type: "p", content: "Untreated, loop perfeksionisme-procrastination menghasilkan:" },
+      { type: "ul", content: [
+        "Burnout: kelelahan kronis dari tekanan internal tinggi tanpa output proporsional.",
+        "Anxiety: gap antara standar dan realitas tetap terbuka, menghasilkan kekhawatiran berkelanjutan.",
+        "Depresi: siklus berulang 'seharusnya gue bisa lebih baik' + avoidance menghasilkan keputusasaan.",
+        "Imposter syndrome: success di bawah target merasa seperti fraud.",
+        "Tegangan keluarga: orang tua atau pasangan capek menunggu janji yang tidak dipenuhi.",
+      ] },
+      { type: "h2", content: "6 prompt untuk memutus loop (5 menit/sesi)" },
+      { type: "h2", content: "Prompt 1: 'Standar terbayangkan apa yang gue gagal penuhi?'" },
+      { type: "p", content: "Procrastination punya standar invisible di belakangnya. Nama itu. 'Gue menghindari laporan karena gue pikir harus brilliant — lebih baik dari yang gue terakhir, lebih baik dari yang temen gue.' Sekali standar di kertas, lo bisa tanya: apakah ini sebenernya dibutuhkan (hampir selalu enggak) atau lo bebankan ke diri sendiri." },
+      { type: "h2", content: "Prompt 2: 'Apa versi minimum yang masih hitung?'" },
+      { type: "p", content: "Perfeksionisme resisten terhadap prompt ini karena terasa 'settling.' Paksa jawabannya. 'Draft 5 halaman bukan 15.' 'Email satu paragraf bukan memo terpolished.' 'Datang ke meeting tidak siap bukannya batalin.' Versi minimum adalah yang lo bisa lakuin hari ini; versi sempurna adalah yang lo udah avoid selama 2 minggu." },
+      { type: "h2", content: "Prompt 3: 'Siapa suara kritisnya?'" },
+      { type: "p", content: "Riset Brené Brown soal shame menunjukkan suara inner critic perfeksionis jarang sounding seperti diri sekarang. Sering sounding seperti orang tua, guru awal, versi anak diri lo, atau figur otoritas spesifik. Untuk Gen Z Indonesia, sering suara orang tua atau guru SMA yang menanamkan 'harus jadi yang terbaik.' Menamai suara siapa menciptakan jarak — 'itu suara Ibu yang bilang anything less than A+ adalah kegagalan.' Jarak mengurangi otoritas suara." },
+      { type: "h2", content: "Prompt 4: 'Gue takut apa terjadi kalau hasilnya tidak sempurna?'" },
+      { type: "p", content: "Perfectionistic concerns adalah downstream dari konsekuensi spesifik yang ditakuti. Nama mereka. 'Kalau laporan gue mediocre, atasan gue mikir gue slipping.' 'Kalau email gue ada typos, gue keliatan unprofessional.' Ketakutan mungkin sebagian benar — tapi biasanya 10-100x lebih kecil dari yang perfeksionisme implikasikan. Most people tidak ingat typos lo. Most atasan tidak catat laporan mediocre untuk bertahun-tahun." },
+      { type: "h2", content: "Prompt 5: 'Apa biaya tidak mulai sama sekali?'" },
+      { type: "p", content: "Blind spot perfeksionisme: biaya avoidance. Hitung. 'Kalau gue nggak kirim laporan minggu ini, gue kehilangan project. Kalau gue kehilangan project, gue miss bonus. Kalau gue miss bonus, gue delay pindahan dari kost.' Biaya downstream konkret sering jauh lebih besar dari biaya kerja yang tidak sempurna. Bikin perbandingan eksplisit." },
+      { type: "h2", content: "Prompt 6 (khusus Indonesia): 'Ekspektasi siapa yang gue pikul yang sebenernya bukan punya gue?'" },
+      { type: "p", content: "Untuk Gen Z Indonesia, ini prompt paling penting. Tulis ekspektasi yang lo bawa-bawa dari keluarga, masyarakat, sosmed — yang mungkin tidak benar-benar punya lo. Mungkin orang tua tidak benar-benar perlu lo jadi dokter. Mungkin tetangga tidak benar-benar peduli IPK lo. Mungkin teman SMA tidak benar-benar nge-track promosi lo. Tulis ekspektasi yang lo pikul. Lalu tanya: mana yang gue sebenernya setuju? Mana yang gue pikul karena tidak pernah dipertanyakan?" },
+      { type: "h2", content: "Yang harus dihindari" },
+      { type: "p", content: "Tiga pendekatan umum yang tidak bekerja atau backfire untuk perfeksionis:" },
+      { type: "ul", content: [
+        "Generic gratitude journaling: riset menunjukkan itu tidak menangani konsekuensi yang ditakuti underlying untuk perfeksionis.",
+        "Pure positive affirmation: otak menolak ini sebagai 'gue cuma coba bikin diri gue feel better.'",
+        "Sistem produktivitas berbasis schedule sendirian: tanpa menangani layer emosional, schedule jadi standar baru untuk gagal.",
+      ] },
+      { type: "h2", content: "Kapan loop ini butuh lebih dari journaling" },
+      { type: "p", content: "Kalau perfeksionisme dan procrastination udah menghasilkan:" },
+      { type: "ul", content: [
+        "Ketidakmampuan menyelesaikan tugas kerja dasar lebih dari 3-4 minggu berturut-turut.",
+        "Depresi persisten atau keputusasaan.",
+        "Burnout berat yang butuh waktu off kerja.",
+        "Avoidance yang menghalangi keputusan hidup besar (kerja, hubungan, kesehatan).",
+      ] },
+      { type: "p", content: "...loop sudah lewat batas yang journaling sendirian bisa tangani. Kerja dengan psikolog klinis yang spesialisasi perfeksionisme — cari 'psikolog perfeksionisme' atau 'CBT untuk perfeksionisme.' Banyak psikolog Indonesia familiar dengan ACT (Acceptance and Commitment Therapy) untuk perfeksionisme spesifik. Konsultasi via Halodoc, KALM, atau Riliv. Krisis: Into The Light Indonesia, 119 ext 8." },
+      { type: "h2", content: "Bottom line" },
+      { type: "p", content: "Perfeksionisme dan procrastination adalah satu loop, bukan dua masalah terpisah. Willpower menargetkan layer yang salah; loop dipertahankan oleh emotion regulation, bukan motivasi. Untuk Gen Z Indonesia, ditambah ekspektasi keluarga + sosmed comparison + 'tidak boleh ngeluh' culture. 6 prompt di atas mengeksternalisasi komponen loop. Run 2-3 minggu pada apa yang sedang lo procrastinate. Cengkraman melonggar. Doing jadi mungkin. Nuju gratis dengan support Bahasa Indonesia, dan persona Gentle cocok untuk kerja inner-critic externalization." },
+    ],
+    faq: [
+      {
+        question: "Kenapa perfeksionisme menyebabkan procrastination?",
+        answer:
+          "Perfeksionisme menciptakan standar internal yang tidak mungkin; otak yang menghadapi tugas yang tidak bisa realistically memenuhi standar tersebut menghindari memulai untuk mencegah perasaan negatif (takut gagal, shame, kewalahan) yang akan mengikuti. Riset Pychyl dan Sirois (2010-2020) menunjukkan procrastination adalah strategi emotion regulation, bukan kegagalan motivasi. Lo menghindari perasaan, bukan tugasnya.",
+      },
+      {
+        question: "Apakah journaling beneran membantu dengan perfeksionisme?",
+        answer:
+          "Ya, ketika terstruktur. Riset menunjukkan journaling mengeksternalisasi inner critic — memindahkan suara kritis dari 'objective truth di kepala' ke 'harsh narrator di kertas' di mana lo bisa mempertanyakannya. Paling efektif: prompt yang menamai standar terbayangkan, mengidentifikasi suara critic sebagai punya orang lain, dan memecah tugas jadi versi minimum-viable. Generic gratitude journaling cenderung tidak membantu dengan perfeksionisme spesifik.",
+      },
+      {
+        question: "Apa beda striving sehat dan perfeksionisme tidak sehat?",
+        answer:
+          "Stoeber dan Otto 2006 meta-analisis membedakan 'perfectionistic strivings' (standar pribadi tinggi, sering netral atau positif) dari 'perfectionistic concerns' (takut gagal, tekanan sosial, harsh self-criticism — prediktor depresi, anxiety, procrastination). Orang sehat sering punya strivings tanpa concerns. Perfeksionisme tidak sehat adalah concern-heavy. 6 prompt menargetkan concerns spesifik.",
+      },
+      {
+        question: "Berapa lama sampai journaling mengurangi procrastination perfeksionis?",
+        answer:
+          "Most user melaporkan perubahan berarti dalam 2-3 minggu praktik konsisten dengan prompt terstruktur. Minggu pertama bikin loop visible (yang sendiri mengurangi kekuatannya). Minggu 2-3, suara inner critic jadi recognizable sebagai 'bukan gue, cuma rekaman.' By week 4, langkah kecil terhadap tugas yang dihindari jadi lebih accessible. Loop jarang menghilang total — dia melonggar.",
+      },
+      {
+        question: "Apakah perfeksionisme dan procrastination terkait dengan depresi?",
+        answer:
+          "Ya — multiple longitudinal studies menunjukkan loop ini memprediksi depresi. Perfectionistic concerns + procrastination kronis + shame yang dihasilkan menghasilkan siklus feedback yang berkorelasi dengan gejala depresi. Riset kesehatan mental 2026 konsisten flag koneksi ini. Kalau procrastination disertai mood rendah persisten, keputusasaan, atau ketidakmampuan fungsi, komponen depresi sering butuh dukungan profesional di luar journaling.",
+      },
+      {
+        question: "Kapan perfeksionisme butuh psikolog?",
+        answer:
+          "Kalau perfeksionisme udah menghasilkan ketidakmampuan menyelesaikan kerja dasar selama 3-4+ minggu, depresi persisten, burnout berat yang butuh waktu off, atau avoidance yang menghalangi keputusan hidup besar — kerja dengan psikolog klinis yang spesialisasi perfeksionisme. Cari 'psikolog perfeksionisme' atau 'CBT untuk perfeksionisme.' Banyak gunakan ACT (Acceptance and Commitment Therapy) untuk perfeksionisme spesifik. Konsultasi via Halodoc, KALM, Riliv mulai Rp 50.000-150.000.",
+      },
+    ],
+  },
 ];
 
 const normalizeCopy = (value: string): string =>

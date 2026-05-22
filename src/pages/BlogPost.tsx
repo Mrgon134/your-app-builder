@@ -1049,6 +1049,116 @@ const INTERNAL_LINK_RECOMMENDATIONS: Record<string, InternalLinkRecommendation[]
       body: "Stres dari notifikasi kerja non-stop? Digital wellness untuk Gen Z Indonesia.",
     },
   ],
+  "why-do-i-cry-in-the-shower": [
+    {
+      slug: "journaling-for-depression",
+      eyebrow: "When it's more",
+      body: "Daily shower crying for weeks may signal something beyond regulatory release. Honest depression guide.",
+    },
+    {
+      slug: "3am-anxiety-journaling",
+      eyebrow: "Similar pattern",
+      body: "3am wake-ups have a similar 'privacy + permission' shape. The technique for late-night release.",
+    },
+    {
+      slug: "ai-journal-for-overthinking",
+      eyebrow: "Often connected",
+      body: "Shower crying often follows a day of suppressed overthinking. The AI journal angle.",
+    },
+    {
+      slug: "journaling-for-grief",
+      eyebrow: "If processing loss",
+      body: "If shower crying is connected to grief, the grief journaling guide goes deeper.",
+    },
+  ],
+  "journaling-for-jealousy-and-comparison": [
+    {
+      slug: "journaling-for-imposter-syndrome",
+      eyebrow: "Comparison + imposter",
+      body: "Comparison often fuels imposter syndrome. The Evidence File technique applies.",
+    },
+    {
+      slug: "digital-fatigue-journaling-reset",
+      eyebrow: "Social media trigger",
+      body: "Most comparison happens on social media. The 5-min digital reset protocol.",
+    },
+    {
+      slug: "ai-journal-for-overthinking",
+      eyebrow: "Comparison = overthinking",
+      body: "Comparison spirals are a form of overthinking. The AI journal angle.",
+    },
+    {
+      slug: "journaling-for-perfectionism-procrastination",
+      eyebrow: "Perfectionism root",
+      body: "Comparison often feeds perfectionism. The 6-prompt loop-breaking protocol.",
+    },
+  ],
+  "journaling-after-losing-a-pet": [
+    {
+      slug: "journaling-for-grief",
+      eyebrow: "General grief",
+      body: "Pet grief is real grief. The broader grief journaling framework applies.",
+    },
+    {
+      slug: "journaling-for-breakup",
+      eyebrow: "Similar relational loss",
+      body: "Some pet relationships are deeper than human ones. The breakup framework can apply.",
+    },
+    {
+      slug: "ai-journaling-for-loneliness",
+      eyebrow: "Post-pet loneliness",
+      body: "Loneliness after losing a pet has specific patterns. AI journaling angle for the gap.",
+    },
+    {
+      slug: "best-ai-journal-apps-for-anxiety-2026",
+      eyebrow: "Anxiety from loss",
+      body: "Grief often surfaces as anxiety. AI journal apps that handle both.",
+    },
+  ],
+  "journaling-untuk-hubungan-toxic": [
+    {
+      slug: "cara-curhat-ke-diri-sendiri",
+      eyebrow: "Outlet aman",
+      body: "Pas nggak bisa curhat ke siapa-siapa karena diisolasi — 5 cara curhat ke diri sendiri yang aman.",
+    },
+    {
+      slug: "self-healing-dengan-jurnal",
+      eyebrow: "Pemulihan",
+      body: "Pemulihan dari hubungan toxic adalah self healing yang lebih luas — panduan lengkap.",
+    },
+    {
+      slug: "journaling-untuk-depresi",
+      eyebrow: "Kalau jadi depresi",
+      body: "Hubungan toxic sering memicu depresi. Panduan jujur kapan eskalasi ke profesional.",
+    },
+    {
+      slug: "aplikasi-curhat-ai",
+      eyebrow: "AI sebagai dokumentasi",
+      body: "AI journal sebagai dokumentasi aman (enkripsi) — kriteria memilih untuk situasi sensitif.",
+    },
+  ],
+  "perfeksionisme-dan-procrastination-indonesia": [
+    {
+      slug: "cara-mengatasi-overthinking",
+      eyebrow: "Overthink sebelum mulai",
+      body: "Procrastination sering dimulai dengan overthinking. 4 prompt untuk memutus loop pikiran.",
+    },
+    {
+      slug: "cara-mengatasi-burnout-gen-z",
+      eyebrow: "Burnout downstream",
+      body: "Perfeksionisme + procrastination yang berkepanjangan jadi burnout. 5 prompt khusus.",
+    },
+    {
+      slug: "journaling-untuk-anxiety",
+      eyebrow: "Anxiety perfeksionis",
+      body: "Anxiety perfeksionis adalah kategori sendiri. 7 prompt khusus anxiety untuk konteks Indonesia.",
+    },
+    {
+      slug: "mengatasi-stres-kerja-journaling",
+      eyebrow: "Di tempat kerja",
+      body: "Perfeksionisme di tempat kerja jadi stres kerja. 5 prompt khusus untuk pekerja Indonesia.",
+    },
+  ],
 };
 
 const getInternalLinkCards = (slug: string): InternalLinkCard[] =>
