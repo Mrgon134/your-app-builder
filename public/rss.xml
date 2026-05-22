@@ -6,7 +6,70 @@
     <atom:link href="https://nuju.app/rss.xml" rel="self" type="application/rss+xml" />
     <description>Practical guides on journaling, mood tracking, and emotional wellness from the Nuju team.</description>
     <language>en</language>
-    <lastBuildDate>Thu, 21 May 2026 18:23:57 GMT</lastBuildDate>
+    <lastBuildDate>Fri, 22 May 2026 06:01:40 GMT</lastBuildDate>
+    <item>
+      <title>We Analyzed Our First 161 Real Journal Entries: 87% Were Logged on &apos;Not Great&apos; Days</title>
+      <link>https://nuju.app/blog/what-people-write-in-journal-data</link>
+      <guid isPermaLink="true">https://nuju.app/blog/what-people-write-in-journal-data</guid>
+      <description>Real data from Nuju&apos;s first 161 journal entries: 87% logged on Rough, Low, or Okay days. Median entry is 31 characters. What the numbers reveal about why people actually journal in 2026.</description>
+      <category>Mental Wellness</category>
+      <pubDate>Fri, 22 May 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>We Built 4 AI Coach Personalities. &apos;Gentle&apos; Took 50% of Real Conversations</title>
+      <link>https://nuju.app/blog/ai-coach-personality-preference-data</link>
+      <guid isPermaLink="true">https://nuju.app/blog/ai-coach-personality-preference-data</guid>
+      <description>We built four AI coach personalities — Gentle, Tough, Wise, Fun. After 348 real coach messages, Gentle pulled 50%, Fun 29%, Tough 13%, Wise just 2%. The &apos;tough love&apos; archetype that dominates productivity culture barely registers in AI coaching.</description>
+      <category>AI &amp; Tech</category>
+      <pubDate>Fri, 22 May 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>The Complete 2026 Guide to AI Journaling: Tools, Science, and Habits That Actually Stick</title>
+      <link>https://nuju.app/blog/complete-guide-ai-journaling-2026</link>
+      <guid isPermaLink="true">https://nuju.app/blog/complete-guide-ai-journaling-2026</guid>
+      <description>Everything you need to know about AI journaling in 2026 — what it is, how it works, the research behind it, the top tools compared, and how to build a habit that actually sticks. The definitive guide.</description>
+      <category>AI &amp; Tech</category>
+      <pubDate>Fri, 22 May 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Cara Mengatasi Overthinking dengan Journaling: Panduan 5 Menit (2026)</title>
+      <link>https://nuju.app/blog/cara-mengatasi-overthinking</link>
+      <guid isPermaLink="true">https://nuju.app/blog/cara-mengatasi-overthinking</guid>
+      <description>Overthinking bikin malam panjang dan kepala penuh. Journaling 5 menit terbukti memutus loop pikiran. Teknik brain dump + 4 prompt untuk berhenti overthinking malam ini.</description>
+      <category>Mental Wellness</category>
+      <pubDate>Fri, 22 May 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Self Healing dengan Jurnal: Panduan Praktis untuk Mulai Hari Ini (2026)</title>
+      <link>https://nuju.app/blog/self-healing-dengan-jurnal</link>
+      <guid isPermaLink="true">https://nuju.app/blog/self-healing-dengan-jurnal</guid>
+      <description>Self healing nggak harus mahal atau ke psikolog. Journaling 5-10 menit/hari adalah salah satu teknik self healing paling terbukti — riset 35 tahun mendukungnya. Panduan praktis untuk mulai.</description>
+      <category>Mental Wellness</category>
+      <pubDate>Fri, 22 May 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Journaling untuk Anxiety: 7 Prompt dan Teknik yang Terbukti (Panduan 2026)</title>
+      <link>https://nuju.app/blog/journaling-untuk-anxiety</link>
+      <guid isPermaLink="true">https://nuju.app/blog/journaling-untuk-anxiety</guid>
+      <description>Anxiety bikin pikiran muter dan dada tegang. Journaling 5-10 menit per hari terbukti menurunkan gejala anxiety. 7 prompt spesifik dan teknik praktis untuk mulai hari ini.</description>
+      <category>Mental Wellness</category>
+      <pubDate>Fri, 22 May 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Cara Curhat ke Diri Sendiri: 5 Metode Terbukti (Tanpa atau dengan AI)</title>
+      <link>https://nuju.app/blog/cara-curhat-ke-diri-sendiri</link>
+      <guid isPermaLink="true">https://nuju.app/blog/cara-curhat-ke-diri-sendiri</guid>
+      <description>Kadang nggak ada teman buat curhat — atau nggak mau bebanin orang. 5 metode curhat ke diri sendiri yang terbukti: dari menulis bebas, voice note, sampai AI journal. Panduan praktis.</description>
+      <category>Mental Wellness</category>
+      <pubDate>Fri, 22 May 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
     <item>
       <title>Aplikasi Curhat AI Tanpa Di-judge: Pilihan Terbaik 2026 (Anonim &amp; Gratis)</title>
       <link>https://nuju.app/blog/aplikasi-curhat-ai</link>
@@ -17,10 +80,10 @@
       <dc:language>id</dc:language>
     </item>
     <item>
-      <title>Sunday Scaries Are Real: What Journal Data Reveals About Weekly Mood Patterns</title>
+      <title>Sunday Scaries Are Real: What Research Reveals About Weekly Mood Patterns</title>
       <link>https://nuju.app/blog/sunday-scaries-mood-data</link>
       <guid isPermaLink="true">https://nuju.app/blog/sunday-scaries-mood-data</guid>
-      <description>Sunday Scaries aren&apos;t a meme — research and journal data show a measurable mood drop on Sunday evenings. Here&apos;s the pattern, the cause, and how to reset before Monday.</description>
+      <description>Sunday Scaries aren&apos;t a meme. Research consistently shows a measurable mood drop on Sunday evenings — here&apos;s the pattern, the cause, and how to reset before Monday.</description>
       <category>Mental Wellness</category>
       <pubDate>Thu, 21 May 2026 12:00:00 GMT</pubDate>
       <dc:language>en</dc:language>

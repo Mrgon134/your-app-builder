@@ -296,9 +296,163 @@ const INTERNAL_LINK_RECOMMENDATIONS: Record<string, InternalLinkRecommendation[]
       body: "Add mood tracking to see if Sunday is your specific anxiety peak — or if the pattern is different.",
     },
     {
-      slug: "best-mood-tracker-apps",
-      eyebrow: "Tools to track this",
-      body: "Compare mood trackers that surface weekly patterns instead of just logging single days.",
+      slug: "what-people-write-in-journal-data",
+      eyebrow: "Real journaling data",
+      body: "See the patterns from 161 real entries — 87% logged on 'not great' days. The averages your week is being compared to.",
+    },
+  ],
+  "what-people-write-in-journal-data": [
+    {
+      slug: "5-minute-daily-journaling-habit",
+      eyebrow: "Build the habit",
+      body: "The data says median entries are 31 characters — here's how to make daily journaling that short feel sustainable.",
+    },
+    {
+      slug: "ai-journal-for-overthinking",
+      eyebrow: "The 'middle' state",
+      body: "Most entries come from the fuzzy middle, which is also where overthinking lives. Here's how AI journaling helps both.",
+    },
+    {
+      slug: "ai-coach-personality-preference-data",
+      eyebrow: "More real Nuju data",
+      body: "We built 4 AI coach personalities. 50% of real conversations went to the 'Gentle' one. Here's why.",
+    },
+    {
+      slug: "mood-tracker-for-self-awareness",
+      eyebrow: "What to do with the data",
+      body: "Once you see your own pattern, this guide covers what to actually do with the insight.",
+    },
+  ],
+  "ai-coach-personality-preference-data": [
+    {
+      slug: "what-people-write-in-journal-data",
+      eyebrow: "More real Nuju data",
+      body: "87% of real journal entries are logged on 'not great' days. Here's what 161 entries reveal about why people actually journal.",
+    },
+    {
+      slug: "ai-journal-for-overthinking",
+      eyebrow: "Soft voice for overthinking",
+      body: "Why the Gentle persona wins also explains why AI journaling helps overthinking — both pattern matches: low bandwidth wants validation, not push-back.",
+    },
+    {
+      slug: "best-ai-journaling-apps",
+      eyebrow: "Compare AI journal apps",
+      body: "Once you know which AI tone you prefer, this guide compares the apps that actually offer multiple personas.",
+    },
+    {
+      slug: "mood-tracker-for-self-awareness",
+      eyebrow: "Self-awareness, not just tracking",
+      body: "Persona preference is itself self-awareness data — here's how to read your own mood and tone patterns.",
+    },
+  ],
+  "complete-guide-ai-journaling-2026": [
+    {
+      slug: "what-is-ai-journaling",
+      eyebrow: "Start with the basics",
+      body: "What AI journaling actually means in 2026 — a plain-language intro to the category.",
+    },
+    {
+      slug: "what-people-write-in-journal-data",
+      eyebrow: "Real usage data",
+      body: "161 real journal entries: 87% logged on 'not great' days. Median entry is 31 characters.",
+    },
+    {
+      slug: "best-ai-journaling-apps",
+      eyebrow: "Pick your tool",
+      body: "Compare the top AI journaling apps in 2026 — free tier, mid tier, premium tier breakdown.",
+    },
+    {
+      slug: "5-minute-daily-journaling-habit",
+      eyebrow: "Build the habit",
+      body: "Habit-formation science applied to journaling: the 21-day pattern that makes it stick.",
+    },
+  ],
+  "cara-mengatasi-overthinking": [
+    {
+      slug: "journaling-untuk-anxiety",
+      eyebrow: "Pas overthinking jadi anxiety",
+      body: "Saat overthinking memicu kecemasan fisik (sesak, jantung berdebar), prompt khusus anxiety ini lebih cocok.",
+    },
+    {
+      slug: "cara-curhat-ke-diri-sendiri",
+      eyebrow: "Cara lain ngeluarin",
+      body: "Selain journaling, ada 5 metode curhat ke diri sendiri yang efektif — termasuk voice note dan surat ke diri.",
+    },
+    {
+      slug: "self-healing-dengan-jurnal",
+      eyebrow: "Bagian dari self healing",
+      body: "Mengatasi overthinking adalah satu bagian dari self healing yang lebih luas. Panduan lengkap di sini.",
+    },
+    {
+      slug: "aplikasi-curhat-ai",
+      eyebrow: "Pakai AI buat overthinking",
+      body: "AI journal yang aman buat overthinker: kriteria privasi, persona AI, dan rekomendasi.",
+    },
+  ],
+  "self-healing-dengan-jurnal": [
+    {
+      slug: "cara-mulai-journaling",
+      eyebrow: "Mulai dari sini",
+      body: "Pemula lengkap: cara mulai journaling 5 menit per hari dari nol — bahkan tanpa pengalaman.",
+    },
+    {
+      slug: "cara-mengatasi-overthinking",
+      eyebrow: "Self healing buat overthinker",
+      body: "Self healing seringkali butuh memutus loop overthinking — 4 prompt khusus untuk pikiran muter.",
+    },
+    {
+      slug: "journaling-untuk-anxiety",
+      eyebrow: "Self healing + anxiety",
+      body: "Kalau self healing lo melibatkan anxiety, 7 prompt spesifik untuk anxiety ini langsung bisa dipakai.",
+    },
+    {
+      slug: "journaling-untuk-kesehatan-mental",
+      eyebrow: "Riset di balik journaling",
+      body: "Riset 35 tahun yang mendukung journaling untuk kesehatan mental — dan kapan butuh profesional.",
+    },
+  ],
+  "journaling-untuk-anxiety": [
+    {
+      slug: "cara-mengatasi-overthinking",
+      eyebrow: "Anxiety = sering overthinking",
+      body: "Overthinking adalah bentuk anxiety kognitif paling umum. 4 prompt khusus untuk memutus loop.",
+    },
+    {
+      slug: "cara-curhat-ke-diri-sendiri",
+      eyebrow: "Anxiety tanpa teman?",
+      body: "Saat anxiety muncul dan nggak ada teman bisa diajak ngobrol — 5 metode curhat ke diri sendiri.",
+    },
+    {
+      slug: "self-healing-dengan-jurnal",
+      eyebrow: "Anxiety + self healing",
+      body: "Journaling untuk anxiety adalah satu bagian dari self healing yang lebih luas.",
+    },
+    {
+      slug: "manfaat-mood-tracking",
+      eyebrow: "Tracking buat anxiety",
+      body: "Mood tracking membantu mengidentifikasi pola anxiety dan trigger-nya dari minggu ke minggu.",
+    },
+  ],
+  "cara-curhat-ke-diri-sendiri": [
+    {
+      slug: "aplikasi-curhat-ai",
+      eyebrow: "Curhat ke AI",
+      body: "Kalau metode ke-5 (AI journal) menarik, panduan lengkap memilih AI journal yang aman dan efektif.",
+    },
+    {
+      slug: "cara-mengatasi-overthinking",
+      eyebrow: "Curhat untuk overthinker",
+      body: "Buat overthinker, curhat ke diri sendiri sering butuh struktur. 4 prompt khusus untuk memutus loop.",
+    },
+    {
+      slug: "self-healing-dengan-jurnal",
+      eyebrow: "Curhat sebagai self healing",
+      body: "Curhat ke diri sendiri adalah salah satu bentuk paling sederhana dari self healing — panduan lengkap.",
+    },
+    {
+      slug: "cara-mulai-journaling",
+      eyebrow: "Curhat lewat journaling",
+      body: "Untuk pemula yang baru mau curhat lewat tulisan — cara memulai journaling 5 menit per hari.",
     },
   ],
 };
