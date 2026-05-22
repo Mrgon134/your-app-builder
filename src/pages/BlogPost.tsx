@@ -785,6 +785,1062 @@ const INTERNAL_LINK_RECOMMENDATIONS: Record<string, InternalLinkRecommendation[]
       body: "Protokol reset 5 menit cocok jadi bagian dari self healing harian. Panduan lengkap.",
     },
   ],
+  "nuju-vs-reflection": [
+    {
+      slug: "nuju-vs-rosebud",
+      eyebrow: "Other comparisons",
+      body: "How Nuju stacks up against Rosebud — short daily entries vs structured therapy prompts.",
+    },
+    {
+      slug: "nuju-vs-mindsera",
+      eyebrow: "Other comparisons",
+      body: "How Nuju compares to Mindsera — warm AI vs cognitive coach.",
+    },
+    {
+      slug: "best-ai-journaling-apps",
+      eyebrow: "Category view",
+      body: "Compare the full AI journaling category side by side.",
+    },
+    {
+      slug: "complete-guide-ai-journaling-2026",
+      eyebrow: "Category guide",
+      body: "Complete 2026 guide to AI journaling — what the category is, how to pick.",
+    },
+  ],
+  "nuju-vs-daylio": [
+    {
+      slug: "daylio-alternatives",
+      eyebrow: "More Daylio alternatives",
+      body: "Looking beyond Nuju? Compare Daylio's broader alternatives in the mood tracker category.",
+    },
+    {
+      slug: "best-mood-tracker-apps",
+      eyebrow: "Mood tracker category",
+      body: "Compare the full mood tracker category — Daylio, Bearable, Moodfit, others.",
+    },
+    {
+      slug: "nuju-vs-rosebud",
+      eyebrow: "AI journal vs AI journal",
+      body: "How Nuju compares to another AI journal app rather than a mood tracker.",
+    },
+    {
+      slug: "best-ai-journaling-apps",
+      eyebrow: "AI journal category",
+      body: "If you want AI not just mood data, compare the AI journaling category here.",
+    },
+  ],
+  "journaling-for-depression": [
+    {
+      slug: "journaling-before-therapy",
+      eyebrow: "Prep for therapy",
+      body: "If depression journaling surfaces something bigger, this guide helps you prep for a therapist appointment.",
+    },
+    {
+      slug: "journaling-for-grief",
+      eyebrow: "Often co-occurring",
+      body: "Depression and grief often co-occur. The grief journaling guide if loss is part of the picture.",
+    },
+    {
+      slug: "journaling-for-anxiety",
+      eyebrow: "Frequently overlapping",
+      body: "Depression and anxiety frequently co-occur. The anxiety-specific guide and prompts.",
+    },
+    {
+      slug: "best-ai-journal-apps-for-anxiety-2026",
+      eyebrow: "Tools that fit",
+      body: "AI journal apps that work for depression-adjacent journaling. Anxiety-focused comparison applies.",
+    },
+  ],
+  "journaling-for-breakup": [
+    {
+      slug: "journaling-for-grief",
+      eyebrow: "Breakup = grief",
+      body: "Breakups activate grief systems. The grief journaling guide applies to relationship endings too.",
+    },
+    {
+      slug: "ai-journaling-for-loneliness",
+      eyebrow: "Post-breakup loneliness",
+      body: "Loneliness after a breakup has specific patterns. AI journaling angle for the gap.",
+    },
+    {
+      slug: "journaling-for-relationships",
+      eyebrow: "Relationship patterns",
+      body: "Looking at recurring relationship patterns — what to carry forward into the next one.",
+    },
+    {
+      slug: "3am-anxiety-journaling",
+      eyebrow: "Breakup 3am wakeups",
+      body: "Breakups commonly disrupt sleep with 3am wakeups. The technique for late-night spirals.",
+    },
+  ],
+  "journaling-for-social-anxiety": [
+    {
+      slug: "best-ai-journal-apps-for-anxiety-2026",
+      eyebrow: "Tool selection",
+      body: "AI journal apps compared specifically for anxiety — including social anxiety use cases.",
+    },
+    {
+      slug: "journaling-for-imposter-syndrome",
+      eyebrow: "Often overlapping",
+      body: "Social anxiety and imposter syndrome frequently co-occur. The Evidence File technique applies.",
+    },
+    {
+      slug: "ai-journal-for-overthinking",
+      eyebrow: "Pre-event overthinking",
+      body: "Social anxiety often involves pre-event overthinking. The AI journal angle for the loop.",
+    },
+    {
+      slug: "ai-journaling-for-loneliness",
+      eyebrow: "When SA causes isolation",
+      body: "When social anxiety causes isolation and loneliness, this guide bridges the two.",
+    },
+  ],
+  "journaling-untuk-depresi": [
+    {
+      slug: "journaling-untuk-anxiety",
+      eyebrow: "Depresi + anxiety",
+      body: "Depresi dan anxiety sering muncul bareng. 7 prompt khusus anxiety yang juga membantu depresi.",
+    },
+    {
+      slug: "self-healing-dengan-jurnal",
+      eyebrow: "Self healing",
+      body: "Self healing dengan jurnal untuk kondisi yang lebih luas — panduan lengkap.",
+    },
+    {
+      slug: "cara-mengatasi-burnout-gen-z",
+      eyebrow: "Burnout + depresi",
+      body: "Burnout sering jadi pintu masuk depresi. 5 prompt khusus burnout Gen Z Indonesia.",
+    },
+    {
+      slug: "journaling-untuk-kesehatan-mental",
+      eyebrow: "Konteks lebih luas",
+      body: "Kerangka journaling untuk kesehatan mental secara luas — bagaimana depresi cocok di dalamnya.",
+    },
+  ],
+  "nuju-vs-apple-journal": [
+    {
+      slug: "apple-journal-alternatives",
+      eyebrow: "More alternatives",
+      body: "Beyond Nuju — compare other apps that fill Apple Journal's gaps (cross-platform, AI, multi-language).",
+    },
+    {
+      slug: "nuju-vs-daylio",
+      eyebrow: "Another comparison",
+      body: "How Nuju stacks against Daylio (mood tracker), another iOS-friendly option without AI.",
+    },
+    {
+      slug: "best-ai-journaling-apps",
+      eyebrow: "AI journal category",
+      body: "Compare the AI journaling category — if you want AI not just notes, start here.",
+    },
+    {
+      slug: "complete-guide-ai-journaling-2026",
+      eyebrow: "Category guide",
+      body: "Complete 2026 guide to AI journaling — what the category is, how to pick a tool.",
+    },
+  ],
+  "journaling-for-new-parents": [
+    {
+      slug: "journaling-for-depression",
+      eyebrow: "PPD awareness",
+      body: "Postpartum depression is common and treatable. The depression journaling guide complements this.",
+    },
+    {
+      slug: "journaling-for-grief",
+      eyebrow: "Identity grief",
+      body: "Becoming a parent involves grief for old identity. The grief journaling guide applies.",
+    },
+    {
+      slug: "journaling-for-relationships",
+      eyebrow: "Partner adjustment",
+      body: "New parenthood reshapes partnerships. The relationship journaling guide.",
+    },
+    {
+      slug: "5-minute-daily-journaling-habit",
+      eyebrow: "Realistic frequency",
+      body: "Daily journaling isn't realistic with newborns. Here's how to build a sustainable habit.",
+    },
+  ],
+  "journaling-for-job-loss": [
+    {
+      slug: "gen-z-burnout-journaling",
+      eyebrow: "Job loss + burnout",
+      body: "Layoffs often follow burnout. The burnout journaling protocol still applies.",
+    },
+    {
+      slug: "journaling-for-grief",
+      eyebrow: "Job loss = grief",
+      body: "Job loss activates grief systems. The grief journaling guide applies to layoffs too.",
+    },
+    {
+      slug: "journaling-for-imposter-syndrome",
+      eyebrow: "Layoff aftermath",
+      body: "Layoffs can amplify imposter syndrome. The Evidence File technique applies here.",
+    },
+    {
+      slug: "journaling-for-depression",
+      eyebrow: "Watch for depression",
+      body: "Extended job loss can produce depression symptoms. Honest guide on when to escalate.",
+    },
+  ],
+  "journaling-untuk-social-anxiety": [
+    {
+      slug: "journaling-untuk-anxiety",
+      eyebrow: "Anxiety umum",
+      body: "Social anxiety adalah jenis anxiety spesifik. 7 prompt untuk anxiety umum juga membantu.",
+    },
+    {
+      slug: "cara-mengatasi-overthinking",
+      eyebrow: "Pre-event overthinking",
+      body: "Social anxiety sering melibatkan overthinking pre-event. 4 prompt untuk memutus loop.",
+    },
+    {
+      slug: "cara-curhat-ke-diri-sendiri",
+      eyebrow: "Saat nggak bisa curhat",
+      body: "Social anxiety sering bikin susah curhat ke teman. 5 cara curhat ke diri sendiri yang efektif.",
+    },
+    {
+      slug: "aplikasi-curhat-ai",
+      eyebrow: "AI sebagai outlet",
+      body: "Untuk social anxiety, AI journal sering jadi outlet pertama yang aman — panduan memilih.",
+    },
+  ],
+  "cara-journaling-setelah-putus": [
+    {
+      slug: "cara-mengatasi-overthinking",
+      eyebrow: "Overthink mantan",
+      body: "Putus sering memicu overthinking soal mantan dan apa yang salah. 4 prompt untuk memutus loop.",
+    },
+    {
+      slug: "cara-curhat-ke-diri-sendiri",
+      eyebrow: "Saat butuh outlet",
+      body: "Saat butuh curhat soal putus tapi nggak mau bebanin teman — 5 metode curhat ke diri sendiri.",
+    },
+    {
+      slug: "self-healing-dengan-jurnal",
+      eyebrow: "Self healing pasca-putus",
+      body: "Pemulihan dari putus adalah self healing yang lebih luas — panduan lengkap dengan prompt.",
+    },
+    {
+      slug: "journaling-untuk-depresi",
+      eyebrow: "Kalau jadi depresi",
+      body: "Kadang putus memicu depresi klinis. Panduan kapan eskalasi ke profesional.",
+    },
+  ],
+  "mengatasi-stres-kerja-journaling": [
+    {
+      slug: "cara-mengatasi-burnout-gen-z",
+      eyebrow: "Stres → burnout",
+      body: "Stres kerja yang berkepanjangan jadi burnout. 5 prompt burnout Gen Z Indonesia.",
+    },
+    {
+      slug: "journaling-untuk-anxiety",
+      eyebrow: "Stres kerja + anxiety",
+      body: "Stres kerja sering bikin anxiety. 7 prompt khusus anxiety untuk pekerja Indonesia.",
+    },
+    {
+      slug: "cara-mengatasi-overthinking",
+      eyebrow: "Overthink kerjaan",
+      body: "Overthinking pesan Slack, meeting, atau pekerjaan rumah malam? 4 prompt khusus.",
+    },
+    {
+      slug: "digital-wellness-journaling-gen-z-indonesia",
+      eyebrow: "WhatsApp grup kerja",
+      body: "Stres dari notifikasi kerja non-stop? Digital wellness untuk Gen Z Indonesia.",
+    },
+  ],
+  "why-do-i-cry-in-the-shower": [
+    {
+      slug: "journaling-for-depression",
+      eyebrow: "When it's more",
+      body: "Daily shower crying for weeks may signal something beyond regulatory release. Honest depression guide.",
+    },
+    {
+      slug: "3am-anxiety-journaling",
+      eyebrow: "Similar pattern",
+      body: "3am wake-ups have a similar 'privacy + permission' shape. The technique for late-night release.",
+    },
+    {
+      slug: "ai-journal-for-overthinking",
+      eyebrow: "Often connected",
+      body: "Shower crying often follows a day of suppressed overthinking. The AI journal angle.",
+    },
+    {
+      slug: "journaling-for-grief",
+      eyebrow: "If processing loss",
+      body: "If shower crying is connected to grief, the grief journaling guide goes deeper.",
+    },
+  ],
+  "journaling-for-jealousy-and-comparison": [
+    {
+      slug: "journaling-for-imposter-syndrome",
+      eyebrow: "Comparison + imposter",
+      body: "Comparison often fuels imposter syndrome. The Evidence File technique applies.",
+    },
+    {
+      slug: "digital-fatigue-journaling-reset",
+      eyebrow: "Social media trigger",
+      body: "Most comparison happens on social media. The 5-min digital reset protocol.",
+    },
+    {
+      slug: "ai-journal-for-overthinking",
+      eyebrow: "Comparison = overthinking",
+      body: "Comparison spirals are a form of overthinking. The AI journal angle.",
+    },
+    {
+      slug: "journaling-for-perfectionism-procrastination",
+      eyebrow: "Perfectionism root",
+      body: "Comparison often feeds perfectionism. The 6-prompt loop-breaking protocol.",
+    },
+  ],
+  "journaling-after-losing-a-pet": [
+    {
+      slug: "journaling-for-grief",
+      eyebrow: "General grief",
+      body: "Pet grief is real grief. The broader grief journaling framework applies.",
+    },
+    {
+      slug: "journaling-for-breakup",
+      eyebrow: "Similar relational loss",
+      body: "Some pet relationships are deeper than human ones. The breakup framework can apply.",
+    },
+    {
+      slug: "ai-journaling-for-loneliness",
+      eyebrow: "Post-pet loneliness",
+      body: "Loneliness after losing a pet has specific patterns. AI journaling angle for the gap.",
+    },
+    {
+      slug: "best-ai-journal-apps-for-anxiety-2026",
+      eyebrow: "Anxiety from loss",
+      body: "Grief often surfaces as anxiety. AI journal apps that handle both.",
+    },
+  ],
+  "journaling-untuk-hubungan-toxic": [
+    {
+      slug: "cara-curhat-ke-diri-sendiri",
+      eyebrow: "Outlet aman",
+      body: "Pas nggak bisa curhat ke siapa-siapa karena diisolasi — 5 cara curhat ke diri sendiri yang aman.",
+    },
+    {
+      slug: "self-healing-dengan-jurnal",
+      eyebrow: "Pemulihan",
+      body: "Pemulihan dari hubungan toxic adalah self healing yang lebih luas — panduan lengkap.",
+    },
+    {
+      slug: "journaling-untuk-depresi",
+      eyebrow: "Kalau jadi depresi",
+      body: "Hubungan toxic sering memicu depresi. Panduan jujur kapan eskalasi ke profesional.",
+    },
+    {
+      slug: "aplikasi-curhat-ai",
+      eyebrow: "AI sebagai dokumentasi",
+      body: "AI journal sebagai dokumentasi aman (enkripsi) — kriteria memilih untuk situasi sensitif.",
+    },
+  ],
+  "perfeksionisme-dan-procrastination-indonesia": [
+    {
+      slug: "cara-mengatasi-overthinking",
+      eyebrow: "Overthink sebelum mulai",
+      body: "Procrastination sering dimulai dengan overthinking. 4 prompt untuk memutus loop pikiran.",
+    },
+    {
+      slug: "cara-mengatasi-burnout-gen-z",
+      eyebrow: "Burnout downstream",
+      body: "Perfeksionisme + procrastination yang berkepanjangan jadi burnout. 5 prompt khusus.",
+    },
+    {
+      slug: "journaling-untuk-anxiety",
+      eyebrow: "Anxiety perfeksionis",
+      body: "Anxiety perfeksionis adalah kategori sendiri. 7 prompt khusus anxiety untuk konteks Indonesia.",
+    },
+    {
+      slug: "mengatasi-stres-kerja-journaling",
+      eyebrow: "Di tempat kerja",
+      body: "Perfeksionisme di tempat kerja jadi stres kerja. 5 prompt khusus untuk pekerja Indonesia.",
+    },
+  ],
+  "why-do-i-overthink-everything": [
+    {
+      slug: "why-do-i-feel-anxious-for-no-reason",
+      eyebrow: "Similar pattern",
+      body: "Overthinking often pairs with 'random' anxiety. Here's how to identify the hidden triggers.",
+    },
+    {
+      slug: "3am-anxiety-journaling",
+      eyebrow: "When it hits at night",
+      body: "Overthinking that wakes you at 3am needs a slightly different protocol.",
+    },
+    {
+      slug: "ai-journal-for-overthinking",
+      eyebrow: "Deeper guide",
+      body: "Full guide to AI journaling for chronic overthinkers — beyond the 5-minute fix.",
+    },
+    {
+      slug: "best-ai-journal-apps-for-anxiety-2026",
+      eyebrow: "Tool selection",
+      body: "AI journal apps compared for anxiety + overthinking — which to pick.",
+    },
+  ],
+  "why-do-i-feel-anxious-for-no-reason": [
+    {
+      slug: "why-do-i-overthink-everything",
+      eyebrow: "Often co-occur",
+      body: "Anxiety 'for no reason' often comes with overthinking. The 5-minute brain dump protocol.",
+    },
+    {
+      slug: "best-ai-journal-apps-for-anxiety-2026",
+      eyebrow: "Tool selection",
+      body: "5 AI journal apps compared specifically for anxiety — Nuju, Rosebud, Mindsera, Reflectly, Daylio.",
+    },
+    {
+      slug: "3am-anxiety-journaling",
+      eyebrow: "Night version",
+      body: "When 'random' anxiety wakes you at 3am — the specific technique.",
+    },
+    {
+      slug: "mood-tracking-for-anxiety",
+      eyebrow: "Pattern tracking",
+      body: "Mood tracking helps surface hidden anxiety triggers over 2-3 weeks.",
+    },
+  ],
+  "why-do-i-feel-empty-inside": [
+    {
+      slug: "journaling-for-depression",
+      eyebrow: "When empty = depression",
+      body: "When 'empty' includes anhedonia (loss of pleasure), it's worth talking to a doctor. Honest guide.",
+    },
+    {
+      slug: "gen-z-burnout-journaling",
+      eyebrow: "When empty = burnout",
+      body: "Burnout-driven empty responds to rest, not depression treatment. The 4-prompt burnout protocol.",
+    },
+    {
+      slug: "journaling-for-job-loss",
+      eyebrow: "When empty = transition",
+      body: "Identity diffusion after layoff feels empty. The 90-day post-layoff journaling guide.",
+    },
+    {
+      slug: "ai-journaling-for-loneliness",
+      eyebrow: "When empty = lonely",
+      body: "Sometimes 'empty' is loneliness without a name. The AI journaling angle.",
+    },
+  ],
+  "best-journal-app-for-students-2026": [
+    {
+      slug: "best-ai-journal-apps-for-anxiety-2026",
+      eyebrow: "For exam anxiety",
+      body: "If exam anxiety is the main driver, this anxiety-specific app comparison goes deeper.",
+    },
+    {
+      slug: "best-free-mental-wellness-apps-2026",
+      eyebrow: "Free apps generally",
+      body: "Beyond journal apps — 7 truly-free mental wellness apps for the student budget.",
+    },
+    {
+      slug: "5-minute-daily-journaling-habit",
+      eyebrow: "Make it stick",
+      body: "How to build a 5-minute habit that survives finals week.",
+    },
+    {
+      slug: "complete-guide-ai-journaling-2026",
+      eyebrow: "Category guide",
+      body: "Full 2026 guide to AI journaling — what the category is, how to pick.",
+    },
+  ],
+  "best-free-mental-wellness-apps-2026": [
+    {
+      slug: "best-journal-app-for-students-2026",
+      eyebrow: "Student-specific",
+      body: "If you're a student, this picks the strongest free apps for college and high school use.",
+    },
+    {
+      slug: "best-ai-journal-apps-for-anxiety-2026",
+      eyebrow: "Anxiety-specific",
+      body: "If anxiety is the main concern, this compares AI journal apps specifically for that.",
+    },
+    {
+      slug: "complete-guide-ai-journaling-2026",
+      eyebrow: "AI journal category",
+      body: "Complete 2026 guide to AI journaling — if you want depth on that one category.",
+    },
+    {
+      slug: "best-mood-tracker-apps",
+      eyebrow: "Mood tracking",
+      body: "If you specifically want mood tracking, this compares the top mood-tracker category.",
+    },
+  ],
+  "aplikasi-journal-untuk-mahasiswa-indonesia": [
+    {
+      slug: "aplikasi-journal-ai-gratis-indonesia",
+      eyebrow: "Versi lebih luas",
+      body: "Bukan cuma untuk mahasiswa — 5 aplikasi journal AI gratis untuk semua pengguna Indonesia.",
+    },
+    {
+      slug: "aplikasi-curhat-ai",
+      eyebrow: "AI curhat",
+      body: "Khusus AI curhat — kriteria privasi dan rekomendasi spesifik untuk pengguna Indonesia.",
+    },
+    {
+      slug: "self-healing-dengan-jurnal",
+      eyebrow: "Self healing",
+      body: "Setelah pilih aplikasi — cara pakainya untuk self healing yang berkelanjutan.",
+    },
+    {
+      slug: "cara-mengatasi-overthinking",
+      eyebrow: "Overthinking ujian",
+      body: "Untuk anxiety ujian dan overthinking — 4 prompt khusus untuk memutus loop pikiran.",
+    },
+  ],
+  "journaling-untuk-overthinking-malam": [
+    {
+      slug: "cara-mengatasi-overthinking",
+      eyebrow: "Versi lebih lengkap",
+      body: "Untuk overthinking secara umum (nggak cuma malam) — 4 prompt brain dump yang lebih dalam.",
+    },
+    {
+      slug: "3am-anxiety-journaling",
+      eyebrow: "Kalau bangun jam 3 pagi",
+      body: "Kalau overthinking-nya bikin lo bangun jam 3 pagi — protokol khusus untuk itu.",
+    },
+    {
+      slug: "journaling-untuk-anxiety",
+      eyebrow: "Anxiety + overthinking",
+      body: "Overthinking malam sering bagian dari anxiety. 7 prompt khusus anxiety untuk konteks Indonesia.",
+    },
+    {
+      slug: "aplikasi-journal-ai-gratis-indonesia",
+      eyebrow: "Pilih aplikasinya",
+      body: "5 aplikasi journal AI gratis Indonesia yang cocok untuk overthinking malam.",
+    },
+  ],
+  "why-am-i-so-tired-all-the-time": [
+    {
+      slug: "why-do-i-feel-anxious-for-no-reason",
+      eyebrow: "Anxiety + fatigue",
+      body: "Fatigue and 'random' anxiety often share hidden triggers. Identify yours with the 5-min diagnostic.",
+    },
+    {
+      slug: "gen-z-burnout-journaling",
+      eyebrow: "When tired = burnout",
+      body: "Burnout-driven fatigue responds to rest, not depression treatment. The 4-prompt burnout protocol.",
+    },
+    {
+      slug: "journaling-for-depression",
+      eyebrow: "When tired = depression",
+      body: "Low energy and anhedonia are core depression symptoms. Honest framing on when to escalate.",
+    },
+    {
+      slug: "bedtime-journaling-routine-for-sleep",
+      eyebrow: "Sleep quality",
+      body: "Sleep quality often matters more than quantity. The bedtime journaling routine that works.",
+    },
+  ],
+  "why-do-i-cry-randomly": [
+    {
+      slug: "why-do-i-cry-in-the-shower",
+      eyebrow: "Related pattern",
+      body: "Shower crying is a specific case of random crying. The psychology + 5-min journal practice.",
+    },
+    {
+      slug: "journaling-for-grief",
+      eyebrow: "Suppressed grief",
+      body: "If random crying is connected to unprocessed loss, the grief journaling guide goes deeper.",
+    },
+    {
+      slug: "journaling-for-depression",
+      eyebrow: "When it's depression",
+      body: "Random crying with depression symptoms needs professional evaluation. Honest depression guide.",
+    },
+    {
+      slug: "ai-journal-for-overthinking",
+      eyebrow: "Suppressed emotion",
+      body: "Crying often releases suppressed emotion. The AI journal angle for the cognitive piece.",
+    },
+  ],
+  "best-journal-app-for-therapists-2026": [
+    {
+      slug: "best-ai-journal-apps-for-anxiety-2026",
+      eyebrow: "Anxiety-focused clients",
+      body: "For clients specifically managing anxiety — deeper anxiety-focused app comparison.",
+    },
+    {
+      slug: "journaling-before-therapy",
+      eyebrow: "Client onboarding",
+      body: "Help clients prepare for therapy sessions with structured journaling — the pre-session guide.",
+    },
+    {
+      slug: "best-free-mental-wellness-apps-2026",
+      eyebrow: "Free tier options",
+      body: "For clients on tight budgets — 7 truly-free mental wellness apps you can recommend.",
+    },
+    {
+      slug: "complete-guide-ai-journaling-2026",
+      eyebrow: "Category guide",
+      body: "Full 2026 guide to AI journaling — useful for client education on the format.",
+    },
+  ],
+  "nuju-vs-day-one": [
+    {
+      slug: "day-one-alternative",
+      eyebrow: "More alternatives",
+      body: "Looking beyond Nuju? More Day One alternatives covered separately here.",
+    },
+    {
+      slug: "nuju-vs-apple-journal",
+      eyebrow: "Apple ecosystem",
+      body: "If you're on iOS — Apple Journal is the free default. How Nuju compares.",
+    },
+    {
+      slug: "nuju-vs-rosebud",
+      eyebrow: "AI journal vs AI journal",
+      body: "Versus another AI-first journal rather than a heritage diary.",
+    },
+    {
+      slug: "complete-guide-ai-journaling-2026",
+      eyebrow: "Category guide",
+      body: "Complete 2026 guide to AI journaling — what the category is, how to pick.",
+    },
+  ],
+  "cara-mengatasi-stres-skripsi": [
+    {
+      slug: "perfeksionisme-dan-procrastination-indonesia",
+      eyebrow: "Procrastination skripsi",
+      body: "Perfeksionisme + procrastination adalah salah satu sumber stres skripsi terbesar. 6 prompt loop-breaker.",
+    },
+    {
+      slug: "mengatasi-stres-kerja-journaling",
+      eyebrow: "Stres umum",
+      body: "Untuk stres yang lebih luas — 5 prompt khusus pekerja dan mahasiswa Indonesia.",
+    },
+    {
+      slug: "journaling-untuk-overthinking-malam",
+      eyebrow: "Overthink skripsi malam",
+      body: "Skripsi yang muter di kepala malam hari? 5 prompt khusus untuk overthinking malam.",
+    },
+    {
+      slug: "aplikasi-journal-untuk-mahasiswa-indonesia",
+      eyebrow: "Pilih aplikasinya",
+      body: "5 aplikasi journal terbaik untuk mahasiswa Indonesia — termasuk yang cocok untuk stres skripsi.",
+    },
+  ],
+  "persiapan-mental-utbk-sbmptn": [
+    {
+      slug: "journaling-untuk-anxiety",
+      eyebrow: "Anxiety umum",
+      body: "Anxiety UTBK adalah jenis anxiety spesifik. 7 prompt untuk anxiety umum juga berlaku.",
+    },
+    {
+      slug: "perfeksionisme-dan-procrastination-indonesia",
+      eyebrow: "Perfeksionisme belajar",
+      body: "Stres UTBK sering dari perfeksionisme. 6 prompt loop-breaker yang cocok untuk siswa.",
+    },
+    {
+      slug: "cara-mengatasi-overthinking",
+      eyebrow: "Overthink ujian",
+      body: "Overthinking soal hasil UTBK? 4 prompt khusus untuk memutus loop pikiran.",
+    },
+    {
+      slug: "aplikasi-journal-untuk-mahasiswa-indonesia",
+      eyebrow: "Aplikasi yang cocok",
+      body: "5 aplikasi journal terbaik untuk mahasiswa Indonesia — termasuk untuk siswa persiapan PTN.",
+    },
+  ],
+  "why-do-i-feel-disconnected-from-everyone": [
+    {
+      slug: "ai-journaling-for-loneliness",
+      eyebrow: "Lonely while connected",
+      body: "Disconnection often shows up as loneliness even with friends around. The deeper guide.",
+    },
+    {
+      slug: "journaling-for-depression",
+      eyebrow: "When it's depression",
+      body: "Depression-driven disconnection needs professional treatment. Honest framing.",
+    },
+    {
+      slug: "gen-z-burnout-journaling",
+      eyebrow: "When it's burnout",
+      body: "Burnout-driven disconnection responds to rest. The 4-prompt protocol.",
+    },
+    {
+      slug: "digital-fatigue-journaling-reset",
+      eyebrow: "Social media driver",
+      body: "Comparison-driven disconnection often comes from social media. The 5-min reset.",
+    },
+  ],
+  "why-do-i-procrastinate-even-when-i-want-to-do-it": [
+    {
+      slug: "journaling-for-perfectionism-procrastination",
+      eyebrow: "The loop deeper",
+      body: "Perfectionism-procrastination loop is often what drives 'want but won't.' Full protocol.",
+    },
+    {
+      slug: "ai-journal-for-overthinking",
+      eyebrow: "Overthinking root",
+      body: "Procrastination often starts with overthinking. The AI journal angle for the loop.",
+    },
+    {
+      slug: "gen-z-burnout-journaling",
+      eyebrow: "When it's burnout",
+      body: "Burnout makes everything you want to do feel impossible. The 4-prompt protocol.",
+    },
+    {
+      slug: "5-minute-daily-journaling-habit",
+      eyebrow: "Habit building",
+      body: "Build the 5-min unblock protocol into a daily habit that survives.",
+    },
+  ],
+  "best-journal-app-for-entrepreneurs-2026": [
+    {
+      slug: "gen-z-burnout-journaling",
+      eyebrow: "Founder burnout",
+      body: "Founder burnout has specific patterns. The 4-prompt protocol with Maslach framework.",
+    },
+    {
+      slug: "best-ai-journal-apps-for-anxiety-2026",
+      eyebrow: "Founder anxiety",
+      body: "Founder anxiety = chronic anxiety. Anxiety-specific app comparison.",
+    },
+    {
+      slug: "best-free-mental-wellness-apps-2026",
+      eyebrow: "Free toolkit",
+      body: "Bootstrap founders — 7 truly-free apps for the founder toolkit.",
+    },
+    {
+      slug: "complete-guide-ai-journaling-2026",
+      eyebrow: "Category guide",
+      body: "Full 2026 guide to AI journaling — what the category is, how to pick.",
+    },
+  ],
+  "best-journal-app-for-couples-2026": [
+    {
+      slug: "journaling-for-relationships",
+      eyebrow: "Relationship journaling deeper",
+      body: "Beyond couples apps — how to journal about relationships in general.",
+    },
+    {
+      slug: "journaling-for-breakup",
+      eyebrow: "If breakup happens",
+      body: "If the relationship ends — the 7-prompt protocol for first 30 days post-breakup.",
+    },
+    {
+      slug: "best-ai-journal-apps-for-anxiety-2026",
+      eyebrow: "Anxiety affecting relationship",
+      body: "When anxiety affects your relationship — the anxiety-specific app comparison.",
+    },
+    {
+      slug: "complete-guide-ai-journaling-2026",
+      eyebrow: "Category guide",
+      body: "Full 2026 guide to AI journaling — what the category is, how to pick a tool.",
+    },
+  ],
+  "cara-move-on-dari-mantan": [
+    {
+      slug: "cara-journaling-setelah-putus",
+      eyebrow: "Versi lebih detail",
+      body: "7 prompt detail untuk 30 hari pertama pasca-putus dengan riset attachment UCLA.",
+    },
+    {
+      slug: "journaling-untuk-hubungan-toxic",
+      eyebrow: "Kalau hubungan toxic",
+      body: "Kalau yang lo putusin adalah hubungan toxic — guide spesifik untuk pemulihan.",
+    },
+    {
+      slug: "self-healing-dengan-jurnal",
+      eyebrow: "Self healing pasca-putus",
+      body: "Move on adalah self healing yang lebih luas. Panduan praktis dengan prompt.",
+    },
+    {
+      slug: "cara-curhat-ke-diri-sendiri",
+      eyebrow: "Saat butuh outlet",
+      body: "Saat butuh curhat tapi nggak mau bebanin teman — 5 metode curhat ke diri sendiri.",
+    },
+  ],
+  "mengatasi-anxiety-wawancara-kerja": [
+    {
+      slug: "journaling-untuk-anxiety",
+      eyebrow: "Anxiety umum",
+      body: "Anxiety wawancara adalah jenis anxiety spesifik. 7 prompt untuk anxiety umum berlaku.",
+    },
+    {
+      slug: "perfeksionisme-dan-procrastination-indonesia",
+      eyebrow: "Perfeksionisme pre-event",
+      body: "Anxiety wawancara sering dari perfeksionisme. 6 prompt loop-breaker.",
+    },
+    {
+      slug: "mengatasi-stres-kerja-journaling",
+      eyebrow: "Stres kerja umum",
+      body: "Setelah dapet kerja — 5 prompt khusus stres kerja Indonesia.",
+    },
+    {
+      slug: "aplikasi-journal-ai-gratis-indonesia",
+      eyebrow: "Aplikasi yang cocok",
+      body: "5 aplikasi journal AI gratis Indonesia untuk practice harian sebelum interview.",
+    },
+  ],
+  "why-am-i-always-anxious-before-sleep": [
+    {
+      slug: "3am-anxiety-journaling",
+      eyebrow: "When it bleeds to 3am",
+      body: "If pre-sleep anxiety bleeds into 3am wakeups — the specific technique for that.",
+    },
+    {
+      slug: "bedtime-journaling-routine-for-sleep",
+      eyebrow: "Full bedtime routine",
+      body: "Beyond the 5-min reset — the complete bedtime journaling routine for better sleep.",
+    },
+    {
+      slug: "why-do-i-overthink-everything",
+      eyebrow: "Overthinking root",
+      body: "Pre-sleep anxiety often = overthinking surfaced. The 5-minute brain dump protocol.",
+    },
+    {
+      slug: "best-ai-journal-apps-for-anxiety-2026",
+      eyebrow: "Tool selection",
+      body: "AI journal apps compared for anxiety + pre-sleep journaling. Which to pick.",
+    },
+  ],
+  "why-do-i-feel-sad-on-sundays": [
+    {
+      slug: "sunday-scaries-mood-data",
+      eyebrow: "Sunday Scaries deeper",
+      body: "If your Sunday sadness is anticipatory dread about Monday — the deeper Sunday Scaries guide.",
+    },
+    {
+      slug: "ai-journaling-for-loneliness",
+      eyebrow: "Social withdrawal",
+      body: "If Sunday sadness is weekend social withdrawal — the loneliness journaling angle.",
+    },
+    {
+      slug: "journaling-for-depression",
+      eyebrow: "When persistent",
+      body: "Sunday sadness lasting months might be depression. Honest framing.",
+    },
+    {
+      slug: "5-minute-daily-journaling-habit",
+      eyebrow: "Sunday practice",
+      body: "Make Sunday journaling a regular practice that addresses the meaning gap.",
+    },
+  ],
+  "best-journal-app-for-adhd-2026": [
+    {
+      slug: "journaling-for-adhd",
+      eyebrow: "ADHD journaling deeper",
+      body: "Beyond app comparison — how to journal effectively with ADHD brain patterns.",
+    },
+    {
+      slug: "best-ai-journal-apps-for-anxiety-2026",
+      eyebrow: "Anxiety comorbid",
+      body: "ADHD + anxiety is common. Anxiety-specific app comparison.",
+    },
+    {
+      slug: "best-free-mental-wellness-apps-2026",
+      eyebrow: "Free options",
+      body: "7 truly-free mental wellness apps — including ADHD-friendly picks.",
+    },
+    {
+      slug: "5-minute-daily-journaling-habit",
+      eyebrow: "Make it sustainable",
+      body: "How to build a 5-min habit that survives ADHD executive function challenges.",
+    },
+  ],
+  "best-journal-app-with-voice-recording-2026": [
+    {
+      slug: "voice-journaling-guide",
+      eyebrow: "Voice journaling deeper",
+      body: "Full guide to voice journaling — technique, benefits, and how to start.",
+    },
+    {
+      slug: "best-ai-journaling-apps",
+      eyebrow: "Broader category",
+      body: "Compare the full AI journaling category — not just voice-capable ones.",
+    },
+    {
+      slug: "complete-guide-ai-journaling-2026",
+      eyebrow: "Category guide",
+      body: "Full 2026 guide to AI journaling — what the category is, how to pick.",
+    },
+    {
+      slug: "nuju-vs-day-one",
+      eyebrow: "Voice comparison",
+      body: "Both apps support voice — direct comparison.",
+    },
+  ],
+  "depresi-pasca-lulus-kuliah": [
+    {
+      slug: "journaling-untuk-depresi",
+      eyebrow: "Depresi journaling",
+      body: "Untuk depresi spesifik — 5 prompt khusus depresi dengan framing YMYL yang jujur.",
+    },
+    {
+      slug: "cara-mengatasi-stres-keuangan-gen-z",
+      eyebrow: "Stres finansial",
+      body: "Pasca lulus sering tied to stres keuangan. 5 teknik praktis + prompt journaling.",
+    },
+    {
+      slug: "mengatasi-anxiety-wawancara-kerja",
+      eyebrow: "Anxiety job search",
+      body: "Pasca lulus = job search. 5 teknik mengatasi anxiety wawancara.",
+    },
+    {
+      slug: "aplikasi-journal-untuk-mahasiswa-indonesia",
+      eyebrow: "Aplikasi journal alumni",
+      body: "5 aplikasi yang cocok untuk transisi pasca lulus.",
+    },
+  ],
+  "cara-mengatasi-stres-keuangan-gen-z": [
+    {
+      slug: "depresi-pasca-lulus-kuliah",
+      eyebrow: "Depresi pasca lulus",
+      body: "Stres finansial sering tied to depresi pasca lulus. Panduan lengkap.",
+    },
+    {
+      slug: "mengatasi-stres-kerja-journaling",
+      eyebrow: "Stres kerja Indonesia",
+      body: "Stres finansial sering muncul dari stres kerja. 5 prompt khusus pekerja Indonesia.",
+    },
+    {
+      slug: "cara-mengatasi-overthinking",
+      eyebrow: "Overthink finansial",
+      body: "Overthinking soal uang? 4 prompt khusus untuk memutus loop pikiran.",
+    },
+    {
+      slug: "journaling-untuk-anxiety",
+      eyebrow: "Anxiety finansial",
+      body: "Stres finansial sering muncul sebagai anxiety. 7 prompt khusus anxiety untuk Indonesia.",
+    },
+  ],
+  "why-do-i-feel-bored-with-everything-i-used-to-love": [
+    {
+      slug: "why-do-i-feel-empty-inside",
+      eyebrow: "Related feeling",
+      body: "Bored with everything often overlaps with empty inside. The 5-cause taxonomy.",
+    },
+    {
+      slug: "journaling-for-depression",
+      eyebrow: "When it's anhedonia",
+      body: "Loss of pleasure (anhedonia) is core depression symptom. Honest guide on what helps.",
+    },
+    {
+      slug: "digital-fatigue-journaling-reset",
+      eyebrow: "Dopamine cause",
+      body: "Short-form video resets dopamine baseline. The 5-min reset for the over-stimulated brain.",
+    },
+    {
+      slug: "gen-z-burnout-journaling",
+      eyebrow: "Burnout cause",
+      body: "Burnout makes hobbies feel like work. The 4-prompt burnout protocol.",
+    },
+  ],
+  "why-dont-i-want-to-do-anything-anymore": [
+    {
+      slug: "why-am-i-so-tired-all-the-time",
+      eyebrow: "Often overlaps",
+      body: "Loss of motivation + persistent fatigue often share causes. The 5-cause fatigue stack.",
+    },
+    {
+      slug: "journaling-for-depression",
+      eyebrow: "When it's depression",
+      body: "Avolition is core depression symptom. Honest framing on when to escalate.",
+    },
+    {
+      slug: "best-journal-app-for-adhd-2026",
+      eyebrow: "When it's ADHD",
+      body: "If 'don't want' is really 'can't initiate,' ADHD evaluation is worth pursuing.",
+    },
+    {
+      slug: "gen-z-burnout-journaling",
+      eyebrow: "When it's burnout",
+      body: "Burnout-driven motivation loss responds to rest. The 4-prompt protocol.",
+    },
+  ],
+  "nuju-vs-stoic": [
+    {
+      slug: "nuju-vs-day-one",
+      eyebrow: "Another philosophy comparison",
+      body: "Day One is heritage diary. How Nuju compares to that journaling philosophy.",
+    },
+    {
+      slug: "complete-guide-ai-journaling-2026",
+      eyebrow: "Category guide",
+      body: "Full 2026 guide to AI journaling — what the category is, how to pick.",
+    },
+    {
+      slug: "best-journal-app-for-entrepreneurs-2026",
+      eyebrow: "Founder comparison",
+      body: "Stoic Journal is popular with founders. The 5-pick founder app comparison.",
+    },
+    {
+      slug: "ai-coach-personality-preference-data",
+      eyebrow: "Nuju's Wise Sage",
+      body: "Real data: Nuju's Stoic-inspired 'Wise Sage' is least picked persona. Why.",
+    },
+  ],
+  "best-journal-app-for-anxiety-and-depression-2026": [
+    {
+      slug: "best-ai-journal-apps-for-anxiety-2026",
+      eyebrow: "Anxiety-only deeper",
+      body: "Anxiety-only deeper comparison — if depression isn't the dominant concern.",
+    },
+    {
+      slug: "journaling-for-depression",
+      eyebrow: "Depression-only deeper",
+      body: "Depression-only deeper guide — honest framing, professional care emphasis.",
+    },
+    {
+      slug: "best-free-mental-wellness-apps-2026",
+      eyebrow: "Free toolkit",
+      body: "7 truly-free mental wellness apps for tight budgets.",
+    },
+    {
+      slug: "complete-guide-ai-journaling-2026",
+      eyebrow: "Category guide",
+      body: "Full 2026 guide to AI journaling — what the category is, how to pick.",
+    },
+  ],
+  "journaling-untuk-adhd-indonesia": [
+    {
+      slug: "journaling-for-adhd",
+      eyebrow: "ADHD journaling deeper",
+      body: "Beyond Indonesian context — full guide to ADHD-friendly journaling.",
+    },
+    {
+      slug: "best-journal-app-for-adhd-2026",
+      eyebrow: "Tool selection",
+      body: "5 apps tested for ADHD brain — Nuju, Daylio, Reflectly, Stoic, Bearable.",
+    },
+    {
+      slug: "perfeksionisme-dan-procrastination-indonesia",
+      eyebrow: "ADHD + procrastination",
+      body: "ADHD + procrastination often overlap. The 6-prompt loop-breaker protocol.",
+    },
+    {
+      slug: "aplikasi-journal-ai-gratis-indonesia",
+      eyebrow: "Aplikasi ADHD-friendly",
+      body: "5 aplikasi journal AI gratis Indonesia — termasuk yang ADHD-friendly.",
+    },
+  ],
+  "mengatasi-anxiety-media-sosial-gen-z": [
+    {
+      slug: "digital-wellness-journaling-gen-z-indonesia",
+      eyebrow: "Digital fatigue Indonesia",
+      body: "Anxiety sosmed = bagian dari digital fatigue Gen Z. Protokol 5-menit reset lengkap.",
+    },
+    {
+      slug: "journaling-for-jealousy-and-comparison",
+      eyebrow: "Comparison loop",
+      body: "Comparison adalah komponen anxiety sosmed terbesar. 6 prompt loop-breaker.",
+    },
+    {
+      slug: "journaling-untuk-anxiety",
+      eyebrow: "Anxiety umum",
+      body: "Anxiety sosmed adalah jenis anxiety spesifik. 7 prompt untuk anxiety umum berlaku.",
+    },
+    {
+      slug: "cara-mengatasi-overthinking",
+      eyebrow: "Overthink sosmed",
+      body: "Overthinking apa yang lo liat di sosmed? 4 prompt untuk memutus loop pikiran.",
+    },
+  ],
 };
 
 const getInternalLinkCards = (slug: string): InternalLinkCard[] =>

@@ -6,7 +6,7 @@
     <atom:link href="https://nuju.app/rss.xml" rel="self" type="application/rss+xml" />
     <description>Practical guides on journaling, mood tracking, and emotional wellness from the Nuju team.</description>
     <language>en</language>
-    <lastBuildDate>Fri, 22 May 2026 08:20:05 GMT</lastBuildDate>
+    <lastBuildDate>Fri, 22 May 2026 20:02:50 GMT</lastBuildDate>
     <item>
       <title>We Analyzed Our First 161 Real Journal Entries: 87% Were Logged on &apos;Not Great&apos; Days</title>
       <link>https://nuju.app/blog/what-people-write-in-journal-data</link>
@@ -201,6 +201,438 @@
       <link>https://nuju.app/blog/digital-wellness-journaling-gen-z-indonesia</link>
       <guid isPermaLink="true">https://nuju.app/blog/digital-wellness-journaling-gen-z-indonesia</guid>
       <description>Gen Z Indonesia rata-rata 6+ jam di HP per hari — tertinggi dari generasi manapun. Digital fatigue jadi masalah nyata. Journaling 5 menit terbukti memutus loop scroll dan reset otak. Panduan praktis untuk Gen Z Indonesia.</description>
+      <category>Mental Wellness</category>
+      <pubDate>Fri, 22 May 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Nuju vs Reflection: Which AI Journal Wins in 2026? (Honest Comparison)</title>
+      <link>https://nuju.app/blog/nuju-vs-reflection</link>
+      <guid isPermaLink="true">https://nuju.app/blog/nuju-vs-reflection</guid>
+      <description>Nuju and Reflection are both privacy-first AI journals with strong free tiers. Nuju wins on short-entry speed, warm AI tone, and 8-language support. Reflection wins on guided conversation depth. Here&apos;s the honest side-by-side.</description>
+      <category>App Comparison</category>
+      <pubDate>Fri, 22 May 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Nuju vs Daylio: AI Journal or Pure Mood Tracker? (2026 Comparison)</title>
+      <link>https://nuju.app/blog/nuju-vs-daylio</link>
+      <guid isPermaLink="true">https://nuju.app/blog/nuju-vs-daylio</guid>
+      <description>Nuju and Daylio target different jobs. Daylio is a mood tracker with optional notes — fastest entry in the category. Nuju is an AI journal with mood tracking built in. Often complementary, sometimes one is enough.</description>
+      <category>App Comparison</category>
+      <pubDate>Fri, 22 May 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Journaling for Depression: What Actually Helps (and What to Skip) in 2026</title>
+      <link>https://nuju.app/blog/journaling-for-depression</link>
+      <guid isPermaLink="true">https://nuju.app/blog/journaling-for-depression</guid>
+      <description>Depression is a medical condition that needs professional treatment. Journaling can support recovery as a complement — never as a substitute. Here&apos;s what the research actually shows works, what to avoid, and how to know when to escalate.</description>
+      <category>Mental Wellness</category>
+      <pubDate>Fri, 22 May 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Journaling After a Breakup: 7 Prompts for the First 30 Days (2026)</title>
+      <link>https://nuju.app/blog/journaling-for-breakup</link>
+      <guid isPermaLink="true">https://nuju.app/blog/journaling-for-breakup</guid>
+      <description>Breakups activate the same brain regions as physical pain. Journaling structured around attachment research and grief stages helps process the loss without rushing it. 7 prompts mapped to the first 30 days, plus what to skip.</description>
+      <category>Mental Wellness</category>
+      <pubDate>Fri, 22 May 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Journaling for Social Anxiety: 6 Prompts That Quiet the &apos;Everyone Is Judging&apos; Voice</title>
+      <link>https://nuju.app/blog/journaling-for-social-anxiety</link>
+      <guid isPermaLink="true">https://nuju.app/blog/journaling-for-social-anxiety</guid>
+      <description>Social anxiety isn&apos;t shyness — it&apos;s an anxiety condition with specific patterns. Journaling helps when it externalizes the &apos;everyone is judging me&apos; loop and tracks evidence against it. 6 research-backed prompts, what to skip.</description>
+      <category>Mental Wellness</category>
+      <pubDate>Fri, 22 May 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Journaling untuk Depresi: Yang Membantu dan Yang Harus Dihindari (2026)</title>
+      <link>https://nuju.app/blog/journaling-untuk-depresi</link>
+      <guid isPermaLink="true">https://nuju.app/blog/journaling-untuk-depresi</guid>
+      <description>Depresi adalah kondisi medis yang butuh penanganan profesional. Journaling bisa membantu sebagai PEMBANTU — bukan pengganti. Berikut yang riset tunjukkan benar-benar membantu, yang harus dihindari, dan kapan harus eskalasi.</description>
+      <category>Mental Wellness</category>
+      <pubDate>Fri, 22 May 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Nuju vs Apple Journal: Why iOS-Only Isn&apos;t Enough in 2026</title>
+      <link>https://nuju.app/blog/nuju-vs-apple-journal</link>
+      <guid isPermaLink="true">https://nuju.app/blog/nuju-vs-apple-journal</guid>
+      <description>Apple Journal is free and pre-installed on every iPhone — but it&apos;s iOS-only, no AI insights, no web access. Nuju works on web + Android + iOS with AI feedback and 8 languages. Here&apos;s when each wins.</description>
+      <category>App Comparison</category>
+      <pubDate>Fri, 22 May 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Journaling for New Parents: 6 Prompts for the First Year (2026)</title>
+      <link>https://nuju.app/blog/journaling-for-new-parents</link>
+      <guid isPermaLink="true">https://nuju.app/blog/journaling-for-new-parents</guid>
+      <description>Becoming a parent rewires your identity, sleep, and emotional baseline. Journaling helps capture the chaos honestly — without performative joy or guilt. 6 research-backed prompts mapped to the first year, plus when postpartum mood needs a professional.</description>
+      <category>Mental Wellness</category>
+      <pubDate>Fri, 22 May 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Journaling After a Layoff or Job Loss: 6 Prompts for the First 90 Days (2026)</title>
+      <link>https://nuju.app/blog/journaling-for-job-loss</link>
+      <guid isPermaLink="true">https://nuju.app/blog/journaling-for-job-loss</guid>
+      <description>Job loss ranks among the most stressful life events on the Holmes-Rahe scale. Journaling structured around grief stages and identity reframing helps process the loss without rushing through it. 6 prompts mapped to the first 90 days.</description>
+      <category>Mental Wellness</category>
+      <pubDate>Fri, 22 May 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Journaling untuk Social Anxiety: 6 Prompt yang Meredam &apos;Semua Orang Lagi Menilai Gue&apos;</title>
+      <link>https://nuju.app/blog/journaling-untuk-social-anxiety</link>
+      <guid isPermaLink="true">https://nuju.app/blog/journaling-untuk-social-anxiety</guid>
+      <description>Social anxiety bukan sekadar pemalu — itu kondisi anxiety dengan pola spesifik. Journaling membantu saat dia mengeksternalisasi loop &apos;semua orang menilai gue&apos; dan membangun bukti tandingan. 6 prompt berbasis riset, plus kapan harus ke profesional.</description>
+      <category>Mental Wellness</category>
+      <pubDate>Fri, 22 May 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Cara Journaling Setelah Putus: 7 Prompt untuk 30 Hari Pertama (2026)</title>
+      <link>https://nuju.app/blog/cara-journaling-setelah-putus</link>
+      <guid isPermaLink="true">https://nuju.app/blog/cara-journaling-setelah-putus</guid>
+      <description>Putus mengaktifkan area otak yang sama dengan rasa sakit fisik. Journaling yang terstruktur sekitar riset attachment dan tahap kehilangan membantu memproses tanpa terburu-buru. 7 prompt dipetakan ke 30 hari pertama, plus yang harus dihindari.</description>
+      <category>Mental Wellness</category>
+      <pubDate>Fri, 22 May 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Mengatasi Stres Kerja dengan Journaling: 5 Prompt untuk Pekerja Indonesia (2026)</title>
+      <link>https://nuju.app/blog/mengatasi-stres-kerja-journaling</link>
+      <guid isPermaLink="true">https://nuju.app/blog/mengatasi-stres-kerja-journaling</guid>
+      <description>Stres kerja di Indonesia naik signifikan — Gen Z dan Milenial paling terdampak. Journaling 5 menit per hari terbukti memutus loop stres tanpa harus berhenti kerja. 5 prompt spesifik untuk konteks kerja Indonesia, plus kapan butuh psikolog.</description>
+      <category>Mental Wellness</category>
+      <pubDate>Fri, 22 May 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Why Do I Cry in the Shower? The Psychology — and the Journal Practice That Helps</title>
+      <link>https://nuju.app/blog/why-do-i-cry-in-the-shower</link>
+      <guid isPermaLink="true">https://nuju.app/blog/why-do-i-cry-in-the-shower</guid>
+      <description>Shower crying isn&apos;t random. It&apos;s a documented emotional-regulation pattern: privacy + sensory dampening + permission. Here&apos;s the psychology, why it&apos;s actually healthy, and the 5-minute journal practice that completes the release.</description>
+      <category>Mental Wellness</category>
+      <pubDate>Fri, 22 May 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Journaling for Jealousy and Comparison: 6 Prompts That Quiet the &apos;Why Not Me&apos; Voice (2026)</title>
+      <link>https://nuju.app/blog/journaling-for-jealousy-and-comparison</link>
+      <guid isPermaLink="true">https://nuju.app/blog/journaling-for-jealousy-and-comparison</guid>
+      <description>Jealousy and comparison aren&apos;t character flaws — they&apos;re the comparison brain firing in environments designed to provoke it. Social comparison theory + 6 research-backed journal prompts that interrupt the loop. Plus when comparison signals something deeper.</description>
+      <category>Mental Wellness</category>
+      <pubDate>Fri, 22 May 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Journaling After Losing a Pet: 6 Prompts for Grief That Others Don&apos;t Always Recognize</title>
+      <link>https://nuju.app/blog/journaling-after-losing-a-pet</link>
+      <guid isPermaLink="true">https://nuju.app/blog/journaling-after-losing-a-pet</guid>
+      <description>Pet loss is real grief — and one of the most under-recognized forms (&apos;disenfranchised grief&apos;). Research from Kenneth Doka + AVMA. 6 journal prompts to honor what was real, including when others don&apos;t understand the depth.</description>
+      <category>Mental Wellness</category>
+      <pubDate>Fri, 22 May 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Journaling untuk Hubungan Toxic: Mengenali Pola dan Mulai Memulihkan (2026)</title>
+      <link>https://nuju.app/blog/journaling-untuk-hubungan-toxic</link>
+      <guid isPermaLink="true">https://nuju.app/blog/journaling-untuk-hubungan-toxic</guid>
+      <description>Hubungan toxic punya pola yang bisa dikenali — kontrol, manipulasi, gaslighting, isolasi. Journaling membantu lo mengenali pola dari dalam, melacak insiden, dan akhirnya memulihkan diri sendiri. 6 prompt + sumber krisis Indonesia.</description>
+      <category>Mental Wellness</category>
+      <pubDate>Fri, 22 May 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Loop Perfeksionisme-Procrastination: 6 Prompt Jurnal yang Bekerja (Gen Z Indonesia 2026)</title>
+      <link>https://nuju.app/blog/perfeksionisme-dan-procrastination-indonesia</link>
+      <guid isPermaLink="true">https://nuju.app/blog/perfeksionisme-dan-procrastination-indonesia</guid>
+      <description>Perfeksionisme dan procrastination adalah satu loop, bukan dua masalah terpisah. Untuk Gen Z Indonesia, ditambah tekanan keluarga dan akademik. 6 prompt jurnal berbasis riset yang memutus loop + konteks Indonesia.</description>
+      <category>Mental Wellness</category>
+      <pubDate>Fri, 22 May 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Why Do I Overthink Everything? The Real Reasons (and How to Stop Tonight)</title>
+      <link>https://nuju.app/blog/why-do-i-overthink-everything</link>
+      <guid isPermaLink="true">https://nuju.app/blog/why-do-i-overthink-everything</guid>
+      <description>Overthinking isn&apos;t a character flaw — it&apos;s a documented pattern with specific neurological causes. Here&apos;s why your brain does it, and a 5-minute journal protocol that actually interrupts the loop, starting tonight.</description>
+      <category>Mental Wellness</category>
+      <pubDate>Fri, 22 May 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Why Do I Feel Anxious for No Reason? The Hidden Triggers (and What Helps)</title>
+      <link>https://nuju.app/blog/why-do-i-feel-anxious-for-no-reason</link>
+      <guid isPermaLink="true">https://nuju.app/blog/why-do-i-feel-anxious-for-no-reason</guid>
+      <description>Anxiety without obvious cause has real causes — they&apos;re just hidden. Hormonal cycles, blood sugar, sleep debt, low-grade chronic stress, suppressed emotions. Here&apos;s how to identify YOUR specific &apos;invisible&apos; triggers + 5-min journal protocol.</description>
+      <category>Mental Wellness</category>
+      <pubDate>Fri, 22 May 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Why Do I Feel Empty Inside? The Real Causes (and When It&apos;s Time for Help)</title>
+      <link>https://nuju.app/blog/why-do-i-feel-empty-inside</link>
+      <guid isPermaLink="true">https://nuju.app/blog/why-do-i-feel-empty-inside</guid>
+      <description>Feeling empty isn&apos;t a character flaw — it has documented causes: chronic burnout, depression, identity diffusion, suppressed emotion. Here&apos;s how to identify what&apos;s actually happening and a 5-minute journal practice — plus when &apos;empty&apos; needs professional help.</description>
+      <category>Mental Wellness</category>
+      <pubDate>Fri, 22 May 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Best Journal App for Students in 2026: 5 Picks for College and High School</title>
+      <link>https://nuju.app/blog/best-journal-app-for-students-2026</link>
+      <guid isPermaLink="true">https://nuju.app/blog/best-journal-app-for-students-2026</guid>
+      <description>Students need a journal app that fits between classes, costs nothing or close to it, supports anxiety from exams, and protects privacy. We tested 5 picks for 2026 — Nuju, Daylio, Reflectly, Stoic, and Apple Journal. Here&apos;s what wins.</description>
+      <category>App Comparison</category>
+      <pubDate>Fri, 22 May 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Best Free Mental Wellness Apps in 2026: 7 That Actually Help (No Paywalls)</title>
+      <link>https://nuju.app/blog/best-free-mental-wellness-apps-2026</link>
+      <guid isPermaLink="true">https://nuju.app/blog/best-free-mental-wellness-apps-2026</guid>
+      <description>Most &apos;free&apos; mental wellness apps are 7-day trials. These 7 are actually free — Nuju, Daylio, Insight Timer, Woebot, MindShift, What&apos;s Up, Headspace Free. What they help with, what they don&apos;t, and how to combine them.</description>
+      <category>App Comparison</category>
+      <pubDate>Fri, 22 May 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Aplikasi Journal Terbaik untuk Mahasiswa Indonesia 2026: 5 Pilihan</title>
+      <link>https://nuju.app/blog/aplikasi-journal-untuk-mahasiswa-indonesia</link>
+      <guid isPermaLink="true">https://nuju.app/blog/aplikasi-journal-untuk-mahasiswa-indonesia</guid>
+      <description>Mahasiswa Indonesia butuh aplikasi journal yang fit di antara kuliah, gratis atau hampir gratis, bantu anxiety ujian, dan jaga privasi. 5 pilihan terbaik 2026: Nuju, Daylio, Riliv, What&apos;s Up, Calm Free. Lengkap.</description>
+      <category>App Comparison</category>
+      <pubDate>Fri, 22 May 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Cara Stop Overthinking Malam: 5 Prompt Journaling 5 Menit (2026)</title>
+      <link>https://nuju.app/blog/journaling-untuk-overthinking-malam</link>
+      <guid isPermaLink="true">https://nuju.app/blog/journaling-untuk-overthinking-malam</guid>
+      <description>Overthinking malam adalah salah satu masalah kesehatan mental Gen Z Indonesia paling umum. Otak nggak mau tidur, mikirin yang sama berulang. 5 prompt journaling yang secara konsisten memutus loop — tested untuk pekerja dan mahasiswa.</description>
+      <category>Mental Wellness</category>
+      <pubDate>Fri, 22 May 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Why Am I So Tired All the Time? The Hidden Causes (Not Just Sleep)</title>
+      <link>https://nuju.app/blog/why-am-i-so-tired-all-the-time</link>
+      <guid isPermaLink="true">https://nuju.app/blog/why-am-i-so-tired-all-the-time</guid>
+      <description>Persistent fatigue rarely comes from sleep alone. The real causes are usually a stack — sleep debt + chronic stress + thyroid + iron + emotional exhaustion. Here&apos;s how to identify YOUR specific stack, plus when fatigue needs medical evaluation.</description>
+      <category>Mental Wellness</category>
+      <pubDate>Fri, 22 May 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Why Do I Cry Randomly? The Real Causes (and What to Do About It)</title>
+      <link>https://nuju.app/blog/why-do-i-cry-randomly</link>
+      <guid isPermaLink="true">https://nuju.app/blog/why-do-i-cry-randomly</guid>
+      <description>Random crying isn&apos;t random — it has documented causes. Hormonal shifts, sensory overload, suppressed grief, accumulated stress, or depression. Here&apos;s how to identify what&apos;s actually happening, plus a 5-minute journal practice that helps.</description>
+      <category>Mental Wellness</category>
+      <pubDate>Fri, 22 May 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Best Journal App for Therapists and Clients in 2026: 5 Picks for Therapy Practice</title>
+      <link>https://nuju.app/blog/best-journal-app-for-therapists-2026</link>
+      <guid isPermaLink="true">https://nuju.app/blog/best-journal-app-for-therapists-2026</guid>
+      <description>Therapists need a journal app that protects client privacy, integrates with therapy homework, and provides pattern data without overstepping clinical boundaries. We tested 5 picks for 2026 — Nuju, Rosebud, Reflectly, Daylio, Mindsera.</description>
+      <category>App Comparison</category>
+      <pubDate>Fri, 22 May 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Nuju vs Day One: AI-First or Heritage Diary? (2026 Comparison)</title>
+      <link>https://nuju.app/blog/nuju-vs-day-one</link>
+      <guid isPermaLink="true">https://nuju.app/blog/nuju-vs-day-one</guid>
+      <description>Nuju and Day One target different journaling philosophies. Day One is the polished heritage diary for long-form daily writing. Nuju is the AI-first short-entry tool for the 30-second pattern. Here&apos;s the honest comparison.</description>
+      <category>App Comparison</category>
+      <pubDate>Fri, 22 May 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Cara Mengatasi Stres Skripsi: 6 Prompt Journaling + Strategi Praktis (2026)</title>
+      <link>https://nuju.app/blog/cara-mengatasi-stres-skripsi</link>
+      <guid isPermaLink="true">https://nuju.app/blog/cara-mengatasi-stres-skripsi</guid>
+      <description>Stres skripsi adalah salah satu pengalaman mental health paling berat di hidup mahasiswa Indonesia — kombinasi tekanan akademik, finansial, dan ekspektasi keluarga. 6 prompt journaling yang terbukti memutus loop stres + strategi praktis.</description>
+      <category>Mental Wellness</category>
+      <pubDate>Fri, 22 May 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Persiapan Mental UTBK / SBMPTN: 5 Prompt Journaling untuk H-30 hingga Hari-H</title>
+      <link>https://nuju.app/blog/persiapan-mental-utbk-sbmptn</link>
+      <guid isPermaLink="true">https://nuju.app/blog/persiapan-mental-utbk-sbmptn</guid>
+      <description>Anxiety UTBK / SBMPTN nyata dan terdokumentasi. Stres akademik + ekspektasi keluarga + ketidakpastian masa depan. 5 prompt journaling spesifik untuk persiapan mental, dipetakan H-30 sampai hari-H plus malam sebelum tes.</description>
+      <category>Mental Wellness</category>
+      <pubDate>Fri, 22 May 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Why Do I Feel Disconnected from Everyone? The Real Causes (and What Actually Helps)</title>
+      <link>https://nuju.app/blog/why-do-i-feel-disconnected-from-everyone</link>
+      <guid isPermaLink="true">https://nuju.app/blog/why-do-i-feel-disconnected-from-everyone</guid>
+      <description>Feeling disconnected even when surrounded by people is a documented experience — not character flaw. 5 most common causes (depression, burnout, identity shift, social-media-driven comparison, suppressed emotion). 5-min diagnostic + what helps.</description>
+      <category>Mental Wellness</category>
+      <pubDate>Fri, 22 May 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Why Do I Procrastinate Even When I Want to Do It? The Hidden Mechanism</title>
+      <link>https://nuju.app/blog/why-do-i-procrastinate-even-when-i-want-to-do-it</link>
+      <guid isPermaLink="true">https://nuju.app/blog/why-do-i-procrastinate-even-when-i-want-to-do-it</guid>
+      <description>Procrastinating things you want to do feels paradoxical — but it&apos;s actually the same mechanism as procrastinating things you hate. It&apos;s not about wanting or willpower. It&apos;s emotion regulation. Here&apos;s the real cause and a 5-minute fix.</description>
+      <category>Mental Wellness</category>
+      <pubDate>Fri, 22 May 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Best Journal App for Entrepreneurs in 2026: 5 Picks for Founders, Solopreneurs, and Builders</title>
+      <link>https://nuju.app/blog/best-journal-app-for-entrepreneurs-2026</link>
+      <guid isPermaLink="true">https://nuju.app/blog/best-journal-app-for-entrepreneurs-2026</guid>
+      <description>Entrepreneurs need a journal app that fits between sprints, surfaces patterns under chaos, and respects strategic thinking time. We tested 5 picks for 2026 — Nuju, Stoic, Reflection, Day One, Mindsera. Honest comparison.</description>
+      <category>App Comparison</category>
+      <pubDate>Fri, 22 May 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Best Journal App for Couples in 2026: 5 Picks for Shared Reflection</title>
+      <link>https://nuju.app/blog/best-journal-app-for-couples-2026</link>
+      <guid isPermaLink="true">https://nuju.app/blog/best-journal-app-for-couples-2026</guid>
+      <description>Couples journaling improves communication, processes conflict, and deepens connection. We tested 5 apps for couples — Nuju (parallel use), Two of Us, Paired, Couplete, and Lasting. Each app&apos;s approach + when each one works.</description>
+      <category>App Comparison</category>
+      <pubDate>Fri, 22 May 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Cara Move On dari Mantan: Panduan Jujur 90 Hari (Bukan &apos;Cepet Move On&apos;)</title>
+      <link>https://nuju.app/blog/cara-move-on-dari-mantan</link>
+      <guid isPermaLink="true">https://nuju.app/blog/cara-move-on-dari-mantan</guid>
+      <description>Move on dari mantan bukan proses 1 minggu — riset menunjukkan 3-18 bulan untuk hubungan jangka panjang. Yang membantu: structured journaling, bukan &apos;cepet move on&apos; atau replacement therapy. Panduan jujur 90 hari + sumber Indonesia.</description>
+      <category>Mental Wellness</category>
+      <pubDate>Fri, 22 May 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Cara Mengatasi Anxiety Wawancara Kerja: 5 Teknik Berbasis Riset (Indonesia 2026)</title>
+      <link>https://nuju.app/blog/mengatasi-anxiety-wawancara-kerja</link>
+      <guid isPermaLink="true">https://nuju.app/blog/mengatasi-anxiety-wawancara-kerja</guid>
+      <description>Anxiety wawancara kerja umum dan terdokumentasi. Yang membantu: structured preparation + 10 menit brain dump pre-interview + 5 reframing prompts. Plus konteks Indonesia: ekspektasi keluarga, comparison, ketidakpastian.</description>
+      <category>Mental Wellness</category>
+      <pubDate>Fri, 22 May 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Why Am I Always Anxious Before Sleep? The Real Causes (and the 5-Minute Pre-Sleep Reset)</title>
+      <link>https://nuju.app/blog/why-am-i-always-anxious-before-sleep</link>
+      <guid isPermaLink="true">https://nuju.app/blog/why-am-i-always-anxious-before-sleep</guid>
+      <description>Pre-sleep anxiety has documented causes: daytime distraction drops, default-mode network activates, accumulated cortisol surfaces. Here&apos;s the mechanism + a 5-minute reset that drops sleep latency by 9 minutes per Baylor 2018 research.</description>
+      <category>Mental Wellness</category>
+      <pubDate>Fri, 22 May 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Why Do I Feel Sad on Sundays? The Pattern Behind Sunday Blues</title>
+      <link>https://nuju.app/blog/why-do-i-feel-sad-on-sundays</link>
+      <guid isPermaLink="true">https://nuju.app/blog/why-do-i-feel-sad-on-sundays</guid>
+      <description>Sunday sadness is real and documented — it&apos;s not the same as Sunday Scaries. Specific causes include anticipatory dread, weekend social withdrawal, lack of structure, and meaning vacuum after busy week. Here&apos;s how to identify your specific cause + 5-min protocol.</description>
+      <category>Mental Wellness</category>
+      <pubDate>Fri, 22 May 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Best Journal App for ADHD in 2026: 5 Picks That Actually Work for ADHD Brains</title>
+      <link>https://nuju.app/blog/best-journal-app-for-adhd-2026</link>
+      <guid isPermaLink="true">https://nuju.app/blog/best-journal-app-for-adhd-2026</guid>
+      <description>ADHD brains need a journal app that removes friction, supports executive function challenges, and doesn&apos;t punish missed days. We tested 5 picks for 2026 — Nuju, Daylio, Reflectly, Stoic, Bearable. Honest comparison for the ADHD profile.</description>
+      <category>App Comparison</category>
+      <pubDate>Fri, 22 May 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Best Journal App with Voice Recording in 2026: 5 Picks for Voice Journaling</title>
+      <link>https://nuju.app/blog/best-journal-app-with-voice-recording-2026</link>
+      <guid isPermaLink="true">https://nuju.app/blog/best-journal-app-with-voice-recording-2026</guid>
+      <description>Voice journaling captures what typing misses — tone, hesitation, emotional weight. 5 apps tested for 2026: Nuju Pro, Day One, Otter, Whisper-based apps, Voice Brain Dump. Honest comparison of voice + transcription + privacy.</description>
+      <category>App Comparison</category>
+      <pubDate>Fri, 22 May 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Depresi Pasca Lulus Kuliah: Kenapa Terjadi dan Cara Pulih (Indonesia 2026)</title>
+      <link>https://nuju.app/blog/depresi-pasca-lulus-kuliah</link>
+      <guid isPermaLink="true">https://nuju.app/blog/depresi-pasca-lulus-kuliah</guid>
+      <description>Depresi pasca lulus kuliah umum tapi sering nggak dibahas — kombinasi kehilangan struktur, identity diffusion, tekanan kerja, dan ekspektasi keluarga. Penyebab nyata + cara pulih + kapan butuh psikolog. Sumber Indonesia lengkap.</description>
+      <category>Mental Wellness</category>
+      <pubDate>Fri, 22 May 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Cara Mengatasi Stres Keuangan Gen Z Indonesia: 5 Teknik Praktis + Journaling</title>
+      <link>https://nuju.app/blog/cara-mengatasi-stres-keuangan-gen-z</link>
+      <guid isPermaLink="true">https://nuju.app/blog/cara-mengatasi-stres-keuangan-gen-z</guid>
+      <description>Stres keuangan Gen Z Indonesia naik signifikan 2024-2026 — inflasi, biaya hidup, ekspektasi gaya hidup sosmed. 5 teknik praktis untuk mengelola stres + 4 prompt journaling. Plus sumber bantuan keuangan dan mental health.</description>
+      <category>Mental Wellness</category>
+      <pubDate>Fri, 22 May 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Why Do I Feel Bored with Everything I Used to Love? (The Real Causes)</title>
+      <link>https://nuju.app/blog/why-do-i-feel-bored-with-everything-i-used-to-love</link>
+      <guid isPermaLink="true">https://nuju.app/blog/why-do-i-feel-bored-with-everything-i-used-to-love</guid>
+      <description>Losing interest in things you used to love isn&apos;t laziness — it&apos;s a documented symptom with specific causes. Burnout, depression (anhedonia), identity shift, dopamine desensitization, or natural growth. Here&apos;s how to identify yours.</description>
+      <category>Mental Wellness</category>
+      <pubDate>Fri, 22 May 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Why Don&apos;t I Want to Do Anything Anymore? (The Real Causes Behind Avolition)</title>
+      <link>https://nuju.app/blog/why-dont-i-want-to-do-anything-anymore</link>
+      <guid isPermaLink="true">https://nuju.app/blog/why-dont-i-want-to-do-anything-anymore</guid>
+      <description>Loss of motivation to do anything has documented causes: depression (avolition), burnout, executive function issues (ADHD), chronic exhaustion, or values vacuum. Each calls for different response. 5-min diagnostic + when it needs professional help.</description>
+      <category>Mental Wellness</category>
+      <pubDate>Fri, 22 May 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Nuju vs Stoic: AI Journal or Philosophical Practice? (2026 Comparison)</title>
+      <link>https://nuju.app/blog/nuju-vs-stoic</link>
+      <guid isPermaLink="true">https://nuju.app/blog/nuju-vs-stoic</guid>
+      <description>Nuju and Stoic Journal target different journaling philosophies. Nuju is AI-augmented short-entry. Stoic is philosophy-driven structured prompts (Marcus Aurelius framework). Different jobs, sometimes complementary. Honest comparison.</description>
+      <category>App Comparison</category>
+      <pubDate>Fri, 22 May 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Best Journal App for Anxiety and Depression in 2026: 5 Picks for Both Conditions</title>
+      <link>https://nuju.app/blog/best-journal-app-for-anxiety-and-depression-2026</link>
+      <guid isPermaLink="true">https://nuju.app/blog/best-journal-app-for-anxiety-and-depression-2026</guid>
+      <description>Anxiety and depression co-occur in 60%+ of cases. Apps that handle both well are different from anxiety-only or depression-only picks. 5 apps tested for 2026: Nuju, Rosebud, Mindsera, MindShift, Woebot. With clinical use disclaimers.</description>
+      <category>App Comparison</category>
+      <pubDate>Fri, 22 May 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Journaling untuk ADHD Indonesia: 5 Teknik yang Cocok untuk Otak ADHD (2026)</title>
+      <link>https://nuju.app/blog/journaling-untuk-adhd-indonesia</link>
+      <guid isPermaLink="true">https://nuju.app/blog/journaling-untuk-adhd-indonesia</guid>
+      <description>ADHD pada orang dewasa Indonesia sering underdiagnosed. Journaling membantu kalau dirancang untuk otak ADHD — bukan generic journaling yang malah trigger shame. 5 teknik praktis + cara dapet diagnosis profesional di Indonesia.</description>
+      <category>Mental Wellness</category>
+      <pubDate>Fri, 22 May 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Mengatasi Anxiety Media Sosial: 5 Strategi untuk Gen Z Indonesia (2026)</title>
+      <link>https://nuju.app/blog/mengatasi-anxiety-media-sosial-gen-z</link>
+      <guid isPermaLink="true">https://nuju.app/blog/mengatasi-anxiety-media-sosial-gen-z</guid>
+      <description>Anxiety media sosial real dan terdokumentasi — Gen Z paling terdampak. Comparison, FOMO, dopamine cycling, judgment anxiety. 5 strategi praktis yang nggak butuh detox total + 4 prompt journaling. Plus tools untuk reduce friction.</description>
       <category>Mental Wellness</category>
       <pubDate>Fri, 22 May 2026 12:00:00 GMT</pubDate>
       <dc:language>en</dc:language>
