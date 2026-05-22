@@ -6,7 +6,7 @@
     <atom:link href="https://nuju.app/rss.xml" rel="self" type="application/rss+xml" />
     <description>Practical guides on journaling, mood tracking, and emotional wellness from the Nuju team.</description>
     <language>en</language>
-    <lastBuildDate>Fri, 22 May 2026 12:28:24 GMT</lastBuildDate>
+    <lastBuildDate>Fri, 22 May 2026 12:40:11 GMT</lastBuildDate>
     <item>
       <title>We Analyzed Our First 161 Real Journal Entries: 87% Were Logged on &apos;Not Great&apos; Days</title>
       <link>https://nuju.app/blog/what-people-write-in-journal-data</link>
@@ -255,6 +255,60 @@
       <link>https://nuju.app/blog/journaling-untuk-depresi</link>
       <guid isPermaLink="true">https://nuju.app/blog/journaling-untuk-depresi</guid>
       <description>Depresi adalah kondisi medis yang butuh penanganan profesional. Journaling bisa membantu sebagai PEMBANTU — bukan pengganti. Berikut yang riset tunjukkan benar-benar membantu, yang harus dihindari, dan kapan harus eskalasi.</description>
+      <category>Mental Wellness</category>
+      <pubDate>Fri, 22 May 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Nuju vs Apple Journal: Why iOS-Only Isn&apos;t Enough in 2026</title>
+      <link>https://nuju.app/blog/nuju-vs-apple-journal</link>
+      <guid isPermaLink="true">https://nuju.app/blog/nuju-vs-apple-journal</guid>
+      <description>Apple Journal is free and pre-installed on every iPhone — but it&apos;s iOS-only, no AI insights, no web access. Nuju works on web + Android + iOS with AI feedback and 8 languages. Here&apos;s when each wins.</description>
+      <category>App Comparison</category>
+      <pubDate>Fri, 22 May 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Journaling for New Parents: 6 Prompts for the First Year (2026)</title>
+      <link>https://nuju.app/blog/journaling-for-new-parents</link>
+      <guid isPermaLink="true">https://nuju.app/blog/journaling-for-new-parents</guid>
+      <description>Becoming a parent rewires your identity, sleep, and emotional baseline. Journaling helps capture the chaos honestly — without performative joy or guilt. 6 research-backed prompts mapped to the first year, plus when postpartum mood needs a professional.</description>
+      <category>Mental Wellness</category>
+      <pubDate>Fri, 22 May 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Journaling After a Layoff or Job Loss: 6 Prompts for the First 90 Days (2026)</title>
+      <link>https://nuju.app/blog/journaling-for-job-loss</link>
+      <guid isPermaLink="true">https://nuju.app/blog/journaling-for-job-loss</guid>
+      <description>Job loss ranks among the most stressful life events on the Holmes-Rahe scale. Journaling structured around grief stages and identity reframing helps process the loss without rushing through it. 6 prompts mapped to the first 90 days.</description>
+      <category>Mental Wellness</category>
+      <pubDate>Fri, 22 May 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Journaling untuk Social Anxiety: 6 Prompt yang Meredam &apos;Semua Orang Lagi Menilai Gue&apos;</title>
+      <link>https://nuju.app/blog/journaling-untuk-social-anxiety</link>
+      <guid isPermaLink="true">https://nuju.app/blog/journaling-untuk-social-anxiety</guid>
+      <description>Social anxiety bukan sekadar pemalu — itu kondisi anxiety dengan pola spesifik. Journaling membantu saat dia mengeksternalisasi loop &apos;semua orang menilai gue&apos; dan membangun bukti tandingan. 6 prompt berbasis riset, plus kapan harus ke profesional.</description>
+      <category>Mental Wellness</category>
+      <pubDate>Fri, 22 May 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Cara Journaling Setelah Putus: 7 Prompt untuk 30 Hari Pertama (2026)</title>
+      <link>https://nuju.app/blog/cara-journaling-setelah-putus</link>
+      <guid isPermaLink="true">https://nuju.app/blog/cara-journaling-setelah-putus</guid>
+      <description>Putus mengaktifkan area otak yang sama dengan rasa sakit fisik. Journaling yang terstruktur sekitar riset attachment dan tahap kehilangan membantu memproses tanpa terburu-buru. 7 prompt dipetakan ke 30 hari pertama, plus yang harus dihindari.</description>
+      <category>Mental Wellness</category>
+      <pubDate>Fri, 22 May 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Mengatasi Stres Kerja dengan Journaling: 5 Prompt untuk Pekerja Indonesia (2026)</title>
+      <link>https://nuju.app/blog/mengatasi-stres-kerja-journaling</link>
+      <guid isPermaLink="true">https://nuju.app/blog/mengatasi-stres-kerja-journaling</guid>
+      <description>Stres kerja di Indonesia naik signifikan — Gen Z dan Milenial paling terdampak. Journaling 5 menit per hari terbukti memutus loop stres tanpa harus berhenti kerja. 5 prompt spesifik untuk konteks kerja Indonesia, plus kapan butuh psikolog.</description>
       <category>Mental Wellness</category>
       <pubDate>Fri, 22 May 2026 12:00:00 GMT</pubDate>
       <dc:language>en</dc:language>

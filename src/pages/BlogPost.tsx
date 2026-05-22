@@ -917,6 +917,138 @@ const INTERNAL_LINK_RECOMMENDATIONS: Record<string, InternalLinkRecommendation[]
       body: "Kerangka journaling untuk kesehatan mental secara luas — bagaimana depresi cocok di dalamnya.",
     },
   ],
+  "nuju-vs-apple-journal": [
+    {
+      slug: "apple-journal-alternatives",
+      eyebrow: "More alternatives",
+      body: "Beyond Nuju — compare other apps that fill Apple Journal's gaps (cross-platform, AI, multi-language).",
+    },
+    {
+      slug: "nuju-vs-daylio",
+      eyebrow: "Another comparison",
+      body: "How Nuju stacks against Daylio (mood tracker), another iOS-friendly option without AI.",
+    },
+    {
+      slug: "best-ai-journaling-apps",
+      eyebrow: "AI journal category",
+      body: "Compare the AI journaling category — if you want AI not just notes, start here.",
+    },
+    {
+      slug: "complete-guide-ai-journaling-2026",
+      eyebrow: "Category guide",
+      body: "Complete 2026 guide to AI journaling — what the category is, how to pick a tool.",
+    },
+  ],
+  "journaling-for-new-parents": [
+    {
+      slug: "journaling-for-depression",
+      eyebrow: "PPD awareness",
+      body: "Postpartum depression is common and treatable. The depression journaling guide complements this.",
+    },
+    {
+      slug: "journaling-for-grief",
+      eyebrow: "Identity grief",
+      body: "Becoming a parent involves grief for old identity. The grief journaling guide applies.",
+    },
+    {
+      slug: "journaling-for-relationships",
+      eyebrow: "Partner adjustment",
+      body: "New parenthood reshapes partnerships. The relationship journaling guide.",
+    },
+    {
+      slug: "5-minute-daily-journaling-habit",
+      eyebrow: "Realistic frequency",
+      body: "Daily journaling isn't realistic with newborns. Here's how to build a sustainable habit.",
+    },
+  ],
+  "journaling-for-job-loss": [
+    {
+      slug: "gen-z-burnout-journaling",
+      eyebrow: "Job loss + burnout",
+      body: "Layoffs often follow burnout. The burnout journaling protocol still applies.",
+    },
+    {
+      slug: "journaling-for-grief",
+      eyebrow: "Job loss = grief",
+      body: "Job loss activates grief systems. The grief journaling guide applies to layoffs too.",
+    },
+    {
+      slug: "journaling-for-imposter-syndrome",
+      eyebrow: "Layoff aftermath",
+      body: "Layoffs can amplify imposter syndrome. The Evidence File technique applies here.",
+    },
+    {
+      slug: "journaling-for-depression",
+      eyebrow: "Watch for depression",
+      body: "Extended job loss can produce depression symptoms. Honest guide on when to escalate.",
+    },
+  ],
+  "journaling-untuk-social-anxiety": [
+    {
+      slug: "journaling-untuk-anxiety",
+      eyebrow: "Anxiety umum",
+      body: "Social anxiety adalah jenis anxiety spesifik. 7 prompt untuk anxiety umum juga membantu.",
+    },
+    {
+      slug: "cara-mengatasi-overthinking",
+      eyebrow: "Pre-event overthinking",
+      body: "Social anxiety sering melibatkan overthinking pre-event. 4 prompt untuk memutus loop.",
+    },
+    {
+      slug: "cara-curhat-ke-diri-sendiri",
+      eyebrow: "Saat nggak bisa curhat",
+      body: "Social anxiety sering bikin susah curhat ke teman. 5 cara curhat ke diri sendiri yang efektif.",
+    },
+    {
+      slug: "aplikasi-curhat-ai",
+      eyebrow: "AI sebagai outlet",
+      body: "Untuk social anxiety, AI journal sering jadi outlet pertama yang aman — panduan memilih.",
+    },
+  ],
+  "cara-journaling-setelah-putus": [
+    {
+      slug: "cara-mengatasi-overthinking",
+      eyebrow: "Overthink mantan",
+      body: "Putus sering memicu overthinking soal mantan dan apa yang salah. 4 prompt untuk memutus loop.",
+    },
+    {
+      slug: "cara-curhat-ke-diri-sendiri",
+      eyebrow: "Saat butuh outlet",
+      body: "Saat butuh curhat soal putus tapi nggak mau bebanin teman — 5 metode curhat ke diri sendiri.",
+    },
+    {
+      slug: "self-healing-dengan-jurnal",
+      eyebrow: "Self healing pasca-putus",
+      body: "Pemulihan dari putus adalah self healing yang lebih luas — panduan lengkap dengan prompt.",
+    },
+    {
+      slug: "journaling-untuk-depresi",
+      eyebrow: "Kalau jadi depresi",
+      body: "Kadang putus memicu depresi klinis. Panduan kapan eskalasi ke profesional.",
+    },
+  ],
+  "mengatasi-stres-kerja-journaling": [
+    {
+      slug: "cara-mengatasi-burnout-gen-z",
+      eyebrow: "Stres → burnout",
+      body: "Stres kerja yang berkepanjangan jadi burnout. 5 prompt burnout Gen Z Indonesia.",
+    },
+    {
+      slug: "journaling-untuk-anxiety",
+      eyebrow: "Stres kerja + anxiety",
+      body: "Stres kerja sering bikin anxiety. 7 prompt khusus anxiety untuk pekerja Indonesia.",
+    },
+    {
+      slug: "cara-mengatasi-overthinking",
+      eyebrow: "Overthink kerjaan",
+      body: "Overthinking pesan Slack, meeting, atau pekerjaan rumah malam? 4 prompt khusus.",
+    },
+    {
+      slug: "digital-wellness-journaling-gen-z-indonesia",
+      eyebrow: "WhatsApp grup kerja",
+      body: "Stres dari notifikasi kerja non-stop? Digital wellness untuk Gen Z Indonesia.",
+    },
+  ],
 };
 
 const getInternalLinkCards = (slug: string): InternalLinkCard[] =>

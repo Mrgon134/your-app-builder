@@ -5314,6 +5314,576 @@ const RAW_BLOG_POSTS: BlogPost[] = [
       },
     ],
   },
+  // VERSUS COMPARISON — Nuju vs Apple Journal. Apple Journal launched late
+  // 2023 with iOS 17.2. Limited to iOS, no AI insights, no Android/web.
+  // Nuju wins on cross-platform + AI + Indonesian + Android.
+  {
+    slug: "nuju-vs-apple-journal",
+    title: "Nuju vs Apple Journal: Why iOS-Only Isn't Enough in 2026",
+    description: "Apple Journal is free and pre-installed on every iPhone — but it's iOS-only, no AI insights, no web access. Nuju works on web + Android + iOS with AI feedback and 8 languages. Here's when each wins.",
+    metaTitle: "Nuju vs Apple Journal 2026: AI Journal vs iOS-Only Default",
+    metaDescription: "Apple Journal is free on iOS but no AI, no Android, no web, no Indonesian. Nuju cross-platform with AI insights. Honest comparison for 2026.",
+    publishedAt: "2026-05-22",
+    readingTime: 6,
+    category: "App Comparison",
+    sections: [
+      { type: "p", content: "Short answer: pick Apple Journal if you're 100% on iOS, never want AI insights, and just need a free default journal app. Pick Nuju if you want cross-platform access (iOS + Android + web), AI feedback on your entries, multi-language support, and pattern recognition over time. Apple Journal is a notes app with mood tagging. Nuju is an AI-powered mood journal." },
+      { type: "p", content: "Apple Journal shipped with iOS 17.2 in December 2023 and Apple has gradually added features (mood ratings, suggestions from on-device activity). It's free, system-integrated, and well-designed for what it is. But the limits in 2026 are real: no AI interpretation, no Android, no web, no cross-device sync outside Apple's ecosystem, and only English-first UI. Nuju was built to fill exactly those gaps." },
+      { type: "callout", content: "Methodology: features pulled from Apple's official documentation, 2026 third-party Apple Journal reviews (apple-journal-alternatives covered separately at /blog/apple-journal-alternatives). User pain points sourced from App Store reviews and independent comparisons. No Apple-bashing — just honest about what each tool does and doesn't do." },
+      { type: "h2", content: "Head-to-head: 5 features" },
+      { type: "ul", content: [
+        "Platform: Apple Journal = iOS-only. Nuju = web + iOS PWA + Android.",
+        "AI: Apple Journal = no AI interpretation, only on-device activity suggestions. Nuju = AI reads each entry, surfaces patterns, gives reflective feedback.",
+        "Languages: Apple Journal = primarily English with limited localization. Nuju = 8 languages including Bahasa Indonesia, Spanish, Portuguese, Japanese, Korean, Chinese, Hindi.",
+        "Sync: Apple Journal = iCloud only. Nuju = web + mobile sync across platforms.",
+        "Price: Both have free tiers. Apple Journal is fully free. Nuju free covers daily use; Plus $4.99/mo for advanced patterns.",
+      ] },
+      { type: "h2", content: "Where Apple Journal wins" },
+      { type: "p", content: "Apple Journal is the better pick when:" },
+      { type: "ul", content: [
+        "You're 100% on iOS and never use Android or web.",
+        "Free + pre-installed matters more than features.",
+        "You like the suggestions based on photos, music, workouts (on-device, private).",
+        "You don't need AI feedback or written reflection from the app.",
+      ] },
+      { type: "p", content: "Apple's privacy guarantees are strong — on-device processing, no cloud AI training. For users who want zero-AI journaling with system integration, Apple Journal is a legitimate choice. Many people use it as a memory log alongside another tool for active reflection." },
+      { type: "h2", content: "Where Nuju wins" },
+      { type: "p", content: "Nuju is the better pick when:" },
+      { type: "ul", content: [
+        "You use multiple devices (Android, iPhone, laptop) and want sync.",
+        "You want AI that reads what you write and gives back reflections.",
+        "Multi-language UI matters — especially Bahasa Indonesia, Spanish, Japanese, etc.",
+        "You want pattern recognition (mood trends, weekly summaries, relationship maps).",
+        "You want to log on web during work and on mobile in bed without switching tools.",
+      ] },
+      { type: "p", content: "Nuju supports 8 languages with AI responses in each — Apple Journal's localization is limited and there's no AI in any language. For Indonesian users specifically, Nuju is the obvious pick because Apple Journal has no meaningful Bahasa Indonesia support." },
+      { type: "h2", content: "Privacy: both strong, different models" },
+      { type: "p", content: "Apple Journal: on-device processing, end-to-end encrypted iCloud sync. No AI training because there's no AI. Strong by design." },
+      { type: "p", content: "Nuju: server-side encryption, explicit no-AI-training-on-entries policy, full export/delete. Strong by policy. Trade-off: AI features require server processing, which Apple's model avoids by not having those features." },
+      { type: "p", content: "If you'd rather have zero AI involvement at all, Apple Journal's model is more conservative. If you want AI features with a strong no-training privacy promise, Nuju is the pick." },
+      { type: "h2", content: "Decision tree" },
+      { type: "ul", content: [
+        "iOS-only + no AI wanted + free + pre-installed matters: Apple Journal.",
+        "Cross-platform + AI feedback + multi-language: Nuju.",
+        "Indonesian user (or other non-English language): Nuju.",
+        "Want both? Use Apple Journal as a memory log (photos, places) + Nuju as the reflective AI journal.",
+      ] },
+      { type: "h2", content: "Bottom line" },
+      { type: "p", content: "Apple Journal is solid for what it is — a free, system-integrated iOS notes-and-mood log. Nuju targets a different need: AI-powered journaling with cross-platform sync and multi-language support. For most users in 2026 with multiple devices or non-English language preference, Nuju covers more ground. For iOS-only users who just want a minimal mood log, Apple Journal works well. Many users actually run both. Try Nuju's free Ju Gets You reveal (60 seconds, no signup) to see if AI feedback fits your style — if not, Apple Journal is a fine fallback." },
+    ],
+    faq: [
+      {
+        question: "Is Apple Journal good?",
+        answer:
+          "For what it is — a free, system-integrated iOS journal with mood tracking and activity-based suggestions — yes. Apple Journal does basic journaling well, with strong on-device privacy. The limits: iOS-only (no Android or web), no AI interpretation of entries, no real Bahasa Indonesia support, no pattern recognition over time. If those limits don't matter to you, Apple Journal is solid.",
+      },
+      {
+        question: "Does Apple Journal have AI?",
+        answer:
+          "Limited. Apple Journal uses on-device suggestions based on your photos, music, location, and workouts — but doesn't read your written entries with AI or give back reflective feedback. There's no equivalent to Nuju's mood pattern recognition, weekly AI summaries, or persona-based reflections. Apple's model is intentionally minimal-AI for privacy reasons.",
+      },
+      {
+        question: "Is Apple Journal available on Android?",
+        answer:
+          "No. Apple Journal is iOS-only. There's no Android version and no web access outside iCloud's basic web tools. For users with multiple device types or who switch from iPhone to Android, Apple Journal isn't an option. Nuju works on web, iOS PWA, and Android.",
+      },
+      {
+        question: "Does Apple Journal support Bahasa Indonesia?",
+        answer:
+          "The Apple Journal UI is available in some localized languages but Bahasa Indonesia support is limited compared to apps built multi-language from the start. There's no AI to translate or respond, so language matters mainly for UI. Nuju supports 8 languages including full Bahasa Indonesia in UI, prompts, and AI responses.",
+      },
+      {
+        question: "Should I use both Apple Journal and Nuju?",
+        answer:
+          "Some users do. Common pattern: Apple Journal as a memory log (photos, places, on-device suggestions), Nuju as the reflective AI journal with mood tracking and pattern recognition. The tools don't conflict — they serve different jobs. Apple Journal handles the 'capture' side, Nuju handles the 'reflect' side.",
+      },
+      {
+        question: "Is Apple Journal really free?",
+        answer:
+          "Yes, fully free for iPhone users on iOS 17.2 or later. There's no premium tier, no in-app purchases. It comes installed (or can be downloaded from the App Store). For Apple users who don't want any cost, Apple Journal is a legitimate free option. Nuju's free tier is also fully usable for daily journaling — both have no-cost paths.",
+      },
+    ],
+  },
+  // EMOTION-SPECIFIC — Journaling for new parents. Postpartum + early-
+  // parenthood research. Common high-volume query.
+  {
+    slug: "journaling-for-new-parents",
+    title: "Journaling for New Parents: 6 Prompts for the First Year (2026)",
+    description: "Becoming a parent rewires your identity, sleep, and emotional baseline. Journaling helps capture the chaos honestly — without performative joy or guilt. 6 research-backed prompts mapped to the first year, plus when postpartum mood needs a professional.",
+    metaTitle: "Journaling for New Parents: 6 Prompts + Postpartum Awareness (2026)",
+    metaDescription: "New parents face identity rewiring + sleep loss + emotional upheaval. 6 research-backed journal prompts for the first year. Plus when to escalate.",
+    publishedAt: "2026-05-22",
+    readingTime: 7,
+    category: "Mental Wellness",
+    sections: [
+      { type: "p", content: "Becoming a parent is one of the largest identity shifts in adult life. Research from Daniel Stern (Cornell, The Motherhood Constellation, 1995) and more recent work on parental brain plasticity (Elseline Hoekzema, Leiden, 2017+) documents real, measurable changes in identity, brain structure, and emotional baseline during the first year. Journaling helps when it captures the full range — not just the social-media-friendly version — and helps new parents recognize when normal upheaval shades into postpartum mood disorders that need professional help." },
+      { type: "p", content: "This guide is for parents in the first year of any child's life (biological, adoptive, fostered) and partners adjusting alongside. The 6 prompts below are mapped roughly by month — they're not strict but the early ones address chaos and the later ones address integration. Skip days. Most new parents can't journal daily; once a week is more realistic." },
+      { type: "callout", content: "Important: postpartum depression (PPD) and postpartum anxiety (PPA) are common (~15% of new mothers, ~10% of new fathers) and highly treatable. They are not 'just adjustment.' If you experience persistent low mood, anxiety, intrusive thoughts, or inability to bond with your baby for more than 2 weeks — talk to your OB, pediatrician, or family doctor this week. Postpartum Support International: postpartum.net or 1-800-944-4773. Indonesia: Halodoc, KALM, or Riliv for psychiatric consultations." },
+      { type: "h2", content: "What the research actually shows" },
+      { type: "p", content: "Three findings consistently emerge from parental research:" },
+      { type: "ul", content: [
+        "Identity rewiring: Stern's research and follow-ups show that adult identity restructures in the first year — old roles and self-concepts don't disappear but they get re-prioritized. Naming this in writing helps integration.",
+        "Brain plasticity: Hoekzema's neuroimaging studies show measurable changes in gray matter in mothers during pregnancy and the first year, particularly in social cognition regions. The brain is literally changing. Mood swings during this period have biological underpinnings.",
+        "Postpartum mood disorders: 15% of new mothers and 10% of new fathers experience clinically significant PPD or PPA. These are highly treatable but commonly undiagnosed because new parents (and their partners) attribute symptoms to 'just being a new parent.'",
+      ] },
+      { type: "h2", content: "Why journaling helps new parents specifically" },
+      { type: "ul", content: [
+        "Externalizes ambivalence: parenthood mixes intense love with exhaustion, resentment, identity loss, and fear. Social pressure to express only the love part bottles up everything else. Journals don't judge.",
+        "Tracks symptoms: structured monthly logs can surface PPD/PPA earlier than waiting for partners or doctors to notice.",
+        "Captures memory: the first year is chaotic and memory is fragmented from sleep loss. Even brief entries preserve what would otherwise be lost.",
+        "Reduces isolation: most new parents feel isolated even when surrounded by support. Writing to a journal interrupts the silence loop without imposing on anyone.",
+      ] },
+      { type: "h2", content: "6 prompts for the first year (loose monthly mapping)" },
+      { type: "h2", content: "Month 1-2: 'What's the hardest part of today, in honest detail?'" },
+      { type: "p", content: "First weeks are pure survival. The prompt asks for specifics. Not 'it's hard' — 'the 3am feed, then she screamed for 90 minutes, and I sat on the bathroom floor and cried because my body has been awake for 22 hours.' Specific. Honest. No performance. The harder the detail, the more it reduces isolation when written out." },
+      { type: "h2", content: "Month 2-4: 'What's one small thing I noticed today that I want to remember?'" },
+      { type: "p", content: "Months 2-4 the fog starts lifting in waves. This prompt captures the small moments that would otherwise be lost to exhausted memory. The way her hand curled. The first laugh. The five minutes of quiet in the rocking chair. Brief is fine — one sentence preserves a memory permanently." },
+      { type: "h2", content: "Month 3-6: 'What identity am I missing from before?'" },
+      { type: "p", content: "By month 3-6, identity loss starts surfacing as resentment or grief. Name what's missing specifically. Time alone. Creative work. Friendships that took effort. Spontaneity. Naming the loss is the first step toward planning small ways to recover it without guilt." },
+      { type: "h2", content: "Month 4-7: 'What's working in my partnership / co-parent relationship?'" },
+      { type: "p", content: "Partner relationships often hit their hardest point at month 4-7. Sleep deprivation, division of labor, and shifted priorities create friction. This prompt forces a positive starting point — not to gaslight the real problems, but to anchor the conversation. Then write what's not working in specific terms (not generalities). Bring the journal to honest conversations." },
+      { type: "h2", content: "Month 6-9: 'What kind of parent am I becoming?'" },
+      { type: "p", content: "By month 6-9, parenting style starts solidifying. This prompt invites observation, not judgment. What patterns are emerging? What surprises you? What do you want to do differently? This is the integration prompt — old self plus new role becoming a coherent identity." },
+      { type: "h2", content: "Month 9-12: 'What's the story of this year?'" },
+      { type: "p", content: "End of first year, look back. Not a summary — a story. What was hardest. What surprised you. What you want to remember. What you learned about yourself. This becomes the artifact you'll re-read in years to come and the foundation for thinking about whether/when you might have another." },
+      { type: "h2", content: "Postpartum mood disorders: signs you need professional support" },
+      { type: "p", content: "Postpartum mood disorders are common, treatable, and significantly under-diagnosed. Talk to a doctor or therapist if you experience for more than 2 weeks:" },
+      { type: "ul", content: [
+        "Persistent low mood that doesn't lift even when the baby is sleeping or someone else is helping.",
+        "Anxiety severe enough to affect sleep or daily tasks even when you have help.",
+        "Intrusive thoughts of harm to yourself or the baby — even brief, even involuntary.",
+        "Inability to bond with the baby; feeling detached or numb.",
+        "Persistent guilt, shame, or feelings of being a bad parent that don't respond to reassurance.",
+        "Significant changes in appetite, weight, or sleep beyond what newborn care explains.",
+      ] },
+      { type: "p", content: "Resources: Postpartum Support International (postpartum.net or 1-800-944-4773 in US) offers free helpline and peer support. In Indonesia, Halodoc, KALM, and Riliv all have psychiatric consultations. Speak with your OB, pediatrician, or family doctor — postpartum mood is part of routine post-birth care now and they expect to be asked. PPD/PPA respond to therapy and (when needed) medications that are safe during breastfeeding." },
+      { type: "h2", content: "Crisis resources" },
+      { type: "ul", content: [
+        "US: 988 Suicide and Crisis Lifeline (call or text 988); Postpartum Support International 1-800-944-4773.",
+        "Indonesia: Into The Light (intothelightid.org), 119 ext 8; Halodoc/KALM/Riliv for psychiatric consultations.",
+        "UK: Samaritans 116 123; PANDAS Foundation (pandasfoundation.org.uk).",
+      ] },
+      { type: "h2", content: "Bottom line" },
+      { type: "p", content: "The first year of parenthood involves real biological, identity, and emotional changes. Journaling helps when it allows honesty about the full range — chaos, love, resentment, joy, grief, all of it. The 6 prompts above map loosely to the first year; use them when you have a minute. Skip when you don't. Most importantly: postpartum mood disorders are common and treatable — if symptoms persist for 2+ weeks, talk to a professional. Journaling supports, doesn't substitute. Nuju's free Ju Gets You reveal works on any of these prompts in the few minutes you can find." },
+    ],
+    faq: [
+      {
+        question: "Is it normal to feel ambivalent about being a new parent?",
+        answer:
+          "Yes, extremely common. Research on parental adjustment consistently shows new parents experience a wide range of emotions including intense love, exhaustion, resentment, grief for old identity, and fear. The cultural expectation of pure joy is unrealistic. Naming ambivalence in a journal often reduces guilt — the feelings are normal, not character flaws.",
+      },
+      {
+        question: "What's the difference between baby blues and postpartum depression?",
+        answer:
+          "Baby blues affect ~80% of mothers in the first 2 weeks — tearfulness, mood swings, anxiety. They resolve on their own. Postpartum depression (PPD) persists beyond 2 weeks, is more severe, and involves persistent low mood, anxiety, or inability to bond. PPD is a medical condition that needs professional treatment. If symptoms last 2+ weeks, talk to a doctor.",
+      },
+      {
+        question: "Can fathers/non-birthing partners get postpartum depression?",
+        answer:
+          "Yes. Approximately 10% of new fathers experience postpartum depression, and rates are higher when their partner has PPD. Symptoms can look slightly different (more irritability, withdrawal, work avoidance) but the underlying condition is the same. Non-birthing partners often go undiagnosed because the focus is on the mother. Talk to a doctor if symptoms persist.",
+      },
+      {
+        question: "How often should new parents journal?",
+        answer:
+          "Realistically: once a week, not daily. The first months don't have time for daily journaling and trying to force it adds guilt. Weekly or whenever-you-can journaling captures most of the benefit. Brief is fine — one sentence preserves a memory. The 6 prompts above aren't a daily checklist; they're a year-long menu.",
+      },
+      {
+        question: "When should I talk to a doctor about postpartum mood?",
+        answer:
+          "If symptoms last more than 2 weeks. Specifically: persistent low mood, anxiety affecting sleep/function, intrusive thoughts of harm, inability to bond with baby, persistent guilt that doesn't respond to reassurance. Postpartum Support International (postpartum.net or 1-800-944-4773 US) has a free helpline. In Indonesia, Halodoc/KALM/Riliv offer psychiatric consultations. PPD/PPA are highly treatable.",
+      },
+      {
+        question: "Will journaling about parenting make me feel guilty for not loving every moment?",
+        answer:
+          "Done honestly, no — the opposite. Forcing only positive journaling tends to increase guilt because it reinforces the false expectation that you should feel only love. Honest journaling that captures resentment, exhaustion, and grief alongside the love often reduces guilt by normalizing the full range. The goal is honest record, not curated highlights.",
+      },
+    ],
+  },
+  // EMOTION-SPECIFIC — Journaling for job loss. Timely 2026 layoff context.
+  // Holmes-Rahe Stress Scale + grief framework.
+  {
+    slug: "journaling-for-job-loss",
+    title: "Journaling After a Layoff or Job Loss: 6 Prompts for the First 90 Days (2026)",
+    description: "Job loss ranks among the most stressful life events on the Holmes-Rahe scale. Journaling structured around grief stages and identity reframing helps process the loss without rushing through it. 6 prompts mapped to the first 90 days.",
+    metaTitle: "Journaling After Job Loss: 6 Prompts for First 90 Days (2026)",
+    metaDescription: "Job loss is one of the most stressful life events. 6 research-backed journal prompts mapped to first 90 days post-layoff. Plus when to seek support.",
+    publishedAt: "2026-05-22",
+    readingTime: 8,
+    category: "Mental Wellness",
+    sections: [
+      { type: "p", content: "Job loss is one of the most stressful life events documented in research. The Holmes-Rahe Stress Scale (Thomas Holmes + Richard Rahe, 1967) rates dismissal from work at 47 stress units — higher than personal injury, mortgage trouble, or major arguments with a spouse. With 2024-2026 layoff waves in tech, media, and white-collar sectors, more people are experiencing this than the broader culture acknowledges. This guide is for the first 90 days after a layoff or job loss — when the work is processing the loss, not yet rushing into the next job." },
+      { type: "p", content: "If you're in week 1-2 post-layoff and reading this, the most important thing to know: the urge to immediately job-hunt, polish the resume, and pretend you're fine is often premature. Most career counselors recommend at least 2-4 weeks of processing before serious job search. Journaling fills that processing window. The 6 prompts below are mapped roughly across the first 90 days." },
+      { type: "callout", content: "Methodology: Holmes-Rahe Stress Rating Scale (1967, still standard reference). David Kessler grief framework. 2026 layoff research from layoffs.fyi and McKinsey workforce data. Career-counseling best practices from American Psychological Association resources. Inline citations." },
+      { type: "h2", content: "What job loss actually does to identity" },
+      { type: "p", content: "Three things happen biologically and psychologically:" },
+      { type: "ul", content: [
+        "Stress response activation: Holmes-Rahe rates dismissal at 47/100 stress units. Cortisol rises, sleep often disrupts, immune function temporarily drops.",
+        "Identity destabilization: for most adults, work identity is significant. Losing it doesn't just lose income — it loses self-concept ('I'm a designer,' 'I'm a marketing manager').",
+        "Social rupture: the daily team, the meetings, the lunch friends — gone overnight. Even when relationships survive, the everyday contact doesn't.",
+      ] },
+      { type: "p", content: "These three combined are why job loss often produces symptoms that look like grief — because functionally, it is a form of grief." },
+      { type: "h2", content: "Why structured journaling helps more than 'just push through'" },
+      { type: "p", content: "Without structured processing, two failure modes are common:" },
+      { type: "ul", content: [
+        "Performative resilience: immediately broadcasting LinkedIn announcements and forcing positivity. This pushes feelings down without processing, and they resurface weeks later as burnout in the next job.",
+        "Avoidance spiral: not job-hunting at all, isolation, sleep disruption, alcohol use. The depression of unstructured time without identity scaffolding.",
+      ] },
+      { type: "p", content: "Structured journaling lets you process honestly without either performing or spiraling. The 6 prompts target the specific shifts that need to happen for the next role to be the right next role, not a desperate accept-the-first-offer." },
+      { type: "h2", content: "6 prompts for the first 90 days" },
+      { type: "h2", content: "Days 1-7: 'What am I actually feeling right now?'" },
+      { type: "p", content: "Week 1 is for shock and naming. Most people cycle through anger, fear, relief, sadness, disbelief — sometimes all in one day. Write specifically. Not 'I'm fine' or 'I'm devastated' — 'I'm angry at the manager who didn't fight for me, I'm scared about rent in October, and there's also a strange relief about not having to attend the 9am standup.' All of it valid. None of it final." },
+      { type: "h2", content: "Days 7-21: 'What was actually wrong with the job I lost?'" },
+      { type: "p", content: "Layoff survivors often grieve a job that was actively making them sick. Honest evaluation in writing helps see what was real. The toxic manager. The 60-hour weeks. The role that drifted from your original strengths. Naming what was wrong doesn't disrespect the loss — it clarifies what you don't want to replicate." },
+      { type: "h2", content: "Days 14-30: 'What did I learn that I want to keep?'" },
+      { type: "p", content: "Even jobs that ended badly teach things. Skills. Network connections. Lessons about company stages or industries. Boundaries you now understand. Write specifically — 'I learned to write better project briefs,' 'I learned I work best in companies under 50 people,' 'I learned my limit on remote-only work.' Carrying forward is part of integration." },
+      { type: "h2", content: "Days 30-45: 'Who am I when I'm not [old title]?'" },
+      { type: "p", content: "This is the identity prompt and often the hardest. Job titles take up a lot of identity real estate. When you remove 'Product Manager at X Company,' what's left? Probably more than you think. Hobbies, relationships, beliefs, values, dreams that got sidelined. The prompt isn't existential — it's practical. The next title will fit better when you know what you bring outside titles." },
+      { type: "h2", content: "Days 45-60: 'What kind of next role would actually serve me?'" },
+      { type: "p", content: "By day 45-60, you can think about the next role without panic. Write not the job title — write the conditions. Type of work, type of team, size of company, type of manager, work-life pattern, compensation needs. The prompt creates a filter that prevents accepting jobs that would replicate the bad parts of the last one." },
+      { type: "h2", content: "Days 60-90: 'What's the story of this transition?'" },
+      { type: "p", content: "End of the first 90 days, write the story. Not for interviews — for yourself. What happened. How you handled it. What you learned. Who showed up. This becomes the foundation for how you explain the gap in interviews (briefly, honestly, without over-apology) and the anchor for the next chapter." },
+      { type: "h2", content: "Practical context: 2026 job market" },
+      { type: "p", content: "Job-search timelines in 2026 vary significantly by industry. Tech: 3-9 months is common. Senior roles ($150K+): 6-12 months. White-collar specialists: 2-6 months. Hourly/service work: typically faster. Whatever your timeline, the first 30 days of processing tend to be worth it — research shows people who process well find better-fit roles than those who rush." },
+      { type: "p", content: "Financial planning helps remove cortisol pressure: figure out your runway (savings ÷ monthly expenses), apply for unemployment benefits the first week (US), explore COBRA or marketplace health insurance, talk to your bank about deferring student loans or mortgage if needed." },
+      { type: "h2", content: "When job loss needs more than journaling" },
+      { type: "p", content: "Some signs you need additional support:" },
+      { type: "ul", content: [
+        "Persistent low mood, hopelessness, or self-harm thoughts.",
+        "Sleep disruption lasting more than 4 weeks.",
+        "Increased alcohol or substance use as coping.",
+        "Inability to job-search at all for more than 6 weeks (different from intentional processing time).",
+        "Relationship strain becoming severe.",
+      ] },
+      { type: "p", content: "Resources: career counselors (many offer sliding-scale fees), therapists specializing in career transition, support groups (Cope Notes, layoff-specific Discord communities, alumni networks). For mental health: US 988 Lifeline; Indonesia Into The Light, Halodoc/KALM/Riliv (Rp 50.000-150.000/sesi); UK Samaritans 116 123. Employer-sponsored EAPs sometimes extend coverage post-departure — check." },
+      { type: "h2", content: "Bottom line" },
+      { type: "p", content: "Job loss is a real, documented stress event with grief-like symptoms. Rushing into the next job usually produces a worse next job. The 6 prompts above structure the first 90 days into processing → identity work → search clarity → narrative integration. Skip days. Take your time. The next role will be better when you're not desperate. Nuju's free Ju Gets You reveal works on any of these prompts; the Gentle persona is well-suited to the grief-like component of this transition." },
+    ],
+    faq: [
+      {
+        question: "How long until I should start looking for a new job after a layoff?",
+        answer:
+          "Most career counselors recommend at least 2-4 weeks of processing before serious job search. Rushing into applications during shock or anger often produces poor-fit roles. Use the first 30 days to process the loss, evaluate what was actually wrong with the previous role, and clarify what you want next. After 30 days, applications tend to be more strategic and outcomes better.",
+      },
+      {
+        question: "Is it normal to feel relief after being laid off from a job I hated?",
+        answer:
+          "Yes, very normal — and worth honoring. Many people experience a complex mix of relief and grief simultaneously. The job may have been making you sick even if it was financially stable. Relief doesn't mean you're not also grieving the loss of income, identity, or relationships. Journaling lets you hold both honestly without choosing one narrative.",
+      },
+      {
+        question: "How do I explain a layoff in interviews?",
+        answer:
+          "Briefly and honestly, without over-apology. Most interviewers in 2026 have either been laid off themselves or know many people who have. 'My role was eliminated as part of [company]'s restructuring' is enough. Avoid blaming, avoid lengthy explanations, redirect to what you learned and what you're looking for next. The journaling from days 60-90 helps you have this answer ready.",
+      },
+      {
+        question: "Should I post about my layoff on LinkedIn?",
+        answer:
+          "Depends on your goals and emotional readiness. Posting can generate leads (many people get next jobs through LinkedIn layoff posts). But posting too early — in shock or anger — can sound performative or off-tone. If you post, do it after at least 1-2 weeks of processing. Focus on your skills and what you're looking for, not anger at the company.",
+      },
+      {
+        question: "How long does it actually take to find a new job in 2026?",
+        answer:
+          "Varies significantly by industry and seniority. Tech: 3-9 months. Senior roles ($150K+): 6-12 months. White-collar specialists: 2-6 months. Hourly/service work: typically faster. Plan financial runway based on the longer end of your range. Whatever your timeline, the first 30 days of processing usually pays off in better-fit role at the end.",
+      },
+      {
+        question: "When should I see a therapist about job loss?",
+        answer:
+          "If symptoms persist beyond what 'normal stress' explains: low mood for more than 4 weeks, sleep disruption, increased substance use, inability to job-search at all for 6+ weeks, relationship strain becoming severe, or any self-harm thoughts. Many therapists specialize in career transition. Crisis resources: US 988, Indonesia Into The Light, UK Samaritans 116 123. Employer EAPs sometimes cover post-departure — check.",
+      },
+    ],
+  },
+  // BAHASA INDONESIA — Social anxiety. Indonesian adaptation of EN post.
+  {
+    slug: "journaling-untuk-social-anxiety",
+    title: "Journaling untuk Social Anxiety: 6 Prompt yang Meredam 'Semua Orang Lagi Menilai Gue'",
+    description: "Social anxiety bukan sekadar pemalu — itu kondisi anxiety dengan pola spesifik. Journaling membantu saat dia mengeksternalisasi loop 'semua orang menilai gue' dan membangun bukti tandingan. 6 prompt berbasis riset, plus kapan harus ke profesional.",
+    metaTitle: "Journaling untuk Social Anxiety: 6 Prompt yang Bekerja (2026)",
+    metaDescription: "Social anxiety punya pola kognitif spesifik. 6 prompt journaling berbasis riset yang memutus loop penilaian. Plus kapan eskalasi ke profesional.",
+    publishedAt: "2026-05-22",
+    readingTime: 7,
+    category: "Mental Wellness",
+    sections: [
+      { type: "p", content: "Social anxiety bukan sama dengan pemalu. Itu kondisi anxiety dengan pola kognitif spesifik — terutama keyakinan bahwa orang lain sedang terus-menerus mengevaluasi lo dan menemukan lo kurang. Riset Michael Liebowitz (Columbia, Liebowitz Social Anxiety Scale 1987+) dan Richard Heimberg (Temple, group CBT untuk social anxiety, 1990+) sudah mendokumentasikan polanya dengan tepat. Journaling membantu saat dia mengeksternalisasi pola dan membangun bukti tandingan selama berminggu-minggu." },
+      { type: "p", content: "Panduan ini untuk orang yang mengenali social anxiety dalam diri sendiri tapi nggak yakin di mana mulai. Bukan alat diagnostik — kalau social anxiety mengganggu kerja, sekolah, hubungan, atau fungsi harian dasar lo signifikan, ngobrol sama klinisi. 6 prompt di bawah dirancang sebagai practice pendukung di samping perawatan profesional, atau sebagai langkah awal untuk versi yang lebih ringan." },
+      { type: "callout", content: "Catatan: kalau social anxiety lo udah bikin lo nggak bisa kerja atau sekolah, atau muncul serangan panik di tempat sosial — itu butuh psikolog. Di Indonesia, Halodoc, KALM, dan Riliv menawarkan konsultasi mulai Rp 50.000-150.000. Banyak juga psikolog yang spesialisasi CBT untuk anxiety di kota-kota besar. Journaling pelengkap, bukan pengganti." },
+      { type: "h2", content: "Seperti apa social anxiety sebenarnya" },
+      { type: "p", content: "Menurut model kognitif Clark dan Wells (Oxford) untuk social phobia, social anxiety punya tiga fitur inti:" },
+      { type: "ul", content: [
+        "Atensi self-focused meningkat — lo jadi sadar perilaku lo sendiri (suara, keringat, body language) dan kesadaran itu memperkuat gejala.",
+        "Pikiran negatif soal cara orang lain melihat lo — 'mereka pikir gue boring,' 'gue tadi keliatan bodoh,' 'mereka notice gue gugup.'",
+        "Safety behavior — menghindari kontak mata, merehearsalkan apa yang mau diomongin, menghindari acara sama sekali. Ini mengurangi anxiety langsung tapi mempertahankan pola jangka panjang.",
+      ] },
+      { type: "p", content: "Loop-nya self-reinforcing: anxiety memicu safety behavior, safety behavior mencegah bukti tandingan, kurangnya bukti tandingan mempertahankan anxiety." },
+      { type: "h2", content: "Bagaimana journaling memutus loop" },
+      { type: "p", content: "Journaling untuk social anxiety bekerja lewat tiga mekanisme:" },
+      { type: "ol", content: [
+        "Mengeksternalisasi loop 'semua orang menilai gue' — sekali ada di kertas, pikirannya keliatan sebagai pikiran, bukan kebenaran objektif.",
+        "Membangun bukti tandingan — selama berminggu-minggu, tracking terstruktur apa yang sebenernya terjadi (vs. yang lo takutin) mengungkap gap antara prediksi dan hasil aktual.",
+        "Mengurangi post-event rumination — Clark dan Wells mengidentifikasi pemrosesan post-event sebagai faktor maintenance utama; journaling mengstruktur pemrosesan alih-alih membiarkan dia spiral.",
+      ] },
+      { type: "h2", content: "6 prompt journaling social anxiety (gunakan 1 per situasi)" },
+      { type: "h2", content: "Prompt 1 (sebelum acara): 'Spesifiknya gue takut apa bakal terjadi?'" },
+      { type: "p", content: "Anxiety pre-event sering generalisasi ('bakal jelek'). Paksa spesifik. 'Gue takut bakal blank pas dikenalin.' 'Gue takut orang notice gue keringetan.' 'Gue takut gue satu-satunya yang nggak ketawa pas joke.' Spesifik bikin ketakutan terukur — lo bakal tau kalau itu beneran terjadi." },
+      { type: "h2", content: "Prompt 2 (sebelum acara): 'Apa yang paling parah yang realistis bisa terjadi, dan gimana gue bisa survive-nya?'" },
+      { type: "p", content: "Social anxiety catastrophizing. Worst case realistis biasanya jauh lebih kecil dari yang ditakutin. 'Worst case: gue ngomong sesuatu yang awkward, ada yang notice, percakapan lanjut, gue malu 10 menit.' Lalu tulis gimana lo sebenernya bisa survive. Most worst case = sekitar 15 menit nggak nyaman, bukan konsekuensi permanen." },
+      { type: "h2", content: "Prompt 3 (setelah acara): 'Apa yang sebenernya terjadi vs. yang gue prediksi?'" },
+      { type: "p", content: "Ini prompt bukti tandingan inti. Lihat prediksi Prompt 1. Apa yang sebenernya terjadi? Biasanya 80-90% dari ketakutan nggak terwujud. Tulis. Selama berminggu-minggu, prompt ini membangun bukti tandingan paling kuat — otak belajar prediksi secara sistematis terlalu negatif." },
+      { type: "h2", content: "Prompt 4 (setelah acara): 'Gue pikir mereka notice apa yang sebenernya mereka mungkin enggak notice?'" },
+      { type: "p", content: "Riset secara konsisten nunjukin observer notice jauh lebih sedikit soal kita daripada yang kita yakini (spotlight effect, didokumentasikan Gilovich + Savitsky di Cornell). Mereka nggak notice suara gugup lo. Mereka nggak catat joke awkward lo. Tulis apa yang lo pikir mereka notice, lalu tanya: bukti aktual mereka notice apa? Biasanya nol." },
+      { type: "h2", content: "Prompt 5 (rutin): 'Kapan gue menghindari situasi sosial, dan apa biayanya selama waktu?'" },
+      { type: "p", content: "Avoidance adalah biaya social anxiety yang paling insidious — dia memperkecil hidup pelan-pelan. Track avoidance spesifik selama berminggu-minggu. Acara yang di-skip. Undangan yang ditolak. Percakapan yang dipotong cepet. Terlihat secara agregat, biayanya jadi jelas. Ini sering memotivasi exposure step kecil yang in-the-moment avoidance mencegah." },
+      { type: "h2", content: "Prompt 6 (mingguan): 'Exposure kecil apa yang bisa gue coba minggu ini?'" },
+      { type: "p", content: "Pemulihan dari social anxiety melibatkan exposure bertahap ke situasi yang ditakutin (di bawah protokol CBT-based Heimberg). Pilih satu langkah kecil tiap minggu. 'Speak up sekali di meeting Selasa.' 'Eye contact sama barista.' 'Kirim text yang udah gue draft 3 hari.' Mungil, spesifik, bisa dilakukan. Exposure kumulatif adalah mekanisme treatment aktualnya." },
+      { type: "h2", content: "Apa yang harus dihindari" },
+      { type: "p", content: "Tiga pendekatan yang nggak bekerja:" },
+      { type: "ul", content: [
+        "Pure positive affirmation ('gue keren di situasi sosial') — otak menolak sebagai nggak benar.",
+        "Memutar ulang percakapan detail mencoba mengidentifikasi apa yang salah — ini IS post-event rumination, yang mempertahankan anxiety.",
+        "Journaling avoidance — nulis 'gue mau di rumah aja' berulang menguatkan safety behavior. Pasangkan pengakuan avoidance dengan langkah exposure kecil.",
+      ] },
+      { type: "h2", content: "Kapan social anxiety butuh perawatan profesional" },
+      { type: "p", content: "Social anxiety sangat treatable dengan CBT dan, dalam beberapa kasus, obat. Tanda yang butuh bantuan profesional:" },
+      { type: "ul", content: [
+        "Anxiety mengganggu kerja, sekolah, atau hubungan secara signifikan.",
+        "Pola bertahan lebih dari 6 bulan tanpa perbaikan dari self-help.",
+        "Gejala fisik selama situasi sosial (panic attack, disosiasi, mual intens).",
+        "Avoidance signifikan mencegah aktivitas hidup penting (interview kerja, kumpul keluarga, kencan).",
+        "Co-occurring depresi atau penggunaan zat sebagai coping.",
+      ] },
+      { type: "p", content: "Pilihan treatment di Indonesia 2026: CBT spesifik untuk social anxiety (sangat efektif, biasanya 12-16 sesi), exposure therapy, SSRI yang diresepkan psikiater untuk kasus sedang-berat. Cari 'psikolog social anxiety' atau 'CBT untuk anxiety' di Halodoc/KALM/Riliv. Krisis: Into The Light Indonesia (intothelightid.org), 119 ext 8." },
+      { type: "h2", content: "Bottom line" },
+      { type: "p", content: "Social anxiety adalah kondisi terdokumentasi dengan pola kognitif spesifik — bukan trait personality atau pemalu. Journaling membantu saat dia mengeksternalisasi loop 'semua orang menilai gue' dan membangun bukti tandingan selama berminggu-minggu. 6 prompt di atas menggabungkan persiapan pre-event (memaksa spesifisitas, reality-check catastrophizing) dengan analisis post-event (prediksi vs. aktual) dan perencanaan exposure mingguan. Untuk kasus sedang-berat, journaling berpasangan dengan CBT — treatment gold-standard. Persona Gentle Nuju dirancang untuk kerja seperti ini; free Ju Gets You reveal cuma 60 detik." },
+    ],
+    faq: [
+      {
+        question: "Apa beda pemalu sama social anxiety?",
+        answer:
+          "Pemalu adalah trait personality — ketidaknyamanan ringan dalam situasi sosial yang nggak mencegah partisipasi. Social anxiety adalah kondisi klinis dengan pola spesifik: keyakinan bahwa orang lain terus mengevaluasi lo, atensi self-focused meningkat selama interaksi, dan safety behavior (avoidance, rehearsing) yang mempertahankan anxiety. Social anxiety mengganggu fungsi harian signifikan; pemalu biasanya enggak. Liebowitz Social Anxiety Scale (1987+) adalah alat screening yang umum.",
+      },
+      {
+        question: "Bisa nggak journaling aja menyelesaikan social anxiety?",
+        answer:
+          "Untuk kasus ringan, journaling terstruktur dikombinasikan dengan exposure bertahap bisa menghasilkan perbaikan yang berarti selama 2-3 bulan. Untuk social anxiety sedang-berat, journaling adalah practice pendukung tapi nggak cukup — CBT (spesifik protokol Heimberg) adalah treatment gold-standard, kadang dikombinasikan dengan SSRI. Journaling paling efektif saat dipasangkan dengan perawatan profesional untuk kasus klinis.",
+      },
+      {
+        question: "Perasaan 'semua orang menilai gue' itu ada namanya?",
+        answer:
+          "Dua konsep relevan. Perasaan umumnya bagian dari social anxiety disorder per DSM-5. Keyakinan spesifik bahwa observer notice jauh lebih dari yang sebenernya mereka notice adalah 'spotlight effect,' didokumentasikan Thomas Gilovich dan Kenneth Savitsky (Cornell, akhir 1990-an). Riset secara konsisten nunjukin observer notice 5-10x lebih sedikit dari yang kita yakini. Inilah kenapa post-event evidence tracking (Prompt 3) bekerja — kontradiksi langsung asumsi spotlight.",
+      },
+      {
+        question: "Gimana kalau social anxiety gue cuma di situasi spesifik?",
+        answer:
+          "Umum dan treatable. Social anxiety performa spesifik (public speaking, kencan, interview kerja) berbeda dari generalized social anxiety dan sering respons baik ke exposure terarget. 6 prompt bekerja untuk anxiety spesifik situasi — fokus mereka pada situasi pemicu. Psikolog yang spesialisasi anxiety performa atau fobia spesifik bisa membantu kalibrasi exposure kalau self-help plateau.",
+      },
+      {
+        question: "Apakah social anxiety lebih umum di Gen Z Indonesia?",
+        answer:
+          "Riset 2024-2026 menunjukkan tingkat social anxiety yang lebih tinggi di Gen Z dibandingkan generasi sebelumnya, termasuk di Indonesia. Faktor yang dihipotesiskan: sosmed (performa + comparison konstan), disrupsi COVID-19 terhadap perkembangan sosial in-person, dan berkurangnya practice sosial tidak terstruktur selama remaja. Peningkatannya nyata dan terdokumentasi. Outcome treatment sama bagus di semua generasi.",
+      },
+      {
+        question: "Kapan ke psikolog untuk social anxiety?",
+        answer:
+          "Kalau social anxiety mencegah lo dari interview kerja, kencan, kumpul keluarga, atau aktivitas berarti lainnya — temui klinisi. Kalau lo punya panic attack di situasi sosial atau bergantung pada alkohol untuk mengelolanya. Kalau gejala udah bertahan 6+ bulan tanpa perbaikan. Pilihan treatment: CBT untuk social anxiety (12-16 sesi, sangat efektif), exposure therapy, SSRI untuk kasus sedang-berat. Cari 'psikolog social anxiety' atau 'CBT anxiety' di Halodoc/KALM/Riliv.",
+      },
+    ],
+  },
+  // BAHASA INDONESIA — Setelah putus / breakup. UCLA fMRI + Bowlby cited.
+  {
+    slug: "cara-journaling-setelah-putus",
+    title: "Cara Journaling Setelah Putus: 7 Prompt untuk 30 Hari Pertama (2026)",
+    description: "Putus mengaktifkan area otak yang sama dengan rasa sakit fisik. Journaling yang terstruktur sekitar riset attachment dan tahap kehilangan membantu memproses tanpa terburu-buru. 7 prompt dipetakan ke 30 hari pertama, plus yang harus dihindari.",
+    metaTitle: "Cara Journaling Setelah Putus: 7 Prompt 30 Hari Pertama (2026)",
+    metaDescription: "Putus mengaktifkan area otak rasa sakit fisik. 7 prompt jurnal berbasis riset dipetakan ke 30 hari pertama. Yang membantu, yang backfire.",
+    publishedAt: "2026-05-22",
+    readingTime: 8,
+    category: "Mental Wellness",
+    sections: [
+      { type: "p", content: "Putus itu sakit secara fisik nyata. Studi fMRI fungsional oleh Naomi Eisenberger dan Matthew Lieberman di UCLA (2003+) menunjukkan bahwa penolakan sosial mengaktifkan anterior cingulate cortex dan insula — area otak yang sama yang memproses rasa sakit fisik. Metafora 'patah hati' bukan metafora. Inilah juga mengapa putus respons ke waktu dan kerja grief terstruktur, bukan willpower." },
+      { type: "p", content: "Journaling membantu selama putus saat dia track tahap aktual, bukan saat dia memaksa lo 'udah move on.' 7 prompt di bawah dipetakan ke 30 hari pertama pasca-putus — saat kerjaannya kebanyakan memproses kehilangan. Gunakan secara berurutan atau pilih yang cocok dengan hari itu. Skip hari dengan bebas. Tujuannya integrasi, bukan closure dengan deadline." },
+      { type: "callout", content: "Metodologi: riset dari Naomi Eisenberger dan Matthew Lieberman (UCLA, neuroscience penolakan sosial), John Bowlby dan Mary Ainsworth (attachment theory, 1969-1978), Helen Fisher (Rutgers, studi otak cinta romantis). Sumber krisis Indonesia dilampirkan di bawah." },
+      { type: "h2", content: "Kenapa putus hits lebih keras dari penjelasan rasionalnya" },
+      { type: "p", content: "Tiga hal menumpuk yang bikin putus sakit secara disproportional:" },
+      { type: "ul", content: [
+        "Overlap pain neurologis: per Eisenberger/Lieberman, penolakan sosial secara literal mengaktifkan jalur pain fisik. Sakit nggak imajiner.",
+        "Disrupsi sistem attachment: per attachment theory Bowlby, otak memperlakukan partner romantis (di attachment dewasa) sebagai semacam secure base. Kehilangan base itu memicu sesuatu yang mendekati grief.",
+        "Dissolusi identitas: hubungan panjang co-construct identitas. Putus menghancurkan identitas 'kita,' meninggalkan 'gue' yang sebagian undefined selama berminggu-minggu atau berbulan-bulan.",
+      ] },
+      { type: "p", content: "Tiga ini kombinasi menjelaskan kenapa putus bisa menghasilkan gejala (insomnia, hilang nafsu makan, intrusive thought) yang mirip grief — karena memang bentuk grief." },
+      { type: "h2", content: "Apa yang journaling putus yang baik LAKUKAN (dan enggak)" },
+      { type: "p", content: "Bantu:" },
+      { type: "ul", content: [
+        "Mengeksternalisasi intrusive thought sehingga otak berhenti memutarnya.",
+        "Menamai apa yang spesifiknya hilang (bukan cuma 'mereka' — rutinitas, rencana masa depan, inside joke).",
+        "Mengidentifikasi apa yang berlanjut — apa yang mereka bentuk di lo, kebiasaan yang lo simpan, yang lo bawa ke depan.",
+        "Tracking pola pemulihan sendiri, yang sering surprise lo dengan betapa non-linearnya.",
+      ] },
+      { type: "p", content: "Nggak bantu:" },
+      { type: "ul", content: [
+        "Nulis ulang argumen yang akan lo lakukan kalau dapat kesempatan kedua.",
+        "Listing flaws mereka untuk meyakinkan diri lo baik-baik aja.",
+        "Memaksa closure atau 'lessons learned' terlalu cepat.",
+        "Memutar adegan putus berulang tanpa pergerakan.",
+      ] },
+      { type: "h2", content: "7 prompt dipetakan ke 30 hari pertama" },
+      { type: "h2", content: "Hari 1-7: 'Apa yang paling berat sekarang?'" },
+      { type: "p", content: "Minggu pertama, tujuannya bukan insight — tapi ekspresi. Tulis apapun yang paling keras. Marah. Nggak percaya. Kesepian jam 3 pagi. Hal spesifik yang mereka lakukan atau enggak lakukan yang nggak bisa lo stop memutar. Tanpa struktur. Tanpa memperbaiki. Cuma menjadi saksi." },
+      { type: "h2", content: "Hari 5-10: 'Apa spesifiknya yang gue kehilangan?'" },
+      { type: "p", content: "Lewat 'gue kehilangan mereka.' Apa spesifiknya? Rutinitas (kopi pagi bareng, telepon Minggu). Rencana yang dibagi (trip di Oktober, cari apartemen). Bahasa internal (nickname, joke). Spesifik menghormati apa yang nyata. Generalitas memflatten kehilangan." },
+      { type: "h2", content: "Hari 10-15: 'Tanda peringatan apa yang gue lihat dan abaikan?'" },
+      { type: "p", content: "Hanya coba prompt ini saat acute pain udah sedikit menurun. Tulis jujur — bukan untuk menyalahkan diri, tapi untuk belajar. Sering tanda peringatan udah ada dan lo melihatnya. Menamai sekarang melindungi lo di masa depan. Kalau lo nggak bisa akses prompt ini tanpa spiral ke self-blame, skip — belum waktunya." },
+      { type: "h2", content: "Hari 12-18: 'Apa yang hubungan ini berikan ke gue yang gue mau simpan?'" },
+      { type: "p", content: "Continuing bonds — tapi untuk hubungan yang berakhir lewat putus, bukan kematian. Mereka mungkin membentuk lo positif dalam beberapa cara. Kebiasaan yang lo adopsi. Musik yang lo temukan. Kepercayaan diri yang mereka kuatkan. Tulis apa yang berlanjut. Kehilangan nggak menghapus apa yang ada sebelumnya." },
+      { type: "h2", content: "Hari 15-20: 'Apa yang gue hilangkan diri sendiri dalam hubungan ini yang gue mau kembalikan?'" },
+      { type: "p", content: "Kebanyakan hubungan panjang melibatkan kompromi diri. Teman yang lo lihat lebih jarang. Minat yang lo sampingkan. Aspek personality yang nggak cocok dengan preferensi mereka. Window pasca-putus adalah saat reklamasi ini menjadi mungkin. Tulis apa yang spesifiknya available sekarang yang nggak sebelumnya." },
+      { type: "h2", content: "Hari 20-25: 'Gue jadi siapa?'" },
+      { type: "p", content: "Identitas dewasa sebagian relasional. Pasca-putus, 'gue' punya ruang untuk redefine. Ini nggak nyaman tapi generatif. Apa yang berubah? Versi baru lo yang muncul dari ini apa? Ini prompt di mana sebagian integrasi terjadi." },
+      { type: "h2", content: "Hari 25-30: 'Apa yang gue pelajari tentang diri gue dari hubungan ini dan berakhirnya?'" },
+      { type: "p", content: "Simpan prompt ini terakhir di 30 hari pertama. Pada hari 25-30, cukup banyak yang udah settle untuk mencari pola tanpa memaksa closure prematur. Apa yang lo pelajari tentang attachment style lo? Boundary apa yang sekarang lo tau penting? Jenis kemitraan apa yang lo cari atau hindari? Jujur, bukan exhaustive." },
+      { type: "h2", content: "Setelah hari 30" },
+      { type: "p", content: "Pemulihan putus bukan 30 hari untuk kebanyakan orang dewasa — 3-6 bulan untuk hubungan pendek, 6-18 bulan untuk yang panjang. Setelah hari 30, journaling jadi kurang terstruktur. Most people return ke prompt di atas as needed (re-read prompt 2 saat rasa kangen muncul)." },
+      { type: "h2", content: "Kapan sakit putus butuh bantuan profesional" },
+      { type: "p", content: "Kebanyakan putus nggak butuh terapi, tapi beberapa iya. Tanda yang warrant dukungan profesional:" },
+      { type: "ul", content: [
+        "Persistent ketidakmampuan makan atau tidur selama lebih dari 3 minggu.",
+        "Intrusive thought self-harm — sekecil apapun.",
+        "Ketidakmampuan melakukan tugas dasar kerja atau sekolah dalam waktu yang lama.",
+        "Gejala yang lebih kelihatan depresi (putus asa berkelanjutan, kehilangan minat pada segala) dari pada grief akut.",
+        "Kalau putus mengikuti atau melibatkan kekerasan, kontrol, atau trauma — kerja dengan terapis spesialisasi trauma hubungan.",
+      ] },
+      { type: "p", content: "Sumber krisis di Indonesia: Into The Light (intothelightid.org) atau 119 ext 8. Akses terapi: Halodoc, KALM, dan Riliv menawarkan konsultasi psikolog mulai Rp 50.000-150.000 per sesi. Cari 'terapis putus' atau 'psikolog attachment.'" },
+      { type: "h2", content: "Bottom line" },
+      { type: "p", content: "Putus mengaktifkan jalur pain fisik nyata dan mengganggu sistem attachment yang dibangun selama berbulan-bulan atau bertahun-tahun. Journaling membantu saat dia track tahap aktual pemulihan (ekspresi, menamai spesifik, belajar, integrasi) — bukan saat dia memaksa closure prematur. 7 prompt di atas dipetakan ke 30 hari pertama; gunakan secara berurutan atau as needed. Skip hari. Ambil waktu. Persona Gentle Nuju dirancang persis untuk kerja seperti ini — memvalidasi tanpa mendorong. Coba free Ju Gets You reveal kalau lo mau tempat mulai malam ini." },
+    ],
+    faq: [
+      {
+        question: "Kenapa putus sakit banget secara fisik?",
+        answer:
+          "Riset fMRI fungsional oleh Naomi Eisenberger dan Matthew Lieberman (UCLA, 2003+) menunjukkan bahwa penolakan sosial mengaktifkan anterior cingulate cortex dan insula — area otak yang sama yang memproses rasa sakit fisik. 'Patah hati' bukan metafora; itu fenomena neurologis yang terukur. Dikombinasikan dengan disrupsi sistem attachment (Bowlby) dan dissolusi identitas dari hidup yang dibagi panjang, putus bisa menghasilkan gejala mirip grief.",
+      },
+      {
+        question: "Berapa lama untuk move on dari putus?",
+        answer:
+          "Sangat bervariasi. Riset menyarankan 3-6 bulan untuk hubungan pendek dan 6-18 bulan untuk hubungan jangka panjang, dengan variasi individu signifikan. 'Move on' juga menyesatkan — kebanyakan orang nggak sepenuhnya lupa hubungan penting; mereka integrasi. Sakit akut biasanya puncak di 2-4 minggu pertama, lalu bertahap turun dengan resurgences periodik (anniversary, lagu, tempat).",
+      },
+      {
+        question: "Bagusnya nulis surat marah ke mantan?",
+        answer:
+          "Kalau nggak lo kirim, ya — nulis 'surat tak terkirim' adalah teknik terapeutik yang diakui. Tindakan menulis mengeksternalisasi kemarahan dan mengurangi cengkramannya tanpa menyebabkan kerusakan hubungan. Penting: jangan kirim. Kejelasan yang muncul dari menulis sering tergantung pada surat itu untuk diri sendiri, bukan untuk mereka. Robek setelah atau simpan untuk perspektif nanti.",
+      },
+      {
+        question: "Normal nggak masih nangis berminggu setelah putus?",
+        answer:
+          "Ya, sangat normal. Nangis adalah bagian pemrosesan grief yang sehat untuk alasan yang sama itu normal di kedukaan — putus mengaktifkan sistem yang serupa. Riset secara konsisten nunjukin ekspresi emosional selama grief menghasilkan outcome jangka panjang yang lebih baik daripada penekanan emosional. Tubuh melakukan yang dia butuhkan. Kalau nangis mengganggu fungsi dasar lebih dari 3 minggu atau lo nggak tidur, ngobrol sama terapis.",
+      },
+      {
+        question: "Gimana stop mikirin mantan terus?",
+        answer:
+          "Lo nggak — setidaknya nggak dengan paksaan. Intrusive thought setelah putus normal dan berkurang alami selama berminggu-minggu. Mencoba menekan sering bikin mereka lebih persisten (ironic process theory). Journaling membantu karena menulis pikiran mengeksternalisasinya — otak berhenti memutar mereka secepatnya begitu mereka 'di kertas.' Most people experience pengurangan signifikan intrusive thought di minggu 4-6.",
+      },
+      {
+        question: "Kapan ke psikolog soal putus?",
+        answer:
+          "Kalau lo nggak bisa makan atau tidur 3+ minggu, punya intrusive thought self-harm, nggak bisa lakukan tugas harian dasar, mengembangkan putus asa berkelanjutan, atau kalau hubungan melibatkan abuse/kontrol/trauma — temui terapis minggu ini. Cari 'terapis putus' atau 'psikolog attachment' di Halodoc/KALM/Riliv mulai Rp 50.000-150.000. Most putus nggak butuh terapi, tapi yang butuh manfaat signifikan. Krisis: Into The Light Indonesia, 119 ext 8.",
+      },
+    ],
+  },
+  // BAHASA INDONESIA — Work stress / stres kerja Indonesia. Maslach Burnout
+  // Inventory + Indonesian workplace context.
+  {
+    slug: "mengatasi-stres-kerja-journaling",
+    title: "Mengatasi Stres Kerja dengan Journaling: 5 Prompt untuk Pekerja Indonesia (2026)",
+    description: "Stres kerja di Indonesia naik signifikan — Gen Z dan Milenial paling terdampak. Journaling 5 menit per hari terbukti memutus loop stres tanpa harus berhenti kerja. 5 prompt spesifik untuk konteks kerja Indonesia, plus kapan butuh psikolog.",
+    metaTitle: "Mengatasi Stres Kerja Indonesia: 5 Prompt Journaling (2026)",
+    metaDescription: "Stres kerja Indonesia naik signifikan terutama Gen Z. 5 prompt journaling 5 menit yang terbukti memutus loop stres. Plus tips Indonesian workplace.",
+    publishedAt: "2026-05-22",
+    readingTime: 7,
+    category: "Mental Wellness",
+    sections: [
+      { type: "p", content: "Jawaban singkat: stres kerja di Indonesia naik signifikan dalam 2-3 tahun terakhir, dengan Gen Z dan Milenial sebagai kelompok paling terdampak per riset 2024-2026. Journaling 5 menit per hari adalah salah satu intervensi paling murah dan paling terbukti yang bisa lo lakukan sendiri — bukan untuk menyelesaikan masalah struktural kerja, tapi untuk memutus loop stres harian. 5 prompt di bawah dirancang khusus untuk konteks kerja Indonesia, termasuk dinamika hierarki, ekspektasi keluarga, dan budaya 'sungkan' yang sering memperkuat stres tanpa disadari." },
+      { type: "p", content: "Tulisan ini bukan untuk burnout berat — itu wilayah yang butuh dukungan profesional dan kadang perubahan struktural di kerjaan. Untuk burnout, lihat /blog/cara-mengatasi-burnout-gen-z. Tulisan ini untuk stres kerja harian yang masih bisa lo kelola di samping cari solusi yang lebih besar." },
+      { type: "callout", content: "Catatan: kalau stres kerja udah bikin gangguan tidur kronis, serangan panik, atau pikiran ngerusak diri sendiri — itu udah masuk wilayah yang butuh psikolog. Banyak platform Indonesia (Halodoc, KALM, Riliv) menawarkan konsultasi mulai Rp 50.000-150.000. BPJS juga sekarang cover beberapa kondisi mental health. Journaling pelengkap, bukan pengganti." },
+      { type: "h2", content: "Kenapa stres kerja Indonesia struktural berbeda" },
+      { type: "p", content: "Stres kerja generik (deadline, beban kerja, manajer toxic) ada di mana-mana. Yang membuat stres kerja Indonesia spesifik:" },
+      { type: "ul", content: [
+        "Budaya hierarki: ketidakmampuan untuk push back ke atasan secara langsung, takut dianggap 'kurang ajar.' Stres yang dipendam tanpa outlet langsung.",
+        "Ekspektasi keluarga + sosial: tekanan untuk terus naik karir, beli rumah, biayain orang tua — sering jadi cognitive load tambahan di atas beban kerja sendiri.",
+        "Budaya 'sungkan': enggan minta tolong, izin terlambat, atau ngomong 'enggak.' Beban menumpuk tanpa katup pelepasan.",
+        "Always-on culture: WhatsApp grup kerja jam 10 malam, panggilan weekend, ekspektasi 'tersedia' yang nggak dinegosiasikan secara eksplisit.",
+      ] },
+      { type: "p", content: "Kombinasi ini menghasilkan stres yang resisten terhadap saran generik dari konten internasional ('set boundary lebih tegas,' 'pulang on time'). Saran-saran itu sering nggak realistis dalam konteks budaya yang sebenarnya." },
+      { type: "h2", content: "Bagaimana journaling 5 menit memutus loop stres harian" },
+      { type: "p", content: "Riset Pennebaker (UT Austin, 35+ tahun) menunjukkan bahwa menulis 5-15 menit per hari tentang sumber stres menurunkan intensitas emosional selama 24 jam berikutnya. Mekanismenya:" },
+      { type: "ol", content: [
+        "Eksternalisasi: menulis memindahkan beban kognitif dari working memory ke media luar. Otak berhenti memprosesnya secara aktif setelah dia 'ada di luar.'",
+        "Identifikasi pemicu: selama berminggu-minggu, pola muncul. Lo mulai sadar trigger spesifik (pesan dari atasan tertentu, jenis meeting tertentu, jam tertentu).",
+        "Realitas-cek: stres sering merasa lebih buruk di kepala daripada di kertas. Menulis-mu memaksanya jadi kalimat konkret yang bisa dievaluasi.",
+      ] },
+      { type: "p", content: "Lima menit per hari cukup. Jangan target lebih panjang — itu malah jadi sumber stres tambahan ('aku belum sempat journaling lagi'). Konsistensi lebih penting dari durasi." },
+      { type: "h2", content: "5 prompt khusus konteks kerja Indonesia" },
+      { type: "h2", content: "Prompt 1: 'Apa pemicu stres paling spesifik hari ini di kerja?'" },
+      { type: "p", content: "Bukan 'kerjaan numpuk' — tapi yang spesifik. 'Pesan Slack dari Bos jam 5 sore nyuruh deck besok pagi yang harusnya nggak urgent.' 'Meeting jam 3 yang molor 30 menit ke jam istirahat.' 'WhatsApp grup kerja malam minggu yang nge-tag gue padahal weekend.' Spesifik bikin pemicu konkret dan bisa ditangani. Selama 2 minggu, lo bakal liat pemicu yang sama muncul berulang." },
+      { type: "h2", content: "Prompt 2: 'Apa yang gue ingin omongin ke atasan tapi nggak bisa?'" },
+      { type: "p", content: "Budaya hierarki Indonesia sering bikin kita pendam apa yang sebenernya pengen kita sampein. Prompt ini ngeluarinnya. Tulis lengkap di jurnal — yang lo pengen omongin, kekecewaan, kebutuhan yang nggak ter-akomodasi. Nggak harus dikirim. Tujuannya: kepala berhenti memutar kalimat itu, dan kadang kejelasan dari menulis bantu lo nemuin cara yang lebih halus untuk benar-benar ngomong nantinya." },
+      { type: "h2", content: "Prompt 3: 'Ekspektasi siapa yang gue pikul hari ini di kerja yang sebenernya nggak masuk akal?'" },
+      { type: "p", content: "Banyak stres kerja Indonesia dari ekspektasi yang tidak diomongkan langsung tapi diasumsikan — terutama ekspektasi senior, ekspektasi keluarga ('harus jadi yang terbaik biar bisa biayain orang tua'), atau ekspektasi diri sendiri yang dibentuk budaya. Nama ekspektasinya spesifik. Tanyakan: apakah ini ekspektasi yang gue setuju, atau yang gue pikul karena nggak pernah dipertanyakan?" },
+      { type: "h2", content: "Prompt 4: 'Apa yang bisa gue kontrol di sini, apa yang enggak?'" },
+      { type: "p", content: "Banyak stres kerja muncul dari mencoba mengontrol yang bukan kontrol kita. Bikin dua kolom: 'Gue bisa kontrol' (effort gue, output gue, sikap gue, batasan gue) dan 'Gue nggak bisa kontrol' (keputusan atasan, mood rekan kerja, perubahan struktural). Yang masuk kolom kedua — coret. Otak boleh lepas. Yang masuk kolom pertama — pilih satu, dan tulis langkah konkret berikutnya." },
+      { type: "h2", content: "Prompt 5: 'Apa yang berjalan baik di kerja hari ini, sekecil apapun?'" },
+      { type: "p", content: "Bukan gratitude dipaksain — pengakuan jujur. Stres kerja menumpulkan kemampuan otak melihat yang baik. Tulis SATU hal yang berjalan baik. 'Senior tim help out di brief sore.' 'Gue sempet selesain task tertunda 3 hari.' 'Junior nyampaikan ide bagus di stand-up.' Kecil. Sering memutus narasi 'semuanya hancur' tanpa memaksa positivity nggak nyata." },
+      { type: "h2", content: "Kapan stres kerja butuh lebih dari journaling" },
+      { type: "p", content: "Journaling 5 menit bagus untuk stres harian. Tapi ada tanda yang menunjukkan stres lo udah lewat batas:" },
+      { type: "ul", content: [
+        "Tidur terganggu lebih dari 3 minggu berturut-turut.",
+        "Serangan panik di tempat kerja atau saat dapat pesan kerja.",
+        "Ketergantungan pada kafein, alkohol, atau zat lain yang meningkat.",
+        "Gejala fisik (sakit kepala kronis, masalah pencernaan, ketegangan otot terus-menerus) yang nggak hilang di weekend.",
+        "Pikiran ngerusak diri sendiri — sekecil apapun, sesekali apapun.",
+      ] },
+      { type: "p", content: "Untuk kondisi ini, konsultasi psikolog atau psikiater. Halodoc, KALM, dan Riliv menawarkan konsultasi mulai Rp 50.000-150.000 per sesi. BPJS sekarang cover beberapa kondisi mental health — cek di puskesmas. Beberapa perusahaan Indonesia juga mulai punya EAP (Employee Assistance Program) atau benefit konseling — tanya HR. Krisis: Into The Light Indonesia (intothelightid.org), 119 ext 8." },
+      { type: "h2", content: "Praktis: kapan dan di mana journaling kerja" },
+      { type: "p", content: "Beberapa tips realistis untuk pekerja Indonesia:" },
+      { type: "ul", content: [
+        "Waktu terbaik: 5 menit sebelum buka HP pagi (sebelum baca pesan kerja) atau 5 menit sebelum tidur (sebelum scroll terakhir).",
+        "Lokasi: pakai aplikasi di HP — jurnal kertas sering tertinggal di rumah. Pastikan privasinya dijaga (Nuju enkripsi entri).",
+        "Format: 1-3 kalimat per prompt sudah cukup. Median entri user Nuju cuma 31 karakter — sekitar satu kalimat pendek.",
+        "Frekuensi: 5 hari kerja per minggu udah cukup. Skip weekend kalau pengen.",
+        "Privasi: jangan journal di laptop kerja. Pakai HP pribadi atau notes app yang nggak ter-sinkron ke akun kerja.",
+      ] },
+      { type: "h2", content: "Bottom line" },
+      { type: "p", content: "Stres kerja Indonesia punya konteks struktural yang berbeda dari konten internasional — hierarki, ekspektasi keluarga, sungkan, always-on culture. Journaling 5 menit per hari memutus loop stres harian tanpa harus menyelesaikan masalah struktural dulu. 5 prompt di atas dirancang spesifik untuk konteks Indonesia. Untuk burnout berat atau gejala persisten, journaling pelengkap — tetap konsultasi profesional. Nuju gratis dipakai dan support Bahasa Indonesia penuh; coba 30 detik di onboarding." },
+    ],
+    faq: [
+      {
+        question: "Apakah journaling beneran ngebantu stres kerja yang struktural?",
+        answer:
+          "Journaling tidak menyelesaikan masalah struktural (manajer toxic, beban kerja berlebihan, gaji nggak adil) — itu butuh perubahan eksternal atau pindah kerja. Yang journaling lakukan: memutus loop stres harian, membantu lo identifikasi pemicu spesifik (yang sering kelihatan jelas setelah 2-3 minggu data), dan memberi outlet untuk emosi yang nggak bisa diomongkan langsung. Itu pelengkap untuk mengelola stres saat lo cari solusi yang lebih besar.",
+      },
+      {
+        question: "Bedanya stres kerja sama burnout apa?",
+        answer:
+          "Stres kerja itu reaksi terhadap demand spesifik (deadline, konflik, beban). Burnout itu kondisi kronis: kelelahan emosional yang nggak pulih dengan istirahat + perasaan terputus dari kerjaan + perasaan nggak ada yang penting dari yang lo lakuin. Stres hilang setelah masalah selesai; burnout tetap ada walaupun lo udah liburan seminggu. Untuk burnout berat, lihat /blog/cara-mengatasi-burnout-gen-z dan konsultasi profesional.",
+      },
+      {
+        question: "Bahaya nggak journaling soal kerjaan di tempat kerja?",
+        answer:
+          "Bahaya kalau dilakukan di laptop kerja atau akun kerja — itu jadi data yang bisa diakses perusahaan. Aman kalau di HP pribadi, di aplikasi yang nggak ter-sinkron ke akun kerja, dan menggunakan aplikasi dengan enkripsi (Nuju mengenkripsi entri dan nggak dipakai training AI). Jangan pernah journal kritik atasan di Slack catatan atau Google Docs kerja.",
+      },
+      {
+        question: "Berapa lama journaling sampai stres kerja terasa berkurang?",
+        answer:
+          "Untuk satu sesi: kebanyakan orang merasa sedikit lega dalam 5-10 menit setelah journaling. Itu lega jangka pendek. Untuk efek jangka panjang (lebih jarang trigger, lebih cepat recovery, pemahaman pemicu lebih baik): butuh 2-3 minggu konsisten. Lima menit/hari lebih efektif dari 1 jam sekali seminggu — konsistensi lebih penting dari durasi.",
+      },
+      {
+        question: "Apakah harus pakai aplikasi atau bisa di Google Docs?",
+        answer:
+          "Hindari Google Docs (atau Notion, Evernote, dll) kalau lo pakai akun kerja — itu data yang bisa diakses perusahaan. Pakai HP pribadi dengan aplikasi yang punya kebijakan privasi yang jelas. Nuju aman karena entri dienkripsi dan nggak dipakai training AI. Aplikasi journaling lain seperti Reflection juga aman. Hindari aplikasi yang TOS-nya nggak transparan.",
+      },
+      {
+        question: "Kapan saatnya benar-benar resign atau cari kerja baru?",
+        answer:
+          "Tiga sinyal yang menunjukkan resign mungkin perlu: (1) Stres bertahan walaupun lo udah journaling rutin 4-6 minggu + ngobrol sama manajer + coba set boundary; (2) Gejala fisik atau mental yang nggak hilang di weekend dan liburan; (3) Lo udah lihat satu rekan kerja senior atau lebih yang punya pola yang sama berlanjut bertahun-tahun. Resign itu pilihan valid; journaling bisa membantu lo mengklarifikasi apakah ini momennya. Sebelum resign, hitung dulu runway finansial — biasanya minimal 6 bulan.",
+      },
+    ],
+  },
 ];
 
 const normalizeCopy = (value: string): string =>
