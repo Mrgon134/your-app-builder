@@ -6,7 +6,7 @@
     <atom:link href="https://nuju.app/rss.xml" rel="self" type="application/rss+xml" />
     <description>Practical guides on journaling, mood tracking, and emotional wellness from the Nuju team.</description>
     <language>en</language>
-    <lastBuildDate>Fri, 22 May 2026 08:07:11 GMT</lastBuildDate>
+    <lastBuildDate>Fri, 22 May 2026 08:20:05 GMT</lastBuildDate>
     <item>
       <title>We Analyzed Our First 161 Real Journal Entries: 87% Were Logged on &apos;Not Great&apos; Days</title>
       <link>https://nuju.app/blog/what-people-write-in-journal-data</link>
@@ -165,6 +165,42 @@
       <link>https://nuju.app/blog/journaling-for-imposter-syndrome</link>
       <guid isPermaLink="true">https://nuju.app/blog/journaling-for-imposter-syndrome</guid>
       <description>Imposter syndrome makes capable people feel like frauds. Research from Pauline Clance (1978+) shows journaling is one of the most effective non-therapeutic interventions. 6 prompts that work, and how to track the &apos;evidence file&apos; that quiets the voice.</description>
+      <category>Mental Wellness</category>
+      <pubDate>Fri, 22 May 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Nuju vs Rosebud: Which AI Journal Is Right for You in 2026?</title>
+      <link>https://nuju.app/blog/nuju-vs-rosebud</link>
+      <guid isPermaLink="true">https://nuju.app/blog/nuju-vs-rosebud</guid>
+      <description>Nuju and Rosebud are two of the top AI journaling apps in 2026 — but they serve different users. Nuju is built for short daily entries with a warm AI tone. Rosebud is built for structured therapy-style prompts. Here&apos;s the honest comparison.</description>
+      <category>App Comparison</category>
+      <pubDate>Fri, 22 May 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Nuju vs Mindsera: Warm AI Journal or Cognitive Coach? (2026 Comparison)</title>
+      <link>https://nuju.app/blog/nuju-vs-mindsera</link>
+      <guid isPermaLink="true">https://nuju.app/blog/nuju-vs-mindsera</guid>
+      <description>Nuju and Mindsera are two strong AI journaling tools — but they target opposite emotional registers. Nuju is warm and short-entry-friendly. Mindsera is analytical and surfaces cognitive distortions. Here&apos;s the honest side-by-side.</description>
+      <category>App Comparison</category>
+      <pubDate>Fri, 22 May 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>The Perfectionism-Procrastination Loop: 6 Journal Prompts That Actually Break It (2026)</title>
+      <link>https://nuju.app/blog/journaling-for-perfectionism-procrastination</link>
+      <guid isPermaLink="true">https://nuju.app/blog/journaling-for-perfectionism-procrastination</guid>
+      <description>Perfectionism and procrastination create a self-reinforcing loop that produces burnout, anxiety, and depression. Research shows journaling helps when it externalizes the inner critic. 6 prompts designed to break the loop, with what to skip.</description>
+      <category>Mental Wellness</category>
+      <pubDate>Fri, 22 May 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Digital Wellness untuk Gen Z Indonesia: Cara Journaling 5 Menit Memutus Loop Scroll (2026)</title>
+      <link>https://nuju.app/blog/digital-wellness-journaling-gen-z-indonesia</link>
+      <guid isPermaLink="true">https://nuju.app/blog/digital-wellness-journaling-gen-z-indonesia</guid>
+      <description>Gen Z Indonesia rata-rata 6+ jam di HP per hari — tertinggi dari generasi manapun. Digital fatigue jadi masalah nyata. Journaling 5 menit terbukti memutus loop scroll dan reset otak. Panduan praktis untuk Gen Z Indonesia.</description>
       <category>Mental Wellness</category>
       <pubDate>Fri, 22 May 2026 12:00:00 GMT</pubDate>
       <dc:language>en</dc:language>

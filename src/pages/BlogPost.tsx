@@ -697,6 +697,94 @@ const INTERNAL_LINK_RECOMMENDATIONS: Record<string, InternalLinkRecommendation[]
       body: "The Evidence File needs to be habitual — here's how to make 5 minutes/day stick.",
     },
   ],
+  "nuju-vs-rosebud": [
+    {
+      slug: "nuju-vs-mindsera",
+      eyebrow: "Another comparison",
+      body: "How Nuju stacks up against Mindsera — warm AI journal vs cognitive coach.",
+    },
+    {
+      slug: "best-ai-journal-apps-for-anxiety-2026",
+      eyebrow: "Broader pick",
+      body: "Compare 5 AI journal apps specifically for anxiety — including both Nuju and Rosebud.",
+    },
+    {
+      slug: "best-ai-journaling-apps",
+      eyebrow: "Full category",
+      body: "Step back and compare the whole AI journaling category side by side.",
+    },
+    {
+      slug: "complete-guide-ai-journaling-2026",
+      eyebrow: "Category guide",
+      body: "Complete 2026 guide to AI journaling — what the category is, how to pick a tool.",
+    },
+  ],
+  "nuju-vs-mindsera": [
+    {
+      slug: "nuju-vs-rosebud",
+      eyebrow: "Another comparison",
+      body: "How Nuju stacks up against Rosebud — short daily entries vs structured therapy prompts.",
+    },
+    {
+      slug: "best-ai-journal-apps-for-anxiety-2026",
+      eyebrow: "Anxiety-specific",
+      body: "5 AI journal apps compared specifically for anxiety — Nuju, Rosebud, Mindsera, Reflectly, Daylio.",
+    },
+    {
+      slug: "ai-journal-for-overthinking",
+      eyebrow: "Cognitive work",
+      body: "Mindsera's cognitive distortion lens shines for chronic overthinking — this guide goes deeper.",
+    },
+    {
+      slug: "complete-guide-ai-journaling-2026",
+      eyebrow: "Category guide",
+      body: "Complete 2026 guide to AI journaling — what the category is, how to pick a tool.",
+    },
+  ],
+  "journaling-for-perfectionism-procrastination": [
+    {
+      slug: "journaling-for-imposter-syndrome",
+      eyebrow: "Often the same loop",
+      body: "Perfectionism, procrastination, and imposter syndrome share roots — the Evidence File technique applies here too.",
+    },
+    {
+      slug: "gen-z-burnout-journaling",
+      eyebrow: "Where this loop leads",
+      body: "Untreated perfectionism-procrastination produces burnout. The 4-prompt burnout protocol.",
+    },
+    {
+      slug: "ai-journal-for-overthinking",
+      eyebrow: "The cognitive piece",
+      body: "Perfectionist procrastination is downstream of overthinking. The AI journal angle.",
+    },
+    {
+      slug: "5-minute-daily-journaling-habit",
+      eyebrow: "Make it stick",
+      body: "The 6-prompt protocol works best as a 14-21 day practice — here's how to make 5 minutes/day stick.",
+    },
+  ],
+  "digital-wellness-journaling-gen-z-indonesia": [
+    {
+      slug: "cara-mengatasi-burnout-gen-z",
+      eyebrow: "Burnout Gen Z",
+      body: "Digital fatigue adalah daily-level version dari burnout. 5 prompt khusus burnout Gen Z Indonesia.",
+    },
+    {
+      slug: "cara-mengatasi-overthinking",
+      eyebrow: "Habis scroll = overthinking",
+      body: "Scroll panjang sering memicu overthinking malam. 4 prompt untuk memutus loop pikiran.",
+    },
+    {
+      slug: "aplikasi-journal-ai-gratis-indonesia",
+      eyebrow: "Pilih aplikasinya",
+      body: "5 aplikasi journal AI gratis Indonesia yang nggak nambah screen time — perbandingan lengkap.",
+    },
+    {
+      slug: "self-healing-dengan-jurnal",
+      eyebrow: "Self healing rutin",
+      body: "Protokol reset 5 menit cocok jadi bagian dari self healing harian. Panduan lengkap.",
+    },
+  ],
 };
 
 const getInternalLinkCards = (slug: string): InternalLinkCard[] =>
@@ -1036,6 +1124,10 @@ const BlogPost: React.FC = () => {
         name: post.category === "Mental Wellness" ? "Mental wellness" : "AI journaling",
       },
     }),
+    speakable: {
+      "@type": "SpeakableSpecification",
+      cssSelector: ["[data-speakable-title=\"true\"]", "[data-speakable-bluf=\"true\"]"],
+    },
   };
 
   const faqSchema =
@@ -1194,11 +1286,17 @@ const BlogPost: React.FC = () => {
           </span>
         </div>
 
-        <h1 className="mb-6 font-serif text-3xl font-bold leading-tight text-foreground sm:text-4xl">
+        <h1
+          data-speakable-title="true"
+          className="mb-6 font-serif text-3xl font-bold leading-tight text-foreground sm:text-4xl"
+        >
           {post.title}
         </h1>
 
-        <p className="mb-10 border-b border-border/40 pb-10 text-lg leading-relaxed text-muted-foreground">
+        <p
+          data-speakable-bluf="true"
+          className="mb-10 border-b border-border/40 pb-10 text-lg leading-relaxed text-muted-foreground"
+        >
           {post.description}
         </p>
 
