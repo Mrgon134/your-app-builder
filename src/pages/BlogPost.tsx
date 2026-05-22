@@ -455,6 +455,336 @@ const INTERNAL_LINK_RECOMMENDATIONS: Record<string, InternalLinkRecommendation[]
       body: "Untuk pemula yang baru mau curhat lewat tulisan — cara memulai journaling 5 menit per hari.",
     },
   ],
+  "mental-health-awareness-month-2026-journaling": [
+    {
+      slug: "5-minute-daily-journaling-habit",
+      eyebrow: "Make it permanent",
+      body: "After the 31-day challenge, keep the habit going — the science of making journaling stick past month one.",
+    },
+    {
+      slug: "what-people-write-in-journal-data",
+      eyebrow: "What real entries look like",
+      body: "87% of real journal entries are logged on 'not great' days, median is 31 characters. Set realistic expectations for your 31 days.",
+    },
+    {
+      slug: "complete-guide-ai-journaling-2026",
+      eyebrow: "If AI journaling appeals",
+      body: "Complete 2026 guide to AI journaling — what the category is, how to pick a tool, and where to start.",
+    },
+    {
+      slug: "journaling-for-mental-health",
+      eyebrow: "The deeper why",
+      body: "Why journaling works for mental health — 35 years of research distilled into the core mechanisms.",
+    },
+  ],
+  "digital-fatigue-journaling-reset": [
+    {
+      slug: "gen-z-burnout-journaling",
+      eyebrow: "Burnout = bigger version",
+      body: "Digital fatigue is the daily version; burnout is when it compounds. The 4-prompt protocol for full burnout.",
+    },
+    {
+      slug: "3am-anxiety-journaling",
+      eyebrow: "When screens steal sleep",
+      body: "Digital fatigue is one of the biggest sleep-latency drivers. When phone use bleeds into 3am wakeups, this guide helps.",
+    },
+    {
+      slug: "5-minute-daily-journaling-habit",
+      eyebrow: "Build the daily window",
+      body: "The 5-minute reset works best as a daily habit — here's how to make it automatic.",
+    },
+    {
+      slug: "ai-journal-for-overthinking",
+      eyebrow: "When screens trigger overthinking",
+      body: "Digital fatigue + overthinking often co-occur. The AI journal angle for both.",
+    },
+  ],
+  "morning-pages-research-explained": [
+    {
+      slug: "5-minute-daily-journaling-habit",
+      eyebrow: "The adapted version",
+      body: "The 5-minute alternative to Morning Pages — same expressive-writing mechanism, fraction of the time cost.",
+    },
+    {
+      slug: "what-is-ai-journaling",
+      eyebrow: "Modernized Morning Pages",
+      body: "AI journaling is the 2026 evolution of stream-of-consciousness writing — what it adds, what it doesn't.",
+    },
+    {
+      slug: "journaling-for-self-discovery",
+      eyebrow: "The Cameron intent",
+      body: "Morning Pages was originally about creativity and self-discovery. Modern journaling for the same goal.",
+    },
+    {
+      slug: "5-minute-daily-journaling-habit",
+      eyebrow: "Make any format stick",
+      body: "Whatever format you pick — long or short — habit-formation research applies. Here's the playbook.",
+    },
+  ],
+  "gen-z-burnout-journaling": [
+    {
+      slug: "digital-fatigue-journaling-reset",
+      eyebrow: "Burnout's daily cousin",
+      body: "Digital fatigue is the daily-level version of burnout. The 5-minute reset for the smaller daily drain.",
+    },
+    {
+      slug: "ai-journal-for-overthinking",
+      eyebrow: "Burnout + overthinking",
+      body: "Many burned-out workers also overthink chronically. The AI journal angle for the combo.",
+    },
+    {
+      slug: "sunday-scaries-mood-data",
+      eyebrow: "Burnout shows on Sundays",
+      body: "Sunday Scaries are often the first symptom of work burnout intensifying. Here's the data + the reset.",
+    },
+    {
+      slug: "5-minute-daily-journaling-habit",
+      eyebrow: "Make the reset daily",
+      body: "The 4-prompt burnout protocol works best daily — here's how to actually build a 5-min daily habit.",
+    },
+  ],
+  "cara-mengatasi-burnout-gen-z": [
+    {
+      slug: "cara-mengatasi-overthinking",
+      eyebrow: "Burnout + overthinking",
+      body: "Banyak Gen Z burnout juga overthinking kronis. 4 prompt khusus untuk memutus loop pikiran.",
+    },
+    {
+      slug: "self-healing-dengan-jurnal",
+      eyebrow: "Bagian dari self healing",
+      body: "Mengatasi burnout adalah satu bagian dari self healing yang lebih luas — panduan praktis 5 prompt.",
+    },
+    {
+      slug: "journaling-untuk-anxiety",
+      eyebrow: "Burnout + anxiety",
+      body: "Burnout dan anxiety sering muncul bareng. 7 prompt spesifik anxiety yang juga bantuin burnout.",
+    },
+    {
+      slug: "cara-curhat-ke-diri-sendiri",
+      eyebrow: "Curhat saat burnout",
+      body: "Pas burnout, sering nggak ada energi buat ngomong ke teman. 5 cara curhat ke diri sendiri yang efektif.",
+    },
+  ],
+  "best-ai-journal-apps-for-anxiety-2026": [
+    {
+      slug: "mood-tracking-for-anxiety",
+      eyebrow: "Anxiety + tracking",
+      body: "Once you pick an app, mood tracking helps surface specific anxiety triggers over 2-3 weeks.",
+    },
+    {
+      slug: "ai-journal-for-overthinking",
+      eyebrow: "Anxiety + overthinking",
+      body: "Most anxiety is overthinking with a body component. The AI journal angle for the cognitive piece.",
+    },
+    {
+      slug: "3am-anxiety-journaling",
+      eyebrow: "Night anxiety",
+      body: "When anxiety wakes you at 3am — the specific technique for late-night spirals.",
+    },
+    {
+      slug: "best-ai-journaling-apps",
+      eyebrow: "Broader category",
+      body: "Compare the full AI journaling category beyond anxiety-specific use.",
+    },
+  ],
+  "ai-journaling-for-loneliness": [
+    {
+      slug: "ai-journal-for-overthinking",
+      eyebrow: "Loneliness + overthinking",
+      body: "Loneliness and overthinking often loop together — here's how AI journaling helps both.",
+    },
+    {
+      slug: "best-ai-journal-apps-for-anxiety-2026",
+      eyebrow: "If loneliness = anxiety",
+      body: "When loneliness shows up as anxiety, the anxiety-specific journal app comparison helps narrow the choice.",
+    },
+    {
+      slug: "cara-curhat-ke-diri-sendiri",
+      eyebrow: "Indonesian readers",
+      body: "Untuk pengguna Indonesia — 5 cara curhat ke diri sendiri saat nggak ada teman.",
+    },
+    {
+      slug: "complete-guide-ai-journaling-2026",
+      eyebrow: "Why this category exists",
+      body: "The full 2026 guide to AI journaling and why the format works for emotional gaps.",
+    },
+  ],
+  "aplikasi-journal-ai-gratis-indonesia": [
+    {
+      slug: "aplikasi-jurnal-terbaik",
+      eyebrow: "Bandingkan lagi",
+      body: "Daftar aplikasi jurnal terbaik secara umum — lebih luas dari journal AI gratis.",
+    },
+    {
+      slug: "aplikasi-curhat-ai",
+      eyebrow: "AI buat curhat",
+      body: "Khusus AI curhat — kriteria privasi dan rekomendasi spesifik untuk pengguna Indonesia.",
+    },
+    {
+      slug: "self-healing-dengan-jurnal",
+      eyebrow: "Self healing",
+      body: "Setelah pilih aplikasi — cara pakainya untuk self healing yang berkelanjutan.",
+    },
+    {
+      slug: "cara-mengatasi-overthinking",
+      eyebrow: "Untuk overthinker",
+      body: "Setelah punya aplikasi — 4 prompt khusus untuk memutus loop overthinking.",
+    },
+  ],
+  "journaling-for-anger": [
+    {
+      slug: "journaling-for-grief",
+      eyebrow: "When anger is grief",
+      body: "Anger about loss is often grief in disguise — here's how to journal through it.",
+    },
+    {
+      slug: "gen-z-burnout-journaling",
+      eyebrow: "Workplace anger",
+      body: "Chronic workplace anger is often burnout's middle stage. The 4-prompt burnout protocol.",
+    },
+    {
+      slug: "ai-journal-for-overthinking",
+      eyebrow: "Anger + overthinking",
+      body: "Replaying the same anger episode? That's overthinking. The AI journal angle for both.",
+    },
+    {
+      slug: "3am-anxiety-journaling",
+      eyebrow: "Anger that wakes you up",
+      body: "If anger surfaces at 3am the way anxiety does — the late-night protocol.",
+    },
+  ],
+  "journaling-for-grief": [
+    {
+      slug: "journaling-for-anger",
+      eyebrow: "Anger inside grief",
+      body: "Anger is often part of grief. The structured anger journaling protocol.",
+    },
+    {
+      slug: "ai-journaling-for-loneliness",
+      eyebrow: "Grief loneliness",
+      body: "Grief loneliness is its own category. The AI journaling angle for solitary grief.",
+    },
+    {
+      slug: "journaling-before-therapy",
+      eyebrow: "Pre-grief-therapy",
+      body: "If grief journaling surfaces something bigger, this guide helps you prep for a therapist appointment.",
+    },
+    {
+      slug: "complete-guide-ai-journaling-2026",
+      eyebrow: "Pattern recognition",
+      body: "Grief has waves. AI journaling helps surface the waves over weeks and months.",
+    },
+  ],
+  "journaling-for-imposter-syndrome": [
+    {
+      slug: "gen-z-burnout-journaling",
+      eyebrow: "Imposter + burnout",
+      body: "Imposter syndrome and burnout often co-occur. The 4-prompt burnout protocol.",
+    },
+    {
+      slug: "ai-journal-for-overthinking",
+      eyebrow: "Imposter loops are overthinking",
+      body: "The 'I don't belong here' loop IS overthinking. The AI journal angle for the cognitive piece.",
+    },
+    {
+      slug: "best-ai-journal-apps-for-anxiety-2026",
+      eyebrow: "When imposter = anxiety",
+      body: "If imposter syndrome shows up as work anxiety, the anxiety-specific app comparison.",
+    },
+    {
+      slug: "5-minute-daily-journaling-habit",
+      eyebrow: "Evidence File habit",
+      body: "The Evidence File needs to be habitual — here's how to make 5 minutes/day stick.",
+    },
+  ],
+  "nuju-vs-rosebud": [
+    {
+      slug: "nuju-vs-mindsera",
+      eyebrow: "Another comparison",
+      body: "How Nuju stacks up against Mindsera — warm AI journal vs cognitive coach.",
+    },
+    {
+      slug: "best-ai-journal-apps-for-anxiety-2026",
+      eyebrow: "Broader pick",
+      body: "Compare 5 AI journal apps specifically for anxiety — including both Nuju and Rosebud.",
+    },
+    {
+      slug: "best-ai-journaling-apps",
+      eyebrow: "Full category",
+      body: "Step back and compare the whole AI journaling category side by side.",
+    },
+    {
+      slug: "complete-guide-ai-journaling-2026",
+      eyebrow: "Category guide",
+      body: "Complete 2026 guide to AI journaling — what the category is, how to pick a tool.",
+    },
+  ],
+  "nuju-vs-mindsera": [
+    {
+      slug: "nuju-vs-rosebud",
+      eyebrow: "Another comparison",
+      body: "How Nuju stacks up against Rosebud — short daily entries vs structured therapy prompts.",
+    },
+    {
+      slug: "best-ai-journal-apps-for-anxiety-2026",
+      eyebrow: "Anxiety-specific",
+      body: "5 AI journal apps compared specifically for anxiety — Nuju, Rosebud, Mindsera, Reflectly, Daylio.",
+    },
+    {
+      slug: "ai-journal-for-overthinking",
+      eyebrow: "Cognitive work",
+      body: "Mindsera's cognitive distortion lens shines for chronic overthinking — this guide goes deeper.",
+    },
+    {
+      slug: "complete-guide-ai-journaling-2026",
+      eyebrow: "Category guide",
+      body: "Complete 2026 guide to AI journaling — what the category is, how to pick a tool.",
+    },
+  ],
+  "journaling-for-perfectionism-procrastination": [
+    {
+      slug: "journaling-for-imposter-syndrome",
+      eyebrow: "Often the same loop",
+      body: "Perfectionism, procrastination, and imposter syndrome share roots — the Evidence File technique applies here too.",
+    },
+    {
+      slug: "gen-z-burnout-journaling",
+      eyebrow: "Where this loop leads",
+      body: "Untreated perfectionism-procrastination produces burnout. The 4-prompt burnout protocol.",
+    },
+    {
+      slug: "ai-journal-for-overthinking",
+      eyebrow: "The cognitive piece",
+      body: "Perfectionist procrastination is downstream of overthinking. The AI journal angle.",
+    },
+    {
+      slug: "5-minute-daily-journaling-habit",
+      eyebrow: "Make it stick",
+      body: "The 6-prompt protocol works best as a 14-21 day practice — here's how to make 5 minutes/day stick.",
+    },
+  ],
+  "digital-wellness-journaling-gen-z-indonesia": [
+    {
+      slug: "cara-mengatasi-burnout-gen-z",
+      eyebrow: "Burnout Gen Z",
+      body: "Digital fatigue adalah daily-level version dari burnout. 5 prompt khusus burnout Gen Z Indonesia.",
+    },
+    {
+      slug: "cara-mengatasi-overthinking",
+      eyebrow: "Habis scroll = overthinking",
+      body: "Scroll panjang sering memicu overthinking malam. 4 prompt untuk memutus loop pikiran.",
+    },
+    {
+      slug: "aplikasi-journal-ai-gratis-indonesia",
+      eyebrow: "Pilih aplikasinya",
+      body: "5 aplikasi journal AI gratis Indonesia yang nggak nambah screen time — perbandingan lengkap.",
+    },
+    {
+      slug: "self-healing-dengan-jurnal",
+      eyebrow: "Self healing rutin",
+      body: "Protokol reset 5 menit cocok jadi bagian dari self healing harian. Panduan lengkap.",
+    },
+  ],
 };
 
 const getInternalLinkCards = (slug: string): InternalLinkCard[] =>
@@ -744,7 +1074,28 @@ const BlogPost: React.FC = () => {
       "https://www.youtube.com/@Nujuapp",
       "https://www.producthunt.com/products/nuju",
     ],
+    knowsAbout: [
+      "AI journaling",
+      "mood tracking",
+      "expressive writing",
+      "mental wellness",
+      "anxiety management",
+      "burnout recovery",
+      "self-reflection",
+      "habit formation",
+    ],
   };
+
+  const editorialTeam = {
+    "@type": "Person",
+    name: "Nuju Editorial Team",
+    description:
+      "Nuju's editorial team curates research-backed content on AI journaling, mood tracking, and mental wellness. All claims are sourced from public peer-reviewed research and Nuju's own anonymized usage data, with mental health disclaimers and professional-care references where applicable.",
+    worksFor: nujuEntity,
+    url: "https://nuju.app/blog",
+  };
+
+  const isYMYL = post.category === "Mental Wellness" || post.category === "AI & Tech";
 
   const articleSchema = {
     "@context": "https://schema.org",
@@ -757,13 +1108,25 @@ const BlogPost: React.FC = () => {
     wordCount,
     articleSection: post.category,
     isAccessibleForFree: true,
-    author: nujuEntity,
+    author: editorialTeam,
+    editor: editorialTeam,
     publisher: nujuEntity,
-    reviewedBy: nujuEntity,
+    reviewedBy: editorialTeam,
+    sourceOrganization: nujuEntity,
     image: "https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image",
     mainEntityOfPage: {
       "@type": "WebPage",
       "@id": canonical,
+    },
+    ...(isYMYL && {
+      about: {
+        "@type": "Thing",
+        name: post.category === "Mental Wellness" ? "Mental wellness" : "AI journaling",
+      },
+    }),
+    speakable: {
+      "@type": "SpeakableSpecification",
+      cssSelector: ["[data-speakable-title=\"true\"]", "[data-speakable-bluf=\"true\"]"],
     },
   };
 
@@ -923,11 +1286,17 @@ const BlogPost: React.FC = () => {
           </span>
         </div>
 
-        <h1 className="mb-6 font-serif text-3xl font-bold leading-tight text-foreground sm:text-4xl">
+        <h1
+          data-speakable-title="true"
+          className="mb-6 font-serif text-3xl font-bold leading-tight text-foreground sm:text-4xl"
+        >
           {post.title}
         </h1>
 
-        <p className="mb-10 border-b border-border/40 pb-10 text-lg leading-relaxed text-muted-foreground">
+        <p
+          data-speakable-bluf="true"
+          className="mb-10 border-b border-border/40 pb-10 text-lg leading-relaxed text-muted-foreground"
+        >
           {post.description}
         </p>
 

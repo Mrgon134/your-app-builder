@@ -4,4 +4,36 @@ Disallow: /app
 Disallow: /auth
 Disallow: /auth/callback
 
+# Major AI/LLM crawlers — explicitly allowed for content discovery.
+# Mirror the same authenticated/app route restrictions.
+User-agent: GPTBot
+Allow: /
+Disallow: /app
+Disallow: /auth
+
+User-agent: ClaudeBot
+Allow: /
+Disallow: /app
+Disallow: /auth
+
+User-agent: Claude-Web
+Allow: /
+Disallow: /app
+Disallow: /auth
+
+User-agent: PerplexityBot
+Allow: /
+Disallow: /app
+Disallow: /auth
+
+User-agent: Google-Extended
+Allow: /
+Disallow: /app
+Disallow: /auth
+
+User-agent: CCBot
+Allow: /
+Disallow: /app
+Disallow: /auth
+
 Sitemap: https://nuju.app/sitemap.xml

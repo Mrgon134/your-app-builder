@@ -6,7 +6,7 @@
     <atom:link href="https://nuju.app/rss.xml" rel="self" type="application/rss+xml" />
     <description>Practical guides on journaling, mood tracking, and emotional wellness from the Nuju team.</description>
     <language>en</language>
-    <lastBuildDate>Fri, 22 May 2026 06:01:40 GMT</lastBuildDate>
+    <lastBuildDate>Fri, 22 May 2026 08:20:05 GMT</lastBuildDate>
     <item>
       <title>We Analyzed Our First 161 Real Journal Entries: 87% Were Logged on &apos;Not Great&apos; Days</title>
       <link>https://nuju.app/blog/what-people-write-in-journal-data</link>
@@ -66,6 +66,141 @@
       <link>https://nuju.app/blog/cara-curhat-ke-diri-sendiri</link>
       <guid isPermaLink="true">https://nuju.app/blog/cara-curhat-ke-diri-sendiri</guid>
       <description>Kadang nggak ada teman buat curhat — atau nggak mau bebanin orang. 5 metode curhat ke diri sendiri yang terbukti: dari menulis bebas, voice note, sampai AI journal. Panduan praktis.</description>
+      <category>Mental Wellness</category>
+      <pubDate>Fri, 22 May 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Mental Health Awareness Month 2026: Your 31-Day Journaling Guide (With 31 Prompts)</title>
+      <link>https://nuju.app/blog/mental-health-awareness-month-2026-journaling</link>
+      <guid isPermaLink="true">https://nuju.app/blog/mental-health-awareness-month-2026-journaling</guid>
+      <description>Mental Health Awareness Month is May 2026 — this year&apos;s theme is &apos;More Good Days, Together.&apos; Use it as your kickoff: 31 daily prompts mapped to SAMHSA&apos;s 4 weekly themes, with research-backed reasons each works.</description>
+      <category>Mental Wellness</category>
+      <pubDate>Fri, 22 May 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Digital Fatigue Is Real: How 5 Minutes of Journaling Resets Your Overstimulated Brain</title>
+      <link>https://nuju.app/blog/digital-fatigue-journaling-reset</link>
+      <guid isPermaLink="true">https://nuju.app/blog/digital-fatigue-journaling-reset</guid>
+      <description>Gen Z averages 6 hours 27 minutes on their phones daily — the highest of any generation. 55% have already taken a social media detox. This guide explains digital fatigue, why writing beats scrolling for nervous-system reset, and a 5-minute protocol that works.</description>
+      <category>Mental Wellness</category>
+      <pubDate>Fri, 22 May 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Morning Pages: The 30-Year-Old Writing Practice and What Modern Research Actually Says</title>
+      <link>https://nuju.app/blog/morning-pages-research-explained</link>
+      <guid isPermaLink="true">https://nuju.app/blog/morning-pages-research-explained</guid>
+      <description>Julia Cameron&apos;s Morning Pages — three handwritten pages of stream-of-consciousness every morning — has been a creativity classic since 1992. But what does the research actually support? The honest answer, plus an adapted 5-minute version that works.</description>
+      <category>Journaling Tips</category>
+      <pubDate>Fri, 22 May 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Gen Z Burnout: Why You Feel Tired After Doing Nothing (and the 5-Minute Journal Fix)</title>
+      <link>https://nuju.app/blog/gen-z-burnout-journaling</link>
+      <guid isPermaLink="true">https://nuju.app/blog/gen-z-burnout-journaling</guid>
+      <description>Gen Z workers are 44% more likely to report burnout than average. 35% say they feel depressed at work. The exhaustion is real — but rest doesn&apos;t fix it. Here&apos;s what does, and the 5-minute journaling protocol that interrupts the cycle.</description>
+      <category>Mental Wellness</category>
+      <pubDate>Fri, 22 May 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Cara Mengatasi Burnout Gen Z: 5 Teknik Journaling yang Terbukti (Panduan 2026)</title>
+      <link>https://nuju.app/blog/cara-mengatasi-burnout-gen-z</link>
+      <guid isPermaLink="true">https://nuju.app/blog/cara-mengatasi-burnout-gen-z</guid>
+      <description>Gen Z 44% lebih sering burnout dibanding rata-rata pekerja. Istirahat aja nggak cukup karena burnout punya 3 komponen. 5 teknik journaling yang menargetkan ketiganya, plus kapan harus minta bantuan profesional.</description>
+      <category>Mental Wellness</category>
+      <pubDate>Fri, 22 May 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Best AI Journal Apps for Anxiety in 2026: 5 Picks Compared</title>
+      <link>https://nuju.app/blog/best-ai-journal-apps-for-anxiety-2026</link>
+      <guid isPermaLink="true">https://nuju.app/blog/best-ai-journal-apps-for-anxiety-2026</guid>
+      <description>Anxiety needs a journal that responds, not just records. We compared 5 AI journal apps — Nuju, Rosebud, Mindsera, Reflectly, Daylio — specifically for anxiety. Here&apos;s what each does well, what to skip, and how to pick.</description>
+      <category>App Comparison</category>
+      <pubDate>Fri, 22 May 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Lonely but Don&apos;t Want to Burden Anyone? Why AI Journaling Actually Works</title>
+      <link>https://nuju.app/blog/ai-journaling-for-loneliness</link>
+      <guid isPermaLink="true">https://nuju.app/blog/ai-journaling-for-loneliness</guid>
+      <description>Gen Z experiences regular loneliness at twice the rate of Baby Boomers. The &apos;I don&apos;t want to burden anyone&apos; loop keeps people from reaching out. Here&apos;s why writing to an AI works when humans aren&apos;t available — and the research that backs it.</description>
+      <category>Mental Wellness</category>
+      <pubDate>Fri, 22 May 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Aplikasi Journal AI Gratis Indonesia 2026: 5 Pilihan Terbaik (Tested)</title>
+      <link>https://nuju.app/blog/aplikasi-journal-ai-gratis-indonesia</link>
+      <guid isPermaLink="true">https://nuju.app/blog/aplikasi-journal-ai-gratis-indonesia</guid>
+      <description>Lima aplikasi journal AI gratis terbaik untuk pengguna Indonesia di 2026: Nuju, Riliv, What&apos;s Up, Calm Free, Gratitude. Perbandingan fitur, bahasa Indonesia, dan kapan harus upgrade.</description>
+      <category>App Comparison</category>
+      <pubDate>Fri, 22 May 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Journaling for Anger: 7 Prompts That Actually Defuse the Heat (2026)</title>
+      <link>https://nuju.app/blog/journaling-for-anger</link>
+      <guid isPermaLink="true">https://nuju.app/blog/journaling-for-anger</guid>
+      <description>Anger journaling done wrong amplifies the feeling. Done right, it interrupts the spiral within 5 minutes. Here are 7 research-backed prompts, the technique to avoid, and when anger means it&apos;s time to talk to a professional.</description>
+      <category>Mental Wellness</category>
+      <pubDate>Fri, 22 May 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Journaling for Grief: How to Write Through Loss (Without &apos;Fixing&apos; It)</title>
+      <link>https://nuju.app/blog/journaling-for-grief</link>
+      <guid isPermaLink="true">https://nuju.app/blog/journaling-for-grief</guid>
+      <description>Grief isn&apos;t a problem to solve — it&apos;s a process to move through. Journaling helps when it doesn&apos;t try to rush the grief. 6 research-backed prompts, what to avoid, and how to use writing to stay connected to what you lost.</description>
+      <category>Mental Wellness</category>
+      <pubDate>Fri, 22 May 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Journaling for Imposter Syndrome: 6 Prompts to Quiet the &apos;I Don&apos;t Belong Here&apos; Loop</title>
+      <link>https://nuju.app/blog/journaling-for-imposter-syndrome</link>
+      <guid isPermaLink="true">https://nuju.app/blog/journaling-for-imposter-syndrome</guid>
+      <description>Imposter syndrome makes capable people feel like frauds. Research from Pauline Clance (1978+) shows journaling is one of the most effective non-therapeutic interventions. 6 prompts that work, and how to track the &apos;evidence file&apos; that quiets the voice.</description>
+      <category>Mental Wellness</category>
+      <pubDate>Fri, 22 May 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Nuju vs Rosebud: Which AI Journal Is Right for You in 2026?</title>
+      <link>https://nuju.app/blog/nuju-vs-rosebud</link>
+      <guid isPermaLink="true">https://nuju.app/blog/nuju-vs-rosebud</guid>
+      <description>Nuju and Rosebud are two of the top AI journaling apps in 2026 — but they serve different users. Nuju is built for short daily entries with a warm AI tone. Rosebud is built for structured therapy-style prompts. Here&apos;s the honest comparison.</description>
+      <category>App Comparison</category>
+      <pubDate>Fri, 22 May 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Nuju vs Mindsera: Warm AI Journal or Cognitive Coach? (2026 Comparison)</title>
+      <link>https://nuju.app/blog/nuju-vs-mindsera</link>
+      <guid isPermaLink="true">https://nuju.app/blog/nuju-vs-mindsera</guid>
+      <description>Nuju and Mindsera are two strong AI journaling tools — but they target opposite emotional registers. Nuju is warm and short-entry-friendly. Mindsera is analytical and surfaces cognitive distortions. Here&apos;s the honest side-by-side.</description>
+      <category>App Comparison</category>
+      <pubDate>Fri, 22 May 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>The Perfectionism-Procrastination Loop: 6 Journal Prompts That Actually Break It (2026)</title>
+      <link>https://nuju.app/blog/journaling-for-perfectionism-procrastination</link>
+      <guid isPermaLink="true">https://nuju.app/blog/journaling-for-perfectionism-procrastination</guid>
+      <description>Perfectionism and procrastination create a self-reinforcing loop that produces burnout, anxiety, and depression. Research shows journaling helps when it externalizes the inner critic. 6 prompts designed to break the loop, with what to skip.</description>
+      <category>Mental Wellness</category>
+      <pubDate>Fri, 22 May 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Digital Wellness untuk Gen Z Indonesia: Cara Journaling 5 Menit Memutus Loop Scroll (2026)</title>
+      <link>https://nuju.app/blog/digital-wellness-journaling-gen-z-indonesia</link>
+      <guid isPermaLink="true">https://nuju.app/blog/digital-wellness-journaling-gen-z-indonesia</guid>
+      <description>Gen Z Indonesia rata-rata 6+ jam di HP per hari — tertinggi dari generasi manapun. Digital fatigue jadi masalah nyata. Journaling 5 menit terbukti memutus loop scroll dan reset otak. Panduan praktis untuk Gen Z Indonesia.</description>
       <category>Mental Wellness</category>
       <pubDate>Fri, 22 May 2026 12:00:00 GMT</pubDate>
       <dc:language>en</dc:language>
