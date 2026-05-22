@@ -313,14 +313,36 @@ const INTERNAL_LINK_RECOMMENDATIONS: Record<string, InternalLinkRecommendation[]
       body: "Most entries come from the fuzzy middle, which is also where overthinking lives. Here's how AI journaling helps both.",
     },
     {
-      slug: "best-mood-tracker-apps",
-      eyebrow: "Tools that surface patterns",
-      body: "Compare mood trackers if you want your personal version of these aggregate patterns.",
+      slug: "ai-coach-personality-preference-data",
+      eyebrow: "More real Nuju data",
+      body: "We built 4 AI coach personalities. 50% of real conversations went to the 'Gentle' one. Here's why.",
     },
     {
       slug: "mood-tracker-for-self-awareness",
       eyebrow: "What to do with the data",
       body: "Once you see your own pattern, this guide covers what to actually do with the insight.",
+    },
+  ],
+  "ai-coach-personality-preference-data": [
+    {
+      slug: "what-people-write-in-journal-data",
+      eyebrow: "More real Nuju data",
+      body: "87% of real journal entries are logged on 'not great' days. Here's what 161 entries reveal about why people actually journal.",
+    },
+    {
+      slug: "ai-journal-for-overthinking",
+      eyebrow: "Soft voice for overthinking",
+      body: "Why the Gentle persona wins also explains why AI journaling helps overthinking — both pattern matches: low bandwidth wants validation, not push-back.",
+    },
+    {
+      slug: "best-ai-journaling-apps",
+      eyebrow: "Compare AI journal apps",
+      body: "Once you know which AI tone you prefer, this guide compares the apps that actually offer multiple personas.",
+    },
+    {
+      slug: "mood-tracker-for-self-awareness",
+      eyebrow: "Self-awareness, not just tracking",
+      body: "Persona preference is itself self-awareness data — here's how to read your own mood and tone patterns.",
     },
   ],
 };

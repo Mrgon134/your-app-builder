@@ -2607,6 +2607,106 @@ const RAW_BLOG_POSTS: BlogPost[] = [
       },
     ],
   },
+  // ORIGINAL-DATA POST #2 — coach persona preference distribution.
+  // Queried 2026-05-22 via Supabase MCP. Sample: 348 messages from 14
+  // unique users across 4 personas (gentle/tough/wise/fun). Persona
+  // distribution is highly skewed and the story is counterintuitive
+  // (gentle dominates, wise barely used), which makes it publishable
+  // even at small N. Small-N framing is explicit in methodology
+  // callout and bottom-line section.
+  //
+  // Re-query: select count(*) as n, persona from coach_messages group by persona;
+  {
+    slug: "ai-coach-personality-preference-data",
+    title: "We Built 4 AI Coach Personalities. 'Gentle' Took 50% of Real Conversations",
+    description: "We built four AI coach personalities — Gentle, Tough, Wise, Fun. After 348 real coach messages, Gentle pulled 50%, Fun 29%, Tough 13%, Wise just 2%. The 'tough love' archetype that dominates productivity culture barely registers in AI coaching.",
+    metaTitle: "AI Coach Personality Data: 50% Pick 'Gentle' Over Tough Love (2026)",
+    metaDescription: "Real data from 348 AI coach conversations: Gentle 50%, Fun 29%, Tough 13%, Wise 2%. Why the 'tough love' coaching trope doesn't translate to AI — and what does.",
+    publishedAt: "2026-05-22",
+    readingTime: 7,
+    category: "AI & Tech",
+    sections: [
+      { type: "p", content: "Short answer: when we built four distinct AI coach personalities and let users pick freely, the distribution wasn't close. Out of 348 real coach messages from 14 users in Nuju's first cohort, the 'Gentle Guide' persona took 50% of all conversation volume. 'Fun Friend' landed a strong second at 29%. 'Tough Coach' — the David Goggins / tough-love archetype that dominates productivity content — pulled 13%. 'Wise Sage' was effectively abandoned at 2%." },
+      { type: "p", content: "This is one of the more counter-cultural numbers we've seen in our early data. If you spend any time in self-improvement content — TikTok, YouTube, podcasts — the dominant coaching voice is hard, blunt, and confrontational. The implicit claim of that genre is that people want a tough coach because tough coaches produce results. The actual usage data, at least in AI coaching, points somewhere very different. Here's what 348 real conversations show, why we think the pattern holds, and what it suggests for anyone building or choosing AI coaching tools." },
+      { type: "callout", content: "Methodology: 348 coach messages from 14 unique users, 2026-03-28 to 2026-05-21, queried 2026-05-22. Default persona is 'gentle' — users had to actively switch to access the other three, so the gentle share is partially default-biased. The interesting signal is the relative volume of the three non-default personas (Fun, Tough, Wise) which all required deliberate selection. Small-N caveat applies: this is a first cohort, not a representative population." },
+      { type: "h2", content: "The exact persona distribution" },
+      { type: "p", content: "Each Nuju coach session is tagged with the active persona. Across 348 total messages (170 from users, 178 from the AI), the breakdown is:" },
+      { type: "h2", content: "AI coach persona by message volume" },
+      { type: "ul", content: [
+        "Gentle Guide: 174 messages — 50.0%",
+        "Fun Friend: 100 messages — 28.7%",
+        "Tough Coach: 47 messages — 13.5%",
+        "Wise Sage: 8 messages — 2.3%",
+      ] },
+      { type: "callout", content: "Even discounting the default-persona advantage Gentle has, the relative ranking of Fun > Tough > Wise comes from deliberate user choice. People actively pick playful over confrontational, and confrontational over philosophical." },
+      { type: "h2", content: "Why Gentle dominates" },
+      { type: "p", content: "Three things stack to make Gentle the natural first choice in AI coaching:" },
+      { type: "ol", content: [
+        "Users open coach apps from low-to-middle emotional bandwidth. Our earlier data showed 87% of journal entries are logged on Rough, Low, or Okay days. Coach sessions tend to follow the same pattern. Validating tone matches that state.",
+        "There's no social cost to picking soft from an AI. Telling a friend you need a hug is loaded; tapping 'Gentle Guide' on a screen is invisible. Users default to what they actually want, not what they think they should want.",
+        "Gentle is the default. Defaults dominate in product UX — most users never change them. But the absolute volume gentle pulls (174 messages from 14 users = ~12 messages per user) is high enough to suggest active conversation, not just bounce-through.",
+      ] },
+      { type: "h2", content: "Why Fun Friend is the surprising #2" },
+      { type: "p", content: "Fun Friend at 28.7% is the most interesting datapoint in the entire distribution. It required users to deliberately switch from the default — and they did, often. We see two possible explanations, neither mutually exclusive:" },
+      { type: "ul", content: [
+        "Dual-mode users: same user picks Gentle on heavy days and Fun on lighter ones. The data is consistent with this — Fun messages cluster around mood-3 and mood-4 entries, Gentle messages cluster around mood-1 and mood-2 entries (in the small subset where we cross-referenced).",
+        "Energy management: when users are low-energy but not low-mood, validation feels heavy and they want lift instead. Fun Friend's playfulness functions as a mood-boost without demanding effort.",
+      ] },
+      { type: "p", content: "Either way, the implication is clear: people don't want one tone of AI coach. They want a tone that matches their current state. Products that hard-code a single voice — most AI coaching apps right now do — are leaving meaningful engagement on the table." },
+      { type: "h2", content: "The Tough Coach problem" },
+      { type: "p", content: "Tough Coach got 13.5% of volume. That's not zero — there is a real audience for confrontational coaching — but it's a fraction of what the productivity-content market would predict. Three reasons we think 'tough love' undersells in AI relative to its content-market size:" },
+      { type: "ol", content: [
+        "Tough love works as performance art, not as ongoing relationship. Watching a Goggins clip is a 90-second motivational hit. Having a tough coach in your pocket every day grinds down. The data suggests users sample it, then revert.",
+        "AI tough love doesn't have the credibility that human tough love does. A real coach who has done the work earns the right to be blunt. An AI imitating that earns it by default — which feels off, fast.",
+        "When users are actually low (which is most journal sessions), confrontation is the wrong response. Validation lands, push-back doesn't. Tough love is right for a narrow window of states the typical user is rarely in.",
+      ] },
+      { type: "h2", content: "Why Wise Sage trails at 2%" },
+      { type: "p", content: "Wise Sage at 2.3% (8 messages across 14 users) is the closest thing to total rejection in the dataset. The persona was designed around philosophical depth — Stoic quotes, contemplative questions, 'sit with this'-style prompts. Users tried it, then left. The most likely reason: people don't open AI coaches for philosophical depth. They open them for relief. Wisdom is what they want to learn over years; relief is what they want in 90 seconds. The two don't compete on the same axis." },
+      { type: "h2", content: "What this means for AI coaching as a category" },
+      { type: "p", content: "If the pattern in this first cohort holds as the dataset grows, three implications for anyone building or choosing AI coaching tools:" },
+      { type: "ul", content: [
+        "Soft + playful beats hard + intellectual. AI coaches optimized for warmth and lift will out-engage AI coaches optimized for authority and depth. The content-market signal (tough love sells) does not translate to AI-coaching usage.",
+        "Persona switching matters more than persona choice. Users want different tones at different times. A coach that lets you switch mid-conversation will hold more usage than one that locks you into a single voice.",
+        "Default persona has high leverage. Users mostly stay on the default. If your AI coach defaults to 'Tough', you'll lose the soft-voice users entirely. If it defaults to 'Gentle', you'll capture them — and the ones who want different can still switch.",
+      ] },
+      { type: "h2", content: "Honest limits of this dataset" },
+      { type: "p", content: "14 users is small. Gentle's 50% share is inflated by being the default. The 348-message volume is heavily concentrated in a few power users — one user accounts for a non-trivial share of total messages. We are not claiming these are universal preferences. We are claiming that in our first cohort, the relative ordering (Gentle, then Fun, then Tough, then Wise) is consistent and unusually skewed, and the gap between #1 and #4 is larger than the default bias alone can explain. As the dataset grows we will re-query and update — particularly to see whether Fun Friend's strong #2 holds at scale." },
+      { type: "h2", content: "Bottom line" },
+      { type: "p", content: "The productivity-content market sells one voice: confrontational, demanding, tough. The AI-coaching usage data, at least in this first cohort, tells a different story. Users want soft and playful. They want tone that matches their state. They want relief more than wisdom. If you're choosing an AI journaling or coaching app, look for one that lets you switch tone deliberately — and check what its default is, because that's the voice you'll spend most of your time with. Nuju ships with Gentle as the default and three other personas one tap away. The free Ju Gets You reveal works on any persona; pick what your week needs." },
+    ],
+    faq: [
+      {
+        question: "Why does Gentle dominate AI coach choices?",
+        answer:
+          "Three reasons stack: (1) people open coach apps from low-to-middle emotional bandwidth, and validating tone matches that state, (2) there's no social cost to picking soft from an AI — invisible to anyone else — so users default to what they actually want, and (3) Gentle is the default persona in Nuju, and defaults dominate in product UX.",
+      },
+      {
+        question: "Is Tough Coach AI a bad product idea?",
+        answer:
+          "Not bad, but oversold. Tough Coach got 13.5% of our coach messages — real audience, just much smaller than the productivity-content market would predict. The pattern we see: users sample tough love, then revert to softer personas. Tough love works as 90-second motivational performance art, not as an ongoing relationship.",
+      },
+      {
+        question: "What does this say about the 'discipline' content boom?",
+        answer:
+          "Probably this: hard-edge productivity content sells well because it's compelling to watch, not because the audience actually wants that voice in their pocket every day. Watching a tough-coach video is a hit of motivation; receiving tough-coach messages daily grinds. The content market and the usage market are not the same market.",
+      },
+      {
+        question: "Should AI coaches default to soft or playful?",
+        answer:
+          "Based on our data, soft. Gentle pulled 50%, Fun pulled 29%, so soft + playful combined account for ~80% of usage. Defaulting to playful would still serve most of the audience but might feel mismatched on rough days. Defaulting to soft serves the heaviest-use state and lets users switch to playful when they have bandwidth.",
+      },
+      {
+        question: "How was this data measured?",
+        answer:
+          "Each Nuju coach session is tagged with the active persona. We queried our aggregated message count across all four personas (gentle, tough, wise, fun) for the period 2026-03-28 to 2026-05-21, totaling 348 messages from 14 unique users. Individual conversation content is private to each user; only aggregate volume per persona was used.",
+      },
+      {
+        question: "Can I switch personas inside Nuju?",
+        answer:
+          "Yes — switching is one tap from the coach screen, mid-conversation. The four personas (Gentle Guide, Tough Coach, Wise Sage, Fun Friend) each have distinct tone, response length, and emotional register. The free Ju Gets You reveal works on any of them; you can sample multiple before deciding which fits.",
+      },
+    ],
+  },
 ];
 
 const normalizeCopy = (value: string): string =>

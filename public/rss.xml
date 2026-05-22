@@ -6,13 +6,22 @@
     <atom:link href="https://nuju.app/rss.xml" rel="self" type="application/rss+xml" />
     <description>Practical guides on journaling, mood tracking, and emotional wellness from the Nuju team.</description>
     <language>en</language>
-    <lastBuildDate>Fri, 22 May 2026 05:36:14 GMT</lastBuildDate>
+    <lastBuildDate>Fri, 22 May 2026 05:47:26 GMT</lastBuildDate>
     <item>
       <title>We Analyzed Our First 161 Real Journal Entries: 87% Were Logged on &apos;Not Great&apos; Days</title>
       <link>https://nuju.app/blog/what-people-write-in-journal-data</link>
       <guid isPermaLink="true">https://nuju.app/blog/what-people-write-in-journal-data</guid>
       <description>Real data from Nuju&apos;s first 161 journal entries: 87% logged on Rough, Low, or Okay days. Median entry is 31 characters. What the numbers reveal about why people actually journal in 2026.</description>
       <category>Mental Wellness</category>
+      <pubDate>Fri, 22 May 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>We Built 4 AI Coach Personalities. &apos;Gentle&apos; Took 50% of Real Conversations</title>
+      <link>https://nuju.app/blog/ai-coach-personality-preference-data</link>
+      <guid isPermaLink="true">https://nuju.app/blog/ai-coach-personality-preference-data</guid>
+      <description>We built four AI coach personalities — Gentle, Tough, Wise, Fun. After 348 real coach messages, Gentle pulled 50%, Fun 29%, Tough 13%, Wise just 2%. The &apos;tough love&apos; archetype that dominates productivity culture barely registers in AI coaching.</description>
+      <category>AI &amp; Tech</category>
       <pubDate>Fri, 22 May 2026 12:00:00 GMT</pubDate>
       <dc:language>en</dc:language>
     </item>

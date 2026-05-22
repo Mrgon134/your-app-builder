@@ -492,4 +492,15 @@
       <image:caption>Real data from Nuju&apos;s first 161 journal entries: 87% logged on Rough, Low, or Okay days. Median entry is 31 characters. What the numbers reveal about why people actually journal in 2026.</image:caption>
     </image:image>
   </url>
+  <url>
+    <loc>https://nuju.app/blog/ai-coach-personality-preference-data</loc>
+    <lastmod>2026-05-22</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>We Built 4 AI Coach Personalities. &apos;Gentle&apos; Took 50% of Real Conversations</image:title>
+      <image:caption>We built four AI coach personalities — Gentle, Tough, Wise, Fun. After 348 real coach messages, Gentle pulled 50%, Fun 29%, Tough 13%, Wise just 2%. The &apos;tough love&apos; archetype that dominates productivity culture barely registers in AI coaching.</image:caption>
+    </image:image>
+  </url>
 </urlset>
