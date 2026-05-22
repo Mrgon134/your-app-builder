@@ -1159,6 +1159,160 @@ const INTERNAL_LINK_RECOMMENDATIONS: Record<string, InternalLinkRecommendation[]
       body: "Perfeksionisme di tempat kerja jadi stres kerja. 5 prompt khusus untuk pekerja Indonesia.",
     },
   ],
+  "why-do-i-overthink-everything": [
+    {
+      slug: "why-do-i-feel-anxious-for-no-reason",
+      eyebrow: "Similar pattern",
+      body: "Overthinking often pairs with 'random' anxiety. Here's how to identify the hidden triggers.",
+    },
+    {
+      slug: "3am-anxiety-journaling",
+      eyebrow: "When it hits at night",
+      body: "Overthinking that wakes you at 3am needs a slightly different protocol.",
+    },
+    {
+      slug: "ai-journal-for-overthinking",
+      eyebrow: "Deeper guide",
+      body: "Full guide to AI journaling for chronic overthinkers — beyond the 5-minute fix.",
+    },
+    {
+      slug: "best-ai-journal-apps-for-anxiety-2026",
+      eyebrow: "Tool selection",
+      body: "AI journal apps compared for anxiety + overthinking — which to pick.",
+    },
+  ],
+  "why-do-i-feel-anxious-for-no-reason": [
+    {
+      slug: "why-do-i-overthink-everything",
+      eyebrow: "Often co-occur",
+      body: "Anxiety 'for no reason' often comes with overthinking. The 5-minute brain dump protocol.",
+    },
+    {
+      slug: "best-ai-journal-apps-for-anxiety-2026",
+      eyebrow: "Tool selection",
+      body: "5 AI journal apps compared specifically for anxiety — Nuju, Rosebud, Mindsera, Reflectly, Daylio.",
+    },
+    {
+      slug: "3am-anxiety-journaling",
+      eyebrow: "Night version",
+      body: "When 'random' anxiety wakes you at 3am — the specific technique.",
+    },
+    {
+      slug: "mood-tracking-for-anxiety",
+      eyebrow: "Pattern tracking",
+      body: "Mood tracking helps surface hidden anxiety triggers over 2-3 weeks.",
+    },
+  ],
+  "why-do-i-feel-empty-inside": [
+    {
+      slug: "journaling-for-depression",
+      eyebrow: "When empty = depression",
+      body: "When 'empty' includes anhedonia (loss of pleasure), it's worth talking to a doctor. Honest guide.",
+    },
+    {
+      slug: "gen-z-burnout-journaling",
+      eyebrow: "When empty = burnout",
+      body: "Burnout-driven empty responds to rest, not depression treatment. The 4-prompt burnout protocol.",
+    },
+    {
+      slug: "journaling-for-job-loss",
+      eyebrow: "When empty = transition",
+      body: "Identity diffusion after layoff feels empty. The 90-day post-layoff journaling guide.",
+    },
+    {
+      slug: "ai-journaling-for-loneliness",
+      eyebrow: "When empty = lonely",
+      body: "Sometimes 'empty' is loneliness without a name. The AI journaling angle.",
+    },
+  ],
+  "best-journal-app-for-students-2026": [
+    {
+      slug: "best-ai-journal-apps-for-anxiety-2026",
+      eyebrow: "For exam anxiety",
+      body: "If exam anxiety is the main driver, this anxiety-specific app comparison goes deeper.",
+    },
+    {
+      slug: "best-free-mental-wellness-apps-2026",
+      eyebrow: "Free apps generally",
+      body: "Beyond journal apps — 7 truly-free mental wellness apps for the student budget.",
+    },
+    {
+      slug: "5-minute-daily-journaling-habit",
+      eyebrow: "Make it stick",
+      body: "How to build a 5-minute habit that survives finals week.",
+    },
+    {
+      slug: "complete-guide-ai-journaling-2026",
+      eyebrow: "Category guide",
+      body: "Full 2026 guide to AI journaling — what the category is, how to pick.",
+    },
+  ],
+  "best-free-mental-wellness-apps-2026": [
+    {
+      slug: "best-journal-app-for-students-2026",
+      eyebrow: "Student-specific",
+      body: "If you're a student, this picks the strongest free apps for college and high school use.",
+    },
+    {
+      slug: "best-ai-journal-apps-for-anxiety-2026",
+      eyebrow: "Anxiety-specific",
+      body: "If anxiety is the main concern, this compares AI journal apps specifically for that.",
+    },
+    {
+      slug: "complete-guide-ai-journaling-2026",
+      eyebrow: "AI journal category",
+      body: "Complete 2026 guide to AI journaling — if you want depth on that one category.",
+    },
+    {
+      slug: "best-mood-tracker-apps",
+      eyebrow: "Mood tracking",
+      body: "If you specifically want mood tracking, this compares the top mood-tracker category.",
+    },
+  ],
+  "aplikasi-journal-untuk-mahasiswa-indonesia": [
+    {
+      slug: "aplikasi-journal-ai-gratis-indonesia",
+      eyebrow: "Versi lebih luas",
+      body: "Bukan cuma untuk mahasiswa — 5 aplikasi journal AI gratis untuk semua pengguna Indonesia.",
+    },
+    {
+      slug: "aplikasi-curhat-ai",
+      eyebrow: "AI curhat",
+      body: "Khusus AI curhat — kriteria privasi dan rekomendasi spesifik untuk pengguna Indonesia.",
+    },
+    {
+      slug: "self-healing-dengan-jurnal",
+      eyebrow: "Self healing",
+      body: "Setelah pilih aplikasi — cara pakainya untuk self healing yang berkelanjutan.",
+    },
+    {
+      slug: "cara-mengatasi-overthinking",
+      eyebrow: "Overthinking ujian",
+      body: "Untuk anxiety ujian dan overthinking — 4 prompt khusus untuk memutus loop pikiran.",
+    },
+  ],
+  "journaling-untuk-overthinking-malam": [
+    {
+      slug: "cara-mengatasi-overthinking",
+      eyebrow: "Versi lebih lengkap",
+      body: "Untuk overthinking secara umum (nggak cuma malam) — 4 prompt brain dump yang lebih dalam.",
+    },
+    {
+      slug: "3am-anxiety-journaling",
+      eyebrow: "Kalau bangun jam 3 pagi",
+      body: "Kalau overthinking-nya bikin lo bangun jam 3 pagi — protokol khusus untuk itu.",
+    },
+    {
+      slug: "journaling-untuk-anxiety",
+      eyebrow: "Anxiety + overthinking",
+      body: "Overthinking malam sering bagian dari anxiety. 7 prompt khusus anxiety untuk konteks Indonesia.",
+    },
+    {
+      slug: "aplikasi-journal-ai-gratis-indonesia",
+      eyebrow: "Pilih aplikasinya",
+      body: "5 aplikasi journal AI gratis Indonesia yang cocok untuk overthinking malam.",
+    },
+  ],
 };
 
 const getInternalLinkCards = (slug: string): InternalLinkCard[] =>

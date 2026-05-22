@@ -6336,6 +6336,622 @@ const RAW_BLOG_POSTS: BlogPost[] = [
       },
     ],
   },
+  // Q-BASED LONG-TAIL — Overthinking. Massive search volume.
+  {
+    slug: "why-do-i-overthink-everything",
+    title: "Why Do I Overthink Everything? The Real Reasons (and How to Stop Tonight)",
+    description: "Overthinking isn't a character flaw — it's a documented pattern with specific neurological causes. Here's why your brain does it, and a 5-minute journal protocol that actually interrupts the loop, starting tonight.",
+    metaTitle: "Why Do I Overthink Everything? Real Reasons + 5-Min Fix (2026)",
+    metaDescription: "Overthinking is documented, not character flaw. Why brain does it + 5-minute journal protocol to stop tonight. Research-backed answer.",
+    publishedAt: "2026-05-22",
+    readingTime: 6,
+    category: "Mental Wellness",
+    sections: [
+      { type: "p", content: "Short answer: overthinking is what happens when your brain's threat-detection system fires on situations that don't have clear resolutions — unfinished conversations, future uncertainties, past decisions. The brain treats unresolved threats like open loops, processing them in the background until they close. Most overthinking targets things that can't be resolved by thinking alone, which is why pure 'try to stop thinking' doesn't work. What does work: structured externalization through a 5-minute journal protocol, which closes the loops without resolving the underlying problems." },
+      { type: "callout", content: "Quick start: if you're reading this overthinking right now — skip to the '5-minute brain dump' section below. Try it tonight. The science explanation can wait. The free Ju Gets You reveal at /onboarding works as the journal tool — 60 seconds to start, no credit card." },
+      { type: "h2", content: "Why your brain overthinks specifically" },
+      { type: "p", content: "Three mechanisms drive overthinking, documented in cognitive neuroscience research:" },
+      { type: "ul", content: [
+        "Open loop processing: the brain catalogs unresolved situations as 'open' and processes them in the background. The 2011 Levine study on 'cognitive offloading' showed this consumes measurable working memory.",
+        "Default mode network overactivity: the brain's 'rest' network (where mind-wandering happens) becomes overactive in people who overthink. fMRI studies consistently show this pattern in anxious and depressed populations.",
+        "Threat-detection bias: the amygdala fires on imagined threats with nearly the same intensity as real ones (APA documentation). Overthinking is partly the amygdala practicing for futures that haven't happened.",
+      ] },
+      { type: "h2", content: "Why 'just stop thinking' doesn't work" },
+      { type: "p", content: "Ironic process theory (Daniel Wegner, Harvard 1994+) showed that trying to suppress a thought increases its frequency. Telling yourself to 'just stop overthinking' is the most reliable way to keep overthinking. The brain interprets the instruction as a monitoring task — 'are we still thinking about X?' — which requires checking, which keeps X active." },
+      { type: "p", content: "What actually closes loops: externalization. Writing the thought somewhere outside your head signals to the brain that the loop is now stored elsewhere. The processing stops. James Pennebaker's 35+ years of expressive writing research consistently demonstrates this effect — measurable reduction in rumination after 15-20 minutes of writing." },
+      { type: "h2", content: "The 5-minute brain dump protocol" },
+      { type: "p", content: "Use this tonight when overthinking hits. Set a timer for 5 minutes. The goal isn't to solve the problem — it's to close the loop." },
+      { type: "ol", content: [
+        "Open a notes app or notebook. Set timer 5 minutes.",
+        "Write everything in your head right now. No structure. No editing. Just dump. If you're stuck, write 'I don't know what to write' until the next thought arrives.",
+        "When the timer ends, STOP. Don't re-read. Don't fix typos. Close the document.",
+        "Notice: the cognitive pressure usually drops measurably within 60-90 seconds of finishing.",
+      ] },
+      { type: "p", content: "This works because the brain stops maintaining the loops once they're externalized. You haven't solved anything — but the energy spent maintaining the open loops is now available for other things, like sleep." },
+      { type: "h2", content: "When overthinking is more than overthinking" },
+      { type: "p", content: "Some patterns signal it's worth talking to a professional:" },
+      { type: "ul", content: [
+        "Overthinking that disrupts sleep most nights for more than 3 weeks.",
+        "Paired with physical anxiety symptoms (chest tightness, racing heart, restlessness).",
+        "Inability to function at work or in relationships because of the mental load.",
+        "Intrusive thoughts including thoughts of self-harm.",
+        "Co-occurring depression symptoms (loss of interest, hopelessness, persistent low mood).",
+      ] },
+      { type: "p", content: "Crisis lines: US 988. Indonesia Into The Light, 119 ext 8. UK Samaritans 116 123. For therapy access, platforms like BetterHelp (US), Halodoc/KALM/Riliv (Indonesia), and the NHS (UK) match patients to specialists in anxiety and overthinking." },
+      { type: "h2", content: "Bottom line" },
+      { type: "p", content: "Overthinking is a documented brain pattern, not a flaw. 'Stop thinking' doesn't work because of ironic process theory. What works: 5-minute brain dumps that externalize the loops. Try it tonight. Nuju's free Ju Gets You reveal (/onboarding) works as the journal tool — 60 seconds to start, the Gentle persona is the default, and the format is designed for exactly this kind of late-night overthinking interruption." },
+    ],
+    faq: [
+      {
+        question: "Is overthinking a mental illness?",
+        answer:
+          "Not on its own. Overthinking is a brain pattern that can be part of anxiety, depression, OCD, or trauma — but is also a normal response to stress in many people. If overthinking significantly disrupts daily function, sleep, or relationships for more than 2-3 weeks, talk to a clinician. For most people, structured journaling reduces it meaningfully within 2-3 weeks.",
+      },
+      {
+        question: "Why does overthinking get worse at night?",
+        answer:
+          "Three reasons. (1) Daytime distractions (work, social interaction, screens) suppress background processing — at night the suppression drops and accumulated loops surface. (2) Default mode network activates more in quiet/dark conditions, intensifying mind-wandering. (3) Cortisol naturally peaks in the early morning hours, which can produce 3am wake-ups with intrusive thinking. The 5-minute brain dump protocol works for night overthinking too.",
+      },
+      {
+        question: "Can I cure overthinking?",
+        answer:
+          "Cure is the wrong frame — overthinking is a brain pattern that varies in intensity but rarely disappears completely. The realistic goal is dominance reduction: moving overthinking from chronic background drag to occasional manageable episode. Most people who use structured journaling for 2-3 weeks report measurable reduction. CBT (cognitive behavioral therapy) is the gold-standard professional treatment for chronic overthinking patterns.",
+      },
+      {
+        question: "Does journaling really help with overthinking or does it make it worse?",
+        answer:
+          "Structured journaling helps; unstructured rumination on paper can make it worse. The distinction matters. Brain dumps with timer (5 minutes, no editing, close and move on) close loops. Long-form replaying of the same worries without movement amplifies them. Pennebaker's research consistently shows structured short writing reduces rumination; structured long writing also works; pure venting without structure can backfire.",
+      },
+      {
+        question: "What's the difference between thinking and overthinking?",
+        answer:
+          "Productive thinking moves toward decisions or insights — there's progress, even if slow. Overthinking spins in place without progress, returning to the same questions repeatedly. Marker: ask 'am I closer to a decision than 10 minutes ago?' If yes, that's thinking. If no, that's overthinking. The 5-minute brain dump can convert overthinking into either a decision or a closed loop.",
+      },
+      {
+        question: "When should I see a therapist about overthinking?",
+        answer:
+          "If overthinking disrupts sleep most nights for 3+ weeks, is paired with physical anxiety symptoms, prevents you from functioning at work or in relationships, includes intrusive self-harm thoughts, or co-occurs with depression — see a clinician. Search 'CBT therapist anxiety' or 'rumination therapy.' Crisis lines: US 988, Indonesia Into The Light, UK Samaritans 116 123.",
+      },
+    ],
+  },
+  // Q-BASED LONG-TAIL — Anxiety for no reason. Very high search volume.
+  {
+    slug: "why-do-i-feel-anxious-for-no-reason",
+    title: "Why Do I Feel Anxious for No Reason? The Hidden Triggers (and What Helps)",
+    description: "Anxiety without obvious cause has real causes — they're just hidden. Hormonal cycles, blood sugar, sleep debt, low-grade chronic stress, suppressed emotions. Here's how to identify YOUR specific 'invisible' triggers + 5-min journal protocol.",
+    metaTitle: "Why Do I Feel Anxious for No Reason? Hidden Triggers (2026)",
+    metaDescription: "'Anxiety for no reason' has hidden causes — hormones, sleep, blood sugar, suppressed emotion. Identify YOUR triggers + 5-min journal fix.",
+    publishedAt: "2026-05-22",
+    readingTime: 6,
+    category: "Mental Wellness",
+    sections: [
+      { type: "p", content: "Short answer: 'anxiety for no reason' almost always has reasons — they're just not obvious in the moment. The most common hidden triggers are hormonal cycles, blood sugar drops, sleep debt, low-grade chronic stress, suppressed emotions from earlier in the day, and learned anticipatory anxiety from past patterns. None of these announce themselves loudly. They produce the body's anxiety response while your conscious mind searches for 'what's wrong' and finds nothing." },
+      { type: "callout", content: "Quick start: if you're feeling anxious right now and can't identify why — try the 'reverse engineer' protocol below. 5 minutes. Often the trigger becomes visible. Nuju's free Ju Gets You reveal (/onboarding) is set up for exactly this kind of pattern detection — 60 seconds to start, no credit card." },
+      { type: "h2", content: "Common 'invisible' anxiety triggers" },
+      { type: "p", content: "Five most common in research and clinical practice:" },
+      { type: "ul", content: [
+        "Hormonal cycles: cortisol naturally peaks in the early morning. Premenstrual hormonal shifts produce anxiety symptoms in many women 7-10 days before period. Thyroid issues, perimenopause, and andropause all create anxiety-like symptoms.",
+        "Blood sugar drops: low blood sugar triggers cortisol release, which mimics anxiety. Skipping meals, high-sugar crashes, or caffeine without food can all create 'anxiety from nothing.'",
+        "Sleep debt: 1-2 nights of <6 hours sleep produces measurable amygdala overactivity per Berkeley research (Walker, 2007+). Anxiety the next day with no obvious cause is often sleep-driven.",
+        "Low-grade chronic stress: months of moderate work or relationship stress raises baseline cortisol. The body stays in low activation. Random spikes feel like 'random anxiety' but are accumulated load surfacing.",
+        "Suppressed emotion from earlier: emotions pushed down during the day (anger you couldn't express, sadness you didn't have time for) often surface as body anxiety later — disconnected from the original trigger.",
+      ] },
+      { type: "h2", content: "The 'reverse engineer your anxiety' protocol (5 minutes)" },
+      { type: "p", content: "Use this when anxious 'for no reason':" },
+      { type: "ol", content: [
+        "Body scan (1 min): write what your body is doing. Tight chest? Restless? Buzzing energy? Specifics matter.",
+        "Recent food/drink (1 min): when did you last eat? Last caffeine? Last alcohol? This eliminates blood sugar quickly.",
+        "Sleep last 3 nights (1 min): rough hours per night. Even one bad night can produce next-day anxiety.",
+        "Time check vs cycles (1 min): time of day (early morning often = cortisol). Day of cycle if applicable. Any pattern from previous similar episodes?",
+        "Suppressed today (1 min): one specific thing that bothered you today that you didn't fully process. Write it. This often surfaces the actual trigger.",
+      ] },
+      { type: "p", content: "By minute 5, you usually have 1-2 likely culprits. The anxiety has a reason — you just had to look for it. Once identified, the anxiety often reduces because the brain stops searching." },
+      { type: "h2", content: "When 'no-reason anxiety' is something more" },
+      { type: "p", content: "Some patterns need professional evaluation:" },
+      { type: "ul", content: [
+        "Anxiety happens daily without clear triggers for more than 6 months — possible Generalized Anxiety Disorder (GAD).",
+        "Anxiety attacks with physical symptoms (chest pain, dizziness, sense of doom) — possible panic disorder, also worth ruling out cardiac issues.",
+        "Anxiety paired with thoughts of self-harm — talk to a clinician this week.",
+        "Anxiety significantly affecting work, sleep, or relationships for more than 3 weeks despite self-help.",
+      ] },
+      { type: "p", content: "Resources: US 988. Indonesia Into The Light, Halodoc/KALM/Riliv (Rp 50.000-150.000 per psychologist session). UK Samaritans 116 123. For GAD specifically, CBT is the gold-standard treatment and SSRIs help when GAD is severe." },
+      { type: "h2", content: "Bottom line" },
+      { type: "p", content: "Anxiety almost always has reasons — they're just hidden. The 5-minute reverse engineering protocol identifies your specific triggers. Run it for 2-3 weeks and patterns become visible (Tuesday afternoon = blood sugar; pre-period = hormones; after social events = suppressed emotion). Nuju's pattern tracking surfaces these automatically — try the free Ju Gets You reveal at /onboarding. If self-help doesn't reduce anxiety after 4-6 weeks, talk to a clinician." },
+    ],
+    faq: [
+      {
+        question: "Why do I get anxious out of nowhere?",
+        answer:
+          "Anxiety 'out of nowhere' usually has hidden triggers: hormonal cycles, blood sugar drops, sleep debt, low-grade chronic stress, or suppressed emotion from earlier. The body responds before the conscious mind identifies the cause. The 5-minute reverse engineering protocol (body scan + food + sleep + time + suppressed) usually surfaces the actual trigger in 5 minutes.",
+      },
+      {
+        question: "Can low blood sugar cause anxiety?",
+        answer:
+          "Yes, commonly. Low blood sugar triggers cortisol release, which produces physical sensations identical to anxiety (racing heart, shakiness, restlessness). Skipping meals, high-sugar crashes, or caffeine on an empty stomach all create this. Eating a balanced meal often resolves the 'anxiety' within 20-30 minutes — a useful diagnostic.",
+      },
+      {
+        question: "Does sleep debt really cause next-day anxiety?",
+        answer:
+          "Yes. Berkeley research from Matthew Walker (2007+) showed that 1-2 nights of <6 hours sleep produces measurable amygdala overactivity. The brain becomes hypervigilant, interpreting neutral stimuli as threats. Anxiety the day after a bad sleep night is biological, not 'character weakness.' Prioritize sleep recovery; the anxiety usually drops with it.",
+      },
+      {
+        question: "Is hormonal anxiety real?",
+        answer:
+          "Yes, well-documented. Premenstrual hormonal shifts produce anxiety symptoms in many women 7-10 days before period (PMDD is the more severe form). Perimenopause, andropause, thyroid issues, and PCOS all create anxiety-like symptoms. Tracking anxiety alongside hormonal cycles often reveals patterns. For severe cycle-related anxiety, talk to a doctor — treatable with hormonal adjustments or SSRIs.",
+      },
+      {
+        question: "How long should I wait before seeing a doctor about random anxiety?",
+        answer:
+          "If anxiety has been happening 'for no reason' daily for more than 3 weeks, or includes physical symptoms (chest pain, dizziness, sense of doom), or significantly affects work/sleep/relationships — see a doctor this week. General practitioners can screen and refer. For Generalized Anxiety Disorder (GAD), CBT is gold-standard treatment and SSRIs help severe cases. Crisis lines: US 988, Indonesia Into The Light.",
+      },
+      {
+        question: "Can journaling help with random anxiety?",
+        answer:
+          "Yes — for two reasons. (1) The 5-minute reverse engineering protocol identifies hidden triggers (food, sleep, cycle, suppressed emotion). (2) Pattern tracking over 2-3 weeks reveals your specific anxiety triggers, which you can then address proactively. AI journaling apps like Nuju surface patterns automatically. Random anxiety becomes less random when patterns are visible.",
+      },
+    ],
+  },
+  // Q-BASED LONG-TAIL — Feeling empty inside. YMYL careful.
+  {
+    slug: "why-do-i-feel-empty-inside",
+    title: "Why Do I Feel Empty Inside? The Real Causes (and When It's Time for Help)",
+    description: "Feeling empty isn't a character flaw — it has documented causes: chronic burnout, depression, identity diffusion, suppressed emotion. Here's how to identify what's actually happening and a 5-minute journal practice — plus when 'empty' needs professional help.",
+    metaTitle: "Why Do I Feel Empty Inside? Real Causes + When to Get Help (2026)",
+    metaDescription: "Feeling empty has documented causes: burnout, depression, identity issues. How to identify what's happening + when to escalate. Honest guide.",
+    publishedAt: "2026-05-22",
+    readingTime: 7,
+    category: "Mental Wellness",
+    sections: [
+      { type: "p", content: "Short answer: 'feeling empty inside' is a documented symptom with several common causes — chronic burnout, depression, identity diffusion (especially during life transitions), suppressed emotion accumulating without outlet, or anhedonia (loss of pleasure). It's not character weakness. The cause matters because each calls for a different response. This guide helps you identify which one is likely, gives a 5-minute journal practice, and is honest about when 'empty' needs professional help." },
+      { type: "callout", content: "Important: if 'empty' includes thoughts of self-harm or suicide, even fleeting — talk to a crisis line right now. US 988. Indonesia Into The Light (intothelightid.org), 119 ext 8. UK Samaritans 116 123. The rest of this article is for people experiencing the more common, lower-intensity version of feeling empty." },
+      { type: "h2", content: "What 'empty' usually means" },
+      { type: "p", content: "Most reports of 'feeling empty' fit one of five patterns:" },
+      { type: "ul", content: [
+        "Burnout exhaustion: the empty that comes after months of overwork. Not depression — depletion. Feels like there's nothing inside because nothing has been put in.",
+        "Depression (anhedonia specifically): the empty of clinical depression where things that used to bring pleasure no longer do. This is a medical symptom needing professional evaluation.",
+        "Identity diffusion: after major transitions (graduation, breakup, layoff, retirement, becoming a parent) the old identity is gone and the new one isn't formed yet. Feels empty because the structure isn't built.",
+        "Suppressed emotion accumulation: when emotions get pushed down for months/years, the absence of felt emotion can read as 'empty.' The feelings are there; they're just walled off.",
+        "Spiritual / meaning hunger: when life lacks felt purpose or connection to something larger, the void can feel empty even when other parts of life are functioning. This is the existential version — not pathological but real.",
+      ] },
+      { type: "h2", content: "Why these need different responses" },
+      { type: "p", content: "Mismatching response to cause is why generic 'feel empty' advice doesn't work:" },
+      { type: "ul", content: [
+        "Burnout responds to rest and reduced load — but only when you actually stop, not just slow down.",
+        "Depression needs professional treatment (therapy, sometimes medication). Self-help alone is rarely enough.",
+        "Identity diffusion responds to small experiments and intentional rebuilding — not rest.",
+        "Suppressed emotion needs structured release (therapy, journaling, expressive practices).",
+        "Meaning hunger responds to spiritual practice, service to others, or pursuing values-aligned work.",
+      ] },
+      { type: "h2", content: "The 5-minute 'which empty is this?' diagnostic" },
+      { type: "p", content: "Use this when feeling empty:" },
+      { type: "ol", content: [
+        "Recent workload (1 min): have you been overworking for 3+ months? Sleep <6 hours regularly? If yes → likely burnout.",
+        "Pleasure check (1 min): things that used to bring joy — do they still? If they don't for >2 weeks → possible depression, talk to doctor.",
+        "Recent transitions (1 min): any major life change in last 6 months (graduation, breakup, layoff, becoming parent)? If yes → likely identity diffusion.",
+        "Emotional access (1 min): when did you last cry, laugh hard, or feel angry? If can't remember → possible suppression.",
+        "Felt purpose (1 min): does life feel meaningful right now? If no, with everything else functioning → possible meaning hunger.",
+      ] },
+      { type: "p", content: "Often more than one applies. That's normal. The diagnostic helps you start with the most pressing one." },
+      { type: "h2", content: "Which response for which empty" },
+      { type: "p", content: "Brief responses to start (each needs more depth than this article can provide):" },
+      { type: "ul", content: [
+        "Burnout empty: protected weeks of actual rest. Not 'slowing down' — stopping. See /blog/gen-z-burnout-journaling for full protocol.",
+        "Depression empty: talk to a doctor or therapist this week. Don't self-treat. See /blog/journaling-for-depression for honest framing.",
+        "Transition empty: small experiments toward who you're becoming. New routines. Reconnect with values from before old role. See /blog/journaling-for-job-loss or /blog/journaling-for-breakup if specific.",
+        "Suppressed empty: structured journaling that gives emotions permission to surface. See /blog/why-do-i-cry-in-the-shower for why bodies need release windows.",
+        "Meaning empty: identify what would feel meaningful (service, creative work, spiritual practice). Take one small step. Not a life overhaul — a small move.",
+      ] },
+      { type: "h2", content: "When empty is serious" },
+      { type: "p", content: "Talk to a professional this week if:" },
+      { type: "ul", content: [
+        "Empty has lasted more than 4-6 weeks without shift despite self-help.",
+        "Thoughts of self-harm or suicide — even brief, even ambiguous.",
+        "Empty includes loss of interest in everything you used to care about (anhedonia).",
+        "Sleep, appetite, or weight changes significant and persistent.",
+        "Inability to function at work or in relationships.",
+      ] },
+      { type: "p", content: "Crisis lines: US 988 (call/text). Indonesia Into The Light, 119 ext 8. UK Samaritans 116 123. Therapy access: BetterHelp (US), Halodoc/KALM/Riliv (Indonesia, Rp 50.000-150.000), NHS (UK)." },
+      { type: "h2", content: "Bottom line" },
+      { type: "p", content: "Feeling empty has documented causes — burnout, depression, identity diffusion, suppressed emotion, meaning hunger. The right response depends on which one. The 5-minute diagnostic identifies the likely cause; the responses linked above give specific protocols. If empty persists past 4-6 weeks or includes self-harm thoughts, talk to a clinician — empty is treatable, not permanent. Nuju's free Ju Gets You reveal (/onboarding) supports identifying patterns over weeks, which often helps clarify which 'empty' you're experiencing." },
+    ],
+    faq: [
+      {
+        question: "Is feeling empty a sign of depression?",
+        answer:
+          "Sometimes — specifically when 'empty' includes anhedonia (loss of pleasure in things that used to bring joy) lasting more than 2 weeks. But empty has other common causes too: burnout (no rest in months), identity diffusion (after major life transition), suppressed emotion accumulation, or meaning hunger. The 5-minute diagnostic in this article helps identify which. If you suspect depression, talk to a doctor this week.",
+      },
+      {
+        question: "How do I know if I'm burned out or depressed?",
+        answer:
+          "Key distinction: burnout responds to actual rest; depression often doesn't. Burnout: you can imagine feeling better with weeks off. Depression: even imagining anything bringing joy is difficult. Overlap is common, and only a clinician can definitively diagnose. If you can't tell after the 5-min diagnostic, see a doctor — they're trained to differentiate.",
+      },
+      {
+        question: "Can feeling empty come back even when life is going well?",
+        answer:
+          "Yes — meaning hunger and identity diffusion can produce emptiness even when external life is functioning well. People who achieve major goals (promotion, marriage, financial security) sometimes feel empty afterward because the structure organizing their effort is gone. Not depression — a different kind of empty. Responds to renewed purpose and values work.",
+      },
+      {
+        question: "Does journaling help with feeling empty?",
+        answer:
+          "Yes, particularly for identification. Writing about what's feeling empty often surfaces the actual cause (burnout vs depression vs identity vs suppressed emotion). Once cause is identified, the right response becomes clearer. For depression specifically, journaling is supportive — it doesn't replace professional treatment for moderate-to-severe cases.",
+      },
+      {
+        question: "How long until empty goes away?",
+        answer:
+          "Depends on cause. Burnout empty: weeks of actual rest, typically improvement in 4-8 weeks. Depression empty: with treatment, 4-12 weeks typical. Identity diffusion: 3-12 months as new identity forms through experiments. Suppressed emotion: weeks of structured release. Meaning empty: variable, depends on finding what feels meaningful. If empty persists past 4-6 weeks without shift, see a professional.",
+      },
+      {
+        question: "When should I worry about feeling empty?",
+        answer:
+          "Talk to a professional this week if empty includes thoughts of self-harm (even brief), has lasted more than 4-6 weeks without shift despite self-help, includes loss of interest in everything you used to care about, or significantly affects work/sleep/relationships. Crisis lines: US 988 (call/text), Indonesia Into The Light + 119 ext 8, UK Samaritans 116 123.",
+      },
+    ],
+  },
+  // COMMERCIAL INTENT — Best journal app for students 2026. High-conversion.
+  {
+    slug: "best-journal-app-for-students-2026",
+    title: "Best Journal App for Students in 2026: 5 Picks for College and High School",
+    description: "Students need a journal app that fits between classes, costs nothing or close to it, supports anxiety from exams, and protects privacy. We tested 5 picks for 2026 — Nuju, Daylio, Reflectly, Stoic, and Apple Journal. Here's what wins.",
+    metaTitle: "Best Journal App for Students 2026: 5 Picks for College + High School",
+    metaDescription: "Best journal app for students in 2026: Nuju, Daylio, Reflectly, Stoic, Apple Journal compared. Free tiers, exam anxiety support, privacy.",
+    publishedAt: "2026-05-22",
+    readingTime: 8,
+    category: "App Comparison",
+    sections: [
+      { type: "p", content: "Best journal app for students in 2026: Nuju for short daily entries with AI feedback and 8 languages. Daylio for fast mood tracking without writing. Reflectly for absolute beginners. Stoic for guided philosophical structure. Apple Journal for iOS-only students who want a free default. The right pick depends on what you're optimizing for — exam anxiety, habit-building, or general mental wellness." },
+      { type: "callout", content: "Quick verdict: For most students, Nuju Free is the best starting point — 30-second entries that fit between classes, AI insights that reveal exam-anxiety patterns over weeks, support for Bahasa Indonesia and 7 other languages, and explicit no-AI-training privacy. Free tier covers daily use. Try the free Ju Gets You reveal at /onboarding to see if the format fits." },
+      { type: "h2", content: "What students specifically need from a journal app" },
+      { type: "p", content: "Five features matter more for students than for general users:" },
+      { type: "ul", content: [
+        "Fast entries: 30-60 seconds. Students don't have hours; they have minutes between classes.",
+        "Free tier: tight budgets mean apps with strong free tiers win.",
+        "Exam anxiety support: pattern tracking to identify what triggers anxiety + tools for the night before tests.",
+        "Privacy: shared devices with family or roommates, so encryption + password protection matter.",
+        "Distraction resistance: no infinite scroll, no comparison feed. The app should help, not steal another hour.",
+      ] },
+      { type: "h2", content: "1. Nuju — best overall for students" },
+      { type: "p", content: "Nuju is built around 30-second mood-plus-text entries — the median real entry is 31 characters. For students, this means a quick log between classes is possible without disrupting the day. The Gentle AI persona (picked by 50% of users) handles exam stress, social anxiety, and homesickness with validation rather than push-back." },
+      { type: "p", content: "Strengths for students: free tier covers daily journaling with AI insights. Supports Bahasa Indonesia and 7 other languages. Mood tracking + energy slider surfaces exam-anxiety patterns over weeks. Privacy: encrypted, no AI training on entries. Works on web (laptop during study breaks) and mobile (dorm room evenings)." },
+      { type: "p", content: "Limits: 2026-launched so longitudinal pattern depth is still maturing. No prescribed study-habit framework — Nuju is reflective, not productivity-focused." },
+      { type: "h2", content: "2. Daylio — best for students who hate writing" },
+      { type: "p", content: "Daylio is mood tracker, not AI journal. For students who refuse to write but want mood data, it's the fastest pick — 10-second mood + activity tag entries. Free tier is generous. Daylio Premium is a $3.99 one-time purchase (rare in 2026)." },
+      { type: "p", content: "Strengths: fastest entry on the list, generous free tier, long-term mood charts that reveal study-pattern correlations. Limits: no AI interpretation, no written reflection, no Bahasa Indonesia AI." },
+      { type: "h2", content: "3. Reflectly — best for absolute journaling beginners" },
+      { type: "p", content: "Reflectly uses positive psychology for short structured daily check-ins. For students who have never journaled before and find every other app intimidating, it's the lowest-friction entry point. Free tier limited; Plus ~$5-10/month." },
+      { type: "p", content: "Strengths: gentlest onboarding, character mascot makes it feel less clinical. Limits: light AI feedback, English UI only, students often outgrow it in 2-3 months." },
+      { type: "h2", content: "4. Stoic — best for philosophical structure" },
+      { type: "p", content: "Stoic Journal uses Stoicism-inspired prompts and structured morning/evening reflection. For students drawn to philosophical frameworks (especially relevant for stress management), it's a strong choice. Subscription-based, ~$30/year. Free trial." },
+      { type: "p", content: "Strengths: substantive prompt structure, integrates breathing exercises and meditations. Limits: requires commitment to longer-form journaling — not aligned with the median 31-character entry pattern most journalers actually produce." },
+      { type: "h2", content: "5. Apple Journal — best for iOS-only students who want free default" },
+      { type: "p", content: "Apple Journal shipped iOS 17.2. Free, pre-installed on every iPhone. For iOS-only students who don't want any cost, it's a legitimate option. Limits: no Android or web, no AI interpretation, minimal Bahasa Indonesia support, iOS-only sync." },
+      { type: "p", content: "For students who want zero-AI privacy with system integration, Apple Journal works. Most use it as a memory log alongside another tool for active reflection — see /blog/nuju-vs-apple-journal for the full comparison." },
+      { type: "h2", content: "Which one should you pick?" },
+      { type: "ul", content: [
+        "First-time journaler with exam anxiety + tight budget: Nuju Free.",
+        "Hate writing, just want mood data: Daylio Free.",
+        "Want gentlest possible onboarding: Reflectly.",
+        "Drawn to philosophical structure: Stoic.",
+        "iOS-only + want free default + don't need AI: Apple Journal.",
+        "Bahasa Indonesia native: Nuju (only major option with full Bahasa Indonesia AI).",
+      ] },
+      { type: "h2", content: "Specific student use cases" },
+      { type: "p", content: "Common student situations and what works:" },
+      { type: "ul", content: [
+        "Exam anxiety: Nuju with Gentle persona. The pattern tracking surfaces what specifically triggers exam stress over a semester. See /blog/best-ai-journal-apps-for-anxiety-2026 for deeper anxiety guidance.",
+        "Homesickness during freshman year: Nuju with the loneliness protocol (see /blog/ai-journaling-for-loneliness).",
+        "Social anxiety on campus: Nuju with social-anxiety prompts (see /blog/journaling-for-social-anxiety).",
+        "Procrastination on assignments: Nuju with perfectionism prompts (see /blog/journaling-for-perfectionism-procrastination).",
+        "Breakup processing during semester: Nuju with breakup prompts (see /blog/journaling-for-breakup).",
+      ] },
+      { type: "h2", content: "Bottom line" },
+      { type: "p", content: "For most students in 2026, Nuju Free is the strongest starting point: 30-second entries that fit between classes, AI feedback that surfaces exam-anxiety and homesickness patterns over weeks, support for 8 languages including Bahasa Indonesia, and strong privacy stance. Try the free Ju Gets You reveal at /onboarding — 60 seconds, no credit card. If the format doesn't fit, Daylio is the fallback (no writing required) or Apple Journal if you're iOS-only." },
+    ],
+    faq: [
+      {
+        question: "What is the best free journal app for college students?",
+        answer:
+          "Nuju Free for most users — 30-second daily entries, AI insights, mood tracking, supports Bahasa Indonesia and 7 other languages, and explicit no-AI-training privacy. Daylio Free is the best fallback for students who don't want to write at all. Both have strong free tiers that cover daily use without forcing premium upgrades.",
+      },
+      {
+        question: "Are journal apps safe for students worried about privacy?",
+        answer:
+          "Privacy depends on the app. Look for: explicit no-AI-training policy on journal entries, encryption at rest and in transit, easy export and delete, and a privacy policy that specifically addresses journal content. Nuju and Reflection meet these standards. Apple Journal is on-device only (strong privacy). Avoid apps with data-training clauses in their TOS — some 2026 reviews flag this with specific apps.",
+      },
+      {
+        question: "Can journaling help with exam anxiety?",
+        answer:
+          "Yes. Research from Sian Beilock (University of Chicago, 2011) showed that writing about exam anxiety for 10 minutes before a test significantly improved exam performance. Daily journaling also helps identify what specifically triggers exam stress (sleep deprivation, comparison to others, fear of disappointing parents), which makes the stress addressable.",
+      },
+      {
+        question: "How often should students journal?",
+        answer:
+          "5-10 minutes per day works, but daily isn't required. 3-4 times per week is sustainable for most students. The key is consistency in waking timing — same window most days — rather than perfect daily streaks. The 'never miss twice' rule from habit research applies: missing one day is fine; missing two in a row starts feeling like quitting.",
+      },
+      {
+        question: "What is the best journal app that works on both iPhone and Android?",
+        answer:
+          "Nuju works on iOS PWA, Android, and web. Reflection also works cross-platform. Daylio works on both iOS and Android. Apple Journal is iOS-only. For students switching between devices or using Windows laptops with iOS phones, Nuju and Reflection are the most flexible picks.",
+      },
+      {
+        question: "Should students pay for a journal app or use free?",
+        answer:
+          "For most students, free tiers are sufficient. Nuju Free covers daily journaling with AI insights. Daylio Premium ($3.99 one-time) is worth it for heavy mood-tracking users. Most subscription apps ($5-12/month) are hard to justify on student budgets. Start free. Upgrade only when you've used the app consistently for 2-3 months and want features the free tier doesn't include.",
+      },
+    ],
+  },
+  // COMMERCIAL INTENT — Best free mental wellness apps 2026.
+  {
+    slug: "best-free-mental-wellness-apps-2026",
+    title: "Best Free Mental Wellness Apps in 2026: 7 That Actually Help (No Paywalls)",
+    description: "Most 'free' mental wellness apps are 7-day trials. These 7 are actually free — Nuju, Daylio, Insight Timer, Woebot, MindShift, What's Up, Headspace Free. What they help with, what they don't, and how to combine them.",
+    metaTitle: "Best Free Mental Wellness Apps 2026: 7 That Actually Help (No Trials)",
+    metaDescription: "Truly free mental wellness apps 2026: Nuju, Daylio, Insight Timer, Woebot, MindShift, What's Up, Headspace Free. No paywall traps.",
+    publishedAt: "2026-05-22",
+    readingTime: 8,
+    category: "App Comparison",
+    sections: [
+      { type: "p", content: "Best truly-free mental wellness apps in 2026: Nuju (AI journal + mood tracker), Daylio (mood tracker), Insight Timer (meditation), Woebot (CBT chatbot), MindShift (anxiety CBT), What's Up (anxiety + depression CBT), Headspace Free (limited meditation). All have legitimate free tiers — not 7-day trials disguised as free. This guide covers what each one helps with, what they don't, and how to combine 2-3 for a complete mental wellness toolkit." },
+      { type: "callout", content: "Quick start: Pair Nuju (free journaling + mood tracking) with one meditation app (Insight Timer or Headspace Free) for the most balanced free toolkit. Try Nuju's free Ju Gets You reveal at /onboarding — 60 seconds to start, no credit card. Then add meditation on the side." },
+      { type: "h2", content: "What 'free' actually means in 2026" },
+      { type: "p", content: "Important context: most 'free' wellness apps are 7-day trials that auto-charge $10-15/month. The 7 below have genuine free tiers — full features or generous limits that cover normal use indefinitely. We verified each one against current pricing pages as of 2026-05." },
+      { type: "h2", content: "1. Nuju — best free AI journal + mood tracker" },
+      { type: "p", content: "Nuju Free includes: daily journaling with AI insights, mood tracker, energy slider, 4 AI coach personas (basic), 8-language support including Bahasa Indonesia. No daily caps on normal use. Pattern recognition over 30+ entries reveals what specifically triggers your mood shifts." },
+      { type: "p", content: "Best for: anyone wanting AI-augmented daily journaling without paying. Combines well with: meditation app for the mindfulness side." },
+      { type: "h2", content: "2. Daylio — best free mood tracker" },
+      { type: "p", content: "Daylio Free includes: fast mood logging (10-second entries), activity tags, long-term mood charts, basic correlations. Daylio Premium is $3.99 one-time, not subscription — unusual in 2026 and worth noting." },
+      { type: "p", content: "Best for: users who hate writing but want mood data. Combines well with: Nuju (mood-only tracking + AI-augmented written journaling)." },
+      { type: "h2", content: "3. Insight Timer — best free meditation" },
+      { type: "p", content: "Insight Timer Free includes: 200,000+ guided meditations, community features, basic meditation timer. Genuinely free — no paywall on most content. Premium ($60/year) unlocks advanced courses but free tier covers daily meditation needs." },
+      { type: "p", content: "Best for: meditation. Combines well with: Nuju for the journaling side or Daylio for mood tracking." },
+      { type: "h2", content: "4. Woebot — best free CBT chatbot" },
+      { type: "p", content: "Woebot is a CBT-based mental health chatbot built by clinical psychologists at Stanford. Free tier covers conversational CBT exercises, mood tracking, and clinical research-backed techniques. No paywall on core features." },
+      { type: "p", content: "Best for: people who want guided CBT exercises and aren't ready for therapy. Limit: feels more like a chatbot than a journal. Combines well with: Nuju for reflective journaling alongside Woebot's structured exercises." },
+      { type: "h2", content: "5. MindShift — best free anxiety-specific app" },
+      { type: "p", content: "MindShift was developed by Anxiety Canada with input from clinical psychologists. Completely free (donation-supported, no premium tier). Includes CBT-based anxiety tools, breathing exercises, thought records, and chill zones." },
+      { type: "p", content: "Best for: anxiety specifically — exam anxiety, social anxiety, panic, generalized anxiety. Combines well with: Nuju for the reflective journaling that anxiety patterns benefit from." },
+      { type: "h2", content: "6. What's Up — best 100% free mental health app" },
+      { type: "p", content: "What's Up is completely free with no premium tier. Built around CBT and Acceptance and Commitment Therapy (ACT). Includes habit tracker, breathing exercises, diary, and grounding techniques." },
+      { type: "p", content: "Best for: users who want 100% free with no upsell pressure. Combines well with: Nuju (English-only UI of What's Up + Nuju's Bahasa Indonesia support if needed)." },
+      { type: "h2", content: "7. Headspace Free — limited but high-quality meditation" },
+      { type: "p", content: "Headspace's free tier is more limited than Insight Timer — includes basic meditations, one sleep story, and some breathing exercises. Premium is $14.99/month for full content. For users who specifically want Headspace's polish without paying, the free tier works for basics." },
+      { type: "p", content: "Best for: occasional meditation. Combines well with: Nuju for journaling. Honestly, Insight Timer's free tier is more generous — Headspace Free is included here for users who already prefer Headspace's interface." },
+      { type: "h2", content: "Combine 2-3 for a complete toolkit" },
+      { type: "p", content: "Most users benefit from combining 2-3 apps for different jobs:" },
+      { type: "ul", content: [
+        "AI journal + mood tracker: Nuju (covers both for free).",
+        "Mood tracker + meditation: Daylio + Insight Timer (both 100% free).",
+        "Anxiety toolkit: MindShift + Nuju (CBT exercises + reflective journaling).",
+        "Beginner-friendly toolkit: Reflectly + Nuju (gentle onboarding + AI feedback).",
+        "Complete Indonesian Gen Z stack: Nuju + Riliv (free consultations with volunteer psychology students) + What's Up.",
+      ] },
+      { type: "h2", content: "What no free app replaces" },
+      { type: "p", content: "Free apps don't replace:" },
+      { type: "ul", content: [
+        "Professional therapy or psychiatric care for moderate-to-severe conditions.",
+        "Antidepressants or other medications when indicated.",
+        "Crisis support — for active crisis, use 988 (US), Into The Light (Indonesia), or Samaritans 116 123 (UK).",
+        "Medical evaluation for symptoms that may have physical causes (thyroid, hormones, sleep apnea, etc.).",
+      ] },
+      { type: "p", content: "Use free apps as supportive daily practice. For clinical conditions, get professional evaluation alongside." },
+      { type: "h2", content: "Bottom line" },
+      { type: "p", content: "Truly-free mental wellness apps exist in 2026 — these 7 are not 7-day trials disguised as free. Start with Nuju Free for AI journaling + mood tracking, add one meditation app (Insight Timer or Headspace Free) for the mindfulness side. That covers most needs for $0. Try Nuju's free Ju Gets You reveal at /onboarding — 60 seconds, no credit card." },
+    ],
+    faq: [
+      {
+        question: "What is the best free mental wellness app overall in 2026?",
+        answer:
+          "For most users, Nuju Free is the strongest single-app pick — it combines AI journaling, mood tracking, and pattern recognition in one free tier. Daylio Free is the best free mood-only tracker. Insight Timer Free is the best free meditation app. Most users benefit from combining 2-3 of these for a complete toolkit at zero cost.",
+      },
+      {
+        question: "Are these apps really free or just 7-day trials?",
+        answer:
+          "All 7 in this list have genuine free tiers, not just trials. Nuju, Daylio, Insight Timer, Woebot, MindShift, What's Up, and Headspace all offer permanent free access to core features. Premium tiers exist but are optional. We verified each against current pricing as of 2026-05. Avoid any app that requires credit card to start the 'free' trial — that's usually a paywall trap.",
+      },
+      {
+        question: "Can free apps actually help with mental health?",
+        answer:
+          "Yes, for mild-to-moderate cases. Research from the American Psychological Association consistently supports digital mental health tools as supplements to or precursors of professional care. Severe conditions (clinical depression, severe anxiety, trauma, suicidal thoughts) need professional treatment — apps are not sufficient. Use free apps to build daily practice; see a professional for clinical-level concerns.",
+      },
+      {
+        question: "Which free apps are best for anxiety specifically?",
+        answer:
+          "MindShift (built by Anxiety Canada, completely free) is the most anxiety-specific. Nuju with the Gentle persona handles general anxiety well. What's Up uses CBT and ACT for anxiety. Combine MindShift's structured CBT exercises with Nuju's reflective journaling for a strong free anxiety toolkit. See /blog/best-ai-journal-apps-for-anxiety-2026 for deeper anxiety-focused comparison.",
+      },
+      {
+        question: "Is using multiple mental wellness apps overkill?",
+        answer:
+          "Not if each does a different job. Combining one journaling app (Nuju), one meditation app (Insight Timer), and one CBT-exercise app (Woebot or MindShift) covers reflective practice + mindfulness + skill-building. Most users benefit from 2-3 apps. Using 5+ apps usually becomes friction rather than help.",
+      },
+      {
+        question: "When should I pay for a mental wellness app?",
+        answer:
+          "Pay when (1) you've used the free tier consistently for 2-3 months, (2) you've identified specific features the paid tier offers that you actually need, and (3) you can afford the subscription comfortably. For most users in 2026, free tiers cover 80%+ of value. The exceptions: Daylio Premium ($3.99 one-time) is high value for heavy mood-tracking users; Headspace/Calm subscriptions are worth it for users who deeply engage with their content.",
+      },
+    ],
+  },
+  // INDONESIAN COMMERCIAL — Aplikasi journal untuk mahasiswa Indonesia.
+  {
+    slug: "aplikasi-journal-untuk-mahasiswa-indonesia",
+    title: "Aplikasi Journal Terbaik untuk Mahasiswa Indonesia 2026: 5 Pilihan",
+    description: "Mahasiswa Indonesia butuh aplikasi journal yang fit di antara kuliah, gratis atau hampir gratis, bantu anxiety ujian, dan jaga privasi. 5 pilihan terbaik 2026: Nuju, Daylio, Riliv, What's Up, Calm Free. Lengkap.",
+    metaTitle: "5 Aplikasi Journal Terbaik untuk Mahasiswa Indonesia 2026",
+    metaDescription: "Mahasiswa Indonesia: 5 aplikasi journal gratis terbaik 2026. Nuju (Bahasa Indonesia + AI), Daylio, Riliv, What's Up, Calm. Perbandingan lengkap.",
+    publishedAt: "2026-05-22",
+    readingTime: 7,
+    category: "App Comparison",
+    sections: [
+      { type: "p", content: "Aplikasi journal terbaik untuk mahasiswa Indonesia 2026: Nuju (AI journal + mood tracker, full Bahasa Indonesia, gratis), Daylio (mood tracker tercepat), Riliv (aplikasi Indonesia dengan konsultasi gratis dari relawan psikolog), What's Up (CBT gratis sepenuhnya), Calm Free (meditasi terbatas). Yang paling cocok tergantung apa yang lo butuhkan — anxiety ujian, homesick, atau wellness umum." },
+      { type: "callout", content: "Quick start: Untuk kebanyakan mahasiswa, Nuju Free adalah starting point terbaik — entri 30 detik yang fit di antara kuliah, AI insight dalam Bahasa Indonesia, dan free tier yang nutup daily use. Coba free Ju Gets You reveal di /onboarding — 60 detik, no kartu kredit." },
+      { type: "h2", content: "Yang spesifik dibutuhkan mahasiswa Indonesia" },
+      { type: "p", content: "Lima fitur yang lebih penting untuk mahasiswa Indonesia daripada user umum:" },
+      { type: "ul", content: [
+        "Bahasa Indonesia: aplikasi yang AI-nya respons dalam Bahasa Indonesia jauh lebih nyaman dari yang Inggris-only.",
+        "Free tier yang nyata: budget mahasiswa terbatas, kos + UKT udah berat.",
+        "Anxiety ujian: pattern tracking untuk identifikasi pemicu anxiety sebelum UTS/UAS + tools malam sebelum ujian.",
+        "Privacy: kos sering share dengan teman, laptop kampus dipinjamin, jadi enkripsi penting.",
+        "Akses ke profesional: idealnya aplikasi yang connect ke psikolog kalau dibutuhkan, dengan harga mahasiswa-friendly.",
+      ] },
+      { type: "h2", content: "1. Nuju — terbaik overall untuk mahasiswa Indonesia" },
+      { type: "p", content: "Nuju dirancang untuk entri 30 detik mood + text — median entri user pertama: 31 karakter. Untuk mahasiswa, ini berarti journal cepat antara kuliah mungkin tanpa mengganggu hari. Persona Gentle (default, dipilih 50% user secara aktif) menangani stres ujian, social anxiety, homesick dengan validasi bukan push-back." },
+      { type: "p", content: "Kelebihan untuk mahasiswa: free tier cover daily journaling dengan AI insight. Bahasa Indonesia penuh — UI, prompts, dan response AI. Mood tracker + energy slider nge-surface anxiety ujian pattern selama berminggu-minggu. Privacy: enkripsi, tidak digunakan training AI. Works on web (laptop kampus pas study break) dan mobile (kos malam-malam)." },
+      { type: "p", content: "Batasan: Nuju baru launch 2026 jadi pattern depth jangka panjang masih berkembang. Untuk fitur penuh (riwayat unlimited, AI insight mendalam), upgrade Plus Rp 75.000/bulan. Free cukup untuk daily use." },
+      { type: "h2", content: "2. Daylio — terbaik buat mahasiswa yang males nulis" },
+      { type: "p", content: "Daylio = mood tracker (bukan AI journal). Untuk mahasiswa yang refuse nulis tapi pengen mood data, Daylio paling cepat — 10 detik mood + activity tag. Free tier generous. Daylio Premium $3.99 one-time purchase (jarang di 2026, biasanya subscription)." },
+      { type: "p", content: "Kelebihan: tercepat di list ini, free tier generous, chart mood jangka panjang yang reveal study-pattern correlation. Batasan: nggak ada AI interpretation, nggak ada reflection tertulis, UI Bahasa Inggris (walaupun simpel)." },
+      { type: "h2", content: "3. Riliv — terbaik buat konsultasi gratis dengan psikolog" },
+      { type: "p", content: "Riliv aplikasi Indonesia yang menawarkan konsultasi mental health gratis dengan relawan mahasiswa psikologi dari UI, UNAIR, UNESA, dan kampus ternama lainnya. Bukan AI journal murni — tapi sering dipakai bersama aplikasi journal untuk lapis tambahan." },
+      { type: "p", content: "Kelebihan: aplikasi lokal, konteks budaya Indonesia kuat, konsultasi gratis = unique selling point. Komunitas pengguna besar. Cocok untuk mahasiswa yang butuh ngobrol dengan manusia (walaupun relawan, bukan psikolog bersertifikat). Untuk psikolog bersertifikat di Riliv: Rp 100.000+ per sesi." },
+      { type: "p", content: "Batasan: journal pribadi bukan fokus utama. Konsultasi dengan relawan ≠ konsultasi profesional bersertifikat." },
+      { type: "h2", content: "4. What's Up — terbaik untuk anxiety + 100% gratis" },
+      { type: "p", content: "What's Up 100% gratis tanpa premium. Menggunakan CBT dan Acceptance and Commitment Therapy (ACT) untuk anxiety dan depresi ringan. UI Bahasa Inggris tapi simpel." },
+      { type: "p", content: "Kelebihan: 100% gratis tanpa upsell, habit tracker dan breathing exercises terintegrasi. Batasan: nggak ada AI, UI Inggris, lebih cocok untuk yang familiar dengan istilah CBT." },
+      { type: "h2", content: "5. Calm Free — terbaik untuk meditasi terbatas" },
+      { type: "p", content: "Calm versi gratis: beberapa meditasi pemula, satu sleep story, breathing exercises. Untuk mahasiswa yang mau meditasi sebelum tidur atau pra-ujian, free tier udah cukup. Premium $14.99/bulan (~Rp 230.000) — tidak relevan untuk budget mahasiswa." },
+      { type: "p", content: "Kelebihan: konten kualitas tinggi, durasi pendek (5-25 menit) cocok di antara kuliah. Batasan: bukan AI journal, content premium banyak — buat user Indonesia, free tier seringkali cukup." },
+      { type: "h2", content: "Use case mahasiswa Indonesia spesifik" },
+      { type: "ul", content: [
+        "Anxiety ujian: Nuju dengan persona Gentle + What's Up exercises pre-ujian.",
+        "Homesick semester awal: Nuju dengan protocol loneliness (lihat /blog/ai-journaling-for-loneliness).",
+        "Social anxiety kampus: Nuju dengan prompt social anxiety (lihat /blog/journaling-untuk-social-anxiety).",
+        "Procrastination skripsi: Nuju dengan prompt perfeksionisme (lihat /blog/perfeksionisme-dan-procrastination-indonesia).",
+        "Butuh ngobrol dengan manusia: Riliv untuk konsultasi gratis dengan relawan.",
+        "Depresi atau anxiety berat: konsultasi profesional dulu — Halodoc/KALM/Riliv (Rp 50.000-150.000/sesi).",
+      ] },
+      { type: "h2", content: "Kombinasi yang banyak dipakai mahasiswa Indonesia" },
+      { type: "ul", content: [
+        "Daily essential: Nuju Free (journaling + mood tracking + AI Bahasa Indonesia).",
+        "Daily + anxiety toolkit: Nuju + What's Up (CBT exercises) + Calm Free (meditasi).",
+        "Daily + butuh ngobrol: Nuju + Riliv (untuk konsultasi sesekali dengan relawan).",
+        "Daily + budget zero: Nuju Free + What's Up (100% gratis dua-duanya).",
+      ] },
+      { type: "h2", content: "Kapan saatnya ke psikolog profesional" },
+      { type: "p", content: "Aplikasi cukup untuk wellness umum, anxiety ujian, dan stress harian. Tanda yang butuh psikolog profesional:" },
+      { type: "ul", content: [
+        "Gangguan tidur kronis lebih dari 3 minggu, terutama pre-ujian yang nggak hilang setelah ujian.",
+        "Serangan panik di kampus atau saat dapet pesan dari orang tua/dosen.",
+        "Pikiran ngerusak diri sendiri — sekecil apapun, sesekali apapun.",
+        "Nggak bisa lakuin tugas dasar (kuliah, makan, tidur) lebih dari 2 minggu.",
+        "Ketergantungan pada alkohol atau zat lain untuk coping.",
+      ] },
+      { type: "p", content: "Akses Indonesia 2026: Halodoc, KALM, Riliv (psikolog bersertifikat) mulai Rp 50.000-150.000. Banyak kampus punya konseling gratis untuk mahasiswa — tanya BAAK atau pusat layanan mahasiswa. BPJS sekarang cover beberapa kondisi mental health. Krisis: Into The Light Indonesia (intothelightid.org), 119 ext 8." },
+      { type: "h2", content: "Bottom line" },
+      { type: "p", content: "Untuk kebanyakan mahasiswa Indonesia 2026, Nuju Free adalah starting point terbaik — entri 30 detik fit di antara kuliah, AI insight Bahasa Indonesia, mood tracking yang nge-surface pattern anxiety ujian. Pasangkan dengan satu aplikasi pelengkap (Riliv untuk konsultasi atau What's Up untuk CBT exercises). Coba free Ju Gets You reveal di /onboarding — 60 detik, no kartu kredit. Kalau Nuju nggak cocok, Daylio Free adalah fallback yang solid." },
+    ],
+    faq: [
+      {
+        question: "Apa aplikasi journal terbaik untuk mahasiswa Indonesia 2026?",
+        answer:
+          "Untuk kebanyakan mahasiswa, Nuju Free — entri 30 detik fit di antara kuliah, AI Bahasa Indonesia penuh, mood tracking yang nge-surface anxiety pattern ujian, dan privacy yang ketat. Riliv terbaik kalau butuh ngobrol dengan manusia (konsultasi gratis dengan relawan psikologi). Daylio Free terbaik kalau males nulis dan cuma mau mood data.",
+      },
+      {
+        question: "Apakah aplikasi journal beneran bantu anxiety ujian?",
+        answer:
+          "Ya — riset Sian Beilock (University of Chicago, 2011) menunjukkan menulis tentang anxiety ujian 10 menit sebelum ujian secara signifikan meningkatkan performa ujian. Daily journaling juga membantu identifikasi apa yang spesifik memicu stres ujian lo (kurang tidur, comparison ke teman, takut mengecewakan orang tua), yang bikin stres-nya bisa ditangani.",
+      },
+      {
+        question: "Berapa kali per minggu mahasiswa harus journaling?",
+        answer:
+          "5-10 menit per hari bekerja, tapi setiap hari nggak wajib. 3-4 kali per minggu sustainable untuk kebanyakan mahasiswa. Kuncinya konsistensi di waktu yang sama — window yang sama di kebanyakan hari — bukan streak setiap hari yang sempurna. Aturan 'never miss twice' dari habit research berlaku: skip satu hari fine; skip dua hari berturut-turut udah kerasa kayak quit.",
+      },
+      {
+        question: "Apa aplikasi journal yang aman buat privasi mahasiswa?",
+        answer:
+          "Yang harus dicek: kebijakan no-AI-training pada entri lo, enkripsi data, opsi export dan delete, kebijakan privasi yang spesifik soal jurnal (bukan cuma user data umum). Nuju mengenkripsi entri dan tidak menggunakannya training AI. What's Up offline-first jadi aman. Hindari aplikasi yang TOS-nya nggak transparan. Jangan journal di laptop kampus yang shared — pakai HP pribadi.",
+      },
+      {
+        question: "Apakah mahasiswa harus bayar aplikasi journal atau gratis aja cukup?",
+        answer:
+          "Untuk kebanyakan mahasiswa, free tier cukup. Nuju Free cover daily journaling dengan AI insight. Daylio Premium (Rp 60.000-an one-time) worth it untuk heavy mood tracker. Kebanyakan subscription apps (Rp 75.000-Rp 200.000/bulan) susah dijustifikasi di budget mahasiswa. Mulai gratis. Upgrade cuma kalau lo udah pakai konsisten 2-3 bulan dan butuh fitur spesifik yang free tier nggak punya.",
+      },
+      {
+        question: "Apa aplikasi yang support Bahasa Indonesia penuh untuk mahasiswa?",
+        answer:
+          "Nuju adalah satu-satunya AI journal app dengan dukungan Bahasa Indonesia penuh — UI, prompts, dan AI responses semua dalam Bahasa Indonesia. Riliv asli Indonesia jadi semua Bahasa Indonesia. Daylio UI tersedia dalam Bahasa Indonesia tapi nggak ada AI. What's Up, Calm, dan Headspace semua UI Bahasa Inggris. Untuk mahasiswa yang lebih nyaman Bahasa Indonesia full, Nuju dan Riliv adalah pilihan utama.",
+      },
+    ],
+  },
+  // BAHASA INDONESIA — Overthinking malam Indonesian Gen Z hot topic.
+  {
+    slug: "journaling-untuk-overthinking-malam",
+    title: "Cara Stop Overthinking Malam: 5 Prompt Journaling 5 Menit (2026)",
+    description: "Overthinking malam adalah salah satu masalah kesehatan mental Gen Z Indonesia paling umum. Otak nggak mau tidur, mikirin yang sama berulang. 5 prompt journaling yang secara konsisten memutus loop — tested untuk pekerja dan mahasiswa.",
+    metaTitle: "Cara Stop Overthinking Malam: 5 Prompt Journaling (Indonesia 2026)",
+    metaDescription: "Overthinking malam Gen Z Indonesia: 5 prompt journaling 5 menit yang memutus loop pikiran. Tested untuk mahasiswa + pekerja. Tidur lebih cepat.",
+    publishedAt: "2026-05-22",
+    readingTime: 6,
+    category: "Mental Wellness",
+    sections: [
+      { type: "p", content: "Jawaban singkat: overthinking malam terjadi karena tiga hal — pikiran yang nggak terselesaikan dari siang hari surface saat distraksi berkurang, default mode network otak aktif lebih intens di gelap, dan kortisol mulai naik bertahap dari jam 3-4 pagi. Bukan kurang willpower — itu cara otak bekerja. Cara yang terbukti memutusnya: 5 menit menulis sebelum tidur, dengan struktur yang spesifik. Bukan menyelesaikan masalah — menutup loop sehingga otak bisa berhenti memprosesnya." },
+      { type: "callout", content: "Quick start: kalau lo lagi baca ini jam 11 malam dengan overthinking aktif — skip ke bagian '5 prompt' di bawah. Coba malam ini. Sains-nya bisa dibaca besok. Nuju free Ju Gets You reveal di /onboarding tools yang cocok — 60 detik untuk mulai." },
+      { type: "h2", content: "Kenapa overthinking spesifik di malam hari" },
+      { type: "p", content: "Tiga mekanisme kombinasi:" },
+      { type: "ul", content: [
+        "Distraksi turun: di siang hari, kerja/kuliah/sosmed suppress pemrosesan background. Malam, suppression-nya drop dan loop yang ditahan surface.",
+        "Default mode network aktif: 'rest network' otak (mind-wandering, pemrosesan emosi) aktif lebih intens di kondisi gelap dan tenang. fMRI studies konsisten menunjukkan ini.",
+        "Cortisol cycle: kortisol mulai naik bertahap dari sekitar jam 3-4 pagi — ini kenapa 3am wake-up dengan intrusive thought common. Untuk gambaran lengkap 3am specifically, lihat /blog/3am-anxiety-journaling.",
+      ] },
+      { type: "h2", content: "Kenapa 'just sleep' nggak bekerja" },
+      { type: "p", content: "Ironic process theory Daniel Wegner (Harvard 1994+) menunjukkan bahwa mencoba menekan pikiran meningkatkan frekuensinya. Bilang ke diri 'jangan mikirin' = cara paling reliable untuk terus mikirin. Otak menginterpretasi instruksi sebagai monitoring task — 'apakah kita masih mikirin X?' — yang butuh cek, yang bikin X tetap aktif." },
+      { type: "p", content: "Yang sebenarnya menutup loop: eksternalisasi. Tulis pikirannya di luar kepala lo. Otak signal bahwa loop sekarang disimpan di tempat lain. Pemrosesan berhenti. Riset Pennebaker 35 tahun konsisten menunjukkan efek ini." },
+      { type: "h2", content: "5 prompt overthinking malam (5 menit, sebelum tidur)" },
+      { type: "h2", content: "Prompt 1: 'Apa yang muter di kepala gue sekarang?'" },
+      { type: "p", content: "Brain dump. Tulis semua yang lagi muter. Pesan dari atasan. Konflik sama temen. Pertanyaan ujian. Kekhawatiran masa depan. Tanpa struktur. Tanpa edit. Yang penting keluar." },
+      { type: "h2", content: "Prompt 2: 'Apa yang gue bisa kontrol vs nggak?'" },
+      { type: "p", content: "Bikin dua kolom dari Prompt 1. Yang masuk 'Nggak bisa kontrol' — coret. Otak boleh lepas. Yang masuk 'Bisa kontrol' — pilih satu, tulis langkah pertama paling kecil untuk besok." },
+      { type: "h2", content: "Prompt 3: 'Kalau ini paling buruk yang terjadi, apa step pertama gue?'" },
+      { type: "p", content: "Overthinking malam sering catastrophizing. Forced realistically: kalau worst case beneran terjadi, apa step pertama lo? Punya rencana untuk worst case sering menonaktifkan ketakutan." },
+      { type: "h2", content: "Prompt 4: 'Hal apa hari ini yang berjalan baik, sekecil apapun?'" },
+      { type: "p", content: "Bukan gratitude dipaksain — pengakuan jujur. Otak overthinking biased ke yang buruk. Force-list satu hal yang berjalan baik memutus narasi 'semuanya gagal' tanpa positivity nggak real." },
+      { type: "h2", content: "Prompt 5: 'Pesan apa yang gue mau kirim ke diri besok pagi?'" },
+      { type: "p", content: "Tulis pesan ke versi lo besok pagi. Bisa dukungan, instruksi, atau pengingat. Ini memindahkan beban dari malam ini ke besok pagi — otak boleh berhenti memprosesnya karena ada catatan." },
+      { type: "h2", content: "Setelah 5 prompt: tutup jurnal, tidur" },
+      { type: "p", content: "Setelah selesai, tutup jurnal. Jangan re-read. Jangan scroll HP. Matikan lampu. Loop udah dieksternalisasi. Pemrosesan background biasanya turun signifikan dalam 5-10 menit. Sleep latency turun. Pagi besok, biasanya pesan dari Prompt 5 lebih jelas dari pas malam." },
+      { type: "h2", content: "Kapan overthinking malam butuh psikolog" },
+      { type: "p", content: "Tanda yang menunjukkan butuh dukungan profesional:" },
+      { type: "ul", content: [
+        "Overthinking malam mengganggu tidur lebih dari 3 minggu berturut-turut.",
+        "Disertai gejala anxiety fisik (sesak, jantung berdetak cepat).",
+        "Pikiran ngerusak diri sendiri — sekecil apapun, sesekali apapun.",
+        "Tidur cuma 4 jam atau kurang konsisten karena overthinking.",
+        "Berdampak signifikan ke kerja atau kuliah.",
+      ] },
+      { type: "p", content: "Akses Indonesia: Halodoc, KALM, Riliv (Rp 50.000-150.000 per sesi). Krisis: Into The Light Indonesia, 119 ext 8. Untuk anxiety yang lebih luas: /blog/journaling-untuk-anxiety." },
+      { type: "h2", content: "Bottom line" },
+      { type: "p", content: "Overthinking malam adalah pola otak yang terdokumentasi, bukan kekurangan willpower. 'Coba tidur aja' nggak bekerja karena ironic process theory. Yang bekerja: 5 menit journaling sebelum tidur dengan struktur yang spesifik. Tutup loop, jangan selesain masalah. Coba 5 prompt di atas malam ini. Nuju free Ju Gets You reveal di /onboarding tool yang cocok — 60 detik untuk mulai, persona Gentle adalah default, dan format dirancang untuk overthinking malam." },
+    ],
+    faq: [
+      {
+        question: "Kenapa gue overthinking parah cuma di malam hari?",
+        answer:
+          "Tiga alasan kombinasi: (1) distraksi siang hari (kerja, kuliah, sosmed) suppress pemrosesan background — malam suppression-nya drop dan loop yang ditahan surface; (2) default mode network otak aktif lebih intens di kondisi gelap/tenang; (3) cortisol natural peak di jam-jam awal pagi yang bisa produce 3am wake-up. Protokol 5 prompt di atas bekerja untuk overthinking malam.",
+      },
+      {
+        question: "Apakah journaling sebelum tidur bisa bikin lebih susah tidur?",
+        answer:
+          "Justru sebaliknya. Riset Baylor 2018 menunjukkan pre-bedtime journaling memotong sleep latency (waktu untuk tertidur) sebanyak 9 menit. Mekanismenya: menulis menutup loop yang otak masih maintain. Tapi journaling yang terlalu lama atau pure venting tanpa struktur bisa amplify rumination. Format 5 menit dengan 5 prompt terstruktur adalah sweet spot.",
+      },
+      {
+        question: "Berapa lama sebelum tidur sebaiknya journaling?",
+        answer:
+          "30-60 menit sebelum tidur ideal. Selesaikan journaling, tutup jurnal, hindari scroll HP. Beri otak 30 menit untuk transisi ke mode tidur tanpa stimulasi baru. Kalau lo journal langsung sebelum mati lampu, kadang loop yang dieksternalisasi masih 'fresh' di otak. Buffer 30 menit membantu.",
+      },
+      {
+        question: "Gimana kalau journaling nggak menghentikan overthinking?",
+        answer:
+          "Coba minimal 2 minggu konsisten dulu — efek tidak instan untuk semua orang. Kalau setelah 2-3 minggu rutin masih overthinking parah, kemungkinan ada anxiety atau insomnia underlying yang butuh evaluasi profesional. Cari psikolog yang spesialisasi anxiety atau CBT-I (CBT untuk insomnia) di Halodoc/KALM/Riliv.",
+      },
+      {
+        question: "Apakah harus pakai aplikasi atau kertas oke?",
+        answer:
+          "Dua-duanya bekerja. Aplikasi (Nuju) ada keuntungan: nggak perlu nyalain lampu kalau di tempat tidur, format ringkas yang cocok untuk 5 menit, AI bisa kasih reflection back (opsional). Kertas: lebih sensorik, nggak ada distraksi notifikasi. Banyak orang journal di aplikasi karena lebih praktis. Yang penting konsistensinya, bukan tool-nya.",
+      },
+      {
+        question: "Apakah overthinking malam tanda gangguan kesehatan mental?",
+        answer:
+          "Bukan otomatis. Overthinking malam sesekali normal — itu pemrosesan emosi yang ditahan. Overthinking malam yang mengganggu tidur >3 minggu, disertai gejala anxiety fisik, atau menurunkan fungsi harian secara signifikan = sinyal untuk evaluasi profesional. Bisa anxiety umum, anxiety spesifik (social, performance), atau insomnia. Halodoc/KALM/Riliv menawarkan konsultasi mulai Rp 50.000-150.000.",
+      },
+    ],
+  },
 ];
 
 const normalizeCopy = (value: string): string =>
