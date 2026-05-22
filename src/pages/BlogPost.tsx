@@ -296,9 +296,31 @@ const INTERNAL_LINK_RECOMMENDATIONS: Record<string, InternalLinkRecommendation[]
       body: "Add mood tracking to see if Sunday is your specific anxiety peak — or if the pattern is different.",
     },
     {
+      slug: "what-people-write-in-journal-data",
+      eyebrow: "Real journaling data",
+      body: "See the patterns from 161 real entries — 87% logged on 'not great' days. The averages your week is being compared to.",
+    },
+  ],
+  "what-people-write-in-journal-data": [
+    {
+      slug: "5-minute-daily-journaling-habit",
+      eyebrow: "Build the habit",
+      body: "The data says median entries are 31 characters — here's how to make daily journaling that short feel sustainable.",
+    },
+    {
+      slug: "ai-journal-for-overthinking",
+      eyebrow: "The 'middle' state",
+      body: "Most entries come from the fuzzy middle, which is also where overthinking lives. Here's how AI journaling helps both.",
+    },
+    {
       slug: "best-mood-tracker-apps",
-      eyebrow: "Tools to track this",
-      body: "Compare mood trackers that surface weekly patterns instead of just logging single days.",
+      eyebrow: "Tools that surface patterns",
+      body: "Compare mood trackers if you want your personal version of these aggregate patterns.",
+    },
+    {
+      slug: "mood-tracker-for-self-awareness",
+      eyebrow: "What to do with the data",
+      body: "Once you see your own pattern, this guide covers what to actually do with the insight.",
     },
   ],
 };

@@ -6,7 +6,16 @@
     <atom:link href="https://nuju.app/rss.xml" rel="self" type="application/rss+xml" />
     <description>Practical guides on journaling, mood tracking, and emotional wellness from the Nuju team.</description>
     <language>en</language>
-    <lastBuildDate>Thu, 21 May 2026 18:23:57 GMT</lastBuildDate>
+    <lastBuildDate>Fri, 22 May 2026 05:36:14 GMT</lastBuildDate>
+    <item>
+      <title>We Analyzed Our First 161 Real Journal Entries: 87% Were Logged on &apos;Not Great&apos; Days</title>
+      <link>https://nuju.app/blog/what-people-write-in-journal-data</link>
+      <guid isPermaLink="true">https://nuju.app/blog/what-people-write-in-journal-data</guid>
+      <description>Real data from Nuju&apos;s first 161 journal entries: 87% logged on Rough, Low, or Okay days. Median entry is 31 characters. What the numbers reveal about why people actually journal in 2026.</description>
+      <category>Mental Wellness</category>
+      <pubDate>Fri, 22 May 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
     <item>
       <title>Aplikasi Curhat AI Tanpa Di-judge: Pilihan Terbaik 2026 (Anonim &amp; Gratis)</title>
       <link>https://nuju.app/blog/aplikasi-curhat-ai</link>
@@ -17,10 +26,10 @@
       <dc:language>id</dc:language>
     </item>
     <item>
-      <title>Sunday Scaries Are Real: What Journal Data Reveals About Weekly Mood Patterns</title>
+      <title>Sunday Scaries Are Real: What Research Reveals About Weekly Mood Patterns</title>
       <link>https://nuju.app/blog/sunday-scaries-mood-data</link>
       <guid isPermaLink="true">https://nuju.app/blog/sunday-scaries-mood-data</guid>
-      <description>Sunday Scaries aren&apos;t a meme — research and journal data show a measurable mood drop on Sunday evenings. Here&apos;s the pattern, the cause, and how to reset before Monday.</description>
+      <description>Sunday Scaries aren&apos;t a meme. Research consistently shows a measurable mood drop on Sunday evenings — here&apos;s the pattern, the cause, and how to reset before Monday.</description>
       <category>Mental Wellness</category>
       <pubDate>Thu, 21 May 2026 12:00:00 GMT</pubDate>
       <dc:language>en</dc:language>
