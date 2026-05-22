@@ -455,6 +455,116 @@ const INTERNAL_LINK_RECOMMENDATIONS: Record<string, InternalLinkRecommendation[]
       body: "Untuk pemula yang baru mau curhat lewat tulisan — cara memulai journaling 5 menit per hari.",
     },
   ],
+  "mental-health-awareness-month-2026-journaling": [
+    {
+      slug: "5-minute-daily-journaling-habit",
+      eyebrow: "Make it permanent",
+      body: "After the 31-day challenge, keep the habit going — the science of making journaling stick past month one.",
+    },
+    {
+      slug: "what-people-write-in-journal-data",
+      eyebrow: "What real entries look like",
+      body: "87% of real journal entries are logged on 'not great' days, median is 31 characters. Set realistic expectations for your 31 days.",
+    },
+    {
+      slug: "complete-guide-ai-journaling-2026",
+      eyebrow: "If AI journaling appeals",
+      body: "Complete 2026 guide to AI journaling — what the category is, how to pick a tool, and where to start.",
+    },
+    {
+      slug: "journaling-for-mental-health",
+      eyebrow: "The deeper why",
+      body: "Why journaling works for mental health — 35 years of research distilled into the core mechanisms.",
+    },
+  ],
+  "digital-fatigue-journaling-reset": [
+    {
+      slug: "gen-z-burnout-journaling",
+      eyebrow: "Burnout = bigger version",
+      body: "Digital fatigue is the daily version; burnout is when it compounds. The 4-prompt protocol for full burnout.",
+    },
+    {
+      slug: "3am-anxiety-journaling",
+      eyebrow: "When screens steal sleep",
+      body: "Digital fatigue is one of the biggest sleep-latency drivers. When phone use bleeds into 3am wakeups, this guide helps.",
+    },
+    {
+      slug: "5-minute-daily-journaling-habit",
+      eyebrow: "Build the daily window",
+      body: "The 5-minute reset works best as a daily habit — here's how to make it automatic.",
+    },
+    {
+      slug: "ai-journal-for-overthinking",
+      eyebrow: "When screens trigger overthinking",
+      body: "Digital fatigue + overthinking often co-occur. The AI journal angle for both.",
+    },
+  ],
+  "morning-pages-research-explained": [
+    {
+      slug: "5-minute-daily-journaling-habit",
+      eyebrow: "The adapted version",
+      body: "The 5-minute alternative to Morning Pages — same expressive-writing mechanism, fraction of the time cost.",
+    },
+    {
+      slug: "what-is-ai-journaling",
+      eyebrow: "Modernized Morning Pages",
+      body: "AI journaling is the 2026 evolution of stream-of-consciousness writing — what it adds, what it doesn't.",
+    },
+    {
+      slug: "journaling-for-self-discovery",
+      eyebrow: "The Cameron intent",
+      body: "Morning Pages was originally about creativity and self-discovery. Modern journaling for the same goal.",
+    },
+    {
+      slug: "5-minute-daily-journaling-habit",
+      eyebrow: "Make any format stick",
+      body: "Whatever format you pick — long or short — habit-formation research applies. Here's the playbook.",
+    },
+  ],
+  "gen-z-burnout-journaling": [
+    {
+      slug: "digital-fatigue-journaling-reset",
+      eyebrow: "Burnout's daily cousin",
+      body: "Digital fatigue is the daily-level version of burnout. The 5-minute reset for the smaller daily drain.",
+    },
+    {
+      slug: "ai-journal-for-overthinking",
+      eyebrow: "Burnout + overthinking",
+      body: "Many burned-out workers also overthink chronically. The AI journal angle for the combo.",
+    },
+    {
+      slug: "sunday-scaries-mood-data",
+      eyebrow: "Burnout shows on Sundays",
+      body: "Sunday Scaries are often the first symptom of work burnout intensifying. Here's the data + the reset.",
+    },
+    {
+      slug: "5-minute-daily-journaling-habit",
+      eyebrow: "Make the reset daily",
+      body: "The 4-prompt burnout protocol works best daily — here's how to actually build a 5-min daily habit.",
+    },
+  ],
+  "cara-mengatasi-burnout-gen-z": [
+    {
+      slug: "cara-mengatasi-overthinking",
+      eyebrow: "Burnout + overthinking",
+      body: "Banyak Gen Z burnout juga overthinking kronis. 4 prompt khusus untuk memutus loop pikiran.",
+    },
+    {
+      slug: "self-healing-dengan-jurnal",
+      eyebrow: "Bagian dari self healing",
+      body: "Mengatasi burnout adalah satu bagian dari self healing yang lebih luas — panduan praktis 5 prompt.",
+    },
+    {
+      slug: "journaling-untuk-anxiety",
+      eyebrow: "Burnout + anxiety",
+      body: "Burnout dan anxiety sering muncul bareng. 7 prompt spesifik anxiety yang juga bantuin burnout.",
+    },
+    {
+      slug: "cara-curhat-ke-diri-sendiri",
+      eyebrow: "Curhat saat burnout",
+      body: "Pas burnout, sering nggak ada energi buat ngomong ke teman. 5 cara curhat ke diri sendiri yang efektif.",
+    },
+  ],
 };
 
 const getInternalLinkCards = (slug: string): InternalLinkCard[] =>
