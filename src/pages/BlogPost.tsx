@@ -785,6 +785,138 @@ const INTERNAL_LINK_RECOMMENDATIONS: Record<string, InternalLinkRecommendation[]
       body: "Protokol reset 5 menit cocok jadi bagian dari self healing harian. Panduan lengkap.",
     },
   ],
+  "nuju-vs-reflection": [
+    {
+      slug: "nuju-vs-rosebud",
+      eyebrow: "Other comparisons",
+      body: "How Nuju stacks up against Rosebud — short daily entries vs structured therapy prompts.",
+    },
+    {
+      slug: "nuju-vs-mindsera",
+      eyebrow: "Other comparisons",
+      body: "How Nuju compares to Mindsera — warm AI vs cognitive coach.",
+    },
+    {
+      slug: "best-ai-journaling-apps",
+      eyebrow: "Category view",
+      body: "Compare the full AI journaling category side by side.",
+    },
+    {
+      slug: "complete-guide-ai-journaling-2026",
+      eyebrow: "Category guide",
+      body: "Complete 2026 guide to AI journaling — what the category is, how to pick.",
+    },
+  ],
+  "nuju-vs-daylio": [
+    {
+      slug: "daylio-alternatives",
+      eyebrow: "More Daylio alternatives",
+      body: "Looking beyond Nuju? Compare Daylio's broader alternatives in the mood tracker category.",
+    },
+    {
+      slug: "best-mood-tracker-apps",
+      eyebrow: "Mood tracker category",
+      body: "Compare the full mood tracker category — Daylio, Bearable, Moodfit, others.",
+    },
+    {
+      slug: "nuju-vs-rosebud",
+      eyebrow: "AI journal vs AI journal",
+      body: "How Nuju compares to another AI journal app rather than a mood tracker.",
+    },
+    {
+      slug: "best-ai-journaling-apps",
+      eyebrow: "AI journal category",
+      body: "If you want AI not just mood data, compare the AI journaling category here.",
+    },
+  ],
+  "journaling-for-depression": [
+    {
+      slug: "journaling-before-therapy",
+      eyebrow: "Prep for therapy",
+      body: "If depression journaling surfaces something bigger, this guide helps you prep for a therapist appointment.",
+    },
+    {
+      slug: "journaling-for-grief",
+      eyebrow: "Often co-occurring",
+      body: "Depression and grief often co-occur. The grief journaling guide if loss is part of the picture.",
+    },
+    {
+      slug: "journaling-for-anxiety",
+      eyebrow: "Frequently overlapping",
+      body: "Depression and anxiety frequently co-occur. The anxiety-specific guide and prompts.",
+    },
+    {
+      slug: "best-ai-journal-apps-for-anxiety-2026",
+      eyebrow: "Tools that fit",
+      body: "AI journal apps that work for depression-adjacent journaling. Anxiety-focused comparison applies.",
+    },
+  ],
+  "journaling-for-breakup": [
+    {
+      slug: "journaling-for-grief",
+      eyebrow: "Breakup = grief",
+      body: "Breakups activate grief systems. The grief journaling guide applies to relationship endings too.",
+    },
+    {
+      slug: "ai-journaling-for-loneliness",
+      eyebrow: "Post-breakup loneliness",
+      body: "Loneliness after a breakup has specific patterns. AI journaling angle for the gap.",
+    },
+    {
+      slug: "journaling-for-relationships",
+      eyebrow: "Relationship patterns",
+      body: "Looking at recurring relationship patterns — what to carry forward into the next one.",
+    },
+    {
+      slug: "3am-anxiety-journaling",
+      eyebrow: "Breakup 3am wakeups",
+      body: "Breakups commonly disrupt sleep with 3am wakeups. The technique for late-night spirals.",
+    },
+  ],
+  "journaling-for-social-anxiety": [
+    {
+      slug: "best-ai-journal-apps-for-anxiety-2026",
+      eyebrow: "Tool selection",
+      body: "AI journal apps compared specifically for anxiety — including social anxiety use cases.",
+    },
+    {
+      slug: "journaling-for-imposter-syndrome",
+      eyebrow: "Often overlapping",
+      body: "Social anxiety and imposter syndrome frequently co-occur. The Evidence File technique applies.",
+    },
+    {
+      slug: "ai-journal-for-overthinking",
+      eyebrow: "Pre-event overthinking",
+      body: "Social anxiety often involves pre-event overthinking. The AI journal angle for the loop.",
+    },
+    {
+      slug: "ai-journaling-for-loneliness",
+      eyebrow: "When SA causes isolation",
+      body: "When social anxiety causes isolation and loneliness, this guide bridges the two.",
+    },
+  ],
+  "journaling-untuk-depresi": [
+    {
+      slug: "journaling-untuk-anxiety",
+      eyebrow: "Depresi + anxiety",
+      body: "Depresi dan anxiety sering muncul bareng. 7 prompt khusus anxiety yang juga membantu depresi.",
+    },
+    {
+      slug: "self-healing-dengan-jurnal",
+      eyebrow: "Self healing",
+      body: "Self healing dengan jurnal untuk kondisi yang lebih luas — panduan lengkap.",
+    },
+    {
+      slug: "cara-mengatasi-burnout-gen-z",
+      eyebrow: "Burnout + depresi",
+      body: "Burnout sering jadi pintu masuk depresi. 5 prompt khusus burnout Gen Z Indonesia.",
+    },
+    {
+      slug: "journaling-untuk-kesehatan-mental",
+      eyebrow: "Konteks lebih luas",
+      body: "Kerangka journaling untuk kesehatan mental secara luas — bagaimana depresi cocok di dalamnya.",
+    },
+  ],
 };
 
 const getInternalLinkCards = (slug: string): InternalLinkCard[] =>

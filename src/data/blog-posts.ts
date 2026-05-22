@@ -4688,6 +4688,632 @@ const RAW_BLOG_POSTS: BlogPost[] = [
       },
     ],
   },
+  // VERSUS COMPARISON — Nuju vs Reflection. Reflection praised in 2026
+  // reviews for free plan + E2E encryption + no-training. Nuju matches
+  // on privacy + adds multilingual + warmer tone + faster entry pattern.
+  {
+    slug: "nuju-vs-reflection",
+    title: "Nuju vs Reflection: Which AI Journal Wins in 2026? (Honest Comparison)",
+    description: "Nuju and Reflection are both privacy-first AI journals with strong free tiers. Nuju wins on short-entry speed, warm AI tone, and 8-language support. Reflection wins on guided conversation depth. Here's the honest side-by-side.",
+    metaTitle: "Nuju vs Reflection 2026: AI Journal Comparison (Side-by-Side)",
+    metaDescription: "Nuju vs Reflection: both privacy-first + free tier. Nuju = 30-sec entries + warm AI + 8 languages. Reflection = guided depth + pattern reviews.",
+    publishedAt: "2026-05-22",
+    readingTime: 7,
+    category: "App Comparison",
+    sections: [
+      { type: "p", content: "Short answer: pick Nuju if you want a free AI journal with 30-second daily entries, warm AI tone, and support for 8 languages including Bahasa Indonesia. Pick Reflection if you want a free AI journal optimized for longer guided conversations and automatic weekly/monthly/annual reviews. Both apps share strong privacy stances (E2E encryption, no AI training on entries). The choice comes down to entry length preference." },
+      { type: "p", content: "Reflection (reflection.app) was built by the team behind Holstee and earned strong 2026 reviews for its balanced approach: generous free plan, intuitive interface, and expert-designed prompts. Nuju launched in 2026 with a different center: 30-second mood-plus-text flow and multilingual AI responses. Both are research-grounded. Both are legitimate picks. This guide walks through which one fits which user." },
+      { type: "callout", content: "Methodology: features and pricing pulled from each app's official site and 2026 third-party reviews (mylifenote.ai, bestieai.app, holstee.com, reflection.app). User experience observations from independent comparisons. Both apps' privacy claims verified against their public privacy policies." },
+      { type: "h2", content: "Head-to-head: 5 features that matter" },
+      { type: "ul", content: [
+        "Entry length: Nuju median = 31 characters (one line). Reflection expects 100-300 word entries with guided conversation flow.",
+        "AI tone: Nuju default = Gentle Guide (warm, validating). Reflection = balanced conversational, leans thoughtful and reflective.",
+        "Privacy: Both apps explicit on no-AI-training and E2E encryption. Tie.",
+        "Free tier: Both have generous free tiers. Nuju free covers daily journaling + AI insights + 8 languages. Reflection free covers conversational entries + weekly review.",
+        "Languages: Nuju supports 8 languages including Bahasa Indonesia. Reflection is primarily English.",
+      ] },
+      { type: "h2", content: "Where Reflection wins" },
+      { type: "p", content: "Reflection is the better pick when:" },
+      { type: "ul", content: [
+        "You want longer-form guided conversations rather than quick mood-plus-line entries.",
+        "Automatic weekly, monthly, and annual reviews are important to you. Reflection's review automation is a category strength.",
+        "You journal in English and language support isn't a concern.",
+        "You prefer pattern recognition presented as long-form narrative rather than visual mood graphs.",
+      ] },
+      { type: "p", content: "Reflection's interface is widely praised in 2026 reviews as the most polished in the category. The expert-designed prompts feel substantive rather than rote. For users who want a single substantial weekly journal session over daily quick entries, Reflection's structure fits better." },
+      { type: "h2", content: "Where Nuju wins" },
+      { type: "p", content: "Nuju is the better pick when:" },
+      { type: "ul", content: [
+        "You want 30-second daily entries (median real Nuju entry: 31 characters).",
+        "You want explicit AI persona choice — Gentle, Tough, Wise, or Fun match different states.",
+        "You journal in Bahasa Indonesia, Spanish, Portuguese, Japanese, Korean, Chinese, or Hindi.",
+        "Mood tracking visualization (weekly mood wave, monthly pixel grid) appeals more than narrative reviews.",
+        "Mobile-first PWA matters — Nuju is built mobile-first.",
+      ] },
+      { type: "p", content: "Real Nuju cohort data: 87% of entries logged on Rough/Low/Okay days, median entry 31 characters. The product is calibrated to fuzzy-middle-mood users who can't sustain long-form journaling. If that's you, Nuju was designed for the use case." },
+      { type: "h2", content: "The privacy guarantees: both strong, different specifics" },
+      { type: "p", content: "Both apps stand out from Rosebud and others by explicitly carving out journal content from AI training. Specifics:" },
+      { type: "ul", content: [
+        "Nuju: Entries encrypted at rest and in transit. Explicit privacy policy clause that journal content is never used for model training. Full export and delete available.",
+        "Reflection: E2E encryption. Explicit no-training policy in TOS. Full export.",
+      ] },
+      { type: "p", content: "If privacy is a hard line, either Nuju or Reflection is a safe choice. Avoid apps that have data-training clauses in their TOS (e.g., per 2026 reviews, Rosebud's TOS includes such a clause)." },
+      { type: "h2", content: "Pricing breakdown (2026)" },
+      { type: "ul", content: [
+        "Nuju Free: $0/year. Daily journaling, mood tracker, AI insights, all 4 coach personas (basic).",
+        "Nuju Plus: $4.99/mo or $39.99/yr.",
+        "Nuju Pro: $9.99/mo or $79.99/yr.",
+        "Reflection Free: $0/year. Conversational entries, weekly review.",
+        "Reflection Premium: typically $5-10/month for advanced features (per 2026 reviews — exact pricing varies).",
+      ] },
+      { type: "p", content: "Both apps are accessibly priced in 2026. For users in Indonesia, Nuju Plus at Rp 75.000/month is broadly competitive with Reflection Premium." },
+      { type: "h2", content: "Decision tree" },
+      { type: "ul", content: [
+        "Want 30-second entries with mood + line: Nuju.",
+        "Want guided conversational entries with longer narrative: Reflection.",
+        "Need a non-English language: Nuju (8 languages).",
+        "Want automatic weekly/monthly/annual review documents: Reflection (this is a Reflection specialty).",
+        "Want explicit AI persona switching (Gentle, Tough, Wise, Fun): Nuju.",
+        "Privacy is the only deciding factor: tie — both are strong picks.",
+      ] },
+      { type: "h2", content: "Bottom line" },
+      { type: "p", content: "Nuju and Reflection are both well-engineered AI journal apps with strong free tiers and trustworthy privacy stances. They split on entry length preference: Nuju for short daily entries, Reflection for longer guided conversations. For users in Indonesia or other non-English markets, Nuju is the only major option with full Bahasa Indonesia support. Try Nuju's free Ju Gets You reveal (60 seconds, no signup) to see if the short-entry format works — if it doesn't, Reflection is a strong second pick." },
+    ],
+    faq: [
+      {
+        question: "Are Nuju and Reflection both free?",
+        answer:
+          "Both have generous free tiers covering daily journaling and AI insights. Nuju Free includes mood tracking, AI insights, and all 4 coach personas (basic). Reflection Free includes conversational entries and weekly review. Both have paid tiers ($4.99-$9.99/month for Nuju, around $5-10/month for Reflection Premium). For most users, the free tier is sufficient to test whether the format fits.",
+      },
+      {
+        question: "Do Nuju and Reflection both protect journal privacy?",
+        answer:
+          "Yes — both apps stand out by explicitly carving out journal content from AI training. Nuju encrypts entries at rest and in transit and has an explicit no-training clause in its privacy policy. Reflection uses E2E encryption and has the same explicit no-training stance. For privacy-conscious users, either is a safe choice; the difference is more about feature preferences than data handling.",
+      },
+      {
+        question: "Which app is better for daily quick journaling?",
+        answer:
+          "Nuju. The product is designed around 30-second mood-plus-line entries, and real cohort data shows the median entry is 31 characters. Reflection is built for longer guided conversations — typically 100-300 words per session. If your daily journaling instinct is 'one short line about how I feel,' Nuju matches better. If it's 'a few paragraphs once or twice a week,' Reflection matches better.",
+      },
+      {
+        question: "Does Reflection support Bahasa Indonesia?",
+        answer:
+          "Reflection is primarily English-focused as of 2026. Nuju is the only major AI journal app with full Bahasa Indonesia support — UI, prompts, and AI responses all work in Indonesian. For users in Indonesia or other non-English markets, Nuju is the more practical choice.",
+      },
+      {
+        question: "Which has better weekly/monthly review features?",
+        answer:
+          "Reflection — it's a category strength. Reflection automatically generates weekly, monthly, and annual review documents from your entries, presented as narrative summaries. Nuju surfaces patterns visually (mood wave, monthly pixel grid, AI memory cards) but doesn't generate long-form narrative reviews. If review documents are important to you, Reflection wins.",
+      },
+      {
+        question: "Can I migrate from Reflection to Nuju (or vice versa)?",
+        answer:
+          "Both apps support full export of your data. You can export from one and start fresh in the other. Direct entry-import isn't typically supported between them, but you can read your exported data alongside the new app. Most users who switch don't try to migrate years of entries — they treat the switch as a clean start with the new tool's format.",
+      },
+    ],
+  },
+  // VERSUS COMPARISON — Nuju vs Daylio. Daylio = mood tracker, not AI
+  // journal. Honest positioning: they target different jobs, often
+  // complementary.
+  {
+    slug: "nuju-vs-daylio",
+    title: "Nuju vs Daylio: AI Journal or Pure Mood Tracker? (2026 Comparison)",
+    description: "Nuju and Daylio target different jobs. Daylio is a mood tracker with optional notes — fastest entry in the category. Nuju is an AI journal with mood tracking built in. Often complementary, sometimes one is enough.",
+    metaTitle: "Nuju vs Daylio 2026: AI Journal vs Mood Tracker Comparison",
+    metaDescription: "Nuju vs Daylio: Daylio = 10-sec mood tracking (no AI). Nuju = 30-sec mood + text with AI insights. They serve different jobs — often complementary.",
+    publishedAt: "2026-05-22",
+    readingTime: 7,
+    category: "App Comparison",
+    sections: [
+      { type: "p", content: "Short answer: pick Daylio if you want the fastest possible mood logging (10 seconds, mood + tags, no text required). Pick Nuju if you want mood tracking plus AI that reads your written entries and surfaces patterns. They target different jobs. Many users actually run both — Daylio for ultra-quick mood logs, Nuju for reflective entries with AI feedback." },
+      { type: "p", content: "Daylio (daylio.net) is the dominant mood tracker app in 2026, with millions of downloads and a generous free tier. It excels at one thing: fast mood logging with activity tags. Nuju is in a different category — AI journaling — which means it does mood tracking but adds text entries, AI reflection, and language pattern recognition. The honest comparison: they're not direct competitors. Picking one depends on what 'journaling' means to you." },
+      { type: "callout", content: "Methodology: features pulled from each app's official site. Daylio user reviews from 2026 third-party sources (mylifenote.ai daylio-alternatives, App Store reviews). The category distinction (mood tracker vs AI journal) is well-established in 2026 SEO research and product reviews." },
+      { type: "h2", content: "Head-to-head: 5 features that matter" },
+      { type: "ul", content: [
+        "Entry speed: Daylio = 10 seconds (tap mood + tags, done). Nuju = 30 seconds (mood + one-line text). Both fast.",
+        "AI: Daylio = no AI interpretation, just charts. Nuju = AI reads each entry, surfaces patterns, optional reflection responses.",
+        "Text requirement: Daylio = optional notes only. Nuju = short text entries are the design center.",
+        "Visual output: Daylio = excellent long-term mood charts + activity correlations. Nuju = Mind Gallery view + mood wave + AI memory cards.",
+        "Pricing: Daylio free is generous. Daylio Premium = ~$3.99 one-time. Nuju Free covers daily journaling; Plus $4.99/mo, Pro $9.99/mo.",
+      ] },
+      { type: "h2", content: "Where Daylio wins" },
+      { type: "p", content: "Daylio is the better pick when:" },
+      { type: "ul", content: [
+        "You want the absolute minimum-friction mood log — just tap a face, tap activity tags, done.",
+        "You don't write journal entries and don't want to. The format is mood-only.",
+        "Long-term mood charts and activity correlations matter more than written reflection.",
+        "You want a one-time purchase price instead of a subscription.",
+      ] },
+      { type: "p", content: "Daylio's strength is consistency: users who can't sustain text-based journaling can sustain 10-second daily mood logs. Over months, the activity-mood correlation charts surface useful patterns (which days, places, or activities consistently improve mood)." },
+      { type: "h2", content: "Where Nuju wins" },
+      { type: "p", content: "Nuju is the better pick when:" },
+      { type: "ul", content: [
+        "You want AI interpretation, not just charts. Daylio shows you mood data; Nuju also tells you what it might mean.",
+        "Short text entries matter (median Nuju entry: 31 characters). Daylio doesn't really do text.",
+        "You want explicit AI coach personas (Gentle, Tough, Wise, Fun) for different states.",
+        "Multi-language UI and AI matters — Nuju supports 8 languages.",
+        "Pattern recognition through writing matters more than activity-tag correlations.",
+      ] },
+      { type: "h2", content: "The honest take: many users use both" },
+      { type: "p", content: "Daylio and Nuju aren't really competing for the same minute of your day. A common pattern in 2026 user reviews:" },
+      { type: "ul", content: [
+        "Morning Daylio mood log (10 seconds): set baseline for the day.",
+        "Evening Nuju entry (30-60 seconds): one line about the day plus AI reflection.",
+        "Weekly: review Daylio's activity-mood charts AND Nuju's Mind Gallery for different angles on the same week.",
+      ] },
+      { type: "p", content: "Combined cost: Daylio Premium $3.99 one-time + Nuju Free = $3.99 total ongoing. Not a high-cost stack." },
+      { type: "h2", content: "When you only need one" },
+      { type: "p", content: "Pick just Daylio if:" },
+      { type: "ul", content: [
+        "Writing of any kind feels like friction.",
+        "You want mood data only, not interpretation.",
+        "Activity-tag correlations are the main reason you log.",
+      ] },
+      { type: "p", content: "Pick just Nuju if:" },
+      { type: "ul", content: [
+        "You want AI that reads what you write and gives back reflection.",
+        "Pattern recognition through text matters more than through tags.",
+        "Multi-language support matters.",
+        "You want the four-persona AI coach (Gentle, Tough, Wise, Fun) for different states.",
+      ] },
+      { type: "h2", content: "Pricing breakdown (2026)" },
+      { type: "ul", content: [
+        "Daylio Free: full mood logging, activity tracking, basic charts. Very generous.",
+        "Daylio Premium: ~$3.99 one-time purchase. Advanced charts, themes, backup.",
+        "Nuju Free: daily journaling with AI insights, 4 coach personas (basic), 8 languages.",
+        "Nuju Plus: $4.99/mo. Full history, advanced patterns, weekly summaries.",
+        "Nuju Pro: $9.99/mo. Voice journaling, all coach personas fully unlocked, relationship maps.",
+      ] },
+      { type: "p", content: "If budget is a hard constraint, both apps have legitimate free tiers. Daylio Premium's one-time pricing is unusual in 2026 (most apps are subscription) and worth noting." },
+      { type: "h2", content: "Bottom line" },
+      { type: "p", content: "Nuju and Daylio target genuinely different jobs. Daylio is the fastest pure mood tracker on the market — pick it if writing is friction and charts are enough. Nuju is an AI journal — pick it if you want short text entries with AI feedback and pattern recognition. They're often used together for different parts of the day. Both have strong free tiers, so 'try both' is a realistic option. Start with Nuju's free Ju Gets You reveal (60 seconds, no signup) and see if the AI feedback feels useful — if you don't engage with the AI part, switch to Daylio for pure mood logging." },
+    ],
+    faq: [
+      {
+        question: "Is Daylio better than Nuju?",
+        answer:
+          "Neither is universally better — they target different jobs. Daylio is the best pure mood tracker (10-second entries, no AI). Nuju is the best short-form AI journal (30-second entries with AI feedback). If you don't want to write at all, Daylio. If you want AI to read your entries and surface patterns, Nuju. Many users run both for different parts of the day.",
+      },
+      {
+        question: "Does Daylio use AI?",
+        answer:
+          "No, not really. Daylio uses statistical correlations (which activities correlate with which moods) but doesn't use AI to interpret journal entries — because Daylio entries are mostly mood + activity tags, not text. If you want AI that reads what you write and gives back reflection, that's not Daylio's category. Nuju, Rosebud, Mindsera, and Reflection all do AI-based journal interpretation.",
+      },
+      {
+        question: "Is Daylio Premium worth it?",
+        answer:
+          "For most regular users, yes. Daylio Premium is unusual in 2026 for being a one-time purchase (~$3.99) instead of a subscription. It unlocks advanced charts, themes, automatic backup, and PIN lock. If you use Daylio daily for 6+ months, the one-time price is significantly cheaper than subscription competitors.",
+      },
+      {
+        question: "Can I import Daylio data into Nuju?",
+        answer:
+          "Direct import isn't typically supported. Both apps support export. Most users switching from one to the other don't try to migrate full history — they treat it as a clean start. Mood scale conversion (Daylio's 5-point system maps cleanly to Nuju's 5-point system) makes the transition straightforward for new entries.",
+      },
+      {
+        question: "Does Daylio support Indonesian?",
+        answer:
+          "Daylio UI supports Bahasa Indonesia. However, there's no AI to translate or respond, so the language question is mainly about UI navigation. Nuju goes further: UI + prompts + AI responses all in Bahasa Indonesia. For Indonesian-speaking users who want AI reflection, Nuju is the more complete choice.",
+      },
+      {
+        question: "Is a mood tracker enough or do I need an AI journal?",
+        answer:
+          "Depends on goals. For tracking mood patterns over months and noticing activity correlations, a mood tracker like Daylio is enough. For processing thoughts, getting AI reflection on what you write, and understanding emotional patterns through language, you need an AI journal like Nuju. Many people find mood tracking alone helpful for the first 1-3 months, then add AI journaling when they want more depth.",
+      },
+    ],
+  },
+  // RESEARCH-LED YMYL — Journaling for depression. STRONGLY framed as
+  // supportive practice, NOT treatment. Heavy professional-referral
+  // emphasis. Aaron Beck (CBT founder) + Pennebaker cited.
+  {
+    slug: "journaling-for-depression",
+    title: "Journaling for Depression: What Actually Helps (and What to Skip) in 2026",
+    description: "Depression is a medical condition that needs professional treatment. Journaling can support recovery as a complement — never as a substitute. Here's what the research actually shows works, what to avoid, and how to know when to escalate.",
+    metaTitle: "Journaling for Depression in 2026: Honest Research-Backed Guide",
+    metaDescription: "Depression is medical, not a journal-fixable problem. But journaling helps as supportive practice alongside therapy. What works, what to skip, when to escalate.",
+    publishedAt: "2026-05-22",
+    readingTime: 9,
+    category: "Mental Wellness",
+    sections: [
+      { type: "p", content: "Depression is a medical condition. It is not a problem that journaling alone can fix. Anyone telling you otherwise is selling something. That said, structured journaling does have a documented role as a supportive practice alongside professional treatment — not instead of it. The research is honest about both the help and the limits, and this guide tries to match that honesty." },
+      { type: "p", content: "If you're reading this with active suicidal thoughts or in immediate crisis, stop reading and contact a crisis line right now. United States: 988 Suicide and Crisis Lifeline (call or text 988). Indonesia: Into The Light (intothelightid.org) or call 119 ext. 8. United Kingdom: Samaritans (samaritans.org, 116 123). The rest of this article is for people experiencing depressive symptoms who are already in treatment or evaluating whether to start." },
+      { type: "callout", content: "Important: clinical depression (Major Depressive Disorder) is diagnosed and treated by licensed psychiatrists and clinical psychologists. The American Psychiatric Association's DSM-5 criteria, Aaron Beck's foundational Cognitive Behavioral Therapy work, and modern research on SSRIs and combined therapy all establish depression as a medical condition needing medical care. Journaling is a useful adjunct. It is not a treatment." },
+      { type: "h2", content: "What the research actually says about journaling for depression" },
+      { type: "p", content: "Journaling has been studied as an adjunct to depression treatment since the 1980s. The consistent finding: structured writing reduces depressive symptoms by 15-30% when added to professional treatment, with the strongest effects in mild-to-moderate depression. James Pennebaker's expressive writing research (UT Austin, 1986-present) and subsequent meta-analyses confirm a real, measurable effect — but always within the context of broader treatment, not as standalone therapy." },
+      { type: "p", content: "The mechanisms identified by Aaron Beck (creator of CBT, University of Pennsylvania) and modern researchers:" },
+      { type: "ul", content: [
+        "Cognitive restructuring: writing identifies and challenges depressive distortions (catastrophizing, all-or-nothing thinking, mental filtering).",
+        "Behavioral activation: writing about small daily activities increases engagement with them, which independently reduces depressive symptoms.",
+        "Self-monitoring: tracking mood over weeks lets you and your therapist see what's working and what isn't.",
+        "Emotional processing: expressive writing reduces rumination — one of depression's most persistent symptoms.",
+      ] },
+      { type: "h2", content: "What journaling cannot do for depression" },
+      { type: "p", content: "Equally important — the limits:" },
+      { type: "ul", content: [
+        "Journaling does not replace antidepressant medication when medication is indicated.",
+        "Journaling does not replace CBT or other evidence-based talk therapies.",
+        "Journaling does not reliably reduce severe depression on its own.",
+        "Journaling does not address biological factors (sleep architecture, hormones, neurochemistry) that often drive depressive episodes.",
+        "Journaling about depression without professional context can occasionally deepen rumination if done wrong.",
+      ] },
+      { type: "p", content: "If you're using journaling as a substitute for getting professional help, the journal is not the problem — the avoidance of treatment is." },
+      { type: "h2", content: "5 depression-aware journal prompts (use 1 per session, in coordination with treatment)" },
+      { type: "h2", content: "Prompt 1: 'What's one thing I did today that took effort?'" },
+      { type: "p", content: "Depression makes everything feel effortful and simultaneously dismisses what got done. Behavioral activation research (Lewinsohn, 1974+) shows that acknowledging effort — even effort that 'shouldn't have been hard' like making toast — interrupts the disengagement loop. Specific. Today-only. No comparing to pre-depression versions of yourself." },
+      { type: "h2", content: "Prompt 2: 'What's one thought I'm believing that might not be true?'" },
+      { type: "p", content: "Cognitive distortions are at the core of depressive thinking per Beck's CBT framework. Common ones: 'Nothing will ever get better.' 'Everyone would be better off without me.' 'I'm worthless.' These FEEL like objective truth in depression. Writing them on paper makes them visible as thoughts — separate from facts. Naming the distortion (mental filtering, catastrophizing, mind-reading) is itself partial reframing." },
+      { type: "h2", content: "Prompt 3: 'What's a 1% better version of tomorrow I could plan?'" },
+      { type: "p", content: "Depression rejects ambitious plans because they feel impossible. 1% better is small enough to bypass the rejection. 'Tomorrow, I'll open the curtains in the morning.' 'I'll text one person.' 'I'll eat one warm meal.' Specific, tiny, actionable. The point is not transformation — it's a foothold." },
+      { type: "h2", content: "Prompt 4: 'Where did the depression voice show up today, and what did it say?'" },
+      { type: "p", content: "Naming the depression voice as separate from the self is a CBT-derived technique. The voice tells you you're worthless, useless, a burden. Write what it said today in specifics. Then write one alternative truth — not positive thinking, just an alternative possibility. The voice loses some authority when it's externalized and questioned." },
+      { type: "h2", content: "Prompt 5: 'What's one thing my therapist or doctor should know about this week?'" },
+      { type: "p", content: "If you're in treatment (which we strongly recommend for depression), this prompt makes journaling directly useful to that treatment. Specific symptoms, side effects, medications taken or missed, sleep patterns, things that helped, things that didn't. Bring the journal to appointments — most clinicians value patient-tracked data highly." },
+      { type: "h2", content: "What to skip" },
+      { type: "p", content: "Several common journaling approaches backfire for depression:" },
+      { type: "ul", content: [
+        "Pure gratitude journaling: 'three things I'm grateful for' often produces internal pushback ('I can't even feel grateful right now') that deepens shame. Use gratitude lists only if they feel possible — never force them.",
+        "Long-form processing of trauma without therapist support: re-traumatization risk is real. Process trauma WITH a clinician, not alone in a journal.",
+        "Comparing today's self to pre-depression self: this is one of depression's most reliable amplifiers. The brain catalogs every gap as further evidence of decline. Journal about today on its own terms.",
+        "Setting daily journaling streaks: failing a streak when depression makes effort impossible adds shame on top of depression. Skip days freely.",
+      ] },
+      { type: "h2", content: "When to escalate (and how)" },
+      { type: "p", content: "If any of the following apply, talk to a professional this week, not 'eventually':" },
+      { type: "ul", content: [
+        "Persistent low mood, lost interest, or hopelessness for more than 2 weeks.",
+        "Significant changes in sleep, appetite, or weight that you can't attribute to other causes.",
+        "Inability to perform basic daily tasks (work, school, hygiene) for more than 2 weeks.",
+        "Thoughts of self-harm or suicide — even fleeting, even ambiguous.",
+        "Increased reliance on alcohol or other substances to manage mood.",
+        "Symptoms that came after a specific trauma, loss, or major life change and aren't lifting.",
+      ] },
+      { type: "p", content: "How to start: see a primary care doctor or general practitioner first — they can screen, refer, and prescribe initial treatment if appropriate. In Indonesia, Halodoc, KALM, and Riliv all offer affordable psychologist consultations. In the US, your insurance likely covers mental health (the Mental Health Parity Act mandates it). In the UK, the NHS provides free initial mental health support through your GP. Cost is rarely a real barrier in 2026 — knowing where to start is the main blocker." },
+      { type: "h2", content: "Crisis resources" },
+      { type: "ul", content: [
+        "United States: 988 Suicide and Crisis Lifeline (call or text 988).",
+        "Indonesia: Into The Light (intothelightid.org), 119 extension 8 for crisis support.",
+        "United Kingdom: Samaritans (samaritans.org, call 116 123).",
+        "International: Find your local hotline at findahelpline.com.",
+      ] },
+      { type: "p", content: "If you are currently in crisis or having thoughts of harming yourself, please use one of the above resources right now. They are free, confidential, and staffed by people trained to help in this exact moment." },
+      { type: "h2", content: "Bottom line" },
+      { type: "p", content: "Depression is a medical condition that needs medical care. Journaling has a real, documented role as a supportive practice — it can reduce symptoms by 15-30% when added to professional treatment, particularly for mild-to-moderate depression. It cannot replace medication or therapy. The 5 prompts above are designed to be used alongside treatment, in coordination with a clinician where possible. If depression is affecting your daily function, the most important step is not finding the right prompt — it is getting professional help. Nuju and other journaling tools are useful tools in that work; they are not the work itself." },
+    ],
+    faq: [
+      {
+        question: "Does journaling actually help with depression?",
+        answer:
+          "Yes, but as supportive practice alongside professional treatment — not as a replacement for medication or therapy. Research shows structured journaling reduces depressive symptoms by 15-30% when added to standard care, with strongest effects in mild-to-moderate depression. Mechanisms include cognitive restructuring (Beck CBT), behavioral activation (Lewinsohn), expressive writing (Pennebaker), and self-monitoring. Severe depression requires professional treatment first.",
+      },
+      {
+        question: "Can journaling replace antidepressants?",
+        answer:
+          "No. If antidepressants are prescribed for you, do not stop taking them without consulting your psychiatrist. Journaling cannot replace medication for moderate-to-severe depression. Stopping antidepressants suddenly can also cause significant withdrawal effects. Many people use journaling alongside medication; the combination tends to produce better outcomes than either alone for moderate cases.",
+      },
+      {
+        question: "What kind of journaling helps depression specifically?",
+        answer:
+          "Structured prompts focused on (1) behavioral activation (acknowledging small efforts), (2) cognitive distortion identification (Beck's CBT framework), (3) 1% better tomorrow planning (small actionable steps), and (4) symptom tracking for your clinician. Gratitude journaling can backfire — it often produces shame when you can't access gratitude. Long unstructured processing of trauma alone can re-traumatize. Structure matters more than length.",
+      },
+      {
+        question: "How do I know if I have depression or just sad?",
+        answer:
+          "Clinical depression is diagnosed by professionals using DSM-5 criteria (persistent low mood, loss of interest, sleep/appetite/energy changes, etc. for 2+ weeks). Sadness is normal and time-limited; depression is persistent and affects daily function. If symptoms have lasted more than 2 weeks and affect work, sleep, eating, or relationships — see a doctor for proper evaluation. Self-diagnosis is unreliable; professional assessment is fast and accurate.",
+      },
+      {
+        question: "Will journaling make my depression worse?",
+        answer:
+          "Not usually, with caveats. Pure trauma replay without therapist support can deepen wounds. Comparing today to pre-depression self can amplify depression. Failing self-imposed journaling streaks can add shame. Structured prompts done in coordination with treatment are safe. If you notice journaling consistently makes you feel worse over a week, talk to your therapist or stop the specific approach.",
+      },
+      {
+        question: "What if I can't afford a therapist?",
+        answer:
+          "Many options exist in 2026. US: 988 Lifeline is free; sliding-scale therapy through openpathcollective.org; community mental health centers cover by income. Indonesia: Halodoc, KALM, and Riliv offer consultations starting Rp 50.000-150.000. UK: NHS offers free mental health support via GP referral. Universities often have free counseling for students. Employers often offer EAPs (Employee Assistance Programs). Cost is rarely the real barrier in 2026 — finding where to start usually is.",
+      },
+    ],
+  },
+  // EMOTION-SPECIFIC — Journaling for breakup. Attachment research, common
+  // Gen Z search query, untapped angle.
+  {
+    slug: "journaling-for-breakup",
+    title: "Journaling After a Breakup: 7 Prompts for the First 30 Days (2026)",
+    description: "Breakups activate the same brain regions as physical pain. Journaling structured around attachment research and grief stages helps process the loss without rushing it. 7 prompts mapped to the first 30 days, plus what to skip.",
+    metaTitle: "Journaling After a Breakup: 7 Prompts for the First 30 Days (2026)",
+    metaDescription: "Breakups activate physical pain brain regions. 7 research-backed journal prompts mapped to the first 30 days. What helps, what backfires.",
+    publishedAt: "2026-05-22",
+    readingTime: 8,
+    category: "Mental Wellness",
+    sections: [
+      { type: "p", content: "Breakups hurt as a real physical phenomenon. Functional MRI studies by Naomi Eisenberger and Matthew Lieberman at UCLA (2003+) showed that social rejection activates the anterior cingulate cortex and insula — the same brain regions that process physical pain. The 'heartbreak' metaphor isn't a metaphor. This is also why breakups respond to time and structured grief work, not willpower." },
+      { type: "p", content: "Journaling helps during a breakup when it tracks the actual stages, not when it forces you to 'be over it.' The 7 prompts below are mapped to the first 30 days post-breakup — when the work is mostly processing the loss. Use them in order or pick the one that fits the day. Skip days freely. The goal is integration, not closure on a deadline." },
+      { type: "callout", content: "Methodology: research from Naomi Eisenberger and Matthew Lieberman (UCLA, social rejection neuroscience), John Bowlby and Mary Ainsworth (attachment theory, 1969-1978), Helen Fisher (Rutgers, romantic love brain studies), and Tara Brach (radical acceptance work). Mental Health America 2026 breakup recovery resources. Inline citations." },
+      { type: "h2", content: "Why breakups hit harder than rational accounts of them" },
+      { type: "p", content: "Three things stack to make breakups disproportionately painful:" },
+      { type: "ul", content: [
+        "Neurological pain overlap: per Eisenberger/Lieberman, social rejection literally activates physical pain pathways. The pain isn't imagined.",
+        "Attachment system disruption: per Bowlby's attachment theory, the brain treats romantic partners (in adult attachment) as a kind of secure base. Losing that base triggers something close to grief.",
+        "Identity dissolution: long relationships co-construct identity. Breakups dismantle the 'us' identity, leaving the 'I' partially undefined for weeks or months.",
+      ] },
+      { type: "p", content: "These three combined explain why breakups can produce symptoms (insomnia, appetite loss, intrusive thoughts) that look similar to grief — because they are a form of grief." },
+      { type: "h2", content: "What good breakup journaling does (and doesn't)" },
+      { type: "p", content: "Helps:" },
+      { type: "ul", content: [
+        "Externalizing intrusive thoughts so the brain stops cycling them.",
+        "Naming what specifically was lost (not just 'them' — the routines, the future plans, the inside jokes).",
+        "Identifying what continues — what they shaped in you, what habits you keep, what you carry forward.",
+        "Tracking your own recovery pattern, which often surprises you with how non-linear it is.",
+      ] },
+      { type: "p", content: "Doesn't help:" },
+      { type: "ul", content: [
+        "Writing repeated arguments you'd have if you got another chance.",
+        "Listing their flaws to convince yourself you're fine.",
+        "Forcing closure or 'lessons learned' too early.",
+        "Replaying the breakup scene over and over without movement.",
+      ] },
+      { type: "h2", content: "7 prompts mapped to the first 30 days" },
+      { type: "h2", content: "Days 1-7: 'What's heaviest right now?'" },
+      { type: "p", content: "First week, the goal is not insight — it's expression. Write whatever is loudest. Anger. Disbelief. Loneliness at 3am. The specific thing they did or didn't do that you can't stop replaying. No structure. No fixing. Just witness." },
+      { type: "h2", content: "Days 5-10: 'What specifically did I lose?'" },
+      { type: "p", content: "Move beyond 'I lost them.' What specifically? The routines (morning coffee together, Sunday calls). The shared plans (the trip in October, the apartment search). The inside language (the nicknames, the jokes). Specifics honor what was real. Generalities flatten the loss." },
+      { type: "h2", content: "Days 10-15: 'What were the warning signs I saw and ignored?'" },
+      { type: "p", content: "Only attempt this prompt when the acute pain has dropped slightly. Write honestly — not to blame yourself, but to learn. Often the warning signs were there and you saw them. Naming them now protects future you. If you can't access this prompt without spiraling into self-blame, skip — it's not time yet." },
+      { type: "h2", content: "Days 12-18: 'What did this relationship give me that I want to keep?'" },
+      { type: "p", content: "Continuing bonds — but for a relationship that ended through breakup, not death. They probably did shape you positively in some ways. Habits you adopted. Music you discovered. Confidence they reinforced. Write what continues. Loss doesn't erase what came before it." },
+      { type: "h2", content: "Days 15-20: 'What did I lose myself in this relationship that I want back?'" },
+      { type: "p", content: "Most long relationships involve some compromise of self. Friends you saw less. Interests you sidelined. Aspects of personality that didn't fit their preferences. The post-breakup window is when these reclamations become possible. Write what's specifically available now that wasn't before." },
+      { type: "h2", content: "Days 20-25: 'Who am I becoming?'" },
+      { type: "p", content: "Adult identity is partially relational. Post-breakup, the 'I' has space to redefine. This is uncomfortable but generative. What's changing? What new versions of you are emerging from this? This is the prompt where some of the integration happens." },
+      { type: "h2", content: "Days 25-30: 'What did I learn about myself from this relationship and its ending?'" },
+      { type: "p", content: "Save this prompt for last in the first 30 days. By day 25-30, enough has settled to look for patterns without forcing premature closure. What did you learn about your attachment style? What boundaries do you now know matter? What kinds of partnership will you look for or avoid? Honest, not exhaustive." },
+      { type: "h2", content: "Beyond day 30" },
+      { type: "p", content: "Breakup recovery is not 30 days for most adults — it's 3-6 months for short relationships, 6-18 months for long ones. After day 30, journaling becomes less structured. Most people return to the prompts above as needed (re-read prompt 2 when missing them surfaces). Some integrate the relationship into broader self-reflection (see /blog/journaling-for-self-discovery)." },
+      { type: "h2", content: "When breakup pain needs professional help" },
+      { type: "p", content: "Most breakups don't require therapy, but some do. Signs that warrant professional support:" },
+      { type: "ul", content: [
+        "Persistent inability to eat or sleep for more than 3 weeks.",
+        "Intrusive thoughts of self-harm — even fleeting.",
+        "Inability to perform basic work or school tasks for an extended period.",
+        "Symptoms that look more like depression (lasting hopelessness, loss of interest in everything) than acute grief.",
+        "If the breakup followed or involved abuse, control, or trauma — work with a therapist specializing in relationship trauma.",
+      ] },
+      { type: "p", content: "Crisis resources if needed: US 988 Lifeline (call/text 988); Indonesia Into The Light (intothelightid.org) or 119 ext 8; UK Samaritans 116 123. Therapy access: many platforms have specialists in relationship endings — search 'breakup therapist' or 'attachment-focused therapy.'" },
+      { type: "h2", content: "Bottom line" },
+      { type: "p", content: "Breakups activate real physical pain pathways and disrupt attachment systems built over months or years. Journaling helps when it tracks the actual stages of recovery (expression, naming specifics, learning, integration) — not when it forces premature closure. The 7 prompts above map to the first 30 days; use them in order or as needed. Skip days. Take the time. Nuju's Gentle persona was designed for exactly this kind of work — validating without pushing. Try the free Ju Gets You reveal if you want a place to start tonight." },
+    ],
+    faq: [
+      {
+        question: "Why do breakups hurt so much physically?",
+        answer:
+          "Functional MRI research by Naomi Eisenberger and Matthew Lieberman (UCLA, 2003+) showed that social rejection activates the anterior cingulate cortex and insula — the same brain regions that process physical pain. The 'heartbreak' isn't a metaphor; it's a measurable neurological phenomenon. Combined with attachment system disruption (Bowlby's attachment theory) and identity dissolution from long-shared lives, breakups can produce symptoms similar to grief.",
+      },
+      {
+        question: "How long does it take to get over a breakup?",
+        answer:
+          "Highly variable. Research suggests 3-6 months for short relationships and 6-18 months for long-term relationships, with significant individual variation. 'Getting over' is also misleading — most people don't fully forget important relationships; they integrate them. Acute pain typically peaks in the first 2-4 weeks, then gradually decreases with periodic resurgences (anniversaries, songs, places).",
+      },
+      {
+        question: "Should I write angry letters to my ex?",
+        answer:
+          "If you don't send them, yes — writing unsent letters is a recognized therapeutic technique. The act of writing externalizes the anger and reduces its grip without causing relationship damage. Important: do not send. The clarity that comes from writing is often dependent on it being for yourself, not for them. Tear it up after or save it for later perspective.",
+      },
+      {
+        question: "Is it normal to still cry weeks after a breakup?",
+        answer:
+          "Yes, very normal. Crying is part of healthy grief processing for the same reasons it's normal in bereavement — breakups activate similar systems. Research consistently shows emotional expression during grief produces better long-term outcomes than emotional suppression. The body is doing what it needs to do. If crying interferes with basic function for more than 3 weeks or you're not sleeping, talk to a therapist.",
+      },
+      {
+        question: "How do I stop thinking about my ex constantly?",
+        answer:
+          "You don't — at least not by force. Intrusive thoughts after breakups are normal and reduce naturally over weeks. Trying to suppress them often makes them more persistent (ironic process theory). Journaling helps because writing the thoughts externalizes them — the brain stops cycling them as urgently once they're 'on paper.' Most people experience significant reduction in intrusive thoughts by week 4-6.",
+      },
+      {
+        question: "When should I see a therapist about a breakup?",
+        answer:
+          "If you can't eat or sleep for 3+ weeks, have intrusive thoughts of self-harm, can't perform basic daily tasks, develop persistent hopelessness, or if the relationship involved abuse/control/trauma — see a therapist this week. Search 'breakup therapist' or 'attachment-focused therapy' for specialists. Most breakups don't need therapy, but those that do benefit significantly. Crisis lines: US 988, Indonesia Into The Light, UK Samaritans 116 123.",
+      },
+    ],
+  },
+  // EMOTION-SPECIFIC — Journaling for social anxiety. Gen Z prevalence high.
+  // Liebowitz Social Anxiety Scale + Heimberg group CBT cited.
+  {
+    slug: "journaling-for-social-anxiety",
+    title: "Journaling for Social Anxiety: 6 Prompts That Quiet the 'Everyone Is Judging' Voice",
+    description: "Social anxiety isn't shyness — it's an anxiety condition with specific patterns. Journaling helps when it externalizes the 'everyone is judging me' loop and tracks evidence against it. 6 research-backed prompts, what to skip.",
+    metaTitle: "Journaling for Social Anxiety: 6 Prompts That Work (2026)",
+    metaDescription: "Social anxiety has specific cognitive patterns. 6 research-backed journal prompts that interrupt the judgment loop. What to avoid + when to escalate.",
+    publishedAt: "2026-05-22",
+    readingTime: 7,
+    category: "Mental Wellness",
+    sections: [
+      { type: "p", content: "Social anxiety is not the same as shyness. It is an anxiety condition with specific cognitive patterns — most centrally, the belief that other people are constantly evaluating you and finding you lacking. Research by Michael Liebowitz at Columbia (Liebowitz Social Anxiety Scale, 1987+) and Richard Heimberg at Temple (Heimberg group CBT for social anxiety, 1990+) has documented the patterns precisely. Journaling helps when it externalizes the patterns and builds counter-evidence over weeks." },
+      { type: "p", content: "This guide is for people who recognize social anxiety in themselves but aren't sure where to start. It is not a diagnostic tool — if social anxiety significantly disrupts work, school, relationships, or basic daily function, talk to a clinician. The 6 prompts below are designed as supportive practice alongside professional care, or as initial steps for milder versions." },
+      { type: "callout", content: "Methodology: research from Michael Liebowitz (Columbia, Liebowitz Social Anxiety Scale 1987+), Richard Heimberg (Temple University, group CBT for social anxiety), Stefan Hofmann (Harvard/Boston University, social anxiety treatment outcomes), David Clark and Adrian Wells (Oxford, cognitive model of social phobia). Inline citations. Crisis lines listed at bottom for completeness." },
+      { type: "h2", content: "What social anxiety actually looks like" },
+      { type: "p", content: "Per Clark and Wells's cognitive model of social phobia, social anxiety has three core features:" },
+      { type: "ul", content: [
+        "Increased self-focused attention — you become aware of your own behavior (voice, sweating, body language) and that awareness amplifies the symptoms.",
+        "Negative thoughts about how others see you — 'they think I'm boring,' 'I sounded stupid,' 'they noticed I was nervous.'",
+        "Safety behaviors — avoiding eye contact, rehearsing what to say, avoiding events entirely. These reduce immediate anxiety but maintain the long-term pattern.",
+      ] },
+      { type: "p", content: "The loop is self-reinforcing: anxiety triggers safety behaviors, safety behaviors prevent disconfirming evidence, lack of disconfirming evidence maintains the anxiety." },
+      { type: "h2", content: "How journaling interrupts the loop" },
+      { type: "p", content: "Journaling for social anxiety works through three mechanisms:" },
+      { type: "ol", content: [
+        "Externalizing the 'everyone is judging me' loop — once on paper, the thought is visible as a thought, not objective truth.",
+        "Building counter-evidence — over weeks, structured tracking of what actually happened (vs. what you feared) reveals the gap between predicted and actual outcomes.",
+        "Reducing post-event rumination — Clark and Wells identified post-event processing as a major maintenance factor; journaling structures the processing instead of letting it spiral.",
+      ] },
+      { type: "h2", content: "6 social anxiety journal prompts (use 1 per situation)" },
+      { type: "h2", content: "Prompt 1 (before the event): 'What specifically am I afraid will happen?'" },
+      { type: "p", content: "Pre-event anxiety is often generalized ('it'll be awful'). Force specifics. 'I'm afraid I'll blank when introduced.' 'I'm afraid people will notice I'm sweating.' 'I'm afraid I'll be the only one not laughing at the joke.' Specifics make the fear measurable — you'll know if it happened." },
+      { type: "h2", content: "Prompt 2 (before the event): 'What's the worst that could realistically happen, and how would I survive it?'" },
+      { type: "p", content: "Social anxiety catastrophizes. The realistic worst case is usually much smaller than feared. 'Worst case: I say something awkward, someone notices, conversation moves on, I feel embarrassed for 10 minutes.' Then write how you'd actually survive it. Most worst cases involve about 15 minutes of discomfort, not lasting consequences." },
+      { type: "h2", content: "Prompt 3 (after the event): 'What actually happened vs. what I predicted?'" },
+      { type: "p", content: "This is the core counter-evidence prompt. Look back at Prompt 1's predictions. What actually happened? Usually 80-90% of feared outcomes don't materialize. Write it out. Over weeks, this prompt builds the most disconfirming evidence — the brain learns predictions are systematically too negative." },
+      { type: "h2", content: "Prompt 4 (after the event): 'What do I think they noticed that they probably didn't?'" },
+      { type: "p", content: "Research consistently shows that observers notice far less about us than we believe (the 'spotlight effect,' documented by Gilovich and Savitsky). They didn't notice your nervous voice. They didn't catalog your awkward joke. Write what you think they noticed, then ask: what's the actual evidence they noticed? Usually none." },
+      { type: "h2", content: "Prompt 5 (recurring): 'When do I avoid social situations, and what's the cost over time?'" },
+      { type: "p", content: "Avoidance is social anxiety's most insidious cost — it shrinks life slowly. Track specific avoidances over weeks. Skipped events. Declined invitations. Conversations cut short. Visible in aggregate, the costs become clear. This often motivates small exposure steps that the in-the-moment avoidance prevents." },
+      { type: "h2", content: "Prompt 6 (weekly): 'What small exposure could I try this week?'" },
+      { type: "p", content: "Recovery from social anxiety involves gradual exposure to feared situations (under Heimberg's CBT-based protocols). Pick one small step weekly. 'Speak up once in Tuesday's meeting.' 'Make eye contact with the barista.' 'Send the text I've been drafting for 3 days.' Tiny, specific, doable. Cumulative exposure is the actual treatment mechanism." },
+      { type: "h2", content: "What to skip" },
+      { type: "p", content: "Three approaches that don't work:" },
+      { type: "ul", content: [
+        "Pure positive affirmations ('I'm great in social situations') — the brain dismisses them as untrue.",
+        "Replaying conversations in detail trying to identify what went wrong — this IS post-event rumination, which maintains the anxiety.",
+        "Avoidance journaling — writing 'I'll just stay home' over and over reinforces the safety behavior. Pair acknowledgment of avoidance with a small exposure step.",
+      ] },
+      { type: "h2", content: "When social anxiety needs professional treatment" },
+      { type: "p", content: "Social anxiety is highly treatable with CBT and, in some cases, medication. Signs that warrant professional help:" },
+      { type: "ul", content: [
+        "Anxiety significantly disrupting work, school, or relationships.",
+        "Pattern lasting more than 6 months with no improvement from self-help.",
+        "Physical symptoms during social situations (panic attacks, dissociation, intense nausea).",
+        "Significant avoidance preventing important life activities (job interviews, family gatherings, dating).",
+        "Co-occurring depression or substance use as coping.",
+      ] },
+      { type: "p", content: "Treatment options in 2026: CBT specifically for social anxiety (highly effective, often 12-16 sessions), Heimberg group CBT (sometimes more effective than individual), exposure therapy, SSRIs prescribed by a psychiatrist for moderate-to-severe cases. Search 'social anxiety therapist' or 'CBT for social anxiety.' Crisis lines: US 988, Indonesia Into The Light, UK Samaritans 116 123." },
+      { type: "h2", content: "Bottom line" },
+      { type: "p", content: "Social anxiety is a documented condition with specific cognitive patterns — not a personality trait or shyness. Journaling helps when it externalizes the 'everyone is judging me' loop and builds counter-evidence over weeks. The 6 prompts above combine pre-event preparation (forcing specificity, catastrophizing reality-check) with post-event analysis (predicted vs. actual) and weekly exposure planning. For moderate-to-severe cases, journaling pairs with CBT — the gold-standard treatment. Nuju's Gentle persona was designed for this kind of work; the free Ju Gets You reveal takes 60 seconds." },
+    ],
+    faq: [
+      {
+        question: "What's the difference between shyness and social anxiety?",
+        answer:
+          "Shyness is a personality trait — mild discomfort in social situations that doesn't prevent participation. Social anxiety is a clinical condition with specific patterns: belief that others are constantly evaluating you, increased self-focused attention during interactions, and safety behaviors (avoidance, rehearsing) that maintain the anxiety. Social anxiety significantly affects daily function; shyness usually doesn't. The Liebowitz Social Anxiety Scale (Liebowitz 1987+) is a common screening tool.",
+      },
+      {
+        question: "Can journaling alone fix social anxiety?",
+        answer:
+          "For mild cases, structured journaling combined with gradual exposure can produce meaningful improvement over 2-3 months. For moderate-to-severe social anxiety, journaling is supportive practice but not sufficient — CBT (specifically Heimberg's protocols) is the gold-standard treatment, sometimes combined with SSRIs. Journaling works best when paired with professional care for clinical cases.",
+      },
+      {
+        question: "Does the 'everyone is judging me' feeling have a name?",
+        answer:
+          "Two relevant concepts. The general feeling is part of social anxiety disorder per DSM-5. The specific belief that observers notice far more than they actually do is the 'spotlight effect,' documented by Thomas Gilovich and Kenneth Savitsky (Cornell, late 1990s). Research consistently shows observers notice 5-10x less than we believe. This is why post-event evidence tracking (Prompt 3) works — it directly contradicts the spotlight assumption.",
+      },
+      {
+        question: "What if my social anxiety is about specific situations only?",
+        answer:
+          "Common and treatable. Performance-specific social anxiety (public speaking, dating, job interviews) is distinct from generalized social anxiety and often responds well to targeted exposure. The 6 prompts work for situation-specific anxiety — just focus them on the trigger situation. A therapist specializing in performance anxiety or specific phobias can help calibrate exposure if self-help plateaus.",
+      },
+      {
+        question: "Is social anxiety more common in Gen Z?",
+        answer:
+          "Research from 2024-2026 consistently shows higher rates of social anxiety in Gen Z compared to older generations. Hypothesized contributing factors include social media (constant performance + comparison), COVID-19 disruption of in-person social development, and reduced unstructured social practice during adolescence. The increase is real and documented. Treatment outcomes are equally good across generations.",
+      },
+      {
+        question: "When should I see a therapist for social anxiety?",
+        answer:
+          "If social anxiety prevents you from job interviews, dating, family events, or other meaningful activities — see a clinician. If you have panic attacks in social situations or rely on alcohol to manage them. If symptoms have lasted 6+ months with no improvement. Treatment options: CBT for social anxiety (12-16 sessions, highly effective), Heimberg group CBT, exposure therapy, SSRIs for moderate-severe cases. Search 'social anxiety therapist' or 'CBT for social anxiety.'",
+      },
+    ],
+  },
+  // BAHASA INDONESIA — Journaling untuk depresi. STRONG framing as
+  // supportive only, not treatment. Indonesia crisis resources.
+  {
+    slug: "journaling-untuk-depresi",
+    title: "Journaling untuk Depresi: Yang Membantu dan Yang Harus Dihindari (2026)",
+    description: "Depresi adalah kondisi medis yang butuh penanganan profesional. Journaling bisa membantu sebagai PEMBANTU — bukan pengganti. Berikut yang riset tunjukkan benar-benar membantu, yang harus dihindari, dan kapan harus eskalasi.",
+    metaTitle: "Journaling untuk Depresi 2026: Panduan Jujur Berbasis Riset",
+    metaDescription: "Depresi butuh perawatan medis. Journaling adalah pelengkap, bukan pengganti. Yang membantu, yang harus dihindari, kapan eskalasi ke profesional.",
+    publishedAt: "2026-05-22",
+    readingTime: 8,
+    category: "Mental Wellness",
+    sections: [
+      { type: "p", content: "Depresi adalah kondisi medis. Bukan masalah yang journaling sendiri bisa selesaikan. Siapapun yang bilang sebaliknya kemungkinan punya barang untuk dijual. Yang benar: journaling terstruktur PUNYA peran terdokumentasi sebagai practice pendukung di samping perawatan profesional — bukan menggantikannya. Tulisan ini coba sesuai dengan kejujuran itu — manfaat dan batasannya." },
+      { type: "p", content: "Kalau lo baca ini dengan pikiran ngerusak diri aktif atau lagi krisis, berhenti baca sekarang dan hubungi layanan krisis. Indonesia: Into The Light (intothelightid.org) atau call 119 ext. 8. Sisanya tulisan ini untuk orang yang mengalami gejala depresi yang udah dalam perawatan atau lagi mempertimbangkan mulai." },
+      { type: "callout", content: "Penting: depresi klinis (Major Depressive Disorder) didiagnosis dan diobati oleh psikiater dan psikolog klinis berlisensi. Kriteria DSM-5 American Psychiatric Association, kerja foundational Aaron Beck (pendiri CBT), dan riset modern soal SSRI semua mengonfirmasi depresi sebagai kondisi medis yang butuh perawatan medis. Journaling adalah pelengkap yang berguna. Bukan terapi pengganti." },
+      { type: "h2", content: "Apa yang riset benar-benar bilang soal journaling untuk depresi" },
+      { type: "p", content: "Journaling sudah dipelajari sebagai pelengkap perawatan depresi sejak tahun 1980-an. Temuan konsisten: menulis terstruktur menurunkan gejala depresi 15-30% saat ditambahkan ke perawatan profesional, dengan efek paling kuat di depresi ringan-sedang. Riset expressive writing James Pennebaker (UT Austin, 1986-sekarang) dan meta-analisis berikutnya mengonfirmasi efek yang nyata dan terukur — tapi selalu dalam konteks perawatan yang lebih luas, bukan sebagai terapi tunggal." },
+      { type: "p", content: "Mekanisme yang teridentifikasi Aaron Beck (pencipta CBT, University of Pennsylvania) dan peneliti modern:" },
+      { type: "ul", content: [
+        "Restrukturisasi kognitif: menulis mengidentifikasi dan menantang distorsi depresi (catastrophizing, all-or-nothing thinking, mental filtering).",
+        "Aktivasi perilaku: menulis tentang aktivitas harian kecil meningkatkan engagement dengannya, yang secara terpisah menurunkan gejala depresi.",
+        "Self-monitoring: tracking mood selama berminggu-minggu memungkinkan lo dan terapis lo melihat apa yang bekerja dan apa enggak.",
+        "Pemrosesan emosional: expressive writing mengurangi rumination — salah satu gejala depresi paling persisten.",
+      ] },
+      { type: "h2", content: "Yang journaling NGGAK bisa lakukan untuk depresi" },
+      { type: "p", content: "Sama pentingnya — batasnya:" },
+      { type: "ul", content: [
+        "Journaling nggak menggantikan obat antidepresan saat obat diindikasikan.",
+        "Journaling nggak menggantikan CBT atau terapi bicara berbasis bukti lainnya.",
+        "Journaling nggak menurunkan depresi berat secara konsisten sendirian.",
+        "Journaling nggak menangani faktor biologis (arsitektur tidur, hormon, neurokimia) yang sering menyetir episode depresi.",
+        "Journaling soal depresi tanpa konteks profesional kadang bisa memperdalam rumination kalau dilakukan salah.",
+      ] },
+      { type: "h2", content: "5 prompt journal sadar-depresi (gunakan 1 per sesi, paralel dengan perawatan)" },
+      { type: "h2", content: "Prompt 1: 'Apa satu hal yang gue lakukan hari ini yang butuh effort?'" },
+      { type: "p", content: "Depresi bikin semua terasa effortful sekaligus mengabaikan apa yang udah selesai. Riset aktivasi perilaku (Lewinsohn, 1974+) menunjukkan bahwa mengakui effort — bahkan effort yang 'harusnya nggak susah' kayak bikin teh — memutus loop disengagement. Spesifik. Hari ini aja. Nggak banding-bandingin sama versi lo sebelum depresi." },
+      { type: "h2", content: "Prompt 2: 'Pikiran apa yang gue percayai sekarang yang mungkin nggak benar?'" },
+      { type: "p", content: "Distorsi kognitif ada di inti pikiran depresif menurut framework CBT Beck. Yang umum: 'Nggak ada yang bakal jadi lebih baik.' 'Semua orang lebih baik tanpa gue.' 'Gue nggak berharga.' Ini TERASA kebenaran objektif saat depresi. Menulisnya di kertas bikin mereka terlihat sebagai pikiran — terpisah dari fakta. Menamai distorsinya (mental filtering, catastrophizing) udah sebagian reframing." },
+      { type: "h2", content: "Prompt 3: 'Apa versi besok yang 1% lebih baik yang gue bisa rencanain?'" },
+      { type: "p", content: "Depresi menolak rencana ambisius karena terasa mustahil. 1% lebih baik cukup kecil untuk lewatin penolakan. 'Besok, gue buka tirai pagi.' 'Gue chat satu orang.' 'Gue makan satu makanan hangat.' Spesifik, kecil, bisa dilakukan. Bukan transformasi — cuma pijakan." },
+      { type: "h2", content: "Prompt 4: 'Di mana suara depresi muncul hari ini, dan apa yang dia bilang?'" },
+      { type: "p", content: "Menamai suara depresi sebagai terpisah dari diri adalah teknik dari CBT. Suara itu bilang lo nggak berharga, useless, beban. Tulis apa yang dia bilang hari ini secara spesifik. Lalu tulis satu kebenaran alternatif — bukan positive thinking, hanya kemungkinan alternatif. Suaranya kehilangan otoritas saat dieksternalisasi dan dipertanyakan." },
+      { type: "h2", content: "Prompt 5: 'Apa satu hal yang psikolog atau dokter gue harus tahu soal minggu ini?'" },
+      { type: "p", content: "Kalau lo dalam perawatan (yang sangat kami rekomendasikan untuk depresi), prompt ini bikin journaling langsung berguna untuk perawatan itu. Gejala spesifik, efek samping, obat yang diminum atau di-skip, pola tidur, hal yang membantu, hal yang nggak. Bawa jurnal ke janji temu — kebanyakan klinisi menghargai data pasien dengan tinggi." },
+      { type: "h2", content: "Yang harus dihindari" },
+      { type: "p", content: "Beberapa pendekatan journaling yang umum tapi backfire untuk depresi:" },
+      { type: "ul", content: [
+        "Gratitude journaling murni: 'tiga hal yang gue syukuri' sering menghasilkan pushback internal ('gue bahkan nggak bisa ngerasa bersyukur sekarang') yang memperdalam shame. Gunakan gratitude list cuma kalau terasa mungkin — jangan dipaksa.",
+        "Pemrosesan trauma long-form tanpa dukungan terapis: risiko re-traumatisasi nyata. Proses trauma DENGAN klinisi, bukan sendirian di jurnal.",
+        "Membandingkan diri hari ini dengan diri sebelum depresi: ini salah satu penguat depresi paling konsisten. Otak mencatat setiap gap sebagai bukti penurunan lebih lanjut.",
+        "Set streak journaling harian: gagal streak saat depresi bikin effort mustahil menambah shame di atas depresi. Skip hari dengan bebas.",
+      ] },
+      { type: "h2", content: "Kapan eskalasi (dan bagaimana)" },
+      { type: "p", content: "Kalau ada yang berikut, hubungi profesional MINGGU INI, bukan 'nanti':" },
+      { type: "ul", content: [
+        "Mood rendah, kehilangan minat, atau putus asa yang bertahan lebih dari 2 minggu.",
+        "Perubahan signifikan dalam tidur, nafsu makan, atau berat badan yang nggak bisa lo atribut ke penyebab lain.",
+        "Nggak bisa lakuin tugas harian dasar (kerja, sekolah, hygiene) lebih dari 2 minggu.",
+        "Pikiran ngerusak diri sendiri atau bunuh diri — sekecil apapun, sesekali apapun.",
+        "Ketergantungan yang meningkat pada alkohol atau zat lain untuk mengelola mood.",
+        "Gejala yang datang setelah trauma, kehilangan, atau perubahan hidup besar dan nggak terangkat.",
+      ] },
+      { type: "p", content: "Cara mulai di Indonesia: temui dokter umum dulu — mereka bisa screening, refer, dan resepkan perawatan awal kalau perlu. Halodoc, KALM, dan Riliv semuanya menawarkan konsultasi psikolog dengan harga terjangkau (Rp 50.000-150.000 per sesi). BPJS sekarang cover mental health untuk kondisi tertentu — cek di klinik atau puskesmas. Banyak kampus punya konseling gratis untuk mahasiswa. Biaya jarang jadi penghalang sebenarnya di 2026 — yang sering jadi blocker adalah tahu di mana mulai." },
+      { type: "h2", content: "Sumber krisis" },
+      { type: "ul", content: [
+        "Indonesia: Into The Light (intothelightid.org), 119 ekstensi 8 untuk dukungan krisis.",
+        "Halodoc / KALM / Riliv: konsultasi psikolog terjangkau mulai Rp 50.000-150.000 per sesi.",
+        "Puskesmas terdekat: BPJS cover mental health untuk kondisi tertentu.",
+        "Untuk anak muda: Indonesia Mental Health Association (imha.or.id).",
+      ] },
+      { type: "p", content: "Kalau lo lagi krisis atau punya pikiran menyakiti diri sendiri, tolong gunakan salah satu sumber di atas sekarang. Mereka gratis, rahasia, dan dijalankan oleh orang yang dilatih untuk membantu di momen ini." },
+      { type: "h2", content: "Bottom line" },
+      { type: "p", content: "Depresi adalah kondisi medis yang butuh perawatan medis. Journaling punya peran nyata dan terdokumentasi sebagai practice pendukung — bisa menurunkan gejala 15-30% saat ditambahkan ke perawatan profesional, terutama untuk depresi ringan-sedang. Nggak bisa menggantikan obat atau terapi. 5 prompt di atas dirancang untuk dipakai BERSAMA perawatan, koordinasi dengan klinisi kalau memungkinkan. Kalau depresi mempengaruhi fungsi harian lo, langkah paling penting bukan menemukan prompt yang tepat — tapi dapetin bantuan profesional. Nuju dan aplikasi journaling lain adalah alat berguna dalam pekerjaan itu; bukan pekerjaannya sendiri." },
+    ],
+    faq: [
+      {
+        question: "Apakah journaling beneran ngebantu depresi?",
+        answer:
+          "Ya, tapi sebagai practice pendukung di samping perawatan profesional — bukan pengganti obat atau terapi. Riset menunjukkan journaling terstruktur menurunkan gejala depresi 15-30% saat ditambahkan ke perawatan standar, dengan efek paling kuat di depresi ringan-sedang. Mekanismenya mencakup restrukturisasi kognitif (Beck CBT), aktivasi perilaku (Lewinsohn), expressive writing (Pennebaker), dan self-monitoring. Depresi berat butuh perawatan profesional lebih dulu.",
+      },
+      {
+        question: "Bisakah journaling menggantikan antidepresan?",
+        answer:
+          "Tidak. Kalau antidepresan diresepkan untuk lo, jangan berhenti minumnya tanpa konsultasi psikiater. Journaling nggak bisa menggantikan obat untuk depresi sedang-berat. Berhenti antidepresan mendadak juga bisa menyebabkan efek withdrawal yang signifikan. Banyak orang pakai journaling DI SAMPING obat; kombinasinya cenderung menghasilkan hasil lebih baik dari yang manapun sendiri untuk kasus sedang.",
+      },
+      {
+        question: "Journaling jenis apa yang bantu depresi spesifik?",
+        answer:
+          "Prompt terstruktur yang fokus pada (1) aktivasi perilaku (mengakui effort kecil), (2) identifikasi distorsi kognitif (framework CBT Beck), (3) perencanaan besok 1% lebih baik (langkah kecil yang bisa dilakukan), dan (4) tracking gejala untuk klinisi lo. Gratitude journaling kadang backfire — sering menghasilkan shame saat lo nggak bisa akses gratitude. Pemrosesan trauma long-form sendirian bisa re-traumatisasi. Struktur lebih penting dari panjang.",
+      },
+      {
+        question: "Gimana tahu gue depresi atau cuma sedih?",
+        answer:
+          "Depresi klinis didiagnosis profesional pakai kriteria DSM-5 (mood rendah persisten, kehilangan minat, perubahan tidur/nafsu makan/energi untuk 2+ minggu). Sedih itu normal dan terbatas waktu; depresi persisten dan mempengaruhi fungsi harian. Kalau gejala udah lebih dari 2 minggu dan mempengaruhi kerja, tidur, makan, atau hubungan — temui dokter untuk evaluasi yang tepat. Self-diagnosis nggak bisa diandalkan; penilaian profesional cepat dan akurat.",
+      },
+      {
+        question: "Apakah journaling bakal memperburuk depresi gue?",
+        answer:
+          "Biasanya enggak, dengan caveat. Pure trauma replay tanpa dukungan terapis bisa memperdalam luka. Membandingkan hari ini dengan diri sebelum depresi bisa memperkuat depresi. Gagal streak journaling yang dibebankan sendiri bisa menambah shame. Prompt terstruktur yang dilakukan koordinasi dengan perawatan aman. Kalau lo notice journaling konsisten bikin lo terasa lebih buruk selama seminggu, ngobrol sama terapis lo atau berhentikan pendekatan spesifik itu.",
+      },
+      {
+        question: "Gimana kalau gue nggak mampu bayar psikolog?",
+        answer:
+          "Banyak opsi di Indonesia 2026. Halodoc, KALM, dan Riliv menawarkan konsultasi mulai Rp 50.000-150.000 per sesi. Puskesmas terdekat sering punya layanan kesehatan mental dasar. BPJS sekarang cover beberapa kondisi mental health. Kampus sering punya konseling gratis untuk mahasiswa. Yang penting: cari yang sesuai bujet lo, jangan nggak berobat sama sekali karena nyari yang termahal. Biaya jarang jadi penghalang sebenarnya di 2026 — yang sering jadi blocker adalah tahu di mana mulai.",
+      },
+    ],
+  },
 ];
 
 const normalizeCopy = (value: string): string =>

@@ -6,7 +6,7 @@
     <atom:link href="https://nuju.app/rss.xml" rel="self" type="application/rss+xml" />
     <description>Practical guides on journaling, mood tracking, and emotional wellness from the Nuju team.</description>
     <language>en</language>
-    <lastBuildDate>Fri, 22 May 2026 08:20:05 GMT</lastBuildDate>
+    <lastBuildDate>Fri, 22 May 2026 12:28:24 GMT</lastBuildDate>
     <item>
       <title>We Analyzed Our First 161 Real Journal Entries: 87% Were Logged on &apos;Not Great&apos; Days</title>
       <link>https://nuju.app/blog/what-people-write-in-journal-data</link>
@@ -201,6 +201,60 @@
       <link>https://nuju.app/blog/digital-wellness-journaling-gen-z-indonesia</link>
       <guid isPermaLink="true">https://nuju.app/blog/digital-wellness-journaling-gen-z-indonesia</guid>
       <description>Gen Z Indonesia rata-rata 6+ jam di HP per hari — tertinggi dari generasi manapun. Digital fatigue jadi masalah nyata. Journaling 5 menit terbukti memutus loop scroll dan reset otak. Panduan praktis untuk Gen Z Indonesia.</description>
+      <category>Mental Wellness</category>
+      <pubDate>Fri, 22 May 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Nuju vs Reflection: Which AI Journal Wins in 2026? (Honest Comparison)</title>
+      <link>https://nuju.app/blog/nuju-vs-reflection</link>
+      <guid isPermaLink="true">https://nuju.app/blog/nuju-vs-reflection</guid>
+      <description>Nuju and Reflection are both privacy-first AI journals with strong free tiers. Nuju wins on short-entry speed, warm AI tone, and 8-language support. Reflection wins on guided conversation depth. Here&apos;s the honest side-by-side.</description>
+      <category>App Comparison</category>
+      <pubDate>Fri, 22 May 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Nuju vs Daylio: AI Journal or Pure Mood Tracker? (2026 Comparison)</title>
+      <link>https://nuju.app/blog/nuju-vs-daylio</link>
+      <guid isPermaLink="true">https://nuju.app/blog/nuju-vs-daylio</guid>
+      <description>Nuju and Daylio target different jobs. Daylio is a mood tracker with optional notes — fastest entry in the category. Nuju is an AI journal with mood tracking built in. Often complementary, sometimes one is enough.</description>
+      <category>App Comparison</category>
+      <pubDate>Fri, 22 May 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Journaling for Depression: What Actually Helps (and What to Skip) in 2026</title>
+      <link>https://nuju.app/blog/journaling-for-depression</link>
+      <guid isPermaLink="true">https://nuju.app/blog/journaling-for-depression</guid>
+      <description>Depression is a medical condition that needs professional treatment. Journaling can support recovery as a complement — never as a substitute. Here&apos;s what the research actually shows works, what to avoid, and how to know when to escalate.</description>
+      <category>Mental Wellness</category>
+      <pubDate>Fri, 22 May 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Journaling After a Breakup: 7 Prompts for the First 30 Days (2026)</title>
+      <link>https://nuju.app/blog/journaling-for-breakup</link>
+      <guid isPermaLink="true">https://nuju.app/blog/journaling-for-breakup</guid>
+      <description>Breakups activate the same brain regions as physical pain. Journaling structured around attachment research and grief stages helps process the loss without rushing it. 7 prompts mapped to the first 30 days, plus what to skip.</description>
+      <category>Mental Wellness</category>
+      <pubDate>Fri, 22 May 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Journaling for Social Anxiety: 6 Prompts That Quiet the &apos;Everyone Is Judging&apos; Voice</title>
+      <link>https://nuju.app/blog/journaling-for-social-anxiety</link>
+      <guid isPermaLink="true">https://nuju.app/blog/journaling-for-social-anxiety</guid>
+      <description>Social anxiety isn&apos;t shyness — it&apos;s an anxiety condition with specific patterns. Journaling helps when it externalizes the &apos;everyone is judging me&apos; loop and tracks evidence against it. 6 research-backed prompts, what to skip.</description>
+      <category>Mental Wellness</category>
+      <pubDate>Fri, 22 May 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Journaling untuk Depresi: Yang Membantu dan Yang Harus Dihindari (2026)</title>
+      <link>https://nuju.app/blog/journaling-untuk-depresi</link>
+      <guid isPermaLink="true">https://nuju.app/blog/journaling-untuk-depresi</guid>
+      <description>Depresi adalah kondisi medis yang butuh penanganan profesional. Journaling bisa membantu sebagai PEMBANTU — bukan pengganti. Berikut yang riset tunjukkan benar-benar membantu, yang harus dihindari, dan kapan harus eskalasi.</description>
       <category>Mental Wellness</category>
       <pubDate>Fri, 22 May 2026 12:00:00 GMT</pubDate>
       <dc:language>en</dc:language>
