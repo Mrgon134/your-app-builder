@@ -6,7 +6,7 @@
     <atom:link href="https://nuju.app/rss.xml" rel="self" type="application/rss+xml" />
     <description>Practical guides on journaling, mood tracking, and emotional wellness from the Nuju team.</description>
     <language>en</language>
-    <lastBuildDate>Fri, 22 May 2026 05:47:26 GMT</lastBuildDate>
+    <lastBuildDate>Fri, 22 May 2026 06:01:40 GMT</lastBuildDate>
     <item>
       <title>We Analyzed Our First 161 Real Journal Entries: 87% Were Logged on &apos;Not Great&apos; Days</title>
       <link>https://nuju.app/blog/what-people-write-in-journal-data</link>
@@ -22,6 +22,51 @@
       <guid isPermaLink="true">https://nuju.app/blog/ai-coach-personality-preference-data</guid>
       <description>We built four AI coach personalities — Gentle, Tough, Wise, Fun. After 348 real coach messages, Gentle pulled 50%, Fun 29%, Tough 13%, Wise just 2%. The &apos;tough love&apos; archetype that dominates productivity culture barely registers in AI coaching.</description>
       <category>AI &amp; Tech</category>
+      <pubDate>Fri, 22 May 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>The Complete 2026 Guide to AI Journaling: Tools, Science, and Habits That Actually Stick</title>
+      <link>https://nuju.app/blog/complete-guide-ai-journaling-2026</link>
+      <guid isPermaLink="true">https://nuju.app/blog/complete-guide-ai-journaling-2026</guid>
+      <description>Everything you need to know about AI journaling in 2026 — what it is, how it works, the research behind it, the top tools compared, and how to build a habit that actually sticks. The definitive guide.</description>
+      <category>AI &amp; Tech</category>
+      <pubDate>Fri, 22 May 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Cara Mengatasi Overthinking dengan Journaling: Panduan 5 Menit (2026)</title>
+      <link>https://nuju.app/blog/cara-mengatasi-overthinking</link>
+      <guid isPermaLink="true">https://nuju.app/blog/cara-mengatasi-overthinking</guid>
+      <description>Overthinking bikin malam panjang dan kepala penuh. Journaling 5 menit terbukti memutus loop pikiran. Teknik brain dump + 4 prompt untuk berhenti overthinking malam ini.</description>
+      <category>Mental Wellness</category>
+      <pubDate>Fri, 22 May 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Self Healing dengan Jurnal: Panduan Praktis untuk Mulai Hari Ini (2026)</title>
+      <link>https://nuju.app/blog/self-healing-dengan-jurnal</link>
+      <guid isPermaLink="true">https://nuju.app/blog/self-healing-dengan-jurnal</guid>
+      <description>Self healing nggak harus mahal atau ke psikolog. Journaling 5-10 menit/hari adalah salah satu teknik self healing paling terbukti — riset 35 tahun mendukungnya. Panduan praktis untuk mulai.</description>
+      <category>Mental Wellness</category>
+      <pubDate>Fri, 22 May 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Journaling untuk Anxiety: 7 Prompt dan Teknik yang Terbukti (Panduan 2026)</title>
+      <link>https://nuju.app/blog/journaling-untuk-anxiety</link>
+      <guid isPermaLink="true">https://nuju.app/blog/journaling-untuk-anxiety</guid>
+      <description>Anxiety bikin pikiran muter dan dada tegang. Journaling 5-10 menit per hari terbukti menurunkan gejala anxiety. 7 prompt spesifik dan teknik praktis untuk mulai hari ini.</description>
+      <category>Mental Wellness</category>
+      <pubDate>Fri, 22 May 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Cara Curhat ke Diri Sendiri: 5 Metode Terbukti (Tanpa atau dengan AI)</title>
+      <link>https://nuju.app/blog/cara-curhat-ke-diri-sendiri</link>
+      <guid isPermaLink="true">https://nuju.app/blog/cara-curhat-ke-diri-sendiri</guid>
+      <description>Kadang nggak ada teman buat curhat — atau nggak mau bebanin orang. 5 metode curhat ke diri sendiri yang terbukti: dari menulis bebas, voice note, sampai AI journal. Panduan praktis.</description>
+      <category>Mental Wellness</category>
       <pubDate>Fri, 22 May 2026 12:00:00 GMT</pubDate>
       <dc:language>en</dc:language>
     </item>

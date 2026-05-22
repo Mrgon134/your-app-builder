@@ -345,6 +345,116 @@ const INTERNAL_LINK_RECOMMENDATIONS: Record<string, InternalLinkRecommendation[]
       body: "Persona preference is itself self-awareness data — here's how to read your own mood and tone patterns.",
     },
   ],
+  "complete-guide-ai-journaling-2026": [
+    {
+      slug: "what-is-ai-journaling",
+      eyebrow: "Start with the basics",
+      body: "What AI journaling actually means in 2026 — a plain-language intro to the category.",
+    },
+    {
+      slug: "what-people-write-in-journal-data",
+      eyebrow: "Real usage data",
+      body: "161 real journal entries: 87% logged on 'not great' days. Median entry is 31 characters.",
+    },
+    {
+      slug: "best-ai-journaling-apps",
+      eyebrow: "Pick your tool",
+      body: "Compare the top AI journaling apps in 2026 — free tier, mid tier, premium tier breakdown.",
+    },
+    {
+      slug: "5-minute-daily-journaling-habit",
+      eyebrow: "Build the habit",
+      body: "Habit-formation science applied to journaling: the 21-day pattern that makes it stick.",
+    },
+  ],
+  "cara-mengatasi-overthinking": [
+    {
+      slug: "journaling-untuk-anxiety",
+      eyebrow: "Pas overthinking jadi anxiety",
+      body: "Saat overthinking memicu kecemasan fisik (sesak, jantung berdebar), prompt khusus anxiety ini lebih cocok.",
+    },
+    {
+      slug: "cara-curhat-ke-diri-sendiri",
+      eyebrow: "Cara lain ngeluarin",
+      body: "Selain journaling, ada 5 metode curhat ke diri sendiri yang efektif — termasuk voice note dan surat ke diri.",
+    },
+    {
+      slug: "self-healing-dengan-jurnal",
+      eyebrow: "Bagian dari self healing",
+      body: "Mengatasi overthinking adalah satu bagian dari self healing yang lebih luas. Panduan lengkap di sini.",
+    },
+    {
+      slug: "aplikasi-curhat-ai",
+      eyebrow: "Pakai AI buat overthinking",
+      body: "AI journal yang aman buat overthinker: kriteria privasi, persona AI, dan rekomendasi.",
+    },
+  ],
+  "self-healing-dengan-jurnal": [
+    {
+      slug: "cara-mulai-journaling",
+      eyebrow: "Mulai dari sini",
+      body: "Pemula lengkap: cara mulai journaling 5 menit per hari dari nol — bahkan tanpa pengalaman.",
+    },
+    {
+      slug: "cara-mengatasi-overthinking",
+      eyebrow: "Self healing buat overthinker",
+      body: "Self healing seringkali butuh memutus loop overthinking — 4 prompt khusus untuk pikiran muter.",
+    },
+    {
+      slug: "journaling-untuk-anxiety",
+      eyebrow: "Self healing + anxiety",
+      body: "Kalau self healing lo melibatkan anxiety, 7 prompt spesifik untuk anxiety ini langsung bisa dipakai.",
+    },
+    {
+      slug: "journaling-untuk-kesehatan-mental",
+      eyebrow: "Riset di balik journaling",
+      body: "Riset 35 tahun yang mendukung journaling untuk kesehatan mental — dan kapan butuh profesional.",
+    },
+  ],
+  "journaling-untuk-anxiety": [
+    {
+      slug: "cara-mengatasi-overthinking",
+      eyebrow: "Anxiety = sering overthinking",
+      body: "Overthinking adalah bentuk anxiety kognitif paling umum. 4 prompt khusus untuk memutus loop.",
+    },
+    {
+      slug: "cara-curhat-ke-diri-sendiri",
+      eyebrow: "Anxiety tanpa teman?",
+      body: "Saat anxiety muncul dan nggak ada teman bisa diajak ngobrol — 5 metode curhat ke diri sendiri.",
+    },
+    {
+      slug: "self-healing-dengan-jurnal",
+      eyebrow: "Anxiety + self healing",
+      body: "Journaling untuk anxiety adalah satu bagian dari self healing yang lebih luas.",
+    },
+    {
+      slug: "manfaat-mood-tracking",
+      eyebrow: "Tracking buat anxiety",
+      body: "Mood tracking membantu mengidentifikasi pola anxiety dan trigger-nya dari minggu ke minggu.",
+    },
+  ],
+  "cara-curhat-ke-diri-sendiri": [
+    {
+      slug: "aplikasi-curhat-ai",
+      eyebrow: "Curhat ke AI",
+      body: "Kalau metode ke-5 (AI journal) menarik, panduan lengkap memilih AI journal yang aman dan efektif.",
+    },
+    {
+      slug: "cara-mengatasi-overthinking",
+      eyebrow: "Curhat untuk overthinker",
+      body: "Buat overthinker, curhat ke diri sendiri sering butuh struktur. 4 prompt khusus untuk memutus loop.",
+    },
+    {
+      slug: "self-healing-dengan-jurnal",
+      eyebrow: "Curhat sebagai self healing",
+      body: "Curhat ke diri sendiri adalah salah satu bentuk paling sederhana dari self healing — panduan lengkap.",
+    },
+    {
+      slug: "cara-mulai-journaling",
+      eyebrow: "Curhat lewat journaling",
+      body: "Untuk pemula yang baru mau curhat lewat tulisan — cara memulai journaling 5 menit per hari.",
+    },
+  ],
 };
 
 const getInternalLinkCards = (slug: string): InternalLinkCard[] =>
