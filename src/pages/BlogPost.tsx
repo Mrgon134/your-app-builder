@@ -565,6 +565,72 @@ const INTERNAL_LINK_RECOMMENDATIONS: Record<string, InternalLinkRecommendation[]
       body: "Pas burnout, sering nggak ada energi buat ngomong ke teman. 5 cara curhat ke diri sendiri yang efektif.",
     },
   ],
+  "best-ai-journal-apps-for-anxiety-2026": [
+    {
+      slug: "mood-tracking-for-anxiety",
+      eyebrow: "Anxiety + tracking",
+      body: "Once you pick an app, mood tracking helps surface specific anxiety triggers over 2-3 weeks.",
+    },
+    {
+      slug: "ai-journal-for-overthinking",
+      eyebrow: "Anxiety + overthinking",
+      body: "Most anxiety is overthinking with a body component. The AI journal angle for the cognitive piece.",
+    },
+    {
+      slug: "3am-anxiety-journaling",
+      eyebrow: "Night anxiety",
+      body: "When anxiety wakes you at 3am — the specific technique for late-night spirals.",
+    },
+    {
+      slug: "best-ai-journaling-apps",
+      eyebrow: "Broader category",
+      body: "Compare the full AI journaling category beyond anxiety-specific use.",
+    },
+  ],
+  "ai-journaling-for-loneliness": [
+    {
+      slug: "ai-journal-for-overthinking",
+      eyebrow: "Loneliness + overthinking",
+      body: "Loneliness and overthinking often loop together — here's how AI journaling helps both.",
+    },
+    {
+      slug: "best-ai-journal-apps-for-anxiety-2026",
+      eyebrow: "If loneliness = anxiety",
+      body: "When loneliness shows up as anxiety, the anxiety-specific journal app comparison helps narrow the choice.",
+    },
+    {
+      slug: "cara-curhat-ke-diri-sendiri",
+      eyebrow: "Indonesian readers",
+      body: "Untuk pengguna Indonesia — 5 cara curhat ke diri sendiri saat nggak ada teman.",
+    },
+    {
+      slug: "complete-guide-ai-journaling-2026",
+      eyebrow: "Why this category exists",
+      body: "The full 2026 guide to AI journaling and why the format works for emotional gaps.",
+    },
+  ],
+  "aplikasi-journal-ai-gratis-indonesia": [
+    {
+      slug: "aplikasi-jurnal-terbaik",
+      eyebrow: "Bandingkan lagi",
+      body: "Daftar aplikasi jurnal terbaik secara umum — lebih luas dari journal AI gratis.",
+    },
+    {
+      slug: "aplikasi-curhat-ai",
+      eyebrow: "AI buat curhat",
+      body: "Khusus AI curhat — kriteria privasi dan rekomendasi spesifik untuk pengguna Indonesia.",
+    },
+    {
+      slug: "self-healing-dengan-jurnal",
+      eyebrow: "Self healing",
+      body: "Setelah pilih aplikasi — cara pakainya untuk self healing yang berkelanjutan.",
+    },
+    {
+      slug: "cara-mengatasi-overthinking",
+      eyebrow: "Untuk overthinker",
+      body: "Setelah punya aplikasi — 4 prompt khusus untuk memutus loop overthinking.",
+    },
+  ],
 };
 
 const getInternalLinkCards = (slug: string): InternalLinkCard[] =>
