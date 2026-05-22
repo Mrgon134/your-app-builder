@@ -1577,6 +1577,138 @@ const INTERNAL_LINK_RECOMMENDATIONS: Record<string, InternalLinkRecommendation[]
       body: "5 aplikasi journal AI gratis Indonesia untuk practice harian sebelum interview.",
     },
   ],
+  "why-am-i-always-anxious-before-sleep": [
+    {
+      slug: "3am-anxiety-journaling",
+      eyebrow: "When it bleeds to 3am",
+      body: "If pre-sleep anxiety bleeds into 3am wakeups — the specific technique for that.",
+    },
+    {
+      slug: "bedtime-journaling-routine-for-sleep",
+      eyebrow: "Full bedtime routine",
+      body: "Beyond the 5-min reset — the complete bedtime journaling routine for better sleep.",
+    },
+    {
+      slug: "why-do-i-overthink-everything",
+      eyebrow: "Overthinking root",
+      body: "Pre-sleep anxiety often = overthinking surfaced. The 5-minute brain dump protocol.",
+    },
+    {
+      slug: "best-ai-journal-apps-for-anxiety-2026",
+      eyebrow: "Tool selection",
+      body: "AI journal apps compared for anxiety + pre-sleep journaling. Which to pick.",
+    },
+  ],
+  "why-do-i-feel-sad-on-sundays": [
+    {
+      slug: "sunday-scaries-mood-data",
+      eyebrow: "Sunday Scaries deeper",
+      body: "If your Sunday sadness is anticipatory dread about Monday — the deeper Sunday Scaries guide.",
+    },
+    {
+      slug: "ai-journaling-for-loneliness",
+      eyebrow: "Social withdrawal",
+      body: "If Sunday sadness is weekend social withdrawal — the loneliness journaling angle.",
+    },
+    {
+      slug: "journaling-for-depression",
+      eyebrow: "When persistent",
+      body: "Sunday sadness lasting months might be depression. Honest framing.",
+    },
+    {
+      slug: "5-minute-daily-journaling-habit",
+      eyebrow: "Sunday practice",
+      body: "Make Sunday journaling a regular practice that addresses the meaning gap.",
+    },
+  ],
+  "best-journal-app-for-adhd-2026": [
+    {
+      slug: "journaling-for-adhd",
+      eyebrow: "ADHD journaling deeper",
+      body: "Beyond app comparison — how to journal effectively with ADHD brain patterns.",
+    },
+    {
+      slug: "best-ai-journal-apps-for-anxiety-2026",
+      eyebrow: "Anxiety comorbid",
+      body: "ADHD + anxiety is common. Anxiety-specific app comparison.",
+    },
+    {
+      slug: "best-free-mental-wellness-apps-2026",
+      eyebrow: "Free options",
+      body: "7 truly-free mental wellness apps — including ADHD-friendly picks.",
+    },
+    {
+      slug: "5-minute-daily-journaling-habit",
+      eyebrow: "Make it sustainable",
+      body: "How to build a 5-min habit that survives ADHD executive function challenges.",
+    },
+  ],
+  "best-journal-app-with-voice-recording-2026": [
+    {
+      slug: "voice-journaling-guide",
+      eyebrow: "Voice journaling deeper",
+      body: "Full guide to voice journaling — technique, benefits, and how to start.",
+    },
+    {
+      slug: "best-ai-journaling-apps",
+      eyebrow: "Broader category",
+      body: "Compare the full AI journaling category — not just voice-capable ones.",
+    },
+    {
+      slug: "complete-guide-ai-journaling-2026",
+      eyebrow: "Category guide",
+      body: "Full 2026 guide to AI journaling — what the category is, how to pick.",
+    },
+    {
+      slug: "nuju-vs-day-one",
+      eyebrow: "Voice comparison",
+      body: "Both apps support voice — direct comparison.",
+    },
+  ],
+  "depresi-pasca-lulus-kuliah": [
+    {
+      slug: "journaling-untuk-depresi",
+      eyebrow: "Depresi journaling",
+      body: "Untuk depresi spesifik — 5 prompt khusus depresi dengan framing YMYL yang jujur.",
+    },
+    {
+      slug: "cara-mengatasi-stres-keuangan-gen-z",
+      eyebrow: "Stres finansial",
+      body: "Pasca lulus sering tied to stres keuangan. 5 teknik praktis + prompt journaling.",
+    },
+    {
+      slug: "mengatasi-anxiety-wawancara-kerja",
+      eyebrow: "Anxiety job search",
+      body: "Pasca lulus = job search. 5 teknik mengatasi anxiety wawancara.",
+    },
+    {
+      slug: "aplikasi-journal-untuk-mahasiswa-indonesia",
+      eyebrow: "Aplikasi journal alumni",
+      body: "5 aplikasi yang cocok untuk transisi pasca lulus.",
+    },
+  ],
+  "cara-mengatasi-stres-keuangan-gen-z": [
+    {
+      slug: "depresi-pasca-lulus-kuliah",
+      eyebrow: "Depresi pasca lulus",
+      body: "Stres finansial sering tied to depresi pasca lulus. Panduan lengkap.",
+    },
+    {
+      slug: "mengatasi-stres-kerja-journaling",
+      eyebrow: "Stres kerja Indonesia",
+      body: "Stres finansial sering muncul dari stres kerja. 5 prompt khusus pekerja Indonesia.",
+    },
+    {
+      slug: "cara-mengatasi-overthinking",
+      eyebrow: "Overthink finansial",
+      body: "Overthinking soal uang? 4 prompt khusus untuk memutus loop pikiran.",
+    },
+    {
+      slug: "journaling-untuk-anxiety",
+      eyebrow: "Anxiety finansial",
+      body: "Stres finansial sering muncul sebagai anxiety. 7 prompt khusus anxiety untuk Indonesia.",
+    },
+  ],
 };
 
 const getInternalLinkCards = (slug: string): InternalLinkCard[] =>

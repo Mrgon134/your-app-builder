@@ -8046,6 +8046,557 @@ const RAW_BLOG_POSTS: BlogPost[] = [
       },
     ],
   },
+  // Q-BASED LONG-TAIL — Anxiety before sleep.
+  {
+    slug: "why-am-i-always-anxious-before-sleep",
+    title: "Why Am I Always Anxious Before Sleep? The Real Causes (and the 5-Minute Pre-Sleep Reset)",
+    description: "Pre-sleep anxiety has documented causes: daytime distraction drops, default-mode network activates, accumulated cortisol surfaces. Here's the mechanism + a 5-minute reset that drops sleep latency by 9 minutes per Baylor 2018 research.",
+    metaTitle: "Why Am I Anxious Before Sleep? Real Causes + 5-Min Reset (2026)",
+    metaDescription: "Pre-sleep anxiety has documented causes. 5-min reset drops sleep latency 9 min (Baylor 2018). Mechanism + protocol that works tonight.",
+    publishedAt: "2026-05-22",
+    readingTime: 6,
+    category: "Mental Wellness",
+    sections: [
+      { type: "p", content: "Short answer: pre-sleep anxiety is documented and has specific causes — daytime distraction (work, screens, social) suppresses your background processing, then when you lie down in quiet/dark, the suppression drops and everything you've held all day surfaces at once. Add the brain's natural default-mode network activation in low-stimulation conditions, plus accumulated cortisol from the day, and you get the wired-tired-can't-sleep pattern that millions experience nightly. The 2018 Baylor sleep latency study showed that 5 minutes of structured pre-sleep journaling drops time-to-fall-asleep by 9 minutes on average." },
+      { type: "callout", content: "Quick start: if you're reading this in bed anxious right now — skip to the '5-minute pre-sleep reset' below. Try it tonight. Nuju free Ju Gets You reveal at /onboarding works as the tool — 60 seconds to start, the Gentle persona is designed for exactly this." },
+      { type: "h2", content: "Why your brain saves anxiety for bedtime specifically" },
+      { type: "p", content: "Three mechanisms stack:" },
+      { type: "ul", content: [
+        "Distraction suppression drops: during day, work/screens/social suppress background processing. At night the suppression releases and accumulated loops surface.",
+        "Default mode network activates: brain's 'rest' network (mind-wandering, emotional processing) fires more intensely in quiet/dark. Pre-sleep is peak DMN time.",
+        "Cortisol residue: chronic daytime stress keeps cortisol elevated. Pre-bedtime is when many people first notice how 'wired' they actually are — body finally slowing enough to feel it.",
+      ] },
+      { type: "h2", content: "The 5-minute pre-sleep reset (Baylor 2018 protocol)" },
+      { type: "p", content: "The 2018 Baylor University study (Scullin et al.) found that writing a to-do list for the next day before bed reduced sleep latency by 9 minutes compared to writing about completed tasks. We've extended the protocol to include the emotional release pre-sleep also needs:" },
+      { type: "ol", content: [
+        "30-60 minutes before sleep, sit with notebook or journal app.",
+        "Brain dump (2 min): write everything in your head right now. Worries, things undone, conversations replaying, future fears. No structure.",
+        "Tomorrow plan (2 min): write top 3 things you need to do tomorrow. Be specific. This is the Baylor mechanism — externalizing the planning frees the brain from maintaining it.",
+        "One sentence release (1 min): write one sentence about what you're letting go of for tonight. 'I'm letting go of needing to solve the X situation right now.' Permission to stop processing.",
+        "Close journal. Don't re-read. Lights off within 30 min.",
+      ] },
+      { type: "h2", content: "Why this works specifically" },
+      { type: "p", content: "Brain dump externalizes the open loops the brain is otherwise maintaining (Pennebaker mechanism). The tomorrow plan addresses the Zeigarnik effect — unfinished tasks keep working memory active until they're 'stored' somewhere external. The one-sentence release gives the brain explicit permission to stop processing for the night. Combined, they reduce the cognitive load enough that the body's natural sleep mechanisms can take over." },
+      { type: "h2", content: "What to avoid pre-sleep" },
+      { type: "ul", content: [
+        "Phone in bed (blue light + dopamine cycling + comparison anxiety).",
+        "News or work email checking after 9pm — adds new loops the brain has to close before sleep.",
+        "Caffeine after 2pm (half-life is 5-6 hours).",
+        "Heavy alcohol — feels sedating but disrupts REM sleep, often causing 3am wake-ups.",
+        "Pushing through tiredness past natural sleep window — your second wind isn't real energy, it's stress cortisol that delays sleep further.",
+      ] },
+      { type: "h2", content: "When pre-sleep anxiety needs more than journaling" },
+      { type: "p", content: "Talk to a doctor if:" },
+      { type: "ul", content: [
+        "Insomnia (>30 min to fall asleep most nights) lasts more than 3 weeks.",
+        "Pre-sleep anxiety includes physical symptoms (chest tightness, racing heart).",
+        "You're waking at 3am consistently with intrusive thoughts.",
+        "Daytime function affected by sleep deprivation.",
+        "Pre-sleep anxiety paired with depression symptoms or self-harm thoughts.",
+      ] },
+      { type: "p", content: "Treatment options: CBT-I (Cognitive Behavioral Therapy for Insomnia) is gold-standard for chronic insomnia, more effective than sleep medication long-term. Sleep studies for snoring/apnea. Crisis: US 988, Indonesia Into The Light, UK Samaritans 116 123." },
+      { type: "h2", content: "Bottom line" },
+      { type: "p", content: "Pre-sleep anxiety has documented mechanisms — daytime suppression release + default mode activation + cortisol residue. The 5-min pre-sleep reset (brain dump + tomorrow plan + release sentence) drops sleep latency 9 min per Baylor 2018 research. For chronic insomnia (>3 weeks), see a doctor — CBT-I works better than medication. Nuju free Ju Gets You reveal at /onboarding — 60 seconds, no credit card, perfect for the pre-sleep window." },
+    ],
+    faq: [
+      {
+        question: "Why does my anxiety get worse the moment I lie down?",
+        answer:
+          "Three mechanisms stack at bedtime: daytime distraction drops (loops surface), default mode network activates in quiet/dark conditions (mind-wandering intensifies), and accumulated cortisol from the day becomes noticeable when the body slows. Not weakness — predictable neuroscience. The 5-min reset protocol addresses all three.",
+      },
+      {
+        question: "Does journaling before bed really help with sleep?",
+        answer:
+          "Yes — Baylor 2018 study (Scullin et al.) found writing a to-do list before bed reduced sleep latency by 9 minutes on average. Pennebaker's research base supports the brain dump component. The mechanism is real: externalizing open loops frees working memory, reducing cognitive load enough for sleep mechanisms to take over.",
+      },
+      {
+        question: "How long before bed should I journal?",
+        answer:
+          "30-60 minutes before sleep ideal. Gives time for the effect (working memory recovery) without stimulation right before sleep. Avoid journaling in bed with lights on right before mat lampu — your brain associates bed with sleep, not active processing. Sit at a desk or in a chair for the 5 minutes, then go to bed.",
+      },
+      {
+        question: "Will phone journaling at night hurt my sleep?",
+        answer:
+          "Blue light is overblown — research shows the effect is small (~10 min sleep latency delay max for typical phone use). The bigger issue is content: scrolling social media, checking email, or reading news adds new loops the brain has to close before sleep. Pure journaling on phone is fine; mixing with other apps is the problem. Set phone to Do Not Disturb during journaling.",
+      },
+      {
+        question: "What if I keep waking at 3am with anxiety?",
+        answer:
+          "3am wakeups are common and have specific causes — cortisol naturally peaks early morning, blood sugar drops, and the default mode network is highly active. The 5-min pre-sleep reset reduces likelihood. If 3am wakeups happen anyway, see /blog/3am-anxiety-journaling for the specific protocol. Pattern lasting weeks deserves medical evaluation.",
+      },
+      {
+        question: "When should I see a doctor about insomnia?",
+        answer:
+          "If sleep onset >30 min most nights for more than 3 weeks, or if you wake at 3am consistently and can't return to sleep, or if daytime function is affected. CBT-I (Cognitive Behavioral Therapy for Insomnia) is gold-standard treatment — more effective than sleep medication long-term. Sleep apnea is also commonly undiagnosed; ask about sleep study if you snore. Crisis lines: US 988, Indonesia Into The Light, UK Samaritans 116 123.",
+      },
+    ],
+  },
+  // Q-BASED LONG-TAIL — Sunday sadness (different angle from Sunday Scaries).
+  {
+    slug: "why-do-i-feel-sad-on-sundays",
+    title: "Why Do I Feel Sad on Sundays? The Pattern Behind Sunday Blues",
+    description: "Sunday sadness is real and documented — it's not the same as Sunday Scaries. Specific causes include anticipatory dread, weekend social withdrawal, lack of structure, and meaning vacuum after busy week. Here's how to identify your specific cause + 5-min protocol.",
+    metaTitle: "Why Do I Feel Sad on Sundays? Real Causes + 5-Min Fix (2026)",
+    metaDescription: "Sunday sadness has documented causes: anticipatory dread, social withdrawal, structure gap, meaning vacuum. Identify yours + 5-min protocol.",
+    publishedAt: "2026-05-22",
+    readingTime: 6,
+    category: "Mental Wellness",
+    sections: [
+      { type: "p", content: "Short answer: Sunday sadness has 4 most common causes that often look the same on the surface — Sunday Scaries (anticipatory anxiety about work week), weekend social withdrawal (less interaction than weekdays), structure vacuum (no schedule after Saturday's plans), and meaning gap (busy week distractions clear, deeper questions surface). Distinguishing yours matters because each calls for a different response. This isn't necessarily depression — for most people it's regulatory mood shift. But persistent Sunday sadness lasting months deserves evaluation." },
+      { type: "callout", content: "Quick start: it's Sunday afternoon and you're sad as you read this — try the 5-min protocol below. Nuju free Ju Gets You reveal at /onboarding — 60 seconds, no credit card, designed for exactly this kind of mood shift." },
+      { type: "h2", content: "4 most common causes of Sunday sadness" },
+      { type: "ul", content: [
+        "Sunday Scaries (anticipatory dread): your brain previewing Monday's stress. Most common version. See /blog/sunday-scaries-mood-data for full coverage.",
+        "Social withdrawal: weekends often involve less social interaction than weekdays (no office/school). Sunday is the longest stretch without forced social contact, which surfaces loneliness.",
+        "Structure vacuum: Saturday usually has plans (errands, social, fun). Sunday is the longest stretch of unstructured time for many people. The absence of structure can produce sadness even if nothing is wrong.",
+        "Meaning gap: weekdays fill consciousness with tasks and stress. Sunday quiet allows deeper questions to surface (am I doing what matters? what's next? am I happy?). Not pathological — but uncomfortable.",
+      ] },
+      { type: "h2", content: "Which one is yours? (5-min diagnostic)" },
+      { type: "ol", content: [
+        "Work check (1 min): is the sadness specifically about Monday? If yes → Sunday Scaries (anticipatory).",
+        "Social check (1 min): when did you last have real conversation? If Friday/Saturday and not since → social withdrawal.",
+        "Structure check (1 min): do you have any plan for the rest of Sunday? If no, and the unstructured time stretches ahead → structure vacuum.",
+        "Meaning check (1 min): are you questioning bigger life things right now (career, relationships, direction)? If yes → meaning gap.",
+        "Crossover check (1 min): more than one apply? Usually yes. Note which is dominant.",
+      ] },
+      { type: "h2", content: "What helps for each cause" },
+      { type: "ul", content: [
+        "Sunday Scaries (anticipatory): see Sunday Scaries protocol — name the specific Monday fear, plan first task.",
+        "Social withdrawal: schedule one social touchpoint Sunday afternoon — even 30 min coffee with a friend, or video call with family.",
+        "Structure vacuum: pre-plan Sunday afternoon/evening. Doesn't have to be elaborate — gym + grocery + cook dinner is enough. Structure prevents sadness from filling the void.",
+        "Meaning gap: this is harder. Consider regular Sunday morning reflection practice (journaling, walk, contemplation). The questions are worth sitting with — they often guide larger life decisions.",
+      ] },
+      { type: "h2", content: "When Sunday sadness is more than Sunday sadness" },
+      { type: "p", content: "Sunday sadness becomes worth professional attention when:" },
+      { type: "ul", content: [
+        "It's happening every Sunday for months without shift.",
+        "It bleeds into other days, not just Sundays.",
+        "Paired with depression symptoms (loss of interest, persistent low mood, sleep changes).",
+        "Includes thoughts of self-harm.",
+        "Significantly affects work performance Monday onwards.",
+      ] },
+      { type: "p", content: "Resources: US 988, Indonesia Into The Light, UK Samaritans 116 123. For ongoing care: your GP can screen and refer." },
+      { type: "h2", content: "Bottom line" },
+      { type: "p", content: "Sunday sadness has 4 main causes, each calling for different response. Most people experience one or more occasionally — that's regulatory, not pathological. Use the 5-min diagnostic to identify your dominant cause, apply the matching response. If Sunday sadness persists for months or bleeds into other days, see a clinician. Nuju free Ju Gets You reveal at /onboarding — 60 seconds, no credit card." },
+    ],
+    faq: [
+      {
+        question: "Is Sunday sadness the same as Sunday Scaries?",
+        answer:
+          "Related but not identical. Sunday Scaries is specifically anticipatory anxiety about the work week (Monday focus). Sunday sadness can come from Sunday Scaries but also from social withdrawal (less interaction than weekdays), structure vacuum (unstructured time), or meaning gap (deeper questions surfacing). The 5-min diagnostic helps distinguish.",
+      },
+      {
+        question: "Why do I feel sad even when I have a great weekend?",
+        answer:
+          "Often it's the structure vacuum or meaning gap — Sunday quiet allows feelings to surface that the busy weekend suppressed. Or it's Sunday Scaries — the great weekend ending and Monday looming. A great weekend doesn't prevent Sunday sadness; sometimes it intensifies it because the contrast is sharper.",
+      },
+      {
+        question: "Does everyone feel sad on Sundays?",
+        answer:
+          "Most working adults experience some version of Sunday mood shift — LinkedIn 2018 data found 80% report Sunday anxiety. Intensity varies. People with strong Sunday routines (regular social, structured afternoon, meaningful evening practice) often experience much less than people with unstructured Sundays.",
+      },
+      {
+        question: "Can journaling help with Sunday sadness?",
+        answer:
+          "Yes — particularly for meaning gap and Sunday Scaries causes. The 5-min protocol (diagnostic + matching response) addresses the underlying cause rather than just managing the sadness. Pennebaker research supports brief structured writing for mood regulation.",
+      },
+      {
+        question: "Should I try to avoid feeling sad on Sundays?",
+        answer:
+          "No — avoidance usually makes it worse. Some Sunday sadness is regulatory mood shift, like the body completing a weekly cycle. Trying to push it away often deepens it. Sit with it briefly (5-15 min), name the cause, apply the matching response, then let it pass. Forced positivity tends to backfire.",
+      },
+      {
+        question: "When should I worry about persistent Sunday sadness?",
+        answer:
+          "If happening every Sunday for months without shift, bleeding into other days, paired with depression symptoms (loss of interest, persistent low mood, sleep changes), including self-harm thoughts, or significantly affecting Monday work performance — see a clinician. Could be depression in disguise. US 988, Indonesia Into The Light, UK Samaritans 116 123.",
+      },
+    ],
+  },
+  // COMMERCIAL — Best journal app for ADHD.
+  {
+    slug: "best-journal-app-for-adhd-2026",
+    title: "Best Journal App for ADHD in 2026: 5 Picks That Actually Work for ADHD Brains",
+    description: "ADHD brains need a journal app that removes friction, supports executive function challenges, and doesn't punish missed days. We tested 5 picks for 2026 — Nuju, Daylio, Reflectly, Stoic, Bearable. Honest comparison for the ADHD profile.",
+    metaTitle: "Best Journal App for ADHD 2026: 5 Picks for ADHD Brains",
+    metaDescription: "Best journal apps for ADHD 2026: Nuju, Daylio, Reflectly, Stoic, Bearable. Tested for executive function support, low friction, no streak shame.",
+    publishedAt: "2026-05-22",
+    readingTime: 7,
+    category: "App Comparison",
+    sections: [
+      { type: "p", content: "Best journal app for ADHD in 2026: Nuju (free, 30-second entries, no streak guilt, AI insights). Daylio (10-second mood tracking, no writing required). Reflectly (gamified onboarding, low cognitive load). Stoic (structured prompts that remove the blank-page problem). Bearable (mood + symptom + medication tracking for ADHD-comorbid users). The right pick depends on which ADHD challenges hit hardest — executive function, time blindness, dopamine seeking, or emotional dysregulation." },
+      { type: "callout", content: "Quick start: for most ADHD users, Nuju Free is the right starting point — 30-second entries don't trigger initiation paralysis, AI insights surface patterns you'd miss, and no streak shame when you skip days. Try the free Ju Gets You reveal at /onboarding — 60 seconds, no credit card." },
+      { type: "h2", content: "Why most journal apps fail ADHD brains" },
+      { type: "p", content: "Standard journal apps assume:" },
+      { type: "ul", content: [
+        "Consistent daily practice (ADHD struggles with consistency — not laziness, executive function).",
+        "Long-form writing (ADHD often has working memory and task initiation issues).",
+        "Streak motivation (ADHD shame from broken streaks makes it harder to restart).",
+        "Self-directed reflection (ADHD often benefits from external structure).",
+      ] },
+      { type: "p", content: "ADHD-friendly journal apps work around these defaults: short entries, low friction, gentle reminders without streak punishment, and pattern detection that does the analysis work the ADHD brain struggles with." },
+      { type: "h2", content: "1. Nuju — best overall for ADHD" },
+      { type: "p", content: "Nuju's 30-second mood+text format bypasses initiation paralysis (the ADHD wall of starting). Median real entry: 31 characters. AI does the pattern recognition that ADHD brains often miss across days. No streak counter shaming — skip days without guilt. Free tier covers daily use." },
+      { type: "p", content: "ADHD-relevant features: Mood + energy tracking surfaces ADHD-relevant patterns (which activities energize vs deplete). Gentle persona is validating, which matters when ADHD self-criticism is high. Multi-language including Bahasa Indonesia. Encrypted entries with no AI training — important for sensitive ADHD content (medication, therapy notes)." },
+      { type: "p", content: "Limits: Nuju doesn't have ADHD-specific frameworks built in. For users wanting ADHD-targeted prompts, you'll need to customize your own usage." },
+      { type: "h2", content: "2. Daylio — best for ADHD who refuse writing" },
+      { type: "p", content: "Daylio Free includes 10-second mood + activity tag logging. For ADHD users where typing is friction, this is the lowest-cognitive-load option. Long-term mood charts reveal what specifically helps your mood (which activities, locations, sleep patterns)." },
+      { type: "p", content: "ADHD fit: extremely fast = matches dopamine-quick ADHD attention spans. No writing requirement removes a barrier. Generous free tier; Premium $3.99 one-time. Limits: no reflection or insight beyond charts." },
+      { type: "h2", content: "3. Reflectly — best for ADHD beginners" },
+      { type: "p", content: "Reflectly's gamified onboarding and positive-psychology structure reduces initiation friction. Daily check-ins under 90 seconds. Mascot makes the app feel less clinical, which helps ADHD users who associate journaling with shame." },
+      { type: "p", content: "ADHD fit: gamification can hold ADHD attention. Limits: positive-psychology framing can backfire for ADHD users with rejection sensitive dysphoria (RSD) when they can't access gratitude." },
+      { type: "h2", content: "4. Stoic — best for structure-needing ADHD" },
+      { type: "p", content: "Some ADHD users need EXTERNAL structure to journal at all — the blank page triggers paralysis. Stoic provides specific prompts (morning + evening routines) that remove the 'what should I write?' question. ~$30/year." },
+      { type: "p", content: "ADHD fit: removes blank-page paralysis. Limits: longer prompts mean longer time commitment — can become friction for ADHD users with low initiation." },
+      { type: "h2", content: "5. Bearable — best for ADHD + comorbid conditions" },
+      { type: "p", content: "Bearable is symptom + mood + medication tracker designed for chronic conditions. For ADHD users with co-occurring depression, anxiety, or other conditions, the integrated tracking is valuable. Free tier substantial; Premium ~$5/month." },
+      { type: "p", content: "ADHD fit: tracks medication effects on mood (important for ADHD medication titration). Symptom tracking helps identify ADHD trigger patterns. Limits: more setup than Nuju/Daylio — initial friction can stop ADHD users from starting." },
+      { type: "h2", content: "ADHD-specific best practices" },
+      { type: "ul", content: [
+        "Skip the streak. Missing days is fine. Resume without guilt.",
+        "Tie journaling to existing habits (after morning coffee, before bed, after meds). Habit stacking helps ADHD brains.",
+        "Set a phone reminder if helpful — but disable notifications that punish you for missing.",
+        "Lower the bar: 'one word' counts. 'Tired' is a complete entry. The data has value.",
+        "Re-read entries weekly (not daily) — ADHD memory benefits from external review.",
+      ] },
+      { type: "h2", content: "When ADHD needs professional evaluation" },
+      { type: "p", content: "If you suspect ADHD but haven't been evaluated, the diagnosis is highly treatable but requires professional. Adult ADHD is significantly underdiagnosed, especially in women and people of color. See an ADHD-specialist psychiatrist or clinical psychologist. Treatment options: medication (stimulants and non-stimulants), CBT for ADHD, executive function coaching. In Indonesia: Halodoc, KALM, Riliv (look for ADHD specialization). Crisis: US 988, Indonesia Into The Light, UK Samaritans 116 123." },
+      { type: "h2", content: "Bottom line" },
+      { type: "p", content: "For most ADHD users in 2026, Nuju Free is the right starting point — 30-second entries bypass initiation paralysis, AI does the pattern work, no streak shame. Add Daylio if writing is friction. Add Bearable if you have ADHD + comorbid conditions and want symptom tracking. Try Nuju at /onboarding — 60 seconds, no credit card. For undiagnosed adult ADHD, professional evaluation is worth pursuing — diagnosis and treatment can transform daily function." },
+    ],
+    faq: [
+      {
+        question: "What journal app is easiest for ADHD?",
+        answer:
+          "Nuju Free for AI-augmented short entries (30-second mood+text). Daylio Free for users who refuse to write (10-second mood + activity tags). Both bypass the initiation paralysis that kills most ADHD journaling attempts. Pick by whether you want any text component (Nuju) or pure mood data (Daylio). Both have generous free tiers.",
+      },
+      {
+        question: "How do I journal consistently with ADHD?",
+        answer:
+          "Skip 'consistently' as the goal. ADHD-friendly approach: low-bar entries (one word counts), habit stacking (tie to existing routine like morning coffee or bedtime), no streak shame, weekly review of entries (not daily). Most ADHD-friendly journal apps explicitly avoid streak punishment because the shame of broken streaks is a known ADHD trigger.",
+      },
+      {
+        question: "Is journaling helpful for ADHD?",
+        answer:
+          "Yes, when ADHD-adapted. Research consistently supports journaling for emotional regulation, which is often disrupted in ADHD. Pattern tracking via journaling helps identify ADHD triggers (specific people, environments, sleep patterns) that ADHD brains often miss in real-time. Combine with professional treatment for best outcomes.",
+      },
+      {
+        question: "Should ADHD users track medication in their journal?",
+        answer:
+          "Yes if you're on or starting ADHD medication. Mood + energy + focus tracking alongside medication helps you and your prescriber identify what's working. Bearable is specifically designed for this. Nuju mood + energy slider also works. Bring data to medication appointments — most psychiatrists value patient-tracked data.",
+      },
+      {
+        question: "Can journal apps help diagnose ADHD?",
+        answer:
+          "Not diagnose — only a clinician can. But journal data over weeks can help you identify ADHD-suggestive patterns to bring to evaluation: chronic time blindness, executive function struggles, emotional dysregulation, dopamine-seeking behavior, hyperfocus on wrong things. Pattern data makes professional evaluation more efficient.",
+      },
+      {
+        question: "Where can I get evaluated for ADHD in Indonesia?",
+        answer:
+          "Halodoc, KALM, and Riliv have psychiatrists who can evaluate for ADHD (look for 'spesialisasi ADHD' or 'ADHD dewasa'). RS rujukan dengan psikiater juga bisa. Cost: Rp 200.000-500.000+ per session typically, plus medication if prescribed. Some BPJS provinces cover ADHD evaluation. International: BetterHelp + ADHD specialists, NHS for UK with GP referral.",
+      },
+    ],
+  },
+  // COMMERCIAL — Best journal app with voice recording.
+  {
+    slug: "best-journal-app-with-voice-recording-2026",
+    title: "Best Journal App with Voice Recording in 2026: 5 Picks for Voice Journaling",
+    description: "Voice journaling captures what typing misses — tone, hesitation, emotional weight. 5 apps tested for 2026: Nuju Pro, Day One, Otter, Whisper-based apps, Voice Brain Dump. Honest comparison of voice + transcription + privacy.",
+    metaTitle: "Best Journal App with Voice Recording 2026 (5 Picks Tested)",
+    metaDescription: "Voice journaling apps 2026: Nuju Pro, Day One, Otter, Whisper apps, Voice Brain Dump. Voice + transcription + privacy compared.",
+    publishedAt: "2026-05-22",
+    readingTime: 7,
+    category: "App Comparison",
+    sections: [
+      { type: "p", content: "Best journal app with voice recording in 2026: Nuju Pro for AI-augmented voice journaling integrated with mood tracking. Day One for long-form voice diary entries with rich media. Otter.ai for users who want voice + advanced transcription + searchable audio. Whisper-based apps for users wanting OpenAI's transcription model directly. Voice Brain Dump for ultra-fast voice-only release without transcription pressure." },
+      { type: "callout", content: "Quick start: most users testing voice journaling should start with Nuju Pro free trial — integrates voice with the broader mood + AI insights ecosystem. Free Ju Gets You reveal at /onboarding shows the format in 60 seconds, no credit card." },
+      { type: "h2", content: "Why voice journaling specifically" },
+      { type: "p", content: "Voice journaling captures what text misses:" },
+      { type: "ul", content: [
+        "Tone and hesitation: where you paused, where you slowed down, where your voice cracked — all data text strips out.",
+        "Lower friction for thinkers-in-speech: many people process emotions verbally more naturally than in writing.",
+        "Faster output: speaking is 3-5x faster than typing for most people.",
+        "Privacy paradox: voice can feel more private than text (no one will read the audio) while paradoxically being more honest because text-edit-mode doesn't kick in.",
+      ] },
+      { type: "h2", content: "1. Nuju Pro — best AI-augmented voice journaling" },
+      { type: "p", content: "Nuju Pro includes voice journaling integrated with mood tracking, AI insights, and pattern recognition. Voice entries are transcribed automatically, and AI surfaces patterns across both text and voice entries. $9.99/month or $79.99/year (~Rp 150.000/bulan)." },
+      { type: "p", content: "Strengths: voice integrates with the broader Nuju ecosystem (mood + energy + AI insights). The Gentle persona responds to voice entries with reflections that match the emotional tone. Multi-language support including Bahasa Indonesia voice recognition." },
+      { type: "p", content: "Limits: Nuju Pro voice is in Pro tier only (not free). For pure voice without AI, simpler tools may be cheaper." },
+      { type: "h2", content: "2. Day One — best for long-form voice diary" },
+      { type: "p", content: "Day One Premium includes voice journaling alongside long-form text and photos. For users wanting voice as part of a polished diary, Day One's media handling and exports are category-leading. ~$35/year." },
+      { type: "p", content: "Strengths: beautiful integration of voice + text + photos. Strong export quality (printable books include voice transcripts). Apple-ecosystem deep integration." },
+      { type: "p", content: "Limits: no AI insights on voice content. Day One assumes you're a committed long-form diarist — not designed for the 30-second pattern most modern journalers prefer." },
+      { type: "h2", content: "3. Otter.ai — best for voice + transcription power" },
+      { type: "p", content: "Otter.ai isn't a journal app per se — it's a transcription tool. But for users who want voice journaling with the most advanced transcription, including searchable audio archives and speaker identification, Otter is the best transcription engine. Free tier limited; Premium ~$10/month." },
+      { type: "p", content: "Use case: record voice journals in Otter, search transcripts later for specific topics or themes. Not designed for emotional journaling specifically — better for users who think of journaling as documentation." },
+      { type: "p", content: "Limits: no mood tracking, no AI reflection, no privacy guarantees specific to journal content (Otter is general business transcription tool)." },
+      { type: "h2", content: "4. Whisper-based apps — for tech-forward users" },
+      { type: "p", content: "Several smaller apps integrate OpenAI's Whisper transcription model. For users who specifically want Whisper's transcription quality (currently best in class for many languages) and don't need a full journal interface, these are options." },
+      { type: "p", content: "Examples: Aiko (Mac), MacWhisper. Limits: usually transcription-only, no journal features. Best as raw voice-to-text capture tool that you can paste into your preferred journal app afterward." },
+      { type: "h2", content: "5. Voice Brain Dump apps — for ultra-fast release" },
+      { type: "p", content: "Several minimalist apps focus on pure voice recording without transcription pressure — record, save, optionally re-listen later. Free options widely available." },
+      { type: "p", content: "Best use: emotional release without the cognitive load of producing 'text-quality' content. Some users find this format gets them past performance anxiety that even voice transcription triggers. Limits: no pattern recognition, no AI insight, no integrated mood tracking." },
+      { type: "h2", content: "Privacy: voice journal specific considerations" },
+      { type: "p", content: "Voice content is more sensitive than text in some ways:" },
+      { type: "ul", content: [
+        "Voice is biometric data — uniquely identifiable.",
+        "Tone reveals emotional state that text doesn't.",
+        "Audio takes more storage, making cloud backup essential — increases attack surface.",
+      ] },
+      { type: "p", content: "Verify each app's stance on: voice data training (some general transcription tools use audio for model training — avoid for journal content), encryption at rest and in transit, easy deletion. Nuju explicitly carves voice entries out of training. Day One similarly. Otter is general business tool, less privacy-specific for journal use." },
+      { type: "h2", content: "Decision tree" },
+      { type: "ul", content: [
+        "Want AI-augmented voice + mood ecosystem: Nuju Pro.",
+        "Want long-form polished voice diary: Day One Premium.",
+        "Want powerful transcription for archival: Otter.ai.",
+        "Want tech-forward Whisper transcription: Whisper-based apps.",
+        "Want ultra-fast voice release without text pressure: Voice Brain Dump apps.",
+        "Test voice journaling for the first time: try Nuju free first, decide if voice adds value before paying for Pro.",
+      ] },
+      { type: "h2", content: "Bottom line" },
+      { type: "p", content: "For most users testing voice journaling in 2026, Nuju Pro is the strongest integrated option — voice + AI insights + mood tracking + multi-language. Day One Premium for long-form polished diary. Otter for transcription power. Test the format first with Nuju Free's text journaling at /onboarding — if you find yourself wishing you could speak instead of type, that's the signal voice journaling fits you and Nuju Pro is the upgrade. 60 seconds to test, no credit card required." },
+    ],
+    faq: [
+      {
+        question: "Is voice journaling better than text journaling?",
+        answer:
+          "Not universally — they serve different jobs. Voice captures tone and emotional weight that text strips out. Speech is 3-5x faster than typing for most people. Voice can feel less performative (text-edit-mode doesn't kick in). But text is easier to skim, search, and re-read. Many users do both: voice for raw emotional processing, text for synthesis and decision documentation.",
+      },
+      {
+        question: "Is voice journaling private?",
+        answer:
+          "Depends on the app. Voice is biometric data (uniquely identifiable) and reveals emotional state that text doesn't. Look for: explicit no-voice-training policy, encryption at rest and in transit, easy deletion. Nuju explicitly carves voice entries out of AI training. Some general transcription tools (Otter) are less journal-privacy-specific.",
+      },
+      {
+        question: "Do I need to transcribe my voice entries?",
+        answer:
+          "Optional. Some users prefer audio-only for pure emotional release (no text pressure). Others want transcription for pattern recognition and searchability. Nuju Pro auto-transcribes for AI analysis but you can choose to keep audio-only entries. Day One supports both modes.",
+      },
+      {
+        question: "How long should voice journal entries be?",
+        answer:
+          "No fixed rule. Many users find 2-5 minutes per entry is sustainable — short enough to do daily, long enough to capture meaningful content. Longer entries (10-30 min) suit deep processing sessions less frequently. Median Nuju text entry is 31 characters; voice equivalent is roughly 30-60 seconds.",
+      },
+      {
+        question: "Can I voice journal in Bahasa Indonesia?",
+        answer:
+          "Yes — Nuju Pro supports Bahasa Indonesia voice recognition. Whisper-based apps also support Indonesian transcription with strong quality. Otter has limited Indonesian support. Day One supports Indonesian text but voice transcription quality varies by language.",
+      },
+      {
+        question: "Will voice entries be safe if I lose my phone?",
+        answer:
+          "Depends on app sync model. Cloud-synced voice entries (Nuju, Day One) survive phone loss but require account login on new device. Local-only voice apps lose data with phone. For journal content where loss would be significant, cloud-sync with strong encryption is the safer choice — but verify the app's encryption practices.",
+      },
+    ],
+  },
+  // BAHASA INDONESIA — Depresi pasca lulus kuliah. Untapped Indonesian Gen Z.
+  {
+    slug: "depresi-pasca-lulus-kuliah",
+    title: "Depresi Pasca Lulus Kuliah: Kenapa Terjadi dan Cara Pulih (Indonesia 2026)",
+    description: "Depresi pasca lulus kuliah umum tapi sering nggak dibahas — kombinasi kehilangan struktur, identity diffusion, tekanan kerja, dan ekspektasi keluarga. Penyebab nyata + cara pulih + kapan butuh psikolog. Sumber Indonesia lengkap.",
+    metaTitle: "Depresi Pasca Lulus Kuliah: Kenapa + Cara Pulih (Indonesia 2026)",
+    metaDescription: "Depresi pasca lulus kuliah umum tapi kurang dibahas. Penyebab nyata (struktur + identitas + tekanan kerja) + cara pulih + sumber Indonesia.",
+    publishedAt: "2026-05-22",
+    readingTime: 7,
+    category: "Mental Wellness",
+    sections: [
+      { type: "p", content: "Depresi pasca lulus kuliah lebih umum dari yang dibahas — terutama untuk Gen Z Indonesia. Penyebabnya kombinasi: kehilangan struktur harian yang udah dijalanin 16+ tahun (sekolah → kuliah), identity diffusion (lo nggak lagi 'mahasiswa' tapi belum jadi 'profesional'), tekanan dapet kerja yang layak, ekspektasi keluarga yang berinvestasi finansial, dan comparison dengan teman seangkatan yang udah dapet kerja atau lanjut S2. Wajar kalau lo merasa kosong walaupun 'udah berhasil' lulus." },
+      { type: "callout", content: "Penting: depresi adalah kondisi medis yang butuh perawatan profesional. Tulisan ini supportive content, bukan pengganti psikolog. Kalau lo punya pikiran ngerusak diri — hubungi Into The Light Indonesia (intothelightid.org) atau 119 ext 8 sekarang. Halodoc/KALM/Riliv menawarkan konsultasi mulai Rp 50.000-150.000." },
+      { type: "h2", content: "Kenapa depresi pasca lulus spesifik" },
+      { type: "p", content: "Lima komponen yang bikin masa pasca lulus rentan depresi:" },
+      { type: "ul", content: [
+        "Kehilangan struktur: 16+ tahun hidup lo terstruktur (kelas, semester, deadline tugas). Tiba-tiba kosong. Struktur vacuum yang bisa surfacing depresi.",
+        "Identity diffusion: 'siapa gue kalau bukan mahasiswa?' belum ada jawaban. Identitas perlu dibangun dari nol.",
+        "Tekanan kerja yang layak: orang tua udah investasi finansial signifikan. Pressure untuk dapet kerja 'pantas' yang bisa dipamerin ke saudara.",
+        "Comparison konstan: temen yang udah dapet kerja MNC, yang lanjut S2 ke luar negeri, yang nikah. LinkedIn perpanjang ini.",
+        "Loneliness baru: support sistem dari kampus (temen sekelas, organisasi, kos) hilang. Build network baru dari nol di tempat kerja butuh waktu.",
+      ] },
+      { type: "h2", content: "Tanda-tanda depresi pasca lulus" },
+      { type: "p", content: "Bedakan dari 'masa transisi yang sulit' (normal) vs depresi klinis (butuh perawatan). Tanda depresi:" },
+      { type: "ul", content: [
+        "Mood rendah persisten lebih dari 2 minggu — bukan cuma hari-hari buruk sesekali.",
+        "Kehilangan minat pada hal yang sebelumnya disukai (hobi, social, hal yang dulu lo enjoy).",
+        "Perubahan tidur signifikan — kebanyakan atau insomnia.",
+        "Perubahan nafsu makan dan berat badan.",
+        "Kelelahan terus-menerus walaupun nggak ngapa-ngapain.",
+        "Sulit konsentrasi, sulit ngambil keputusan kecil.",
+        "Perasaan worthless atau guilt yang berlebihan.",
+        "Pikiran ngerusak diri sendiri — sekecil apapun, sesekali apapun.",
+      ] },
+      { type: "p", content: "Kalau 5+ dari list ini berlangsung 2+ minggu, itu sinyal untuk konsultasi profesional. Halodoc/KALM/Riliv (Rp 50.000-150.000). Banyak kampus juga punya konseling alumni untuk transisi pasca lulus — tanya." },
+      { type: "h2", content: "Strategi pemulihan (sambil dapet bantuan profesional)" },
+      { type: "p", content: "Lima strategi yang research-backed untuk masa pasca lulus:" },
+      { type: "ol", content: [
+        "Rebuild struktur harian: jadwal bangun yang konsisten, waktu makan teratur, satu kegiatan utama per hari (apply kerja, kursus, olahraga). Struktur eksternal mengisi vacuum yang muncul.",
+        "Bangun identitas baru lewat pengalaman, bukan menunggu jawaban datang: ambil kelas baru, gabung komunitas baru, kerjain side project. Identitas terbentuk dari doing, bukan dari thinking.",
+        "Set realistic expectation soal kerja: kebanyakan fresh graduate butuh 3-9 bulan untuk dapet kerja yang baik. Bukan kegagalan, itu rata-rata.",
+        "Aktif maintain support sistem: temen kuliah yang udah pindah kota tetap kontak. Bangun network baru di tempat kerja atau komunitas. Loneliness adalah trigger depresi besar.",
+        "Limit comparison sosmed: mute teman yang konsisten bikin lo merasa worse. LinkedIn highlight reel bukan realitas mereka.",
+      ] },
+      { type: "h2", content: "Journaling untuk masa pasca lulus" },
+      { type: "p", content: "5 prompt yang membantu:" },
+      { type: "ul", content: [
+        "'Siapa gue di luar identitas mahasiswa?' Tulis 3 hal yang masih jadi diri lo (values, interest, relationship). Identitas nggak hilang sepenuhnya, hanya butuh redefine.",
+        "'Apa yang gue takutin dari masa pasca lulus ini?' Specific. Takut nggak dapet kerja? Takut orang tua kecewa? Takut menjadi 'biasa'? Naming ketakutan bikin mereka lebih kecil.",
+        "'Apa yang gue bisa kontrol minggu ini?' Bukan keputusan kerja yang nggak dalam kontrol — tapi effort apply, networking, skill building.",
+        "'Apa kemajuan kecil yang gue buat hari ini?' Anti-depression prompt. Bahkan 1 email apply atau 1 jam belajar skill baru = progress yang valid.",
+        "'Apa yang gue mau jadi 5 tahun lagi?' Long-term perspective melunakkan urgency pasca lulus. Most career paths nggak linear.",
+      ] },
+      { type: "p", content: "Nuju free di /onboarding cocok untuk practice harian ini — support Bahasa Indonesia, 30-detik entry yang fit walaupun motivasi rendah, persona Gentle yang validatif. 60 detik untuk mulai, nggak butuh kartu kredit." },
+      { type: "h2", content: "Kapan butuh psikolog dengan urgent" },
+      { type: "p", content: "Tanda yang butuh konsultasi profesional minggu ini:" },
+      { type: "ul", content: [
+        "Pikiran ngerusak diri sendiri — sekecil apapun.",
+        "Mood rendah persisten dengan ketidakmampuan fungsi (nggak bisa apply kerja, nggak bisa keluar rumah, nggak bisa makan teratur) lebih dari 2 minggu.",
+        "Ketergantungan pada alkohol atau zat lain untuk coping yang meningkat.",
+        "Gangguan tidur kronis (>3 minggu).",
+        "Kehilangan minat pada semua hal — bahkan hal yang dulu paling lo suka.",
+      ] },
+      { type: "p", content: "Akses Indonesia: Halodoc, KALM, Riliv (Rp 50.000-150.000 per sesi). Banyak kampus punya layanan konseling alumni — tanya BAAK atau biro mahasiswa. BPJS sekarang cover beberapa kondisi mental health. Krisis: Into The Light Indonesia (intothelightid.org), 119 ext 8." },
+      { type: "h2", content: "Realitas yang sering nggak dibilang" },
+      { type: "p", content: "Beberapa hal yang penting tau:" },
+      { type: "ul", content: [
+        "Most fresh graduate butuh 6-12 bulan untuk settle ke ritme baru pasca lulus. Itu rata-rata, bukan failure.",
+        "Banyak orang pasca lulus underemployment di awal (kerja yang nggak butuh gelar, atau pekerjaan low-prestige). Itu normal, bukan akhir.",
+        "Depresi pasca lulus highly treatable. Treatment yang baik bisa kasih lo balik fungsi penuh dalam 3-6 bulan.",
+        "Karir nggak linear. Path lo mungkin beda banget dari yang lo bayangin pas masih kuliah. Itu OK.",
+      ] },
+      { type: "h2", content: "Bottom line" },
+      { type: "p", content: "Depresi pasca lulus kuliah umum, terdokumentasi, dan highly treatable — bukan kelemahan lo. Kombinasi struktur vacuum + identity diffusion + tekanan kerja + ekspektasi keluarga + comparison. Strategi pemulihan: rebuild struktur, bangun identitas lewat doing, set realistic expectation, maintain support, limit comparison. Journaling 5 prompt untuk practice harian. Untuk gejala berat, konsultasi profesional — Halodoc/KALM/Riliv mulai Rp 50.000. Krisis: Into The Light Indonesia, 119 ext 8. Nuju free di /onboarding — 60 detik, no kartu kredit." },
+    ],
+    faq: [
+      {
+        question: "Apakah depresi pasca lulus kuliah umum di Indonesia?",
+        answer:
+          "Ya — lebih umum dari yang dibahas. Riset 2024-2026 menunjukkan tingkat depresi dan anxiety Gen Z Indonesia tinggi, dengan masa transisi pasca lulus sebagai salah satu momen rentan. Kombinasi kehilangan struktur, identity diffusion, tekanan dapet kerja, dan comparison sosmed. Bukan kelemahan lo — itu kondisi yang umum dan highly treatable.",
+      },
+      {
+        question: "Berapa lama biasanya butuh untuk pulih dari masa pasca lulus?",
+        answer:
+          "Tergantung. Most fresh graduate butuh 6-12 bulan untuk settle ke ritme baru. Yang transition tanpa depresi klinis biasanya stabil dalam 6 bulan. Yang depresi klinis butuh treatment — dengan treatment yang baik, recovery 3-6 bulan typical. Tanpa treatment, depresi bisa berlangsung berbulan-bulan atau bertahun-tahun. Jangan tunggu — konsultasi profesional kalau gejala persist.",
+      },
+      {
+        question: "Apa beda 'masa transisi yang sulit' vs depresi klinis?",
+        answer:
+          "Transisi sulit: mood swing wajar, masih bisa fungsi (apply kerja, makan, tidur, social), recovery time pendek setelah hari buruk. Depresi klinis: mood rendah persisten 2+ minggu, ketidakmampuan fungsi, kehilangan minat pada semua, perubahan tidur/nafsu makan signifikan, kelelahan terus-menerus, pikiran ngerusak diri. Kalau 5+ tanda klinis berlangsung 2+ minggu, itu butuh konsultasi profesional.",
+      },
+      {
+        question: "Gimana cara cerita ke orang tua kalau gue depresi pasca lulus?",
+        answer:
+          "Sulit di banyak keluarga Indonesia. Strategi: (1) Fokus pada bantuan profesional, bukan diskusi tentang 'apa yang salah.' 'Bu, gue mau konsultasi sama psikolog untuk membantu adjust pasca lulus.' (2) Pakai framing kesehatan medis, bukan mental health doang. 'Gue ngalamin gejala yang butuh dievaluasi dokter.' (3) Cari support dari saudara atau teman dulu kalau orang tua belum ready. Yang penting: lo dapet bantuan, urutan revealnya bisa flexible.",
+      },
+      {
+        question: "Gimana kalau orang tua nuntut gue cepet dapet kerja?",
+        answer:
+          "Pressure dari orang tua adalah salah satu trigger depresi pasca lulus terbesar. Strategi: (1) Komunikasi realistic timeline — 'Kebanyakan fresh graduate butuh 6-9 bulan dapet kerja, Bu. Gue lagi apply terus tapi proses memang lama.' (2) Update progress mingguan — supaya mereka liat effort lo. (3) Set batas: 'Bu, gue sayang Ibu, tapi gue butuh nggak ngomongin kerja setiap hari supaya nggak makin stres.' (4) Kalau pressure sangat berat, konsultasi psikolog (bisa juga untuk lo + orang tua kalau mereka mau).",
+      },
+      {
+        question: "Bisakah journaling aja membantu depresi pasca lulus?",
+        answer:
+          "Untuk transisi sulit non-klinis: ya, sangat membantu. Untuk depresi klinis: journaling adalah supportive practice, BUKAN treatment utama. Depresi klinis butuh psikolog/psikiater (therapy ± medication). Journaling yang dilakukan ALONGSIDE treatment profesional terbukti meningkatkan outcome. Tapi journaling sendirian untuk depresi klinis nggak cukup. Konsultasi dulu, journaling sebagai pelengkap.",
+      },
+    ],
+  },
+  // BAHASA INDONESIA — Stres ekonomi Gen Z Indonesia. Timely 2026.
+  {
+    slug: "cara-mengatasi-stres-keuangan-gen-z",
+    title: "Cara Mengatasi Stres Keuangan Gen Z Indonesia: 5 Teknik Praktis + Journaling",
+    description: "Stres keuangan Gen Z Indonesia naik signifikan 2024-2026 — inflasi, biaya hidup, ekspektasi gaya hidup sosmed. 5 teknik praktis untuk mengelola stres + 4 prompt journaling. Plus sumber bantuan keuangan dan mental health.",
+    metaTitle: "Cara Mengatasi Stres Keuangan Gen Z Indonesia: 5 Teknik (2026)",
+    metaDescription: "Stres keuangan Gen Z Indonesia 2026: 5 teknik praktis + 4 prompt journaling. Inflasi, biaya hidup, comparison sosmed. Sumber bantuan.",
+    publishedAt: "2026-05-22",
+    readingTime: 7,
+    category: "Mental Wellness",
+    sections: [
+      { type: "p", content: "Stres keuangan Gen Z Indonesia naik signifikan 2024-2026 — inflasi yang outpace gaji entry-level, biaya kos/hidup yang naik, tekanan untuk mempertahankan gaya hidup yang dipamerin di sosmed, dan ketidakpastian ekonomi yang bikin perencanaan jangka panjang susah. Wajar kalau lo merasa kewalahan. Tulisan ini ngebahas 5 teknik praktis untuk mengelola stres keuangan + 4 prompt journaling yang membantu memutus loop overthinking soal uang." },
+      { type: "callout", content: "Quick start: stres keuangan akut (nggak bisa bayar tagihan, debt collector, kehilangan kerja) butuh tindakan praktis dulu sebelum journaling. Skip ke 'Sumber bantuan keuangan praktis' di bagian bawah. Nuju free di /onboarding untuk practice harian saat udah stabil — 60 detik untuk mulai." },
+      { type: "h2", content: "Kenapa stres keuangan Gen Z Indonesia spesifik" },
+      { type: "p", content: "Empat komponen yang bikin masa ini berat:" },
+      { type: "ul", content: [
+        "Gap gaji-inflasi: gaji entry-level di Jakarta/kota besar (Rp 4-7 juta) susah cover biaya hidup + nabung. Generasi sebelumnya nggak menghadapi gap sebesar ini.",
+        "Comparison gaya hidup sosmed: teman pamer trip Bali, brunch di kafe mahal, tas branded. Pressure untuk 'kelihatan' sukses bahkan saat keuangan ketat.",
+        "Investasi keluarga: orang tua udah invest finansial signifikan untuk pendidikan. Pressure untuk balik modal lewat gaji yang layak.",
+        "Ketidakpastian ekonomi: PHK tech, recession concerns, perubahan industri. Career planning susah saat masa depan unclear.",
+      ] },
+      { type: "h2", content: "5 teknik praktis mengatasi stres keuangan" },
+      { type: "h2", content: "1. Audit jujur kondisi keuangan" },
+      { type: "p", content: "Banyak stres keuangan dari ketidakjelasan — lo nggak tau pasti pengeluaran lo. Tulis lengkap: income bulanan, fixed expenses (kos, transport, makan dasar), variable expenses, debt yang ada. Sering kondisi sebenarnya lebih manageable dari yang lo bayangkan saat panic. Atau lebih serius — tapi sekarang lo punya data untuk bertindak. Aplikasi: Money Lover, Catatan Keuangan, atau spreadsheet sederhana." },
+      { type: "h2", content: "2. Bedakan 'pengeluaran wajib' dari 'gaya hidup'" },
+      { type: "p", content: "Setelah audit, kategorikan setiap pengeluaran: WAJIB (sewa, makan dasar, transport kerja, utilities) vs GAYA HIDUP (kafe, ojol food, langganan streaming, fashion). Stres keuangan sering dari gaya hidup yang exceed kondisi finansial. Cut gaya hidup non-essential dulu — itu langkah paling cepat mengurangi pressure bulanan." },
+      { type: "h2", content: "3. Bangun emergency fund (target 1 bulan dulu)" },
+      { type: "p", content: "Emergency fund 6 bulan biasa direkomendasikan, tapi untuk Gen Z entry-level itu nggak realistic dalam waktu dekat. Target awal: 1 bulan pengeluaran wajib. Sisihkan 10-20% gaji setiap bulan ke rekening terpisah (bank lain supaya nggak gampang ditarik). Begitu hit 1 bulan, naikkan target ke 2 bulan, dan seterusnya. Buffer kecil aja udah mengurangi anxiety significantly." },
+      { type: "h2", content: "4. Hadapi debt dengan strategi, bukan denial" },
+      { type: "p", content: "Kalau lo punya debt (KTA, kartu kredit, paylater), denial bikin worse. Strategi: (1) List semua debt dengan bunga dan minimum payment. (2) Bayar minimum semua, lalu ekstra di yang bunganya tertinggi (avalanche method) atau yang terkecil (snowball method untuk motivasi). (3) Hindari debt baru. (4) Kalau debt overwhelming, konsultasi ke bank atau OJK untuk restrukturisasi — opsi yang sering nggak diketahui Gen Z." },
+      { type: "h2", content: "5. Limit comparison sosmed yang trigger spending" },
+      { type: "p", content: "Mute atau unfollow akun yang konsisten bikin lo merasa harus 'upgrade' gaya hidup. Riset menunjukkan exposure ke gaya hidup mewah di sosmed menjadi salah satu prediktor terbesar overspending Gen Z. Itu bukan willpower issue — itu environment design. Curate feed untuk mendukung financial goals, bukan menggoyahkannya." },
+      { type: "h2", content: "4 prompt journaling untuk overthinking keuangan" },
+      { type: "ol", content: [
+        "'Apa yang spesifik gue takutin soal keuangan sekarang?' Bukan generic 'gue takut nggak ada duit' — spesifik. Takut nggak bisa bayar kos bulan depan? Takut nggak bisa biayain orang tua nanti? Takut nggak bisa nikah/punya rumah? Spesifik bikin ketakutan konkret.",
+        "'Apa yang gue bisa kontrol minggu ini?' Pendapatan lo, pengeluaran lo, decision lo. Bukan inflasi, kebijakan pemerintah, atau apa yang teman lo posting. Fokus ke yang dalam kontrol mengurangi sense of helplessness.",
+        "'Pengeluaran apa yang gue sesalin minggu lalu? Pengeluaran apa yang worth it?' Reflection ini membangun awareness yang lebih baik dari budget aplikasi. Lo mulai notice pattern.",
+        "'Apa langkah finansial paling kecil yang bisa gue ambil hari ini?' Bukan 'mulai investasi $1000.' Tapi 'transfer Rp 50.000 ke rekening emergency.' Tiny step. Konsisten beats ambitious.",
+      ] },
+      { type: "h2", content: "Sumber bantuan keuangan praktis" },
+      { type: "p", content: "Untuk kondisi keuangan akut:" },
+      { type: "ul", content: [
+        "OJK (Otoritas Jasa Keuangan) — bantuan restrukturisasi debt dan informasi konsumen finansial.",
+        "Bank tempat lo punya kredit — kebanyakan punya program restrukturisasi yang nggak banyak dipromosikan tapi available untuk customer yang aktif minta.",
+        "Komunitas finansial (Komunitas Mata Uang, Finansialku) — edukasi keuangan dan support peer.",
+        "Konsultasi finansial gratis dari beberapa fintech (CekAja, Lifepal) — biasanya untuk first session.",
+      ] },
+      { type: "h2", content: "Kapan stres keuangan butuh psikolog" },
+      { type: "p", content: "Stres keuangan kronis bisa trigger depresi dan anxiety klinis. Tanda butuh bantuan profesional:" },
+      { type: "ul", content: [
+        "Gangguan tidur lebih dari 3 minggu karena overthinking keuangan.",
+        "Serangan panik saat dapet tagihan atau buka rekening bank.",
+        "Pikiran ngerusak diri sendiri terkait situasi finansial.",
+        "Ketidakmampuan fungsi (nggak bisa kerja, makan, social) karena stres keuangan.",
+        "Ketergantungan pada alkohol atau zat lain untuk coping.",
+      ] },
+      { type: "p", content: "Sumber Indonesia: Halodoc, KALM, Riliv mulai Rp 50.000-150.000 (Riliv punya konsultasi gratis dengan relawan psikologi untuk awal). Krisis: Into The Light (intothelightid.org), 119 ext 8." },
+      { type: "h2", content: "Realitas yang penting tau" },
+      { type: "p", content: "Beberapa konteks yang membantu mengurangi self-blame:" },
+      { type: "ul", content: [
+        "Kondisi ekonomi Gen Z secara objektif lebih sulit dari generasi sebelumnya. Bukan kelemahan lo.",
+        "Most Gen Z Indonesia butuh 5-10 tahun karir untuk mencapai financial stability. Itu rata-rata, bukan failure.",
+        "Comparison sosmed nggak refleksi realitas — kebanyakan orang yang pamer pengeluaran mewah juga struggle finansial di balik layar.",
+        "Bantuan keuangan profesional (financial planner, OJK, debt restructuring) bukan tanda gagal — itu tools yang valid.",
+      ] },
+      { type: "h2", content: "Bottom line" },
+      { type: "p", content: "Stres keuangan Gen Z Indonesia adalah masalah struktural + personal yang membutuhkan strategi praktis + emotional management. 5 teknik praktis (audit, kategorisasi, emergency fund, debt strategy, limit comparison) + 4 prompt journaling untuk loop emosional. Untuk gejala mental health berat, konsultasi psikolog — biaya nggak harus jadi penghalang dengan Halodoc/KALM/Riliv mulai Rp 50.000. Nuju free Bahasa Indonesia di /onboarding — 60 detik untuk mulai, no kartu kredit." },
+    ],
+    faq: [
+      {
+        question: "Apakah stres keuangan beneran masalah mental health?",
+        answer:
+          "Ya — riset konsisten menunjukkan financial stress kronis adalah salah satu prediktor terbesar depresi dan anxiety. Bukan 'masalah uang' yang terpisah dari mental health — financial stress AFFECTS mental health secara langsung. Treatment yang efektif sering menggabungkan strategi finansial praktis + dukungan mental health.",
+      },
+      {
+        question: "Berapa banyak emergency fund yang realistic untuk Gen Z entry-level?",
+        answer:
+          "Target awal: 1 bulan pengeluaran wajib (sewa, makan, transport). Bukan 6 bulan yang generic guides bilang — itu nggak realistic untuk Gen Z dengan gaji entry-level. Sisihkan 10-20% gaji ke rekening terpisah. Hit 1 bulan, naikkan target ke 2 bulan. Bertahap. Buffer kecil aja udah significantly mengurangi anxiety.",
+      },
+      {
+        question: "Gimana caranya berhenti compare keuangan sama teman di sosmed?",
+        answer:
+          "(1) Mute atau unfollow akun yang konsisten bikin lo merasa harus upgrade gaya hidup — riset menunjukkan exposure adalah prediktor terbesar overspending Gen Z. (2) Inget: sosmed adalah highlight reel, bukan realitas. Banyak yang pamer pengeluaran mewah juga struggle finansial di balik layar. (3) Curate feed untuk akun yang mendukung financial goals (financial education, frugal living, real Indonesian context).",
+      },
+      {
+        question: "Apa yang harus dilakukan kalau gue overwhelmed sama debt?",
+        answer:
+          "(1) Stop denial — list semua debt dengan bunga dan minimum payment. (2) Bayar minimum semua, lalu ekstra di yang bunganya tertinggi (avalanche) atau yang terkecil (snowball). (3) Hindari debt baru. (4) Kalau overwhelming, konsultasi ke bank tempat lo punya kredit untuk restrukturisasi — opsi yang sering nggak diketahui. (5) OJK juga punya layanan konsumen finansial untuk situasi yang lebih kompleks. Jangan tunggu sampai debt collector — early action = lebih banyak opsi.",
+      },
+      {
+        question: "Apakah Nuju bisa membantu untuk stres keuangan?",
+        answer:
+          "Untuk komponen emosional/mental — ya. Journaling dengan Nuju membantu memutus loop overthinking soal uang, mengidentifikasi pemicu emotional spending, dan membangun perspektif jangka panjang. Tapi Nuju bukan aplikasi keuangan — untuk komponen praktis (budgeting, tracking, debt management), pakai aplikasi finansial khusus (Money Lover, Catatan Keuangan). Kombinasi: aplikasi finansial untuk praktis + Nuju untuk emosional.",
+      },
+      {
+        question: "Kapan stres keuangan butuh psikolog?",
+        answer:
+          "Kalau stres bikin gangguan tidur lebih dari 3 minggu, serangan panik saat dapet tagihan, pikiran ngerusak diri terkait situasi finansial, ketidakmampuan fungsi (nggak bisa kerja/makan/social), atau ketergantungan pada alkohol/zat lain — konsultasi profesional. Halodoc/KALM/Riliv mulai Rp 50.000-150.000. Riliv punya konsultasi gratis dengan relawan psikologi untuk awal. Krisis: Into The Light Indonesia, 119 ext 8.",
+      },
+    ],
+  },
 ];
 
 const normalizeCopy = (value: string): string =>

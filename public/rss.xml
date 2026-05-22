@@ -6,7 +6,7 @@
     <atom:link href="https://nuju.app/rss.xml" rel="self" type="application/rss+xml" />
     <description>Practical guides on journaling, mood tracking, and emotional wellness from the Nuju team.</description>
     <language>en</language>
-    <lastBuildDate>Fri, 22 May 2026 19:45:38 GMT</lastBuildDate>
+    <lastBuildDate>Fri, 22 May 2026 19:54:48 GMT</lastBuildDate>
     <item>
       <title>We Analyzed Our First 161 Real Journal Entries: 87% Were Logged on &apos;Not Great&apos; Days</title>
       <link>https://nuju.app/blog/what-people-write-in-journal-data</link>
@@ -525,6 +525,60 @@
       <link>https://nuju.app/blog/mengatasi-anxiety-wawancara-kerja</link>
       <guid isPermaLink="true">https://nuju.app/blog/mengatasi-anxiety-wawancara-kerja</guid>
       <description>Anxiety wawancara kerja umum dan terdokumentasi. Yang membantu: structured preparation + 10 menit brain dump pre-interview + 5 reframing prompts. Plus konteks Indonesia: ekspektasi keluarga, comparison, ketidakpastian.</description>
+      <category>Mental Wellness</category>
+      <pubDate>Fri, 22 May 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Why Am I Always Anxious Before Sleep? The Real Causes (and the 5-Minute Pre-Sleep Reset)</title>
+      <link>https://nuju.app/blog/why-am-i-always-anxious-before-sleep</link>
+      <guid isPermaLink="true">https://nuju.app/blog/why-am-i-always-anxious-before-sleep</guid>
+      <description>Pre-sleep anxiety has documented causes: daytime distraction drops, default-mode network activates, accumulated cortisol surfaces. Here&apos;s the mechanism + a 5-minute reset that drops sleep latency by 9 minutes per Baylor 2018 research.</description>
+      <category>Mental Wellness</category>
+      <pubDate>Fri, 22 May 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Why Do I Feel Sad on Sundays? The Pattern Behind Sunday Blues</title>
+      <link>https://nuju.app/blog/why-do-i-feel-sad-on-sundays</link>
+      <guid isPermaLink="true">https://nuju.app/blog/why-do-i-feel-sad-on-sundays</guid>
+      <description>Sunday sadness is real and documented — it&apos;s not the same as Sunday Scaries. Specific causes include anticipatory dread, weekend social withdrawal, lack of structure, and meaning vacuum after busy week. Here&apos;s how to identify your specific cause + 5-min protocol.</description>
+      <category>Mental Wellness</category>
+      <pubDate>Fri, 22 May 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Best Journal App for ADHD in 2026: 5 Picks That Actually Work for ADHD Brains</title>
+      <link>https://nuju.app/blog/best-journal-app-for-adhd-2026</link>
+      <guid isPermaLink="true">https://nuju.app/blog/best-journal-app-for-adhd-2026</guid>
+      <description>ADHD brains need a journal app that removes friction, supports executive function challenges, and doesn&apos;t punish missed days. We tested 5 picks for 2026 — Nuju, Daylio, Reflectly, Stoic, Bearable. Honest comparison for the ADHD profile.</description>
+      <category>App Comparison</category>
+      <pubDate>Fri, 22 May 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Best Journal App with Voice Recording in 2026: 5 Picks for Voice Journaling</title>
+      <link>https://nuju.app/blog/best-journal-app-with-voice-recording-2026</link>
+      <guid isPermaLink="true">https://nuju.app/blog/best-journal-app-with-voice-recording-2026</guid>
+      <description>Voice journaling captures what typing misses — tone, hesitation, emotional weight. 5 apps tested for 2026: Nuju Pro, Day One, Otter, Whisper-based apps, Voice Brain Dump. Honest comparison of voice + transcription + privacy.</description>
+      <category>App Comparison</category>
+      <pubDate>Fri, 22 May 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Depresi Pasca Lulus Kuliah: Kenapa Terjadi dan Cara Pulih (Indonesia 2026)</title>
+      <link>https://nuju.app/blog/depresi-pasca-lulus-kuliah</link>
+      <guid isPermaLink="true">https://nuju.app/blog/depresi-pasca-lulus-kuliah</guid>
+      <description>Depresi pasca lulus kuliah umum tapi sering nggak dibahas — kombinasi kehilangan struktur, identity diffusion, tekanan kerja, dan ekspektasi keluarga. Penyebab nyata + cara pulih + kapan butuh psikolog. Sumber Indonesia lengkap.</description>
+      <category>Mental Wellness</category>
+      <pubDate>Fri, 22 May 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Cara Mengatasi Stres Keuangan Gen Z Indonesia: 5 Teknik Praktis + Journaling</title>
+      <link>https://nuju.app/blog/cara-mengatasi-stres-keuangan-gen-z</link>
+      <guid isPermaLink="true">https://nuju.app/blog/cara-mengatasi-stres-keuangan-gen-z</guid>
+      <description>Stres keuangan Gen Z Indonesia naik signifikan 2024-2026 — inflasi, biaya hidup, ekspektasi gaya hidup sosmed. 5 teknik praktis untuk mengelola stres + 4 prompt journaling. Plus sumber bantuan keuangan dan mental health.</description>
       <category>Mental Wellness</category>
       <pubDate>Fri, 22 May 2026 12:00:00 GMT</pubDate>
       <dc:language>en</dc:language>
