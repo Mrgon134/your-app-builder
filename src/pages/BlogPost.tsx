@@ -1709,6 +1709,138 @@ const INTERNAL_LINK_RECOMMENDATIONS: Record<string, InternalLinkRecommendation[]
       body: "Stres finansial sering muncul sebagai anxiety. 7 prompt khusus anxiety untuk Indonesia.",
     },
   ],
+  "why-do-i-feel-bored-with-everything-i-used-to-love": [
+    {
+      slug: "why-do-i-feel-empty-inside",
+      eyebrow: "Related feeling",
+      body: "Bored with everything often overlaps with empty inside. The 5-cause taxonomy.",
+    },
+    {
+      slug: "journaling-for-depression",
+      eyebrow: "When it's anhedonia",
+      body: "Loss of pleasure (anhedonia) is core depression symptom. Honest guide on what helps.",
+    },
+    {
+      slug: "digital-fatigue-journaling-reset",
+      eyebrow: "Dopamine cause",
+      body: "Short-form video resets dopamine baseline. The 5-min reset for the over-stimulated brain.",
+    },
+    {
+      slug: "gen-z-burnout-journaling",
+      eyebrow: "Burnout cause",
+      body: "Burnout makes hobbies feel like work. The 4-prompt burnout protocol.",
+    },
+  ],
+  "why-dont-i-want-to-do-anything-anymore": [
+    {
+      slug: "why-am-i-so-tired-all-the-time",
+      eyebrow: "Often overlaps",
+      body: "Loss of motivation + persistent fatigue often share causes. The 5-cause fatigue stack.",
+    },
+    {
+      slug: "journaling-for-depression",
+      eyebrow: "When it's depression",
+      body: "Avolition is core depression symptom. Honest framing on when to escalate.",
+    },
+    {
+      slug: "best-journal-app-for-adhd-2026",
+      eyebrow: "When it's ADHD",
+      body: "If 'don't want' is really 'can't initiate,' ADHD evaluation is worth pursuing.",
+    },
+    {
+      slug: "gen-z-burnout-journaling",
+      eyebrow: "When it's burnout",
+      body: "Burnout-driven motivation loss responds to rest. The 4-prompt protocol.",
+    },
+  ],
+  "nuju-vs-stoic": [
+    {
+      slug: "nuju-vs-day-one",
+      eyebrow: "Another philosophy comparison",
+      body: "Day One is heritage diary. How Nuju compares to that journaling philosophy.",
+    },
+    {
+      slug: "complete-guide-ai-journaling-2026",
+      eyebrow: "Category guide",
+      body: "Full 2026 guide to AI journaling — what the category is, how to pick.",
+    },
+    {
+      slug: "best-journal-app-for-entrepreneurs-2026",
+      eyebrow: "Founder comparison",
+      body: "Stoic Journal is popular with founders. The 5-pick founder app comparison.",
+    },
+    {
+      slug: "ai-coach-personality-preference-data",
+      eyebrow: "Nuju's Wise Sage",
+      body: "Real data: Nuju's Stoic-inspired 'Wise Sage' is least picked persona. Why.",
+    },
+  ],
+  "best-journal-app-for-anxiety-and-depression-2026": [
+    {
+      slug: "best-ai-journal-apps-for-anxiety-2026",
+      eyebrow: "Anxiety-only deeper",
+      body: "Anxiety-only deeper comparison — if depression isn't the dominant concern.",
+    },
+    {
+      slug: "journaling-for-depression",
+      eyebrow: "Depression-only deeper",
+      body: "Depression-only deeper guide — honest framing, professional care emphasis.",
+    },
+    {
+      slug: "best-free-mental-wellness-apps-2026",
+      eyebrow: "Free toolkit",
+      body: "7 truly-free mental wellness apps for tight budgets.",
+    },
+    {
+      slug: "complete-guide-ai-journaling-2026",
+      eyebrow: "Category guide",
+      body: "Full 2026 guide to AI journaling — what the category is, how to pick.",
+    },
+  ],
+  "journaling-untuk-adhd-indonesia": [
+    {
+      slug: "journaling-for-adhd",
+      eyebrow: "ADHD journaling deeper",
+      body: "Beyond Indonesian context — full guide to ADHD-friendly journaling.",
+    },
+    {
+      slug: "best-journal-app-for-adhd-2026",
+      eyebrow: "Tool selection",
+      body: "5 apps tested for ADHD brain — Nuju, Daylio, Reflectly, Stoic, Bearable.",
+    },
+    {
+      slug: "perfeksionisme-dan-procrastination-indonesia",
+      eyebrow: "ADHD + procrastination",
+      body: "ADHD + procrastination often overlap. The 6-prompt loop-breaker protocol.",
+    },
+    {
+      slug: "aplikasi-journal-ai-gratis-indonesia",
+      eyebrow: "Aplikasi ADHD-friendly",
+      body: "5 aplikasi journal AI gratis Indonesia — termasuk yang ADHD-friendly.",
+    },
+  ],
+  "mengatasi-anxiety-media-sosial-gen-z": [
+    {
+      slug: "digital-wellness-journaling-gen-z-indonesia",
+      eyebrow: "Digital fatigue Indonesia",
+      body: "Anxiety sosmed = bagian dari digital fatigue Gen Z. Protokol 5-menit reset lengkap.",
+    },
+    {
+      slug: "journaling-for-jealousy-and-comparison",
+      eyebrow: "Comparison loop",
+      body: "Comparison adalah komponen anxiety sosmed terbesar. 6 prompt loop-breaker.",
+    },
+    {
+      slug: "journaling-untuk-anxiety",
+      eyebrow: "Anxiety umum",
+      body: "Anxiety sosmed adalah jenis anxiety spesifik. 7 prompt untuk anxiety umum berlaku.",
+    },
+    {
+      slug: "cara-mengatasi-overthinking",
+      eyebrow: "Overthink sosmed",
+      body: "Overthinking apa yang lo liat di sosmed? 4 prompt untuk memutus loop pikiran.",
+    },
+  ],
 };
 
 const getInternalLinkCards = (slug: string): InternalLinkCard[] =>

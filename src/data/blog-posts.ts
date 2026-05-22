@@ -8597,6 +8597,532 @@ const RAW_BLOG_POSTS: BlogPost[] = [
       },
     ],
   },
+  // Q-BASED LONG-TAIL — Anhedonia (loss of pleasure). YMYL careful.
+  {
+    slug: "why-do-i-feel-bored-with-everything-i-used-to-love",
+    title: "Why Do I Feel Bored with Everything I Used to Love? (The Real Causes)",
+    description: "Losing interest in things you used to love isn't laziness — it's a documented symptom with specific causes. Burnout, depression (anhedonia), identity shift, dopamine desensitization, or natural growth. Here's how to identify yours.",
+    metaTitle: "Why Am I Bored with Things I Used to Love? Real Causes (2026)",
+    metaDescription: "Loss of interest in former hobbies has 5 documented causes: burnout, depression, identity shift, dopamine fatigue, natural growth. Identify yours.",
+    publishedAt: "2026-05-22",
+    readingTime: 6,
+    category: "Mental Wellness",
+    sections: [
+      { type: "p", content: "Short answer: losing interest in things you used to love has 5 most common causes — burnout (no bandwidth for enjoyment), depression specifically anhedonia (the medical loss of pleasure), identity shift (you've outgrown the activities without realizing), dopamine desensitization (high-stimulation media has reset your baseline so quieter activities feel flat), or natural growth (some interests just expire — that's normal). Each calls for a different response. One specifically (anhedonia in depression) needs professional care." },
+      { type: "callout", content: "Quick start: try the 5-minute diagnostic below to identify your specific cause. Crisis if 'feel nothing' includes self-harm thoughts: US 988, Indonesia Into The Light, UK Samaritans 116 123. Nuju free Ju Gets You reveal at /onboarding — 60 seconds, no credit card." },
+      { type: "h2", content: "5 most common causes" },
+      { type: "ul", content: [
+        "Burnout: when emotional bandwidth is depleted, even hobbies feel like work. Responds to rest, not treatment. Different from depression.",
+        "Depression (anhedonia): the medical loss of pleasure in things that used to bring joy. Core depression symptom. If lasting 2+ weeks, see a doctor.",
+        "Identity shift: you've outgrown the activities without consciously realizing. Common after major life transitions (graduation, marriage, parenthood, career change).",
+        "Dopamine desensitization: TikTok, gaming, short-form video have reset your dopamine baseline. Slower activities (reading, walks, drawing) now feel boring because they don't hit fast enough.",
+        "Natural growth: some interests just expire. Childhood hobbies, college obsessions — many naturally fade. Not pathological, just life phases.",
+      ] },
+      { type: "h2", content: "5-minute diagnostic" },
+      { type: "ol", content: [
+        "Pleasure check (1 min): do ANY activities still bring you joy? If 'no' for 2+ weeks → possible depression, see doctor.",
+        "Recent workload (1 min): overworking 3+ months? Sleep <6 hours often? If yes → burnout.",
+        "Recent transitions (1 min): major life change in last 6-12 months? If yes → identity shift.",
+        "Screen time (1 min): hours per day on short-form video, TikTok, gaming? If 3+ → dopamine desensitization.",
+        "Specific old hobby (1 min): one hobby you lost interest in — were you genuinely passionate or just going through the motions for years? If latter → natural growth.",
+      ] },
+      { type: "h2", content: "What helps for each cause" },
+      { type: "ul", content: [
+        "Burnout: protected rest (weeks, not days). The 4-prompt protocol: /blog/gen-z-burnout-journaling.",
+        "Anhedonia/depression: professional treatment. Journaling supportive only. See /blog/journaling-for-depression.",
+        "Identity shift: experiment with new activities aligned with current values, not past identity. Small experiments over months.",
+        "Dopamine desensitization: 2-4 weeks of reducing high-stim content. Reintroduce slower activities. Baseline recovers — measurable.",
+        "Natural growth: let interests go without guilt. Some activities served you for a season. New ones will emerge.",
+      ] },
+      { type: "h2", content: "When this is serious" },
+      { type: "p", content: "Talk to a doctor if:" },
+      { type: "ul", content: [
+        "Loss of interest in EVERYTHING (anhedonia) for 2+ weeks.",
+        "Paired with persistent low mood, sleep changes, hopelessness.",
+        "Significant disruption to work, relationships, or function.",
+        "Thoughts of self-harm — even brief, even ambiguous.",
+      ] },
+      { type: "p", content: "Crisis lines: US 988. Indonesia Into The Light. UK Samaritans 116 123. Depression is highly treatable but requires professional evaluation." },
+      { type: "h2", content: "Bottom line" },
+      { type: "p", content: "Losing interest has 5 common causes — each calls for different response. Most cases aren't depression but identifying which one matters. Use the 5-min diagnostic. For depression specifically (anhedonia + other symptoms 2+ weeks), see a clinician. For others, journaling + matching action. Nuju free at /onboarding — 60 seconds." },
+    ],
+    faq: [
+      {
+        question: "Is loss of interest always depression?",
+        answer:
+          "No — loss of interest has 5 common causes (burnout, depression/anhedonia, identity shift, dopamine desensitization, natural growth). Depression-related anhedonia is one of them but not the only one. Distinguishing matters because each needs different response. Use the 5-min diagnostic to identify likely cause. If you lose interest in EVERYTHING (not just one thing) for 2+ weeks, that's more likely depression — see a doctor.",
+      },
+      {
+        question: "Can TikTok really make me bored with reading?",
+        answer:
+          "Yes — documented. Short-form video trains the dopamine system to expect novelty every 7-15 seconds. After hours daily, the baseline reward signal drops, leaving slower activities (reading, walks, hobbies) feeling flat. The good news: baseline recovers in 2-4 weeks of reduced high-stim content exposure. Not permanent, not character flaw.",
+      },
+      {
+        question: "How do I know if my interest loss is burnout or depression?",
+        answer:
+          "Key distinction: burnout interest loss responds to actual rest (weeks of vacation help); depression interest loss often doesn't. Burnout: you can imagine wanting to do things again with energy back. Depression: even imagining enjoyment is difficult. Overlap is common — only a clinician can definitively diagnose. If unclear after 5-min diagnostic, see a doctor.",
+      },
+      {
+        question: "Should I force myself to do hobbies I used to love?",
+        answer:
+          "Depends on cause. For burnout: rest first, hobbies later — forcing makes it worse. For identity shift: trying old hobbies briefly to confirm they're done is fine; don't force. For depression: behavioral activation (gentle re-engagement with previously enjoyed activities) is part of treatment — but ideally with therapist guidance. For dopamine desensitization: yes, force the slower activities gently — baseline needs reintroduction.",
+      },
+      {
+        question: "How long until I enjoy things again?",
+        answer:
+          "Depends on cause. Burnout: 4-8 weeks of actual rest. Depression: with treatment, 4-12 weeks typical. Identity shift: 3-12 months as new interests emerge. Dopamine desensitization: 2-4 weeks of reduced high-stim content. Natural growth: variable — new interests emerge when they emerge. If 'feeling nothing' persists 4-6 weeks without shift, see a clinician.",
+      },
+      {
+        question: "Is losing interest in life a sign of suicidal thoughts?",
+        answer:
+          "Loss of interest is a depression symptom, and severe depression can include suicidal thoughts. If you have ANY thoughts of self-harm (even brief, even ambiguous), please contact a crisis line right now. US 988 (call or text). Indonesia Into The Light (intothelightid.org) or 119 ext 8. UK Samaritans 116 123. Depression is highly treatable. Getting help is the smart move, not a failure.",
+      },
+    ],
+  },
+  // Q-BASED LONG-TAIL — Avolition (loss of motivation). YMYL careful.
+  {
+    slug: "why-dont-i-want-to-do-anything-anymore",
+    title: "Why Don't I Want to Do Anything Anymore? (The Real Causes Behind Avolition)",
+    description: "Loss of motivation to do anything has documented causes: depression (avolition), burnout, executive function issues (ADHD), chronic exhaustion, or values vacuum. Each calls for different response. 5-min diagnostic + when it needs professional help.",
+    metaTitle: "Why Don't I Want to Do Anything? Real Causes + Help (2026)",
+    metaDescription: "Loss of motivation = avolition + 4 other causes. Diagnostic identifies yours. When it's depression vs burnout vs ADHD. Crisis resources.",
+    publishedAt: "2026-05-22",
+    readingTime: 6,
+    category: "Mental Wellness",
+    sections: [
+      { type: "p", content: "Short answer: 'don't want to do anything' has 5 common causes — depression (specifically avolition, the medical loss of motivation), burnout (depleted bandwidth), executive function issues including undiagnosed ADHD, chronic exhaustion (sleep + medical), or values vacuum (you no longer see point in what you're doing). The first one needs professional care. The others have specific responses. Critical: this symptom is also part of severe depression — if accompanied by self-harm thoughts, please contact crisis support immediately." },
+      { type: "callout", content: "Crisis: if 'don't want to do anything' includes thoughts of self-harm or 'not wanting to be here' — please contact a crisis line right now. US 988 (call/text). Indonesia Into The Light or 119 ext 8. UK Samaritans 116 123. The rest of this article is for less severe versions." },
+      { type: "h2", content: "5 causes of 'don't want to do anything'" },
+      { type: "ul", content: [
+        "Avolition (depression symptom): medical loss of motivation, often paired with anhedonia. Core depression symptom. Persistent (2+ weeks) → see doctor.",
+        "Burnout: bandwidth depleted from chronic overwork. Responds to rest. Different from depression.",
+        "Executive function (ADHD): not loss of want — you want, but can't initiate. ADHD-specific. Diagnosable and treatable.",
+        "Chronic exhaustion: medical (thyroid, iron, sleep apnea) or sleep debt. Body doesn't have energy to want.",
+        "Values vacuum: you've lost connection to why you do things. Existential, not pathological. Responds to values work.",
+      ] },
+      { type: "h2", content: "5-minute diagnostic" },
+      { type: "ol", content: [
+        "Pleasure + motivation both gone (1 min): if yes for 2+ weeks → likely depression. See doctor.",
+        "Recent burnout signs (1 min): overworking 3+ months, sleep <6 hours? → burnout-driven.",
+        "Want vs can't initiate (1 min): you want to do things but can't START? → possible ADHD executive function.",
+        "Physical exhaustion (1 min): always tired despite sleep? Cold, hair loss, heavy periods? → check medical (thyroid, iron, sleep apnea).",
+        "Values check (1 min): can you remember WHY you started current path? If no → values vacuum.",
+      ] },
+      { type: "h2", content: "What helps for each cause" },
+      { type: "ul", content: [
+        "Avolition/depression: professional treatment, often therapy + medication. See /blog/journaling-for-depression for supportive practice alongside.",
+        "Burnout: protected rest. See /blog/gen-z-burnout-journaling.",
+        "ADHD executive function: professional evaluation (highly treatable). See /blog/best-journal-app-for-adhd-2026.",
+        "Chronic exhaustion: doctor visit for medical workup (thyroid, iron, sleep study). See /blog/why-am-i-so-tired-all-the-time.",
+        "Values vacuum: reflection on what would feel meaningful. Slow process. Therapy can help.",
+      ] },
+      { type: "h2", content: "When this is urgent" },
+      { type: "p", content: "Talk to a professional this week if:" },
+      { type: "ul", content: [
+        "Symptoms last 2+ weeks without shift.",
+        "Self-harm thoughts — even brief.",
+        "Inability to perform basic self-care (eating, hygiene, sleep).",
+        "Inability to work or attend school for multiple days.",
+        "Increased reliance on alcohol or substances.",
+      ] },
+      { type: "p", content: "Crisis: US 988 (call/text). Indonesia Into The Light (intothelightid.org), 119 ext 8. UK Samaritans 116 123. For ongoing care: GP can screen and refer. Don't wait." },
+      { type: "h2", content: "Bottom line" },
+      { type: "p", content: "'Don't want to do anything' has 5 causes — depression, burnout, ADHD, exhaustion, values vacuum. Each needs different response. The 5-min diagnostic identifies yours. For symptoms lasting 2+ weeks or with self-harm thoughts, talk to a clinician this week. For less severe versions, matching response works. Nuju free at /onboarding — 60 seconds, no credit card." },
+    ],
+    faq: [
+      {
+        question: "Is loss of motivation always depression?",
+        answer:
+          "No — it has 5 common causes (depression/avolition, burnout, ADHD executive function, chronic exhaustion, values vacuum). Depression-related avolition is one of them but not the only one. Distinguishing matters because each calls for different response. If loss of motivation lasts 2+ weeks paired with loss of pleasure and persistent low mood, it's more likely depression — see a doctor.",
+      },
+      {
+        question: "What's the difference between 'don't want' and 'can't' do things?",
+        answer:
+          "Important distinction. Depression-related avolition feels like 'don't want' — the desire isn't there. ADHD executive function feels like 'want but can't initiate' — you want to do things but can't start them. Burnout often feels like 'too tired to want.' Each has different treatment. ADHD is diagnosable; if you've never been evaluated and 'want but can't initiate' pattern fits, talk to a doctor.",
+      },
+      {
+        question: "How long should I wait before seeing a doctor?",
+        answer:
+          "Don't wait long. 2+ weeks of persistent symptoms = see a doctor. Sooner if symptoms include self-harm thoughts, inability to function at basic level, or significant medical signs (always cold + tired, heavy periods + dizziness, snoring + daytime sleepiness — possible thyroid, iron, sleep apnea). All of these are highly treatable but require diagnosis.",
+      },
+      {
+        question: "Can ADHD cause loss of motivation in adults?",
+        answer:
+          "ADHD doesn't cause loss of motivation exactly — it causes inability to initiate despite motivation. People with undiagnosed ADHD often experience this as 'don't want' when it's actually 'want but can't.' Adult ADHD is significantly underdiagnosed especially in women and people of color. If 'want but can't initiate' pattern fits your lifetime experience, professional evaluation is worth pursuing.",
+      },
+      {
+        question: "What if my motivation comes back when I try something?",
+        answer:
+          "That suggests it's NOT severe depression. Severe depression-related avolition doesn't lift even when you push past initial resistance. If motivation returns once you start, more likely burnout (need rest), executive function (need ADHD evaluation), or values issue (need to reconnect with what matters). Mild depression can also lift with behavioral activation — but if pattern persists, still worth professional check.",
+      },
+      {
+        question: "Where do I get help if motivation loss is severe?",
+        answer:
+          "Crisis: US 988 (call/text). Indonesia Into The Light (intothelightid.org), 119 ext 8. UK Samaritans 116 123. For ongoing care: GP first — they can screen, refer to therapist, prescribe initial treatment if appropriate. Many countries have low-cost or free options (NHS in UK, BPJS in Indonesia, sliding-scale therapy via openpathcollective.org in US). Cost is rarely the real barrier — knowing where to start is.",
+      },
+    ],
+  },
+  // VERSUS — Nuju vs Stoic.
+  {
+    slug: "nuju-vs-stoic",
+    title: "Nuju vs Stoic: AI Journal or Philosophical Practice? (2026 Comparison)",
+    description: "Nuju and Stoic Journal target different journaling philosophies. Nuju is AI-augmented short-entry. Stoic is philosophy-driven structured prompts (Marcus Aurelius framework). Different jobs, sometimes complementary. Honest comparison.",
+    metaTitle: "Nuju vs Stoic 2026: AI Journal vs Philosophy Practice (Compared)",
+    metaDescription: "Nuju vs Stoic: Nuju AI-augmented short entries + multilingual. Stoic philosophical prompts (Marcus Aurelius) + structured. Different jobs.",
+    publishedAt: "2026-05-22",
+    readingTime: 6,
+    category: "App Comparison",
+    sections: [
+      { type: "p", content: "Short answer: pick Nuju if you want AI-augmented short daily entries with multi-language support and a free tier. Pick Stoic if you want philosophical structured practice grounded in Stoicism (Marcus Aurelius, Epictetus, Seneca). They target different journaling philosophies — Nuju is AI-augmented reflection; Stoic is philosophy-as-practice. Some users run both for different jobs." },
+      { type: "callout", content: "Quick start: try Nuju free first (60 seconds at /onboarding, no credit card). If you want philosophical structure on top, add Stoic Journal (~$30/year). Most users don't need both — pick the one matching your journaling philosophy." },
+      { type: "h2", content: "Head-to-head: 5 dimensions" },
+      { type: "ul", content: [
+        "Format: Nuju = AI-augmented 30-second mood+text. Stoic = structured philosophical prompts, longer entries.",
+        "AI: Nuju has it as core feature. Stoic has limited AI (prompt rotation), not analytical AI.",
+        "Pricing: Nuju Free covers daily use. Stoic ~$30/year (no permanent free tier, only trial).",
+        "Languages: Nuju 8 languages including Bahasa Indonesia. Stoic primarily English.",
+        "Philosophy: Nuju = warm reflective. Stoic = ancient philosophical practice + meditation + breathing.",
+      ] },
+      { type: "h2", content: "Where Stoic wins" },
+      { type: "p", content: "Stoic is the better pick when:" },
+      { type: "ul", content: [
+        "You're drawn to Stoicism as philosophy and life practice.",
+        "You want structured morning/evening routines grounded in philosophical frameworks.",
+        "Meditation + breathing + journaling integrated appeals.",
+        "You're influenced by Stoic-aligned thinkers (Tim Ferriss, Ryan Holiday, Naval Ravikant).",
+        "Substantive longer-form prompts fit your journaling rhythm.",
+      ] },
+      { type: "p", content: "Stoic excels at the contemplative-philosophical use case. For users who specifically want Marcus Aurelius-style daily reflection, no other app does it as well." },
+      { type: "h2", content: "Where Nuju wins" },
+      { type: "p", content: "Nuju is the better pick when:" },
+      { type: "ul", content: [
+        "You want 30-second entries (Stoic expects longer commitment).",
+        "AI reading + responding to your entries matters.",
+        "Multi-language UI and AI (Bahasa Indonesia, Spanish, Japanese, etc.) matters.",
+        "Free tier matters — Stoic has no permanent free tier.",
+        "You want explicit AI persona choice (Gentle, Tough, Wise, Fun) for different states.",
+        "Mood tracking visualization integrated.",
+      ] },
+      { type: "h2", content: "The 'Wise Sage' overlap" },
+      { type: "p", content: "Interesting overlap: Nuju has a 'Wise Sage' AI persona inspired by Stoic + contemplative traditions. In real user data, Wise Sage is the least-picked persona (2% of coach messages vs Gentle at 50%) — most Nuju users don't actively want philosophical AI tone. If philosophy IS what you want, Stoic Journal goes deeper than Nuju's Wise Sage." },
+      { type: "h2", content: "Combining both" },
+      { type: "p", content: "Some users combine: Nuju Free for daily 30-second entries + Stoic for morning philosophical practice. Combined cost: $0 + ~$30/year = manageable. Different times of day for different purposes — quick daily check-ins with Nuju, deeper contemplative time with Stoic." },
+      { type: "h2", content: "Decision tree" },
+      { type: "ul", content: [
+        "Want AI-augmented short daily entries + multilingual + free: Nuju.",
+        "Want Stoic philosophical practice + structured routines: Stoic.",
+        "Want both at different times: Nuju Free (daily) + Stoic (morning practice).",
+        "Indonesian-language user: Nuju (Stoic is English-first).",
+        "Free tier required: Nuju (Stoic has no permanent free tier).",
+      ] },
+      { type: "h2", content: "Bottom line" },
+      { type: "p", content: "Nuju and Stoic don't really compete — they serve different journaling philosophies. Stoic for contemplative philosophical practice. Nuju for AI-augmented short entries. Try Nuju free first (/onboarding, 60 seconds, no credit card). If you want philosophical depth Stoic specializes in, add it; most users don't need both. Pick by which philosophy matches your actual journaling instinct." },
+    ],
+    faq: [
+      {
+        question: "Is Stoic Journal worth the subscription?",
+        answer:
+          "For users genuinely drawn to Stoicism as philosophy and life practice, yes — Stoic excels at this specific use case better than any other app. For users who just want general journaling, no — better options exist (Nuju Free covers most needs). The $30/year is fair for committed Stoic practitioners; overpriced for casual journalers.",
+      },
+      {
+        question: "Does Nuju have Stoic-style prompts?",
+        answer:
+          "Some — Nuju's 'Wise Sage' AI persona is inspired by Stoic and contemplative traditions. But it's much lighter than Stoic Journal's dedicated practice. In Nuju user data, Wise Sage is the least-picked persona (2% of coach messages). For users who specifically want Stoic depth, Stoic Journal is the dedicated tool.",
+      },
+      {
+        question: "Can I use both Nuju and Stoic?",
+        answer:
+          "Yes, some users do. Common pattern: Stoic for morning philosophical practice + Nuju Free for evening/quick daily check-ins. Combined cost: $0 + ~$30/year. Different times of day for different purposes. Most users don't need both — pick the one matching your dominant journaling style.",
+      },
+      {
+        question: "Is Nuju cheaper than Stoic?",
+        answer:
+          "Yes significantly. Nuju Free covers daily journaling with AI insights, mood tracking, 8 languages — fully usable indefinitely. Nuju Plus $4.99/month for advanced features. Stoic has no permanent free tier; ~$30/year for full access. For budget-conscious users, Nuju Free + occasional Stoic philosophical reading on the web (Marcus Aurelius writings are public domain) is a viable combination.",
+      },
+      {
+        question: "Does Stoic support Bahasa Indonesia?",
+        answer:
+          "Stoic is primarily English-focused. Nuju is the only major journal app with full Bahasa Indonesia (UI, prompts, AI responses). For Indonesian users wanting philosophical content, reading Indonesian translations of Stoic philosophy (Marcus Aurelius, Epictetus available in Bahasa Indonesia) + using Nuju for journaling is a practical combination.",
+      },
+      {
+        question: "Which is better for productivity vs reflection?",
+        answer:
+          "Stoic leans productivity-philosophical — morning intention setting, evening review, breathing exercises. Nuju leans reflective-emotional — mood tracking, AI feedback on emotional content, pattern recognition. For users primarily wanting productivity reflection, Stoic. For emotional reflection, Nuju. Different jobs.",
+      },
+    ],
+  },
+  // COMMERCIAL — Best for anxiety + depression combined.
+  {
+    slug: "best-journal-app-for-anxiety-and-depression-2026",
+    title: "Best Journal App for Anxiety and Depression in 2026: 5 Picks for Both Conditions",
+    description: "Anxiety and depression co-occur in 60%+ of cases. Apps that handle both well are different from anxiety-only or depression-only picks. 5 apps tested for 2026: Nuju, Rosebud, Mindsera, MindShift, Woebot. With clinical use disclaimers.",
+    metaTitle: "Best Journal App for Anxiety + Depression 2026 (5 Picks Tested)",
+    metaDescription: "Anxiety + depression co-occur in 60%+ cases. 5 apps for both: Nuju, Rosebud, Mindsera, MindShift, Woebot. Clinical disclaimers included.",
+    publishedAt: "2026-05-22",
+    readingTime: 7,
+    category: "App Comparison",
+    sections: [
+      { type: "p", content: "Best journal app for anxiety and depression in 2026: Nuju for short daily entries with mood tracking + AI pattern recognition (free tier). Rosebud for structured CBT-style therapy homework (paid). Mindsera for cognitive distortion identification (paid). MindShift for free CBT-based anxiety exercises (free). Woebot for conversational CBT chatbot (free). Anxiety and depression co-occur in 60%+ of clinical cases — apps that handle both well are different from anxiety-only or depression-only picks." },
+      { type: "callout", content: "Critical: anxiety and depression are medical conditions that need professional treatment for moderate-to-severe cases. Apps are supportive — not substitutes. For self-harm thoughts: US 988, Indonesia Into The Light, UK Samaritans 116 123. Talk to a doctor for symptoms lasting 2+ weeks. Try Nuju free at /onboarding for the daily practice alongside care." },
+      { type: "h2", content: "What anxiety + depression specifically need" },
+      { type: "ul", content: [
+        "Fast entries: low motivation = won't sustain long-form. 30-60 second entries beat 30-min weekly sessions.",
+        "Validating AI tone: anxiety + depression both need validation, not push-back. Solution-focused or 'just be positive' apps backfire.",
+        "Pattern recognition: anxiety triggers + depression episodes both benefit from data over weeks.",
+        "Privacy: sensitive content. Explicit no-AI-training policy matters.",
+        "Multiple modality fit: anxiety responds to CBT; depression responds to behavioral activation; many people need both.",
+      ] },
+      { type: "h2", content: "1. Nuju — best for daily entries handling both" },
+      { type: "p", content: "Nuju's 30-second mood+text format works for the low-motivation states characteristic of depression AND the high-anxiety low-bandwidth states characteristic of anxiety. The Gentle AI persona (default, 50% pick rate) is validating without being directive — appropriate for both conditions. Mood + energy tracking surfaces both anxiety spikes and depression dips." },
+      { type: "p", content: "Anxiety+depression-relevant features: free tier covers daily journaling with AI insights. Encrypted entries with no AI training. 8 languages including Bahasa Indonesia. Pattern recognition over 30+ entries surfaces what specifically triggers each condition." },
+      { type: "p", content: "Limits: Nuju is reflective rather than CBT-framework-based. For users wanting structured CBT exercises, pair with Rosebud or MindShift." },
+      { type: "h2", content: "2. Rosebud — best for CBT therapy homework" },
+      { type: "p", content: "Rosebud uses GPT-4o for structured CBT-style prompts designed by therapists. For users in therapy doing active CBT work on both conditions, the structure functions as 'homework' between sessions. $12.99/month — no permanent free tier. Caveat: TOS includes anonymized-content training clause; disclose if recommending to sensitive-content users." },
+      { type: "h2", content: "3. Mindsera — best for cognitive distortion work" },
+      { type: "p", content: "Mindsera identifies cognitive distortions (catastrophizing, all-or-nothing, mind-reading) that drive BOTH anxiety AND depression. For users doing active CBT cognitive restructuring, the framework alignment is uniquely strong. $8-12/month. Limit: tone is clinical/analytical — may not validate enough for users wanting warmth." },
+      { type: "h2", content: "4. MindShift — best free CBT-based anxiety tool" },
+      { type: "p", content: "MindShift (Anxiety Canada) is completely free, no premium tier. Built on CBT + ACT frameworks. Includes thought records, breathing exercises, exposure planning. Best for users who specifically want structured CBT exercises for anxiety without paying." },
+      { type: "p", content: "Use case: pair with Nuju for the depression-component (Nuju's reflective journaling) + MindShift for the anxiety-component (CBT structured exercises). Combined cost: $0." },
+      { type: "h2", content: "5. Woebot — best free CBT chatbot" },
+      { type: "p", content: "Woebot is a CBT-based mental health chatbot built by clinical psychologists at Stanford. Free tier covers conversational CBT exercises and mood tracking. Genuinely free — no paywall on core features. Best for users who want guided conversational CBT but aren't ready for therapy yet." },
+      { type: "h2", content: "Recommended combinations" },
+      { type: "ul", content: [
+        "Bootstrap budget: Nuju Free + MindShift Free (both 100% free, covers reflective + CBT).",
+        "In therapy + want CBT structure: Nuju Free + Rosebud (daily reflection + therapy homework).",
+        "Heavy cognitive distortion patterns: Mindsera + Nuju (distortion analysis + general reflection).",
+        "Want conversational CBT first: Woebot + Nuju.",
+        "Bahasa Indonesia user: Nuju (only major option with full Indonesian AI).",
+      ] },
+      { type: "h2", content: "What no journal app replaces" },
+      { type: "p", content: "Critical to be honest: journal apps don't replace professional treatment for moderate-to-severe anxiety or depression. They're supportive daily practice. Treatment options:" },
+      { type: "ul", content: [
+        "Therapy: CBT for both conditions is gold-standard. EMDR for trauma-related anxiety/depression.",
+        "Medication: SSRIs for moderate-severe depression and anxiety. Prescribed by psychiatrist or family doctor.",
+        "Combined approach: therapy + medication produces best outcomes for moderate-severe cases.",
+        "Crisis support: US 988, Indonesia Into The Light, UK Samaritans 116 123.",
+      ] },
+      { type: "p", content: "Apps are useful between sessions, for daily check-ins, and for pattern tracking. They're not standalone treatment." },
+      { type: "h2", content: "Bottom line" },
+      { type: "p", content: "For most users with co-occurring anxiety + depression, Nuju Free is the default starting point — daily 30-second entries with AI insights, mood tracking, multi-language, strong privacy. Pair with MindShift Free for CBT structured exercises if anxiety is primary. Pair with Rosebud or Mindsera for paid CBT structure if budget allows. Most importantly: see a clinician alongside any app for moderate-severe cases. Try Nuju at /onboarding — 60 seconds, no credit card." },
+    ],
+    faq: [
+      {
+        question: "Can one journal app handle both anxiety and depression?",
+        answer:
+          "Yes — Nuju Free is built for daily entries that surface patterns for both conditions. The Gentle AI persona handles both states. Mood + energy tracking captures both anxiety spikes and depression dips. For users who want structured CBT exercises on top, pair with MindShift Free (anxiety-specific) or Rosebud (CBT-style for both). Most users find one main app + occasional secondary works well.",
+      },
+      {
+        question: "Can journaling replace anxiety or depression medication?",
+        answer:
+          "No. If antidepressants or anti-anxiety medication is prescribed for you, do not stop without consulting your prescriber. Journaling cannot replace medication for moderate-severe cases. Stopping medication suddenly can cause significant withdrawal. Many people use journaling alongside medication — the combination often produces better outcomes than either alone for moderate cases.",
+      },
+      {
+        question: "Is anxiety always paired with depression?",
+        answer:
+          "Not always, but commonly. Research shows 60%+ of people with major depression also experience clinically significant anxiety, and vice versa. Treatment that addresses both tends to produce better outcomes than treating only one. If you have one diagnosed, ask your clinician about screening for the other.",
+      },
+      {
+        question: "What's the best free app for anxiety and depression?",
+        answer:
+          "Combine Nuju Free (reflective journaling + mood tracking + AI insights) with MindShift Free (CBT exercises specifically for anxiety) — both 100% free, no paywalls. Covers daily reflection + structured CBT practice at zero cost. Add Woebot Free if conversational CBT appeals. This combination handles most non-clinical needs.",
+      },
+      {
+        question: "How do I know if my anxiety + depression is severe enough for professional help?",
+        answer:
+          "See a clinician if: symptoms last 2+ weeks, significantly affect work/sleep/relationships, include self-harm thoughts (even brief), include panic attacks with physical symptoms, or include inability to perform basic daily tasks. Don't wait — early treatment produces faster outcomes than untreated escalation. Crisis lines: US 988, Indonesia Into The Light, UK Samaritans 116 123.",
+      },
+      {
+        question: "Will sharing my journal with my therapist help?",
+        answer:
+          "Yes — most therapists value patient-tracked data highly. Mood charts over weeks reveal patterns sessions can't capture. Specific entries flagged for discussion make session time more efficient. Nuju supports export for sharing. Verbal sharing during sessions is also valuable. Just bring the data; therapist will know how to use it.",
+      },
+    ],
+  },
+  // INDONESIAN — Journaling for ADHD Indonesia. Untapped.
+  {
+    slug: "journaling-untuk-adhd-indonesia",
+    title: "Journaling untuk ADHD Indonesia: 5 Teknik yang Cocok untuk Otak ADHD (2026)",
+    description: "ADHD pada orang dewasa Indonesia sering underdiagnosed. Journaling membantu kalau dirancang untuk otak ADHD — bukan generic journaling yang malah trigger shame. 5 teknik praktis + cara dapet diagnosis profesional di Indonesia.",
+    metaTitle: "Journaling untuk ADHD Indonesia: 5 Teknik untuk Otak ADHD (2026)",
+    metaDescription: "ADHD Indonesia underdiagnosed. 5 teknik journaling untuk otak ADHD + cara dapet diagnosis profesional Halodoc/KALM/Riliv.",
+    publishedAt: "2026-05-22",
+    readingTime: 7,
+    category: "Mental Wellness",
+    sections: [
+      { type: "p", content: "ADHD pada orang dewasa Indonesia sering underdiagnosed — terutama untuk perempuan dan orang yang punya hyperfocus pada hal-hal akademik (terlihat 'fungsional' di luar tapi struggle di dalam). Journaling bisa sangat membantu kalau dirancang untuk otak ADHD — bukan generic journaling yang ekspektasi konsistensi harian, long-form entries, dan streak yang malah trigger shame ADHD. Tulisan ini ngebahas 5 teknik journaling yang cocok untuk otak ADHD plus cara dapet evaluasi profesional di Indonesia 2026." },
+      { type: "callout", content: "Quick start: kalau lo udah suspect ADHD tapi belum dievaluasi — itu langkah penting. Cara akses Indonesia: Halodoc, KALM, Riliv dengan psikiater spesialisasi ADHD. Sambil nunggu evaluasi, Nuju free di /onboarding tools journaling yang ADHD-friendly — 60 detik, no kartu kredit." },
+      { type: "h2", content: "Kenapa generic journaling sering gagal untuk ADHD" },
+      { type: "p", content: "Aplikasi journal mainstream asumsi:" },
+      { type: "ul", content: [
+        "Konsistensi harian (ADHD struggle dengan ini — bukan males, executive function).",
+        "Long-form writing (ADHD sering working memory + task initiation issues).",
+        "Streak motivation (ADHD shame dari broken streak bikin lebih susah restart).",
+        "Self-directed reflection (ADHD sering butuh external structure).",
+      ] },
+      { type: "p", content: "ADHD-friendly journaling kerja sekitar default ini: short entries, low friction, gentle reminder tanpa streak punishment, dan pattern detection yang nge-take alih analysis work yang otak ADHD struggle dengan." },
+      { type: "h2", content: "5 teknik journaling ADHD-friendly" },
+      { type: "h2", content: "1. One-word entry: 'satu kata aja itu lengkap'" },
+      { type: "p", content: "Lo nggak perlu nulis kalimat. 'Capek' adalah entry lengkap. 'Frustrated' adalah entry lengkap. Tap mood + satu kata = 30 detik. Aplikasi seperti Nuju dirancang untuk ini — median real entry di Nuju adalah 31 karakter. Lower bar = entry kejadian. ADHD otak menghargai dopamine dari completion, bahkan kecil." },
+      { type: "h2", content: "2. Voice journal: kalau ngetik adalah friction" },
+      { type: "p", content: "ADHD otak sering bisa ngomong lebih cepat dan natural dibanding nulis. Voice note 2-3 menit (di Nuju Pro atau aplikasi voice apapun) = release loop emosional tanpa friction nulis. Lo bisa langsung delete kalau cuma butuh release, atau biarin auto-transcribe untuk pattern recognition nanti." },
+      { type: "h2", content: "3. Tie to existing habit: habit stacking" },
+      { type: "p", content: "ADHD otak susah membentuk new habit dari nol. Habit stacking: tie journaling ke habit yang udah ada. 'Setelah minum kopi pagi, satu entry mood.' 'Setelah brush teeth malam, brain dump 2 menit.' Existing habit = anchor; journaling = ride along. Charles Duhigg habit research dan BJ Fogg tiny habits framework support ini." },
+      { type: "h2", content: "4. Pattern recognition lewat AI, bukan self-review" },
+      { type: "p", content: "ADHD otak susah nge-spot pattern di entries sendirian. AI journal (Nuju, Rosebud) nge-do this work otomatis — surface patterns lo skip dalam manual review. Misal: 'Lo mood paling rendah hari Senin dan Selasa,' 'energy lo turun setelah meeting lebih dari 1 jam.' Insights ini sering lo nggak notice sendirian." },
+      { type: "h2", content: "5. Skip-day permission: 'never miss twice'" },
+      { type: "p", content: "Aturan paling penting untuk ADHD: skip days dengan bebas. Aplikasi yang streak-counter shame lo (Snapchat-style) trigger ADHD-rejection-sensitive-dysphoria. Cari aplikasi yang celebrate showing up tanpa menghukum skip. Nuju dirancang dengan ini — nggak ada streak counter publik yang bikin malu." },
+      { type: "h2", content: "Cara dapet evaluasi ADHD di Indonesia" },
+      { type: "p", content: "Adult ADHD diagnosis di Indonesia masih relatively baru tapi access meningkat 2024-2026:" },
+      { type: "ul", content: [
+        "Halodoc / KALM / Riliv: search 'psikiater ADHD dewasa' — beberapa psikiater spesialisasi. Biaya: Rp 200.000-500.000+ per sesi (initial evaluation usually 1-2 sessions).",
+        "RS dengan poli psikiatri: RS pemerintah dan swasta makin banyak yang ngerti adult ADHD.",
+        "BPJS: di beberapa provinsi cover ADHD evaluation dan medication. Cek dulu di klinik / puskesmas terdekat.",
+        "Online comunity Indonesia: Komunitas ADHD Indonesia (Telegram/Facebook) — bukan diagnosis tapi support dan rujukan ke psikiater yang affirming.",
+      ] },
+      { type: "h2", content: "Treatment options yang available" },
+      { type: "p", content: "ADHD highly treatable — 3 pillar treatment:" },
+      { type: "ul", content: [
+        "Medikasi: stimulan (Concerta, Ritalin) atau non-stimulan (Strattera). Available dengan resep psikiater di Indonesia.",
+        "Therapy: CBT for ADHD, executive function coaching. Bisa di-search di Halodoc/KALM/Riliv.",
+        "Lifestyle: exercise, sleep, struktur, journaling — semua amplify efek medication dan therapy.",
+      ] },
+      { type: "h2", content: "Kapan butuh evaluasi" },
+      { type: "p", content: "Sinyal yang menyarankan ADHD evaluation:" },
+      { type: "ul", content: [
+        "Lifetime pattern (sejak kecil) dengan focus, executive function, time management issues.",
+        "'Want but can't initiate' bukan 'don't want' pattern.",
+        "Hyperfocus pada hal yang tertarik, ketidakmampuan focus pada yang nggak.",
+        "Emotional dysregulation — reaksi emosional yang besar untuk trigger kecil.",
+        "Time blindness — chronically late, miss deadline, underestimate task duration.",
+        "Rejection sensitive dysphoria (RSD) — sakit ekstrem dari kritik atau penolakan.",
+      ] },
+      { type: "p", content: "Adult ADHD significantly underdiagnosed di Indonesia, terutama perempuan dan high-achiever. Kalau pola di atas resonan dengan lifetime experience, evaluation profesional worth pursuing. Treatment dapat transform daily function." },
+      { type: "h2", content: "Bottom line" },
+      { type: "p", content: "ADHD-friendly journaling = short entries, low friction, no streak shame, AI pattern recognition. 5 teknik: one-word, voice, habit stacking, AI pattern, skip permission. Untuk yang suspect ADHD belum dievaluasi — Halodoc/KALM/Riliv dengan psikiater spesialisasi. Treatment highly effective. Nuju free di /onboarding dirancang untuk ADHD-friendly journaling — 60 detik untuk mulai, no kartu kredit." },
+    ],
+    faq: [
+      {
+        question: "Apa beda ADHD dewasa sama anak-anak?",
+        answer:
+          "Hyperactivity sering 'masuk ke dalam' di dewasa — restless thoughts, racing mind, internal hyperactivity instead of physical. Executive function challenges (planning, task initiation, time management) jadi dominan. Emotional dysregulation lebih obvious. Banyak adult ADHD nggak terdiagnosis karena gambaran klasik (anak laki-laki yang hyperactive di kelas) nggak match. Terutama perempuan dan high-achiever sering underdiagnosed.",
+      },
+      {
+        question: "Apakah journaling bisa menggantikan medication ADHD?",
+        answer:
+          "Tidak. Untuk ADHD sedang-berat, medication adalah primary treatment yang terbukti effective. Journaling adalah supportive practice — membantu pattern recognition, emotional regulation, executive function support. Many people pakai journaling DI SAMPING medication untuk outcome terbaik. Jangan pernah stop medication tanpa konsultasi psikiater.",
+      },
+      {
+        question: "Aplikasi journal mana yang paling cocok untuk ADHD?",
+        answer:
+          "Nuju Free untuk AI-augmented short entries (30-second mood+text) — bypasses initiation paralysis dengan AI yang nge-do pattern work. Daylio Free untuk users yang refuse nulis (10-second mood + activity tags). Bearable untuk ADHD + comorbid conditions (tracks medication, symptoms, mood). Pilih based on apakah lo mau text component (Nuju) atau pure mood data (Daylio).",
+      },
+      {
+        question: "Berapa biaya diagnosis ADHD di Indonesia 2026?",
+        answer:
+          "Initial evaluation dengan psikiater spesialisasi: Rp 200.000-500.000+ per sesi (biasanya 1-2 sesi). Halodoc, KALM, Riliv menawarkan akses online ke psikiater. BPJS di beberapa provinsi cover ADHD evaluation. RS dengan poli psikiatri sering punya pilihan budget-friendly. Medication ADHD (Concerta, Ritalin, Strattera) tambahan biaya Rp 200.000-1.000.000+ per bulan tergantung jenis dan dosage.",
+      },
+      {
+        question: "Apakah ADHD bisa muncul saat dewasa atau memang dari kecil?",
+        answer:
+          "ADHD inherent (lo lahir dengan otak ini) — tapi sering baru dikenali pas dewasa karena structure school maupun keluarga sebelumnya nge-mask gejala. Stress dewasa (kerja, pernikahan, jadi orang tua) bisa surfacing gejala yang sebelumnya manageable. Diagnosis adult ADHD requires evidence of pattern sejak kecil — jadi childhood symptoms yang baru di-recognize sekarang itu valid.",
+      },
+      {
+        question: "Gimana cara minta evaluasi ADHD ke psikiater?",
+        answer:
+          "Persiapkan: (1) List spesifik gejala lifetime (kasih contoh dari berbagai periode). (2) Cara gejala mempengaruhi hidup sekarang (kerja, hubungan, daily function). (3) Family history kalau ada (ADHD heritable). Telepon Halodoc/KALM/Riliv, search 'psikiater ADHD dewasa.' Kalau psikiater pertama dismissive atau nggak familiar dengan adult ADHD, cari second opinion — tidak semua psikiater fluent dengan adult ADHD presentation.",
+      },
+    ],
+  },
+  // INDONESIAN — Anxiety media sosial.
+  {
+    slug: "mengatasi-anxiety-media-sosial-gen-z",
+    title: "Mengatasi Anxiety Media Sosial: 5 Strategi untuk Gen Z Indonesia (2026)",
+    description: "Anxiety media sosial real dan terdokumentasi — Gen Z paling terdampak. Comparison, FOMO, dopamine cycling, judgment anxiety. 5 strategi praktis yang nggak butuh detox total + 4 prompt journaling. Plus tools untuk reduce friction.",
+    metaTitle: "Mengatasi Anxiety Media Sosial Gen Z Indonesia: 5 Strategi (2026)",
+    metaDescription: "Anxiety sosmed Gen Z Indonesia real. 5 strategi praktis tanpa detox total + 4 prompt journaling. Plus tools reduce friction.",
+    publishedAt: "2026-05-22",
+    readingTime: 6,
+    category: "Mental Wellness",
+    sections: [
+      { type: "p", content: "Anxiety media sosial real dan terdokumentasi — Gen Z Indonesia paling terdampak per riset 2024-2026. Komponen anxiety sosmed: comparison constant (highlight reel orang lain vs realita lo), FOMO (fear of missing out dari acara/momen yang lo skip), dopamine cycling dari short-form video yang reset baseline mood, dan judgment anxiety setiap kali post. Bukan willpower issue — environment design issue. 5 strategi praktis berikut tidak butuh detox total (yang nggak realistic untuk kebanyakan orang) — fokus pada manage friction." },
+      { type: "callout", content: "Quick start: kalau lo lagi anxious abis scroll TikTok/Instagram — coba 5 menit Brain Dump di bawah. Tutup aplikasi, journal 5 menit. Nuju free di /onboarding tools yang cocok — 60 detik untuk mulai." },
+      { type: "h2", content: "5 strategi mengatasi anxiety media sosial" },
+      { type: "h2", content: "1. Curate feed, jangan ditengah-tengah ditambah" },
+      { type: "p", content: "Mute / unfollow akun yang konsisten bikin lo merasa worse. Termasuk teman, influencer, brand. Lo nggak owe followers ke siapapun. Feed lo adalah environment design — kalau toxic input, output juga toxic. Riset menunjukkan exposure ke specific content sangat memprediksi anxiety levels. Curate ruthlessly." },
+      { type: "h2", content: "2. Set boundaries waktu, bukan total avoidance" },
+      { type: "p", content: "Detox total nggak realistic untuk kebanyakan Gen Z (kerja/sekolah/sosial lewat aplikasi yang sama). Yang work: time-bounded usage. 30 menit pagi, 30 menit malam. Phone setting timer di iOS / Android Screen Time. Bukan permanent restriction — boundary yang realistic dan sustainable." },
+      { type: "h2", content: "3. Skip morning scroll" },
+      { type: "p", content: "Bangun langsung buka sosmed = cortisol spike + comparison + dopamine cycling sebelum lo bahkan bangun. Riset menunjukkan first 30 menit setelah bangun sangat mempengaruhi mood seharian. Strategi: simpan HP di luar bedroom, atau set 'do not disturb' first 30 menit. Use waktu pagi untuk basic things (kopi, journaling, breakfast) sebelum sosmed. Game changer untuk kebanyakan orang." },
+      { type: "h2", content: "4. Notice the trigger spike" },
+      { type: "p", content: "Setiap kali scroll dan notice mood drop, anxiety spike, atau urge buat compare — catat. Lima menit per hari pattern tracking nunjukin specific triggers (akun tertentu, jenis konten tertentu, waktu tertentu) yang konsisten trigger anxiety. Awareness adalah prerequisite untuk perubahan." },
+      { type: "h2", content: "5. Tools yang reduce friction" },
+      { type: "p", content: "Beberapa tools yang membantu:" },
+      { type: "ul", content: [
+        "Screen Time (iOS) atau Digital Wellbeing (Android) — set daily limits aplikasi spesifik.",
+        "App blockers (Forest, One Sec) — delay opening apps dengan friction yang force pause.",
+        "Grayscale mode — turn off color = sosmed kurang appealing dan dopamine cycling lebih lemah.",
+        "Notification settings — turn off all non-essential. Most notifications interrupt your day for app benefit, not yours.",
+      ] },
+      { type: "h2", content: "4 prompt journaling untuk anxiety sosmed" },
+      { type: "ol", content: [
+        "'Apa spesifiknya yang gue rasa abis scroll hari ini?' Bukan generic 'gue anxious' — spesifik. Inferior? Sad? FOMO? Compare? Naming bikin trigger konkret.",
+        "'Akun apa yang konsisten bikin gue feel worse?' Daftar. Lalu mute atau unfollow tanpa guilt.",
+        "'Apa yang gue cari saat gue scroll?' Often: validation, distraction dari something else, escape. Naming the real need helps address it differently.",
+        "'Apa yang gue mau lakuin instead of scroll yang sebenernya membantu mood gue?' Walk, call friend, journal, hobby. Pre-decide before next scroll urge.",
+      ] },
+      { type: "h2", content: "Kapan anxiety sosmed butuh psikolog" },
+      { type: "p", content: "Tanda yang menunjukkan butuh dukungan profesional:" },
+      { type: "ul", content: [
+        "Anxiety udah mempengaruhi tidur, makan, atau daily function.",
+        "Serangan panik setelah scroll atau setelah dapet notifikasi.",
+        "Body dysmorphia atau eating disorder pattern dipicu sosmed comparison.",
+        "Pikiran ngerusak diri sendiri terkait apa yang lo lihat di sosmed.",
+        "Compulsive checking yang bikin lo nggak bisa fokus sama hal lain.",
+      ] },
+      { type: "p", content: "Akses Indonesia: Halodoc, KALM, Riliv mulai Rp 50.000-150.000 per sesi. Krisis: Into The Light Indonesia (intothelightid.org), 119 ext 8." },
+      { type: "h2", content: "Realitas yang penting tau" },
+      { type: "p", content: "Tiga hal penting:" },
+      { type: "ul", content: [
+        "Sosmed designed untuk maximize engagement, NOT for your wellbeing. Tech companies have entire teams optimizing for time spent on app. Lo struggle bukan karena weak — environment is engineered against you.",
+        "Hampir SEMUA orang yang post 'happy life' di sosmed juga struggle behind the scenes. Comparison ke highlight reel adalah comparison ke fiction.",
+        "Mengurangi sosmed time signifikan dan terukur meningkatkan mood. Riset konsisten menunjukkan ini. Bukan hipotesa — data.",
+      ] },
+      { type: "h2", content: "Bottom line" },
+      { type: "p", content: "Anxiety media sosial real dan struktural, bukan kelemahan lo. 5 strategi: curate feed ruthlessly, set time boundaries (bukan total avoid), skip morning scroll, notice triggers, use friction tools. 4 prompt journaling untuk pattern recognition. Untuk gejala berat, konsultasi profesional. Nuju free di /onboarding tools journaling yang cocok — 60 detik, no kartu kredit." },
+    ],
+    faq: [
+      {
+        question: "Apakah anxiety sosmed beneran masalah mental health?",
+        answer:
+          "Ya — riset 2024-2026 konsisten menunjukkan correlation antara heavy social media use dan anxiety/depression, terutama di Gen Z. Mekanisme: comparison constant, dopamine cycling, FOMO, judgment anxiety. Bukan kelemahan lo — sosmed di-design untuk maximize engagement, sering at cost of wellbeing. Tech companies have entire teams optimizing for time-on-app.",
+      },
+      {
+        question: "Apakah harus detox total dari sosmed?",
+        answer:
+          "Tidak realistic untuk kebanyakan Gen Z karena kerja/sekolah/sosial lewat aplikasi yang sama. Yang work: time-bounded usage (30 menit pagi + 30 menit malam), curate feed ruthlessly, skip morning scroll, use friction tools. Detox temporer (1-2 minggu) sesekali bagus untuk reset. Tapi sustainable strategy = boundaries yang realistic, bukan total avoidance.",
+      },
+      {
+        question: "Gimana cara skip morning scroll kalau pakai HP untuk alarm?",
+        answer:
+          "Beli alarm clock biasa (Rp 50.000-100.000) — game changer untuk kebanyakan orang. Simpan HP di luar bedroom atau di drawer yang tertutup. Saat lo butuh aware dari pesan kerja early morning, set specific notification dari aplikasi tertentu aja (whitelist), bukan keseluruhan. Tools: 'Sleep mode' di iOS / Android, AutoSleep apps.",
+      },
+      {
+        question: "Berapa jam sosmed per hari yang OK?",
+        answer:
+          "Riset menyarankan under 1 jam per hari significantly reduces anxiety risk; 1-2 jam moderate risk; 3+ jam significantly increases anxiety risk. Gen Z Indonesia average 6+ jam per hari. Realistic goal: cut 1 jam pada waktu — start with 30 menit cut, sustain itu, lalu cut another 30. Sudden 5-jam-to-1-jam usually nggak sustainable.",
+      },
+      {
+        question: "Apa yang harus dilakukan kalau gue compulsive checking?",
+        answer:
+          "Compulsive checking adalah anxiety symptom yang bisa berat. Strategi: (1) Use friction tools (Forest, One Sec) yang delay app opening dengan timer. (2) Set HP ke grayscale — significantly reduces compulsive pull. (3) Specific 'checking times' scheduled (every 2 hours instead of every 5 min). (4) Kalau pattern udah sangat berat dan mempengaruhi function, konsultasi profesional — bisa related to anxiety disorder yang treatable.",
+      },
+      {
+        question: "Kapan anxiety sosmed butuh psikolog?",
+        answer:
+          "Kalau anxiety udah mempengaruhi tidur/makan/daily function, serangan panik setelah scroll, body dysmorphia atau eating disorder pattern dipicu comparison, pikiran ngerusak diri terkait sosmed content, atau compulsive checking yang bikin nggak bisa fokus — konsultasi profesional. Halodoc/KALM/Riliv mulai Rp 50.000-150.000. Cari psikolog spesialisasi anxiety atau digital wellness. Krisis: Into The Light Indonesia, 119 ext 8.",
+      },
+    ],
+  },
 ];
 
 const normalizeCopy = (value: string): string =>
