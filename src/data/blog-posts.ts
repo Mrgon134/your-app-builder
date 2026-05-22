@@ -6952,6 +6952,560 @@ const RAW_BLOG_POSTS: BlogPost[] = [
       },
     ],
   },
+  // Q-BASED LONG-TAIL — "Why am I so tired all the time" massive volume.
+  {
+    slug: "why-am-i-so-tired-all-the-time",
+    title: "Why Am I So Tired All the Time? The Hidden Causes (Not Just Sleep)",
+    description: "Persistent fatigue rarely comes from sleep alone. The real causes are usually a stack — sleep debt + chronic stress + thyroid + iron + emotional exhaustion. Here's how to identify YOUR specific stack, plus when fatigue needs medical evaluation.",
+    metaTitle: "Why Am I So Tired All the Time? Hidden Causes + Diagnostic (2026)",
+    metaDescription: "Persistent fatigue = stack of causes (sleep + stress + thyroid + iron + emotional exhaustion). Identify your stack + 5-min diagnostic. When to see a doctor.",
+    publishedAt: "2026-05-22",
+    readingTime: 7,
+    category: "Mental Wellness",
+    sections: [
+      { type: "p", content: "Short answer: persistent tiredness rarely comes from one cause. It's almost always a stack — sleep debt + chronic stress + possibly an underlying medical issue (thyroid, iron deficiency, sleep apnea) + emotional exhaustion + sometimes depression. Treating one layer when there are three or four won't work. This guide helps you identify which layers are actually firing in your specific case, with a 5-minute diagnostic, plus when fatigue needs medical evaluation (sometimes urgently)." },
+      { type: "callout", content: "Important: persistent fatigue lasting more than 3-4 weeks deserves medical evaluation. Several causes (thyroid issues, anemia, sleep apnea, diabetes, depression) are highly treatable but require diagnosis. Don't assume it's 'just stress' for months without seeing a doctor. The 5-min diagnostic below helps narrow likely causes — it doesn't replace medical care." },
+      { type: "h2", content: "The 5 most common causes of persistent fatigue" },
+      { type: "p", content: "In rough order of frequency for adults in 2026:" },
+      { type: "ul", content: [
+        "Sleep debt: chronic insufficient sleep (under 7 hours most nights) or poor-quality sleep (waking, light sleep, sleep apnea). Most common cause but often co-occurs with others.",
+        "Chronic stress: months of moderate-to-high stress keeps cortisol elevated. The body stays in low activation, which feels like persistent tiredness even when you're not actively stressed in the moment.",
+        "Medical issues: thyroid (hypothyroidism), iron deficiency, vitamin D deficiency, sleep apnea, type 2 diabetes, autoimmune conditions. All highly treatable once diagnosed.",
+        "Emotional exhaustion: months of suppressing feelings, taking care of others without recovery, or processing grief/trauma. Feels indistinguishable from physical tiredness but doesn't respond to sleep alone.",
+        "Depression: anhedonia and low energy are core depression symptoms. Often co-occurs with the others. Needs professional evaluation.",
+      ] },
+      { type: "h2", content: "Why 'just sleep more' rarely fixes it" },
+      { type: "p", content: "Sleep debt is real and matters — Matthew Walker's research at Berkeley (2007+) shows even one night of <6 hours produces measurable cognitive deficits. But sleep alone fixes tiredness only when sleep debt is the only cause. When tiredness has been persistent for weeks or months, the stack has multiple layers. Catching up sleep helps one layer; the others remain." },
+      { type: "h2", content: "The 5-minute fatigue diagnostic" },
+      { type: "p", content: "Use this to identify likely contributors to your specific tiredness:" },
+      { type: "ol", content: [
+        "Sleep quantity + quality (1 min): hours per night last 2 weeks? Snoring? Wake unrefreshed? If sleep is clearly insufficient or snoring is bad, sleep is layer 1.",
+        "Stress level (1 min): work/life/relationship stress last 3 months? If sustained moderate-high, chronic stress is likely layer 2.",
+        "Medical signals (1 min): cold all the time (thyroid)? Heavy periods or vegetarian diet (iron)? Loud snoring + daytime sleepiness (sleep apnea)? Frequent thirst or urination (diabetes)? Note any 'yes' answers — these need medical workup.",
+        "Emotional load (1 min): caring for someone? Going through major life change? Suppressing significant feelings? If yes, emotional exhaustion is layer 4.",
+        "Joy check (1 min): things you used to enjoy still bring pleasure? If no for 2+ weeks, possible depression (layer 5) — see a doctor.",
+      ] },
+      { type: "p", content: "If 3+ layers fired, you've identified why 'sleep more' hasn't worked. Each layer needs its own response." },
+      { type: "h2", content: "When fatigue is medical (and urgent)" },
+      { type: "p", content: "See a doctor this week, not 'eventually,' if:" },
+      { type: "ul", content: [
+        "Fatigue is so severe you can't perform basic daily tasks.",
+        "Fatigue is accompanied by unexplained weight loss or gain.",
+        "Chronic fatigue with persistent low mood for 2+ weeks (depression).",
+        "Loud snoring + waking gasping + daytime sleepiness (likely sleep apnea — common, treatable, but undiagnosed in millions).",
+        "Always cold + dry skin + hair loss + slow heart rate (possible hypothyroidism).",
+        "Heavy menstrual periods + dizziness on standing + craving ice (possible iron deficiency anemia).",
+        "Frequent urination + thirst + blurry vision (possible diabetes).",
+      ] },
+      { type: "p", content: "All of these are treatable. Most are diagnosed via simple blood test or sleep study. The barrier is usually 'I'll wait and see' — for fatigue lasting more than 3-4 weeks, waiting often delays treatable diagnoses." },
+      { type: "h2", content: "Where journaling fits" },
+      { type: "p", content: "Journaling helps with two layers specifically: emotional exhaustion and depression-adjacent fatigue. The 5-min reverse-engineer protocol (from /blog/why-do-i-feel-anxious-for-no-reason) works for tiredness too — surface what's been suppressed. For chronic stress driving tiredness, see /blog/gen-z-burnout-journaling. For depression-related fatigue, see /blog/journaling-for-depression — and please see a doctor alongside." },
+      { type: "h2", content: "Bottom line" },
+      { type: "p", content: "Persistent tiredness is almost always a stack of causes, not one. The 5-min diagnostic above identifies your specific layers. Sleep helps the sleep layer; stress reduction helps the stress layer; medical workup catches the medical layers; journaling helps the emotional layer; therapy helps the depression layer. If you've been tired for more than 3-4 weeks despite reasonable sleep, see a doctor — many treatable conditions present as 'just being tired.' Nuju's free Ju Gets You reveal (/onboarding) supports the emotional-exhaustion piece — 60 seconds, no credit card." },
+    ],
+    faq: [
+      {
+        question: "Why am I tired even after sleeping 8 hours?",
+        answer:
+          "Sleep quality matters as much as quantity. 8 hours of fragmented or light sleep doesn't restore the body. Common causes of 'tired despite 8 hours': sleep apnea (very common, often undiagnosed — ask doctor for sleep study if you snore), poor sleep architecture from alcohol or screens before bed, chronic stress keeping cortisol elevated, or underlying medical issues (thyroid, iron, vitamin D). The 5-min diagnostic helps narrow it.",
+      },
+      {
+        question: "When should I see a doctor about fatigue?",
+        answer:
+          "If fatigue has lasted more than 3-4 weeks despite reasonable sleep, see a doctor. Sooner if accompanied by: unexplained weight changes, persistent low mood, loud snoring + daytime sleepiness (possible sleep apnea), always feeling cold + hair loss (possible thyroid), heavy periods + dizziness (possible iron deficiency), frequent thirst + urination (possible diabetes). All highly treatable once diagnosed.",
+      },
+      {
+        question: "Can stress alone make me tired all the time?",
+        answer:
+          "Yes — chronic stress (months of moderate-to-high) keeps cortisol elevated, which produces persistent low-grade activation that feels like tiredness. The body never fully relaxes. Even weekends and vacations may not restore. The fix isn't sleep alone — it's identifying and reducing the chronic stressors. For burnout-related fatigue specifically, see the 4-prompt burnout protocol.",
+      },
+      {
+        question: "Is fatigue a symptom of depression?",
+        answer:
+          "Yes — low energy and anhedonia are core depression symptoms. Distinguishing depression-fatigue from other fatigue: depression-fatigue usually comes with loss of interest in things that used to bring pleasure, persistent low mood, and doesn't respond to sleep or rest. If you suspect depression, see a doctor — depression is highly treatable but requires professional care.",
+      },
+      {
+        question: "Can journaling help with chronic tiredness?",
+        answer:
+          "For the emotional-exhaustion and chronic-stress layers, yes. Journaling helps identify what's been suppressed (often a hidden contributor to tiredness) and surfaces stress patterns over weeks. It does NOT help with medical causes (thyroid, iron, sleep apnea) — those need medical workup. Best used as part of a broader approach: medical evaluation + sleep hygiene + stress reduction + journaling.",
+      },
+      {
+        question: "What's the difference between tiredness and fatigue?",
+        answer:
+          "Tiredness is normal — comes after activity, resolves with rest. Fatigue is persistent — doesn't fully resolve with rest, often comes with low motivation, brain fog, and physical heaviness. Fatigue lasting more than 3-4 weeks is worth medical evaluation. Chronic fatigue syndrome (ME/CFS) is a specific medical diagnosis for severe, prolonged fatigue with specific criteria — different from general persistent tiredness.",
+      },
+    ],
+  },
+  // Q-BASED LONG-TAIL — "Why do I cry randomly" high volume.
+  {
+    slug: "why-do-i-cry-randomly",
+    title: "Why Do I Cry Randomly? The Real Causes (and What to Do About It)",
+    description: "Random crying isn't random — it has documented causes. Hormonal shifts, sensory overload, suppressed grief, accumulated stress, or depression. Here's how to identify what's actually happening, plus a 5-minute journal practice that helps.",
+    metaTitle: "Why Do I Cry Randomly? Real Causes + What Helps (2026)",
+    metaDescription: "Random crying has documented causes: hormones, sensory overload, suppressed emotion, accumulated stress, depression. Identify yours + 5-min journal fix.",
+    publishedAt: "2026-05-22",
+    readingTime: 6,
+    category: "Mental Wellness",
+    sections: [
+      { type: "p", content: "Short answer: 'random' crying almost always has triggers — they're just below conscious awareness. The 4 most common: hormonal shifts (cycle, perimenopause, thyroid), sensory or social overload (highly sensitive person profile, autism, ADHD), suppressed emotion finally surfacing, or accumulating stress hitting a threshold. Less commonly but importantly: depression. Crying is the body's pressure-release valve; random crying means something is being held that needs release." },
+      { type: "callout", content: "Quick start: try the 5-minute reverse-engineer protocol below next time you cry 'for no reason.' Often the actual trigger becomes visible within minutes. Nuju's free Ju Gets You reveal (/onboarding) supports this kind of pattern detection — 60 seconds, no credit card." },
+      { type: "h2", content: "The 4 most common 'random' crying triggers" },
+      { type: "ul", content: [
+        "Hormonal: cycle shifts (especially 7-10 days before period), perimenopause, hypothyroidism, postpartum. These produce emotional dysregulation that crying releases. Often correlated with cycle dates.",
+        "Sensory or social overload: highly sensitive people, those with autism or ADHD often reach overload threshold faster than neurotypical peers. Crying after busy days or crowded environments is the release of accumulated load.",
+        "Suppressed emotion: pushed-down anger, grief, fear, or sadness eventually surfaces — often triggered by something minor (a song, a memory, a kind word) that has more emotional weight than the trigger objectively warrants.",
+        "Accumulating stress: chronic load without release windows. The crying is the body's pressure valve, not the situation right in front of you.",
+      ] },
+      { type: "h2", content: "Less common but important causes" },
+      { type: "p", content: "If random crying has lasted more than 2 weeks daily, or includes other symptoms, consider:" },
+      { type: "ul", content: [
+        "Depression: persistent low mood, loss of interest, sleep changes. Random crying is a common depression symptom. See a doctor.",
+        "Anxiety disorder: high baseline anxiety can produce crying as overflow. Often paired with physical symptoms (chest tightness, sleep disruption).",
+        "Pseudobulbar affect: a specific neurological condition where crying or laughing happens disproportionate to emotion. Linked to strokes, brain injury, MS, or ALS. Rare but worth knowing.",
+        "Adjustment disorder: after a major life change (breakup, layoff, move), random crying for weeks is common and usually resolves with time + processing.",
+      ] },
+      { type: "h2", content: "The 5-minute reverse-engineer protocol" },
+      { type: "p", content: "Use this within an hour of an unexpected cry:" },
+      { type: "ol", content: [
+        "Recent cycle/hormonal (1 min): time of month if applicable. Any pattern from previous similar episodes?",
+        "Recent overload (1 min): busy week? Lots of social interaction? Sensory overstimulation? If yes, overload-release likely.",
+        "Recent suppression (1 min): one specific thing you've been pushing down — anger you didn't express, sadness you didn't have time for, fear you didn't acknowledge.",
+        "Stress accumulation (1 min): how stressed have you been the last 2-4 weeks? If consistently moderate-high, pressure-valve release is likely.",
+        "Other symptoms (1 min): low mood, loss of interest, sleep changes, hopelessness? If 2+ for 2+ weeks, see a doctor.",
+      ] },
+      { type: "p", content: "By minute 5, the 'random' crying usually isn't random anymore. The cause becomes visible, and the next response becomes clearer." },
+      { type: "h2", content: "When random crying needs professional help" },
+      { type: "p", content: "Talk to a doctor or therapist if:" },
+      { type: "ul", content: [
+        "Daily crying for more than 2 weeks.",
+        "Can't stop the crying once it starts.",
+        "Feel worse rather than relieved afterward.",
+        "Accompanied by depression symptoms (sleep changes, loss of interest, hopelessness, persistent low mood).",
+        "Thoughts of self-harm — even brief, even infrequent.",
+      ] },
+      { type: "p", content: "Crisis lines: US 988. Indonesia Into The Light (intothelightid.org), 119 ext 8. UK Samaritans 116 123. For ongoing care, your GP can screen and refer. Don't wait months." },
+      { type: "h2", content: "Bottom line" },
+      { type: "p", content: "Random crying has documented causes — hormones, overload, suppression, accumulated stress, and sometimes depression. The 5-minute reverse-engineer protocol identifies your specific cause. For most people, the cause is the body's pressure-release valve working — supportive, not pathological. If crying is daily for 2+ weeks or comes with depression symptoms, see a doctor. Nuju's free Ju Gets You reveal (/onboarding) supports the reverse-engineering practice." },
+    ],
+    faq: [
+      {
+        question: "Is it bad to cry over small things?",
+        answer:
+          "Not usually — small triggers often release accumulated emotion. Crying over a sad commercial isn't really about the commercial; it's the body using a minor cue to release held emotion. This is healthy emotional regulation. If random crying has become daily or feels uncontrollable for more than 2 weeks, talk to a doctor — but occasional 'crying over small things' is normal.",
+      },
+      {
+        question: "Why do I cry when I'm angry?",
+        answer:
+          "Anger-crying is common and has biological roots. Both emotions activate the autonomic nervous system at high intensity; the body sometimes responds with tears regardless of the originating emotion. People who were taught not to express anger directly (often women, often people from cultures discouraging female anger) are especially likely to cry when angry. Not a weakness — a redirected expression.",
+      },
+      {
+        question: "Are hormones really making me cry?",
+        answer:
+          "Yes, in many cases. Premenstrual hormonal shifts produce documented emotional dysregulation 7-10 days before period (PMDD is the more severe form). Perimenopause, postpartum, and thyroid issues all create similar patterns. Tracking crying alongside cycle reveals patterns quickly. For severe cycle-related crying, talk to a doctor — treatable with hormonal adjustments or SSRIs.",
+      },
+      {
+        question: "Can stress make me cry randomly?",
+        answer:
+          "Yes — chronic accumulated stress without release windows builds pressure. The body uses crying as a release valve. Random crying after high-stress weeks is the body finally letting go. The fix isn't suppressing the crying — it's building intentional release windows earlier (exercise, journaling, conversation) so the pressure doesn't reach overflow.",
+      },
+      {
+        question: "Could crying randomly be depression?",
+        answer:
+          "Possibly. Depression-related crying often comes with: persistent low mood, loss of interest in things you used to enjoy, sleep or appetite changes, hopelessness, lasting 2+ weeks. If your random crying fits this profile or comes with self-harm thoughts, see a doctor — depression is highly treatable. The 5-min diagnostic in this article helps distinguish depression-crying from other causes.",
+      },
+      {
+        question: "Should I see a doctor if I cry a lot?",
+        answer:
+          "Yes if: daily crying for 2+ weeks, can't stop once started, feel worse afterward, accompanied by depression symptoms, or includes thoughts of self-harm. Also yes if you suspect hormonal causes (cycle pattern, perimenopause, thyroid) — simple blood test confirms. Crying that's clearly tied to identifiable life stress and resolves with processing usually doesn't need medical evaluation.",
+      },
+    ],
+  },
+  // COMMERCIAL — Best journal app for therapists.
+  {
+    slug: "best-journal-app-for-therapists-2026",
+    title: "Best Journal App for Therapists and Clients in 2026: 5 Picks for Therapy Practice",
+    description: "Therapists need a journal app that protects client privacy, integrates with therapy homework, and provides pattern data without overstepping clinical boundaries. We tested 5 picks for 2026 — Nuju, Rosebud, Reflectly, Daylio, Mindsera.",
+    metaTitle: "Best Journal App for Therapists + Clients 2026 (5 Picks)",
+    metaDescription: "Best journal apps for therapy clients 2026: Nuju, Rosebud, Reflectly, Daylio, Mindsera. Privacy, therapy homework integration, pattern data.",
+    publishedAt: "2026-05-22",
+    readingTime: 7,
+    category: "App Comparison",
+    sections: [
+      { type: "p", content: "Best journal app for therapists and clients in 2026: Nuju for short daily entries between sessions (free + multilingual + warm AI tone). Rosebud for structured CBT-style homework. Mindsera for cognitive-distortion identification. Reflectly for beginner clients new to journaling. Daylio for clients who need mood data without writing. The right pick depends on the therapy modality and client preferences." },
+      { type: "callout", content: "Quick start for therapists: Recommend Nuju Free as the default — strong privacy (explicit no-AI-training), supports 8 languages, short-entry format that clients actually sustain. Try the free Ju Gets You reveal yourself before recommending to clients. /onboarding — 60 seconds, no credit card." },
+      { type: "h2", content: "What therapists specifically need from a client journal app" },
+      { type: "ul", content: [
+        "Strong privacy: client journal content is some of the most sensitive data possible. Must have explicit no-AI-training, encryption, easy export/delete.",
+        "Therapy integration: ideally something clients can bring to sessions — mood charts, recurring themes, specific entries flagged for discussion.",
+        "Sustainable for clients: most clients won't sustain long-form journaling. Short-entry format wins.",
+        "Multiple modality fit: CBT clients need structured prompts; emotion-focused therapy clients need open expression; DBT clients need specific skill tracking.",
+        "Trauma-aware design: avoiding apps that aggressively push 'positivity' or could re-traumatize through forced engagement.",
+      ] },
+      { type: "h2", content: "1. Nuju — best for clients between sessions" },
+      { type: "p", content: "Nuju is built around 30-second mood-plus-text entries. For clients between therapy sessions, this matches realistic energy and motivation — particularly for depression, anxiety, and trauma clients. The Gentle AI persona (default, picked by 50% of users) is validating without being directive — appropriate for most therapy contexts." },
+      { type: "p", content: "Therapist-relevant features: explicit no-AI-training privacy. Encrypted entries. Full export available. Mood + energy tracking that produces visualizations clients can show in sessions. Supports Bahasa Indonesia and 7 other languages. Free tier covers daily journaling — accessible for clients on any budget." },
+      { type: "p", content: "Limits: not designed as therapy software — won't integrate directly with practice management systems. No HIPAA-compliance certification (consumer app, not medical software). For clients who need clinical-software-grade data handling, use practice-management tools instead." },
+      { type: "h2", content: "2. Rosebud — best for CBT homework" },
+      { type: "p", content: "Rosebud uses GPT-4o for structured CBT-style prompts designed by therapists. For CBT clients who respond to clear frameworks and guided sequences, it functions as 'therapy homework' between sessions. $12.99/month — no permanent free tier." },
+      { type: "p", content: "Therapist concerns: Rosebud's TOS includes a data-training clause for anonymized content as of 2026. For clients with sensitive content (trauma, abuse history), this should be disclosed before recommending. Otherwise solid for CBT integration." },
+      { type: "h2", content: "3. Mindsera — best for cognitive-distortion work" },
+      { type: "p", content: "Mindsera analyzes entries for cognitive distortions (all-or-nothing, catastrophizing, mind-reading, fortune-telling) and suggests evidence-based reframes. For clients doing active CBT cognitive restructuring, the framework alignment is uniquely strong. $8-12/month." },
+      { type: "p", content: "Best fit: clients already familiar with CBT terminology working on specific recurring distortions. Less fit for emotion-focused therapy or trauma work where the analytical lens can feel clinical." },
+      { type: "h2", content: "4. Reflectly — best for journaling-beginner clients" },
+      { type: "p", content: "Reflectly uses positive psychology principles for guided daily check-ins. For clients who have never journaled and find every other app intimidating, it's the lowest-friction onboarding. Light on AI feedback compared to Nuju/Rosebud." },
+      { type: "p", content: "Caveat for therapists: positive-psychology framing can backfire for clients with depression, trauma, or grief — forcing gratitude can deepen shame. Better for general-wellness clients than for clinical conditions." },
+      { type: "h2", content: "5. Daylio — best for clients who refuse to write" },
+      { type: "p", content: "Daylio is mood tracker (not AI journal). For clients who refuse text-based journaling but will tap a mood + activity tags, Daylio captures meaningful data. 10-second entries. $3.99 one-time premium (rare in 2026)." },
+      { type: "p", content: "Therapist use: Daylio's mood charts are excellent for between-session pattern analysis. Many therapists use Daylio + Nuju combination — Daylio for ultra-quick mood data, Nuju for reflective entries when clients have capacity." },
+      { type: "h2", content: "Privacy: what to check before recommending" },
+      { type: "p", content: "Therapists should verify each app's current privacy stance before recommending. As of 2026-05:" },
+      { type: "ul", content: [
+        "Nuju: explicit no-AI-training, encryption, full export/delete. Safe for sensitive content.",
+        "Reflection: explicit no-AI-training, E2E encryption. Safe.",
+        "Rosebud: TOS includes anonymized-content training clause. Disclose before recommending to sensitive-content clients.",
+        "Mindsera: privacy stance varies — verify current TOS.",
+        "Daylio: mood-only data, minimal privacy concern from data type.",
+        "Reflectly: privacy stance varies — verify current TOS.",
+      ] },
+      { type: "h2", content: "Combining with therapy modality" },
+      { type: "ul", content: [
+        "CBT clients: Rosebud (structured) or Mindsera (distortion-focused).",
+        "Emotion-focused therapy: Nuju (warm tone, free expression).",
+        "DBT clients: Daylio (mood + activity tracking for skill use).",
+        "Trauma-focused therapy: Nuju with explicit caveats — avoid trauma replay without therapist guidance. Use for daily check-ins between sessions.",
+        "Beginner clients: Reflectly (gentlest onboarding), upgrade to Nuju after 1-2 months.",
+        "Multilingual practice: Nuju (8 languages including Bahasa Indonesia, Spanish, Japanese).",
+      ] },
+      { type: "h2", content: "Bottom line" },
+      { type: "p", content: "For most therapy clients in 2026, Nuju Free is the default starting recommendation: strong privacy, short-entry format clients actually sustain, multilingual support, warm AI tone. Add Rosebud or Mindsera for clients doing active CBT cognitive work. Add Daylio for clients who refuse text journaling. Try Nuju yourself first — the free Ju Gets You reveal at /onboarding takes 60 seconds and shows the format you'd be recommending. No credit card required." },
+    ],
+    faq: [
+      {
+        question: "Are journal apps HIPAA compliant?",
+        answer:
+          "Most consumer journal apps (including Nuju) are not HIPAA-certified — they're consumer wellness apps, not medical software. For clinical data that needs HIPAA compliance, use practice management systems (SimplePractice, TherapyNotes, etc.) instead. Consumer journal apps work for client self-tracking but should not store data therapists are clinically responsible for protecting under HIPAA.",
+      },
+      {
+        question: "Which journal app should I recommend to a CBT client?",
+        answer:
+          "Rosebud for structured CBT-style prompts designed by therapists. Mindsera for clients specifically working on cognitive-distortion identification. Both have strong CBT-framework alignment. Nuju works for less structured between-session reflection. Match the app to the specific CBT work — guided sequences vs. distortion analysis vs. open reflection.",
+      },
+      {
+        question: "Is Nuju safe for trauma clients?",
+        answer:
+          "Nuju has strong privacy (explicit no-AI-training, encryption, full export/delete) which is essential for trauma content. The Gentle AI persona is validating rather than directive. Limits: avoid using Nuju for trauma replay without therapist guidance — re-traumatization risk applies to any journaling tool. Best use: daily mood check-ins and processing material discussed in therapy, not standalone trauma exploration.",
+      },
+      {
+        question: "Should I recommend a paid or free journal app to clients?",
+        answer:
+          "Start with free tiers. Nuju Free covers daily journaling with AI insights — sufficient for most clients between sessions. Daylio Free covers mood tracking. Most clients don't need paid tiers; recommend upgrades only if specific premium features add clinical value (e.g., full history for clients working on long-term pattern analysis).",
+      },
+      {
+        question: "Do journal apps make therapy more effective?",
+        answer:
+          "Research suggests structured between-session journaling can improve therapy outcomes for several conditions (depression, anxiety, trauma) by deepening engagement with therapy content and increasing self-monitoring. The effect is meaningful but modest — apps complement therapy, they don't replace skilled clinical work. Many clients who use journal apps report sessions feel more productive.",
+      },
+      {
+        question: "What if a client refuses to use any app?",
+        answer:
+          "Paper journals work fine — research on expressive writing (Pennebaker, UT Austin) was originally done with handwritten entries. Some clients have legitimate reasons to avoid apps (privacy concerns, screen fatigue, technology aversion). Don't force apps. The therapeutic value is in the journaling, not the medium.",
+      },
+    ],
+  },
+  // VERSUS COMPARISON — Nuju vs Day One. Day One is heritage diary app.
+  {
+    slug: "nuju-vs-day-one",
+    title: "Nuju vs Day One: AI-First or Heritage Diary? (2026 Comparison)",
+    description: "Nuju and Day One target different journaling philosophies. Day One is the polished heritage diary for long-form daily writing. Nuju is the AI-first short-entry tool for the 30-second pattern. Here's the honest comparison.",
+    metaTitle: "Nuju vs Day One 2026: AI Journal vs Heritage Diary (Side-by-Side)",
+    metaDescription: "Nuju vs Day One: Nuju = 30-sec AI-augmented entries + Bahasa Indonesia. Day One = polished long-form diary + iOS-first. Different jobs.",
+    publishedAt: "2026-05-22",
+    readingTime: 7,
+    category: "App Comparison",
+    sections: [
+      { type: "p", content: "Short answer: pick Nuju if you want AI-augmented short daily entries with mood tracking, multi-language support, and a free tier. Pick Day One if you want a polished long-form diary with strong media support, beautiful exports, and you're committed to longer entries. Day One is the heritage diary app; Nuju is the new AI journal category. They target different journaling philosophies." },
+      { type: "callout", content: "Quick start: most users testing 'AI journaling' should start with Nuju Free (60 seconds at /onboarding). Most users wanting traditional long-form diary should start with Day One. Almost nobody actually needs both — they serve different jobs." },
+      { type: "h2", content: "Head-to-head: 5 dimensions" },
+      { type: "ul", content: [
+        "Format: Nuju = 30-second mood+text. Day One = open-ended long-form diary, often with photos.",
+        "AI: Nuju = AI reads each entry, surfaces patterns. Day One = no AI by default (some AI features in newer versions but not core).",
+        "Platform: Day One = iOS-first, also Mac and Android. Nuju = web + iOS PWA + Android.",
+        "Pricing: Nuju Free covers daily use. Day One Free is limited; Day One Premium is ~$35/year.",
+        "Languages: Nuju = 8 languages including Bahasa Indonesia. Day One = English-first.",
+      ] },
+      { type: "h2", content: "Where Day One wins" },
+      { type: "p", content: "Day One is the better pick when:" },
+      { type: "ul", content: [
+        "You write long-form daily — 200+ words per entry, regularly. Day One's editor is built for this.",
+        "Photos and rich media are core to your journaling. Day One's photo integration is category-leading.",
+        "You want beautiful PDF/book exports for printing. Day One's export quality is the best in the category.",
+        "You're 100% on Apple devices (iPhone, Mac, iPad). Day One's Apple integration is deepest.",
+        "You want a traditional diary metaphor, not an AI-augmented tool.",
+      ] },
+      { type: "p", content: "Day One has been around since 2011 and built decades of trust as the 'serious diarist' app. For users who want that and will write the long entries, it's the strongest pick." },
+      { type: "h2", content: "Where Nuju wins" },
+      { type: "p", content: "Nuju is the better pick when:" },
+      { type: "ul", content: [
+        "You want 30-second daily entries — median real Nuju entry is 31 characters.",
+        "AI feedback on your writing matters. Day One has minimal AI; Nuju has it as core feature.",
+        "Mood and energy tracking integrated with text entries.",
+        "Multi-language UI and AI matter (Bahasa Indonesia, Spanish, Japanese, etc.).",
+        "Free tier matters — Nuju Free is more generous than Day One Free.",
+        "Cross-platform without Apple bias.",
+      ] },
+      { type: "p", content: "Real-world data: 87% of Nuju entries are logged on Rough/Low/Okay days with median 31 characters. Most modern users don't write long-form daily — they want quick mood logs with reflection. Nuju is built for that pattern." },
+      { type: "h2", content: "The honest distinction" },
+      { type: "p", content: "Day One assumes you're already a journaler — or want to become one in the traditional sense. Nuju assumes you're not — and lowers the bar to entry so the habit can form. For people who already journal long-form daily, Day One's depth wins. For people who've tried journaling before and bounced because long entries felt overwhelming, Nuju's short-format design is the unlock." },
+      { type: "h2", content: "Pricing breakdown (2026)" },
+      { type: "ul", content: [
+        "Day One Free: limited (only one journal, no sync across devices, no premium themes).",
+        "Day One Premium: ~$34.99/year. Full features, unlimited journals, cross-device sync.",
+        "Nuju Free: full daily journaling with AI insights, mood tracking, 4 personas (basic), 8 languages.",
+        "Nuju Plus: $4.99/mo or $39.99/yr.",
+        "Nuju Pro: $9.99/mo or $79.99/yr.",
+      ] },
+      { type: "h2", content: "Decision tree" },
+      { type: "ul", content: [
+        "Want long-form diary + photos + beautiful exports + Apple ecosystem: Day One.",
+        "Want 30-second AI-augmented entries + multi-language + cross-platform + strong free tier: Nuju.",
+        "Want both? Most users don't need both. Pick the one that matches your actual journaling pattern.",
+        "Indonesian-language user: Nuju (Day One has minimal Bahasa Indonesia).",
+        "Have tried journaling before and bounced because it felt overwhelming: Nuju (the short-format is the unlock).",
+      ] },
+      { type: "h2", content: "Bottom line" },
+      { type: "p", content: "Nuju and Day One serve different journaling philosophies. Day One is the heritage long-form diary app — beautiful, polished, and worth the price for committed daily long-form writers. Nuju is the AI-first short-entry tool — built for the 30-second pattern most real journalers actually produce. Try Nuju's free Ju Gets You reveal first (/onboarding, 60 seconds, no credit card) — if the short-entry format works for you, no need to look further. If you specifically want long-form diary with rich media, Day One is the right pick." },
+    ],
+    faq: [
+      {
+        question: "Is Day One better than Nuju?",
+        answer:
+          "Neither is universally better — they serve different journaling jobs. Day One is the heritage long-form diary app, best for users who write 200+ words per entry regularly. Nuju is the AI-first short-entry tool, best for the 30-second mood+text pattern most modern journalers actually produce. Pick by your actual writing pattern, not by feature count.",
+      },
+      {
+        question: "Does Day One have AI features?",
+        answer:
+          "Limited compared to dedicated AI journals. Day One has added some AI features in newer versions but they're not core to the product — Day One is fundamentally a diary editor, not an AI-augmented journal. For users specifically wanting AI to read entries and surface patterns, Nuju, Rosebud, Mindsera, or Reflection are stronger picks.",
+      },
+      {
+        question: "Is Day One free?",
+        answer:
+          "Limited free tier (one journal, no cross-device sync). Day One Premium is ~$34.99/year for full features. Nuju Free is significantly more generous — daily journaling, AI insights, mood tracking, 4 coach personas. For users testing whether journaling fits their life, Nuju Free is more practical than Day One Free.",
+      },
+      {
+        question: "Should I switch from Day One to Nuju?",
+        answer:
+          "Only if your actual journaling pattern doesn't match Day One's design. If you write long-form daily and value Day One's media handling and exports, stay. If you've been opening Day One less often, writing shorter entries, or feel the long-form format is friction — Nuju's short-format design may be a better fit. Try Nuju Free for 2 weeks; switch if it sustains better.",
+      },
+      {
+        question: "Does Day One support Bahasa Indonesia?",
+        answer:
+          "Day One has limited Bahasa Indonesia support — primarily English-focused. Nuju is the only major journal app with full Bahasa Indonesia (UI, prompts, AI responses). For Indonesian users specifically, Nuju is the more complete choice.",
+      },
+      {
+        question: "Can I export from Day One to Nuju?",
+        answer:
+          "Both apps support export. Direct entry-import isn't typically supported between them. Most users switching don't migrate years of entries — they keep the Day One archive read-only and start fresh in the new app. Mood scale and entry format are different enough that direct import wouldn't preserve much value.",
+      },
+    ],
+  },
+  // BAHASA INDONESIA — Cara mengatasi stres skripsi. MASSIVE Indonesian
+  // student search volume.
+  {
+    slug: "cara-mengatasi-stres-skripsi",
+    title: "Cara Mengatasi Stres Skripsi: 6 Prompt Journaling + Strategi Praktis (2026)",
+    description: "Stres skripsi adalah salah satu pengalaman mental health paling berat di hidup mahasiswa Indonesia — kombinasi tekanan akademik, finansial, dan ekspektasi keluarga. 6 prompt journaling yang terbukti memutus loop stres + strategi praktis.",
+    metaTitle: "Cara Mengatasi Stres Skripsi: 6 Prompt + Strategi Praktis (2026)",
+    metaDescription: "Stres skripsi: 6 prompt journaling yang terbukti + strategi praktis untuk mahasiswa Indonesia. Akademik + finansial + ekspektasi keluarga.",
+    publishedAt: "2026-05-22",
+    readingTime: 8,
+    category: "Mental Wellness",
+    sections: [
+      { type: "p", content: "Stres skripsi adalah salah satu pengalaman mental health paling berat di hidup mahasiswa Indonesia. Bukan cuma tekanan akademik — tapi kombinasi: deadline yang terus mundur, dosbing yang susah dihubungi, biaya hidup ekstra yang menumpuk, ekspektasi orang tua yang berinvestasi finansial dan emosional, perbandingan dengan teman yang udah lulus, dan ketidakpastian masa depan setelah lulus. Wajar kalau lo merasa kewalahan." },
+      { type: "p", content: "Riset Pychyl + Sirois soal procrastination akademik konsisten menunjukkan: stres skripsi rarely fixed dengan 'just do it.' Yang bekerja: memisahkan komponen stres yang berbeda (akademik vs emosional vs sosial) dan menangani masing-masing dengan teknik yang tepat. 6 prompt di bawah dirancang untuk itu, plus strategi praktis untuk situasi spesifik mahasiswa Indonesia." },
+      { type: "callout", content: "Quick start: kalau lo lagi baca ini sambil deadline skripsi mendekat — skip ke 'Brain dump 5 menit' di bawah. Coba malam ini. Sains-nya bisa dibaca besok. Nuju free Ju Gets You reveal di /onboarding tool yang cocok — 60 detik untuk mulai, support Bahasa Indonesia." },
+      { type: "h2", content: "Kenapa stres skripsi spesifik berbeda" },
+      { type: "p", content: "Lima komponen unik:" },
+      { type: "ul", content: [
+        "Open loop tanpa ujung jelas: tidak seperti tugas mingguan, skripsi punya 'kapan selesai' yang fuzzy. Otak nggak bisa close loop sampai sidang.",
+        "Hubungan dosbing yang kompleks: dependensi pada satu orang untuk approve berbagai milestone. Stres ini sering nggak bisa diomongkan langsung karena hierarki.",
+        "Ekspektasi finansial keluarga: setiap semester tambahan = uang tambahan orang tua. Beban emosional di atas akademik.",
+        "Comparison sosial konstan: teman yang udah lulus, yang udah kerja, yang udah nikah. Sosmed perpanjang ini.",
+        "Identity post-lulus yang nggak jelas: 'setelah lulus mau ngapain' jadi pertanyaan yang menumpuk di atas stres skripsi.",
+      ] },
+      { type: "h2", content: "Brain dump 5 menit (emergency protocol)" },
+      { type: "p", content: "Untuk malam yang berat:" },
+      { type: "ol", content: [
+        "Set timer 5 menit. Buka aplikasi notes atau jurnal.",
+        "Tulis SEMUA yang ada di kepala. Dosbing yang nggak balas chat 3 hari. Bab yang belum mulai. Orang tua yang nanya kapan lulus. Teman yang udah dapet kerja. Tulis tanpa edit.",
+        "Setelah 5 menit, BERHENTI. Tutup file. Jangan re-read.",
+        "Notice: tekanan kognitif biasanya turun signifikan dalam 60-90 detik.",
+      ] },
+      { type: "h2", content: "6 prompt khusus stres skripsi" },
+      { type: "h2", content: "Prompt 1: 'Bagian skripsi spesifik mana yang gue stuck di-nya?'" },
+      { type: "p", content: "Bukan 'semua skripsi gue masalah' — bagian SPESIFIK. Bab 3 metodologi yang nggak ngerti? Data yang belum dapet? Bab 4 analisis yang takut salah? Specificity bikin masalah konkret. 'Gue stuck' = paralysis. 'Gue stuck di operasionalisasi variabel X di Bab 3' = bisa ditangani." },
+      { type: "h2", content: "Prompt 2: 'Apa yang dosbing gue spesifik minta yang gue belum kasih?'" },
+      { type: "p", content: "Hubungan dosbing yang stres sering karena ekspektasi nggak jelas. Tulis spesifik. Revisi bab apa yang dia minta terakhir? Kapan lo terakhir update progress? Apa pertanyaan yang udah dia ajuin tapi belum lo jawab? Mendekati hubungan dosbing dengan to-do list spesifik berbeda dari menghindari karena takut." },
+      { type: "h2", content: "Prompt 3: 'Apa yang sebenarnya gue takutin dari skripsi ini?'" },
+      { type: "p", content: "Takut gagal sidang? Takut dosbing kecewa? Takut keluarga marah kalau telat lulus? Takut nggak dapet kerja setelah? Nama ketakutan spesifik. Sering jauh lebih kecil dari yang lo bayangin. Kadang ketakutan yang dinamai jadi tindakan (kalau takut nggak dapet kerja — mungkin lo perlu mulai apply selama nungguin revisi)." },
+      { type: "h2", content: "Prompt 4: 'Apa yang gue bisa kontrol minggu ini? Apa yang enggak?'" },
+      { type: "p", content: "Dua kolom. 'Bisa kontrol': effort lo, waktu lo, struktur belajar lo, kapan lo email dosbing, langkah pertama Bab X. 'Nggak bisa kontrol': kapan dosbing balas, mood dosbing, perbandingan dengan teman, ekspektasi orang tua. Yang masuk kolom kedua — coret. Otak boleh lepas. Yang kolom pertama — pilih satu, tulis aksi konkret minggu ini." },
+      { type: "h2", content: "Prompt 5: 'Apa yang akan gue katakan ke teman dengan stres skripsi yang sama?'" },
+      { type: "p", content: "Kita lebih jelas ke teman. Tulis nasihat yang akan lo kasih ke teman dalam situasi lo. Biasanya lebih kind, lebih realistis, lebih protektif. Lalu tanya: kenapa nggak lo terapin ke diri sendiri?" },
+      { type: "h2", content: "Prompt 6: 'Apa hal kecil yang bisa gue lakukan dalam 30 menit berikutnya?'" },
+      { type: "p", content: "Stres skripsi sering paralisis. Lawan dengan langkah kecil yang spesifik. 'Tulis 100 kata dari Bab X.' 'Email dosbing dengan satu pertanyaan spesifik.' 'Buka jurnal yang udah lo download tapi belum dibaca.' Kecil. Specific. Doable. Sekali mulai, paralysis biasanya turun." },
+      { type: "h2", content: "Strategi praktis (bukan cuma journaling)" },
+      { type: "p", content: "Journaling membantu loop emosional. Strategi berikut membantu loop praktis:" },
+      { type: "ul", content: [
+        "Pomodoro 25 menit: paksa diri 25 menit kerja skripsi, 5 menit break. Diulang. Sustainable.",
+        "Email dosbing template: bikin satu template formal untuk update progress. Hilangkan friction nulis email tiap kali.",
+        "Body double: kerja skripsi di tempat ada orang lain (perpus, kafe, study group). Akuntabilitas pasif.",
+        "Bagi skripsi jadi bab kecil dengan deadline diri sendiri. Bab 4 selesai 30 Juni, bukan 'skripsi selesai Desember.'",
+        "Set waktu kerja keluarga: jam tertentu lo nggak mau diganggu soal skripsi (dengan diri sendiri atau orang tua).",
+      ] },
+      { type: "h2", content: "Kapan stres skripsi butuh psikolog" },
+      { type: "p", content: "Tanda yang menunjukkan butuh bantuan profesional:" },
+      { type: "ul", content: [
+        "Gangguan tidur lebih dari 3 minggu berturut-turut.",
+        "Nggak bisa kerja skripsi sama sekali lebih dari 4 minggu.",
+        "Pikiran ngerusak diri sendiri — sekecil apapun.",
+        "Serangan panik saat mau buka file skripsi atau ketemu dosbing.",
+        "Ketergantungan pada alkohol atau zat lain untuk coping.",
+        "Depresi: kehilangan minat pada semua, mood rendah persisten, kelelahan terus-menerus.",
+      ] },
+      { type: "p", content: "Akses Indonesia 2026: banyak kampus punya konseling gratis untuk mahasiswa — tanya BAAK atau biro mahasiswa. Halodoc, KALM, Riliv (Rp 50.000-150.000 per sesi). Krisis: Into The Light Indonesia (intothelightid.org), 119 ext 8." },
+      { type: "h2", content: "Bottom line" },
+      { type: "p", content: "Stres skripsi adalah kombinasi unik dari pressure akademik + finansial + sosial + ekspektasi. Bukan masalah willpower. Brain dump 5 menit memutus loop emosional malam ini. 6 prompt + strategi praktis bekerja selama berminggu-minggu. Untuk depresi atau anxiety berat, konsultasi profesional — biaya tidak harus jadi penghalang dengan konseling kampus gratis atau platform Indonesia. Nuju gratis dengan support Bahasa Indonesia di /onboarding — 60 detik untuk mulai." },
+    ],
+    faq: [
+      {
+        question: "Apa journaling bisa benar-benar bantu stres skripsi?",
+        answer:
+          "Ya, untuk komponen emosional. Riset Pychyl + Sirois menunjukkan procrastination akademik adalah strategi emotion regulation — lo menghindari perasaan yang dipicu skripsi, bukan skripsi itu sendiri. Brain dump 5 menit mengeksternalisasi loop emosional. 6 prompt terstruktur menangani komponen spesifik (stuck di bagian apa, takut apa, hubungan dosbing). Untuk komponen praktis (jadwal, struktur kerja), butuh strategi pomodoro/body double/template email.",
+      },
+      {
+        question: "Berapa lama biasanya butuh sampai stres skripsi berkurang?",
+        answer:
+          "Untuk satu sesi: brain dump 5 menit biasanya menurunkan tekanan kognitif dalam 60-90 menit. Untuk efek jangka panjang (lebih jarang panic, lebih cepat recovery, productivitas naik): butuh 2-3 minggu konsisten. Konsistensi lebih penting dari durasi — 5 menit setiap hari lebih efektif dari 1 jam sekali seminggu.",
+      },
+      {
+        question: "Gimana kalau dosbing gue ghosting selama berminggu-minggu?",
+        answer:
+          "Dosbing yang nggak balas adalah salah satu sumber stres terbesar dan paling umum. Strategi: (1) Email follow-up sekali per minggu dengan template formal — tunjukkan progress + 1-2 pertanyaan spesifik. (2) Bawa ke koprodi atau wakil dekan kalau udah 3+ minggu nggak ada respons untuk hal urgent. (3) Sementara nunggu, kerja bagian skripsi yang lo bisa lanjutkan tanpa input dia. Journal stres ini terpisah — lo bisa kerjakan kemampuan kerja walaupun komunikasi macet.",
+      },
+      {
+        question: "Apa yang harus dilakukan kalau gue takut nggak lulus tepat waktu?",
+        answer:
+          "Pertama, prompt 3 untuk identifikasi ketakutan spesifik. Sering 'takut nggak lulus' sebenarnya 'takut orang tua kecewa' atau 'takut kalah dari teman.' Yang berbeda. Kedua, realistis: kebanyakan mahasiswa Indonesia molor 1-2 semester — itu normal di sebagian besar program. Ketiga, bagi skripsi jadi milestone bulanan, bukan 'selesai Desember.' Progress yang bisa dilihat mengurangi stres dari ketidakpastian.",
+      },
+      {
+        question: "Kapan harus pertimbangkan cuti atau pindah jalur?",
+        answer:
+          "Cuti pantas dipertimbangkan kalau: gangguan tidur kronis 4+ minggu, depresi persisten, atau lo nggak bisa fungsi sama sekali. Konsultasi profesional dulu — psikolog kampus atau di luar. Pindah jalur (misalnya dari skripsi ke non-skripsi/jalur lain kalau ada) adalah opsi valid untuk beberapa kampus. Tidak ada keharusan menyelesaikan via skripsi kalau ada alternatif. Yang penting: pertimbangkan dengan jelas, bukan dari panic. Konseling kampus bisa bantu.",
+      },
+      {
+        question: "Apakah stres skripsi tanda gangguan mental health?",
+        answer:
+          "Stres skripsi yang intens itu normal. Tapi tanda yang butuh evaluasi profesional: gejala fisik kronis (sakit kepala, masalah pencernaan), gangguan tidur lebih dari 3 minggu, depresi (kehilangan minat pada semua, mood rendah persisten, kelelahan), pikiran ngerusak diri, atau serangan panik saat buka file skripsi. Halodoc/KALM/Riliv mulai Rp 50.000-150.000. Banyak kampus punya konseling gratis — tanya BAAK.",
+      },
+    ],
+  },
+  // BAHASA INDONESIA — Persiapan mental UTBK / SBMPTN. Seasonal high-volume.
+  {
+    slug: "persiapan-mental-utbk-sbmptn",
+    title: "Persiapan Mental UTBK / SBMPTN: 5 Prompt Journaling untuk H-30 hingga Hari-H",
+    description: "Anxiety UTBK / SBMPTN nyata dan terdokumentasi. Stres akademik + ekspektasi keluarga + ketidakpastian masa depan. 5 prompt journaling spesifik untuk persiapan mental, dipetakan H-30 sampai hari-H plus malam sebelum tes.",
+    metaTitle: "Persiapan Mental UTBK / SBMPTN: 5 Prompt Journaling (2026)",
+    metaDescription: "Anxiety UTBK / SBMPTN nyata. 5 prompt journaling dipetakan H-30 sampai hari-H. Strategi malam sebelum tes. Plus kapan butuh psikolog.",
+    publishedAt: "2026-05-22",
+    readingTime: 7,
+    category: "Mental Wellness",
+    sections: [
+      { type: "p", content: "Anxiety UTBK / SBMPTN nyata dan terdokumentasi. Bukan hanya tekanan ujian — tapi kombinasi: ekspektasi orang tua yang udah investasi finansial dan emosional untuk pendidikan lo, perbandingan dengan teman seangkatan, ketakutan masa depan kalau nggak masuk PTN pilihan, dan stres akademik dari persiapan berbulan-bulan. Wajar kalau lo merasa kewalahan." },
+      { type: "p", content: "Riset Sian Beilock (University of Chicago, 2011) konsisten menunjukkan: menulis tentang anxiety ujian 10 menit sebelum ujian secara signifikan meningkatkan performa ujian. Aplikasinya untuk UTBK / SBMPTN: journaling terstruktur dalam 30 hari menjelang hari-H mengurangi anxiety, meningkatkan kualitas tidur, dan meningkatkan retensi belajar. 5 prompt di bawah dirancang spesifik untuk persiapan mental UTBK / SBMPTN." },
+      { type: "callout", content: "Quick start: kalau ujian lo dalam beberapa minggu, mulai dengan prompt 1 malam ini. 5 menit per hari sampai hari-H. Yang penting konsistensi, bukan panjang. Nuju free Ju Gets You reveal di /onboarding tool yang cocok — 60 detik untuk mulai, support Bahasa Indonesia." },
+      { type: "h2", content: "Kenapa anxiety UTBK / SBMPTN unik" },
+      { type: "p", content: "Lima komponen yang bikin ujian masuk PTN spesifik berat:" },
+      { type: "ul", content: [
+        "High stakes single event: berbeda dari ujian sekolah biasa yang bisa di-recover. UTBK adalah satu kesempatan setahun.",
+        "Ekspektasi keluarga: orang tua sering investasi finansial signifikan (bimbel, les privat). Beban emosional di atas akademik.",
+        "Comparison di lingkungan: teman seangkatan, sepupu, anak tetangga jadi reference points konstan.",
+        "Identitas terikat ke hasil: 'masuk PTN' jadi identitas yang dibangun selama bertahun-tahun. Gagal terasa seperti gagal sebagai orang.",
+        "Future uncertainty: pertanyaan 'kalau nggak masuk pilihan pertama, mau ngapain' menumpuk di atas stres ujian.",
+      ] },
+      { type: "h2", content: "5 prompt journaling untuk persiapan mental" },
+      { type: "h2", content: "Prompt 1 (H-30 sampai H-7): 'Apa yang gue spesifik takutin?'" },
+      { type: "p", content: "Bukan 'gue takut UTBK' — spesifik. 'Gue takut materi matematika TPS yang gue belum kuasai keluar.' 'Gue takut orang tua kecewa kalau nggak lolos PTN pilihan pertama.' 'Gue takut harus gap year sambil nyiapin lagi.' Menamai ketakutan spesifik bikin mereka konkret. Sering, sekali dinamai, mereka kelihatan lebih kecil dari yang dibayangkan." },
+      { type: "h2", content: "Prompt 2 (H-21 sampai H-7): 'Apa yang gue bisa kontrol di 2 minggu ke depan?'" },
+      { type: "p", content: "Dua kolom. 'Bisa kontrol': jadwal belajar, latihan soal yang dikerjakan, tidur cukup, makan teratur, mock test. 'Nggak bisa kontrol': soal apa yang keluar, performa peserta lain, keputusan PTN. Yang masuk kolom kedua — coret. Yang kolom pertama — pilih satu, tulis aksi konkret untuk minggu ini." },
+      { type: "h2", content: "Prompt 3 (H-14): 'Apa yang akan gue lakukan kalau gue nggak masuk PTN pilihan pertama?'" },
+      { type: "p", content: "Prompt yang banyak dihindari karena terasa 'memikirkan kegagalan.' Justru sebaliknya: punya rencana untuk worst case mengurangi anxiety karena otak tahu ada exit strategy. Pilihan kedua/ketiga PTN? Swasta? Gap year sambil kerja part-time? Tulis 1-2 opsi yang realistic. Lo nggak terjebak satu jalur." },
+      { type: "h2", content: "Prompt 4 (H-7 sampai H-1): 'Apa 3 hal hari ini yang gue lakukan dengan baik?'" },
+      { type: "p", content: "Minggu terakhir, anxiety puncak. Otak bias ke yang buruk ('gue masih belum hapal,' 'try out kemarin jelek'). Force-list 3 hal yang berjalan baik — bisa sekecil 'gue selesain 1 chapter,' 'gue tidur 7 jam,' 'gue makan teratur.' Mempertahankan baseline positif penting untuk recovery dari anxiety harian." },
+      { type: "h2", content: "Prompt 5 (Malam H-1): 'Apa yang gue tahu udah gue kuasai?'" },
+      { type: "p", content: "Malam sebelum UTBK, jangan belajar materi baru — fokus pada review yang udah dikuasai. Prompt ini bikin lo nulis materi yang udah confident — bukan yang masih lemah. Membaca apa yang udah dikuasai sebelum tidur menenangkan otak dan memperbaiki retrieval keesokan harinya. Riset memory consolidation mendukung ini." },
+      { type: "h2", content: "Strategi malam sebelum dan hari-H" },
+      { type: "p", content: "Beyond journaling, hal yang terbukti meningkatkan performa:" },
+      { type: "ul", content: [
+        "Tidur 8 jam malam sebelum tes — riset Walker (Berkeley) konsisten menunjukkan ini mengalahkan 'cramming.'",
+        "Sarapan dengan protein + karbohidrat kompleks — gula darah stabil mengurangi anxiety dan brain fog.",
+        "Datang 30 menit lebih awal — mengurangi panic dari transportasi/macet.",
+        "10 menit brain dump pagi hari sebelum berangkat (Beilock 2011 protocol) — turunkan anxiety pre-ujian.",
+        "Hindari ngobrol dengan peserta lain soal materi sebelum mulai — itu spike anxiety.",
+      ] },
+      { type: "h2", content: "Kapan anxiety UTBK butuh psikolog" },
+      { type: "p", content: "Tanda yang butuh dukungan profesional sebelum ujian:" },
+      { type: "ul", content: [
+        "Gangguan tidur kronis lebih dari 3 minggu menjelang ujian.",
+        "Serangan panik saat buka buku atau soal latihan.",
+        "Pikiran ngerusak diri sendiri — sekecil apapun.",
+        "Kelelahan ekstrem yang membuat belajar nggak mungkin.",
+        "Mual atau diare berulang sebelum mock test (gejala fisik anxiety berat).",
+      ] },
+      { type: "p", content: "Banyak bimbel sekarang punya psikolog yang bisa diakses peserta — tanya. Banyak kampus universitas juga punya konseling untuk calon mahasiswa. Halodoc/KALM/Riliv menawarkan konsultasi mulai Rp 50.000-150.000. Krisis: Into The Light Indonesia, 119 ext 8." },
+      { type: "h2", content: "Setelah ujian: jangan langsung mikirin hasil" },
+      { type: "p", content: "Pasca-UTBK, anxiety menunggu hasil bisa lebih berat dari anxiety sebelum. Strategi:" },
+      { type: "ul", content: [
+        "Beri diri sendiri 3-5 hari off total dari ujian — nggak ngomongin, nggak ngecek, nggak overthink.",
+        "Jangan baca diskusi soal di sosmed (Twitter/TikTok). Itu spike anxiety post-event.",
+        "Tulis journal soal apa yang lo rasain — relief, kecewa, lelah, mixed. Semua valid.",
+        "Lanjutkan kegiatan normal: olahraga, ketemu teman, tidur cukup. Anxiety menunggu hasil reduces dengan distraksi sehat.",
+      ] },
+      { type: "h2", content: "Bottom line" },
+      { type: "p", content: "Anxiety UTBK / SBMPTN nyata, terdokumentasi, dan dapat dikelola dengan tools yang tepat. Journaling 5 menit per hari dalam 30 hari menjelang ujian terbukti mengurangi anxiety dan meningkatkan performa (Beilock 2011 + Pennebaker base). 5 prompt di atas dipetakan dari H-30 sampai malam sebelum tes. Untuk anxiety berat (panic attacks, gangguan tidur kronis, pikiran ngerusak diri), konsultasi profesional dulu. Nuju free di /onboarding — 60 detik, support Bahasa Indonesia, persona Gentle adalah default." },
+    ],
+    faq: [
+      {
+        question: "Berapa lama sebelum UTBK harus mulai journaling untuk anxiety?",
+        answer:
+          "Idealnya 30 hari sebelum ujian. Riset menunjukkan 2-3 minggu konsisten menghasilkan pengurangan anxiety yang signifikan. Tapi kalau lo baca ini dengan ujian dalam 7 hari, masih bisa membantu — fokus pada Prompt 4 dan 5 (daily positive baseline + malam sebelum review). Bahkan brain dump 10 menit sebelum tes (Beilock 2011 protocol) terbukti meningkatkan performa.",
+      },
+      {
+        question: "Apa journaling beneran meningkatkan performa ujian?",
+        answer:
+          "Ya — riset Sian Beilock (University of Chicago, 2011) menunjukkan menulis tentang anxiety ujian 10 menit sebelum ujian secara signifikan meningkatkan performa, terutama untuk siswa dengan test anxiety tinggi. Mekanismenya: mengeksternalisasi anxiety membebaskan working memory yang sebelumnya digunakan untuk mengelola kekhawatiran. Working memory yang bebas tersedia untuk recall dan problem-solving.",
+      },
+      {
+        question: "Gimana kalau orang tua menambah tekanan setiap hari?",
+        answer:
+          "Common dan understandable — mereka juga anxiety. Strategi: (1) Set boundary konkret: 'Bu, gue sayang Ibu, tapi gue butuh nggak ngomongin UTBK setelah jam 7 malam supaya bisa istirahat.' Jujur. (2) Update spesifik mingguan: kirim update progress sekali per minggu supaya mereka nggak nanya tiap hari. (3) Tulis journal terpisah soal stres dari orang tua — jangan tahan. (4) Kalau tekanan sangat berat, ngobrol dengan psikolog kampus atau konselor bimbel — mereka pengalaman menangani ini.",
+      },
+      {
+        question: "Apa yang harus dilakukan malam sebelum UTBK?",
+        answer:
+          "(1) Jangan belajar materi baru — review materi yang udah dikuasai (Prompt 5). (2) Siapkan semua kebutuhan ujian malam itu: kartu ujian, ID, alat tulis, pakaian. (3) Tidur 8 jam — riset Walker konsisten menunjukkan tidur mengalahkan cramming. (4) Hindari sosmed terutama Twitter/TikTok soal UTBK — spike anxiety. (5) 5 menit journaling Prompt 5 sebelum tidur.",
+      },
+      {
+        question: "Kalau anxiety bikin gue nggak bisa belajar, ngapain?",
+        answer:
+          "Anxiety yang melumpuhkan belajar = sinyal penting. Coba dulu: brain dump 10 menit, pomodoro 25 menit, body double (belajar dengan orang lain di sekitar). Kalau setelah 1 minggu masih nggak bisa belajar sama sekali — itu butuh konsultasi profesional, jangan tunggu. Halodoc/KALM/Riliv (Rp 50.000-150.000) atau psikolog kampus/bimbel. Anxiety yang severity ini punya treatment yang efektif.",
+      },
+      {
+        question: "Gimana kalau gue nggak masuk PTN pilihan pertama?",
+        answer:
+          "Ini ketakutan paling umum dan paling besar. Realitas: ratusan ribu mahasiswa setiap tahun nggak masuk pilihan pertama dan tetap sukses dengan jalur lain. Opsi: SNBT/SBMPTN gelombang lain, PTS bagus, gap year sambil kerja/persiapan ulang, atau jalur internasional. 'Nggak masuk pilihan pertama' bukan akhir — sering jadi awal jalur yang ternyata lebih cocok. Prompt 3 di artikel ini membantu rencanakan kemungkinan ini sebelumnya.",
+      },
+    ],
+  },
 ];
 
 const normalizeCopy = (value: string): string =>

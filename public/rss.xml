@@ -6,7 +6,7 @@
     <atom:link href="https://nuju.app/rss.xml" rel="self" type="application/rss+xml" />
     <description>Practical guides on journaling, mood tracking, and emotional wellness from the Nuju team.</description>
     <language>en</language>
-    <lastBuildDate>Fri, 22 May 2026 19:24:31 GMT</lastBuildDate>
+    <lastBuildDate>Fri, 22 May 2026 19:36:02 GMT</lastBuildDate>
     <item>
       <title>We Analyzed Our First 161 Real Journal Entries: 87% Were Logged on &apos;Not Great&apos; Days</title>
       <link>https://nuju.app/blog/what-people-write-in-journal-data</link>
@@ -417,6 +417,60 @@
       <link>https://nuju.app/blog/journaling-untuk-overthinking-malam</link>
       <guid isPermaLink="true">https://nuju.app/blog/journaling-untuk-overthinking-malam</guid>
       <description>Overthinking malam adalah salah satu masalah kesehatan mental Gen Z Indonesia paling umum. Otak nggak mau tidur, mikirin yang sama berulang. 5 prompt journaling yang secara konsisten memutus loop — tested untuk pekerja dan mahasiswa.</description>
+      <category>Mental Wellness</category>
+      <pubDate>Fri, 22 May 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Why Am I So Tired All the Time? The Hidden Causes (Not Just Sleep)</title>
+      <link>https://nuju.app/blog/why-am-i-so-tired-all-the-time</link>
+      <guid isPermaLink="true">https://nuju.app/blog/why-am-i-so-tired-all-the-time</guid>
+      <description>Persistent fatigue rarely comes from sleep alone. The real causes are usually a stack — sleep debt + chronic stress + thyroid + iron + emotional exhaustion. Here&apos;s how to identify YOUR specific stack, plus when fatigue needs medical evaluation.</description>
+      <category>Mental Wellness</category>
+      <pubDate>Fri, 22 May 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Why Do I Cry Randomly? The Real Causes (and What to Do About It)</title>
+      <link>https://nuju.app/blog/why-do-i-cry-randomly</link>
+      <guid isPermaLink="true">https://nuju.app/blog/why-do-i-cry-randomly</guid>
+      <description>Random crying isn&apos;t random — it has documented causes. Hormonal shifts, sensory overload, suppressed grief, accumulated stress, or depression. Here&apos;s how to identify what&apos;s actually happening, plus a 5-minute journal practice that helps.</description>
+      <category>Mental Wellness</category>
+      <pubDate>Fri, 22 May 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Best Journal App for Therapists and Clients in 2026: 5 Picks for Therapy Practice</title>
+      <link>https://nuju.app/blog/best-journal-app-for-therapists-2026</link>
+      <guid isPermaLink="true">https://nuju.app/blog/best-journal-app-for-therapists-2026</guid>
+      <description>Therapists need a journal app that protects client privacy, integrates with therapy homework, and provides pattern data without overstepping clinical boundaries. We tested 5 picks for 2026 — Nuju, Rosebud, Reflectly, Daylio, Mindsera.</description>
+      <category>App Comparison</category>
+      <pubDate>Fri, 22 May 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Nuju vs Day One: AI-First or Heritage Diary? (2026 Comparison)</title>
+      <link>https://nuju.app/blog/nuju-vs-day-one</link>
+      <guid isPermaLink="true">https://nuju.app/blog/nuju-vs-day-one</guid>
+      <description>Nuju and Day One target different journaling philosophies. Day One is the polished heritage diary for long-form daily writing. Nuju is the AI-first short-entry tool for the 30-second pattern. Here&apos;s the honest comparison.</description>
+      <category>App Comparison</category>
+      <pubDate>Fri, 22 May 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Cara Mengatasi Stres Skripsi: 6 Prompt Journaling + Strategi Praktis (2026)</title>
+      <link>https://nuju.app/blog/cara-mengatasi-stres-skripsi</link>
+      <guid isPermaLink="true">https://nuju.app/blog/cara-mengatasi-stres-skripsi</guid>
+      <description>Stres skripsi adalah salah satu pengalaman mental health paling berat di hidup mahasiswa Indonesia — kombinasi tekanan akademik, finansial, dan ekspektasi keluarga. 6 prompt journaling yang terbukti memutus loop stres + strategi praktis.</description>
+      <category>Mental Wellness</category>
+      <pubDate>Fri, 22 May 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Persiapan Mental UTBK / SBMPTN: 5 Prompt Journaling untuk H-30 hingga Hari-H</title>
+      <link>https://nuju.app/blog/persiapan-mental-utbk-sbmptn</link>
+      <guid isPermaLink="true">https://nuju.app/blog/persiapan-mental-utbk-sbmptn</guid>
+      <description>Anxiety UTBK / SBMPTN nyata dan terdokumentasi. Stres akademik + ekspektasi keluarga + ketidakpastian masa depan. 5 prompt journaling spesifik untuk persiapan mental, dipetakan H-30 sampai hari-H plus malam sebelum tes.</description>
       <category>Mental Wellness</category>
       <pubDate>Fri, 22 May 2026 12:00:00 GMT</pubDate>
       <dc:language>en</dc:language>

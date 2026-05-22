@@ -1313,6 +1313,138 @@ const INTERNAL_LINK_RECOMMENDATIONS: Record<string, InternalLinkRecommendation[]
       body: "5 aplikasi journal AI gratis Indonesia yang cocok untuk overthinking malam.",
     },
   ],
+  "why-am-i-so-tired-all-the-time": [
+    {
+      slug: "why-do-i-feel-anxious-for-no-reason",
+      eyebrow: "Anxiety + fatigue",
+      body: "Fatigue and 'random' anxiety often share hidden triggers. Identify yours with the 5-min diagnostic.",
+    },
+    {
+      slug: "gen-z-burnout-journaling",
+      eyebrow: "When tired = burnout",
+      body: "Burnout-driven fatigue responds to rest, not depression treatment. The 4-prompt burnout protocol.",
+    },
+    {
+      slug: "journaling-for-depression",
+      eyebrow: "When tired = depression",
+      body: "Low energy and anhedonia are core depression symptoms. Honest framing on when to escalate.",
+    },
+    {
+      slug: "bedtime-journaling-routine-for-sleep",
+      eyebrow: "Sleep quality",
+      body: "Sleep quality often matters more than quantity. The bedtime journaling routine that works.",
+    },
+  ],
+  "why-do-i-cry-randomly": [
+    {
+      slug: "why-do-i-cry-in-the-shower",
+      eyebrow: "Related pattern",
+      body: "Shower crying is a specific case of random crying. The psychology + 5-min journal practice.",
+    },
+    {
+      slug: "journaling-for-grief",
+      eyebrow: "Suppressed grief",
+      body: "If random crying is connected to unprocessed loss, the grief journaling guide goes deeper.",
+    },
+    {
+      slug: "journaling-for-depression",
+      eyebrow: "When it's depression",
+      body: "Random crying with depression symptoms needs professional evaluation. Honest depression guide.",
+    },
+    {
+      slug: "ai-journal-for-overthinking",
+      eyebrow: "Suppressed emotion",
+      body: "Crying often releases suppressed emotion. The AI journal angle for the cognitive piece.",
+    },
+  ],
+  "best-journal-app-for-therapists-2026": [
+    {
+      slug: "best-ai-journal-apps-for-anxiety-2026",
+      eyebrow: "Anxiety-focused clients",
+      body: "For clients specifically managing anxiety — deeper anxiety-focused app comparison.",
+    },
+    {
+      slug: "journaling-before-therapy",
+      eyebrow: "Client onboarding",
+      body: "Help clients prepare for therapy sessions with structured journaling — the pre-session guide.",
+    },
+    {
+      slug: "best-free-mental-wellness-apps-2026",
+      eyebrow: "Free tier options",
+      body: "For clients on tight budgets — 7 truly-free mental wellness apps you can recommend.",
+    },
+    {
+      slug: "complete-guide-ai-journaling-2026",
+      eyebrow: "Category guide",
+      body: "Full 2026 guide to AI journaling — useful for client education on the format.",
+    },
+  ],
+  "nuju-vs-day-one": [
+    {
+      slug: "day-one-alternative",
+      eyebrow: "More alternatives",
+      body: "Looking beyond Nuju? More Day One alternatives covered separately here.",
+    },
+    {
+      slug: "nuju-vs-apple-journal",
+      eyebrow: "Apple ecosystem",
+      body: "If you're on iOS — Apple Journal is the free default. How Nuju compares.",
+    },
+    {
+      slug: "nuju-vs-rosebud",
+      eyebrow: "AI journal vs AI journal",
+      body: "Versus another AI-first journal rather than a heritage diary.",
+    },
+    {
+      slug: "complete-guide-ai-journaling-2026",
+      eyebrow: "Category guide",
+      body: "Complete 2026 guide to AI journaling — what the category is, how to pick.",
+    },
+  ],
+  "cara-mengatasi-stres-skripsi": [
+    {
+      slug: "perfeksionisme-dan-procrastination-indonesia",
+      eyebrow: "Procrastination skripsi",
+      body: "Perfeksionisme + procrastination adalah salah satu sumber stres skripsi terbesar. 6 prompt loop-breaker.",
+    },
+    {
+      slug: "mengatasi-stres-kerja-journaling",
+      eyebrow: "Stres umum",
+      body: "Untuk stres yang lebih luas — 5 prompt khusus pekerja dan mahasiswa Indonesia.",
+    },
+    {
+      slug: "journaling-untuk-overthinking-malam",
+      eyebrow: "Overthink skripsi malam",
+      body: "Skripsi yang muter di kepala malam hari? 5 prompt khusus untuk overthinking malam.",
+    },
+    {
+      slug: "aplikasi-journal-untuk-mahasiswa-indonesia",
+      eyebrow: "Pilih aplikasinya",
+      body: "5 aplikasi journal terbaik untuk mahasiswa Indonesia — termasuk yang cocok untuk stres skripsi.",
+    },
+  ],
+  "persiapan-mental-utbk-sbmptn": [
+    {
+      slug: "journaling-untuk-anxiety",
+      eyebrow: "Anxiety umum",
+      body: "Anxiety UTBK adalah jenis anxiety spesifik. 7 prompt untuk anxiety umum juga berlaku.",
+    },
+    {
+      slug: "perfeksionisme-dan-procrastination-indonesia",
+      eyebrow: "Perfeksionisme belajar",
+      body: "Stres UTBK sering dari perfeksionisme. 6 prompt loop-breaker yang cocok untuk siswa.",
+    },
+    {
+      slug: "cara-mengatasi-overthinking",
+      eyebrow: "Overthink ujian",
+      body: "Overthinking soal hasil UTBK? 4 prompt khusus untuk memutus loop pikiran.",
+    },
+    {
+      slug: "aplikasi-journal-untuk-mahasiswa-indonesia",
+      eyebrow: "Aplikasi yang cocok",
+      body: "5 aplikasi journal terbaik untuk mahasiswa Indonesia — termasuk untuk siswa persiapan PTN.",
+    },
+  ],
 };
 
 const getInternalLinkCards = (slug: string): InternalLinkCard[] =>
