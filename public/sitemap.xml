@@ -646,4 +646,37 @@
       <image:caption>Lima aplikasi journal AI gratis terbaik untuk pengguna Indonesia di 2026: Nuju, Riliv, What&apos;s Up, Calm Free, Gratitude. Perbandingan fitur, bahasa Indonesia, dan kapan harus upgrade.</image:caption>
     </image:image>
   </url>
+  <url>
+    <loc>https://nuju.app/blog/journaling-for-anger</loc>
+    <lastmod>2026-05-22</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Journaling for Anger: 7 Prompts That Actually Defuse the Heat (2026)</image:title>
+      <image:caption>Anger journaling done wrong amplifies the feeling. Done right, it interrupts the spiral within 5 minutes. Here are 7 research-backed prompts, the technique to avoid, and when anger means it&apos;s time to talk to a professional.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/journaling-for-grief</loc>
+    <lastmod>2026-05-22</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Journaling for Grief: How to Write Through Loss (Without &apos;Fixing&apos; It)</image:title>
+      <image:caption>Grief isn&apos;t a problem to solve — it&apos;s a process to move through. Journaling helps when it doesn&apos;t try to rush the grief. 6 research-backed prompts, what to avoid, and how to use writing to stay connected to what you lost.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/journaling-for-imposter-syndrome</loc>
+    <lastmod>2026-05-22</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Journaling for Imposter Syndrome: 6 Prompts to Quiet the &apos;I Don&apos;t Belong Here&apos; Loop</image:title>
+      <image:caption>Imposter syndrome makes capable people feel like frauds. Research from Pauline Clance (1978+) shows journaling is one of the most effective non-therapeutic interventions. 6 prompts that work, and how to track the &apos;evidence file&apos; that quiets the voice.</image:caption>
+    </image:image>
+  </url>
 </urlset>

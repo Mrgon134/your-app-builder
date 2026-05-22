@@ -6,7 +6,7 @@
     <atom:link href="https://nuju.app/rss.xml" rel="self" type="application/rss+xml" />
     <description>Practical guides on journaling, mood tracking, and emotional wellness from the Nuju team.</description>
     <language>en</language>
-    <lastBuildDate>Fri, 22 May 2026 07:41:06 GMT</lastBuildDate>
+    <lastBuildDate>Fri, 22 May 2026 08:07:11 GMT</lastBuildDate>
     <item>
       <title>We Analyzed Our First 161 Real Journal Entries: 87% Were Logged on &apos;Not Great&apos; Days</title>
       <link>https://nuju.app/blog/what-people-write-in-journal-data</link>
@@ -139,6 +139,33 @@
       <guid isPermaLink="true">https://nuju.app/blog/aplikasi-journal-ai-gratis-indonesia</guid>
       <description>Lima aplikasi journal AI gratis terbaik untuk pengguna Indonesia di 2026: Nuju, Riliv, What&apos;s Up, Calm Free, Gratitude. Perbandingan fitur, bahasa Indonesia, dan kapan harus upgrade.</description>
       <category>App Comparison</category>
+      <pubDate>Fri, 22 May 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Journaling for Anger: 7 Prompts That Actually Defuse the Heat (2026)</title>
+      <link>https://nuju.app/blog/journaling-for-anger</link>
+      <guid isPermaLink="true">https://nuju.app/blog/journaling-for-anger</guid>
+      <description>Anger journaling done wrong amplifies the feeling. Done right, it interrupts the spiral within 5 minutes. Here are 7 research-backed prompts, the technique to avoid, and when anger means it&apos;s time to talk to a professional.</description>
+      <category>Mental Wellness</category>
+      <pubDate>Fri, 22 May 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Journaling for Grief: How to Write Through Loss (Without &apos;Fixing&apos; It)</title>
+      <link>https://nuju.app/blog/journaling-for-grief</link>
+      <guid isPermaLink="true">https://nuju.app/blog/journaling-for-grief</guid>
+      <description>Grief isn&apos;t a problem to solve — it&apos;s a process to move through. Journaling helps when it doesn&apos;t try to rush the grief. 6 research-backed prompts, what to avoid, and how to use writing to stay connected to what you lost.</description>
+      <category>Mental Wellness</category>
+      <pubDate>Fri, 22 May 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Journaling for Imposter Syndrome: 6 Prompts to Quiet the &apos;I Don&apos;t Belong Here&apos; Loop</title>
+      <link>https://nuju.app/blog/journaling-for-imposter-syndrome</link>
+      <guid isPermaLink="true">https://nuju.app/blog/journaling-for-imposter-syndrome</guid>
+      <description>Imposter syndrome makes capable people feel like frauds. Research from Pauline Clance (1978+) shows journaling is one of the most effective non-therapeutic interventions. 6 prompts that work, and how to track the &apos;evidence file&apos; that quiets the voice.</description>
+      <category>Mental Wellness</category>
       <pubDate>Fri, 22 May 2026 12:00:00 GMT</pubDate>
       <dc:language>en</dc:language>
     </item>

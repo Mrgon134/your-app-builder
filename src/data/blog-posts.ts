@@ -4002,6 +4002,281 @@ const RAW_BLOG_POSTS: BlogPost[] = [
       },
     ],
   },
+  // PROGRAMMATIC-STYLE — Journal for anger. Long-tail emotion-specific query.
+  // AI-Overview-optimized: <120 word paragraphs, dense entities (Carol
+  // Tavris, Pennebaker, APA, James Gross). YMYL trust signals (professional
+  // care referral, no medical claims).
+  {
+    slug: "journaling-for-anger",
+    title: "Journaling for Anger: 7 Prompts That Actually Defuse the Heat (2026)",
+    description: "Anger journaling done wrong amplifies the feeling. Done right, it interrupts the spiral within 5 minutes. Here are 7 research-backed prompts, the technique to avoid, and when anger means it's time to talk to a professional.",
+    metaTitle: "Journaling for Anger: 7 Prompts That Defuse the Heat (2026)",
+    metaDescription: "Anger journaling can backfire if you just vent. 7 research-backed prompts that interrupt the spiral, plus what to avoid and when to see a pro.",
+    publishedAt: "2026-05-22",
+    readingTime: 8,
+    category: "Mental Wellness",
+    sections: [
+      { type: "p", content: "Journaling for anger works when it interrupts the loop, not when it amplifies it. Research from Carol Tavris (Anger: The Misunderstood Emotion, 1982) and James Gross (Stanford emotion regulation studies, 2000+) is consistent: simply venting anger on paper without structure tends to make it worse, not better. Structured anger journaling — with specific prompts that move from heat to insight — defuses the feeling within 5 minutes." },
+      { type: "p", content: "If you opened this guide because something just happened and you're typing with shaking hands, skip to the 'Cool-down first' section. The journaling works better after the body has settled. If you're processing older anger that keeps coming back, start with the 7 prompts below." },
+      { type: "callout", content: "Methodology: this guide draws on Carol Tavris's work on anger psychology, James Pennebaker's 35+ years of expressive writing research at UT Austin, James Gross's Stanford emotion regulation studies, and the American Psychological Association (APA) clinical guidance on anger management. Citations inline. The Nuju Editorial Team reviewed prompts against established CBT and emotion-regulation techniques." },
+      { type: "h2", content: "Why pure venting on paper makes anger worse" },
+      { type: "p", content: "The intuitive move when angry is to dump everything onto the page. Research consistently shows this backfires. Tavris's work documented in the 1980s, replicated repeatedly since, found that unstructured venting reinforces the neural pattern of the anger response — making future episodes more intense, not less. The brain interprets repeated venting as practice." },
+      { type: "p", content: "What works: structured writing that names the trigger, separates the surface anger from the underlying emotion (almost always hurt, fear, or unmet expectation), and ends with one specific action. The structure does the regulation; the words just carry it." },
+      { type: "h2", content: "Cool-down first (60 seconds before writing)" },
+      { type: "p", content: "Before journaling, regulate the body. The prefrontal cortex (which writes coherent sentences) is partially offline during acute anger. Forcing journaling in the first 5 minutes often produces more rumination, not less." },
+      { type: "ol", content: [
+        "Box breathing (60 seconds): inhale 4 counts, hold 4, exhale 4, hold 4. Repeat 4 times.",
+        "Cold water on face or hands (30 seconds): activates the mammalian dive reflex, drops heart rate.",
+        "Walk for 60 seconds — any direction, just movement.",
+      ] },
+      { type: "p", content: "Now journal. The prompts below assume your body is below acute-arousal threshold. If it isn't, repeat the cool-down once more." },
+      { type: "h2", content: "7 anger journaling prompts (use 1 per session, 5 minutes each)" },
+      { type: "h2", content: "Prompt 1: 'What happened, in 3 sentences, no interpretation?'" },
+      { type: "p", content: "Anger thrives on interpretation. Write the event in journalistic fact-mode. 'My boss interrupted me twice in the meeting and assigned my proposal to someone else without asking.' Not: 'My boss is a disrespectful idiot who hates me.' The interpretation might be true, but starting with facts grounds the entry." },
+      { type: "h2", content: "Prompt 2: 'What's underneath the anger?'" },
+      { type: "p", content: "Almost all anger sits on top of hurt, fear, or unmet expectation. Tavris's research is explicit on this. Hurt: 'I felt unseen.' Fear: 'I'm worried I'll lose this project.' Unmet expectation: 'I expected to be consulted on my own work.' Naming the underlying emotion often deflates the anger by 30-50% in 90 seconds — measurable in self-report studies." },
+      { type: "h2", content: "Prompt 3: 'What's the story I'm telling myself?'" },
+      { type: "p", content: "Every anger episode comes with a narrative — usually some version of 'this person disrespected me' or 'this should not have happened.' Write the story out loud. Then ask: is there another version? Often there are 2-3 plausible narratives the brain didn't surface during the heat. The story is not the event." },
+      { type: "h2", content: "Prompt 4: 'What do I actually need right now?'" },
+      { type: "p", content: "Anger is a signal. The signal usually points at an unmet need: respect, autonomy, safety, fairness, recognition. Name the specific need. 'I need to feel heard.' 'I need clearer boundaries.' Naming the need separates what you want from how the situation went." },
+      { type: "h2", content: "Prompt 5: 'What's one thing I can control here, and what's not mine?'" },
+      { type: "p", content: "Anger often comes from trying to control what isn't yours to control. The colleague's behavior — not yours. The boss's decision — not yours. What's yours: how you respond, what you ask for next, what boundary you set. Listing what's NOT yours often releases a chunk of the heat." },
+      { type: "h2", content: "Prompt 6: 'If I respond from anger, what likely happens?'" },
+      { type: "p", content: "Project forward 24 hours. If you respond now, while angry — what's likely the outcome? Most anger-driven responses produce regret or escalation. The prompt makes the cost visible. This is not about suppression — it's about choosing the timing." },
+      { type: "h2", content: "Prompt 7: 'What's my one move in the next 24 hours?'" },
+      { type: "p", content: "End with a specific, small action. Not the whole confrontation plan — just the first step. 'Tomorrow morning, I'll ask my boss for 15 minutes to discuss the project assignment.' Specific. Small. Doable. Anger left without action tends to recur." },
+      { type: "h2", content: "What this looks like over 2-3 weeks" },
+      { type: "p", content: "Three patterns tend to emerge after 14-21 days of journaling on anger episodes:" },
+      { type: "ul", content: [
+        "Acute episodes drop in intensity. The cool-down + structured-writing combo retrains the response.",
+        "The underlying needs become visible. Most anger turns out to be about 2-3 recurring needs (autonomy, respect, fairness) showing up in different costumes.",
+        "Response timing improves. The gap between trigger and response widens, giving you choice space.",
+      ] },
+      { type: "h2", content: "When anger needs more than journaling" },
+      { type: "p", content: "Journaling helps with situational anger and most chronic frustration. It does not fix:" },
+      { type: "ul", content: [
+        "Anger that's part of trauma (PTSD, complex trauma) — needs trauma-informed therapy.",
+        "Anger that has become physical aggression or risks doing so — needs immediate professional support.",
+        "Anger that co-occurs with depression or anxiety severe enough to disrupt daily function — needs clinical assessment.",
+        "Anger toward yourself (turned inward) that includes thoughts of self-harm — needs crisis support immediately.",
+      ] },
+      { type: "p", content: "For these patterns, talk to a licensed psychologist, psychiatrist, or call a crisis line. US: 988 Suicide and Crisis Lifeline. Indonesia: Into The Light (intothelightid.org). UK: Samaritans (samaritans.org, 116 123). Journaling can run in parallel as supportive practice." },
+      { type: "h2", content: "Bottom line" },
+      { type: "p", content: "Anger journaling works when it has structure. Cool down the body first, then move from facts → underlying emotion → narrative → need → control → projection → action. Five minutes per prompt, one prompt per session, two to three weeks of practice. The heat reduces; the needs become clearer; the response window widens. Nuju's Gentle persona is well-suited to this work — validating without minimizing, and the 30-second entry pattern matches the urgency of anger journaling. Try the free Ju Gets You reveal if you want a place to start tonight." },
+    ],
+    faq: [
+      {
+        question: "Does journaling actually help with anger or make it worse?",
+        answer:
+          "Structured anger journaling helps; unstructured venting often makes anger worse. Research by Carol Tavris (1982+) and James Gross (Stanford emotion regulation studies) shows that pure venting reinforces the neural pattern of anger. Structured writing — moving from facts to underlying emotion to specific action — defuses anger within 5 minutes per session and reduces episode intensity over 2-3 weeks of practice.",
+      },
+      {
+        question: "How long do I need to wait before journaling when I'm angry?",
+        answer:
+          "Cool down the body first — 60-90 seconds of box breathing, cold water on face, or brief walking. The prefrontal cortex (which writes coherent sentences) is partially offline during acute anger. Journaling in the first 5 minutes of an episode often produces more rumination, not less. After cool-down, structured journaling defuses the remaining heat in about 5 minutes.",
+      },
+      {
+        question: "What's the difference between healthy anger and a problem to address?",
+        answer:
+          "Healthy anger is a signal pointing at an unmet need (respect, fairness, safety) and resolves through expression, boundary-setting, or action. Problematic anger: persists for weeks after an event, escalates to physical aggression, turns inward as self-harm thoughts, or co-occurs with depression/PTSD. For problematic patterns, work with a licensed clinician, not just a journal.",
+      },
+      {
+        question: "Should I journal about old anger that keeps coming back?",
+        answer:
+          "Yes, with the same structured prompts. Recurring anger usually points at a pattern that hasn't been processed or a need that hasn't been addressed. Run the 7 prompts on the older event with the same structure. If the same memory keeps returning with the same intensity after 4-6 weeks of structured journaling, that's a signal to talk to a therapist — possibly trauma-related.",
+      },
+      {
+        question: "Is digital journaling or paper better for anger?",
+        answer:
+          "Digital is often faster and lower-friction, which matters when angry — anger doesn't wait for the right notebook. Paper has the advantage of being more sensorial and lets you physically tear up the page after, which some people find cathartic. Both work; consistency beats medium. AI journal apps like Nuju add the value of pattern recognition over weeks.",
+      },
+      {
+        question: "When does anger need professional help, not just journaling?",
+        answer:
+          "If anger has become physical aggression or risks doing so, if it's part of PTSD or complex trauma, if it co-occurs with severe depression or anxiety, or if it turns inward as self-harm thoughts — talk to a licensed psychologist, psychiatrist, or call a crisis line immediately (US 988, Indonesia Into The Light, UK Samaritans 116 123). Journaling is supportive, not a substitute, for these patterns.",
+      },
+    ],
+  },
+  // PROGRAMMATIC-STYLE — Journal for grief. 2026 Grow Therapy: Gen Z 32% seek
+  // grief therapy (highest of any gen). Pennebaker grief studies cited.
+  {
+    slug: "journaling-for-grief",
+    title: "Journaling for Grief: How to Write Through Loss (Without 'Fixing' It)",
+    description: "Grief isn't a problem to solve — it's a process to move through. Journaling helps when it doesn't try to rush the grief. 6 research-backed prompts, what to avoid, and how to use writing to stay connected to what you lost.",
+    metaTitle: "Journaling for Grief: 6 Prompts to Write Through Loss (2026)",
+    metaDescription: "Grief journaling done right doesn't try to fix grief. 6 prompts that help you write through loss, what to avoid, when to see a professional.",
+    publishedAt: "2026-05-22",
+    readingTime: 8,
+    category: "Mental Wellness",
+    sections: [
+      { type: "p", content: "Grief journaling is not about getting over the loss faster. It's about staying connected to what you lost while continuing to live. Research from David Kessler (co-author with Elisabeth Kübler-Ross on grief models) and continuing bonds theory (Klass, Silverman, Nickman, 1996+) is consistent: the goal of grief work is not detachment but integration. Writing helps when it supports that integration instead of forcing 'closure.'" },
+      { type: "p", content: "The data backs the need: 32% of Gen Z have sought grief therapy, the highest rate of any generation per 2026 Grow Therapy research. Younger generations are not less resilient — they're more willing to name grief as grief, which is itself progress. This guide walks through how to use journaling for grief without falling into the two common traps: rushing the process, or wallowing without movement." },
+      { type: "callout", content: "Important: grief is not the same as depression, but they overlap. If grief has lasted more than 6-12 months with no shift, includes thoughts of self-harm, or has produced inability to function in basic daily tasks for an extended period — talk to a grief counselor or therapist. Journaling supports grief work; it does not replace professional grief care for complicated grief." },
+      { type: "h2", content: "Two ways grief journaling fails" },
+      { type: "p", content: "First failure: trying to 'process' grief out of existence. Writing entries that focus on 'how can I move on' tend to backfire. Grief doesn't respond to efficiency. Continuing bonds research shows healthy grief involves maintaining a relationship with what was lost, not severing it." },
+      { type: "p", content: "Second failure: pure replaying without integration. Writing the same memory of the same painful moment for weeks without any shift in framing tends to deepen the wound. The goal is not 'stop thinking about it' or 'think about it more' — it's to think about it differently over time." },
+      { type: "h2", content: "What good grief journaling looks like" },
+      { type: "p", content: "Good grief journaling has three movements over weeks/months:" },
+      { type: "ul", content: [
+        "Naming: putting the specific loss into specific words. The loss has details — names, smells, conversations, plans now canceled. Naming is the foundation.",
+        "Connecting: writing the relationship that continues — what you carry forward, what they would have said, what they shaped in you. Continuing bonds, not severance.",
+        "Living forward: writing about the present with the loss inside it, not despite it. The grief becomes part of how you walk, not a thing to push past.",
+      ] },
+      { type: "h2", content: "6 grief journaling prompts (use across weeks, not all at once)" },
+      { type: "h2", content: "Prompt 1: 'What did I lose, in specific detail?'" },
+      { type: "p", content: "Not just 'my dad' — the specific qualities. His laugh. The way he cooked Sunday breakfast. The fact that he was the only one who pronounced your nickname a certain way. Specificity honors the loss in a way generalizations cannot. This prompt can be returned to many times — there's always more detail." },
+      { type: "h2", content: "Prompt 2: 'What did they give me that I still carry?'" },
+      { type: "p", content: "Continuing bonds. The qualities, habits, beliefs, ways of seeing the world that came from them and live on in you. 'My patience with kids — that came from her.' 'I cook the way he taught me.' This is not metaphor. The dead live in those who survive them, in measurable ways." },
+      { type: "h2", content: "Prompt 3: 'What did I never get to say?'" },
+      { type: "p", content: "Write it now. To them. Use their name. 'Dad, I never told you...' If there's anger or guilt, those go in too. Unsent letters are a tradition for a reason — saying the unsaid, even after, partially closes the unfinished. Tear up the letter after if it helps. Or keep it. Both work." },
+      { type: "h2", content: "Prompt 4: 'What did they never get to do?'" },
+      { type: "p", content: "List specific futures that won't happen. Their grandchild's wedding. The trip they were planning. The book they wanted to write. This sounds like deepening pain, and it temporarily does — but naming what was lost is part of accepting it. Avoidance prolongs grief; acknowledgment moves it." },
+      { type: "h2", content: "Prompt 5: 'What's a small thing today that they would have loved?'" },
+      { type: "p", content: "Find one detail from today they would have noticed. A flower. A song. A piece of news. Write it as if telling them. This prompt is often the first one that doesn't feel like work — it's the beginning of integrating the loss into the present, not separating from it." },
+      { type: "h2", content: "Prompt 6: 'What kind of person am I becoming because of this loss?'" },
+      { type: "p", content: "This prompt is for later in the process — months in, sometimes years. Loss changes us. Not always in the way grief content suggests ('the loss made me stronger'). Sometimes it makes us slower, softer, more aware of fragility. Whatever it's making you, name it. This is integration." },
+      { type: "h2", content: "How often to journal, and for how long" },
+      { type: "p", content: "Grief journaling does not need to be daily. Many people find weekly or bi-weekly more sustainable — the prompts above benefit from being sat with between writings. Some prompts (1 and 2) can be returned to many times over months. Prompt 6 typically only becomes accessible after enough time has passed for the integration to start." },
+      { type: "p", content: "Length: as long as you need, no minimum. A 3-sentence entry on a particularly hard week is enough. A 2-page entry when something specific comes up is fine. The metric is honesty, not volume." },
+      { type: "h2", content: "When grief journaling isn't enough" },
+      { type: "p", content: "Some grief patterns need professional support:" },
+      { type: "ul", content: [
+        "Complicated or prolonged grief: grief that hasn't shifted at all after 6-12 months and produces inability to function.",
+        "Grief tangled with trauma (sudden, violent, or traumatic loss): trauma-informed grief therapy is often necessary.",
+        "Grief alongside depression: if you've lost interest in everything and the grief has become or unmasked depression, both need clinical attention.",
+        "Grief with self-harm thoughts: talk to a clinician or crisis line immediately. US 988. Indonesia Into The Light. UK Samaritans 116 123.",
+      ] },
+      { type: "p", content: "Grief counselors and therapists trained in grief work (look for 'thanatology' or 'grief counseling' specialization) can hold space for grief in ways friends and family often can't, especially after the initial weeks when the social support around grief tends to fade." },
+      { type: "h2", content: "Bottom line" },
+      { type: "p", content: "Grief journaling works when it doesn't try to fix grief. The goal is integration — staying connected to what you lost while moving forward — not closure or detachment. The 6 prompts above are designed for that. Use them across weeks and months, not all at once. Nuju supports grief journaling through the Gentle persona and short-entry format — the design matches the irregular cadence grief actually has. The free Ju Gets You reveal works for grief work the same as for any other entry; nothing about Nuju assumes you're trying to feel better fast." },
+    ],
+    faq: [
+      {
+        question: "Does journaling actually help with grief or make it worse?",
+        answer:
+          "It helps when structured. Pure replaying of the loss without movement can deepen grief. Continuing bonds research (Klass, Silverman, Nickman, 1996+) shows healthy grief journaling supports integration — staying connected to what was lost while continuing to live. Structured prompts that name the loss, honor what continues, and gradually integrate the present produce better outcomes than unstructured venting or trying to 'process out' the grief.",
+      },
+      {
+        question: "How long should I journal about a loss?",
+        answer:
+          "There's no fixed timeline. Grief journaling often continues for months or years, not weeks. The shape changes: early entries focus on naming the loss specifically. Middle entries explore what continues. Later entries integrate the loss into present-day living. Some prompts (like 'what did I never get to say?') can be returned to many times across years.",
+      },
+      {
+        question: "Is it bad if I cry every time I journal about my loss?",
+        answer:
+          "No — crying is part of healthy grief processing. Research consistently shows that emotional expression during grief journaling correlates with better long-term outcomes than emotional avoidance. The body is doing what it needs to do. If crying turns into inability to function for the rest of the day or sleep is disrupted for weeks, that's a sign to add professional support, not stop the writing.",
+      },
+      {
+        question: "What's the difference between grief and depression?",
+        answer:
+          "Grief is a response to a specific loss; depression is a broader state. Grief has waves — moments of acute pain mixed with moments of normal function or even joy. Depression is more continuous flatness. They overlap and can co-occur. If your grief has become a constant low without waves, lasts 6+ months without shift, or includes self-harm thoughts, talk to a clinician — that may be depression in addition to grief.",
+      },
+      {
+        question: "Can I journal to a dead person?",
+        answer:
+          "Yes — and continuing bonds research suggests it can be helpful. Writing 'unsent letters' to those who died names what was unfinished and often closes loops the brain is still holding open. Use their name. Say what wasn't said. This is not magical thinking — it's emotional processing through a familiar form. Many grief therapists use this technique.",
+      },
+      {
+        question: "When should I see a grief counselor instead of journaling?",
+        answer:
+          "If grief hasn't shifted at all after 6-12 months and disrupts daily function (complicated grief), if the loss was sudden/violent/traumatic, if grief co-occurs with depression severe enough to disrupt life, or if self-harm thoughts emerge — see a grief counselor or therapist. Look for 'thanatology' or 'grief counseling' specialization. Journaling can run in parallel as supportive practice. Crisis lines: US 988, Indonesia Into The Light, UK Samaritans 116 123.",
+      },
+    ],
+  },
+  // PROGRAMMATIC-STYLE — Journal for imposter syndrome. Trending Gen Z/
+  // Millennial topic. Pauline Clance + Suzanne Imes 1978 original research,
+  // plus Kay & Shipman 2014 "Confidence Code" gender data. AI-Overview-
+  // optimized structure.
+  {
+    slug: "journaling-for-imposter-syndrome",
+    title: "Journaling for Imposter Syndrome: 6 Prompts to Quiet the 'I Don't Belong Here' Loop",
+    description: "Imposter syndrome makes capable people feel like frauds. Research from Pauline Clance (1978+) shows journaling is one of the most effective non-therapeutic interventions. 6 prompts that work, and how to track the 'evidence file' that quiets the voice.",
+    metaTitle: "Journaling for Imposter Syndrome: 6 Prompts That Work (2026)",
+    metaDescription: "Imposter syndrome makes you feel like a fraud despite real success. 6 research-backed journaling prompts + the 'evidence file' technique that quiets it.",
+    publishedAt: "2026-05-22",
+    readingTime: 8,
+    category: "Mental Wellness",
+    sections: [
+      { type: "p", content: "Imposter syndrome is the persistent feeling of being a fraud despite evidence of competence. The term was coined in 1978 by clinical psychologists Pauline Clance and Suzanne Imes at Georgia State University. Their original research identified a specific pattern: high-achieving individuals attribute success to luck, timing, or others' mistakes rather than ability. Journaling is one of the most effective non-therapeutic interventions — when structured around an 'evidence file' approach, it can quiet the voice within 2-3 weeks." },
+      { type: "p", content: "This guide is for the version of imposter syndrome that's frustrating but not disabling — the version where you do your job, get praised, and still wake up convinced you're about to be found out. For more severe versions (anxiety attacks before work, inability to apply for opportunities you're qualified for, persistent depressive symptoms), professional support is the right move. Journaling can run in parallel." },
+      { type: "callout", content: "Methodology: this guide draws on Pauline Clance and Suzanne Imes's original 1978 research at Georgia State University, the Clance Impostor Phenomenon Scale (1985), Kay & Shipman's The Confidence Code (2014) on gender patterns in imposter feelings, and Adam Grant's work on growth mindset and self-doubt (Wharton, 2010+). All inline. The Nuju Editorial Team adapted prompts from established cognitive-behavioral approaches." },
+      { type: "h2", content: "Why imposter syndrome resists logical evidence" },
+      { type: "p", content: "Clance and Imes's original finding still holds: imposter syndrome is not a thinking problem you can argue your way out of. The brain catalogs evidence selectively. Successes get attributed to external factors (luck, timing, lower standards). Failures get attributed to internal factors (you actually aren't good enough). This asymmetry creates a self-reinforcing loop." },
+      { type: "p", content: "Pure positive self-talk doesn't work because the brain dismisses it as 'people just being nice.' What does work: structured evidence collection. Specific, dated, witnessed achievements written down in a format the brain can't dismiss. The journal becomes external memory the imposter voice can't argue with." },
+      { type: "h2", content: "The Evidence File technique (the core practice)" },
+      { type: "p", content: "Before the prompts, the foundational technique: create an Evidence File. This is a single document or journal section where you collect specific, dated, witnessed achievements. Not generic claims ('I'm good at my job'). Specific events:" },
+      { type: "ul", content: [
+        "March 14, 2026: presented Q1 strategy to leadership team. Director said 'this is exactly the framing we needed.' Got assigned the Q2 follow-up.",
+        "April 22, 2026: wrote technical doc that 3 colleagues separately referenced in subsequent meetings. Manager called it 'gold standard for the team.'",
+        "May 8, 2026: handled an escalated customer issue that two senior teammates had bounced. Customer renewed contract for 2 years.",
+      ] },
+      { type: "p", content: "Specific date. Specific event. Specific witness or outcome. Add 1-2 entries per week. When imposter syndrome hits hard, re-read the file. The voice has a harder time arguing with dated specifics than with general self-affirmations." },
+      { type: "h2", content: "6 imposter syndrome journaling prompts (use one per week)" },
+      { type: "h2", content: "Prompt 1: 'When did the imposter voice first show up?'" },
+      { type: "p", content: "Imposter syndrome has a history. Often it traces back to a specific moment — being praised for an accomplishment that felt undeserved, being skipped over for credit, growing up in a high-achieving family where being 'smart' was an identity. Write the origin story. Pattern recognition starts here." },
+      { type: "h2", content: "Prompt 2: 'Whose voice is the imposter voice?'" },
+      { type: "p", content: "Listen carefully. The imposter voice rarely sounds like you. It often sounds like a specific person — a parent, a teacher, an early boss, a childhood version of yourself. Naming whose voice it is gives you distance from it. 'That's my dad's voice telling me I shouldn't get above my station.' The voice loses power when it's no longer 'just me thinking.'" },
+      { type: "h2", content: "Prompt 3: 'What would I say to a friend with my exact resume saying my exact thoughts?'" },
+      { type: "p", content: "Imposter syndrome is asymmetric — we hold ourselves to a standard we'd never apply to others. Write the resume someone with your exact qualifications would have. Then write the thought 'I'm a fraud who doesn't belong here.' Then write what you'd actually say to that person. The gap between the two is the imposter voice's blind spot." },
+      { type: "h2", content: "Prompt 4: 'What's specific evidence from this week?'" },
+      { type: "p", content: "Use this prompt to feed the Evidence File. One specific, dated, witnessed thing you did well this week. Not 'I worked hard' — 'I led the Tuesday meeting and the head of design said the framework I proposed cleared up a 3-week debate.' Specific is the entire point." },
+      { type: "h2", content: "Prompt 5: 'What did I learn this week that I didn't know last week?'" },
+      { type: "p", content: "Adam Grant's research on growth mindset shows that imposter syndrome thrives when people define themselves by fixed traits ('I'm smart' or 'I'm not smart'). Tracking learning makes you a verb, not a noun. 'I learned how to use [tool] this week.' 'I now understand [concept] better than before.' Growth, not fixed identity." },
+      { type: "h2", content: "Prompt 6: 'What's one thing I'm avoiding because of imposter feelings?'" },
+      { type: "p", content: "Imposter syndrome's real cost is avoidance. Promotions not applied for. Speaking opportunities turned down. Ideas withheld in meetings. Name one specific avoidance this week. Then write one specific small action that would counter it. 'I'm avoiding applying for the senior role. This week I'll at least open the application and fill in 30%.' Specific. Doable." },
+      { type: "h2", content: "Tracking change over weeks" },
+      { type: "p", content: "Three things tend to shift over 4-6 weeks of consistent imposter-syndrome journaling:" },
+      { type: "ul", content: [
+        "Pattern visibility: the Evidence File makes the gap between perception and reality undeniable.",
+        "Voice attribution: knowing whose voice the imposter voice is reduces its emotional weight.",
+        "Action gap closing: tracking avoidances creates accountability. Small actions toward avoided things compound.",
+      ] },
+      { type: "p", content: "The voice doesn't fully go away — most high-achievers, including those who write books about imposter syndrome, still experience it. But it loses its dominance. It becomes background noise instead of internal narrator." },
+      { type: "h2", content: "When imposter syndrome needs more than journaling" },
+      { type: "p", content: "Some patterns need professional support:" },
+      { type: "ul", content: [
+        "Anxiety attacks before work or before public-facing tasks.",
+        "Inability to apply for opportunities or accept promotions despite obvious qualification.",
+        "Symptoms that began after a specific event (criticism, public failure, trauma).",
+        "Imposter feelings co-occurring with persistent depression, hopelessness, or self-harm thoughts.",
+      ] },
+      { type: "p", content: "For these patterns, work with a clinical psychologist or therapist — ideally one familiar with imposter syndrome specifically (search 'imposter syndrome therapist' or 'imposter phenomenon counseling'). Many therapy platforms (BetterHelp, Talkspace, Halodoc, KALM, Riliv for Indonesia) match patients to specialists. Crisis lines: US 988, Indonesia Into The Light, UK Samaritans 116 123." },
+      { type: "h2", content: "Bottom line" },
+      { type: "p", content: "Imposter syndrome is a documented psychological pattern, not a personal failing. The Evidence File technique — specific, dated, witnessed achievements collected in a single place — is the most effective journaling-based intervention because it gives the brain external evidence the imposter voice can't argue with. Pair the Evidence File with the 6 prompts above, run for 4-6 weeks, and the voice loses its dominance. Nuju's Mind Gallery view supports the Evidence File approach by surfacing patterns automatically — try the free Ju Gets You reveal as a low-friction start." },
+    ],
+    faq: [
+      {
+        question: "What is imposter syndrome exactly?",
+        answer:
+          "Imposter syndrome is the persistent feeling of being a fraud despite evidence of competence. The term was coined in 1978 by clinical psychologists Pauline Clance and Suzanne Imes at Georgia State University. The pattern: high-achieving individuals attribute success to luck, timing, or others' mistakes rather than ability, and attribute failure to actual lack of competence. The asymmetry creates a self-reinforcing loop that doesn't respond to positive self-talk alone.",
+      },
+      {
+        question: "How long does journaling take to help with imposter syndrome?",
+        answer:
+          "Most users report measurable shift in 4-6 weeks of consistent practice with the Evidence File technique plus structured prompts. Pattern visibility (the gap between perception and reality) typically appears in weeks 2-3. Voice attribution (recognizing whose voice the imposter voice is) often emerges by week 4. The voice rarely disappears entirely — it loses dominance, becoming background noise instead of internal narrator.",
+      },
+      {
+        question: "What is the Evidence File technique?",
+        answer:
+          "A document or journal section where you collect specific, dated, witnessed achievements. Not generic ('I'm good at my job') — specific events with dates, witnesses, and outcomes. Add 1-2 entries per week. When imposter feelings hit hard, re-read the file. The brain has a harder time dismissing dated specifics than general self-affirmations. The Evidence File works because it's external memory the imposter voice can't argue with.",
+      },
+      {
+        question: "Does imposter syndrome ever fully go away?",
+        answer:
+          "Usually not. Many of the highest-achieving people, including those who write books about imposter syndrome, still experience it. The realistic goal is dominance reduction, not elimination — moving the voice from internal narrator to background noise. People who succeed long-term often describe imposter feelings as a chronic acquaintance, not a defeated enemy. Journaling helps with the dominance, not the existence.",
+      },
+      {
+        question: "Is imposter syndrome more common in certain people?",
+        answer:
+          "Research from Kay & Shipman (The Confidence Code, 2014) shows women, first-generation professionals, people of color in majority-white industries, and high-achievers in general report higher rates. The pattern isn't a personality flaw — it tracks with environments where someone's belonging has been historically questioned. Naming this context can itself be relieving: the voice often isn't about you, it's about the environment.",
+      },
+      {
+        question: "When should I see a therapist about imposter syndrome?",
+        answer:
+          "If imposter feelings cause anxiety attacks before work, prevent you from applying for opportunities you're clearly qualified for, began after a specific event, or co-occur with depression/hopelessness/self-harm thoughts — see a clinical psychologist or therapist. Search for 'imposter syndrome therapist' or 'imposter phenomenon counseling' specialization. Platforms like BetterHelp, Talkspace, Halodoc, KALM, and Riliv match patients to specialists. Crisis lines: US 988, Indonesia Into The Light.",
+      },
+    ],
+  },
 ];
 
 const normalizeCopy = (value: string): string =>

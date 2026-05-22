@@ -631,6 +631,72 @@ const INTERNAL_LINK_RECOMMENDATIONS: Record<string, InternalLinkRecommendation[]
       body: "Setelah punya aplikasi — 4 prompt khusus untuk memutus loop overthinking.",
     },
   ],
+  "journaling-for-anger": [
+    {
+      slug: "journaling-for-grief",
+      eyebrow: "When anger is grief",
+      body: "Anger about loss is often grief in disguise — here's how to journal through it.",
+    },
+    {
+      slug: "gen-z-burnout-journaling",
+      eyebrow: "Workplace anger",
+      body: "Chronic workplace anger is often burnout's middle stage. The 4-prompt burnout protocol.",
+    },
+    {
+      slug: "ai-journal-for-overthinking",
+      eyebrow: "Anger + overthinking",
+      body: "Replaying the same anger episode? That's overthinking. The AI journal angle for both.",
+    },
+    {
+      slug: "3am-anxiety-journaling",
+      eyebrow: "Anger that wakes you up",
+      body: "If anger surfaces at 3am the way anxiety does — the late-night protocol.",
+    },
+  ],
+  "journaling-for-grief": [
+    {
+      slug: "journaling-for-anger",
+      eyebrow: "Anger inside grief",
+      body: "Anger is often part of grief. The structured anger journaling protocol.",
+    },
+    {
+      slug: "ai-journaling-for-loneliness",
+      eyebrow: "Grief loneliness",
+      body: "Grief loneliness is its own category. The AI journaling angle for solitary grief.",
+    },
+    {
+      slug: "journaling-before-therapy",
+      eyebrow: "Pre-grief-therapy",
+      body: "If grief journaling surfaces something bigger, this guide helps you prep for a therapist appointment.",
+    },
+    {
+      slug: "complete-guide-ai-journaling-2026",
+      eyebrow: "Pattern recognition",
+      body: "Grief has waves. AI journaling helps surface the waves over weeks and months.",
+    },
+  ],
+  "journaling-for-imposter-syndrome": [
+    {
+      slug: "gen-z-burnout-journaling",
+      eyebrow: "Imposter + burnout",
+      body: "Imposter syndrome and burnout often co-occur. The 4-prompt burnout protocol.",
+    },
+    {
+      slug: "ai-journal-for-overthinking",
+      eyebrow: "Imposter loops are overthinking",
+      body: "The 'I don't belong here' loop IS overthinking. The AI journal angle for the cognitive piece.",
+    },
+    {
+      slug: "best-ai-journal-apps-for-anxiety-2026",
+      eyebrow: "When imposter = anxiety",
+      body: "If imposter syndrome shows up as work anxiety, the anxiety-specific app comparison.",
+    },
+    {
+      slug: "5-minute-daily-journaling-habit",
+      eyebrow: "Evidence File habit",
+      body: "The Evidence File needs to be habitual — here's how to make 5 minutes/day stick.",
+    },
+  ],
 };
 
 const getInternalLinkCards = (slug: string): InternalLinkCard[] =>
@@ -920,7 +986,28 @@ const BlogPost: React.FC = () => {
       "https://www.youtube.com/@Nujuapp",
       "https://www.producthunt.com/products/nuju",
     ],
+    knowsAbout: [
+      "AI journaling",
+      "mood tracking",
+      "expressive writing",
+      "mental wellness",
+      "anxiety management",
+      "burnout recovery",
+      "self-reflection",
+      "habit formation",
+    ],
   };
+
+  const editorialTeam = {
+    "@type": "Person",
+    name: "Nuju Editorial Team",
+    description:
+      "Nuju's editorial team curates research-backed content on AI journaling, mood tracking, and mental wellness. All claims are sourced from public peer-reviewed research and Nuju's own anonymized usage data, with mental health disclaimers and professional-care references where applicable.",
+    worksFor: nujuEntity,
+    url: "https://nuju.app/blog",
+  };
+
+  const isYMYL = post.category === "Mental Wellness" || post.category === "AI & Tech";
 
   const articleSchema = {
     "@context": "https://schema.org",
@@ -933,14 +1020,22 @@ const BlogPost: React.FC = () => {
     wordCount,
     articleSection: post.category,
     isAccessibleForFree: true,
-    author: nujuEntity,
+    author: editorialTeam,
+    editor: editorialTeam,
     publisher: nujuEntity,
-    reviewedBy: nujuEntity,
+    reviewedBy: editorialTeam,
+    sourceOrganization: nujuEntity,
     image: "https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image",
     mainEntityOfPage: {
       "@type": "WebPage",
       "@id": canonical,
     },
+    ...(isYMYL && {
+      about: {
+        "@type": "Thing",
+        name: post.category === "Mental Wellness" ? "Mental wellness" : "AI journaling",
+      },
+    }),
   };
 
   const faqSchema =
