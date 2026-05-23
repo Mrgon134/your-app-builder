@@ -9123,6 +9123,1098 @@ const RAW_BLOG_POSTS: BlogPost[] = [
       },
     ],
   },
+  // Q-BASED LONG-TAIL — Emotional numbness. YMYL careful.
+  {
+    slug: "why-do-i-feel-numb",
+    title: "Why Do I Feel Numb? The Real Causes Behind Emotional Numbness",
+    description: "Emotional numbness has documented causes — depression, trauma response, dissociation, burnout, or medication side effects. Each calls for different response. 5-min diagnostic + when numbness needs urgent professional help.",
+    metaTitle: "Why Do I Feel Numb? Real Causes + When to Get Help (2026)",
+    metaDescription: "Emotional numbness has 5 causes — depression, trauma, dissociation, burnout, medication. 5-min diagnostic + crisis resources.",
+    publishedAt: "2026-05-22",
+    readingTime: 6,
+    category: "Mental Wellness",
+    sections: [
+      { type: "p", content: "Short answer: emotional numbness — feeling 'flat' or 'disconnected from yourself' — has 5 most common causes: depression (anhedonia + emotional flattening), trauma response (numbness as protection), dissociation (the brain disconnecting from overwhelming experience), severe burnout (depletion past the point of feeling), or medication side effects (SSRIs and other antidepressants can cause emotional blunting). Each calls for different response. Critical: persistent numbness paired with self-harm thoughts requires immediate professional support." },
+      { type: "callout", content: "Crisis: if numbness includes thoughts of self-harm or 'not feeling real' (depersonalization/derealization) — please contact a crisis line right now. US 988 (call/text). Indonesia Into The Light (intothelightid.org), 119 ext 8. UK Samaritans 116 123. Numbness can be a signal of dissociation that needs immediate professional support." },
+      { type: "h2", content: "5 most common causes of numbness" },
+      { type: "ul", content: [
+        "Depression (anhedonia + flattening): medical loss of pleasure AND emotional flatness combined. Core depression symptom. 2+ weeks → see doctor.",
+        "Trauma response: numbness is the brain's protection mechanism. After significant trauma (recent or old), feelings shut down to prevent overwhelm. Needs trauma-informed therapy.",
+        "Dissociation: the brain disconnecting from overwhelming experience. Symptoms include feeling unreal, watching yourself from outside, lost time. Needs immediate professional evaluation.",
+        "Severe burnout: chronic depletion past the point of feeling. Body and mind so depleted they conserve energy by shutting off emotional response. Responds to extended rest + sometimes medical care.",
+        "Medication side effects: SSRIs and other antidepressants commonly cause emotional blunting. If on medication and feeling numb, discuss with prescribing doctor — dose adjustment or different medication often resolves.",
+      ] },
+      { type: "h2", content: "5-minute diagnostic" },
+      { type: "ol", content: [
+        "Recent trauma (1 min): significant traumatic event recent or old (loss, abuse, accident, witnessing harm)? If yes → trauma response.",
+        "Persistent low mood + numbness 2+ weeks (1 min): if yes → likely depression. See doctor.",
+        "Feeling unreal / watching yourself (1 min): if yes → dissociation, requires urgent professional support.",
+        "Chronic overwork + no emotional response anymore (1 min): if yes → severe burnout.",
+        "Currently on antidepressant (1 min): if yes and numbness started after medication → discuss with prescribing doctor.",
+      ] },
+      { type: "h2", content: "What helps for each cause" },
+      { type: "ul", content: [
+        "Depression: professional treatment (therapy + sometimes medication). Journaling supportive only — see /blog/journaling-for-depression.",
+        "Trauma response: trauma-informed therapy (EMDR, somatic therapy, trauma-focused CBT). Do NOT process trauma alone via journaling — re-traumatization risk.",
+        "Dissociation: urgent professional evaluation. This is not a self-help situation. Crisis lines if active.",
+        "Severe burnout: extended protected rest (weeks, not days). Medical evaluation for compounding factors. See /blog/gen-z-burnout-journaling.",
+        "Medication side effects: do not stop medication abruptly. Discuss with prescribing doctor — dose adjustment or different med often resolves emotional blunting.",
+      ] },
+      { type: "h2", content: "When numbness is urgent" },
+      { type: "p", content: "Talk to a professional this week if numbness includes:" },
+      { type: "ul", content: [
+        "Thoughts of self-harm — even brief, even ambiguous.",
+        "Dissociation symptoms (feeling unreal, derealization, lost time).",
+        "Inability to feel emotions for more than 2 weeks.",
+        "Inability to perform basic daily function.",
+        "After recent trauma — don't wait, trauma response benefits from early intervention.",
+      ] },
+      { type: "p", content: "Crisis lines: US 988 (call/text). Indonesia Into The Light, 119 ext 8. UK Samaritans 116 123. For ongoing care: GP can screen and refer." },
+      { type: "h2", content: "Bottom line" },
+      { type: "p", content: "Numbness has 5 documented causes — depression, trauma, dissociation, burnout, medication. Each needs different response. Persistent numbness or numbness with self-harm thoughts requires urgent professional care. For other versions, matching response. Nuju free at /onboarding can support daily check-ins alongside professional treatment — 60 seconds, no credit card." },
+    ],
+    faq: [
+      {
+        question: "Is feeling numb a sign of depression?",
+        answer:
+          "Often, yes — anhedonia (loss of pleasure) and emotional flattening are core depression symptoms. But numbness also has other causes: trauma response, dissociation, severe burnout, or medication side effects. The 5-min diagnostic helps identify which one. If persistent for 2+ weeks, see a doctor regardless of cause.",
+      },
+      {
+        question: "Can SSRIs cause emotional numbness?",
+        answer:
+          "Yes — emotional blunting is a documented side effect of SSRIs and some other antidepressants. Affects roughly 30-60% of users to varying degrees. If you're on medication and feeling numb, do NOT stop abruptly — discuss with prescribing doctor. Dose adjustment, switching medication, or adding another medication often resolves the blunting.",
+      },
+      {
+        question: "What's the difference between numbness and depression?",
+        answer:
+          "Numbness can be a depression symptom but isn't identical. Depression includes persistent low mood + anhedonia + sleep/appetite changes + hopelessness + sometimes self-harm thoughts. Numbness alone (without those other symptoms) might be trauma response, dissociation, severe burnout, or medication. Distinguishing matters for treatment.",
+      },
+      {
+        question: "Is feeling numb after trauma normal?",
+        answer:
+          "Yes, common, and protective in the short term. The brain shuts down emotional response to prevent overwhelm. If numbness persists beyond 2-4 weeks after a traumatic event, or if it's interfering with daily function, talk to a trauma-informed therapist (EMDR, somatic therapy, trauma-focused CBT). Don't try to process trauma alone via journaling — re-traumatization risk.",
+      },
+      {
+        question: "Can journaling help with numbness?",
+        answer:
+          "Depends on cause. For depression-related numbness: supportive practice alongside professional treatment. For burnout numbness: helps identify what to rest from. For trauma-related numbness: do NOT use journaling alone — work with trauma-informed therapist. For dissociation: not a journaling situation, needs urgent professional care.",
+      },
+      {
+        question: "When is numbness an emergency?",
+        answer:
+          "If you have thoughts of self-harm (even brief), dissociation symptoms (feeling unreal, watching yourself from outside, lost time), or numbness after recent significant trauma — talk to a crisis line or doctor TODAY. US 988 (call/text). Indonesia Into The Light (intothelightid.org), 119 ext 8. UK Samaritans 116 123. Numbness is treatable but some forms need immediate intervention.",
+      },
+    ],
+  },
+  // Q-BASED LONG-TAIL — Irritability.
+  {
+    slug: "why-am-i-so-irritable-lately",
+    title: "Why Am I So Irritable Lately? The Real Causes (and What Actually Helps)",
+    description: "Sudden or chronic irritability has documented causes — sleep debt, hormonal shifts, accumulated stress, medication, depression-as-anger, or burnout. Here's how to identify yours plus a 5-minute pattern-recognition protocol.",
+    metaTitle: "Why Am I So Irritable Lately? Real Causes + Fix (2026)",
+    metaDescription: "Sudden irritability has 6 documented causes: sleep, hormones, stress, medication, depression-as-anger, burnout. Identify yours + 5-min protocol.",
+    publishedAt: "2026-05-22",
+    readingTime: 6,
+    category: "Mental Wellness",
+    sections: [
+      { type: "p", content: "Short answer: sudden or chronic irritability has 6 most common causes — sleep debt (#1 most common, often overlooked), hormonal shifts (cycle, perimenopause, thyroid), accumulated stress finally surfacing, medication side effects, depression presenting as anger (especially in men), or burnout. Each calls for a different response. Tracking irritability alongside potential triggers usually reveals the pattern within 2 weeks." },
+      { type: "callout", content: "Quick start: try the 5-min reverse-engineer protocol below the next time irritability spikes. Often the actual trigger becomes visible within minutes. Nuju free Ju Gets You reveal at /onboarding — 60 seconds, no credit card." },
+      { type: "h2", content: "6 most common causes" },
+      { type: "ul", content: [
+        "Sleep debt: 1-2 nights of <6 hours = measurable amygdala overactivity (Walker, Berkeley). Tomorrow's irritability often = yesterday's sleep.",
+        "Hormonal: premenstrual shifts produce documented mood dysregulation 7-10 days before period. Perimenopause, thyroid issues, testosterone changes all create irritability.",
+        "Accumulated stress: chronic moderate stress keeps cortisol elevated. Small triggers feel huge because system is already loaded.",
+        "Medication: some medications cause irritability as side effect (some antidepressants, ADHD medications, steroids). Discuss with prescribing doctor.",
+        "Depression-as-anger: depression presents as irritability/anger in some people (especially men, but also women). Often missed.",
+        "Burnout: depleted system reacts to small stressors with disproportionate response. Different from depression — responds to rest.",
+      ] },
+      { type: "h2", content: "5-minute reverse-engineer protocol" },
+      { type: "ol", content: [
+        "Sleep last 3 nights (1 min): hours per night? <6 multiple nights → likely sleep debt.",
+        "Cycle / hormonal (1 min): time of month if applicable. Pattern of irritability tied to cycle?",
+        "Stress level last 2 weeks (1 min): consistently moderate-high? → accumulated stress.",
+        "Medication changes (1 min): started or changed any medication in last 2 months? → possible side effect.",
+        "Other depression signs (1 min): persistent low mood, sleep changes, loss of interest? → possible depression-as-anger pattern.",
+      ] },
+      { type: "h2", content: "What helps for each cause" },
+      { type: "ul", content: [
+        "Sleep debt: prioritize sleep recovery for 1 week. Often resolves irritability faster than any other intervention.",
+        "Hormonal: track patterns. For severe PMS/PMDD, perimenopause, or thyroid, see a doctor — highly treatable.",
+        "Accumulated stress: actually reduce stressors. Time off, boundary setting, dropping non-essential commitments.",
+        "Medication side effects: do not stop abruptly. Discuss with prescribing doctor — adjustment often resolves.",
+        "Depression-as-anger: see a doctor. Treatment for underlying depression resolves the irritability.",
+        "Burnout: extended rest. See /blog/gen-z-burnout-journaling.",
+      ] },
+      { type: "h2", content: "When irritability needs professional help" },
+      { type: "p", content: "Talk to a doctor or therapist if:" },
+      { type: "ul", content: [
+        "Irritability is significantly affecting work or close relationships.",
+        "You're experiencing 'rage attacks' or anger that surprises you.",
+        "Irritability paired with depression symptoms.",
+        "Irritability accompanied by hopelessness or self-harm thoughts.",
+        "Irritability after head injury or with cognitive symptoms (possible medical cause).",
+      ] },
+      { type: "p", content: "Crisis: US 988, Indonesia Into The Light, UK Samaritans 116 123." },
+      { type: "h2", content: "Bottom line" },
+      { type: "p", content: "Irritability has 6 documented causes — sleep, hormones, stress, medication, depression-as-anger, burnout. The 5-min reverse-engineer protocol identifies yours. Track patterns for 2 weeks. For most causes, matching response works. For depression-presenting-as-anger or persistent irritability with relationship damage, professional help. Nuju free at /onboarding helps surface patterns automatically — 60 seconds." },
+    ],
+    faq: [
+      {
+        question: "Why have I become more irritable in my 30s?",
+        answer:
+          "Several factors compound in your 30s: chronic sleep debt accumulating from years of insufficient sleep, hormonal shifts (perimenopause can start in mid-30s for women, testosterone gradually declining in men), work stress accumulating, and parenthood adding sleep + stress load if applicable. Track 2 weeks of data to identify your specific drivers — often more manageable than you think.",
+      },
+      {
+        question: "Is irritability a depression symptom?",
+        answer:
+          "Yes — depression often presents as irritability or anger rather than sadness, especially in men but also in women. This 'depression-as-anger' pattern is commonly missed because the cultural script is 'depression = sad.' If irritability is paired with persistent low mood, sleep changes, loss of interest, or hopelessness for 2+ weeks, see a doctor — depression is highly treatable.",
+      },
+      {
+        question: "Does PMS or perimenopause really cause irritability?",
+        answer:
+          "Yes — documented. Premenstrual hormonal shifts produce measurable mood dysregulation 7-10 days before period (PMDD is the severe version). Perimenopause (can start in mid-30s) produces similar patterns. For severe cycle-related irritability, talk to a doctor — treatable with hormonal adjustments or SSRIs. Track 2 cycles to identify pattern.",
+      },
+      {
+        question: "Can lack of sleep make me angry?",
+        answer:
+          "Yes — Berkeley research (Walker, 2007+) shows 1-2 nights of <6 hours sleep produces measurable amygdala overactivity, making the brain hypervigilant and irritable. Sleep debt is the #1 most overlooked cause of irritability. If you've been sleeping poorly recently and feel irritable, prioritize sleep recovery — often resolves within a week.",
+      },
+      {
+        question: "Can journaling help with irritability?",
+        answer:
+          "Yes — primarily through pattern recognition. Tracking irritability spikes alongside potential triggers (sleep, food, stressors, time of cycle) over 2 weeks usually reveals the dominant cause. Once identified, the matching response works. Daily mood + energy logging in Nuju supports this automatically — no manual pattern analysis required.",
+      },
+      {
+        question: "When should I see a doctor about irritability?",
+        answer:
+          "If irritability is significantly affecting relationships or work, includes 'rage attacks' that surprise you, paired with depression symptoms, accompanied by self-harm thoughts, or appeared after head injury — see a doctor. Severe PMS/PMDD/perimenopause is also worth addressing — treatable. Crisis: US 988, Indonesia Into The Light, UK Samaritans 116 123.",
+      },
+    ],
+  },
+  // COMMERCIAL — Best journal app for busy professionals.
+  {
+    slug: "best-journal-app-for-busy-professionals-2026",
+    title: "Best Journal App for Busy Professionals in 2026: 5 Picks That Fit Your Schedule",
+    description: "Busy professionals need a journal app that works in 30-second windows, fits between meetings, and surfaces patterns without manual analysis. We tested 5 picks — Nuju, Day One, Reflection, Stoic, Daylio — for the professional workflow.",
+    metaTitle: "Best Journal App for Busy Professionals 2026 (5 Picks Tested)",
+    metaDescription: "Best journal apps for busy professionals 2026: Nuju, Day One, Reflection, Stoic, Daylio. 30-second entries, AI pattern recognition, executive-friendly.",
+    publishedAt: "2026-05-22",
+    readingTime: 7,
+    category: "App Comparison",
+    sections: [
+      { type: "p", content: "Best journal app for busy professionals in 2026: Nuju for 30-second entries between meetings with AI pattern recognition (free tier strong). Day One for executives who want polished long-form diary. Reflection for automatic weekly/monthly review documents. Stoic for strategic-philosophical professionals. Daylio for the absolute minimum-friction option (no writing). The right pick depends on your actual professional rhythm." },
+      { type: "callout", content: "Quick start: most busy professionals benefit from Nuju Free for daily 30-second entries + occasional Reflection for monthly strategic review. Combined: $0/month for daily + ~$5-10/month for monthly if you upgrade. Try Nuju at /onboarding — 60 seconds, no credit card." },
+      { type: "h2", content: "What busy professionals specifically need" },
+      { type: "ul", content: [
+        "Fast entries: 30-60 seconds. Professionals don't have time for 30-min sessions; they have minutes between meetings.",
+        "Pattern recognition without manual work: AI surfaces patterns; you don't have time to re-read entries weekly.",
+        "Cross-platform: laptop during work, mobile in transit, web for travel.",
+        "Privacy: business-sensitive content (decisions, conflicts, plans) needs explicit no-AI-training policy.",
+        "Decision documentation: future-you wants to understand how present-you reasoned about hard calls.",
+      ] },
+      { type: "h2", content: "1. Nuju — best for between-meeting entries" },
+      { type: "p", content: "Nuju's 30-second mood+text format fits between meetings, after pitch calls, before commute home. The Gentle AI persona handles professional anxiety, decision fatigue, and burnout. AI pattern recognition over 30+ entries reveals what specifically drains your energy professionally." },
+      { type: "p", content: "Professional features: free tier covers daily entries + AI insights. Multi-language (8 languages) for international roles. Privacy: encrypted, no AI training. Mood + energy tracking surfaces burnout signals early." },
+      { type: "p", content: "Limits: not designed as productivity tool. For task tracking, time management, or strategic frameworks, pair with other tools." },
+      { type: "h2", content: "2. Day One — best for executive long-form diary" },
+      { type: "p", content: "Day One Premium for executives who treat journaling as decision archive. Long-form editor, beautiful exports (printable year-end books), strong photo integration. ~$35/year. Limits: no AI pattern recognition. Best for committed long-form daily writers." },
+      { type: "h2", content: "3. Reflection — best for automatic strategic reviews" },
+      { type: "p", content: "Reflection.app automatically generates weekly, monthly, and annual review documents from your entries. For professionals running quarterly retrospectives or annual reviews, this automation is uniquely valuable. ~$5-10/month for premium." },
+      { type: "p", content: "Pair with Nuju: daily 30-sec entries in Nuju, monthly strategic review documents in Reflection. Different times of day, different jobs." },
+      { type: "h2", content: "4. Stoic — best for strategic-philosophical professionals" },
+      { type: "p", content: "Stoic Journal for professionals drawn to philosophical reflection (mental models, Stoicism, strategic thinking). Used by founders, investors, and senior executives in tech, finance, and creative industries. ~$30/year." },
+      { type: "p", content: "Limits: longer-form prompts mean longer commitment. Best as morning practice, not between-meeting tool." },
+      { type: "h2", content: "5. Daylio — best for executives who refuse to write" },
+      { type: "p", content: "Daylio for the minimum-friction option. 10-second mood + activity tag entries. No writing required. Long-term mood charts reveal energy patterns. $3.99 one-time premium." },
+      { type: "h2", content: "Recommended combinations for professionals" },
+      { type: "ul", content: [
+        "Daily essential: Nuju Free.",
+        "Daily + monthly review: Nuju Free + Reflection Premium (~$5-10/mo).",
+        "Daily + decision archive: Nuju Free + Day One Premium (~$35/yr).",
+        "Strategic-philosophical morning practice: Stoic + Nuju Free for daily.",
+        "Mood data only: Daylio (one-time $3.99).",
+      ] },
+      { type: "h2", content: "Privacy considerations for professionals" },
+      { type: "p", content: "Business journal content is sensitive:" },
+      { type: "ul", content: [
+        "Verify no-AI-training policy. Nuju and Reflection explicitly carve out journal content. Rosebud has training clause in TOS — disclose if recommending.",
+        "Use personal device, not work laptop — work laptops are company property and may be searched.",
+        "Avoid sync to work email or work Google account.",
+        "For highly sensitive content (litigation, M&A, executive disputes), consider local-only options (paper journal or offline-capable app).",
+      ] },
+      { type: "h2", content: "Bottom line" },
+      { type: "p", content: "For most busy professionals in 2026, Nuju Free for daily 30-second entries is the right starting point. Add Reflection for monthly strategic review automation. Add Day One if you want long-form decision documentation. Add Stoic if philosophical reflection fits your style. Most professionals don't need all of these — pick based on actual professional rhythm. Try Nuju at /onboarding — 60 seconds, no credit card." },
+    ],
+    faq: [
+      {
+        question: "What is the best journal app for executives?",
+        answer:
+          "Depends on style. Nuju Free for between-meeting 30-second entries with AI pattern recognition. Day One Premium for executives who want polished long-form decision archive. Reflection for automatic strategic reviews. Most senior executives benefit from Nuju daily + Reflection monthly + occasional Day One for major decision documentation.",
+      },
+      {
+        question: "Is journaling worth the time for busy professionals?",
+        answer:
+          "Research supports yes — even brief daily journaling (5-10 min) improves decision quality, emotional regulation, and stress management. Multiple studies on expressive writing (Pennebaker, 35+ years) show measurable benefit. Many high-profile executives credit journaling as core practice (Tim Ferriss, Bill Gates, Warren Buffett's reading-and-thinking time, etc.).",
+      },
+      {
+        question: "How can I journal when I have no time?",
+        answer:
+          "30-second entries between meetings work. Nuju's median real entry is 31 characters — about one sentence. Tap a mood, write one line, close the app. Pattern recognition happens automatically over weeks. Doesn't require carving out 30-minute blocks. Habit stack to existing routine (after morning coffee, between specific meetings, before commute home).",
+      },
+      {
+        question: "Is it safe to journal about work on a phone app?",
+        answer:
+          "Depends on app and content. Verify: explicit no-AI-training policy on journal content, encryption at rest and in transit, easy export/delete, and personal-device usage (don't journal on work laptop). Nuju and Reflection meet these standards. For highly sensitive content (litigation, M&A), consider local-only options or paper journal.",
+      },
+      {
+        question: "How much should a professional spend on journal apps?",
+        answer:
+          "$0-15/month covers everything for most professionals. Nuju Free for daily journaling. Add Reflection (~$5-10/mo) for monthly strategic reviews. Add Day One (~$3/mo equivalent) if long-form decision documentation matters. Don't pay for overlapping apps. Most professionals find 1-2 apps + free tiers is the sweet spot.",
+      },
+      {
+        question: "Can journaling help with executive burnout?",
+        answer:
+          "Yes — for prevention and early detection. Mood + energy tracking over weeks surfaces burnout signals (sustained low mood, declining energy, increasing 'tough day' frequency) before they become acute. The Maslach Burnout Inventory components all show up in journal entries. For active executive burnout, see /blog/gen-z-burnout-journaling for the 4-prompt protocol.",
+      },
+    ],
+  },
+  // VERSUS — Nuju vs Five Minute Journal.
+  {
+    slug: "nuju-vs-five-minute-journal",
+    title: "Nuju vs The Five Minute Journal: AI Reflection or Gratitude Practice? (2026)",
+    description: "Nuju and The Five Minute Journal target different journaling philosophies. Nuju is AI-augmented short-entry reflection. Five Minute Journal is structured gratitude practice. Different jobs — sometimes complementary. Honest comparison.",
+    metaTitle: "Nuju vs Five Minute Journal 2026: AI vs Gratitude Practice",
+    metaDescription: "Nuju vs Five Minute Journal: AI-augmented reflection vs structured gratitude. Different jobs. Honest comparison + when to combine.",
+    publishedAt: "2026-05-22",
+    readingTime: 6,
+    category: "App Comparison",
+    sections: [
+      { type: "p", content: "Short answer: pick Nuju if you want AI-augmented short daily entries with mood tracking and pattern recognition. Pick The Five Minute Journal (5MJ) if you want a structured gratitude + intention-setting practice based on positive psychology. They target different journaling philosophies — Nuju is reflective/responsive; 5MJ is intentional/structured. Both have legitimate use cases." },
+      { type: "callout", content: "Quick start: try Nuju free first (60 seconds at /onboarding, no credit card). If gratitude framework appeals more than AI reflection, consider 5MJ instead or alongside. Most users don't need both." },
+      { type: "h2", content: "Head-to-head: 5 dimensions" },
+      { type: "ul", content: [
+        "Format: Nuju = mood+text, AI responds. 5MJ = structured prompts (3 gratitudes, 3 intentions, evening review).",
+        "Philosophy: Nuju = reflective/responsive AI. 5MJ = positive psychology + gratitude science.",
+        "AI: Nuju has it as core. 5MJ has none — it's traditional structured journaling.",
+        "Pricing: Nuju Free is generous. 5MJ app subscription ~$5-15/month or physical journal ~$30 one-time.",
+        "Languages: Nuju 8 languages. 5MJ primarily English.",
+      ] },
+      { type: "h2", content: "Where 5MJ wins" },
+      { type: "p", content: "5MJ is the better pick when:" },
+      { type: "ul", content: [
+        "You want structured gratitude practice with proven positive-psychology framework.",
+        "Intention setting + evening review structure resonates.",
+        "You prefer physical journal (5MJ has popular physical version).",
+        "You're inspired by Tim Ferriss and others who credit 5MJ as core practice.",
+        "Simple, prescribed prompts beat reflective open-ended writing for your style.",
+      ] },
+      { type: "h2", content: "Where Nuju wins" },
+      { type: "p", content: "Nuju is the better pick when:" },
+      { type: "ul", content: [
+        "You want AI feedback on your entries, not just structured prompts.",
+        "Pattern recognition over weeks matters (5MJ doesn't track patterns).",
+        "Multi-language UI matters (Bahasa Indonesia, etc.).",
+        "Free tier matters — 5MJ app is subscription-only.",
+        "Honest framing of mood matters — 5MJ's gratitude structure can feel forced on low days.",
+        "Mood tracking integrated with text entries.",
+      ] },
+      { type: "h2", content: "The gratitude question" },
+      { type: "p", content: "Honest take: gratitude journaling works for some people, backfires for others. For perfectionists with depression, forcing gratitude can deepen shame ('I should be grateful — what's wrong with me?'). For people in active grief, breakup, or burnout, gratitude prompts often feel false. Nuju doesn't force gratitude — it asks what you actually feel. 5MJ's structure benefits people in steady-state who want intention-setting, not people processing difficult emotions." },
+      { type: "h2", content: "Research on each approach" },
+      { type: "p", content: "Both approaches have research support, but for different outcomes:" },
+      { type: "ul", content: [
+        "Gratitude journaling: Emmons + McCullough research (UC Davis, 2003+) showed 3-week gratitude practice improves well-being measurably. 5MJ is built on this framework.",
+        "Expressive writing: Pennebaker (UT Austin, 35+ years) showed structured emotional expression reduces stress and improves health markers. Nuju is built on this framework.",
+        "Combined: many people benefit from both — gratitude when life is steady, expressive when life is hard. Pick what matches current state.",
+      ] },
+      { type: "h2", content: "Combining both" },
+      { type: "p", content: "Some users combine: 5MJ morning practice (gratitude + intentions) + Nuju Free for emotional processing as needed. Combined cost: ~$5-15/month for 5MJ + $0 for Nuju. Different times of day, different purposes." },
+      { type: "h2", content: "Bottom line" },
+      { type: "p", content: "Nuju and 5MJ serve different journaling philosophies. 5MJ for structured gratitude + intention setting (Emmons positive psychology base). Nuju for AI-augmented emotional reflection (Pennebaker expressive writing base). Most users don't need both. Try Nuju free first (/onboarding, 60 seconds). If you want pure gratitude practice on the side, add 5MJ. Pick based on whether you want structured prompts or responsive AI." },
+    ],
+    faq: [
+      {
+        question: "Is The Five Minute Journal worth it?",
+        answer:
+          "For users genuinely drawn to gratitude + intention-setting practice, yes — 5MJ excels at this specific use case. Tim Ferriss and other high-profile users credit it. For users who want AI reflection, multi-language support, or honest framing of difficult emotions, Nuju is the better fit. $30 for physical journal is reasonable; app subscription depends on whether you'll sustain the practice.",
+      },
+      {
+        question: "Does Nuju have gratitude prompts?",
+        answer:
+          "Some — Nuju's prompts include gratitude variations, but not as forced daily practice. You can use Nuju in a gratitude-focused way if you want, but it doesn't structure your entries as 5MJ does. For dedicated gratitude practice, 5MJ is the dedicated tool. For flexible reflection with optional gratitude when it feels natural, Nuju.",
+      },
+      {
+        question: "Can gratitude journaling backfire?",
+        answer:
+          "Yes — for some people in some states. Research shows forced gratitude during active depression, grief, or burnout often deepens shame ('I should be grateful — what's wrong with me?'). For perfectionists, the inability to access gratitude becomes another standard to fail. 5MJ works for steady-state intention-setting. For processing difficult emotions, reflective journaling (Nuju) often fits better.",
+      },
+      {
+        question: "Should I do gratitude journaling every day?",
+        answer:
+          "Research suggests 3 days per week is sufficient for benefit; daily can feel forced. Diminishing returns past 3-4x per week. If daily structure works for you (like 5MJ encourages), continue. If daily feels false, switch to 2-3x per week — research supports this rhythm equally.",
+      },
+      {
+        question: "Is Nuju cheaper than Five Minute Journal?",
+        answer:
+          "Yes. Nuju Free covers daily journaling with AI insights, mood tracking, 8 languages — fully usable indefinitely. 5MJ app is subscription-only (~$5-15/month). Physical 5MJ journal is ~$30 one-time but doesn't last forever. For long-term users, Nuju Free + occasional 5MJ physical journal (every 6-12 months) is the cheapest combo.",
+      },
+      {
+        question: "Which is better for beginners?",
+        answer:
+          "Nuju Free for beginners who want AI feedback and flexibility — easier to sustain because it adapts to whatever you write. 5MJ for beginners who want structured prompts and a clear daily ritual. Beginners who hate the blank page often prefer 5MJ's prescribed structure. Beginners who want responsiveness often prefer Nuju's AI feedback.",
+      },
+    ],
+  },
+  // BAHASA INDONESIA — Trauma masa kecil. STRONG YMYL framing.
+  {
+    slug: "cara-mengatasi-trauma-masa-kecil",
+    title: "Cara Mengatasi Trauma Masa Kecil: Panduan Aman + Kapan Wajib ke Profesional",
+    description: "Trauma masa kecil punya dampak panjang yang terdokumentasi. Journaling bisa membantu, tapi HANYA dengan terapis trauma-informed — proses sendirian punya risiko re-traumatisasi. Panduan aman + sumber profesional Indonesia.",
+    metaTitle: "Cara Mengatasi Trauma Masa Kecil: Panduan Aman (Indonesia 2026)",
+    metaDescription: "Trauma masa kecil butuh terapis trauma-informed — bukan journaling sendirian (risiko re-traumatisasi). Panduan aman + sumber Indonesia.",
+    publishedAt: "2026-05-22",
+    readingTime: 7,
+    category: "Mental Wellness",
+    sections: [
+      { type: "p", content: "Jawaban singkat: trauma masa kecil punya dampak panjang yang terdokumentasi — anxiety dewasa, depresi, hubungan yang sulit, masalah kepercayaan, dan sering kondisi medis yang dipicu stres kronis. Tapi tidak seperti stres harian, trauma butuh penanganan PROFESIONAL dengan terapis trauma-informed. Journaling sendirian tentang trauma punya risiko re-traumatisasi nyata — bukan supportif. Tulisan ini adalah panduan AMAN untuk mengakses bantuan profesional, bukan panduan self-help untuk memproses trauma sendiri." },
+      { type: "callout", content: "Penting: jangan proses trauma berat sendirian via journaling. Risiko re-traumatisasi nyata. Sumber profesional Indonesia: Yayasan Pulih (yayasanpulih.org) untuk dukungan trauma, Halodoc/KALM/Riliv untuk terapis spesialisasi trauma. Krisis: Into The Light Indonesia (intothelightid.org), 119 ext 8. Untuk kekerasan: Komnas Perempuan (komnasperempuan.go.id), LBH APIK (lbhapik.org)." },
+      { type: "h2", content: "Apa yang dimaksud trauma masa kecil" },
+      { type: "p", content: "Trauma masa kecil mencakup pengalaman yang melukai kemampuan otak/sistem saraf untuk berfungsi normal. Termasuk:" },
+      { type: "ul", content: [
+        "Kekerasan fisik, seksual, atau emosional (langsung atau menyaksikan).",
+        "Pengabaian (kebutuhan dasar fisik atau emosional tidak terpenuhi).",
+        "Kehilangan orang tua atau pengasuh utama.",
+        "Hidup di rumah dengan kekerasan domestik, alkoholisme, masalah mental severe.",
+        "Bullying jangka panjang atau pengucilan.",
+        "Trauma medis (operasi besar, penyakit kronis childhood).",
+        "Trauma kolektif (perang, bencana, pengungsian).",
+      ] },
+      { type: "p", content: "Trauma punya dampak meskipun lo nggak ingat detail secara sadar. Riset Bessel van der Kolk (The Body Keeps the Score, 2014) dan Felitti et al. ACE study (Adverse Childhood Experiences, 1998+) konsisten menunjukkan korelasi antara ACE childhood dan kondisi dewasa." },
+      { type: "h2", content: "Tanda-tanda trauma childhood mungkin mempengaruhi lo sekarang" },
+      { type: "ul", content: [
+        "Hyperarousal kronis — selalu 'on guard,' mudah terkejut.",
+        "Hubungan yang sulit — masalah trust, intimasi, atau attachment.",
+        "Anxiety atau depresi yang nggak tertangani dengan treatment standar.",
+        "Flashback atau intrusive memory.",
+        "Dissociation — perasaan 'tidak nyata' atau watching self.",
+        "Numbness emosional yang kronis.",
+        "Coping mechanism unhealthy (alkohol, zat lain, eating disorder).",
+        "Kondisi medis stress-related (chronic pain, fibromyalgia, autoimmune).",
+      ] },
+      { type: "h2", content: "Kenapa journaling sendirian RISKY untuk trauma" },
+      { type: "p", content: "Trauma processing membutuhkan stabilization dulu sebelum exposure. Tanpa terapis:" },
+      { type: "ul", content: [
+        "Re-traumatisasi: menulis detail tanpa support bisa re-activate respons trauma, memperdalam luka.",
+        "No stabilization tools: terapis trauma mengajarkan grounding techniques sebelum exposure. Tanpa ini, journaling bisa overwhelm.",
+        "Dissociation triggers: trauma processing bisa picu dissociation severe yang butuh kehadiran profesional untuk menangani.",
+        "No integration support: setelah exposure, butuh integrasi yang nggak bisa dilakukan sendirian.",
+      ] },
+      { type: "p", content: "Riset trauma-informed care konsisten merekomendasikan: trauma processing dengan terapis berlisensi, bukan self-help solo." },
+      { type: "h2", content: "Apa yang AMAN dilakukan sendiri sambil cari/menunggu terapis" },
+      { type: "p", content: "Sambil mengakses bantuan profesional, beberapa praktik AMAN:" },
+      { type: "ul", content: [
+        "Grounding techniques: 5-4-3-2-1 (5 hal lihat, 4 dengar, 3 sentuh, 2 cium, 1 rasa) saat trigger muncul.",
+        "Mood tracking ringan: catat 'baik' atau 'sulit' tanpa detail spesifik. Membantu lo dan terapis liat pola tanpa re-traumatize.",
+        "Self-care basic: tidur cukup, makan teratur, gerakan tubuh. Foundation untuk recovery work.",
+        "Limit pemicu: kurangi exposure ke trigger spesifik (orang, tempat, jenis konten) sambil menunggu treatment.",
+        "Connect dengan support yang aman: teman, keluarga, atau komunitas trauma support yang tidak menghakimi.",
+      ] },
+      { type: "h2", content: "Cara mengakses terapis trauma-informed di Indonesia" },
+      { type: "p", content: "Pilihan akses Indonesia 2026:" },
+      { type: "ul", content: [
+        "Yayasan Pulih (yayasanpulih.org): khusus dukungan trauma, ada layanan konsultasi terjangkau.",
+        "Halodoc / KALM / Riliv: cari 'terapis trauma' atau 'EMDR' atau 'trauma-focused CBT' di search. Mulai Rp 100.000-300.000+ per sesi.",
+        "RS dengan poli psikiatri: cari yang punya program trauma. Beberapa RS pemerintah dan swasta.",
+        "Komnas Perempuan (komnasperempuan.go.id): untuk trauma kekerasan terhadap perempuan, ada layanan dan rujukan.",
+        "LBH APIK (lbhapik.org): bantuan hukum + dukungan psikologis untuk kasus KDRT.",
+        "BPJS: cek di provinsi lo — beberapa cover trauma evaluation dan basic therapy.",
+      ] },
+      { type: "h2", content: "Treatment options yang efektif untuk trauma" },
+      { type: "p", content: "Treatment trauma yang research-backed:" },
+      { type: "ul", content: [
+        "EMDR (Eye Movement Desensitization and Reprocessing): salah satu treatment paling efektif untuk PTSD.",
+        "Trauma-Focused CBT: structured framework untuk processing trauma.",
+        "Somatic Experiencing (Peter Levine): focus pada response tubuh, bukan hanya kognitif.",
+        "Internal Family Systems (IFS): kerja dengan 'parts' diri yang membawa trauma.",
+        "Medication: dalam beberapa kasus, SSRIs atau prazosin untuk nightmare. Diresepkan psikiater.",
+      ] },
+      { type: "h2", content: "Realitas penting tentang trauma recovery" },
+      { type: "ul", content: [
+        "Recovery mungkin — bukan permanent damage. Banyak orang dengan ACE tinggi recover signifikan dengan treatment yang tepat.",
+        "Process bertahap. Biasanya butuh bulan-bertahun, bukan minggu. Stabilization → processing → integration.",
+        "Bukan kesalahan lo. Trauma childhood = sesuatu yang TERJADI ke lo, bukan tentang siapa lo.",
+        "Tools bisa kombinasi. Therapy + medication (jika perlu) + journaling support (HANYA dengan guidance terapis) + komunitas support.",
+      ] },
+      { type: "h2", content: "Bottom line" },
+      { type: "p", content: "Trauma childhood punya dampak nyata pada hidup dewasa, dan membutuhkan penanganan PROFESIONAL dengan terapis trauma-informed. Journaling sendirian tentang trauma punya risiko re-traumatisasi — bukan supportif. Yang aman dilakukan sendiri: grounding techniques, mood tracking ringan, self-care basic. Akses bantuan profesional di Indonesia: Yayasan Pulih, Halodoc/KALM/Riliv (terapis trauma), Komnas Perempuan untuk trauma kekerasan. Recovery mungkin. Krisis: Into The Light Indonesia, 119 ext 8." },
+    ],
+    faq: [
+      {
+        question: "Apakah aman journaling tentang trauma masa kecil sendirian?",
+        answer:
+          "Tidak — journaling sendirian tentang trauma berat punya risiko re-traumatisasi nyata. Trauma processing membutuhkan terapis trauma-informed yang bisa mengajarkan grounding tools, menangani dissociation jika muncul, dan support integrasi. Yang AMAN sendiri: grounding techniques, mood tracking ringan (tanpa detail spesifik), self-care basic. Trauma processing yang dalam = dengan terapis.",
+      },
+      {
+        question: "Berapa biaya terapis trauma di Indonesia 2026?",
+        answer:
+          "Bervariasi. Yayasan Pulih punya layanan konsultasi terjangkau (cek website mereka). Halodoc, KALM, Riliv dengan terapis trauma: Rp 100.000-300.000+ per sesi. RS dengan poli psikiatri bisa lebih terjangkau. Beberapa provinsi BPJS cover trauma evaluation. Untuk kekerasan, Komnas Perempuan dan LBH APIK punya layanan tanpa biaya untuk korban. Cost tidak harus jadi penghalang — banyak opsi tersedia.",
+      },
+      {
+        question: "Apa itu EMDR dan apakah efektif untuk trauma?",
+        answer:
+          "EMDR (Eye Movement Desensitization and Reprocessing) adalah treatment yang terbukti efektif untuk PTSD dan trauma. Menggunakan bilateral stimulation (gerakan mata, tapping) sambil mengakses memori trauma — membantu otak memproses memori yang 'stuck.' Riset menunjukkan EMDR sangat efektif untuk single-incident trauma dan moderately effective untuk complex trauma. Cari terapis dengan sertifikasi EMDR.",
+      },
+      {
+        question: "Berapa lama recovery dari trauma childhood?",
+        answer:
+          "Bervariasi sangat — bulan untuk single-incident trauma yang sederhana, bertahun-tahun untuk complex trauma. Process tahapan: stabilization (membangun safety + grounding tools, weeks-months), processing (working through specific memories, months), integration (rebuilding sense of self, months-years). Recovery nggak linear. Setbacks normal. Tapi recovery yang signifikan sangat mungkin — banyak orang dengan severe childhood trauma achieve stable adult lives dengan treatment yang tepat.",
+      },
+      {
+        question: "Bagaimana caranya cari terapis yang tepat?",
+        answer:
+          "(1) Cari spesialisasi: 'terapis trauma,' 'EMDR therapist,' 'trauma-focused CBT,' atau 'somatic experiencing.' (2) Konsultasi awal: kebanyakan terapis menawarkan sesi konsultasi 15-30 menit sebelum commitment. Gunakan untuk assess fit. (3) Trust your gut: kalau lo nggak feel safe dengan terapis pertama, cari yang lain. Trauma work butuh trust. (4) Cek background: lisensi, sertifikasi spesifik trauma modalities, pengalaman. (5) Sustainable cost: budget jangka panjang penting karena treatment bisa lama.",
+      },
+      {
+        question: "Kalau gue belum siap therapy, apa yang bisa dilakukan?",
+        answer:
+          "Banyak orang butuh waktu sebelum siap therapy — itu valid. Yang bisa dilakukan: (1) Build basic safety dulu — sleep, makan, gerakan, tempat tinggal aman. Foundation untuk eventually therapy. (2) Connect dengan komunitas support (online communities untuk specific trauma types). (3) Learn grounding techniques (apps seperti MindShift, atau YouTube grounding meditations). (4) Mood tracking ringan tanpa detail spesifik. (5) Pertahankan limit terhadap trigger. Saat siap therapy, sumber Indonesia available — nggak ada timeline yang 'benar.'",
+      },
+    ],
+  },
+  // BAHASA INDONESIA — Hubungan jarak jauh (LDR).
+  {
+    slug: "journaling-untuk-hubungan-jarak-jauh",
+    title: "Journaling untuk Hubungan Jarak Jauh: 6 Prompt yang Membantu LDR Berhasil (2026)",
+    description: "Hubungan jarak jauh (LDR) punya tantangan unik — loneliness, trust issues, communication gap, future uncertainty. Journaling 6 prompt yang membantu memproses emosi LDR + maintain connection dengan diri sendiri saat partner jauh.",
+    metaTitle: "Journaling untuk Hubungan Jarak Jauh: 6 Prompt LDR (Indonesia 2026)",
+    metaDescription: "LDR punya tantangan unik. 6 prompt journaling untuk memproses loneliness, trust, communication gap. Plus praktis tips komunikasi LDR.",
+    publishedAt: "2026-05-22",
+    readingTime: 7,
+    category: "Mental Wellness",
+    sections: [
+      { type: "p", content: "Hubungan jarak jauh (LDR) punya tantangan unik — loneliness saat partner jauh, trust issues yang menumpuk tanpa kehadiran fisik, communication gap dari perbedaan jadwal/zona waktu, dan ketidakpastian masa depan ('sampai kapan kita LDR?'). Wajar kalau LDR sering terasa lebih berat dari hubungan dekat. Journaling 6 prompt berikut membantu memproses emosi unik LDR dan maintain connection dengan diri sendiri saat partner jauh. Plus tips praktis untuk komunikasi LDR yang sustain." },
+      { type: "callout", content: "Quick start: kalau LDR lo lagi berat malam ini, skip ke prompt 1 di bawah. 5 menit journaling tonight. Nuju free di /onboarding tool yang cocok — 60 detik untuk mulai, persona Gentle adalah default." },
+      { type: "h2", content: "Kenapa LDR spesifik membutuhkan strategi berbeda" },
+      { type: "p", content: "5 komponen unik LDR:" },
+      { type: "ul", content: [
+        "Loneliness yang punya cause specific (bukan general) — lo merindukan orang spesifik, bukan abstrak.",
+        "Trust accumulates tanpa physical presence — small worries jadi besar tanpa konteks tubuh.",
+        "Communication harus deliberate — nggak bisa rely on natural daily interaction.",
+        "Future uncertainty constant — pertanyaan 'sampai kapan?' selalu di background.",
+        "Intimacy harus creative — beyond physical, beyond text, butuh effort dari dua sisi.",
+      ] },
+      { type: "h2", content: "6 prompt journaling untuk LDR" },
+      { type: "h2", content: "Prompt 1: 'Apa yang gue rindukan dari partner gue sekarang spesifik?'" },
+      { type: "p", content: "Bukan 'gue kangen' — spesifik. Cara dia ketawa di video call. Sensasi tangannya. Cara dia respons message lo. Naming spesifik bikin loneliness terhormati, bukan ditekan. Dan sering kasih lo ide untuk komunikasi yang lebih meaningful (kirim voice note dengan ngomongin spesifik hal yang lo rindukan)." },
+      { type: "h2", content: "Prompt 2: 'Apa yang bikin gue khawatir tentang hubungan ini sekarang?'" },
+      { type: "p", content: "LDR memperkuat worries karena tanpa physical presence untuk reassurance. Tulis kekhawatiran spesifik. 'Gue takut dia ngerasa berbeda dengan gue sekarang.' 'Gue takut kita tumbuh ke arah berbeda.' 'Gue takut chat dia ke X itu artinya something.' Spesifik bikin worries manageable. Banyak yang setelah ditulis kelihatan kurang masuk akal dari yang dirasain." },
+      { type: "h2", content: "Prompt 3: 'Apa yang gue butuhin yang gue belum minta dari partner?'" },
+      { type: "p", content: "LDR butuh komunikasi yang lebih deliberate. Lo nggak bisa rely on partner figure out apa yang lo butuhin. Tulis spesifik: 'Gue butuh good morning text setiap hari.' 'Gue butuh video call minimum 2x per minggu.' 'Gue butuh dia introduce gue ke temen barunya.' Naming kebutuhan = step pertama untuk meminta." },
+      { type: "h2", content: "Prompt 4: 'Apa yang gue kontribusikan ke hubungan minggu ini?'" },
+      { type: "p", content: "LDR sering bikin lo focus pada apa yang partner lakukan/nggak lakukan. Balance dengan refleksi pada kontribusi sendiri. 'Gue konsisten kirim voice note malam.' 'Gue support dia waktu deadline pekerjaan.' 'Gue creative gift untuk anniversary kemarin.' Healthy contribution awareness mencegah resentment pattern." },
+      { type: "h2", content: "Prompt 5: 'Apa yang gue lakukan untuk diri sendiri minggu ini?'" },
+      { type: "p", content: "LDR success butuh kedua partner punya kehidupan individual yang sehat. Tracking what you do for yourself (hobi, teman, growth, kerja) mencegah hidup lo jadi 'menunggu' partner pulang. Partner yang punya hidup penuh = partner yang tetap menarik di LDR. Lonely + bored partner = recipe for problems." },
+      { type: "h2", content: "Prompt 6: 'Plan jangka panjang LDR ini gimana?'" },
+      { type: "p", content: "LDR yang sustain punya plan jangka panjang yang jelas — siapa pindah, kapan, dimana settle. Tanpa plan, future uncertainty memperburuk emotional weight LDR. Tulis: timeline yang lo dan partner sepakatin. Milestones. Decision points. Kalau plan blur, itu sinyal untuk diskusi bareng — bukan untuk panic, tapi untuk clarity." },
+      { type: "h2", content: "Tips praktis komunikasi LDR" },
+      { type: "ul", content: [
+        "Schedule communication, jangan rely on spontaneous — daily good morning + good night minimum, plus 2-3 video call per minggu.",
+        "Voice note > text untuk emosi penting — tone matters, text often misinterpreted.",
+        "Set zona waktu rules: 'Gue tidur jam 11, lo bisa text after that tapi don't expect response sampai pagi.'",
+        "Visit dengan structure: tahu kapan next visit kasih anchor. Tanpa next visit booked, LDR jadi indefinite waiting.",
+        "Maintain individual social life — partner shouldn't be your only person.",
+        "Trust default, verify when concerned — paranoia kills LDR. Trust until evidence otherwise.",
+      ] },
+      { type: "h2", content: "Tanda-tanda LDR udah nggak sustainable" },
+      { type: "p", content: "Honest signs LDR mungkin perlu di-evaluate:" },
+      { type: "ul", content: [
+        "Communication udah terasa forced — kewajiban, bukan koneksi.",
+        "Salah satu pihak nggak punya plan jangka panjang yang clear.",
+        "Trust eroded ke point of constant suspicion.",
+        "Visit nggak ada plan untuk berbulan-bulan.",
+        "Salah satu pihak udah build life di tempat baru dimana partner nggak fit.",
+        "Resentment terhadap LDR situation lebih besar dari love.",
+      ] },
+      { type: "p", content: "Bukan setiap struggle = LDR harus diakhiri. Tapi pattern persistent yang nggak addressed = sinyal untuk diskusi serius bareng partner, atau dengan therapist relationship-focused (Halodoc/KALM/Riliv punya couples counseling)." },
+      { type: "h2", content: "Bottom line" },
+      { type: "p", content: "LDR punya tantangan unik tapi sustainable dengan strategi yang tepat. 6 prompt journaling untuk maintain emotional health + clarity. Tips praktis komunikasi: schedule, voice note untuk emosi, visit planning, individual life. Untuk LDR yang udah tidak sustainable, honest evaluation bareng partner atau dengan therapist. Nuju free dengan support Bahasa Indonesia di /onboarding — 60 detik untuk mulai." },
+    ],
+    faq: [
+      {
+        question: "Berapa lama LDR biasanya bertahan?",
+        answer:
+          "Bervariasi sangat. Riset menunjukkan LDR dengan timeline reuni yang jelas dan komunikasi deliberate bisa sustain bertahun-tahun. LDR tanpa plan jangka panjang biasanya struggle setelah 1-2 tahun. Key factors: commitment dari kedua pihak, frequency communication, visit pattern, dan most importantly — timeline kapan LDR berakhir.",
+      },
+      {
+        question: "Apakah journaling bisa membantu LDR?",
+        answer:
+          "Ya — primarily untuk komponen emosional individual. Journaling membantu lo memproses loneliness, identify needs yang harus dikomunikasikan, dan maintain connection dengan diri sendiri saat partner jauh. Tapi journaling sendiri nggak bisa fix communication issues atau structural problems (plan jangka panjang, trust eroded, dll). Untuk itu, butuh komunikasi langsung dengan partner atau counseling.",
+      },
+      {
+        question: "Gimana cara mengatasi loneliness LDR di malam hari?",
+        answer:
+          "(1) Schedule comm dengan partner kalau zona waktu memungkinkan — short call sebelum tidur sangat membantu. (2) Voice note: lebih intimate dari text, lo bisa dengar suara partner sebelum tidur. (3) Build evening routine yang nggak menunggu partner — buku, journal, hobby. (4) Connect dengan teman lokal — partner shouldn't be your only person. (5) Untuk loneliness yang sangat berat, prompt 1 dan 5 di artikel ini membantu.",
+      },
+      {
+        question: "Apakah harus reuni atau nggak apa-apa LDR seterusnya?",
+        answer:
+          "Kebanyakan riset LDR menunjukkan kedua partner butuh visi reuni untuk hubungan sustain long-term — bukan harus segera, tapi tahu kapan. LDR indefinite tanpa plan reuni sering tidak sustain karena ketidakpastian compound stress. Tapi exception ada: pasangan dengan kondisi spesifik (military, work assignments) bisa sustain dengan komunikasi yang sangat deliberate dan visit pattern yang konsisten. Diskusikan eksplisit dengan partner — bukan asumsi.",
+      },
+      {
+        question: "Gimana kalau gue jadi paranoid sama partner LDR?",
+        answer:
+          "Paranoia di LDR biasanya bukan tentang partner — tentang anxiety lo yang ditrigger ketidakhadiran. Strategi: (1) Journal trigger spesifik (Prompt 2). Sering setelah ditulis, paranoia kelihatan kurang masuk akal. (2) Komunikasi langsung dengan partner, BUKAN check up secara constant. 'Gue ngerasa paranoid recent, butuh reassurance specific.' Honest. (3) Limit social media stalking partner — itu fuel untuk paranoia. (4) Kalau pattern berat dan persistent, konsultasi therapist — bisa related to attachment anxiety yang treatable.",
+      },
+      {
+        question: "Kapan LDR perlu di-end?",
+        answer:
+          "Tanda-tanda yang perlu di-evaluate serius: komunikasi terasa forced, plan jangka panjang nggak ada, trust eroded ke point of constant suspicion, visit nggak ada plan berbulan-bulan, salah satu pihak udah build life dimana partner nggak fit, atau resentment lebih besar dari love. Bukan setiap struggle = harus end. Tapi pattern persistent yang nggak addressed = sinyal untuk diskusi serius dengan partner atau dengan therapist relationship-focused. Halodoc/KALM/Riliv punya couples counseling.",
+      },
+    ],
+  },
+  // Q-BASED LONG-TAIL — Tired but can't sleep paradox.
+  {
+    slug: "why-cant-i-sleep-when-im-tired",
+    title: "Why Can't I Sleep When I'm So Tired? The Tired-Wired Paradox Explained",
+    description: "Being exhausted but unable to fall asleep is the 'tired-wired' state — cortisol elevated from chronic stress, racing mind, blue light residue. Here's the mechanism + a 5-minute pre-sleep reset that works tonight.",
+    metaTitle: "Why Can't I Sleep When I'm Tired? Tired-Wired Fix (2026)",
+    metaDescription: "Exhausted but can't sleep = tired-wired state. Cortisol + racing mind + screen residue. Mechanism + 5-min reset protocol tonight.",
+    publishedAt: "2026-05-22",
+    readingTime: 6,
+    category: "Mental Wellness",
+    sections: [
+      { type: "p", content: "Short answer: being exhausted but unable to fall asleep is called 'tired-wired' — your body is depleted but your nervous system is still activated. Cortisol from chronic stress stays elevated, the racing mind keeps default mode network firing, blue light from earlier screens hasn't cleared melatonin pathways, and 'second wind' adrenaline kicks in past your natural sleep window. The 5-minute pre-sleep reset (brain dump + tomorrow plan + release sentence) drops sleep latency by 9 minutes per Baylor 2018 research." },
+      { type: "callout", content: "Quick start: in bed unable to sleep right now? Get OUT of bed, try the 5-min reset below, then return. Lying awake in bed past 20 minutes trains your brain to associate bed with wakefulness — worst sleep hygiene mistake. Nuju free at /onboarding works as the pre-sleep journal tool — 60 seconds." },
+      { type: "h2", content: "The tired-wired mechanism" },
+      { type: "ul", content: [
+        "Cortisol elevated: chronic stress keeps cortisol up. Body says 'tired,' brain says 'stay alert' — paradox.",
+        "Default mode network active: in quiet/dark, the mind-wandering network fires harder. The thoughts you suppressed all day surface now.",
+        "Melatonin disruption: blue light from screens within 90 min of bedtime delays melatonin release. Even when tired, brain doesn't get sleep signal.",
+        "Second wind adrenaline: pushing past your natural sleep window triggers stress response that pushes sleep further away.",
+        "Anxiety about not sleeping: lying awake worrying about not sleeping is itself a sleep killer — meta-anxiety compounds.",
+      ] },
+      { type: "h2", content: "The 5-minute pre-sleep reset" },
+      { type: "p", content: "Use this 30-60 minutes before bed, NOT in bed:" },
+      { type: "ol", content: [
+        "Brain dump (2 min): write everything in your head — worries, things undone, conversations replaying.",
+        "Tomorrow plan (2 min): write top 3 things you need to do tomorrow. Specific. Frees brain from maintaining the list.",
+        "One sentence release (1 min): 'I'm letting go of needing to solve X for tonight.'",
+        "Close journal, dim lights, no more screens.",
+        "If still tired-wired in bed past 20 min: GET UP, repeat brain dump briefly, return when sleepy.",
+      ] },
+      { type: "h2", content: "What NOT to do when tired-wired" },
+      { type: "ul", content: [
+        "Don't scroll phone in bed — blue light + dopamine + comparison anxiety all delay sleep further.",
+        "Don't drink alcohol thinking it'll help — initial sedation but disrupts REM, often causes 3am wake-ups.",
+        "Don't lie awake in bed past 20 minutes — trains brain to associate bed with wakefulness.",
+        "Don't take naps over 20 minutes during the day — reduces sleep pressure that helps tired-wired evenings.",
+        "Don't push through the natural sleep window — that triggers second wind adrenaline.",
+      ] },
+      { type: "h2", content: "When tired-wired needs medical attention" },
+      { type: "p", content: "Talk to a doctor if:" },
+      { type: "ul", content: [
+        "Insomnia (>30 min to fall asleep most nights) lasts more than 3 weeks.",
+        "Snoring + daytime sleepiness — possible sleep apnea.",
+        "Tired-wired paired with persistent low mood — possible depression.",
+        "Always cold + dry skin + slow heart rate — possible hypothyroidism.",
+        "Tired-wired affecting work or relationships significantly.",
+      ] },
+      { type: "p", content: "Treatment options: CBT-I (Cognitive Behavioral Therapy for Insomnia) is gold-standard for chronic insomnia — more effective than sleep medication long-term. Sleep studies for snoring/apnea. Crisis: US 988, Indonesia Into The Light, UK Samaritans 116 123." },
+      { type: "h2", content: "Bottom line" },
+      { type: "p", content: "Tired-wired is documented neuroscience — not character flaw. 5 mechanisms stack (cortisol, DMN, melatonin, second wind, sleep anxiety). 5-min pre-sleep reset addresses multiple layers. For chronic insomnia (>3 weeks), see a doctor — CBT-I works better than medication. Nuju free at /onboarding — 60 seconds, perfect for pre-sleep window." },
+    ],
+    faq: [
+      {
+        question: "Why am I tired but can't fall asleep?",
+        answer:
+          "It's called 'tired-wired' — your body is depleted but your nervous system is still activated. 5 mechanisms stack: cortisol elevated from chronic stress, default mode network active in quiet, melatonin disrupted by earlier blue light, second-wind adrenaline from pushing past sleep window, and meta-anxiety about not sleeping. Each is addressable.",
+      },
+      {
+        question: "Should I get out of bed if I can't sleep?",
+        answer:
+          "Yes if you've been lying awake more than 20 minutes. Lying awake in bed trains your brain to associate bed with wakefulness — worst sleep hygiene mistake. Get up, do something boring in dim light (brief brain dump, read paper book), return when actually sleepy. Stimulus control therapy (this technique) is a core CBT-I principle.",
+      },
+      {
+        question: "Does journaling before bed actually help sleep?",
+        answer:
+          "Yes — Baylor 2018 study (Scullin et al.) showed structured pre-sleep journaling drops sleep latency by 9 minutes on average. Pennebaker research base. Mechanism: externalizing open loops frees working memory the brain was maintaining. Brief structured journaling (5 min) beats long open-ended journaling for sleep specifically.",
+      },
+      {
+        question: "Will melatonin supplements help with tired-wired?",
+        answer:
+          "Sometimes, for specific cases (jet lag, shift work). For chronic tired-wired from stress + screens + anxiety, melatonin alone usually doesn't fix the root cause. Lower-dose melatonin (0.5-1mg) often works better than the 5-10mg typical OTC dose. Consult a doctor before regular use — efficacy varies and there are interactions.",
+      },
+      {
+        question: "How long does it take to fix tired-wired?",
+        answer:
+          "Behavior changes (no screens 90 min before bed, pre-sleep reset, no caffeine after 2pm) usually show results in 1-2 weeks. CBT-I for chronic insomnia: 4-6 sessions typical, 70-80% effectiveness. Medication-based solutions can be faster but don't address root causes. Persistent insomnia (>3 weeks) deserves medical evaluation — could be undiagnosed sleep apnea, thyroid, or depression.",
+      },
+      {
+        question: "When should I see a doctor about insomnia?",
+        answer:
+          "If sleep onset >30 min most nights for more than 3 weeks. Sooner if accompanied by: loud snoring + daytime sleepiness (possible sleep apnea), persistent low mood (possible depression), always cold + hair loss (possible thyroid), or significant daytime function impairment. CBT-I is gold-standard treatment, often available via telehealth. Crisis: US 988, Indonesia Into The Light, UK Samaritans 116 123.",
+      },
+    ],
+  },
+  // Q-BASED LONG-TAIL — Text message overthinking. Very high Gen Z query.
+  {
+    slug: "why-do-i-overthink-text-messages",
+    title: "Why Do I Overthink Text Messages? The Psychology of Read Receipts and Reply Anxiety",
+    description: "Text message overthinking is a documented modern anxiety pattern — read receipts, reply timing, tone interpretation in absence of voice/face cues. Here's why your brain does it + a 5-minute reset that stops the spiral.",
+    metaTitle: "Why Do I Overthink Text Messages? Real Psychology + Fix (2026)",
+    metaDescription: "Text overthinking has documented causes: missing tone cues, read receipt anxiety, ambiguity. Psychology + 5-min reset to stop the spiral.",
+    publishedAt: "2026-05-22",
+    readingTime: 6,
+    category: "Mental Wellness",
+    sections: [
+      { type: "p", content: "Short answer: text message overthinking is a documented modern anxiety pattern with specific causes. Text strips out tone, facial expression, and voice — the brain has to interpret meaning with 60%+ of communication cues missing. Read receipts create ambiguous data ('they saw it but didn't reply — what does it mean?'). Reply timing becomes loaded. Attachment-anxious people experience this 5x more intensely than securely attached people. The brain treats text ambiguity as threat because in person, that pause would have meaning attached to it." },
+      { type: "callout", content: "Quick start: spiraling about a text right now? Try the 5-min reset below. The spiral usually breaks within minutes. Nuju free Ju Gets You reveal at /onboarding — 60 seconds, no credit card." },
+      { type: "h2", content: "Why your brain overthinks texts specifically" },
+      { type: "ul", content: [
+        "Missing 60%+ of communication: voice tone, facial expression, body language all gone. Brain fills in the missing data with worst-case assumptions.",
+        "Read receipts create ambiguity: 'seen' + no reply is genuinely confusing data. Brain treats ambiguity as threat by default.",
+        "Reply timing is loaded: minutes feel like hours when waiting. Time perception distorts under anxiety.",
+        "Attachment anxiety amplifies: people with anxious attachment style (~20% population) experience text anxiety 5x more intensely.",
+        "Comparison to in-person: same person responding slower than usual feels meaningful — but might just be busy day.",
+      ] },
+      { type: "h2", content: "5-minute reset protocol" },
+      { type: "p", content: "When spiraling about a text:" },
+      { type: "ol", content: [
+        "Name the specific worry (1 min): 'I'm worried that [X] means [Y].' Write it. Specific.",
+        "List actual data vs assumption (1 min): What do you actually know? What are you assuming? Usually 80% is assumption.",
+        "Generate 3 alternative explanations (1 min): If you were watching this from outside, what are 3 other reasons for the text/silence? Usually most are mundane (busy, phone died, didn't see it).",
+        "Decide action (1 min): based on actual data (not anxiety), what's the appropriate response? Often: nothing yet, give it 24 hours.",
+        "Put phone down for 30 minutes (1 min commitment): if you keep checking, the spiral resumes. Forced pause breaks the loop.",
+      ] },
+      { type: "h2", content: "Patterns to break long-term" },
+      { type: "ul", content: [
+        "Turn off read receipts on your end — removes the data others use against you. Asymmetric but reduces anxiety.",
+        "Don't draft long replies to short ambiguous texts. Match the energy. Long replies to short texts amplify mismatch anxiety.",
+        "Stop screenshot-sharing texts to friends for analysis. Outsourcing interpretation feeds the loop.",
+        "Build evidence file: track times your worst-case text interpretation was wrong. Usually 90%+ of cases.",
+        "If chronic, evaluate attachment style — anxious attachment is treatable with therapy.",
+      ] },
+      { type: "h2", content: "When text anxiety needs more than tactics" },
+      { type: "p", content: "Talk to a therapist if:" },
+      { type: "ul", content: [
+        "Text anxiety significantly affects relationships or work.",
+        "You experience physical anxiety symptoms (chest tightness, racing heart) from texts.",
+        "Pattern paired with broader attachment anxiety or relationship instability.",
+        "Compulsive phone checking that you can't stop.",
+        "Text anxiety triggers thoughts of self-harm or hopelessness.",
+      ] },
+      { type: "p", content: "Attachment-focused therapy and CBT both work well for chronic text anxiety. Crisis: US 988, Indonesia Into The Light, UK Samaritans 116 123." },
+      { type: "h2", content: "Bottom line" },
+      { type: "p", content: "Text overthinking is documented modern anxiety pattern — your brain compensating for missing 60% of communication cues with worst-case fills. 5-min reset (name + data vs assumption + alternatives + action + pause) breaks the spiral. Long-term: turn off read receipts, match energy, stop outsourcing interpretation, build evidence file. For chronic patterns affecting daily function, attachment-focused therapy. Nuju free at /onboarding — 60 seconds, no credit card." },
+    ],
+    faq: [
+      {
+        question: "Is overthinking text messages a sign of anxiety?",
+        answer:
+          "Often yes — particularly attachment anxiety or generalized anxiety. Text overthinking is a modern manifestation of how anxious brains process ambiguity. Not character flaw — your brain compensating for missing communication cues with worst-case fills. If pattern is severe and affects daily function, attachment-focused therapy or CBT helps.",
+      },
+      {
+        question: "Why does waiting for a reply feel like hours?",
+        answer:
+          "Time perception distorts under anxiety. Cortisol elevated from worry makes minutes feel like hours. Your brain is in threat-detection mode where each passing minute confirms the imagined worst case. Setting phone aside for 30 minutes forces a reset — when you check again, time feels different.",
+      },
+      {
+        question: "Should I turn off read receipts?",
+        answer:
+          "For most people with text anxiety, yes — removes the asymmetric data point others use to read meaning into your behavior. You'll still see when THEY read your messages (you can disable that too in most apps). Asymmetric but reduces total text anxiety substantially.",
+      },
+      {
+        question: "Why does my partner take so long to reply?",
+        answer:
+          "Usually mundane reasons your anxious brain dismisses: busy work day, phone in another room, didn't see notification, processing what to say carefully, taking nap, etc. Less commonly: relationship issue requiring direct conversation, not text-decoding. If you suspect actual issue, ask directly instead of overinterpreting silence.",
+      },
+      {
+        question: "Is texting making my anxiety worse?",
+        answer:
+          "For people with existing anxiety, often yes. Text removes 60% of communication cues that anxious brains use to feel safe (tone, expression, voice). Reducing text-only communication for important conversations (use call or in-person) often reduces overall anxiety. Some people benefit from explicit communication agreements with partners/close friends.",
+      },
+      {
+        question: "When should I see a therapist about text anxiety?",
+        answer:
+          "If text anxiety significantly affects relationships, work, or daily function. If you experience physical anxiety symptoms from texts. If pattern includes compulsive phone checking. If attachment anxiety affects multiple relationships. Attachment-focused therapy and CBT both work well. Crisis: US 988, Indonesia Into The Light, UK Samaritans 116 123.",
+      },
+    ],
+  },
+  // COMMERCIAL — Mood tracker for bipolar. YMYL careful.
+  {
+    slug: "best-mood-tracker-for-bipolar-2026",
+    title: "Best Mood Tracker for Bipolar Disorder in 2026: 5 Picks (With Clinical Disclaimer)",
+    description: "Mood tracking is core treatment for bipolar disorder — most psychiatrists recommend it. Apps tested for 2026 with bipolar-specific criteria: Nuju, Daylio, Bearable, eMoods, Moodfit. Honest comparison with strong professional-care emphasis.",
+    metaTitle: "Best Mood Tracker for Bipolar 2026: 5 Picks for Daily Logging",
+    metaDescription: "Bipolar disorder needs mood tracking — most psychiatrists recommend. 5 apps tested: Nuju, Daylio, Bearable, eMoods, Moodfit. Honest comparison.",
+    publishedAt: "2026-05-22",
+    readingTime: 7,
+    category: "App Comparison",
+    sections: [
+      { type: "p", content: "Best mood tracker for bipolar disorder in 2026: Nuju for AI-augmented mood + energy + text tracking (free, multilingual). Daylio for ultra-fast 10-second mood logs (free + $3.99 one-time). Bearable for bipolar-specific symptom + medication tracking (free + premium). eMoods for the most bipolar-specialized features (free + premium). Moodfit for comprehensive wellness tracking. Critical: mood tracking is supportive practice for bipolar disorder — not treatment. Treatment requires psychiatric care, medication, and therapy. All apps below complement clinical care, not replace it." },
+      { type: "callout", content: "Important: bipolar disorder is a serious medical condition requiring psychiatric treatment. If you suspect bipolar but haven't been evaluated, see a psychiatrist — diagnosis significantly affects treatment approach. Mood tracking apps are tools, not substitutes. Crisis: US 988, Indonesia Into The Light, UK Samaritans 116 123. In Indonesia: Halodoc/KALM/Riliv have psikiater with bipolar specialization." },
+      { type: "h2", content: "Why mood tracking matters for bipolar" },
+      { type: "p", content: "Most psychiatrists treating bipolar disorder recommend mood charting because:" },
+      { type: "ul", content: [
+        "Pattern detection: catches early signs of mood episodes (hypomania, depression) before they escalate.",
+        "Medication monitoring: tracks how mood responds to medication changes over weeks.",
+        "Trigger identification: surfaces specific triggers (sleep, stress, season) that precede episodes.",
+        "Clinical communication: data brought to sessions makes treatment more efficient than verbal recall.",
+        "Self-awareness: builds the meta-awareness needed for long-term stability.",
+      ] },
+      { type: "p", content: "Research consistently supports daily mood tracking as adjunctive treatment for bipolar disorder — when paired with proper psychiatric care." },
+      { type: "h2", content: "1. Nuju — best for AI-augmented daily tracking" },
+      { type: "p", content: "Nuju Free covers daily mood + energy tracking with AI insights that surface patterns over weeks. 30-second entries match the variable energy of bipolar — short entries possible during depressive phases when motivation low, longer when hypomanic energy high. 8 languages including Bahasa Indonesia." },
+      { type: "p", content: "Bipolar-relevant features: mood + energy dual tracking (energy is critical for catching hypomanic episodes early). AI pattern recognition flags sustained mood shifts. Encrypted entries with no AI training — privacy matters for sensitive mental health data. Free tier covers core needs." },
+      { type: "p", content: "Limits: Nuju isn't bipolar-specialized. For more detailed bipolar-specific features (sleep tracking, medication logging integrated), pair with Bearable or eMoods." },
+      { type: "h2", content: "2. Daylio — best for fast daily logs" },
+      { type: "p", content: "Daylio's 10-second mood + activity tag format is the fastest mood logger available. For bipolar users in depressive phases when even short entries feel overwhelming, Daylio's brevity matters. Free tier generous; Premium $3.99 one-time (unusual in 2026)." },
+      { type: "p", content: "Bipolar-relevant: long-term mood charts reveal episode patterns over months. Activity correlations surface triggers. Limits: no AI interpretation, no medication tracking. Best paired with another tool for fuller bipolar tracking." },
+      { type: "h2", content: "3. Bearable — best for bipolar + medication tracking" },
+      { type: "p", content: "Bearable is symptom + mood + medication + condition tracker designed for chronic conditions. For bipolar users, tracking medication effects on mood is critical — Bearable does this well. Free tier substantial; Premium ~$5/month." },
+      { type: "p", content: "Bipolar-relevant features: medication tracking integrated with mood data. Symptom tracking captures bipolar-specific patterns (hypomanic signs: rapid speech, decreased sleep need, grandiosity). Sleep tracking — critical because sleep disturbance is both trigger and symptom of bipolar episodes." },
+      { type: "p", content: "Limits: more setup than Nuju/Daylio. Initial friction can be a barrier during depressive episodes." },
+      { type: "h2", content: "4. eMoods — most bipolar-specialized" },
+      { type: "p", content: "eMoods is built specifically for bipolar disorder mood tracking. Tracks rapid cycling, mixed states, medication adherence, and generates reports for psychiatrists. Free tier covers core features; Premium ~$5/month for advanced reports." },
+      { type: "p", content: "Bipolar-relevant: only major app with bipolar-specific design vocabulary. Generates psychiatrist-ready reports — many bipolar specialists familiar with eMoods reports. Limits: less polished UI than Nuju/Daylio; smaller user base means slower feature development." },
+      { type: "h2", content: "5. Moodfit — best for comprehensive wellness" },
+      { type: "p", content: "Moodfit combines mood tracking + sleep + meditation + thought records (CBT-based) + gratitude. For bipolar users wanting integrated wellness tracking alongside mood data, comprehensive. Free tier limited; Premium ~$10/month." },
+      { type: "p", content: "Bipolar-relevant: combines multiple data points psychiatrists ask about. Limits: more complex setup; subscription pricing higher than alternatives." },
+      { type: "h2", content: "Recommended combinations for bipolar" },
+      { type: "ul", content: [
+        "Daily essential (free): Nuju Free (AI-augmented mood + energy + text).",
+        "Detailed bipolar tracking: Nuju Free + eMoods (specialized bipolar reports for psychiatrist).",
+        "Medication-focused: Bearable (medication + symptom + mood integrated).",
+        "Quick + AI insights: Nuju Free + Daylio Premium ($3.99 one-time for backup mood data).",
+        "Indonesian-language user: Nuju (only major option with full Bahasa Indonesia).",
+      ] },
+      { type: "h2", content: "Critical reminders about bipolar treatment" },
+      { type: "ul", content: [
+        "Bipolar requires psychiatric care — medication (mood stabilizers, atypical antipsychotics) is core treatment.",
+        "Stopping medication without consulting psychiatrist can trigger severe episodes — never do this.",
+        "Mood tracking complements treatment, doesn't replace.",
+        "Therapy (CBT, IPSRT, family-focused) adjunctive to medication.",
+        "Hypomanic episodes feel good but are still part of bipolar — track them even when not feeling 'bad.'",
+        "Untreated bipolar has serious risks (suicide, financial damage, relationship damage). Treatment is highly effective when adhered to.",
+      ] },
+      { type: "h2", content: "Bottom line" },
+      { type: "p", content: "For most bipolar users in 2026, Nuju Free for daily AI-augmented mood + energy + text tracking is the strongest starting point — free, multilingual, with AI pattern recognition. Pair with eMoods if you want bipolar-specialized reports for your psychiatrist. Pair with Bearable for detailed medication tracking. Most critically: continue psychiatric care alongside any app. Try Nuju at /onboarding — 60 seconds, no credit card." },
+    ],
+    faq: [
+      {
+        question: "Should I use a mood tracker if I have bipolar disorder?",
+        answer:
+          "Most psychiatrists treating bipolar recommend daily mood charting. Pattern detection, medication monitoring, trigger identification, and clinical communication all benefit from tracked data. Apps make this easier than paper charts. Choose one that includes mood + energy + sleep at minimum — these three together catch most bipolar patterns.",
+      },
+      {
+        question: "Can a mood tracker diagnose bipolar?",
+        answer:
+          "No — only a psychiatrist can diagnose bipolar. Apps track data; they don't interpret it as diagnosis. However, mood tracking data over weeks/months can help your psychiatrist make a more accurate diagnosis if bipolar is suspected. If you have unexplained mood episodes, bring tracking data to a psychiatrist for evaluation.",
+      },
+      {
+        question: "What features should I look for in a bipolar mood tracker?",
+        answer:
+          "Essential: mood scale, energy/activity tracking (catches hypomania), sleep tracking (critical for bipolar). Useful: medication tracking, symptom checklist (hypomania-specific items like rapid speech, decreased sleep need), psychiatrist-ready report generation, long-term pattern charts. Nuju covers mood + energy + AI insights well. eMoods adds bipolar-specialized features.",
+      },
+      {
+        question: "Can apps replace bipolar medication?",
+        answer:
+          "Absolutely not. Bipolar disorder is a medical condition that requires medication treatment for most people. Mood stabilizers (lithium, valproate), atypical antipsychotics, and antidepressants used carefully are core treatment. Stopping medication without consulting your psychiatrist can trigger severe episodes. Apps complement treatment, never replace it.",
+      },
+      {
+        question: "Should I track mood every day or just during episodes?",
+        answer:
+          "Daily — even when feeling stable. Baseline data is critical for catching early signs of episodes. Pattern detection requires continuous data, not episodic data. Stable periods between episodes also provide important comparison data for your psychiatrist. Daily 30-second entry is sustainable.",
+      },
+      {
+        question: "How do I find a psychiatrist who specializes in bipolar?",
+        answer:
+          "In Indonesia: Halodoc, KALM, Riliv have psikiater — search 'psikiater bipolar.' RS with psychiatric specialization. Some BPJS provinces cover bipolar evaluation and medication. In US: psychologytoday.com therapist finder, ask GP for referral, NAMI helpline for resources. UK: NHS via GP referral. Look for 'bipolar specialist' or 'mood disorders' specialization. Treatment access has improved significantly globally in 2024-2026.",
+      },
+    ],
+  },
+  // VERSUS — Nuju vs Penzu (privacy-focused).
+  {
+    slug: "nuju-vs-penzu",
+    title: "Nuju vs Penzu: AI Journal or Privacy-First Diary? (2026 Comparison)",
+    description: "Nuju and Penzu both prioritize privacy but differ on AI. Nuju is AI-augmented with strong privacy. Penzu is privacy-first traditional diary with optional cloud sync. Different jobs — honest comparison for privacy-conscious users.",
+    metaTitle: "Nuju vs Penzu 2026: AI Journal vs Privacy-First Diary",
+    metaDescription: "Nuju vs Penzu: AI-augmented vs privacy-first traditional. Both encrypt entries. Different jobs. Honest comparison.",
+    publishedAt: "2026-05-22",
+    readingTime: 6,
+    category: "App Comparison",
+    sections: [
+      { type: "p", content: "Short answer: pick Nuju if you want AI-augmented short daily entries with mood tracking and pattern recognition while keeping strong privacy. Pick Penzu if you want a traditional long-form diary with maximum privacy emphasis and no AI involvement at all. Both prioritize privacy strongly. They differ fundamentally on whether AI fits into your journaling philosophy." },
+      { type: "callout", content: "Quick start: try Nuju free first (60 seconds at /onboarding, no credit card). If AI feels too much involvement for your privacy preferences, Penzu offers more traditional private diary experience. Most users don't need both." },
+      { type: "h2", content: "Head-to-head: 5 dimensions" },
+      { type: "ul", content: [
+        "Format: Nuju = mood+text with AI response. Penzu = traditional long-form diary, no AI.",
+        "Privacy approach: Nuju = explicit no-AI-training + encryption. Penzu = encryption + no-AI-involvement at all.",
+        "AI: Nuju has it as core feature. Penzu has none.",
+        "Pricing: Nuju Free strong. Penzu has free tier; Premium ~$4.99/month for password protection.",
+        "Languages: Nuju 8 languages. Penzu primarily English.",
+      ] },
+      { type: "h2", content: "Where Penzu wins" },
+      { type: "p", content: "Penzu is the better pick when:" },
+      { type: "ul", content: [
+        "You want zero AI involvement with your journal content. Penzu has no AI at all — most conservative position.",
+        "Traditional long-form diary metaphor matches your style.",
+        "Password protection per individual journal matters (Penzu Pro offers this).",
+        "You prefer minimal interpretation/feedback — pure expression without response.",
+        "You're suspicious of AI integration with personal content (legitimate position).",
+      ] },
+      { type: "p", content: "Penzu has been around since 2008 and built reputation as the privacy-first diary app. For users who specifically want no AI, Penzu's stance is consistent." },
+      { type: "h2", content: "Where Nuju wins" },
+      { type: "p", content: "Nuju is the better pick when:" },
+      { type: "ul", content: [
+        "AI pattern recognition + feedback adds value to your journaling.",
+        "Short entries (30 seconds, median 31 chars) match your real pattern more than long-form.",
+        "Mood tracking integrated with text matters.",
+        "Multi-language matters (Bahasa Indonesia + 7 others).",
+        "You want privacy-respecting AI, not no-AI-at-all (Nuju's explicit no-training policy fits this).",
+      ] },
+      { type: "h2", content: "Privacy compared side-by-side" },
+      { type: "ul", content: [
+        "Penzu: end-to-end encryption, password protection per journal (Pro), no AI involvement at all, full export/delete.",
+        "Nuju: server-side encryption, explicit no-AI-training-on-entries policy, full export/delete, encryption at rest and in transit.",
+        "Both: significantly stronger privacy than competitor apps like Rosebud (which has AI training clause in TOS).",
+      ] },
+      { type: "p", content: "Trade-off: AI features in Nuju require server-side processing, which Penzu's model avoids by not having those features. For users prioritizing maximum privacy purity over AI utility, Penzu's model is more conservative. For users wanting AI features with strong privacy promise, Nuju is the pick." },
+      { type: "h2", content: "Pricing breakdown (2026)" },
+      { type: "ul", content: [
+        "Nuju Free: full daily journaling with AI insights, mood tracking, 8 languages.",
+        "Nuju Plus: $4.99/mo for advanced patterns.",
+        "Penzu Free: basic journaling, web access.",
+        "Penzu Pro: ~$4.99/mo for password protection, themes, military-grade encryption emphasis.",
+      ] },
+      { type: "h2", content: "Decision tree" },
+      { type: "ul", content: [
+        "Want AI feedback + privacy: Nuju.",
+        "Want zero AI involvement + traditional diary: Penzu.",
+        "Indonesian-language user: Nuju (Penzu is English-first).",
+        "Privacy purity above all else: Penzu (no AI at all is the most conservative position).",
+        "Multi-feature needs (mood + text + AI + multilingual): Nuju.",
+      ] },
+      { type: "h2", content: "Bottom line" },
+      { type: "p", content: "Nuju and Penzu both prioritize privacy strongly but differ fundamentally on AI involvement. Penzu = no AI, traditional diary, maximum privacy purity. Nuju = AI-augmented with explicit no-training policy, multilingual, free tier. Try Nuju free first (/onboarding, 60 seconds, no credit card). If AI feels too much involvement for your preferences, Penzu's no-AI approach is consistent and trustworthy." },
+    ],
+    faq: [
+      {
+        question: "Is Penzu more private than Nuju?",
+        answer:
+          "Privacy approach is different, not necessarily 'more.' Penzu avoids AI involvement entirely, which some users prefer as more conservative. Nuju uses AI but with explicit no-training policy and encryption. Both stronger than Rosebud (training clause in TOS). For users wanting absolute zero AI involvement with their content, Penzu's model is more aligned. For users wanting AI features with strong privacy promise, Nuju is the pick.",
+      },
+      {
+        question: "Does Penzu have AI?",
+        answer:
+          "No — Penzu is intentionally no-AI traditional diary app. Built since 2008 with focus on private journaling without AI interpretation or pattern detection. For users who specifically want no AI involvement with their journal content, Penzu's consistency is the appeal.",
+      },
+      {
+        question: "Is Penzu free?",
+        answer:
+          "Penzu has a free tier covering basic journaling and web access. Penzu Pro (~$4.99/month) adds password protection per journal, themes, and military-grade encryption emphasis. For most users, free tier is sufficient unless password-per-journal protection matters.",
+      },
+      {
+        question: "Can I use both Nuju and Penzu?",
+        answer:
+          "You can but probably don't need to. They serve different jobs (AI-augmented vs no-AI traditional). Most users pick one. Some pattern: Penzu for highly sensitive long-form content where you want zero AI involvement (private medical, legal, deeply personal) + Nuju for daily mood tracking and AI-augmented quick reflection.",
+      },
+      {
+        question: "Does Penzu support Bahasa Indonesia?",
+        answer:
+          "Penzu is primarily English-focused. Nuju is the only major journal app with full Bahasa Indonesia support (UI, prompts, AI responses). For Indonesian users wanting privacy-strong journaling, Nuju is the more complete choice.",
+      },
+      {
+        question: "Should I worry about AI in my journal?",
+        answer:
+          "Depends on the AI's privacy policy. AI that's used for response but not for training (Nuju's policy) is meaningfully different from AI that trains on your content (Rosebud's TOS). For privacy-conscious users, verify no-training policy specifically, encryption, and ability to delete. Nuju and Reflection meet these standards. If you want absolute zero AI involvement, Penzu's no-AI approach is the most conservative.",
+      },
+    ],
+  },
+  // INDONESIAN — Anxiety pertama kerja.
+  {
+    slug: "mengatasi-anxiety-pertama-kerja",
+    title: "Mengatasi Anxiety Pertama Kali Kerja: 6 Strategi untuk Gen Z Indonesia (2026)",
+    description: "Anxiety pertama kerja umum banget untuk Gen Z Indonesia — kombinasi imposter syndrome, hierarki kantor, ekspektasi performa, dan transisi dari kehidupan mahasiswa. 6 strategi praktis + 5 prompt journaling untuk 90 hari pertama.",
+    metaTitle: "Mengatasi Anxiety Pertama Kerja: 6 Strategi Gen Z Indonesia (2026)",
+    metaDescription: "Anxiety pertama kerja Gen Z Indonesia umum banget. 6 strategi praktis + 5 prompt journaling untuk 90 hari pertama kerja.",
+    publishedAt: "2026-05-22",
+    readingTime: 7,
+    category: "Mental Wellness",
+    sections: [
+      { type: "p", content: "Anxiety pertama kali kerja umum banget untuk Gen Z Indonesia, dan terdokumentasi sebagai fenomena umum. Kombinasi: imposter syndrome ('apakah gue benar-benar qualified?'), hierarki kantor yang kompleks ('bagaimana ngomong sama atasan?'), ekspektasi performa ('apakah gue bisa deliver?'), transisi dari kampus ke real world ('apakah gue siap?'), dan tekanan keluarga (yang udah invest untuk pendidikan lo). Wajar kalau lo merasa kewalahan 90 hari pertama. Tulisan ini ngebahas 6 strategi praktis + 5 prompt journaling spesifik untuk first job anxiety Indonesia." },
+      { type: "callout", content: "Quick start: kalau lo udah mulai kerja dan anxiety overwhelming, skip ke 'Strategi 1: Brain dump' di bawah. 5 menit malam ini. Nuju free di /onboarding tools yang cocok — 60 detik untuk mulai, support Bahasa Indonesia." },
+      { type: "h2", content: "Kenapa first job anxiety Indonesia spesifik" },
+      { type: "p", content: "5 komponen unik:" },
+      { type: "ul", content: [
+        "Imposter syndrome dewasa: lo udah lulus, tapi tiba-tiba expected jadi 'profesional.' Identitas baru yang belum fit.",
+        "Hierarki kantor Indonesia: norma 'sungkan,' nggak push back ke atasan, harus polite ekstrem. Berbeda dari kampus.",
+        "Ekspektasi performa konstan: probation period, KPI, perbandingan dengan kolega senior.",
+        "Transisi dari struktur kampus: kampus = struktur jelas (semester, tugas, ujian). Kerja = ambigu, self-directed.",
+        "Tekanan keluarga: orang tua udah invest finansial signifikan. Pressure untuk justify lewat 'kerja yang layak.'",
+      ] },
+      { type: "h2", content: "6 strategi praktis untuk 90 hari pertama" },
+      { type: "h2", content: "1. Brain dump 5 menit malam" },
+      { type: "p", content: "Setiap malam selama 90 hari pertama, 5 menit nulis: apa yang lo pelajari hari ini, apa yang masih bingung, apa yang bikin lo khawatir besok. Tanpa edit. Tutup, tidur. Mekanismenya: eksternalisasi loop yang otak lo otherwise maintain semalaman. Sleep latency turun (Baylor 2018 research)." },
+      { type: "h2", content: "2. Realistic expectation untuk first 90 days" },
+      { type: "p", content: "Kebanyakan first jobber butuh 3-6 bulan untuk fully productive. Itu rata-rata, bukan kegagalan. Probation period 3-6 bulan dirancang untuk learning, bukan immediate excellence. Set ekspektasi diri sendiri sesuai dengan realitas, bukan pressure imagined." },
+      { type: "h2", content: "3. Ask questions early and often" },
+      { type: "p", content: "Banyak first jobber Indonesia takut nanya karena 'sungkan' atau takut 'kelihatan bodoh.' Realita: senior expects junior to ask questions. Nggak nanya jadi tanda lo nggak terlibat. Strategi: tulis daftar pertanyaan, ajukan ke satu specific senior yang approachable (bukan ke atasan langsung untuk pertanyaan sederhana). Frame: 'Saya mau pastikan saya ngerti expectations dengan benar.'" },
+      { type: "h2", content: "4. Document small wins" },
+      { type: "p", content: "Imposter syndrome berkembang ketika lo cuma ingat kesalahan. Document wins specific dan dated. 'March 15: presented Q1 framework, manager said 'helpful.' Got assigned to follow-up project.' Specific. Dated. Evidence file (lihat /blog/journaling-for-imposter-syndrome) bekerja untuk first jobber juga." },
+      { type: "h2", content: "5. Build network awal" },
+      { type: "p", content: "Jangan tunggu network 'natural.' First 90 days = window untuk introduce diri ke berbagai team, ikut lunch group, join ERG (employee resource group) kalau ada. Network awal = support sistem yang reduce isolation anxiety di tempat baru." },
+      { type: "h2", content: "6. Maintain identity di luar kerja" },
+      { type: "p", content: "First job sering trigger identity merge ('gue = kerjaan gue'). Maintain hobi, teman lama, hal-hal yang define lo selain pekerjaan. Identity diversification = anxiety insurance kalau ada masalah di kerja." },
+      { type: "h2", content: "5 prompt journaling untuk first jobber" },
+      { type: "ol", content: [
+        "'Apa yang gue pelajari hari ini, dan apa yang masih confuse?' Tracking learning curve realistic.",
+        "'Apa yang berjalan baik hari ini, sekecil apapun?' Anti-imposter syndrome practice.",
+        "'Pertanyaan apa yang gue tahan tapi sebenernya harus nanyain?' Identifikasi blocker komunikasi.",
+        "'Siapa yang bisa gue ajak ngobrol kalau lagi struggle?' Network mapping.",
+        "'Apa yang bikin gue masih excited soal kerjaan ini?' Connection ke purpose, anti-burnout.",
+      ] },
+      { type: "h2", content: "Kapan first job anxiety butuh psikolog" },
+      { type: "p", content: "Tanda yang menunjukkan butuh bantuan profesional:" },
+      { type: "ul", content: [
+        "Anxiety mengganggu tidur kronis lebih dari 3 minggu.",
+        "Serangan panik saat ke kantor atau saat dapat pesan kerja.",
+        "Pikiran ngerusak diri sendiri terkait performa kerja.",
+        "Avoidance: nggak masuk kerja berhari-hari karena anxiety.",
+        "Ketergantungan pada alkohol atau zat lain untuk coping.",
+        "Depresi gejala (loss of interest, persistent low mood, hopelessness).",
+      ] },
+      { type: "p", content: "Akses Indonesia: Halodoc, KALM, Riliv mulai Rp 50.000-150.000 per sesi. Beberapa perusahaan punya EAP (Employee Assistance Program) — tanya HR (rahasia). Krisis: Into The Light Indonesia (intothelightid.org), 119 ext 8." },
+      { type: "h2", content: "Bottom line" },
+      { type: "p", content: "Anxiety pertama kerja umum dan transitional. 90 hari pertama = adjustment period yang realistic 3-6 bulan, bukan 1 minggu. 6 strategi praktis (brain dump, realistic expectation, ask questions, document wins, build network, maintain identity) + 5 prompt journaling. Untuk gejala berat, konsultasi profesional. Nuju free dengan support Bahasa Indonesia di /onboarding — 60 detik, no kartu kredit." },
+    ],
+    faq: [
+      {
+        question: "Berapa lama biasanya anxiety pertama kerja berkurang?",
+        answer:
+          "Bervariasi. Anxiety awal (minggu 1-4) biasanya intens — banyak unknown. Adjustment yang baik: 3-6 bulan untuk feel comfortable. Productivity full: 6-12 bulan untuk most fresh graduate. Kalau anxiety nggak berkurang setelah 6 bulan atau bertambah parah, konsultasi profesional. Bisa underlying anxiety disorder atau workplace fit issue.",
+      },
+      {
+        question: "Normal nggak first jobber takut salah?",
+        answer:
+          "Sangat normal dan healthy — itu menunjukkan lo peduli sama pekerjaan. Tapi takut yang ekstrim (bikin lo nggak berani ambil keputusan kecil, nggak bisa minta clarification, nggak masuk kerja karena fear) = sinyal untuk strategi. 6 strategi di artikel ini untuk fear normal. Untuk fear ekstrim, konsultasi profesional.",
+      },
+      {
+        question: "Gimana cara nanya ke atasan tanpa kelihatan 'bodoh'?",
+        answer:
+          "Frame matters. Avoid: 'Saya nggak ngerti, gimana ya?' Better: 'Saya udah coba X dan Y, tapi belum berhasil di Z. Bisa tolong arahin pendekatan yang lebih efektif?' Shows initiative + asks for help specifically. Document pertanyaan sebelum nanya — lo akan terlihat thoughtful, bukan random. Senior expects junior to ask. Nanya cepat lebih baik dari pretending tahu.",
+      },
+      {
+        question: "Apakah harus selalu kelihatan happy di kerja?",
+        answer:
+          "Tidak — performance happy yang fake malah eksposisi. Yang penting: professional (respectful, on time, deliver work), tapi nggak harus over-positive. Honest about challenges (di context yang tepat — bukan keluhan random) shows maturity. Mental health yang dipendam sering muncul sebagai burnout atau resentment yang worse than honest communication.",
+      },
+      {
+        question: "Gimana jaga work-life balance di first job?",
+        answer:
+          "Sulit di awal karena lo masih learning. Saran: (1) Define jam selesai kerja — bahkan kalau di kantor lagi, mental shutdown jam tertentu. (2) Sisihkan satu hari weekend bebas dari kerja (tidak buka email, slack). (3) Maintain satu hobi non-kerja minimum. (4) Plan rutinitas bukan workplace (gym, kelas, family time). Balance bukan otomatis terjadi — harus diset deliberately.",
+      },
+      {
+        question: "Kapan first job anxiety butuh psikolog?",
+        answer:
+          "Kalau anxiety mengganggu tidur kronis 3+ minggu, serangan panik saat ke kantor, pikiran ngerusak diri terkait performa, avoidance (nggak masuk kerja berhari-hari), ketergantungan alkohol/zat untuk coping, atau depresi gejala — konsultasi profesional. Halodoc/KALM/Riliv mulai Rp 50.000-150.000. Beberapa perusahaan punya EAP — tanya HR (rahasia). Krisis: Into The Light Indonesia, 119 ext 8.",
+      },
+    ],
+  },
+  // INDONESIAN — Journaling untuk stress keuangan mahasiswa.
+  {
+    slug: "journaling-untuk-stress-keuangan-mahasiswa",
+    title: "Stress Keuangan Mahasiswa Indonesia: 5 Strategi + Journaling untuk Survive Kuliah (2026)",
+    description: "Stress keuangan mahasiswa Indonesia naik signifikan 2024-2026 — UKT, biaya kos, makan, sosmed lifestyle pressure. 5 strategi praktis + 4 prompt journaling untuk survive financial stress sambil kuliah jalan.",
+    metaTitle: "Stress Keuangan Mahasiswa Indonesia: 5 Strategi + Journaling (2026)",
+    metaDescription: "Stress keuangan mahasiswa Indonesia 2026: 5 strategi praktis + 4 prompt journaling. UKT, kos, makan, lifestyle pressure.",
+    publishedAt: "2026-05-22",
+    readingTime: 6,
+    category: "Mental Wellness",
+    sections: [
+      { type: "p", content: "Stress keuangan mahasiswa Indonesia naik signifikan 2024-2026 — UKT yang terus naik, biaya kos di kota besar yang outpace gaji orang tua, biaya makan dan transportasi, plus pressure sosmed untuk gaya hidup yang lo nggak bisa afford. Plus uang saku yang sering nggak enough, takut nanyain tambahan ke orang tua karena 'sungkan,' dan ketidakpastian masa depan kalau lulus apakah bisa balikin investment orang tua. Wajar kalau lo merasa kewalahan. Tulisan ini ngebahas 5 strategi praktis + 4 prompt journaling untuk survive financial stress sambil kuliah jalan." },
+      { type: "callout", content: "Quick start: kalau lo lagi struggle banget bayar sesuatu spesifik (kos overdue, biaya kuliah), skip ke 'Sumber bantuan keuangan mahasiswa' di bawah. Banyak opsi di Indonesia 2026 yang nggak banyak diketahui mahasiswa. Nuju free di /onboarding tools untuk emotional support — 60 detik untuk mulai, support Bahasa Indonesia." },
+      { type: "h2", content: "5 strategi praktis untuk financial stress mahasiswa" },
+      { type: "h2", content: "1. Track pengeluaran realistic 1 minggu" },
+      { type: "p", content: "Banyak stress keuangan dari ketidakjelasan — lo nggak tau pasti uang lari kemana. Track 1 minggu pengeluaran detail (apps: Money Lover, Catatan Keuangan, atau spreadsheet sederhana). Setelah 1 minggu, kategorikan: WAJIB (kos, makan dasar, transport kampus, buku) vs FLEKSIBEL (kafe, ojol food, langganan, hiburan). Sering kondisi sebenarnya lebih manageable dari yang lo pikirkan saat panic." },
+      { type: "h2", content: "2. Identifikasi income streams realistic untuk mahasiswa" },
+      { type: "p", content: "Pilihan income untuk mahasiswa Indonesia 2026 yang realistic:" },
+      { type: "ul", content: [
+        "Beasiswa: cek di kampus + scholarship database (Beasiswa.id, Edusiswa). Banyak beasiswa parsial atau emergency yang underapplied.",
+        "Bantuan KIP-K: untuk yang qualify, cek di kampus.",
+        "Part-time on-campus: asisten lab, asisten dosen, jaga UKM. Biasanya gajinya kecil tapi fleksibel jadwal kuliah.",
+        "Freelance skill-based: desain, copywriting, voice over, social media — Fiverr, Sribu, Projects.co.id.",
+        "Tutoring: bimbel privat untuk SD-SMA. Permintaan tinggi terutama di kota besar.",
+        "Reseller produk: dropshipping dengan minimal modal — bisnis kecil dari kos.",
+      ] },
+      { type: "h2", content: "3. Cut lifestyle expenses without isolating socially" },
+      { type: "p", content: "Sosial penting untuk mental health, tapi sering jadi sumber pengeluaran besar. Strategi: usulkan hangout yang lebih murah (warung kopi vs kafe, nonton di kost vs bioskop, masak bareng vs restoran). Banyak teman juga lagi struggle finansial — usulkan terbuka, biasanya welcomed." },
+      { type: "h2", content: "4. Komunikasi jujur dengan orang tua" },
+      { type: "p", content: "Banyak mahasiswa Indonesia 'sungkan' ngomong kondisi keuangan ke orang tua. Realitas: orang tua biasanya prefer tahu kondisi aktual daripada lo struggle dalam diam. Pendekatan: jujur tentang kebutuhan spesifik (bukan 'aku butuh lebih banyak uang' tapi 'kos naik Rp 200rb bulan depan, bisa bicarakan?'). Sharing tracking pengeluaran build trust. Jangan tahan sampai krisis." },
+      { type: "h2", content: "5. Manage comparison sosmed" },
+      { type: "p", content: "Mute atau unfollow akun teman yang konsisten pamer pengeluaran lo nggak bisa afford. Ini bukan envy issue — itu environment design. Riset menunjukkan exposure ke specific lifestyle content sangat memprediksi overspending Gen Z. Curate feed untuk mendukung financial goals." },
+      { type: "h2", content: "4 prompt journaling untuk financial stress" },
+      { type: "ol", content: [
+        "'Apa yang spesifik gue takutin soal keuangan minggu ini?' Specific bikin ketakutan konkret. Sering lebih kecil dari yang dirasain.",
+        "'Apa yang gue bisa kontrol minggu ini?' Pengeluaran, application beasiswa, hours freelance. Bukan UKT yang udah ditetapkan atau ekonomi global.",
+        "'Pengeluaran apa minggu lalu yang gue sesalin? Yang worth it?' Reflection untuk awareness pattern.",
+        "'Satu langkah finansial kecil yang bisa gue ambil hari ini?' Transfer Rp 50.000 ke emergency fund. Apply 1 beasiswa. Reach out untuk freelance opportunity. Konsisten beats ambitious.",
+      ] },
+      { type: "h2", content: "Sumber bantuan keuangan mahasiswa Indonesia" },
+      { type: "ul", content: [
+        "Kantor BAAK / Biro Mahasiswa: punya info beasiswa, emergency funds, dan resources yang nggak banyak dipromosikan.",
+        "Beasiswa.id, Edusiswa, Indbeasiswa: database beasiswa Indonesia comprehensive.",
+        "KIP-K: untuk yang qualify, cek di kampus.",
+        "Indonesia Mengglobal: scholarship database untuk yang explore studi internasional.",
+        "BAZNAS: zakat-funded beasiswa untuk yang qualify.",
+        "Komunitas alumni: banyak alumni network punya program bantuan untuk junior.",
+      ] },
+      { type: "h2", content: "Kapan financial stress butuh psikolog" },
+      { type: "p", content: "Tanda yang menunjukkan butuh dukungan profesional:" },
+      { type: "ul", content: [
+        "Gangguan tidur kronis karena overthinking keuangan.",
+        "Serangan panik saat dapet tagihan atau ditanyain soal uang.",
+        "Pikiran ngerusak diri sendiri terkait kondisi finansial.",
+        "Ketidakmampuan fungsi (skip kuliah, nggak makan teratur) karena stress finansial.",
+        "Ketergantungan pada alkohol atau zat lain untuk coping.",
+      ] },
+      { type: "p", content: "Akses Indonesia: Halodoc, KALM, Riliv mulai Rp 50.000-150.000 per sesi. Banyak kampus punya konseling gratis untuk mahasiswa — tanya BAAK atau pusat layanan mahasiswa. Riliv punya konsultasi gratis dengan relawan psikologi untuk awal. Krisis: Into The Light Indonesia (intothelightid.org), 119 ext 8." },
+      { type: "h2", content: "Bottom line" },
+      { type: "p", content: "Stress keuangan mahasiswa Indonesia struktural — bukan masalah willpower atau financial literacy lo. 5 strategi praktis (track, income streams, lifestyle cut, komunikasi orang tua, manage comparison) + 4 prompt journaling untuk loop emosional. Banyak sumber bantuan keuangan Indonesia yang nggak banyak diketahui mahasiswa — cek BAAK + scholarship databases. Untuk gejala mental health berat, konsultasi profesional. Nuju free dengan support Bahasa Indonesia di /onboarding — 60 detik, no kartu kredit." },
+    ],
+    faq: [
+      {
+        question: "Berapa biaya hidup mahasiswa di Indonesia 2026?",
+        answer:
+          "Bervariasi besar berdasarkan kota dan gaya hidup. Jakarta/Surabaya: kos Rp 1-3 juta, makan Rp 1.5-2.5 juta, transport Rp 300-700rb, kuliah supplies Rp 200-500rb. Total Rp 3-6.5 juta per bulan. Kota smaller (Yogya, Malang, Solo): bisa 30-50% lebih murah. Tracking spesifik 1 minggu kasih lo number yang akurat untuk kondisi lo.",
+      },
+      {
+        question: "Apa yang harus gue lakukan kalau orang tua nggak bisa kasih uang saku?",
+        answer:
+          "(1) Apply beasiswa aktif — banyak beasiswa under-applied di Indonesia. (2) Cari income streams realistic (part-time on-campus, tutoring, freelance skill-based, reseller). (3) Cut lifestyle expenses tanpa isolasi sosial. (4) Cek dengan kampus untuk emergency fund atau payment plan UKT. (5) Komunikasi jujur dengan orang tua tentang situasi — mereka biasanya prefer tahu. Banyak resources di Indonesia 2026 yang nggak banyak dipromosikan.",
+      },
+      {
+        question: "Gimana cara minta tambahan uang ke orang tua tanpa terlalu 'sungkan'?",
+        answer:
+          "Pendekatan jujur dan spesifik. Bukan 'aku butuh lebih banyak uang' tapi 'kos naik Rp 200rb bulan depan, bisa kita bicarakan?' Show that you've tracked spending, tried to economize, exhausted other options. Orang tua biasanya prefer tahu situasi aktual daripada lo struggle dalam diam. Honest communication build trust untuk long-term.",
+      },
+      {
+        question: "Apakah part-time job affect kuliah?",
+        answer:
+          "Tergantung. Part-time on-campus (10-15 jam/minggu) biasanya manageable dengan kuliah. Off-campus job lebih dari 20 jam/minggu sering affect grades. Strategi: prioritize jobs yang fleksibel jadwal kuliah (asisten lab, tutor, freelance), avoid jobs yang fixed schedule conflict dengan kelas. Beberapa kampus juga punya program work-study yang explicitly designed compatible dengan kuliah.",
+      },
+      {
+        question: "Apakah Nuju bisa bantu untuk financial stress?",
+        answer:
+          "Untuk komponen emosional — ya. Journaling dengan Nuju membantu memutus loop overthinking soal uang, mengidentifikasi pemicu spending impulsif, dan membangun perspektif. Tapi Nuju bukan aplikasi keuangan — untuk komponen praktis (budgeting, tracking spesifik), pakai Money Lover, Catatan Keuangan, atau spreadsheet. Kombinasi: aplikasi finansial untuk praktis + Nuju untuk emosional support.",
+      },
+      {
+        question: "Kapan financial stress mahasiswa butuh psikolog?",
+        answer:
+          "Kalau stress bikin gangguan tidur kronis, serangan panik saat dapet tagihan, pikiran ngerusak diri terkait finansial, skip kuliah karena stress, atau ketergantungan alkohol/zat — konsultasi profesional. Halodoc/KALM/Riliv mulai Rp 50.000-150.000. Banyak kampus punya konseling gratis — tanya BAAK. Riliv punya konsultasi gratis dengan relawan psikologi. Krisis: Into The Light Indonesia, 119 ext 8.",
+      },
+    ],
+  },
 ];
 
 const normalizeCopy = (value: string): string =>

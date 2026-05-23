@@ -1841,6 +1841,270 @@ const INTERNAL_LINK_RECOMMENDATIONS: Record<string, InternalLinkRecommendation[]
       body: "Overthinking apa yang lo liat di sosmed? 4 prompt untuk memutus loop pikiran.",
     },
   ],
+  "why-do-i-feel-numb": [
+    {
+      slug: "why-do-i-feel-empty-inside",
+      eyebrow: "Related state",
+      body: "Numbness and emptiness overlap. The 5-cause taxonomy for emptiness.",
+    },
+    {
+      slug: "journaling-for-depression",
+      eyebrow: "When depression",
+      body: "Numbness as depression symptom. Honest framing on when to escalate.",
+    },
+    {
+      slug: "journaling-for-grief",
+      eyebrow: "When trauma",
+      body: "Trauma-related numbness needs trauma-informed therapy — grief journaling guide.",
+    },
+    {
+      slug: "gen-z-burnout-journaling",
+      eyebrow: "When burnout",
+      body: "Severe burnout can produce numbness. The 4-prompt protocol.",
+    },
+  ],
+  "why-am-i-so-irritable-lately": [
+    {
+      slug: "journaling-for-anger",
+      eyebrow: "Anger journaling",
+      body: "Irritability is low-grade chronic anger. The 7-prompt structured anger protocol.",
+    },
+    {
+      slug: "why-am-i-so-tired-all-the-time",
+      eyebrow: "Sleep connection",
+      body: "Sleep debt is #1 cause of irritability. The 5-cause fatigue stack.",
+    },
+    {
+      slug: "gen-z-burnout-journaling",
+      eyebrow: "Burnout component",
+      body: "Burnout produces irritability. The 4-prompt protocol.",
+    },
+    {
+      slug: "best-ai-journal-apps-for-anxiety-2026",
+      eyebrow: "Tool selection",
+      body: "AI journal apps that track mood patterns including irritability over time.",
+    },
+  ],
+  "best-journal-app-for-busy-professionals-2026": [
+    {
+      slug: "best-journal-app-for-entrepreneurs-2026",
+      eyebrow: "Founder version",
+      body: "If you're a founder specifically — the entrepreneur-targeted comparison.",
+    },
+    {
+      slug: "gen-z-burnout-journaling",
+      eyebrow: "Burnout prevention",
+      body: "Professional burnout prevention via journaling. The 4-prompt protocol.",
+    },
+    {
+      slug: "best-free-mental-wellness-apps-2026",
+      eyebrow: "Free options",
+      body: "7 truly-free mental wellness apps for budget-conscious professionals.",
+    },
+    {
+      slug: "complete-guide-ai-journaling-2026",
+      eyebrow: "Category guide",
+      body: "Full 2026 guide to AI journaling — what the category is, how to pick.",
+    },
+  ],
+  "nuju-vs-five-minute-journal": [
+    {
+      slug: "nuju-vs-stoic",
+      eyebrow: "Philosophy comparison",
+      body: "Another philosophy-focused versus — how Nuju compares to Stoic Journal.",
+    },
+    {
+      slug: "nuju-vs-day-one",
+      eyebrow: "Long-form comparison",
+      body: "Day One = long-form diary. Different angle from gratitude-focused 5MJ.",
+    },
+    {
+      slug: "best-ai-journaling-apps",
+      eyebrow: "Category view",
+      body: "Compare the broader AI journaling category — beyond gratitude practice.",
+    },
+    {
+      slug: "complete-guide-ai-journaling-2026",
+      eyebrow: "Category guide",
+      body: "Full 2026 guide to AI journaling — what the category is, how to pick.",
+    },
+  ],
+  "cara-mengatasi-trauma-masa-kecil": [
+    {
+      slug: "journaling-untuk-hubungan-toxic",
+      eyebrow: "Trauma + hubungan",
+      body: "Trauma childhood sering mempengaruhi hubungan dewasa. Panduan hubungan toxic.",
+    },
+    {
+      slug: "journaling-untuk-depresi",
+      eyebrow: "Trauma + depresi",
+      body: "Trauma childhood sering memicu depresi dewasa. Panduan honest depresi.",
+    },
+    {
+      slug: "self-healing-dengan-jurnal",
+      eyebrow: "Self healing context",
+      body: "Self healing untuk yang berproses trauma — dengan caveat profesional.",
+    },
+    {
+      slug: "aplikasi-curhat-ai",
+      eyebrow: "AI sebagai support",
+      body: "AI journal untuk daily support sambil therapy — pilihan privasi tinggi.",
+    },
+  ],
+  "journaling-untuk-hubungan-jarak-jauh": [
+    {
+      slug: "cara-journaling-setelah-putus",
+      eyebrow: "Kalau LDR berakhir",
+      body: "Kalau LDR berakhir — 7 prompt untuk 30 hari pertama pasca-putus.",
+    },
+    {
+      slug: "journaling-untuk-anxiety",
+      eyebrow: "Anxiety LDR",
+      body: "Anxiety LDR adalah jenis anxiety spesifik. 7 prompt anxiety umum berlaku.",
+    },
+    {
+      slug: "cara-curhat-ke-diri-sendiri",
+      eyebrow: "Saat partner jauh",
+      body: "Saat partner jauh dan lo butuh outlet — 5 metode curhat ke diri sendiri.",
+    },
+    {
+      slug: "mengatasi-anxiety-media-sosial-gen-z",
+      eyebrow: "Sosmed stalking",
+      body: "Stalking sosmed partner di LDR? 5 strategi mengatasi anxiety sosmed.",
+    },
+  ],
+  "why-cant-i-sleep-when-im-tired": [
+    {
+      slug: "why-am-i-always-anxious-before-sleep",
+      eyebrow: "Pre-sleep anxiety",
+      body: "If tired-wired is anxiety-driven — the specific pre-sleep anxiety protocol.",
+    },
+    {
+      slug: "3am-anxiety-journaling",
+      eyebrow: "3am wakeups",
+      body: "If tired-wired turns into 3am wakeups — the technique for late-night spirals.",
+    },
+    {
+      slug: "bedtime-journaling-routine-for-sleep",
+      eyebrow: "Full bedtime routine",
+      body: "Beyond the 5-min reset — the complete bedtime journaling routine.",
+    },
+    {
+      slug: "why-am-i-so-tired-all-the-time",
+      eyebrow: "If tired persists",
+      body: "If tiredness persists despite good sleep, see the 5-cause fatigue diagnostic.",
+    },
+  ],
+  "why-do-i-overthink-text-messages": [
+    {
+      slug: "why-do-i-overthink-everything",
+      eyebrow: "Broader overthinking",
+      body: "Text overthinking is one form. The broader overthinking pattern + 5-min brain dump.",
+    },
+    {
+      slug: "best-ai-journal-apps-for-anxiety-2026",
+      eyebrow: "Tool selection",
+      body: "AI journal apps for chronic anxiety + overthinking — including text anxiety.",
+    },
+    {
+      slug: "journaling-for-imposter-syndrome",
+      eyebrow: "Related pattern",
+      body: "Text anxiety often overlaps with imposter syndrome. Evidence file technique applies.",
+    },
+    {
+      slug: "ai-journal-for-overthinking",
+      eyebrow: "Overthinking deeper",
+      body: "Full guide to AI journaling for chronic overthinkers.",
+    },
+  ],
+  "best-mood-tracker-for-bipolar-2026": [
+    {
+      slug: "best-ai-journal-apps-for-anxiety-2026",
+      eyebrow: "If anxiety comorbid",
+      body: "Bipolar + anxiety is common — anxiety-specific app comparison.",
+    },
+    {
+      slug: "best-free-mental-wellness-apps-2026",
+      eyebrow: "Free options",
+      body: "Free options that work alongside professional bipolar treatment.",
+    },
+    {
+      slug: "journaling-for-depression",
+      eyebrow: "Depression component",
+      body: "Bipolar depression episodes — honest framing on what helps and when to escalate.",
+    },
+    {
+      slug: "best-mood-tracker-apps",
+      eyebrow: "Mood tracker category",
+      body: "Broader mood tracker category — beyond bipolar-specific picks.",
+    },
+  ],
+  "nuju-vs-penzu": [
+    {
+      slug: "nuju-vs-day-one",
+      eyebrow: "Other long-form comparison",
+      body: "Day One = polished long-form diary. Different angle from Penzu's privacy-first focus.",
+    },
+    {
+      slug: "nuju-vs-stoic",
+      eyebrow: "Philosophy comparison",
+      body: "Stoic = philosophical practice. Another versus with distinct journaling philosophy.",
+    },
+    {
+      slug: "best-ai-journaling-apps",
+      eyebrow: "AI journal category",
+      body: "Compare the full AI journaling category if Penzu's no-AI approach feels too limiting.",
+    },
+    {
+      slug: "complete-guide-ai-journaling-2026",
+      eyebrow: "Category guide",
+      body: "Full 2026 guide to AI journaling — what the category is, privacy considerations.",
+    },
+  ],
+  "mengatasi-anxiety-pertama-kerja": [
+    {
+      slug: "mengatasi-anxiety-wawancara-kerja",
+      eyebrow: "Pre-job anxiety",
+      body: "Sebelum dapet first job — strategi mengatasi anxiety wawancara kerja.",
+    },
+    {
+      slug: "mengatasi-stres-kerja-journaling",
+      eyebrow: "Stres kerja umum",
+      body: "Setelah adjust di first job — 5 prompt khusus stres kerja Indonesia.",
+    },
+    {
+      slug: "perfeksionisme-dan-procrastination-indonesia",
+      eyebrow: "Perfeksionisme first jobber",
+      body: "Imposter syndrome + perfeksionisme di first job — 6 prompt loop-breaker.",
+    },
+    {
+      slug: "cara-mengatasi-burnout-gen-z",
+      eyebrow: "Burnout prevention",
+      body: "Pencegahan burnout untuk first jobber — 4 prompt khusus Gen Z Indonesia.",
+    },
+  ],
+  "journaling-untuk-stress-keuangan-mahasiswa": [
+    {
+      slug: "cara-mengatasi-stres-keuangan-gen-z",
+      eyebrow: "Versi lebih luas",
+      body: "Stress keuangan Gen Z secara umum — 5 strategi praktis + 4 prompt.",
+    },
+    {
+      slug: "aplikasi-journal-untuk-mahasiswa-indonesia",
+      eyebrow: "Aplikasi journal",
+      body: "5 aplikasi journal terbaik untuk mahasiswa Indonesia — termasuk yang gratis.",
+    },
+    {
+      slug: "cara-mengatasi-stres-skripsi",
+      eyebrow: "Stress lain mahasiswa",
+      body: "Stress skripsi juga sering memperburuk stress finansial. 6 prompt khusus.",
+    },
+    {
+      slug: "depresi-pasca-lulus-kuliah",
+      eyebrow: "Setelah lulus",
+      body: "Setelah lulus stress finansial sering berlanjut — panduan depresi pasca lulus.",
+    },
+  ],
 };
 
 const getInternalLinkCards = (slug: string): InternalLinkCard[] =>
