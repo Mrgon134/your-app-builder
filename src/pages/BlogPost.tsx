@@ -1973,6 +1973,138 @@ const INTERNAL_LINK_RECOMMENDATIONS: Record<string, InternalLinkRecommendation[]
       body: "Stalking sosmed partner di LDR? 5 strategi mengatasi anxiety sosmed.",
     },
   ],
+  "why-cant-i-sleep-when-im-tired": [
+    {
+      slug: "why-am-i-always-anxious-before-sleep",
+      eyebrow: "Pre-sleep anxiety",
+      body: "If tired-wired is anxiety-driven — the specific pre-sleep anxiety protocol.",
+    },
+    {
+      slug: "3am-anxiety-journaling",
+      eyebrow: "3am wakeups",
+      body: "If tired-wired turns into 3am wakeups — the technique for late-night spirals.",
+    },
+    {
+      slug: "bedtime-journaling-routine-for-sleep",
+      eyebrow: "Full bedtime routine",
+      body: "Beyond the 5-min reset — the complete bedtime journaling routine.",
+    },
+    {
+      slug: "why-am-i-so-tired-all-the-time",
+      eyebrow: "If tired persists",
+      body: "If tiredness persists despite good sleep, see the 5-cause fatigue diagnostic.",
+    },
+  ],
+  "why-do-i-overthink-text-messages": [
+    {
+      slug: "why-do-i-overthink-everything",
+      eyebrow: "Broader overthinking",
+      body: "Text overthinking is one form. The broader overthinking pattern + 5-min brain dump.",
+    },
+    {
+      slug: "best-ai-journal-apps-for-anxiety-2026",
+      eyebrow: "Tool selection",
+      body: "AI journal apps for chronic anxiety + overthinking — including text anxiety.",
+    },
+    {
+      slug: "journaling-for-imposter-syndrome",
+      eyebrow: "Related pattern",
+      body: "Text anxiety often overlaps with imposter syndrome. Evidence file technique applies.",
+    },
+    {
+      slug: "ai-journal-for-overthinking",
+      eyebrow: "Overthinking deeper",
+      body: "Full guide to AI journaling for chronic overthinkers.",
+    },
+  ],
+  "best-mood-tracker-for-bipolar-2026": [
+    {
+      slug: "best-ai-journal-apps-for-anxiety-2026",
+      eyebrow: "If anxiety comorbid",
+      body: "Bipolar + anxiety is common — anxiety-specific app comparison.",
+    },
+    {
+      slug: "best-free-mental-wellness-apps-2026",
+      eyebrow: "Free options",
+      body: "Free options that work alongside professional bipolar treatment.",
+    },
+    {
+      slug: "journaling-for-depression",
+      eyebrow: "Depression component",
+      body: "Bipolar depression episodes — honest framing on what helps and when to escalate.",
+    },
+    {
+      slug: "best-mood-tracker-apps",
+      eyebrow: "Mood tracker category",
+      body: "Broader mood tracker category — beyond bipolar-specific picks.",
+    },
+  ],
+  "nuju-vs-penzu": [
+    {
+      slug: "nuju-vs-day-one",
+      eyebrow: "Other long-form comparison",
+      body: "Day One = polished long-form diary. Different angle from Penzu's privacy-first focus.",
+    },
+    {
+      slug: "nuju-vs-stoic",
+      eyebrow: "Philosophy comparison",
+      body: "Stoic = philosophical practice. Another versus with distinct journaling philosophy.",
+    },
+    {
+      slug: "best-ai-journaling-apps",
+      eyebrow: "AI journal category",
+      body: "Compare the full AI journaling category if Penzu's no-AI approach feels too limiting.",
+    },
+    {
+      slug: "complete-guide-ai-journaling-2026",
+      eyebrow: "Category guide",
+      body: "Full 2026 guide to AI journaling — what the category is, privacy considerations.",
+    },
+  ],
+  "mengatasi-anxiety-pertama-kerja": [
+    {
+      slug: "mengatasi-anxiety-wawancara-kerja",
+      eyebrow: "Pre-job anxiety",
+      body: "Sebelum dapet first job — strategi mengatasi anxiety wawancara kerja.",
+    },
+    {
+      slug: "mengatasi-stres-kerja-journaling",
+      eyebrow: "Stres kerja umum",
+      body: "Setelah adjust di first job — 5 prompt khusus stres kerja Indonesia.",
+    },
+    {
+      slug: "perfeksionisme-dan-procrastination-indonesia",
+      eyebrow: "Perfeksionisme first jobber",
+      body: "Imposter syndrome + perfeksionisme di first job — 6 prompt loop-breaker.",
+    },
+    {
+      slug: "cara-mengatasi-burnout-gen-z",
+      eyebrow: "Burnout prevention",
+      body: "Pencegahan burnout untuk first jobber — 4 prompt khusus Gen Z Indonesia.",
+    },
+  ],
+  "journaling-untuk-stress-keuangan-mahasiswa": [
+    {
+      slug: "cara-mengatasi-stres-keuangan-gen-z",
+      eyebrow: "Versi lebih luas",
+      body: "Stress keuangan Gen Z secara umum — 5 strategi praktis + 4 prompt.",
+    },
+    {
+      slug: "aplikasi-journal-untuk-mahasiswa-indonesia",
+      eyebrow: "Aplikasi journal",
+      body: "5 aplikasi journal terbaik untuk mahasiswa Indonesia — termasuk yang gratis.",
+    },
+    {
+      slug: "cara-mengatasi-stres-skripsi",
+      eyebrow: "Stress lain mahasiswa",
+      body: "Stress skripsi juga sering memperburuk stress finansial. 6 prompt khusus.",
+    },
+    {
+      slug: "depresi-pasca-lulus-kuliah",
+      eyebrow: "Setelah lulus",
+      body: "Setelah lulus stress finansial sering berlanjut — panduan depresi pasca lulus.",
+    },
+  ],
 };
 
 const getInternalLinkCards = (slug: string): InternalLinkCard[] =>
