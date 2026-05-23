@@ -4,79 +4,79 @@
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://nuju.app/</loc>
-    <lastmod>2026-05-22</lastmod>
+    <lastmod>2026-05-23</lastmod>
     <priority>1.0</priority>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://nuju.app/ai-journal</loc>
-    <lastmod>2026-05-22</lastmod>
+    <lastmod>2026-05-23</lastmod>
     <priority>0.9</priority>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://nuju.app/mood-tracker</loc>
-    <lastmod>2026-05-22</lastmod>
+    <lastmod>2026-05-23</lastmod>
     <priority>0.9</priority>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://nuju.app/voice-journaling</loc>
-    <lastmod>2026-05-22</lastmod>
+    <lastmod>2026-05-23</lastmod>
     <priority>0.8</priority>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://nuju.app/install</loc>
-    <lastmod>2026-05-22</lastmod>
+    <lastmod>2026-05-23</lastmod>
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
     <loc>https://nuju.app/about</loc>
-    <lastmod>2026-05-22</lastmod>
+    <lastmod>2026-05-23</lastmod>
     <priority>0.6</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
     <loc>https://nuju.app/support</loc>
-    <lastmod>2026-05-22</lastmod>
+    <lastmod>2026-05-23</lastmod>
     <priority>0.6</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
     <loc>https://nuju.app/contact</loc>
-    <lastmod>2026-05-22</lastmod>
+    <lastmod>2026-05-23</lastmod>
     <priority>0.5</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
     <loc>https://nuju.app/privacy</loc>
-    <lastmod>2026-05-22</lastmod>
+    <lastmod>2026-05-23</lastmod>
     <priority>0.4</priority>
     <changefreq>yearly</changefreq>
   </url>
   <url>
     <loc>https://nuju.app/terms</loc>
-    <lastmod>2026-05-22</lastmod>
+    <lastmod>2026-05-23</lastmod>
     <priority>0.4</priority>
     <changefreq>yearly</changefreq>
   </url>
   <url>
     <loc>https://nuju.app/medical-disclaimer</loc>
-    <lastmod>2026-05-22</lastmod>
+    <lastmod>2026-05-23</lastmod>
     <priority>0.3</priority>
     <changefreq>yearly</changefreq>
   </url>
   <url>
     <loc>https://nuju.app/blog</loc>
-    <lastmod>2026-05-22</lastmod>
+    <lastmod>2026-05-23</lastmod>
     <priority>0.8</priority>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://nuju.app/guides/journaling</loc>
-    <lastmod>2026-05-22</lastmod>
+    <lastmod>2026-05-23</lastmod>
     <priority>0.9</priority>
     <changefreq>monthly</changefreq>
   </url>
@@ -1249,6 +1249,72 @@
       <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
       <image:title>Mengatasi Anxiety Media Sosial: 5 Strategi untuk Gen Z Indonesia (2026)</image:title>
       <image:caption>Anxiety media sosial real dan terdokumentasi — Gen Z paling terdampak. Comparison, FOMO, dopamine cycling, judgment anxiety. 5 strategi praktis yang nggak butuh detox total + 4 prompt journaling. Plus tools untuk reduce friction.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/why-do-i-feel-numb</loc>
+    <lastmod>2026-05-22</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Why Do I Feel Numb? The Real Causes Behind Emotional Numbness</image:title>
+      <image:caption>Emotional numbness has documented causes — depression, trauma response, dissociation, burnout, or medication side effects. Each calls for different response. 5-min diagnostic + when numbness needs urgent professional help.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/why-am-i-so-irritable-lately</loc>
+    <lastmod>2026-05-22</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Why Am I So Irritable Lately? The Real Causes (and What Actually Helps)</image:title>
+      <image:caption>Sudden or chronic irritability has documented causes — sleep debt, hormonal shifts, accumulated stress, medication, depression-as-anger, or burnout. Here&apos;s how to identify yours plus a 5-minute pattern-recognition protocol.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/best-journal-app-for-busy-professionals-2026</loc>
+    <lastmod>2026-05-22</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Best Journal App for Busy Professionals in 2026: 5 Picks That Fit Your Schedule</image:title>
+      <image:caption>Busy professionals need a journal app that works in 30-second windows, fits between meetings, and surfaces patterns without manual analysis. We tested 5 picks — Nuju, Day One, Reflection, Stoic, Daylio — for the professional workflow.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/nuju-vs-five-minute-journal</loc>
+    <lastmod>2026-05-22</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Nuju vs The Five Minute Journal: AI Reflection or Gratitude Practice? (2026)</image:title>
+      <image:caption>Nuju and The Five Minute Journal target different journaling philosophies. Nuju is AI-augmented short-entry reflection. Five Minute Journal is structured gratitude practice. Different jobs — sometimes complementary. Honest comparison.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/cara-mengatasi-trauma-masa-kecil</loc>
+    <lastmod>2026-05-22</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Cara Mengatasi Trauma Masa Kecil: Panduan Aman + Kapan Wajib ke Profesional</image:title>
+      <image:caption>Trauma masa kecil punya dampak panjang yang terdokumentasi. Journaling bisa membantu, tapi HANYA dengan terapis trauma-informed — proses sendirian punya risiko re-traumatisasi. Panduan aman + sumber profesional Indonesia.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/journaling-untuk-hubungan-jarak-jauh</loc>
+    <lastmod>2026-05-22</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Journaling untuk Hubungan Jarak Jauh: 6 Prompt yang Membantu LDR Berhasil (2026)</image:title>
+      <image:caption>Hubungan jarak jauh (LDR) punya tantangan unik — loneliness, trust issues, communication gap, future uncertainty. Journaling 6 prompt yang membantu memproses emosi LDR + maintain connection dengan diri sendiri saat partner jauh.</image:caption>
     </image:image>
   </url>
 </urlset>

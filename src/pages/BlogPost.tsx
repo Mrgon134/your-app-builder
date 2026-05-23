@@ -1841,6 +1841,138 @@ const INTERNAL_LINK_RECOMMENDATIONS: Record<string, InternalLinkRecommendation[]
       body: "Overthinking apa yang lo liat di sosmed? 4 prompt untuk memutus loop pikiran.",
     },
   ],
+  "why-do-i-feel-numb": [
+    {
+      slug: "why-do-i-feel-empty-inside",
+      eyebrow: "Related state",
+      body: "Numbness and emptiness overlap. The 5-cause taxonomy for emptiness.",
+    },
+    {
+      slug: "journaling-for-depression",
+      eyebrow: "When depression",
+      body: "Numbness as depression symptom. Honest framing on when to escalate.",
+    },
+    {
+      slug: "journaling-for-grief",
+      eyebrow: "When trauma",
+      body: "Trauma-related numbness needs trauma-informed therapy — grief journaling guide.",
+    },
+    {
+      slug: "gen-z-burnout-journaling",
+      eyebrow: "When burnout",
+      body: "Severe burnout can produce numbness. The 4-prompt protocol.",
+    },
+  ],
+  "why-am-i-so-irritable-lately": [
+    {
+      slug: "journaling-for-anger",
+      eyebrow: "Anger journaling",
+      body: "Irritability is low-grade chronic anger. The 7-prompt structured anger protocol.",
+    },
+    {
+      slug: "why-am-i-so-tired-all-the-time",
+      eyebrow: "Sleep connection",
+      body: "Sleep debt is #1 cause of irritability. The 5-cause fatigue stack.",
+    },
+    {
+      slug: "gen-z-burnout-journaling",
+      eyebrow: "Burnout component",
+      body: "Burnout produces irritability. The 4-prompt protocol.",
+    },
+    {
+      slug: "best-ai-journal-apps-for-anxiety-2026",
+      eyebrow: "Tool selection",
+      body: "AI journal apps that track mood patterns including irritability over time.",
+    },
+  ],
+  "best-journal-app-for-busy-professionals-2026": [
+    {
+      slug: "best-journal-app-for-entrepreneurs-2026",
+      eyebrow: "Founder version",
+      body: "If you're a founder specifically — the entrepreneur-targeted comparison.",
+    },
+    {
+      slug: "gen-z-burnout-journaling",
+      eyebrow: "Burnout prevention",
+      body: "Professional burnout prevention via journaling. The 4-prompt protocol.",
+    },
+    {
+      slug: "best-free-mental-wellness-apps-2026",
+      eyebrow: "Free options",
+      body: "7 truly-free mental wellness apps for budget-conscious professionals.",
+    },
+    {
+      slug: "complete-guide-ai-journaling-2026",
+      eyebrow: "Category guide",
+      body: "Full 2026 guide to AI journaling — what the category is, how to pick.",
+    },
+  ],
+  "nuju-vs-five-minute-journal": [
+    {
+      slug: "nuju-vs-stoic",
+      eyebrow: "Philosophy comparison",
+      body: "Another philosophy-focused versus — how Nuju compares to Stoic Journal.",
+    },
+    {
+      slug: "nuju-vs-day-one",
+      eyebrow: "Long-form comparison",
+      body: "Day One = long-form diary. Different angle from gratitude-focused 5MJ.",
+    },
+    {
+      slug: "best-ai-journaling-apps",
+      eyebrow: "Category view",
+      body: "Compare the broader AI journaling category — beyond gratitude practice.",
+    },
+    {
+      slug: "complete-guide-ai-journaling-2026",
+      eyebrow: "Category guide",
+      body: "Full 2026 guide to AI journaling — what the category is, how to pick.",
+    },
+  ],
+  "cara-mengatasi-trauma-masa-kecil": [
+    {
+      slug: "journaling-untuk-hubungan-toxic",
+      eyebrow: "Trauma + hubungan",
+      body: "Trauma childhood sering mempengaruhi hubungan dewasa. Panduan hubungan toxic.",
+    },
+    {
+      slug: "journaling-untuk-depresi",
+      eyebrow: "Trauma + depresi",
+      body: "Trauma childhood sering memicu depresi dewasa. Panduan honest depresi.",
+    },
+    {
+      slug: "self-healing-dengan-jurnal",
+      eyebrow: "Self healing context",
+      body: "Self healing untuk yang berproses trauma — dengan caveat profesional.",
+    },
+    {
+      slug: "aplikasi-curhat-ai",
+      eyebrow: "AI sebagai support",
+      body: "AI journal untuk daily support sambil therapy — pilihan privasi tinggi.",
+    },
+  ],
+  "journaling-untuk-hubungan-jarak-jauh": [
+    {
+      slug: "cara-journaling-setelah-putus",
+      eyebrow: "Kalau LDR berakhir",
+      body: "Kalau LDR berakhir — 7 prompt untuk 30 hari pertama pasca-putus.",
+    },
+    {
+      slug: "journaling-untuk-anxiety",
+      eyebrow: "Anxiety LDR",
+      body: "Anxiety LDR adalah jenis anxiety spesifik. 7 prompt anxiety umum berlaku.",
+    },
+    {
+      slug: "cara-curhat-ke-diri-sendiri",
+      eyebrow: "Saat partner jauh",
+      body: "Saat partner jauh dan lo butuh outlet — 5 metode curhat ke diri sendiri.",
+    },
+    {
+      slug: "mengatasi-anxiety-media-sosial-gen-z",
+      eyebrow: "Sosmed stalking",
+      body: "Stalking sosmed partner di LDR? 5 strategi mengatasi anxiety sosmed.",
+    },
+  ],
 };
 
 const getInternalLinkCards = (slug: string): InternalLinkCard[] =>
