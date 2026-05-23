@@ -2105,6 +2105,270 @@ const INTERNAL_LINK_RECOMMENDATIONS: Record<string, InternalLinkRecommendation[]
       body: "Setelah lulus stress finansial sering berlanjut — panduan depresi pasca lulus.",
     },
   ],
+  "5-hidden-reasons-your-journaling-habit-keeps-failing": [
+    {
+      slug: "5-minute-daily-journaling-habit",
+      eyebrow: "Build the habit",
+      body: "Practical 5-minute daily habit framework — beyond just identifying failures.",
+    },
+    {
+      slug: "31-character-journal-entry-outperforms-long-pages",
+      eyebrow: "Format fix",
+      body: "Short-entry format that addresses Reason 1 (wrong format) with real data.",
+    },
+    {
+      slug: "how-to-start-journaling",
+      eyebrow: "Start fresh",
+      body: "Complete beginner guide for restarting with the right format from day one.",
+    },
+    {
+      slug: "i-tested-8-ai-journal-apps-for-30-days",
+      eyebrow: "Tool selection",
+      body: "Pick the right tool — 8 AI journal apps honestly tested for 30 days.",
+    },
+  ],
+  "i-tested-8-ai-journal-apps-for-30-days": [
+    {
+      slug: "complete-guide-ai-journaling-2026",
+      eyebrow: "Category guide",
+      body: "Full 2026 guide to AI journaling — what the category is, how to pick.",
+    },
+    {
+      slug: "best-ai-journaling-apps",
+      eyebrow: "Best of category",
+      body: "Standard best-of list with deeper feature comparison.",
+    },
+    {
+      slug: "31-character-journal-entry-outperforms-long-pages",
+      eyebrow: "Why short wins",
+      body: "Real data on why short entries beat long-form — explains the ranking.",
+    },
+    {
+      slug: "5-hidden-reasons-your-journaling-habit-keeps-failing",
+      eyebrow: "Habit factors",
+      body: "Why most journaling habits fail — affects which app actually sustains for you.",
+    },
+  ],
+  "31-character-journal-entry-outperforms-long-pages": [
+    {
+      slug: "what-people-write-in-journal-data",
+      eyebrow: "Source data",
+      body: "The original analysis of 161 real journal entries with full data breakdown.",
+    },
+    {
+      slug: "5-minute-daily-journaling-habit",
+      eyebrow: "Apply the data",
+      body: "How to actually build a 5-minute daily habit using short-entry format.",
+    },
+    {
+      slug: "5-hidden-reasons-your-journaling-habit-keeps-failing",
+      eyebrow: "Why short works",
+      body: "Reason 1: wrong format kills journaling. The 31-character pattern is the fix.",
+    },
+    {
+      slug: "i-tested-8-ai-journal-apps-for-30-days",
+      eyebrow: "Best short-entry app",
+      body: "30-day test ranking — which AI journal app best supports short entries.",
+    },
+  ],
+  "why-i-stopped-gratitude-journaling-and-what-works": [
+    {
+      slug: "nuju-vs-five-minute-journal",
+      eyebrow: "Gratitude vs reflection",
+      body: "Five Minute Journal is gratitude-focused — when it fits vs when it backfires.",
+    },
+    {
+      slug: "journaling-for-depression",
+      eyebrow: "When depression",
+      body: "Gratitude backfires during depression. Honest depression journaling guide.",
+    },
+    {
+      slug: "journaling-for-grief",
+      eyebrow: "When grief",
+      body: "Gratitude backfires during grief. The grief journaling alternative.",
+    },
+    {
+      slug: "gen-z-burnout-journaling",
+      eyebrow: "When burnout",
+      body: "Gratitude backfires during burnout. The 4-prompt burnout protocol instead.",
+    },
+  ],
+  "5-aplikasi-mental-health-indonesia-mahasiswa-wajib-tahu": [
+    {
+      slug: "aplikasi-journal-untuk-mahasiswa-indonesia",
+      eyebrow: "Aplikasi journal specifik",
+      body: "Versi spesifik untuk journal apps mahasiswa — 5 picks dengan kriteria student.",
+    },
+    {
+      slug: "aplikasi-journal-ai-gratis-indonesia",
+      eyebrow: "AI journal gratis",
+      body: "Versi spesifik untuk AI journal apps gratis — 5 picks dengan kriteria privacy.",
+    },
+    {
+      slug: "aplikasi-journal-ai-tested-30-hari-indonesia",
+      eyebrow: "30-day test",
+      body: "Honest ranking 6 aplikasi journal AI tested 30 hari di Indonesia.",
+    },
+    {
+      slug: "depresi-pasca-lulus-kuliah",
+      eyebrow: "Setelah lulus",
+      body: "Setelah lulus mental health stack tetap penting — guide depresi pasca lulus.",
+    },
+  ],
+  "aplikasi-journal-ai-tested-30-hari-indonesia": [
+    {
+      slug: "5-aplikasi-mental-health-indonesia-mahasiswa-wajib-tahu",
+      eyebrow: "Stack untuk mahasiswa",
+      body: "5 aplikasi mental health Indonesia wajib install untuk mahasiswa.",
+    },
+    {
+      slug: "aplikasi-journal-ai-gratis-indonesia",
+      eyebrow: "Free apps focus",
+      body: "Versi yang fokus pada aplikasi journal AI gratis untuk pengguna Indonesia.",
+    },
+    {
+      slug: "i-tested-8-ai-journal-apps-for-30-days",
+      eyebrow: "English version",
+      body: "8 AI journal apps tested 30 hari (English-language version).",
+    },
+    {
+      slug: "aplikasi-curhat-ai",
+      eyebrow: "AI curhat specific",
+      body: "AI curhat — kriteria privasi dan rekomendasi spesifik pengguna Indonesia.",
+    },
+  ],
+  "why-do-i-keep-self-sabotaging": [
+    {
+      slug: "journaling-for-imposter-syndrome",
+      eyebrow: "Imposter pattern",
+      body: "Imposter protection is #1 cause of self-sabotage. Evidence File technique.",
+    },
+    {
+      slug: "journaling-for-perfectionism-procrastination",
+      eyebrow: "Perfectionism pattern",
+      body: "Perfectionism-driven self-sabotage. The 6-prompt loop-breaker.",
+    },
+    {
+      slug: "ai-journal-for-overthinking",
+      eyebrow: "Overthinking driver",
+      body: "Self-sabotage often paired with overthinking. AI journal angle.",
+    },
+    {
+      slug: "complete-guide-ai-journaling-2026",
+      eyebrow: "Build the practice",
+      body: "Full 2026 guide to AI journaling — what helps long-term pattern work.",
+    },
+  ],
+  "i-deleted-instagram-for-30-days-here-is-what-happened-to-my-mood": [
+    {
+      slug: "digital-fatigue-journaling-reset",
+      eyebrow: "Digital fatigue science",
+      body: "The 5-min reset protocol that pairs well with detox or limit strategy.",
+    },
+    {
+      slug: "journaling-for-jealousy-and-comparison",
+      eyebrow: "Comparison root",
+      body: "Most Instagram anxiety = comparison loop. The 6-prompt break protocol.",
+    },
+    {
+      slug: "why-am-i-always-anxious-before-sleep",
+      eyebrow: "Sleep connection",
+      body: "Instagram pre-bed is major sleep killer. The 5-min reset protocol.",
+    },
+    {
+      slug: "mengatasi-anxiety-media-sosial-gen-z",
+      eyebrow: "Indonesian version",
+      body: "Indonesian Gen Z social media anxiety — 5 strategies tanpa detox total.",
+    },
+  ],
+  "5-things-therapists-actually-recommend-that-arent-medication": [
+    {
+      slug: "journaling-before-therapy",
+      eyebrow: "Pre-therapy prep",
+      body: "If thinking about starting therapy — how to prep with journaling first.",
+    },
+    {
+      slug: "best-journal-app-for-therapists-2026",
+      eyebrow: "Therapist-recommended apps",
+      body: "5 apps specifically recommended by therapists for daily client tracking.",
+    },
+    {
+      slug: "5-minute-daily-journaling-habit",
+      eyebrow: "Build the habit",
+      body: "How to build the 5-10 min expressive writing habit therapists recommend.",
+    },
+    {
+      slug: "complete-guide-ai-journaling-2026",
+      eyebrow: "Category guide",
+      body: "Full 2026 guide to AI journaling — for the tracking + writing components.",
+    },
+  ],
+  "best-mental-health-app-for-busy-moms-2026": [
+    {
+      slug: "journaling-for-new-parents",
+      eyebrow: "New parent journaling",
+      body: "Beyond app selection — how to actually journal as a new parent.",
+    },
+    {
+      slug: "best-free-mental-wellness-apps-2026",
+      eyebrow: "Free options",
+      body: "7 truly-free mental wellness apps — covers busy mom budget reality.",
+    },
+    {
+      slug: "best-ai-journal-apps-for-anxiety-2026",
+      eyebrow: "If anxiety dominant",
+      body: "If mom anxiety is dominant concern — anxiety-specific app comparison.",
+    },
+    {
+      slug: "5-minute-daily-journaling-habit",
+      eyebrow: "Build sustainable habit",
+      body: "How to build 5-minute habit that survives nap schedules.",
+    },
+  ],
+  "kenapa-gue-merasa-kesepian-padahal-banyak-teman": [
+    {
+      slug: "ai-journaling-for-loneliness",
+      eyebrow: "Versi English deeper",
+      body: "Loneliness yang nggak terselesaikan — full guide dengan Vivek Murthy research.",
+    },
+    {
+      slug: "cara-curhat-ke-diri-sendiri",
+      eyebrow: "Saat nggak ada outlet",
+      body: "Saat lo butuh outlet tapi nggak ada yang really listen — 5 metode self-outlet.",
+    },
+    {
+      slug: "mengatasi-anxiety-media-sosial-gen-z",
+      eyebrow: "Sosmed loneliness",
+      body: "Banyak teman di sosmed tapi tetap kesepian — 5 strategi sosmed yang membantu.",
+    },
+    {
+      slug: "journaling-untuk-anxiety",
+      eyebrow: "Anxiety + loneliness",
+      body: "Loneliness sering paired dengan social anxiety — 7 prompt khusus anxiety.",
+    },
+  ],
+  "5-tanda-burnout-yang-sering-disepelekan-gen-z-indonesia": [
+    {
+      slug: "cara-mengatasi-burnout-gen-z",
+      eyebrow: "Treatment burnout",
+      body: "Setelah identify tanda — 5 prompt khusus untuk treatment burnout Gen Z Indonesia.",
+    },
+    {
+      slug: "mengatasi-stres-kerja-journaling",
+      eyebrow: "Stres kerja umum",
+      body: "Stres kerja yang berkepanjangan jadi burnout. 5 prompt khusus pekerja Indonesia.",
+    },
+    {
+      slug: "journaling-untuk-anxiety",
+      eyebrow: "Anxiety + burnout",
+      body: "Burnout sering paired dengan anxiety. 7 prompt khusus anxiety Indonesia.",
+    },
+    {
+      slug: "journaling-untuk-depresi",
+      eyebrow: "Burnout → depresi",
+      body: "Burnout untreated bisa jadi depresi. Panduan honest depresi Indonesia.",
+    },
+  ],
 };
 
 const getInternalLinkCards = (slug: string): InternalLinkCard[] =>
