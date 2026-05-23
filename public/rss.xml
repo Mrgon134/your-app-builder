@@ -6,7 +6,7 @@
     <atom:link href="https://nuju.app/rss.xml" rel="self" type="application/rss+xml" />
     <description>Practical guides on journaling, mood tracking, and emotional wellness from the Nuju team.</description>
     <language>en</language>
-    <lastBuildDate>Sat, 23 May 2026 05:02:35 GMT</lastBuildDate>
+    <lastBuildDate>Sat, 23 May 2026 07:51:57 GMT</lastBuildDate>
     <item>
       <title>We Analyzed Our First 161 Real Journal Entries: 87% Were Logged on &apos;Not Great&apos; Days</title>
       <link>https://nuju.app/blog/what-people-write-in-journal-data</link>
@@ -742,6 +742,60 @@
       <guid isPermaLink="true">https://nuju.app/blog/journaling-untuk-stress-keuangan-mahasiswa</guid>
       <description>Stress keuangan mahasiswa Indonesia naik signifikan 2024-2026 — UKT, biaya kos, makan, sosmed lifestyle pressure. 5 strategi praktis + 4 prompt journaling untuk survive financial stress sambil kuliah jalan.</description>
       <category>Mental Wellness</category>
+      <pubDate>Fri, 22 May 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>5 Hidden Reasons Your Journaling Habit Keeps Failing (Backed by Research)</title>
+      <link>https://nuju.app/blog/5-hidden-reasons-your-journaling-habit-keeps-failing</link>
+      <guid isPermaLink="true">https://nuju.app/blog/5-hidden-reasons-your-journaling-habit-keeps-failing</guid>
+      <description>Most journaling habits fail by week 3 — and not because of willpower. 5 hidden mechanisms (Pennebaker research + habit science): wrong format, streak shame, no AI feedback loop, weekly review missing, performance pressure. Here&apos;s how to fix each.</description>
+      <category>Journaling Tips</category>
+      <pubDate>Fri, 22 May 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>I Tested 8 AI Journal Apps for 30 Days: The Honest Ranking (2026)</title>
+      <link>https://nuju.app/blog/i-tested-8-ai-journal-apps-for-30-days</link>
+      <guid isPermaLink="true">https://nuju.app/blog/i-tested-8-ai-journal-apps-for-30-days</guid>
+      <description>Most &apos;best AI journal&apos; lists are surface-level. I used 8 apps daily for 30 days — Nuju, Rosebud, Mindsera, Reflectly, Stoic, Day One, Daylio, Reflection. Here&apos;s the honest ranking with what each one actually does well and where each fails.</description>
+      <category>App Comparison</category>
+      <pubDate>Fri, 22 May 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Why the 31-Character Journal Entry Outperforms Long Pages (Real Data + Pennebaker Research)</title>
+      <link>https://nuju.app/blog/31-character-journal-entry-outperforms-long-pages</link>
+      <guid isPermaLink="true">https://nuju.app/blog/31-character-journal-entry-outperforms-long-pages</guid>
+      <description>Real journal data shows median entry = 31 characters, half a tweet. And the shorter format outperforms long-form for mood improvement, habit formation, and pattern recognition. Counterintuitive but documented. Here&apos;s the research + how to apply it.</description>
+      <category>Journaling Tips</category>
+      <pubDate>Fri, 22 May 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Why I Stopped Gratitude Journaling (and What Actually Works for Mental Health)</title>
+      <link>https://nuju.app/blog/why-i-stopped-gratitude-journaling-and-what-works</link>
+      <guid isPermaLink="true">https://nuju.app/blog/why-i-stopped-gratitude-journaling-and-what-works</guid>
+      <description>Gratitude journaling works for some people — and backfires for others, especially during depression, grief, or burnout. The research is more nuanced than wellness culture suggests. Here&apos;s when gratitude helps, when it harms, and what actually works.</description>
+      <category>Journaling Tips</category>
+      <pubDate>Fri, 22 May 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>5 Aplikasi Mental Health Indonesia yang Mahasiswa Wajib Tahu (Gratis, 2026)</title>
+      <link>https://nuju.app/blog/5-aplikasi-mental-health-indonesia-mahasiswa-wajib-tahu</link>
+      <guid isPermaLink="true">https://nuju.app/blog/5-aplikasi-mental-health-indonesia-mahasiswa-wajib-tahu</guid>
+      <description>Banyak aplikasi mental health Indonesia gratis tapi underused mahasiswa karena nggak banyak dipromosikan. 5 aplikasi yang harus ada di phone setiap mahasiswa Indonesia 2026 — dari journal AI sampai konsultasi gratis dengan psikolog.</description>
+      <category>App Comparison</category>
+      <pubDate>Fri, 22 May 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Aplikasi Journal AI Tested 30 Hari: 6 App, Ini Pemenangnya (Indonesia 2026)</title>
+      <link>https://nuju.app/blog/aplikasi-journal-ai-tested-30-hari-indonesia</link>
+      <guid isPermaLink="true">https://nuju.app/blog/aplikasi-journal-ai-tested-30-hari-indonesia</guid>
+      <description>Most &apos;best journal AI&apos; lists Indonesia surface-level. Saya pakai 6 aplikasi journal AI setiap hari selama 30 hari — Nuju, Daylio, Reflectly, Riliv, What&apos;s Up, Calm. Honest ranking dengan apa yang bekerja dan tidak untuk pengguna Indonesia.</description>
+      <category>App Comparison</category>
       <pubDate>Fri, 22 May 2026 12:00:00 GMT</pubDate>
       <dc:language>en</dc:language>
     </item>
