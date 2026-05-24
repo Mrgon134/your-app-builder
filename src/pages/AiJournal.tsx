@@ -180,8 +180,8 @@ const AiJournal: React.FC = () => {
   return (
     <div className="min-h-screen bg-background">
       <SEOHead
-        title="AI Journal App That Reads Your Mood Patterns"
-        description="Nuju is the AI journal app that turns 30-second mood check-ins and written reflection into warm AI reads, weekly patterns, and a coach that fits your style. Start free."
+        title="AI Journal App for Mood Tracking, Memory, and Private Reflection"
+        description="Nuju turns 30-second mood check-ins and written reflection into warm AI reads, weekly patterns, and a coach that fits your style. Free to start."
         canonical={CANONICAL}
         breadcrumbs={[
           { name: "Home", url: "https://nuju.app/" },

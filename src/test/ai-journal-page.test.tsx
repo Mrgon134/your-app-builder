@@ -44,7 +44,7 @@ describe("AiJournal landing page", () => {
     renderPage();
     expect(seoHeadProps).toHaveBeenCalledWith(
       expect.objectContaining({
-        title: "AI Journal App That Reads Your Mood Patterns",
+        title: "AI Journal App for Mood Tracking, Memory, and Private Reflection",
         canonical: "https://nuju.app/ai-journal",
       }),
     );

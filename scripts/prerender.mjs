@@ -2112,9 +2112,9 @@ function buildStaticPages(posts) {
     },
     {
       route: "/ai-journal",
-      title: "AI Journal App That Reads Your Mood Patterns",
+      title: "AI Journal App for Mood Tracking, Memory, and Private Reflection",
       description:
-        "Nuju is the AI journal app that turns 30-second mood check-ins and written reflection into warm AI reads, weekly patterns, and a coach that fits your style. Start free.",
+        "Nuju turns 30-second mood check-ins and written reflection into warm AI reads, weekly patterns, and a coach that fits your style. Free to start.",
       canonical: `${BASE_URL}/ai-journal`,
       breadcrumbs: [
         { name: "Home", url: `${BASE_URL}/` },
@@ -2210,9 +2210,9 @@ function buildStaticPages(posts) {
     },
     {
       route: "/mood-tracker",
-      title: "Mood Tracker App with AI Trends in 10 Seconds a Day",
+      title: "Mood Tracker App with AI Insights and 10-Second Check-Ins",
       description:
-        "Nuju is the mood tracker app for quick mood logs, 30-day trend charts, and AI summaries that explain what is actually moving your mood. Start free.",
+        "Track mood in 10 seconds, see 30-day patterns, and get AI summaries that explain your trends. Nuju is a private mood tracker app, free to start.",
       canonical: `${BASE_URL}/mood-tracker`,
       breadcrumbs: [
         { name: "Home", url: `${BASE_URL}/` },
@@ -2318,7 +2318,7 @@ function buildStaticPages(posts) {
       route: "/voice-journaling",
       title: "Voice Journaling App with AI Transcription and Reflection",
       description:
-        "Speak for one minute and get an instant transcript with AI reflection. Spoken entries roll into your mood patterns when typing feels too heavy. Start free.",
+        "Record a private voice journal, get an instant transcript with AI reflection, and feed spoken entries into your mood patterns. Free to start.",
       canonical: `${BASE_URL}/voice-journaling`,
       breadcrumbs: [
         { name: "Home", url: `${BASE_URL}/` },

@@ -149,7 +149,7 @@ const VoiceJournaling: React.FC = () => {
     <div className="min-h-screen bg-background">
       <SEOHead
         title="Voice Journaling App with AI Transcription and Reflection"
-        description="Speak for one minute and get an instant transcript with AI reflection. Spoken entries roll into your mood patterns when typing feels too heavy. Start free."
+        description="Record a private voice journal, get an instant transcript with AI reflection, and feed spoken entries into your mood patterns. Free to start."
         canonical={CANONICAL}
         breadcrumbs={[
           { name: "Home", url: "https://nuju.app/" },

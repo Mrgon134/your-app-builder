@@ -118,9 +118,9 @@ describe("Blog recommendation surfaces", () => {
     expect(screen.getByRole("heading", { name: /how we tested the 8 apps/i })).toBeInTheDocument();
     expect(seoHeadProps).toHaveBeenCalledWith(
       expect.objectContaining({
-        title: "8 Best AI Journaling Apps in 2026 (We Tested All — 3 Worth It)",
+        title: "Best AI Journaling App 2026: 8 Apps Tested for Real Insight",
         description:
-          "We tested 8 AI journaling apps for real AI insight, privacy, and free access. Only 3 passed our 30-day test — see the best free AI journal first.",
+          "We tested 8 AI journaling apps for memory, mood tracking, privacy, and free access. See which one gives specific insight, not generic chat.",
         canonical: "https://nuju.app/blog/best-ai-journaling-apps",
       }),
     );
@@ -136,7 +136,7 @@ describe("Blog recommendation surfaces", () => {
       "href",
       "/blog/best-mood-tracker-apps",
     );
-    expect(within(cluster).getByRole("link", { name: /best daylio alternatives/i })).toHaveAttribute(
+    expect(within(cluster).getByRole("link", { name: /best daylio alternative/i })).toHaveAttribute(
       "href",
       "/blog/daylio-alternatives",
     );

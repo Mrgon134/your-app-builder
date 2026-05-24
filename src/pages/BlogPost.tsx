@@ -85,6 +85,11 @@ const INTERNAL_LINK_RECOMMENDATIONS: Record<string, InternalLinkRecommendation[]
       body: "A focused comparison for readers already familiar with Daylio.",
     },
     {
+      slug: "best-mood-tracker-for-bipolar-2026",
+      eyebrow: "Clinical tracking intent",
+      body: "A safer next read for people comparing mood trackers for bipolar-specific logging.",
+    },
+    {
       slug: "emoko-alternatives",
       eyebrow: "Cute mood tracker switch",
       body: "For readers who started with Emoko and want a tracker that actually reads their entries.",
@@ -102,9 +107,19 @@ const INTERNAL_LINK_RECOMMENDATIONS: Record<string, InternalLinkRecommendation[]
   ],
   "daylio-alternatives": [
     {
+      slug: "nuju-vs-daylio",
+      eyebrow: "Head-to-head",
+      body: "Compare Nuju and Daylio directly if the real question is logging speed versus AI insight.",
+    },
+    {
       slug: "best-mood-tracker-apps",
       eyebrow: "Category view",
       body: "Step back and compare the full mood tracker category side by side.",
+    },
+    {
+      slug: "best-mood-tracker-for-bipolar-2026",
+      eyebrow: "Bipolar mood tracking",
+      body: "Use this if the Daylio switch is really about safer clinical-style mood tracking.",
     },
     {
       slug: "emoko-alternatives",

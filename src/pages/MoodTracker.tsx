@@ -173,8 +173,8 @@ const MoodTracker: React.FC = () => {
   return (
     <div className="min-h-screen bg-background">
       <SEOHead
-        title="Mood Tracker App with AI Trends in 10 Seconds a Day"
-        description="Nuju is the mood tracker app for quick mood logs, 30-day trend charts, and AI summaries that explain what is actually moving your mood. Start free."
+        title="Mood Tracker App with AI Insights and 10-Second Check-Ins"
+        description="Track mood in 10 seconds, see 30-day patterns, and get AI summaries that explain your trends. Nuju is a private mood tracker app, free to start."
         canonical={CANONICAL}
         breadcrumbs={[
           { name: "Home", url: "https://nuju.app/" },
