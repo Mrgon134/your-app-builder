@@ -1058,6 +1058,13 @@ function renderMoodTrackerBody() {
             badge: "Switch",
           },
           {
+            href: "/blog/mood-tracker-app-market-2026",
+            title: "Mood tracker app market 2026",
+            description:
+              "Why the category is moving from emoji logs to privacy, AI insight, and interpretation.",
+            badge: "Market signal",
+          },
+          {
             href: "/blog/benefits-of-mood-tracking",
             title: "Science-backed benefits of mood tracking",
             description:

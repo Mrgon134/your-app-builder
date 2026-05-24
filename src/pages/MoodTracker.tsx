@@ -371,6 +371,10 @@ const MoodTracker: React.FC = () => {
             <Link to="/blog/daylio-alternatives" className="text-primary underline-offset-4 hover:underline">
               the Daylio alternatives guide
             </Link>
+            {", or "}
+            <Link to="/blog/mood-tracker-app-market-2026" className="text-primary underline-offset-4 hover:underline">
+              the 2026 mood tracker market breakdown
+            </Link>
             .
           </p>
         </section>

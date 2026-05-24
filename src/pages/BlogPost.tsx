@@ -80,6 +80,11 @@ const INTERNAL_LINK_RECOMMENDATIONS: Record<string, InternalLinkRecommendation[]
   ],
   "best-mood-tracker-apps": [
     {
+      slug: "mood-tracker-app-market-2026",
+      eyebrow: "Market signal",
+      body: "A data-led look at why mood tracker apps are shifting from emoji logs to AI insight.",
+    },
+    {
       slug: "daylio-alternatives",
       eyebrow: "Alternative query",
       body: "A focused comparison for readers already familiar with Daylio.",
@@ -103,6 +108,28 @@ const INTERNAL_LINK_RECOMMENDATIONS: Record<string, InternalLinkRecommendation[]
       slug: "best-ai-journaling-apps",
       eyebrow: "AI journal intent",
       body: "Compare AI journaling apps if you want mood data plus written reflection.",
+    },
+  ],
+  "mood-tracker-app-market-2026": [
+    {
+      slug: "best-mood-tracker-apps",
+      eyebrow: "App comparison",
+      body: "Compare the consumer mood tracker apps that represent each market segment.",
+    },
+    {
+      slug: "mood-tracker-for-self-awareness",
+      eyebrow: "User need",
+      body: "Read why the market shift matters when the real goal is self-awareness.",
+    },
+    {
+      slug: "what-people-write-in-journal-data",
+      eyebrow: "Nuju data",
+      body: "See the first-cohort usage data behind the low-bandwidth journaling pattern.",
+    },
+    {
+      slug: "ai-coach-personality-preference-data",
+      eyebrow: "AI tone data",
+      body: "Understand why users choose gentle AI coaching more often than tough-love prompts.",
     },
   ],
   "daylio-alternatives": [
