@@ -63,6 +63,46 @@
       ]
     }
   </script>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is Nuju?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Nuju is an AI journal and mood tracker app for quick emotional check-ins, written or spoken journaling, and AI reflections that help you notice patterns over time."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is Nuju the same as Nu Ju or Nujuu?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. People sometimes search for Nuju as Nu Ju or Nujuu, but the app name is Nuju."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is Nuju available on the App Store?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Nuju is available on the Apple App Store for iPhone, and you can also use Nuju on the web."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I try Nuju for free?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. You can start with the free Ju Gets You reveal before choosing whether to keep using Nuju Pro."
+          }
+        }
+      ]
+    }
+  </script>
 
   <script>
     if (
@@ -138,6 +178,22 @@
     .seo-fallback__grid {
       margin-top: 34px;
     }
+    .seo-fallback__faq {
+      margin-top: 28px;
+    }
+    .seo-fallback__faq h2 {
+      margin: 0 0 14px;
+      font-size: 22px;
+    }
+    .seo-fallback__faq details {
+      max-width: 760px;
+      border-top: 1px solid rgba(23, 19, 31, 0.12);
+      padding: 14px 0;
+    }
+    .seo-fallback__faq summary {
+      cursor: pointer;
+      font-weight: 700;
+    }
     .seo-fallback__card {
       flex: 1 1 220px;
       border: 1px solid rgba(122, 101, 214, 0.16);
@@ -189,6 +245,25 @@
             <h2>Voice journaling</h2>
             <p>Talk when typing feels heavy and let spoken entries feed the same pattern layer.</p>
           </article>
+        </section>
+        <section class="seo-fallback__faq" aria-label="Nuju frequently asked questions">
+          <h2>Nuju FAQ</h2>
+          <details open>
+            <summary>What is Nuju?</summary>
+            <p>Nuju is an AI journal and mood tracker app for quick emotional check-ins, written or spoken journaling, and AI reflections that help you notice patterns over time.</p>
+          </details>
+          <details>
+            <summary>Is Nuju the same as Nu Ju or Nujuu?</summary>
+            <p>Yes. People sometimes search for Nuju as Nu Ju or Nujuu, but the app name is Nuju.</p>
+          </details>
+          <details>
+            <summary>Is Nuju available on the App Store?</summary>
+            <p>Yes. Nuju is available on the Apple App Store for iPhone, and you can also use Nuju on the web.</p>
+          </details>
+          <details>
+            <summary>Can I try Nuju for free?</summary>
+            <p>Yes. You can start with the free Ju Gets You reveal before choosing whether to keep using Nuju Pro.</p>
+          </details>
         </section>
       </div>
     </main>
