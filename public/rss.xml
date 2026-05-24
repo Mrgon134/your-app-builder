@@ -6,7 +6,16 @@
     <atom:link href="https://nuju.app/rss.xml" rel="self" type="application/rss+xml" />
     <description>Practical guides on journaling, mood tracking, and emotional wellness from the Nuju team.</description>
     <language>en</language>
-    <lastBuildDate>Sat, 23 May 2026 08:02:17 GMT</lastBuildDate>
+    <lastBuildDate>Sun, 24 May 2026 06:33:16 GMT</lastBuildDate>
+    <item>
+      <title>Best Daily Reflection App in 2026: What Actually Builds Self-Awareness</title>
+      <link>https://nuju.app/blog/daily-reflection-app</link>
+      <guid isPermaLink="true">https://nuju.app/blog/daily-reflection-app</guid>
+      <description>A good daily reflection app should do more than save prompts. Here is what to look for if you want fast check-ins, mood context, and AI that helps you notice patterns.</description>
+      <category>App Comparison</category>
+      <pubDate>Sun, 24 May 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
     <item>
       <title>We Analyzed Our First 161 Real Journal Entries: 87% Were Logged on &apos;Not Great&apos; Days</title>
       <link>https://nuju.app/blog/what-people-write-in-journal-data</link>

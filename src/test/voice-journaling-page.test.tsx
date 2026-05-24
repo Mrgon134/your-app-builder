@@ -45,7 +45,7 @@ describe("VoiceJournaling landing page", () => {
     renderPage();
     expect(seoHeadProps).toHaveBeenCalledWith(
       expect.objectContaining({
-        title: "AI Voice Journal: Speak a Minute, Get Reflection",
+        title: "Voice Journaling App with AI Transcription and Reflection",
         canonical: "https://nuju.app/voice-journaling",
       }),
     );

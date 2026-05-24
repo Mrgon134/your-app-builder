@@ -36,7 +36,7 @@ describe("MoodTracker landing page", () => {
     expect(
       screen.getByRole("heading", {
         level: 1,
-        name: /the mood tracker that explains what is moving you/i,
+        name: /the mood tracker app that explains what is moving you/i,
       }),
     ).toBeInTheDocument();
   });
@@ -45,7 +45,7 @@ describe("MoodTracker landing page", () => {
     renderPage();
     expect(seoHeadProps).toHaveBeenCalledWith(
       expect.objectContaining({
-        title: "AI Mood Tracker: 30-Day Trends in 10 Seconds a Day",
+        title: "Mood Tracker App with AI Trends in 10 Seconds a Day",
         canonical: "https://nuju.app/mood-tracker",
       }),
     );

@@ -22,6 +22,7 @@ const RECOMMENDATION_USE_CASE_SLUGS = new Set([
   "journaling-for-adhd",
   "ai-journal-for-overthinking",
   "mood-tracker-for-self-awareness",
+  "daily-reflection-app",
 ]);
 
 const getRecommendationPageType = (
@@ -208,6 +209,11 @@ const INTERNAL_LINK_RECOMMENDATIONS: Record<string, InternalLinkRecommendation[]
   ],
   "best-self-reflection-apps": [
     {
+      slug: "daily-reflection-app",
+      eyebrow: "Daily habit",
+      body: "Use this if you want reflection to become a low-friction daily practice, not a once-in-a-while prompt.",
+    },
+    {
       slug: "best-ai-journaling-apps",
       eyebrow: "AI journal intent",
       body: "Go deeper on AI journaling apps when reflection means pattern recognition.",
@@ -221,6 +227,23 @@ const INTERNAL_LINK_RECOMMENDATIONS: Record<string, InternalLinkRecommendation[]
       slug: "mood-tracker-for-self-awareness",
       eyebrow: "Use case",
       body: "Read this if your real goal is self-awareness, not collecting reflection stats.",
+    },
+  ],
+  "daily-reflection-app": [
+    {
+      slug: "best-self-reflection-apps",
+      eyebrow: "Category view",
+      body: "Compare the broader self-reflection app category before choosing a daily tool.",
+    },
+    {
+      slug: "best-ai-journaling-apps",
+      eyebrow: "AI journal intent",
+      body: "See which AI journaling apps actually read your entries and surface patterns.",
+    },
+    {
+      slug: "mood-tracker-for-self-awareness",
+      eyebrow: "Mood context",
+      body: "Go deeper on mood tracking when the goal is self-awareness, not just a streak.",
     },
   ],
   "mood-tracking-for-anxiety": [

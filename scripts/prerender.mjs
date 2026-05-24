@@ -1543,11 +1543,16 @@ function renderBlogIndexBody(posts) {
     "best-mood-tracker-apps",
     "best-journaling-apps-2026",
     "daylio-alternatives",
+    "apple-journal-alternatives",
+    "day-one-alternative",
     "reflectly-alternatives",
+    "best-self-reflection-apps",
+    "daily-reflection-app",
     "ai-journal-vs-traditional",
     "mood-tracking-for-anxiety",
     "ai-journal-for-overthinking",
     "mood-tracker-for-self-awareness",
+    "emoko-alternatives",
     "journaling-for-adhd",
   ]);
 
@@ -2091,7 +2096,7 @@ function buildStaticPages(posts) {
       route: "/",
       title: "Nuju - AI Journal App for Mood Tracking & Emotional Clarity",
       description:
-        "Nuju is the AI journal app that turns hard-to-explain feelings into a private emotional read, gentle mood patterns, and a soft next step. Start the free Ju Gets You reveal.",
+        "Nuju is the AI journal and mood tracker app for racing thoughts, 3am overthinking, and feelings you can't name yet. Get a warm read, a clear mood pattern, and one gentle next step.",
       canonical: `${BASE_URL}/`,
       noSuffix: true,
       breadcrumbs: [{ name: "Home", url: `${BASE_URL}/` }],
@@ -2107,9 +2112,9 @@ function buildStaticPages(posts) {
     },
     {
       route: "/ai-journal",
-      title: "AI Journaling App for Mood Tracking and Pattern Discovery",
+      title: "AI Journal App That Reads Your Mood Patterns",
       description:
-        "Nuju is the AI journaling app that turns 30-second mood check-ins and written reflection into weekly patterns, AI summaries, and a coach that fits your style. Start free.",
+        "Nuju is the AI journal app that turns 30-second mood check-ins and written reflection into warm AI reads, weekly patterns, and a coach that fits your style. Start free.",
       canonical: `${BASE_URL}/ai-journal`,
       breadcrumbs: [
         { name: "Home", url: `${BASE_URL}/` },
@@ -2205,9 +2210,9 @@ function buildStaticPages(posts) {
     },
     {
       route: "/mood-tracker",
-      title: "Mood Tracker App with AI Pattern Detection and Trends",
+      title: "Mood Tracker App with AI Trends in 10 Seconds a Day",
       description:
-        "Nuju is the mood tracker app that pairs 10-second check-ins with optional reflection, 30-day trend charts, and AI summaries that interpret what is moving your mood. Start free.",
+        "Nuju is the mood tracker app for quick mood logs, 30-day trend charts, and AI summaries that explain what is actually moving your mood. Start free.",
       canonical: `${BASE_URL}/mood-tracker`,
       breadcrumbs: [
         { name: "Home", url: `${BASE_URL}/` },
@@ -2313,7 +2318,7 @@ function buildStaticPages(posts) {
       route: "/voice-journaling",
       title: "Voice Journaling App with AI Transcription and Reflection",
       description:
-        "Nuju voice journaling lets you talk for a minute, get an instant transcript with AI reflection, and feed spoken entries into your mood patterns. Try the free reveal.",
+        "Speak for one minute and get an instant transcript with AI reflection. Spoken entries roll into your mood patterns when typing feels too heavy. Start free.",
       canonical: `${BASE_URL}/voice-journaling`,
       breadcrumbs: [
         { name: "Home", url: `${BASE_URL}/` },

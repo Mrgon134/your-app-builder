@@ -173,8 +173,8 @@ const MoodTracker: React.FC = () => {
   return (
     <div className="min-h-screen bg-background">
       <SEOHead
-        title="AI Mood Tracker: 30-Day Trends in 10 Seconds a Day"
-        description="Log your mood in 10 seconds. Get 30-day trend charts and AI summaries that explain what is actually moving it. Free, no signup wall."
+        title="Mood Tracker App with AI Trends in 10 Seconds a Day"
+        description="Nuju is the mood tracker app for quick mood logs, 30-day trend charts, and AI summaries that explain what is actually moving your mood. Start free."
         canonical={CANONICAL}
         breadcrumbs={[
           { name: "Home", url: "https://nuju.app/" },
@@ -211,7 +211,7 @@ const MoodTracker: React.FC = () => {
             Mood tracker app
           </p>
           <h1 className="mx-auto max-w-2xl font-serif text-4xl font-bold leading-tight text-foreground sm:text-5xl">
-            The mood tracker that explains what is moving you
+            The mood tracker app that explains what is moving you
           </h1>
           <p className="mx-auto mt-5 max-w-xl text-lg leading-relaxed text-muted-foreground">
             Most mood trackers stop at emoji and activity tags. Nuju pairs a 10-second check-in with optional written

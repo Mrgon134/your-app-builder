@@ -3,21 +3,21 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nuju - Stop spiraling. Feel understood in 60 seconds.</title>
-  <meta name="description" content="The AI journal that reads between the lines. For the 3am thoughts you can't explain. Get one warm read, one clear pattern, one gentle next step." />
+  <title>Nuju - AI Journal & Mood Tracker App for Emotional Clarity</title>
+  <meta name="description" content="Nuju is the AI journal and mood tracker app for racing thoughts, 3am overthinking, and feelings you can't name yet. Get a warm read, a clear mood pattern, and one gentle next step." />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://nuju.app/" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Nuju" />
-  <meta property="og:title" content="Nuju - Stop spiraling. Feel understood in 60 seconds." />
-  <meta property="og:description" content="The AI journal that reads between the lines. For the 3am thoughts you can't explain. Get one warm read, one clear pattern, one gentle next step." />
+  <meta property="og:title" content="Nuju - AI Journal & Mood Tracker App for Emotional Clarity" />
+  <meta property="og:description" content="Nuju is the AI journal and mood tracker app for racing thoughts, 3am overthinking, and feelings you can't name yet. Get a warm read, a clear mood pattern, and one gentle next step." />
   <meta property="og:url" content="https://nuju.app/" />
   <meta property="og:image" content="https://nuju.app/nuju-og-preview.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Nuju - Stop spiraling. Feel understood in 60 seconds." />
-  <meta name="twitter:description" content="The AI journal that reads between the lines. For the 3am thoughts you can't explain. Get one warm read, one clear pattern, one gentle next step." />
+  <meta name="twitter:title" content="Nuju - AI Journal & Mood Tracker App for Emotional Clarity" />
+  <meta name="twitter:description" content="Nuju is the AI journal and mood tracker app for racing thoughts, 3am overthinking, and feelings you can't name yet. Get a warm read, a clear mood pattern, and one gentle next step." />
   <meta name="twitter:image" content="https://nuju.app/nuju-og-preview.png" />
   <link rel="icon" type="image/png" href="/favicon.png" />
   <link rel="shortcut icon" href="/favicon.ico" />
@@ -28,7 +28,7 @@
       "name": "Nuju",
       "applicationCategory": "HealthApplication",
       "operatingSystem": "iOS, Web",
-      "description": "The AI journal that reads between the lines. For the 3am thoughts you can't explain. Get one warm read, one clear pattern, one gentle next step.",
+      "description": "Nuju is the AI journal and mood tracker app for racing thoughts, 3am overthinking, and feelings you can't name yet. Get a warm read, a clear mood pattern, and one gentle next step.",
       "url": "https://nuju.app/",
       "downloadUrl": "https://apps.apple.com/us/app/nuju/id6763682187"
     }
@@ -50,13 +50,119 @@
   <link rel="stylesheet" href="/landing-exact/styles.css?v=20260522-appstore-og" />
   <link rel="stylesheet" href="/landing-exact/styles-sections.css?v=20260522-appstore-og" />
   <link rel="stylesheet" href="/landing-exact/styles-extra.css?v=20260522-appstore-og" />
+  <style>
+    .seo-fallback {
+      min-height: 100vh;
+      padding: 32px 20px 56px;
+      background: #fbfaf7;
+      color: #17131f;
+      font-family: "DM Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    .seo-fallback__wrap {
+      max-width: 980px;
+      margin: 0 auto;
+    }
+    .seo-fallback__nav,
+    .seo-fallback__actions,
+    .seo-fallback__grid {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .seo-fallback__nav {
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 72px;
+    }
+    .seo-fallback h1 {
+      max-width: 840px;
+      margin: 0;
+      font-family: "Bricolage Grotesque", "DM Sans", sans-serif;
+      font-size: clamp(44px, 8vw, 92px);
+      line-height: 0.96;
+      letter-spacing: -0.03em;
+    }
+    .seo-fallback p {
+      max-width: 660px;
+      color: #665d73;
+      font-size: 18px;
+      line-height: 1.7;
+    }
+    .seo-fallback__button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      padding: 14px 20px;
+      font-weight: 700;
+      text-decoration: none;
+    }
+    .seo-fallback__button--primary {
+      background: linear-gradient(135deg, #8067ff, #61c8e8);
+      color: #fff;
+    }
+    .seo-fallback__button--store {
+      background: #111;
+      color: #fff;
+    }
+    .seo-fallback__grid {
+      margin-top: 34px;
+    }
+    .seo-fallback__card {
+      flex: 1 1 220px;
+      border: 1px solid rgba(122, 101, 214, 0.16);
+      border-radius: 24px;
+      background: rgba(255, 255, 255, 0.74);
+      padding: 18px;
+    }
+    .seo-fallback__card h2 {
+      margin: 0 0 8px;
+      font-size: 18px;
+    }
+  </style>
 
   <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
   <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
   <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
 </head>
 <body>
-  <div id="root"></div>
+  <div id="root">
+    <main class="seo-fallback" aria-label="Nuju landing page">
+      <div class="seo-fallback__wrap">
+        <nav class="seo-fallback__nav" aria-label="Primary">
+          <strong>Nuju</strong>
+          <div class="seo-fallback__actions">
+            <a href="/onboarding?source=landing_seo_fallback">Try Nuju free</a>
+            <a href="https://apps.apple.com/us/app/nuju/id6763682187">Download on the App Store</a>
+          </div>
+        </nav>
+        <h1>Name what you feel. Even when you can't.</h1>
+        <p>
+          Nuju is an AI journal and mood tracker app that turns quick check-ins,
+          messy thoughts, and late-night overthinking into a warm read, a clearer
+          emotional pattern, and one next step you can actually take.
+        </p>
+        <div class="seo-fallback__actions">
+          <a class="seo-fallback__button seo-fallback__button--primary" href="/onboarding?source=landing_seo_fallback_hero">Start the free Ju Gets You reveal</a>
+          <a class="seo-fallback__button seo-fallback__button--store" href="https://apps.apple.com/us/app/nuju/id6763682187">Download on the App Store</a>
+        </div>
+        <section class="seo-fallback__grid" aria-label="What Nuju helps with">
+          <article class="seo-fallback__card">
+            <h2>AI journaling</h2>
+            <p>Write one honest line and get a reflection based on what you actually said.</p>
+          </article>
+          <article class="seo-fallback__card">
+            <h2>Mood tracking</h2>
+            <p>Log mood and energy quickly, then see what keeps moving your week.</p>
+          </article>
+          <article class="seo-fallback__card">
+            <h2>Voice journaling</h2>
+            <p>Talk when typing feels heavy and let spoken entries feed the same pattern layer.</p>
+          </article>
+        </section>
+      </div>
+    </main>
+  </div>
 
   <script type="text/babel" data-presets="react" src="/landing-exact/components/Icons.jsx?v=20260522-appstore-og"></script>
   <script type="text/babel" data-presets="react" src="/landing-exact/components/Shared.jsx?v=20260522-appstore-og"></script>

@@ -38,7 +38,7 @@ const Landing: React.FC = () => {
     <>
       <SEOHead
         title="Nuju - AI Journal App for Mood Tracking & Emotional Clarity"
-        description="Nuju is the AI journal and mood tracker app for racing thoughts, 3am overthinking, and feelings you can't name yet. Turn 30 seconds of mess into a read that lands. Start the Ju Gets You reveal free."
+        description="Nuju is the AI journal and mood tracker app for racing thoughts, 3am overthinking, and feelings you can't name yet. Get a warm read, a clear mood pattern, and one gentle next step."
         canonical="https://nuju.app/"
         noSuffix
       />

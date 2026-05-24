@@ -35,7 +35,7 @@ describe("AiJournal landing page", () => {
     expect(
       screen.getByRole("heading", {
         level: 1,
-        name: /the ai journal that reads what you actually wrote/i,
+        name: /the ai journal app that reads what you actually wrote/i,
       }),
     ).toBeInTheDocument();
   });
@@ -44,7 +44,7 @@ describe("AiJournal landing page", () => {
     renderPage();
     expect(seoHeadProps).toHaveBeenCalledWith(
       expect.objectContaining({
-        title: "AI Journaling App for Mood Tracking and Pattern Discovery",
+        title: "AI Journal App That Reads Your Mood Patterns",
         canonical: "https://nuju.app/ai-journal",
       }),
     );

@@ -11,11 +11,16 @@ const RECOMMENDATION_HUB_ORDER = [
   "best-mood-tracker-apps",
   "best-journaling-apps-2026",
   "daylio-alternatives",
+  "apple-journal-alternatives",
+  "day-one-alternative",
   "reflectly-alternatives",
+  "best-self-reflection-apps",
+  "daily-reflection-app",
   "ai-journal-vs-traditional",
   "mood-tracking-for-anxiety",
   "ai-journal-for-overthinking",
   "mood-tracker-for-self-awareness",
+  "emoko-alternatives",
   "journaling-for-adhd",
 ];
 
@@ -24,11 +29,16 @@ const RECOMMENDATION_HUB_LABELS: Record<string, string> = {
   "best-mood-tracker-apps": "Category query",
   "best-journaling-apps-2026": "Category query",
   "daylio-alternatives": "Alternative query",
+  "apple-journal-alternatives": "Alternative query",
+  "day-one-alternative": "Alternative query",
   "reflectly-alternatives": "Alternative query",
+  "best-self-reflection-apps": "Category query",
+  "daily-reflection-app": "Use-case query",
   "ai-journal-vs-traditional": "Comparison query",
   "mood-tracking-for-anxiety": "Use-case query",
   "ai-journal-for-overthinking": "Use-case query",
   "mood-tracker-for-self-awareness": "Use-case query",
+  "emoko-alternatives": "Alternative query",
   "journaling-for-adhd": "Use-case query",
 };
 
