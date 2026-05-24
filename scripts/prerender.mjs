@@ -1548,6 +1548,7 @@ function renderBlogIndexBody(posts) {
   const recommendationOrder = new Set([
     "best-ai-journaling-apps",
     "best-mood-tracker-apps",
+    "mood-tracker-app-market-2026",
     "best-journaling-apps-2026",
     "daylio-alternatives",
     "apple-journal-alternatives",
@@ -1730,6 +1731,70 @@ function renderBlogSection(section, index, slugifyHeading) {
   }
 }
 
+const BLOG_INTERNAL_LINK_RECOMMENDATIONS = {
+  "best-ai-journaling-apps": [
+    { slug: "best-mood-tracker-apps", badge: "Mood tracker intent" },
+    { slug: "daylio-alternatives", badge: "Daylio switchers" },
+    { slug: "reflectly-alternatives", badge: "Prompt app switchers" },
+    { slug: "how-to-start-journaling", badge: "Habit setup" },
+  ],
+  "best-mood-tracker-apps": [
+    { slug: "mood-tracker-app-market-2026", badge: "Market signal" },
+    { slug: "daylio-alternatives", badge: "Alternative query" },
+    { slug: "best-mood-tracker-for-bipolar-2026", badge: "Clinical tracking intent" },
+    { slug: "emoko-alternatives", badge: "Cute mood tracker switch" },
+    { slug: "mood-tracker-for-self-awareness", badge: "Use case" },
+    { slug: "best-ai-journaling-apps", badge: "AI journal intent" },
+  ],
+  "mood-tracker-app-market-2026": [
+    { slug: "best-mood-tracker-apps", badge: "App comparison" },
+    { slug: "mood-tracker-for-self-awareness", badge: "User need" },
+    { slug: "what-people-write-in-journal-data", badge: "Nuju data" },
+    { slug: "ai-coach-personality-preference-data", badge: "AI tone data" },
+  ],
+  "daylio-alternatives": [
+    { slug: "nuju-vs-daylio", badge: "Head-to-head" },
+    { slug: "best-mood-tracker-apps", badge: "Category view" },
+    { slug: "best-mood-tracker-for-bipolar-2026", badge: "Bipolar mood tracking" },
+    { slug: "emoko-alternatives", badge: "Similar switch" },
+    { slug: "mood-tracker-for-self-awareness", badge: "Deeper use case" },
+    { slug: "best-ai-journaling-apps", badge: "AI reflection" },
+  ],
+  "best-self-reflection-apps": [
+    { slug: "daily-reflection-app", badge: "Daily habit" },
+    { slug: "best-ai-journaling-apps", badge: "AI journal intent" },
+    { slug: "best-mood-tracker-apps", badge: "Stat-driven reflection" },
+    { slug: "mood-tracker-for-self-awareness", badge: "Use case" },
+  ],
+  "apple-journal-alternatives": [
+    { slug: "day-one-alternative", badge: "Premium diary switch" },
+    { slug: "best-ai-journaling-apps", badge: "AI journal category" },
+    { slug: "best-mood-tracker-apps", badge: "Add mood data" },
+  ],
+};
+
+function renderInternalLinkCluster(post, helpers) {
+  const recommendations = BLOG_INTERNAL_LINK_RECOMMENDATIONS[post.slug] ?? [];
+  if (recommendations.length === 0) return "";
+
+  const cards = recommendations
+    .map((recommendation) => {
+      const linkedPost = helpers.publishedPostBySlug.get(recommendation.slug);
+      if (!linkedPost) return null;
+
+      return {
+        href: `/blog/${linkedPost.slug}`,
+        title: linkedPost.title,
+        description: linkedPost.description,
+        badge: recommendation.badge,
+      };
+    })
+    .filter(Boolean);
+
+  if (cards.length === 0) return "";
+  return renderSection("Recommended next reads", renderLinkCardGrid(cards));
+}
+
 function renderBlogPostBody(post, relatedPosts, helpers) {
   const { getPostLanguage, slugifyHeading } = helpers;
   const language = getPostLanguage(post);
@@ -1819,6 +1884,7 @@ function renderBlogPostBody(post, relatedPosts, helpers) {
         </div>
         ${faqHtml}
         ${productLinkHtml}
+        ${renderInternalLinkCluster(post, helpers)}
         ${renderCta({
           title: ctaCopy.title,
           body: ctaCopy.body,
@@ -2541,6 +2607,7 @@ function buildBlogPages(helpers) {
   } = helpers;
 
   const posts = getPublishedBlogPosts(new Date()).map(normalizeBlogPost);
+  const publishedPostBySlug = new Map(posts.map((post) => [post.slug, post]));
 
   return posts.map((post) => {
     const language = getPostLanguage(post);
@@ -2628,6 +2695,7 @@ function buildBlogPages(helpers) {
       schemas: [articleSchema, faqSchema].filter(Boolean),
       bodyHtml: renderBlogPostBody(post, getRelatedPosts(post.slug, 3, new Date()), {
         getPostLanguage,
+        publishedPostBySlug,
         slugifyHeading,
       }),
     };

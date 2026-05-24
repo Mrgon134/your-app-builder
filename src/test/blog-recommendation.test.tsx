@@ -71,6 +71,9 @@ describe("Blog recommendation surfaces", () => {
       hubLinks.getByRole("link", { name: /best ai journaling apps in 2026/i }),
     ).toHaveAttribute("href", "/blog/best-ai-journaling-apps");
     expect(
+      hubLinks.getByRole("link", { name: /mood tracker app market 2026/i }),
+    ).toHaveAttribute("href", "/blog/mood-tracker-app-market-2026");
+    expect(
       hubLinks.getByRole("link", { name: /see how nuju works/i }),
     ).toHaveAttribute("href", "/install");
 

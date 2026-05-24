@@ -9,6 +9,7 @@ import { usePostHogEvents } from "@/hooks/use-posthog-events";
 const RECOMMENDATION_HUB_ORDER = [
   "best-ai-journaling-apps",
   "best-mood-tracker-apps",
+  "mood-tracker-app-market-2026",
   "best-journaling-apps-2026",
   "daylio-alternatives",
   "apple-journal-alternatives",
@@ -27,6 +28,7 @@ const RECOMMENDATION_HUB_ORDER = [
 const RECOMMENDATION_HUB_LABELS: Record<string, string> = {
   "best-ai-journaling-apps": "Category query",
   "best-mood-tracker-apps": "Category query",
+  "mood-tracker-app-market-2026": "Market query",
   "best-journaling-apps-2026": "Category query",
   "daylio-alternatives": "Alternative query",
   "apple-journal-alternatives": "Alternative query",
