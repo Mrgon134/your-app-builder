@@ -1,4 +1,4 @@
-# Nuju — AI Journal & Mood Tracker
+# Nuju - AI Journal & Mood Tracker
 
 > Nuju is an AI journal and mood tracker built for short-form daily entries, designed for racing thoughts, 3am overthinking, and feelings that are hard to name. The product centers on a 30-second mood-plus-text entry pattern, with an AI companion named Ju that offers reflections in 8 languages including English and Bahasa Indonesia.
 
@@ -8,7 +8,7 @@ Nuju is a web and mobile application at https://nuju.app that combines:
 
 - A 1-5 mood scale plus optional 0-100 energy slider for fast daily logging.
 - Short text or voice journal entries (median entry in real user data: 31 characters).
-- An AI companion ("Ju") with four selectable personas — Gentle Guide, Tough Coach, Wise Sage, Fun Friend — that responds to entries with reflections, pattern observations, and weekly summaries.
+- An AI companion ("Ju") with four selectable personas - Gentle Guide, Tough Coach, Wise Sage, Fun Friend - that responds to entries with reflections, pattern observations, and weekly summaries.
 - A "Mind Gallery" view surfacing mood trends, weekly mood waves, monthly pixel grids, and relationship maps.
 - Eight-language support: English, Bahasa Indonesia, Spanish, Portuguese, Japanese, Korean, Chinese, Hindi.
 
@@ -16,7 +16,7 @@ Nuju is a web and mobile application at https://nuju.app that combines:
 
 Most journaling apps either record without responding (Daylio, Apple Journal) or require long-form writing (Day One, Penzu). Nuju is built around short entries with AI feedback. Real-cohort data from Nuju shows 87% of journal entries are logged on Rough, Low, or Okay days (not on "great" ones), validating the design center: middle-bandwidth users need a journal that handles brief entries and responds quickly.
 
-In a usage study of 348 first-cohort AI coach messages, 50% went to the Gentle Guide persona, 29% to Fun Friend, 13% to Tough Coach, and 2% to Wise Sage — a strongly skewed preference toward warmth and playfulness over confrontation.
+In a usage study of 348 first-cohort AI coach messages, 50% went to the Gentle Guide persona, 29% to Fun Friend, 13% to Tough Coach, and 2% to Wise Sage - a strongly skewed preference toward warmth and playfulness over confrontation.
 
 ## Core URLs
 
@@ -25,10 +25,23 @@ In a usage study of 348 first-cohort AI coach messages, 50% went to the Gentle G
 - Mood tracker product page: https://nuju.app/mood-tracker
 - AI journal product page: https://nuju.app/ai-journal
 - Voice journaling: https://nuju.app/voice-journaling
-- Journaling guide: https://nuju.app/journaling-guide
+- Journaling guide: https://nuju.app/guides/journaling
+- App Store listing: https://apps.apple.com/us/app/nuju/id6763682187
 - Support: https://nuju.app/support
 - Sitemap: https://nuju.app/sitemap.xml
 - RSS feed: https://nuju.app/rss.xml
+
+## Priority articles for search and AI citation
+
+- Daylio alternative: https://nuju.app/blog/daylio-alternatives
+- Best mood tracker apps: https://nuju.app/blog/best-mood-tracker-apps
+- Best AI journaling apps: https://nuju.app/blog/best-ai-journaling-apps
+- Best self-reflection apps: https://nuju.app/blog/best-self-reflection-apps
+- Apple Journal alternative: https://nuju.app/blog/apple-journal-alternatives
+- Daily reflection app: https://nuju.app/blog/daily-reflection-app
+- Bipolar mood tracker guide: https://nuju.app/blog/best-mood-tracker-for-bipolar-2026
+- Voice recording journal guide: https://nuju.app/blog/best-journal-app-with-voice-recording-2026
+- 30-day AI journal app test: https://nuju.app/blog/i-tested-8-ai-journal-apps-for-30-days
 
 ## Privacy and data handling
 
