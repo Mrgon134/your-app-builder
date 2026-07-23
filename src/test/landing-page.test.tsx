@@ -81,10 +81,10 @@ vi.mock("@/hooks/use-geo-pricing", () => ({
       weekly: 2.99,
       threeMonth: 15.99,
       yearly: 59.99,
-      plusMonthly: 4.99,
-      plusAnnual: 39.99,
-      proMonthly: 9.99,
-      proAnnual: 79.99,
+      plusMonthly: 3.99,
+      plusAnnual: 29.99,
+      proMonthly: 7.99,
+      proAnnual: 59.99,
       lifetime: 12.99,
     },
     isLoading: false,
@@ -160,7 +160,7 @@ describe("Landing page anatomy", () => {
       expect.objectContaining({
         title: "Nuju - AI Journal App for Mood Tracking & Emotional Clarity",
         description:
-          "Nuju is the AI journal and mood tracker app for racing thoughts, 3am overthinking, and feelings you can't name yet. Turn 30 seconds of mess into a read that lands. Start the Ju Gets You reveal free.",
+          "Nuju is the AI journal and mood tracker app for racing thoughts, 3am overthinking, and feelings you can't name yet. Get a warm read, a clear mood pattern, and one gentle next step.",
         canonical: "https://nuju.app/",
         noSuffix: true,
       }),

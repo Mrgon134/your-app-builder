@@ -3987,7 +3987,7 @@ const RAW_BLOG_POSTS: BlogPost[] = [
       { type: "h2", content: "1. Nuju — best for daily 5-minute anxiety entries" },
       { type: "p", content: "Nuju is built around the 30-second mood-plus-text pattern that matches real-world anxiety usage. The default AI persona is 'Gentle Guide,' which 50% of Nuju users actively pick across 348 first-cohort coach messages — and is the most appropriate tone for anxiety states." },
       { type: "p", content: "Strengths for anxiety: short entries are the design center, not an afterthought. 8 languages including Bahasa Indonesia. Mood tracking + energy slider gives two data points per entry without text. The Mind Gallery surfaces weekly anxiety patterns automatically." },
-      { type: "p", content: "Limits: Nuju is young (launched 2026), so the longitudinal pattern depth is still maturing. No prescribed CBT framework — Nuju is reflective, not cognitive-restructuring. If you want a structured anxiety protocol, see Mindsera below. Pricing: free tier covers daily journaling with AI insights; Plus tier ($4.99/mo) unlocks full history and advanced patterns." },
+      { type: "p", content: "Limits: Nuju is young (launched 2026), so the longitudinal pattern depth is still maturing. No prescribed CBT framework — Nuju is reflective, not cognitive-restructuring. If you want a structured anxiety protocol, see Mindsera below. Pricing: free tier covers daily journaling with AI insights; Plus tier ($3.99/mo) unlocks full history and advanced patterns." },
       { type: "h2", content: "2. Rosebud — best for structured CBT-style prompts" },
       { type: "p", content: "Rosebud is built around guided reflection sequences designed by therapists. The app uses GPT-4o for prompt delivery and has reported (per their own data) a 64% improvement in depressive symptoms after 7 days of use. For anxiety specifically, Rosebud's structured prompts work well if your anxiety responds to having a clear framework rather than open-ended writing." },
       { type: "p", content: "Strengths: clinical-style structure, habit tracking, guided weekly review. The prompts feel like therapy homework, which works for people already in or recently in therapy." },
@@ -4160,7 +4160,7 @@ const RAW_BLOG_POSTS: BlogPost[] = [
       { type: "h2", content: "1. Nuju — terbaik untuk daily AI journaling Bahasa Indonesia" },
       { type: "p", content: "Nuju adalah aplikasi journal AI yang dirancang dengan format entri pendek 30 detik. Bahasa Indonesia didukung penuh — UI, prompt, dan respons AI semuanya dalam Bahasa Indonesia jika dipilih. Persona AI default 'Gentle' (lembut) dipilih oleh 50% pengguna global secara aktif berdasarkan data 348 percakapan pertama." },
       { type: "p", content: "Kelebihan: free tier mencakup journaling harian dengan AI insight. Mood tracker + energy slider terintegrasi. Mind Gallery view nunjukin pattern mingguan. 8 bahasa termasuk Bahasa Indonesia. Privasi: enkripsi, data jurnal nggak dipakai training AI." },
-      { type: "p", content: "Batasan: aplikasi masih relatif baru (launched 2026), jadi pattern jangka panjang masih berkembang. Untuk fitur penuh (riwayat unlimited, AI insight mendalam), butuh upgrade ke Plus ($4.99/bulan, sekitar Rp 75.000). Free tier cukup untuk daily use." },
+      { type: "p", content: "Batasan: aplikasi masih relatif baru (launched 2026), jadi pattern jangka panjang masih berkembang. Untuk fitur penuh (riwayat unlimited, AI insight mendalam), butuh upgrade ke Plus ($3.99/bulan, sekitar Rp 60.000). Free tier cukup untuk daily use." },
       { type: "h2", content: "2. Riliv — terbaik untuk konsultasi gratis" },
       { type: "p", content: "Riliv adalah aplikasi buatan Indonesia yang menawarkan konsultasi kesehatan mental gratis dengan relawan mahasiswa psikologi dari Universitas Indonesia, Universitas Airlangga, dan Universitas Negeri Surabaya. Bukan AI journal murni, tapi sering dipakai bersama aplikasi journal untuk lapis tambahan." },
       { type: "p", content: "Kelebihan: aplikasi lokal, konteks budaya Indonesia kuat. Fitur konsultasi gratis adalah unique selling point — nggak ada di aplikasi internasional. Komunitas pengguna besar di Indonesia." },
@@ -4234,7 +4234,7 @@ const RAW_BLOG_POSTS: BlogPost[] = [
       {
         question: "Kapan upgrade dari gratis ke berbayar?",
         answer:
-          "Tiga sinyal: (1) Lo udah konsisten journal 2+ minggu dan mau lihat riwayat lengkap, (2) AI insight mingguan terasa membantu dan lo mau analisis lebih dalam, (3) Lo siap commit ke kesehatan mental sebagai prioritas hidup. Kalau ketiganya belum kerasa, free tier masih cukup. Nuju Plus Rp 75.000/bulan dan Pro Rp 150.000/bulan adalah pilihan yang sepadan kalau ketiga sinyal di atas udah jelas.",
+          "Tiga sinyal: (1) Lo udah konsisten journal 2+ minggu dan mau lihat riwayat lengkap, (2) AI insight mingguan terasa membantu dan lo mau analisis lebih dalam, (3) Lo siap commit ke kesehatan mental sebagai prioritas hidup. Kalau ketiganya belum kerasa, free tier masih cukup. Nuju Plus Rp 60.000/bulan dan Pro Rp 120.000/bulan adalah pilihan yang sepadan kalau ketiga sinyal di atas udah jelas.",
       },
     ],
   },
@@ -4534,7 +4534,7 @@ const RAW_BLOG_POSTS: BlogPost[] = [
       { type: "ul", content: [
         "Entry length: Nuju median entry = 31 characters (one line). Rosebud expects 3-5 question-answer pairs per session — typically 200+ words.",
         "AI tone: Nuju default = Gentle Guide (50% of users actively pick this). Rosebud = therapeutically structured, more formal.",
-        "Pricing: Nuju free tier covers daily journaling with AI insights; Plus = $4.99/mo. Rosebud free tier has daily caps; full access = $12.99/mo.",
+        "Pricing: Nuju free tier covers daily journaling with AI insights; Plus = $3.99/mo. Rosebud free tier has daily caps; full access = $12.99/mo.",
         "Privacy: Nuju never uses entries for AI training (explicit). Rosebud's TOS includes a data training clause for anonymized content — a complaint cited in 2026 reviews.",
         "Languages: Nuju supports 8 languages including Bahasa Indonesia, Spanish, Portuguese, Japanese, Korean, Chinese, Hindi. Rosebud is primarily English.",
       ] },
@@ -4564,12 +4564,12 @@ const RAW_BLOG_POSTS: BlogPost[] = [
       { type: "p", content: "Annualized cost matters more than monthly rate for tools you actually use daily:" },
       { type: "ul", content: [
         "Nuju Free: $0/year. Daily journaling, mood tracker, AI insights. No caps for normal use.",
-        "Nuju Plus: $4.99/month or $39.99/year ($3.33/mo equivalent). Full history, advanced patterns, weekly summaries.",
-        "Nuju Pro: $9.99/month or $79.99/year. Voice journaling, all coach personas, relationship maps.",
+        "Nuju Plus: $3.99/month or $29.99/year ($2.50/mo equivalent). Full history, advanced patterns, weekly summaries.",
+        "Nuju Pro: $7.99/month or $59.99/year. Voice journaling, all coach personas, relationship maps.",
         "Rosebud Free: $0/year. Limited daily AI interactions.",
         "Rosebud Full: $12.99/month. ~$156/year if monthly. No annual discount widely promoted.",
       ] },
-      { type: "p", content: "For users in Indonesia or other emerging markets, Nuju Plus at ~Rp 75.000/month is significantly more accessible than Rosebud at ~Rp 195.000/month." },
+      { type: "p", content: "For users in Indonesia or other emerging markets, Nuju Plus at ~Rp 60.000/month is significantly more accessible than Rosebud at ~Rp 195.000/month." },
       { type: "h2", content: "What both apps share" },
       { type: "p", content: "Both apps:" },
       { type: "ul", content: [
@@ -4596,7 +4596,7 @@ const RAW_BLOG_POSTS: BlogPost[] = [
       {
         question: "Is Nuju cheaper than Rosebud?",
         answer:
-          "Yes, significantly. Nuju has a free tier that covers daily journaling with AI insights — Rosebud's free tier has daily usage caps. Nuju Plus is $4.99/month or $39.99/year. Rosebud Full is $12.99/month with no widely-promoted annual discount. For users in emerging markets, the difference is even larger — Nuju Plus is ~Rp 75.000/month vs Rosebud at ~Rp 195.000/month.",
+          "Yes, significantly. Nuju has a free tier that covers daily journaling with AI insights — Rosebud's free tier has daily usage caps. Nuju Plus is $3.99/month or $29.99/year. Rosebud Full is $12.99/month with no widely-promoted annual discount. For users in emerging markets, the difference is even larger — Nuju Plus is ~Rp 60.000/month vs Rosebud at ~Rp 195.000/month.",
       },
       {
         question: "Does Rosebud use your journal entries to train AI?",
@@ -4646,7 +4646,7 @@ const RAW_BLOG_POSTS: BlogPost[] = [
         "AI tone: Nuju = warm (Gentle persona picked by 50% of users actively). Mindsera = analytical, formal, logic-over-empathy per 2026 reviews.",
         "Core feature: Nuju = daily short entries with mood/energy tracking. Mindsera = cognitive distortion identification + CBT reframing.",
         "Entry style: Nuju supports 30-second entries (median 31 chars). Mindsera expects longer entries for the analysis engine to work.",
-        "Pricing: Nuju free tier strong, Plus $4.99/mo. Mindsera subscription-only $8-12/mo, no permanent free tier.",
+        "Pricing: Nuju free tier strong, Plus $3.99/mo. Mindsera subscription-only $8-12/mo, no permanent free tier.",
         "Best use case: Nuju for emotional processing and daily check-ins. Mindsera for cognitive work on recurring distorted thoughts.",
       ] },
       { type: "h2", content: "Where Mindsera wins" },
@@ -4680,8 +4680,8 @@ const RAW_BLOG_POSTS: BlogPost[] = [
       { type: "h2", content: "Pricing breakdown (2026)" },
       { type: "ul", content: [
         "Nuju Free: $0/year. Daily journaling with AI insights.",
-        "Nuju Plus: $4.99/mo or $39.99/yr.",
-        "Nuju Pro: $9.99/mo or $79.99/yr.",
+        "Nuju Plus: $3.99/mo or $29.99/yr.",
+        "Nuju Pro: $7.99/mo or $59.99/yr.",
         "Mindsera: $8-12/month subscription. No permanent free tier — trial only.",
       ] },
       { type: "h2", content: "Decision tree" },
@@ -4713,7 +4713,7 @@ const RAW_BLOG_POSTS: BlogPost[] = [
       {
         question: "Can I use both Mindsera and Nuju?",
         answer:
-          "Yes, and some users do. The common pattern: Nuju as the daily journaling tool (short entries, mood tracking, AI insights), Mindsera as the occasional cognitive work tool when distorted-thought patterns are the focus. Combined cost: Nuju free + Mindsera $8/mo = $8/mo total. Or Nuju Plus $4.99/mo + Mindsera trial periodically.",
+          "Yes, and some users do. The common pattern: Nuju as the daily journaling tool (short entries, mood tracking, AI insights), Mindsera as the occasional cognitive work tool when distorted-thought patterns are the focus. Combined cost: Nuju free + Mindsera $8/mo = $8/mo total. Or Nuju Plus $3.99/mo + Mindsera trial periodically.",
       },
       {
         question: "Which is better for someone in therapy?",
@@ -4977,12 +4977,12 @@ const RAW_BLOG_POSTS: BlogPost[] = [
       { type: "h2", content: "Pricing breakdown (2026)" },
       { type: "ul", content: [
         "Nuju Free: $0/year. Daily journaling, mood tracker, AI insights, all 4 coach personas (basic).",
-        "Nuju Plus: $4.99/mo or $39.99/yr.",
-        "Nuju Pro: $9.99/mo or $79.99/yr.",
+        "Nuju Plus: $3.99/mo or $29.99/yr.",
+        "Nuju Pro: $7.99/mo or $59.99/yr.",
         "Reflection Free: $0/year. Conversational entries, weekly review.",
         "Reflection Premium: typically $5-10/month for advanced features (per 2026 reviews — exact pricing varies).",
       ] },
-      { type: "p", content: "Both apps are accessibly priced in 2026. For users in Indonesia, Nuju Plus at Rp 75.000/month is broadly competitive with Reflection Premium." },
+      { type: "p", content: "Both apps are accessibly priced in 2026. For users in Indonesia, Nuju Plus at Rp 60.000/month is broadly competitive with Reflection Premium." },
       { type: "h2", content: "Decision tree" },
       { type: "ul", content: [
         "Want 30-second entries with mood + line: Nuju.",
@@ -4999,7 +4999,7 @@ const RAW_BLOG_POSTS: BlogPost[] = [
       {
         question: "Are Nuju and Reflection both free?",
         answer:
-          "Both have generous free tiers covering daily journaling and AI insights. Nuju Free includes mood tracking, AI insights, and all 4 coach personas (basic). Reflection Free includes conversational entries and weekly review. Both have paid tiers ($4.99-$9.99/month for Nuju, around $5-10/month for Reflection Premium). For most users, the free tier is sufficient to test whether the format fits.",
+          "Both have generous free tiers covering daily journaling and AI insights. Nuju Free includes mood tracking, AI insights, and all 4 coach personas (basic). Reflection Free includes conversational entries and weekly review. Both have paid tiers ($3.99-$7.99/month for Nuju, around $5-10/month for Reflection Premium). For most users, the free tier is sufficient to test whether the format fits.",
       },
       {
         question: "Do Nuju and Reflection both protect journal privacy?",
@@ -5050,7 +5050,7 @@ const RAW_BLOG_POSTS: BlogPost[] = [
         "AI: Daylio = no AI interpretation, just charts. Nuju = AI reads each entry, surfaces patterns, optional reflection responses.",
         "Text requirement: Daylio = optional notes only. Nuju = short text entries are the design center.",
         "Visual output: Daylio = excellent long-term mood charts + activity correlations. Nuju = Mind Gallery view + mood wave + AI memory cards.",
-        "Pricing: Daylio free is generous. Daylio Premium = ~$3.99 one-time. Nuju Free covers daily journaling; Plus $4.99/mo, Pro $9.99/mo.",
+        "Pricing: Daylio free is generous. Daylio Premium = ~$3.99 one-time. Nuju Free covers daily journaling; Plus $3.99/mo, Pro $7.99/mo.",
       ] },
       { type: "h2", content: "Where Daylio wins" },
       { type: "p", content: "Daylio is the better pick when:" },
@@ -5097,8 +5097,8 @@ const RAW_BLOG_POSTS: BlogPost[] = [
         "Daylio Free: full mood logging, activity tracking, basic charts. Very generous.",
         "Daylio Premium: ~$3.99 one-time purchase. Advanced charts, themes, backup.",
         "Nuju Free: daily journaling with AI insights, 4 coach personas (basic), 8 languages.",
-        "Nuju Plus: $4.99/mo. Full history, advanced patterns, weekly summaries.",
-        "Nuju Pro: $9.99/mo. Voice journaling, all coach personas fully unlocked, relationship maps.",
+        "Nuju Plus: $3.99/mo. Full history, advanced patterns, weekly summaries.",
+        "Nuju Pro: $7.99/mo. Voice journaling, all coach personas fully unlocked, relationship maps.",
       ] },
       { type: "p", content: "If budget is a hard constraint, both apps have legitimate free tiers. Daylio Premium's one-time pricing is unusual in 2026 (most apps are subscription) and worth noting." },
       { type: "h2", content: "Bottom line" },
@@ -5572,7 +5572,7 @@ const RAW_BLOG_POSTS: BlogPost[] = [
         "AI: Apple Journal = no AI interpretation, only on-device activity suggestions. Nuju = AI reads each entry, surfaces patterns, gives reflective feedback.",
         "Languages: Apple Journal = primarily English with limited localization. Nuju = 8 languages including Bahasa Indonesia, Spanish, Portuguese, Japanese, Korean, Chinese, Hindi.",
         "Sync: Apple Journal = iCloud only. Nuju = web + mobile sync across platforms.",
-        "Price: Both have free tiers. Apple Journal is fully free. Nuju free covers daily use; Plus $4.99/mo for advanced patterns.",
+        "Price: Both have free tiers. Apple Journal is fully free. Nuju free covers daily use; Plus $3.99/mo for advanced patterns.",
       ] },
       { type: "h2", content: "Where Apple Journal wins" },
       { type: "p", content: "Apple Journal is the better pick when:" },
@@ -7497,8 +7497,8 @@ const RAW_BLOG_POSTS: BlogPost[] = [
         "Day One Free: limited (only one journal, no sync across devices, no premium themes).",
         "Day One Premium: ~$34.99/year. Full features, unlimited journals, cross-device sync.",
         "Nuju Free: full daily journaling with AI insights, mood tracking, 4 personas (basic), 8 languages.",
-        "Nuju Plus: $4.99/mo or $39.99/yr.",
-        "Nuju Pro: $9.99/mo or $79.99/yr.",
+        "Nuju Plus: $3.99/mo or $29.99/yr.",
+        "Nuju Pro: $7.99/mo or $59.99/yr.",
       ] },
       { type: "h2", content: "Decision tree" },
       { type: "ul", content: [
@@ -8554,7 +8554,7 @@ const RAW_BLOG_POSTS: BlogPost[] = [
         "Privacy paradox: voice can feel more private than text (no one will read the audio) while paradoxically being more honest because text-edit-mode doesn't kick in.",
       ] },
       { type: "h2", content: "1. Nuju Pro — best AI-augmented voice journaling" },
-      { type: "p", content: "Nuju Pro includes voice journaling integrated with mood tracking, AI insights, and pattern recognition. Voice entries are transcribed automatically, and AI surfaces patterns across both text and voice entries. $9.99/month or $79.99/year (~Rp 150.000/bulan)." },
+      { type: "p", content: "Nuju Pro includes voice journaling integrated with mood tracking, AI insights, and pattern recognition. Voice entries are transcribed automatically, and AI surfaces patterns across both text and voice entries. $7.99/month or $59.99/year (~Rp 120.000/bulan)." },
       { type: "p", content: "Strengths: voice integrates with the broader Nuju ecosystem (mood + energy + AI insights). The Gentle persona responds to voice entries with reflections that match the emotional tone. Multi-language support including Bahasa Indonesia voice recognition." },
       { type: "p", content: "Limits: Nuju Pro voice is in Pro tier only (not free). For pure voice without AI, simpler tools may be cheaper." },
       { type: "h2", content: "2. Day One — best for long-form voice diary" },
@@ -9073,7 +9073,7 @@ const RAW_BLOG_POSTS: BlogPost[] = [
       {
         question: "Is Nuju cheaper than Stoic?",
         answer:
-          "Yes significantly. Nuju Free covers daily journaling with AI insights, mood tracking, 8 languages — fully usable indefinitely. Nuju Plus $4.99/month for advanced features. Stoic has no permanent free tier; ~$30/year for full access. For budget-conscious users, Nuju Free + occasional Stoic philosophical reading on the web (Marcus Aurelius writings are public domain) is a viable combination.",
+          "Yes significantly. Nuju Free covers daily journaling with AI insights, mood tracking, 8 languages — fully usable indefinitely. Nuju Plus $3.99/month for advanced features. Stoic has no permanent free tier; ~$30/year for full access. For budget-conscious users, Nuju Free + occasional Stoic philosophical reading on the web (Marcus Aurelius writings are public domain) is a viable combination.",
       },
       {
         question: "Does Stoic support Bahasa Indonesia?",
@@ -10219,7 +10219,7 @@ const RAW_BLOG_POSTS: BlogPost[] = [
       { type: "h2", content: "Pricing breakdown (2026)" },
       { type: "ul", content: [
         "Nuju Free: full daily journaling with AI insights, mood tracking, 8 languages.",
-        "Nuju Plus: $4.99/mo for advanced patterns.",
+        "Nuju Plus: $3.99/mo for advanced patterns.",
         "Penzu Free: basic journaling, web access.",
         "Penzu Pro: ~$4.99/mo for password protection, themes, military-grade encryption emphasis.",
       ] },
@@ -10538,7 +10538,7 @@ const RAW_BLOG_POSTS: BlogPost[] = [
       { type: "p", content: "Daily use across all 8 apps simultaneously for 30 days. Same kinds of entries across all apps (mood + brief reflection). Evaluated on: friction (time per entry), AI quality (relevance of responses), pattern recognition (over 4 weeks), privacy stance (verified against TOS), and sustainability (which I actually kept opening). This is more rigorous than feature checklists but still subjective — your needs may differ." },
       { type: "h2", content: "#1: Nuju — best overall for AI-augmented short entries" },
       { type: "p", content: "What it does well: 30-second entries actually sustain across 30 days. Gentle AI persona feels validating without being directive. Mood + energy tracking surfaces patterns over 4 weeks. Multi-language (8 languages including Bahasa Indonesia) works in practice, not just marketing claim. Privacy: explicit no-AI-training, encrypted." },
-      { type: "p", content: "Where it falls short: AI insights still maturing (Nuju launched 2026 — less longitudinal data than competitors). Some weeks the pattern recognition is sharp, some weeks it's generic. Free tier sustains daily use; Plus ($4.99/mo) for advanced features. For most users, the free tier is enough." },
+      { type: "p", content: "Where it falls short: AI insights still maturing (Nuju launched 2026 — less longitudinal data than competitors). Some weeks the pattern recognition is sharp, some weeks it's generic. Free tier sustains daily use; Plus ($3.99/mo) for advanced features. For most users, the free tier is enough." },
       { type: "h2", content: "#2: Reflection — best for weekly/monthly review automation" },
       { type: "p", content: "What it does well: auto-generates weekly + monthly + annual review documents from your entries. The narrative review format is uniquely useful for synthesis. Strong privacy stance (E2E encryption, no-training). Generous free tier." },
       { type: "p", content: "Where it falls short: expects longer-form entries than Nuju. Less great for the 30-second daily pattern. English-first." },
