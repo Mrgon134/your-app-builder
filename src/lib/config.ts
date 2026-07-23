@@ -1,8 +1,7 @@
 /**
  * Pricing configurations and identifiers.
- * Extracted from app code so they can be managed in one place.
- * Eventually, these should move to .env (e.g., VITE_DODO_PLUS_MONTHLY)
- * so test and live environments can be easily swapped.
+ * Nuju currently offers three paid options: Weekly, 3 Month, and Lifetime.
+ * Set real product IDs via environment variables (VITE_DODO_*).
  */
 const readNumber = (value: string | undefined, fallback: number) => {
   const parsed = Number(value);
@@ -14,18 +13,12 @@ export const PRICING_CONFIG = {
   baseRates: {
     weekly: readNumber(import.meta.env.VITE_WEEKLY_PRICE, 2.99),
     threeMonth: readNumber(import.meta.env.VITE_THREE_MONTH_PRICE, 15.99),
-    yearly: readNumber(import.meta.env.VITE_YEARLY_PRICE, 59.99),
-    plusMonthly: readNumber(import.meta.env.VITE_PLUS_MONTHLY_PRICE, 3.99),
-    plusAnnual: readNumber(import.meta.env.VITE_PLUS_ANNUAL_PRICE, 29.99),
-    proMonthly: readNumber(import.meta.env.VITE_PRO_MONTHLY_PRICE, 7.99),
-    proAnnual: readNumber(import.meta.env.VITE_PRO_ANNUAL_PRICE, 59.99),
   },
-  // Lifetime flat price in USD. Set via env or defaults to $12.99.
+  // Lifetime flat price in USD.
   lifetime: {
     flatPrice: readNumber(import.meta.env.VITE_LIFETIME_FLAT_PRICE, 12.99),
   },
   trial: {
-    annualDays: readNumber(import.meta.env.VITE_ANNUAL_TRIAL_DAYS, 7),
     threeMonthDays: readNumber(import.meta.env.VITE_THREE_MONTH_TRIAL_DAYS, 7),
     threeMonthIntroOfferEnabled: import.meta.env.VITE_THREE_MONTH_INTRO_TRIAL_ENABLED === "true",
   },
@@ -38,11 +31,6 @@ export const PRICING_CONFIG = {
   products: {
     weekly: import.meta.env.VITE_DODO_WEEKLY || "pdt_0NbhHW3W4gTSSif6PbYb8",
     three_month: import.meta.env.VITE_DODO_THREE_MONTH || import.meta.env.VITE_DODO_3_MONTH || "pdt_0NdPqMYke9uZ1USDhjfvq",
-    yearly: import.meta.env.VITE_DODO_YEARLY || "pdt_0NbhHexts6edZvPqDnoqt",
-    plus_monthly: import.meta.env.VITE_DODO_PLUS_MONTHLY || "pdt_0NbhFlXcexmMdlcYFUaYb",
-    plus_annual: import.meta.env.VITE_DODO_PLUS_ANNUAL || "pdt_0NbhG9cZxUlLissUYnKkm",
-    pro_monthly: import.meta.env.VITE_DODO_PRO_MONTHLY || "pdt_0NbhHW3W4gTSSif6PbYb8",
-    pro_annual: import.meta.env.VITE_DODO_PRO_ANNUAL || "pdt_0NbhHexts6edZvPqDnoqt",
     lifetime_one_time: import.meta.env.VITE_DODO_LIFETIME || "pdt_0NbhHzl2NQ8Dx0ntZsPQs",
   },
 };

@@ -42,7 +42,7 @@ const PLANS = [
     unit: "one time",
     badge: "One payment, done",
     desc: "Pay once. Keep Ju close for as long as the app exists.",
-    features: ["Everything in Pro", "One-time purchase", "No renewals", "Restore access anytime"],
+    features: ["Everything in paid plans", "One-time purchase", "No renewals", "Restore access anytime"],
     cta: "Get lifetime",
     accent: '#4ECDC4',
   },

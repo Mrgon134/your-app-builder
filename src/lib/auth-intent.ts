@@ -3,7 +3,7 @@ export const AUTH_INTENT_STORAGE_KEY = "nuju-auth-intent";
 export type PendingAuthIntent = {
   source?: "landing" | "onboarding";
   screen?: "pro";
-  plan?: "plus_monthly" | "pro_monthly" | "lifetime_one_time" | "weekly" | "three_month" | "yearly";
+  plan?: "weekly" | "three_month" | "lifetime_one_time";
   trial?: boolean;
   resumePath?: string;
   checkoutIntentId?: string;

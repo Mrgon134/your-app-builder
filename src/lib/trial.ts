@@ -1,23 +1,21 @@
-// 7-day free trial logic
-// Data: 7-day trials convert 2-3x better than 14-day for wellness apps
-// (urgency + enough time to build journaling habit)
+// Trial and premium access helpers.
+// Nuju has one premium access level: any paid plan or active trial.
 
 export const TRIAL_DAYS = 7;
 
-export function hasLegacyPlusPlan(plan: string | null): boolean {
-  return plan === "plus";
-}
+// plus/pro/yearly are kept as legacy aliases for existing subscriptions.
+const PAID_PLANS = new Set([
+  "plus",
+  "pro",
+  "weekly",
+  "three_month",
+  "yearly",
+  "lifetime",
+  "lifetime_one_time",
+]);
 
 export function hasActivePremiumPlan(plan: string | null): boolean {
-  return (
-    plan === "plus" ||
-    plan === "pro" ||
-    plan === "weekly" ||
-    plan === "three_month" ||
-    plan === "yearly" ||
-    plan === "lifetime" ||
-    plan === "lifetime_one_time"
-  );
+  return PAID_PLANS.has(plan ?? "");
 }
 
 export function getTrialStatus(trialStartedAt: string | null): {
@@ -58,25 +56,14 @@ export function formatTrialCountdown(
   return (t?.trial_days_left || "{n} days left").replace("{n}", String(daysLeft));
 }
 
-// Check if user has "plus-level" access: paid plan OR active trial
+// hasPlusAccess / hasProAccess are aliases kept for component compatibility.
+// They now both mean "has any premium access (paid plan or active trial)."
 export function hasPlusAccess(plan: string | null, trialStartedAt: string | null): boolean {
   if (hasActivePremiumPlan(plan)) return true;
   const trial = getTrialStatus(trialStartedAt);
   return trial.isActive;
 }
 
-// Check if user has "pro-level" access: pro/lifetime plan OR active trial
 export function hasProAccess(plan: string | null, trialStartedAt: string | null): boolean {
-  if (
-    plan === "pro" ||
-    plan === "weekly" ||
-    plan === "three_month" ||
-    plan === "yearly" ||
-    plan === "lifetime" ||
-    plan === "lifetime_one_time"
-  ) {
-    return true;
-  }
-  const trial = getTrialStatus(trialStartedAt);
-  return trial.isActive;
+  return hasPlusAccess(plan, trialStartedAt);
 }

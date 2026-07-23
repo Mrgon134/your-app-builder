@@ -12,11 +12,6 @@ interface GeoPricingState {
   rates: {
     weekly: number;
     threeMonth: number;
-    yearly: number;
-    plusMonthly: number;
-    plusAnnual: number;
-    proMonthly: number;
-    proAnnual: number;
     lifetime: number;
   };
   isLoading: boolean;
@@ -37,12 +32,7 @@ export const GeoPricingContext = createContext<GeoPricingState>({
   rates: {
     weekly: PRICING_CONFIG.baseRates.weekly,
     threeMonth: PRICING_CONFIG.baseRates.threeMonth,
-    yearly: PRICING_CONFIG.baseRates.yearly,
-    plusMonthly: PRICING_CONFIG.baseRates.plusMonthly,
-    plusAnnual: PRICING_CONFIG.baseRates.plusAnnual,
-    proMonthly: PRICING_CONFIG.baseRates.proMonthly,
-    proAnnual: PRICING_CONFIG.baseRates.proAnnual,
-    lifetime: PRICING_CONFIG.lifetime.flatPrice,
+    lifetime: getLifetimePrice(1),
   },
   isLoading: true,
   couponCode: null,
@@ -104,14 +94,9 @@ export const GeoPricingProvider: React.FC<{ children: React.ReactNode }> = ({ ch
 
   const weekly = roundCurrency(PRICING_CONFIG.baseRates.weekly * multiplier * currencyMultiplier, displayCurrency);
   const threeMonth = roundCurrency(PRICING_CONFIG.baseRates.threeMonth * multiplier * currencyMultiplier, displayCurrency);
-  const yearly = roundCurrency(PRICING_CONFIG.baseRates.yearly * multiplier * currencyMultiplier, displayCurrency);
-  const plusMonthly = roundCurrency(PRICING_CONFIG.baseRates.plusMonthly * multiplier * currencyMultiplier, displayCurrency);
-  const plusAnnual = roundCurrency(PRICING_CONFIG.baseRates.plusAnnual * multiplier * currencyMultiplier, displayCurrency);
-  const proMonthly = roundCurrency(PRICING_CONFIG.baseRates.proMonthly * multiplier * currencyMultiplier, displayCurrency);
-  const proAnnual = roundCurrency(PRICING_CONFIG.baseRates.proAnnual * multiplier * currencyMultiplier, displayCurrency);
-  const lifetime = roundCurrency(PRICING_CONFIG.lifetime.flatPrice * multiplier * currencyMultiplier, displayCurrency);
+  const lifetime = roundCurrency(getLifetimePrice(currencyMultiplier) * multiplier, displayCurrency);
 
-  const rates = { weekly, threeMonth, yearly, plusMonthly, plusAnnual, proMonthly, proAnnual, lifetime };
+  const rates = { weekly, threeMonth, lifetime };
 
   const formatPrice = (amount: number) => {
     const rounded = roundCurrency(amount, displayCurrency);

@@ -9,22 +9,12 @@ const PIXEL_ID = "nuju_app";
 const PLAN_LABELS: Record<string, string> = {
   weekly: "Weekly",
   three_month: "3 Month",
-  yearly: "Yearly",
-  plus_monthly: "Plus Monthly",
-  plus_annual: "Plus Annual",
-  pro_monthly: "Pro Monthly",
-  pro_annual: "Pro Annual",
   lifetime_one_time: "Lifetime",
 };
 
 const PLAN_VALUES: Record<string, number> = {
   weekly: PRICING_CONFIG.baseRates.weekly,
   three_month: PRICING_CONFIG.baseRates.threeMonth,
-  yearly: PRICING_CONFIG.baseRates.yearly,
-  plus_monthly: PRICING_CONFIG.baseRates.plusMonthly,
-  plus_annual: PRICING_CONFIG.baseRates.plusAnnual,
-  pro_monthly: PRICING_CONFIG.baseRates.proMonthly,
-  pro_annual: PRICING_CONFIG.baseRates.proAnnual,
   lifetime_one_time: PRICING_CONFIG.lifetime.flatPrice,
 };
 

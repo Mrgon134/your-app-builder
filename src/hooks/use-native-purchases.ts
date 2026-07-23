@@ -11,9 +11,7 @@ import {
   getPlanFromCustomerInfo,
   getPlanFromEntitlements,
   hasRevenueCatApiKey,
-  PRODUCT_IDS,
   PRODUCT_ID_GROUPS,
-  isReviewProductId,
 } from "@/lib/revenueCat";
 
 export interface NativePackage {
@@ -27,9 +25,7 @@ export interface NativePackage {
 const getDisplayName = (productId: string): string => {
   if (PRODUCT_ID_GROUPS.weekly.includes(productId)) return "weekly";
   if (PRODUCT_ID_GROUPS.three_month.includes(productId)) return "three_month";
-  if (PRODUCT_ID_GROUPS.pro_lifetime.includes(productId)) return "lifetime_one_time";
-  if (productId === PRODUCT_IDS.plus_monthly) return "plus_monthly";
-  if (productId === PRODUCT_IDS.plus_annual) return "plus_annual";
+  if (PRODUCT_ID_GROUPS.lifetime.includes(productId)) return "lifetime_one_time";
   return productId;
 };
 
@@ -69,7 +65,11 @@ export function useNativePurchases(userId?: string): UseNativePurchasesResult {
 
       const offering = await fetchOfferings();
       let nextPackages: NativePackage[] = (offering?.availablePackages ?? [])
-        .filter((pkg) => isReviewProductId(pkg.product.identifier))
+        .filter((pkg) =>
+          PRODUCT_ID_GROUPS.weekly.includes(pkg.product.identifier) ||
+          PRODUCT_ID_GROUPS.three_month.includes(pkg.product.identifier) ||
+          PRODUCT_ID_GROUPS.lifetime.includes(pkg.product.identifier)
+        )
         .map((pkg) => ({
           identifier: pkg.identifier,
           product: pkg.product,

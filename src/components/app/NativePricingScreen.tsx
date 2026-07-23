@@ -26,7 +26,7 @@ interface NativePricingScreenProps {
 const planIdForPackage = (pkg: NativePackage) => {
   if (PRODUCT_ID_GROUPS.weekly.includes(pkg.product.identifier)) return "weekly";
   if (PRODUCT_ID_GROUPS.three_month.includes(pkg.product.identifier)) return "three_month";
-  if (PRODUCT_ID_GROUPS.pro_lifetime.includes(pkg.product.identifier)) return "lifetime_one_time";
+  if (PRODUCT_ID_GROUPS.lifetime.includes(pkg.product.identifier)) return "lifetime_one_time";
   return pkg.identifier;
 };
 
@@ -50,7 +50,8 @@ const hasFreeIntroTrial = (pkg: NativePackage) => Boolean(pkg.product.introPrice
 
 const isVisibleReviewPackage = (pkg: NativePackage) =>
   PRODUCT_ID_GROUPS.weekly.includes(pkg.product.identifier) ||
-  PRODUCT_ID_GROUPS.three_month.includes(pkg.product.identifier);
+  PRODUCT_ID_GROUPS.three_month.includes(pkg.product.identifier) ||
+  PRODUCT_ID_GROUPS.lifetime.includes(pkg.product.identifier);
 
 const NativePricingScreen: React.FC<NativePricingScreenProps> = ({
   trialStartedAt = null,

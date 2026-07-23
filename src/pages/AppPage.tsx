@@ -436,11 +436,6 @@ const AppPage: React.FC = () => {
       const variantMap: Record<string, string> = {
         weekly: PRICING_CONFIG.products.weekly,
         three_month: PRICING_CONFIG.products.three_month,
-        yearly: PRICING_CONFIG.products.yearly,
-        plus_monthly: PRICING_CONFIG.products.plus_monthly,
-        plus_annual: PRICING_CONFIG.products.plus_annual,
-        pro_monthly: PRICING_CONFIG.products.pro_monthly,
-        pro_annual: PRICING_CONFIG.products.pro_annual,
         lifetime_one_time: PRICING_CONFIG.products.lifetime_one_time,
       };
       const variantId = variantMap[plan];

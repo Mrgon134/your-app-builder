@@ -7,10 +7,9 @@ const REVENUECAT_API_KEY = import.meta.env.VITE_REVENUECAT_API_KEY || "";
 
 export const hasRevenueCatApiKey = () => Boolean(REVENUECAT_API_KEY);
 
-// RevenueCat entitlement identifiers
+// RevenueCat entitlement identifier
 export const ENTITLEMENTS = {
-  plus: import.meta.env.VITE_REVENUECAT_PLUS_ENTITLEMENT_ID || "plus",
-  pro: import.meta.env.VITE_REVENUECAT_ENTITLEMENT_ID || "entlf84d73930a",
+  premium: import.meta.env.VITE_REVENUECAT_PREMIUM_ENTITLEMENT_ID || import.meta.env.VITE_REVENUECAT_ENTITLEMENT_ID || "premium",
 } as const;
 
 const uniqueIds = (...groups: readonly string[][]) =>
@@ -26,26 +25,28 @@ const configuredThreeMonthProductId =
   import.meta.env.VITE_APP_STORE_THREE_MONTH_PRODUCT_ID ||
   "nuju_3_month_v3";
 
+const configuredLifetimeProductId =
+  import.meta.env.VITE_REVENUECAT_LIFETIME_PRODUCT_ID ||
+  import.meta.env.VITE_APP_STORE_LIFETIME_PRODUCT_ID ||
+  "lifetime";
+
 // RevenueCat product identifiers (must match RevenueCat dashboard)
 export const PRODUCT_IDS = {
   weekly: configuredWeeklyProductId,
   three_month: configuredThreeMonthProductId,
-  plus_monthly: "prodd12cd5056a",
-  plus_annual: "prodde2def8f68",
-  pro_monthly: configuredWeeklyProductId,
-  pro_annual: configuredThreeMonthProductId,
-  pro_lifetime: "lifetime",
+  lifetime: configuredLifetimeProductId,
 } as const;
 
 const LEGACY_PRODUCT_IDS = {
   weekly: ["nuju_weekly_v3", "nuju_weekly_v2", "nuju_weekly"],
   three_month: ["nuju_3_month_v3", "nuju_3_month_v2", "3_month"],
+  lifetime: ["lifetime"],
 } as const;
 
 export const PRODUCT_ID_GROUPS = {
   weekly: uniqueIds([PRODUCT_IDS.weekly], LEGACY_PRODUCT_IDS.weekly),
   three_month: uniqueIds([PRODUCT_IDS.three_month], LEGACY_PRODUCT_IDS.three_month),
-  pro_lifetime: [PRODUCT_IDS.pro_lifetime],
+  lifetime: uniqueIds([PRODUCT_IDS.lifetime], LEGACY_PRODUCT_IDS.lifetime),
 } as const;
 
 export const REVIEW_PRODUCT_IDS = uniqueIds([PRODUCT_IDS.weekly], [PRODUCT_IDS.three_month]);
@@ -202,11 +203,9 @@ export const hasActiveEntitlement = async (entitlementId: string): Promise<boole
 };
 
 const planFromProductId = (productId: string): string | null => {
-  if (productIdMatches(productId, PRODUCT_ID_GROUPS.pro_lifetime)) return "lifetime";
+  if (productIdMatches(productId, PRODUCT_ID_GROUPS.lifetime)) return "lifetime";
   if (productIdMatches(productId, PRODUCT_ID_GROUPS.three_month)) return "three_month";
   if (productIdMatches(productId, PRODUCT_ID_GROUPS.weekly)) return "weekly";
-  if (productId === PRODUCT_IDS.plus_monthly || productId === PRODUCT_IDS.plus_annual) return "plus";
-  if (productId === PRODUCT_IDS.pro_monthly || productId === PRODUCT_IDS.pro_annual) return "pro";
   return null;
 };
 
@@ -215,10 +214,10 @@ export const getPlanFromCustomerInfo = (info: CustomerInfo | null): string => {
 
   const hasLifetimePurchase =
     info.allPurchasedProductIdentifiers?.some((productId) =>
-      productIdMatches(productId, PRODUCT_ID_GROUPS.pro_lifetime),
+      productIdMatches(productId, PRODUCT_ID_GROUPS.lifetime),
     ) ||
     info.nonSubscriptionTransactions?.some((transaction) =>
-      productIdMatches(transaction.productIdentifier, PRODUCT_ID_GROUPS.pro_lifetime),
+      productIdMatches(transaction.productIdentifier, PRODUCT_ID_GROUPS.lifetime),
     );
 
   if (hasLifetimePurchase) return "lifetime";
@@ -228,8 +227,10 @@ export const getPlanFromCustomerInfo = (info: CustomerInfo | null): string => {
     .find((plan): plan is string => Boolean(plan));
 
   if (activeSubscriptionPlan) return activeSubscriptionPlan;
-  if (info.entitlements.active[ENTITLEMENTS.pro]?.isActive) return "pro";
-  if (info.entitlements.active[ENTITLEMENTS.plus]?.isActive) return "plus";
+
+  // Fallback for RevenueCat entitlement-only setups
+  if (info.entitlements.active[ENTITLEMENTS.premium]?.isActive) return "three_month";
+
   return "free";
 };
 
@@ -244,10 +245,5 @@ export const getPlanFromEntitlements = async (): Promise<string> => {
 export const getDodoToRevenueCatMap = (): Record<string, string> => ({
   "weekly": PRODUCT_IDS.weekly,
   "three_month": PRODUCT_IDS.three_month,
-  "yearly": PRODUCT_IDS.three_month,
-  "plus_monthly": PRODUCT_IDS.plus_monthly,
-  "plus_annual": PRODUCT_IDS.plus_annual,
-  "pro_monthly": PRODUCT_IDS.pro_monthly,
-  "pro_annual": PRODUCT_IDS.three_month,
-  "lifetime_one_time": PRODUCT_IDS.pro_lifetime,
+  "lifetime_one_time": PRODUCT_IDS.lifetime,
 });
