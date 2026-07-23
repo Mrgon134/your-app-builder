@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import { AnimatePresence, motion } from "framer-motion";
 import { ArrowLeft, Check, Globe } from "lucide-react";
+import { Link } from "react-router-dom";
 
 import LifetimeScarcityMeter from "@/components/app/LifetimeScarcityMeter";
 import { useGeoPricing } from "@/hooks/use-geo-pricing";
@@ -164,14 +165,15 @@ const PricingScreen: React.FC<PricingScreenProps> = ({
             {plans.map((plan) => {
               const selected = plan.id === selectedPlan.id;
               return (
-                <button
+                <motion.button
                   key={plan.id}
                   type="button"
                   onClick={() => setSelectedPlanId(plan.id)}
-                  className={`relative min-h-[76px] rounded-xl border px-1.5 py-2 text-center transition-all active:scale-[0.98] ${
+                  whileTap={{ scale: 0.96 }}
+                  className={`relative min-h-[76px] rounded-xl border px-1.5 py-2 text-center transition-all ${
                     selected
                       ? "border-primary bg-primary/[0.08] shadow-[0_14px_28px_-22px_hsl(var(--primary)/0.75)]"
-                      : "border-border/70 bg-background"
+                      : "border-border/70 bg-background hover:border-primary/30"
                   }`}
                 >
                   {"recommended" in plan && plan.recommended ? (
@@ -180,14 +182,29 @@ const PricingScreen: React.FC<PricingScreenProps> = ({
                     </span>
                   ) : null}
                   <span className="block text-[11px] font-bold text-foreground">{plan.title}</span>
-                  <span className="mt-1 block text-xs font-semibold text-foreground">{plan.price}</span>
+                  <motion.span
+                    className="mt-1 block text-xs font-semibold text-foreground"
+                    animate={{ scale: selected ? 1.08 : 1, color: selected ? "hsl(var(--primary))" : "inherit" }}
+                    transition={{ type: "spring", stiffness: 400, damping: 22 }}
+                  >
+                    {plan.price}
+                  </motion.span>
                   <span className="mt-0.5 block text-[9px] leading-3 text-muted-foreground">
                     {plan.id === "lifetime_one_time" ? "once" : plan.unit}
                   </span>
-                </button>
+                </motion.button>
               );
             })}
           </div>
+
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={selectedPlan.id}
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -4 }}
+              transition={{ duration: 0.2 }}
+            >
 
           {selectedPlan.id === "lifetime_one_time" ? (
             <LifetimeScarcityMeter className="mt-3" scarcity={lifetimeScarcity} />
@@ -220,6 +237,8 @@ const PricingScreen: React.FC<PricingScreenProps> = ({
             <span aria-hidden="true">-</span>
             <Link to={ROUTES.PRIVACY} className="underline-offset-4 hover:text-foreground hover:underline">Privacy</Link>
           </div>
+            </motion.div>
+          </AnimatePresence>
         </div>
       </section>
     </div>

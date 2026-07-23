@@ -12,17 +12,17 @@ const readNumber = (value: string | undefined, fallback: number) => {
 export const PRICING_CONFIG = {
   // Base display prices before PPP / regional discounts are applied.
   baseRates: {
-    weekly: readNumber(import.meta.env.VITE_WEEKLY_PRICE, 4.99),
-    threeMonth: readNumber(import.meta.env.VITE_THREE_MONTH_PRICE, 19.99),
+    weekly: readNumber(import.meta.env.VITE_WEEKLY_PRICE, 2.99),
+    threeMonth: readNumber(import.meta.env.VITE_THREE_MONTH_PRICE, 15.99),
     yearly: readNumber(import.meta.env.VITE_YEARLY_PRICE, 59.99),
     plusMonthly: readNumber(import.meta.env.VITE_PLUS_MONTHLY_PRICE, 4.99),
     plusAnnual: readNumber(import.meta.env.VITE_PLUS_ANNUAL_PRICE, 39.99),
     proMonthly: readNumber(import.meta.env.VITE_PRO_MONTHLY_PRICE, 9.99),
     proAnnual: readNumber(import.meta.env.VITE_PRO_ANNUAL_PRICE, 79.99),
   },
-  // Lifetime flat price in USD. Set via env or defaults to $49.99.
+  // Lifetime flat price in USD. Set via env or defaults to $12.99.
   lifetime: {
-    flatPrice: readNumber(import.meta.env.VITE_LIFETIME_FLAT_PRICE, 49.99),
+    flatPrice: readNumber(import.meta.env.VITE_LIFETIME_FLAT_PRICE, 12.99),
   },
   trial: {
     annualDays: readNumber(import.meta.env.VITE_ANNUAL_TRIAL_DAYS, 7),

@@ -1,3 +1,5 @@
+import { SEO_BLOG_POSTS } from "./seo-posts";
+
 export interface BlogSection {
   type: "h2" | "h3" | "p" | "ul" | "ol" | "callout";
   content: string | string[];
@@ -11430,6 +11432,7 @@ const RAW_BLOG_POSTS: BlogPost[] = [
       },
     ],
   },
+  ...SEO_BLOG_POSTS,
 ];
 
 const normalizeCopy = (value: string): string =>

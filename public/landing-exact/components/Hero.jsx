@@ -33,7 +33,7 @@ const Hero = ({ onStart }) => {
         <div className="hero-grid">
           <div className="hero-left">
             <Reveal delay={0}>
-              <div className="hero-tag glass-pill" style={{ padding: '8px 16px 8px 12px', display: 'inline-flex', alignItems: 'center', gap: 10, fontSize: 13, fontWeight: 500, color: 'var(--ink-soft)' }}>
+              <div className="hero-tag glass-pill hero-eyebrow" style={{ padding: '8px 16px 8px 12px', display: 'inline-flex', alignItems: 'center', gap: 10, fontSize: 13, fontWeight: 500, color: 'var(--ink-soft)' }}>
                 <span style={{ width: 18, height: 18, borderRadius: 999, background: 'linear-gradient(135deg, #FFB347, #E8878C)', display: 'grid', placeItems: 'center' }}>
                   <Icon.Moon size={10} />
                 </span>

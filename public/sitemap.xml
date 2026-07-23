@@ -4,79 +4,79 @@
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://nuju.app/</loc>
-    <lastmod>2026-05-24</lastmod>
+    <lastmod>2026-07-23</lastmod>
     <priority>1.0</priority>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://nuju.app/ai-journal</loc>
-    <lastmod>2026-05-24</lastmod>
+    <lastmod>2026-07-23</lastmod>
     <priority>0.9</priority>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://nuju.app/mood-tracker</loc>
-    <lastmod>2026-05-24</lastmod>
+    <lastmod>2026-07-23</lastmod>
     <priority>0.9</priority>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://nuju.app/voice-journaling</loc>
-    <lastmod>2026-05-24</lastmod>
+    <lastmod>2026-07-23</lastmod>
     <priority>0.8</priority>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://nuju.app/install</loc>
-    <lastmod>2026-05-24</lastmod>
+    <lastmod>2026-07-23</lastmod>
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
     <loc>https://nuju.app/about</loc>
-    <lastmod>2026-05-24</lastmod>
+    <lastmod>2026-07-23</lastmod>
     <priority>0.6</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
     <loc>https://nuju.app/support</loc>
-    <lastmod>2026-05-24</lastmod>
+    <lastmod>2026-07-23</lastmod>
     <priority>0.6</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
     <loc>https://nuju.app/contact</loc>
-    <lastmod>2026-05-24</lastmod>
+    <lastmod>2026-07-23</lastmod>
     <priority>0.5</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
     <loc>https://nuju.app/privacy</loc>
-    <lastmod>2026-05-24</lastmod>
+    <lastmod>2026-07-23</lastmod>
     <priority>0.4</priority>
     <changefreq>yearly</changefreq>
   </url>
   <url>
     <loc>https://nuju.app/terms</loc>
-    <lastmod>2026-05-24</lastmod>
+    <lastmod>2026-07-23</lastmod>
     <priority>0.4</priority>
     <changefreq>yearly</changefreq>
   </url>
   <url>
     <loc>https://nuju.app/medical-disclaimer</loc>
-    <lastmod>2026-05-24</lastmod>
+    <lastmod>2026-07-23</lastmod>
     <priority>0.3</priority>
     <changefreq>yearly</changefreq>
   </url>
   <url>
     <loc>https://nuju.app/blog</loc>
-    <lastmod>2026-05-24</lastmod>
+    <lastmod>2026-07-23</lastmod>
     <priority>0.8</priority>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://nuju.app/guides/journaling</loc>
-    <lastmod>2026-05-24</lastmod>
+    <lastmod>2026-07-23</lastmod>
     <priority>0.9</priority>
     <changefreq>monthly</changefreq>
   </url>
@@ -1535,6 +1535,72 @@
       <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
       <image:title>5 Tanda Burnout yang Sering Disepelekan Gen Z Indonesia (Bukan Cuma &apos;Capek&apos;)</image:title>
       <image:caption>Burnout sering dikira &apos;cuma capek&apos; atau &apos;kurang istirahat.&apos; Realitas: burnout punya 5 tanda spesifik yang sering disepelekan sampai jadi parah. Maslach Burnout Inventory + konteks Gen Z Indonesia. Plus kapan butuh psikolog.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/how-to-stop-overthinking-at-night</loc>
+    <lastmod>2026-07-23</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>How to Stop Overthinking at Night: A 5-Minute Journaling Protocol</image:title>
+      <image:caption>A science-backed 5-minute journaling protocol to stop 3am overthinking, calm racing thoughts, and fall back asleep without fighting your mind.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/ai-journal-vs-traditional-journal</loc>
+    <lastmod>2026-07-23</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>AI Journal vs Traditional Journal: What Actually Helps You Feel Better?</image:title>
+      <image:caption>Traditional journal vs AI journal: which one actually improves mental clarity, builds consistency, and helps you see patterns? An honest comparison.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/best-free-mood-tracker-apps-2026</loc>
+    <lastmod>2026-07-23</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Best Free Mood Tracker Apps in 2026 (Honest Comparison)</image:title>
+      <image:caption>The best free mood tracker apps in 2026 compared honestly: Daylio, Bearable, How We Feel, Apple Journal, and Nuju. Find the right one for your style.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/cara-berhenti-overthinking-malam</loc>
+    <lastmod>2026-07-23</lastmod>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Cara Berhenti Overthinking Malam Hari dengan Jurnal 5 Menit</image:title>
+      <image:caption>Protokol jurnal 5 menit untuk menghentikan overthinking malam hari, memperlambat pikiran berputar, dan tidur lebih tenang tanpa melawan pikiran.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/aplikasi-jurnal-ai-terbaik-2026</loc>
+    <lastmod>2026-07-23</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Aplikasi Jurnal AI Terbaik 2026 untuk Kesehatan Mental</image:title>
+      <image:caption>Perbandingan aplikasi jurnal AI terbaik 2026 untuk kesehatan mental: Nuju, Rosebud, Mindsera, dan Reflectly. Temukan yang paling cocok untukmu.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/menghentikan-pikiran-berputar-sebelum-tidur</loc>
+    <lastmod>2026-07-23</lastmod>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Cara Menghentikan Pikiran Berputar sebelum Tidur</image:title>
+      <image:caption>Cara menghentikan pikiran berputar sebelum tidur dengan journaling, napas, dan teknik menutup loop mental agar tidur lebih nyenyak.</image:caption>
     </image:image>
   </url>
 </urlset>

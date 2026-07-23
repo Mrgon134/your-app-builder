@@ -15,7 +15,7 @@ const PLANS = [
   {
     name: "Weekly",
     plan: "weekly",
-    price: "$4.99",
+    price: "$2.99",
     unit: "/ week",
     badge: "Try lightly",
     desc: "Low-commitment way to keep Ju close. Cancel anytime.",
@@ -26,7 +26,7 @@ const PLANS = [
   {
     name: "3 Month",
     plan: "three_month",
-    price: "$19.99",
+    price: "$15.99",
     unit: "/ 3 months",
     badge: "Best value · 7-day free trial",
     highlight: true,
@@ -38,7 +38,7 @@ const PLANS = [
   {
     name: "Lifetime",
     plan: "lifetime_one_time",
-    price: "$49.99",
+    price: "$12.99",
     unit: "one time",
     badge: "One payment, done",
     desc: "Pay once. Keep Ju close for as long as the app exists.",
