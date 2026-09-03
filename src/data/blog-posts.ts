@@ -11503,6 +11503,8 @@ export const LANGUAGE_ALTERNATES: Record<string, { language: "en" | "id"; altern
   "aplikasi-jurnal-terbaik": { language: "id", alternateSlug: "best-journaling-apps-2026" },
   "journaling-for-mental-health": { language: "en", alternateSlug: "journaling-untuk-kesehatan-mental" },
   "journaling-untuk-kesehatan-mental": { language: "id", alternateSlug: "journaling-for-mental-health" },
+  "journaling-for-anxiety": { language: "en", alternateSlug: "journaling-untuk-anxiety" },
+  "journaling-untuk-anxiety": { language: "id", alternateSlug: "journaling-for-anxiety" },
 };
 
 const INDONESIAN_CATEGORIES = new Set(["Tips Journaling", "Kesehatan Mental", "Rekomendasi Aplikasi"]);
