@@ -1274,7 +1274,174 @@ export const SEO_BLOG_POSTS: BlogPost[] = [
       },
     ],
   },
+  {
+    slug: "journal-intime-vocal-ia-anxiete",
+    title: "Journal intime vocal et IA : Comment libérer sa charge mentale sans avoir la force d'écrire",
+    metaTitle: "Journal Intime Vocal & IA : Calmer la Charge Mentale | Nuju",
+    metaDescription:
+      "Trop épuisé pour écrire le soir ? Découvrez comment le journal intime vocal et l'IA apaisent la charge mentale et l'anxiété nocturne en moins de 3 minutes.",
+    description:
+      "Trop épuisé pour écrire le soir ? Découvrez comment le journal intime vocal et l'IA apaisent la charge mentale et l'anxiété nocturne en moins de 3 minutes.",
+    publishedAt: "2026-09-04",
+    readingTime: 8,
+    category: "Santé Mentale",
+    sections: [
+      {
+        type: "p",
+        content:
+          "Après une journée de travail interminable, la charge mentale ne s'arrête pas par magie dès que vous vous allongez. Au contraire, dans le silence de la chambre, les pensées en boucle, les listes de tâches inachevées et les angoisses anticipatoires prennent toute la place. Pourtant, la recommandation classique de 'tenir un journal intime' semble souvent irréalisable : qui a encore l'énergie de tenir un stylo ou de fixer un écran lumineux pour rédiger de beaux paragraphes ?",
+      },
+      {
+        type: "p",
+        content:
+          "En 2026, une nouvelle pratique s'impose en France et en Europe francophone : le journal intime vocal assisté par l'IA (Voice Journaling). L'idée est simple : fermer les yeux dans la pénombre, parler spontanément pendant 60 à 90 secondes, et laisser une intelligence artificielle bienveillante retranscrire et refléter vos émotions sans aucun jugement.",
+      },
+      {
+        type: "h2",
+        content: "Pourquoi parler soulage plus vite qu'écrire (la science de l'exutoire vocal)",
+      },
+      {
+        type: "p",
+        content:
+          "Lorsque vous tentez d'écrire, votre cortex préfrontal s'active pour filtrer, structurer et corriger votre grammaire. Cette censure cognitive empêche souvent la vraie vulnérabilité d'émerger. À l'inverse, l'extériorisation vocale (vocal venting) stimule les terminaisons du nerf vague au niveau du larynx. Parler à voix haute ou en chuchotant force une expiration lente et régulière, ce qui envoie un signal physiologique immédiat d'apaisement à l'amygdale cérébrale.",
+      },
+      {
+        type: "h2",
+        content: "Le protocole de décharge vocale en 3 minutes avant de dormir",
+      },
+      {
+        type: "ol",
+        content: [
+          "Minute 1 : La décharge brute (Brain Dump). Posez votre téléphone face contre la table de chevet. Appuyez sur enregistrer, fermez les yeux et dites tout ce qui vous a frustré, angoissé ou épuisé aujourd'hui, sans chercher la moindre cohérence.",
+          "Minute 2 : La localisation corporelle. Nommez ce qui se passe dans votre corps : 'J'ai la gorge serrée, les épaules contractées et une boule au ventre.' Nommer les sensations somatiques désamorce la panique.",
+          "Minute 3 : La clôture intentionnelle. Terminez par une phrase de libération : 'J'ai déposé ce qui pesait. Je n'ai rien à résoudre cette nuit. Mon corps a le droit de dormir.'",
+        ],
+      },
+      {
+        type: "h2",
+        content: "Pourquoi Nuju se distingue des applications classiques",
+      },
+      {
+        type: "ul",
+        content: [
+          "Retranscription instantanée et sans friction : Grâce au moteur Whisper Large v3, vos paroles sont transformées en texte propre en moins d'une seconde, même si vous parlez à voix basse ou hésitante.",
+          "Un compagnon émotionnel chaleureux (Ju) : Contrairement aux chatbots froids ou moralisateurs, Ju propose 4 tonalités (Bienveillant, Sage, Direct, ou Léger) qui vous renvoient un miroir court et profondément humain.",
+          "Confidentialité et secret absolu : Vos confessions intimes et vos données audio ne sont jamais partagées, revendues ni utilisées pour entraîner des modèles d'IA publics.",
+        ],
+      },
+      {
+        type: "callout",
+        content:
+          "Envie d'alléger votre esprit ce soir ? Testez gratuitement le diagnostic émotionnel et le journal vocal de Nuju sur /onboarding?source=blog.",
+      },
+      {
+        type: "h2",
+        content: "FAQ : Journal intime vocal et bien-être mental",
+      },
+    ],
+    faq: [
+      {
+        question: "Est-ce gênant si mes propos sont confus ou décousus ?",
+        answer:
+          "C'est justement le but. Vous n'avez pas besoin de faire de discours. C'est l'expulsion brute des pensées sans filtre qui libère l'espace mental.",
+      },
+      {
+        question: "Puis-je chuchoter pour ne pas réveiller mon conjoint ?",
+        answer:
+          "Oui. La technologie de reconnaissance vocale capture les chuchotements avec une précision remarquable, vous permettant de déposer vos pensées en toute discrétion.",
+      },
+      {
+        question: "Le journal vocal remplace-t-il un psychologue ?",
+        answer:
+          "Non. C'est un rituel d'hygiène mentale quotidienne et de décharge émotionnelle. Il complète merveilleusement un travail thérapeutique mais ne se substitue pas à une prise en charge médicale.",
+      },
+    ],
+  },
+  {
+    slug: "ai-voice-diary-burnout-anxiety-korea",
+    title: "【2026년】 타이핑할 힘도 없는 밤, 3분 음성 감정일기로 번아웃과 과도한 생각 비우기",
+    metaTitle: "2026 AI 음성 감정일기 어플 비교 & 번아웃 극복법 | Nuju",
+    metaDescription:
+      "지친 하루 끝 글쓰기조차 버거울 때. 3분간 말로 털어놓는 AI 음성 저널링이 뇌의 과부하를 비우고 불안을 진정시키는 과학적 원리와 실천 프로토콜.",
+    description:
+      "지친 하루 끝 글쓰기조차 버거울 때. 3분간 말로 털어놓는 AI 음성 저널링이 뇌의 과부하를 비우고 불안을 진정시키는 과학적 원리와 실천 프로토콜.",
+    publishedAt: "2026-09-04",
+    readingTime: 8,
+    category: "멘탈 헬스",
+    sections: [
+      {
+        type: "p",
+        content:
+          "야근과 숨 가쁜 일과를 마치고 침대에 누운 밤 11시 반. 피로는 극에 달했는데 머릿속에서는 오늘 있었던 대화, 내일의 마감, 풀리지 않는 인간관계에 대한 생각이 끊임없이 맴돕니다. '일기를 쓰면 마음이 편해진다'는 조언을 듣고 스마트폰을 켜보지만, 깜빡이는 커서를 바라보는 것조차 피로하게 느껴집니다.",
+      },
+      {
+        type: "p",
+        content:
+          "2026년 현재, 한국의 2030 직장인과 청년층 사이에서 가장 빠르게 확산되고 있는 멘탈 헬스 습관이 바로 'AI 음성 저널링(Voice Journaling)'입니다. 글을 예쁘게 꾸며 쓸 필요 없이, 불을 끈 방에서 60초에서 3분간 날것의 마음을 소리 내어 말하는 것만으로 뇌의 과부하가 즉시 해소됩니다.",
+      },
+      {
+        type: "h2",
+        content: "왜 글보다 '말로 털어놓기(Vocal Venting)'가 번아웃에 더 효과적일까?",
+      },
+      {
+        type: "p",
+        content:
+          "글을 쓰려고 하면 뇌의 좌뇌(전두엽)가 작동하여 '맞춤법이 맞나?', '내가 너무 찌질해 보이나?'라며 감정을 무의식적으로 검열하게 됩니다. 반면, 안전한 공간에서 소리 내어 말하는 행위는 후두 신경을 자극하여 미주신경(Vagus Nerve)을 활성화합니다. 이 과정에서 심박수가 안정되고 스트레스 호르몬인 코르티솔 수치가 급격히 떨어지며, 뇌의 편도체가 비로소 경계 태세를 풉니다.",
+      },
+      {
+        type: "h2",
+        content: "침대 위에서 실천하는 3분 브레인 덤프(Brain Dump) 프로토콜",
+      },
+      {
+        type: "ol",
+        content: [
+          "1단계 (60초) : 무필터 감정 쏟아내기. 휴대폰 화면을 뒤집어두고 눈을 감은 채, 오늘 억울했던 일, 서운했던 감정, 불안한 상상을 두서없이 털어놓습니다.",
+          "2단계 (60초) : 신체 감각 언어화하기. '지금 가슴이 답답하고 목구멍이 꽉 막힌 것 같다'처럼 감정이 머무는 몸의 신체 반응을 소리 내어 말합니다. 신체 감각을 인지하는 순간 감정의 폭풍이 가라앉습니다.",
+          "3단계 (60초) : 생각의 루프 닫기. '오늘의 감정은 여기 다 털어놓았다. 지금 당장 해결하지 않아도 괜찮다. 이제 뇌를 쉬게 해도 안전하다'라고 말하며 마칩니다.",
+        ],
+      },
+      {
+        type: "h2",
+        content: "Nuju가 번아웃을 겪는 분들에게 특별한 이유",
+      },
+      {
+        type: "ul",
+        content: [
+          "초고속 Whisper 음성 인식 : 귓속말이나 낮은 한숨 소리까지 1초 이내에 정갈한 텍스트로 자동 변환해 줍니다.",
+          "다정한 AI 동반자 Ju의 감정 공감 : 기계적인 훈계나 영혼 없는 챗봇 응답이 아닌, 부드러운 가이드, 지혜로운 조언자 등 4가지 페르소나를 통해 내 마음을 온전히 알아주는 따뜻한 피드백을 전달합니다.",
+          "100% 프라이버시 보호 : 내밀한 음성 기록과 감정 데이터는 외부 AI 모델 학습에 절대 사용되지 않으며, 철저히 보호됩니다.",
+        ],
+      },
+      {
+        type: "callout",
+        content:
+          "오늘 밤, 머릿속 복잡한 생각을 비우고 편안히 잠들고 싶다면 /onboarding?source=blog 에서 60초 무료 음성 감정 진단을 체험해 보세요.",
+      },
+      {
+        type: "h2",
+        content: "자주 묻는 질문 (FAQ)",
+      },
+    ],
+    faq: [
+      {
+        question: "방에 가족이 있어도 사용할 수 있나요?",
+        answer:
+          "네, 이불 속에서 작게 속삭이듯 말해도 고성능 AI가 정확하게 인식하므로 주변 사람에게 방해되지 않습니다.",
+      },
+      {
+        question: "생각이 정리되지 않은 상태로 횡설수설해도 되나요?",
+        answer:
+          "오히려 두서없이 날것 그대로 털어놓을 때 뇌의 인지적 과부하가 가장 효과적으로 비워집니다.",
+      },
+      {
+        question: "AI가 내 감정을 판단하거나 평가하나요?",
+        answer:
+          "아닙니다. Nuju의 AI 동반자 Ju는 심리적 안전감을 최우선으로 설계되어 사용자의 감정을 있는 그대로 수용하고 지지해 줍니다.",
+      },
+    ],
+  },
 ];
+
 
 
 
