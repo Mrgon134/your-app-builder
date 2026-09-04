@@ -36,13 +36,19 @@ class AIProviderError extends Error {
 const encoder = new TextEncoder();
 
 const groqConfig = (): ProviderConfig | null => {
-  const apiKey = Deno.env.get("GROQ_API_KEY") || Deno.env.get("AI_API_KEY") || "";
+  const apiKey = Deno.env.get("GROQ_API_KEY") || Deno.env.get("AI_API_KEY");
   if (!apiKey) return null;
+
+  // Protect against stale "llama-3.3-70b-versatile" or empty string in Supabase secrets
+  const envModel = Deno.env.get("GROQ_TEXT_MODEL") || Deno.env.get("AI_MODEL");
+  const model = (!envModel || typeof envModel !== "string" || !envModel.trim() || envModel.includes("llama-3.3-70b-versatile"))
+    ? "qwen/qwen3.8-27b"
+    : envModel.trim();
 
   return {
     apiKey,
     baseUrl: "https://api.groq.com/openai/v1",
-    model: Deno.env.get("GROQ_TEXT_MODEL") || Deno.env.get("AI_MODEL") || "llama-3.3-70b-versatile",
+    model,
     name: "groq",
   };
 };
@@ -90,7 +96,7 @@ const requestBody = (config: ProviderConfig, options: ChatOptions, stream: boole
 const shouldFallback = (error: unknown): boolean => {
   if (error instanceof AIProviderError) {
     if (error.status === undefined) return true;
-    return [401, 403, 408, 409, 429, 498, 500, 502, 503, 504].includes(error.status);
+    return [400, 401, 403, 404, 408, 409, 429, 498, 500, 502, 503, 504].includes(error.status);
   }
 
   return error instanceof TypeError;

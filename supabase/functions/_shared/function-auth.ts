@@ -58,14 +58,56 @@ const hasProfilePaidAccess = (profile: ProfileAccessRow | null | undefined, leve
   return expiry ? isFutureDate(expiry) : true;
 };
 
+export const getServiceClient = () => {
+  const supabaseUrl = Deno.env.get("SUPABASE_URL");
+  const serviceRoleKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY");
+  if (!supabaseUrl || !serviceRoleKey) {
+    throw new Error("Supabase service role credentials are missing");
+  }
+  return createClient(supabaseUrl, serviceRoleKey);
+};
+
 const hasRevenueCatAccess = async (userId: string) => {
   const apiKey =
     Deno.env.get("REVENUECAT_SECRET_API_KEY") ||
-    Deno.env.get("REVENUECAT_V1_API_KEY") ||
-    "";
+    Deno.env.get("REVENUECAT_V1_API_KEY");
   if (!apiKey) return false;
 
   try {
+    if (apiKey.startsWith("sk_")) {
+      const projectId = Deno.env.get("REVENUECAT_PROJECT_ID") || "projf89a18a8";
+      const res = await fetch(`https://api.revenuecat.com/v2/projects/${projectId}/customers/${encodeURIComponent(userId)}`, {
+        headers: { Authorization: `Bearer ${apiKey}` },
+      });
+      if (!res.ok) return false;
+      const data = await res.json();
+      const active = data?.active_entitlements?.items;
+      const hasAccess = Array.isArray(active) && active.length > 0;
+
+      if (hasAccess) {
+        // Auto-heal / sync profiles row so Supabase DB is permanently updated to Pro
+        try {
+          const admin = getServiceClient();
+          const firstEntitlement = active[0];
+          const isLifetime = !firstEntitlement?.expires_at;
+          await admin
+            .from("profiles")
+            .update({
+              is_pro: true,
+              plan: isLifetime ? "lifetime" : "pro",
+              subscription_status: "active",
+              subscription_plan: isLifetime ? "lifetime" : "pro",
+              subscription_expires_at: firstEntitlement?.expires_at || null,
+            })
+            .eq("id", userId);
+        } catch (syncErr) {
+          console.warn("Failed to auto-sync RevenueCat entitlement to profiles:", syncErr);
+        }
+      }
+
+      return hasAccess;
+    }
+
     const res = await fetch(`https://api.revenuecat.com/v1/subscribers/${encodeURIComponent(userId)}`, {
       headers: { Authorization: `Bearer ${apiKey}` },
     });
@@ -74,13 +116,31 @@ const hasRevenueCatAccess = async (userId: string) => {
     const entitlements = data?.subscriber?.entitlements;
     if (!entitlements || typeof entitlements !== "object") return false;
 
-    return Object.values(entitlements).some((entry) => {
+    const hasAccess = Object.values(entitlements).some((entry) => {
       if (!entry || typeof entry !== "object") return false;
       const expires = (entry as Record<string, unknown>).expires_date;
       if (expires === null) return true;
       if (typeof expires !== "string") return false;
       return isFutureDate(expires);
     });
+
+    if (hasAccess) {
+      try {
+        const admin = getServiceClient();
+        await admin
+          .from("profiles")
+          .update({
+            is_pro: true,
+            plan: "pro",
+            subscription_status: "active",
+          })
+          .eq("id", userId);
+      } catch (syncErr) {
+        console.warn("Failed to auto-sync RevenueCat v1 entitlement to profiles:", syncErr);
+      }
+    }
+
+    return hasAccess;
   } catch (error) {
     console.warn("RevenueCat access check failed:", error);
     return false;
@@ -135,14 +195,6 @@ export const getAuthenticatedUser = async (req: Request) => {
   }
 };
 
-export const getServiceClient = () => {
-  const supabaseUrl = Deno.env.get("SUPABASE_URL");
-  const serviceRoleKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY");
-  if (!supabaseUrl || !serviceRoleKey) {
-    throw new Error("Supabase service role credentials are missing");
-  }
-  return createClient(supabaseUrl, serviceRoleKey);
-};
 
 export const hasPaidAccess = async (userId: string, level: AccessLevel) => {
   const admin = getServiceClient();

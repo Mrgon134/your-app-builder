@@ -1,4 +1,5 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
+import { callChatWithGroqFallback } from "../_shared/ai-fallback.ts";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -207,26 +208,12 @@ async function callOpenRouterVision(prompt: string, image: VisionImage): Promise
 }
 
 async function callGroq(prompt: string): Promise<string> {
-  const apiKey = Deno.env.get("GROQ_API_KEY") || Deno.env.get("AI_API_KEY") || "";
-  if (!apiKey) throw new Error("No Groq API key. Add GROQ_API_KEY or AI_API_KEY in Supabase secrets.");
-
-  const baseUrl = Deno.env.get("AI_BASE_URL") || "https://api.groq.com/openai/v1";
-  const model = Deno.env.get("AI_MODEL") || "llama-3.3-70b-versatile";
-
-  const res = await fetch(`${baseUrl}/chat/completions`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json", Authorization: `Bearer ${apiKey}` },
-    body: JSON.stringify({
-      model,
-      messages: [{ role: "user", content: prompt }],
-      max_tokens: 150,
-      temperature: 0.75,
-    }),
+  return callChatWithGroqFallback({
+    label: "ai-face-summary",
+    maxTokens: 150,
+    temperature: 0.75,
+    messages: [{ role: "user", content: prompt }],
   });
-
-  if (!res.ok) throw new Error(`Groq ${res.status}: ${await res.text()}`);
-  const data = await res.json();
-  return data.choices?.[0]?.message?.content || "";
 }
 
 serve(async (req) => {

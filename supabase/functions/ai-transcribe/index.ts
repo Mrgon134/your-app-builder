@@ -204,7 +204,7 @@ serve(async (req) => {
       );
     }
 
-    const groqKey = Deno.env.get("GROQ_API_KEY");
+    const groqKey = Deno.env.get("GROQ_API_KEY") || Deno.env.get("AI_API_KEY");
     const openRouterKey = Deno.env.get("OPENROUTER_API_KEY") || Deno.env.get("AI_FALLBACK_API_KEY");
     const language = transcriptionLanguageHint(lang, langSource);
 
