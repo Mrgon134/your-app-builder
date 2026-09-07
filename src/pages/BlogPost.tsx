@@ -2444,9 +2444,135 @@ const getInternalLinkCards = (slug: string): InternalLinkCard[] =>
     })
     .filter((link): link is InternalLinkCard => Boolean(link));
 
+const BLOG_LOCALE_MAP: Record<string, string> = {
+  en: "en-US",
+  id: "id-ID",
+  de: "de-DE",
+  ja: "ja-JP",
+  fr: "fr-FR",
+  ko: "ko-KR",
+};
+
+const BLOG_COPY_MAP: Record<
+  string,
+  {
+    allArticles: string;
+    tryFree: string;
+    minRead: string;
+    onThisPage: string;
+    faqTitle: string;
+    relatedTitle: string;
+    ctaEyebrow: string;
+    ctaTitle: string;
+    ctaBody: string;
+    ctaButton: string;
+    backToBlog: string;
+    footerAbout: string;
+    footerSupport: string;
+    footerPrivacy: string;
+  }
+> = {
+  id: {
+    allArticles: "Semua artikel",
+    tryFree: "Coba Nuju gratis",
+    minRead: "menit baca",
+    onThisPage: "Isi artikel",
+    faqTitle: "Pertanyaan yang sering ditanyakan",
+    relatedTitle: "Baca juga",
+    ctaEyebrow: "Coba sendiri",
+    ctaTitle: "Mulai entry jurnal pertamamu hari ini",
+    ctaBody: "Nuju cuma butuh 30 detik sehari. Pilih mood, tulis satu kalimat, lalu mulai lihat pola emosimu secara lebih jelas.",
+    ctaButton: "Mulai journaling gratis",
+    backToBlog: "Kembali ke semua artikel",
+    footerAbout: "Tentang",
+    footerSupport: "Bantuan",
+    footerPrivacy: "Privasi",
+  },
+  de: {
+    allArticles: "Alle Artikel",
+    tryFree: "Nuju kostenlos testen",
+    minRead: "Min. Lesezeit",
+    onThisPage: "Inhalt",
+    faqTitle: "Häufig gestellte Fragen",
+    relatedTitle: "Weiterlesen",
+    ctaEyebrow: "Selbst ausprobieren",
+    ctaTitle: "Beginnen Sie Ihren ersten Tagebucheintrag heute",
+    ctaBody: "Nuju dauert 30 Sekunden am Tag. Sprechen oder tippen, KI-Einblicke erhalten und emotionale Muster verstehen.",
+    ctaButton: "Kostenlos starten",
+    backToBlog: "Zurück zu allen Artikeln",
+    footerAbout: "Über uns",
+    footerSupport: "Hilfe",
+    footerPrivacy: "Datenschutz",
+  },
+  ja: {
+    allArticles: "すべての記事",
+    tryFree: "Nujuを無料で試す",
+    minRead: "分で読める",
+    onThisPage: "目次",
+    faqTitle: "よくある質問",
+    relatedTitle: "関連記事",
+    ctaEyebrow: "今すぐ体験",
+    ctaTitle: "今日から最初のジャーナリングを始めましょう",
+    ctaBody: "Nujuは1日30秒。声やテキストで感情を吐き出し、AIがあなたのパターンを優しく解きほぐします。",
+    ctaButton: "無料で始める",
+    backToBlog: "記事一覧に戻る",
+    footerAbout: "会社概要",
+    footerSupport: "サポート",
+    footerPrivacy: "プライバシー",
+  },
+  fr: {
+    allArticles: "Tous les articles",
+    tryFree: "Essayer Nuju gratuitement",
+    minRead: "min de lecture",
+    onThisPage: "Au sommaire",
+    faqTitle: "Foire aux questions",
+    relatedTitle: "À lire aussi",
+    ctaEyebrow: "Faites l'expérience",
+    ctaTitle: "Commencez votre premier journal aujourd'hui",
+    ctaBody: "Nuju prend 30 secondes par jour. Suivez votre humeur, obtenez des reflets IA et comprenez vos schémas émotionnels sans effort.",
+    ctaButton: "Commencer gratuitement",
+    backToBlog: "Retour aux articles",
+    footerAbout: "À propos",
+    footerSupport: "Assistance",
+    footerPrivacy: "Confidentialité",
+  },
+  ko: {
+    allArticles: "전체 글 보기",
+    tryFree: "Nuju 무료 체험하기",
+    minRead: "분 분량",
+    onThisPage: "목차",
+    faqTitle: "자주 묻는 질문",
+    relatedTitle: "함께 읽으면 좋은 글",
+    ctaEyebrow: "직접 체험하기",
+    ctaTitle: "오늘 첫 감정일기를 시작해 보세요",
+    ctaBody: "하루 단 30초. 음성이나 텍스트로 털어놓으면 AI가 감정 패턴을 분석해 드립니다.",
+    ctaButton: "무료로 시작하기",
+    backToBlog: "전체 글로 돌아가기",
+    footerAbout: "소개",
+    footerSupport: "고객지원",
+    footerPrivacy: "개인정보처리방침",
+  },
+  en: {
+    allArticles: "All articles",
+    tryFree: "Try Nuju free",
+    minRead: "min read",
+    onThisPage: "On this page",
+    faqTitle: "Frequently asked questions",
+    relatedTitle: "Keep reading",
+    ctaEyebrow: "Try it yourself",
+    ctaTitle: "Start your first journal entry today",
+    ctaBody: "Nuju takes 30 seconds a day. Track your mood, get AI insights, and start understanding your emotional patterns with less friction.",
+    ctaButton: "Start journaling free",
+    backToBlog: "Back to all articles",
+    footerAbout: "About",
+    footerSupport: "Support",
+    footerPrivacy: "Privacy",
+  },
+};
+
 const UnpublishedBlogPostNotice: React.FC<{ post: BlogPostData }> = ({ post }) => {
   const language = getPostLanguage(post);
-  const locale = language === "id" ? "id-ID" : "en-US";
+  const locale = BLOG_LOCALE_MAP[language] ?? "en-US";
   const canonical = `https://nuju.app/blog/${post.slug}`;
   const formattedDate = new Date(post.publishedAt).toLocaleDateString(locale, {
     year: "numeric",
@@ -2680,7 +2806,7 @@ const BlogPost: React.FC = () => {
   }
 
   const language = getPostLanguage(post);
-  const locale = language === "id" ? "id-ID" : "en-US";
+  const locale = BLOG_LOCALE_MAP[language] ?? "en-US";
   const canonical = `https://nuju.app/blog/${post.slug}`;
 
   const alternateMapping = LANGUAGE_ALTERNATES[post.slug];
@@ -2809,40 +2935,7 @@ const BlogPost: React.FC = () => {
         })
       : null;
 
-  const copy =
-    language === "id"
-      ? {
-          allArticles: "Semua artikel",
-          tryFree: "Coba Nuju gratis",
-          minRead: "menit baca",
-          onThisPage: "Isi artikel",
-          faqTitle: "Pertanyaan yang sering ditanyakan",
-          relatedTitle: "Baca juga",
-          ctaEyebrow: "Coba sendiri",
-          ctaTitle: "Mulai entry jurnal pertamamu hari ini",
-          ctaBody: "Nuju cuma butuh 30 detik sehari. Pilih mood, tulis satu kalimat, lalu mulai lihat pola emosimu secara lebih jelas.",
-          ctaButton: "Mulai journaling gratis",
-          backToBlog: "Kembali ke semua artikel",
-          footerAbout: "Tentang",
-          footerSupport: "Bantuan",
-          footerPrivacy: "Privasi",
-        }
-      : {
-          allArticles: "All articles",
-          tryFree: "Try Nuju free",
-          minRead: "min read",
-          onThisPage: "On this page",
-          faqTitle: "Frequently asked questions",
-          relatedTitle: "Keep reading",
-          ctaEyebrow: "Try it yourself",
-          ctaTitle: "Start your first journal entry today",
-          ctaBody: "Nuju takes 30 seconds a day. Track your mood, get AI insights, and start understanding your emotional patterns with less friction.",
-          ctaButton: "Start journaling free",
-          backToBlog: "Back to all articles",
-          footerAbout: "About",
-          footerSupport: "Support",
-          footerPrivacy: "Privacy",
-        };
+  const copy = BLOG_COPY_MAP[language] ?? BLOG_COPY_MAP.en;
 
   return (
     <div className="min-h-screen bg-background">
