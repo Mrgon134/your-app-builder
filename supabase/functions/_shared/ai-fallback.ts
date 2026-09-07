@@ -39,9 +39,9 @@ const groqConfig = (): ProviderConfig | null => {
   const apiKey = Deno.env.get("GROQ_API_KEY") || Deno.env.get("AI_API_KEY");
   if (!apiKey) return null;
 
-  // Protect against stale "llama-3.3-70b-versatile" or empty string in Supabase secrets
+  // Protect against stale llama models or empty string in Supabase secrets
   const envModel = Deno.env.get("GROQ_TEXT_MODEL") || Deno.env.get("AI_MODEL");
-  const model = (!envModel || typeof envModel !== "string" || !envModel.trim() || envModel.includes("llama-3.3-70b-versatile"))
+  const model = (!envModel || typeof envModel !== "string" || !envModel.trim() || envModel.toLowerCase().includes("llama"))
     ? "qwen/qwen3.8-27b"
     : envModel.trim();
 
