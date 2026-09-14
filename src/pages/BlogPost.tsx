@@ -3,6 +3,7 @@ import { Link, Navigate, useParams } from "react-router-dom";
 import { ArrowLeft, ArrowRight, Clock, List, Tag } from "lucide-react";
 import { Helmet } from "react-helmet-async";
 import AppStoreCta from "@/components/AppStoreCta";
+import AdSenseBanner from "@/components/AdSenseBanner";
 import SEOHead from "@/components/SEOHead";
 import { usePostHogEvents } from "@/hooks/use-posthog-events";
 import {
@@ -3101,7 +3102,14 @@ const BlogPost: React.FC = () => {
         )}
 
         <div className="prose-nuju">
-          {post.sections.map((section, index) => renderSection(section, index))}
+          {post.sections.map((section, index) => (
+            <React.Fragment key={index}>
+              {renderSection(section, index)}
+              {index === Math.floor(post.sections.length / 2) && post.sections.length >= 6 && (
+                <AdSenseBanner format="auto" className="my-10" />
+              )}
+            </React.Fragment>
+          ))}
         </div>
 
         {internalLinkCards.length > 0 && (
@@ -3253,7 +3261,9 @@ const BlogPost: React.FC = () => {
           </section>
         )}
 
-        <div className="mt-16 rounded-2xl border border-primary/20 bg-primary/5 px-6 py-10 text-center">
+        <AdSenseBanner format="auto" className="mt-12" />
+
+        <div className="mt-12 rounded-2xl border border-primary/20 bg-primary/5 px-6 py-10 text-center">
           <p className="mb-2 text-sm font-semibold uppercase tracking-widest text-primary">
             {copy.ctaEyebrow}
           </p>
