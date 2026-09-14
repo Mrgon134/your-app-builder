@@ -6,7 +6,7 @@
     <atom:link href="https://nuju.app/rss.xml" rel="self" type="application/rss+xml" />
     <description>Practical guides on journaling, mood tracking, and emotional wellness from the Nuju team.</description>
     <language>en</language>
-    <lastBuildDate>Mon, 14 Sep 2026 08:17:39 GMT</lastBuildDate>
+    <lastBuildDate>Mon, 14 Sep 2026 08:20:59 GMT</lastBuildDate>
     <item>
       <title>Curhat ke Teman Malah Dibilang &apos;Kurang Bersyukur&apos;: Kenapa Kita Butuh Ruang Validasi Tanpa Nasihat Klise</title>
       <link>https://nuju.app/blog/curhat-ke-teman-kurang-bersyukur</link>
@@ -1448,6 +1448,15 @@
       <dc:language>en</dc:language>
     </item>
     <item>
+      <title>Mengurung Diri di Kamar Berbulan-bulan: Fenomena Hikikomori, Social Burnout, dan Langkah Lembut Membuka Pintu Kamar</title>
+      <link>https://nuju.app/blog/hikikomori-isolasi-sosial-takut-ketemu-orang</link>
+      <guid isPermaLink="true">https://nuju.app/blog/hikikomori-isolasi-sosial-takut-ketemu-orang</guid>
+      <description>Keluar kamar rasanya seperti melangkah ke medan perang. Bertemu tetangga bikin panik, membuka tirai jendela terasa menyilaukan, dan kamu merasa jauh lebih aman di balik selimut bersama laptopmu. Psikiater Jepang Dr. Tamaki Saito mengidentifikasi fenomena Hikikomori yang kini melanda jutaan pemuda di kota-kota besar dunia. Temukan jembatan rehabilitasi mental tanpa paksaan.</description>
+      <category>Isolasi Sosial &amp; Kecemasan</category>
+      <pubDate>Fri, 10 Apr 2026 12:00:00 GMT</pubDate>
+      <dc:language>id</dc:language>
+    </item>
+    <item>
       <title>5 Science-Backed Benefits of Daily Mood Tracking</title>
       <link>https://nuju.app/blog/benefits-of-mood-tracking</link>
       <guid isPermaLink="true">https://nuju.app/blog/benefits-of-mood-tracking</guid>
@@ -1457,12 +1466,57 @@
       <dc:language>en</dc:language>
     </item>
     <item>
+      <title>Membunuh Perlahan Tanpa Suara: Neurobiologi Kesepian Kronis (Riset John Cacioppo dan Peringatan Darurat US Surgeon General)</title>
+      <link>https://nuju.app/blog/epidemi-kesepian-neurobiologi-cacioppo-surgeon-general</link>
+      <guid isPermaLink="true">https://nuju.app/blog/epidemi-kesepian-neurobiologi-cacioppo-surgeon-general</guid>
+      <description>Dikelilingi ribuan pengikut di media sosial dan ratusan kontak WhatsApp, tapi saat kamu jatuh sakit atau menangis di kamar, tidak ada satu orang pun yang bisa kamu telepon. Riset neurosains Dr. John Cacioppo dan peringatan darurat Surgeon General membuktikan bahwa kesepian memiliki dampak mematikan setara merokok 15 batang rokok per hari. Pahami biologi di balik rasa hampa ini.</description>
+      <category>Neurosains &amp; Kesepian</category>
+      <pubDate>Thu, 09 Apr 2026 12:00:00 GMT</pubDate>
+      <dc:language>id</dc:language>
+    </item>
+    <item>
       <title>How to Start a Journaling Habit: A Complete Beginner&apos;s Guide</title>
       <link>https://nuju.app/blog/how-to-start-journaling</link>
       <guid isPermaLink="true">https://nuju.app/blog/how-to-start-journaling</guid>
       <description>Never journaled before? This beginner&apos;s guide covers everything — what to write, when to write, and how to make journaling a daily habit that actually sticks.</description>
       <category>Journaling Tips</category>
       <pubDate>Wed, 08 Apr 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Terjebak &apos;Ewuh Pakewuh&apos; di Kantor: Kenapa Karyawan Indonesia Susah Menolak Lembur, Selalu Bilang &apos;Siap Mas&apos;, dan Berakhir Burnout Parah</title>
+      <link>https://nuju.app/blog/budaya-ewuh-pakewuh-hustle-culture-burnout-kantor</link>
+      <guid isPermaLink="true">https://nuju.app/blog/budaya-ewuh-pakewuh-hustle-culture-burnout-kantor</guid>
+      <description>Beban kerja sudah menumpuk setinggi gunung, tapi saat atasan melempar tugas baru di hari Jumat jam 5 sore, mulutmu otomatis menjawab: &apos;Siap pak, segera saya proses&apos;. Perpaduan budaya sungkan Jawa (Ewuh Pakewuh) dan toxic hustle culture startup menghancurkan kesehatan mental pekerja muda Indonesia. Pelajari seni menetapkan batas tegas tanpa merasa durhaka.</description>
+      <category>Budaya Kerja &amp; Mental Health</category>
+      <pubDate>Wed, 08 Apr 2026 12:00:00 GMT</pubDate>
+      <dc:language>id</dc:language>
+    </item>
+    <item>
+      <title>When Your Heart Races: How to Stop Fearing Your Own Body (Dr. David Barlow&apos;s Panic Control Therapy and Interoceptive Habituation)</title>
+      <link>https://nuju.app/blog/panic-attack-interoceptive-exposure-david-barlow</link>
+      <guid isPermaLink="true">https://nuju.app/blog/panic-attack-interoceptive-exposure-david-barlow</guid>
+      <description>Your heart thumps against your ribs, your breath catches, and dizziness sweeps through your head. Your brain screams: &apos;I&apos;m having a heart attack right now!&apos;. Clinical psychologist Dr. David Barlow proved that panic disorder is a phobia of internal bodily sensations. Discover how Interoceptive Exposure and verbal grounding retrain your nervous system to stay calm.</description>
+      <category>Panic &amp; Anxiety Science</category>
+      <pubDate>Tue, 07 Apr 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>The Silent Transformation of Matrescence: Why New Mothers Feel Anxious, Grieving, and Invisible (And How Spoken Reflection Restores Your Sense of Self)</title>
+      <link>https://nuju.app/blog/matrescence-postpartum-anxiety-motherhood-identity-loss</link>
+      <guid isPermaLink="true">https://nuju.app/blog/matrescence-postpartum-anxiety-motherhood-identity-loss</guid>
+      <description>You love your baby with every fiber of your being — but you also mourn the person you used to be before motherhood. Medical anthropologist Dana Raphael and Columbia psychiatrist Dr. Alexandra Sacks coined this identity earthquake &apos;Matrescence&apos;. Explore the reality of Perinatal Mood and Anxiety Disorders (PMADs) and why voice journaling provides a lifeline.</description>
+      <category>Maternal Mental Health</category>
+      <pubDate>Mon, 06 Apr 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>The 3:00 PM Brain Wall: Why High-Achievers Can&apos;t Pick What to Eat for Dinner (The Neuroscience of Decision Fatigue and Roy Baumeister&apos;s Ego Depletion)</title>
+      <link>https://nuju.app/blog/decision-fatigue-brain-fog-3pm-paralysis</link>
+      <guid isPermaLink="true">https://nuju.app/blog/decision-fatigue-brain-fog-3pm-paralysis</guid>
+      <description>You managed complex project roadmaps, negotiated with clients, and solved multi-million dollar problems all morning. But by 3:30 PM, choosing what to cook or replying to a simple text paralyzes you. Social psychologist Roy Baumeister proved that decision-making consumes finite glucose in the prefrontal cortex. Here is how a 120-second vocal cognitive flush resets your mental bandwidth.</description>
+      <category>Productivity &amp; Neuroscience</category>
+      <pubDate>Sun, 05 Apr 2026 12:00:00 GMT</pubDate>
       <dc:language>en</dc:language>
     </item>
     <item>
