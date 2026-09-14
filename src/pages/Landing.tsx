@@ -9,6 +9,19 @@ const Landing: React.FC = () => {
   const ttk = useTikTokPixel();
 
   useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const errorCode = params.get("error_code");
+    const errorDesc = params.get("error_description");
+    const error = params.get("error");
+
+    if (errorCode || error) {
+      const msg = errorCode === "bad_oauth_state"
+        ? "Login session expired or was interrupted. Please try signing in again."
+        : (errorDesc || error || "Sign-in failed. Please try again.");
+      window.location.replace(`/auth?error=${encodeURIComponent(msg)}`);
+      return;
+    }
+
     trackLandingView();
     ttk.trackPageView();
   }, [trackLandingView, ttk]);

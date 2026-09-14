@@ -35,7 +35,18 @@ const AuthCallback: React.FC = () => {
 
     const exchange = async () => {
       const params = new URLSearchParams(window.location.search);
-      const hashParams = new URLSearchParams(window.location.hash.slice(1));
+      const errorParam =
+        params.get("error_description") ||
+        params.get("error") ||
+        hashParams.get("error_description") ||
+        hashParams.get("error");
+      if (errorParam) {
+        if (!settled) {
+          settled = true;
+          navigate(`${ROUTES.AUTH}?error=` + encodeURIComponent(errorParam), { replace: true });
+        }
+        return;
+      }
 
       // Handle PKCE code exchange
       const code = params.get("code");

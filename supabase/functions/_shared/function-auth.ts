@@ -172,6 +172,19 @@ export const paymentRequired = (message = "Upgrade required") =>
     headers: jsonHeaders,
   });
 
+const parseJwtPayload = (token: string): Record<string, unknown> | null => {
+  try {
+    const parts = token.split(".");
+    if (parts.length < 2) return null;
+    const base64Url = parts[1];
+    const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
+    const json = atob(base64);
+    return JSON.parse(json);
+  } catch {
+    return null;
+  }
+};
+
 export const getAuthenticatedUser = async (req: Request) => {
   const supabaseUrl = Deno.env.get("SUPABASE_URL");
   const anonKey = Deno.env.get("SUPABASE_ANON_KEY");
@@ -181,12 +194,23 @@ export const getAuthenticatedUser = async (req: Request) => {
     return null;
   }
 
+  const token = authHeader.replace(/^Bearer\s+/i, "").trim();
+  if (!token || token === anonKey) {
+    return null;
+  }
+
+  // Pre-validate token payload to avoid 403 'missing sub claim' errors from Supabase Auth
+  const payload = parseJwtPayload(token);
+  if (!payload || payload.role === "anon" || !payload.sub || typeof payload.sub !== "string") {
+    return null;
+  }
+
   const client = createClient(supabaseUrl, anonKey, {
-    global: { headers: { Authorization: authHeader } },
+    global: { headers: { Authorization: `Bearer ${token}` } },
   });
 
   try {
-    const { data, error } = await client.auth.getUser();
+    const { data, error } = await client.auth.getUser(token);
     if (error || !data.user) return null;
     return data.user;
   } catch (error) {

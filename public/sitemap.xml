@@ -4,79 +4,79 @@
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://nuju.app/</loc>
-    <lastmod>2026-09-07</lastmod>
+    <lastmod>2026-09-14</lastmod>
     <priority>1.0</priority>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://nuju.app/ai-journal</loc>
-    <lastmod>2026-09-07</lastmod>
+    <lastmod>2026-09-14</lastmod>
     <priority>0.9</priority>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://nuju.app/mood-tracker</loc>
-    <lastmod>2026-09-07</lastmod>
+    <lastmod>2026-09-14</lastmod>
     <priority>0.9</priority>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://nuju.app/voice-journaling</loc>
-    <lastmod>2026-09-07</lastmod>
+    <lastmod>2026-09-14</lastmod>
     <priority>0.8</priority>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://nuju.app/install</loc>
-    <lastmod>2026-09-07</lastmod>
+    <lastmod>2026-09-14</lastmod>
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
     <loc>https://nuju.app/about</loc>
-    <lastmod>2026-09-07</lastmod>
+    <lastmod>2026-09-14</lastmod>
     <priority>0.6</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
     <loc>https://nuju.app/support</loc>
-    <lastmod>2026-09-07</lastmod>
+    <lastmod>2026-09-14</lastmod>
     <priority>0.6</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
     <loc>https://nuju.app/contact</loc>
-    <lastmod>2026-09-07</lastmod>
+    <lastmod>2026-09-14</lastmod>
     <priority>0.5</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
     <loc>https://nuju.app/privacy</loc>
-    <lastmod>2026-09-07</lastmod>
+    <lastmod>2026-09-14</lastmod>
     <priority>0.4</priority>
     <changefreq>yearly</changefreq>
   </url>
   <url>
     <loc>https://nuju.app/terms</loc>
-    <lastmod>2026-09-07</lastmod>
+    <lastmod>2026-09-14</lastmod>
     <priority>0.4</priority>
     <changefreq>yearly</changefreq>
   </url>
   <url>
     <loc>https://nuju.app/medical-disclaimer</loc>
-    <lastmod>2026-09-07</lastmod>
+    <lastmod>2026-09-14</lastmod>
     <priority>0.3</priority>
     <changefreq>yearly</changefreq>
   </url>
   <url>
     <loc>https://nuju.app/blog</loc>
-    <lastmod>2026-09-07</lastmod>
+    <lastmod>2026-09-14</lastmod>
     <priority>0.8</priority>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://nuju.app/guides/journaling</loc>
-    <lastmod>2026-09-07</lastmod>
+    <lastmod>2026-09-14</lastmod>
     <priority>0.9</priority>
     <changefreq>monthly</changefreq>
   </url>
@@ -1662,6 +1662,402 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/5-tanda-burnout-yang-sering-disepelekan-gen-z-indonesia"/>
   </url>
   <url>
+    <loc>https://nuju.app/blog/curhat-ke-teman-kurang-bersyukur</loc>
+    <lastmod>2026-09-14</lastmod>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Curhat ke Teman Malah Dibilang &apos;Kurang Bersyukur&apos;: Kenapa Kita Butuh Ruang Validasi Tanpa Nasihat Klise</image:title>
+      <image:caption>Pernah curhat tapi dibalas &apos;kurang ibadah&apos; atau &apos;kurang bersyukur&apos;? Pelajari fenomena spiritual gaslighting, venting guilt, dan pentingnya ruang aman emosional privat.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="id" href="https://nuju.app/blog/curhat-ke-teman-kurang-bersyukur"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/overthinking-jam-3-pagi</loc>
+    <lastmod>2026-09-14</lastmod>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Jam 3 Pagi dan Otak yang Menolak Berhenti Berputar: Cara Memutus Overthinking Tengah Malam</image:title>
+      <image:caption>Kenapa pikiran overthinking terasa 10x lebih bising di jam 3 pagi? Pelajari mekanisme amigdala saat lelah dan metode 3 menit voice journaling untuk tidur nyenyak.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="id" href="https://nuju.app/blog/overthinking-jam-3-pagi"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/curhat-ke-manusia-vs-ai</loc>
+    <lastmod>2026-09-14</lastmod>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Curhat ke Manusia vs Curhat ke AI: Kenapa Ruang Digital Anonim Terasa Lebih Membebaskan?</image:title>
+      <image:caption>Merasa bersalah merepotkan teman atau takut rahasia bocor? Simak perbandingan psikologis curhat ke manusia vs AI dan bagaimana ruang privat memulihkan emosi.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="id" href="https://nuju.app/blog/curhat-ke-manusia-vs-ai"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/why-cbt-apps-feel-like-homework</loc>
+    <lastmod>2026-09-14</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Why CBT Apps Feel Like Homework (And What Actually Works When You&apos;re Emotionally Exhausted)</image:title>
+      <image:caption>Tired of filling out 10-step cognitive distortion forms when burnt out? Discover why structured CBT apps cause fatigue and how natural reflection restores calm.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/why-cbt-apps-feel-like-homework"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/vulnerability-hangover-private-journaling</loc>
+    <lastmod>2026-09-14</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>The Vulnerability Hangover: Why You Keep Deleting Your Private Journal Entries</image:title>
+      <image:caption>Do you write an honest diary entry and immediately feel exposed or delete it? Understand the vulnerability hangover and how privacy-first journaling heals shame.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/vulnerability-hangover-private-journaling"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/sunday-scaries-identity-burnout</loc>
+    <lastmod>2026-09-14</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>The Sunday Scaries Aren&apos;t About Tomorrow&apos;s Meetings: How Quiet Weekends Mask Burnout</image:title>
+      <image:caption>Why does Sunday evening bring a sudden wave of quiet dread? Uncover the link between stillness, anticipatory anxiety, and identity burnout, plus a 3-minute reset.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/sunday-scaries-identity-burnout"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/datenschutz-fuer-die-psyche</loc>
+    <lastmod>2026-09-14</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Datenschutz für die Psyche: Warum dein Tagebuch keine Werbedatenbank sein darf</image:title>
+      <image:caption>Warum digitale Mental-Health-Apps ohne strikten Datenschutz deine seelische Gesundheit gefährden. Erfahre, warum echte Selbstreflexion absolute Privatsphäre verlangt.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="de" href="https://nuju.app/blog/datenschutz-fuer-die-psyche"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/das-verlorene-feierabend-gefuehl</loc>
+    <lastmod>2026-09-14</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Das verlorene „Feierabend“-Gefühl: Wie du den mentalen Lärm des Arbeitstags vor der Haustür lässt</image:title>
+      <image:caption>Homeoffice und ständige Erreichbarkeit haben den Feierabend zerstört. Lerne, wie du mit 3 Minuten mentalem De-Briefing den Arbeitstag wirksam abschließt.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="de" href="https://nuju.app/blog/das-verlorene-feierabend-gefuehl"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/zaehne-zusammenbeissen-selbstreflexion</loc>
+    <lastmod>2026-09-14</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>„Zähne zusammenbeißen“ funktioniert nicht mehr: Warum rationale Menschen ein Ventil für irrationale Gefühle brauchen</image:title>
+      <image:caption>Warum das ständige Wegdrücken von Frust und Überlastung in die Erschöpfung führt. Wie strukturierte KI-Reflexion dir hilft, ohne Esoterik klarzusehen.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="de" href="https://nuju.app/blog/zaehne-zusammenbeissen-selbstreflexion"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/der-goldene-kaefig-der-perfektion-schweiz</loc>
+    <lastmod>2026-09-14</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Der goldene Käfig der Perfektion: Wenn man in Zürich alles hat, aber sich innerlich leer fühlt</image:title>
+      <image:caption>Hohes Gehalt, saubere Straßen, perfekte Fassade – und trotzdem eine quälende innere Leere? Über das Schweizer Tabu, trotz Wohlstand unglücklich zu sein.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="de" href="https://nuju.app/blog/der-goldene-kaefig-der-perfektion-schweiz"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/schweizer-diskretion-gedankenentlastung</loc>
+    <lastmod>2026-09-14</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Schweizer Diskretion: Warum erfolgreiche Fachkräfte ihre Zweifel lieber privat halten</image:title>
+      <image:caption>In der Schweizer Geschäftswelt gilt Zurückhaltung als oberstes Gebot. Warum Führungskräfte ihre Zweifel privat halten und wie ein KI-Spiegel Klarheit schafft.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="de" href="https://nuju.app/blog/schweizer-diskretion-gedankenentlastung"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/micro-mindfulness-schweiz-effizienz</loc>
+    <lastmod>2026-09-14</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Micro-Mindfulness für Vielbeschäftigte: Warum 3 Minuten Sprachnotiz eine Stunde Grübeln schlagen</image:title>
+      <image:caption>Keine Zeit für lange Meditationen? Entdecke, wie Schweizer Fachkräfte mit 3 Minuten Voice-Journaling ihr Nervensystem effizient und nachhaltig entlasten.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="de" href="https://nuju.app/blog/micro-mindfulness-schweiz-effizienz"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/doe-maar-gewoon-kwetsbaarheid-nederland</loc>
+    <lastmod>2026-09-14</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>„Doe maar gewoon, dan doe je al gek genoeg“: Waarom de Nederlandse nuchterheid kwetsbaarheid zo lastig maakt</image:title>
+      <image:caption>Waarom de oer-Hollandse nuchterheid ervoor zorgt dat we emotionele uitputting wegwuiven als &apos;aanstellerij&apos;. Ontdek hoe je mentaal kunt ventileren zonder drama.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://nuju.app/blog/doe-maar-gewoon-kwetsbaarheid-nederland"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/overspannen-zonder-drama-randstad</loc>
+    <lastmod>2026-09-14</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Constant &apos;Druk, Druk, Druk&apos;: Hoe je de mentale ruis van de Randstad parkeert voordat je overspannen raakt</image:title>
+      <image:caption>Het fenomeen &apos;lekker druk&apos; als statussymbool eist zijn tol. Leer hoe je met 3 minuten dagelijkse triage mentale ruis filtert voordat je vastloopt.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://nuju.app/blog/overspannen-zonder-drama-randstad"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/geen-wachtlijst-ai-spiegel-mentale-gezondheid</loc>
+    <lastmod>2026-09-14</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Geen Wachtlijst, Geen Schaamte: Waarom de AI-spiegel precies is wat je nodig hebt als de drempel naar hulp te hoog is</image:title>
+      <image:caption>Wachtlijsten in de GGZ lopen op tot maanden. Ontdek waarom een anonieme AI-spiegel de ideale laagdrempelige eerste opvang is voor piekeren en stress.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://nuju.app/blog/geen-wachtlijst-ai-spiegel-mentale-gezondheid"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/honne-to-tatemae-kanjou-no-hinanjo</loc>
+    <lastmod>2026-03-12</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>本音を吐くと「迷惑」になる気がするあなたへ：本音（Honne）と建前（Tatemae）の間で疲弊した心を守る「感情の避難所」</image:title>
+      <image:caption>周りに気を遣いすぎて本音が言えない、相談すると相手に迷惑がかかる気がする——。日本社会特有の気配りと同調圧力で心が限界を迎える前に。誰にも気を遣わず本音を吐き出せるプライベートAIジャーナリングの活用法。</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://nuju.app/blog/honne-to-tatemae-kanjou-no-hinanjo"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/shinya-1ji-hitori-hanseikai</loc>
+    <lastmod>2026-03-12</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>深夜1時の「ひとり反省会」をやめられない夜に：過剰適応（Over-adaptation）と反芻思考を断ち切るAI対話ジャーナリング</image:title>
+      <image:caption>布団に入った瞬間始まる『今日のあの発言、変だったかも』という無限の自己反省。責任感が強く空気を読みすぎる人が陥る『反芻思考（ルミネーション）』を止め、脳を安心して眠りに就かせるための実践的アプローチ。</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://nuju.app/blog/shinya-1ji-hitori-hanseikai"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/gaman-genkai-mental-detox</loc>
+    <lastmod>2026-03-12</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>「まだ頑張れる」は限界のサイン：我慢（Gaman）が美徳の社会で、静かに壊れる前に本音を書き出す技術</image:title>
+      <image:caption>体が重い、朝起きられない、何を見ても感動しない。それでも『みんな頑張っているから』と自分を追い込んでいませんか？ 日本の『我慢の美徳』の裏に潜む燃え尽き症候群の初期症状と、日常の中で心の防波堤を築くセルフケア。</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://nuju.app/blog/gaman-genkai-mental-detox"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/pengyouquan-shudong-qingxu-biyan</loc>
+    <lastmod>2026-03-12</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>为什么我们越来越不敢发朋友圈？当代年轻人在寻找的“绝对隐私数字树洞”</image:title>
+      <image:caption>从“发条动态抒发心情”到“仅三天可见”甚至彻底闭麦。当社交平台充斥着工作人脉、长辈亲戚与人设考核，真实的脆弱该往哪里安放？探索一个无需伪装、永不背叛的私密AI情感树洞。</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://nuju.app/blog/pengyouquan-shudong-qingxu-biyan"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/neijuan-tangping-jingshen-neihao</loc>
+    <lastmod>2026-03-12</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>“内卷”卷不动，“躺平”躺不平：如何用每天3分钟的自我对话摆脱精神内耗？</image:title>
+      <image:caption>处在45度人生的年轻人，一边焦虑于未来的不确定性，一边疲惫于无意义的恶性竞争。既无法彻底放下名利去隐居，又无法在内卷中胜出。通过极简AI反思笔记，厘清课题分离，夺回内心秩序。</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://nuju.app/blog/neijuan-tangping-jingshen-neihao"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/liuxuesheng-haiwai-huaren-gudu</loc>
+    <lastmod>2026-03-12</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>异国他乡的孤独时刻：当“报喜不报忧”成为本能，谁来听你讲讲心里的难？</image:title>
+      <image:caption>留学租房的琐碎、语言文化的壁垒、职场晋升的无形天花板。远跨重洋的留学生与海外华人，习惯了对大洋彼岸的父母微笑说『我很好』。那些在异国深夜独自消化的眼泪，需要一个真正懂你文化痛点的倾听者。</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://nuju.app/blog/liuxuesheng-haiwai-huaren-gudu"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/gamjeong-sseuregitong-anti-burnout-korea</loc>
+    <lastmod>2026-03-16</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>친구를 &apos;감정 쓰레기통&apos;으로 만들기 싫은 밤: 아무에게도 부담 주지 않고 곪은 마음을 털어내는 3분 AI 음성 회고</image:title>
+      <image:caption>속상한 일이 있어도 &quot;친구한테 부담 주기 싫어서&quot;, &quot;나만 징징대는 것 같아서&quot; 입을 닫아버리는 한국 2030을 위해. 인간관계에 짐을 지우지 않고 억눌린 감정을 건강하게 배출하는 AI 감정 일기 솔루션.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://nuju.app/blog/gamjeong-sseuregitong-anti-burnout-korea"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/nunchi-gamyeon-woouljeung-jikjangin-korea</loc>
+    <lastmod>2026-03-17</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>눈치 보느라 &apos;진짜 나&apos;를 잃어버린 판교·테헤란로 직장인: 가면 우울증(Smiling Depression)을 치유하는 퇴근길 3분 음성 기록</image:title>
+      <image:caption>회사에서는 유능하고 밝은 동료, 하지만 퇴근 지하철에 오르면 밀려오는 허무함과 탈진. 한국 특유의 &apos;눈치(Nunchi)&apos; 문화와 성과주의 속에서 감정노동으로 마모된 IT·오피스 워커를 위한 프라이빗 마인드 리셋.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://nuju.app/blog/nunchi-gamyeon-woouljeung-jikjangin-korea"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/saebyeok-2si-jachaek-wanbyeokjuui-korea</loc>
+    <lastmod>2026-03-18</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>새벽 2시, &apos;오늘도 부족했다&apos;는 자책에 잠 못 들 때: 갓생 강박을 내려놓고 불면의 꼬리를 끊는 밤의 음성 루틴</image:title>
+      <image:caption>하루 종일 쉼 없이 달렸는데도 침대에 누우면 &apos;더 열심히 살았어야 했는데&apos;라며 자책하는 당신. 끝없는 성취 압박과 완벽주의가 만든 야간 반추사고(Rumination)를 멈추는 가장 다정한 음성 대화.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://nuju.app/blog/saebyeok-2si-jachaek-wanbyeokjuui-korea"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/charge-mentale-deconnexion-journal-intime-ia</loc>
+    <lastmod>2026-03-19</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>La charge mentale invisible : Pourquoi votre cerveau refuse de déconnecter après 20h (et comment 3 minutes d&apos;audio libèrent l&apos;esprit)</image:title>
+      <image:caption>Entre obligations professionnelles, gestion domestique et to-do lists infinies, la charge mentale ne s&apos;arrête jamais. Découvrez comment un journal intime vocal alimenté par l&apos;IA permet de déposer le fardeau psychologique en 3 minutes, sans filtre ni culpabilité.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://nuju.app/blog/charge-mentale-deconnexion-journal-intime-ia"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/hyper-intellectualisation-emotions-journal-vocal</loc>
+    <lastmod>2026-03-20</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>L&apos;hyper-intellectualisation des émotions : Quand trop analyser ce que l&apos;on ressent empêche de guérir</image:title>
+      <image:caption>« Je sais pourquoi je suis stressé, donc je devrais aller bien. » Si vous passez votre temps à disséquer vos pensées plutôt qu&apos;à vivre vos émotions, vous souffrez peut-être d&apos;hyper-intellectualisation. Pourquoi le journal vocal déjoue les pièges du mental rationnel.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://nuju.app/blog/hyper-intellectualisation-emotions-journal-vocal"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/syndrome-bon-eleve-perfectionnisme-anxiete</loc>
+    <lastmod>2026-03-21</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Le syndrome du « bon élève » à l&apos;âge adulte : Se libérer de la peur de décevoir grâce au sanctuaire numérique</image:title>
+      <image:caption>Formés à l&apos;excellence dès les classes préparatoires et les grandes écoles, de nombreux professionnels français vivent dans la hantise de l&apos;erreur et le syndrome de l&apos;imposteur. Comment s&apos;offrir un espace d&apos;honnêteté radicale où la perfection n&apos;a aucune valeur.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://nuju.app/blog/syndrome-bon-eleve-perfectionnisme-anxiete"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/adhd-paralysis-late-diagnosis-high-achiever</loc>
+    <lastmod>2026-03-22</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>The High-Achiever&apos;s ADHD Paralysis: Why Your Brain Freezes When You Need It Most (And How Voice Dumps Break the Wall)</image:title>
+      <image:caption>You built a career on hyperfocus, but now even opening your inbox feels like lifting a boulder. Why traditional planners make ADHD executive dysfunction worse — and how 180 seconds of unstructured speech bypasses the cognitive wall.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/adhd-paralysis-late-diagnosis-high-achiever"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/quiet-bpd-emotional-dysregulation-private-journal</loc>
+    <lastmod>2026-03-23</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Inside the Silent Storm: Journaling for Quiet BPD and Hidden Emotional Dysregulation</image:title>
+      <image:caption>While others explode outward, you implode. The crushing guilt of feeling everything at 200% intensity, masking all day, and the fear of pushing people away. Why private, non-reactive voice reflection is the safest container for high-sensitivity souls.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/quiet-bpd-emotional-dysregulation-private-journal"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/ningen-kankei-reset-shoukougun-sns-tsukare</loc>
+    <lastmod>2026-03-24</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>突然すべてのアカウントを消したくなる「人間関係リセット症候群」：他人軸で生きるのに疲れたあなたを守るデジタル避難所</image:title>
+      <image:caption>LINEの未読が溜まるだけで胸が苦しい、突然友達全員との連絡を絶ちたくなる——。日本人の真面目さと気遣いが生む「人間関係リセット症候群」の心理的背景と、人間関係を壊さずに心をリセットする3分プライベート感情ログ。</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://nuju.app/blog/ningen-kankei-reset-shoukougun-sns-tsukare"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/wan-ope-ikuji-burnout-oya-tsukare</loc>
+    <lastmod>2026-03-25</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>「いいお母さん・いいお父さん」でいなきゃと泣きそうな夜：ワンオペ育児と親の罪悪感（Parental Guilt）を溶かす3分</image:title>
+      <image:caption>子どもに声を荒げてしまった後の自己嫌悪、パートナーへの言えない不満、育児書の通りにできない焦り。SNSの「丁寧な子育て」に押し潰されそうな親のための、誰にも言えない弱音を受け止める安全な居場所。</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://nuju.app/blog/wan-ope-ikuji-burnout-oya-tsukare"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/sanshisui-weiji-zhiye-jiaolv-shiye</loc>
+    <lastmod>2026-03-26</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>30岁危机与「大厂毕业」的清晨：当最优解的人生剧本破灭，如何用3分钟对白接住下坠的自己</image:title>
+      <image:caption>从名校毕业、进入大厂、升职加薪，曾以为只要足够努力就能掌控一切。直到裁员通知、35岁职场红线与无休止的内卷同时砸下。写给正在经历职业身份崩塌与中年危机的都市中产：如何停止精神内耗，重构真实的内心秩序。</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://nuju.app/blog/sanshisui-weiji-zhiye-jiaolv-shiye"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/taohao-xing-renge-jujue-kunan</loc>
+    <lastmod>2026-03-27</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>讨好型人格的午夜自救：为什么每一次说「不」，你心里都要下一场暴风雨？</image:title>
+      <image:caption>别人提要求你下意识就答应，事后又陷入巨大的懊恼与委屈；发一条拒绝的微信要想半小时，生怕让对方不高兴。深入解析讨好型人格（People-Pleaser）的恐惧根源，并在无条件的零评判空间里，练习找回自我边界。</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://nuju.app/blog/taohao-xing-renge-jujue-kunan"/>
+  </url>
+  <url>
     <loc>https://nuju.app/blog/how-to-stop-overthinking-at-night</loc>
     <lastmod>2026-07-23</lastmod>
     <priority>0.7</priority>
@@ -1732,19 +2128,6 @@
       <image:caption>Cara menghentikan pikiran berputar sebelum tidur dengan journaling, napas, dan teknik menutup loop mental agar tidur lebih nyenyak.</image:caption>
     </image:image>
     <xhtml:link rel="alternate" hreflang="id" href="https://nuju.app/blog/menghentikan-pikiran-berputar-sebelum-tidur"/>
-  </url>
-  <url>
-    <loc>https://nuju.app/blog/journaling-untuk-anxiety</loc>
-    <lastmod>2026-09-03</lastmod>
-    <priority>0.6</priority>
-    <changefreq>monthly</changefreq>
-    <image:image>
-      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
-      <image:title>Cara Journaling untuk Mengatasi Anxiety dan Cemas: Protokol 5 Menit</image:title>
-      <image:caption>Protokol journaling 5 menit yang terbukti ilmiah untuk meredakan cemas, panik, dan pikiran berputar. Mulai pulih tanpa harus menulis panjang.</image:caption>
-    </image:image>
-    <xhtml:link rel="alternate" hreflang="id" href="https://nuju.app/blog/journaling-untuk-anxiety"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/journaling-for-anxiety"/>
   </url>
   <url>
     <loc>https://nuju.app/blog/journaling-for-anxiety</loc>

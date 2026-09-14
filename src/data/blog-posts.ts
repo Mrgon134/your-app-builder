@@ -1,4 +1,9 @@
 import { SEO_BLOG_POSTS } from "./seo-posts";
+import { ANTIGRAVITY_BLOG_POSTS } from "./antigravity-posts";
+import { ANTIGRAVITY_BLOG_POSTS_BATCH2 } from "./antigravity-posts-batch2";
+import { ANTIGRAVITY_BLOG_POSTS_BATCH3 } from "./antigravity-posts-batch3";
+import { ANTIGRAVITY_BLOG_POSTS_BATCH4 } from "./antigravity-posts-batch4";
+import { ANTIGRAVITY_BLOG_POSTS_BATCH5 } from "./antigravity-posts-batch5";
 
 export interface BlogSection {
   type: "h2" | "h3" | "p" | "ul" | "ol" | "callout";
@@ -22,7 +27,10 @@ export interface BlogPost {
   faq?: BlogFAQ[];
   metaTitle?: string;
   metaDescription?: string;
+  language?: BlogLanguage;
 }
+
+export type BlogLanguage = "en" | "id" | "de" | "ja" | "fr" | "ko" | "nl" | "zh";
 
 const RAW_BLOG_POSTS: BlogPost[] = [
   {
@@ -1454,8 +1462,8 @@ const RAW_BLOG_POSTS: BlogPost[] = [
     slug: "daylio-alternatives",
     title: "Best Daylio Alternative in 2026: 5 Mood Apps Tested",
     description: "Daylio is popular but limited. If you want AI analysis, deeper journaling, or more personalized insight from your mood data, these alternatives are worth trying.",
-    metaTitle: "Best Daylio Alternative 2026: 5 Mood Apps That Explain Why",
-    metaDescription: "Looking for a Daylio alternative? We tested mood tracker apps for AI insight, health data, and privacy. See the best free pick for deeper patterns.",
+    metaTitle: "5 Best Daylio Alternatives 2026: Beyond Emoji Logs",
+    metaDescription: "Loved Daylio's 2-tap speed but want real mood insights? Compare the 5 best Daylio alternatives for AI patterns, private journaling, and reflection. Try free.",
     publishedAt: "2026-04-20",
     updatedAt: "2026-05-25",
     readingTime: 7,
@@ -1545,8 +1553,8 @@ const RAW_BLOG_POSTS: BlogPost[] = [
     slug: "best-mood-tracker-apps",
     title: "Best Mood Tracker Apps in 2026: Tested and Ranked",
     description: "Mood tracking apps range from simple emoji logs to AI-powered insight engines. We tested 8 and ranked them by what actually helps you understand your emotions.",
-    metaTitle: "8 Best Mood Tracker Apps 2026: AI Insights, Charts, Privacy",
-    metaDescription: "We tested 8 mood tracker apps for daily logs, AI insights, privacy, and patterns. See which apps explain your mood instead of only charting it.",
+    metaTitle: "8 Best Mood Tracker Apps in 2026 (Tested & Ranked)",
+    metaDescription: "Tired of mood apps that only plot charts? We tested 8 top mood tracker apps for daily speed, AI insights, and pattern detection. See the top picks for 2026.",
     publishedAt: "2026-04-20",
     updatedAt: "2026-05-25",
     readingTime: 8,
@@ -1992,6 +2000,7 @@ const RAW_BLOG_POSTS: BlogPost[] = [
       { type: "p", content: "Three things break the paper-and-pen technique in real life: you can't see the page in the dark, turning on the light wakes you up further, and handwriting is slow when your brain is moving fast. A phone screen on lowest brightness, voice memo, or a journal app designed for one-tap entry solves all three. The technique stays the same — only the surface changes." },
       { type: "h2", content: "The best AI journal app for 3am anxiety in 2026" },
       { type: "p", content: "If you want the 3-minute technique without the friction of typing in a notes app or fumbling with paper, an AI journal designed for low-bandwidth moments works better than a generic journal. The best AI journal for racing thoughts at night should: (1) open and accept input in under 5 seconds, (2) work in voice or text, (3) hand you back the word you couldn't quite find, and (4) catch the pattern if 3am brain becomes a habit. Nuju was built around exactly this — a 30-second mood-plus-text or voice entry, an AI read that names what you're carrying, and one small move sized for low-bandwidth you. Free Ju Gets You reveal, no card." },
+      { type: "p", content: "If typing on a bright screen in the dark wakes you up further, try Nuju's dedicated /voice-journaling mode: speak for 60 seconds with your eyes closed, and Whisper automatically transcribes it with zero screen glare. If your loop is chronic daytime rumination rather than sudden waking anxiety, see our guide on /blog/ai-journal-for-overthinking." },
       { type: "h2", content: "What to do with the rest of the brain dump" },
       { type: "p", content: "Everything else on the list is captured. It won't be forgotten. That's all your brain needed to know. Put the phone or notebook down and return to resting — not trying to sleep, just resting. Sleep usually follows within 10–20 minutes once the loop is broken." },
       { type: "h2", content: "What NOT to do at 3am" },
@@ -11432,6 +11441,11 @@ const RAW_BLOG_POSTS: BlogPost[] = [
       },
     ],
   },
+  ...ANTIGRAVITY_BLOG_POSTS,
+  ...ANTIGRAVITY_BLOG_POSTS_BATCH2,
+  ...ANTIGRAVITY_BLOG_POSTS_BATCH3,
+  ...ANTIGRAVITY_BLOG_POSTS_BATCH4,
+  ...ANTIGRAVITY_BLOG_POSTS_BATCH5,
   ...SEO_BLOG_POSTS,
 ];
 
@@ -11457,7 +11471,16 @@ const normalizeFaq = (faq: BlogFAQ): BlogFAQ => ({
   answer: normalizeCopy(faq.answer),
 });
 
-export const BLOG_POSTS: BlogPost[] = RAW_BLOG_POSTS.map((post) => ({
+const uniqueRawBlogPosts = Array.from(
+  RAW_BLOG_POSTS.reduce((map, post) => {
+    if (!map.has(post.slug)) {
+      map.set(post.slug, post);
+    }
+    return map;
+  }, new Map<string, BlogPost>()).values()
+);
+
+export const BLOG_POSTS: BlogPost[] = uniqueRawBlogPosts.map((post) => ({
   ...post,
   title: normalizeCopy(post.title),
   description: normalizeCopy(post.description),
@@ -11494,7 +11517,7 @@ export const getPublishedBlogPost = (
  * Maps a post slug to its translation in the other language.
  * Used to emit hreflang alternates for cross-language SEO.
  */
-export const LANGUAGE_ALTERNATES: Record<string, { language: "en" | "id"; alternateSlug: string }> = {
+export const LANGUAGE_ALTERNATES: Record<string, { language: BlogLanguage; alternateSlug: string }> = {
   "how-to-start-journaling": { language: "en", alternateSlug: "cara-mulai-journaling" },
   "cara-mulai-journaling": { language: "id", alternateSlug: "how-to-start-journaling" },
   "benefits-of-mood-tracking": { language: "en", alternateSlug: "manfaat-mood-tracking" },
@@ -11509,8 +11532,26 @@ export const LANGUAGE_ALTERNATES: Record<string, { language: "en" | "id"; altern
 
 const INDONESIAN_CATEGORIES = new Set(["Tips Journaling", "Kesehatan Mental", "Rekomendasi Aplikasi"]);
 
-export const getPostLanguage = (post: BlogPost): "en" | "id" => {
-  return LANGUAGE_ALTERNATES[post.slug]?.language ?? (INDONESIAN_CATEGORIES.has(post.category) ? "id" : "en");
+export const getPostLanguage = (post: BlogPost): BlogLanguage => {
+  if (post.language) return post.language;
+  if (LANGUAGE_ALTERNATES[post.slug]?.language) {
+    return LANGUAGE_ALTERNATES[post.slug].language;
+  }
+  if (post.category === "멘탈 헬스" || post.slug.endsWith("-korea")) return "ko";
+  if (post.slug.endsWith("-japan-2026") || post.slug.startsWith("yoru-no-")) return "ja";
+  if (post.slug.startsWith("beste-ki-") || post.slug.includes("-gegen-angst-")) return "de";
+  if (post.slug.startsWith("journal-intime-") || post.category === "Santé Mentale") return "fr";
+  if (
+    INDONESIAN_CATEGORIES.has(post.category) ||
+    post.slug.startsWith("cara-") ||
+    post.slug.startsWith("aplikasi-") ||
+    post.slug.startsWith("menghentikan-") ||
+    post.slug.startsWith("manfaat-") ||
+    (post.slug.endsWith("-anxiety") && post.slug.startsWith("journaling-untuk-"))
+  ) {
+    return "id";
+  }
+  return "en";
 };
 
 export const getRelatedPosts = (

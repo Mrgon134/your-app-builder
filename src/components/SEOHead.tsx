@@ -11,6 +11,17 @@ interface AlternateLink {
   url: string;
 }
 
+export type SupportedLanguage = "en" | "id" | "de" | "ja" | "fr" | "ko";
+
+export const LOCALE_MAP: Record<SupportedLanguage, string> = {
+  en: "en_US",
+  id: "id_ID",
+  de: "de_DE",
+  ja: "ja_JP",
+  fr: "fr_FR",
+  ko: "ko_KR",
+};
+
 interface SEOHeadProps {
   title: string;
   description: string;
@@ -19,7 +30,7 @@ interface SEOHeadProps {
   breadcrumbs?: BreadcrumbItem[];
   alternates?: AlternateLink[];
   noSuffix?: boolean;
-  language?: "en" | "id";
+  language?: SupportedLanguage;
 }
 
 const BASE_TITLE = "Nuju";
@@ -38,6 +49,7 @@ const SEOHead: React.FC<SEOHeadProps> = ({
   language = "en",
 }) => {
   const fullTitle = noSuffix ? title : `${title} | ${BASE_TITLE}`;
+  const ogLocale = LOCALE_MAP[language] ?? "en_US";
 
   const breadcrumbSchema = breadcrumbs
     ? {
@@ -67,7 +79,7 @@ const SEOHead: React.FC<SEOHeadProps> = ({
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />
       {canonical && <meta property="og:url" content={canonical} />}
-      <meta property="og:locale" content={language === "id" ? "id_ID" : "en_US"} />
+      <meta property="og:locale" content={ogLocale} />
       <meta property="og:site_name" content="Nuju" />
 
       <meta name="twitter:card" content="summary_large_image" />

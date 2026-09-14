@@ -1795,10 +1795,74 @@ function renderInternalLinkCluster(post, helpers) {
   return renderSection("Recommended next reads", renderLinkCardGrid(cards));
 }
 
+const PRERENDER_LOCALE_MAP = {
+  en: "en-US",
+  id: "id-ID",
+  de: "de-DE",
+  ja: "ja-JP",
+  fr: "fr-FR",
+  ko: "ko-KR",
+};
+
+const PRERENDER_OG_LOCALE_MAP = {
+  en: "en_US",
+  id: "id_ID",
+  de: "de_DE",
+  ja: "ja_JP",
+  fr: "fr_FR",
+  ko: "ko_KR",
+};
+
+const PRERENDER_BLOG_COPY = {
+  id: {
+    keepReading: "Baca juga",
+    faqTitle: "Pertanyaan yang sering ditanyakan",
+    ctaTitle: "Mulai entry jurnal pertamamu hari ini",
+    ctaBody: "Nuju cuma butuh 30 detik sehari. Pilih mood, tulis satu kalimat, lalu mulai lihat pola emosimu dengan lebih jelas.",
+    ctaLabel: "Mulai journaling gratis",
+  },
+  de: {
+    keepReading: "Weiterlesen",
+    faqTitle: "Häufig gestellte Fragen",
+    ctaTitle: "Beginnen Sie Ihren ersten Tagebucheintrag heute",
+    ctaBody: "Nuju dauert 30 Sekunden am Tag. Sprechen oder tippen, KI-Einblicke erhalten und emotionale Muster verstehen.",
+    ctaLabel: "Kostenlos starten",
+  },
+  ja: {
+    keepReading: "関連記事",
+    faqTitle: "よくある質問",
+    ctaTitle: "今日から最初のジャーナリングを始めましょう",
+    ctaBody: "Nujuは1日30秒。声やテキストで感情を吐き出し、AIがあなたのパターンを優しく解きほぐします。",
+    ctaLabel: "無料で始める",
+  },
+  fr: {
+    keepReading: "À lire aussi",
+    faqTitle: "Foire aux questions",
+    ctaTitle: "Commencez votre premier journal aujourd'hui",
+    ctaBody: "Nuju prend 30 secondes par jour. Suivez votre humeur, obtenez des reflets IA et comprenez vos schémas émotionnels sans effort.",
+    ctaLabel: "Commencer gratuitement",
+  },
+  ko: {
+    keepReading: "함께 읽으면 좋은 글",
+    faqTitle: "자주 묻는 질문",
+    ctaTitle: "오늘 첫 감정일기를 시작해 보세요",
+    ctaBody: "하루 단 30초. 음성이나 텍스트로 털어놓으면 AI가 감정 패턴을 분석해 드립니다.",
+    ctaLabel: "무료로 시작하기",
+  },
+  en: {
+    keepReading: "Keep reading",
+    faqTitle: "Frequently asked questions",
+    ctaTitle: "Start your first journal entry today",
+    ctaBody: "Nuju takes 30 seconds a day. Track your mood, get AI insights, and understand your emotional patterns with less friction.",
+    ctaLabel: "Start journaling free",
+  },
+};
+
 function renderBlogPostBody(post, relatedPosts, helpers) {
   const { getPostLanguage, slugifyHeading } = helpers;
   const language = getPostLanguage(post);
-  const locale = language === "id" ? "id-ID" : "en-US";
+  const locale = PRERENDER_LOCALE_MAP[language] || "en-US";
+  const copy = PRERENDER_BLOG_COPY[language] || PRERENDER_BLOG_COPY.en;
   const formattedDate = formatDate(post.publishedAt, locale);
   const formattedUpdatedDate =
     post.updatedAt && post.updatedAt !== post.publishedAt
@@ -1809,7 +1873,7 @@ function renderBlogPostBody(post, relatedPosts, helpers) {
     relatedPosts.length > 0
       ? `
         <section class="nuju-section">
-          <h2>${language === "id" ? "Baca juga" : "Keep reading"}</h2>
+          <h2>${copy.keepReading}</h2>
           <div class="nuju-card-grid">
             ${relatedPosts
               .map(
@@ -1829,25 +1893,16 @@ function renderBlogPostBody(post, relatedPosts, helpers) {
   const faqHtml =
     post.faq && post.faq.length > 0
       ? renderSection(
-          language === "id"
-            ? "Pertanyaan yang sering ditanyakan"
-            : "Frequently asked questions",
+          copy.faqTitle,
           renderFaq(post.faq),
         )
       : "";
 
-  const ctaCopy =
-    language === "id"
-      ? {
-          title: "Mulai entry jurnal pertamamu hari ini",
-          body: "Nuju cuma butuh 30 detik sehari. Pilih mood, tulis satu kalimat, lalu mulai lihat pola emosimu dengan lebih jelas.",
-          label: "Mulai journaling gratis",
-        }
-      : {
-          title: "Start your first journal entry today",
-          body: "Nuju takes 30 seconds a day. Track your mood, get AI insights, and understand your emotional patterns with less friction.",
-          label: "Start journaling free",
-        };
+  const ctaCopy = {
+    title: copy.ctaTitle,
+    body: copy.ctaBody,
+    label: copy.ctaLabel,
+  };
 
   const productLinkHtml =
     language === "en" && post.category === "App Comparison"
@@ -2185,9 +2240,9 @@ function buildStaticPages(posts) {
     },
     {
       route: "/ai-journal",
-      title: "AI Journal App for Mood Tracking, Memory, and Private Reflection",
+      title: "AI Journal App: Mood Tracking & Real Emotional Clarity",
       description:
-        "Nuju turns 30-second mood check-ins and written reflection into warm AI reads, weekly patterns, and a coach that fits your style. Free to start.",
+        "Stop staring at blank pages. Nuju pairs 30-second mood check-ins with AI reflection, 4 coach personas, and private pattern tracking. Free to start.",
       canonical: `${BASE_URL}/ai-journal`,
       breadcrumbs: [
         { name: "Home", url: `${BASE_URL}/` },
@@ -2283,9 +2338,9 @@ function buildStaticPages(posts) {
     },
     {
       route: "/mood-tracker",
-      title: "Mood Tracker App with AI Insights and 10-Second Check-Ins",
+      title: "AI Mood Tracker: 10-Second Check-Ins & Real Patterns",
       description:
-        "Track mood in 10 seconds, see 30-day patterns, and get AI summaries that explain your trends. Nuju is a private mood tracker app, free to start.",
+        "Track mood in 10 seconds. Nuju turns daily check-ins into 30-day emotional patterns, pixel calendars, and weekly AI summaries. Private by default. Start free.",
       canonical: `${BASE_URL}/mood-tracker`,
       breadcrumbs: [
         { name: "Home", url: `${BASE_URL}/` },
@@ -2389,9 +2444,9 @@ function buildStaticPages(posts) {
     },
     {
       route: "/voice-journaling",
-      title: "Voice Journaling App with AI Transcription and Reflection",
+      title: "Voice Journaling App: Talk 1 Min for Instant AI Clarity",
       description:
-        "Record a private voice journal, get an instant transcript with AI reflection, and feed spoken entries into your mood patterns. Free to start.",
+        "Speak your mind for 60 seconds. Nuju transcribes, spots emotional patterns, and helps calm racing thoughts without typing. Private & free to start.",
       canonical: `${BASE_URL}/voice-journaling`,
       breadcrumbs: [
         { name: "Home", url: `${BASE_URL}/` },
@@ -2611,7 +2666,7 @@ function buildBlogPages(helpers) {
 
   return posts.map((post) => {
     const language = getPostLanguage(post);
-    const locale = language === "id" ? "id_ID" : "en_US";
+    const locale = PRERENDER_OG_LOCALE_MAP[language] || "en_US";
     const canonical = `${BASE_URL}/blog/${post.slug}`;
     const alternateMapping = LANGUAGE_ALTERNATES[post.slug];
     const alternates = alternateMapping

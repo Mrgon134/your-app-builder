@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { useLang } from "@/lib/i18n";
 import { useAuth } from "@/lib/auth";
@@ -25,6 +25,8 @@ const AuthPage: React.FC = () => {
   const { signIn, signUp, resetPassword, updatePassword, user } = useAuth();
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
+
+  const oauthLock = useRef(false);
 
   useEffect(() => {
     // If already logged in and not in reset mode, go to app
@@ -122,30 +124,46 @@ const AuthPage: React.FC = () => {
   };
 
   const handleGoogleLogin = async () => {
+    if (oauthLock.current) return;
+    oauthLock.current = true;
     setGoogleLoading(true);
     setError("");
-    const { error } = await supabase.auth.signInWithOAuth({
-      provider: "google",
-      options: {
-        redirectTo: callbackUrl,
-        queryParams: { access_type: "offline", prompt: "select_account" },
-      },
-    });
-    if (error) {
-      setError(error.message || "Google sign-in failed");
+    try {
+      const { error } = await supabase.auth.signInWithOAuth({
+        provider: "google",
+        options: {
+          redirectTo: callbackUrl,
+          queryParams: { access_type: "offline", prompt: "select_account" },
+        },
+      });
+      if (error) {
+        oauthLock.current = false;
+        setError(error.message || "Google sign-in failed");
+        setGoogleLoading(false);
+      }
+    } catch {
+      oauthLock.current = false;
       setGoogleLoading(false);
     }
   };
 
   const handleAppleLogin = async () => {
+    if (oauthLock.current) return;
+    oauthLock.current = true;
     setAppleLoading(true);
     setError("");
-    const { error } = await supabase.auth.signInWithOAuth({
-      provider: "apple",
-      options: { redirectTo: callbackUrl },
-    });
-    if (error) {
-      setError(error.message || "Apple sign-in failed");
+    try {
+      const { error } = await supabase.auth.signInWithOAuth({
+        provider: "apple",
+        options: { redirectTo: callbackUrl },
+      });
+      if (error) {
+        oauthLock.current = false;
+        setError(error.message || "Apple sign-in failed");
+        setAppleLoading(false);
+      }
+    } catch {
+      oauthLock.current = false;
       setAppleLoading(false);
     }
   };

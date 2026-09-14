@@ -440,13 +440,25 @@ serve(async (req) => {
     let verifiedUserId: string | null = null;
 
     if (typeof userId === "string" && userId && supabaseUrl && supabaseAnonKey) {
-      const userClient = createClient(supabaseUrl, supabaseAnonKey, {
-        global: {
-          headers: { Authorization: req.headers.get("Authorization") || "" },
-        },
-      });
-      const { data: authData } = await userClient.auth.getUser();
-      verifiedUserId = authData.user?.id === userId ? userId : null;
+      const authHeader = req.headers.get("Authorization") || "";
+      const token = authHeader.replace(/^Bearer\s+/i, "").trim();
+      if (token && token !== supabaseAnonKey) {
+        try {
+          const parts = token.split(".");
+          if (parts.length >= 2) {
+            const payload = JSON.parse(atob(parts[1].replace(/-/g, "+").replace(/_/g, "/")));
+            if (payload && payload.role !== "anon" && typeof payload.sub === "string") {
+              const userClient = createClient(supabaseUrl, supabaseAnonKey, {
+                global: { headers: { Authorization: `Bearer ${token}` } },
+              });
+              const { data: authData } = await userClient.auth.getUser(token);
+              verifiedUserId = authData.user?.id === userId ? userId : null;
+            }
+          }
+        } catch {
+          verifiedUserId = null;
+        }
+      }
     }
 
     if (supabaseUrl && supabaseServiceRole) {

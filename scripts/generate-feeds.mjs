@@ -72,9 +72,25 @@ function buildSitemap(posts, getPostLanguage, LANGUAGE_ALTERNATES) {
   </url>`,
   );
 
+  const HIGH_PRIORITY_SLUGS = new Set([
+    "best-ai-journaling-apps",
+    "best-mood-tracker-apps",
+    "best-journaling-apps-2026",
+    "daylio-alternatives",
+    "reflectly-alternatives",
+    "best-ai-voice-journal-apps-2026",
+    "3am-anxiety-journaling",
+    "ai-journal-for-overthinking",
+  ]);
+
   for (const post of posts) {
     const lang = getPostLanguage(post);
-    const priority = lang === "id" ? "0.6" : "0.7";
+    let priority = "0.7";
+    if (HIGH_PRIORITY_SLUGS.has(post.slug)) {
+      priority = "0.85";
+    } else if (lang === "id") {
+      priority = "0.6";
+    }
     const alt = LANGUAGE_ALTERNATES[post.slug];
     let hreflangBlock = "";
     if (alt) {
@@ -82,6 +98,9 @@ function buildSitemap(posts, getPostLanguage, LANGUAGE_ALTERNATES) {
       hreflangBlock = `
     <xhtml:link rel="alternate" hreflang="${lang}" href="${BASE_URL}/blog/${post.slug}"/>
     <xhtml:link rel="alternate" hreflang="${altLang}" href="${BASE_URL}/blog/${alt.alternateSlug}"/>`;
+    } else {
+      hreflangBlock = `
+    <xhtml:link rel="alternate" hreflang="${lang}" href="${BASE_URL}/blog/${post.slug}"/>`;
     }
     urlBlocks.push(
       `  <url>

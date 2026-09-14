@@ -132,12 +132,25 @@ serve(async (req) => {
     const authHeader = req.headers.get("Authorization") || "";
     let userId: string | null = null;
 
-    if (authHeader.toLowerCase().startsWith("bearer ") && !authHeader.endsWith(anonKey)) {
-      const authClient = createClient(supabaseUrl, anonKey, {
-        global: { headers: { Authorization: authHeader } },
-      });
-      const { data } = await authClient.auth.getUser();
-      userId = data.user?.id ?? null;
+    if (authHeader.toLowerCase().startsWith("bearer ")) {
+      const token = authHeader.slice(7).trim();
+      if (token && token !== anonKey) {
+        try {
+          const parts = token.split(".");
+          if (parts.length >= 2) {
+            const payload = JSON.parse(atob(parts[1].replace(/-/g, "+").replace(/_/g, "/")));
+            if (payload && payload.role !== "anon" && typeof payload.sub === "string") {
+              const authClient = createClient(supabaseUrl, anonKey, {
+                global: { headers: { Authorization: `Bearer ${token}` } },
+              });
+              const { data } = await authClient.auth.getUser(token);
+              userId = data.user?.id ?? null;
+            }
+          }
+        } catch {
+          // Token is malformed or not a valid user JWT — remain anonymous without failing
+        }
+      }
     }
 
     const admin = createClient(supabaseUrl, serviceRoleKey);
