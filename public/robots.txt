@@ -4,6 +4,9 @@ Disallow: /app
 Disallow: /auth
 Disallow: /auth/callback
 
+User-agent: Mediapartners-Google
+Allow: /
+
 # Major AI/LLM crawlers - explicitly allowed for content discovery.
 # Mirror the same authenticated/app route restrictions.
 User-agent: GPTBot
