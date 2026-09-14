@@ -6,7 +6,7 @@
     <atom:link href="https://nuju.app/rss.xml" rel="self" type="application/rss+xml" />
     <description>Practical guides on journaling, mood tracking, and emotional wellness from the Nuju team.</description>
     <language>en</language>
-    <lastBuildDate>Mon, 14 Sep 2026 07:50:14 GMT</lastBuildDate>
+    <lastBuildDate>Mon, 14 Sep 2026 08:10:00 GMT</lastBuildDate>
     <item>
       <title>Curhat ke Teman Malah Dibilang &apos;Kurang Bersyukur&apos;: Kenapa Kita Butuh Ruang Validasi Tanpa Nasihat Klise</title>
       <link>https://nuju.app/blog/curhat-ke-teman-kurang-bersyukur</link>
@@ -1463,6 +1463,60 @@
       <description>Never journaled before? This beginner&apos;s guide covers everything — what to write, when to write, and how to make journaling a daily habit that actually sticks.</description>
       <category>Journaling Tips</category>
       <pubDate>Wed, 08 Apr 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Innere Kündigung vs. Burnout: Wenn „Dienst nach Vorschrift“ die Seele betäubt (Und wie Sie Ihre Selbstwirksamkeit zurückholen)</title>
+      <link>https://nuju.app/blog/innere-kuendigung-dienst-nach-vorschrift-burnout</link>
+      <guid isPermaLink="true">https://nuju.app/blog/innere-kuendigung-dienst-nach-vorschrift-burnout</guid>
+      <description>Laut Gallup Engagement Index 2025/2026 haben 13 % der Arbeitnehmer in Deutschland innerlich gekündigt und 77 % machen nur noch Dienst nach Vorschrift. Der psychologische Unterschied zwischen Selbstschutz und beginnendem Burnout – und wie ein privates 3-Minuten-Sprachtagebuch Ihre mentale Autonomie schützt.</description>
+      <category>Beruf &amp; Psychologie</category>
+      <pubDate>Thu, 02 Apr 2026 12:00:00 GMT</pubDate>
+      <dc:language>de</dc:language>
+    </item>
+    <item>
+      <title>Umur 25 Merasa Gagal Total: Mengurai Krisis Seperempat Abad (Quarter-Life Crisis) Saat Semua Teman LinkedIn Tampak Sukses</title>
+      <link>https://nuju.app/blog/quarter-life-crisis-25-tahun-tertinggal</link>
+      <guid isPermaLink="true">https://nuju.app/blog/quarter-life-crisis-25-tahun-tertinggal</guid>
+      <description>Buka LinkedIn isinya promosi jabatan, buka Instagram isinya teman liburan ke Jepang dan lamaran mewah. Sementara Anda masih bingung arah hidup, gaji pas-pasan, dan dihantui rasa tertinggal. Panduan mematikan komparasi sosial dan menemukan pijakan diri lewat 3 menit refleksi harian.</description>
+      <category>Pengembangan Diri</category>
+      <pubDate>Wed, 01 Apr 2026 12:00:00 GMT</pubDate>
+      <dc:language>id</dc:language>
+    </item>
+    <item>
+      <title>Terjepit Antara &apos;Bakti&apos; dan Kewarasan: Mengapa 82% Lansia Bergantung Finansial dan Cara Sandwich Generation Melepas Beban Mental Tanpa Durhaka</title>
+      <link>https://nuju.app/blog/sandwich-generation-beban-mental-bakti-burnout</link>
+      <guid isPermaLink="true">https://nuju.app/blog/sandwich-generation-beban-mental-bakti-burnout</guid>
+      <description>Data BPS 2025/2026 mencatat rasio ketergantungan melonjak ke 47,3% dan 82% lansia bergantung penuh pada anak. Di balik label &apos;anak berbakti&apos;, jutaan generasi muda Indonesia mengalami silent burnout dan sindrom denial. Ruang aman 3 menit untuk memproses lelah tanpa rasa bersalah.</description>
+      <category>Kesehatan Mental</category>
+      <pubDate>Tue, 31 Mar 2026 12:00:00 GMT</pubDate>
+      <dc:language>id</dc:language>
+    </item>
+    <item>
+      <title>Stop Trying to &apos;Think&apos; Your Way Out of Anxiety: How Somatic Voice Journaling Regulates Your Vagus Nerve</title>
+      <link>https://nuju.app/blog/somatic-voice-journaling-polyvagal-nervous-system</link>
+      <guid isPermaLink="true">https://nuju.app/blog/somatic-voice-journaling-polyvagal-nervous-system</guid>
+      <description>80% of vagus nerve fibers send signals from your body up to your brain — not the other way around. If cognitive journaling feels like intellectual spinning, discover how somatic voice check-ins ground your nervous system in physical safety.</description>
+      <category>Somatic Healing</category>
+      <pubDate>Mon, 30 Mar 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>What Your Voice Knows That Your Typing Hides: The Science of Vocal Biomarkers and Emotional Healing in 2026</title>
+      <link>https://nuju.app/blog/vocal-biomarkers-why-voice-journaling-heals-faster</link>
+      <guid isPermaLink="true">https://nuju.app/blog/vocal-biomarkers-why-voice-journaling-heals-faster</guid>
+      <description>When you type in a journal, your prefrontal cortex edits, censors, and polishes every sentence. But your vocal acoustics cannot lie. Groundbreaking 2025–2026 clinical studies reveal how pitch variance, speech latency, and acoustic cadence detect depression and anxiety with over 71% accuracy — and why voice journaling transforms mental clarity.</description>
+      <category>AI &amp; Mental Health Science</category>
+      <pubDate>Sun, 29 Mar 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>The 7:00 AM Panic Spike: Why You Wake Up with Dread (The Cortisol Awakening Response) and How a 180-Second Voice Check-in Resets Your Day</title>
+      <link>https://nuju.app/blog/cortisol-awakening-response-morning-dread-journaling</link>
+      <guid isPermaLink="true">https://nuju.app/blog/cortisol-awakening-response-morning-dread-journaling</guid>
+      <description>Your eyes pop open and before your feet even touch the floor, your chest tightens and your mind floods with impending catastrophe. Clinical endocrinology calls this the Cortisol Awakening Response (CAR). Discover why high-functioning anxiety hijacks your morning biology — and how 3 minutes of spoken defusion restores calm.</description>
+      <category>Anxiety &amp; Neuroscience</category>
+      <pubDate>Sat, 28 Mar 2026 12:00:00 GMT</pubDate>
       <dc:language>en</dc:language>
     </item>
     <item>

@@ -4,6 +4,7 @@ import { ANTIGRAVITY_BLOG_POSTS_BATCH2 } from "./antigravity-posts-batch2";
 import { ANTIGRAVITY_BLOG_POSTS_BATCH3 } from "./antigravity-posts-batch3";
 import { ANTIGRAVITY_BLOG_POSTS_BATCH4 } from "./antigravity-posts-batch4";
 import { ANTIGRAVITY_BLOG_POSTS_BATCH5 } from "./antigravity-posts-batch5";
+import { ANTIGRAVITY_BLOG_POSTS_BATCH6 } from "./antigravity-posts-batch6";
 
 export interface BlogSection {
   type: "h2" | "h3" | "p" | "ul" | "ol" | "callout";
@@ -28,6 +29,7 @@ export interface BlogPost {
   metaTitle?: string;
   metaDescription?: string;
   language?: BlogLanguage;
+  keywords?: string[];
 }
 
 export type BlogLanguage = "en" | "id" | "de" | "ja" | "fr" | "ko" | "nl" | "zh";
@@ -11446,6 +11448,7 @@ const RAW_BLOG_POSTS: BlogPost[] = [
   ...ANTIGRAVITY_BLOG_POSTS_BATCH3,
   ...ANTIGRAVITY_BLOG_POSTS_BATCH4,
   ...ANTIGRAVITY_BLOG_POSTS_BATCH5,
+  ...ANTIGRAVITY_BLOG_POSTS_BATCH6,
   ...SEO_BLOG_POSTS,
 ];
 
