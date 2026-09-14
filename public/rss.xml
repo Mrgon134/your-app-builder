@@ -6,7 +6,7 @@
     <atom:link href="https://nuju.app/rss.xml" rel="self" type="application/rss+xml" />
     <description>Practical guides on journaling, mood tracking, and emotional wellness from the Nuju team.</description>
     <language>en</language>
-    <lastBuildDate>Mon, 14 Sep 2026 08:20:59 GMT</lastBuildDate>
+    <lastBuildDate>Mon, 14 Sep 2026 08:26:11 GMT</lastBuildDate>
     <item>
       <title>Curhat ke Teman Malah Dibilang &apos;Kurang Bersyukur&apos;: Kenapa Kita Butuh Ruang Validasi Tanpa Nasihat Klise</title>
       <link>https://nuju.app/blog/curhat-ke-teman-kurang-bersyukur</link>
@@ -1241,11 +1241,29 @@
       <dc:language>id</dc:language>
     </item>
     <item>
+      <title>The Wounds of Complicity: Why Modern Work Causes &apos;Moral Injury&apos; (Dr. Jonathan Shay&apos;s Research on Ethical Exhaustion)</title>
+      <link>https://nuju.app/blog/moral-injury-ethical-burnout-corporate-dilemma</link>
+      <guid isPermaLink="true">https://nuju.app/blog/moral-injury-ethical-burnout-corporate-dilemma</guid>
+      <description>You aren&apos;t just tired from 50-hour workweeks; you feel spiritually dirty. You were forced to ship a deceptive software feature, deny a patient&apos;s insurance claim, or lay off colleagues via automated email. Military psychiatrist Dr. Jonathan Shay defined this deep soul-exhaustion as &apos;Moral Injury&apos;. Discover how to heal the ethical fractures in your career.</description>
+      <category>Workplace Ethics &amp; Moral Injury</category>
+      <pubDate>Thu, 30 Apr 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
       <title>Can&apos;t Sleep? Try This 3-Minute Journaling Technique for 3AM Anxiety</title>
       <link>https://nuju.app/blog/3am-anxiety-journaling</link>
       <guid isPermaLink="true">https://nuju.app/blog/3am-anxiety-journaling</guid>
       <description>When your brain won&apos;t stop at 3am, journaling is one of the few things that actually works. Here&apos;s the exact technique — and the best AI journal app for racing thoughts at night.</description>
       <category>Mental Wellness</category>
+      <pubDate>Wed, 29 Apr 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>The Grieving Brain: Why Your Mind Keeps Looking for Someone Who is Gone (Dr. Mary-Frances O&apos;Connor&apos;s Neuroscience of Bereavement)</title>
+      <link>https://nuju.app/blog/grief-brain-neurobiology-of-loss-mary-frances-oconnor</link>
+      <guid isPermaLink="true">https://nuju.app/blog/grief-brain-neurobiology-of-loss-mary-frances-oconnor</guid>
+      <description>Months after losing a loved one, your brain still expects them to walk through the front door or call at 6:00 PM. You feel brain-fogged, forgetful, and disoriented. Neuroscientist Dr. Mary-Frances O&apos;Connor reveals that grief is not a feeling — it is a massive, exhausting neuro-learning process where the brain rewrites its internal attachment GPS. Discover how to navigate bereavement with neurological patience.</description>
+      <category>Grief &amp; Bereavement Science</category>
       <pubDate>Wed, 29 Apr 2026 12:00:00 GMT</pubDate>
       <dc:language>en</dc:language>
     </item>
@@ -1259,11 +1277,29 @@
       <dc:language>en</dc:language>
     </item>
     <item>
+      <title>The Terror of the Blank Page: Navigating Existential Dread and Meaninglessness (Irvin Yalom&apos;s 4 Ultimate Concerns)</title>
+      <link>https://nuju.app/blog/existential-anxiety-fear-of-meaninglessness-yalom</link>
+      <guid isPermaLink="true">https://nuju.app/blog/existential-anxiety-fear-of-meaninglessness-yalom</guid>
+      <description>You achieved the job title, bought the apartment, and checked all the societal boxes. But at 2:00 AM, a terrifying void whispers: &apos;Is this all there is? What does any of this actually mean?&apos;. Legendary existential psychiatrist Dr. Irvin Yalom identified Death, Freedom, Isolation, and Meaninglessness as the four ultimate concerns of existence. Learn how to transform dread into purpose.</description>
+      <category>Existential Psychology &amp; Philosophy</category>
+      <pubDate>Tue, 28 Apr 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
       <title>Why Journaling Between Therapy Sessions Helps You Show Up Prepared</title>
       <link>https://nuju.app/blog/journaling-before-therapy</link>
       <guid isPermaLink="true">https://nuju.app/blog/journaling-before-therapy</guid>
       <description>Sessions are short. Journaling between appointments helps you remember what mattered, arrive prepared, and use the time more intentionally.</description>
       <category>Mental Wellness</category>
+      <pubDate>Mon, 27 Apr 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Trauma is Not in Your Head, It&apos;s in Your Body: Dr. Peter Levine&apos;s Somatic Experiencing and Why the Wild Don&apos;t Get PTSD</title>
+      <link>https://nuju.app/blog/somatic-experiencing-stored-trauma-peter-levine</link>
+      <guid isPermaLink="true">https://nuju.app/blog/somatic-experiencing-stored-trauma-peter-levine</guid>
+      <description>A deer escapes the jaws of a cheetah, lies panting in the grass, shivers violently for two minutes, and trots away completely un-traumatized. Why do wild animals shake off terror, while humans store trauma for decades? Trauma pioneer Dr. Peter Levine proved that PTSD is incomplete biological survival energy trapped in the nervous system. Learn how vocal discharge melts the freeze.</description>
+      <category>Somatic Psychology &amp; Trauma</category>
       <pubDate>Mon, 27 Apr 2026 12:00:00 GMT</pubDate>
       <dc:language>en</dc:language>
     </item>
@@ -1275,6 +1311,60 @@
       <category>Mental Wellness</category>
       <pubDate>Sun, 26 Apr 2026 12:00:00 GMT</pubDate>
       <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Befriending the Monster Inside: Why Your Ruthless Inner Critic is Actually an Exhausted Protector (Dr. Richard Schwartz&apos;s IFS Therapy)</title>
+      <link>https://nuju.app/blog/internal-family-systems-ifs-inner-critic-protector</link>
+      <guid isPermaLink="true">https://nuju.app/blog/internal-family-systems-ifs-inner-critic-protector</guid>
+      <description>That vicious voice in your head telling you that you&apos;re lazy, unlovable, or destined to fail isn&apos;t your enemy. Dr. Richard Schwartz&apos;s revolutionary Internal Family Systems (IFS) model proves that the Inner Critic is an exhausted psychological protector trying desperately to shield you from unbearable childhood shame. Learn how to transform internal warfare into deep healing.</description>
+      <category>Psychotherapy &amp; Inner Child</category>
+      <pubDate>Sun, 26 Apr 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Dompet Menjerit Demi Nongkrong: Sindrom &apos;Nggak Enakan&apos;, Takut Dijauhi Circle, dan Belajar Memasang Batasan Tanpa Kehilangan Teman</title>
+      <link>https://nuju.app/blog/sindrom-nggak-enakan-people-pleasing-pertemanan</link>
+      <guid isPermaLink="true">https://nuju.app/blog/sindrom-nggak-enakan-people-pleasing-pertemanan</guid>
+      <description>Lagi tanggal tua dan saldo rekening menipis, tapi saat teman-teman satu geng mengajak makan di restoran mahal, kamu terpaksa ikut dan menggesek kartu karena takut dianggap sombong. Mengapa orang Indonesia begitu rentan terjebak people-pleasing ekstrem di lingkaran pertemanan? Temukan keberanian mengatakan &apos;nggak dulu&apos; dengan damai.</description>
+      <category>Relasi Sosial &amp; Self-Worth</category>
+      <pubDate>Sat, 25 Apr 2026 12:00:00 GMT</pubDate>
+      <dc:language>id</dc:language>
+    </item>
+    <item>
+      <title>Kapan Nikah? Teror Pertanyaan Keluarga di Usia 28+, Ketakutan Salah Pilih Pasangan, dan Menemukan Damai di Waktumu Sendiri</title>
+      <link>https://nuju.app/blog/overthinking-jodoh-usia-28-tekanan-menikah</link>
+      <guid isPermaLink="true">https://nuju.app/blog/overthinking-jodoh-usia-28-tekanan-menikah</guid>
+      <description>Membuka Instagram penuh undangan pernikahan dan foto USG kehamilan teman seangkatan, sementara di meja makan keluarga besar terus bertanya: &apos;Kapan giliranmu?&apos;. Tekanan budaya menikah di Indonesia sering kali memicu krisis eksistensial dan panic dating. Pelajari cara meredakan kecemasan jodoh dan menjaga kompas hati.</description>
+      <category>Hubungan &amp; Ekspektasi Budaya</category>
+      <pubDate>Fri, 24 Apr 2026 12:00:00 GMT</pubDate>
+      <dc:language>id</dc:language>
+    </item>
+    <item>
+      <title>Pahlawan Tanpa Tanda Jasa yang Kehabisan Nafas: Krisis Burnout Guru, Tuntutan Administrasi, dan Mengurai Lelah Mental Pendidik</title>
+      <link>https://nuju.app/blog/burnout-guru-tenaga-pendidik-beban-administrasi</link>
+      <guid isPermaLink="true">https://nuju.app/blog/burnout-guru-tenaga-pendidik-beban-administrasi</guid>
+      <description>Mengajar 30 siswa seharian di kelas, menenangkan orang tua murid yang menuntut di WhatsApp malam hari, hingga lembur mengisi dokumen Platform Merdeka Mengajar (PMM) di akhir pekan. Guru di Indonesia menghadapi epidemi burnout tersembunyi yang mengancam dedikasi mereka. Temukan panduan menjaga kewarasan bagi tenaga pendidik.</description>
+      <category>Profesi &amp; Kesehatan Mental</category>
+      <pubDate>Thu, 23 Apr 2026 12:00:00 GMT</pubDate>
+      <dc:language>id</dc:language>
+    </item>
+    <item>
+      <title>Beban Menjadi Ibu Pengganti: Sindrom Anak Pertama Perempuan, Penuaan Biologis Dini, dan Kelelahan Emosional (Riset UCLA 2024)</title>
+      <link>https://nuju.app/blog/anak-pertama-perempuan-eldest-daughter-syndrome-ucla</link>
+      <guid isPermaLink="true">https://nuju.app/blog/anak-pertama-perempuan-eldest-daughter-syndrome-ucla</guid>
+      <description>Kamu harus selalu mengalah, menjaga adik-adik, menengahi pertengkaran orang tua, dan menjadi pilar keluarga sejak usia 9 tahun. Riset antropologi UCLA tahun 2024 membuktikan bahwa anak sulung perempuan mengalami pematangan biologis dini akibat stres keluarga. Pahami luka parentifikasi dan cara berhenti memikul dunia di pundakmu.</description>
+      <category>Psikologi Keluarga &amp; Inner Child</category>
+      <pubDate>Wed, 22 Apr 2026 12:00:00 GMT</pubDate>
+      <dc:language>id</dc:language>
+    </item>
+    <item>
+      <title>Gali Lubang Tutup Lubang Demi Gaya Hidup: Jeratan Pinjol, FOMO Finansial, dan Cara Mengurai Depresi Utang (Data OJK 2026)</title>
+      <link>https://nuju.app/blog/pinjol-fomo-finansial-kredit-macet-gen-z</link>
+      <guid isPermaLink="true">https://nuju.app/blog/pinjol-fomo-finansial-kredit-macet-gen-z</guid>
+      <description>Demi tiket konser idola, gadget terbaru, atau gengsi nongkrong di kafe estetik, limit Paylater dan Pinjol digesek habis. Data OJK 2026 mencatat hampir separuh (48.65%) kredit macet pinjaman online disumbang oleh anak muda usia 19–34 tahun. Pelajari psikologi di balik FOMO finansial dan cara memutus spiral kepanikan utang tanpa rasa malu.</description>
+      <category>Kesehatan Mental &amp; Finansial</category>
+      <pubDate>Tue, 21 Apr 2026 12:00:00 GMT</pubDate>
+      <dc:language>id</dc:language>
     </item>
     <item>
       <title>How to Track Your Emotions Daily (and What to Do with the Data)</title>
@@ -1349,6 +1439,15 @@
       <dc:language>en</dc:language>
     </item>
     <item>
+      <title>When Criticism Feels Like Physical Agony: The Agony of Rejection Sensitive Dysphoria (Dr. William Dodson&apos;s ADHD Research)</title>
+      <link>https://nuju.app/blog/rejection-sensitive-dysphoria-rsd-adhd-emotional-pain</link>
+      <guid isPermaLink="true">https://nuju.app/blog/rejection-sensitive-dysphoria-rsd-adhd-emotional-pain</guid>
+      <description>A minor critique on a presentation or an unread Slack message doesn&apos;t just make you sad — it feels like a physical punch in the chest. ADHD psychiatrist Dr. William Dodson identified this intense emotional reaction as Rejection Sensitive Dysphoria (RSD). Discover the neuroscience of emotional dysregulation and how to de-escalate the pain.</description>
+      <category>ADHD &amp; Neurodiversity</category>
+      <pubDate>Mon, 20 Apr 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
       <title>7 Journaling Techniques for Deep Self-Discovery</title>
       <link>https://nuju.app/blog/journaling-for-self-discovery</link>
       <guid isPermaLink="true">https://nuju.app/blog/journaling-for-self-discovery</guid>
@@ -1367,11 +1466,29 @@
       <dc:language>en</dc:language>
     </item>
     <item>
+      <title>Addicted to Chaos: The Biochemical Trap of Trauma Bonding and B.F. Skinner&apos;s Intermittent Reinforcement Schedule</title>
+      <link>https://nuju.app/blog/trauma-bonding-intermittent-reinforcement-toxic-relationships</link>
+      <guid isPermaLink="true">https://nuju.app/blog/trauma-bonding-intermittent-reinforcement-toxic-relationships</guid>
+      <description>You know they are toxic, inconsistent, and emotionally volatile. Your friends beg you to leave, and you logically know you deserve better. Yet leaving feels physically impossible, like withdrawing from hard drugs. Behavioral psychology reveals how intermittent reinforcement hooks the brain into a trauma bond. Discover how spoken truth breaks the trance.</description>
+      <category>Relationship Trauma &amp; Neuroscience</category>
+      <pubDate>Sun, 19 Apr 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
       <title>Using Mood Tracking to Understand Your Anxiety Triggers</title>
       <link>https://nuju.app/blog/mood-tracking-for-anxiety</link>
       <guid isPermaLink="true">https://nuju.app/blog/mood-tracking-for-anxiety</guid>
       <description>Anxiety often feels random — until you start tracking it. Here&apos;s how daily mood tracking reveals the specific patterns driving your anxiety and what to do about them.</description>
       <category>Mental Wellness</category>
+      <pubDate>Sat, 18 Apr 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>The Guilt of Having Your Own Life: Enmeshment, Parentification, and Setting Boundaries in Asian and Collectivist Families</title>
+      <link>https://nuju.app/blog/enmeshment-boundary-guilt-asian-families</link>
+      <guid isPermaLink="true">https://nuju.app/blog/enmeshment-boundary-guilt-asian-families</guid>
+      <description>You feel guilty moving out, guilty spending money on yourself, and responsible for your parents&apos; marital happiness. Structural family therapist Salvador Minuchin termed this &apos;Enmeshment&apos;. In collectivist and Asian cultures, filial piety is often weaponized into emotional boundary erosion. Learn how to love your family without sacrificing your sanity.</description>
+      <category>Family Systems &amp; Cultural Psychology</category>
       <pubDate>Sat, 18 Apr 2026 12:00:00 GMT</pubDate>
       <dc:language>en</dc:language>
     </item>
@@ -1385,11 +1502,29 @@
       <dc:language>en</dc:language>
     </item>
     <item>
+      <title>The Illusion of Total Independence: Why Avoidant Attachment Makes You Run When Love Gets Close (Deactivating Strategies and The Phantom Ex)</title>
+      <link>https://nuju.app/blog/avoidant-attachment-phantom-ex-deactivating-strategies</link>
+      <guid isPermaLink="true">https://nuju.app/blog/avoidant-attachment-phantom-ex-deactivating-strategies</guid>
+      <description>The moment a romantic relationship becomes intimate and serious, you suddenly feel suffocated, trapped, and overwhelmed. You start obsessing over tiny flaws in your partner or longing for an idealized &apos;phantom ex&apos;. Discover the psychology of avoidant attachment deactivating strategies and how to unfreeze your emotional core.</description>
+      <category>Attachment &amp; Intimacy Science</category>
+      <pubDate>Fri, 17 Apr 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
       <title>What Is AI Journaling? How It&apos;s Different from Regular Journaling</title>
       <link>https://nuju.app/blog/what-is-ai-journaling</link>
       <guid isPermaLink="true">https://nuju.app/blog/what-is-ai-journaling</guid>
       <description>AI journaling is a new category of mental wellness tool that combines personal journaling with intelligent pattern recognition. Here&apos;s what it actually does and why it works.</description>
       <category>App Comparison</category>
+      <pubDate>Thu, 16 Apr 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Why You Panic When They Don&apos;t Text Back: The Psychology of Anxious Attachment and Protest Behavior (Amir Levine&apos;s &apos;Attached&apos;)</title>
+      <link>https://nuju.app/blog/anxious-attachment-protest-behavior-relationship-anxiety</link>
+      <guid isPermaLink="true">https://nuju.app/blog/anxious-attachment-protest-behavior-relationship-anxiety</guid>
+      <description>They went offline 45 minutes ago without replying, and your stomach drops into an icy pit. You find yourself obsessively checking their &apos;last active&apos; status, drafting angry messages, or planning to ignore them in retaliation. Psychiatrist Dr. Amir Levine calls this &apos;Protest Behavior&apos;. Learn how to regulate an activated attachment system through private voice reflection.</description>
+      <category>Attachment &amp; Relationship Psychology</category>
       <pubDate>Thu, 16 Apr 2026 12:00:00 GMT</pubDate>
       <dc:language>en</dc:language>
     </item>
@@ -1403,11 +1538,29 @@
       <dc:language>en</dc:language>
     </item>
     <item>
+      <title>Allostatic Overload: When Chronic Stress Physically Rewires Your Tissues (Dr. Bruce McEwen&apos;s Rockefeller University Research)</title>
+      <link>https://nuju.app/blog/allostatic-load-chronic-stress-bruce-mcewen</link>
+      <guid isPermaLink="true">https://nuju.app/blog/allostatic-load-chronic-stress-bruce-mcewen</guid>
+      <description>You tell yourself you can handle &apos;just one more crazy quarter&apos;. But your hair is thinning, your digestion is wrecked, and minor annoyances feel apocalyptic. Pioneering neuroendocrinologist Dr. Bruce McEwen defined this physiological wear-and-tear as &apos;Allostatic Load&apos;. Discover how prolonged adaptation breaks the body and how to reverse the damage.</description>
+      <category>Neuroendocrinology &amp; Somatic Health</category>
+      <pubDate>Wed, 15 Apr 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
       <title>The 5-Minute Daily Journaling Habit (No Willpower Required)</title>
       <link>https://nuju.app/blog/5-minute-daily-journaling-habit</link>
       <guid isPermaLink="true">https://nuju.app/blog/5-minute-daily-journaling-habit</guid>
       <description>Most people fail at journaling not because they lack dedication — but because their system requires too much. Here&apos;s how to build a daily habit that actually sticks.</description>
       <category>Journaling Tips</category>
+      <pubDate>Tue, 14 Apr 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>The Neurobiology of Sleep Debt: Why 6 Hours of Sleep Destroys Emotional Regulation (Matthew Walker&apos;s Findings on Adenosine and REM Fragmentation)</title>
+      <link>https://nuju.app/blog/sleep-debt-adenosine-micro-arousals-overthinking</link>
+      <guid isPermaLink="true">https://nuju.app/blog/sleep-debt-adenosine-micro-arousals-overthinking</guid>
+      <description>You think you can get away with 6 hours of sleep during a busy week. But UC Berkeley neuroscientist Dr. Matthew Walker proved that chronic sleep debt starves the amygdala of prefrontal regulation, amplifying emotional reactivity by 60%. Understand the science of adenosine pressure and why pre-sleep voice offloading protects your sleep architecture.</description>
+      <category>Sleep Medicine &amp; Circadian Health</category>
       <pubDate>Tue, 14 Apr 2026 12:00:00 GMT</pubDate>
       <dc:language>en</dc:language>
     </item>
@@ -1421,6 +1574,15 @@
       <dc:language>en</dc:language>
     </item>
     <item>
+      <title>Vocal Vagus Nerve Stimulation: Why the Sound of Your Own Voice Triggers the Biological &apos;Sigh of Relief&apos; (Polyvagal Theory and HRV)</title>
+      <link>https://nuju.app/blog/vagus-nerve-vocal-humming-phonation-hrv</link>
+      <guid isPermaLink="true">https://nuju.app/blog/vagus-nerve-vocal-humming-phonation-hrv</guid>
+      <description>You&apos;ve tried breathing exercises, but your heart still thumps and your throat feels constricted. Pioneering neuroscientist Dr. Stephen Porges revealed that the vagus nerve&apos;s smart ventral branch connects directly to your vocal cords. Discover why humming, chanting, and spoken journaling elevate Heart Rate Variability (HRV) and melt chronic tension.</description>
+      <category>Somatic Therapy &amp; Vagus Nerve</category>
+      <pubDate>Mon, 13 Apr 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
       <title>How Journaling Improves Mental Health: What the Research Says</title>
       <link>https://nuju.app/blog/journaling-for-mental-health</link>
       <guid isPermaLink="true">https://nuju.app/blog/journaling-for-mental-health</guid>
@@ -1430,11 +1592,29 @@
       <dc:language>en</dc:language>
     </item>
     <item>
+      <title>Trapped in the Default Mode Network: Why Your Brain Won&apos;t Stop Reliving Awkward Conversations (And How Vocal Phonation Shuts It Down)</title>
+      <link>https://nuju.app/blog/default-mode-network-dmn-overthinking-rumination</link>
+      <guid isPermaLink="true">https://nuju.app/blog/default-mode-network-dmn-overthinking-rumination</guid>
+      <description>You are trying to focus or relax, but your mind drags you into a replay of a mistake from 2021 or an imaginary argument with your boss. Neurologist Marcus Raichle discovered the Default Mode Network (DMN) — the brain&apos;s internal daydreaming system that turns toxic in anxiety and depression. Discover how vocal task-switching silences the loop.</description>
+      <category>Neuroscience &amp; Overthinking</category>
+      <pubDate>Sun, 12 Apr 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
       <title>50 Journaling Prompts for Anxiety (That Actually Help)</title>
       <link>https://nuju.app/blog/journaling-prompts-for-anxiety</link>
       <guid isPermaLink="true">https://nuju.app/blog/journaling-prompts-for-anxiety</guid>
       <description>Blank page anxiety is real. These 50 prompts are designed to help you untangle anxious thoughts, identify triggers, and find clarity — no clinical jargon required.</description>
       <category>Journaling Tips</category>
+      <pubDate>Sat, 11 Apr 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>The Dopamine Deficit State: Why Endless Scrolling Causes Low-Grade Chronic Anxiety (And Dr. Anna Lembke&apos;s Stanford Protocol to Reset Your Brain)</title>
+      <link>https://nuju.app/blog/dopamine-deficit-state-anna-lembke-brain-reset</link>
+      <guid isPermaLink="true">https://nuju.app/blog/dopamine-deficit-state-anna-lembke-brain-reset</guid>
+      <description>You are not lazy, depressed, or lacking grit. Your brain is trapped in a neurochemical &apos;dopamine deficit state&apos;. Stanford University psychiatrist Dr. Anna Lembke reveals how hyper-palatable digital stimuli tilt the brain&apos;s pleasure-pain balance toward chronic anxiety — and how a 3-minute vocal dopamine fast restores equilibrium.</description>
+      <category>Neuroscience &amp; Dopamine</category>
       <pubDate>Sat, 11 Apr 2026 12:00:00 GMT</pubDate>
       <dc:language>en</dc:language>
     </item>
