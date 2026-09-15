@@ -113,21 +113,70 @@ export const EbookReaderPage: React.FC = () => {
               onSelectLang={(newLang) => setLang(newLang)}
               size="sm"
             />
+            <a
+              href={
+                lang === "id"
+                  ? "/downloads/Nuju-Ebook-Berdamai-dengan-Pikiran-Sendiri.pdf"
+                  : "/downloads/Nuju-Ebook-Peace-Within-Your-Mind-EN.pdf"
+              }
+              download={
+                lang === "id"
+                  ? "Nuju-Ebook-Berdamai-dengan-Pikiran-Sendiri.pdf"
+                  : "Nuju-Ebook-Peace-Within-Your-Mind-EN.pdf"
+              }
+              className="inline-flex items-center gap-1.5 rounded-full border border-neutral-300 bg-white px-3.5 py-1.5 text-xs font-semibold text-neutral-700 hover:bg-neutral-50 transition shadow-2xs"
+              title="Unduh File PDF Buku"
+            >
+              <Download className="h-3.5 w-3.5 text-amber-600" />
+              <span className="hidden sm:inline">Unduh PDF</span>
+            </a>
             <button
               onClick={handlePrint}
-              className="inline-flex items-center gap-1.5 rounded-full border border-neutral-300 bg-white px-3.5 py-1.5 text-xs font-semibold text-neutral-700 hover:bg-neutral-50 transition shadow-2xs"
+              className="inline-flex items-center gap-1.5 rounded-full border border-neutral-300 bg-white px-3 py-1.5 text-xs font-semibold text-neutral-700 hover:bg-neutral-50 transition shadow-2xs"
+              title="Cetak via Browser"
             >
               <Printer className="h-3.5 w-3.5" />
-              <span className="hidden sm:inline">{t.printPdfBtn}</span>
             </button>
           </div>
         </div>
       </header>
 
-      {/* Purchase Success Banner */}
+      {/* Purchase Success Banner with Direct 1-Click Downloads */}
       {searchParams.get("purchased") === "true" && (
-        <div className="bg-emerald-600 text-white px-4 py-3 text-center text-xs sm:text-sm font-bold shadow-sm print:hidden">
-          {t.purchaseSuccessBanner}
+        <div className="bg-emerald-600 text-white px-4 py-4 print:hidden shadow-md">
+          <div className="max-w-5xl mx-auto flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+            <div>
+              <span className="font-extrabold text-sm sm:text-base flex items-center gap-1.5">
+                <span>🎉</span>
+                <span>Pembayaran Sukses! Selamat Membaca.</span>
+              </span>
+              <p className="text-emerald-100 text-xs mt-0.5 max-w-xl leading-relaxed">
+                Kamu bisa langsung membaca bukunya secara interaktif di halaman ini, atau unduh file offline-nya ke perangkatmu:
+              </p>
+            </div>
+            <div className="flex items-center gap-2 flex-wrap">
+              <a
+                href={
+                  lang === "id"
+                    ? "/downloads/Nuju-Ebook-Berdamai-dengan-Pikiran-Sendiri.pdf"
+                    : "/downloads/Nuju-Ebook-Peace-Within-Your-Mind-EN.pdf"
+                }
+                download
+                className="inline-flex items-center gap-1.5 rounded-xl bg-white text-emerald-950 font-bold px-3.5 py-2 text-xs shadow-sm hover:bg-emerald-50 transition active:scale-95"
+              >
+                <Download className="h-3.5 w-3.5 text-emerald-700" />
+                <span>Unduh PDF Buku</span>
+              </a>
+              <a
+                href="/downloads/Nuju-VIP-Complete-Bundle.zip"
+                download="Nuju-VIP-Complete-Bundle.zip"
+                className="inline-flex items-center gap-1.5 rounded-xl bg-emerald-900/90 text-white font-bold px-3.5 py-2 text-xs shadow-sm hover:bg-emerald-800 transition active:scale-95"
+              >
+                <Download className="h-3.5 w-3.5" />
+                <span>Unduh Semua File (.ZIP)</span>
+              </a>
+            </div>
+          </div>
         </div>
       )}
 
