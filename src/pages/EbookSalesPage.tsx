@@ -82,8 +82,8 @@ export const EbookSalesPage: React.FC = () => {
       const planKey = selectedPlan === "bundle" ? "ebook_bundle" : "ebook_basic";
       const variantId =
         selectedPlan === "bundle"
-          ? (import.meta.env.VITE_DODO_EBOOK_BUNDLE || "pdt_ebook_bundle")
-          : (import.meta.env.VITE_DODO_EBOOK_BASIC || "pdt_ebook_basic");
+          ? (import.meta.env.VITE_DODO_EBOOK_BUNDLE || "pdt_0NndT42lMqG0yfNxjsW5W")
+          : (import.meta.env.VITE_DODO_EBOOK_BASIC || "pdt_0NndT42lMqG0yfNxjsW5W");
 
       // Generate a client-side session ID for guest purchase tracking
       const sessionId = `guest_ebook_${Date.now()}_${Math.random().toString(36).slice(2, 9)}`;
@@ -102,42 +102,38 @@ export const EbookSalesPage: React.FC = () => {
         );
       } catch {}
 
-      const resp = await fetch(`${SUPABASE_URL}/functions/v1/dodo-checkout`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          variant_id: variantId,
-          plan: planKey,
-          name: buyerName,
-          email: buyerEmail,
-          sessionId,
-          source: "ebook_sales_page",
-          country: langMeta.code === "id" ? "ID" : "US",
-          coupon_code: couponCode.trim() || undefined,
-        }),
-      });
+      try {
+        const resp = await fetch(`${SUPABASE_URL}/functions/v1/dodo-checkout`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            variant_id: variantId,
+            plan: planKey,
+            name: buyerName,
+            email: buyerEmail,
+            sessionId,
+            source: "ebook_sales_page",
+            country: "US",
+            coupon_code: couponCode.trim() || undefined,
+          }),
+        });
 
-      if (resp.ok) {
-        const data = await resp.json();
-        if (data.url) {
-          window.location.href = data.url;
-          return;
+        if (resp.ok) {
+          const data = await resp.json();
+          if (data.url) {
+            window.location.href = data.url;
+            return;
+          }
         }
+      } catch (edgeErr) {
+        console.warn("Dodo checkout function fallback:", edgeErr);
       }
 
-      // Fallback: If edge function not configured with active Dodo key yet, redirect directly to reader
-      toast.success(
-        lang === "id"
-          ? "Checkout berhasil! Mengarahkanmu langsung ke eBook reader..."
-          : "Checkout successful! Directing you to the reader..."
-      );
-      setTimeout(() => {
-        navigate(`/ebook/read?purchased=true&plan=${selectedPlan}&lang=${lang}`);
-      }, 800);
+      // Seamless fallback to direct live Dodo Payments checkout link
+      window.location.href = "https://checkout.dodopayments.com/buy/pdt_0NndT42lMqG0yfNxjsW5W?quantity=1";
     } catch (err) {
       console.error("Checkout redirect error:", err);
-      // Fallback direct access
-      navigate(`/ebook/read?purchased=true&plan=${selectedPlan}&lang=${lang}`);
+      window.location.href = "https://checkout.dodopayments.com/buy/pdt_0NndT42lMqG0yfNxjsW5W?quantity=1";
     } finally {
       setIsSubmitting(false);
     }

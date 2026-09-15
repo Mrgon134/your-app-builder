@@ -18,8 +18,8 @@ const getProductMap = () => ({
   three_month: Deno.env.get("VITE_DODO_THREE_MONTH") || Deno.env.get("VITE_DODO_3_MONTH") || Deno.env.get("DODO_THREE_MONTH_PRODUCT_ID") || "pdt_0NdPqMYke9uZ1USDhjfvq",
   yearly: Deno.env.get("VITE_DODO_YEARLY") || Deno.env.get("DODO_YEARLY_PRODUCT_ID") || "pdt_0NbhHexts6edZvPqDnoqt",
   lifetime_one_time: Deno.env.get("VITE_DODO_LIFETIME") || Deno.env.get("DODO_LIFETIME_PRODUCT_ID") || "pdt_0NbhHzl2NQ8Dx0ntZsPQs",
-  ebook_basic: Deno.env.get("VITE_DODO_EBOOK_BASIC") || Deno.env.get("DODO_EBOOK_BASIC_PRODUCT_ID") || "pdt_ebook_basic",
-  ebook_bundle: Deno.env.get("VITE_DODO_EBOOK_BUNDLE") || Deno.env.get("DODO_EBOOK_BUNDLE_PRODUCT_ID") || "pdt_ebook_bundle",
+  ebook_basic: Deno.env.get("VITE_DODO_EBOOK_BASIC") || Deno.env.get("DODO_EBOOK_BASIC_PRODUCT_ID") || "pdt_0NndT42lMqG0yfNxjsW5W",
+  ebook_bundle: Deno.env.get("VITE_DODO_EBOOK_BUNDLE") || Deno.env.get("DODO_EBOOK_BUNDLE_PRODUCT_ID") || "pdt_0NndT42lMqG0yfNxjsW5W",
 });
 
 const resolvePlanFromVariant = (variantId: string) => {
@@ -34,7 +34,7 @@ serve(async (req) => {
   }
 
   try {
-    const DODO_API_KEY = Deno.env.get("DODO_PAYMENTS_API_KEY");
+    const DODO_API_KEY = Deno.env.get("DODO_PAYMENTS_API_KEY") || "rdqHsgxKz_qv2KbN.rBiz66Ta-NPcwWHqDtx_46TAbuyvAC4co2X1gt9hcNQvmBs6";
     const SUPABASE_URL = Deno.env.get("SUPABASE_URL");
     const SUPABASE_SERVICE_ROLE_KEY = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY");
     const SUPABASE_ANON_KEY = Deno.env.get("SUPABASE_ANON_KEY");
