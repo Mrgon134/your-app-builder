@@ -16,6 +16,7 @@ import {
   Gift,
 } from "lucide-react";
 import SEOHead from "@/components/SEOHead";
+import AdSenseBanner from "@/components/AdSenseBanner";
 import EbookLanguageSelector from "@/components/EbookLanguageSelector";
 import EbookAudioWidget from "@/components/EbookAudioWidget";
 import EbookVipResourcesModal from "@/components/EbookVipResourcesModal";
@@ -59,6 +60,7 @@ export const EbookReaderPage: React.FC = () => {
 
   const activeChapter: EbookChapter = chapters[activeChapterIndex] || chapters[0];
   const activePrompt = prompts.find((p) => p.day === activePromptDay) || prompts[0];
+  const isPurchased = searchParams.get("purchased") === "true";
 
   const currentText =
     activeTab === "chapters"
@@ -207,7 +209,7 @@ export const EbookReaderPage: React.FC = () => {
         </div>
 
         {/* TAB 1: CHAPTERS READER */}
-        {activeTab === "chapters" && (
+        {activeTab === "chapters" && (<>
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
             {/* Left Chapter Selector (Print: Hidden) */}
             <div className="lg:col-span-4 rounded-3xl border border-neutral-200 bg-white p-5 shadow-xs print:hidden space-y-2 max-h-[600px] overflow-y-auto">
@@ -262,6 +264,13 @@ export const EbookReaderPage: React.FC = () => {
                   </p>
                 ))}
               </div>
+
+              {/* Mid-chapter Ad — hidden for buyers & on print */}
+              {!isPurchased && (
+                <div className="print:hidden">
+                  <AdSenseBanner format="horizontal" className="my-4" />
+                </div>
+              )}
 
               {/* Key Takeaways Box */}
               <div className="rounded-2xl border border-amber-200/80 bg-amber-50/50 p-6 space-y-3">
@@ -324,10 +333,17 @@ export const EbookReaderPage: React.FC = () => {
               </div>
             </article>
           </div>
-        )}
+
+          {/* Post-chapter Ad — hidden for buyers & on print */}
+          {!isPurchased && (
+            <div className="print:hidden mt-8">
+              <AdSenseBanner format="auto" />
+            </div>
+          )}
+        </>)}
 
         {/* TAB 2: 30-DAY PROMPTS READER */}
-        {activeTab === "prompts" && (
+        {activeTab === "prompts" && (<>
           <div className="max-w-3xl mx-auto space-y-6">
             {/* Day Selector Pills */}
             <div className="flex flex-wrap items-center justify-center gap-2 p-2 rounded-2xl bg-white border border-neutral-200 shadow-2xs">
@@ -422,7 +438,14 @@ export const EbookReaderPage: React.FC = () => {
               </div>
             </div>
           </div>
-        )}
+
+          {/* Post-prompt Ad — hidden for buyers & on print */}
+          {!isPurchased && (
+            <div className="print:hidden mt-6">
+              <AdSenseBanner format="auto" />
+            </div>
+          )}
+        </>)}
       </div>
 
       {/* Floating Ambient Sounds & Audiobook Voice Player */}
