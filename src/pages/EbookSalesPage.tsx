@@ -83,7 +83,7 @@ export const EbookSalesPage: React.FC = () => {
       const variantId =
         selectedPlan === "bundle"
           ? (import.meta.env.VITE_DODO_EBOOK_BUNDLE || "pdt_0NndT42lMqG0yfNxjsW5W")
-          : (import.meta.env.VITE_DODO_EBOOK_BASIC || "pdt_0NndT42lMqG0yfNxjsW5W");
+          : (import.meta.env.VITE_DODO_EBOOK_BASIC || "pdt_0NndVkm4rkHwyITskFnpw");
 
       // Generate a client-side session ID for guest purchase tracking
       const sessionId = `guest_ebook_${Date.now()}_${Math.random().toString(36).slice(2, 9)}`;
@@ -130,10 +130,10 @@ export const EbookSalesPage: React.FC = () => {
       }
 
       // Seamless fallback to direct live Dodo Payments checkout link
-      window.location.href = "https://checkout.dodopayments.com/buy/pdt_0NndT42lMqG0yfNxjsW5W?quantity=1";
+      window.location.href = `https://checkout.dodopayments.com/buy/${selectedPlan === "bundle" ? "pdt_0NndT42lMqG0yfNxjsW5W" : "pdt_0NndVkm4rkHwyITskFnpw"}?quantity=1`;
     } catch (err) {
       console.error("Checkout redirect error:", err);
-      window.location.href = "https://checkout.dodopayments.com/buy/pdt_0NndT42lMqG0yfNxjsW5W?quantity=1";
+      window.location.href = `https://checkout.dodopayments.com/buy/${selectedPlan === "bundle" ? "pdt_0NndT42lMqG0yfNxjsW5W" : "pdt_0NndVkm4rkHwyITskFnpw"}?quantity=1`;
     } finally {
       setIsSubmitting(false);
     }
