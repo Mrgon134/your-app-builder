@@ -13,10 +13,12 @@ import {
   Copy,
   ChevronRight,
   HelpCircle,
+  Download,
 } from "lucide-react";
 import SEOHead from "@/components/SEOHead";
 import AdSenseBanner from "@/components/AdSenseBanner";
 import AppStoreCta from "@/components/AppStoreCta";
+import QuizShareCardModal from "@/components/QuizShareCardModal";
 import { getQuizBySlug, getAllQuizzes, QuizMeta, QuizOption, QuizResult } from "@/data/quizzes";
 import juMain from "@/assets/ju-main.webp";
 import { toast } from "sonner";
@@ -32,6 +34,7 @@ const QuizRunner: React.FC = () => {
   const [answers, setAnswers] = useState<Record<number, QuizOption>>({});
   const [isAnalyzing, setIsAnalyzing] = useState<boolean>(false);
   const [result, setResult] = useState<QuizResult | null>(null);
+  const [isShareModalOpen, setIsShareModalOpen] = useState<boolean>(false);
 
   useEffect(() => {
     // Reset state on quizId change
@@ -256,20 +259,51 @@ const QuizRunner: React.FC = () => {
               {/* Share & Retake CTA Buttons */}
               <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
                 <button
-                  onClick={handleShare}
-                  className="inline-flex items-center gap-2 rounded-full bg-amber-600 px-6 py-3 text-sm font-semibold text-white shadow-sm hover:bg-amber-700 transition"
+                  onClick={() => setIsShareModalOpen(true)}
+                  className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-amber-600 to-amber-700 px-6 py-3.5 text-sm font-bold text-white shadow-md hover:from-amber-700 hover:to-amber-800 active:scale-95 transition"
                 >
-                  <Share2 className="h-4 w-4" />
-                  <span>Bagikan Hasil Kuis</span>
+                  <Download className="h-4 w-4" />
+                  <span>Simpan Gambar Hasil (HD)</span>
+                </button>
+
+                <button
+                  onClick={handleShare}
+                  className="inline-flex items-center gap-2 rounded-full border border-amber-300 bg-amber-50/80 px-6 py-3.5 text-sm font-semibold text-amber-900 shadow-xs hover:bg-amber-100/80 active:scale-95 transition"
+                >
+                  <Share2 className="h-4 w-4 text-amber-700" />
+                  <span>Bagikan Link Hasil</span>
                 </button>
 
                 <button
                   onClick={handleRetake}
-                  className="inline-flex items-center gap-2 rounded-full border border-neutral-300 bg-white px-5 py-3 text-sm font-semibold text-neutral-700 hover:bg-neutral-50 transition"
+                  className="inline-flex items-center gap-2 rounded-full border border-neutral-300 bg-white px-5 py-3.5 text-sm font-semibold text-neutral-700 hover:bg-neutral-50 active:scale-95 transition"
                 >
                   <RotateCcw className="h-4 w-4" />
                   <span>Ulangi Tes</span>
                 </button>
+              </div>
+
+              {/* Story / Status Card Quick Teaser */}
+              <div
+                onClick={() => setIsShareModalOpen(true)}
+                className="mt-6 mx-auto max-w-md cursor-pointer rounded-2xl border border-amber-200/80 bg-gradient-to-r from-amber-50/80 to-orange-50/50 p-4 transition hover:border-amber-400 hover:shadow-xs flex items-center justify-between gap-4 text-left"
+              >
+                <div className="flex items-center gap-3">
+                  <div className="h-11 w-11 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-700 shrink-0">
+                    <Sparkles className="h-5 w-5" />
+                  </div>
+                  <div>
+                    <h4 className="text-xs font-bold text-neutral-900 uppercase tracking-wider">
+                      Kartu Hasil Siap Instagram &amp; WA Story
+                    </h4>
+                    <p className="text-xs text-neutral-600 mt-0.5">
+                      Klik untuk preview &amp; download kartu 4:5 resolusi tinggi (1080×1350)
+                    </p>
+                  </div>
+                </div>
+                <span className="text-xs font-bold text-amber-700 whitespace-nowrap">
+                  Buka →
+                </span>
               </div>
             </div>
 
@@ -487,6 +521,16 @@ const QuizRunner: React.FC = () => {
             ))}
           </div>
         </section>
+
+        {/* Viral Share Card Preview & Download Modal */}
+        {quiz && result && (
+          <QuizShareCardModal
+            isOpen={isShareModalOpen}
+            onClose={() => setIsShareModalOpen(false)}
+            quiz={quiz}
+            result={result}
+          />
+        )}
       </main>
     </div>
   );
