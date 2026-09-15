@@ -31,6 +31,9 @@ interface SEOHeadProps {
   alternates?: AlternateLink[];
   noSuffix?: boolean;
   language?: SupportedLanguage;
+  image?: string;
+  imageAlt?: string;
+  schema?: Record<string, unknown> | Array<Record<string, unknown>>;
 }
 
 const BASE_TITLE = "Nuju";
@@ -47,9 +50,18 @@ const SEOHead: React.FC<SEOHeadProps> = ({
   alternates,
   noSuffix,
   language = "en",
+  image,
+  imageAlt,
+  schema,
 }) => {
   const fullTitle = noSuffix ? title : `${title} | ${BASE_TITLE}`;
   const ogLocale = LOCALE_MAP[language] ?? "en_US";
+  const ogImage = image
+    ? image.startsWith("http")
+      ? image
+      : `https://nuju.app${image.startsWith("/") ? "" : "/"}${image}`
+    : OG_IMAGE;
+  const ogImageAlt = imageAlt || (image ? title : OG_IMAGE_ALT);
 
   const breadcrumbSchema = breadcrumbs
     ? {
@@ -74,8 +86,8 @@ const SEOHead: React.FC<SEOHeadProps> = ({
       <meta property="og:type" content="website" />
       <meta property="og:title" content={fullTitle} />
       <meta property="og:description" content={description} />
-      <meta property="og:image" content={OG_IMAGE} />
-      <meta property="og:image:alt" content={OG_IMAGE_ALT} />
+      <meta property="og:image" content={ogImage} />
+      <meta property="og:image:alt" content={ogImageAlt} />
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />
       {canonical && <meta property="og:url" content={canonical} />}
@@ -85,8 +97,8 @@ const SEOHead: React.FC<SEOHeadProps> = ({
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={fullTitle} />
       <meta name="twitter:description" content={description} />
-      <meta name="twitter:image" content={OG_IMAGE} />
-      <meta name="twitter:image:alt" content={OG_IMAGE_ALT} />
+      <meta name="twitter:image" content={ogImage} />
+      <meta name="twitter:image:alt" content={ogImageAlt} />
       <meta name="twitter:site" content="@nujuapp" />
       <meta name="twitter:creator" content="@nujuapp" />
 
@@ -101,6 +113,12 @@ const SEOHead: React.FC<SEOHeadProps> = ({
       {breadcrumbSchema && (
         <script type="application/ld+json">
           {JSON.stringify(breadcrumbSchema)}
+        </script>
+      )}
+
+      {schema && (
+        <script type="application/ld+json">
+          {JSON.stringify(schema)}
         </script>
       )}
     </Helmet>

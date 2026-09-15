@@ -19,6 +19,7 @@ import SEOHead from "@/components/SEOHead";
 import AdSenseBanner from "@/components/AdSenseBanner";
 import AppStoreCta from "@/components/AppStoreCta";
 import QuizShareCardModal from "@/components/QuizShareCardModal";
+import QuizLeadCapture from "@/components/QuizLeadCapture";
 import { getQuizBySlug, getAllQuizzes, QuizMeta, QuizOption, QuizResult } from "@/data/quizzes";
 import juMain from "@/assets/ju-main.webp";
 import { toast } from "sonner";
@@ -168,7 +169,26 @@ const QuizRunner: React.FC = () => {
         title={`${quiz.title} | Nuju Quiz`}
         description={quiz.description}
         canonical={`https://nuju.app/quiz/${quiz.slug}`}
-        language="id"
+        language={(quiz.language as "id" | "en" | "de" | "ja" | "ko") || "id"}
+        image={result ? result.mascotImage : quiz.mascotImage}
+        imageAlt={`${quiz.title} - Nuju Self-Reflection Lab`}
+        schema={{
+          "@context": "https://schema.org",
+          "@type": "Quiz",
+          name: quiz.title,
+          description: quiz.description,
+          about: {
+            "@type": "Thing",
+            name: quiz.category,
+          },
+          provider: {
+            "@type": "Organization",
+            name: "Nuju",
+            url: "https://nuju.app",
+          },
+          typicalAgeRange: "16-65",
+          inLanguage: quiz.language || "id",
+        }}
       />
 
       {/* Header */}
@@ -359,8 +379,20 @@ const QuizRunner: React.FC = () => {
                 <div className="rounded-2xl border border-rose-100 bg-rose-50/40 p-4 font-mono text-xs sm:text-sm text-neutral-800 leading-relaxed">
                   "{result.recommendedPrompt}"
                 </div>
+                <div className="mt-3.5 flex flex-wrap items-center gap-3">
+                  <Link
+                    to={`/app?screen=journal&prompt=${encodeURIComponent(result.recommendedPrompt)}&mood=${result.mascotMood}&fromQuiz=${quiz.slug}`}
+                    className="inline-flex items-center gap-2 rounded-xl bg-amber-600 px-4 py-2.5 text-xs sm:text-sm font-bold text-white shadow-sm hover:bg-amber-700 active:scale-95 transition"
+                  >
+                    <Sparkles className="h-4 w-4 text-amber-200" />
+                    <span>Curhatkan Prompt Ini ke Ju (Mulai Gratis) →</span>
+                  </Link>
+                </div>
               </div>
             </div>
+
+            {/* Email Lead Magnet: Save Diagnostic & 7-Day Recovery Guide */}
+            <QuizLeadCapture quiz={quiz} result={result} className="my-8" />
 
             {/* Direct App Conversion Box */}
             <div className="rounded-3xl bg-neutral-950 text-white p-8 sm:p-10 relative overflow-hidden shadow-md text-center sm:text-left flex flex-col sm:flex-row items-center gap-6">
@@ -375,10 +407,11 @@ const QuizRunner: React.FC = () => {
                 <div className="pt-2 flex flex-wrap items-center justify-center sm:justify-start gap-3">
                   <AppStoreCta label="Unduh Nuju (Gratis)" />
                   <Link
-                    to="/app"
-                    className="rounded-full border border-white/20 bg-white/10 px-5 py-2.5 text-xs sm:text-sm font-semibold text-white hover:bg-white/20 transition"
+                    to={`/app?screen=journal&prompt=${encodeURIComponent(result.recommendedPrompt)}&mood=${result.mascotMood}&fromQuiz=${quiz.slug}`}
+                    className="rounded-full border border-white/30 bg-white/10 px-5 py-2.5 text-xs sm:text-sm font-semibold text-white hover:bg-white/20 active:scale-95 transition flex items-center gap-2"
                   >
-                    Buka Versi Web
+                    <Sparkles className="h-3.5 w-3.5 text-amber-300" />
+                    <span>Buka Jurnal Web (Prompt Terisi)</span>
                   </Link>
                 </div>
               </div>

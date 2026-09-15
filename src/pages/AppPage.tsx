@@ -116,6 +116,40 @@ const AppPage: React.FC = () => {
   const { shellMode, isPhone, isDesktop } = useShellMode();
   const effectiveProfile = profile;
   const displayName = resolveDisplayName(effectiveProfile, user);
+
+  // Deep-link integration from Quiz or external prompts
+  useEffect(() => {
+    try {
+      const params = new URLSearchParams(window.location.search);
+      const urlPrompt = params.get("prompt");
+      const urlMood = params.get("mood");
+      const urlScreen = params.get("screen");
+      const fromQuiz = params.get("fromQuiz");
+
+      if (urlPrompt || fromQuiz || urlScreen === "journal") {
+        if (urlPrompt) {
+          setJournalPrompt(urlPrompt);
+        }
+        if (urlMood) {
+          const moodMap: Record<string, number> = {
+            rough: 1,
+            low: 2,
+            okay: 3,
+            good: 4,
+            great: 5,
+          };
+          if (moodMap[urlMood]) {
+            setSelectedMood(moodMap[urlMood]);
+          }
+        }
+        setScreen("journal");
+        window.history.replaceState({}, "", window.location.pathname);
+      }
+    } catch {
+      // ignore param parsing errors
+    }
+  }, []);
+
   const getEntryTimestamp = useCallback((entry: EntryRow) => {
     const source = entry.created_at || entry.entry_date;
     return new Date(source);

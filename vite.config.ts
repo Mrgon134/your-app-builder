@@ -20,6 +20,7 @@ export default defineConfig({
       workbox: {
         navigateFallbackDenylist: [/^\/$/, /^\/landing-exact(?:\/|$)/, /^\/~oauth/],
         globPatterns: ["**/*.{js,css,html,ico,png,svg,webp}"],
+        maximumFileSizeToCacheInBytes: 5 * 1024 * 1024,
       },
       manifest: {
         name: "Nuju - AI Journal Companion",
