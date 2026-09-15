@@ -156,7 +156,7 @@ export const EbookSalesPage: React.FC = () => {
       {/* Navigation */}
       <nav className="sticky top-0 z-40 border-b border-neutral-200/80 bg-[#FAF8F5]/90 backdrop-blur-md">
         <div className="mx-auto flex h-16 max-w-5xl items-center justify-between px-4 sm:px-6">
-          <Link to="/" className="font-serif text-xl font-black tracking-tight text-neutral-900">
+          <Link to="/blog" className="font-serif text-xl font-black tracking-tight text-neutral-900">
             Nuju<span className="text-amber-600">.press</span>
           </Link>
           <div className="flex items-center gap-2 sm:gap-3">
