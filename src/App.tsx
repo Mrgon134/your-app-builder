@@ -30,6 +30,8 @@ const About = lazy(() => import("./pages/About.tsx"));
 const AiJournal = lazy(() => import("./pages/AiJournal.tsx"));
 const MoodTracker = lazy(() => import("./pages/MoodTracker.tsx"));
 const VoiceJournaling = lazy(() => import("./pages/VoiceJournaling.tsx"));
+const QuizHub = lazy(() => import("./pages/QuizHub.tsx"));
+const QuizRunner = lazy(() => import("./pages/QuizRunner.tsx"));
 const NotFound = lazy(() => import("./pages/NotFound.tsx"));
 const AuthCallback = lazy(() => import("./pages/AuthCallback.tsx"));
 
@@ -93,6 +95,10 @@ const App = () => (
                   <Route path="/ai-journal" element={<AiJournal />} />
                   <Route path="/mood-tracker" element={<MoodTracker />} />
                   <Route path="/voice-journaling" element={<VoiceJournaling />} />
+                  <Route path="/quiz" element={<QuizHub />} />
+                  <Route path="/quiz/:quizId" element={<QuizRunner />} />
+                  <Route path="/test-psikologi" element={<QuizHub />} />
+                  <Route path="/test-psikologi/:quizId" element={<QuizRunner />} />
                   <Route
                     path="/app"
                     element={

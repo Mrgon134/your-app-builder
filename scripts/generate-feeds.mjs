@@ -30,9 +30,13 @@ const STATIC_ROUTES = [
   { loc: "/contact", priority: "0.5", changefreq: "monthly" },
   { loc: "/privacy", priority: "0.4", changefreq: "yearly" },
   { loc: "/terms", priority: "0.4", changefreq: "yearly" },
-  { loc: "/medical-disclaimer", priority: "0.3", changefreq: "yearly" },
   { loc: "/blog", priority: "0.8", changefreq: "weekly" },
   { loc: "/guides/journaling", priority: "0.9", changefreq: "monthly" },
+  { loc: "/quiz", priority: "0.9", changefreq: "weekly" },
+  { loc: "/quiz/baterai-emosi", priority: "0.9", changefreq: "weekly" },
+  { loc: "/quiz/tipe-overthinking", priority: "0.9", changefreq: "weekly" },
+  { loc: "/quiz/burnout-screener", priority: "0.9", changefreq: "weekly" },
+  { loc: "/quiz/gaya-regulasi-emosi", priority: "0.9", changefreq: "weekly" },
 ];
 
 const escapeXml = (str) =>

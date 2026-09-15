@@ -24,8 +24,9 @@ export const ROUTES = {
   TERMS: '/terms',
   MEDICAL_DISCLAIMER: '/medical-disclaimer',
 
-  // Landing
+  // Landing & Content
   LANDING: '/',
+  QUIZ: '/quiz',
 } as const;
 
 export type RouteKey = keyof typeof ROUTES;
