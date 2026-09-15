@@ -204,8 +204,8 @@ const QuizHub: React.FC = () => {
         </div>
 
         {/* In-Feed Google AdSense Banner */}
-        <div className="my-10">
-          <AdSenseBanner slot="quiz-hub-mid" />
+        <div className="my-8">
+          <AdSenseBanner format="auto" />
         </div>
 
         {/* Why Self-Reflection Quizzes Work */}
@@ -270,6 +270,11 @@ const QuizHub: React.FC = () => {
             </div>
           </div>
         </section>
+
+        {/* Bottom Google AdSense Banner */}
+        <div className="my-8">
+          <AdSenseBanner format="auto" />
+        </div>
 
         {/* Medical & Ethical Disclaimer */}
         <footer className="border-t border-neutral-200 pt-8 pb-12 text-center text-xs text-neutral-400 max-w-2xl mx-auto space-y-2">

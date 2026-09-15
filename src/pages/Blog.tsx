@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { ArrowRight, BookOpen, Clock, Tag } from "lucide-react";
 import AppStoreCta from "@/components/AppStoreCta";
 import SEOHead from "@/components/SEOHead";
+import AdSenseBanner from "@/components/AdSenseBanner";
 import { getPublishedBlogPosts } from "@/data/blog-posts";
 import { usePostHogEvents } from "@/hooks/use-posthog-events";
 
@@ -234,6 +235,8 @@ const Blog: React.FC = () => {
           </section>
         )}
 
+        <AdSenseBanner format="auto" className="my-10" />
+
         {remainingPosts.length > 0 && (
           <>
             <div className="mb-6">
@@ -282,6 +285,8 @@ const Blog: React.FC = () => {
             </div>
           </>
         )}
+
+        <AdSenseBanner format="auto" className="my-10" />
 
         <div className="mt-16 rounded-2xl border border-primary/20 bg-primary/5 px-6 py-10 text-center">
           <h2 className="font-serif text-2xl font-bold text-foreground mb-2">

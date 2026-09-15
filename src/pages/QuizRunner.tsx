@@ -275,7 +275,7 @@ const QuizRunner: React.FC = () => {
 
             {/* In-Feed Google AdSense Banner */}
             <div className="my-6">
-              <AdSenseBanner slot="quiz-result-mid" />
+              <AdSenseBanner format="auto" />
             </div>
 
             {/* Deep Insight & Actionable Steps */}
@@ -375,6 +375,11 @@ const QuizRunner: React.FC = () => {
                   </Link>
                 ))}
               </div>
+            </div>
+
+            {/* Bottom Google AdSense Banner on Result View */}
+            <div className="my-8">
+              <AdSenseBanner format="auto" />
             </div>
           </div>
         )}

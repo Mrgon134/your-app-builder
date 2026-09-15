@@ -20,6 +20,15 @@ export const AdSenseBanner: React.FC<AdSenseBannerProps> = ({
   const containerRef = useRef<HTMLDivElement | null>(null);
   const pushedRef = useRef(false);
 
+  // Validate if slot is purely numeric digits (AdSense standard)
+  const numericSlot = slot && /^\d+$/.test(slot.trim()) ? slot.trim() : undefined;
+
+  const isDev =
+    typeof window !== "undefined" &&
+    (import.meta.env.DEV ||
+      window.location.hostname === "localhost" ||
+      window.location.hostname === "127.0.0.1");
+
   useEffect(() => {
     // Only execute on browser client
     if (typeof window === "undefined" || pushedRef.current) return;
@@ -58,16 +67,21 @@ export const AdSenseBanner: React.FC<AdSenseBannerProps> = ({
       aria-label="Advertisement"
       data-testid="adsense-banner-container"
       ref={containerRef}
-      className={`my-8 flex w-full flex-col items-center justify-center overflow-hidden rounded-2xl border border-border/40 bg-card/30 p-2 text-center text-xs text-muted-foreground transition-all ${className}`}
+      className={`my-8 flex w-full flex-col items-center justify-center overflow-hidden rounded-2xl border border-border/40 bg-card/30 p-3 text-center text-xs text-muted-foreground transition-all ${className}`}
     >
-      <span className="mb-1 text-[10px] tracking-wider uppercase opacity-60">
+      <span className="mb-1.5 text-[10px] tracking-wider uppercase opacity-60">
         Advertisement
       </span>
+      {isDev && (
+        <div className="mb-2 flex items-center gap-1.5 rounded-full border border-amber-500/30 bg-amber-500/10 px-3 py-1 text-[11px] font-medium text-amber-600 dark:text-amber-400">
+          <span>● Google AdSense Unit (Client: ca-pub-2385213858617155)</span>
+        </div>
+      )}
       <ins
         className="adsbygoogle"
         style={{ display: "block", width: "100%", minHeight: "90px" }}
         data-ad-client="ca-pub-2385213858617155"
-        data-ad-slot={slot || undefined}
+        data-ad-slot={numericSlot}
         data-ad-format={format}
         data-full-width-responsive="true"
         {...(layoutKey ? { "data-ad-layout-key": layoutKey } : {})}

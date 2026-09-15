@@ -3105,7 +3105,7 @@ const BlogPost: React.FC = () => {
           {post.sections.map((section, index) => (
             <React.Fragment key={index}>
               {renderSection(section, index)}
-              {index === Math.floor(post.sections.length / 2) && post.sections.length >= 6 && (
+              {index === Math.floor(post.sections.length / 2) && post.sections.length >= 2 && (
                 <AdSenseBanner format="auto" className="my-10" />
               )}
             </React.Fragment>

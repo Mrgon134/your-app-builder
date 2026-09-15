@@ -4,6 +4,7 @@ import { ArrowRight, Clock, BookOpen, Brain, Sparkles, Heart, List } from "lucid
 import { Helmet } from "react-helmet-async";
 import AppStoreCta from "@/components/AppStoreCta";
 import SEOHead from "@/components/SEOHead";
+import AdSenseBanner from "@/components/AdSenseBanner";
 
 const CHAPTERS = [
   { id: "what-is-journaling", label: "1. What is journaling?" },
@@ -202,6 +203,8 @@ const JournalingGuide: React.FC = () => {
           </ul>
         </Chapter>
 
+        <AdSenseBanner format="auto" className="my-12" />
+
         <Chapter id="methods" title="Journaling methods: pen, digital, voice, AI">
           <p>
             There&rsquo;s no single &ldquo;right&rdquo; way to journal — different methods solve different problems.
@@ -322,6 +325,8 @@ const JournalingGuide: React.FC = () => {
             </details>
           </div>
         </Chapter>
+
+        <AdSenseBanner format="auto" className="mt-14 mb-8" />
 
         <div className="mt-20 rounded-2xl border border-primary/20 bg-primary/5 px-6 py-10 text-center">
           <p className="text-sm font-semibold uppercase tracking-widest text-primary mb-2">Try it yourself</p>
