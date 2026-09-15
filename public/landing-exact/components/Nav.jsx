@@ -11,8 +11,8 @@ const Nav = ({ onStart, onTheme, dark }) => {
         <div className="nav-links">
           <button className="nav-link" onClick={() => document.getElementById('how')?.scrollIntoView({ behavior: 'smooth' })}>How it works</button>
           <button className="nav-link" onClick={() => document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' })}>Pricing</button>
-          <a className="nav-link" href="/tes-psikologi" style={{ textDecoration: 'none' }}>Tes Psikologi</a>
-          <a className="nav-link" href="/ebook" style={{ textDecoration: 'none' }}>Ebook</a>
+          <a className="nav-link" href="/quiz" style={{ textDecoration: 'none' }}>Quizzes</a>
+          <a className="nav-link" href="/ebook" style={{ textDecoration: 'none' }}>eBook</a>
           <button className="nav-link" onClick={() => document.getElementById('faq')?.scrollIntoView({ behavior: 'smooth' })}>FAQ</button>
           <button className="nav-link" onClick={onTheme} aria-label="Toggle theme" style={{ width: 36, padding: 0, justifyContent: 'center' }}>
             {dark ? <Icon.Sun size={15} /> : <Icon.Moon size={15} />}

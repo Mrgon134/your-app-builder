@@ -29,8 +29,8 @@ export interface EbookLanguageMeta {
 }
 
 export const EBOOK_LANGUAGES: EbookLanguageMeta[] = [
+  { code: "en", name: "English", nativeName: "English", flag: "🇺🇸", currencySymbol: "$", basicPrice: "$3.99", bundlePrice: "$7.99", originalPrice: "$24.99" },
   { code: "id", name: "Indonesian", nativeName: "Bahasa Indonesia", flag: "🇮🇩", currencySymbol: "Rp", basicPrice: "Rp 49.000", bundlePrice: "Rp 99.000", originalPrice: "Rp 299.000" },
-  { code: "en", name: "English", nativeName: "English", flag: "🇬🇧", currencySymbol: "$", basicPrice: "$3.99", bundlePrice: "$7.99", originalPrice: "$24.99" },
   { code: "de", name: "German", nativeName: "Deutsch", flag: "🇩🇪", currencySymbol: "€", basicPrice: "3,99 €", bundlePrice: "7,99 €", originalPrice: "24,99 €" },
   { code: "nl", name: "Dutch", nativeName: "Nederlands", flag: "🇳🇱", currencySymbol: "€", basicPrice: "3,99 €", bundlePrice: "7,99 €", originalPrice: "24,99 €" },
   { code: "no", name: "Norwegian", nativeName: "Norsk", flag: "🇳🇴", currencySymbol: "kr", basicPrice: "45 kr", bundlePrice: "89 kr", originalPrice: "269 kr" },

@@ -54,7 +54,7 @@ export const EbookSalesPage: React.FC = () => {
     } catch {
       // safe fallback
     }
-    return "id";
+    return "en";
   });
 
   const t = getEbookTranslations(lang);

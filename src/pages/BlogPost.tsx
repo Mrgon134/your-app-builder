@@ -3007,7 +3007,7 @@ const BlogPost: React.FC = () => {
               to="/ebook"
               className="text-xs sm:text-sm font-semibold text-amber-600 hover:text-amber-700 px-2.5 py-1.5 rounded-lg hover:bg-amber-500/10 transition-colors"
             >
-              Ebook
+              eBook
             </Link>
             <Link
               to={`/onboarding?source=blog_article_nav_${post.slug}`}
@@ -3362,10 +3362,10 @@ const BlogPost: React.FC = () => {
               Blog
             </Link>
             <Link to="/ebook" className="transition-colors hover:text-foreground text-amber-600 font-semibold">
-              Ebook & Workbook
+              Official eBook
             </Link>
-            <Link to="/tes-psikologi" className="transition-colors hover:text-foreground">
-              Tes Psikologi
+            <Link to="/quiz" className="transition-colors hover:text-foreground">
+              Quizzes
             </Link>
             <Link to="/about" className="transition-colors hover:text-foreground">
               {copy.footerAbout}

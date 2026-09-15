@@ -50,7 +50,7 @@ export const EbookReaderPage: React.FC = () => {
       const browserLang = navigator.language?.split("-")[0]?.toLowerCase() as EbookLanguageCode;
       if (browserLang && EBOOK_LANGUAGES.some((l) => l.code === browserLang)) return browserLang;
     } catch {}
-    return "id";
+    return "en";
   });
 
   const t = getEbookTranslations(lang);
@@ -106,7 +106,7 @@ export const EbookReaderPage: React.FC = () => {
               className="inline-flex items-center gap-1.5 rounded-full border border-amber-300 bg-amber-50 px-3 py-1.5 text-xs font-bold text-amber-800 hover:bg-amber-100 transition shadow-2xs"
             >
               <Gift className="h-3.5 w-3.5 text-amber-600" />
-              <span className="hidden sm:inline">VIP Bonus</span>
+              <span className="hidden sm:inline">{lang === "id" ? "Bonus VIP" : "VIP Bonus"}</span>
             </button>
             <EbookLanguageSelector
               currentLang={lang}
@@ -125,15 +125,15 @@ export const EbookReaderPage: React.FC = () => {
                   : "Nuju-Ebook-Peace-Within-Your-Mind-EN.pdf"
               }
               className="inline-flex items-center gap-1.5 rounded-full border border-neutral-300 bg-white px-3.5 py-1.5 text-xs font-semibold text-neutral-700 hover:bg-neutral-50 transition shadow-2xs"
-              title="Unduh File PDF Buku"
+              title="Download PDF"
             >
               <Download className="h-3.5 w-3.5 text-amber-600" />
-              <span className="hidden sm:inline">Unduh PDF</span>
+              <span className="hidden sm:inline">{lang === "id" ? "Unduh PDF" : "Download PDF"}</span>
             </a>
             <button
               onClick={handlePrint}
               className="inline-flex items-center gap-1.5 rounded-full border border-neutral-300 bg-white px-3 py-1.5 text-xs font-semibold text-neutral-700 hover:bg-neutral-50 transition shadow-2xs"
-              title="Cetak via Browser"
+              title="Print"
             >
               <Printer className="h-3.5 w-3.5" />
             </button>
@@ -148,10 +148,12 @@ export const EbookReaderPage: React.FC = () => {
             <div>
               <span className="font-extrabold text-sm sm:text-base flex items-center gap-1.5">
                 <span>🎉</span>
-                <span>Pembayaran Sukses! Selamat Membaca.</span>
+                <span>{lang === "id" ? "Pembayaran Sukses! Selamat Membaca." : "Payment Confirmed! Happy Reading."}</span>
               </span>
               <p className="text-emerald-100 text-xs mt-0.5 max-w-xl leading-relaxed">
-                Kamu bisa langsung membaca bukunya secara interaktif di halaman ini, atau unduh file offline-nya ke perangkatmu:
+                {lang === "id"
+                  ? "Kamu bisa langsung membaca bukunya secara interaktif di halaman ini, atau unduh file offline-nya ke perangkatmu:"
+                  : "You can read the complete book interactively on this page, or download the offline files directly to your device:"}
               </p>
             </div>
             <div className="flex items-center gap-2 flex-wrap">
@@ -165,7 +167,7 @@ export const EbookReaderPage: React.FC = () => {
                 className="inline-flex items-center gap-1.5 rounded-xl bg-white text-emerald-950 font-bold px-3.5 py-2 text-xs shadow-sm hover:bg-emerald-50 transition active:scale-95"
               >
                 <Download className="h-3.5 w-3.5 text-emerald-700" />
-                <span>Unduh PDF Buku</span>
+                <span>{lang === "id" ? "Unduh PDF Buku" : "Download eBook PDF"}</span>
               </a>
               <a
                 href="/downloads/Nuju-VIP-Complete-Bundle.zip"
@@ -173,7 +175,7 @@ export const EbookReaderPage: React.FC = () => {
                 className="inline-flex items-center gap-1.5 rounded-xl bg-emerald-900/90 text-white font-bold px-3.5 py-2 text-xs shadow-sm hover:bg-emerald-800 transition active:scale-95"
               >
                 <Download className="h-3.5 w-3.5" />
-                <span>Unduh Semua File (.ZIP)</span>
+                <span>{lang === "id" ? "Unduh Semua File (.ZIP)" : "Download VIP Bundle (.ZIP)"}</span>
               </a>
             </div>
           </div>

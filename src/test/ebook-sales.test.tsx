@@ -90,52 +90,52 @@ describe("EbookSalesPage Component", () => {
       </MemoryRouter>
     );
 
-  it("renders the main heading and book tagline", () => {
+  it("renders the main heading and book tagline in English by default", () => {
     renderSalesPage();
     expect(
       screen.getByRole("heading", {
         level: 1,
-        name: /Berdamai dengan Pikiran Sendiri/i,
+        name: /Peace Within Your Mind/i,
       })
     ).toBeInTheDocument();
 
-    expect(screen.getAllByText(/30 hari terapi overthinking/i).length).toBeGreaterThan(0);
+    expect(screen.getAllByText(/30 Days of Overthinking/i).length).toBeGreaterThan(0);
   });
 
-  it("renders chapter titles in the preview list", () => {
+  it("renders chapter titles in the preview list in English", () => {
     renderSalesPage();
     expect(
-      screen.getByText(/Mengapa Otak Kita Selalu Membayangkan Skenario Terburuk/i)
+      screen.getByText(/Why Does Our Brain Always Imagine Worst-Case Scenarios/i)
     ).toBeInTheDocument();
   });
 
-  it("renders pricing options for Basic and Bundle", () => {
+  it("renders pricing options for Basic and Bundle in USD", () => {
     renderSalesPage();
-    expect(screen.getByText(/Pilih Paket Standar/i)).toBeInTheDocument();
-    expect(screen.getByText(/Pilih Paket Bundling VIP/i)).toBeInTheDocument();
+    expect(screen.getByText(/Choose Standard Package/i)).toBeInTheDocument();
+    expect(screen.getByText(/Get VIP Bundle Package/i)).toBeInTheDocument();
   });
 
-  it("renders language selector and switches language to English on selection", () => {
+  it("renders language selector with English default and switches language to Indonesian on selection", () => {
     renderSalesPage();
-    const langBtn = screen.getAllByRole("button", { name: /Bahasa Indonesia/i })[0];
+    const langBtn = screen.getAllByRole("button", { name: /English/i })[0];
     expect(langBtn).toBeInTheDocument();
 
     fireEvent.click(langBtn);
-    const englishOption = screen.getByRole("option", { name: /English/i });
-    fireEvent.click(englishOption);
+    const idOption = screen.getByRole("option", { name: /Bahasa Indonesia/i });
+    fireEvent.click(idOption);
 
-    expect(screen.getAllByText(/Peace Within Your Mind/i).length).toBeGreaterThan(0);
-    expect(screen.getByText(/Choose Standard Package/i)).toBeInTheDocument();
+    expect(screen.getAllByText(/Berdamai dengan Pikiran Sendiri/i).length).toBeGreaterThan(0);
+    expect(screen.getByText(/Pilih Paket Standar/i)).toBeInTheDocument();
   });
 
   it("opens checkout modal with coupon field when purchase CTA is clicked", () => {
     renderSalesPage();
-    const cta = screen.getByText(/Pilih Paket Standar/i);
+    const cta = screen.getByText(/Choose Standard Package/i);
     fireEvent.click(cta);
 
-    expect(screen.getByText(/Checkout eBook Nuju/i)).toBeInTheDocument();
-    expect(screen.getByPlaceholderText(/Contoh: Irfan Pratama/i)).toBeInTheDocument();
-    expect(screen.getByPlaceholderText(/nama@email.com/i)).toBeInTheDocument();
+    expect(screen.getByText(/Checkout Nuju eBook/i)).toBeInTheDocument();
+    expect(screen.getByPlaceholderText(/e.g. Alex Johnson/i)).toBeInTheDocument();
+    expect(screen.getByPlaceholderText(/alex@example.com/i)).toBeInTheDocument();
   });
 });
 

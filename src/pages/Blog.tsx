@@ -82,16 +82,16 @@ const Blog: React.FC = () => {
           </Link>
           <div className="flex items-center gap-2">
             <Link
-              to="/tes-psikologi"
+              to="/quiz"
               className="hidden sm:inline-flex text-sm font-medium text-foreground/80 hover:text-foreground px-2.5 py-1.5 rounded-lg hover:bg-muted transition-colors"
             >
-              Tes Psikologi
+              Quizzes
             </Link>
             <Link
               to="/ebook"
               className="text-xs sm:text-sm font-semibold text-amber-600 hover:text-amber-700 px-2.5 py-1.5 rounded-lg hover:bg-amber-500/10 transition-colors"
             >
-              Ebook
+              eBook
             </Link>
             <Link
               to="/onboarding"
@@ -154,18 +154,18 @@ const Blog: React.FC = () => {
               </div>
               <div>
                 <p className="mb-1 text-xs font-semibold uppercase tracking-widest text-amber-600">
-                  Official Nuju Ebook
+                  Official Nuju eBook
                 </p>
                 <h2 className="font-serif text-xl font-bold text-foreground group-hover:text-amber-600 transition-colors">
-                  Berdamai dengan Isi Kepala
+                  Peace Within Your Mind
                 </h2>
                 <p className="mt-1 text-sm text-muted-foreground">
-                  12 bab komprehensif + 30 template prompt CBT &amp; Stoikisme harian.
+                  30 Days of Overthinking Relief, Cognitive Restructuring, &amp; Grounding CBT Prompts.
                 </p>
               </div>
             </div>
             <span className="flex items-center gap-1 text-sm font-semibold text-amber-600 whitespace-nowrap mt-4">
-              Lihat Ebook <ArrowRight className="h-4 w-4" />
+              Explore eBook <ArrowRight className="h-4 w-4" />
             </span>
           </Link>
         </div>
