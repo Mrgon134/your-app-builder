@@ -42,165 +42,165 @@ export interface EbookMetadata {
 }
 
 export const EBOOK_METADATA: EbookMetadata = {
-  title: "Berdamai dengan Pikiran Sendiri",
-  subtitle: "30 Hari Terapi Overthinking, Regulasi Cemas, & Jurnal Rilis Emosi",
-  edition: "Edisi Digital Interaktif 2026",
+  title: "Peace Within Your Mind",
+  subtitle: "30-Day Overthinking & Anxiety Therapy with Interactive Workbook",
+  edition: "Interactive Digital Global Edition 2026",
   publishedYear: 2026,
   publisher: "Nuju Mental Wellbeing Press",
-  authors: ["Nuju Self-Reflection Lab", "Tim Konselor CBT Nuju"],
+  authors: ["Nuju Self-Reflection Lab", "Nuju Clinical CBT Team"],
   pageCountApprox: 138,
   coverImage: juMain,
-  discountVoucherCode: "BERDAMAI2026",
+  discountVoucherCode: "PEACE2026",
 };
 
 export const EBOOK_CHAPTERS: EbookChapter[] = [
   {
-    id: "bab-1-amigdala-panik",
+    id: "chapter-1-amygdala-alarm",
     chapterNumber: 1,
-    part: "BAGIAN 1: SAINS EMOSI & ANATOMI OVERTHINKING",
-    title: "Mengapa Otak Kita Selalu Membayangkan Skenario Terburuk?",
-    subtitle: "Mengenal amigdala primitif yang mengira email atasan adalah harimau bertaring panjang.",
+    part: "PART 1: BRAIN SCIENCE & OVERTHINKING ANATOMY",
+    title: "Why Does Our Brain Always Imagine Worst-Case Scenarios?",
+    subtitle: "Understanding the primitive amygdala that mistakes boss emails for sabertooth tigers.",
     readingTimeMinutes: 7,
     content: [
-      "Pernahkah kamu terbangun jam 2 pagi karena tiba-tiba teringat satu kalimat canggung yang kamu ucapkan dalam rapat tiga hari yang lalu?",
-      "Atau mungkin kamu baru saja menerima pesan dari bos: 'Bisa ngobrol sebentar besok pagi?', dan dalam lima detik lambungmu melilit, jantungmu berdegup kencang, dan otakmu langsung merancang skenario kamu dipecat dan jatuh miskin?",
-      "Selamat datang di alam pikiran manusia modern. Kamu tidak gila, dan kamu bukan orang lemah. Otakmu hanya sedang menjalankan algoritma purba yang berusia 200.000 tahun.",
-      "Di dalam pusat limbik otakmu terdapat struktur seukuran biji almond bernama **amigdala**. Tugas amigdala di zaman berburu adalah mendeteksi bahaya mematikan. Nenek moyang kita yang santai dan mengira gemerisik semak-semak adalah angin sepoi-sepoi sudah punah dimakan predator. Nenek moyang kita yang hidup—dan mewariskan gen ke kita—adalah mereka yang selalu mengasumsikan bahaya terburuk.",
-      "Masalahnya: di tahun 2026, bahaya kita bukan lagi singa, melainkan deadline, tagihan cicilan, perbandingan pencapaian di Instagram, dan ketidakpastian karier. Namun amigdala tidak bisa membedakan antara ancaman fisik nyata dan ancaman psikologis abstrak. Reaksi hormonalnya tetap sama: menyemburkan kortisol dan adrenalin.",
-      "Langkah pertama untuk berhenti membenci dirimu sendiri adalah menyadari: **Overthinking bukan kelemahan moral, melainkan mekanisme perlindungan diri yang bekerja terlalu keras (over-functioning).**"
+      "Have you ever woken up at 2 AM suddenly haunted by an awkward remark you made in a meeting three days ago?",
+      "Or received a brief message from your manager: 'Can we chat tomorrow morning?', and within five seconds your stomach churns, your heart races, and your mind constructs an entire movie where you get fired and lose everything?",
+      "Welcome to the modern human mind. You are not broken, and you are not weak. Your brain is simply executing a 200,000-year-old survival algorithm.",
+      "Deep within your brain's limbic system sits an almond-shaped structure called the **amygdala**. In prehistoric hunter-gatherer eras, the amygdala's sole job was detecting life-threatening predators. Ancestors who assumed rustling bushes were just gentle wind got eaten. Those who survived and passed down their genes were the ones who always assumed the worst-case scenario.",
+      "The problem today: in 2026, our threats aren't sabertooth tigers, but looming deadlines, mortgage notifications, social media comparison, and career uncertainty. Yet the amygdala cannot tell the difference between physical peril and abstract psychological anxiety. The biochemical reaction remains identical: pumping cortisol and adrenaline throughout your bloodstream.",
+      "The first step to stopping self-blame is understanding: **Overthinking is not a moral failing; it is an over-functioning self-defense mechanism.**"
     ],
     keyTakeaways: [
-      "Amigdala dirancang untuk mendeteksi bahaya demi bertahan hidup, bukan untuk membuatmu bahagia.",
-      "Otak memproduksi pikiran negatif otomatis sebagai alarm pencegahan, bukan fakta mutlak.",
-      "Menyadari bahwa otakmu sedang panik adalah 50% dari proses ketenangan."
+      "The amygdala is built for survival vigilance, not for happiness.",
+      "Automatic negative thoughts are cautionary alarm signals, not absolute truth.",
+      "Recognizing your panic response is already 50% of reclaiming peace."
     ],
     actionableExercise: {
-      title: "Latihan 'Beri Nama si Alarm' (Affect Labeling)",
+      title: "Exercise: Affect Labeling (Naming the Alarm)",
       instructions: [
-        "Ketika kepalamu mulai merangkai skenario terburuk, letakkan tangan di dada.",
-        "Katakan dalam hati: 'Terima kasih amigdala, aku tahu kamu ingin melindungiku. Tapi saat ini aku aman di tempat tidur.'",
-        "Ambil napas panjang 4 detik lewat hidung, hembuskan 7 detik lewat mulut secara perlahan."
+        "When catastrophic thoughts spiral, gently place a hand on your chest.",
+        "Whisper softly: 'Thank you amygdala, I see you are trying to keep me safe. But right now, in this room, I am safe.'",
+        "Inhale deeply through your nose for 4 seconds, exhale slowly through your mouth for 7 seconds."
       ],
-      samplePrompt: "Hal terburuk apa yang sedang ditakutkan otakku malam ini, dan seberapa realistis ketakutan itu jika dilihat 6 bulan dari sekarang?"
+      samplePrompt: "What is the worst-case scenario my brain is anticipating tonight, and how likely is it when viewed 6 months from now?"
     }
   },
   {
-    id: "bab-2-default-mode-network",
+    id: "chapter-2-default-mode-network",
     chapterNumber: 2,
-    part: "BAGIAN 1: SAINS EMOSI & ANATOMI OVERTHINKING",
-    title: "Default Mode Network: Otak Pengelana yang Lupa Berhenti",
-    subtitle: "Misteri kenapa pikiran justru paling ribut saat tubuh kita mencoba istirahat.",
+    part: "PART 1: BRAIN SCIENCE & OVERTHINKING ANATOMY",
+    title: "The Overactive Default Mode Network (DMN)",
+    subtitle: "Why your brain starts ruminating the moment you try to rest.",
     readingTimeMinutes: 8,
     content: [
-      "Banyak orang heran: kenapa saat seharian sibuk bekerja mereka merasa baik-baik saja, tetapi begitu berbaring di kasur dan mematikan lampu, kepala mereka langsung dipenuhi penyesalan masa lalu dan kecemasan masa depan?",
-      "Neurosains menemukan jawabannya pada tahun 2001: jaringan sirkuit otak bernama **Default Mode Network (DMN)**.",
-      "Ketika kamu fokus pada tugas aktif (mengetik laporan, mengemudi, menghitung angka), jaringan konsentrasi otakmu (Task-Positive Network) menyala, dan DMN mati. Namun, begitu kamu berhenti beraktivitas—saat rebahan, mandi, atau melamun—DMN otomatis aktif kembali.",
-      "DMN adalah pusat narasi diri (*self-referential thinking*). Fungsinya merangkai cerita: 'Siapa aku? Bagaimana reputasiku? Apa yang salah kemarin? Bagaimana caraku tidak gagal besok?'.",
-      "Pada orang dengan kecemasan tinggi, DMN mengalami hiper-konektivitas (*hyperactive DMN*). Otak terjebak dalam siklus ruminasi tanpa tombol jeda.",
-      "Satu-satunya cara menurunkan aktivitas DMN tanpa obat-obatan keras adalah dengan memindahkan fokus ke sensasi sensorik tubuh saat ini (*sensory grounding*) atau menuangkan narasi liar tersebut ke atas kertas/layar (journaling)."
+      "Many people wonder: Why do they feel completely fine during a hectic workday, but the moment they lie in bed and turn off the lights, their head floods with past regrets and future dread?",
+      "Neuroscience uncovered the answer in 2001: a brain circuit network called the **Default Mode Network (DMN)**.",
+      "When you are actively engaged in focused tasks (drafting a report, driving, analyzing spreadsheets), your Task-Positive Network ignites, quieting the DMN. But the instant you stop—resting, showering, daydreaming—the DMN automatically fires up.",
+      "The DMN is the engine of self-referential narrative: 'Who am I? What did I do wrong yesterday? How will I prevent embarrassment tomorrow?'.",
+      "In people experiencing elevated anxiety, the DMN becomes hyperconnected. The brain gets trapped in an endless loop of rumination with no off switch.",
+      "The most effective way to downregulate DMN hyperactivity without medication is grounding through physical senses (*sensory grounding*) or downloading the racing narrative onto paper or screen (*expressive journaling*)."
     ],
     keyTakeaways: [
-      "Pikiran malam hari yang berisik adalah aktivitas alami Default Mode Network (DMN).",
-      "Jangan mencoba 'melawan' pikiran kosong dengan memaksakan pikiran positif; alihkan ke pencatatan.",
-      "Menuangkan pikiran ke jurnal memindahkan beban memori kerja (*working memory offload*) sehingga otak bisa tidur."
+      "Noisy bedtime thoughts are a natural byproduct of the Default Mode Network.",
+      "Do not fight an empty mind with forced positive thinking; redirect it to journaling.",
+      "Writing down thoughts offloads working memory so your nervous system can surrender to sleep."
     ]
   },
   {
-    id: "bab-3-cognitive-defusion",
+    id: "chapter-3-cognitive-defusion",
     chapterNumber: 3,
-    part: "BAGIAN 2: SENJATA CBT & STOIKISME",
-    title: "Teknik Cognitive Defusion: Kamu Adalah Langit, Pikiranmu Hanyalah Cuaca",
-    subtitle: "Cara memisahkan identitas dirimu dari narasi negatif yang diputar di kepala.",
+    part: "PART 2: COGNITIVE BEHAVIORAL THERAPY (CBT)",
+    title: "Cognitive Defusion: You Are the Sky, Your Thoughts Are Passing Weather",
+    subtitle: "How to separate your identity from the catastrophic stories in your head.",
     readingTimeMinutes: 9,
     content: [
-      "Sebagian besar penderitaan batin bukan berasal dari kenyataan itu sendiri, melainkan dari keyakinan kita bahwa setiap pikiran yang lewat di kepala adalah kebenaran mutlak.",
-      "Dalam terapi Acceptance and Commitment Therapy (ACT) dan CBT modern, kondisi ini disebut **Cognitive Fusion** (keterikatan kognitif). Kita melebur dengan pikiran kita: ketika otak berkata 'Aku tidak berharga', kita langsung percaya bahwa kita benar-benar sampah.",
-      "Lawan dari fusi adalah **Cognitive Defusion**—kemampuan untuk mundur satu langkah dan menyaksikan pikiran kita sebagai sekadar objek mental yang melintas.",
-      "Bayangkan kamu sedang duduk di tepi rel kereta api. Pikiran-pikiranmu adalah gerbong kereta yang lewat berdentum-dentum. Orang yang fusi akan melompat ke atas gerbong kereta yang melaju kencang menuju jurang panik. Orang yang defusi akan duduk tenang di peron dan berkata: *'Oh, ada kereta bernama Rasa Cemas lewat. Menarik, tapi aku tidak perlu naik.'*",
-      "Gunakan rumus bahasa ajaib ini: Ubah kalimat *'Aku payah'* menjadi *'Aku menyadari bahwa otakku sedang memproduksi pikiran bahwa aku payah.'* Perubahan satu kalimat ini menciptakan ruang psikologis yang melegakan."
+      "Most inner suffering does not originate from objective reality, but from our unquestioned belief that every thought crossing our mind is an undeniable fact.",
+      "In Acceptance and Commitment Therapy (ACT) and contemporary CBT, this state is known as **Cognitive Fusion**. We fuse with our thoughts: when the brain whispers 'I am a failure', we immediately assume we are fundamentally unworthy.",
+      "The antidote to fusion is **Cognitive Defusion**—the capacity to step back and witness your thoughts as passing mental phenomena rather than absolute reality.",
+      "Picture yourself sitting by a train track. Your thoughts are loud train cars rumbling past. A fused person jumps onto the speeding train and rides it straight toward panic. A defused person stays seated on the platform and observes: *'Ah, there goes the Anxiety train. Interesting, but I don't need to board it.'*",
+      "Use this transformative phrasing: Change *'I am incompetent'* into *'I notice a thought telling me that I am incompetent.'* That single linguistic shift creates spacious psychological relief."
     ],
     keyTakeaways: [
-      "Pikiran adalah peristiwa kognitif sementara, bukan ramalan masa depan atau vonis kebenaran.",
-      "Kamu adalah pengamat pikiran, bukan isi pikiranmu itu sendiri.",
-      "Memberi jarak bahasa ('Aku menyadari ada pikiran...') menurunkan reaktivitas emosi seketika."
+      "Thoughts are transient cognitive events, not prophecies or verdicts.",
+      "You are the observer of your thoughts, not the content of them.",
+      "Creating verbal distance ('I notice a thought...') immediately de-escalates emotional reactivity."
     ],
     actionableExercise: {
-      title: "Latihan 'Daun di Atas Sungai' (Leaves on a Stream)",
+      title: "Exercise: Leaves on a Stream",
       instructions: [
-        "Tutup matamu selama 2 menit. Bayangkan sebuah sungai jernih berarus tenang dengan daun-daun maple berguguran di atasnya.",
-        "Setiap kali satu pikiran muncul (misal: 'Besok kerjaan numpuk'), letakkan kalimat itu di atas sehelai daun.",
-        "Saksikan daun itu mengapung pelan terbawa arus air hingga menjauh dari pandanganmu.",
-        "Jika pikiran yang sama muncul lagi, letakkan di daun berikutnya. Jangan dorong, jangan tahan. Biarkan mengalir."
+        "Close your eyes for 2 minutes. Envision a clear, gently flowing stream with leaves floating along the surface.",
+        "Whenever a worry surfaces ('Tomorrow is going to be overwhelming'), gently place that thought onto a floating leaf.",
+        "Watch the leaf drift effortlessly downstream until it disappears from view.",
+        "If the same thought reappears, place it on the next leaf. Don't fight it, don't chase it. Let it flow."
       ],
-      samplePrompt: "Pikiran berulang apa yang paling sering menyamar sebagai fakta dalam hidupku minggu ini?"
+      samplePrompt: "What repetitive thought has disguised itself as a cold fact in my life this week?"
     }
   },
   {
-    id: "bab-4-dikotomi-kendali",
+    id: "chapter-4-dichotomy-of-control",
     chapterNumber: 4,
-    part: "BAGIAN 2: SENJATA CBT & STOIKISME",
-    title: "Dikotomi Kendali Epictetus: Mengeliminasi Beban yang Bukan Hakmu",
-    subtitle: "Filosofi kuno berusia 2.000 tahun yang menjadi pondasi psikoterapi modern.",
+    part: "PART 3: STOIC PHILOSOPHY & EMOTIONAL REGULATION",
+    title: "The Dichotomy of Control: Letting Go of What You Can't Fix",
+    subtitle: "Epictetus' 2,000-year-old formula for absolute modern mental peace.",
     readingTimeMinutes: 9,
     content: [
-      "Hampir 2.000 tahun yang lalu di Yunani kuno, seorang mantan budak bernama Epictetus membuka bukunya *Enchiridion* dengan kalimat paling revolusioner dalam sejarah kesehatan mental: **'Ada hal-hal yang berada di bawah kendali kita, dan ada hal-hal yang tidak berada di bawah kendali kita.'**",
-      "Pikirkan baik-baik: Berapa banyak energimu yang habis untuk mencemaskan hal-hal berikut?",
-      "1. Apakah orang lain menyukai caraku berbicara?",
-      "2. Apakah perekonomian nasional akan membaik?",
-      "3. Apakah pasangan atau teman akan mengecewakanku?",
-      "4. Apakah cuaca esok hari akan cerah?",
-      "Semua hal di atas berada di luar kendali mutlakmu. Ketika kamu menggantungkan ketenangan batinmu pada hal yang tidak bisa kamu kendalikan, kamu secara sukarela menyerahkan kunci kedamaianmu ke tangan orang asing dan nasib acak.",
-      "Yang berada di bawah kendalimu HANYALAH: niatmu, usahamu, reaksimu, prinsip moralmu, dan bagaimana kamu merespons luka. Begitu kamu menarik garis tegas ini, 80% overthinking-mu gugur seketika."
+      "Nearly two millennia ago in ancient Greece, a former slave named Epictetus opened his foundational text *Enchiridion* with the single most liberating insight in mental wellbeing history: **'Some things are in our control and others not.'**",
+      "Consider honestly: How much of your daily mental energy is depleted agonizing over things outside your power?",
+      "1. Whether others approve of you or speak kindly of you.",
+      "2. Sudden market fluctuations or macroeconomic shifts.",
+      "3. How other people behave or whether they reply promptly.",
+      "4. Unforeseen delays and weather.",
+      "All of the above lie outside your sovereign control. When you tether your peace of mind to external circumstances, you hand the keys to your happiness over to strangers and random chance.",
+      "What is purely within your control? Your intentions, your personal effort, your boundaries, your reactions, and how you speak to yourself. The moment you draw this firm boundary, 80% of your overthinking vanishes."
     ],
     keyTakeaways: [
-      "Pisahkan lingkaran perhatian (Circle of Concern) dari lingkaran kendali (Circle of Influence).",
-      "Fokus pada proses dan usaha pribadi, lepaskan keterikatan pada hasil akhir yang ditentukan orang lain.",
-      "Ketenangan sejati bukan ketiadaan masalah, melainkan kepastian atas apa yang pantas kamu urusi."
+      "Strictly separate your Circle of Concern from your Circle of Influence.",
+      "Pour your heart into your honest effort, while relinquishing attachment to external outcomes.",
+      "True tranquility is not the absence of obstacles, but clarity on what is yours to carry."
     ]
   },
   {
-    id: "bab-5-audit-pikiran",
+    id: "chapter-5-thought-audit",
     chapterNumber: 5,
-    part: "BAGIAN 2: SENJATA CBT & STOIKISME",
-    title: "The 5-Minute Thought Audit: Mengadili Pikiran Negatif Otomatis (NATs)",
-    subtitle: "Metode persidangan mental untuk membongkar distorsi kognitif Dr. Aaron Beck.",
+    part: "PART 3: STOIC PHILOSOPHY & EMOTIONAL REGULATION",
+    title: "The 5-Minute Thought Audit: Cross-Examining Automatic Negative Thoughts",
+    subtitle: "Dr. Aaron Beck's mental courtroom method for dismantling cognitive distortions.",
     readingTimeMinutes: 8,
     content: [
-      "Ketika pikiran buruk menyerang, jangan telan mentah-mentah. Bawa pikiran itu ke 'ruang sidang mental'.",
-      "Dalam terapi CBT klasik, pikiran otomatis yang merusak disebut NATs (*Negative Automatic Thoughts*). NATs memiliki trik kotor: ia selalu membesar-besarkan risiko (*catastrophizing*) dan mengecilkan kemampuan bertaharmu (*underestimating resilience*).",
-      "Untuk melawannya, ajukan 4 pertanyaan jaksa penuntut berikut:",
-      "1. **Mana Bukti Nyatanya?** Apa bukti obyektif yang mendukung pikiran ini, dan apa bukti yang membantahnya?",
-      "2. **Apakah Ada Penjelasan Alternatif?** Jika temanku tidak membalas chat selama 4 jam, apakah karena dia membenciku, atau karena dia sedang sibuk di jalan?",
-      "3. **What's the Worst That Could Happen?** Jika skenario terburuk benar-benar terjadi, bisakah aku bertahan hidup? Apa rencana mitigasi 24 jam pertamaku?",
-      "4. **Nasihat untuk Sahabat:** Jika sahabat terbaikmu datang dan menceritakan kekhawatiran yang sama, apakah kamu akan menghakiminya sekejam kamu menghakimi dirimu sendiri?"
+      "When catastrophic thoughts surge, do not swallow them whole. Bring them into your mental courtroom.",
+      "In classic cognitive behavioral therapy (CBT), involuntary toxic thought patterns are called NATs (*Negative Automatic Thoughts*). NATs play two dirty tricks: they wildly inflate perceived risk (*catastrophizing*) while drastically underestimating your personal resilience (*underestimating coping capacity*).",
+      "To interrogate them, ask four objective prosecutor questions:",
+      "1. **Where Is the Objective Evidence?** What verifiable facts support this fear, and what evidence contradicts it?",
+      "2. **What Is an Alternative Explanation?** If someone hasn't replied to my message in 4 hours, is it because they resent me, or are they simply busy with life?",
+      "3. **What Is the Realistic Worst Case?** If the absolute worst happens, can I survive it? What would my first 24-hour mitigation step be?",
+      "4. **The Best Friend Test:** If my dearest friend came to me burdened by this exact worry, would I judge them with the same cruelty I aim at myself?"
     ],
     keyTakeaways: [
-      "Gunakan 'Thought Audit' setiap kali merasakan lonjakan kecemasan mendadak.",
-      "Bedakan antara kemungkinan teoritis (bisa saja terjadi) dan probabilitas nyata (kemungkinan besar tidak terjadi).",
-      "Terapkan welas asih diri (*self-compassion*)—bicaralah pada dirimu seperti berbicara pada teman terluka."
+      "Deploy the 'Thought Audit' whenever you notice a sudden spike in bodily anxiety.",
+      "Distinguish between theoretical possibilities (anything could happen) and practical probabilities (unlikely to happen).",
+      "Practice self-compassion—speak to yourself with the tenderness you reserve for someone you love."
     ]
   },
   {
-    id: "bab-6-protokol-darurat-jam-2-pagi",
+    id: "chapter-6-2am-emergency-protocol",
     chapterNumber: 6,
-    part: "BAGIAN 4: PROTOKOL DARURAT JAM 2 PAGI",
-    title: "Protokol Darurat Jam 2 Pagi: Reset Sistem Saraf dalam 90 Detik",
-    subtitle: "Teknik Physiological Sigh Dr. Andrew Huberman & Grounding 5-4-3-2-1.",
+    part: "PART 4: THE 2 AM EMERGENCY PROTOCOL",
+    title: "The 2 AM Emergency Protocol: Resetting Your Nervous System in 90 Seconds",
+    subtitle: "Dr. Andrew Huberman's Physiological Sigh & 5-4-3-2-1 Sensory Grounding.",
     readingTimeMinutes: 7,
     content: [
-      "Ketika kamu panik di tengah malam, kamu tidak bisa 'berpikir' keluar dari kepanikan. Mengapa? Karena saat amigdala membakar hormon stres, korteks prefrontal (otak logismu) sedang offline.",
-      "Kamu harus menggunakan **jalur somatik (tubuh) untuk menenangkan otak**, bukan sebaliknya.",
-      "Teknik tercepat yang terbukti secara klinis di Stanford Medicine adalah **Physiological Sigh**:",
-      "1. Tarik napas dalam melalui hidung selama 3 detik.",
-      "2. Tanpa membuang napas, tarik napas tajam sekali lagi di puncak paru-paru untuk mengembangkan alveoli yang kempis.",
-      "3. Hembuskan napas panjang dan mendesah lewat mulut secara perlahan selama 6 sampai 8 detik.",
-      "Ulangi 3 kali. Hembusan napas yang lebih panjang daripada tarikan napas merangsang saraf vagus (*vagus nerve*), yang memerintahkan nodus sinoatrial jantung untuk memperlambat detak nadi seketika.",
-      "Jika pikiranmu masih melayang, lanjutkan dengan teknik **5-4-3-2-1 Grounding**: Sebutkan 5 benda yang kamu lihat di kamar temaram, raba 4 tekstur selimut/kulitmu, dengarkan 3 suara samar, cium 2 aroma di udara, dan rasakan 1 rasa di lidahmu."
+      "When middle-of-the-night panic strikes, you cannot 'think' your way out of anxiety. Why? Because when the amygdala floods your system with stress hormones, the prefrontal cortex—your rational brain—is temporarily throttled.",
+      "You must use a **somatic (body-first) pathway to signal safety to your brain**, not the other way around.",
+      "The fastest clinically verified tool, studied extensively at Stanford Medicine, is the **Physiological Sigh**:",
+      "1. Take a deep, full inhalation through your nose for 3 seconds.",
+      "2. Without exhaling, take a second sharp 'top-off' sniff at maximum lung capacity to reinflate collapsed alveoli.",
+      "3. Exhale fully and slowly through your mouth in a long, audible sigh for 6 to 8 seconds.",
+      "Repeat 3 times. An exhale substantially longer than your inhale stimulates the vagus nerve, sending an immediate chemical message to slow the heart's sinoatrial node.",
+      "If racing thoughts linger, follow with **5-4-3-2-1 Sensory Grounding**: Name 5 objects in your dim room, feel 4 distinct textures (blanket, skin, sheets), listen for 3 faint ambient sounds, identify 2 scents in the air, and notice 1 taste on your tongue."
     ],
     keyTakeaways: [
-      "Gunakan tubuh untuk menenangkan pikiran, bukan mendebat pikiran dengan logika saat panik.",
-      "Teknik Physiological Sigh menurunkan detak jantung secara instan dalam 3 repetisi.",
-      "Grounding sensorik 5-4-3-2-1 memaksa otak kembali ke realitas fisik saat ini."
+      "Use the physical body to soothe the mind; avoid arguing with panic using late-night logic.",
+      "The Physiological Sigh reliably drops heart rate and autonomic arousal in just 3 repetitions.",
+      "5-4-3-2-1 sensory grounding anchors attention back into the safety of the present moment."
     ]
   }
 ];
@@ -644,7 +644,7 @@ export function getLocalizedEbookChapters(langCode: string): EbookChapter[] {
   const code = (langCode || "").toLowerCase();
   const localized = LOCALIZED_CHAPTER_TRANSLATIONS[code] || LOCALIZED_CHAPTER_TRANSLATIONS.en;
 
-  if (code === "id" || !localized) {
+  if (!localized) {
     return EBOOK_CHAPTERS;
   }
 
@@ -661,11 +661,8 @@ export function getLocalizedEbookChapters(langCode: string): EbookChapter[] {
   });
 }
 
-export function getLocalizedEbookPrompts(langCode: string): EbookDailyPrompt[] {
-  const code = (langCode || "").toLowerCase();
-  if (code === "id") return EBOOK_DAILY_PROMPTS;
-
-  // For non-Indonesian languages, return localized English prompts as global lingua franca
+export function getLocalizedEbookPrompts(_langCode?: string): EbookDailyPrompt[] {
+  // Return localized English prompts for global audience
   const englishPromptThemes: Record<number, { theme: string; prompt: string; juInsight: string; mantra: string }> = {
     1: {
       theme: "Unpacking Hidden Burdens",

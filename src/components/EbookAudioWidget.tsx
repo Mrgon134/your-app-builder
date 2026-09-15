@@ -66,10 +66,10 @@ export const EbookAudioWidget: React.FC<EbookAudioWidgetProps> = ({
       setActiveSound(type);
       toast.success(
         type === "drone"
-          ? "Gelombang 432 Hz Theta aktif (Relaksasi Mendalam)"
+          ? "432 Hz Theta Wave active (Deep Relaxation)"
           : type === "rain"
-          ? "Suara Hujan Tenang aktif"
-          : "Suara Api Unggun Hangat aktif"
+          ? "Gentle Rain Ambience active"
+          : "Warm Campfire Ambience active"
       );
     }
   };
@@ -84,7 +84,7 @@ export const EbookAudioWidget: React.FC<EbookAudioWidgetProps> = ({
       !("speechSynthesis" in window) ||
       typeof SpeechSynthesisUtterance === "undefined"
     ) {
-      toast.error("Browser tidak mendukung Speech Synthesis.");
+      toast.error("Browser does not support Speech Synthesis.");
       return;
     }
 
@@ -158,11 +158,11 @@ export const EbookAudioWidget: React.FC<EbookAudioWidgetProps> = ({
               <button
                 onClick={handlePlayTts}
                 className="flex items-center gap-1.5 rounded-full bg-amber-600 hover:bg-amber-700 text-white px-3.5 py-1.5 text-xs font-bold shadow-xs active:scale-95 transition"
-                title={isId ? "Dengarkan Narasi Suara" : "Listen to Audiobook"}
+                title="Listen to Audiobook"
               >
                 <Play className="h-3.5 w-3.5 fill-current" />
                 <span className="hidden xs:inline">
-                  {isPausedTts ? (isId ? "Lanjut Baca" : "Resume") : (isId ? "Dengarkan" : "Listen")}
+                  {isPausedTts ? "Resume" : "Listen"}
                 </span>
               </button>
             ) : (
@@ -170,17 +170,16 @@ export const EbookAudioWidget: React.FC<EbookAudioWidgetProps> = ({
                 <button
                   onClick={handlePauseTts}
                   className="flex items-center gap-1.5 rounded-full bg-neutral-900 text-white px-3 py-1.5 text-xs font-bold active:scale-95 transition"
-                  title="Pause Narasi"
+                  title="Pause Narration"
                 >
                   <Pause className="h-3.5 w-3.5 fill-current" />
-                  <span className="hidden xs:inline">Pause</span>
                 </button>
                 <button
                   onClick={handleStopTts}
-                  className="rounded-full bg-neutral-100 hover:bg-neutral-200 text-neutral-700 p-1.5 transition"
-                  title="Stop"
+                  className="flex items-center gap-1.5 rounded-full bg-neutral-100 hover:bg-neutral-200 text-neutral-700 p-1.5 active:scale-95 transition"
+                  title="Stop Narration"
                 >
-                  <Square className="h-3 w-3 fill-current" />
+                  <Square className="h-3.5 w-3.5" />
                 </button>
               </div>
             )}
@@ -198,7 +197,7 @@ export const EbookAudioWidget: React.FC<EbookAudioWidgetProps> = ({
             <button
               onClick={() => setTtsRate((prev) => (prev === 0.85 ? 1.0 : 0.85))}
               className="rounded-lg bg-neutral-100 px-2 py-1 text-[11px] font-bold text-neutral-700 hover:bg-neutral-200 transition"
-              title={isId ? "Kecepatan Narasi Suara" : "Speech Rate"}
+              title="Speech Rate"
             >
               {ttsRate === 0.85 ? "0.85x (Calm)" : "1.0x"}
             </button>
@@ -213,7 +212,7 @@ export const EbookAudioWidget: React.FC<EbookAudioWidgetProps> = ({
                   ? "bg-blue-100 text-blue-700 ring-2 ring-blue-400"
                   : "bg-neutral-100 hover:bg-neutral-200 text-neutral-600"
               }`}
-              title={isId ? "Suara Hujan Tenang" : "Rain Sound"}
+              title="Rain Sound"
             >
               <CloudRain className="h-4 w-4" />
             </button>
@@ -237,7 +236,7 @@ export const EbookAudioWidget: React.FC<EbookAudioWidgetProps> = ({
                   ? "bg-amber-100 text-amber-700 ring-2 ring-amber-400"
                   : "bg-neutral-100 hover:bg-neutral-200 text-neutral-600"
               }`}
-              title={isId ? "Suara Api Unggun Hangat" : "Campfire Sound"}
+              title="Campfire Sound"
             >
               <Flame className="h-4 w-4" />
             </button>
@@ -246,7 +245,7 @@ export const EbookAudioWidget: React.FC<EbookAudioWidgetProps> = ({
             <button
               onClick={onOpenVipModal}
               className="p-2 rounded-xl bg-amber-500/10 hover:bg-amber-500/20 text-amber-700 font-bold transition flex items-center gap-1 ml-1"
-              title={isId ? "Buka Bonus VIP & Template Notion" : "VIP Bonus Toolkit"}
+              title="VIP Bonus Toolkit"
             >
               <Gift className="h-4 w-4 text-amber-600" />
               <span className="text-[11px] hidden sm:inline">VIP Hub</span>
@@ -256,7 +255,7 @@ export const EbookAudioWidget: React.FC<EbookAudioWidgetProps> = ({
             <button
               onClick={() => setIsExpanded((prev) => !prev)}
               className="p-1.5 text-neutral-400 hover:text-neutral-700 transition"
-              title="Pengaturan Suara"
+              title="Sound Settings"
             >
               {isExpanded ? <ChevronDown className="h-4 w-4" /> : <ChevronUp className="h-4 w-4" />}
             </button>
@@ -266,7 +265,7 @@ export const EbookAudioWidget: React.FC<EbookAudioWidgetProps> = ({
         {/* Expandable Volume Slider */}
         {isExpanded && (
           <div className="mt-3 pt-3 border-t border-neutral-100 flex items-center gap-3 text-xs text-neutral-600 px-1">
-            <span className="font-semibold">{isId ? "Volume Ambience:" : "Ambience Volume:"}</span>
+            <span className="font-semibold">Ambience Volume:</span>
             <input
               type="range"
               min="0"

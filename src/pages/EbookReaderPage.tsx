@@ -106,7 +106,7 @@ export const EbookReaderPage: React.FC = () => {
               className="inline-flex items-center gap-1.5 rounded-full border border-amber-300 bg-amber-50 px-3 py-1.5 text-xs font-bold text-amber-800 hover:bg-amber-100 transition shadow-2xs"
             >
               <Gift className="h-3.5 w-3.5 text-amber-600" />
-              <span className="hidden sm:inline">{lang === "id" ? "Bonus VIP" : "VIP Bonus"}</span>
+              <span className="hidden sm:inline">VIP Bonus</span>
             </button>
             <EbookLanguageSelector
               currentLang={lang}
@@ -114,21 +114,13 @@ export const EbookReaderPage: React.FC = () => {
               size="sm"
             />
             <a
-              href={
-                lang === "id"
-                  ? "/downloads/Nuju-Ebook-Berdamai-dengan-Pikiran-Sendiri.pdf"
-                  : "/downloads/Nuju-Ebook-Peace-Within-Your-Mind-EN.pdf"
-              }
-              download={
-                lang === "id"
-                  ? "Nuju-Ebook-Berdamai-dengan-Pikiran-Sendiri.pdf"
-                  : "Nuju-Ebook-Peace-Within-Your-Mind-EN.pdf"
-              }
+              href="/downloads/Nuju-Ebook-Peace-Within-Your-Mind-EN.pdf"
+              download="Nuju-Ebook-Peace-Within-Your-Mind-EN.pdf"
               className="inline-flex items-center gap-1.5 rounded-full border border-neutral-300 bg-white px-3.5 py-1.5 text-xs font-semibold text-neutral-700 hover:bg-neutral-50 transition shadow-2xs"
               title="Download PDF"
             >
               <Download className="h-3.5 w-3.5 text-amber-600" />
-              <span className="hidden sm:inline">{lang === "id" ? "Unduh PDF" : "Download PDF"}</span>
+              <span className="hidden sm:inline">Download PDF</span>
             </a>
             <button
               onClick={handlePrint}
@@ -148,26 +140,20 @@ export const EbookReaderPage: React.FC = () => {
             <div>
               <span className="font-extrabold text-sm sm:text-base flex items-center gap-1.5">
                 <span>🎉</span>
-                <span>{lang === "id" ? "Pembayaran Sukses! Selamat Membaca." : "Payment Confirmed! Happy Reading."}</span>
+                <span>Payment Confirmed! Happy Reading.</span>
               </span>
               <p className="text-emerald-100 text-xs mt-0.5 max-w-xl leading-relaxed">
-                {lang === "id"
-                  ? "Kamu bisa langsung membaca bukunya secara interaktif di halaman ini, atau unduh file offline-nya ke perangkatmu:"
-                  : "You can read the complete book interactively on this page, or download the offline files directly to your device:"}
+                You can read the complete book interactively on this page, or download the offline files directly to your device:
               </p>
             </div>
             <div className="flex items-center gap-2 flex-wrap">
               <a
-                href={
-                  lang === "id"
-                    ? "/downloads/Nuju-Ebook-Berdamai-dengan-Pikiran-Sendiri.pdf"
-                    : "/downloads/Nuju-Ebook-Peace-Within-Your-Mind-EN.pdf"
-                }
+                href="/downloads/Nuju-Ebook-Peace-Within-Your-Mind-EN.pdf"
                 download
                 className="inline-flex items-center gap-1.5 rounded-xl bg-white text-emerald-950 font-bold px-3.5 py-2 text-xs shadow-sm hover:bg-emerald-50 transition active:scale-95"
               >
                 <Download className="h-3.5 w-3.5 text-emerald-700" />
-                <span>{lang === "id" ? "Unduh PDF Buku" : "Download eBook PDF"}</span>
+                <span>Download eBook PDF</span>
               </a>
               <a
                 href="/downloads/Nuju-VIP-Complete-Bundle.zip"
@@ -175,7 +161,7 @@ export const EbookReaderPage: React.FC = () => {
                 className="inline-flex items-center gap-1.5 rounded-xl bg-emerald-900/90 text-white font-bold px-3.5 py-2 text-xs shadow-sm hover:bg-emerald-800 transition active:scale-95"
               >
                 <Download className="h-3.5 w-3.5" />
-                <span>{lang === "id" ? "Unduh Semua File (.ZIP)" : "Download VIP Bundle (.ZIP)"}</span>
+                <span>Download VIP Bundle (.ZIP)</span>
               </a>
             </div>
           </div>
@@ -188,7 +174,7 @@ export const EbookReaderPage: React.FC = () => {
         className="cursor-pointer bg-amber-500/10 hover:bg-amber-500/20 border-b border-amber-500/20 px-4 py-2.5 text-center text-xs text-amber-900 font-medium print:hidden transition flex items-center justify-center gap-1.5"
       >
         <span>{t.vipVoucherBanner}</span>
-        <span className="underline font-bold text-amber-950 ml-1">Klaim Toolkit &rarr;</span>
+        <span className="underline font-bold text-amber-950 ml-1">Claim Toolkit &rarr;</span>
       </div>
 
       {/* Main Container */}
@@ -241,7 +227,7 @@ export const EbookReaderPage: React.FC = () => {
                     }`}
                   >
                     <span className="text-[10px] font-bold text-amber-700 uppercase">
-                      Bab {ch.chapterNumber}
+                      Chapter {ch.chapterNumber}
                     </span>
                     <span className="leading-snug">{ch.title}</span>
                   </button>
@@ -262,9 +248,9 @@ export const EbookReaderPage: React.FC = () => {
                   {activeChapter.subtitle}
                 </p>
                 <div className="mt-4 flex items-center gap-3 text-xs text-neutral-400">
-                  <span>Estimasi baca: {activeChapter.readingTimeMinutes} {t.chapterEstimatedRead}</span>
+                  <span>Est. read: {activeChapter.readingTimeMinutes} {t.chapterEstimatedRead}</span>
                   <span>•</span>
-                  <span>Oleh {EBOOK_METADATA.authors[0]}</span>
+                  <span>By {EBOOK_METADATA.authors[0]}</span>
                 </div>
               </div>
 
@@ -320,11 +306,11 @@ export const EbookReaderPage: React.FC = () => {
                   className="inline-flex items-center gap-1.5 rounded-xl border border-neutral-300 bg-white px-4 py-2 text-xs sm:text-sm font-semibold text-neutral-700 hover:bg-neutral-50 disabled:opacity-40 disabled:hover:bg-white transition"
                 >
                   <ChevronLeft className="h-4 w-4" />
-                  <span>Bab Sebelumnya</span>
+                  <span>Previous Chapter</span>
                 </button>
 
                 <span className="text-xs text-neutral-400 font-medium">
-                  Bab {activeChapterIndex + 1} dari {chapters.length}
+                  Chapter {activeChapterIndex + 1} of {chapters.length}
                 </span>
 
                 <button
@@ -332,7 +318,7 @@ export const EbookReaderPage: React.FC = () => {
                   onClick={() => setActiveChapterIndex(activeChapterIndex + 1)}
                   className="inline-flex items-center gap-1.5 rounded-xl bg-amber-600 px-4 py-2 text-xs sm:text-sm font-bold text-white shadow-sm hover:bg-amber-700 disabled:opacity-40 disabled:hover:bg-amber-600 transition"
                 >
-                  <span>Bab Selanjutnya</span>
+                  <span>Next Chapter</span>
                   <ChevronRight className="h-4 w-4" />
                 </button>
               </div>
@@ -368,9 +354,7 @@ export const EbookReaderPage: React.FC = () => {
               <div className="flex items-center justify-between border-b border-neutral-100 pb-4">
                 <div>
                   <span className="text-xs font-bold text-amber-700 uppercase tracking-wider">
-                    {lang === "id"
-                      ? `Hari ke-${activePrompt.day} • Kategori: ${activePrompt.category}`
-                      : `Day ${activePrompt.day} • Category: ${activePrompt.category}`}
+                    Day {activePrompt.day} • Category: {activePrompt.category}
                   </span>
                   <h3 className="font-serif text-xl sm:text-2xl font-bold text-neutral-900 mt-1">
                     {activePrompt.theme}

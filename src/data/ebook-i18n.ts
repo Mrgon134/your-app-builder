@@ -1,7 +1,6 @@
 import juMain from "@/assets/ju-main.webp";
 
 export type EbookLanguageCode =
-  | "id" // Bahasa Indonesia
   | "en" // English
   | "de" // Deutsch (Germany, Switzerland, Austria)
   | "nl" // Nederlands (Netherlands, Belgium)
@@ -30,7 +29,6 @@ export interface EbookLanguageMeta {
 
 export const EBOOK_LANGUAGES: EbookLanguageMeta[] = [
   { code: "en", name: "English", nativeName: "English", flag: "🇺🇸", currencySymbol: "$", basicPrice: "$3.99", bundlePrice: "$7.99", originalPrice: "$24.99" },
-  { code: "id", name: "Indonesian", nativeName: "Bahasa Indonesia", flag: "🇮🇩", currencySymbol: "Rp", basicPrice: "Rp 49.000", bundlePrice: "Rp 99.000", originalPrice: "Rp 299.000" },
   { code: "de", name: "German", nativeName: "Deutsch", flag: "🇩🇪", currencySymbol: "€", basicPrice: "3,99 €", bundlePrice: "7,99 €", originalPrice: "24,99 €" },
   { code: "nl", name: "Dutch", nativeName: "Nederlands", flag: "🇳🇱", currencySymbol: "€", basicPrice: "3,99 €", bundlePrice: "7,99 €", originalPrice: "24,99 €" },
   { code: "no", name: "Norwegian", nativeName: "Norsk", flag: "🇳🇴", currencySymbol: "kr", basicPrice: "45 kr", bundlePrice: "89 kr", originalPrice: "269 kr" },
@@ -129,83 +127,6 @@ export interface EbookI18nDictionary {
 }
 
 export const EBOOK_TRANSLATIONS: Record<EbookLanguageCode, EbookI18nDictionary> = {
-  id: {
-    bookTitle: "Berdamai dengan Pikiran Sendiri",
-    bookSubtitle: "30 Hari Terapi Overthinking, Regulasi Cemas, & Jurnal Rilis Emosi",
-    edition: "Edisi Digital Interaktif 2026",
-    publisher: "Nuju Mental Wellbeing Press",
-    authorLabel: "Nuju Self-Reflection Lab & Tim Konselor CBT",
-    bestsellerBadge: "BESTSELLER",
-    heroTagline: "Untuk kamu yang lelah dihantui skenario terburuk jam 2 pagi. Buku panduan 30 hari terapi overthinking, regulasi cemas, dan journaling rilis emosi berbasis sains kognitif CBT & Stoikisme.",
-    ratingNotice: "Rating 4.9/5 dari 1.420+ pembaca",
-    readersCount: "1.420+ pembaca aktif minggu ini",
-    buyEbookBtn: "Beli eBook",
-    readOnlineBtn: "Baca Online",
-    selectLanguage: "Pilih Bahasa",
-
-    painSectionTitle: "Apakah Pikiranmu Sering Terasa Seperti Ini?",
-    painSectionSubtitle: "Kelelahan paling berat bukanlah kelelahan fisik, melainkan kelelahan karena otak yang tidak pernah berhenti berbicara.",
-    pain1Title: "Terbangun Jam 2 Pagi",
-    pain1Desc: "Membayangkan percakapan yang belum tentu terjadi atau menyesali kesalahan kecil bertahun-tahun yang lalu.",
-    pain2Title: "Catastrophic Thinking",
-    pain2Desc: "Satu chat singkat dari bos atau teman langsung diterjemahkan amigdala sebagai akhir dari duniamu.",
-    pain3Title: "Toxic Productivity Trap",
-    pain3Desc: "Merasa bersalah setiap kali istirahat, mengira bahwa dirimu hanya bernilai jika terus-menerus menghasilkan karya.",
-
-    chapterSectionBadge: "Daftar Isi & Cuplikan Buku",
-    chapterSectionTitle: "Apa yang Akan Kamu Pelajari di Dalamnya?",
-    chapterSectionSubtitle: "138 Halaman ilmu praktis tanpa basa-basi teoretis, ditulis dengan gaya bahasa santai dan empatik.",
-    chapterEstimatedRead: "Menit Baca",
-    chapterKeyTakeawaysTitle: "Poin Inti yang Kamu Dapatkan:",
-    readFullChapterInReader: "Baca bab lengkap di pembaca online",
-
-    pricingTitle: "Investasi Terpenting untuk Ketenangan Pikiranmu",
-    pricingSubtitle: "Sekali beli untuk akses seumur hidup. Tanpa biaya tersembunyi.",
-    standardPlanTitle: "Paket Standar",
-    standardPlanDesc: "Cocok untuk kamu yang ingin panduan membaca fokus tanpa distraksi.",
-    standardPlanCta: "Pilih Paket Standar",
-    bundlePlanBadge: "Paling Diminati (Hemat 65%)",
-    bundlePlanTitle: "Paket Bundling VIP",
-    bundlePlanDesc: "Kombinasi buku panduan + 3 bulan akses VIP penuh ke aplikasi Nuju.",
-    bundlePlanCta: "Pilih Paket Bundling VIP (Rp 99.000)",
-    featureEbookFull: "eBook Lengkap 138 Halaman (PDF & ePub)",
-    featurePrompts30: "30 Lembar Prompt Refleksi Harian dari Ju",
-    featureAudioProtocol: "Protokol Darurat Jam 2 Pagi (Audio Guided)",
-    featureWebReader: "Akses Pembaca Web Online Nuju",
-    featureAllStandard: "Semua fitur di Paket Standar",
-    featureNujuProVip: "3 Bulan Nuju Pro VIP (Curhat suara tanpa batas ke Ju)",
-    featureNotionHub: "Notion Self-Care Hub Dashboard senilai Rp 150.000",
-    featurePrintableHabit: "Worksheet Habit Tracker Printable",
-    featurePrioritySupport: "Priority Support Langsung dari Tim Nuju",
-    securityGuaranteeNotice: "🔒 Transaksi terenkripsi 256-bit SSL via Dodo Payments. Garansi 30 hari uang kembali jika kamu merasa tidak ada manfaatnya.",
-
-    checkoutTitle: "Checkout eBook Nuju",
-    fullNameLabel: "Nama Lengkap",
-    fullNamePlaceholder: "Contoh: Irfan Pratama",
-    emailLabel: "Alamat Email (Pengiriman Link eBook)",
-    emailPlaceholder: "nama@email.com",
-    couponLabel: "Kode Voucher / Kupon Diskon (Opsional)",
-    couponPlaceholder: "Masukkan kode voucher",
-    checkoutSubmitBtn: "Lanjut ke Pembayaran",
-    processingBtn: "Menyiapkan Dodo Payments...",
-    paymentSecurityNote: "Pembayaran diproses secara aman oleh Dodo Payments dengan metode QRIS, GoPay, OVO, Virtual Account, & Kartu Kredit.",
-
-    backToInfo: "Kembali ke Info Buku",
-    printPdfBtn: "Cetak / Simpan PDF",
-    vipVoucherBanner: "🎁 Bonus Khusus Pembaca: Gunakan kode voucher BERDAMAI2026 saat checkout di aplikasi Nuju untuk akses diskon VIP!",
-    tabChapters: "12 Bab Buku & Sains CBT",
-    tabPrompts: "30 Hari Prompt Refleksi Ju",
-    listOfChapters: "Daftar Bab",
-    reflectionPromptTitle: "Pertanyaan Refleksi Malam Ini:",
-    juWarmNote: "Catatan Hangat dari Ju:",
-    bedtimeMantra: "Mantra Penenang Sebelum Tidur:",
-    copyPromptBtn: "Salin Prompt Hari ke-",
-    copiedNotice: "Prompt journaling berhasil disalin!",
-    openInNujuApp: "Buka di Nuju App (Prompt Terisi) →",
-    chapterPartPrefix: "BAGIAN",
-    purchaseSuccessBanner: "🎉 Pembayaran Berhasil! Selamat membaca buku 'Berdamai dengan Pikiran Sendiri'. Akses bacaan interaktifmu telah aktif.",
-  },
-
   en: {
     bookTitle: "Peace Within Your Mind",
     bookSubtitle: "30 Days of Overthinking Therapy, Anxiety Regulation & Journaling for Emotional Release",
@@ -269,7 +190,7 @@ export const EBOOK_TRANSLATIONS: Record<EbookLanguageCode, EbookI18nDictionary> 
 
     backToInfo: "Back to Book Details",
     printPdfBtn: "Print / Save as PDF",
-    vipVoucherBanner: "🎁 Reader Bonus: Use coupon code BERDAMAI2026 during checkout in the Nuju app for an instant VIP discount!",
+    vipVoucherBanner: "🎁 Reader Bonus: Use coupon code PEACE2026 during checkout in the Nuju app for an instant VIP discount!",
     tabChapters: "12 Chapters & CBT Science",
     tabPrompts: "30-Day Ju Reflection Prompts",
     listOfChapters: "Table of Contents",
@@ -346,7 +267,7 @@ export const EBOOK_TRANSLATIONS: Record<EbookLanguageCode, EbookI18nDictionary> 
 
     backToInfo: "Zurück zur Buchübersicht",
     printPdfBtn: "Drucken / Als PDF speichern",
-    vipVoucherBanner: "🎁 Leser-Bonus: Nutze den Gutscheincode BERDAMAI2026 beim Checkout in der Nuju App für VIP-Vorteile!",
+    vipVoucherBanner: "🎁 Leser-Bonus: Nutze den Gutscheincode PEACE2026 beim Checkout in der Nuju App für VIP-Vorteile!",
     tabChapters: "12 Kapitel & KVT-Wissenschaft",
     tabPrompts: "30-Tage Reflexions-Prompts",
     listOfChapters: "Kapitelübersicht",
@@ -423,7 +344,7 @@ export const EBOOK_TRANSLATIONS: Record<EbookLanguageCode, EbookI18nDictionary> 
 
     backToInfo: "Terug naar Boekoverzicht",
     printPdfBtn: "Afdrukken / Opslaan als PDF",
-    vipVoucherBanner: "🎁 Lezersbonus: Gebruik vouchercode BERDAMAI2026 bij het afrekenen in de Nuju app voor VIP-korting!",
+    vipVoucherBanner: "🎁 Lezersbonus: Gebruik vouchercode PEACE2026 bij het afrekenen in de Nuju app voor VIP-korting!",
     tabChapters: "12 Hoofdstukken & CGT",
     tabPrompts: "30 Dagen Reflectieprompts",
     listOfChapters: "Hoofdstukken",
@@ -500,7 +421,7 @@ export const EBOOK_TRANSLATIONS: Record<EbookLanguageCode, EbookI18nDictionary> 
 
     backToInfo: "Tilbake til bokinformasjon",
     printPdfBtn: "Skriv ut / Lagre som PDF",
-    vipVoucherBanner: "🎁 Lesebonus: Bruk koden BERDAMAI2026 i Nuju-appen for VIP-rabatt!",
+    vipVoucherBanner: "🎁 Lesebonus: Bruk koden PEACE2026 i Nuju-appen for VIP-rabatt!",
     tabChapters: "12 Kapitler & KBT",
     tabPrompts: "30 Dagers Refleksjonsprompts",
     listOfChapters: "Kapitler",
@@ -577,7 +498,7 @@ export const EBOOK_TRANSLATIONS: Record<EbookLanguageCode, EbookI18nDictionary> 
 
     backToInfo: "書籍情報に戻る",
     printPdfBtn: "印刷 / PDFとして保存",
-    vipVoucherBanner: "🎁 読者限定特典：Nujuアプリでコード【BERDAMAI2026】を入力するとVIP特別割引が適用されます！",
+    vipVoucherBanner: "🎁 読者限定特典：Nujuアプリでコード【PEACE2026】を入力するとVIP特別割引が適用されます！",
     tabChapters: "全12章 ＆ 認知科学CBT",
     tabPrompts: "30日間 Juの内省プロンプト",
     listOfChapters: "章一覧",
@@ -654,7 +575,7 @@ export const EBOOK_TRANSLATIONS: Record<EbookLanguageCode, EbookI18nDictionary> 
 
     backToInfo: "책 소개로 돌아가기",
     printPdfBtn: "인쇄 / PDF로 저장",
-    vipVoucherBanner: "🎁 독자 전용 혜택: Nuju 앱 결제 시 쿠폰 코드 BERDAMAI2026을 입력하면 VIP 할인이 적용됩니다!",
+    vipVoucherBanner: "🎁 독자 전용 혜택: Nuju 앱 결제 시 쿠폰 코드 PEACE2026을 입력하면 VIP 할인이 적용됩니다!",
     tabChapters: "12개 챕터 & CBT 인지과학",
     tabPrompts: "30일 Ju 성찰 프롬프트",
     listOfChapters: "챕터 목록",
@@ -731,7 +652,7 @@ export const EBOOK_TRANSLATIONS: Record<EbookLanguageCode, EbookI18nDictionary> 
 
     backToInfo: "Volver a la portada",
     printPdfBtn: "Imprimir / Guardar en PDF",
-    vipVoucherBanner: "🎁 Bono para lectores: ¡Usa el código BERDAMAI2026 en la app Nuju para un descuento VIP!",
+    vipVoucherBanner: "🎁 Bono para lectores: ¡Usa el código PEACE2026 en la app Nuju para un descuento VIP!",
     tabChapters: "12 Capítulos y Ciencia TCC",
     tabPrompts: "30 Días de Prompts de Ju",
     listOfChapters: "Capítulos",
@@ -808,7 +729,7 @@ export const EBOOK_TRANSLATIONS: Record<EbookLanguageCode, EbookI18nDictionary> 
 
     backToInfo: "Retour à la présentation",
     printPdfBtn: "Imprimer / Sauvegarder en PDF",
-    vipVoucherBanner: "🎁 Bonus lecteur : Utilisez le code BERDAMAI2026 dans l'app Nuju pour bénéficier de réductions VIP !",
+    vipVoucherBanner: "🎁 Bonus lecteur : Utilisez le code PEACE2026 dans l'app Nuju pour bénéficier de réductions VIP !",
     tabChapters: "12 Chapitres & Sciences TCC",
     tabPrompts: "30 Jours de Prompts Ju",
     listOfChapters: "Sommaire des chapitres",
@@ -885,7 +806,7 @@ export const EBOOK_TRANSLATIONS: Record<EbookLanguageCode, EbookI18nDictionary> 
 
     backToInfo: "返回图书主页",
     printPdfBtn: "打印 / 保存为PDF",
-    vipVoucherBanner: "🎁 读者专享福利：在Nuju App结账时输入优惠码 BERDAMAI2026 即可享受专属VIP折扣！",
+    vipVoucherBanner: "🎁 读者专享福利：在Nuju App结账时输入优惠码 PEACE2026 即可享受专属VIP折扣！",
     tabChapters: "12章内容与认知科学",
     tabPrompts: "30天 Ju觉察日记提示",
     listOfChapters: "章节目录",
@@ -962,7 +883,7 @@ export const EBOOK_TRANSLATIONS: Record<EbookLanguageCode, EbookI18nDictionary> 
 
     backToInfo: "العودة لتفاصيل الكتاب",
     printPdfBtn: "طباعة / حفظ كملف PDF",
-    vipVoucherBanner: "🎁 هدية للقراء: استخدم الكود BERDAMAI2026 في تطبيق Nuju للحصول على خصم VIP فوري!",
+    vipVoucherBanner: "🎁 هدية للقراء: استخدم الكود PEACE2026 في تطبيق Nuju للحصول على خصم VIP فوري!",
     tabChapters: "12 فصلاً مع علم النفس المعرفي",
     tabPrompts: "30 يوماً من أسئلة التأمل من Ju",
     listOfChapters: "فهرس الفصول",
@@ -1039,7 +960,7 @@ export const EBOOK_TRANSLATIONS: Record<EbookLanguageCode, EbookI18nDictionary> 
 
     backToInfo: "किताब की जानकारी पर वापस जाएं",
     printPdfBtn: "प्रिंट / PDF के रूप में सेव करें",
-    vipVoucherBanner: "🎁 पाठक बोनस: Nuju ऐप में चेकआउट करते समय BERDAMAI2026 कोड का उपयोग करें और वीआईपी छूट पाएं!",
+    vipVoucherBanner: "🎁 पाठक बोनस: Nuju ऐप में चेकआउट करते समय PEACE2026 कोड का उपयोग करें और वीआईपी छूट पाएं!",
     tabChapters: "12 अध्याय और सीबीटी विज्ञान",
     tabPrompts: "30 दिन Ju रिफ्लेक्शन प्रॉम्प्ट्स",
     listOfChapters: "अध्याय सूची",
@@ -1116,7 +1037,7 @@ export const EBOOK_TRANSLATIONS: Record<EbookLanguageCode, EbookI18nDictionary> 
 
     backToInfo: "Voltar para detalhes do livro",
     printPdfBtn: "Imprimir / Salvar como PDF",
-    vipVoucherBanner: "🎁 Bônus para leitores: Use o cupom BERDAMAI2026 no app Nuju para descontos VIP!",
+    vipVoucherBanner: "🎁 Bônus para leitores: Use o cupom PEACE2026 no app Nuju para descontos VIP!",
     tabChapters: "12 Capítulos & TCC",
     tabPrompts: "30 Dias de Prompts do Ju",
     listOfChapters: "Sumário",
@@ -1193,7 +1114,7 @@ export const EBOOK_TRANSLATIONS: Record<EbookLanguageCode, EbookI18nDictionary> 
 
     backToInfo: "Torna alla presentazione",
     printPdfBtn: "Stampa / Salva in PDF",
-    vipVoucherBanner: "🎁 Bonus per i lettori: Usa il codice BERDAMAI2026 nell'app Nuju per sconti VIP!",
+    vipVoucherBanner: "🎁 Bonus per i lettori: Usa il codice PEACE2026 nell'app Nuju per sconti VIP!",
     tabChapters: "12 Capitoli & Scienze CBT",
     tabPrompts: "30 Giorni di Prompt di Ju",
     listOfChapters: "Indice dei capitoli",
@@ -1270,7 +1191,7 @@ export const EBOOK_TRANSLATIONS: Record<EbookLanguageCode, EbookI18nDictionary> 
 
     backToInfo: "Назад к информации о книге",
     printPdfBtn: "Печать / Сохранить в PDF",
-    vipVoucherBanner: "🎁 Бонус для читателей: Используйте промокод BERDAMAI2026 в приложении Nuju для VIP-скидки!",
+    vipVoucherBanner: "🎁 Бонус для читателей: Используйте промокод PEACE2026 в приложении Nuju для VIP-скидки!",
     tabChapters: "12 Глав и Наука КПТ",
     tabPrompts: "30 Дней Вопросов от Ju",
     listOfChapters: "Список глав",

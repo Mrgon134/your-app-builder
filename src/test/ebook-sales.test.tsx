@@ -22,15 +22,15 @@ import { EBOOK_LANGUAGES, getEbookTranslations } from "@/data/ebook-i18n";
 
 describe("Ebook Data Integrity & i18n", () => {
   it("has metadata with title, author, and discount voucher", () => {
-    expect(EBOOK_METADATA.title).toBe("Berdamai dengan Pikiran Sendiri");
-    expect(EBOOK_METADATA.discountVoucherCode).toBe("BERDAMAI2026");
+    expect(EBOOK_METADATA.title).toBe("Peace Within Your Mind");
+    expect(EBOOK_METADATA.discountVoucherCode).toBe("PEACE2026");
     expect(EBOOK_METADATA.authors.length).toBeGreaterThan(0);
   });
 
-  it("supports 15 global languages with localized currency prices", () => {
-    expect(EBOOK_LANGUAGES.length).toBe(15);
+  it("supports 14 global languages with localized currency prices, excluding Indonesian", () => {
+    expect(EBOOK_LANGUAGES.length).toBe(14);
     const codes = EBOOK_LANGUAGES.map((l) => l.code);
-    expect(codes).toContain("id");
+    expect(codes).not.toContain("id");
     expect(codes).toContain("en");
     expect(codes).toContain("de");
     expect(codes).toContain("nl");
@@ -115,17 +115,20 @@ describe("EbookSalesPage Component", () => {
     expect(screen.getByText(/Get VIP Bundle Package/i)).toBeInTheDocument();
   });
 
-  it("renders language selector with English default and switches language to Indonesian on selection", () => {
+  it("renders language selector with English default and switches language to German on selection", () => {
     renderSalesPage();
     const langBtn = screen.getAllByRole("button", { name: /English/i })[0];
     expect(langBtn).toBeInTheDocument();
 
-    fireEvent.click(langBtn);
-    const idOption = screen.getByRole("option", { name: /Bahasa Indonesia/i });
-    fireEvent.click(idOption);
+    // Indonesian should NOT be in the options
+    expect(screen.queryByText(/Bahasa Indonesia/i)).not.toBeInTheDocument();
 
-    expect(screen.getAllByText(/Berdamai dengan Pikiran Sendiri/i).length).toBeGreaterThan(0);
-    expect(screen.getByText(/Pilih Paket Standar/i)).toBeInTheDocument();
+    fireEvent.click(langBtn);
+    const deOption = screen.getByRole("option", { name: /Deutsch/i });
+    fireEvent.click(deOption);
+
+    expect(screen.getAllByText(/Frieden im eigenen Kopf/i).length).toBeGreaterThan(0);
+    expect(screen.getByText(/Standard-Paket wählen/i)).toBeInTheDocument();
   });
 
   it("opens checkout modal with coupon field when purchase CTA is clicked", () => {
@@ -144,49 +147,49 @@ describe("EbookReaderPage Component", () => {
     localStorage.clear();
   });
 
-  it("renders the reader navigation and first chapter in Indonesian", () => {
+  it("renders the reader navigation and first chapter in English by default", () => {
     render(
-      <MemoryRouter initialEntries={["/ebook/read?lang=id"]}>
+      <MemoryRouter initialEntries={["/ebook/read"]}>
         <Routes>
           <Route path="/ebook/read" element={<EbookReaderPage />} />
           <Route path="/ebook" element={<EbookSalesPage />} />
         </Routes>
       </MemoryRouter>
     );
-    const chapterMatches = screen.getAllByText(/Mengapa Otak Kita Selalu Membayangkan Skenario Terburuk/i);
+    const chapterMatches = screen.getAllByText(/Why Does Our Brain Always Imagine Worst-Case Scenarios/i);
     expect(chapterMatches.length).toBeGreaterThan(0);
-    expect(screen.getByText(/Daftar Bab/i)).toBeInTheDocument();
-    expect(screen.getByText(/30 Hari Prompt Refleksi Ju/i)).toBeInTheDocument();
+    expect(screen.getByText(/Table of Contents/i)).toBeInTheDocument();
+    expect(screen.getByText(/30-Day Ju Reflection Prompts/i)).toBeInTheDocument();
   });
 
   it("switches to the 30-Day Prompt Journal tab and shows day 1 prompt", () => {
     render(
-      <MemoryRouter initialEntries={["/ebook/read?lang=id"]}>
+      <MemoryRouter initialEntries={["/ebook/read"]}>
         <Routes>
           <Route path="/ebook/read" element={<EbookReaderPage />} />
           <Route path="/ebook" element={<EbookSalesPage />} />
         </Routes>
       </MemoryRouter>
     );
-    const promptsTab = screen.getByText(/30 Hari Prompt Refleksi Ju/i);
+    const promptsTab = screen.getByText(/30-Day Ju Reflection Prompts/i);
     fireEvent.click(promptsTab);
 
-    expect(screen.getAllByText(/Hari ke-1/i).length).toBeGreaterThan(0);
-    expect(screen.getByText(/Membongkar Beban Tersembunyi/i)).toBeInTheDocument();
-    expect(screen.getByText(/Salin Prompt/i)).toBeInTheDocument();
+    expect(screen.getAllByText(/Day 1/i).length).toBeGreaterThan(0);
+    expect(screen.getByText(/Unpacking Hidden Burdens/i)).toBeInTheDocument();
+    expect(screen.getByText(/Copy Day Prompt/i)).toBeInTheDocument();
   });
 
-  it("renders English content when lang=en parameter is passed", () => {
+  it("renders German content when lang=de parameter is passed", () => {
     render(
-      <MemoryRouter initialEntries={["/ebook/read?lang=en"]}>
+      <MemoryRouter initialEntries={["/ebook/read?lang=de"]}>
         <Routes>
           <Route path="/ebook/read" element={<EbookReaderPage />} />
           <Route path="/ebook" element={<EbookSalesPage />} />
         </Routes>
       </MemoryRouter>
     );
-    expect(screen.getByText(/Peace Within Your Mind/i)).toBeInTheDocument();
-    expect(screen.getAllByText(/Why Does Our Brain Always Imagine Worst-Case Scenarios/i).length).toBeGreaterThan(0);
-    expect(screen.getByText(/Table of Contents/i)).toBeInTheDocument();
+    expect(screen.getByText(/Frieden im eigenen Kopf/i)).toBeInTheDocument();
+    expect(screen.getAllByText(/Warum malt unser Gehirn immer den Teufel an die Wand/i).length).toBeGreaterThan(0);
+    expect(screen.getByText(/Kapitelübersicht/i)).toBeInTheDocument();
   });
 });

@@ -198,9 +198,9 @@ export const EbookSalesPage: React.FC = () => {
               </div>
 
               <h1 className="font-serif text-3xl sm:text-5xl font-extrabold tracking-tight text-neutral-900 leading-[1.15]">
-                {lang === "id" ? (
+                {lang === "en" ? (
                   <>
-                    Berdamai dengan <span className="text-amber-700 italic">Pikiran Sendiri</span>
+                    Peace Within <span className="text-amber-700 italic">Your Mind</span>
                   </>
                 ) : (
                   t.bookTitle
@@ -613,7 +613,7 @@ export const EbookSalesPage: React.FC = () => {
                   type="text"
                   value={couponCode}
                   onChange={(e) => setCouponCode(e.target.value)}
-                  placeholder={lang === "id" ? "Contoh: BERDAMAI2026" : "e.g. BERDAMAI2026"}
+                  placeholder="e.g. PEACE2026"
                   className="w-full rounded-xl border border-neutral-300 bg-white px-4 py-2.5 text-sm uppercase font-mono focus:border-amber-600 focus:outline-none focus:ring-2 focus:ring-amber-500/20"
                 />
               </div>

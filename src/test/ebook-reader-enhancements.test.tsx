@@ -106,24 +106,24 @@ describe("Ebook Enhancements - Ambient Audio & VIP Modal", () => {
   it("renders EbookVipResourcesModal and allows tab switching and voucher copy", () => {
     const handleClose = vi.fn();
     render(
-      <EbookVipResourcesModal isOpen={true} onClose={handleClose} lang="id" />
+      <EbookVipResourcesModal isOpen={true} onClose={handleClose} lang="en" />
     );
 
     expect(screen.getByText("VIP Resource Toolkit & Bonus Hub")).toBeInTheDocument();
-    expect(screen.getByText("Template Notion Siap Pakai")).toBeInTheDocument();
+    expect(screen.getByText("Ready-to-Use Notion Template")).toBeInTheDocument();
 
     // Switch to Voucher tab
-    const voucherTab = screen.getByText("Voucher Nuju Pro");
+    const voucherTab = screen.getByText("Nuju Pro Voucher");
     fireEvent.click(voucherTab);
     expect(screen.getByText("NUJUVIP30")).toBeInTheDocument();
 
     // Switch to SOS tab
     const sosTab = screen.getByText("SOS Grounding");
     fireEvent.click(sosTab);
-    expect(screen.getByText("Teknik Grounding Sensorik 5-4-3-2-1")).toBeInTheDocument();
+    expect(screen.getByText("5-4-3-2-1 Sensory Grounding")).toBeInTheDocument();
 
     // Close modal
-    const closeBtn = screen.getByText("Tutup");
+    const closeBtn = screen.getByText("Close");
     fireEvent.click(closeBtn);
     expect(handleClose).toHaveBeenCalledTimes(1);
   });
@@ -132,25 +132,25 @@ describe("Ebook Enhancements - Ambient Audio & VIP Modal", () => {
     const handleOpenVip = vi.fn();
     render(
       <EbookAudioWidget
-        currentText="Selamat datang di buku panduan menenangkan pikiran."
-        title="Bab 1: Menamai Apa yang Terjadi"
-        lang="id"
+        currentText="Welcome to the comprehensive guide for soothing an overthinking mind."
+        title="Chapter 1: Why Does Our Brain Always Imagine Worst-Case Scenarios?"
+        lang="en"
         onOpenVipModal={handleOpenVip}
       />
     );
 
     // Check ambient buttons
-    const rainBtn = screen.getByTitle("Suara Hujan Tenang");
+    const rainBtn = screen.getByTitle("Rain Sound");
     fireEvent.click(rainBtn);
     expect(ambientSound.getCurrentType()).toBe("rain");
 
     // Check VIP modal trigger
-    const vipBtn = screen.getByTitle("Buka Bonus VIP & Template Notion");
+    const vipBtn = screen.getByTitle("VIP Bonus Toolkit");
     fireEvent.click(vipBtn);
     expect(handleOpenVip).toHaveBeenCalledTimes(1);
 
     // Check Speech Synthesis listen button
-    const listenBtn = screen.getByTitle("Dengarkan Narasi Suara");
+    const listenBtn = screen.getByTitle("Listen to Audiobook");
     fireEvent.click(listenBtn);
     expect(window.speechSynthesis.speak).toHaveBeenCalled();
   });
