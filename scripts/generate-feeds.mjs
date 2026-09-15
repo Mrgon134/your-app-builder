@@ -43,6 +43,8 @@ const STATIC_ROUTES = [
   { loc: "/quiz/dutch-niksen-burnout-nl", priority: "0.9", changefreq: "weekly" },
   { loc: "/quiz/honne-tatemae-jp", priority: "0.9", changefreq: "weekly" },
   { loc: "/quiz/nunchi-hwabyung-kr", priority: "0.9", changefreq: "weekly" },
+  { loc: "/ebook", priority: "0.9", changefreq: "weekly" },
+  { loc: "/buku", priority: "0.8", changefreq: "weekly" },
 ];
 
 const escapeXml = (str) =>

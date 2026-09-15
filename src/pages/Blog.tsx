@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
-import { ArrowRight, BookOpen, Clock, Tag } from "lucide-react";
+import { ArrowRight, BookOpen, Clock, Tag, Sparkles } from "lucide-react";
 import AppStoreCta from "@/components/AppStoreCta";
 import SEOHead from "@/components/SEOHead";
 import AdSenseBanner from "@/components/AdSenseBanner";
@@ -106,30 +106,57 @@ const Blog: React.FC = () => {
           </p>
         </div>
 
-        <Link
-          to="/guides/journaling"
-          className="group mb-10 flex flex-col gap-3 rounded-2xl border border-primary/30 bg-gradient-to-br from-primary/10 to-primary/5 p-6 transition-all hover:border-primary/60 hover:shadow-lg sm:flex-row sm:items-center sm:justify-between"
-        >
-          <div className="flex items-start gap-4">
-            <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl bg-primary/15 text-primary">
-              <BookOpen className="h-6 w-6" />
+        <div className="mb-10 grid grid-cols-1 md:grid-cols-2 gap-4">
+          <Link
+            to="/guides/journaling"
+            className="group flex flex-col justify-between rounded-2xl border border-primary/30 bg-gradient-to-br from-primary/10 to-primary/5 p-6 transition-all hover:border-primary/60 hover:shadow-lg"
+          >
+            <div className="flex items-start gap-4">
+              <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl bg-primary/15 text-primary">
+                <BookOpen className="h-6 w-6" />
+              </div>
+              <div>
+                <p className="mb-1 text-xs font-semibold uppercase tracking-widest text-primary">
+                  The complete guide
+                </p>
+                <h2 className="font-serif text-xl font-bold text-foreground group-hover:text-primary transition-colors">
+                  Journaling: Methods, Science &amp; Tools
+                </h2>
+                <p className="mt-1 text-sm text-muted-foreground">
+                  Everything we know about journaling, distilled into one 18-minute read.
+                </p>
+              </div>
             </div>
-            <div>
-              <p className="mb-1 text-xs font-semibold uppercase tracking-widest text-primary">
-                The complete guide
-              </p>
-              <h2 className="font-serif text-xl font-bold text-foreground group-hover:text-primary transition-colors">
-                Journaling: Methods, Science &amp; Tools
-              </h2>
-              <p className="mt-1 text-sm text-muted-foreground">
-                Everything we know about journaling, distilled into one 18-minute read.
-              </p>
+            <span className="flex items-center gap-1 text-sm font-semibold text-primary whitespace-nowrap mt-4">
+              Read guide <ArrowRight className="h-4 w-4" />
+            </span>
+          </Link>
+
+          <Link
+            to="/ebook"
+            className="group flex flex-col justify-between rounded-2xl border border-amber-500/30 bg-gradient-to-br from-amber-500/10 to-amber-500/5 p-6 transition-all hover:border-amber-500/60 hover:shadow-lg"
+          >
+            <div className="flex items-start gap-4">
+              <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl bg-amber-500/20 text-amber-600">
+                <Sparkles className="h-6 w-6" />
+              </div>
+              <div>
+                <p className="mb-1 text-xs font-semibold uppercase tracking-widest text-amber-600">
+                  Official Nuju Ebook
+                </p>
+                <h2 className="font-serif text-xl font-bold text-foreground group-hover:text-amber-600 transition-colors">
+                  Berdamai dengan Isi Kepala
+                </h2>
+                <p className="mt-1 text-sm text-muted-foreground">
+                  12 bab komprehensif + 30 template prompt CBT &amp; Stoikisme harian.
+                </p>
+              </div>
             </div>
-          </div>
-          <span className="flex items-center gap-1 text-sm font-semibold text-primary whitespace-nowrap">
-            Read guide <ArrowRight className="h-4 w-4" />
-          </span>
-        </Link>
+            <span className="flex items-center gap-1 text-sm font-semibold text-amber-600 whitespace-nowrap mt-4">
+              Lihat Ebook <ArrowRight className="h-4 w-4" />
+            </span>
+          </Link>
+        </div>
 
         {recommendationPosts.length > 0 && (
           <section

@@ -32,6 +32,8 @@ const MoodTracker = lazy(() => import("./pages/MoodTracker.tsx"));
 const VoiceJournaling = lazy(() => import("./pages/VoiceJournaling.tsx"));
 const QuizHub = lazy(() => import("./pages/QuizHub.tsx"));
 const QuizRunner = lazy(() => import("./pages/QuizRunner.tsx"));
+const EbookSalesPage = lazy(() => import("./pages/EbookSalesPage.tsx"));
+const EbookReaderPage = lazy(() => import("./pages/EbookReaderPage.tsx"));
 const NotFound = lazy(() => import("./pages/NotFound.tsx"));
 const AuthCallback = lazy(() => import("./pages/AuthCallback.tsx"));
 
@@ -99,6 +101,9 @@ const App = () => (
                   <Route path="/quiz/:quizId" element={<QuizRunner />} />
                   <Route path="/test-psikologi" element={<QuizHub />} />
                   <Route path="/test-psikologi/:quizId" element={<QuizRunner />} />
+                  <Route path="/ebook" element={<EbookSalesPage />} />
+                  <Route path="/buku" element={<EbookSalesPage />} />
+                  <Route path="/ebook/read" element={<EbookReaderPage />} />
                   <Route
                     path="/app"
                     element={

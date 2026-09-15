@@ -27,6 +27,9 @@ export const ROUTES = {
   // Landing & Content
   LANDING: '/',
   QUIZ: '/quiz',
+  EBOOK: '/ebook',
+  BUKU: '/buku',
+  EBOOK_READER: '/ebook/read',
 } as const;
 
 export type RouteKey = keyof typeof ROUTES;

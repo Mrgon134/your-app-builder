@@ -18,12 +18,14 @@ const getProductMap = () => ({
   three_month: Deno.env.get("VITE_DODO_THREE_MONTH") || Deno.env.get("VITE_DODO_3_MONTH") || Deno.env.get("DODO_THREE_MONTH_PRODUCT_ID") || "pdt_0NdPqMYke9uZ1USDhjfvq",
   yearly: Deno.env.get("VITE_DODO_YEARLY") || Deno.env.get("DODO_YEARLY_PRODUCT_ID") || "pdt_0NbhHexts6edZvPqDnoqt",
   lifetime_one_time: Deno.env.get("VITE_DODO_LIFETIME") || Deno.env.get("DODO_LIFETIME_PRODUCT_ID") || "pdt_0NbhHzl2NQ8Dx0ntZsPQs",
+  ebook_basic: Deno.env.get("VITE_DODO_EBOOK_BASIC") || Deno.env.get("DODO_EBOOK_BASIC_PRODUCT_ID") || "pdt_ebook_basic",
+  ebook_bundle: Deno.env.get("VITE_DODO_EBOOK_BUNDLE") || Deno.env.get("DODO_EBOOK_BUNDLE_PRODUCT_ID") || "pdt_ebook_bundle",
 });
 
 const resolvePlanFromVariant = (variantId: string) => {
   const productMap = getProductMap();
   const entry = Object.entries(productMap).find(([, productId]) => productId === variantId);
-  return (entry?.[0] || "") as "weekly" | "three_month" | "yearly" | "lifetime_one_time" | "";
+  return (entry?.[0] || "") as "weekly" | "three_month" | "yearly" | "lifetime_one_time" | "ebook_basic" | "ebook_bundle" | "";
 };
 
 serve(async (req) => {
@@ -52,7 +54,7 @@ serve(async (req) => {
     const source = safeText(payload.source) || "onboarding";
     const country = safeText(payload.country);
     const couponCode = safeText(payload.coupon_code);
-    const requestedPlan = safeText(payload.plan) as "weekly" | "three_month" | "yearly" | "lifetime_one_time" | "";
+    const requestedPlan = safeText(payload.plan) as "weekly" | "three_month" | "yearly" | "lifetime_one_time" | "ebook_basic" | "ebook_bundle" | "";
     const resolvedPlan = requestedPlan || resolvePlanFromVariant(variantId);
     const isGuestCheckout = !userId;
 
@@ -125,7 +127,9 @@ serve(async (req) => {
         source,
       },
       return_url: isGuestCheckout && intentId
-        ? `${siteOrigin}/checkout/complete?intent_id=${encodeURIComponent(intentId)}`
+        ? (source === "ebook_sales_page"
+          ? `${siteOrigin}/ebook/read?purchased=true&intent_id=${encodeURIComponent(intentId)}`
+          : `${siteOrigin}/checkout/complete?intent_id=${encodeURIComponent(intentId)}`)
         : `${siteOrigin}/app`,
     };
 

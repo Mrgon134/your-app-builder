@@ -141,6 +141,18 @@
     <changefreq>weekly</changefreq>
   </url>
   <url>
+    <loc>https://nuju.app/ebook</loc>
+    <lastmod>2026-09-15</lastmod>
+    <priority>0.9</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/buku</loc>
+    <lastmod>2026-09-15</lastmod>
+    <priority>0.8</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
     <loc>https://nuju.app/blog/how-to-start-journaling</loc>
     <lastmod>2026-04-08</lastmod>
     <priority>0.7</priority>

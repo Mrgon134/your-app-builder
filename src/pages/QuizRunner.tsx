@@ -14,6 +14,7 @@ import {
   ChevronRight,
   HelpCircle,
   Download,
+  BookOpen,
 } from "lucide-react";
 import SEOHead from "@/components/SEOHead";
 import AdSenseBanner from "@/components/AdSenseBanner";
@@ -393,6 +394,36 @@ const QuizRunner: React.FC = () => {
 
             {/* Email Lead Magnet: Save Diagnostic & 7-Day Recovery Guide */}
             <QuizLeadCapture quiz={quiz} result={result} className="my-8" />
+
+            {/* eBook Recommendation Banner */}
+            <div className="rounded-3xl border border-amber-200/80 bg-gradient-to-br from-amber-50/90 via-orange-50/50 to-white p-6 sm:p-8 shadow-sm flex flex-col md:flex-row items-center gap-6">
+              <div className="w-16 h-20 sm:w-20 sm:h-26 rounded-xl bg-gradient-to-br from-amber-600 to-amber-900 text-white shadow-md flex flex-col items-center justify-center p-2 text-center shrink-0 border border-amber-400/40">
+                <BookOpen className="h-6 w-6 text-amber-200 mb-1" />
+                <span className="text-[9px] font-bold uppercase tracking-wider leading-tight">Ebook Nuju</span>
+              </div>
+              <div className="flex-1 text-center md:text-left space-y-1.5">
+                <div className="inline-flex items-center gap-1.5 rounded-full bg-amber-100 px-3 py-0.5 text-xs font-bold text-amber-900">
+                  <Sparkles className="h-3 w-3 text-amber-600" />
+                  <span>Panduan Lanjutan &amp; 30-Day Prompt Journal</span>
+                </div>
+                <h3 className="text-lg sm:text-xl font-extrabold text-neutral-900">
+                  Berdamai dengan Isi Kepala: Seni Melepaskan Overthinking
+                </h3>
+                <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed">
+                  Buku digital resmi 12 bab mendalam + 30 template journaling CBT &amp; Stoikisme harian untuk mengurai kekusutan pikiran dan memulihkan energi mentalmu.
+                </p>
+              </div>
+              <div className="shrink-0 flex flex-col items-center gap-2">
+                <Link
+                  to="/ebook"
+                  className="inline-flex items-center gap-2 rounded-full bg-neutral-900 hover:bg-neutral-800 text-white px-5 py-3 text-xs sm:text-sm font-bold shadow-sm active:scale-95 transition"
+                >
+                  <BookOpen className="h-4 w-4 text-amber-400" />
+                  <span>Lihat Ebook &amp; Preview Bab →</span>
+                </Link>
+                <span className="text-[11px] text-neutral-500 font-medium">Mulai dari Rp49.000 (Akses Instan)</span>
+              </div>
+            </div>
 
             {/* Direct App Conversion Box */}
             <div className="rounded-3xl bg-neutral-950 text-white p-8 sm:p-10 relative overflow-hidden shadow-md text-center sm:text-left flex flex-col sm:flex-row items-center gap-6">
