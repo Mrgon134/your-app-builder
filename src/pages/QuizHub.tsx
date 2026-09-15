@@ -49,6 +49,9 @@ const QuizHub: React.FC = () => {
           </Link>
 
           <div className="flex items-center gap-3 text-sm">
+            <Link to="/ebook" className="hidden text-amber-700 hover:text-amber-800 sm:inline-block font-semibold">
+              Ebook & Workbook
+            </Link>
             <Link to="/blog" className="hidden text-neutral-600 hover:text-neutral-900 sm:inline-block font-medium">
               Artikel & Panduan
             </Link>

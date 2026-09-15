@@ -82,6 +82,18 @@ const Blog: React.FC = () => {
           </Link>
           <div className="flex items-center gap-2">
             <Link
+              to="/tes-psikologi"
+              className="hidden sm:inline-flex text-sm font-medium text-foreground/80 hover:text-foreground px-2.5 py-1.5 rounded-lg hover:bg-muted transition-colors"
+            >
+              Tes Psikologi
+            </Link>
+            <Link
+              to="/ebook"
+              className="text-xs sm:text-sm font-semibold text-amber-600 hover:text-amber-700 px-2.5 py-1.5 rounded-lg hover:bg-amber-500/10 transition-colors"
+            >
+              Ebook
+            </Link>
+            <Link
               to="/onboarding"
               className="rounded-full bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground transition-all hover:opacity-90"
             >

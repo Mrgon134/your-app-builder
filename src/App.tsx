@@ -101,6 +101,8 @@ const App = () => (
                   <Route path="/quiz/:quizId" element={<QuizRunner />} />
                   <Route path="/test-psikologi" element={<QuizHub />} />
                   <Route path="/test-psikologi/:quizId" element={<QuizRunner />} />
+                  <Route path="/tes-psikologi" element={<QuizHub />} />
+                  <Route path="/tes-psikologi/:quizId" element={<QuizRunner />} />
                   <Route path="/ebook" element={<EbookSalesPage />} />
                   <Route path="/buku" element={<EbookSalesPage />} />
                   <Route path="/ebook/read" element={<EbookReaderPage />} />

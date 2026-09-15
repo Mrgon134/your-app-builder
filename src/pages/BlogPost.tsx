@@ -3004,6 +3004,12 @@ const BlogPost: React.FC = () => {
           </Link>
           <div className="flex items-center gap-2">
             <Link
+              to="/ebook"
+              className="text-xs sm:text-sm font-semibold text-amber-600 hover:text-amber-700 px-2.5 py-1.5 rounded-lg hover:bg-amber-500/10 transition-colors"
+            >
+              Ebook
+            </Link>
+            <Link
               to={`/onboarding?source=blog_article_nav_${post.slug}`}
               className="rounded-full bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground transition-all hover:opacity-90"
               onClick={() =>
@@ -3354,6 +3360,12 @@ const BlogPost: React.FC = () => {
           <div className="flex flex-wrap gap-4">
             <Link to="/blog" className="transition-colors hover:text-foreground">
               Blog
+            </Link>
+            <Link to="/ebook" className="transition-colors hover:text-foreground text-amber-600 font-semibold">
+              Ebook & Workbook
+            </Link>
+            <Link to="/tes-psikologi" className="transition-colors hover:text-foreground">
+              Tes Psikologi
             </Link>
             <Link to="/about" className="transition-colors hover:text-foreground">
               {copy.footerAbout}

@@ -13,9 +13,12 @@ import {
   Heart,
   Brain,
   Share2,
+  Gift,
 } from "lucide-react";
 import SEOHead from "@/components/SEOHead";
 import EbookLanguageSelector from "@/components/EbookLanguageSelector";
+import EbookAudioWidget from "@/components/EbookAudioWidget";
+import EbookVipResourcesModal from "@/components/EbookVipResourcesModal";
 import {
   EBOOK_METADATA,
   getLocalizedEbookChapters,
@@ -36,6 +39,7 @@ export const EbookReaderPage: React.FC = () => {
   const [activeChapterIndex, setActiveChapterIndex] = useState(0);
   const [activePromptDay, setActivePromptDay] = useState(1);
   const [copiedText, setCopiedText] = useState<string | null>(null);
+  const [isVipModalOpen, setIsVipModalOpen] = useState<boolean>(false);
 
   const [lang, setLang] = useState<EbookLanguageCode>(() => {
     const urlLang = searchParams.get("lang") as EbookLanguageCode;
@@ -56,6 +60,11 @@ export const EbookReaderPage: React.FC = () => {
   const activeChapter: EbookChapter = chapters[activeChapterIndex] || chapters[0];
   const activePrompt = prompts.find((p) => p.day === activePromptDay) || prompts[0];
 
+  const currentText =
+    activeTab === "chapters"
+      ? `${activeChapter.title}. ${activeChapter.subtitle}. ${activeChapter.content.join(" ")}. ${activeChapter.keyTakeaways.join(". ")}`
+      : `${activePrompt.theme}. ${activePrompt.prompt}. Catatan Ju: ${activePrompt.juInsight}. Mantra tidur: ${activePrompt.groundingMantra}`;
+
   const handleCopyPrompt = (text: string) => {
     navigator.clipboard.writeText(text);
     setCopiedText(text);
@@ -68,7 +77,7 @@ export const EbookReaderPage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#FAF8F5] text-neutral-900 selection:bg-amber-200 print:bg-white print:text-black">
+    <div className="min-h-screen bg-[#FAF8F5] text-neutral-900 selection:bg-amber-200 print:bg-white print:text-black pb-24">
       <SEOHead
         title={`Baca: ${activeChapter.title} | ${t.bookTitle}`}
         description={activeChapter.subtitle}
@@ -92,6 +101,13 @@ export const EbookReaderPage: React.FC = () => {
           </div>
 
           <div className="flex items-center gap-2">
+            <button
+              onClick={() => setIsVipModalOpen(true)}
+              className="inline-flex items-center gap-1.5 rounded-full border border-amber-300 bg-amber-50 px-3 py-1.5 text-xs font-bold text-amber-800 hover:bg-amber-100 transition shadow-2xs"
+            >
+              <Gift className="h-3.5 w-3.5 text-amber-600" />
+              <span className="hidden sm:inline">VIP Bonus</span>
+            </button>
             <EbookLanguageSelector
               currentLang={lang}
               onSelectLang={(newLang) => setLang(newLang)}
@@ -116,8 +132,12 @@ export const EbookReaderPage: React.FC = () => {
       )}
 
       {/* VIP Welcome Banner */}
-      <div className="bg-amber-500/10 border-b border-amber-500/20 px-4 py-2.5 text-center text-xs text-amber-900 font-medium print:hidden">
+      <div
+        onClick={() => setIsVipModalOpen(true)}
+        className="cursor-pointer bg-amber-500/10 hover:bg-amber-500/20 border-b border-amber-500/20 px-4 py-2.5 text-center text-xs text-amber-900 font-medium print:hidden transition flex items-center justify-center gap-1.5"
+      >
         <span>{t.vipVoucherBanner}</span>
+        <span className="underline font-bold text-amber-950 ml-1">Klaim Toolkit &rarr;</span>
       </div>
 
       {/* Main Container */}
@@ -369,6 +389,21 @@ export const EbookReaderPage: React.FC = () => {
           </div>
         )}
       </div>
+
+      {/* Floating Ambient Sounds & Audiobook Voice Player */}
+      <EbookAudioWidget
+        currentText={currentText}
+        title={activeTab === "chapters" ? activeChapter.title : activePrompt.theme}
+        lang={lang}
+        onOpenVipModal={() => setIsVipModalOpen(true)}
+      />
+
+      {/* VIP Resources & Bonus Modal */}
+      <EbookVipResourcesModal
+        isOpen={isVipModalOpen}
+        onClose={() => setIsVipModalOpen(false)}
+        lang={lang}
+      />
     </div>
   );
 };

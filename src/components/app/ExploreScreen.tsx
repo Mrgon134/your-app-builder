@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
-  Trophy, Mail, Compass, Heart, Wind, BookOpen,
+  Trophy, Mail, Compass, Heart, Wind, BookOpen, BookMarked,
   TrendingUp, ChevronLeft, Flame, Star,
   Lock, Check, Sparkles,
 } from "lucide-react";
@@ -211,6 +211,26 @@ const ExploreScreen: React.FC<ExploreScreenProps> = ({
       bg: "rgba(168,85,247,0.08)",
       border: "rgba(168,85,247,0.15)",
     },
+    {
+      id: "ebook",
+      icon: BookMarked,
+      title: "Official Ebook",
+      subtitle: "30 Hari Berdamai dengan Kepala",
+      color: "rgb(245,158,11)",
+      bg: "rgba(245,158,11,0.08)",
+      border: "rgba(245,158,11,0.2)",
+      href: "/ebook",
+    },
+    {
+      id: "quiz",
+      icon: Heart,
+      title: "Tes Psikologi",
+      subtitle: "Cek Baterai Emosi & Burnout",
+      color: "rgb(139,92,246)",
+      bg: "rgba(139,92,246,0.08)",
+      border: "rgba(139,92,246,0.2)",
+      href: "/tes-psikologi",
+    },
   ];
 
   return (
@@ -229,6 +249,10 @@ const ExploreScreen: React.FC<ExploreScreenProps> = ({
           <motion.button
             key={card.id}
             onClick={() => {
+              if ("href" in card && card.href) {
+                window.location.href = card.href as string;
+                return;
+              }
               if (card.proOnly && !hasPremiumAccess) {
                 onUpgrade?.();
                 return;

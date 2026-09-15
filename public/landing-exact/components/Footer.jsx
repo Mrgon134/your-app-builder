@@ -7,6 +7,8 @@ const footerColumns = [
       ['AI journal', '/ai-journal'],
       ['Mood tracker', '/mood-tracker'],
       ['Voice journaling', '/voice-journaling'],
+      ['Official Ebook', '/ebook'],
+      ['Tes Psikologi', '/tes-psikologi'],
       ['iOS app', 'https://apps.apple.com/us/app/nuju/id6763682187'],
       ['Install Nuju', '/install'],
     ],
