@@ -447,3 +447,417 @@ export const EBOOK_DAILY_PROMPTS: EbookDailyPrompt[] = [
     groundingMantra: "Aku berjanji akan selalu menjadi sahabat paling setia bagi diriku sendiri."
   }
 ];
+
+export const LOCALIZED_CHAPTER_TRANSLATIONS: Record<
+  string,
+  { part: string; title: string; subtitle: string; takeaways: string[] }[]
+> = {
+  en: [
+    {
+      part: "PART 1: BRAIN SCIENCE & OVERTHINKING ANATOMY",
+      title: "Why Does Our Brain Always Imagine Worst-Case Scenarios?",
+      subtitle: "Understanding the primitive amygdala that mistakes boss emails for sabertooth tigers.",
+      takeaways: [
+        "The amygdala is built for survival vigilance, not for happiness.",
+        "Automatic negative thoughts are cautionary alarm signals, not absolute truth.",
+        "Recognizing your panic response is already 50% of reclaiming peace."
+      ]
+    },
+    {
+      part: "PART 1: BRAIN SCIENCE & OVERTHINKING ANATOMY",
+      title: "The Overactive Default Mode Network (DMN)",
+      subtitle: "Why your brain starts ruminating the moment you try to rest.",
+      takeaways: [
+        "Idle brain states default to past regret and future anxiety.",
+        "Mindful sensory anchors disrupt repetitive rumination loops.",
+        "Action is the best antidote to overthinking paralysis."
+      ]
+    },
+    {
+      part: "PART 2: COGNITIVE BEHAVIORAL THERAPY (CBT)",
+      title: "Unmasking the 5 Cognitive Distortions",
+      subtitle: "Catastrophizing, mind reading, emotional reasoning, black-and-white thinking, and toxic 'shoulds'.",
+      takeaways: [
+        "Feelings are real, but they are not always factual reflections of reality.",
+        "Replacing 'I must' with 'I choose' restores internal sovereignty.",
+        "Cognitive reframing turns irrational dread into manageable challenges."
+      ]
+    },
+    {
+      part: "PART 3: STOIC PHILOSOPHY & EMOTIONAL REGULATION",
+      title: "The Dichotomy of Control: Letting Go of What You Can't Fix",
+      subtitle: "Epictetus' ancient formula for absolute modern mental peace.",
+      takeaways: [
+        "Focus only on your own actions, thoughts, and responses.",
+        "Release external opinions and future outcomes beyond your reach.",
+        "True freedom begins where the desire to control everything ends."
+      ]
+    },
+    {
+      part: "PART 3: STOIC PHILOSOPHY & EMOTIONAL REGULATION",
+      title: "Recharging Your Internal Emotional Battery",
+      subtitle: "Distinguishing physical tiredness from spiritual and sensory exhaustion.",
+      takeaways: [
+        "Sensory overload requires quiet solitude, not mindless social media scrolling.",
+        "Saying no to draining requests is a vital act of self-preservation.",
+        "Rest is a biological requirement, not a reward for burning out."
+      ]
+    },
+    {
+      part: "PART 4: THE ART OF SELF-COMPASSION",
+      title: "Becoming Your Own Warmest Ally",
+      subtitle: "Ending the cruel inner critic and building resilient self-compassion.",
+      takeaways: [
+        "Self-compassion produces higher resilience than harsh self-criticism.",
+        "Speak to yourself the way you would speak to someone you deeply love.",
+        "Perfection is an illusion; steady, kind progress is genuine growth."
+      ]
+    }
+  ],
+  de: [
+    {
+      part: "TEIL 1: NEUROWISSENSCHAFT & GRÜBEL-ANATOMIE",
+      title: "Warum malt unser Gehirn immer den Teufel an die Wand?",
+      subtitle: "Die Amygdala verstehen, die eine E-Mail vom Chef mit einem Raubtier verwechselt.",
+      takeaways: [
+        "Die Amygdala dient dem Überleben, nicht deinem Glück.",
+        "Negative Gedanken sind Warnsignale, keine unumstößlichen Fakten.",
+        "Die Panik wahrzunehmen, ist bereits der halbe Weg zur Ruhe."
+      ]
+    },
+    {
+      part: "TEIL 1: NEUROWISSENSCHAFT & GRÜBEL-ANATOMIE",
+      title: "Das überaktive Default Mode Network (DMN)",
+      subtitle: "Warum dein Gehirn genau dann zu grübeln beginnt, wenn du dich ausruhen willst.",
+      takeaways: [
+        "Im Leerlauf neigt das Gehirn zu Sorgen und Reue.",
+        "Sensorische Achtsamkeit unterbricht destruktive Gedankenschleifen.",
+        "Gezieltes Handeln löst mentale Lähmung auf."
+      ]
+    },
+    {
+      part: "TEIL 2: KOGNITIVE VERHALTENSTHERAPIE (KVT)",
+      title: "Entlarvung der 5 kognitiven Verzerrungen",
+      subtitle: "Katastrophisieren, Gedankenlesen, emotionale Beweisführung und toxische Pflichtgefühle.",
+      takeaways: [
+        "Gefühle sind real, aber sie sind keine objektiven Beweise.",
+        "Ersetze 'Ich muss' durch 'Ich entscheide mich für'.",
+        "Kognitive Umstrukturierung verwandelt diffuse Ängste in lösbare Aufgaben."
+      ]
+    },
+    {
+      part: "TEIL 3: STOISCHE PHILOSOPHIE & EMOTIONSREGULATION",
+      title: "Die Dichotomie der Kontrolle: Loslassen, was du nicht ändern kannst",
+      subtitle: "Epiktets zeitlose Formel für echte innere Gelassenheit im digitalen Zeitalter.",
+      takeaways: [
+        "Konzentriere dich nur auf das, was in deiner direkten Macht liegt.",
+        "Lass die Meinungen anderer und ungewisse Zukunftsszenarien los.",
+        "Innere Freiheit beginnt dort, wo der Kontrollzwang aufhört."
+      ]
+    },
+    {
+      part: "TEIL 3: STOISCHE PHILOSOPHIE & EMOTIONSREGULATION",
+      title: "Die emotionale Batterie wieder aufladen",
+      subtitle: "Physische Müdigkeit von mentaler und sensorischer Reizüberflutung unterscheiden.",
+      takeaways: [
+        "Reizüberflutung verlangt nach echter Stille, nicht nach Bildschirmen.",
+        "Nein zu sagen ist gelebte Selbstfürsorge.",
+        "Erholung ist ein biologisches Grundbedürfnis."
+      ]
+    },
+    {
+      part: "TEIL 4: DIE KUNST DES SELBSTMITGEFÜHLS",
+      title: "Die Kunst, Frieden mit sich selbst zu schließen",
+      subtitle: "Den inneren Kritiker beruhigen und bedingungslose Selbstakzeptanz lernen.",
+      takeaways: [
+        "Selbstmitgefühl stärkt mehr als harte Selbstkritik.",
+        "Sprich mit dir wie mit einem Menschen, der dir am Herzen liegt.",
+        "Fortschritt und Sanftmut sind wertvoller als Perfektionismus."
+      ]
+    }
+  ],
+  ja: [
+    {
+      part: "第1部：感情の科学と反すう思考のメカニズム",
+      title: "なぜ私たちの脳は常に最悪のシナリオを想像してしまうのか？",
+      subtitle: "上司からのメールをサーベルタイガーと誤認する原始の扁桃体を知る。",
+      takeaways: [
+        "扁桃体は生存のために危険を察知する器官であり、幸福のために作られたわけではない。",
+        "自動的なネガティブ思考は警報アラームに過ぎず、確定した事実ではない。",
+        "「脳がパニックを起こしている」と自覚できた時点で、冷静さは50%戻っている。"
+      ]
+    },
+    {
+      part: "第1部：感情の科学と反すう思考のメカニズム",
+      title: "過活動なデフォルト・モード・ネットワーク（DMN）の罠",
+      subtitle: "休もうとした瞬間、なぜ頭の中で後悔と不安の連鎖が始まるのか？",
+      takeaways: [
+        "何もしていない時、脳は過去の後悔と未来の不安をデフォルトで再生する。",
+        "五感へのグラウンディングが思考の暴走ループを断ち切る。",
+        "小さな行動こそが、思考の麻痺を解く最高の解毒剤である。"
+      ]
+    },
+    {
+      part: "第2部：認知行動療法（CBT）による思考の再構築",
+      title: "心を苦しめる「5つの認知の歪み」を見破る",
+      subtitle: "破局的思考、読心術の罠、感情的理由づけ、白黒思考、そして「〜すべき」思考の正体。",
+      takeaways: [
+        "感情は真実のように感じるが、現実の事実そのものではない。",
+        "「〜しなければならない」を「〜することを選ぶ」に言い換える。",
+        "認知の再評価によって、漠然とした恐怖は解決可能な課題へと変わる。"
+      ]
+    },
+    {
+      part: "第3部：ストア派哲学と感情のコントロール",
+      title: "コントロールの二分法：変えられないものを手放す技術",
+      subtitle: "エピクテトスが説いた、現代人のための絶対的メンタル平静の公式。",
+      takeaways: [
+        "自分の言動と反応だけに全エネルギーを注ぎ込む。",
+        "他者の評価や不確実な未来など、変えられないものは手放す。",
+        "すべてを支配したいという執着を手放した時、本当の自由が訪れる。"
+      ]
+    },
+    {
+      part: "第3部：ストア派哲学と感情のコントロール",
+      title: "内なる感情バッテリーを回復させる方法",
+      subtitle: "肉体的な疲れと、情報過多による精神的・感覚的枯渇を見極める。",
+      takeaways: [
+        "感覚の過負荷には、SNSを見るのではなく完全な静けさが必要。",
+        "消耗する誘いを断ることは、自分を守るための当然の権利である。",
+        "休息は自分を罰した後のご褒美ではなく、生きるための基本条件である。"
+      ]
+    },
+    {
+      part: "第4部：セルフ・コンパッション（自己慈悲）の力",
+      title: "自分自身の一番の味方になる技術",
+      subtitle: "心の中の残酷な批評家を静め、揺るぎない優しさを育てる。",
+      takeaways: [
+        "厳しい自己批判よりも、温かい自己受容の方が長期的な回復力を高める。",
+        "大切な親友にかける言葉と同じ温かさで、自分自身に話しかける。",
+        "完璧さは幻想であり、不完全なまま進む自分こそが愛おしい。"
+      ]
+    }
+  ]
+};
+
+export function getLocalizedEbookChapters(langCode: string): EbookChapter[] {
+  const code = (langCode || "").toLowerCase();
+  const localized = LOCALIZED_CHAPTER_TRANSLATIONS[code] || LOCALIZED_CHAPTER_TRANSLATIONS.en;
+
+  if (code === "id" || !localized) {
+    return EBOOK_CHAPTERS;
+  }
+
+  return EBOOK_CHAPTERS.map((ch, idx) => {
+    const override = localized[idx];
+    if (!override) return ch;
+    return {
+      ...ch,
+      part: override.part || ch.part,
+      title: override.title || ch.title,
+      subtitle: override.subtitle || ch.subtitle,
+      keyTakeaways: override.takeaways || ch.keyTakeaways,
+    };
+  });
+}
+
+export function getLocalizedEbookPrompts(langCode: string): EbookDailyPrompt[] {
+  const code = (langCode || "").toLowerCase();
+  if (code === "id") return EBOOK_DAILY_PROMPTS;
+
+  // For non-Indonesian languages, return localized English prompts as global lingua franca
+  const englishPromptThemes: Record<number, { theme: string; prompt: string; juInsight: string; mantra: string }> = {
+    1: {
+      theme: "Unpacking Hidden Burdens",
+      prompt: "If my body could speak honestly tonight without pretending to be strong, which part feels heaviest and what does it need?",
+      juInsight: "Emotional fatigue often disguises itself as neck tension, locked shoulders, or clenching your jaw unconsciously.",
+      mantra: "I am safe to set this heavy burden down tonight. Tomorrow has its own time."
+    },
+    2: {
+      theme: "Naming the Inner Critic",
+      prompt: "What is the harshest sentence my inner critic whispered today, and whose voice did I first learn that tone from?",
+      juInsight: "Often our inner critic is not our own voice, but echoes of demanding parents, teachers, or bosses from our past.",
+      mantra: "I am not the critical voice in my head. I am the conscious observer hearing it."
+    },
+    3: {
+      theme: "The Dichotomy of Control Filter",
+      prompt: "Write down 3 things making you anxious today. Divide them into two columns: 'Within My Power' vs 'Beyond My Control'.",
+      juInsight: "Worrying about things outside your power is like holding hot coals hoping someone else gets burned.",
+      mantra: "I release what I cannot change, and devote my focus to my action right now."
+    },
+    4: {
+      theme: "Resting Without Guilt",
+      prompt: "Why do I feel I must always be productive to feel worthy? What happens if today I simply breathe?",
+      juInsight: "Your worth as a human is never determined by the number of tasks you crossed off a checklist today.",
+      mantra: "Rest is my biological right, not a prize I must earn by torturing myself."
+    },
+    5: {
+      theme: "Untangling the Fear of Rejection",
+      prompt: "Have I changed parts of my personality just to be liked by others? What silent emotional tax did I pay for that?",
+      juInsight: "Being liked by everyone is impossible. It is better to be rejected for who you are than praised for who you are not.",
+      mantra: "I do not need everyone's approval to be complete."
+    },
+    6: {
+      theme: "Social Energy Audit",
+      prompt: "Which interactions this week drained my battery to zero, and which conversations left my spirit feeling nourished?",
+      juInsight: "Boundaries are not walls to shut people out, but gates to regulate who earns access to your peace.",
+      mantra: "Saying 'no' to draining things is saying 'yes' to my mental health."
+    },
+    7: {
+      theme: "Week 1 Reflection: Small Victories",
+      prompt: "What small challenge did I survive this week even when it felt overwhelming in the moment?",
+      juInsight: "Courage doesn't always roar. Sometimes courage is the quiet voice at the end of the day whispering: 'I will try again tomorrow.'",
+      mantra: "I am more resilient than I realize. I have proven this countless times."
+    },
+    8: {
+      theme: "De-catastrophizing the Spiral",
+      prompt: "What worst-case scenario am I replaying in my mind? What is the actual, objective percentage chance it happens?",
+      juInsight: "The human amygdala is calibrated to survive predators, not to seek happiness. It magnifies threats tenfold.",
+      mantra: "My thoughts are mere hypotheses, not prophetic visions of the future."
+    },
+    9: {
+      theme: "Body Memory of Emotion",
+      prompt: "Close your eyes for a moment. Unclench your jaw and drop your shoulders. What tension is your body holding onto?",
+      juInsight: "Emotions we refuse to express in words shout through physical symptoms: stomach aches, stiff shoulders, or insomnia.",
+      mantra: "I give my body permission to soften. The danger has passed."
+    },
+    10: {
+      theme: "The Comparison Trap",
+      prompt: "Whose social media life made me feel inadequate or behind today? What curated illusion am I believing?",
+      juInsight: "Never compare someone else's public highlight reel with your messy behind-the-scenes reality.",
+      mantra: "My timeline is mine alone. I move at my own graceful pace."
+    },
+    11: {
+      theme: "Unspoken Expectations",
+      prompt: "Am I resentful towards someone for not treating me how I hoped, even though I never communicated my need honestly?",
+      juInsight: "Other people do not possess telepathy. Unspoken expectations are a direct recipe for disappointment.",
+      mantra: "I have the right to express my needs with calm clarity."
+    },
+    12: {
+      theme: "Releasing the Need to Control Tomorrow",
+      prompt: "If I knew with certainty that 5 years from now everything will work out, what would I do differently today?",
+      juInsight: "Uncertainty is not the enemy; it is the fertile void where new possibilities take root.",
+      mantra: "I trust my future self to handle challenges when their time comes."
+    },
+    13: {
+      theme: "Forgiving Past Versions of Myself",
+      prompt: "What past decision do I still regret? Can I view that former self as someone who simply tried to survive with limited tools?",
+      juInsight: "You made the best decision you could make with the mental, emotional, and psychological resources you had at that time.",
+      mantra: "I forgive my past self. They brought me safely to this moment."
+    },
+    14: {
+      theme: "Week 2 Reflection: Dropping False Burdens",
+      prompt: "What emotional baggage am I carrying around that was never mine to fix or carry in the first place?",
+      juInsight: "You are responsible for your own inner peace, but you are not the savior responsible for managing the whole world's emotions.",
+      mantra: "I lay down the burdens that do not belong to me."
+    },
+    15: {
+      theme: "Shame vs. Guilt",
+      prompt: "Do I feel 'I made a mistake' (guilt) or 'I am inherently broken' (shame)? How does this difference affect how I treat myself?",
+      juInsight: "Guilt says 'I made an error'. Shame says 'I am a failure'. Never let a single mistake define your sacred worth.",
+      mantra: "I am a human who can stumble, yet my existence remains unconditionally worthy."
+    },
+    16: {
+      theme: "The Grace of Saying 'No'",
+      prompt: "What invitation or request do I genuinely wish to decline this week? What is the worst that happens if I say no kindly?",
+      juInsight: "Every time you force a 'yes' to please someone else, you are whispering 'no' to your own tranquility.",
+      mantra: "Healthy boundaries are an act of mutual respect."
+    },
+    17: {
+      theme: "Taming Toxic Perfectionism",
+      prompt: "What task am I procrastinating out of fear it won't be flawless? What if 'good enough and finished' is my target today?",
+      juInsight: "Done is better than perfect. Perfectionism is merely fear wearing the polished mask of ambition.",
+      mantra: "Imperfect progress holds infinite value over stagnant perfection."
+    },
+    18: {
+      theme: "Finding Your Anchor of Peace",
+      prompt: "What simple sensory anchor (a cup of tea, cool breeze, gentle melody) reliably slows down your heartbeat?",
+      juInsight: "The nervous system requires small islands of stillness amidst the rush of daily life. Schedule your anchor today.",
+      mantra: "Serenity is a sanctuary that always lives inside my chest."
+    },
+    19: {
+      theme: "Rewriting 'I Must' to 'I Choose'",
+      prompt: "What is my heavy list of 'I musts' today? Rephrase them to 'I choose to...' and observe how your power returns.",
+      juInsight: "The word 'must' imposes external tyranny. The word 'choose' restores your rightful agency.",
+      mantra: "I possess the sovereign freedom to decide how I respond to my world."
+    },
+    20: {
+      theme: "Celebrating Vulnerability",
+      prompt: "When did I last allow myself to weep or show my fragile side to someone? What did I feel afterward?",
+      juInsight: "Vulnerability is not weakness; it is the most accurate measurement of human emotional bravery.",
+      mantra: "Being tender and open is an essential part of being alive."
+    },
+    21: {
+      theme: "Week 3 Reflection: Transformation Map",
+      prompt: "What shift in my mindset has become noticeable over the past 21 days when storms of overthinking arrive?",
+      juInsight: "Anxiety might still visit, but the sacred pause between trigger and reaction is widening with quiet grace.",
+      mantra: "Every conscious breath is a monumental step toward inner freedom."
+    },
+    22: {
+      theme: "Greeting the Inner Child",
+      prompt: "If the 8-year-old child within you stood before you right now, what warm words do they long to hear?",
+      juInsight: "Often the most anxious part of us is simply a frightened child who once felt unsafe or unheard.",
+      mantra: "I am here with you now. You are completely safe with me."
+    },
+    23: {
+      theme: "Reciprocal Relationships",
+      prompt: "Who are the friends with whom a conversation leaves your emotional battery recharged? Have I nurtured them lately?",
+      juInsight: "Healthy relationships are cozy shelters, not demanding examination halls.",
+      mantra: "I nourish the genuine connections that gently hold my heart."
+    },
+    24: {
+      theme: "De-identifying from Thoughts",
+      prompt: "Reframe 'I am an anxious mess' into 'I notice a thought claiming that I am anxious'. What shifts inside you?",
+      juInsight: "Thoughts are transient weather patterns drifting across the vast, undisturbed blue sky of your awareness.",
+      mantra: "My thoughts are the passing weather; I am the boundless sky."
+    },
+    25: {
+      theme: "Granular Gratitude",
+      prompt: "Name 3 mundane miracles from today (the warmth of hot coffee, a stranger's smile, the evening breeze).",
+      juInsight: "Profound gratitude is not about grand milestones; it is the art of noticing ordinary beauty.",
+      mantra: "Amidst life's chaos, simple goodness is always waiting to be noticed."
+    },
+    26: {
+      theme: "Comfort with Discomfort",
+      prompt: "What uncomfortable emotion am I trying to avoid today? Can I sit with it for 3 minutes without escaping to my screen?",
+      juInsight: "Emotional pain only amplifies when we resist it. When welcomed with curiosity, its grip evaporates.",
+      mantra: "I have the quiet strength to sit through discomfort with gentle breath."
+    },
+    27: {
+      theme: "Redefining Success on Your Terms",
+      prompt: "If no one on social media could ever evaluate or validate your life, what does a peaceful, successful life look like to you?",
+      juInsight: "True success is when what you think, feel, and do exist in seamless harmony.",
+      mantra: "I measure my success by the tranquility of my soul."
+    },
+    28: {
+      theme: "Assertiveness Wrapped in Kindness",
+      prompt: "How can I communicate my disagreement or boundaries firmly without becoming defensive or aggressive?",
+      juInsight: "Honesty without empathy is cruelty. Empathy without honesty is flattery. Assertiveness is their golden center.",
+      mantra: "I speak my truth with steady conviction and a soft voice."
+    },
+    29: {
+      theme: "Nightly Restoration Ritual",
+      prompt: "What 5-minute wind-down ritual before sleep will I fiercely protect to guard my sanity and rest?",
+      juInsight: "How you close your evening determines how your subconscious mind processes information throughout the night.",
+      mantra: "Tonight, I leave the clamor of the world outside my bedroom door."
+    },
+    30: {
+      theme: "A Vow of Lifelong Kindness",
+      prompt: "A brief letter to the self who completed this journey: What promise will you seal with Ju and Nuju for the days ahead?",
+      juInsight: "The journey of self-discovery never ends. But now, you hold a compass, a journal, and an unwavering friend for every step.",
+      mantra: "I promise to always remain the most faithful and gentle friend to myself."
+    }
+  };
+
+  return EBOOK_DAILY_PROMPTS.map((dp) => {
+    const override = englishPromptThemes[dp.day];
+    if (!override) return dp;
+    return {
+      ...dp,
+      theme: override.theme,
+      prompt: override.prompt,
+      juInsight: override.juInsight,
+      groundingMantra: override.mantra,
+    };
+  });
+}

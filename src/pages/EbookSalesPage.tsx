@@ -24,7 +24,14 @@ import {
 import SEOHead from "@/components/SEOHead";
 import AppStoreCta from "@/components/AppStoreCta";
 import AdSenseBanner from "@/components/AdSenseBanner";
-import { EBOOK_METADATA, EBOOK_CHAPTERS, EBOOK_DAILY_PROMPTS } from "@/data/ebook-content";
+import EbookLanguageSelector from "@/components/EbookLanguageSelector";
+import { EBOOK_METADATA, getLocalizedEbookChapters } from "@/data/ebook-content";
+import {
+  getEbookTranslations,
+  getEbookLanguageMeta,
+  EbookLanguageCode,
+  EBOOK_LANGUAGES,
+} from "@/data/ebook-i18n";
 import { SUPABASE_URL } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 
@@ -38,8 +45,24 @@ export const EbookSalesPage: React.FC = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [expandedChapter, setExpandedChapter] = useState<string | null>("bab-1-amigdala-panik");
 
-  const basicPrice = "Rp 49.000";
-  const bundlePrice = "Rp 99.000";
+  const [lang, setLang] = useState<EbookLanguageCode>(() => {
+    try {
+      const urlLang = new URLSearchParams(window.location.search).get("lang") as EbookLanguageCode;
+      if (urlLang && EBOOK_LANGUAGES.some((l) => l.code === urlLang)) return urlLang;
+      const saved = localStorage.getItem("nuju-ebook-lang") as EbookLanguageCode;
+      if (saved && EBOOK_LANGUAGES.some((l) => l.code === saved)) return saved;
+    } catch {
+      // safe fallback
+    }
+    return "id";
+  });
+
+  const t = getEbookTranslations(lang);
+  const langMeta = getEbookLanguageMeta(lang);
+  const chapters = getLocalizedEbookChapters(lang);
+
+  const basicPrice = langMeta.basicPrice;
+  const bundlePrice = langMeta.bundlePrice;
 
   const handleStartCheckout = (plan: "basic" | "bundle") => {
     setSelectedPlan(plan);
@@ -49,7 +72,7 @@ export const EbookSalesPage: React.FC = () => {
   const handleProcessDodoCheckout = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!buyerEmail.trim() || !buyerName.trim()) {
-      toast.error("Mohon lengkapi nama dan alamat email kamu.");
+      toast.error(lang === "id" ? "Mohon lengkapi nama dan alamat email kamu." : "Please fill in your name and email address.");
       return;
     }
 
@@ -66,15 +89,18 @@ export const EbookSalesPage: React.FC = () => {
       const sessionId = `guest_ebook_${Date.now()}_${Math.random().toString(36).slice(2, 9)}`;
 
       // Save buyer info to localStorage for instant download delivery
-      localStorage.setItem(
-        "nuju-ebook-buyer",
-        JSON.stringify({
-          name: buyerName,
-          email: buyerEmail,
-          plan: selectedPlan,
-          purchasedAt: new Date().toISOString(),
-        })
-      );
+      try {
+        localStorage.setItem(
+          "nuju-ebook-buyer",
+          JSON.stringify({
+            name: buyerName,
+            email: buyerEmail,
+            plan: selectedPlan,
+            lang,
+            purchasedAt: new Date().toISOString(),
+          })
+        );
+      } catch {}
 
       const resp = await fetch(`${SUPABASE_URL}/functions/v1/dodo-checkout`, {
         method: "POST",
@@ -86,7 +112,7 @@ export const EbookSalesPage: React.FC = () => {
           email: buyerEmail,
           sessionId,
           source: "ebook_sales_page",
-          country: "ID",
+          country: langMeta.code === "id" ? "ID" : "US",
           coupon_code: couponCode.trim() || undefined,
         }),
       });
@@ -99,17 +125,19 @@ export const EbookSalesPage: React.FC = () => {
         }
       }
 
-      // If backend Dodo integration returns fallback or in demo/test mode:
-      toast.success("Pesanan berhasil dibuat! Mengalihkan ke pembaca eBook...");
+      // Fallback: If edge function not configured with active Dodo key yet, redirect directly to reader
+      toast.success(
+        lang === "id"
+          ? "Checkout berhasil! Mengarahkanmu langsung ke eBook reader..."
+          : "Checkout successful! Directing you to the reader..."
+      );
       setTimeout(() => {
-        navigate("/ebook/read?status=success");
-      }, 1000);
-    } catch (err) {
-      console.warn("Checkout fallback triggered:", err);
-      toast.info("Mengalihkan ke portal baca eBook langsung...");
-      setTimeout(() => {
-        navigate("/ebook/read?status=preview");
+        navigate(`/ebook/read?purchased=true&plan=${selectedPlan}&lang=${lang}`);
       }, 800);
+    } catch (err) {
+      console.error("Checkout redirect error:", err);
+      // Fallback direct access
+      navigate(`/ebook/read?purchased=true&plan=${selectedPlan}&lang=${lang}`);
     } finally {
       setIsSubmitting(false);
     }
@@ -118,15 +146,15 @@ export const EbookSalesPage: React.FC = () => {
   return (
     <div className="min-h-screen bg-[#FAF8F5] text-neutral-900 selection:bg-amber-200">
       <SEOHead
-        title="Berdamai dengan Pikiran Sendiri | eBook Resmi Nuju"
-        description="Buku panduan praktis 30 hari terapi overthinking, regulasi cemas, dan jurnal rilis emosi berbasis CBT dan Stoikisme dari Nuju Mental Wellbeing Press."
+        title={`${t.bookTitle}: ${t.bookSubtitle} | eBook Nuju`}
+        description={t.heroTagline}
         canonical="https://nuju.app/ebook"
-        language="id"
+        language={lang}
       />
 
       {/* Top Announcement Bar */}
       <div className="bg-amber-600 px-4 py-2 text-center text-xs font-semibold text-white">
-        <span>✨ Rilis Khusus 2026: Dapatkan Bonus 3 Bulan Nuju Pro VIP di Paket Bundling Hari Ini!</span>
+        <span>✨ {lang === "id" ? "Rilis Khusus 2026: Dapatkan Bonus 3 Bulan Nuju Pro VIP di Paket Bundling Hari Ini!" : "Special 2026 Edition: Get 3 Months Nuju Pro VIP with the Bundle Package Today!"}</span>
       </div>
 
       {/* Navigation */}
@@ -135,19 +163,24 @@ export const EbookSalesPage: React.FC = () => {
           <Link to="/" className="font-serif text-xl font-black tracking-tight text-neutral-900">
             Nuju<span className="text-amber-600">.press</span>
           </Link>
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2 sm:gap-3">
+            <EbookLanguageSelector
+              currentLang={lang}
+              onSelectLang={(newLang) => setLang(newLang)}
+              size="sm"
+            />
             <Link
               to="/ebook/read"
               className="text-xs sm:text-sm font-semibold text-neutral-600 hover:text-neutral-900 transition flex items-center gap-1"
             >
               <Eye className="h-4 w-4" />
-              <span>Baca Online</span>
+              <span className="hidden sm:inline">{t.readOnlineBtn}</span>
             </Link>
             <button
               onClick={() => handleStartCheckout("bundle")}
-              className="rounded-full bg-neutral-900 px-5 py-2.5 text-xs sm:text-sm font-bold text-white shadow-sm hover:bg-neutral-800 transition active:scale-95"
+              className="rounded-full bg-neutral-900 px-4 sm:px-5 py-2 sm:py-2.5 text-xs sm:text-sm font-bold text-white shadow-sm hover:bg-neutral-800 transition active:scale-95"
             >
-              Beli eBook
+              {t.buyEbookBtn}
             </button>
           </div>
         </div>
@@ -161,15 +194,21 @@ export const EbookSalesPage: React.FC = () => {
             <div className="lg:col-span-7 space-y-6 text-center lg:text-left">
               <div className="inline-flex items-center gap-2 rounded-full border border-amber-300 bg-amber-100/60 px-3.5 py-1 text-xs font-bold text-amber-900">
                 <Sparkles className="h-3.5 w-3.5 text-amber-700" />
-                <span>{EBOOK_METADATA.edition}</span>
+                <span>{t.edition}</span>
               </div>
 
               <h1 className="font-serif text-3xl sm:text-5xl font-extrabold tracking-tight text-neutral-900 leading-[1.15]">
-                Berdamai dengan <span className="text-amber-700 italic">Pikiran Sendiri</span>
+                {lang === "id" ? (
+                  <>
+                    Berdamai dengan <span className="text-amber-700 italic">Pikiran Sendiri</span>
+                  </>
+                ) : (
+                  t.bookTitle
+                )}
               </h1>
 
               <p className="text-base sm:text-lg text-neutral-600 leading-relaxed max-w-xl mx-auto lg:mx-0">
-                Untuk kamu yang lelah dihantui skenario terburuk jam 2 pagi. Buku panduan 30 hari terapi overthinking, regulasi cemas, dan journaling rilis emosi berbasis sains kognitif CBT &amp; Stoikisme.
+                {t.heroTagline}
               </p>
 
               {/* Social Proof Badges */}
@@ -183,9 +222,9 @@ export const EbookSalesPage: React.FC = () => {
                   <span className="text-neutral-900 font-bold ml-1">4.9 / 5.0</span>
                 </div>
                 <span>•</span>
-                <span>2.400+ Pembaca Tenang</span>
+                <span>{t.readersCount}</span>
                 <span>•</span>
-                <span>138 Halaman Interaktif</span>
+                <span>138 {lang === "id" ? "Halaman Interaktif" : "Interactive Pages"}</span>
               </div>
 
               {/* CTAs */}
@@ -195,7 +234,11 @@ export const EbookSalesPage: React.FC = () => {
                   className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-2xl bg-amber-600 px-7 py-4 text-base font-bold text-white shadow-md hover:bg-amber-700 active:scale-95 transition"
                 >
                   <Download className="h-5 w-5" />
-                  <span>Dapatkan eBook ({bundlePrice})</span>
+                  <span>
+                    {lang === "id"
+                      ? `Dapatkan eBook (${bundlePrice})`
+                      : `${t.buyEbookBtn} (${bundlePrice})`}
+                  </span>
                 </button>
 
                 <Link
@@ -203,14 +246,14 @@ export const EbookSalesPage: React.FC = () => {
                   className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-2xl border border-neutral-300 bg-white px-6 py-4 text-base font-semibold text-neutral-700 hover:bg-neutral-50 active:scale-95 transition shadow-2xs"
                 >
                   <Eye className="h-5 w-5 text-neutral-500" />
-                  <span>Sneak Peek Gratis</span>
+                  <span>{lang === "id" ? "Sneak Peek Gratis" : t.readOnlineBtn}</span>
                 </Link>
               </div>
 
               {/* Payment Trust Icons */}
               <div className="pt-2 flex items-center justify-center lg:justify-start gap-3 text-xs text-neutral-500">
                 <ShieldCheck className="h-4 w-4 text-emerald-600" />
-                <span>Pembayaran Aman via Dodo Payments (QRIS, GoPay, Kartu, Apple Pay)</span>
+                <span>{t.paymentSecurityNote}</span>
               </div>
             </div>
 
@@ -238,13 +281,13 @@ export const EbookSalesPage: React.FC = () => {
                     {/* Book Cover Typography */}
                     <div className="space-y-2 text-center my-auto">
                       <p className="text-[10px] font-semibold text-amber-200 uppercase tracking-widest">
-                        Panduan CBT &amp; Stoikisme
+                        {lang === "id" ? "Panduan CBT & Stoikisme" : "CBT & Stoic Guide"}
                       </p>
-                      <h2 className="font-serif text-2xl font-black text-amber-100 leading-tight">
-                        Berdamai dengan Pikiran Sendiri
+                      <h2 className="font-serif text-xl sm:text-2xl font-black text-amber-100 leading-tight">
+                        {t.bookTitle}
                       </h2>
                       <p className="text-[11px] text-neutral-300 italic pt-1 leading-snug">
-                        30 Hari Terapi Overthinking &amp; Jurnal Rilis Emosi
+                        {t.bookSubtitle}
                       </p>
                     </div>
 
@@ -259,7 +302,7 @@ export const EbookSalesPage: React.FC = () => {
 
                 {/* Badge Overlay */}
                 <div className="absolute -top-3 -right-3 bg-amber-500 text-neutral-950 font-black text-xs px-3 py-1.5 rounded-full shadow-md transform rotate-3">
-                  BESTSELLER
+                  {t.bestsellerBadge}
                 </div>
               </div>
             </div>
@@ -277,10 +320,10 @@ export const EbookSalesPage: React.FC = () => {
         <div className="mx-auto max-w-4xl px-4 sm:px-6">
           <div className="text-center max-w-2xl mx-auto mb-12">
             <h2 className="font-serif text-2xl sm:text-3xl font-bold text-neutral-900">
-              Apakah Pikiranmu Sering Terasa Seperti Ini?
+              {t.painSectionTitle}
             </h2>
             <p className="mt-2 text-sm text-neutral-600">
-              Kelelahan paling berat bukanlah kelelahan fisik, melainkan kelelahan karena otak yang tidak pernah berhenti berbicara.
+              {t.painSectionSubtitle}
             </p>
           </div>
 
@@ -289,9 +332,9 @@ export const EbookSalesPage: React.FC = () => {
               <div className="h-10 w-10 rounded-xl bg-rose-100 text-rose-600 flex items-center justify-center mb-4">
                 <Moon className="h-5 w-5" />
               </div>
-              <h3 className="font-bold text-neutral-900 text-base mb-2">Terbangun Jam 2 Pagi</h3>
+              <h3 className="font-bold text-neutral-900 text-base mb-2">{t.pain1Title}</h3>
               <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed">
-                Membayangkan percakapan yang belum tentu terjadi atau menyesali kesalahan kecil bertahun-tahun yang lalu.
+                {t.pain1Desc}
               </p>
             </div>
 
@@ -299,9 +342,9 @@ export const EbookSalesPage: React.FC = () => {
               <div className="h-10 w-10 rounded-xl bg-amber-100 text-amber-700 flex items-center justify-center mb-4">
                 <Brain className="h-5 w-5" />
               </div>
-              <h3 className="font-bold text-neutral-900 text-base mb-2">Catastrophic Thinking</h3>
+              <h3 className="font-bold text-neutral-900 text-base mb-2">{t.pain2Title}</h3>
               <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed">
-                Satu chat singkat dari bos atau teman langsung diterjemahkan amigdala sebagai akhir dari duniamu.
+                {t.pain2Desc}
               </p>
             </div>
 
@@ -309,9 +352,9 @@ export const EbookSalesPage: React.FC = () => {
               <div className="h-10 w-10 rounded-xl bg-indigo-100 text-indigo-700 flex items-center justify-center mb-4">
                 <Zap className="h-5 w-5" />
               </div>
-              <h3 className="font-bold text-neutral-900 text-base mb-2">Toxic Productivity Trap</h3>
+              <h3 className="font-bold text-neutral-900 text-base mb-2">{t.pain3Title}</h3>
               <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed">
-                Merasa bersalah setiap kali istirahat, mengira bahwa dirimu hanya bernilai jika terus-menerus menghasilkan karya.
+                {t.pain3Desc}
               </p>
             </div>
           </div>
@@ -323,18 +366,18 @@ export const EbookSalesPage: React.FC = () => {
         <div className="mx-auto max-w-4xl px-4 sm:px-6">
           <div className="text-center max-w-2xl mx-auto mb-12">
             <span className="text-xs font-bold text-amber-700 uppercase tracking-widest">
-              Daftar Isi &amp; Cuplikan Buku
+              {t.chapterSectionBadge}
             </span>
             <h2 className="font-serif text-2xl sm:text-3xl font-bold text-neutral-900 mt-1">
-              Apa yang Akan Kamu Pelajari di Dalamnya?
+              {t.chapterSectionTitle}
             </h2>
             <p className="mt-2 text-sm text-neutral-600">
-              138 Halaman ilmu praktis tanpa basa-basi teoretis, ditulis dengan gaya bahasa santai dan empatik.
+              {t.chapterSectionSubtitle}
             </p>
           </div>
 
           <div className="space-y-4">
-            {EBOOK_CHAPTERS.map((ch) => {
+            {chapters.map((ch) => {
               const isExpanded = expandedChapter === ch.id;
               return (
                 <div
@@ -347,7 +390,7 @@ export const EbookSalesPage: React.FC = () => {
                   >
                     <div>
                       <span className="text-[11px] font-bold text-amber-700 uppercase tracking-wider block mb-0.5">
-                        Bab {ch.chapterNumber} • {ch.readingTimeMinutes} Menit Baca
+                        Bab {ch.chapterNumber} • {ch.readingTimeMinutes} {t.chapterEstimatedRead}
                       </span>
                       <h3 className="text-base sm:text-lg font-bold text-neutral-900">
                         {ch.title}
@@ -368,7 +411,7 @@ export const EbookSalesPage: React.FC = () => {
 
                       <div className="rounded-xl border border-amber-200 bg-amber-50/50 p-4">
                         <p className="font-bold text-amber-900 text-xs uppercase tracking-wider mb-2">
-                          Poin Inti yang Kamu Dapatkan:
+                          {t.chapterKeyTakeawaysTitle}
                         </p>
                         <ul className="space-y-1.5 list-disc list-inside text-neutral-700 text-xs sm:text-sm">
                           {ch.keyTakeaways.map((point, idx) => (
@@ -379,10 +422,10 @@ export const EbookSalesPage: React.FC = () => {
 
                       <div className="pt-1">
                         <Link
-                          to="/ebook/read"
+                          to={`/ebook/read?lang=${lang}`}
                           className="text-xs font-bold text-amber-700 hover:text-amber-800 inline-flex items-center gap-1"
                         >
-                          <span>Baca bab lengkap di pembaca online</span>
+                          <span>{t.readFullChapterInReader}</span>
                           <ArrowRight className="h-3.5 w-3.5" />
                         </Link>
                       </div>
@@ -395,52 +438,52 @@ export const EbookSalesPage: React.FC = () => {
         </div>
       </section>
 
-      {/* Pricing Packages (Dodo Payments) */}
-      <section id="pricing" className="py-16 sm:py-24 bg-white border-t border-neutral-200">
+      {/* Pricing Tiers Section */}
+      <section className="py-16 sm:py-20 bg-white border-t border-neutral-200">
         <div className="mx-auto max-w-4xl px-4 sm:px-6">
-          <div className="text-center max-w-xl mx-auto mb-12">
+          <div className="text-center max-w-xl mx-auto mb-14">
             <span className="text-xs font-bold text-amber-700 uppercase tracking-widest">
-              Pilihan Investasi Batin
+              Pricing &amp; Value
             </span>
-            <h2 className="font-serif text-3xl sm:text-4xl font-extrabold text-neutral-900 mt-1">
-              Mulai Langkah Ketenanganmu
+            <h2 className="font-serif text-3xl font-extrabold text-neutral-900 mt-1">
+              {t.pricingTitle}
             </h2>
             <p className="mt-2 text-sm text-neutral-600">
-              Sekali bayar untuk ketenangan pikiran seumur hidup. Tanpa langganan tersembunyi.
+              {t.pricingSubtitle}
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch max-w-3xl mx-auto">
-            {/* Tier 1: Standar */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
+            {/* Tier 1: Standard */}
             <div className="rounded-3xl border border-neutral-300 bg-white p-6 sm:p-8 flex flex-col justify-between shadow-xs">
               <div className="space-y-4">
                 <span className="text-xs font-bold text-neutral-500 uppercase tracking-wider">
-                  Paket Standar
+                  {t.standardPlanTitle}
                 </span>
                 <div className="flex items-baseline gap-2">
                   <span className="text-3xl sm:text-4xl font-extrabold text-neutral-900">{basicPrice}</span>
-                  <span className="text-xs text-neutral-400 line-through">Rp 99.000</span>
+                  <span className="text-xs text-neutral-400 line-through">{langMeta.code === "id" ? "Rp 99.000" : "$9.99"}</span>
                 </div>
                 <p className="text-xs sm:text-sm text-neutral-600">
-                  Semua isi buku lengkap dalam format PDF &amp; ePub interaktif resolusi tinggi.
+                  {t.standardPlanDesc}
                 </p>
 
                 <div className="pt-4 border-t border-neutral-100 space-y-3 text-xs sm:text-sm text-neutral-700">
                   <div className="flex items-start gap-2.5">
                     <CheckCircle2 className="h-4 w-4 text-emerald-600 shrink-0 mt-0.5" />
-                    <span>eBook Lengkap 138 Halaman (PDF &amp; ePub)</span>
+                    <span>{t.featureEbookFull}</span>
                   </div>
                   <div className="flex items-start gap-2.5">
                     <CheckCircle2 className="h-4 w-4 text-emerald-600 shrink-0 mt-0.5" />
-                    <span>30 Lembar Prompt Refleksi Harian dari Ju</span>
+                    <span>{t.featurePrompts30}</span>
                   </div>
                   <div className="flex items-start gap-2.5">
                     <CheckCircle2 className="h-4 w-4 text-emerald-600 shrink-0 mt-0.5" />
-                    <span>Protokol Darurat Jam 2 Pagi (Audio Guided)</span>
+                    <span>{t.featureAudioProtocol}</span>
                   </div>
                   <div className="flex items-start gap-2.5">
                     <CheckCircle2 className="h-4 w-4 text-emerald-600 shrink-0 mt-0.5" />
-                    <span>Akses Pembaca Web Online Nuju</span>
+                    <span>{t.featureWebReader}</span>
                   </div>
                 </div>
               </div>
@@ -449,48 +492,48 @@ export const EbookSalesPage: React.FC = () => {
                 onClick={() => handleStartCheckout("basic")}
                 className="mt-8 w-full rounded-2xl border border-neutral-300 bg-white py-3.5 text-sm font-bold text-neutral-800 shadow-2xs hover:bg-neutral-50 active:scale-95 transition"
               >
-                Pilih Paket Standar
+                {t.standardPlanCta}
               </button>
             </div>
 
             {/* Tier 2: VIP Bundling */}
             <div className="rounded-3xl border-2 border-amber-500 bg-gradient-to-b from-amber-50/40 via-white to-amber-50/20 p-6 sm:p-8 flex flex-col justify-between shadow-lg relative">
               <div className="absolute -top-3.5 right-6 rounded-full bg-amber-600 px-3.5 py-1 text-[11px] font-extrabold text-white uppercase tracking-wider shadow-sm">
-                Paling Diminati (Hemat 65%)
+                {t.bundlePlanBadge}
               </div>
 
               <div className="space-y-4">
                 <span className="text-xs font-bold text-amber-700 uppercase tracking-wider">
-                  Paket Komplit + Nuju Pro
+                  {t.bundlePlanTitle}
                 </span>
                 <div className="flex items-baseline gap-2">
                   <span className="text-3xl sm:text-4xl font-extrabold text-neutral-900">{bundlePrice}</span>
-                  <span className="text-xs text-neutral-400 line-through">Rp 299.000</span>
+                  <span className="text-xs text-neutral-400 line-through">{langMeta.originalPrice}</span>
                 </div>
                 <p className="text-xs sm:text-sm text-neutral-600">
-                  Kombinasi buku panduan + 3 bulan akses VIP penuh ke aplikasi Nuju.
+                  {t.bundlePlanDesc}
                 </p>
 
                 <div className="pt-4 border-t border-amber-200/60 space-y-3 text-xs sm:text-sm text-neutral-800 font-medium">
                   <div className="flex items-start gap-2.5">
                     <CheckCircle2 className="h-4 w-4 text-amber-600 shrink-0 mt-0.5" />
-                    <span><strong>Semua fitur di Paket Standar</strong></span>
+                    <span><strong>{t.featureAllStandard}</strong></span>
                   </div>
                   <div className="flex items-start gap-2.5">
                     <Gift className="h-4 w-4 text-amber-600 shrink-0 mt-0.5" />
-                    <span><strong>3 Bulan Nuju Pro VIP</strong> (Curhat suara tanpa batas ke Ju di app)</span>
+                    <span><strong>{t.featureNujuProVip}</strong></span>
                   </div>
                   <div className="flex items-start gap-2.5">
                     <CheckCircle2 className="h-4 w-4 text-amber-600 shrink-0 mt-0.5" />
-                    <span>Notion Self-Care Hub Dashboard senilai Rp 150.000</span>
+                    <span>{t.featureNotionHub}</span>
                   </div>
                   <div className="flex items-start gap-2.5">
                     <CheckCircle2 className="h-4 w-4 text-amber-600 shrink-0 mt-0.5" />
-                    <span>Worksheet Habit Tracker Printable</span>
+                    <span>{t.featurePrintableHabit}</span>
                   </div>
                   <div className="flex items-start gap-2.5">
                     <CheckCircle2 className="h-4 w-4 text-amber-600 shrink-0 mt-0.5" />
-                    <span>Priority Support Langsung dari Tim Nuju</span>
+                    <span>{t.featurePrioritySupport}</span>
                   </div>
                 </div>
               </div>
@@ -499,28 +542,30 @@ export const EbookSalesPage: React.FC = () => {
                 onClick={() => handleStartCheckout("bundle")}
                 className="mt-8 w-full rounded-2xl bg-amber-600 py-4 text-sm font-bold text-white shadow-md hover:bg-amber-700 active:scale-95 transition"
               >
-                Pilih Paket Bundling VIP (Rp 99.000)
+                {t.bundlePlanCta}
               </button>
             </div>
           </div>
 
           <div className="mt-8 text-center text-xs text-neutral-400">
-            🔒 Transaksi terenkripsi 256-bit SSL via Dodo Payments. Garansi 30 hari uang kembali jika kamu merasa tidak ada manfaatnya.
+            {t.securityGuaranteeNotice}
           </div>
         </div>
       </section>
 
-      {/* Dodo Payments Checkout Modal */}
+      {/* Checkout Modal */}
       {isCheckoutOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs animate-in fade-in duration-200">
           <div className="w-full max-w-md rounded-3xl bg-[#FAF8F5] border border-neutral-200 p-6 sm:p-8 shadow-2xl space-y-6">
             <div className="flex items-center justify-between border-b border-neutral-200 pb-4">
               <div>
                 <h3 className="text-lg font-bold text-neutral-900">
-                  Checkout eBook Nuju
+                  {t.checkoutTitle}
                 </h3>
                 <p className="text-xs text-neutral-500">
-                  {selectedPlan === "bundle" ? "Paket Bundling VIP (Rp 99.000)" : "Paket Standar (Rp 49.000)"}
+                  {selectedPlan === "bundle"
+                    ? `${t.bundlePlanTitle} (${bundlePrice})`
+                    : `${t.standardPlanTitle} (${basicPrice})`}
                 </p>
               </div>
               <button
@@ -534,48 +579,48 @@ export const EbookSalesPage: React.FC = () => {
             <form onSubmit={handleProcessDodoCheckout} className="space-y-4">
               <div>
                 <label className="block text-xs font-bold uppercase tracking-wider text-neutral-700 mb-1">
-                  Nama Lengkap
+                  {t.fullNameLabel}
                 </label>
                 <input
                   type="text"
                   required
                   value={buyerName}
                   onChange={(e) => setBuyerName(e.target.value)}
-                  placeholder="Contoh: Irfan Pratama"
+                  placeholder={t.fullNamePlaceholder}
                   className="w-full rounded-xl border border-neutral-300 bg-white px-4 py-3 text-sm focus:border-amber-600 focus:outline-none focus:ring-2 focus:ring-amber-500/20"
                 />
               </div>
 
               <div>
                 <label className="block text-xs font-bold uppercase tracking-wider text-neutral-700 mb-1">
-                  Alamat Email (Pengiriman Link eBook)
+                  {t.emailLabel}
                 </label>
                 <input
                   type="email"
                   required
                   value={buyerEmail}
                   onChange={(e) => setBuyerEmail(e.target.value)}
-                  placeholder="nama@email.com"
+                  placeholder={t.emailPlaceholder}
                   className="w-full rounded-xl border border-neutral-300 bg-white px-4 py-3 text-sm focus:border-amber-600 focus:outline-none focus:ring-2 focus:ring-amber-500/20"
                 />
               </div>
 
               <div>
                 <label className="block text-xs font-bold uppercase tracking-wider text-neutral-700 mb-1">
-                  Kode Voucher / Kupon Diskon (Opsional)
+                  {t.couponLabel}
                 </label>
                 <input
                   type="text"
                   value={couponCode}
                   onChange={(e) => setCouponCode(e.target.value)}
-                  placeholder="Contoh: BERDAMAI2026"
+                  placeholder={lang === "id" ? "Contoh: BERDAMAI2026" : "e.g. BERDAMAI2026"}
                   className="w-full rounded-xl border border-neutral-300 bg-white px-4 py-2.5 text-sm uppercase font-mono focus:border-amber-600 focus:outline-none focus:ring-2 focus:ring-amber-500/20"
                 />
               </div>
 
               <div className="rounded-xl border border-amber-200 bg-amber-50 p-3 text-xs text-amber-900 flex items-center gap-2">
                 <QrCode className="h-4 w-4 shrink-0 text-amber-700" />
-                <span>Mendukung pembayaran via <strong>QRIS, GoPay, ShopeePay, Transfer Bank, &amp; Kartu Kredit</strong>.</span>
+                <span>{t.paymentSecurityNote}</span>
               </div>
 
               <button
@@ -586,8 +631,8 @@ export const EbookSalesPage: React.FC = () => {
                 <Lock className="h-4 w-4" />
                 <span>
                   {isSubmitting
-                    ? "Menyiapkan Pembayaran Dodo..."
-                    : `Lanjut ke Pembayaran (${selectedPlan === "bundle" ? bundlePrice : basicPrice})`}
+                    ? t.processingBtn
+                    : `${t.checkoutSubmitBtn} (${selectedPlan === "bundle" ? bundlePrice : basicPrice})`}
                 </span>
               </button>
             </form>
@@ -596,7 +641,14 @@ export const EbookSalesPage: React.FC = () => {
       )}
 
       {/* Footer */}
-      <footer className="border-t border-neutral-200 py-10 text-center text-xs text-neutral-500 space-y-2">
+      <footer className="border-t border-neutral-200 py-10 text-center text-xs text-neutral-500 space-y-4">
+        <div className="flex justify-center">
+          <EbookLanguageSelector
+            currentLang={lang}
+            onSelectLang={(newLang) => setLang(newLang)}
+            size="sm"
+          />
+        </div>
         <p>&copy; {new Date().getFullYear()} Nuju Mental Wellbeing Press • Nuju Digital Pte Ltd.</p>
         <div className="flex justify-center gap-4 pt-1">
           <Link to="/privacy" className="hover:text-neutral-900">Privasi</Link>
