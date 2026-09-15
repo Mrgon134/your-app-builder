@@ -105,6 +105,42 @@
     <changefreq>weekly</changefreq>
   </url>
   <url>
+    <loc>https://nuju.app/quiz/high-functioning-anxiety-us</loc>
+    <lastmod>2026-09-15</lastmod>
+    <priority>0.9</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/quiz/feierabend-burnout-de</loc>
+    <lastmod>2026-09-15</lastmod>
+    <priority>0.9</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/quiz/winter-blues-nordic-no</loc>
+    <lastmod>2026-09-15</lastmod>
+    <priority>0.9</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/quiz/dutch-niksen-burnout-nl</loc>
+    <lastmod>2026-09-15</lastmod>
+    <priority>0.9</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/quiz/honne-tatemae-jp</loc>
+    <lastmod>2026-09-15</lastmod>
+    <priority>0.9</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/quiz/nunchi-hwabyung-kr</loc>
+    <lastmod>2026-09-15</lastmod>
+    <priority>0.9</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
     <loc>https://nuju.app/blog/how-to-start-journaling</loc>
     <lastmod>2026-04-08</lastmod>
     <priority>0.7</priority>

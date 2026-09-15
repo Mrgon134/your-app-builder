@@ -9,13 +9,27 @@ import juMain from "@/assets/ju-main.webp";
 
 const QuizHub: React.FC = () => {
   const quizzes = getAllQuizzes();
+  const [selectedCountry, setSelectedCountry] = useState<string>("ALL");
   const [selectedCategory, setSelectedCategory] = useState<string>("Semua");
+
+  const countries = [
+    { id: "ALL", label: "Semua Negara 🌍" },
+    { id: "ID", label: "🇮🇩 Indonesia" },
+    { id: "US", label: "🇺🇸 United States" },
+    { id: "DE", label: "🇩🇪🇨🇭 Deutschland / Schweiz" },
+    { id: "NO", label: "🇳🇴 Norge" },
+    { id: "NL", label: "🇳🇱 Nederland" },
+    { id: "JP", label: "🇯🇵 日本" },
+    { id: "KR", label: "🇰🇷 대한민국" },
+  ];
 
   const categories = ["Semua", "Vitalitas Mental", "Pola Pikir & Tidur", "Karir & Produktivitas", "Psikologi Hubungan"];
 
-  const filteredQuizzes = selectedCategory === "Semua"
-    ? quizzes
-    : quizzes.filter(q => q.category.toLowerCase().includes(selectedCategory.toLowerCase()) || selectedCategory.toLowerCase().includes(q.category.toLowerCase()));
+  const filteredQuizzes = quizzes.filter((q) => {
+    const matchCountry = selectedCountry === "ALL" || q.targetCountry === selectedCountry || (selectedCountry === "DE" && (q.targetCountry === "DE" || q.targetCountry === "CH"));
+    const matchCat = selectedCategory === "Semua" || q.category.toLowerCase().includes(selectedCategory.toLowerCase()) || selectedCategory.toLowerCase().includes(q.category.toLowerCase());
+    return matchCountry && matchCat;
+  });
 
   return (
     <div className="min-h-screen bg-[#FAF9F6] text-neutral-900 selection:bg-amber-200">
@@ -74,22 +88,55 @@ const QuizHub: React.FC = () => {
           </div>
         </section>
 
+        {/* Country Filter Pills */}
+        <div className="mb-4">
+          <div className="text-xs font-semibold text-neutral-400 mb-2 text-center uppercase tracking-wider">Pilih Wilayah / Bahasa:</div>
+          <div className="flex items-center justify-center gap-2 overflow-x-auto pb-2 no-scrollbar">
+            {countries.map((c) => (
+              <button
+                key={c.id}
+                onClick={() => setSelectedCountry(c.id)}
+                className={`rounded-full px-3.5 py-1.5 text-xs font-semibold transition whitespace-nowrap ${
+                  selectedCountry === c.id
+                    ? "bg-amber-600 text-white shadow-xs"
+                    : "bg-white border border-neutral-200 text-neutral-600 hover:border-neutral-300 hover:bg-neutral-50"
+                }`}
+              >
+                {c.label}
+              </button>
+            ))}
+          </div>
+        </div>
+
         {/* Category Pills */}
         <div className="flex items-center justify-center gap-2 overflow-x-auto pb-4 mb-8 no-scrollbar">
           {categories.map((cat) => (
             <button
               key={cat}
               onClick={() => setSelectedCategory(cat)}
-              className={`rounded-full px-4 py-1.5 text-xs sm:text-sm font-semibold transition whitespace-nowrap ${
+              className={`rounded-full px-3.5 py-1 text-xs font-medium transition whitespace-nowrap ${
                 selectedCategory === cat
-                  ? "bg-neutral-900 text-white shadow-sm"
-                  : "bg-white border border-neutral-200 text-neutral-600 hover:border-neutral-300 hover:bg-neutral-50"
+                  ? "bg-neutral-900 text-white shadow-xs"
+                  : "bg-neutral-100 text-neutral-600 hover:bg-neutral-200"
               }`}
             >
               {cat}
             </button>
           ))}
         </div>
+
+        {/* Empty State */}
+        {filteredQuizzes.length === 0 && (
+          <div className="text-center py-16 bg-white rounded-3xl border border-neutral-200 p-8 my-8">
+            <p className="text-neutral-500 text-sm">Belum ada kuis untuk kombinasi filter ini.</p>
+            <button
+              onClick={() => { setSelectedCountry("ALL"); setSelectedCategory("Semua"); }}
+              className="mt-3 text-xs font-semibold text-amber-700 underline"
+            >
+              Reset Filter
+            </button>
+          </div>
+        )}
 
         {/* Quizzes Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16">
@@ -100,9 +147,14 @@ const QuizHub: React.FC = () => {
             >
               <div>
                 <div className="flex items-center justify-between gap-2 mb-4">
-                  <span className="inline-block rounded-full bg-amber-100/70 px-3 py-0.5 text-xs font-bold text-amber-900">
-                    {quiz.badge}
-                  </span>
+                  <div className="flex items-center gap-1.5">
+                    {quiz.countryFlag && (
+                      <span className="text-base">{quiz.countryFlag}</span>
+                    )}
+                    <span className="inline-block rounded-full bg-amber-100/70 px-3 py-0.5 text-xs font-bold text-amber-900">
+                      {quiz.badge}
+                    </span>
+                  </div>
                   <div className="flex items-center gap-1.5 text-xs font-medium text-neutral-400">
                     <Clock className="h-3.5 w-3.5" />
                     <span>{quiz.estimatedTime}</span>

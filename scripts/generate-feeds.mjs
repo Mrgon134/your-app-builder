@@ -37,6 +37,12 @@ const STATIC_ROUTES = [
   { loc: "/quiz/tipe-overthinking", priority: "0.9", changefreq: "weekly" },
   { loc: "/quiz/burnout-screener", priority: "0.9", changefreq: "weekly" },
   { loc: "/quiz/gaya-regulasi-emosi", priority: "0.9", changefreq: "weekly" },
+  { loc: "/quiz/high-functioning-anxiety-us", priority: "0.9", changefreq: "weekly" },
+  { loc: "/quiz/feierabend-burnout-de", priority: "0.9", changefreq: "weekly" },
+  { loc: "/quiz/winter-blues-nordic-no", priority: "0.9", changefreq: "weekly" },
+  { loc: "/quiz/dutch-niksen-burnout-nl", priority: "0.9", changefreq: "weekly" },
+  { loc: "/quiz/honne-tatemae-jp", priority: "0.9", changefreq: "weekly" },
+  { loc: "/quiz/nunchi-hwabyung-kr", priority: "0.9", changefreq: "weekly" },
 ];
 
 const escapeXml = (str) =>
