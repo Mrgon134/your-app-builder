@@ -131,15 +131,26 @@ export const EbookVipResourcesModal: React.FC<EbookVipResourcesModalProps> = ({
                 </ul>
               </div>
 
-              <a
-                href="https://nuju.notion.site/Nuju-30-Day-Self-Care-Hub-Template-112e5c8e874980a0a91be14a42823a35"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2 rounded-2xl bg-neutral-900 px-5 py-3.5 text-xs sm:text-sm font-bold text-white shadow-md hover:bg-neutral-800 transition active:scale-98"
-              >
-                <span>{isId ? "Gandakan Template Notion (Duplicate)" : "Duplicate Notion Template"}</span>
-                <ExternalLink className="h-4 w-4" />
-              </a>
+              <div className="flex flex-col sm:flex-row gap-2">
+                <a
+                  href="https://nuju.notion.site/Nuju-30-Day-Self-Care-Hub-Template-112e5c8e874980a0a91be14a42823a35"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex-1 flex items-center justify-center gap-2 rounded-2xl bg-neutral-900 px-4 py-3.5 text-xs sm:text-sm font-bold text-white shadow-md hover:bg-neutral-800 transition active:scale-98"
+                >
+                  <span>{isId ? "Gandakan Template Notion (Duplicate)" : "Duplicate Notion Template"}</span>
+                  <ExternalLink className="h-4 w-4" />
+                </a>
+                <a
+                  href="/downloads/Nuju-VIP-Notion-Template-Guide-Dan-Voucher.pdf"
+                  download="Nuju-VIP-Notion-Template-Guide-Dan-Voucher.pdf"
+                  className="flex items-center justify-center gap-1.5 rounded-2xl border border-neutral-300 bg-white px-4 py-3.5 text-xs font-semibold text-neutral-700 hover:bg-neutral-50 transition"
+                  title="Unduh Panduan PDF"
+                >
+                  <Download className="h-4 w-4" />
+                  <span className="hidden sm:inline">PDF Panduan</span>
+                </a>
+              </div>
             </div>
           )}
 
@@ -172,16 +183,25 @@ export const EbookVipResourcesModal: React.FC<EbookVipResourcesModalProps> = ({
                   </p>
                 </div>
 
-                <button
-                  onClick={() => {
-                    onClose();
-                    window.print();
-                  }}
-                  className="w-full flex items-center justify-center gap-2 rounded-2xl bg-amber-600 px-5 py-3 text-xs sm:text-sm font-bold text-white shadow-sm hover:bg-amber-700 transition active:scale-98"
-                >
-                  <Download className="h-4 w-4" />
-                  <span>{isId ? "Cetak / Simpan Lembar PDF Sekarang" : "Print / Save PDF Now"}</span>
-                </button>
+                <div className="flex flex-col sm:flex-row gap-2 pt-2">
+                  <a
+                    href="/downloads/Nuju-30-Hari-Printable-Workbook-Habit-Tracker.pdf"
+                    download="Nuju-30-Hari-Printable-Workbook-Habit-Tracker.pdf"
+                    className="flex-1 flex items-center justify-center gap-2 rounded-2xl bg-amber-600 px-4 py-3 text-xs sm:text-sm font-bold text-white shadow-sm hover:bg-amber-700 transition active:scale-98 text-center"
+                  >
+                    <Download className="h-4 w-4" />
+                    <span>{isId ? "Unduh PDF Workbook (280 KB)" : "Download Workbook PDF"}</span>
+                  </a>
+                  <button
+                    onClick={() => {
+                      onClose();
+                      window.print();
+                    }}
+                    className="flex-1 flex items-center justify-center gap-2 rounded-2xl bg-neutral-900 px-4 py-3 text-xs sm:text-sm font-bold text-white shadow-sm hover:bg-neutral-800 transition active:scale-98"
+                  >
+                    <span>{isId ? "Mode Cetak Browser" : "Print Dialog"}</span>
+                  </button>
+                </div>
               </div>
             </div>
           )}

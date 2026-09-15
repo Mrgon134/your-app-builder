@@ -1,0 +1,944 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Berdamai dengan Pikiran Sendiri - Nuju eBook</title>
+  <style>
+    @page {
+      size: A4;
+      margin: 22mm 20mm 22mm 20mm;
+      @bottom-right {
+        content: counter(page);
+        font-family: 'DM Sans', sans-serif;
+        font-size: 9pt;
+        color: #888;
+      }
+    }
+    body {
+      font-family: 'Georgia', serif;
+      color: #1f1b24;
+      line-height: 1.75;
+      font-size: 11pt;
+      margin: 0;
+      padding: 0;
+      background: #fff;
+    }
+    h1, h2, h3, h4, .sans {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+    .page-break {
+      page-break-before: always;
+    }
+    .cover-page {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      text-align: center;
+      padding: 60px 40px;
+      box-sizing: border-box;
+      background: linear-gradient(135deg, #FAF8F5 0%, #F5EFE6 100%);
+      border: 12px solid #E8DFD1;
+    }
+    .cover-top {
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      font-size: 10pt;
+      color: #926E32;
+      font-weight: bold;
+    }
+    .cover-center {
+      margin: auto 0;
+    }
+    .cover-title {
+      font-size: 32pt;
+      font-weight: 800;
+      color: #1a1726;
+      line-height: 1.15;
+      margin: 0 0 16px;
+      letter-spacing: -0.5px;
+    }
+    .cover-subtitle {
+      font-size: 14pt;
+      color: #635848;
+      max-width: 520px;
+      margin: 0 auto;
+      line-height: 1.5;
+    }
+    .cover-badge {
+      display: inline-block;
+      background: #926E32;
+      color: white;
+      padding: 6px 18px;
+      border-radius: 999px;
+      font-size: 9pt;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-top: 24px;
+    }
+    .cover-bottom {
+      font-size: 10pt;
+      color: #7d7265;
+      border-top: 1px solid #D8CEBE;
+      padding-top: 20px;
+    }
+    .toc-page {
+      padding: 40px 0;
+    }
+    .toc-title {
+      font-size: 22pt;
+      font-weight: bold;
+      border-bottom: 2px solid #1a1726;
+      padding-bottom: 12px;
+      margin-bottom: 24px;
+    }
+    .toc-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .toc-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 0;
+      border-bottom: 1px dotted #ccc;
+      font-size: 11pt;
+    }
+    .chapter-header {
+      border-bottom: 1px solid #eee;
+      padding-bottom: 20px;
+      margin-bottom: 24px;
+    }
+    .part-badge {
+      font-size: 8.5pt;
+      font-weight: bold;
+      color: #926E32;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+    }
+    .chapter-title {
+      font-size: 20pt;
+      font-weight: 800;
+      color: #1a1726;
+      margin: 8px 0;
+      line-height: 1.25;
+    }
+    .chapter-subtitle {
+      font-size: 12pt;
+      color: #666;
+      font-style: italic;
+      margin: 0 0 12px;
+    }
+    .reading-meta {
+      font-size: 9pt;
+      color: #888;
+    }
+    .chapter-body p {
+      margin: 0 0 16px;
+      text-align: justify;
+    }
+    .takeaways-box {
+      background: #FDFBF7;
+      border-left: 4px solid #926E32;
+      padding: 16px 20px;
+      border-radius: 8px;
+      margin: 28px 0 20px;
+    }
+    .takeaways-box h3 {
+      margin: 0 0 8px;
+      font-size: 11pt;
+      color: #926E32;
+    }
+    .takeaways-box ul {
+      margin: 0;
+      padding-left: 20px;
+    }
+    .takeaways-box li {
+      margin-bottom: 6px;
+      font-size: 10pt;
+    }
+    .exercise-box {
+      background: #F4F3FA;
+      border: 1px solid #D8D4EC;
+      padding: 18px 20px;
+      border-radius: 12px;
+      margin: 24px 0;
+    }
+    .exercise-box h4 {
+      margin: 0 0 10px;
+      font-size: 11pt;
+      color: #4C3FB5;
+    }
+    .exercise-box ol {
+      margin: 0 0 14px;
+      padding-left: 20px;
+      font-size: 10pt;
+    }
+    .exercise-box li {
+      margin-bottom: 6px;
+    }
+    .sample-prompt-box {
+      background: #fff;
+      border: 1px dashed #B8B0DE;
+      padding: 12px 16px;
+      border-radius: 8px;
+      font-size: 10pt;
+      color: #2F2468;
+    }
+    .curriculum-intro {
+      text-align: center;
+      padding: 40px 20px;
+      background: #FAF8F5;
+      border-radius: 16px;
+      margin-bottom: 30px;
+    }
+    .prompt-item {
+      background: #fff;
+      border: 1px solid #E8E4DF;
+      border-radius: 14px;
+      padding: 20px;
+      margin-bottom: 22px;
+      page-break-inside: avoid;
+    }
+    .prompt-badge {
+      font-size: 8pt;
+      font-weight: bold;
+      color: #926E32;
+      letter-spacing: 1px;
+      margin-bottom: 4px;
+    }
+    .prompt-theme {
+      font-size: 14pt;
+      font-weight: bold;
+      color: #1a1726;
+      margin: 0 0 12px;
+    }
+    .prompt-card {
+      background: #FDF9F6;
+      border-left: 3px solid #E07A5F;
+      padding: 12px 16px;
+      border-radius: 6px;
+      margin-bottom: 12px;
+    }
+    .prompt-question {
+      margin: 0;
+      font-size: 11pt;
+      font-style: italic;
+      color: #2D221E;
+      font-weight: 500;
+    }
+    .prompt-insight {
+      font-size: 9.5pt;
+      color: #5C5248;
+      margin-bottom: 8px;
+    }
+    .prompt-mantra {
+      font-size: 9.5pt;
+      color: #2B5E4B;
+      background: #F0F7F4;
+      padding: 8px 12px;
+      border-radius: 6px;
+    }
+    .vip-closing {
+      text-align: center;
+      padding: 50px 30px;
+      background: linear-gradient(135deg, #1A1726 0%, #2A243D 100%);
+      color: white;
+      border-radius: 20px;
+      margin-top: 40px;
+    }
+    .vip-code {
+      display: inline-block;
+      background: #E8B923;
+      color: #1A1726;
+      font-family: monospace;
+      font-size: 18pt;
+      font-weight: bold;
+      padding: 10px 24px;
+      border-radius: 10px;
+      letter-spacing: 2px;
+      margin: 16px 0;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- COVER PAGE -->
+  <div class="cover-page">
+    <div class="cover-top">NUJU OFFICIAL PUBLICATION • 2026 EDITION</div>
+    <div class="cover-center">
+      <h1 class="cover-title">BERDAMAI DENGAN PIKIRAN SENDIRI</h1>
+      <p class="cover-subtitle">30 Hari Terapi Overthinking, Regulasi Cemas, & Jurnal Rilis Emosi Berbasis Sains CBT & Stoikisme</p>
+      <div class="cover-badge">Edisi Digital Lengkap</div>
+    </div>
+    <div class="cover-bottom">
+      <strong>Oleh Tim Konselor CBT Nuju & Self-Reflection Lab</strong><br>
+      Hak Cipta © 2026 Nuju. Hak cipta dilindungi undang-undang.
+    </div>
+  </div>
+
+  <!-- TABLE OF CONTENTS -->
+  <div class="toc-page page-break">
+    <h2 class="toc-title">Daftar Isi Buku</h2>
+    <ul class="toc-list">
+      <li class="toc-item"><span><strong>Bab 1:</strong> Mengapa Otak Selalu Membayangkan Skenario Terburuk? (Amigdala)</span> <span>Halaman 3</span></li>
+      <li class="toc-item"><span><strong>Bab 2:</strong> Default Mode Network: Otak Pengelana yang Lupa Berhenti</span> <span>Halaman 6</span></li>
+      <li class="toc-item"><span><strong>Bab 3:</strong> Teknik Cognitive Defusion: Kamu Adalah Langit, Pikiran Hanyalah Cuaca</span> <span>Halaman 9</span></li>
+      <li class="toc-item"><span><strong>Bab 4:</strong> Dikotomi Kendali Epictetus: Mengeliminasi Beban yang Bukan Hakmu</span> <span>Halaman 12</span></li>
+      <li class="toc-item"><span><strong>Bab 5:</strong> The 5-Minute Thought Audit: Mengadili Pikiran Negatif Otomatis</span> <span>Halaman 15</span></li>
+      <li class="toc-item"><span><strong>Bab 6:</strong> Protokol Darurat Jam 2 Pagi: Reset Sistem Saraf dalam 90 Detik</span> <span>Halaman 18</span></li>
+      <li class="toc-item"><span><strong>Bagian 4:</strong> Kurikulum 30 Hari Jurnal & Refleksi Rilis Emosi (Hari 1 - 30)</span> <span>Halaman 21</span></li>
+      <li class="toc-item"><span><strong>Bonus VIP:</strong> Voucher Nuju Pro Web App & Akses Template Notion</span> <span>Halaman 36</span></li>
+    </ul>
+  </div>
+
+  <!-- CHAPTERS -->
+  
+    <div class="chapter-page page-break">
+      <div class="chapter-header">
+        <div class="part-badge">BAGIAN 1: SAINS EMOSI & ANATOMI OVERTHINKING</div>
+        <h2 class="chapter-title">Bab 1: Mengapa Otak Kita Selalu Membayangkan Skenario Terburuk?</h2>
+        <p class="chapter-subtitle">Mengenal amigdala primitif yang mengira email atasan adalah harimau bertaring panjang.</p>
+        <div class="reading-meta">Estimasi baca: 7 menit • Nuju CBT Self-Reflection Lab</div>
+      </div>
+
+      <div class="chapter-body">
+        <p>Pernahkah kamu terbangun jam 2 pagi karena tiba-tiba teringat satu kalimat canggung yang kamu ucapkan dalam rapat tiga hari yang lalu?</p><p>Atau mungkin kamu baru saja menerima pesan dari rekan kerja: 'Bisa ngobrol sebentar besok pagi?', dan dalam lima detik lambungmu melilit, jantungmu berdegup kencang, dan otakmu langsung merancang skenario kamu dipecat dan jatuh miskin?</p><p>Selamat datang di alam pikiran manusia modern. Kamu tidak gila, dan kamu bukan orang lemah. Otakmu hanya sedang menjalankan algoritma purba yang berusia 200.000 tahun.</p><p>Di dalam pusat limbik otakmu terdapat struktur seukuran biji almond bernama amigdala. Tugas amigdala di zaman berburu adalah mendeteksi bahaya mematikan. Nenek moyang kita yang santai dan mengira gemerisik semak-semak adalah angin sepoi-sepoi sudah punah dimakan predator. Nenek moyang kita yang hidup—dan mewariskan gen ke kita—adalah mereka yang selalu mengasumsikan bahaya terburuk.</p><p>Masalahnya: di zaman modern, bahaya kita bukan lagi singa, melainkan deadline, tagihan cicilan, perbandingan pencapaian di media sosial, dan ketidakpastian masa depan. Namun amigdala tidak bisa membedakan antara ancaman fisik nyata dan ancaman psikologis abstrak. Reaksi hormonalnya tetap sama: menyemburkan kortisol dan adrenalin.</p><p>Langkah pertama untuk berhenti membenci dirimu sendiri adalah menyadari: Overthinking bukan kelemahan moral, melainkan mekanisme perlindungan diri yang bekerja terlalu keras (over-functioning).</p>
+      </div>
+
+      <div class="takeaways-box">
+        <h3>💡 Poin Inti Sains & Refleksi:</h3>
+        <ul>
+          <li>Amigdala dirancang untuk mendeteksi bahaya demi bertahan hidup, bukan untuk membuatmu bahagia.</li><li>Otak memproduksi pikiran negatif otomatis sebagai alarm pencegahan, bukan fakta mutlak.</li><li>Menyadari bahwa otakmu sedang panik adalah 50% dari proses ketenangan batin.</li>
+        </ul>
+      </div>
+
+      
+        <div class="exercise-box">
+          <h4>🛠️ Latihan 'Beri Nama si Alarm' (Affect Labeling)</h4>
+          <ol>
+            <li>Ketika kepalamu mulai merangkai skenario terburuk, letakkan satu tangan di dada.</li><li>Katakan dalam hati: 'Terima kasih amigdala, aku tahu kamu ingin melindungiku. Tapi saat ini aku aman.'</li><li>Ambil napas panjang 4 detik lewat hidung, hembuskan 7 detik perlahan lewat mulut.</li>
+          </ol>
+          <div class="sample-prompt-box">
+            <strong>Prompt Refleksi Malam:</strong>
+            <em>"Hal terburuk apa yang sedang ditakutkan otakku malam ini, dan seberapa realistis ketakutan itu jika dilihat 6 bulan dari sekarang?"</em>
+          </div>
+        </div>
+      
+    </div>
+  
+    <div class="chapter-page page-break">
+      <div class="chapter-header">
+        <div class="part-badge">BAGIAN 1: SAINS EMOSI & ANATOMI OVERTHINKING</div>
+        <h2 class="chapter-title">Bab 2: Default Mode Network: Otak Pengelana yang Lupa Berhenti</h2>
+        <p class="chapter-subtitle">Misteri kenapa pikiran justru paling ribut saat tubuh kita mencoba istirahat.</p>
+        <div class="reading-meta">Estimasi baca: 8 menit • Nuju CBT Self-Reflection Lab</div>
+      </div>
+
+      <div class="chapter-body">
+        <p>Banyak orang heran: kenapa saat seharian sibuk bekerja mereka merasa baik-baik saja, tetapi begitu berbaring di kasur dan mematikan lampu, kepala mereka langsung dipenuhi penyesalan masa lalu dan kecemasan masa depan?</p><p>Neurosains menemukan jawabannya pada tahun 2001: jaringan sirkuit otak bernama Default Mode Network (DMN).</p><p>Ketika kamu fokus pada tugas aktif (mengetik laporan, mengemudi, menghitung angka), jaringan konsentrasi otakmu (Task-Positive Network) menyala, dan DMN mati. Namun, begitu kamu berhenti beraktivitas—saat rebahan, mandi, atau melamun—DMN otomatis aktif kembali.</p><p>DMN adalah pusat narasi diri (self-referential thinking). Fungsinya merangkai cerita: 'Siapa aku? Bagaimana reputasiku? Apa yang salah kemarin? Bagaimana caraku tidak gagal besok?'.</p><p>Pada orang dengan kecemasan tinggi, DMN mengalami hiper-konektivitas (hyperactive DMN). Otak terjebak dalam siklus ruminasi tanpa tombol jeda.</p><p>Satu-satunya cara menurunkan aktivitas DMN tanpa obat-obatan keras adalah dengan memindahkan fokus ke sensasi sensorik tubuh saat ini (sensory grounding) atau menuangkan narasi liar tersebut ke atas jurnal tertulis.</p>
+      </div>
+
+      <div class="takeaways-box">
+        <h3>💡 Poin Inti Sains & Refleksi:</h3>
+        <ul>
+          <li>Pikiran malam hari yang berisik adalah aktivitas alami Default Mode Network (DMN).</li><li>Jangan mencoba 'melawan' pikiran kosong dengan memaksakan pikiran positif; alihkan ke pencatatan.</li><li>Menuangkan pikiran ke jurnal memindahkan beban memori kerja (working memory offload) sehingga otak bisa rileks.</li>
+        </ul>
+      </div>
+
+      
+        <div class="exercise-box">
+          <h4>🛠️ Latihan 'Brain Dump 5 Menit'</h4>
+          <ol>
+            <li>Sediakan kertas atau buka Nuju journal sebelum tidur.</li><li>Tulis semua hal yang mengganjal tanpa menyaring tata bahasa, ejaan, atau logika.</li><li>Setelah 5 menit, tutup catatanmu dan katakan: 'Pikiranku sudah tersimpan aman di luar kepalaku.'</li>
+          </ol>
+          <div class="sample-prompt-box">
+            <strong>Prompt Refleksi Malam:</strong>
+            <em>"Jika aku boleh menumpahkan semua rasa lelahku tanpa dihakimi siapa pun malam ini, apa yang ingin kutulis?"</em>
+          </div>
+        </div>
+      
+    </div>
+  
+    <div class="chapter-page page-break">
+      <div class="chapter-header">
+        <div class="part-badge">BAGIAN 2: SENJATA CBT & STOIKISME</div>
+        <h2 class="chapter-title">Bab 3: Teknik Cognitive Defusion: Kamu Adalah Langit, Pikiranmu Hanyalah Cuaca</h2>
+        <p class="chapter-subtitle">Cara memisahkan identitas dirimu dari narasi negatif yang diputar di kepala.</p>
+        <div class="reading-meta">Estimasi baca: 9 menit • Nuju CBT Self-Reflection Lab</div>
+      </div>
+
+      <div class="chapter-body">
+        <p>Sebagian besar penderitaan batin bukan berasal dari kenyataan itu sendiri, melainkan dari keyakinan kita bahwa setiap pikiran yang lewat di kepala adalah kebenaran mutlak.</p><p>Dalam terapi Acceptance and Commitment Therapy (ACT) dan CBT modern, kondisi ini disebut Cognitive Fusion (keterikatan kognitif). Kita melebur dengan pikiran kita: ketika otak berbisik 'Aku tidak berharga', kita langsung percaya bahwa kita benar-benar sampah.</p><p>Lawan dari fusi adalah Cognitive Defusion—kemampuan untuk mundur satu langkah dan menyaksikan pikiran kita sebagai sekadar objek mental yang melintas.</p><p>Bayangkan kamu sedang duduk di tepi rel kereta api. Pikiran-pikiranmu adalah gerbong kereta yang lewat berdentum-dentum. Orang yang fusi akan melompat ke atas gerbong kereta yang melaju kencang menuju jurang panik. Orang yang defusi akan duduk tenang di peron dan berkata: 'Oh, ada kereta bernama Rasa Cemas lewat. Menarik, tapi aku tidak perlu naik.'</p><p>Gunakan rumus bahasa ajaib ini: Ubah kalimat 'Aku payah' menjadi 'Aku menyadari bahwa otakku sedang memproduksi pikiran bahwa aku payah.' Perubahan satu kalimat ini menciptakan ruang psikologis yang melegakan.</p>
+      </div>
+
+      <div class="takeaways-box">
+        <h3>💡 Poin Inti Sains & Refleksi:</h3>
+        <ul>
+          <li>Pikiran adalah peristiwa kognitif sementara, bukan ramalan masa depan atau vonis kebenaran.</li><li>Kamu adalah pengamat pikiran, bukan isi pikiranmu itu sendiri.</li><li>Memberi jarak bahasa ('Aku menyadari ada pikiran...') menurunkan reaktivitas emosi seketika.</li>
+        </ul>
+      </div>
+
+      
+        <div class="exercise-box">
+          <h4>🛠️ Latihan 'Daun di Atas Sungai' (Leaves on a Stream)</h4>
+          <ol>
+            <li>Tutup matamu selama 2 menit. Bayangkan sungai jernih berarus tenang dengan daun-daun mengapung di atasnya.</li><li>Setiap kali satu pikiran cemas muncul, letakkan kalimat itu di atas sehelai daun.</li><li>Saksikan daun itu mengapung pelan terbawa arus air hingga menjauh dari pandanganmu.</li>
+          </ol>
+          <div class="sample-prompt-box">
+            <strong>Prompt Refleksi Malam:</strong>
+            <em>"Pikiran berulang apa yang paling sering menyamar sebagai fakta mutlak dalam hidupku minggu ini?"</em>
+          </div>
+        </div>
+      
+    </div>
+  
+    <div class="chapter-page page-break">
+      <div class="chapter-header">
+        <div class="part-badge">BAGIAN 2: SENJATA CBT & STOIKISME</div>
+        <h2 class="chapter-title">Bab 4: Dikotomi Kendali Epictetus: Mengeliminasi Beban yang Bukan Hakmu</h2>
+        <p class="chapter-subtitle">Filosofi kuno berusia 2.000 tahun yang menjadi pondasi psikoterapi modern.</p>
+        <div class="reading-meta">Estimasi baca: 9 menit • Nuju CBT Self-Reflection Lab</div>
+      </div>
+
+      <div class="chapter-body">
+        <p>Hampir 2.000 tahun yang lalu di Yunani kuno, seorang mantan budak bernama Epictetus membuka karyanya Enchiridion dengan prinsip paling revolusioner: 'Ada hal-hal yang berada di bawah kendali kita, dan ada hal-hal yang tidak berada di bawah kendali kita.'</p><p>Pikirkan baik-baik: Berapa banyak energimu yang habis untuk mencemaskan hal-hal seperti: Apakah orang lain menyukai diriku? Apakah perekonomian akan memburuk? Apakah rencana besok akan berjalan sempurna?</p><p>Semua hal di atas berada di luar kendali mutlakmu. Ketika kamu menggantungkan ketenangan batinmu pada hal yang tidak bisa kamu kendalikan, kamu menyerahkan kunci kedamaianmu ke tangan orang asing dan nasib acak.</p><p>Yang berada di bawah kendalimu HANYALAH: niatmu, usahamu, reaksimu, prinsip moralmu, dan bagaimana kamu merespons luka. Begitu kamu menarik garis tegas ini, 80% overthinking-mu gugur seketika.</p>
+      </div>
+
+      <div class="takeaways-box">
+        <h3>💡 Poin Inti Sains & Refleksi:</h3>
+        <ul>
+          <li>Pisahkan lingkaran perhatian (Circle of Concern) dari lingkaran kendali (Circle of Influence).</li><li>Fokus pada proses dan usaha pribadi, lepaskan keterikatan pada hasil akhir yang ditentukan orang lain.</li><li>Ketenangan sejati bukan ketiadaan masalah, melainkan kepastian atas apa yang pantas kamu urusi.</li>
+        </ul>
+      </div>
+
+      
+        <div class="exercise-box">
+          <h4>🛠️ Audit Lingkaran Kendali</h4>
+          <ol>
+            <li>Gambar dua lingkaran konsentris di kertas: Lingkaran Dalam (Kendali Penuh) dan Lingkaran Luar (Bukan Kendaliku).</li><li>Pindahkan kekhawatiran utamamu saat ini ke dalam salah satu lingkaran.</li><li>Tuliskan satu tindakan konkret untuk hal-hal di Lingkaran Dalam, lalu relakan hal-hal di Lingkaran Luar.</li>
+          </ol>
+          <div class="sample-prompt-box">
+            <strong>Prompt Refleksi Malam:</strong>
+            <em>"Beban apa yang sedang kupikul hari ini padahal sebenarnya itu bukan kuasaku untuk mengaturnya?"</em>
+          </div>
+        </div>
+      
+    </div>
+  
+    <div class="chapter-page page-break">
+      <div class="chapter-header">
+        <div class="part-badge">BAGIAN 2: SENJATA CBT & STOIKISME</div>
+        <h2 class="chapter-title">Bab 5: The 5-Minute Thought Audit: Mengadili Pikiran Negatif Otomatis</h2>
+        <p class="chapter-subtitle">Metode persidangan mental untuk membongkar distorsi kognitif Dr. Aaron Beck.</p>
+        <div class="reading-meta">Estimasi baca: 8 menit • Nuju CBT Self-Reflection Lab</div>
+      </div>
+
+      <div class="chapter-body">
+        <p>Ketika pikiran buruk menyerang, jangan telan mentah-mentah. Bawa pikiran itu ke 'ruang sidang mental'.</p><p>Dalam terapi CBT klasik, pikiran otomatis yang merusak disebut NATs (Negative Automatic Thoughts). NATs memiliki trik kotor: ia selalu membesar-besarkan risiko (catastrophizing) dan mengecilkan kemampuan bertaharmu (underestimating resilience).</p><p>Untuk melawannya, ajukan 4 pertanyaan jaksa penuntut berikut:</p><p>1. Mana Bukti Nyatanya? Apa fakta objektif yang mendukung pikiran ini, dan apa fakta yang membantahnya?</p><p>2. Apakah Ada Penjelasan Alternatif? Jika temanku tidak membalas pesan selama 4 jam, apakah karena dia membenciku, atau karena dia sedang sibuk berkendara?</p><p>3. What's the Worst That Could Happen? Jika skenario terburuk benar-benar terjadi, bisakah aku bertahan hidup? Apa rencana mitigasi 24 jam pertamaku?</p><p>4. Nasihat untuk Sahabat: Jika sahabat terbaikmu datang dan menceritakan kekhawatiran yang sama, apakah kamu akan menghakiminya sekejam kamu menghakimi dirimu sendiri?</p>
+      </div>
+
+      <div class="takeaways-box">
+        <h3>💡 Poin Inti Sains & Refleksi:</h3>
+        <ul>
+          <li>Gunakan 'Thought Audit' setiap kali merasakan lonjakan kecemasan mendadak.</li><li>Bedakan antara kemungkinan teoritis (bisa saja terjadi) dan probabilitas nyata (kemungkinan besar tidak terjadi).</li><li>Terapkan welas asih diri (self-compassion)—bicaralah pada dirimu seperti berbicara pada teman terluka.</li>
+        </ul>
+      </div>
+
+      
+        <div class="exercise-box">
+          <h4>🛠️ Matriks 3 Kolom CBT</h4>
+          <ol>
+            <li>Kolom 1: Pikiran Otomatis (contoh: 'Aku pasti mempermalukan diriku besok').</li><li>Kolom 2: Distorsi Kognitif (contoh: 'Meramal Masa Depan / Fortune Telling').</li><li>Kolom 3: Respon Rasional (contoh: 'Aku sudah mempersiapkan materi dengan baik. Rasa gugup itu wajar dan tidak berarti aku gagal').</li>
+          </ol>
+          <div class="sample-prompt-box">
+            <strong>Prompt Refleksi Malam:</strong>
+            <em>"Pikiran negatif apa yang sedang kupercaya hari ini, dan bagaimana sudut pandang alternatif yang lebih adil?"</em>
+          </div>
+        </div>
+      
+    </div>
+  
+    <div class="chapter-page page-break">
+      <div class="chapter-header">
+        <div class="part-badge">BAGIAN 3: PROTOKOL DARURAT JAM 2 PAGI</div>
+        <h2 class="chapter-title">Bab 6: Protokol Darurat Jam 2 Pagi: Reset Sistem Saraf dalam 90 Detik</h2>
+        <p class="chapter-subtitle">Teknik Physiological Sigh Dr. Andrew Huberman & Grounding 5-4-3-2-1.</p>
+        <div class="reading-meta">Estimasi baca: 7 menit • Nuju CBT Self-Reflection Lab</div>
+      </div>
+
+      <div class="chapter-body">
+        <p>Ketika kamu panik di tengah malam, kamu tidak bisa 'berpikir' keluar dari kepanikan. Mengapa? Karena saat amigdala membakar hormon stres, korteks prefrontal (otak logismu) sedang offline.</p><p>Kamu harus menggunakan jalur somatik (tubuh) untuk menenangkan otak, bukan sebaliknya.</p><p>Teknik tercepat yang terbukti secara klinis di Stanford Medicine adalah Physiological Sigh:</p><p>1. Tarik napas dalam melalui hidung selama 3 detik.</p><p>2. Tanpa membuang napas, tarik napas tajam sekali lagi di puncak paru-paru untuk mengembangkan kantung udara alveoli yang kempis.</p><p>3. Hembuskan napas panjang dan mendesah lewat mulut secara perlahan selama 6 sampai 8 detik.</p><p>Ulangi 3 kali. Hembusan napas yang lebih panjang daripada tarikan napas merangsang saraf vagus (vagus nerve), yang memerintahkan jantung untuk memperlambat detak nadi seketika.</p><p>Jika pikiranmu masih melayang, lanjutkan dengan teknik 5-4-3-2-1 Grounding: Sebutkan 5 benda yang kamu lihat, raba 4 tekstur selimut/kulitmu, dengarkan 3 suara samar, cium 2 aroma di udara, dan rasakan 1 rasa di lidahmu.</p>
+      </div>
+
+      <div class="takeaways-box">
+        <h3>💡 Poin Inti Sains & Refleksi:</h3>
+        <ul>
+          <li>Gunakan tubuh untuk menenangkan pikiran, bukan mendebat pikiran dengan logika saat panik melanda.</li><li>Teknik Physiological Sigh menurunkan detak jantung secara instan dalam 3 repetisi pernapasan.</li><li>Grounding sensorik 5-4-3-2-1 memaksa otak kembali ke realitas fisik saat ini.</li>
+        </ul>
+      </div>
+
+      
+        <div class="exercise-box">
+          <h4>🛠️ Siklus Physiological Sigh 3x</h4>
+          <ol>
+            <li>Duduk atau berbaring santai dengan punggung lurus.</li><li>Inhale dalam lewat hidung -> Inhale kedua cepat di puncak -> Exhale panjang perlahan lewat mulut.</li><li>Rasakan sensasi relaksasi hangat yang mengalir dari pelipis turun ke pundak dan dada.</li>
+          </ol>
+          <div class="sample-prompt-box">
+            <strong>Prompt Refleksi Malam:</strong>
+            <em>"Bagian tubuh mana yang terasa tegang saat ini, dan bagaimana rasanya jika kubiarkan lemas sekarang?"</em>
+          </div>
+        </div>
+      
+    </div>
+  
+
+  <!-- 30-DAY PROMPT CURRICULUM -->
+  <div class="curriculum-page page-break">
+    <div class="curriculum-intro">
+      <div class="part-badge">BAGIAN 4: KURIKULUM LATIHAN</div>
+      <h2 style="font-size: 22pt; margin: 10px 0; color: #1a1726;">30 Hari Jurnal & Refleksi Rilis Emosi</h2>
+      <p style="color: #666; max-width: 500px; margin: 0 auto; font-size: 10.5pt;">
+        Gunakan satu prompt setiap malam sebelum tidur. Luangkan waktu 3–5 menit untuk menulis secara jujur tanpa sensor.
+      </p>
+    </div>
+
+    
+    <div class="prompt-item">
+      <div class="prompt-badge">HARI KE-1 • KESADARAN DIRI</div>
+      <h3 class="prompt-theme">Membongkar Beban Tersembunyi</h3>
+      <div class="prompt-card">
+        <p class="prompt-question">"Jika tubuhku bisa berbicara jujur malam ini tanpa perlu pura-pura kuat, bagian mana yang paling lelah dan apa yang ia butuhkan?"</p>
+      </div>
+      <div class="prompt-insight">
+        <strong>Catatan Ju:</strong> Kelelahan emosional sering menyamar sebagai pegal di leher, pundak kaku, atau rahang yang mengatup rapat.
+      </div>
+      <div class="prompt-mantra">
+        <strong>Mantra Penenang Tidur:</strong> "Aku aman meletakkan beban ini malam ini. Hari esok punya waktunya sendiri."
+      </div>
+    </div>
+  
+    <div class="prompt-item">
+      <div class="prompt-badge">HARI KE-2 • REGULASI CEMAS</div>
+      <h3 class="prompt-theme">Menamai si Suara Kritis</h3>
+      <div class="prompt-card">
+        <p class="prompt-question">"Kalimat paling kejam apa yang sering dikatakan suara di kepalaku hari ini, dan dari mana asal suara itu pertama kali kudengar?"</p>
+      </div>
+      <div class="prompt-insight">
+        <strong>Catatan Ju:</strong> Sering kali suara kritik di kepala kita bukan suara asli kita, melainkan gema dari ekspektasi orang lain.
+      </div>
+      <div class="prompt-mantra">
+        <strong>Mantra Penenang Tidur:</strong> "Aku bukan suara kritik di kepalaku. Aku adalah orang yang mendengarkannya."
+      </div>
+    </div>
+  
+    <div class="prompt-item">
+      <div class="prompt-badge">HARI KE-3 • REGULASI CEMAS</div>
+      <h3 class="prompt-theme">Filter Dikotomi Kendali</h3>
+      <div class="prompt-card">
+        <p class="prompt-question">"Tuliskan 3 hal yang membuatmu cemas hari ini. Kelompokkan ke dalam dua kolom: 'Bisa Kukendalikan' vs 'Di Luar Kuasaku'."</p>
+      </div>
+      <div class="prompt-insight">
+        <strong>Catatan Ju:</strong> Mencemaskan hal yang tidak bisa dikendalikan sama seperti memegang bara api berharap orang lain yang terbakar.
+      </div>
+      <div class="prompt-mantra">
+        <strong>Mantra Penenang Tidur:</strong> "Aku melepaskan apa yang tidak bisa kuubah, dan mencurahkan energiku pada tindakanku saat ini."
+      </div>
+    </div>
+  
+    <div class="prompt-item">
+      <div class="prompt-badge">HARI KE-4 • PENERIMAAN DIRI</div>
+      <h3 class="prompt-theme">Validasi Lelah Tanpa Rasa Bersalah</h3>
+      <div class="prompt-card">
+        <p class="prompt-question">"Kenapa aku merasa harus selalu produktif untuk merasa berharga? Apa yang terjadi jika hari ini aku sekadar bernapas?"</p>
+      </div>
+      <div class="prompt-insight">
+        <strong>Catatan Ju:</strong> Nilai dirimu sebagai manusia tidak ditentukan oleh checklist tugas yang kamu centang hari ini.
+      </div>
+      <div class="prompt-mantra">
+        <strong>Mantra Penenang Tidur:</strong> "Istirahat adalah hak biologisku, bukan hadiah yang harus kudapatkan dengan menyiksa diri."
+      </div>
+    </div>
+  
+    <div class="prompt-item">
+      <div class="prompt-badge">HARI KE-5 • HUBUNGAN & BATASAN</div>
+      <h3 class="prompt-theme">Menyentuh Luka Penolakan</h3>
+      <div class="prompt-card">
+        <p class="prompt-question">"Pernahkah aku mengubah kepribadianku demi disukai orang lain? Apa harga batin yang harus kubayar untuk itu?"</p>
+      </div>
+      <div class="prompt-insight">
+        <strong>Catatan Ju:</strong> Lebih baik ditolak karena menjadi diri sendiri daripada dipuji karena menjadi orang lain.
+      </div>
+      <div class="prompt-mantra">
+        <strong>Mantra Penenang Tidur:</strong> "Aku tidak membutuhkan persetujuan semua orang untuk merasa utuh."
+      </div>
+    </div>
+  
+    <div class="prompt-item">
+      <div class="prompt-badge">HARI KE-6 • KESADARAN DIRI</div>
+      <h3 class="prompt-theme">Audit Energetik Harian</h3>
+      <div class="prompt-card">
+        <p class="prompt-question">"Aktivitas atau percakapan apa hari ini yang menyedot energi mentalku hingga terkuras habis? Bagaimana aku bisa membatasinya?"</p>
+      </div>
+      <div class="prompt-insight">
+        <strong>Catatan Ju:</strong> Energi emosional kita memiliki kuota harian terbatas. Jangan biarkan orang lain menghabiskannya cuma-cuma.
+      </div>
+      <div class="prompt-mantra">
+        <strong>Mantra Penenang Tidur:</strong> "Batasan yang sehat adalah bentuk penghormatan tertinggi pada kedamaian jiwaku."
+      </div>
+    </div>
+  
+    <div class="prompt-item">
+      <div class="prompt-badge">HARI KE-7 • PENERIMAAN DIRI</div>
+      <h3 class="prompt-theme">Memaafkan Versi Diri Masa Lalu</h3>
+      <div class="prompt-card">
+        <p class="prompt-question">"Keputusan masa lalu apa yang masih sering kusesali? Bisakah aku memaafkan diriku yang saat itu belum tahu apa yang kuketahui sekarang?"</p>
+      </div>
+      <div class="prompt-insight">
+        <strong>Catatan Ju:</strong> Kamu yang dulu mengambil keputusan dengan tingkat kesadaran dan sumber daya yang kamu miliki saat itu.
+      </div>
+      <div class="prompt-mantra">
+        <strong>Mantra Penenang Tidur:</strong> "Aku berdamai dengan masa laluku. Dia telah mengantarkanku menjadi pribadi yang lebih bijak."
+      </div>
+    </div>
+  
+    <div class="prompt-item">
+      <div class="prompt-badge">HARI KE-8 • KESADARAN DIRI</div>
+      <h3 class="prompt-theme">Menjinakkan Sindrom Penipu (Impostor)</h3>
+      <div class="prompt-card">
+        <p class="prompt-question">"Kapan terakhir kali aku merasa 'hanya beruntung' padahal sebenarnya aku bekerja keras untuk mencapainya?"</p>
+      </div>
+      <div class="prompt-insight">
+        <strong>Catatan Ju:</strong> Impostor syndrome adalah tanda bahwa kamu sedang bertumbuh di luar zona nyamanmu.
+      </div>
+      <div class="prompt-mantra">
+        <strong>Mantra Penenang Tidur:</strong> "Aku pantas berada di ruangan ini. Pencapaianku adalah buah dari usahaku."
+      </div>
+    </div>
+  
+    <div class="prompt-item">
+      <div class="prompt-badge">HARI KE-9 • REGULASI CEMAS</div>
+      <h3 class="prompt-theme">Ruang Aman untuk Rasa Marah</h3>
+      <div class="prompt-card">
+        <p class="prompt-question">"Hal apa yang membuatku marah belakangan ini tetapi kupendam karena takut dicap egois atau baperan?"</p>
+      </div>
+      <div class="prompt-insight">
+        <strong>Catatan Ju:</strong> Kemarahan yang sehat adalah alarm bahwa salah satu batasan sucimu telah dilanggar orang lain.
+      </div>
+      <div class="prompt-mantra">
+        <strong>Mantra Penenang Tidur:</strong> "Kemarahanku valid. Aku berhak menyatakannya dengan tenang dan tegas."
+      </div>
+    </div>
+  
+    <div class="prompt-item">
+      <div class="prompt-badge">HARI KE-10 • HUBUNGAN & BATASAN</div>
+      <h3 class="prompt-theme">Detoks Ekspektasi Orang Lain</h3>
+      <div class="prompt-card">
+        <p class="prompt-question">"Standar hidup siapa yang sedang kukejar saat ini? Apakah ini benar-benar mimpiku atau sekadar mimpi orang tuaku/masyarakat?"</p>
+      </div>
+      <div class="prompt-insight">
+        <strong>Catatan Ju:</strong> Menjalani hidup orang lain adalah bentuk pengkhianatan paling menyakitkan bagi jiwamu sendiri.
+      </div>
+      <div class="prompt-mantra">
+        <strong>Mantra Penenang Tidur:</strong> "Aku membebaskan diriku dari keharusan memenuhi ekspektasi siapa pun."
+      </div>
+    </div>
+  
+    <div class="prompt-item">
+      <div class="prompt-badge">HARI KE-11 • REGULASI CEMAS</div>
+      <h3 class="prompt-theme">Menghadapi Ketidakpastian</h3>
+      <div class="prompt-card">
+        <p class="prompt-question">"Jika hal yang paling kutakutkan terjadi besok, langkah mitigasi paling pertama apa yang bisa kuambil?"</p>
+      </div>
+      <div class="prompt-insight">
+        <strong>Catatan Ju:</strong> Ketakutan membengkak saat berada di ruang abstrak. Begitu dituliskan dalam langkah konkret, ia menyusut.
+      </div>
+      <div class="prompt-mantra">
+        <strong>Mantra Penenang Tidur:</strong> "Aku lebih tangguh dari ketakutanku. Apapun yang terjadi, aku sanggup melaluinya."
+      </div>
+    </div>
+  
+    <div class="prompt-item">
+      <div class="prompt-badge">HARI KE-12 • KESADARAN DIRI</div>
+      <h3 class="prompt-theme">Menemukan Keindahan Kecil</h3>
+      <div class="prompt-card">
+        <p class="prompt-question">"Sebutkan 3 kenikmatan kecil dan sederhana yang terjadi hari ini yang luput dari apresiasiku (kopi hangat, angin sore, chat teman)."</p>
+      </div>
+      <div class="prompt-insight">
+        <strong>Catatan Ju:</strong> Kebahagiaan sejati jarang datang dari pencapaian raksasa; ia tersembunyi di sela-sela detail mikro harian.
+      </div>
+      <div class="prompt-mantra">
+        <strong>Mantra Penenang Tidur:</strong> "Hatiku terbuka untuk mensyukuri kebaikan-kebaikan kecil yang hadir hari ini."
+      </div>
+    </div>
+  
+    <div class="prompt-item">
+      <div class="prompt-badge">HARI KE-13 • PENERIMAAN DIRI</div>
+      <h3 class="prompt-theme">Melepaskan Kebutuhan Membuktikan Diri</h3>
+      <div class="prompt-card">
+        <p class="prompt-question">"Kepada siapa aku paling ingin membuktikan bahwa aku sukses? Mengapa pengakuan mereka begitu penting bagiku?"</p>
+      </div>
+      <div class="prompt-insight">
+        <strong>Catatan Ju:</strong> Orang yang damai dengan dirinya sendiri tidak merasa perlu membuktikan apa pun kepada siapa pun.
+      </div>
+      <div class="prompt-mantra">
+        <strong>Mantra Penenang Tidur:</strong> "Nilai diriku sudah selesai dan utuh di hadapan Sang Pencipta."
+      </div>
+    </div>
+  
+    <div class="prompt-item">
+      <div class="prompt-badge">HARI KE-14 • PENERIMAAN DIRI</div>
+      <h3 class="prompt-theme">Merawat Tubuh yang Lelah</h3>
+      <div class="prompt-card">
+        <p class="prompt-question">"Apakah belakangan ini aku memperlakukan tubuhku seperti mesin atau seperti rumah yang kucintai?"</p>
+      </div>
+      <div class="prompt-insight">
+        <strong>Catatan Ju:</strong> Tubuhmu adalah satu-satunya tempat tinggal permanen yang kamu miliki seumur hidup.
+      </div>
+      <div class="prompt-mantra">
+        <strong>Mantra Penenang Tidur:</strong> "Malam ini aku memberikan tubuhku istirahat yang dalam dan penuh pemulihan."
+      </div>
+    </div>
+  
+    <div class="prompt-item">
+      <div class="prompt-badge">HARI KE-15 • KESADARAN DIRI</div>
+      <h3 class="prompt-theme">Review Pertengahan: Refleksi 14 Hari</h3>
+      <div class="prompt-card">
+        <p class="prompt-question">"Perubahan pola pikir apa yang mulai terasa dalam 2 minggu terakhir? Di area mana aku merasa sedikit lebih tenang?"</p>
+      </div>
+      <div class="prompt-insight">
+        <strong>Catatan Ju:</strong> Kemenangan kecil dalam menenangkan satu episode overthinking adalah lompatan besar bagi kesehatan mental.
+      </div>
+      <div class="prompt-mantra">
+        <strong>Mantra Penenang Tidur:</strong> "Aku bangga pada proses perjalananku. Aku sedang belajar merawat diriku."
+      </div>
+    </div>
+  
+    <div class="prompt-item">
+      <div class="prompt-badge">HARI KE-16 • PENERIMAAN DIRI</div>
+      <h3 class="prompt-theme">Dekonstruksi Standar Kesempurnaan</h3>
+      <div class="prompt-card">
+        <p class="prompt-question">"Di area mana perfeksionismeku justru membuatku menunda-nunda dan takut melangkah?"</p>
+      </div>
+      <div class="prompt-insight">
+        <strong>Catatan Ju:</strong> Perfeksionisme hanyalah rasa takut yang mengenakan jas mewah.
+      </div>
+      <div class="prompt-mantra">
+        <strong>Mantra Penenang Tidur:</strong> "Selesai lebih baik daripada sempurna. Keberanian lebih utama daripada tanpa cacat."
+      </div>
+    </div>
+  
+    <div class="prompt-item">
+      <div class="prompt-badge">HARI KE-17 • HUBUNGAN & BATASAN</div>
+      <h3 class="prompt-theme">Memutus Lingkaran People-Pleasing</h3>
+      <div class="prompt-card">
+        <p class="prompt-question">"Kepada siapa aku ingin berkata 'TIDAK' minggu ini demi melindungi waktu dan ketenangan mentalku?"</p>
+      </div>
+      <div class="prompt-insight">
+        <strong>Catatan Ju:</strong> 'Tidak' pada hal yang mengurasmu adalah 'Ya' pada kesehatan jiwamu.
+      </div>
+      <div class="prompt-mantra">
+        <strong>Mantra Penenang Tidur:</strong> "Ketenanganku terlalu berharga untuk ditukar dengan kepuasan sementara orang lain."
+      </div>
+    </div>
+  
+    <div class="prompt-item">
+      <div class="prompt-badge">HARI KE-18 • PENERIMAAN DIRI</div>
+      <h3 class="prompt-theme">Menyapa Rasa Sepi</h3>
+      <div class="prompt-card">
+        <p class="prompt-question">"Saat aku merasa sendirian di dunia ini, apa yang sebenarnya paling kurindukan?"</p>
+      </div>
+      <div class="prompt-insight">
+        <strong>Catatan Ju:</strong> Kesepian bukan selalu ketiadaan orang lain; sering kali itu adalah kerinduan akan koneksi sejati dengan dirimu sendiri.
+      </div>
+      <div class="prompt-mantra">
+        <strong>Mantra Penenang Tidur:</strong> "Aku berteman baik dengan kesunyian. Di dalam diriku ada ruang yang hangat."
+      </div>
+    </div>
+  
+    <div class="prompt-item">
+      <div class="prompt-badge">HARI KE-19 • PENERIMAAN DIRI</div>
+      <h3 class="prompt-theme">Mengikhlaskan yang Telah Pergi</h3>
+      <div class="prompt-card">
+        <p class="prompt-question">"Relasi, kesempatan, atau versi masa lalu apa yang sudah saatnya kulepaskan dengan penuh rasa terima kasih?"</p>
+      </div>
+      <div class="prompt-insight">
+        <strong>Catatan Ju:</strong> Menggenggam masa lalu yang sudah mati hanya melukai tangan yang seharusnya menyambut masa depan.
+      </div>
+      <div class="prompt-mantra">
+        <strong>Mantra Penenang Tidur:</strong> "Aku melepaskan dengan ikhlas. Yang terbaik untukku sedang menanti di depan."
+      </div>
+    </div>
+  
+    <div class="prompt-item">
+      <div class="prompt-badge">HARI KE-20 • REGULASI CEMAS</div>
+      <h3 class="prompt-theme">Pikselasi Masalah Besar</h3>
+      <div class="prompt-card">
+        <p class="prompt-question">"Pilihlah satu masalah rumit yang membebanimu. Pecah menjadi 3 sub-tugas kecil yang bisa diselesaikan dalam 15 menit."</p>
+      </div>
+      <div class="prompt-insight">
+        <strong>Catatan Ju:</strong> Gajah hanya bisa dimakan satu gigitan demi satu gigitan. Masalah raksasa tunduk pada langkah-langkah mikro.
+      </div>
+      <div class="prompt-mantra">
+        <strong>Mantra Penenang Tidur:</strong> "Aku tidak harus menyelesaikan semuanya malam ini. Cukup satu langkah kecil esok hari."
+      </div>
+    </div>
+  
+    <div class="prompt-item">
+      <div class="prompt-badge">HARI KE-21 • PENERIMAAN DIRI</div>
+      <h3 class="prompt-theme">Surat Kasih Sayang untuk Diri</h3>
+      <div class="prompt-card">
+        <p class="prompt-question">"Tuliskan 3 kalimat penyemangat paling hangat yang ingin kamu dengar dari seseorang saat kamu terpuruk."</p>
+      </div>
+      <div class="prompt-insight">
+        <strong>Catatan Ju:</strong> Jadilah tempat berlindung yang paling aman bagi dirimu sendiri sebelum mencari pelindung di luar.
+      </div>
+      <div class="prompt-mantra">
+        <strong>Mantra Penenang Tidur:</strong> "Aku mengasihi diriku seutuhnya, dalam kekuranganku maupun kekuatanku."
+      </div>
+    </div>
+  
+    <div class="prompt-item">
+      <div class="prompt-badge">HARI KE-22 • KESADARAN DIRI</div>
+      <h3 class="prompt-theme">Menyaring Konsumsi Digital</h3>
+      <div class="prompt-card">
+        <p class="prompt-question">"Akun atau konten media sosial mana yang paling sering memicu rasa rendah diri atau iri hatiku?"</p>
+      </div>
+      <div class="prompt-insight">
+        <strong>Catatan Ju:</strong> Algoritma media sosial dirancang untuk memanen ketidakamananmu demi mempertahankan perhatian.
+      </div>
+      <div class="prompt-mantra">
+        <strong>Mantra Penenang Tidur:</strong> "Aku berhak meng-unfollow hal-hal yang mencuri kedamaian batinku."
+      </div>
+    </div>
+  
+    <div class="prompt-item">
+      <div class="prompt-badge">HARI KE-23 • HUBUNGAN & BATASAN</div>
+      <h3 class="prompt-theme">Kekuatan Kerentanan (Vulnerability)</h3>
+      <div class="prompt-card">
+        <p class="prompt-question">"Kelemahan atau ketakutan apa yang selama ini kututupi rapat-rapat karena takut dianggap rapuh?"</p>
+      </div>
+      <div class="prompt-insight">
+        <strong>Catatan Ju:</strong> Kerentanan bukan tanda kelemahan; ia adalah ukuran keberanian yang paling akurat.
+      </div>
+      <div class="prompt-mantra">
+        <strong>Mantra Penenang Tidur:</strong> "Menjadi manusia yang rentan adalah tanda bahwa hatiku masih hidup dan berani."
+      </div>
+    </div>
+  
+    <div class="prompt-item">
+      <div class="prompt-badge">HARI KE-24 • KESADARAN DIRI</div>
+      <h3 class="prompt-theme">Mendefinisikan Ulang Makna Sukses</h3>
+      <div class="prompt-card">
+        <p class="prompt-question">"Apa arti 'sukses' bagiku jika uang dan penilaian orang lain tidak lagi dihitung sebagai patokan?"</p>
+      </div>
+      <div class="prompt-insight">
+        <strong>Catatan Ju:</strong> Bisa tidur nyenyak di malam hari tanpa beban rasa bersalah adalah bentuk kekayaan tertinggi di abad ke-21.
+      </div>
+      <div class="prompt-mantra">
+        <strong>Mantra Penenang Tidur:</strong> "Sukses bagiku adalah memiliki batin yang damai dan hidup selaras dengan nilai-nilaiku."
+      </div>
+    </div>
+  
+    <div class="prompt-item">
+      <div class="prompt-badge">HARI KE-25 • REGULASI CEMAS</div>
+      <h3 class="prompt-theme">Menghadapi Kritik Tanpa Hancur</h3>
+      <div class="prompt-card">
+        <p class="prompt-question">"Kritik apa yang belakangan ini menyakiti hatiku? Bagaimana aku bisa memisahkan substansi pesan dari cara penyampaiannya?"</p>
+      </div>
+      <div class="prompt-insight">
+        <strong>Catatan Ju:</strong> Kritik orang lain sering kali lebih banyak bercerita tentang cermin luka mereka sendiri daripada tentang kualitasmu.
+      </div>
+      <div class="prompt-mantra">
+        <strong>Mantra Penenang Tidur:</strong> "Aku mengambil pelajaran yang bermanfaat, dan membuang racun emosinya."
+      </div>
+    </div>
+  
+    <div class="prompt-item">
+      <div class="prompt-badge">HARI KE-26 • KESADARAN DIRI</div>
+      <h3 class="prompt-theme">Menyalakan Kembali Rasa Ingin Tahu</h3>
+      <div class="prompt-card">
+        <p class="prompt-question">"Hal menyenangkan apa yang dulu sangat kusukai saat kecil yang sudah bertahun-tahun tidak kulakukan?"</p>
+      </div>
+      <div class="prompt-insight">
+        <strong>Catatan Ju:</strong> Bermain tanpa tujuan produktif adalah nutrisi esensial bagi pemulihan otak yang lelah.
+      </div>
+      <div class="prompt-mantra">
+        <strong>Mantra Penenang Tidur:</strong> "Aku mengizinkan diriku bergembira dan menikmati hidup tanpa beban."
+      </div>
+    </div>
+  
+    <div class="prompt-item">
+      <div class="prompt-badge">HARI KE-27 • KESADARAN DIRI</div>
+      <h3 class="prompt-theme">Mendengarkan Bisikan Intuisi</h3>
+      <div class="prompt-card">
+        <p class="prompt-question">"Keputusan apa yang selama ini terus dibisikkan oleh intuisiku tetapi selalu kuabaikan dengan logika overthinking-ku?"</p>
+      </div>
+      <div class="prompt-insight">
+        <strong>Catatan Ju:</strong> Intuisimu adalah ringkasan dari ribuan pengalaman bawah sadar yang sering kali lebih bijak dari logika panikmu.
+      </div>
+      <div class="prompt-mantra">
+        <strong>Mantra Penenang Tidur:</strong> "Aku mempercayai kebijaksanaan batinku yang membimbingku ke jalan yang benar."
+      </div>
+    </div>
+  
+    <div class="prompt-item">
+      <div class="prompt-badge">HARI KE-28 • PENERIMAAN DIRI</div>
+      <h3 class="prompt-theme">Merayakan Ketahanan Mental (Resilience)</h3>
+      <div class="prompt-card">
+        <p class="prompt-question">"Tuliskan 3 badai kehidupan terberat yang pernah kulalui di masa lalu dan berhasil kuselesaikan."</p>
+      </div>
+      <div class="prompt-insight">
+        <strong>Catatan Ju:</strong> Tingkat kelangsungan hidupmu melewati hari-hari terburukmu sampai malam ini adalah 100%.
+      </div>
+      <div class="prompt-mantra">
+        <strong>Mantra Penenang Tidur:</strong> "Aku sudah pernah selamat dari badai sebelumnya. Aku pun akan selamat dari masa ini."
+      </div>
+    </div>
+  
+    <div class="prompt-item">
+      <div class="prompt-badge">HARI KE-29 • KESADARAN DIRI</div>
+      <h3 class="prompt-theme">Pilar Syukur yang Mendalam</h3>
+      <div class="prompt-card">
+        <p class="prompt-question">"Siapa orang dalam hidupku yang kehadirannya membuat dunia terasa sedikit lebih aman dan ramah bagiku?"</p>
+      </div>
+      <div class="prompt-insight">
+        <strong>Catatan Ju:</strong> Mengakui kebaikan orang lain meluaskan ruang hati dan mengikis perasaan bahwa kita berjuang sendirian.
+      </div>
+      <div class="prompt-mantra">
+        <strong>Mantra Penenang Tidur:</strong> "Aku bersyukur atas orang-orang baik yang ditakdirkan menemani perjalananku."
+      </div>
+    </div>
+  
+    <div class="prompt-item">
+      <div class="prompt-badge">HARI KE-30 • PENERIMAAN DIRI</div>
+      <h3 class="prompt-theme">Kontrak Damai Seumur Hidup</h3>
+      <div class="prompt-card">
+        <p class="prompt-question">"Janji apa yang ingin kuikrarkan kepada diriku sendiri untuk masa depan dalam merawat kesehatan mentalku?"</p>
+      </div>
+      <div class="prompt-insight">
+        <strong>Catatan Ju:</strong> Perjalanan merawat batin bukan lomba lari yang memiliki garis finish; ia adalah komitmen persahabatan seumur hidup dengan dirimu sendiri.
+      </div>
+      <div class="prompt-mantra">
+        <strong>Mantra Penenang Tidur:</strong> "Mulai hari ini, aku adalah sahabat terbaik bagi jiwaku. Apapun yang terjadi, aku tidak akan meninggalkan diriku lagi."
+      </div>
+    </div>
+  
+  </div>
+
+  <!-- CLOSING & VIP VOUCHER -->
+  <div class="vip-closing page-break">
+    <h2 style="font-size: 20pt; margin: 0 0 10px; color: #FFE6C8;">Terima Kasih Telah Memilih Berdamai</h2>
+    <p style="font-size: 11pt; color: #ccc; max-width: 480px; margin: 0 auto 20px; line-height: 1.6;">
+      Sebagai pembeli resmi buku ini, nikmati akses penuh AI Journal Reflection, Voice Journaling, dan Habit Pattern Tracker di aplikasi web Nuju:
+    </p>
+    <div class="vip-code">NUJUVIP30</div>
+    <p style="font-size: 10pt; color: #aaa;">
+      Gunakan voucher ini saat login di <strong>https://nuju.app/app</strong> untuk mengaktifkan Nuju Pro gratis!
+    </p>
+  </div>
+
+</body>
+</html>
