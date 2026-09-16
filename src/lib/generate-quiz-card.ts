@@ -6,6 +6,8 @@ import { InnerChildProfile, InnerChildLang } from "@/data/inner-child";
 import { BurnoutResult, BurnoutLang } from "@/data/burnout-screener";
 import { LoveLanguageResult, LoveLang } from "@/data/love-languages";
 import { PeoplePleaserResult, PeoplePleaserLang } from "@/data/people-pleasing";
+import { HspProfile, HspLang } from "@/data/hsp";
+import { ShadowResult, ShadowLang } from "@/data/shadow-work";
 
 /**
  * Draws a rounded rectangle path on the canvas context with fallback for older environments.
@@ -1601,5 +1603,306 @@ export async function generatePeoplePleaserCard(
 
   return { dataUrl, blob, file };
 }
+
+export interface HspCardInput {
+  totalScore: number;
+  maxScore: number;
+  level: string;
+  profile: HspProfile;
+  percentages: {
+    sensory: number;
+    empathy: number;
+    subtlety: number;
+  };
+}
+
+export async function generateHspCard(
+  result: HspCardInput,
+  lang: HspLang = "en"
+): Promise<{ dataUrl: string; blob: Blob; file: File }> {
+  const width = 1080;
+  const height = 1350;
+  const canvas = document.createElement("canvas");
+  canvas.width = width;
+  canvas.height = height;
+  const ctx = canvas.getContext("2d");
+  if (!ctx) throw new Error("Could not get 2d context");
+
+  // Background
+  const bgGrad = ctx.createLinearGradient(0, 0, width, height);
+  bgGrad.addColorStop(0, "#0F0715");
+  bgGrad.addColorStop(0.5, "#1A0B22");
+  bgGrad.addColorStop(1, "#08040C");
+  ctx.fillStyle = bgGrad;
+  ctx.fillRect(0, 0, width, height);
+
+  // Soft glowing orb in upper right
+  const orb = ctx.createRadialGradient(width - 150, 200, 20, width - 150, 200, 450);
+  orb.addColorStop(0, "rgba(236, 72, 153, 0.25)");
+  orb.addColorStop(1, "rgba(236, 72, 153, 0)");
+  ctx.fillStyle = orb;
+  ctx.fillRect(0, 0, width, height);
+
+  // Brand Header
+  ctx.fillStyle = "#EC4899";
+  ctx.font = "bold 26px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("JU · HIGHLY SENSITIVE PERSON (HSP) SCREENER", 80, 110);
+
+  // Badge pill
+  const badgeText = result.profile.badge[lang] || result.profile.badge.en;
+  ctx.fillStyle = "rgba(236, 72, 153, 0.15)";
+  drawRoundedRect(ctx, 80, 150, 380, 52, 26);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(236, 72, 153, 0.4)";
+  ctx.stroke();
+
+  ctx.fillStyle = "#F472B6";
+  ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(badgeText.toUpperCase(), 105, 184);
+
+  // Title
+  const titleText = result.profile.title[lang] || result.profile.title.en;
+  ctx.fillStyle = "#FFFFFF";
+  ctx.font = "900 52px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  wrapText(ctx, titleText, 80, 265, width - 160, 62, 2);
+
+  // Tagline
+  const tagline = result.profile.tagline[lang] || result.profile.tagline.en;
+  ctx.fillStyle = "#F9A8D4";
+  ctx.font = "italic 26px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  wrapText(ctx, `"${tagline}"`, 80, 360, width - 160, 36, 2);
+
+  // 3 Pillar Score Cards
+  const cardY = 440;
+  const colWidth = (width - 160 - 40) / 3;
+
+  // Pillar 1: Sensory Overload
+  ctx.fillStyle = "rgba(255, 255, 255, 0.04)";
+  drawRoundedRect(ctx, 80, cardY, colWidth, 180, 24);
+  ctx.fill();
+  ctx.fillStyle = "#F472B6";
+  ctx.font = "bold 20px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("SENSORY", 100, cardY + 45);
+  ctx.font = "900 48px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillStyle = "#FFFFFF";
+  ctx.fillText(`${result.percentages.sensory}%`, 100, cardY + 110);
+
+  // Pillar 2: Empathy
+  ctx.fillStyle = "rgba(255, 255, 255, 0.04)";
+  drawRoundedRect(ctx, 80 + colWidth + 20, cardY, colWidth, 180, 24);
+  ctx.fill();
+  ctx.fillStyle = "#FB7185";
+  ctx.font = "bold 20px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("EMPATHY", 100 + colWidth + 20, cardY + 45);
+  ctx.font = "900 48px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillStyle = "#FFFFFF";
+  ctx.fillText(`${result.percentages.empathy}%`, 100 + colWidth + 20, cardY + 110);
+
+  // Pillar 3: Subtlety
+  ctx.fillStyle = "rgba(255, 255, 255, 0.04)";
+  drawRoundedRect(ctx, 80 + (colWidth + 20) * 2, cardY, colWidth, 180, 24);
+  ctx.fill();
+  ctx.fillStyle = "#FBBF24";
+  ctx.font = "bold 20px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("SUBTLETY", 100 + (colWidth + 20) * 2, cardY + 45);
+  ctx.font = "900 48px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillStyle = "#FFFFFF";
+  ctx.fillText(`${result.percentages.subtlety}%`, 100 + (colWidth + 20) * 2, cardY + 110);
+
+  // Description Box
+  ctx.fillStyle = "rgba(255, 255, 255, 0.04)";
+  drawRoundedRect(ctx, 80, 660, width - 160, 200, 28);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(236, 72, 153, 0.2)";
+  ctx.stroke();
+
+  ctx.fillStyle = "#F472B6";
+  ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("NEUROLOGICAL TRAIT PROFILE", 120, 710);
+
+  const descText = result.profile.description[lang] || result.profile.description.en;
+  ctx.fillStyle = "#E2E8F0";
+  ctx.font = "26px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  wrapText(ctx, descText, 120, 755, width - 240, 38, 3);
+
+  // Sensory Sanctuary Protocol Box
+  ctx.fillStyle = "rgba(236, 72, 153, 0.08)";
+  drawRoundedRect(ctx, 80, 890, width - 160, 220, 28);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(236, 72, 153, 0.35)";
+  ctx.stroke();
+
+  ctx.fillStyle = "#EC4899";
+  ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("SENSORY SANCTUARY PROTOCOL", 120, 940);
+
+  const tipText = (result.profile.sanctuaryBlueprint[lang] || result.profile.sanctuaryBlueprint.en)[0] || "";
+  ctx.fillStyle = "#FCE7F3";
+  ctx.font = "italic 26px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  wrapText(ctx, `"${tipText}"`, 120, 985, width - 240, 36, 3);
+
+  // Footer CTA
+  ctx.fillStyle = "rgba(255, 255, 255, 0.5)";
+  ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("Screen your sensory sensitivity & overload profile free at:", 80, 1220);
+
+  ctx.fillStyle = "#EC4899";
+  ctx.font = "900 30px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("nuju.app/quiz/hsp", 80, 1260);
+
+  const dataUrl = canvas.toDataURL("image/png", 0.95);
+  const blob = await new Promise<Blob>((resolve, reject) => {
+    canvas.toBlob((b) => (b ? resolve(b) : reject(new Error("Failed blob"))), "image/png", 0.95);
+  });
+  const file = new File([blob], `ju-hsp-${result.level}.png`, { type: "image/png" });
+
+  return { dataUrl, blob, file };
+}
+
+export async function generateShadowCard(
+  result: ShadowResult,
+  lang: ShadowLang = "en"
+): Promise<{ dataUrl: string; blob: Blob; file: File }> {
+  const width = 1080;
+  const height = 1350;
+  const canvas = document.createElement("canvas");
+  canvas.width = width;
+  canvas.height = height;
+  const ctx = canvas.getContext("2d");
+  if (!ctx) throw new Error("Could not get 2d context");
+
+  // Background
+  const bgGrad = ctx.createLinearGradient(0, 0, width, height);
+  bgGrad.addColorStop(0, "#0B0616");
+  bgGrad.addColorStop(0.5, "#140C26");
+  bgGrad.addColorStop(1, "#06030D");
+  ctx.fillStyle = bgGrad;
+  ctx.fillRect(0, 0, width, height);
+
+  // Soft glowing purple orb in upper right
+  const orb = ctx.createRadialGradient(width - 150, 200, 20, width - 150, 200, 450);
+  orb.addColorStop(0, "rgba(168, 85, 247, 0.25)");
+  orb.addColorStop(1, "rgba(168, 85, 247, 0)");
+  ctx.fillStyle = orb;
+  ctx.fillRect(0, 0, width, height);
+
+  // Brand Header
+  ctx.fillStyle = "#A855F7";
+  ctx.font = "bold 26px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("JU · JUNGIAN SHADOW WORK MIRROR", 80, 110);
+
+  // Badge pill
+  const badgeText = result.primary.archetypeBadge[lang] || result.primary.archetypeBadge.en;
+  ctx.fillStyle = "rgba(168, 85, 247, 0.15)";
+  drawRoundedRect(ctx, 80, 150, 420, 52, 26);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(168, 85, 247, 0.4)";
+  ctx.stroke();
+
+  ctx.fillStyle = "#C084FC";
+  ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(badgeText.toUpperCase(), 105, 184);
+
+  // Title
+  const titleText = result.primary.name[lang] || result.primary.name.en;
+  ctx.fillStyle = "#FFFFFF";
+  ctx.font = "900 50px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  wrapText(ctx, titleText, 80, 265, width - 160, 60, 2);
+
+  // Tagline
+  const tagline = result.primary.tagline[lang] || result.primary.tagline.en;
+  ctx.fillStyle = "#D8B4FE";
+  ctx.font = "italic 26px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  wrapText(ctx, `"${tagline}"`, 80, 360, width - 160, 36, 2);
+
+  // 4 Archetype Distribution Horizontal Bars
+  const barY = 440;
+  ctx.fillStyle = "rgba(255, 255, 255, 0.04)";
+  drawRoundedRect(ctx, 80, barY, width - 160, 200, 24);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(168, 85, 247, 0.2)";
+  ctx.stroke();
+
+  ctx.fillStyle = "#C084FC";
+  ctx.font = "bold 20px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("SUBCONSCIOUS SHADOW SPECTRUM", 110, barY + 42);
+
+  const archetypes = [
+    { label: "Tyrant / Perfectionist", pct: result.percentages.tyrant, color: "#A855F7" },
+    { label: "Martyr / Fawn", pct: result.percentages.martyr, color: "#F43F5E" },
+    { label: "Ice Wall / Detached", pct: result.percentages.ice_wall, color: "#06B6D4" },
+    { label: "Chaos Rebel", pct: result.percentages.chaos_rebel, color: "#F59E0B" },
+  ];
+
+  archetypes.forEach((item, idx) => {
+    const yOffset = barY + 70 + idx * 30;
+    ctx.fillStyle = "#CBD5E1";
+    ctx.font = "bold 16px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+    ctx.fillText(item.label, 110, yOffset + 14);
+
+    ctx.fillStyle = "rgba(255, 255, 255, 0.1)";
+    drawRoundedRect(ctx, 360, yOffset, 480, 16, 8);
+    ctx.fill();
+
+    ctx.fillStyle = item.color;
+    drawRoundedRect(ctx, 360, yOffset, Math.max(16, (480 * item.pct) / 100), 16, 8);
+    ctx.fill();
+
+    ctx.fillStyle = "#FFFFFF";
+    ctx.font = "bold 16px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+    ctx.fillText(`${item.pct}%`, 860, yOffset + 14);
+  });
+
+  // Disowned Trait Box
+  ctx.fillStyle = "rgba(255, 255, 255, 0.04)";
+  drawRoundedRect(ctx, 80, 670, width - 160, 200, 28);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(168, 85, 247, 0.25)";
+  ctx.stroke();
+
+  ctx.fillStyle = "#C084FC";
+  ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("DISOWNED SUBCONSCIOUS TRAIT", 120, 720);
+
+  const disowned = result.primary.disownedTrait[lang] || result.primary.disownedTrait.en;
+  ctx.fillStyle = "#E2E8F0";
+  ctx.font = "26px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  wrapText(ctx, disowned, 120, 765, width - 240, 38, 3);
+
+  // Gold in the Shadow Box
+  ctx.fillStyle = "rgba(245, 158, 11, 0.08)";
+  drawRoundedRect(ctx, 80, 895, width - 160, 210, 28);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(245, 158, 11, 0.35)";
+  ctx.stroke();
+
+  ctx.fillStyle = "#FBBF24";
+  ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("THE GOLD IN YOUR SHADOW", 120, 945);
+
+  const goldText = result.primary.goldInTheShadow[lang] || result.primary.goldInTheShadow.en;
+  ctx.fillStyle = "#FEF3C7";
+  ctx.font = "italic 26px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  wrapText(ctx, `"${goldText}"`, 120, 990, width - 240, 36, 3);
+
+  // Footer CTA
+  ctx.fillStyle = "rgba(255, 255, 255, 0.5)";
+  ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("Explore your subconscious shadow & reparenting prompts at:", 80, 1220);
+
+  ctx.fillStyle = "#C084FC";
+  ctx.font = "900 30px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("nuju.app/quiz/shadow-work", 80, 1260);
+
+  const dataUrl = canvas.toDataURL("image/png", 0.95);
+  const blob = await new Promise<Blob>((resolve, reject) => {
+    canvas.toBlob((b) => (b ? resolve(b) : reject(new Error("Failed blob"))), "image/png", 0.95);
+  });
+  const file = new File([blob], `ju-shadow-${result.primary.id}.png`, { type: "image/png" });
+
+  return { dataUrl, blob, file };
+}
+
+
 
 

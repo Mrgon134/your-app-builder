@@ -6,7 +6,7 @@
     <atom:link href="https://nuju.app/rss.xml" rel="self" type="application/rss+xml" />
     <description>Practical guides on journaling, mood tracking, and emotional wellness from the Nuju team.</description>
     <language>en</language>
-    <lastBuildDate>Wed, 16 Sep 2026 03:40:29 GMT</lastBuildDate>
+    <lastBuildDate>Wed, 16 Sep 2026 03:49:58 GMT</lastBuildDate>
     <item>
       <title>Free Mental Health Test Online: Complete DASS-21 Depression, Anxiety &amp; Stress Screening</title>
       <link>https://nuju.app/blog/free-mental-health-test-online-dass21</link>
@@ -321,6 +321,141 @@
       <category>Neurociencia</category>
       <pubDate>Wed, 16 Sep 2026 12:00:00 GMT</pubDate>
       <dc:language>es</dc:language>
+    </item>
+    <item>
+      <title>Highly Sensitive Person (HSP) Test: Free Sensory Overload &amp; Empathy Screener</title>
+      <link>https://nuju.app/blog/hsp-test-highly-sensitive-person-sensory-overload</link>
+      <guid isPermaLink="true">https://nuju.app/blog/hsp-test-highly-sensitive-person-sensory-overload</guid>
+      <description>Take the free 15-question Highly Sensitive Person (HSP) test online based on Dr. Elaine Aron&apos;s DOESTM framework. Identify sensory overload, empathy depth, and sensory sanctuary protocols.</description>
+      <category>Mental Health</category>
+      <pubDate>Wed, 16 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Jungian Shadow Work Test: Free Repressed Archetype &amp; Projection Mirror</title>
+      <link>https://nuju.app/blog/shadow-work-test-jungian-archetypes-journaling</link>
+      <guid isPermaLink="true">https://nuju.app/blog/shadow-work-test-jungian-archetypes-journaling</guid>
+      <description>Uncover your subconscious shadow archetype with our free 12-dilemma assessment. Discover disowned traits, hidden resentment, and deep shadow journaling prompts.</description>
+      <category>Self-Discovery</category>
+      <pubDate>Wed, 16 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>The 5-4-3-2-1 Grounding Technique: Step-by-Step Sensory Reset for Panic &amp; Overthinking</title>
+      <link>https://nuju.app/blog/5-4-3-2-1-grounding-technique-anxiety-sensory-reset</link>
+      <guid isPermaLink="true">https://nuju.app/blog/5-4-3-2-1-grounding-technique-anxiety-sensory-reset</guid>
+      <description>Learn how to stop panic attacks and racing thoughts in minutes using the clinical 5-4-3-2-1 sensory grounding method. Includes free interactive web app.</description>
+      <category>Mental Health</category>
+      <pubDate>Wed, 16 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>HSP Test Deutsch: Kostenloser Fragebogen für Hochsensibilität &amp; Reizüberflutung</title>
+      <link>https://nuju.app/blog/hsp-test-deutsch-hochsensibilitaet-fragebogen</link>
+      <guid isPermaLink="true">https://nuju.app/blog/hsp-test-deutsch-hochsensibilitaet-fragebogen</guid>
+      <description>Machen Sie den kostenlosen HSP Test auf Deutsch nach Dr. Elaine Aron. Ermitteln Sie Ihren Grad an Hochsensibilität, sensorischer Überlastung und empathischer Tiefe.</description>
+      <category>Mental Health</category>
+      <pubDate>Wed, 16 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>de</dc:language>
+    </item>
+    <item>
+      <title>Schattenarbeit Test Deutsch: Entdecke deine verdrängten C.G. Jung Archetypen</title>
+      <link>https://nuju.app/blog/schattenarbeit-test-deutsch-archetypen-jung</link>
+      <guid isPermaLink="true">https://nuju.app/blog/schattenarbeit-test-deutsch-archetypen-jung</guid>
+      <description>Welche Persönlichkeitsanteile verdrängst du? Machen Sie den kostenlosen Schattenarbeit-Test online nach Carl Gustav Jung mit tiefgehenden Journaling-Prompts.</description>
+      <category>Self-Discovery</category>
+      <pubDate>Wed, 16 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>de</dc:language>
+    </item>
+    <item>
+      <title>5-4-3-2-1 Methode: Die somatische Erdungs-Übung bei Panikattacken &amp; Gedankenkreisen</title>
+      <link>https://nuju.app/blog/5-4-3-2-1-methode-erdung-angst-panikattacke</link>
+      <guid isPermaLink="true">https://nuju.app/blog/5-4-3-2-1-methode-erdung-angst-panikattacke</guid>
+      <description>Wie Sie mit der klinischen 5-4-3-2-1 Sinnesübung akute Panik und Überreizung in Minuten stoppen. Mit interaktivem Akustik-Tool.</description>
+      <category>Mental Health</category>
+      <pubDate>Wed, 16 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>de</dc:language>
+    </item>
+    <item>
+      <title>Test d&apos;Hypersensibilité Gratuit : Êtes-vous une Personne Hautement Sensible (HSP) ?</title>
+      <link>https://nuju.app/blog/test-hypersensibilite-hsp-francais-gratuit</link>
+      <guid isPermaLink="true">https://nuju.app/blog/test-hypersensibilite-hsp-francais-gratuit</guid>
+      <description>Passez le test d&apos;hypersensibilité en 15 questions selon les recherches de la Dre Elaine Aron. Évaluez votre saturation sensorielle et votre empathie.</description>
+      <category>Mental Health</category>
+      <pubDate>Wed, 16 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>fr</dc:language>
+    </item>
+    <item>
+      <title>Test Shadow Work en Français : Découvrez Votre Ombre selon Carl Gustav Jung</title>
+      <link>https://nuju.app/blog/shadow-work-test-francais-jung-archetypes</link>
+      <guid isPermaLink="true">https://nuju.app/blog/shadow-work-test-francais-jung-archetypes</guid>
+      <description>Quels aspects de votre personnalité refoulez-vous inconsciemment ? Découvrez votre archétype de l&apos;ombre avec 12 dilemmes moraux et prompts de journaling.</description>
+      <category>Self-Discovery</category>
+      <pubDate>Wed, 16 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>fr</dc:language>
+    </item>
+    <item>
+      <title>La Technique d&apos;Ancrage 5-4-3-2-1 : Calmer les Attaques de Panique et l&apos;Angoisse</title>
+      <link>https://nuju.app/blog/technique-ancrage-5-4-3-2-1-anxiete</link>
+      <guid isPermaLink="true">https://nuju.app/blog/technique-ancrage-5-4-3-2-1-anxiete</guid>
+      <description>Guide pratique de la méthode somatique 5-4-3-2-1 pour stopper net les crises d&apos;angoisse et la dissociation. Module interactif gratuit.</description>
+      <category>Mental Health</category>
+      <pubDate>Wed, 16 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>fr</dc:language>
+    </item>
+    <item>
+      <title>Test de Persona Altamente Sensible (PAS) Online Gratis : Sobrecarga Sensorial</title>
+      <link>https://nuju.app/blog/test-persona-altamente-sensible-pas-espanol</link>
+      <guid isPermaLink="true">https://nuju.app/blog/test-persona-altamente-sensible-pas-espanol</guid>
+      <description>Descubre si eres una Persona Altamente Sensible con este test de 15 preguntas adaptado del modelo de la Dra. Elaine Aron. Resultados inmediatos.</description>
+      <category>Mental Health</category>
+      <pubDate>Wed, 16 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>es</dc:language>
+    </item>
+    <item>
+      <title>Test del Trabajo de la Sombra : Descubre tus Arquetipos Inconscientes de Carl Jung</title>
+      <link>https://nuju.app/blog/test-de-la-sombra-jung-arquetipos-psicologia</link>
+      <guid isPermaLink="true">https://nuju.app/blog/test-de-la-sombra-jung-arquetipos-psicologia</guid>
+      <description>¿Qué partes de tu personalidad reprimes por miedo o culpa? Test gratuito de 12 dilemas psicológicos con preguntas de introspección profunda.</description>
+      <category>Self-Discovery</category>
+      <pubDate>Wed, 16 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>es</dc:language>
+    </item>
+    <item>
+      <title>Técnica de Enraizamiento 5-4-3-2-1 : Cómo Frenar Ataques de Pánico en 3 Minutos</title>
+      <link>https://nuju.app/blog/tecnica-5-4-3-2-1-ansiedad-enraizamiento</link>
+      <guid isPermaLink="true">https://nuju.app/blog/tecnica-5-4-3-2-1-ansiedad-enraizamiento</guid>
+      <description>Aprende a calmar la ansiedad aguda y el pensamiento obsesivo con la técnica somática 5-4-3-2-1. Herramienta interactiva gratuita.</description>
+      <category>Mental Health</category>
+      <pubDate>Wed, 16 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>es</dc:language>
+    </item>
+    <item>
+      <title>Tes HSP Indonesia Online: Tes Orang Sangat Sensitif &amp; Sensory Overload Gratis</title>
+      <link>https://nuju.app/blog/tes-orang-sangat-sensitif-hsp-indonesia</link>
+      <guid isPermaLink="true">https://nuju.app/blog/tes-orang-sangat-sensitif-hsp-indonesia</guid>
+      <description>Ukur tingkat kepekaan sistem saraf Anda dengan tes 15 pertanyaan Highly Sensitive Person (HSP) berdasarkan riset Dr. Elaine Aron. Dilengkapi panduan sensory sanctuary.</description>
+      <category>Mental Health</category>
+      <pubDate>Wed, 16 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>id</dc:language>
+    </item>
+    <item>
+      <title>Tes Shadow Work Carl Jung Indonesia: Ungkap Sifat Tersembunyi di Bawah Sadar</title>
+      <link>https://nuju.app/blog/tes-shadow-work-indonesia-luka-terpendam-carl-jung</link>
+      <guid isPermaLink="true">https://nuju.app/blog/tes-shadow-work-indonesia-luka-terpendam-carl-jung</guid>
+      <description>Tes 12 dilema psikologi analitis Carl Jung untuk mengungkap arketipe bayangan bawah sadar (The Tyrant, The Martyr, The Ice Wall, The Rebel) dan memulihkan luka batin.</description>
+      <category>Self-Discovery</category>
+      <pubDate>Wed, 16 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>id</dc:language>
+    </item>
+    <item>
+      <title>Teknik Grounding 5-4-3-2-1: Cara Cepat Meredakan Serangan Panik &amp; Overthinking</title>
+      <link>https://nuju.app/blog/teknik-grounding-5-4-3-2-1-atasi-panik-cemas</link>
+      <guid isPermaLink="true">https://nuju.app/blog/teknik-grounding-5-4-3-2-1-atasi-panik-cemas</guid>
+      <description>Panduan klinis metode somatik 5-4-3-2-1 untuk menghentikan serangan panik, jantung berdebar, dan pikiran kalut dalam 3 menit. Dilengkapi tool interaktif gratis.</description>
+      <category>Mental Health</category>
+      <pubDate>Wed, 16 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>id</dc:language>
     </item>
     <item>
       <title>5 Aplikasi Mood Tracker Gratis Bahasa Indonesia Terbaik 2026</title>

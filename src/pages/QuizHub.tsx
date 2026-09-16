@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { ArrowRight, Brain, Clock, Heart, HelpCircle, Lock, ShieldCheck, Sparkles, Users, Activity, Zap, Headphones, ShieldAlert, Compass, Briefcase, Wind, Eye, Shield } from "lucide-react";
+import { ArrowRight, Brain, Clock, Heart, HelpCircle, Lock, ShieldCheck, Sparkles, Users, Activity, Zap, Headphones, ShieldAlert, Compass, Briefcase, Wind, Eye, Shield, Feather, Moon, Hand } from "lucide-react";
 import SEOHead from "@/components/SEOHead";
 import AdSenseBanner from "@/components/AdSenseBanner";
 import AppStoreCta from "@/components/AppStoreCta";
@@ -480,6 +480,93 @@ const QuizHub: React.FC = () => {
                 className="inline-flex items-center gap-1.5 rounded-full bg-cyan-700 px-4 py-2 text-xs font-bold text-white hover:bg-cyan-800 transition shadow-xs"
               >
                 <span>Launch EMDR Tool</span>
+                <ArrowRight className="h-3.5 w-3.5" />
+              </Link>
+            </div>
+          </div>
+
+          {/* Card 13: Highly Sensitive Person (HSP) Screener */}
+          <div className="rounded-3xl border border-pink-300 bg-gradient-to-br from-pink-500/10 via-rose-50 to-white p-6 shadow-xs flex flex-col justify-between hover:shadow-md transition">
+            <div>
+              <div className="flex items-center justify-between mb-3">
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-pink-600 px-3 py-0.5 text-xs font-bold text-white shadow-xs">
+                  <Feather className="h-3 w-3" />
+                  HSP & SENSORY
+                </span>
+                <span className="text-xs font-semibold text-neutral-500">Dr. Elaine Aron Model</span>
+              </div>
+              <h3 className="text-lg font-bold text-neutral-900 mb-1.5">
+                Highly Sensitive Person (HSP)
+              </h3>
+              <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed">
+                Do you absorb energy like a sponge? Test your sensory overload thresholds, emotional depth, and get your custom Sensory Sanctuary Blueprint.
+              </p>
+            </div>
+            <div className="mt-5 pt-3 border-t border-pink-100 flex items-center justify-between">
+              <span className="text-xs font-medium text-neutral-400">~2 Mins · 15 Items</span>
+              <Link
+                to="/quiz/hsp"
+                className="inline-flex items-center gap-1.5 rounded-full bg-pink-600 px-4 py-2 text-xs font-bold text-white hover:bg-pink-700 transition shadow-xs"
+              >
+                <span>Take HSP Test</span>
+                <ArrowRight className="h-3.5 w-3.5" />
+              </Link>
+            </div>
+          </div>
+
+          {/* Card 14: Jungian Shadow Work Mirror */}
+          <div className="rounded-3xl border border-purple-300 bg-gradient-to-br from-purple-500/10 via-indigo-50 to-white p-6 shadow-xs flex flex-col justify-between hover:shadow-md transition">
+            <div>
+              <div className="flex items-center justify-between mb-3">
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-purple-600 px-3 py-0.5 text-xs font-bold text-white shadow-xs">
+                  <Moon className="h-3 w-3" />
+                  SHADOW WORK
+                </span>
+                <span className="text-xs font-semibold text-neutral-500">Carl Jung Archetypes</span>
+              </div>
+              <h3 className="text-lg font-bold text-neutral-900 mb-1.5">
+                Jungian Shadow Work Mirror
+              </h3>
+              <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed">
+                Unmask what your ego represses. Discover your primary shadow archetype (The Tyrant, The Martyr, The Ice Wall, The Rebel) and deep journal prompts.
+              </p>
+            </div>
+            <div className="mt-5 pt-3 border-t border-purple-100 flex items-center justify-between">
+              <span className="text-xs font-medium text-neutral-400">~2 Mins · 12 Dilemmas</span>
+              <Link
+                to="/quiz/shadow-work"
+                className="inline-flex items-center gap-1.5 rounded-full bg-purple-600 px-4 py-2 text-xs font-bold text-white hover:bg-purple-700 transition shadow-xs"
+              >
+                <span>Explore Shadow</span>
+                <ArrowRight className="h-3.5 w-3.5" />
+              </Link>
+            </div>
+          </div>
+
+          {/* Card 15: 5-4-3-2-1 Sensory Grounding Lab */}
+          <div className="rounded-3xl border border-teal-300 bg-gradient-to-br from-teal-500/10 via-emerald-50 to-white p-6 shadow-xs flex flex-col justify-between hover:shadow-md transition">
+            <div>
+              <div className="flex items-center justify-between mb-3">
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-teal-600 px-3 py-0.5 text-xs font-bold text-white shadow-xs">
+                  <Hand className="h-3 w-3" />
+                  SOMATIC ANCHOR
+                </span>
+                <span className="text-xs font-semibold text-teal-700">Polyvagal Chimes 🔔</span>
+              </div>
+              <h3 className="text-lg font-bold text-neutral-900 mb-1.5">
+                5-4-3-2-1 Sensory Grounding Lab
+              </h3>
+              <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed">
+                Feeling detached, panicked, or overstimulated? Guide your 5 senses back to safety with interactive step anchors and calming solfeggio chimes.
+              </p>
+            </div>
+            <div className="mt-5 pt-3 border-t border-teal-100 flex items-center justify-between">
+              <span className="text-xs font-medium text-neutral-400">Immediate Reset · 2 Mins</span>
+              <Link
+                to="/tools/grounding"
+                className="inline-flex items-center gap-1.5 rounded-full bg-teal-600 px-4 py-2 text-xs font-bold text-white hover:bg-teal-700 transition shadow-xs"
+              >
+                <span>Start Grounding</span>
                 <ArrowRight className="h-3.5 w-3.5" />
               </Link>
             </div>

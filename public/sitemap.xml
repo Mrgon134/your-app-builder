@@ -159,6 +159,24 @@
     <changefreq>weekly</changefreq>
   </url>
   <url>
+    <loc>https://nuju.app/quiz/hsp</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.95</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/quiz/shadow-work</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.95</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/tools/grounding</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.95</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
     <loc>https://nuju.app/quiz/baterai-emosi</loc>
     <lastmod>2026-09-16</lastmod>
     <priority>0.9</priority>
@@ -4306,6 +4324,186 @@
       <image:caption>Usa la herramienta interactiva de estimulación bilateral visual y auditiva EMDR online gratis. Desactiva la hiperactivación del estrés en minutos.</image:caption>
     </image:image>
     <xhtml:link rel="alternate" hreflang="es" href="https://nuju.app/blog/estimulacion-bilateral-emdr-online-ansiedad"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/hsp-test-highly-sensitive-person-sensory-overload</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Highly Sensitive Person (HSP) Test: Free Sensory Overload &amp; Empathy Screener</image:title>
+      <image:caption>Take the free 15-question Highly Sensitive Person (HSP) test online based on Dr. Elaine Aron&apos;s DOESTM framework. Identify sensory overload, empathy depth, and sensory sanctuary protocols.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/hsp-test-highly-sensitive-person-sensory-overload"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/shadow-work-test-jungian-archetypes-journaling</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Jungian Shadow Work Test: Free Repressed Archetype &amp; Projection Mirror</image:title>
+      <image:caption>Uncover your subconscious shadow archetype with our free 12-dilemma assessment. Discover disowned traits, hidden resentment, and deep shadow journaling prompts.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/shadow-work-test-jungian-archetypes-journaling"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/5-4-3-2-1-grounding-technique-anxiety-sensory-reset</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>The 5-4-3-2-1 Grounding Technique: Step-by-Step Sensory Reset for Panic &amp; Overthinking</image:title>
+      <image:caption>Learn how to stop panic attacks and racing thoughts in minutes using the clinical 5-4-3-2-1 sensory grounding method. Includes free interactive web app.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/5-4-3-2-1-grounding-technique-anxiety-sensory-reset"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/hsp-test-deutsch-hochsensibilitaet-fragebogen</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>HSP Test Deutsch: Kostenloser Fragebogen für Hochsensibilität &amp; Reizüberflutung</image:title>
+      <image:caption>Machen Sie den kostenlosen HSP Test auf Deutsch nach Dr. Elaine Aron. Ermitteln Sie Ihren Grad an Hochsensibilität, sensorischer Überlastung und empathischer Tiefe.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="de" href="https://nuju.app/blog/hsp-test-deutsch-hochsensibilitaet-fragebogen"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/schattenarbeit-test-deutsch-archetypen-jung</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Schattenarbeit Test Deutsch: Entdecke deine verdrängten C.G. Jung Archetypen</image:title>
+      <image:caption>Welche Persönlichkeitsanteile verdrängst du? Machen Sie den kostenlosen Schattenarbeit-Test online nach Carl Gustav Jung mit tiefgehenden Journaling-Prompts.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="de" href="https://nuju.app/blog/schattenarbeit-test-deutsch-archetypen-jung"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/5-4-3-2-1-methode-erdung-angst-panikattacke</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>5-4-3-2-1 Methode: Die somatische Erdungs-Übung bei Panikattacken &amp; Gedankenkreisen</image:title>
+      <image:caption>Wie Sie mit der klinischen 5-4-3-2-1 Sinnesübung akute Panik und Überreizung in Minuten stoppen. Mit interaktivem Akustik-Tool.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="de" href="https://nuju.app/blog/5-4-3-2-1-methode-erdung-angst-panikattacke"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/test-hypersensibilite-hsp-francais-gratuit</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Test d&apos;Hypersensibilité Gratuit : Êtes-vous une Personne Hautement Sensible (HSP) ?</image:title>
+      <image:caption>Passez le test d&apos;hypersensibilité en 15 questions selon les recherches de la Dre Elaine Aron. Évaluez votre saturation sensorielle et votre empathie.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://nuju.app/blog/test-hypersensibilite-hsp-francais-gratuit"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/shadow-work-test-francais-jung-archetypes</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Test Shadow Work en Français : Découvrez Votre Ombre selon Carl Gustav Jung</image:title>
+      <image:caption>Quels aspects de votre personnalité refoulez-vous inconsciemment ? Découvrez votre archétype de l&apos;ombre avec 12 dilemmes moraux et prompts de journaling.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://nuju.app/blog/shadow-work-test-francais-jung-archetypes"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/technique-ancrage-5-4-3-2-1-anxiete</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>La Technique d&apos;Ancrage 5-4-3-2-1 : Calmer les Attaques de Panique et l&apos;Angoisse</image:title>
+      <image:caption>Guide pratique de la méthode somatique 5-4-3-2-1 pour stopper net les crises d&apos;angoisse et la dissociation. Module interactif gratuit.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://nuju.app/blog/technique-ancrage-5-4-3-2-1-anxiete"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/test-persona-altamente-sensible-pas-espanol</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Test de Persona Altamente Sensible (PAS) Online Gratis : Sobrecarga Sensorial</image:title>
+      <image:caption>Descubre si eres una Persona Altamente Sensible con este test de 15 preguntas adaptado del modelo de la Dra. Elaine Aron. Resultados inmediatos.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="es" href="https://nuju.app/blog/test-persona-altamente-sensible-pas-espanol"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/test-de-la-sombra-jung-arquetipos-psicologia</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Test del Trabajo de la Sombra : Descubre tus Arquetipos Inconscientes de Carl Jung</image:title>
+      <image:caption>¿Qué partes de tu personalidad reprimes por miedo o culpa? Test gratuito de 12 dilemas psicológicos con preguntas de introspección profunda.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="es" href="https://nuju.app/blog/test-de-la-sombra-jung-arquetipos-psicologia"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/tecnica-5-4-3-2-1-ansiedad-enraizamiento</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Técnica de Enraizamiento 5-4-3-2-1 : Cómo Frenar Ataques de Pánico en 3 Minutos</image:title>
+      <image:caption>Aprende a calmar la ansiedad aguda y el pensamiento obsesivo con la técnica somática 5-4-3-2-1. Herramienta interactiva gratuita.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="es" href="https://nuju.app/blog/tecnica-5-4-3-2-1-ansiedad-enraizamiento"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/tes-orang-sangat-sensitif-hsp-indonesia</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Tes HSP Indonesia Online: Tes Orang Sangat Sensitif &amp; Sensory Overload Gratis</image:title>
+      <image:caption>Ukur tingkat kepekaan sistem saraf Anda dengan tes 15 pertanyaan Highly Sensitive Person (HSP) berdasarkan riset Dr. Elaine Aron. Dilengkapi panduan sensory sanctuary.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="id" href="https://nuju.app/blog/tes-orang-sangat-sensitif-hsp-indonesia"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/tes-shadow-work-indonesia-luka-terpendam-carl-jung</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Tes Shadow Work Carl Jung Indonesia: Ungkap Sifat Tersembunyi di Bawah Sadar</image:title>
+      <image:caption>Tes 12 dilema psikologi analitis Carl Jung untuk mengungkap arketipe bayangan bawah sadar (The Tyrant, The Martyr, The Ice Wall, The Rebel) dan memulihkan luka batin.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="id" href="https://nuju.app/blog/tes-shadow-work-indonesia-luka-terpendam-carl-jung"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/teknik-grounding-5-4-3-2-1-atasi-panik-cemas</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Teknik Grounding 5-4-3-2-1: Cara Cepat Meredakan Serangan Panik &amp; Overthinking</image:title>
+      <image:caption>Panduan klinis metode somatik 5-4-3-2-1 untuk menghentikan serangan panik, jantung berdebar, dan pikiran kalut dalam 3 menit. Dilengkapi tool interaktif gratis.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="id" href="https://nuju.app/blog/teknik-grounding-5-4-3-2-1-atasi-panik-cemas"/>
   </url>
   <url>
     <loc>https://nuju.app/blog/how-to-stop-overthinking-at-night</loc>

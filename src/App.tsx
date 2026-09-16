@@ -44,6 +44,9 @@ const BreathworkLab = lazy(() => import("./pages/BreathworkLab.tsx"));
 const LoveLanguagesTest = lazy(() => import("./pages/LoveLanguagesTest.tsx"));
 const PeoplePleaserTest = lazy(() => import("./pages/PeoplePleaserTest.tsx"));
 const BilateralStimulationLab = lazy(() => import("./pages/BilateralStimulationLab.tsx"));
+const HspTest = lazy(() => import("./pages/HspTest.tsx"));
+const ShadowWorkTest = lazy(() => import("./pages/ShadowWorkTest.tsx"));
+const SensoryGroundingLab = lazy(() => import("./pages/SensoryGroundingLab.tsx"));
 const ZenBubbleGame = lazy(() => import("./pages/ZenBubbleGame.tsx"));
 const EbookSalesPage = lazy(() => import("./pages/EbookSalesPage.tsx"));
 const EbookReaderPage = lazy(() => import("./pages/EbookReaderPage.tsx"));
@@ -147,6 +150,16 @@ const App = () => (
                   <Route path="/tools/bilateral" element={<BilateralStimulationLab />} />
                   <Route path="/tools/emdr" element={<BilateralStimulationLab />} />
                   <Route path="/emdr" element={<BilateralStimulationLab />} />
+                  <Route path="/quiz/hsp" element={<HspTest />} />
+                  <Route path="/quiz/highly-sensitive-person" element={<HspTest />} />
+                  <Route path="/quiz/sensory-overload" element={<HspTest />} />
+                  <Route path="/tes-hsp" element={<HspTest defaultLang="id" />} />
+                  <Route path="/quiz/shadow-work" element={<ShadowWorkTest />} />
+                  <Route path="/quiz/shadow-test" element={<ShadowWorkTest />} />
+                  <Route path="/tes-shadow-work" element={<ShadowWorkTest defaultLang="id" />} />
+                  <Route path="/tools/grounding" element={<SensoryGroundingLab />} />
+                  <Route path="/tools/54321" element={<SensoryGroundingLab />} />
+                  <Route path="/grounding" element={<SensoryGroundingLab />} />
                   <Route path="/game/zen-pop" element={<ZenBubbleGame />} />
                   <Route path="/games/stress-pop" element={<ZenBubbleGame />} />
                   <Route path="/quiz/:quizId" element={<QuizRunner />} />
