@@ -1011,6 +1011,93 @@ const QuizHub: React.FC = () => {
               </Link>
             </div>
           </div>
+
+          {/* Card 31: Limerence & Romantic Obsession Screener */}
+          <div className="rounded-3xl border border-rose-300 bg-gradient-to-br from-rose-500/10 via-pink-50 to-white p-6 shadow-xs flex flex-col justify-between hover:shadow-md transition">
+            <div>
+              <div className="flex items-center justify-between mb-3">
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-rose-600 px-3 py-0.5 text-xs font-bold text-white shadow-xs">
+                  <Heart className="h-3 w-3" />
+                  LIMERENCE SCALE
+                </span>
+                <span className="text-xs font-semibold text-rose-700">Dr. Dorothy Tennov</span>
+              </div>
+              <h3 className="text-lg font-bold text-neutral-900 mb-1.5">
+                Limerence & Romantic Obsession Test
+              </h3>
+              <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed">
+                Is it genuine connection or an involuntary dopaminergic loop? Assess intrusive daydreams, rejection panic, and obstacle-driven pedestalization.
+              </p>
+            </div>
+            <div className="mt-5 pt-3 border-t border-rose-100 flex items-center justify-between">
+              <span className="text-xs font-medium text-neutral-400">~2 Mins · 12 Items</span>
+              <Link
+                to="/quiz/limerence"
+                className="inline-flex items-center gap-1.5 rounded-full bg-rose-600 px-4 py-2 text-xs font-bold text-white hover:bg-rose-700 transition shadow-xs"
+              >
+                <span>Screen Limerence</span>
+                <ArrowRight className="h-3.5 w-3.5" />
+              </Link>
+            </div>
+          </div>
+
+          {/* Card 32: Sensory Overload & Empathy Burnout Diagnostic */}
+          <div className="rounded-3xl border border-teal-300 bg-gradient-to-br from-teal-500/10 via-emerald-50 to-white p-6 shadow-xs flex flex-col justify-between hover:shadow-md transition">
+            <div>
+              <div className="flex items-center justify-between mb-3">
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-teal-600 px-3 py-0.5 text-xs font-bold text-white shadow-xs">
+                  <Activity className="h-3 w-3" />
+                  HSP / SPS MODEL
+                </span>
+                <span className="text-xs font-semibold text-teal-700">Dr. Elaine Aron</span>
+              </div>
+              <h3 className="text-lg font-bold text-neutral-900 mb-1.5">
+                Sensory Overload & Empathy Burnout
+              </h3>
+              <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed">
+                Do loud noises, harsh lights, and other people's negative emotional states exhaust your body? Measure sensory threshold and SPS overload.
+              </p>
+            </div>
+            <div className="mt-5 pt-3 border-t border-teal-100 flex items-center justify-between">
+              <span className="text-xs font-medium text-neutral-400">~2 Mins · 12 Items</span>
+              <Link
+                to="/quiz/sensory-overload"
+                className="inline-flex items-center gap-1.5 rounded-full bg-teal-600 px-4 py-2 text-xs font-bold text-white hover:bg-teal-700 transition shadow-xs"
+              >
+                <span>Screen Sensory Overload</span>
+                <ArrowRight className="h-3.5 w-3.5" />
+              </Link>
+            </div>
+          </div>
+
+          {/* Card 33: Stanford Physiological Sigh & Cyclic Sighing Lab */}
+          <div className="rounded-3xl border border-cyan-300 bg-gradient-to-br from-cyan-500/10 via-teal-50 to-white p-6 shadow-xs flex flex-col justify-between hover:shadow-md transition">
+            <div>
+              <div className="flex items-center justify-between mb-3">
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-cyan-600 px-3 py-0.5 text-xs font-bold text-white shadow-xs">
+                  <Wind className="h-3 w-3" />
+                  STANFORD PROTOCOL
+                </span>
+                <span className="text-xs font-semibold text-cyan-700">Dr. Andrew Huberman</span>
+              </div>
+              <h3 className="text-lg font-bold text-neutral-900 mb-1.5">
+                Stanford Physiological Sigh Lab
+              </h3>
+              <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed">
+                The fastest scientifically proven breathwork technique to lower heart rate and disarm acute panic in 2 minutes with pure Web Audio dual-inhale pacing.
+              </p>
+            </div>
+            <div className="mt-5 pt-3 border-t border-cyan-100 flex items-center justify-between">
+              <span className="text-xs font-medium text-neutral-400">Pure Web Audio · 2-5 Mins</span>
+              <Link
+                to="/tools/physiological-sigh"
+                className="inline-flex items-center gap-1.5 rounded-full bg-cyan-600 px-4 py-2 text-xs font-bold text-white hover:bg-cyan-700 transition shadow-xs"
+              >
+                <span>Launch Sigh Lab</span>
+                <ArrowRight className="h-3.5 w-3.5" />
+              </Link>
+            </div>
+          </div>
         </div>
 
         {/* Country Filter Pills */}

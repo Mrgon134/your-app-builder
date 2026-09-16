@@ -267,6 +267,24 @@
     <changefreq>weekly</changefreq>
   </url>
   <url>
+    <loc>https://nuju.app/quiz/limerence</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.95</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/quiz/sensory-overload</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.95</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/tools/physiological-sigh</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.95</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
     <loc>https://nuju.app/quiz/baterai-emosi</loc>
     <lastmod>2026-09-16</lastmod>
     <priority>0.9</priority>
@@ -5494,6 +5512,186 @@
       <image:caption>Pelajari bagaimana teknik olah suara bergumam (Bhramari) melipatgandakan gas nitric oxide 15 kali lipat dan menenangkan sistem saraf otonom seketika.</image:caption>
     </image:image>
     <xhtml:link rel="alternate" hreflang="id" href="https://nuju.app/blog/olah-suara-vagal-humming-stimulasi-saraf-vagus"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/limerence-test-dorothy-tennov-romantic-obsession-screener</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Limerence Test: Free 12-Item Diagnostic for Romantic Obsession &amp; Dopamine Loops</image:title>
+      <image:caption>Is it deep soulmate love or an involuntary neurochemical addiction? Take our free 12-item Limerence screener based on Dr. Dorothy Tennov&apos;s clinical framework and break the obsessive cycle.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/limerence-test-dorothy-tennov-romantic-obsession-screener"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/sensory-overload-test-hsp-empathy-burnout-elaine-aron</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Sensory Overload Test: Free HSP &amp; Empathy Burnout Diagnostic</image:title>
+      <image:caption>Do loud noises, harsh fluorescent lights, and other people&apos;s emotional storms drain your biological energy? Take our free 12-item Sensory Processing Sensitivity (SPS) test.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/sensory-overload-test-hsp-empathy-burnout-elaine-aron"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/stanford-physiological-sigh-huberman-cyclic-sighing-guide</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>The Stanford Physiological Sigh: How Dual-Inhale Breathing Resets Autonomic Panic</image:title>
+      <image:caption>Discover the fastest scientifically proven breathwork tool for instant anxiety reduction. Learn how Dr. Andrew Huberman &amp; Dr. David Spiegel&apos;s Stanford cyclic sighing re-inflates alveoli and slows heart rate in 2 minutes.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/stanford-physiological-sigh-huberman-cyclic-sighing-guide"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/limerenz-test-dr-dorothy-tennov-liebeswahn-selbsttest</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Limerenz-Test: Kostenloser Selbsttest für Liebesobsession &amp; Dopamin-Sucht</image:title>
+      <image:caption>Ist es wahre Liebe oder eine unwillkürliche neurochemische Sucht nach einer unerreichbaren Person? Mache den kostenlosen 12-Fragen-Limerenz-Test nach Dr. Dorothy Tennov.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="de" href="https://nuju.app/blog/limerenz-test-dr-dorothy-tennov-liebeswahn-selbsttest"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/reizueberflutung-test-hochsensibilitaet-hsp-elaine-aron</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Reizüberflutung-Test: Selbsttest für Hochsensibilität &amp; Empathie-Burnout</image:title>
+      <image:caption>Überfordern dich Neonlicht, laute Geräusche und fremde Gefühle? Mache den 12-Punkte-Test für Sensory Processing Sensitivity (SPS) nach Dr. Elaine Aron.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="de" href="https://nuju.app/blog/reizueberflutung-test-hochsensibilitaet-hsp-elaine-aron"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/physiologischer-seufzer-stanford-huberman-atemuebung</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Der Physiologische Seufzer: Stanford-Methode gegen akute Panik &amp; Stress</image:title>
+      <image:caption>Die schnellste wissenschaftlich bewiesene Atemtechnik zur Senkung von Puls und Angst. Erfahre, wie der zweifache Atemzug nach Dr. Andrew Huberman die Alveolen öffnet.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="de" href="https://nuju.app/blog/physiologischer-seufzer-stanford-huberman-atemuebung"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/test-limerence-dr-dorothy-tennov-obsession-amoureuse</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Test de Limérence: Diagnostic Gratuit d&apos;Obsession Amoureuse &amp; Boucle Dopaminergique</image:title>
+      <image:caption>Est-ce un véritable amour ou une addiction neurochimique involontaire? Faites le test en 12 questions basé sur les travaux du Dr Dorothy Tennov.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://nuju.app/blog/test-limerence-dr-dorothy-tennov-obsession-amoureuse"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/test-saturation-sensorielle-hypersensibilite-hsp-aron</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Test Saturation Sensorielle: Dépistage Hypersensibilité &amp; Burn-out Empathique</image:title>
+      <image:caption>Le bruit, la foule et les lumières vives épuisent-ils votre système nerveux? Évaluez votre sensibilité selon le modèle du Dr Elaine Aron.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://nuju.app/blog/test-saturation-sensorielle-hypersensibilite-hsp-aron"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/soupir-physiologique-stanford-huberman-exercice-respiration</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Le Soupir Physiologique: L&apos;Exercice de Stanford pour Désamorcer l&apos;Anxiété en 2 Minutes</image:title>
+      <image:caption>Découvrez la méthode du double inspir validée par l&apos;Université de Stanford. Réouvrez vos alvéoles pulmonaires et ralentissez votre fréquence cardiaque instantanément.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://nuju.app/blog/soupir-physiologique-stanford-huberman-exercice-respiration"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/test-limerencia-dr-dorothy-tennov-obsesion-amorosa</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Test de Limerencia: Diagnóstico Gratuito de Obsesión Amorosa &amp; Dopamina</image:title>
+      <image:caption>¿Es amor verdadero o una adicción neuroquímica involuntaria hacia una persona inaccesible? Realiza el test de 12 preguntas basado en el modelo de la Dra. Dorothy Tennov.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="es" href="https://nuju.app/blog/test-limerencia-dr-dorothy-tennov-obsesion-amorosa"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/test-sobrecarga-sensorial-alta-sensibilidad-pas-aron</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Test de Sobrecarga Sensorial: Diagnóstico de Alta Sensibilidad (PAS) &amp; Burnout Empático</image:title>
+      <image:caption>¿El ruido, la iluminación intensa y las emociones ajenas agotan tu energía vital? Descubre tu nivel de Sensibilidad del Procesamiento Sensorial según la Dra. Elaine Aron.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="es" href="https://nuju.app/blog/test-sobrecarga-sensorial-alta-sensibilidad-pas-aron"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/suspiro-fisiologico-stanford-huberman-ejercicio-calma</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>El Suspiro Fisiológico: Técnica de Stanford para Frenar la Ansiedad en 2 Minutos</image:title>
+      <image:caption>Aprende el método de doble inhalación investigado por la Universidad de Stanford para reabrir alvéolos pulmonares y activar el nervio vago de inmediato.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="es" href="https://nuju.app/blog/suspiro-fisiologico-stanford-huberman-ejercicio-calma"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/tes-limerence-obsesi-cinta-dorothy-tennov-indonesia</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Tes Limerence Indonesia: Cek Apakah Ini Cinta Sejati atau Obsesi Dopamin Rusak</image:title>
+      <image:caption>Apakah kamu benar-benar mencintainya atau terjebak dalam kecanduan neurokimiawi limerence? Ikuti tes 12 soal berbasis teori Dr. Dorothy Tennov dan unduh Story card gratis.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="id" href="https://nuju.app/blog/tes-limerence-obsesi-cinta-dorothy-tennov-indonesia"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/tes-sensory-overload-hsp-burnout-empati-indonesia</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Tes Sensory Overload Indonesia: Skrining Kepekaan Saraf &amp; Burnout Empati (HSP)</image:title>
+      <image:caption>Apakah lampu neon terang, suara bising, dan emosi negatif orang lain membuat tubuhmu drop dan sakit kepala? Ikuti tes 12 soal Highly Sensitive Person (HSP) Dr. Elaine Aron.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="id" href="https://nuju.app/blog/tes-sensory-overload-hsp-burnout-empati-indonesia"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/panduan-physiological-sigh-stanford-huberman-indonesia</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Panduan Physiological Sigh Stanford: Redakan Panik &amp; Cemas dalam 2 Menit</image:title>
+      <image:caption>Teknik pernapasan dua tarikan napas tercepat di dunia yang terbukti secara ilmiah oleh Stanford Medicine. Pelajari cara membuka alveoli paru dan menurunkan detak jantung.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="id" href="https://nuju.app/blog/panduan-physiological-sigh-stanford-huberman-indonesia"/>
   </url>
   <url>
     <loc>https://nuju.app/blog/how-to-stop-overthinking-at-night</loc>

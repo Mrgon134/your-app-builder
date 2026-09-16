@@ -63,6 +63,9 @@ const BoxBreathingLab = lazy(() => import("./pages/BoxBreathingLab.tsx"));
 const ParentificationTest = lazy(() => import("./pages/ParentificationTest.tsx"));
 const AlexithymiaTest = lazy(() => import("./pages/AlexithymiaTest.tsx"));
 const VocalToningLab = lazy(() => import("./pages/VocalToningLab.tsx"));
+const LimerenceTest = lazy(() => import("./pages/LimerenceTest.tsx"));
+const SensoryTest = lazy(() => import("./pages/SensoryTest.tsx"));
+const PhysiologicalSighLab = lazy(() => import("./pages/PhysiologicalSighLab.tsx"));
 const EbookSalesPage = lazy(() => import("./pages/EbookSalesPage.tsx"));
 const EbookReaderPage = lazy(() => import("./pages/EbookReaderPage.tsx"));
 const NotFound = lazy(() => import("./pages/NotFound.tsx"));
@@ -167,7 +170,6 @@ const App = () => (
                   <Route path="/emdr" element={<BilateralStimulationLab />} />
                   <Route path="/quiz/hsp" element={<HspTest />} />
                   <Route path="/quiz/highly-sensitive-person" element={<HspTest />} />
-                  <Route path="/quiz/sensory-overload" element={<HspTest />} />
                   <Route path="/tes-hsp" element={<HspTest defaultLang="id" />} />
                   <Route path="/quiz/shadow-work" element={<ShadowWorkTest />} />
                   <Route path="/quiz/shadow-test" element={<ShadowWorkTest />} />
@@ -224,6 +226,17 @@ const App = () => (
                   <Route path="/tools/vocal-toning" element={<VocalToningLab />} />
                   <Route path="/tools/vagal-humming" element={<VocalToningLab />} />
                   <Route path="/vocal-toning" element={<VocalToningLab />} />
+                  <Route path="/quiz/limerence" element={<LimerenceTest />} />
+                  <Route path="/quiz/obsessive-love" element={<LimerenceTest />} />
+                  <Route path="/tes-limerence" element={<LimerenceTest defaultLang="id" />} />
+                  <Route path="/quiz/sensory-overload" element={<SensoryTest />} />
+                  <Route path="/quiz/empathy-burnout" element={<SensoryTest />} />
+                  <Route path="/quiz/sensory-burnout" element={<SensoryTest />} />
+                  <Route path="/tes-sensory-overload" element={<SensoryTest defaultLang="id" />} />
+                  <Route path="/tools/physiological-sigh" element={<PhysiologicalSighLab />} />
+                  <Route path="/tools/cyclic-sighing" element={<PhysiologicalSighLab />} />
+                  <Route path="/cyclic-sighing" element={<PhysiologicalSighLab />} />
+                  <Route path="/physiological-sigh" element={<PhysiologicalSighLab />} />
                   <Route path="/quiz/:quizId" element={<QuizRunner />} />
                   <Route path="/test-psikologi" element={<QuizHub />} />
                   <Route path="/test-psikologi/:quizId" element={<QuizRunner />} />
