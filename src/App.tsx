@@ -57,6 +57,9 @@ const NsdrAudioLab = lazy(() => import("./pages/NsdrAudioLab.tsx"));
 const DissociationScreenerTest = lazy(() => import("./pages/DissociationScreenerTest.tsx"));
 const ImposterSyndromeTest = lazy(() => import("./pages/ImposterSyndromeTest.tsx"));
 const SolfeggioHarmonicsLab = lazy(() => import("./pages/SolfeggioHarmonicsLab.tsx"));
+const EmotionalAgilityTest = lazy(() => import("./pages/EmotionalAgilityTest.tsx"));
+const HighFunctioningAnxietyTest = lazy(() => import("./pages/HighFunctioningAnxietyTest.tsx"));
+const BoxBreathingLab = lazy(() => import("./pages/BoxBreathingLab.tsx"));
 const EbookSalesPage = lazy(() => import("./pages/EbookSalesPage.tsx"));
 const EbookReaderPage = lazy(() => import("./pages/EbookReaderPage.tsx"));
 const NotFound = lazy(() => import("./pages/NotFound.tsx"));
@@ -200,6 +203,15 @@ const App = () => (
                   <Route path="/tools/solfeggio" element={<SolfeggioHarmonicsLab />} />
                   <Route path="/tools/brainwaves" element={<SolfeggioHarmonicsLab />} />
                   <Route path="/solfeggio" element={<SolfeggioHarmonicsLab />} />
+                  <Route path="/quiz/emotional-agility" element={<EmotionalAgilityTest />} />
+                  <Route path="/quiz/agility" element={<EmotionalAgilityTest />} />
+                  <Route path="/tes-emotional-agility" element={<EmotionalAgilityTest defaultLang="id" />} />
+                  <Route path="/quiz/high-functioning-anxiety" element={<HighFunctioningAnxietyTest />} />
+                  <Route path="/quiz/hfa" element={<HighFunctioningAnxietyTest />} />
+                  <Route path="/tes-anxiety-tersembunyi" element={<HighFunctioningAnxietyTest defaultLang="id" />} />
+                  <Route path="/tools/box-breathing" element={<BoxBreathingLab />} />
+                  <Route path="/tools/square-breathing" element={<BoxBreathingLab />} />
+                  <Route path="/box-breathing" element={<BoxBreathingLab />} />
                   <Route path="/quiz/:quizId" element={<QuizRunner />} />
                   <Route path="/test-psikologi" element={<QuizHub />} />
                   <Route path="/test-psikologi/:quizId" element={<QuizRunner />} />

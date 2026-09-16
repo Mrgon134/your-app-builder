@@ -231,6 +231,24 @@
     <changefreq>weekly</changefreq>
   </url>
   <url>
+    <loc>https://nuju.app/quiz/emotional-agility</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.95</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/quiz/high-functioning-anxiety</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.95</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/tools/box-breathing</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.95</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
     <loc>https://nuju.app/quiz/baterai-emosi</loc>
     <lastmod>2026-09-16</lastmod>
     <priority>0.9</priority>
@@ -5098,6 +5116,186 @@
       <image:caption>Pelajari bukti ilmiah frekuensi Solfeggio (528Hz, 432Hz, 396Hz) dan gelombang isokronik untuk menurunkan hormon kortisol dan menyeimbangkan detak jantung.</image:caption>
     </image:image>
     <xhtml:link rel="alternate" hreflang="id" href="https://nuju.app/blog/frekuensi-solfeggio-528hz-432hz-manfaat-relaksasi-otak"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/emotional-agility-test-susan-david-aaq2-screener</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Emotional Agility Test: Free 12-Item Dr. Susan David AAQ-2 Screener</image:title>
+      <image:caption>Assess your psychological flexibility with our free Emotional Agility screener based on Dr. Susan David&apos;s Harvard research and the Acceptance and Action Questionnaire-II (AAQ-2). Unpack bottling, brooding, and values-aligned action.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/emotional-agility-test-susan-david-aaq2-screener"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/high-functioning-anxiety-test-overthinking-mask-screener</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>High-Functioning Anxiety Test: Free 12-Item Overthinking Mask Diagnostic</image:title>
+      <image:caption>Are you calm and hyper-competent on the outside while drowning in silent dread inside? Take our free 12-question High-Functioning Anxiety Test based on GAD-7 and perfectionism masking matrices.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/high-functioning-anxiety-test-overthinking-mask-screener"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/navy-seal-box-breathing-tactical-square-pacer-guide</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Navy SEAL Box Breathing: Tactical Square Pacer &amp; Vagal Reset Guide</image:title>
+      <image:caption>Master the authentic 4-4-4-4 tactical box breathing method used by Navy SEALs, trauma surgeons, and astronauts to eliminate acute panic and optimize heart rate variability (HRV) in under 2 minutes.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/navy-seal-box-breathing-tactical-square-pacer-guide"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/emotional-agility-test-dr-susan-david-selbsttest</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Emotional Agility Test: Kostenloser Selbsttest nach Dr. Susan David (Harvard)</image:title>
+      <image:caption>Messen Sie Ihre emotionale Beweglichkeit und psychologische Flexibilität mit dem 12-Fragen-Test nach dem Harvard-Modell von Dr. Susan David und dem AAQ-2 Fragebogen.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="de" href="https://nuju.app/blog/emotional-agility-test-dr-susan-david-selbsttest"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/hochfunktionale-angst-test-perfektionismus-maskierung</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Hochfunktionale Angst Test: 12 Anzeichen für verborgenen Perfektionismus</image:title>
+      <image:caption>Wirken Sie nach außen ruhig und extrem erfolgreich, während innerlich ständige Panik und Erschöpfung toben? Machen Sie unseren kostenlosen Selbsttest für hochfunktionale Angst.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="de" href="https://nuju.app/blog/hochfunktionale-angst-test-perfektionismus-maskierung"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/navy-seal-box-breathing-viereckatmung-stress-reset</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Navy SEAL Box Breathing: Die 4-4-4-4 Viereckatmung zur Vagus-Aktivierung</image:title>
+      <image:caption>Lernen Sie die taktische Box-Breathing-Atemtechnik der Navy SEALs kennen. Beruhigen Sie Herzfrequenz und Nervensystem in unter 2 Minuten mit unserem browserbasierten Web-Audio-Pacer.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="de" href="https://nuju.app/blog/navy-seal-box-breathing-viereckatmung-stress-reset"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/test-agilite-emotionnelle-dr-susan-david-en-ligne</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Test d&apos;Agilité Émotionnelle Gratuit : Méthode Dr. Susan David (Harvard)</image:title>
+      <image:caption>Évaluez votre flexibilité psychologique face au refoulement et à la rumination grâce à notre test d&apos;agilité émotionnelle inspiré des recherches de Harvard et du questionnaire AAQ-2.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://nuju.app/blog/test-agilite-emotionnelle-dr-susan-david-en-ligne"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/test-anxiete-de-haute-performance-masque-de-reussite</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Test Anxiété de Haute Performance : 12 Signes du Masque de Réussite</image:title>
+      <image:caption>Votre calme et vos succès professionnels cachent-ils une angoisse silencieuse permanente ? Faites notre test d&apos;anxiété de haute performance basé sur le GAD-7 et le masquage perfectionniste.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://nuju.app/blog/test-anxiete-de-haute-performance-masque-de-reussite"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/respiration-carree-navy-seal-box-breathing-guide</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Respiration Carrée Navy SEAL : Guide Tactique et Pacer Sonore Vagal</image:title>
+      <image:caption>Maîtrisez la méthode de respiration en boîte 4-4-4-4 des Navy SEALs pour faire chuter le cortisol et réguler le système nerveux en 2 minutes grâce à notre synthétiseur Web Audio.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://nuju.app/blog/respiration-carree-navy-seal-box-breathing-guide"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/test-agilidad-emocional-dr-susan-david-gratis</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Test de Agilidad Emocional Gratis: Método de la Dra. Susan David (Harvard)</image:title>
+      <image:caption>Evalúa tu flexibilidad psicológica ante el dolor, la rumiación y la represión emocional con el test de 12 preguntas basado en las investigaciones de Harvard y el cuestionario AAQ-2.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="es" href="https://nuju.app/blog/test-agilidad-emocional-dr-susan-david-gratis"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/test-ansiedad-funcional-mascara-de-rendimiento</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Test de Ansiedad de Alto Rendimiento: 12 Señales de la Máscara de Control</image:title>
+      <image:caption>¿Proyectas un éxito intachable mientras por dentro vives con el estómago encogido y miedo constante al fracaso? Haz nuestro test de ansiedad funcional y perfeccionismo.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="es" href="https://nuju.app/blog/test-ansiedad-funcional-mascara-de-rendimiento"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/respiracion-cuadrada-navy-seal-box-breathing-calma</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Respiración Cuadrada Navy SEAL: Guía de Box Breathing y Pacer Táctico</image:title>
+      <image:caption>Aprende la técnica respiratoria 4-4-4-4 de los Navy SEALs para desactivar el pánico y equilibrar el ritmo cardíaco en 2 minutos con nuestro sintetizador Web Audio en tiempo real.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="es" href="https://nuju.app/blog/respiracion-cuadrada-navy-seal-box-breathing-calma"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/tes-emotional-agility-kelincahan-emosi-susan-david</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Tes Emotional Agility: Cek Kelincahan Emosi &amp; Pola Hindaran Rasa (Riset Harvard)</image:title>
+      <image:caption>Apakah Anda tipe penahan emosi (bottling) atau pemikir berputar (brooding)? Ikuti tes kelincahan emosi 12 pertanyaan gratis berbasis riset Dr. Susan David dari Harvard Medical School.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="id" href="https://nuju.app/blog/tes-emotional-agility-kelincahan-emosi-susan-david"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/tes-high-functioning-anxiety-topeng-anxiety-tersembunyi</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Tes High-Functioning Anxiety: 12 Ciri Kecemasan di Balik Sukses &amp; Perfeksionisme</image:title>
+      <image:caption>Tampak tenang dan berprestasi di luar, namun hancur dan gelisah di dalam? Ikuti tes High-Functioning Anxiety 12 pertanyaan untuk membongkar topeng ketabahan semu dan cegah burnout.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="id" href="https://nuju.app/blog/tes-high-functioning-anxiety-topeng-anxiety-tersembunyi"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/panduan-napas-kotak-navy-seal-box-breathing-indonesia</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Panduan Napas Kotak Navy SEAL (Box Breathing): Redakan Panik dalam 2 Menit</image:title>
+      <image:caption>Pelajari metode latihan pernapasan kotak 4-4-4-4 Navy SEAL untuk mengendalikan saraf simpatis, meredakan kepanikan, dan mempertajam fokus mental secara instan.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="id" href="https://nuju.app/blog/panduan-napas-kotak-navy-seal-box-breathing-indonesia"/>
   </url>
   <url>
     <loc>https://nuju.app/blog/how-to-stop-overthinking-at-night</loc>

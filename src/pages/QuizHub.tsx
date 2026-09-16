@@ -837,6 +837,93 @@ const QuizHub: React.FC = () => {
               </Link>
             </div>
           </div>
+
+          {/* Card 25: Emotional Agility Screener */}
+          <div className="rounded-3xl border border-teal-200 bg-gradient-to-br from-teal-500/10 via-emerald-50 to-white p-6 shadow-xs flex flex-col justify-between hover:shadow-md transition">
+            <div>
+              <div className="flex items-center justify-between mb-3">
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-teal-600 px-3 py-0.5 text-xs font-bold text-white shadow-xs">
+                  <Wind className="h-3 w-3" />
+                  DR. SUSAN DAVID
+                </span>
+                <span className="text-xs font-semibold text-teal-700">Harvard AAQ-2</span>
+              </div>
+              <h3 className="text-lg font-bold text-neutral-900 mb-1.5">
+                Emotional Agility & Avoidance
+              </h3>
+              <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed">
+                Assess whether you bottle emotions under stoic armor or spiral in brooding overthinking. Unlock the 4-step values-aligned action protocol.
+              </p>
+            </div>
+            <div className="mt-5 pt-3 border-t border-teal-100 flex items-center justify-between">
+              <span className="text-xs font-medium text-neutral-400">~2 Mins · 12 Items</span>
+              <Link
+                to="/quiz/emotional-agility"
+                className="inline-flex items-center gap-1.5 rounded-full bg-teal-600 px-4 py-2 text-xs font-bold text-white hover:bg-teal-700 transition shadow-xs"
+              >
+                <span>Take Agility Test</span>
+                <ArrowRight className="h-3.5 w-3.5" />
+              </Link>
+            </div>
+          </div>
+
+          {/* Card 26: High-Functioning Anxiety Mask Diagnostic */}
+          <div className="rounded-3xl border border-amber-300 bg-gradient-to-br from-amber-500/10 via-orange-50 to-white p-6 shadow-xs flex flex-col justify-between hover:shadow-md transition">
+            <div>
+              <div className="flex items-center justify-between mb-3">
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-amber-600 px-3 py-0.5 text-xs font-bold text-white shadow-xs">
+                  <Activity className="h-3 w-3" />
+                  OVERTHINKING MASK
+                </span>
+                <span className="text-xs font-semibold text-amber-700">GAD-7 Matrix</span>
+              </div>
+              <h3 className="text-lg font-bold text-neutral-900 mb-1.5">
+                High-Functioning Anxiety Test
+              </h3>
+              <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed">
+                Flawless external composure masking silent biological dread and fear of inadequacy? Diagnose your high-functioning anxiety score.
+              </p>
+            </div>
+            <div className="mt-5 pt-3 border-t border-amber-100 flex items-center justify-between">
+              <span className="text-xs font-medium text-neutral-400">~2 Mins · 12 Items</span>
+              <Link
+                to="/quiz/high-functioning-anxiety"
+                className="inline-flex items-center gap-1.5 rounded-full bg-amber-600 px-4 py-2 text-xs font-bold text-white hover:bg-amber-700 transition shadow-xs"
+              >
+                <span>Diagnose Mask</span>
+                <ArrowRight className="h-3.5 w-3.5" />
+              </Link>
+            </div>
+          </div>
+
+          {/* Card 27: Navy SEAL Box Breathing Lab */}
+          <div className="rounded-3xl border border-emerald-300 bg-gradient-to-br from-emerald-500/10 via-teal-50 to-white p-6 shadow-xs flex flex-col justify-between hover:shadow-md transition">
+            <div>
+              <div className="flex items-center justify-between mb-3">
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-600 px-3 py-0.5 text-xs font-bold text-white shadow-xs">
+                  <ShieldCheck className="h-3 w-3" />
+                  TACTICAL PACER
+                </span>
+                <span className="text-xs font-semibold text-emerald-700">Navy SEALs</span>
+              </div>
+              <h3 className="text-lg font-bold text-neutral-900 mb-1.5">
+                Navy SEAL Box Breathing Lab
+              </h3>
+              <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed">
+                Override acute panic and activate your vagal brake in 2 minutes with pure Web Audio tone synthesis, Tibetan bell chimes, and an animated square pacer.
+              </p>
+            </div>
+            <div className="mt-5 pt-3 border-t border-emerald-100 flex items-center justify-between">
+              <span className="text-xs font-medium text-neutral-400">Pure Web Audio · 2-5 Mins</span>
+              <Link
+                to="/tools/box-breathing"
+                className="inline-flex items-center gap-1.5 rounded-full bg-emerald-600 px-4 py-2 text-xs font-bold text-white hover:bg-emerald-700 transition shadow-xs"
+              >
+                <span>Start Box Breathing</span>
+                <ArrowRight className="h-3.5 w-3.5" />
+              </Link>
+            </div>
+          </div>
         </div>
 
         {/* Country Filter Pills */}

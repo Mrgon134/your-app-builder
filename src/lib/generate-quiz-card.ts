@@ -14,6 +14,8 @@ import { RsdProfile, RsdLang, RsdLevel } from "@/data/rsd-screener";
 import { DistortionInfo, CbtLang } from "@/data/cognitive-distortions";
 import { DissociationProfile, DissociationLang, DissociationLevel } from "@/data/dissociation-screener";
 import { ImposterProfile, ImposterLang, ImposterLevel, ArchetypeDetail } from "@/data/imposter-syndrome";
+import { AgilityScoreResult, AgilityLang } from "@/data/emotional-agility";
+import { HfaScoreResult, HfaLang } from "@/data/high-functioning-anxiety";
 
 /**
  * Draws a rounded rectangle path on the canvas context with fallback for older environments.
@@ -2829,6 +2831,334 @@ export async function generateImposterCard(
     canvas.toBlob((b) => (b ? resolve(b) : reject(new Error("Failed blob"))), "image/png", 0.95);
   });
   const file = new File([blob], `ju-imposter-${result.level}.png`, { type: "image/png" });
+
+  return { dataUrl, blob, file };
+}
+
+/**
+ * Generates an ultra-premium 1080x1350 Instagram / TikTok story card for Emotional Agility.
+ */
+export async function generateAgilityCard(
+  result: AgilityScoreResult,
+  lang: AgilityLang = "en"
+): Promise<{ dataUrl: string; blob: Blob; file: File }> {
+  const canvas = document.createElement("canvas");
+  canvas.width = 1080;
+  canvas.height = 1350;
+  const ctx = canvas.getContext("2d");
+  if (!ctx) throw new Error("Could not get 2D canvas context");
+
+  const width = canvas.width;
+  const height = canvas.height;
+
+  // Background Gradient
+  const bgGrad = ctx.createLinearGradient(0, 0, width, height);
+  bgGrad.addColorStop(0, "#090d16");
+  bgGrad.addColorStop(0.5, "#0e1a2d");
+  bgGrad.addColorStop(1, "#16253b");
+  ctx.fillStyle = bgGrad;
+  ctx.fillRect(0, 0, width, height);
+
+  // Soft glow orb
+  const orbGrad = ctx.createRadialGradient(850, 200, 10, 850, 200, 500);
+  orbGrad.addColorStop(0, "rgba(20, 184, 166, 0.22)");
+  orbGrad.addColorStop(1, "rgba(20, 184, 166, 0)");
+  ctx.fillStyle = orbGrad;
+  ctx.fillRect(0, 0, width, height);
+
+  // Header Brand
+  ctx.fillStyle = "#2DD4BF";
+  ctx.font = "bold 20px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.letterSpacing = "3px";
+  ctx.fillText("NUJU LABS • DR. SUSAN DAVID & AAQ-2 MODEL", 80, 110);
+  ctx.letterSpacing = "0px";
+
+  // Subtitle
+  ctx.fillStyle = "rgba(255, 255, 255, 0.65)";
+  ctx.font = "500 24px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("Emotional Agility & Experiential Avoidance Diagnostic", 80, 150);
+
+  // Profile Badge
+  const badgeText = result.profile.badge[lang] || result.profile.badge.en;
+  ctx.fillStyle = "rgba(45, 212, 191, 0.15)";
+  drawRoundedRect(ctx, 80, 195, 620, 48, 24);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(45, 212, 191, 0.4)";
+  ctx.stroke();
+
+  ctx.fillStyle = "#5EEAD4";
+  ctx.font = "bold 18px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(badgeText.toUpperCase(), 105, 226);
+
+  // Profile Title
+  const titleText = result.profile.title[lang] || result.profile.title.en;
+  ctx.fillStyle = "#FFFFFF";
+  ctx.font = "900 60px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(titleText, 80, 315);
+
+  // Tagline
+  const tagText = result.profile.tagline[lang] || result.profile.tagline.en;
+  ctx.fillStyle = "#94A3B8";
+  ctx.font = "500 28px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  wrapText(ctx, tagText, 80, 365, width - 160, 40, 2);
+
+  // 3 Pillar Cards
+  const cardY = 460;
+  const colWidth = (width - 160 - 40) / 3;
+
+  // Pillar 1: Bottling (Suppression)
+  ctx.fillStyle = "rgba(255, 255, 255, 0.04)";
+  drawRoundedRect(ctx, 80, cardY, colWidth, 180, 24);
+  ctx.fill();
+  ctx.fillStyle = "#F43F5E";
+  ctx.font = "bold 18px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("BOTTLING", 100, cardY + 45);
+  ctx.font = "900 48px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillStyle = "#FFFFFF";
+  ctx.fillText(`${result.subscales.bottling.percentage}%`, 100, cardY + 110);
+  ctx.font = "500 16px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillStyle = "rgba(255, 255, 255, 0.6)";
+  ctx.fillText("Suppression & Mask", 100, cardY + 145);
+
+  // Pillar 2: Brooding (Rumination)
+  ctx.fillStyle = "rgba(255, 255, 255, 0.04)";
+  drawRoundedRect(ctx, 80 + colWidth + 20, cardY, colWidth, 180, 24);
+  ctx.fill();
+  ctx.fillStyle = "#FB923C";
+  ctx.font = "bold 18px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("BROODING", 100 + colWidth + 20, cardY + 45);
+  ctx.font = "900 48px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillStyle = "#FFFFFF";
+  ctx.fillText(`${result.subscales.brooding.percentage}%`, 100 + colWidth + 20, cardY + 110);
+  ctx.font = "500 16px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillStyle = "rgba(255, 255, 255, 0.6)";
+  ctx.fillText("Rumination Loops", 100 + colWidth + 20, cardY + 145);
+
+  // Pillar 3: Values-Aligned Action
+  ctx.fillStyle = "rgba(255, 255, 255, 0.04)";
+  drawRoundedRect(ctx, 80 + (colWidth + 20) * 2, cardY, colWidth, 180, 24);
+  ctx.fill();
+  ctx.fillStyle = "#2DD4BF";
+  ctx.font = "bold 18px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("VALUES ACTION", 100 + (colWidth + 20) * 2, cardY + 45);
+  ctx.font = "900 48px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillStyle = "#FFFFFF";
+  ctx.fillText(`${result.subscales.values.percentage}%`, 100 + (colWidth + 20) * 2, cardY + 110);
+  ctx.font = "500 16px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillStyle = "rgba(255, 255, 255, 0.6)";
+  ctx.fillText("Clarity & Courage", 100 + (colWidth + 20) * 2, cardY + 145);
+
+  // Primary Clinical Insight Box
+  ctx.fillStyle = "rgba(45, 212, 191, 0.08)";
+  drawRoundedRect(ctx, 80, 680, width - 160, 210, 28);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(45, 212, 191, 0.3)";
+  ctx.stroke();
+
+  ctx.fillStyle = "#5EEAD4";
+  ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("CLINICAL AGILITY TRAJECTORY", 120, 730);
+
+  const descText = result.profile.description[lang] || result.profile.description.en;
+  ctx.fillStyle = "#E2E8F0";
+  ctx.font = "24px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  wrapText(ctx, descText, 120, 775, width - 240, 36, 3);
+
+  // Stepping Out Protocol Drill
+  ctx.fillStyle = "rgba(255, 255, 255, 0.04)";
+  drawRoundedRect(ctx, 80, 920, width - 160, 210, 28);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(255, 255, 255, 0.2)";
+  ctx.stroke();
+
+  ctx.fillStyle = "#F8FAFC";
+  ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("UN-HOOKING & STEPPING OUT PROTOCOL", 120, 965);
+
+  const drills = result.profile.protocolDrills[lang] || result.profile.protocolDrills.en;
+  const drillText = drills[0] || "";
+  ctx.fillStyle = "#CBD5E1";
+  ctx.font = "24px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  wrapText(ctx, drillText, 120, 1010, width - 240, 36, 3);
+
+  // Footer CTA
+  ctx.fillStyle = "rgba(255, 255, 255, 0.5)";
+  ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("Take the free Harvard-backed Emotional Agility screener at:", 80, 1220);
+
+  ctx.fillStyle = "#2DD4BF";
+  ctx.font = "900 30px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("nuju.app/quiz/emotional-agility", 80, 1260);
+
+  const dataUrl = canvas.toDataURL("image/png", 0.95);
+  const blob = await new Promise<Blob>((resolve, reject) => {
+    canvas.toBlob((b) => (b ? resolve(b) : reject(new Error("Failed blob"))), "image/png", 0.95);
+  });
+  const file = new File([blob], `ju-agility-${result.level}.png`, { type: "image/png" });
+
+  return { dataUrl, blob, file };
+}
+
+/**
+ * Generates an ultra-premium 1080x1350 Instagram / TikTok story card for High-Functioning Anxiety.
+ */
+export async function generateHfaCard(
+  result: HfaScoreResult,
+  lang: HfaLang = "en"
+): Promise<{ dataUrl: string; blob: Blob; file: File }> {
+  const canvas = document.createElement("canvas");
+  canvas.width = 1080;
+  canvas.height = 1350;
+  const ctx = canvas.getContext("2d");
+  if (!ctx) throw new Error("Could not get 2D canvas context");
+
+  const width = canvas.width;
+  const height = canvas.height;
+
+  // Background Gradient
+  const bgGrad = ctx.createLinearGradient(0, 0, width, height);
+  bgGrad.addColorStop(0, "#080c14");
+  bgGrad.addColorStop(0.5, "#101826");
+  bgGrad.addColorStop(1, "#182236");
+  ctx.fillStyle = bgGrad;
+  ctx.fillRect(0, 0, width, height);
+
+  // Amber/Indigo Glow Orb
+  const orbGrad = ctx.createRadialGradient(850, 200, 10, 850, 200, 500);
+  orbGrad.addColorStop(0, "rgba(245, 158, 11, 0.2)");
+  orbGrad.addColorStop(1, "rgba(245, 158, 11, 0)");
+  ctx.fillStyle = orbGrad;
+  ctx.fillRect(0, 0, width, height);
+
+  // Header Brand
+  ctx.fillStyle = "#F59E0B";
+  ctx.font = "bold 20px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.letterSpacing = "3px";
+  ctx.fillText("NUJU LABS • CLINICAL SOMATIC DIAGNOSTICS", 80, 110);
+  ctx.letterSpacing = "0px";
+
+  // Subtitle
+  ctx.fillStyle = "rgba(255, 255, 255, 0.65)";
+  ctx.font = "500 24px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("High-Functioning Anxiety & Overthinking Mask Matrix", 80, 150);
+
+  // Profile Badge
+  const badgeText = result.profile.badge[lang] || result.profile.badge.en;
+  ctx.fillStyle = "rgba(245, 158, 11, 0.15)";
+  drawRoundedRect(ctx, 80, 195, 660, 48, 24);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(245, 158, 11, 0.4)";
+  ctx.stroke();
+
+  ctx.fillStyle = "#FCD34D";
+  ctx.font = "bold 18px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(badgeText.toUpperCase(), 105, 226);
+
+  // Profile Title
+  const titleText = result.profile.title[lang] || result.profile.title.en;
+  ctx.fillStyle = "#FFFFFF";
+  ctx.font = "900 60px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(titleText, 80, 315);
+
+  // Tagline
+  const tagText = result.profile.tagline[lang] || result.profile.tagline.en;
+  ctx.fillStyle = "#94A3B8";
+  ctx.font = "500 28px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  wrapText(ctx, tagText, 80, 365, width - 160, 40, 2);
+
+  // 3 Pillar Cards
+  const cardY = 460;
+  const colWidth = (width - 160 - 40) / 3;
+
+  // Pillar 1: Internal Turmoil
+  ctx.fillStyle = "rgba(255, 255, 255, 0.04)";
+  drawRoundedRect(ctx, 80, cardY, colWidth, 180, 24);
+  ctx.fill();
+  ctx.fillStyle = "#EF4444";
+  ctx.font = "bold 18px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("TURMOIL", 100, cardY + 45);
+  ctx.font = "900 48px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillStyle = "#FFFFFF";
+  ctx.fillText(`${result.subscales.internal_turmoil.percentage}%`, 100, cardY + 110);
+  ctx.font = "500 16px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillStyle = "rgba(255, 255, 255, 0.6)";
+  ctx.fillText("Silent Biological Dread", 100, cardY + 145);
+
+  // Pillar 2: Hyper-Performance
+  ctx.fillStyle = "rgba(255, 255, 255, 0.04)";
+  drawRoundedRect(ctx, 80 + colWidth + 20, cardY, colWidth, 180, 24);
+  ctx.fill();
+  ctx.fillStyle = "#F59E0B";
+  ctx.font = "bold 18px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("HYPER-OUTPUT", 100 + colWidth + 20, cardY + 45);
+  ctx.font = "900 48px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillStyle = "#FFFFFF";
+  ctx.fillText(`${result.subscales.hyper_performance.percentage}%`, 100 + colWidth + 20, cardY + 110);
+  ctx.font = "500 16px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillStyle = "rgba(255, 255, 255, 0.6)";
+  ctx.fillText("Fear-Driven Ambition", 100 + colWidth + 20, cardY + 145);
+
+  // Pillar 3: Composure Mask
+  ctx.fillStyle = "rgba(255, 255, 255, 0.04)";
+  drawRoundedRect(ctx, 80 + (colWidth + 20) * 2, cardY, colWidth, 180, 24);
+  ctx.fill();
+  ctx.fillStyle = "#38BDF8";
+  ctx.font = "bold 18px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("COMPOSURE", 100 + (colWidth + 20) * 2, cardY + 45);
+  ctx.font = "900 48px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillStyle = "#FFFFFF";
+  ctx.fillText(`${result.subscales.composure_mask.percentage}%`, 100 + (colWidth + 20) * 2, cardY + 110);
+  ctx.font = "500 16px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillStyle = "rgba(255, 255, 255, 0.6)";
+  ctx.fillText("Flawless Facade", 100 + (colWidth + 20) * 2, cardY + 145);
+
+  // Somatic De-Masking Box
+  ctx.fillStyle = "rgba(245, 158, 11, 0.08)";
+  drawRoundedRect(ctx, 80, 680, width - 160, 210, 28);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(245, 158, 11, 0.3)";
+  ctx.stroke();
+
+  ctx.fillStyle = "#FCD34D";
+  ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("SOMATIC REALITY CHECK", 120, 730);
+
+  const descText = result.profile.description[lang] || result.profile.description.en;
+  ctx.fillStyle = "#E2E8F0";
+  ctx.font = "24px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  wrapText(ctx, descText, 120, 775, width - 240, 36, 3);
+
+  // Action Drill Box
+  ctx.fillStyle = "rgba(255, 255, 255, 0.04)";
+  drawRoundedRect(ctx, 80, 920, width - 160, 210, 28);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(255, 255, 255, 0.2)";
+  ctx.stroke();
+
+  ctx.fillStyle = "#F8FAFC";
+  ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("VAGAL RESET & DE-MASKING DRILL", 120, 965);
+
+  const drills = result.profile.demaskingDrills[lang] || result.profile.demaskingDrills.en;
+  const drillText = drills[0] || "";
+  ctx.fillStyle = "#CBD5E1";
+  ctx.font = "24px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  wrapText(ctx, drillText, 120, 1010, width - 240, 36, 3);
+
+  // Footer CTA
+  ctx.fillStyle = "rgba(255, 255, 255, 0.5)";
+  ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("Screen your high-functioning anxiety and overthinking mask free at:", 80, 1220);
+
+  ctx.fillStyle = "#F59E0B";
+  ctx.font = "900 30px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("nuju.app/quiz/high-functioning-anxiety", 80, 1260);
+
+  const dataUrl = canvas.toDataURL("image/png", 0.95);
+  const blob = await new Promise<Blob>((resolve, reject) => {
+    canvas.toBlob((b) => (b ? resolve(b) : reject(new Error("Failed blob"))), "image/png", 0.95);
+  });
+  const file = new File([blob], `ju-hfa-${result.level}.png`, { type: "image/png" });
 
   return { dataUrl, blob, file };
 }
