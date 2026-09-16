@@ -2,6 +2,7 @@ import React from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
 import SEOHead from "@/components/SEOHead";
+import AdSenseBanner from "@/components/AdSenseBanner";
 import PublicNextSteps from "@/components/PublicNextSteps";
 
 type RouteState = { from?: string };
@@ -183,6 +184,8 @@ const Terms: React.FC = () => {
             </p>
           </section>
         </div>
+
+        <AdSenseBanner slot="terms-page-bottom" format="auto" className="my-8" />
 
         <PublicNextSteps
           state={{ from: "/terms" }}

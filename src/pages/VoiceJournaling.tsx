@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { ArrowRight, Brain, Lock, Mic, Pause, Sparkles, Wand2 } from "lucide-react";
 import { Helmet } from "react-helmet-async";
 import AppStoreCta from "@/components/AppStoreCta";
+import AdSenseBanner from "@/components/AdSenseBanner";
 import SEOHead from "@/components/SEOHead";
 import juMain from "@/assets/ju-main.webp";
 import juGreat from "@/assets/ju-great.webp";
@@ -219,6 +220,8 @@ const VoiceJournaling: React.FC = () => {
           />
         </section>
 
+        <AdSenseBanner slot="voice-journal-top" format="auto" className="my-10" />
+
         <section className="mt-16" aria-labelledby="who-its-for">
           <h2 id="who-its-for" className="font-serif text-2xl font-bold text-foreground">
             When voice journaling actually helps
@@ -280,6 +283,8 @@ const VoiceJournaling: React.FC = () => {
             .
           </p>
         </section>
+
+        <AdSenseBanner slot="voice-journal-bottom" format="auto" className="my-10" />
 
         <section className="mt-16" aria-labelledby="faq">
           <h2 id="faq" className="font-serif text-2xl font-bold text-foreground">

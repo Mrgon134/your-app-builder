@@ -170,6 +170,8 @@ const Blog: React.FC = () => {
           </Link>
         </div>
 
+        <AdSenseBanner slot="blog-index-top" format="horizontal" className="my-8" />
+
         {recommendationPosts.length > 0 && (
           <section
             data-testid="blog-recommendation-hub"

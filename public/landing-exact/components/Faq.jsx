@@ -15,7 +15,7 @@ const FAQS = [
   },
   {
     q: "Is my data private?",
-    a: "Yes. Entries are encrypted at rest, scoped to your account, and never used to train AI models. We don't sell data and don't run ads. Read the full Privacy page for the receipts.",
+    a: "Yes. Entries are encrypted at rest, scoped to your account, and never used to train AI models. We don't sell data or compromise your private thoughts. Read the full Privacy page for the receipts.",
   },
   {
     q: "What if I'm bad at journaling?",
@@ -33,6 +33,14 @@ const FAQS = [
 
 const Faq = () => {
   const [open, setOpen] = React.useState(0);
+  React.useEffect(() => {
+    try {
+      if (typeof window !== 'undefined' && window.adsbygoogle) {
+        (window.adsbygoogle = window.adsbygoogle || []).push({});
+      }
+    } catch (e) {}
+  }, []);
+
   return (
     <section className="faq-section section" id="faq">
       <div className="container container-narrow">
@@ -53,7 +61,18 @@ const Faq = () => {
           ))}
         </div>
 
-        <div style={{ marginTop: 48, textAlign: 'center', fontSize: 14, color: 'var(--ink-soft)' }}>
+        <div style={{ marginTop: 40, width: '100%', textAlign: 'center' }}>
+          <aside aria-label="Advertisement" style={{ margin: '24px auto', maxWidth: 720, padding: 12, background: 'rgba(255,255,255,0.6)', border: '1px solid rgba(0,0,0,0.06)', borderRadius: 16 }}>
+            <span style={{ display: 'block', fontSize: 10, letterSpacing: '0.1em', textTransform: 'uppercase', opacity: 0.5, marginBottom: 6 }}>Advertisement</span>
+            <ins className="adsbygoogle"
+                 style={{ display: 'block', width: '100%', minHeight: 90 }}
+                 data-ad-client="ca-pub-2385213858617155"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+          </aside>
+        </div>
+
+        <div style={{ marginTop: 32, textAlign: 'center', fontSize: 14, color: 'var(--ink-soft)' }}>
           Still wondering something? <a href="/support" style={{ color: 'var(--purple)', fontWeight: 600 }}>Contact support</a> — a human reads them all.
         </div>
       </div>

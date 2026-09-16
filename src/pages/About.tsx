@@ -2,6 +2,7 @@ import React from "react";
 import { useNavigate, useLocation, Link } from "react-router-dom";
 import { ArrowLeft, Heart, Shield, Sparkles, Code } from "lucide-react";
 import SEOHead from "@/components/SEOHead";
+import AdSenseBanner from "@/components/AdSenseBanner";
 import PublicNextSteps from "@/components/PublicNextSteps";
 
 type RouteState = { from?: string };
@@ -221,6 +222,8 @@ const About: React.FC = () => {
             </p>
           </section>
         </div>
+
+        <AdSenseBanner slot="about-page-mid" format="auto" className="my-8" />
 
         <PublicNextSteps
           state={linkState}

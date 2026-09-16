@@ -3,6 +3,7 @@ import { useNavigate, useLocation, Link } from "react-router-dom";
 import { ArrowLeft, ChevronDown } from "lucide-react";
 import { Helmet } from "react-helmet-async";
 import SEOHead from "@/components/SEOHead";
+import AdSenseBanner from "@/components/AdSenseBanner";
 import PublicNextSteps from "@/components/PublicNextSteps";
 
 interface FAQItem {
@@ -215,6 +216,8 @@ const Support: React.FC = () => {
             and contact emergency services or a mental health professional.
           </p>
         </div>
+
+        <AdSenseBanner slot="support-page-bottom" format="auto" className="my-8" />
 
         <PublicNextSteps
           state={linkState}

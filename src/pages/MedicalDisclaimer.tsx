@@ -2,6 +2,7 @@ import React from "react";
 import { useNavigate, useLocation, Link } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
 import SEOHead from "@/components/SEOHead";
+import AdSenseBanner from "@/components/AdSenseBanner";
 import PublicNextSteps from "@/components/PublicNextSteps";
 
 type RouteState = { from?: string };
@@ -118,6 +119,8 @@ const MedicalDisclaimer: React.FC = () => {
             <p>If you have questions about this disclaimer or how to use Nuju safely, please <Link to="/contact" state={linkState} className="text-primary hover:underline">contact us</Link>.</p>
           </section>
         </div>
+
+        <AdSenseBanner slot="medical-disclaimer-bottom" format="auto" className="my-8" />
 
         <PublicNextSteps
           state={linkState}

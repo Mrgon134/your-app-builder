@@ -3,6 +3,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { ArrowLeft, Mail, Send } from "lucide-react";
 import { toast } from "sonner";
 import SEOHead from "@/components/SEOHead";
+import AdSenseBanner from "@/components/AdSenseBanner";
 import PublicNextSteps from "@/components/PublicNextSteps";
 
 type RouteState = { from?: string };
@@ -237,6 +238,8 @@ const Contact: React.FC = () => {
               </button>
             </form>
           </div>
+
+          <AdSenseBanner slot="contact-page-bottom" format="auto" className="my-8" />
 
           <PublicNextSteps
             state={linkState}

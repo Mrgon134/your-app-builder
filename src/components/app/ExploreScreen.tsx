@@ -18,6 +18,7 @@ import PromptPacksScreen from "@/components/app/PromptPacksScreen";
 import ProgressDashboard from "@/components/app/ProgressDashboard";
 import { type EntryRow } from "@/lib/api";
 import { hasPlusAccess } from "@/lib/trial";
+import AdSenseBanner from "@/components/AdSenseBanner";
 
 type SubScreen = "main" | "achievements" | "letters" | "breathing" | "prompts" | "progress";
 
@@ -470,6 +471,13 @@ const ExploreScreen: React.FC<ExploreScreenProps> = ({
           </motion.button>
         ))}
       </div>
+
+      {/* AdSense Unit for free web users */}
+      {!hasPremiumAccess && (
+        <div className="pt-2">
+          <AdSenseBanner slot="app-explore-bottom" format="auto" />
+        </div>
+      )}
     </div>
   );
 };

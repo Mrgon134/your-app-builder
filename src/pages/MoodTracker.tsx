@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { ArrowRight, BarChart3, Brain, Calendar, Heart, Lock, Sparkles } from "lucide-react";
 import { Helmet } from "react-helmet-async";
 import AppStoreCta from "@/components/AppStoreCta";
+import AdSenseBanner from "@/components/AdSenseBanner";
 import SEOHead from "@/components/SEOHead";
 import juMain from "@/assets/ju-main.webp";
 import juGood from "@/assets/ju-good.webp";
@@ -245,6 +246,8 @@ const MoodTracker: React.FC = () => {
           />
         </section>
 
+        <AdSenseBanner slot="mood-tracker-top" format="auto" className="my-10" />
+
         <section className="mt-16" aria-labelledby="who-its-for">
           <h2 id="who-its-for" className="font-serif text-2xl font-bold text-foreground">
             Who Nuju is for
@@ -312,6 +315,8 @@ const MoodTracker: React.FC = () => {
             })}
           </div>
         </section>
+
+        <AdSenseBanner slot="mood-tracker-mid" format="auto" className="my-10" />
 
         <section className="mt-16" aria-labelledby="free-vs-paid">
           <h2 id="free-vs-paid" className="font-serif text-2xl font-bold text-foreground">
@@ -392,6 +397,8 @@ const MoodTracker: React.FC = () => {
             .
           </p>
         </section>
+
+        <AdSenseBanner slot="mood-tracker-bottom" format="auto" className="my-10" />
 
         <section className="mt-16" aria-labelledby="faq">
           <h2 id="faq" className="font-serif text-2xl font-bold text-foreground">

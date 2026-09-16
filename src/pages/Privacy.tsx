@@ -2,6 +2,7 @@ import React from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
 import SEOHead from "@/components/SEOHead";
+import AdSenseBanner from "@/components/AdSenseBanner";
 import PublicNextSteps from "@/components/PublicNextSteps";
 
 const Privacy: React.FC = () => {
@@ -277,6 +278,8 @@ const Privacy: React.FC = () => {
             </p>
           </section>
         </div>
+
+        <AdSenseBanner slot="privacy-page-bottom" format="auto" className="my-8" />
 
         <PublicNextSteps
           state={{ from: "/privacy" }}

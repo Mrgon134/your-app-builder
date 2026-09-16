@@ -3,6 +3,7 @@ import { JU_STICKERS } from "@/lib/stickers";
 import { Link } from "react-router-dom";
 import { Download, Share, MoreVertical, Plus, Check } from "lucide-react";
 import AppStoreCta from "@/components/AppStoreCta";
+import AdSenseBanner from "@/components/AdSenseBanner";
 import SEOHead from "@/components/SEOHead";
 import PublicNextSteps from "@/components/PublicNextSteps";
 
@@ -179,6 +180,8 @@ const Install: React.FC = () => {
               </p>
             </div>
           </div>
+
+          <AdSenseBanner slot="install-page-bottom" format="auto" className="my-8" />
 
           <PublicNextSteps
             title="Keep going after install"

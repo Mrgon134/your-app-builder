@@ -3107,6 +3107,8 @@ const BlogPost: React.FC = () => {
           </nav>
         )}
 
+        <AdSenseBanner slot="blog-post-top" format="auto" className="my-8" />
+
         <div className="prose-nuju">
           {post.sections.map((section, index) => (
             <React.Fragment key={index}>
