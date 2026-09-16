@@ -54,6 +54,9 @@ const ZenBubbleGame = lazy(() => import("./pages/ZenBubbleGame.tsx"));
 const RsdScreenerTest = lazy(() => import("./pages/RsdScreenerTest.tsx"));
 const CognitiveDistortionsTest = lazy(() => import("./pages/CognitiveDistortionsTest.tsx"));
 const NsdrAudioLab = lazy(() => import("./pages/NsdrAudioLab.tsx"));
+const DissociationScreenerTest = lazy(() => import("./pages/DissociationScreenerTest.tsx"));
+const ImposterSyndromeTest = lazy(() => import("./pages/ImposterSyndromeTest.tsx"));
+const SolfeggioHarmonicsLab = lazy(() => import("./pages/SolfeggioHarmonicsLab.tsx"));
 const EbookSalesPage = lazy(() => import("./pages/EbookSalesPage.tsx"));
 const EbookReaderPage = lazy(() => import("./pages/EbookReaderPage.tsx"));
 const NotFound = lazy(() => import("./pages/NotFound.tsx"));
@@ -187,6 +190,16 @@ const App = () => (
                   <Route path="/tools/nsdr" element={<NsdrAudioLab />} />
                   <Route path="/nsdr" element={<NsdrAudioLab />} />
                   <Route path="/tools/yoga-nidra" element={<NsdrAudioLab />} />
+                  <Route path="/quiz/dissociation" element={<DissociationScreenerTest />} />
+                  <Route path="/quiz/dpdr" element={<DissociationScreenerTest />} />
+                  <Route path="/tes-disosiasi" element={<DissociationScreenerTest defaultLang="id" />} />
+                  <Route path="/quiz/imposter-syndrome" element={<ImposterSyndromeTest />} />
+                  <Route path="/quiz/imposter-test" element={<ImposterSyndromeTest />} />
+                  <Route path="/tes-imposter-syndrome" element={<ImposterSyndromeTest defaultLang="id" />} />
+                  <Route path="/tes-imposter" element={<ImposterSyndromeTest defaultLang="id" />} />
+                  <Route path="/tools/solfeggio" element={<SolfeggioHarmonicsLab />} />
+                  <Route path="/tools/brainwaves" element={<SolfeggioHarmonicsLab />} />
+                  <Route path="/solfeggio" element={<SolfeggioHarmonicsLab />} />
                   <Route path="/quiz/:quizId" element={<QuizRunner />} />
                   <Route path="/test-psikologi" element={<QuizHub />} />
                   <Route path="/test-psikologi/:quizId" element={<QuizRunner />} />

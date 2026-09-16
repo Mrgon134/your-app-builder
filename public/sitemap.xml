@@ -213,6 +213,24 @@
     <changefreq>weekly</changefreq>
   </url>
   <url>
+    <loc>https://nuju.app/quiz/dissociation</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.95</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/quiz/imposter-syndrome</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.95</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/tools/solfeggio</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.95</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
     <loc>https://nuju.app/quiz/baterai-emosi</loc>
     <lastmod>2026-09-16</lastmod>
     <priority>0.9</priority>
@@ -4900,6 +4918,186 @@
       <image:caption>Pelajari sains Stanford NSDR (Non-Sleep Deep Rest) dan Yoga Nidra dari Dr. Andrew Huberman. Cara kerja gelombang Theta 6Hz murni dan body scan untuk memulihkan cadangan dopamin.</image:caption>
     </image:image>
     <xhtml:link rel="alternate" hreflang="id" href="https://nuju.app/blog/stanford-nsdr-audio-lab-yoga-nidra-reset-sistem-saraf"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/dissociation-test-depersonalization-derealization-screener</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Dissociation Test: Free 12-Item Depersonalization &amp; Derealization (DPDR) Screener</image:title>
+      <image:caption>Take the free 12-question Dissociation &amp; DPDR screener based on the DES-II and Dr. Bessel van der Kolk&apos;s trauma framework. Measure depersonalization, derealization, and learn somatic re-embodiment drills.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/dissociation-test-depersonalization-derealization-screener"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/imposter-syndrome-test-clance-cips-archetypes</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Imposter Syndrome Test: Free Clance CIPS Diagnostic &amp; 5 High-Achiever Archetypes</image:title>
+      <image:caption>Take our free 12-item Imposter Syndrome Test based on Dr. Pauline Clance&apos;s CIPS model. Discover your dominant archetype (Perfectionist, Superhero, Natural Genius, Soloist, Expert) and learn evidence-based success internalization.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/imposter-syndrome-test-clance-cips-archetypes"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/solfeggio-frequencies-neuroscience-528hz-432hz-benefits</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Solfeggio Frequencies Science: How 528Hz &amp; 432Hz Sound Waves Regulate Cortisol</image:title>
+      <image:caption>Explore the acoustic neuroscience behind Solfeggio frequencies (528Hz, 432Hz, 396Hz) and isochronic brainwave entrainment. Learn how harmonic tones down-regulate autonomic stress.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/solfeggio-frequencies-neuroscience-528hz-432hz-benefits"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/dissoziation-test-depersonalisation-derealisation-fragebogen</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Dissoziation Test: Depersonalisation &amp; Derealisation (DPDR) Fragebogen</image:title>
+      <image:caption>Machen Sie den kostenlosen 12-Fragen Dissoziations-Test nach DES-II und Dr. Bessel van der Kolk. Messen Sie Depersonalisation, Derealisation und emotionale Taubheit.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="de" href="https://nuju.app/blog/dissoziation-test-depersonalisation-derealisation-fragebogen"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/imposter-syndrom-selbsttest-hochstapler-phaenomen-clance</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Imposter-Syndrom Selbsttest: Clance CIPS Skala &amp; Hochstapler-Archetypen</image:title>
+      <image:caption>Finden Sie Ihren Imposter-Archetyp (Perfektionist, Superheld, Naturtalent, Einzelkämpfer, Experte) mit unserem 12-Fragen Selbsttest nach Dr. Pauline Clance.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="de" href="https://nuju.app/blog/imposter-syndrom-selbsttest-hochstapler-phaenomen-clance"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/solfeggio-frequenzen-wirkung-528hz-432hz-nervensystem</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Solfeggio Frequenzen Wirkung: Wie 528Hz &amp; 432Hz das Nervensystem beruhigen</image:title>
+      <image:caption>Erfahren Sie, wie 528Hz und 432Hz Frequenzen Cortisol senken und die Herzratenvariabilität verbessern. Nutzen Sie unseren kostenlosen Web-Audio-Generator.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="de" href="https://nuju.app/blog/solfeggio-frequenzen-wirkung-528hz-432hz-nervensystem"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/test-dissociation-depersonnalisation-derealisation-gratuit</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Test de Dissociation : Dépersonnalisation et Déréalisation (DP/DR) Gratuit</image:title>
+      <image:caption>Évaluez vos sensations de détachement corporel et d&apos;irréalité avec notre test clinique de 12 questions inspiré de l&apos;échelle DES-II et du Dr Bessel van der Kolk.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://nuju.app/blog/test-dissociation-depersonnalisation-derealisation-gratuit"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/test-syndrome-imposteur-echelle-cips-archetypes</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Test Syndrome de l&apos;Imposteur : Échelle CIPS &amp; 5 Profils de Perfectionnisme</image:title>
+      <image:caption>Découvrez votre archétype d&apos;imposteur (Perfectionniste, Super-héros, Génie naturel, Solitaire, Expert) selon l&apos;échelle CIPS du Dr Pauline Clance.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://nuju.app/blog/test-syndrome-imposteur-echelle-cips-archetypes"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/frequences-solfeggio-528hz-432hz-bienfaits-cerveau</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Fréquences Sacrées Solfeggio : Les Bienfaits du 528Hz et 432Hz sur le Stress</image:title>
+      <image:caption>Comprenez comment les ondes sonores 528Hz et 432Hz abaissent le cortisol et favorisent la cohérence cardiaque. Utilisez notre générateur Web Audio pur.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://nuju.app/blog/frequences-solfeggio-528hz-432hz-bienfaits-cerveau"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/test-disociacion-despersonalizacion-desrealizacion-gratis</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Test de Disociación: Despersonalización y Desrealización (DPDR) Online</image:title>
+      <image:caption>Realice el test gratuito de 12 preguntas sobre disociación y DPDR basado en la escala DES-II y el Dr. Bessel van der Kolk. Mida la desconexión del cuerpo y la realidad.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="es" href="https://nuju.app/blog/test-disociacion-despersonalizacion-desrealizacion-gratis"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/test-sindrome-del-impostor-escala-cips-clance</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Test del Síndrome del Impostor: Escala CIPS de Clance y Arquetipos</image:title>
+      <image:caption>Descubra su arquetipo de impostor (Perfeccionista, Superhéroe, Genio natural, Solitario, Experto) con el test de 12 preguntas basado en la Dra. Pauline Clance.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="es" href="https://nuju.app/blog/test-sindrome-del-impostor-escala-cips-clance"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/frecuencias-solfeggio-528hz-432hz-neurociencia</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Frecuencias Solfeggio y Neurociencia: Cómo 528Hz y 432Hz Reducen el Cortisol</image:title>
+      <image:caption>Conozca la evidencia fisiológica de las frecuencias Solfeggio (528Hz, 432Hz) y pulsos isocrónicos para calmar el sistema nervioso y mejorar el descanso.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="es" href="https://nuju.app/blog/frecuencias-solfeggio-528hz-432hz-neurociencia"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/tes-disosiasi-depersonalisasi-derealisasi-dpdr-indonesia</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Tes Disosiasi &amp; Derealisasi (DPDR) Indonesia: Skrining Sensasi Terputus dari Tubuh</image:title>
+      <image:caption>Ikuti tes disosiasi gratis 12 pertanyaan berbasis skala DES-II dan kerangka trauma somatik Dr. Bessel van der Kolk. Ukur depersonalisasi, derealisasi, dan pelajari latihan grounding.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="id" href="https://nuju.app/blog/tes-disosiasi-depersonalisasi-derealisasi-dpdr-indonesia"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/tes-imposter-syndrome-clance-cips-takut-ketahuan</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Tes Imposter Syndrome Indonesia: Kenali 5 Arketipe Rasa Takut Dianggap Penipu</image:title>
+      <image:caption>Ikuti tes Imposter Syndrome gratis 12 pertanyaan berbasis skala Clance CIPS. Kenali arketipe Anda (Perfeksionis, Pahlawan Kerja, Genius Alami, Solois, Pakar) dan cara internalisasi prestasi.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="id" href="https://nuju.app/blog/tes-imposter-syndrome-clance-cips-takut-ketahuan"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/frekuensi-solfeggio-528hz-432hz-manfaat-relaksasi-otak</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Panduan Frekuensi Solfeggio 528Hz &amp; 432Hz: Sains Gelombang Suara Pereda Stres</image:title>
+      <image:caption>Pelajari bukti ilmiah frekuensi Solfeggio (528Hz, 432Hz, 396Hz) dan gelombang isokronik untuk menurunkan hormon kortisol dan menyeimbangkan detak jantung.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="id" href="https://nuju.app/blog/frekuensi-solfeggio-528hz-432hz-manfaat-relaksasi-otak"/>
   </url>
   <url>
     <loc>https://nuju.app/blog/how-to-stop-overthinking-at-night</loc>

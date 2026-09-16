@@ -12,6 +12,8 @@ import { DopamineProfile, DopamineLang } from "@/data/dopamine-detox";
 import { VagalProfile, VagalLang } from "@/data/nervous-system";
 import { RsdProfile, RsdLang, RsdLevel } from "@/data/rsd-screener";
 import { DistortionInfo, CbtLang } from "@/data/cognitive-distortions";
+import { DissociationProfile, DissociationLang, DissociationLevel } from "@/data/dissociation-screener";
+import { ImposterProfile, ImposterLang, ImposterLevel, ArchetypeDetail } from "@/data/imposter-syndrome";
 
 /**
  * Draws a rounded rectangle path on the canvas context with fallback for older environments.
@@ -2520,6 +2522,313 @@ export async function generateCbtCard(
     canvas.toBlob((b) => (b ? resolve(b) : reject(new Error("Failed blob"))), "image/png", 0.95);
   });
   const file = new File([blob], `ju-cbt-${result.primaryDistortion.id}.png`, { type: "image/png" });
+
+  return { dataUrl, blob, file };
+}
+
+export interface DissociationCardInput {
+  level: DissociationLevel;
+  profile: DissociationProfile;
+  subscales: {
+    depersonalization: { percentage: number };
+    derealization: { percentage: number };
+    absorption: { percentage: number };
+  };
+}
+
+export async function generateDissociationCard(
+  result: DissociationCardInput,
+  lang: DissociationLang = "en"
+): Promise<{ dataUrl: string; blob: Blob; file: File }> {
+  const width = 1080;
+  const height = 1350;
+  const canvas = document.createElement("canvas");
+  canvas.width = width;
+  canvas.height = height;
+  const ctx = canvas.getContext("2d");
+  if (!ctx) throw new Error("Could not get 2d context");
+
+  // Background: Deep Mystical Indigo / Violet
+  const bgGrad = ctx.createLinearGradient(0, 0, width, height);
+  bgGrad.addColorStop(0, "#0B0716");
+  bgGrad.addColorStop(0.5, "#180F33");
+  bgGrad.addColorStop(1, "#05020B");
+  ctx.fillStyle = bgGrad;
+  ctx.fillRect(0, 0, width, height);
+
+  // Soft glowing violet / purple orb
+  const orb = ctx.createRadialGradient(width - 150, 200, 20, width - 150, 200, 480);
+  orb.addColorStop(0, "rgba(139, 92, 246, 0.28)");
+  orb.addColorStop(1, "rgba(139, 92, 246, 0)");
+  ctx.fillStyle = orb;
+  ctx.fillRect(0, 0, width, height);
+
+  // Brand Header
+  ctx.fillStyle = "#A78BFA";
+  ctx.font = "bold 26px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("JU · SOMATIC DISSOCIATION & DPDR SCREENER", 80, 110);
+
+  // Badge pill
+  const badgeText = result.profile.badge[lang] || result.profile.badge.en;
+  ctx.fillStyle = "rgba(139, 92, 246, 0.15)";
+  drawRoundedRect(ctx, 80, 150, 450, 52, 26);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(139, 92, 246, 0.4)";
+  ctx.stroke();
+
+  ctx.fillStyle = "#C4B5FD";
+  ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(badgeText.toUpperCase(), 105, 184);
+
+  // Title
+  const titleText = result.profile.title[lang] || result.profile.title.en;
+  ctx.fillStyle = "#FFFFFF";
+  ctx.font = "900 52px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  wrapText(ctx, titleText, 80, 265, width - 160, 62, 2);
+
+  // Tagline
+  const tagline = result.profile.tagline[lang] || result.profile.tagline.en;
+  ctx.fillStyle = "#DDD6FE";
+  ctx.font = "italic 26px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  wrapText(ctx, `"${tagline}"`, 80, 360, width - 160, 36, 2);
+
+  // 3 Pillar Score Cards
+  const cardY = 440;
+  const colWidth = (width - 160 - 40) / 3;
+
+  // Pillar 1: Depersonalization
+  ctx.fillStyle = "rgba(255, 255, 255, 0.04)";
+  drawRoundedRect(ctx, 80, cardY, colWidth, 180, 24);
+  ctx.fill();
+  ctx.fillStyle = "#C4B5FD";
+  ctx.font = "bold 18px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("DEPERSONALIZE", 100, cardY + 45);
+  ctx.font = "900 48px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillStyle = "#FFFFFF";
+  ctx.fillText(`${result.subscales.depersonalization.percentage}%`, 100, cardY + 110);
+
+  // Pillar 2: Derealization
+  ctx.fillStyle = "rgba(255, 255, 255, 0.04)";
+  drawRoundedRect(ctx, 80 + colWidth + 20, cardY, colWidth, 180, 24);
+  ctx.fill();
+  ctx.fillStyle = "#A78BFA";
+  ctx.font = "bold 18px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("DEREALIZE", 100 + colWidth + 20, cardY + 45);
+  ctx.font = "900 48px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillStyle = "#FFFFFF";
+  ctx.fillText(`${result.subscales.derealization.percentage}%`, 100 + colWidth + 20, cardY + 110);
+
+  // Pillar 3: Absorption & Numbing
+  ctx.fillStyle = "rgba(255, 255, 255, 0.04)";
+  drawRoundedRect(ctx, 80 + (colWidth + 20) * 2, cardY, colWidth, 180, 24);
+  ctx.fill();
+  ctx.fillStyle = "#8B5CF6";
+  ctx.font = "bold 18px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("ABSORPTION", 100 + (colWidth + 20) * 2, cardY + 45);
+  ctx.font = "900 48px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillStyle = "#FFFFFF";
+  ctx.fillText(`${result.subscales.absorption.percentage}%`, 100 + (colWidth + 20) * 2, cardY + 110);
+
+  // Clinical Description Box
+  ctx.fillStyle = "rgba(255, 255, 255, 0.04)";
+  drawRoundedRect(ctx, 80, 660, width - 160, 200, 28);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(139, 92, 246, 0.25)";
+  ctx.stroke();
+
+  ctx.fillStyle = "#C4B5FD";
+  ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("DORSAL VAGAL SHUTOFF EVALUATION", 120, 710);
+
+  const descText = result.profile.description[lang] || result.profile.description.en;
+  ctx.fillStyle = "#E2E8F0";
+  ctx.font = "26px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  wrapText(ctx, descText, 120, 755, width - 240, 36, 3);
+
+  // Somatic Re-connection Protocol Box
+  ctx.fillStyle = "rgba(139, 92, 246, 0.09)";
+  drawRoundedRect(ctx, 80, 890, width - 160, 220, 28);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(139, 92, 246, 0.35)";
+  ctx.stroke();
+
+  ctx.fillStyle = "#A78BFA";
+  ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("RECOMMENDED SOMATIC EMBODIMENT DRILL", 120, 940);
+
+  const drillTip = (result.profile.somaticReconnection[lang] || result.profile.somaticReconnection.en)[0] || "";
+  ctx.fillStyle = "#EDE9FE";
+  ctx.font = "italic 26px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  wrapText(ctx, `"${drillTip}"`, 120, 985, width - 240, 36, 3);
+
+  // Footer CTA
+  ctx.fillStyle = "rgba(255, 255, 255, 0.5)";
+  ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("Screen your somatic dissociation & derealization free at:", 80, 1220);
+
+  ctx.fillStyle = "#A78BFA";
+  ctx.font = "900 30px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("nuju.app/quiz/dissociation", 80, 1260);
+
+  const dataUrl = canvas.toDataURL("image/png", 0.95);
+  const blob = await new Promise<Blob>((resolve, reject) => {
+    canvas.toBlob((b) => (b ? resolve(b) : reject(new Error("Failed blob"))), "image/png", 0.95);
+  });
+  const file = new File([blob], `ju-dissociation-${result.level}.png`, { type: "image/png" });
+
+  return { dataUrl, blob, file };
+}
+
+export interface ImposterCardInput {
+  level: ImposterLevel;
+  profile: ImposterProfile;
+  dominantArchetype: ArchetypeDetail;
+  subscales: {
+    fraud_terror: { percentage: number };
+    luck_attribution: { percentage: number };
+    overworking: { percentage: number };
+  };
+}
+
+export async function generateImposterCard(
+  result: ImposterCardInput,
+  lang: ImposterLang = "en"
+): Promise<{ dataUrl: string; blob: Blob; file: File }> {
+  const width = 1080;
+  const height = 1350;
+  const canvas = document.createElement("canvas");
+  canvas.width = width;
+  canvas.height = height;
+  const ctx = canvas.getContext("2d");
+  if (!ctx) throw new Error("Could not get 2d context");
+
+  // Background: Deep Slate & Warm Bronze Amber
+  const bgGrad = ctx.createLinearGradient(0, 0, width, height);
+  bgGrad.addColorStop(0, "#0D0F17");
+  bgGrad.addColorStop(0.5, "#1C1726");
+  bgGrad.addColorStop(1, "#09080E");
+  ctx.fillStyle = bgGrad;
+  ctx.fillRect(0, 0, width, height);
+
+  // Soft glowing warm amber orb
+  const orb = ctx.createRadialGradient(width - 160, 200, 20, width - 160, 200, 480);
+  orb.addColorStop(0, "rgba(245, 158, 11, 0.25)");
+  orb.addColorStop(1, "rgba(245, 158, 11, 0)");
+  ctx.fillStyle = orb;
+  ctx.fillRect(0, 0, width, height);
+
+  // Brand Header
+  ctx.fillStyle = "#F59E0B";
+  ctx.font = "bold 26px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("JU · IMPOSTER SYNDROME & FRAUD FEAR DIAGNOSTIC", 80, 110);
+
+  // Archetype Badge Pill
+  const archName = result.dominantArchetype.name[lang] || result.dominantArchetype.name.en;
+  ctx.fillStyle = "rgba(245, 158, 11, 0.15)";
+  drawRoundedRect(ctx, 80, 150, 480, 52, 26);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(245, 158, 11, 0.4)";
+  ctx.stroke();
+
+  ctx.fillStyle = "#FCD34D";
+  ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(`ARCHETYPE: ${archName.toUpperCase()}`, 105, 184);
+
+  // Title
+  const titleText = result.profile.title[lang] || result.profile.title.en;
+  ctx.fillStyle = "#FFFFFF";
+  ctx.font = "900 52px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  wrapText(ctx, titleText, 80, 265, width - 160, 62, 2);
+
+  // Tagline
+  const archTagline = result.dominantArchetype.tagline[lang] || result.dominantArchetype.tagline.en;
+  ctx.fillStyle = "#FEF3C7";
+  ctx.font = "italic 26px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  wrapText(ctx, `"${archTagline}"`, 80, 360, width - 160, 36, 2);
+
+  // 3 Pillar Score Cards
+  const cardY = 440;
+  const colWidth = (width - 160 - 40) / 3;
+
+  // Pillar 1: Fraud Terror
+  ctx.fillStyle = "rgba(255, 255, 255, 0.04)";
+  drawRoundedRect(ctx, 80, cardY, colWidth, 180, 24);
+  ctx.fill();
+  ctx.fillStyle = "#FBBF24";
+  ctx.font = "bold 18px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("FRAUD FEAR", 100, cardY + 45);
+  ctx.font = "900 48px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillStyle = "#FFFFFF";
+  ctx.fillText(`${result.subscales.fraud_terror.percentage}%`, 100, cardY + 110);
+
+  // Pillar 2: Luck Attribution
+  ctx.fillStyle = "rgba(255, 255, 255, 0.04)";
+  drawRoundedRect(ctx, 80 + colWidth + 20, cardY, colWidth, 180, 24);
+  ctx.fill();
+  ctx.fillStyle = "#F59E0B";
+  ctx.font = "bold 18px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("LUCK ATTRIB", 100 + colWidth + 20, cardY + 45);
+  ctx.font = "900 48px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillStyle = "#FFFFFF";
+  ctx.fillText(`${result.subscales.luck_attribution.percentage}%`, 100 + colWidth + 20, cardY + 110);
+
+  // Pillar 3: Overworking
+  ctx.fillStyle = "rgba(255, 255, 255, 0.04)";
+  drawRoundedRect(ctx, 80 + (colWidth + 20) * 2, cardY, colWidth, 180, 24);
+  ctx.fill();
+  ctx.fillStyle = "#D97706";
+  ctx.font = "bold 18px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("OVERWORK", 100 + (colWidth + 20) * 2, cardY + 45);
+  ctx.font = "900 48px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillStyle = "#FFFFFF";
+  ctx.fillText(`${result.subscales.overworking.percentage}%`, 100 + (colWidth + 20) * 2, cardY + 110);
+
+  // Cognitive Mantra Box
+  ctx.fillStyle = "rgba(245, 158, 11, 0.09)";
+  drawRoundedRect(ctx, 80, 660, width - 160, 210, 28);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(245, 158, 11, 0.35)";
+  ctx.stroke();
+
+  ctx.fillStyle = "#FBBF24";
+  ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("EVIDENCE-BASED COGNITIVE MANTRA", 120, 710);
+
+  const mantraText = result.dominantArchetype.mantra[lang] || result.dominantArchetype.mantra.en;
+  ctx.fillStyle = "#FFFBEB";
+  ctx.font = "italic 26px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  wrapText(ctx, `"${mantraText}"`, 120, 755, width - 240, 36, 3);
+
+  // Internalization Action Box
+  ctx.fillStyle = "rgba(255, 255, 255, 0.04)";
+  drawRoundedRect(ctx, 80, 900, width - 160, 210, 28);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(245, 158, 11, 0.25)";
+  ctx.stroke();
+
+  ctx.fillStyle = "#F59E0B";
+  ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("SUCCESS RE-INTERNALIZATION DRILL", 120, 945);
+
+  const drillText = (result.profile.internalizationDrill[lang] || result.profile.internalizationDrill.en)[0] || "";
+  ctx.fillStyle = "#E2E8F0";
+  ctx.font = "26px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  wrapText(ctx, drillText, 120, 990, width - 240, 36, 3);
+
+  // Footer CTA
+  ctx.fillStyle = "rgba(255, 255, 255, 0.5)";
+  ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("Diagnose your imposter syndrome archetype free at:", 80, 1220);
+
+  ctx.fillStyle = "#F59E0B";
+  ctx.font = "900 30px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("nuju.app/quiz/imposter-syndrome", 80, 1260);
+
+  const dataUrl = canvas.toDataURL("image/png", 0.95);
+  const blob = await new Promise<Blob>((resolve, reject) => {
+    canvas.toBlob((b) => (b ? resolve(b) : reject(new Error("Failed blob"))), "image/png", 0.95);
+  });
+  const file = new File([blob], `ju-imposter-${result.level}.png`, { type: "image/png" });
 
   return { dataUrl, blob, file };
 }
