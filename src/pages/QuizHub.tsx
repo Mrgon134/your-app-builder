@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { ArrowRight, Brain, Clock, Heart, HelpCircle, Lock, ShieldCheck, Sparkles, Users, Activity, Zap, Headphones, ShieldAlert, Compass, Briefcase, Wind } from "lucide-react";
+import { ArrowRight, Brain, Clock, Heart, HelpCircle, Lock, ShieldCheck, Sparkles, Users, Activity, Zap, Headphones, ShieldAlert, Compass, Briefcase, Wind, Eye, Shield } from "lucide-react";
 import SEOHead from "@/components/SEOHead";
 import AdSenseBanner from "@/components/AdSenseBanner";
 import AppStoreCta from "@/components/AppStoreCta";
@@ -393,6 +393,93 @@ const QuizHub: React.FC = () => {
                 className="inline-flex items-center gap-1.5 rounded-full bg-cyan-700 px-4 py-2 text-xs font-bold text-white hover:bg-cyan-800 transition shadow-xs"
               >
                 <span>Start Breathing</span>
+                <ArrowRight className="h-3.5 w-3.5" />
+              </Link>
+            </div>
+          </div>
+
+          {/* Card 10: 5 Love Languages Profiler */}
+          <div className="rounded-3xl border border-rose-300 bg-gradient-to-br from-rose-500/10 via-pink-50 to-white p-6 shadow-xs flex flex-col justify-between hover:shadow-md transition">
+            <div>
+              <div className="flex items-center justify-between mb-3">
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-rose-600 px-3 py-0.5 text-xs font-bold text-white shadow-xs">
+                  <Heart className="h-3 w-3" />
+                  5 LOVE LANGUAGES
+                </span>
+                <span className="text-xs font-semibold text-neutral-500">🇬🇧 🇩🇪 🇫🇷 🇪🇸 🇮🇩</span>
+              </div>
+              <h3 className="text-lg font-bold text-neutral-900 mb-1.5">
+                5 Love Languages Profiler
+              </h3>
+              <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed">
+                Discover your primary and secondary love languages. Learn how your nervous system receives affection and download your personal cheatsheet.
+              </p>
+            </div>
+            <div className="mt-5 pt-3 border-t border-rose-100 flex items-center justify-between">
+              <span className="text-xs font-medium text-neutral-400">~2 Mins · 10 Scenarios</span>
+              <Link
+                to="/quiz/love-languages"
+                className="inline-flex items-center gap-1.5 rounded-full bg-rose-600 px-4 py-2 text-xs font-bold text-white hover:bg-rose-700 transition shadow-xs"
+              >
+                <span>Find Love Language</span>
+                <ArrowRight className="h-3.5 w-3.5" />
+              </Link>
+            </div>
+          </div>
+
+          {/* Card 11: People-Pleasing & Boundaries Screener */}
+          <div className="rounded-3xl border border-teal-300 bg-gradient-to-br from-teal-500/10 via-emerald-50 to-white p-6 shadow-xs flex flex-col justify-between hover:shadow-md transition">
+            <div>
+              <div className="flex items-center justify-between mb-3">
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-teal-600 px-3 py-0.5 text-xs font-bold text-white shadow-xs">
+                  <Shield className="h-3 w-3" />
+                  FAWN RESPONSE
+                </span>
+                <span className="text-xs font-semibold text-neutral-500">Boundaries & Guilt</span>
+              </div>
+              <h3 className="text-lg font-bold text-neutral-900 mb-1.5">
+                People-Pleaser & Fawn Screener
+              </h3>
+              <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed">
+                Do you struggle to say 'No'? Measure your fawn trauma response, boundary overcommitment, and get word-for-word scripts to refuse without guilt.
+              </p>
+            </div>
+            <div className="mt-5 pt-3 border-t border-teal-100 flex items-center justify-between">
+              <span className="text-xs font-medium text-neutral-400">~2 Mins · 12 Items</span>
+              <Link
+                to="/quiz/people-pleasing"
+                className="inline-flex items-center gap-1.5 rounded-full bg-teal-600 px-4 py-2 text-xs font-bold text-white hover:bg-teal-700 transition shadow-xs"
+              >
+                <span>Check People-Pleasing</span>
+                <ArrowRight className="h-3.5 w-3.5" />
+              </Link>
+            </div>
+          </div>
+
+          {/* Card 12: EMDR Bilateral Stimulation Lab */}
+          <div className="rounded-3xl border border-cyan-300 bg-gradient-to-br from-cyan-500/10 via-sky-50 to-white p-6 shadow-xs flex flex-col justify-between hover:shadow-md transition">
+            <div>
+              <div className="flex items-center justify-between mb-3">
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-cyan-700 px-3 py-0.5 text-xs font-bold text-white shadow-xs">
+                  <Eye className="h-3 w-3" />
+                  EMDR NEUROSCIENCE
+                </span>
+                <span className="text-xs font-semibold text-cyan-700">Visual & Audio Panning</span>
+              </div>
+              <h3 className="text-lg font-bold text-neutral-900 mb-1.5">
+                EMDR Bilateral Stimulation Lab
+              </h3>
+              <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed">
+                Dual-attention bilateral light orb and alternating 432Hz stereo audio pings to rapidly soothe amygdala panic and discharge traumatic tension.
+              </p>
+            </div>
+            <div className="mt-5 pt-3 border-t border-cyan-100 flex items-center justify-between">
+              <span className="text-xs font-medium text-neutral-400">Immediate Calming</span>
+              <Link
+                to="/tools/bilateral"
+                className="inline-flex items-center gap-1.5 rounded-full bg-cyan-700 px-4 py-2 text-xs font-bold text-white hover:bg-cyan-800 transition shadow-xs"
+              >
+                <span>Launch EMDR Tool</span>
                 <ArrowRight className="h-3.5 w-3.5" />
               </Link>
             </div>

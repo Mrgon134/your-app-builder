@@ -4,6 +4,8 @@ import { AttachmentProfile } from "@/data/attachment-style";
 import { AdhdResultProfile } from "@/data/adhd-screener";
 import { InnerChildProfile, InnerChildLang } from "@/data/inner-child";
 import { BurnoutResult, BurnoutLang } from "@/data/burnout-screener";
+import { LoveLanguageResult, LoveLang } from "@/data/love-languages";
+import { PeoplePleaserResult, PeoplePleaserLang } from "@/data/people-pleasing";
 
 /**
  * Draws a rounded rectangle path on the canvas context with fallback for older environments.
@@ -1312,6 +1314,290 @@ export async function generateBurnoutCard(
     canvas.toBlob((b) => (b ? resolve(b) : reject(new Error("Failed blob"))), "image/png", 0.95);
   });
   const file = new File([blob], `ju-burnout-${result.tier}.png`, { type: "image/png" });
+
+  return { dataUrl, blob, file };
+}
+
+/**
+ * Generates an aesthetic high-resolution Instagram Story share card (1080x1350)
+ * for the 5 Love Languages & Relational Needs Profiler.
+ */
+export async function generateLoveLanguageCard(
+  result: LoveLanguageResult,
+  lang: LoveLang = "en"
+): Promise<{ dataUrl: string; blob: Blob; file: File }> {
+  const width = 1080;
+  const height = 1350;
+
+  const canvas = document.createElement("canvas");
+  canvas.width = width;
+  canvas.height = height;
+  const ctx = canvas.getContext("2d");
+  if (!ctx) throw new Error("Canvas context failed");
+
+  // Background gradient
+  const bgGrad = ctx.createLinearGradient(0, 0, width, height);
+  bgGrad.addColorStop(0, "#100615");
+  bgGrad.addColorStop(0.5, "#200C2A");
+  bgGrad.addColorStop(1, "#100615");
+  ctx.fillStyle = bgGrad;
+  ctx.fillRect(0, 0, width, height);
+
+  // Glowing orb top right
+  const orb = ctx.createRadialGradient(width - 150, 180, 20, width - 150, 180, 450);
+  orb.addColorStop(0, "rgba(244, 63, 94, 0.28)");
+  orb.addColorStop(0.6, "rgba(217, 70, 239, 0.1)");
+  orb.addColorStop(1, "rgba(0, 0, 0, 0)");
+  ctx.fillStyle = orb;
+  ctx.fillRect(0, 0, width, height);
+
+  // Border frame
+  ctx.strokeStyle = "rgba(244, 63, 94, 0.3)";
+  ctx.lineWidth = 3;
+  drawRoundedRect(ctx, 40, 40, width - 80, height - 80, 36);
+  ctx.stroke();
+
+  // Header tag
+  ctx.fillStyle = "rgba(244, 63, 94, 0.15)";
+  drawRoundedRect(ctx, 80, 90, 440, 48, 24);
+  ctx.fill();
+  ctx.fillStyle = "#FDA4AF";
+  ctx.font = "bold 20px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("5 LOVE LANGUAGES PROFILER", 104, 122);
+
+  // Emoji
+  ctx.font = "90px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(result.primary.emoji || "💌", 80, 255);
+
+  // Primary Title
+  const titleText = (result.primary.title as any)[lang] || result.primary.title.en;
+  ctx.fillStyle = "#FFFFFF";
+  ctx.font = "900 50px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  wrapText(ctx, titleText, 80, 335, width - 160, 58, 2);
+
+  // Tagline
+  const taglineText = (result.primary.tagline as any)[lang] || result.primary.tagline.en;
+  ctx.fillStyle = "#F472B6";
+  ctx.font = "italic 500 28px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  wrapText(ctx, `"${taglineText}"`, 80, 445, width - 160, 38, 2);
+
+  // 5 Languages Distribution Progress Bars
+  const startY = 540;
+  const barHeight = 12;
+  const spacing = 62;
+  const barWidth = width - 160 - 240;
+
+  const langsList: { id: string; label: string; pct: number; color: string }[] = [
+    { id: "words", label: "Words of Affirmation", pct: result.percentages.words, color: "#F43F5E" },
+    { id: "time", label: "Quality Time", pct: result.percentages.time, color: "#EC4899" },
+    { id: "acts", label: "Acts of Service", pct: result.percentages.acts, color: "#A855F7" },
+    { id: "gifts", label: "Receiving Gifts", pct: result.percentages.gifts, color: "#F59E0B" },
+    { id: "touch", label: "Physical Touch", pct: result.percentages.touch, color: "#06B6D4" },
+  ];
+
+  langsList.forEach((item, idx) => {
+    const y = startY + idx * spacing;
+
+    // Label
+    ctx.fillStyle = "#E2E8F0";
+    ctx.font = "bold 20px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+    ctx.fillText(item.label, 80, y + 16);
+
+    // Percentage
+    ctx.fillStyle = item.color;
+    ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+    ctx.textAlign = "right";
+    ctx.fillText(`${item.pct}%`, width - 80, y + 16);
+    ctx.textAlign = "left";
+
+    // Progress track
+    ctx.fillStyle = "rgba(255, 255, 255, 0.08)";
+    drawRoundedRect(ctx, 80, y + 26, width - 160, barHeight, 6);
+    ctx.fill();
+
+    // Progress fill
+    ctx.fillStyle = item.color;
+    const fillWidth = ((width - 160) * Math.max(item.pct, 4)) / 100;
+    drawRoundedRect(ctx, 80, y + 26, fillWidth, barHeight, 6);
+    ctx.fill();
+  });
+
+  // "How to Love Me" Box
+  ctx.fillStyle = "rgba(255, 255, 255, 0.04)";
+  drawRoundedRect(ctx, 80, 880, width - 160, 240, 28);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(244, 63, 94, 0.25)";
+  ctx.stroke();
+
+  ctx.fillStyle = "#F43F5E";
+  ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("HOW TO LOVE & NURTURE ME", 120, 930);
+
+  const tips = (result.primary.howToLoveMe as any)[lang] || result.primary.howToLoveMe.en;
+  const tipText = Array.isArray(tips) ? tips.slice(0, 2).map((t: string, i: number) => `• ${t}`).join("  ") : String(tips);
+  ctx.fillStyle = "#FFE4E6";
+  ctx.font = "24px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  wrapText(ctx, tipText, 120, 975, width - 240, 36, 3);
+
+  // Footer CTA
+  ctx.fillStyle = "rgba(255, 255, 255, 0.5)";
+  ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("Discover your primary love language free at:", 80, 1220);
+
+  ctx.fillStyle = "#F43F5E";
+  ctx.font = "900 30px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("nuju.app/quiz/love-languages", 80, 1260);
+
+  const dataUrl = canvas.toDataURL("image/png", 0.95);
+  const blob = await new Promise<Blob>((resolve, reject) => {
+    canvas.toBlob((b) => (b ? resolve(b) : reject(new Error("Failed blob"))), "image/png", 0.95);
+  });
+  const file = new File([blob], `ju-love-language-${result.primary.id}.png`, { type: "image/png" });
+
+  return { dataUrl, blob, file };
+}
+
+/**
+ * Generates an aesthetic high-resolution Instagram Story share card (1080x1350)
+ * for the People-Pleasing & Boundaries Screener.
+ */
+export async function generatePeoplePleaserCard(
+  result: PeoplePleaserResult,
+  lang: PeoplePleaserLang = "en"
+): Promise<{ dataUrl: string; blob: Blob; file: File }> {
+  const width = 1080;
+  const height = 1350;
+
+  const canvas = document.createElement("canvas");
+  canvas.width = width;
+  canvas.height = height;
+  const ctx = canvas.getContext("2d");
+  if (!ctx) throw new Error("Canvas context failed");
+
+  // Background
+  const bgGrad = ctx.createLinearGradient(0, 0, width, height);
+  bgGrad.addColorStop(0, "#061311");
+  bgGrad.addColorStop(0.5, "#0D2521");
+  bgGrad.addColorStop(1, "#061311");
+  ctx.fillStyle = bgGrad;
+  ctx.fillRect(0, 0, width, height);
+
+  // Glowing orb top right
+  const orb = ctx.createRadialGradient(width - 150, 180, 20, width - 150, 180, 450);
+  orb.addColorStop(0, "rgba(20, 184, 166, 0.25)");
+  orb.addColorStop(0.6, "rgba(16, 185, 129, 0.08)");
+  orb.addColorStop(1, "rgba(0, 0, 0, 0)");
+  ctx.fillStyle = orb;
+  ctx.fillRect(0, 0, width, height);
+
+  // Border frame
+  ctx.strokeStyle = "rgba(20, 184, 166, 0.3)";
+  ctx.lineWidth = 3;
+  drawRoundedRect(ctx, 40, 40, width - 80, height - 80, 36);
+  ctx.stroke();
+
+  // Header tag
+  ctx.fillStyle = "rgba(20, 184, 166, 0.15)";
+  drawRoundedRect(ctx, 80, 90, 480, 48, 24);
+  ctx.fill();
+  ctx.fillStyle = "#5EEAD4";
+  ctx.font = "bold 20px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("FAWN RESPONSE & BOUNDARY SCREENER", 104, 122);
+
+  // Overall Score
+  ctx.fillStyle = "#14B8A6";
+  ctx.font = "900 68px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(`${result.totalScore}/${result.maxScore}`, 80, 240);
+
+  // Title
+  ctx.fillStyle = "#FFFFFF";
+  ctx.font = "900 46px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  const titleText = (result.title as any)[lang] || result.title.en;
+  wrapText(ctx, titleText, 80, 310, width - 160, 54, 2);
+
+  // 3-Pillar Subscore Cards
+  const cardY = 440;
+  const colWidth = (width - 160 - 40) / 3;
+
+  // Pillar 1: Appeasement
+  ctx.fillStyle = "rgba(255, 255, 255, 0.04)";
+  drawRoundedRect(ctx, 80, cardY, colWidth, 180, 24);
+  ctx.fill();
+  ctx.fillStyle = "#2DD4BF";
+  ctx.font = "bold 20px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("APPEASEMENT", 100, cardY + 45);
+  ctx.font = "900 48px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillStyle = "#FFFFFF";
+  ctx.fillText(`${result.fawnScore}/12`, 100, cardY + 110);
+
+  // Pillar 2: Overcommitment
+  ctx.fillStyle = "rgba(255, 255, 255, 0.04)";
+  drawRoundedRect(ctx, 80 + colWidth + 20, cardY, colWidth, 180, 24);
+  ctx.fill();
+  ctx.fillStyle = "#34D399";
+  ctx.font = "bold 20px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("OVERCOMMIT", 100 + colWidth + 20, cardY + 45);
+  ctx.font = "900 48px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillStyle = "#FFFFFF";
+  ctx.fillText(`${result.overcommitmentScore}/12`, 100 + colWidth + 20, cardY + 110);
+
+  // Pillar 3: Guilt Sponge
+  ctx.fillStyle = "rgba(255, 255, 255, 0.04)";
+  drawRoundedRect(ctx, 80 + (colWidth + 20) * 2, cardY, colWidth, 180, 24);
+  ctx.fill();
+  ctx.fillStyle = "#A78BFA";
+  ctx.font = "bold 20px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("GUILT SPONGE", 100 + (colWidth + 20) * 2, cardY + 45);
+  ctx.font = "900 48px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillStyle = "#FFFFFF";
+  ctx.fillText(`${result.guiltScore}/12`, 100 + (colWidth + 20) * 2, cardY + 110);
+
+  // Description Box
+  ctx.fillStyle = "rgba(255, 255, 255, 0.04)";
+  drawRoundedRect(ctx, 80, 660, width - 160, 200, 28);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(20, 184, 166, 0.2)";
+  ctx.stroke();
+
+  ctx.fillStyle = "#5EEAD4";
+  ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("NERVOUS SYSTEM ADAPTATION", 120, 710);
+
+  const descText = (result.description as any)[lang] || result.description.en;
+  ctx.fillStyle = "#E2E8F0";
+  ctx.font = "26px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  wrapText(ctx, descText, 120, 755, width - 240, 38, 3);
+
+  // Power Boundary Script Box
+  ctx.fillStyle = "rgba(20, 184, 166, 0.08)";
+  drawRoundedRect(ctx, 80, 890, width - 160, 220, 28);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(20, 184, 166, 0.35)";
+  ctx.stroke();
+
+  ctx.fillStyle = "#2DD4BF";
+  ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("YOUR ZERO-GUILT BOUNDARY SCRIPT", 120, 940);
+
+  const scriptText = (result.boundaryScript as any)[lang] || result.boundaryScript.en;
+  ctx.fillStyle = "#CCFBF1";
+  ctx.font = "italic 26px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  wrapText(ctx, `"${scriptText}"`, 120, 985, width - 240, 36, 3);
+
+  // Footer CTA
+  ctx.fillStyle = "rgba(255, 255, 255, 0.5)";
+  ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("Screen your people-pleasing and fawn response free at:", 80, 1220);
+
+  ctx.fillStyle = "#2DD4BF";
+  ctx.font = "900 30px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("nuju.app/quiz/people-pleasing", 80, 1260);
+
+  const dataUrl = canvas.toDataURL("image/png", 0.95);
+  const blob = await new Promise<Blob>((resolve, reject) => {
+    canvas.toBlob((b) => (b ? resolve(b) : reject(new Error("Failed blob"))), "image/png", 0.95);
+  });
+  const file = new File([blob], `ju-people-pleaser-${result.level}.png`, { type: "image/png" });
 
   return { dataUrl, blob, file };
 }

@@ -135,6 +135,30 @@
     <changefreq>weekly</changefreq>
   </url>
   <url>
+    <loc>https://nuju.app/quiz/love-languages</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.95</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/quiz/people-pleasing</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.95</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/tools/bilateral</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.95</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/emdr</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.9</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
     <loc>https://nuju.app/quiz/baterai-emosi</loc>
     <lastmod>2026-09-16</lastmod>
     <priority>0.9</priority>
@@ -4102,6 +4126,186 @@
       <image:caption>Bangun pagi sudah merasa lelah dan muak dengan pekerjaan? Ikuti tes burnout kerja online gratis berbasis model Maslach Burnout Inventory dan dapatkan tips pemulihan.</image:caption>
     </image:image>
     <xhtml:link rel="alternate" hreflang="id" href="https://nuju.app/blog/tes-tingkat-burnout-kerja-mbi-indonesia"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/love-languages-test-quiz-relationship-needs</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>5 Love Languages Test Online: Free Relationship Needs &amp; Communication Profile</image:title>
+      <image:caption>Take the free 5 Love Languages test online. Understand how you give and receive love across Words of Affirmation, Quality Time, Acts of Service, Gifts, and Physical Touch.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/love-languages-test-quiz-relationship-needs"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/tes-love-language-gratis-bahasa-cinta-indonesia</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Tes Love Language Online Gratis: Cari Tahu 5 Bahasa Cintamu &amp; Pasangan</image:title>
+      <image:caption>Ikuti tes love language online gratis bahasa Indonesia. Ketahui bahasa cintamu (Words of Affirmation, Quality Time, Acts of Service, Gifts, Physical Touch).</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="id" href="https://nuju.app/blog/tes-love-language-gratis-bahasa-cinta-indonesia"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/5-sprachen-der-liebe-test-kostenlos-beziehung</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Die 5 Sprachen der Liebe Test: Welcher Beziehungstyp sind Sie? (Kostenlos)</image:title>
+      <image:caption>Machen Sie den kostenlosen Test zu den 5 Sprachen der Liebe online. Erfahren Sie, wie Sie Liebe empfinden: Worte, Zweisamkeit, Hilfsbereitschaft, Geschenke oder Zärtlichkeit.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="de" href="https://nuju.app/blog/5-sprachen-der-liebe-test-kostenlos-beziehung"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/test-5-langages-amour-gratuit-en-ligne</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Test des 5 Langages de l&apos;Amour Gratuit : Quel est Votre Profil Relationnel ?</image:title>
+      <image:caption>Faites le test des 5 langages de l&apos;amour gratuit en ligne. Découvrez si votre langage principal est les paroles valorisantes, les moments de qualité, les cadeaux, les services ou le toucher.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://nuju.app/blog/test-5-langages-amour-gratuit-en-ligne"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/test-5-lenguajes-del-amor-gratis-pareja</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Test de los 5 Lenguajes del Amor Gratis: Descubre tus Necesidades en Pareja</image:title>
+      <image:caption>Haz el test de los 5 lenguajes del amor online gratis. Descubre si tu lenguaje principal son las palabras de afirmación, tiempo de calidad, actos de servicio, detalles o contacto físico.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="es" href="https://nuju.app/blog/test-5-lenguajes-del-amor-gratis-pareja"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/people-pleaser-test-fawn-response-boundaries</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>People-Pleaser Test: Are You Stuck in the Fawn Trauma Response? (Free Screener)</image:title>
+      <image:caption>Screen your people-pleasing tendencies and fawn response. Discover why saying &apos;No&apos; causes panic, how boundaries heal codependency, and get assertive scripts.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/people-pleaser-test-fawn-response-boundaries"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/tes-people-pleaser-online-batas-diri-fawn-response</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Tes People-Pleaser Online Gratis: Kenali Fawn Response &amp; Cara Bilang &apos;Tidak&apos;</image:title>
+      <image:caption>Ikuti tes people-pleaser online gratis. Cari tahu apakah kebiasaan susah menolak ajakan orang lain adalah bentuk trauma fawn response dan temukan solusinya.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="id" href="https://nuju.app/blog/tes-people-pleaser-online-batas-diri-fawn-response"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/people-pleasing-stoppen-fawn-response-test</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>People-Pleasing stoppen: Der Fawn-Response-Test &amp; gesunde Grenzen setzen</image:title>
+      <image:caption>Machen Sie den kostenlosen People-Pleaser-Test online. Verstehen Sie, warum Nein-Sagen Angst auslöst und wie Sie Grenzen ohne Schuldgefühle wahren.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="de" href="https://nuju.app/blog/people-pleasing-stoppen-fawn-response-test"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/arreter-d-etre-trop-gentil-test-people-pleaser</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Arrêter d&apos;Être Trop Gentil : Le Test du People-Pleaser &amp; Syndrome du Fawning</image:title>
+      <image:caption>Faites le test du people-pleaser en ligne gratuit. Comprenez pourquoi vous n&apos;osez pas dire non et apprenez à poser des limites sans culpabilité.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://nuju.app/blog/arreter-d-etre-trop-gentil-test-people-pleaser"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/como-dejar-de-ser-people-pleaser-test-limites</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Cómo Dejar de Ser un People-Pleaser: Test Gratis de Límites y Respuesta Fawn</image:title>
+      <image:caption>Haz el test de complacencia online gratis. Descubre por qué te cuesta decir &apos;No&apos;, cómo sanar la respuesta de adulación (fawn) y poner límites sin culpa.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="es" href="https://nuju.app/blog/como-dejar-de-ser-people-pleaser-test-limites"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/emdr-bilateral-stimulation-online-tool-anxiety</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>EMDR Bilateral Stimulation Online: How Dual-Attention Light &amp; Sound Calms Anxiety</image:title>
+      <image:caption>Experience free online EMDR bilateral stimulation. Learn the neuroscience of dual-attention eye movements, auditory panning, and amygdala de-escalation.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/emdr-bilateral-stimulation-online-tool-anxiety"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/alat-emdr-stimulasi-bilateral-online-kecemasan</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Alat Terapi EMDR Stimulasi Bilateral Online: Redakan Cemas &amp; Trauma dalam Hitungan Menit</image:title>
+      <image:caption>Coba alat stimulasi bilateral audio-visual EMDR online gratis. Pelajari sains di balik gerakan mata kiri-kanan dan audio stereo untuk menenangkan amygdala.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="id" href="https://nuju.app/blog/alat-emdr-stimulasi-bilateral-online-kecemasan"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/emdr-bilaterale-stimulation-online-tool-angst</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>EMDR Bilaterale Stimulation Online: Kostenloses Tool gegen Angst und Panik</image:title>
+      <image:caption>Nutzen Sie das kostenlose interaktive EMDR-Tool mit bilateraler visueller und auditiver Stimulation. Wissenschaftlich fundierte Amygdala-Beruhigung.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="de" href="https://nuju.app/blog/emdr-bilaterale-stimulation-online-tool-angst"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/stimulation-bilaterale-emdr-en-ligne-angoisse</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Stimulation Bilatérale EMDR en Ligne : Outil Gratuit Contre l&apos;Angoisse et le Stress</image:title>
+      <image:caption>Expérimentez la stimulation bilatérale EMDR en ligne gratuite avec guidage visuel et audio stéréo alterné pour apaiser l&apos;amygdale cérébrale.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://nuju.app/blog/stimulation-bilaterale-emdr-en-ligne-angoisse"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/estimulacion-bilateral-emdr-online-ansiedad</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Estimulación Bilateral EMDR Online Gratis: Herramienta para Calmar la Ansiedad</image:title>
+      <image:caption>Usa la herramienta interactiva de estimulación bilateral visual y auditiva EMDR online gratis. Desactiva la hiperactivación del estrés en minutos.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="es" href="https://nuju.app/blog/estimulacion-bilateral-emdr-online-ansiedad"/>
   </url>
   <url>
     <loc>https://nuju.app/blog/how-to-stop-overthinking-at-night</loc>
