@@ -24,7 +24,7 @@ export const QuizLeadCapture: React.FC<QuizLeadCaptureProps> = ({
     const cleanEmail = email.trim().toLowerCase();
 
     if (!cleanEmail || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(cleanEmail)) {
-      toast.error("Silakan masukkan alamat email yang valid.");
+      toast.error("Please enter a valid email address.");
       return;
     }
 
@@ -70,10 +70,10 @@ export const QuizLeadCapture: React.FC<QuizLeadCaptureProps> = ({
       }
 
       setIsSubmitted(true);
-      toast.success("Salinan hasil tes & panduan 7 hari berhasil didaftarkan!");
+      toast.success("Test results & 7-day recovery guide registered successfully!");
     } catch (err) {
       console.error("Lead submission error:", err);
-      toast.error("Terjadi kendala saat menyimpan email. Coba lagi.");
+      toast.error("Something went wrong while saving your email. Please try again.");
     } finally {
       setIsSubmitting(false);
     }
@@ -89,14 +89,14 @@ export const QuizLeadCapture: React.FC<QuizLeadCaptureProps> = ({
           <CheckCircle2 className="h-6 w-6" />
         </div>
         <h3 className="text-lg sm:text-xl font-bold text-neutral-900">
-          Hasil Diagnosa Terkirim ke Inbox-mu!
+          Your Diagnostic Results Have Been Sent!
         </h3>
         <p className="mt-1.5 text-xs sm:text-sm text-neutral-600 max-w-md mx-auto leading-relaxed">
-          Salinan hasil tes <strong>{result.title}</strong> dan panduan harian 7 hari telah dijadwalkan ke <strong>{email}</strong>.
+          A copy of your <strong>{result.title}</strong> results and a 7-day daily recovery guide have been scheduled to <strong>{email}</strong>.
         </p>
         <div className="mt-4 inline-flex items-center gap-1.5 rounded-full bg-emerald-600/10 px-3 py-1 text-[11px] font-semibold text-emerald-700">
           <ShieldCheck className="h-3.5 w-3.5" />
-          <span>Privasi Terjaga • Bebas Spam</span>
+          <span>Privacy Protected • Spam Free</span>
         </div>
       </div>
     );
@@ -121,11 +121,11 @@ export const QuizLeadCapture: React.FC<QuizLeadCaptureProps> = ({
           </div>
 
           <h3 className="text-lg sm:text-xl font-bold text-neutral-900 tracking-tight">
-            Simpan Hasil Tes &amp; Dapatkan Panduan Pemulihan 7 Hari
+            Save Your Results & Get a 7-Day Recovery Guide
           </h3>
 
           <p className="mt-1 text-xs sm:text-sm text-neutral-600 leading-relaxed">
-            Ingin menyimpan diagnosa <strong>{result.title}</strong>? Masukkan emailmu untuk menerima salinan hasil tes lengkap beserta 7 prompt pemulihan malam hari dari Ju.
+            Want to save your <strong>{result.title}</strong> diagnosis? Enter your email to receive a full copy of your results and 7 nightly recovery prompts from Ju.
           </p>
 
           <form onSubmit={handleSubmit} className="mt-4 flex flex-col sm:flex-row gap-2.5 w-full">
@@ -133,7 +133,7 @@ export const QuizLeadCapture: React.FC<QuizLeadCaptureProps> = ({
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="Masukkan alamat emailmu..."
+              placeholder="Enter your email address..."
               required
               disabled={isSubmitting}
               className="flex-1 rounded-2xl border border-neutral-300 bg-white px-4 py-3 text-sm text-neutral-900 placeholder:text-neutral-400 focus:border-amber-600 focus:outline-none focus:ring-2 focus:ring-amber-500/20 disabled:opacity-60 shadow-2xs"
@@ -144,13 +144,13 @@ export const QuizLeadCapture: React.FC<QuizLeadCaptureProps> = ({
               className="inline-flex items-center justify-center gap-2 rounded-2xl bg-amber-600 px-6 py-3 text-sm font-bold text-white shadow-sm hover:bg-amber-700 active:scale-[0.98] transition disabled:opacity-60 shrink-0"
             >
               <Send className="h-4 w-4" />
-              <span>{isSubmitting ? "Mengirim..." : "Kirim Salinan Hasil"}</span>
+              <span>{isSubmitting ? "Sending..." : "Send My Results"}</span>
             </button>
           </form>
 
           <div className="mt-2.5 flex items-center gap-1.5 text-[11px] text-neutral-400">
             <ShieldCheck className="h-3.5 w-3.5 text-neutral-400" />
-            <span>Emailmu 100% aman, rahasia, dan bebas spam. Unsubscribe kapan saja.</span>
+            <span>Your email is 100% secure, private, and spam-free. Unsubscribe anytime.</span>
           </div>
         </div>
       </div>

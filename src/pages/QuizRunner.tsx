@@ -60,7 +60,7 @@ const QuizRunner: React.FC = () => {
           className="mt-6 inline-flex items-center gap-2 rounded-full bg-neutral-900 px-6 py-3 font-semibold text-white hover:bg-neutral-800 transition"
         >
           <ArrowLeft className="h-4 w-4" />
-          <span>Kembali ke Daftar Kuis</span>
+          <span>Back to Quiz List</span>
         </Link>
       </div>
     );
@@ -284,7 +284,7 @@ const QuizRunner: React.FC = () => {
                   className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-amber-600 to-amber-700 px-6 py-3.5 text-sm font-bold text-white shadow-md hover:from-amber-700 hover:to-amber-800 active:scale-95 transition"
                 >
                   <Download className="h-4 w-4" />
-                  <span>Simpan Gambar Hasil (HD)</span>
+                  <span>Save Results Image (HD)</span>
                 </button>
 
                 <button
@@ -292,7 +292,7 @@ const QuizRunner: React.FC = () => {
                   className="inline-flex items-center gap-2 rounded-full border border-amber-300 bg-amber-50/80 px-6 py-3.5 text-sm font-semibold text-amber-900 shadow-xs hover:bg-amber-100/80 active:scale-95 transition"
                 >
                   <Share2 className="h-4 w-4 text-amber-700" />
-                  <span>Bagikan Link Hasil</span>
+                  <span>Share Results Link</span>
                 </button>
 
                 <button
@@ -300,7 +300,7 @@ const QuizRunner: React.FC = () => {
                   className="inline-flex items-center gap-2 rounded-full border border-neutral-300 bg-white px-5 py-3.5 text-sm font-semibold text-neutral-700 hover:bg-neutral-50 active:scale-95 transition"
                 >
                   <RotateCcw className="h-4 w-4" />
-                  <span>Ulangi Tes</span>
+                  <span>Retake Test</span>
                 </button>
               </div>
 
@@ -315,15 +315,15 @@ const QuizRunner: React.FC = () => {
                   </div>
                   <div>
                     <h4 className="text-xs font-bold text-neutral-900 uppercase tracking-wider">
-                      Kartu Hasil Siap Instagram &amp; WA Story
+                      Results Card for Instagram & WA Story
                     </h4>
                     <p className="text-xs text-neutral-600 mt-0.5">
-                      Klik untuk preview &amp; download kartu 4:5 resolusi tinggi (1080×1350)
+                      Click to preview & download a high-res 4:5 card (1080×1350)
                     </p>
                   </div>
                 </div>
                 <span className="text-xs font-bold text-amber-700 whitespace-nowrap">
-                  Buka →
+                  Open →
                 </span>
               </div>
             </div>
@@ -338,7 +338,7 @@ const QuizRunner: React.FC = () => {
               <div>
                 <div className="flex items-center gap-2 mb-2">
                   <Brain className="h-5 w-5 text-indigo-600" />
-                  <h3 className="text-lg font-bold text-neutral-900">Wawasan Sains & Psikologi Emosi</h3>
+                  <h3 className="text-lg font-bold text-neutral-900">Science & Emotion Psychology Insights</h3>
                 </div>
                 <p className="text-sm text-neutral-600 leading-relaxed bg-indigo-50/40 p-4 rounded-2xl border border-indigo-100">
                   {result.psychologicalInsight}
@@ -348,7 +348,7 @@ const QuizRunner: React.FC = () => {
               <div>
                 <div className="flex items-center gap-2 mb-3">
                   <CheckCircle2 className="h-5 w-5 text-emerald-600" />
-                  <h3 className="text-lg font-bold text-neutral-900">3 Langkah Pemulihan Malam Ini</h3>
+                  <h3 className="text-lg font-bold text-neutral-900">3 Recovery Steps for Tonight</h3>
                 </div>
                 <div className="space-y-2.5">
                   {result.actionableSteps.map((step, idx) => (
@@ -367,14 +367,14 @@ const QuizRunner: React.FC = () => {
                 <div className="flex items-center justify-between gap-2 mb-2">
                   <div className="flex items-center gap-2">
                     <Heart className="h-5 w-5 text-rose-500" />
-                    <h3 className="text-base font-bold text-neutral-900">Prompt Curhat Nuju Malam Ini</h3>
+                    <h3 className="text-base font-bold text-neutral-900">Tonight's Journaling Prompt</h3>
                   </div>
                   <button
                     onClick={() => copyPrompt(result.recommendedPrompt)}
                     className="inline-flex items-center gap-1.5 text-xs font-semibold text-amber-700 hover:text-amber-800"
                   >
                     <Copy className="h-3.5 w-3.5" />
-                    <span>Salin Prompt</span>
+                    <span>Copy Prompt</span>
                   </button>
                 </div>
                 <div className="rounded-2xl border border-rose-100 bg-rose-50/40 p-4 font-mono text-xs sm:text-sm text-neutral-800 leading-relaxed">
@@ -386,7 +386,7 @@ const QuizRunner: React.FC = () => {
                     className="inline-flex items-center gap-2 rounded-xl bg-amber-600 px-4 py-2.5 text-xs sm:text-sm font-bold text-white shadow-sm hover:bg-amber-700 active:scale-95 transition"
                   >
                     <Sparkles className="h-4 w-4 text-amber-200" />
-                    <span>Curhatkan Prompt Ini ke Ju (Mulai Gratis) →</span>
+                    <span>Share This Prompt with Ju (Start Free) →</span>
                   </Link>
                 </div>
               </div>
@@ -404,13 +404,13 @@ const QuizRunner: React.FC = () => {
               <div className="flex-1 text-center md:text-left space-y-1.5">
                 <div className="inline-flex items-center gap-1.5 rounded-full bg-amber-100 px-3 py-0.5 text-xs font-bold text-amber-900">
                   <Sparkles className="h-3 w-3 text-amber-600" />
-                  <span>Panduan Lanjutan &amp; 30-Day Prompt Journal</span>
+                  <span>Advanced Guide & 30-Day Prompt Journal</span>
                 </div>
                 <h3 className="text-lg sm:text-xl font-extrabold text-neutral-900">
-                  Berdamai dengan Isi Kepala: Seni Melepaskan Overthinking
+                  Making Peace with Your Mind: The Art of Releasing Overthinking
                 </h3>
                 <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed">
-                  Buku digital resmi 12 bab mendalam + 30 template journaling CBT &amp; Stoikisme harian untuk mengurai kekusutan pikiran dan memulihkan energi mentalmu.
+                  Official 12-chapter digital book + 30 daily CBT & Stoicism journaling templates to untangle your thoughts and restore mental energy.
                 </p>
               </div>
               <div className="shrink-0 flex flex-col items-center gap-2">
@@ -419,9 +419,9 @@ const QuizRunner: React.FC = () => {
                   className="inline-flex items-center gap-2 rounded-full bg-neutral-900 hover:bg-neutral-800 text-white px-5 py-3 text-xs sm:text-sm font-bold shadow-sm active:scale-95 transition"
                 >
                   <BookOpen className="h-4 w-4 text-amber-400" />
-                  <span>Lihat Ebook &amp; Preview Bab →</span>
+                   <span>View Ebook & Chapter Preview →</span>
                 </Link>
-                <span className="text-[11px] text-neutral-500 font-medium">Mulai dari Rp49.000 (Akses Instan)</span>
+                <span className="text-[11px] text-neutral-500 font-medium">Starting at $3.99 (Instant Access)</span>
               </div>
             </div>
 
@@ -430,19 +430,19 @@ const QuizRunner: React.FC = () => {
               <img src={juMain} alt="Ju" className="h-20 w-20 rounded-full border-2 border-white/20 shrink-0" />
               <div className="space-y-2">
                 <h3 className="text-xl sm:text-2xl font-bold tracking-tight">
-                  Pulihkan Bateraimu Bersama Ju di Nuju
+                  Recharge Your Battery with Ju on Nuju
                 </h3>
                 <p className="text-xs sm:text-sm text-neutral-300 leading-relaxed">
-                  Jangan simpan beban ini sendirian. Buka aplikasi Nuju, rekam suaramu selama 30 detik sebelum tidur, dan rasakan ketenangan tanpa rasa cemas.
+                  Don't carry this burden alone. Open Nuju, record your voice for 30 seconds before bed, and feel calm without anxiety.
                 </p>
                 <div className="pt-2 flex flex-wrap items-center justify-center sm:justify-start gap-3">
-                  <AppStoreCta label="Unduh Nuju (Gratis)" />
+                  <AppStoreCta label="Download Nuju (Free)" />
                   <Link
                     to={`/app?screen=journal&prompt=${encodeURIComponent(result.recommendedPrompt)}&mood=${result.mascotMood}&fromQuiz=${quiz.slug}`}
                     className="rounded-full border border-white/30 bg-white/10 px-5 py-2.5 text-xs sm:text-sm font-semibold text-white hover:bg-white/20 active:scale-95 transition flex items-center gap-2"
                   >
                     <Sparkles className="h-3.5 w-3.5 text-amber-300" />
-                    <span>Buka Jurnal Web (Prompt Terisi)</span>
+                    <span>Open Web Journal (Prompt Pre-filled)</span>
                   </Link>
                 </div>
               </div>
@@ -450,7 +450,7 @@ const QuizRunner: React.FC = () => {
 
             {/* Explore Other Quizzes */}
             <div className="space-y-4 pt-6">
-              <h3 className="text-lg font-bold text-neutral-900">Coba Kuis Refleksi Lainnya:</h3>
+              <h3 className="text-lg font-bold text-neutral-900">Try Other Reflection Quizzes:</h3>
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 {otherQuizzes.slice(0, 3).map((oq) => (
                   <Link
@@ -468,7 +468,7 @@ const QuizRunner: React.FC = () => {
                       </div>
                     </div>
                     <span className="text-xs text-amber-700 font-semibold flex items-center justify-end gap-1 mt-2">
-                      Mulai <ChevronRight className="h-3.5 w-3.5" />
+                      Start <ChevronRight className="h-3.5 w-3.5" />
                     </span>
                   </Link>
                 ))}
@@ -491,7 +491,7 @@ const QuizRunner: React.FC = () => {
             <div>
               <div className="flex items-center justify-between text-xs font-semibold text-neutral-500 mb-2">
                 <span>{quiz.shortTitle}</span>
-                <span>Pertanyaan {currentIndex + 1} dari {quiz.questions.length} ({progressPercent}%)</span>
+                <span>Question {currentIndex + 1} of {quiz.questions.length} ({progressPercent}%)</span>
               </div>
               <div className="h-2 w-full rounded-full bg-neutral-200/80 overflow-hidden">
                 <div
@@ -504,7 +504,7 @@ const QuizRunner: React.FC = () => {
             {/* Question Card */}
             <div className="rounded-3xl border border-neutral-200 bg-white p-6 sm:p-10 shadow-xs">
               <span className="inline-block rounded-full bg-amber-100 text-amber-900 px-3 py-1 text-xs font-bold mb-4">
-                Pertanyaan #{currentIndex + 1}
+                Question #{currentIndex + 1}
               </span>
 
               <h2 className="text-xl sm:text-2xl font-bold text-neutral-900 tracking-tight leading-snug">
@@ -563,7 +563,7 @@ const QuizRunner: React.FC = () => {
                   className="inline-flex items-center gap-2 text-xs font-semibold text-neutral-500 hover:text-neutral-900 transition"
                 >
                   <ArrowLeft className="h-3.5 w-3.5" />
-                  <span>Kembali ke Pertanyaan Sebelumnya</span>
+                   <span>Back to Previous Question</span>
                 </button>
               </div>
             )}
@@ -574,7 +574,7 @@ const QuizRunner: React.FC = () => {
         <section className="mt-16 border-t border-neutral-200 pt-10">
           <div className="flex items-center gap-2 mb-6">
             <HelpCircle className="h-5 w-5 text-amber-600" />
-            <h3 className="text-lg font-bold text-neutral-900">Pertanyaan yang Sering Diajukan</h3>
+            <h3 className="text-lg font-bold text-neutral-900">Frequently Asked Questions</h3>
           </div>
           <div className="space-y-4">
             {quiz.faqs.map((faq, idx) => (

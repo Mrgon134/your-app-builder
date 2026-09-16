@@ -647,10 +647,10 @@ export const EbookSalesPage: React.FC = () => {
         </div>
         <p>&copy; {new Date().getFullYear()} Nuju Mental Wellbeing Press • Nuju Digital Pte Ltd.</p>
         <div className="flex justify-center gap-4 pt-1">
-          <Link to="/privacy" className="hover:text-neutral-900">Privasi</Link>
-          <Link to="/terms" className="hover:text-neutral-900">Syarat &amp; Ketentuan</Link>
-          <Link to="/support" className="hover:text-neutral-900">Bantuan</Link>
-          <Link to="/quiz" className="hover:text-neutral-900">Tes Psikologi</Link>
+          <Link to="/privacy" className="hover:text-neutral-900">Privacy</Link>
+          <Link to="/terms" className="hover:text-neutral-900">Terms & Conditions</Link>
+          <Link to="/support" className="hover:text-neutral-900">Support</Link>
+          <Link to="/quiz" className="hover:text-neutral-900">Psychology Tests</Link>
         </div>
       </footer>
     </div>

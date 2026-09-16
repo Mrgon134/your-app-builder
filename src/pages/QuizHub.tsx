@@ -10,12 +10,12 @@ import juMain from "@/assets/ju-main.webp";
 const QuizHub: React.FC = () => {
   const quizzes = getAllQuizzes();
   const [selectedCountry, setSelectedCountry] = useState<string>("ALL");
-  const [selectedCategory, setSelectedCategory] = useState<string>("Semua");
+  const [selectedCategory, setSelectedCategory] = useState<string>("ALL");
 
   const countries = [
-    { id: "ALL", label: "Semua Negara 🌍" },
-    { id: "ID", label: "🇮🇩 Indonesia" },
+    { id: "ALL", label: "All Countries 🌍" },
     { id: "US", label: "🇺🇸 United States" },
+    { id: "ID", label: "🇮🇩 Indonesia" },
     { id: "DE", label: "🇩🇪🇨🇭 Deutschland / Schweiz" },
     { id: "FR", label: "🇫🇷 France" },
     { id: "ES", label: "🇪🇸 España" },
@@ -25,21 +25,36 @@ const QuizHub: React.FC = () => {
     { id: "KR", label: "🇰🇷 대한민국" },
   ];
 
-  const categories = ["Semua", "Vitalitas Mental", "Pola Pikir & Tidur", "Karir & Produktivitas", "Psikologi Hubungan"];
+  const categories = [
+    { id: "ALL", label: "All Categories", match: [] },
+    { id: "vitality", label: "Mental Vitality", match: ["vitalitas", "mental", "vitality", "stress", "depression"] },
+    { id: "mindset", label: "Mindset & Sleep", match: ["pola pikir", "tidur", "mindset", "sleep", "overthinking"] },
+    { id: "career", label: "Career & Productivity", match: ["karir", "produktivitas", "career", "burnout", "productivity"] },
+    { id: "relationships", label: "Relationship Psychology", match: ["hubungan", "relasi", "relationship", "attachment", "love"] },
+  ];
 
   const filteredQuizzes = quizzes.filter((q) => {
-    const matchCountry = selectedCountry === "ALL" || q.targetCountry === selectedCountry || (selectedCountry === "DE" && (q.targetCountry === "DE" || q.targetCountry === "CH"));
-    const matchCat = selectedCategory === "Semua" || q.category.toLowerCase().includes(selectedCategory.toLowerCase()) || selectedCategory.toLowerCase().includes(q.category.toLowerCase());
+    const matchCountry =
+      selectedCountry === "ALL" ||
+      q.targetCountry === selectedCountry ||
+      (selectedCountry === "DE" && (q.targetCountry === "DE" || q.targetCountry === "CH"));
+
+    if (selectedCategory === "ALL") return matchCountry;
+    const catObj = categories.find((c) => c.id === selectedCategory);
+    if (!catObj || catObj.match.length === 0) return matchCountry;
+    const matchCat = catObj.match.some((kw) =>
+      q.category.toLowerCase().includes(kw.toLowerCase())
+    );
     return matchCountry && matchCat;
   });
 
   return (
     <div className="min-h-screen bg-[#FAF9F6] text-neutral-900 selection:bg-amber-200">
       <SEOHead
-        title="Mini Tes Psikologi & Cek Baterai Emosi Gratis"
-        description="Ikuti mini tes psikologi 1 menit: Cek sisa baterai emosimu, tipe overthinking malam, hingga screening burnout kerja. 100% gratis, privat, dan berbasis psikologi CBT."
+        title="Free Psychology Tests & Mental Health Screeners | Nuju Quiz"
+        description="Take 1-minute interactive psychology tests: Check your emotional battery, late-night overthinking patterns, and burnout levels. 100% free, private, and CBT-based."
         canonical="https://nuju.app/quiz"
-        language="id"
+        language="en"
       />
 
       {/* Navigation Header */}
@@ -55,10 +70,10 @@ const QuizHub: React.FC = () => {
               Ebook & Workbook
             </Link>
             <Link to="/blog" className="hidden text-neutral-600 hover:text-neutral-900 sm:inline-block font-medium">
-              Artikel & Panduan
+              Articles & Guides
             </Link>
             <Link to="/app" className="rounded-full bg-neutral-900 px-4 py-1.5 text-xs sm:text-sm font-semibold text-white shadow-sm hover:bg-neutral-800 transition">
-              Buka Web App
+              Open Web App
             </Link>
           </div>
         </div>
@@ -69,26 +84,26 @@ const QuizHub: React.FC = () => {
         <section className="text-center max-w-2xl mx-auto mb-12">
           <div className="inline-flex items-center gap-2 rounded-full border border-amber-200/80 bg-amber-50/80 px-3.5 py-1 text-xs font-semibold text-amber-900 mb-4 shadow-xs">
             <Sparkles className="h-3.5 w-3.5 text-amber-600" />
-            <span>Refleksi Cepat 45–60 Detik</span>
+            <span>Quick 45–60s Reflection</span>
           </div>
 
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-neutral-900 leading-tight">
-            Bagaimana Kondisi Batinmu <span className="text-amber-600 underline decoration-amber-300 decoration-wavy">Hari Ini?</span>
+            How Is Your Inner World <span className="text-amber-600 underline decoration-amber-300 decoration-wavy">Today?</span>
           </h1>
 
           <p className="mt-4 text-base sm:text-lg text-neutral-600 leading-relaxed">
-            Kenali sinyal kelelahan, pola overthinking malam, dan gaya koping emosimu lewat mini tes interaktif berbasis psikologi emosi & CBT. Gratis, tanpa login, dan 100% privat.
+            Identify fatigue signals, late-night overthinking patterns, and emotional coping styles with interactive psychology & CBT screeners. Free, no login required, and 100% private.
           </p>
 
           <div className="mt-6 flex flex-wrap items-center justify-center gap-4 text-xs sm:text-sm text-neutral-500 font-medium">
             <span className="flex items-center gap-1.5">
-              <ShieldCheck className="h-4 w-4 text-emerald-600" /> 100% Rahasia & Tanpa Simpan Data
+              <ShieldCheck className="h-4 w-4 text-emerald-600" /> 100% Private & No Data Stored
             </span>
             <span className="flex items-center gap-1.5">
-              <Brain className="h-4 w-4 text-indigo-600" /> Validasi CBT & Emotion Science
+              <Brain className="h-4 w-4 text-indigo-600" /> CBT & Emotion Science Validated
             </span>
             <span className="flex items-center gap-1.5">
-              <Users className="h-4 w-4 text-amber-600" /> Diikuti 130.000+ Orang
+              <Users className="h-4 w-4 text-amber-600" /> Taken by 130,000+ People
             </span>
           </div>
         </section>
@@ -1102,7 +1117,7 @@ const QuizHub: React.FC = () => {
 
         {/* Country Filter Pills */}
         <div className="mb-4">
-          <div className="text-xs font-semibold text-neutral-400 mb-2 text-center uppercase tracking-wider">Pilih Wilayah / Bahasa:</div>
+          <div className="text-xs font-semibold text-neutral-400 mb-2 text-center uppercase tracking-wider">Select Region / Language:</div>
           <div className="flex items-center justify-center gap-2 overflow-x-auto pb-2 no-scrollbar">
             {countries.map((c) => (
               <button
@@ -1124,15 +1139,15 @@ const QuizHub: React.FC = () => {
         <div className="flex items-center justify-center gap-2 overflow-x-auto pb-4 mb-8 no-scrollbar">
           {categories.map((cat) => (
             <button
-              key={cat}
-              onClick={() => setSelectedCategory(cat)}
+              key={cat.id}
+              onClick={() => setSelectedCategory(cat.id)}
               className={`rounded-full px-3.5 py-1 text-xs font-medium transition whitespace-nowrap ${
-                selectedCategory === cat
+                selectedCategory === cat.id
                   ? "bg-neutral-900 text-white shadow-xs"
                   : "bg-neutral-100 text-neutral-600 hover:bg-neutral-200"
               }`}
             >
-              {cat}
+              {cat.label}
             </button>
           ))}
         </div>
@@ -1140,12 +1155,12 @@ const QuizHub: React.FC = () => {
         {/* Empty State */}
         {filteredQuizzes.length === 0 && (
           <div className="text-center py-16 bg-white rounded-3xl border border-neutral-200 p-8 my-8">
-            <p className="text-neutral-500 text-sm">Belum ada kuis untuk kombinasi filter ini.</p>
+            <p className="text-neutral-500 text-sm">No quizzes found for this filter combination.</p>
             <button
-              onClick={() => { setSelectedCountry("ALL"); setSelectedCategory("Semua"); }}
+              onClick={() => { setSelectedCountry("ALL"); setSelectedCategory("ALL"); }}
               className="mt-3 text-xs font-semibold text-amber-700 underline"
             >
-              Reset Filter
+              Reset Filters
             </button>
           </div>
         )}
@@ -1201,13 +1216,13 @@ const QuizHub: React.FC = () => {
 
                 <div className="pt-4 border-t border-neutral-100 flex items-center justify-between">
                   <span className="text-xs text-neutral-500 font-medium">
-                    {quiz.questions.length} Pertanyaan Ringkas
+                    {quiz.questions.length} Quick Questions
                   </span>
                   <Link
                     to={`/quiz/${quiz.slug}`}
                     className="inline-flex items-center gap-2 rounded-full bg-neutral-900 px-5 py-2.5 text-xs sm:text-sm font-semibold text-white transition group-hover:bg-amber-600 shadow-sm"
                   >
-                    <span>Mulai Tes</span>
+                    <span>Start Test</span>
                     <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
                   </Link>
                 </div>
@@ -1231,10 +1246,10 @@ const QuizHub: React.FC = () => {
         <section className="rounded-3xl border border-neutral-200 bg-gradient-to-br from-white to-amber-50/40 p-8 sm:p-12 mb-16 shadow-xs">
           <div className="max-w-2xl mx-auto text-center mb-10">
             <h2 className="text-2xl sm:text-3xl font-bold text-neutral-900 tracking-tight">
-              Mengapa Mengetahui Kondisi Mentalmu Itu Penting?
+              Why Knowing Your Mental State Matters
             </h2>
             <p className="mt-3 text-sm sm:text-base text-neutral-600">
-              Kita tidak bisa mengobati luka yang tidak kita akui keberadaannya. Kuis refleksi Nuju dirancang untuk membantumu menyadari beban batin sebelum meledak menjadi krisis.
+              You can't heal wounds you refuse to acknowledge. Nuju's reflection quizzes are designed to help you recognize emotional burdens before they escalate into crisis.
             </p>
           </div>
 
@@ -1243,9 +1258,9 @@ const QuizHub: React.FC = () => {
               <div className="h-10 w-10 rounded-xl bg-amber-100 text-amber-700 flex items-center justify-center font-bold mb-4">
                 01
               </div>
-              <h3 className="font-bold text-neutral-900 text-base mb-2">Affect Labeling (Penamaan Emosi)</h3>
+              <h3 className="font-bold text-neutral-900 text-base mb-2">Affect Labeling</h3>
               <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed">
-                Penelitian neurosains UCLA membuktikan bahwa memberi nama spesifik pada rasa lelah atau cemas menurunkan reaktivitas amigdala secara instan hingga 40%.
+                UCLA neuroscience research proves that specifically naming feelings of exhaustion or anxiety instantly reduces amygdala reactivity by up to 40%.
               </p>
             </div>
 
@@ -1255,7 +1270,7 @@ const QuizHub: React.FC = () => {
               </div>
               <h3 className="font-bold text-neutral-900 text-base mb-2">Cognitive Reframing (CBT)</h3>
               <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed">
-                Hasil tes mengidentifikasi distorsi kognitif seperti katastrofisasi atau perfeksionisme, lalu mengarahkanmu pada sudut pandang pemulihan yang realistis.
+                Test results identify cognitive distortions like catastrophizing or perfectionism, then guide you toward realistic recovery perspectives.
               </p>
             </div>
 
@@ -1263,9 +1278,9 @@ const QuizHub: React.FC = () => {
               <div className="h-10 w-10 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold mb-4">
                 03
               </div>
-              <h3 className="font-bold text-neutral-900 text-base mb-2">Langkah Aksi Nyata (Low Friction)</h3>
+              <h3 className="font-bold text-neutral-900 text-base mb-2">Actionable Next Steps</h3>
               <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed">
-                Bukan cuma skor angka tanpa arti. Kamu mendapatkan 3 rekomendasi mikro dan template curhat suara/teks yang bisa langsung kamu praktekkan di Nuju.
+                Not just meaningless scores. You get 3 micro-recommendations and voice/text journaling templates you can practice immediately in Nuju.
               </p>
             </div>
           </div>
@@ -1276,15 +1291,15 @@ const QuizHub: React.FC = () => {
           <div className="relative z-10 max-w-xl mx-auto">
             <img src={juMain} alt="Ju mascot" className="h-16 w-16 mx-auto mb-4 rounded-full border-2 border-white/20" />
             <h2 className="text-2xl sm:text-3xl font-bold tracking-tight">
-              Ingin Tempat Curhat & Rilis Emosi Setiap Hari?
+              Need a Safe Space to Vent & Release Emotions Daily?
             </h2>
             <p className="mt-3 text-sm text-neutral-300 leading-relaxed">
-              Temui Ju di aplikasi Nuju. Cukup rekam suaramu selama 30 detik saat lelah, dan biarkan Ju merapikan pikiranmu dengan pelukan tanpa penghakiman.
+              Meet Ju in the Nuju app. Just record your voice for 30 seconds when you're exhausted, and let Ju organize your thoughts with a judgment-free embrace.
             </p>
             <div className="mt-6 flex flex-wrap items-center justify-center gap-4">
-              <AppStoreCta label="Unduh Nuju di App Store" />
+              <AppStoreCta label="Download Nuju on App Store" />
               <Link to="/app" className="rounded-full border border-white/20 bg-white/10 px-6 py-3 text-sm font-semibold text-white hover:bg-white/20 transition">
-                Coba Versi Web Gratis
+                Try Free Web Version
               </Link>
             </div>
           </div>
@@ -1298,10 +1313,10 @@ const QuizHub: React.FC = () => {
         {/* Medical & Ethical Disclaimer */}
         <footer className="border-t border-neutral-200 pt-8 pb-12 text-center text-xs text-neutral-400 max-w-2xl mx-auto space-y-2">
           <p className="font-medium text-neutral-500">
-            ⚠️ <strong>Catatan Etika & Medis:</strong> Mini tes dan kuis di nuju.app adalah instrumen psikoedukasi dan refleksi diri mandiri, bukan diagnosis klinis atau pengganti konsultasi dengan psikolog/psikiater profesional.
+            ⚠️ <strong>Ethics & Medical Disclaimer:</strong> Mini tests and quizzes on nuju.app are psychoeducational and self-reflection instruments, not clinical diagnoses or substitutes for professional consultation with a psychologist or psychiatrist.
           </p>
           <p>
-            Jika kamu mengalami krisis kejiwaan, pikiran untuk menyakiti diri, atau depresi berat, segera hubungi layanan darurat kesehatan mental terdekat atau hotline Sejiwa di 119 ext 8.
+            If you are experiencing a mental health crisis, thoughts of self-harm, or severe depression, please contact your nearest emergency mental health service immediately.
           </p>
           <p className="pt-4">
             &copy; {new Date().getFullYear()} Nuju (nuju.app) • All rights reserved.
