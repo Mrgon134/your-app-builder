@@ -10,6 +10,8 @@ import { HspProfile, HspLang } from "@/data/hsp";
 import { ShadowResult, ShadowLang } from "@/data/shadow-work";
 import { DopamineProfile, DopamineLang } from "@/data/dopamine-detox";
 import { VagalProfile, VagalLang } from "@/data/nervous-system";
+import { RsdProfile, RsdLang, RsdLevel } from "@/data/rsd-screener";
+import { DistortionInfo, CbtLang } from "@/data/cognitive-distortions";
 
 /**
  * Draws a rounded rectangle path on the canvas context with fallback for older environments.
@@ -2209,6 +2211,315 @@ export async function generateNervousSystemCard(
     canvas.toBlob((b) => (b ? resolve(b) : reject(new Error("Failed blob"))), "image/png", 0.95);
   });
   const file = new File([blob], `ju-vagal-${result.dominantState}.png`, { type: "image/png" });
+
+  return { dataUrl, blob, file };
+}
+
+export interface RsdCardInput {
+  level: RsdLevel;
+  profile: RsdProfile;
+  subscales: {
+    vigilance: { percentage: number };
+    criticism: { percentage: number };
+    catastrophizing: { percentage: number };
+  };
+}
+
+export async function generateRsdCard(
+  result: RsdCardInput,
+  lang: RsdLang = "en"
+): Promise<{ dataUrl: string; blob: Blob; file: File }> {
+  const width = 1080;
+  const height = 1350;
+  const canvas = document.createElement("canvas");
+  canvas.width = width;
+  canvas.height = height;
+  const ctx = canvas.getContext("2d");
+  if (!ctx) throw new Error("Could not get 2d context");
+
+  // Background
+  const bgGrad = ctx.createLinearGradient(0, 0, width, height);
+  bgGrad.addColorStop(0, "#13071E");
+  bgGrad.addColorStop(0.5, "#210C35");
+  bgGrad.addColorStop(1, "#0A0310");
+  ctx.fillStyle = bgGrad;
+  ctx.fillRect(0, 0, width, height);
+
+  // Soft glowing rose orb in upper right
+  const orb = ctx.createRadialGradient(width - 150, 200, 20, width - 150, 200, 450);
+  orb.addColorStop(0, "rgba(244, 63, 94, 0.25)");
+  orb.addColorStop(1, "rgba(244, 63, 94, 0)");
+  ctx.fillStyle = orb;
+  ctx.fillRect(0, 0, width, height);
+
+  // Brand Header
+  ctx.fillStyle = "#F43F5E";
+  ctx.font = "bold 26px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("JU · REJECTION SENSITIVITY (RSD) SCREENER", 80, 110);
+
+  // Badge pill
+  const badgeText = result.profile.badge[lang] || result.profile.badge.en;
+  ctx.fillStyle = "rgba(244, 63, 94, 0.15)";
+  drawRoundedRect(ctx, 80, 150, 430, 52, 26);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(244, 63, 94, 0.4)";
+  ctx.stroke();
+
+  ctx.fillStyle = "#FB7185";
+  ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(badgeText.toUpperCase(), 105, 184);
+
+  // Title
+  const titleText = result.profile.title[lang] || result.profile.title.en;
+  ctx.fillStyle = "#FFFFFF";
+  ctx.font = "900 52px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  wrapText(ctx, titleText, 80, 265, width - 160, 62, 2);
+
+  // Tagline
+  const tagline = result.profile.tagline[lang] || result.profile.tagline.en;
+  ctx.fillStyle = "#FECDD3";
+  ctx.font = "italic 26px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  wrapText(ctx, `"${tagline}"`, 80, 360, width - 160, 36, 2);
+
+  // 3 Pillar Score Cards
+  const cardY = 440;
+  const colWidth = (width - 160 - 40) / 3;
+
+  // Pillar 1: Vigilance
+  ctx.fillStyle = "rgba(255, 255, 255, 0.04)";
+  drawRoundedRect(ctx, 80, cardY, colWidth, 180, 24);
+  ctx.fill();
+  ctx.fillStyle = "#FB7185";
+  ctx.font = "bold 20px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("VIGILANCE", 100, cardY + 45);
+  ctx.font = "900 48px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillStyle = "#FFFFFF";
+  ctx.fillText(`${result.subscales.vigilance.percentage}%`, 100, cardY + 110);
+
+  // Pillar 2: Criticism
+  ctx.fillStyle = "rgba(255, 255, 255, 0.04)";
+  drawRoundedRect(ctx, 80 + colWidth + 20, cardY, colWidth, 180, 24);
+  ctx.fill();
+  ctx.fillStyle = "#F43F5E";
+  ctx.font = "bold 20px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("CRITICISM", 100 + colWidth + 20, cardY + 45);
+  ctx.font = "900 48px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillStyle = "#FFFFFF";
+  ctx.fillText(`${result.subscales.criticism.percentage}%`, 100 + colWidth + 20, cardY + 110);
+
+  // Pillar 3: Catastrophizing
+  ctx.fillStyle = "rgba(255, 255, 255, 0.04)";
+  drawRoundedRect(ctx, 80 + (colWidth + 20) * 2, cardY, colWidth, 180, 24);
+  ctx.fill();
+  ctx.fillStyle = "#E11D48";
+  ctx.font = "bold 20px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("RUMINATION", 100 + (colWidth + 20) * 2, cardY + 45);
+  ctx.font = "900 48px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillStyle = "#FFFFFF";
+  ctx.fillText(`${result.subscales.catastrophizing.percentage}%`, 100 + (colWidth + 20) * 2, cardY + 110);
+
+  // Description Box
+  ctx.fillStyle = "rgba(255, 255, 255, 0.04)";
+  drawRoundedRect(ctx, 80, 660, width - 160, 200, 28);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(244, 63, 94, 0.2)";
+  ctx.stroke();
+
+  ctx.fillStyle = "#FB7185";
+  ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("NEUROBIOLOGICAL VULNERABILITY DIAGNOSIS", 120, 710);
+
+  const descText = result.profile.description[lang] || result.profile.description.en;
+  ctx.fillStyle = "#E2E8F0";
+  ctx.font = "26px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  wrapText(ctx, descText, 120, 755, width - 240, 38, 3);
+
+  // De-escalation Protocol Box
+  ctx.fillStyle = "rgba(244, 63, 94, 0.08)";
+  drawRoundedRect(ctx, 80, 890, width - 160, 220, 28);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(244, 63, 94, 0.35)";
+  ctx.stroke();
+
+  ctx.fillStyle = "#F43F5E";
+  ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("RECOMMENDED EMOTIONAL DE-ESCALATION DRILL", 120, 940);
+
+  const kitTip = (result.profile.deescalationKit[lang] || result.profile.deescalationKit.en)[0] || "";
+  ctx.fillStyle = "#FFE4E6";
+  ctx.font = "italic 26px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  wrapText(ctx, `"${kitTip}"`, 120, 985, width - 240, 36, 3);
+
+  // Footer CTA
+  ctx.fillStyle = "rgba(255, 255, 255, 0.5)";
+  ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("Screen your rejection sensitive dysphoria & emotional reactivity at:", 80, 1220);
+
+  ctx.fillStyle = "#F43F5E";
+  ctx.font = "900 30px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("nuju.app/quiz/rsd", 80, 1260);
+
+  const dataUrl = canvas.toDataURL("image/png", 0.95);
+  const blob = await new Promise<Blob>((resolve, reject) => {
+    canvas.toBlob((b) => (b ? resolve(b) : reject(new Error("Failed blob"))), "image/png", 0.95);
+  });
+  const file = new File([blob], `ju-rsd-${result.level}.png`, { type: "image/png" });
+
+  return { dataUrl, blob, file };
+}
+
+export interface CbtCardInput {
+  primaryDistortion: DistortionInfo;
+  topDistortions: { distortion: DistortionInfo; score: number; percentage: number }[];
+  totalScore: number;
+  dominantPercentage: number;
+}
+
+export async function generateCbtCard(
+  result: CbtCardInput,
+  lang: CbtLang = "en"
+): Promise<{ dataUrl: string; blob: Blob; file: File }> {
+  const width = 1080;
+  const height = 1350;
+  const canvas = document.createElement("canvas");
+  canvas.width = width;
+  canvas.height = height;
+  const ctx = canvas.getContext("2d");
+  if (!ctx) throw new Error("Could not get 2d context");
+
+  // Background gradient: Deep Indigo / Slate Night
+  const bgGrad = ctx.createLinearGradient(0, 0, width, height);
+  bgGrad.addColorStop(0, "#090D16");
+  bgGrad.addColorStop(0.4, "#0F172A");
+  bgGrad.addColorStop(1, "#1E1B4B");
+  ctx.fillStyle = bgGrad;
+  ctx.fillRect(0, 0, width, height);
+
+  // Soft glowing Indigo/Violet orb
+  const orb = ctx.createRadialGradient(width - 160, 220, 20, width - 160, 220, 480);
+  orb.addColorStop(0, "rgba(99, 102, 241, 0.28)");
+  orb.addColorStop(1, "rgba(99, 102, 241, 0)");
+  ctx.fillStyle = orb;
+  ctx.fillRect(0, 0, width, height);
+
+  // Brand Header
+  ctx.fillStyle = "#818CF8";
+  ctx.font = "bold 26px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("JU · COGNITIVE DISTORTIONS & THOUGHT SPOTTER", 80, 110);
+
+  // Badge pill
+  const badgeText = result.primaryDistortion.badge[lang] || result.primaryDistortion.badge.en;
+  ctx.fillStyle = "rgba(99, 102, 241, 0.15)";
+  drawRoundedRect(ctx, 80, 150, 460, 52, 26);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(129, 140, 248, 0.4)";
+  ctx.stroke();
+
+  ctx.fillStyle = "#A5B4FC";
+  ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(badgeText.toUpperCase(), 105, 184);
+
+  // Title
+  const titleText = result.primaryDistortion.title[lang] || result.primaryDistortion.title.en;
+  ctx.fillStyle = "#FFFFFF";
+  ctx.font = "900 52px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  wrapText(ctx, titleText, 80, 265, width - 160, 62, 2);
+
+  // Tagline
+  const tagline = result.primaryDistortion.tagline[lang] || result.primaryDistortion.tagline.en;
+  ctx.fillStyle = "#CBD5E1";
+  ctx.font = "italic 26px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  wrapText(ctx, `"${tagline}"`, 80, 360, width - 160, 36, 2);
+
+  // Top 3 Distortion Frequency Bars
+  const startY = 440;
+  const barHeight = 12;
+  const spacing = 62;
+
+  ctx.fillStyle = "#818CF8";
+  ctx.font = "bold 20px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("DOMINANT COGNITIVE BIAS BREAKDOWN", 80, startY);
+
+  const top3 = result.topDistortions.slice(0, 3);
+  top3.forEach((item, idx) => {
+    const y = startY + 25 + idx * spacing;
+    const label = item.distortion.title[lang] || item.distortion.title.en;
+
+    // Label
+    ctx.fillStyle = "#F1F5F9";
+    ctx.font = "bold 20px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+    ctx.fillText(label, 80, y + 16);
+
+    // Percentage
+    ctx.fillStyle = item.distortion.color || "#818CF8";
+    ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+    ctx.textAlign = "right";
+    ctx.fillText(`${item.percentage}%`, width - 80, y + 16);
+    ctx.textAlign = "left";
+
+    // Track
+    ctx.fillStyle = "rgba(255, 255, 255, 0.08)";
+    drawRoundedRect(ctx, 80, y + 26, width - 160, barHeight, 6);
+    ctx.fill();
+
+    // Fill
+    ctx.fillStyle = item.distortion.color || "#818CF8";
+    const fillW = ((width - 160) * Math.max(item.percentage, 5)) / 100;
+    drawRoundedRect(ctx, 80, y + 26, fillW, barHeight, 6);
+    ctx.fill();
+  });
+
+  // Clinical Definition Box
+  ctx.fillStyle = "rgba(255, 255, 255, 0.04)";
+  drawRoundedRect(ctx, 80, 680, width - 160, 190, 28);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(99, 102, 241, 0.25)";
+  ctx.stroke();
+
+  ctx.fillStyle = "#A5B4FC";
+  ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("COGNITIVE MECHANISM (AARON BECK & DAVID BURNS)", 120, 725);
+
+  const defText = result.primaryDistortion.definition[lang] || result.primaryDistortion.definition.en;
+  ctx.fillStyle = "#E2E8F0";
+  ctx.font = "26px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  wrapText(ctx, defText, 120, 770, width - 240, 36, 3);
+
+  // CBT Thought Record & Reframe Formula Box
+  ctx.fillStyle = "rgba(99, 102, 241, 0.09)";
+  drawRoundedRect(ctx, 80, 895, width - 160, 260, 28);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(99, 102, 241, 0.35)";
+  ctx.stroke();
+
+  ctx.fillStyle = "#38BDF8";
+  ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("EVIDENCE-BASED CBT REFRAMING FORMULA", 120, 940);
+
+  const reframe = result.primaryDistortion.reframeFormula[lang] || result.primaryDistortion.reframeFormula.en;
+  ctx.fillStyle = "#E0E7FF";
+  ctx.font = "italic 26px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  wrapText(ctx, `"${reframe}"`, 120, 985, width - 240, 36, 3);
+
+  const thoughtRecord = result.primaryDistortion.cbtThoughtRecord[lang] || result.primaryDistortion.cbtThoughtRecord.en;
+  ctx.fillStyle = "#34D399";
+  ctx.font = "bold 20px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  wrapText(ctx, `Reframed Alternative: ${thoughtRecord.rationalAlternative}`, 120, 1095, width - 240, 30, 2);
+
+  // Footer CTA
+  ctx.fillStyle = "rgba(255, 255, 255, 0.5)";
+  ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("Spot your cognitive distortions & reframe overthinking at:", 80, 1220);
+
+  ctx.fillStyle = "#818CF8";
+  ctx.font = "900 30px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("nuju.app/quiz/cognitive-distortions", 80, 1260);
+
+  const dataUrl = canvas.toDataURL("image/png", 0.95);
+  const blob = await new Promise<Blob>((resolve, reject) => {
+    canvas.toBlob((b) => (b ? resolve(b) : reject(new Error("Failed blob"))), "image/png", 0.95);
+  });
+  const file = new File([blob], `ju-cbt-${result.primaryDistortion.id}.png`, { type: "image/png" });
 
   return { dataUrl, blob, file };
 }

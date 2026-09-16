@@ -195,6 +195,24 @@
     <changefreq>weekly</changefreq>
   </url>
   <url>
+    <loc>https://nuju.app/quiz/rsd</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.95</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/quiz/cognitive-distortions</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.95</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/tools/nsdr</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.95</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
     <loc>https://nuju.app/quiz/baterai-emosi</loc>
     <lastmod>2026-09-16</lastmod>
     <priority>0.9</priority>
@@ -4702,6 +4720,186 @@
       <image:caption>Panduan lengkap teknik relaksasi napas 4-7-8 untuk mengatasi insomnia dan pikiran overthinking sebelum tidur. Dilengkapi panduan pacer visual dan audio 432Hz.</image:caption>
     </image:image>
     <xhtml:link rel="alternate" hreflang="id" href="https://nuju.app/blog/latihan-napas-4-7-8-cara-cepat-tidur-nyenyak-insomnia"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/rsd-screener-adhd-rejection-sensitive-dysphoria-test</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Rejection Sensitive Dysphoria Test: Free 12-Item ADHD &amp; Emotional Sensitivity Screener</image:title>
+      <image:caption>Take the free 12-question Rejection Sensitive Dysphoria (RSD) screener based on Dr. William Dodson&apos;s neurodivergent model. Measure social vigilance, criticism pain, and learn somatic de-escalation drills.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/rsd-screener-adhd-rejection-sensitive-dysphoria-test"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/cognitive-distortions-test-cbt-automatic-negative-thoughts</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Cognitive Distortions Test: Free CBT Automatic Thoughts &amp; Overthinking Spotter</image:title>
+      <image:caption>Take our free 10-scenario Cognitive Distortions Test based on Dr. Aaron Beck and David Burns&apos; CBT model. Identify catastrophizing, mind-reading, all-or-nothing thinking, and unlock evidence-based reframing formulas.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/cognitive-distortions-test-cbt-automatic-negative-thoughts"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/stanford-nsdr-audio-lab-yoga-nidra-huberman-protocol</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Stanford NSDR Audio Guide: How 10-Minute Non-Sleep Deep Rest Restores Dopamine &amp; Resets Burnout</image:title>
+      <image:caption>Discover the neurobiology of Stanford NSDR (Non-Sleep Deep Rest) and Yoga Nidra popularized by Dr. Andrew Huberman. Learn how 6Hz Theta binaural waves and somatic body scanning restore cellular energy in 10-20 minutes.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/stanford-nsdr-audio-lab-yoga-nidra-huberman-protocol"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/rsd-test-adhd-zurueckweisungssensibilitaet-dysphorie</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>RSD Test: Rejection Sensitive Dysphoria &amp; Emotionale Sensibilität bei ADHS</image:title>
+      <image:caption>Machen Sie den kostenlosen 12-Fragen RSD-Test nach Dr. William Dodson. Messen Sie Zurückweisungsschmerz, soziale Wachsamkeit und Kritikempfindlichkeit bei ADHS.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="de" href="https://nuju.app/blog/rsd-test-adhd-zurueckweisungssensibilitaet-dysphorie"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/kognitive-verzerrungen-test-kvt-denkfehler-erkennen</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Kognitive Verzerrungen Test: Automatische negative Gedanken &amp; Katastrophisieren auflösen (KVT)</image:title>
+      <image:caption>Erkennen Sie Ihre dominanten Denkfehler mit unserem 10-Szenarien KVT-Test nach Dr. Aaron Beck &amp; David Burns. Katastrophisieren, Gedankenlesen und Alles-oder-Nichts-Denken stoppen.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="de" href="https://nuju.app/blog/kognitive-verzerrungen-test-kvt-denkfehler-erkennen"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/stanford-nsdr-audio-yoga-nidra-dr-huberman-anleitung</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Stanford NSDR Audio-Anleitung: Wie 10 Minuten Non-Sleep Deep Rest Dopamin regenerieren</image:title>
+      <image:caption>Erfahren Sie, wie das Stanford NSDR-Protokoll von Dr. Andrew Huberman durch 6Hz Theta-Wellen und Körperscan Cortisol senkt und das Nervensystem in 10-20 Minuten regeneriert.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="de" href="https://nuju.app/blog/stanford-nsdr-audio-yoga-nidra-dr-huberman-anleitung"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/test-rsd-tdah-dysphorie-sensible-au-rejet-gratuit</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Test Dysphorie Sensible au Rejet (RSD) : Évaluer l&apos;Hypersensibilité Émotionnelle et le TDAH</image:title>
+      <image:caption>Passez le test gratuit de 12 questions sur la dysphorie sensible au rejet (RSD) selon le Dr William Dodson. Évaluez votre vulnérabilité aux critiques et au rejet social.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://nuju.app/blog/test-rsd-tdah-dysphorie-sensible-au-rejet-gratuit"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/test-distorsions-cognitives-pensees-automatiques-tcc</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Test des Distorsions Cognitives : Identifier les Pensées Négatives Automatiques (TCC)</image:title>
+      <image:caption>Détectez le catastrophisme, la lecture de pensée et la pensée binaire avec notre test de 10 scénarios inspiré de la TCC d&apos;Aaron Beck et David Burns.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://nuju.app/blog/test-distorsions-cognitives-pensees-automatiques-tcc"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/protocole-nsdr-stanford-yoga-nidra-dr-huberman</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Protocole NSDR de Stanford : Comment 10 Minutes de Repos Profond Rechargent la Dopamine</image:title>
+      <image:caption>Découvrez la méthode NSDR (Non-Sleep Deep Rest) popularisée par le Dr Andrew Huberman de Stanford. Ondes Thêta 6Hz pures et scan corporel pour dissiper la fatigue mentale.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://nuju.app/blog/protocole-nsdr-stanford-yoga-nidra-dr-huberman"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/test-rsd-disforia-sensible-rechazo-tdah-gratis</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Test de Disforia Sensible al Rechazo (RSD): Autoevaluación de Sensibilidad Emocional y TDAH</image:title>
+      <image:caption>Realice el test gratuito de 12 preguntas sobre Disforia Sensible al Rechazo (RSD) basado en el modelo del Dr. William Dodson. Mida la vigilancia social y el dolor ante las críticas.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="es" href="https://nuju.app/blog/test-rsd-disforia-sensible-rechazo-tdah-gratis"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/test-distorsiones-cognitivas-pensamientos-automaticos-tcc</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Test de Distorsiones Cognitivas: Identifique Pensamientos Automáticos Negativos y Catastrofismo (TCC)</image:title>
+      <image:caption>Descubra sus trampas mentales con nuestro test interactivo de 10 escenarios basado en la Terapia Cognitivo-Conductual (TCC) del Dr. Aaron Beck y David Burns.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="es" href="https://nuju.app/blog/test-distorsiones-cognitivas-pensamientos-automaticos-tcc"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/protocolo-nsdr-stanford-yoga-nidra-dr-huberman</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Protocolo NSDR de Stanford: Cómo 10 Minutos de Descanso Profundo Sin Dormir Restauran la Dopamina</image:title>
+      <image:caption>Conozca la neurobiología del NSDR (Non-Sleep Deep Rest) y Yoga Nidra promovido por el Dr. Andrew Huberman de Stanford. Ondas Theta de 6Hz y escaneo corporal sin descargas.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="es" href="https://nuju.app/blog/protocolo-nsdr-stanford-yoga-nidra-dr-huberman"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/tes-rsd-adhd-rejection-sensitive-dysphoria-indonesia</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Tes Rejection Sensitive Dysphoria (RSD) Indonesia: Skrining Sensitivitas Penolakan &amp; Emosi ADHD</image:title>
+      <image:caption>Ikuti tes Rejection Sensitive Dysphoria (RSD) gratis 12 pertanyaan berbasis model klinis Dr. William Dodson. Ukur luka kritik, kewaspadaan sosial, dan dapatkan protokol de-eskalasi emosi.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="id" href="https://nuju.app/blog/tes-rsd-adhd-rejection-sensitive-dysphoria-indonesia"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/tes-distorsi-kognitif-overthinking-cbt-pikiran-otomatis</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Tes Distorsi Kognitif &amp; Overthinking: Kenali 10 Pola Pikir Irasional Berbasis CBT</image:title>
+      <image:caption>Ikuti tes 10 skenario realistis untuk mengenali distorsi kognitif dan Automatic Negative Thoughts (ANTs) berbasis CBT Dr. Aaron Beck &amp; David Burns. Lengkap dengan rumus reframing pikiran.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="id" href="https://nuju.app/blog/tes-distorsi-kognitif-overthinking-cbt-pikiran-otomatis"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/stanford-nsdr-audio-lab-yoga-nidra-reset-sistem-saraf</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Panduan Stanford NSDR Audio: Cara Reset Dopamin &amp; Atasi Burnout dalam 10 Menit</image:title>
+      <image:caption>Pelajari sains Stanford NSDR (Non-Sleep Deep Rest) dan Yoga Nidra dari Dr. Andrew Huberman. Cara kerja gelombang Theta 6Hz murni dan body scan untuk memulihkan cadangan dopamin.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="id" href="https://nuju.app/blog/stanford-nsdr-audio-lab-yoga-nidra-reset-sistem-saraf"/>
   </url>
   <url>
     <loc>https://nuju.app/blog/how-to-stop-overthinking-at-night</loc>

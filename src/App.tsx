@@ -51,6 +51,9 @@ const DopamineDetoxTest = lazy(() => import("./pages/DopamineDetoxTest.tsx"));
 const NervousSystemTest = lazy(() => import("./pages/NervousSystemTest.tsx"));
 const SleepPacerLab = lazy(() => import("./pages/SleepPacerLab.tsx"));
 const ZenBubbleGame = lazy(() => import("./pages/ZenBubbleGame.tsx"));
+const RsdScreenerTest = lazy(() => import("./pages/RsdScreenerTest.tsx"));
+const CognitiveDistortionsTest = lazy(() => import("./pages/CognitiveDistortionsTest.tsx"));
+const NsdrAudioLab = lazy(() => import("./pages/NsdrAudioLab.tsx"));
 const EbookSalesPage = lazy(() => import("./pages/EbookSalesPage.tsx"));
 const EbookReaderPage = lazy(() => import("./pages/EbookReaderPage.tsx"));
 const NotFound = lazy(() => import("./pages/NotFound.tsx"));
@@ -172,8 +175,18 @@ const App = () => (
                   <Route path="/tools/sleep" element={<SleepPacerLab />} />
                   <Route path="/tools/478" element={<SleepPacerLab />} />
                   <Route path="/sleep" element={<SleepPacerLab />} />
-                  <Route path="/game/zen-pop" element={<ZenBubbleGame />} />
+                   <Route path="/game/zen-pop" element={<ZenBubbleGame />} />
                   <Route path="/games/stress-pop" element={<ZenBubbleGame />} />
+                  <Route path="/quiz/rsd" element={<RsdScreenerTest />} />
+                  <Route path="/quiz/rsd-screener" element={<RsdScreenerTest />} />
+                  <Route path="/tes-rsd" element={<RsdScreenerTest defaultLang="id" />} />
+                  <Route path="/quiz/cognitive-distortions" element={<CognitiveDistortionsTest />} />
+                  <Route path="/quiz/overthinking" element={<CognitiveDistortionsTest />} />
+                  <Route path="/tes-distorsi-kognitif" element={<CognitiveDistortionsTest defaultLang="id" />} />
+                  <Route path="/tes-overthinking" element={<CognitiveDistortionsTest defaultLang="id" />} />
+                  <Route path="/tools/nsdr" element={<NsdrAudioLab />} />
+                  <Route path="/nsdr" element={<NsdrAudioLab />} />
+                  <Route path="/tools/yoga-nidra" element={<NsdrAudioLab />} />
                   <Route path="/quiz/:quizId" element={<QuizRunner />} />
                   <Route path="/test-psikologi" element={<QuizHub />} />
                   <Route path="/test-psikologi/:quizId" element={<QuizRunner />} />

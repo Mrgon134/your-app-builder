@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { ArrowRight, Brain, Clock, Heart, HelpCircle, Lock, ShieldCheck, Sparkles, Users, Activity, Zap, Headphones, ShieldAlert, Compass, Briefcase, Wind, Eye, Shield, Feather, Moon, Hand, BedDouble, Smartphone } from "lucide-react";
+import { ArrowRight, Brain, Clock, Heart, HelpCircle, Lock, ShieldCheck, Sparkles, Users, Activity, Zap, Headphones, ShieldAlert, Compass, Briefcase, Wind, Eye, Shield, Feather, Moon, Hand, BedDouble, Smartphone, HeartHandshake, Waves } from "lucide-react";
 import SEOHead from "@/components/SEOHead";
 import AdSenseBanner from "@/components/AdSenseBanner";
 import AppStoreCta from "@/components/AppStoreCta";
@@ -92,6 +92,11 @@ const QuizHub: React.FC = () => {
             </span>
           </div>
         </section>
+
+        {/* Top Google AdSense Banner */}
+        <div className="mb-8">
+          <AdSenseBanner slot="quiz-hub-top" format="auto" />
+        </div>
 
         {/* Flagship DASS-21 Mental Health Test Banner */}
         <div className="mb-10 overflow-hidden rounded-3xl border-2 border-amber-300 bg-gradient-to-br from-amber-500/10 via-amber-100/40 to-orange-100/30 p-6 sm:p-8 shadow-md relative">
@@ -654,6 +659,93 @@ const QuizHub: React.FC = () => {
                 className="inline-flex items-center gap-1.5 rounded-full bg-indigo-600 px-4 py-2 text-xs font-bold text-white hover:bg-indigo-700 transition shadow-xs"
               >
                 <span>Launch Sleep Lab</span>
+                <ArrowRight className="h-3.5 w-3.5" />
+              </Link>
+            </div>
+          </div>
+
+          {/* Card 19: Rejection Sensitive Dysphoria (RSD) */}
+          <div className="rounded-3xl border border-rose-300 bg-gradient-to-br from-rose-500/10 via-rose-50 to-white p-6 shadow-xs flex flex-col justify-between hover:shadow-md transition">
+            <div>
+              <div className="flex items-center justify-between mb-3">
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-rose-600 px-3 py-0.5 text-xs font-bold text-white shadow-xs">
+                  <HeartHandshake className="h-3 w-3" />
+                  RSD SCREENER
+                </span>
+                <span className="text-xs font-semibold text-rose-700">Dr. William Dodson</span>
+              </div>
+              <h3 className="text-lg font-bold text-neutral-900 mb-1.5">
+                Rejection Sensitive Dysphoria (RSD)
+              </h3>
+              <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed">
+                Do small criticisms feel like physical blows? Assess social vigilance, criticism pain, and learn somatic de-escalation drills.
+              </p>
+            </div>
+            <div className="mt-5 pt-3 border-t border-rose-100 flex items-center justify-between">
+              <span className="text-xs font-medium text-neutral-400">~2 Mins · 12 Items</span>
+              <Link
+                to="/quiz/rsd"
+                className="inline-flex items-center gap-1.5 rounded-full bg-rose-600 px-4 py-2 text-xs font-bold text-white hover:bg-rose-700 transition shadow-xs"
+              >
+                <span>Screen RSD</span>
+                <ArrowRight className="h-3.5 w-3.5" />
+              </Link>
+            </div>
+          </div>
+
+          {/* Card 20: Cognitive Distortions Spotter (CBT) */}
+          <div className="rounded-3xl border border-indigo-300 bg-gradient-to-br from-indigo-500/10 via-indigo-50 to-white p-6 shadow-xs flex flex-col justify-between hover:shadow-md transition">
+            <div>
+              <div className="flex items-center justify-between mb-3">
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-indigo-600 px-3 py-0.5 text-xs font-bold text-white shadow-xs">
+                  <Brain className="h-3 w-3" />
+                  CBT THOUGHT SPOTTER
+                </span>
+                <span className="text-xs font-semibold text-indigo-700">Beck & Burns CBT</span>
+              </div>
+              <h3 className="text-lg font-bold text-neutral-900 mb-1.5">
+                Cognitive Distortions & Thought Spotter
+              </h3>
+              <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed">
+                Catch catastrophizing, mind-reading, and irrational loops in 10 realistic scenarios. Get custom CBT thought record reframe formulas.
+              </p>
+            </div>
+            <div className="mt-5 pt-3 border-t border-indigo-100 flex items-center justify-between">
+              <span className="text-xs font-medium text-neutral-400">~2 Mins · 10 Scenarios</span>
+              <Link
+                to="/quiz/cognitive-distortions"
+                className="inline-flex items-center gap-1.5 rounded-full bg-indigo-600 px-4 py-2 text-xs font-bold text-white hover:bg-indigo-700 transition shadow-xs"
+              >
+                <span>Spot Distortions</span>
+                <ArrowRight className="h-3.5 w-3.5" />
+              </Link>
+            </div>
+          </div>
+
+          {/* Card 21: Stanford NSDR & Yoga Nidra Somatic Lab */}
+          <div className="rounded-3xl border border-cyan-300 bg-gradient-to-br from-cyan-500/10 via-teal-50 to-white p-6 shadow-xs flex flex-col justify-between hover:shadow-md transition">
+            <div>
+              <div className="flex items-center justify-between mb-3">
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-cyan-600 px-3 py-0.5 text-xs font-bold text-white shadow-xs">
+                  <Waves className="h-3 w-3" />
+                  STANFORD PROTOCOL
+                </span>
+                <span className="text-xs font-semibold text-cyan-700">Dr. Andrew Huberman</span>
+              </div>
+              <h3 className="text-lg font-bold text-neutral-900 mb-1.5">
+                Stanford NSDR & Yoga Nidra Audio Lab
+              </h3>
+              <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed">
+                Restore striatal dopamine and clear brain fog in 10-20 minutes. Pure Web Audio 6Hz Theta frequency generator and guided somatic body scan.
+              </p>
+            </div>
+            <div className="mt-5 pt-3 border-t border-cyan-100 flex items-center justify-between">
+              <span className="text-xs font-medium text-neutral-400">Pure Web Audio · 10-20 Mins</span>
+              <Link
+                to="/tools/nsdr"
+                className="inline-flex items-center gap-1.5 rounded-full bg-cyan-600 px-4 py-2 text-xs font-bold text-white hover:bg-cyan-700 transition shadow-xs"
+              >
+                <span>Launch NSDR Lab</span>
                 <ArrowRight className="h-3.5 w-3.5" />
               </Link>
             </div>
