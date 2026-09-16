@@ -15,6 +15,7 @@ import { ANTIGRAVITY_BLOG_POSTS_BATCH13 } from "./antigravity-posts-batch13";
 import { ANTIGRAVITY_BLOG_POSTS_BATCH14 } from "./antigravity-posts-batch14";
 import { ANTIGRAVITY_BLOG_POSTS_BATCH15 } from "./antigravity-posts-batch15";
 import { ANTIGRAVITY_BLOG_POSTS_BATCH16 } from "./antigravity-posts-batch16";
+import { ANTIGRAVITY_BLOG_POSTS_BATCH17 } from "./antigravity-posts-batch17";
 
 export interface BlogSection {
   type: "h2" | "h3" | "p" | "ul" | "ol" | "callout";
@@ -42,7 +43,7 @@ export interface BlogPost {
   keywords?: string[];
 }
 
-export type BlogLanguage = "en" | "id" | "de" | "ja" | "fr" | "ko" | "nl" | "zh";
+export type BlogLanguage = "en" | "id" | "de" | "ja" | "fr" | "ko" | "nl" | "zh" | "es";
 
 const RAW_BLOG_POSTS: BlogPost[] = [
   {
@@ -11469,6 +11470,7 @@ const RAW_BLOG_POSTS: BlogPost[] = [
   ...ANTIGRAVITY_BLOG_POSTS_BATCH14,
   ...ANTIGRAVITY_BLOG_POSTS_BATCH15,
   ...ANTIGRAVITY_BLOG_POSTS_BATCH16,
+  ...ANTIGRAVITY_BLOG_POSTS_BATCH17,
   ...SEO_BLOG_POSTS,
 ];
 
@@ -11562,8 +11564,9 @@ export const getPostLanguage = (post: BlogPost): BlogLanguage => {
   }
   if (post.category === "멘탈 헬스" || post.slug.endsWith("-korea")) return "ko";
   if (post.slug.endsWith("-japan-2026") || post.slug.startsWith("yoru-no-")) return "ja";
-  if (post.slug.startsWith("beste-ki-") || post.slug.includes("-gegen-angst-")) return "de";
-  if (post.slug.startsWith("journal-intime-") || post.category === "Santé Mentale") return "fr";
+  if (post.slug.startsWith("beste-ki-") || post.slug.includes("-gegen-angst-") || post.slug.startsWith("dass-21-selbsttest-") || post.slug.startsWith("bindungsangst-test-")) return "de";
+  if (post.slug.startsWith("journal-intime-") || post.category === "Santé Mentale" || post.slug.startsWith("test-dass-21-francais") || post.slug.startsWith("test-style-attachement-")) return "fr";
+  if (post.category === "Salud Mental" || post.slug.startsWith("test-dass-21-salud") || post.slug.startsWith("test-estilo-de-apego")) return "es";
   if (
     INDONESIAN_CATEGORIES.has(post.category) ||
     post.slug.startsWith("cara-") ||

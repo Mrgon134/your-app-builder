@@ -4,151 +4,205 @@
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://nuju.app/</loc>
-    <lastmod>2026-09-15</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <priority>1.0</priority>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://nuju.app/ai-journal</loc>
-    <lastmod>2026-09-15</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <priority>0.9</priority>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://nuju.app/mood-tracker</loc>
-    <lastmod>2026-09-15</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <priority>0.9</priority>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://nuju.app/voice-journaling</loc>
-    <lastmod>2026-09-15</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <priority>0.8</priority>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://nuju.app/install</loc>
-    <lastmod>2026-09-15</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
     <loc>https://nuju.app/about</loc>
-    <lastmod>2026-09-15</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <priority>0.6</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
     <loc>https://nuju.app/support</loc>
-    <lastmod>2026-09-15</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <priority>0.6</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
     <loc>https://nuju.app/contact</loc>
-    <lastmod>2026-09-15</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <priority>0.5</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
     <loc>https://nuju.app/privacy</loc>
-    <lastmod>2026-09-15</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <priority>0.4</priority>
     <changefreq>yearly</changefreq>
   </url>
   <url>
     <loc>https://nuju.app/terms</loc>
-    <lastmod>2026-09-15</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <priority>0.4</priority>
     <changefreq>yearly</changefreq>
   </url>
   <url>
     <loc>https://nuju.app/blog</loc>
-    <lastmod>2026-09-15</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <priority>0.8</priority>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://nuju.app/guides/journaling</loc>
-    <lastmod>2026-09-15</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <priority>0.9</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
     <loc>https://nuju.app/quiz</loc>
-    <lastmod>2026-09-15</lastmod>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.9</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/quiz/mental-health</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.95</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/quiz/attachment-style</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.95</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/quiz/adhd-screener</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.95</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/quiz/inner-child</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.95</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/quiz/burnout</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.95</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/tools/soundscapes</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.9</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/tools/panic-sos</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.9</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/tools/breathwork</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.95</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/breathe</loc>
+    <lastmod>2026-09-16</lastmod>
     <priority>0.9</priority>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://nuju.app/quiz/baterai-emosi</loc>
-    <lastmod>2026-09-15</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <priority>0.9</priority>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://nuju.app/quiz/tipe-overthinking</loc>
-    <lastmod>2026-09-15</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <priority>0.9</priority>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://nuju.app/quiz/burnout-screener</loc>
-    <lastmod>2026-09-15</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <priority>0.9</priority>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://nuju.app/quiz/gaya-regulasi-emosi</loc>
-    <lastmod>2026-09-15</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <priority>0.9</priority>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://nuju.app/quiz/high-functioning-anxiety-us</loc>
-    <lastmod>2026-09-15</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <priority>0.9</priority>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://nuju.app/quiz/feierabend-burnout-de</loc>
-    <lastmod>2026-09-15</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <priority>0.9</priority>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://nuju.app/quiz/winter-blues-nordic-no</loc>
-    <lastmod>2026-09-15</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <priority>0.9</priority>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://nuju.app/quiz/dutch-niksen-burnout-nl</loc>
-    <lastmod>2026-09-15</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <priority>0.9</priority>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://nuju.app/quiz/honne-tatemae-jp</loc>
-    <lastmod>2026-09-15</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <priority>0.9</priority>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://nuju.app/quiz/nunchi-hwabyung-kr</loc>
-    <lastmod>2026-09-15</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <priority>0.9</priority>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://nuju.app/ebook</loc>
-    <lastmod>2026-09-15</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <priority>0.9</priority>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://nuju.app/buku</loc>
-    <lastmod>2026-09-15</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <priority>0.8</priority>
     <changefreq>weekly</changefreq>
   </url>
@@ -3808,6 +3862,246 @@
       <image:caption>仕事のストレスや燃え尽き症候群に悩む社会人へ。夜3分のAIメンタルリフレクションで頭の疲労を解消し、ぐっすり眠るセルフケア習慣。nuju.app！</image:caption>
     </image:image>
     <xhtml:link rel="alternate" hreflang="ja" href="https://nuju.app/blog/work-stress-burnout-night-ai-reflection-japan"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/free-mental-health-test-online-dass21</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Free Mental Health Test Online: Complete DASS-21 Depression, Anxiety &amp; Stress Screening</image:title>
+      <image:caption>Take a free, clinically validated DASS-21 mental health test online. Understand your depression, anxiety, and stress levels with instant scores and evidence-based insights.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/free-mental-health-test-online-dass21"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/attachment-style-quiz-free-relationship-test</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Attachment Style Quiz: Are You Secure, Anxious, Avoidant, or Disorganized?</image:title>
+      <image:caption>Take our free ECR-R attachment style quiz to understand your relationship patterns, attachment triggers, and proven communication scripts for deeper emotional safety.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/attachment-style-quiz-free-relationship-test"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/adult-adhd-test-online-dopamine-burnout</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Adult ADHD Test Online: Signs of Dopamine Burnout &amp; Executive Dysfunction</image:title>
+      <image:caption>Struggling with task paralysis, chronic procrastination, and brain fog? Take our free Adult ADHD &amp; Dopamine Burnout screener based on WHO ASRS v1.1 criteria.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/adult-adhd-test-online-dopamine-burnout"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/brown-noise-for-adhd-focus-binaural-beats</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Brown Noise vs White Noise for ADHD: Why Low Frequencies Enhance Deep Work</image:title>
+      <image:caption>Discover the neuroscience behind Brown Noise, 528Hz Solfeggio frequencies, and binaural beats. Learn how synthesized acoustic masking silences mental chatter and boosts focus.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/brown-noise-for-adhd-focus-binaural-beats"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/how-to-stop-panic-attack-in-3-minutes</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>How to Stop a Panic Attack Immediately: 3-Minute 5-4-3-2-1 Grounding Guide</image:title>
+      <image:caption>Rapid panic attack relief guide. Learn how to activate the parasympathetic nervous system in 3 minutes using Box Breathing and sensory grounding.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/how-to-stop-panic-attack-in-3-minutes"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/dass-21-selbsttest-deutsch-depression-angst-stress</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>DASS-21 Selbsttest Deutsch: Depression, Angst &amp; Stress wissenschaftlich messen</image:title>
+      <image:caption>Machen Sie den wissenschaftlich fundierten DASS-21 Selbsttest auf Deutsch. Kostenlos, anonym und mit sofortiger klinischer Auswertung für mehr seelische Klarheit.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="de" href="https://nuju.app/blog/dass-21-selbsttest-deutsch-depression-angst-stress"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/bindungsangst-test-kostenlos-beziehungstypen</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Bindungsangst Test: Welcher Beziehungstyp bist du? (ECR-Modell)</image:title>
+      <image:caption>Finden Sie Ihren Bindungstyp heraus: Sicher, Verlustängstlich oder Bindungsvermeidend? Machen Sie den kostenlosen Bindungsangst-Test nach wissenschaftlichem ECR-R Standard.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="de" href="https://nuju.app/blog/bindungsangst-test-kostenlos-beziehungstypen"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/test-dass-21-francais-gratuit-en-ligne</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Test DASS-21 Gratuit en Ligne : Évaluation Dépression, Anxiété et Stress</image:title>
+      <image:caption>Passez le test psychologique validé DASS-21 en français. Mesurez vos niveaux de dépression, d&apos;anxiété et de stress avec des résultats instantanés et confidentiels.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://nuju.app/blog/test-dass-21-francais-gratuit-en-ligne"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/test-style-attachement-couple-gratuit</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Test Style d&apos;Attachement Amoureux : Sécure, Anxieux, Évitant ou Désorganisé ?</image:title>
+      <image:caption>Comprenez vos schémas relationnels et vos peurs d&apos;abandon grâce à notre test gratuit de style d&apos;attachement basé sur le modèle clinique ECR-R.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://nuju.app/blog/test-style-attachement-couple-gratuit"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/test-dass-21-salud-mental-online-gratis</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Test DASS-21 Salud Mental Online Gratis: Mide Depresión, Ansiedad y Estrés</image:title>
+      <image:caption>Realice el test de salud mental DASS-21 online en español. Evaluación científica de depresión, ansiedad y estrés con resultados inmediatos y confidenciales.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="es" href="https://nuju.app/blog/test-dass-21-salud-mental-online-gratis"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/test-estilo-de-apego-pareja-gratis</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Test de Estilo de Apego en Pareja: ¿Eres Seguro, Ansioso, Evitativo o Desorganizado?</image:title>
+      <image:caption>Descubra su patrón vincular en las relaciones de pareja. Test de apego gratuito basado en el cuestionario clínico ECR-R con consejos de comunicación afectiva.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="es" href="https://nuju.app/blog/test-estilo-de-apego-pareja-gratis"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/tes-kesehatan-mental-dass-21-online-gratis</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Tes Kesehatan Mental DASS-21 Online Gratis: Cek Tingkat Depresi, Kecemasan &amp; Stres</image:title>
+      <image:caption>Uji kesehatan mental mandiri dengan kuesioner DASS-21 resmi bahasa Indonesia. Gratis, tanpa login, 100% privat dengan hasil skor instan dan panduan CBT.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="id" href="https://nuju.app/blog/tes-kesehatan-mental-dass-21-online-gratis"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/tes-attachment-style-gratis-indonesia</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Tes Attachment Style Gratis: Kenali Gaya Kelekatan Hubunganmu (ECR-R)</image:title>
+      <image:caption>Apakah kamu Secure, Anxious, Avoidant, atau Disorganized? Ikuti tes attachment style bahasa Indonesia gratis dan pelajari cara mengatasi overthinking dalam pacaran.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="id" href="https://nuju.app/blog/tes-attachment-style-gratis-indonesia"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/ciri-ciri-adhd-dewasa-tes-skrining-online</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Ciri-Ciri ADHD Dewasa &amp; Dopamine Burnout: Skrining Mandiri WHO ASRS v1.1</image:title>
+      <image:caption>Sering menunda pekerjaan, sulit fokus, dan terjebak scrolling gawai berjam-jam? Kenali ciri ADHD dewasa dan ikuti tes skrining online gratis berdasarkan WHO ASRS v1.1.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="id" href="https://nuju.app/blog/ciri-ciri-adhd-dewasa-tes-skrining-online"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/cara-mengatasi-serangan-panik-3-menit-grounding</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Cara Mengatasi Serangan Panik (Panic Attack) dalam 3 Menit: Panduan Grounding 5-4-3-2-1</image:title>
+      <image:caption>Panduan darurat meredakan serangan panik, jantung berdebar kencang, dan sesak napas. Latihan napas vagus nerve dan teknik grounding sensorik 5-4-3-2-1.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="id" href="https://nuju.app/blog/cara-mengatasi-serangan-panik-3-menit-grounding"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/inner-child-wound-test-4-archetypes</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Inner Child Wound Test: Discover the 4 Childhood Archetypes Shaping Your Adult Life</image:title>
+      <image:caption>Are your adult relationships and self-doubt driven by an unhealed inner child wound? Learn the 4 archetypes (Abandonment, Achievement, Guilt, Invisibility) and how to reparent yourself.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/inner-child-wound-test-4-archetypes"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/workplace-burnout-test-mbi-recovery-guide</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Workplace Burnout Test: The Maslach MBI Guide to Recovering from Chronic Work Exhaustion</image:title>
+      <image:caption>Is it normal work stress or clinical burnout? Learn the 3 stages of the Maslach Burnout Inventory (MBI) and practical corporate recovery protocols.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/workplace-burnout-test-mbi-recovery-guide"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/stanford-physiological-sigh-breathwork-guide</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Stanford Physiological Sigh: The Fastest Way to Stop Anxiety in 2 Breaths</image:title>
+      <image:caption>Discover the neurobiology of the Stanford Physiological Sigh (Dr. Andrew Huberman). Learn how double inhales and extended exhales rapidly reset your heart rate.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/stanford-physiological-sigh-breathwork-guide"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/tes-luka-inner-child-gratis-indonesia</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Tes Luka Inner Child Gratis: 4 Arketipe Luka Batin Masa Kecil &amp; Cara Reparenting</image:title>
+      <image:caption>Apakah kamu sering overthinking, takut ditinggalkan, atau merasa harus selalu sempurna? Ikuti tes luka inner child gratis dan pelajari cara menyembuhkan luka batin masa kecil.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="id" href="https://nuju.app/blog/tes-luka-inner-child-gratis-indonesia"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/tes-tingkat-burnout-kerja-mbi-indonesia</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Tes Tingkat Burnout Kerja Online Gratis: Skrining Kelelahan Mental (Model Maslach MBI)</image:title>
+      <image:caption>Bangun pagi sudah merasa lelah dan muak dengan pekerjaan? Ikuti tes burnout kerja online gratis berbasis model Maslach Burnout Inventory dan dapatkan tips pemulihan.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="id" href="https://nuju.app/blog/tes-tingkat-burnout-kerja-mbi-indonesia"/>
   </url>
   <url>
     <loc>https://nuju.app/blog/how-to-stop-overthinking-at-night</loc>

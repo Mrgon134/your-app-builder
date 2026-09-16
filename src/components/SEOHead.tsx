@@ -11,7 +11,7 @@ interface AlternateLink {
   url: string;
 }
 
-export type SupportedLanguage = "en" | "id" | "de" | "ja" | "fr" | "ko";
+export type SupportedLanguage = "en" | "id" | "de" | "ja" | "fr" | "ko" | "es";
 
 export const LOCALE_MAP: Record<SupportedLanguage, string> = {
   en: "en_US",
@@ -20,6 +20,7 @@ export const LOCALE_MAP: Record<SupportedLanguage, string> = {
   ja: "ja_JP",
   fr: "fr_FR",
   ko: "ko_KR",
+  es: "es_ES",
 };
 
 interface SEOHeadProps {
