@@ -60,6 +60,9 @@ const SolfeggioHarmonicsLab = lazy(() => import("./pages/SolfeggioHarmonicsLab.t
 const EmotionalAgilityTest = lazy(() => import("./pages/EmotionalAgilityTest.tsx"));
 const HighFunctioningAnxietyTest = lazy(() => import("./pages/HighFunctioningAnxietyTest.tsx"));
 const BoxBreathingLab = lazy(() => import("./pages/BoxBreathingLab.tsx"));
+const ParentificationTest = lazy(() => import("./pages/ParentificationTest.tsx"));
+const AlexithymiaTest = lazy(() => import("./pages/AlexithymiaTest.tsx"));
+const VocalToningLab = lazy(() => import("./pages/VocalToningLab.tsx"));
 const EbookSalesPage = lazy(() => import("./pages/EbookSalesPage.tsx"));
 const EbookReaderPage = lazy(() => import("./pages/EbookReaderPage.tsx"));
 const NotFound = lazy(() => import("./pages/NotFound.tsx"));
@@ -212,6 +215,15 @@ const App = () => (
                   <Route path="/tools/box-breathing" element={<BoxBreathingLab />} />
                   <Route path="/tools/square-breathing" element={<BoxBreathingLab />} />
                   <Route path="/box-breathing" element={<BoxBreathingLab />} />
+                  <Route path="/quiz/parentification" element={<ParentificationTest />} />
+                  <Route path="/quiz/eldest-daughter" element={<ParentificationTest />} />
+                  <Route path="/tes-anak-pertama" element={<ParentificationTest defaultLang="id" />} />
+                  <Route path="/quiz/alexithymia" element={<AlexithymiaTest />} />
+                  <Route path="/quiz/tas-20" element={<AlexithymiaTest />} />
+                  <Route path="/tes-mati-rasa" element={<AlexithymiaTest defaultLang="id" />} />
+                  <Route path="/tools/vocal-toning" element={<VocalToningLab />} />
+                  <Route path="/tools/vagal-humming" element={<VocalToningLab />} />
+                  <Route path="/vocal-toning" element={<VocalToningLab />} />
                   <Route path="/quiz/:quizId" element={<QuizRunner />} />
                   <Route path="/test-psikologi" element={<QuizHub />} />
                   <Route path="/test-psikologi/:quizId" element={<QuizRunner />} />

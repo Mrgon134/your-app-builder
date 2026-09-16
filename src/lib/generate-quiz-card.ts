@@ -16,6 +16,8 @@ import { DissociationProfile, DissociationLang, DissociationLevel } from "@/data
 import { ImposterProfile, ImposterLang, ImposterLevel, ArchetypeDetail } from "@/data/imposter-syndrome";
 import { AgilityScoreResult, AgilityLang } from "@/data/emotional-agility";
 import { HfaScoreResult, HfaLang } from "@/data/high-functioning-anxiety";
+import { ParentificationScoreResult, ParentificationLang } from "@/data/parentification";
+import { AlexithymiaScoreResult, AlexithymiaLang } from "@/data/alexithymia";
 
 /**
  * Draws a rounded rectangle path on the canvas context with fallback for older environments.
@@ -3159,6 +3161,334 @@ export async function generateHfaCard(
     canvas.toBlob((b) => (b ? resolve(b) : reject(new Error("Failed blob"))), "image/png", 0.95);
   });
   const file = new File([blob], `ju-hfa-${result.level}.png`, { type: "image/png" });
+
+  return { dataUrl, blob, file };
+}
+
+/**
+ * Generates an ultra-premium 1080x1350 Instagram / TikTok story card for Parentification & Eldest Child.
+ */
+export async function generateParentificationCard(
+  result: ParentificationScoreResult,
+  lang: ParentificationLang = "en"
+): Promise<{ dataUrl: string; blob: Blob; file: File }> {
+  const canvas = document.createElement("canvas");
+  canvas.width = 1080;
+  canvas.height = 1350;
+  const ctx = canvas.getContext("2d");
+  if (!ctx) throw new Error("Could not get 2D canvas context");
+
+  const width = canvas.width;
+  const height = canvas.height;
+
+  // Background Gradient
+  const bgGrad = ctx.createLinearGradient(0, 0, width, height);
+  bgGrad.addColorStop(0, "#0c0d14");
+  bgGrad.addColorStop(0.5, "#181726");
+  bgGrad.addColorStop(1, "#221b33");
+  ctx.fillStyle = bgGrad;
+  ctx.fillRect(0, 0, width, height);
+
+  // Rose/Purple Glow Orb
+  const orbGrad = ctx.createRadialGradient(850, 200, 10, 850, 200, 500);
+  orbGrad.addColorStop(0, "rgba(225, 29, 72, 0.22)");
+  orbGrad.addColorStop(1, "rgba(225, 29, 72, 0)");
+  ctx.fillStyle = orbGrad;
+  ctx.fillRect(0, 0, width, height);
+
+  // Header Brand
+  ctx.fillStyle = "#FB7185";
+  ctx.font = "bold 20px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.letterSpacing = "3px";
+  ctx.fillText("NUJU LABS • FAMILY SYSTEMS & PARENTIFICATION", 80, 110);
+  ctx.letterSpacing = "0px";
+
+  // Subtitle
+  ctx.fillStyle = "rgba(255, 255, 255, 0.65)";
+  ctx.font = "500 24px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("Parentification & Eldest Child Syndrome Diagnostic", 80, 150);
+
+  // Profile Badge
+  const badgeText = result.profile.badge[lang] || result.profile.badge.en;
+  ctx.fillStyle = "rgba(225, 29, 72, 0.15)";
+  drawRoundedRect(ctx, 80, 195, 680, 48, 24);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(225, 29, 72, 0.4)";
+  ctx.stroke();
+
+  ctx.fillStyle = "#FDA4AF";
+  ctx.font = "bold 18px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(badgeText.toUpperCase(), 105, 226);
+
+  // Profile Title
+  const titleText = result.profile.title[lang] || result.profile.title.en;
+  ctx.fillStyle = "#FFFFFF";
+  ctx.font = "900 60px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(titleText, 80, 315);
+
+  // Tagline
+  const tagText = result.profile.tagline[lang] || result.profile.tagline.en;
+  ctx.fillStyle = "#94A3B8";
+  ctx.font = "500 28px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  wrapText(ctx, tagText, 80, 365, width - 160, 40, 2);
+
+  // 3 Pillar Cards
+  const cardY = 460;
+  const colWidth = (width - 160 - 40) / 3;
+
+  // Pillar 1: Emotional Parentification
+  ctx.fillStyle = "rgba(255, 255, 255, 0.04)";
+  drawRoundedRect(ctx, 80, cardY, colWidth, 180, 24);
+  ctx.fill();
+  ctx.fillStyle = "#E11D48";
+  ctx.font = "bold 18px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("EMOTIONAL", 100, cardY + 45);
+  ctx.font = "900 48px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillStyle = "#FFFFFF";
+  ctx.fillText(`${result.subscales.emotional_parentification.percentage}%`, 100, cardY + 110);
+  ctx.font = "500 16px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillStyle = "rgba(255, 255, 255, 0.6)";
+  ctx.fillText("Parent Confidant", 100, cardY + 145);
+
+  // Pillar 2: Instrumental Burden
+  ctx.fillStyle = "rgba(255, 255, 255, 0.04)";
+  drawRoundedRect(ctx, 80 + colWidth + 20, cardY, colWidth, 180, 24);
+  ctx.fill();
+  ctx.fillStyle = "#F59E0B";
+  ctx.font = "bold 18px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("INSTRUMENTAL", 100 + colWidth + 20, cardY + 45);
+  ctx.font = "900 48px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillStyle = "#FFFFFF";
+  ctx.fillText(`${result.subscales.instrumental_burden.percentage}%`, 100 + colWidth + 20, cardY + 110);
+  ctx.font = "500 16px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillStyle = "rgba(255, 255, 255, 0.6)";
+  ctx.fillText("Adult Logistics", 100 + colWidth + 20, cardY + 145);
+
+  // Pillar 3: Hyper-Responsibility
+  ctx.fillStyle = "rgba(255, 255, 255, 0.04)";
+  drawRoundedRect(ctx, 80 + (colWidth + 20) * 2, cardY, colWidth, 180, 24);
+  ctx.fill();
+  ctx.fillStyle = "#818CF8";
+  ctx.font = "bold 18px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("HYPER-DUTY", 100 + (colWidth + 20) * 2, cardY + 45);
+  ctx.font = "900 48px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillStyle = "#FFFFFF";
+  ctx.fillText(`${result.subscales.hyper_responsibility.percentage}%`, 100 + (colWidth + 20) * 2, cardY + 110);
+  ctx.font = "500 16px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillStyle = "rgba(255, 255, 255, 0.6)";
+  ctx.fillText("Guilt & Over-Care", 100 + (colWidth + 20) * 2, cardY + 145);
+
+  // Clinical Insight Box
+  ctx.fillStyle = "rgba(225, 29, 72, 0.08)";
+  drawRoundedRect(ctx, 80, 680, width - 160, 210, 28);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(225, 29, 72, 0.3)";
+  ctx.stroke();
+
+  ctx.fillStyle = "#FDA4AF";
+  ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("FAMILY SYSTEM IMPACT", 120, 730);
+
+  const descText = result.profile.description[lang] || result.profile.description.en;
+  ctx.fillStyle = "#E2E8F0";
+  ctx.font = "24px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  wrapText(ctx, descText, 120, 775, width - 240, 36, 3);
+
+  // Reparenting Action Box
+  ctx.fillStyle = "rgba(255, 255, 255, 0.04)";
+  drawRoundedRect(ctx, 80, 920, width - 160, 210, 28);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(255, 255, 255, 0.2)";
+  ctx.stroke();
+
+  ctx.fillStyle = "#F8FAFC";
+  ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("REPARENTING & BOUNDARY PROTOCOL", 120, 965);
+
+  const drills = result.profile.reparentingDrills[lang] || result.profile.reparentingDrills.en;
+  const drillText = drills[0] || "";
+  ctx.fillStyle = "#CBD5E1";
+  ctx.font = "24px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  wrapText(ctx, drillText, 120, 1010, width - 240, 36, 3);
+
+  // Footer CTA
+  ctx.fillStyle = "rgba(255, 255, 255, 0.5)";
+  ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("Screen your parentification and eldest child syndrome free at:", 80, 1220);
+
+  ctx.fillStyle = "#FB7185";
+  ctx.font = "900 30px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("nuju.app/quiz/parentification", 80, 1260);
+
+  const dataUrl = canvas.toDataURL("image/png", 0.95);
+  const blob = await new Promise<Blob>((resolve, reject) => {
+    canvas.toBlob((b) => (b ? resolve(b) : reject(new Error("Failed blob"))), "image/png", 0.95);
+  });
+  const file = new File([blob], `ju-parentification-${result.level}.png`, { type: "image/png" });
+
+  return { dataUrl, blob, file };
+}
+
+/**
+ * Generates an ultra-premium 1080x1350 Instagram / TikTok story card for Alexithymia.
+ */
+export async function generateAlexithymiaCard(
+  result: AlexithymiaScoreResult,
+  lang: AlexithymiaLang = "en"
+): Promise<{ dataUrl: string; blob: Blob; file: File }> {
+  const canvas = document.createElement("canvas");
+  canvas.width = 1080;
+  canvas.height = 1350;
+  const ctx = canvas.getContext("2d");
+  if (!ctx) throw new Error("Could not get 2D canvas context");
+
+  const width = canvas.width;
+  const height = canvas.height;
+
+  // Background Gradient
+  const bgGrad = ctx.createLinearGradient(0, 0, width, height);
+  bgGrad.addColorStop(0, "#080c14");
+  bgGrad.addColorStop(0.5, "#0f172a");
+  bgGrad.addColorStop(1, "#1e293b");
+  ctx.fillStyle = bgGrad;
+  ctx.fillRect(0, 0, width, height);
+
+  // Cyan/Indigo Glow Orb
+  const orbGrad = ctx.createRadialGradient(850, 200, 10, 850, 200, 500);
+  orbGrad.addColorStop(0, "rgba(56, 189, 248, 0.2)");
+  orbGrad.addColorStop(1, "rgba(56, 189, 248, 0)");
+  ctx.fillStyle = orbGrad;
+  ctx.fillRect(0, 0, width, height);
+
+  // Header Brand
+  ctx.fillStyle = "#38BDF8";
+  ctx.font = "bold 20px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.letterSpacing = "3px";
+  ctx.fillText("NUJU LABS • TORONTO ALEXITHYMIA SCALE (TAS-20)", 80, 110);
+  ctx.letterSpacing = "0px";
+
+  // Subtitle
+  ctx.fillStyle = "rgba(255, 255, 255, 0.65)";
+  ctx.font = "500 24px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("Alexithymia & Emotional Numbing Diagnostic", 80, 150);
+
+  // Profile Badge
+  const badgeText = result.profile.badge[lang] || result.profile.badge.en;
+  ctx.fillStyle = "rgba(56, 189, 248, 0.15)";
+  drawRoundedRect(ctx, 80, 195, 680, 48, 24);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(56, 189, 248, 0.4)";
+  ctx.stroke();
+
+  ctx.fillStyle = "#7DD3FC";
+  ctx.font = "bold 18px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(badgeText.toUpperCase(), 105, 226);
+
+  // Profile Title
+  const titleText = result.profile.title[lang] || result.profile.title.en;
+  ctx.fillStyle = "#FFFFFF";
+  ctx.font = "900 60px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(titleText, 80, 315);
+
+  // Tagline
+  const tagText = result.profile.tagline[lang] || result.profile.tagline.en;
+  ctx.fillStyle = "#94A3B8";
+  ctx.font = "500 28px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  wrapText(ctx, tagText, 80, 365, width - 160, 40, 2);
+
+  // 3 Pillar Cards
+  const cardY = 460;
+  const colWidth = (width - 160 - 40) / 3;
+
+  // Pillar 1: Identifying Feelings
+  ctx.fillStyle = "rgba(255, 255, 255, 0.04)";
+  drawRoundedRect(ctx, 80, cardY, colWidth, 180, 24);
+  ctx.fill();
+  ctx.fillStyle = "#F43F5E";
+  ctx.font = "bold 18px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("IDENTIFYING", 100, cardY + 45);
+  ctx.font = "900 48px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillStyle = "#FFFFFF";
+  ctx.fillText(`${result.subscales.identifying_feelings.percentage}%`, 100, cardY + 110);
+  ctx.font = "500 16px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillStyle = "rgba(255, 255, 255, 0.6)";
+  ctx.fillText("Sensory Decoding", 100, cardY + 145);
+
+  // Pillar 2: Describing Feelings
+  ctx.fillStyle = "rgba(255, 255, 255, 0.04)";
+  drawRoundedRect(ctx, 80 + colWidth + 20, cardY, colWidth, 180, 24);
+  ctx.fill();
+  ctx.fillStyle = "#F59E0B";
+  ctx.font = "bold 18px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("DESCRIBING", 100 + colWidth + 20, cardY + 45);
+  ctx.font = "900 48px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillStyle = "#FFFFFF";
+  ctx.fillText(`${result.subscales.describing_feelings.percentage}%`, 100 + colWidth + 20, cardY + 110);
+  ctx.font = "500 16px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillStyle = "rgba(255, 255, 255, 0.6)";
+  ctx.fillText("Verbal Expression", 100 + colWidth + 20, cardY + 145);
+
+  // Pillar 3: External Thinking
+  ctx.fillStyle = "rgba(255, 255, 255, 0.04)";
+  drawRoundedRect(ctx, 80 + (colWidth + 20) * 2, cardY, colWidth, 180, 24);
+  ctx.fill();
+  ctx.fillStyle = "#38BDF8";
+  ctx.font = "bold 18px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("EXTERNAL", 100 + (colWidth + 20) * 2, cardY + 45);
+  ctx.font = "900 48px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillStyle = "#FFFFFF";
+  ctx.fillText(`${result.subscales.external_thinking.percentage}%`, 100 + (colWidth + 20) * 2, cardY + 110);
+  ctx.font = "500 16px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillStyle = "rgba(255, 255, 255, 0.6)";
+  ctx.fillText("Pragmatic Focus", 100 + (colWidth + 20) * 2, cardY + 145);
+
+  // Clinical Insight Box
+  ctx.fillStyle = "rgba(56, 189, 248, 0.08)";
+  drawRoundedRect(ctx, 80, 680, width - 160, 210, 28);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(56, 189, 248, 0.3)";
+  ctx.stroke();
+
+  ctx.fillStyle = "#7DD3FC";
+  ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("NEUROLOGICAL INTEROCEPTION PROFILE", 120, 730);
+
+  const descText = result.profile.description[lang] || result.profile.description.en;
+  ctx.fillStyle = "#E2E8F0";
+  ctx.font = "24px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  wrapText(ctx, descText, 120, 775, width - 240, 36, 3);
+
+  // Interoception Training Box
+  ctx.fillStyle = "rgba(255, 255, 255, 0.04)";
+  drawRoundedRect(ctx, 80, 920, width - 160, 210, 28);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(255, 255, 255, 0.2)";
+  ctx.stroke();
+
+  ctx.fillStyle = "#F8FAFC";
+  ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("SOMATIC INTEROCEPTION TRAINING", 120, 965);
+
+  const drills = result.profile.interoceptionDrills[lang] || result.profile.interoceptionDrills.en;
+  const drillText = drills[0] || "";
+  ctx.fillStyle = "#CBD5E1";
+  ctx.font = "24px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  wrapText(ctx, drillText, 120, 1010, width - 240, 36, 3);
+
+  // Footer CTA
+  ctx.fillStyle = "rgba(255, 255, 255, 0.5)";
+  ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("Diagnose emotional numbing and alexithymia free at:", 80, 1220);
+
+  ctx.fillStyle = "#38BDF8";
+  ctx.font = "900 30px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("nuju.app/quiz/alexithymia", 80, 1260);
+
+  const dataUrl = canvas.toDataURL("image/png", 0.95);
+  const blob = await new Promise<Blob>((resolve, reject) => {
+    canvas.toBlob((b) => (b ? resolve(b) : reject(new Error("Failed blob"))), "image/png", 0.95);
+  });
+  const file = new File([blob], `ju-alexithymia-${result.level}.png`, { type: "image/png" });
 
   return { dataUrl, blob, file };
 }

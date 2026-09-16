@@ -6,7 +6,7 @@
     <atom:link href="https://nuju.app/rss.xml" rel="self" type="application/rss+xml" />
     <description>Practical guides on journaling, mood tracking, and emotional wellness from the Nuju team.</description>
     <language>en</language>
-    <lastBuildDate>Wed, 16 Sep 2026 04:27:32 GMT</lastBuildDate>
+    <lastBuildDate>Wed, 16 Sep 2026 04:34:05 GMT</lastBuildDate>
     <item>
       <title>Free Mental Health Test Online: Complete DASS-21 Depression, Anxiety &amp; Stress Screening</title>
       <link>https://nuju.app/blog/free-mental-health-test-online-dass21</link>
@@ -993,6 +993,141 @@
       <link>https://nuju.app/blog/panduan-napas-kotak-navy-seal-box-breathing-indonesia</link>
       <guid isPermaLink="true">https://nuju.app/blog/panduan-napas-kotak-navy-seal-box-breathing-indonesia</guid>
       <description>Pelajari metode latihan pernapasan kotak 4-4-4-4 Navy SEAL untuk mengendalikan saraf simpatis, meredakan kepanikan, dan mempertajam fokus mental secara instan.</description>
+      <category>Mindfulness</category>
+      <pubDate>Wed, 16 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>id</dc:language>
+    </item>
+    <item>
+      <title>Eldest Daughter Syndrome: Free Parentification Test &amp; Hyper-Responsibility Recovery</title>
+      <link>https://nuju.app/blog/eldest-daughter-syndrome-parentification-trauma-recovery</link>
+      <guid isPermaLink="true">https://nuju.app/blog/eldest-daughter-syndrome-parentification-trauma-recovery</guid>
+      <description>Did you spend your childhood as your family&apos;s emotional manager, sibling caretaker, or crisis firefighter? Take our free 12-item Parentification test and learn evidence-based reparenting boundaries.</description>
+      <category>Mental Health</category>
+      <pubDate>Wed, 16 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Alexithymia Test: Free Toronto Alexithymia Scale (TAS-20) Diagnostic</title>
+      <link>https://nuju.app/blog/alexithymia-test-signs-emotional-numbing-tas20</link>
+      <guid isPermaLink="true">https://nuju.app/blog/alexithymia-test-signs-emotional-numbing-tas20</guid>
+      <description>Does your mind go blank when asked what you feel? Take our free 12-item Alexithymia and Emotional Numbing diagnostic based on the Toronto Alexithymia Scale (TAS-20).</description>
+      <category>Mental Health</category>
+      <pubDate>Wed, 16 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Vagus Nerve Humming: The Science of Vocal Toning &amp; Polyvagal Resonance</title>
+      <link>https://nuju.app/blog/vagus-nerve-humming-vocal-toning-bhramari-science</link>
+      <guid isPermaLink="true">https://nuju.app/blog/vagus-nerve-humming-vocal-toning-bhramari-science</guid>
+      <description>Discover why humming aloud (Bhramari Pranayama) triggers a 15-fold surge in nitric oxide and rapidly activates your parasympathetic vagus nerve. Practice with our free Web Audio tone synthesizer.</description>
+      <category>Mindfulness</category>
+      <pubDate>Wed, 16 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Parentifizierung &amp; Erstgeborenen-Syndrom: 12 Anzeichen &amp; Selbsttest</title>
+      <link>https://nuju.app/blog/parentifizierung-erstgeborenen-syndrom-selbsttest-hilfe</link>
+      <guid isPermaLink="true">https://nuju.app/blog/parentifizierung-erstgeborenen-syndrom-selbsttest-hilfe</guid>
+      <description>Waren Sie als Kind der heimliche Therapeut oder Retter Ihrer Eltern? Machen Sie unseren 12-Fragen-Selbsttest für Parentifizierung und befreien Sie sich von toxischen Schuldgefühlen.</description>
+      <category>Mental Health</category>
+      <pubDate>Wed, 16 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>de</dc:language>
+    </item>
+    <item>
+      <title>Alexithymie Selbsttest: Anzeichen für Gefühlsblindheit nach der TAS-20 Skala</title>
+      <link>https://nuju.app/blog/alexithymie-selbsttest-gefuehlsblindheit-tas20</link>
+      <guid isPermaLink="true">https://nuju.app/blog/alexithymie-selbsttest-gefuehlsblindheit-tas20</guid>
+      <description>Können Sie Gefühle kaum in Worte fassen oder spüren Sie Emotionen nur als körperliche Verspannung? Testen Sie sich mit dem Toronto-Alexithymie-Fragebogen.</description>
+      <category>Mental Health</category>
+      <pubDate>Wed, 16 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>de</dc:language>
+    </item>
+    <item>
+      <title>Vagusnerv aktivieren durch Summen: Die Wissenschaft des Vocal Tonings</title>
+      <link>https://nuju.app/blog/vagusnerv-summen-vocal-toning-entspannung</link>
+      <guid isPermaLink="true">https://nuju.app/blog/vagusnerv-summen-vocal-toning-entspannung</guid>
+      <description>Erfahren Sie, warum monotones Summen (Bhramari) den Vagusnerv massiert und 15-mal mehr Stickstoffmonoxid freisetzt. Nutzen Sie unseren Web-Audio-Klangsynthesizer.</description>
+      <category>Mindfulness</category>
+      <pubDate>Wed, 16 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>de</dc:language>
+    </item>
+    <item>
+      <title>Parentification &amp; Syndrome de l&apos;Enfant Aîné : Test et Sortie de Culpabilité</title>
+      <link>https://nuju.app/blog/parentification-syndrome-enfant-aine-culpabilite</link>
+      <guid isPermaLink="true">https://nuju.app/blog/parentification-syndrome-enfant-aine-culpabilite</guid>
+      <description>Avez-vous été le pilier ou le confident prématuré de votre famille ? Faites notre test de parentification en 12 questions et apprenez à poser des limites libératrices.</description>
+      <category>Mental Health</category>
+      <pubDate>Wed, 16 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>fr</dc:language>
+    </item>
+    <item>
+      <title>Test d&apos;Alexithymie : 12 Signes d&apos;Engourdissement Émotionnel (Échelle TAS-20)</title>
+      <link>https://nuju.app/blog/alexithymie-test-signes-engourdissement-emotionnel</link>
+      <guid isPermaLink="true">https://nuju.app/blog/alexithymie-test-signes-engourdissement-emotionnel</guid>
+      <description>Votre esprit devient-il vide quand on vous demande ce que vous ressentez ? Découvrez si vous êtes alexithymique avec le test clinique de l&apos;échelle de Toronto TAS-20.</description>
+      <category>Mental Health</category>
+      <pubDate>Wed, 16 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>fr</dc:language>
+    </item>
+    <item>
+      <title>Bourdonnement Vagal : La Science du Toning Vocal et du Nerf Vague</title>
+      <link>https://nuju.app/blog/bourdonnement-vagal-toning-vocal-nerf-vague</link>
+      <guid isPermaLink="true">https://nuju.app/blog/bourdonnement-vagal-toning-vocal-nerf-vague</guid>
+      <description>Pourquoi chanter et bourdonner (Bhramari) active-t-il le frein vagal et libère-t-il de l&apos;oxyde nitrique ? Pratiquez avec notre synthétiseur d&apos;harmoniques Web Audio.</description>
+      <category>Mindfulness</category>
+      <pubDate>Wed, 16 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>fr</dc:language>
+    </item>
+    <item>
+      <title>Parentificación y Síndrome del Hijo Mayor: 12 Señales y Test Gratis</title>
+      <link>https://nuju.app/blog/parentificacion-sindrome-hijo-mayor-sanar-limites</link>
+      <guid isPermaLink="true">https://nuju.app/blog/parentificacion-sindrome-hijo-mayor-sanar-limites</guid>
+      <description>¿Fuiste el terapeuta o cuidador prematuro de tus padres? Realiza nuestro test de parentificación de 12 preguntas y aprende a soltar la culpa ajena.</description>
+      <category>Mental Health</category>
+      <pubDate>Wed, 16 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>es</dc:language>
+    </item>
+    <item>
+      <title>Test de Alexitimia: 12 Síntomas de Ceguera Emocional (Escala TAS-20)</title>
+      <link>https://nuju.app/blog/alexitimia-test-sintomas-anestesia-emocional</link>
+      <guid isPermaLink="true">https://nuju.app/blog/alexitimia-test-sintomas-anestesia-emocional</guid>
+      <description>¿Te cuesta poner palabras a lo que sientes o experimentas entumecimiento emocional? Descubre tu nivel de alexitimia con la prestigiosa escala TAS-20 de Toronto.</description>
+      <category>Mental Health</category>
+      <pubDate>Wed, 16 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>es</dc:language>
+    </item>
+    <item>
+      <title>Estimulación del Nervio Vago: La Ciencia del Zumbido Vocal (Bhramari)</title>
+      <link>https://nuju.app/blog/estimulacion-nervio-vago-zumbido-vocal-bhramari</link>
+      <guid isPermaLink="true">https://nuju.app/blog/estimulacion-nervio-vago-zumbido-vocal-bhramari</guid>
+      <description>Descubre por qué zumbar en voz baja multiplica el óxido nítrico por 15 y activa el freno vagal del corazón en 3 minutos con nuestro sintetizador Web Audio.</description>
+      <category>Mindfulness</category>
+      <pubDate>Wed, 16 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>es</dc:language>
+    </item>
+    <item>
+      <title>Sindrom Anak Pertama &amp; Parentifikasi: Saat Masa Kecil Terampas Beban Keluarga</title>
+      <link>https://nuju.app/blog/sindrom-anak-pertama-parentifikasi-beban-keluarga</link>
+      <guid isPermaLink="true">https://nuju.app/blog/sindrom-anak-pertama-parentifikasi-beban-keluarga</guid>
+      <description>Apakah Anda menjadi tempat curhat orang tua atau memikul beban adik-adik sejak belia? Kenali ciri-ciri parentifikasi batin dan ikuti tes 12 pertanyaan gratis.</description>
+      <category>Kesehatan Mental</category>
+      <pubDate>Wed, 16 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>id</dc:language>
+    </item>
+    <item>
+      <title>Tes Alexithymia: Kenapa Saya Sering Mati Rasa &amp; Susah Menjelaskan Emosi?</title>
+      <link>https://nuju.app/blog/tes-alexithymia-mati-rasa-kesulitan-mengungkapkan-emosi</link>
+      <guid isPermaLink="true">https://nuju.app/blog/tes-alexithymia-mati-rasa-kesulitan-mengungkapkan-emosi</guid>
+      <description>Apakah kepala Anda mendadak kosong saat ditanya &apos;Bagaimana perasaanmu?&apos; Ikuti tes alexithymia 12 pertanyaan berdasarkan Skala Toronto TAS-20.</description>
+      <category>Kesehatan Mental</category>
+      <pubDate>Wed, 16 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>id</dc:language>
+    </item>
+    <item>
+      <title>Olah Suara Vagal Humming: Cara Redakan Cemas dengan Bergumam (Sains Saraf Vagus)</title>
+      <link>https://nuju.app/blog/olah-suara-vagal-humming-stimulasi-saraf-vagus</link>
+      <guid isPermaLink="true">https://nuju.app/blog/olah-suara-vagal-humming-stimulasi-saraf-vagus</guid>
+      <description>Pelajari bagaimana teknik olah suara bergumam (Bhramari) melipatgandakan gas nitric oxide 15 kali lipat dan menenangkan sistem saraf otonom seketika.</description>
       <category>Mindfulness</category>
       <pubDate>Wed, 16 Sep 2026 12:00:00 GMT</pubDate>
       <dc:language>id</dc:language>

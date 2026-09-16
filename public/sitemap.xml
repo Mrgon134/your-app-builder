@@ -249,6 +249,24 @@
     <changefreq>weekly</changefreq>
   </url>
   <url>
+    <loc>https://nuju.app/quiz/parentification</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.95</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/quiz/alexithymia</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.95</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/tools/vocal-toning</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.95</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
     <loc>https://nuju.app/quiz/baterai-emosi</loc>
     <lastmod>2026-09-16</lastmod>
     <priority>0.9</priority>
@@ -5296,6 +5314,186 @@
       <image:caption>Pelajari metode latihan pernapasan kotak 4-4-4-4 Navy SEAL untuk mengendalikan saraf simpatis, meredakan kepanikan, dan mempertajam fokus mental secara instan.</image:caption>
     </image:image>
     <xhtml:link rel="alternate" hreflang="id" href="https://nuju.app/blog/panduan-napas-kotak-navy-seal-box-breathing-indonesia"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/eldest-daughter-syndrome-parentification-trauma-recovery</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Eldest Daughter Syndrome: Free Parentification Test &amp; Hyper-Responsibility Recovery</image:title>
+      <image:caption>Did you spend your childhood as your family&apos;s emotional manager, sibling caretaker, or crisis firefighter? Take our free 12-item Parentification test and learn evidence-based reparenting boundaries.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/eldest-daughter-syndrome-parentification-trauma-recovery"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/alexithymia-test-signs-emotional-numbing-tas20</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Alexithymia Test: Free Toronto Alexithymia Scale (TAS-20) Diagnostic</image:title>
+      <image:caption>Does your mind go blank when asked what you feel? Take our free 12-item Alexithymia and Emotional Numbing diagnostic based on the Toronto Alexithymia Scale (TAS-20).</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/alexithymia-test-signs-emotional-numbing-tas20"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/vagus-nerve-humming-vocal-toning-bhramari-science</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Vagus Nerve Humming: The Science of Vocal Toning &amp; Polyvagal Resonance</image:title>
+      <image:caption>Discover why humming aloud (Bhramari Pranayama) triggers a 15-fold surge in nitric oxide and rapidly activates your parasympathetic vagus nerve. Practice with our free Web Audio tone synthesizer.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/vagus-nerve-humming-vocal-toning-bhramari-science"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/parentifizierung-erstgeborenen-syndrom-selbsttest-hilfe</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Parentifizierung &amp; Erstgeborenen-Syndrom: 12 Anzeichen &amp; Selbsttest</image:title>
+      <image:caption>Waren Sie als Kind der heimliche Therapeut oder Retter Ihrer Eltern? Machen Sie unseren 12-Fragen-Selbsttest für Parentifizierung und befreien Sie sich von toxischen Schuldgefühlen.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="de" href="https://nuju.app/blog/parentifizierung-erstgeborenen-syndrom-selbsttest-hilfe"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/alexithymie-selbsttest-gefuehlsblindheit-tas20</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Alexithymie Selbsttest: Anzeichen für Gefühlsblindheit nach der TAS-20 Skala</image:title>
+      <image:caption>Können Sie Gefühle kaum in Worte fassen oder spüren Sie Emotionen nur als körperliche Verspannung? Testen Sie sich mit dem Toronto-Alexithymie-Fragebogen.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="de" href="https://nuju.app/blog/alexithymie-selbsttest-gefuehlsblindheit-tas20"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/vagusnerv-summen-vocal-toning-entspannung</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Vagusnerv aktivieren durch Summen: Die Wissenschaft des Vocal Tonings</image:title>
+      <image:caption>Erfahren Sie, warum monotones Summen (Bhramari) den Vagusnerv massiert und 15-mal mehr Stickstoffmonoxid freisetzt. Nutzen Sie unseren Web-Audio-Klangsynthesizer.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="de" href="https://nuju.app/blog/vagusnerv-summen-vocal-toning-entspannung"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/parentification-syndrome-enfant-aine-culpabilite</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Parentification &amp; Syndrome de l&apos;Enfant Aîné : Test et Sortie de Culpabilité</image:title>
+      <image:caption>Avez-vous été le pilier ou le confident prématuré de votre famille ? Faites notre test de parentification en 12 questions et apprenez à poser des limites libératrices.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://nuju.app/blog/parentification-syndrome-enfant-aine-culpabilite"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/alexithymie-test-signes-engourdissement-emotionnel</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Test d&apos;Alexithymie : 12 Signes d&apos;Engourdissement Émotionnel (Échelle TAS-20)</image:title>
+      <image:caption>Votre esprit devient-il vide quand on vous demande ce que vous ressentez ? Découvrez si vous êtes alexithymique avec le test clinique de l&apos;échelle de Toronto TAS-20.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://nuju.app/blog/alexithymie-test-signes-engourdissement-emotionnel"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/bourdonnement-vagal-toning-vocal-nerf-vague</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Bourdonnement Vagal : La Science du Toning Vocal et du Nerf Vague</image:title>
+      <image:caption>Pourquoi chanter et bourdonner (Bhramari) active-t-il le frein vagal et libère-t-il de l&apos;oxyde nitrique ? Pratiquez avec notre synthétiseur d&apos;harmoniques Web Audio.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://nuju.app/blog/bourdonnement-vagal-toning-vocal-nerf-vague"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/parentificacion-sindrome-hijo-mayor-sanar-limites</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Parentificación y Síndrome del Hijo Mayor: 12 Señales y Test Gratis</image:title>
+      <image:caption>¿Fuiste el terapeuta o cuidador prematuro de tus padres? Realiza nuestro test de parentificación de 12 preguntas y aprende a soltar la culpa ajena.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="es" href="https://nuju.app/blog/parentificacion-sindrome-hijo-mayor-sanar-limites"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/alexitimia-test-sintomas-anestesia-emocional</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Test de Alexitimia: 12 Síntomas de Ceguera Emocional (Escala TAS-20)</image:title>
+      <image:caption>¿Te cuesta poner palabras a lo que sientes o experimentas entumecimiento emocional? Descubre tu nivel de alexitimia con la prestigiosa escala TAS-20 de Toronto.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="es" href="https://nuju.app/blog/alexitimia-test-sintomas-anestesia-emocional"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/estimulacion-nervio-vago-zumbido-vocal-bhramari</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Estimulación del Nervio Vago: La Ciencia del Zumbido Vocal (Bhramari)</image:title>
+      <image:caption>Descubre por qué zumbar en voz baja multiplica el óxido nítrico por 15 y activa el freno vagal del corazón en 3 minutos con nuestro sintetizador Web Audio.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="es" href="https://nuju.app/blog/estimulacion-nervio-vago-zumbido-vocal-bhramari"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/sindrom-anak-pertama-parentifikasi-beban-keluarga</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Sindrom Anak Pertama &amp; Parentifikasi: Saat Masa Kecil Terampas Beban Keluarga</image:title>
+      <image:caption>Apakah Anda menjadi tempat curhat orang tua atau memikul beban adik-adik sejak belia? Kenali ciri-ciri parentifikasi batin dan ikuti tes 12 pertanyaan gratis.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="id" href="https://nuju.app/blog/sindrom-anak-pertama-parentifikasi-beban-keluarga"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/tes-alexithymia-mati-rasa-kesulitan-mengungkapkan-emosi</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Tes Alexithymia: Kenapa Saya Sering Mati Rasa &amp; Susah Menjelaskan Emosi?</image:title>
+      <image:caption>Apakah kepala Anda mendadak kosong saat ditanya &apos;Bagaimana perasaanmu?&apos; Ikuti tes alexithymia 12 pertanyaan berdasarkan Skala Toronto TAS-20.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="id" href="https://nuju.app/blog/tes-alexithymia-mati-rasa-kesulitan-mengungkapkan-emosi"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/olah-suara-vagal-humming-stimulasi-saraf-vagus</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Olah Suara Vagal Humming: Cara Redakan Cemas dengan Bergumam (Sains Saraf Vagus)</image:title>
+      <image:caption>Pelajari bagaimana teknik olah suara bergumam (Bhramari) melipatgandakan gas nitric oxide 15 kali lipat dan menenangkan sistem saraf otonom seketika.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="id" href="https://nuju.app/blog/olah-suara-vagal-humming-stimulasi-saraf-vagus"/>
   </url>
   <url>
     <loc>https://nuju.app/blog/how-to-stop-overthinking-at-night</loc>
