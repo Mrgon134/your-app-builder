@@ -34,6 +34,7 @@ const STATIC_ROUTES = [
   { loc: "/guides/journaling", priority: "0.9", changefreq: "monthly" },
   { loc: "/quiz", priority: "0.9", changefreq: "weekly" },
   { loc: "/quiz/mental-health", priority: "0.95", changefreq: "weekly" },
+  { loc: "/quiz/mental-health-test", priority: "0.95", changefreq: "weekly" },
   { loc: "/quiz/attachment-style", priority: "0.95", changefreq: "weekly" },
   { loc: "/quiz/adhd-screener", priority: "0.95", changefreq: "weekly" },
   { loc: "/quiz/inner-child", priority: "0.95", changefreq: "weekly" },

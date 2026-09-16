@@ -132,6 +132,7 @@ const App = () => (
                   <Route path="/mood-tracker" element={<MoodTracker />} />
                   <Route path="/voice-journaling" element={<VoiceJournaling />} />
                   <Route path="/quiz" element={<QuizHub />} />
+                  <Route path="/quiz/mental-health" element={<MentalHealthTest />} />
                   <Route path="/quiz/mental-health-test" element={<MentalHealthTest />} />
                   <Route path="/quiz/dass-21" element={<MentalHealthTest />} />
                   <Route path="/quiz/tes-kesehatan-mental" element={<MentalHealthTest defaultLang="id" />} />
@@ -149,6 +150,8 @@ const App = () => (
                   <Route path="/game/daily-card" element={<DailyOracleGame />} />
                   <Route path="/game/oracle" element={<DailyOracleGame />} />
                   <Route path="/oracle" element={<DailyOracleGame />} />
+                  <Route path="/tools/panic-sos" element={<PanicSosScreen />} />
+                  <Route path="/panic-sos" element={<PanicSosScreen />} />
                   <Route path="/emergency" element={<PanicSosScreen />} />
                   <Route path="/sos" element={<PanicSosScreen />} />
                   <Route path="/anti-panic" element={<PanicSosScreen />} />

@@ -30,9 +30,9 @@ describe("QuizShareCardModal Component", () => {
       />
     );
 
-    expect(await screen.findByText("Simpan Kartu Hasil Tes")).toBeInTheDocument();
-    expect(screen.getByText("Share ke Story / WA")).toBeInTheDocument();
-    expect(screen.getByText("Download Gambar (PNG)")).toBeInTheDocument();
-    expect(screen.getByText("Salin Teks & Link Hasil Tes")).toBeInTheDocument();
+    expect(await screen.findByText("Save Your Test Results Card")).toBeInTheDocument();
+    expect(screen.getByText("Share to Story / WhatsApp")).toBeInTheDocument();
+    expect(screen.getByText("Download Image (PNG)")).toBeInTheDocument();
+    expect(screen.getByText("Copy Text & Results Link")).toBeInTheDocument();
   });
 });

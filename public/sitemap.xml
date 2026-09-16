@@ -87,6 +87,12 @@
     <changefreq>weekly</changefreq>
   </url>
   <url>
+    <loc>https://nuju.app/quiz/mental-health-test</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.95</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
     <loc>https://nuju.app/quiz/attachment-style</loc>
     <lastmod>2026-09-16</lastmod>
     <priority>0.95</priority>

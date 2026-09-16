@@ -27,10 +27,10 @@ describe("QuizLeadCapture Component", () => {
 
     expect(screen.getByTestId("quiz-lead-capture")).toBeInTheDocument();
     expect(
-      screen.getByText("Simpan Hasil Tes & Dapatkan Panduan Pemulihan 7 Hari")
+      screen.getByText("Save Your Results & Get a 7-Day Recovery Guide")
     ).toBeInTheDocument();
-    expect(screen.getByPlaceholderText("Masukkan alamat emailmu...")).toBeInTheDocument();
-    expect(screen.getByText("Kirim Salinan Hasil")).toBeInTheDocument();
+    expect(screen.getByPlaceholderText("Enter your email address...")).toBeInTheDocument();
+    expect(screen.getByText("Send My Results")).toBeInTheDocument();
   });
 
   it("submits valid email and renders celebration confirmation state", async () => {
@@ -41,15 +41,15 @@ describe("QuizLeadCapture Component", () => {
 
     render(<QuizLeadCapture quiz={quiz} result={result} />);
 
-    const input = screen.getByPlaceholderText("Masukkan alamat emailmu...");
-    const submitBtn = screen.getByText("Kirim Salinan Hasil");
+    const input = screen.getByPlaceholderText("Enter your email address...");
+    const submitBtn = screen.getByText("Send My Results");
 
     fireEvent.change(input, { target: { value: "sahabat@nuju.app" } });
     fireEvent.click(submitBtn);
 
     await waitFor(() => {
       expect(screen.getByTestId("quiz-lead-success")).toBeInTheDocument();
-      expect(screen.getByText("Hasil Diagnosa Terkirim ke Inbox-mu!")).toBeInTheDocument();
+      expect(screen.getByText("Your Diagnostic Results Have Been Sent!")).toBeInTheDocument();
     });
 
     const stored = JSON.parse(localStorage.getItem("nuju-quiz-leads") || "[]");

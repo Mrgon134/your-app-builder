@@ -8,6 +8,7 @@ import { build } from "esbuild";
 import { mkdirSync, readFileSync, writeFileSync } from "fs";
 import { dirname, join } from "path";
 import { fileURLToPath, pathToFileURL } from "url";
+import { getQuizAndToolPages } from "./prerender-quizzes.mjs";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, "..");
@@ -2770,8 +2771,22 @@ async function prerender() {
 
   const publishedPosts = helpers.getPublishedBlogPosts(new Date()).map(normalizeBlogPost);
   const staticPages = buildStaticPages(publishedPosts);
+  const quizAndToolPages = getQuizAndToolPages({
+    BASE_URL,
+    OG_IMAGE,
+    OG_IMAGE_ALT,
+    escapeHtml,
+    escapeAttribute,
+    renderPageShell,
+    renderSection,
+    renderLinkCardGrid,
+    renderFaq,
+    renderCta,
+    renderList,
+    renderOrdered,
+  });
   const blogPages = buildBlogPages(helpers);
-  const allPages = [...staticPages, ...blogPages];
+  const allPages = [...staticPages, ...quizAndToolPages, ...blogPages];
 
   console.log(`Prerendering ${allPages.length} public routes without a browser...`);
 
