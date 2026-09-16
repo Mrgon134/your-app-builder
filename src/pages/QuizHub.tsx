@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { ArrowRight, Brain, Clock, Heart, HelpCircle, Lock, ShieldCheck, Sparkles, Users, Activity, Zap, Headphones, ShieldAlert, Compass, Briefcase, Wind, Eye, Shield, Feather, Moon, Hand } from "lucide-react";
+import { ArrowRight, Brain, Clock, Heart, HelpCircle, Lock, ShieldCheck, Sparkles, Users, Activity, Zap, Headphones, ShieldAlert, Compass, Briefcase, Wind, Eye, Shield, Feather, Moon, Hand, BedDouble, Smartphone } from "lucide-react";
 import SEOHead from "@/components/SEOHead";
 import AdSenseBanner from "@/components/AdSenseBanner";
 import AppStoreCta from "@/components/AppStoreCta";
@@ -567,6 +567,93 @@ const QuizHub: React.FC = () => {
                 className="inline-flex items-center gap-1.5 rounded-full bg-teal-600 px-4 py-2 text-xs font-bold text-white hover:bg-teal-700 transition shadow-xs"
               >
                 <span>Start Grounding</span>
+                <ArrowRight className="h-3.5 w-3.5" />
+              </Link>
+            </div>
+          </div>
+
+          {/* Card 16: Dopamine Detox & Screen Screener */}
+          <div className="rounded-3xl border border-amber-300 bg-gradient-to-br from-amber-500/10 via-amber-50 to-white p-6 shadow-xs flex flex-col justify-between hover:shadow-md transition">
+            <div>
+              <div className="flex items-center justify-between mb-3">
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-amber-600 px-3 py-0.5 text-xs font-bold text-white shadow-xs">
+                  <Zap className="h-3 w-3" />
+                  DR. ANNA LEMBKE
+                </span>
+                <span className="text-xs font-semibold text-neutral-500">Dopamine Fasting</span>
+              </div>
+              <h3 className="text-lg font-bold text-neutral-900 mb-1.5">
+                Dopamine Detox & Screen Screener
+              </h3>
+              <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed">
+                Assess compulsive scrolling, phantom phone checks, and boredom intolerance. Unlock custom 24-hour and 7-day fasting protocols.
+              </p>
+            </div>
+            <div className="mt-5 pt-3 border-t border-amber-100 flex items-center justify-between">
+              <span className="text-xs font-medium text-neutral-400">~2 Mins · 12 Items</span>
+              <Link
+                to="/quiz/dopamine-detox"
+                className="inline-flex items-center gap-1.5 rounded-full bg-amber-600 px-4 py-2 text-xs font-bold text-white hover:bg-amber-700 transition shadow-xs"
+              >
+                <span>Screen Dopamine</span>
+                <ArrowRight className="h-3.5 w-3.5" />
+              </Link>
+            </div>
+          </div>
+
+          {/* Card 17: Polyvagal Nervous System State */}
+          <div className="rounded-3xl border border-emerald-300 bg-gradient-to-br from-emerald-500/10 via-emerald-50 to-white p-6 shadow-xs flex flex-col justify-between hover:shadow-md transition">
+            <div>
+              <div className="flex items-center justify-between mb-3">
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-600 px-3 py-0.5 text-xs font-bold text-white shadow-xs">
+                  <Activity className="h-3 w-3" />
+                  POLYVAGAL METER
+                </span>
+                <span className="text-xs font-semibold text-neutral-500">Dr. Stephen Porges</span>
+              </div>
+              <h3 className="text-lg font-bold text-neutral-900 mb-1.5">
+                Polyvagal Nervous System State
+              </h3>
+              <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed">
+                Map whether you are in Ventral Safety, Sympathetic Fight/Flight, or Dorsal Freeze shutdown. Access instant somatic regulation drills.
+              </p>
+            </div>
+            <div className="mt-5 pt-3 border-t border-emerald-100 flex items-center justify-between">
+              <span className="text-xs font-medium text-neutral-400">~2 Mins · 12 Items</span>
+              <Link
+                to="/quiz/nervous-system"
+                className="inline-flex items-center gap-1.5 rounded-full bg-emerald-600 px-4 py-2 text-xs font-bold text-white hover:bg-emerald-700 transition shadow-xs"
+              >
+                <span>Scan Nervous State</span>
+                <ArrowRight className="h-3.5 w-3.5" />
+              </Link>
+            </div>
+          </div>
+
+          {/* Card 18: 4-7-8 Deep Sleep Pacer */}
+          <div className="rounded-3xl border border-indigo-300 bg-gradient-to-br from-indigo-500/10 via-indigo-50 to-white p-6 shadow-xs flex flex-col justify-between hover:shadow-md transition">
+            <div>
+              <div className="flex items-center justify-between mb-3">
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-indigo-600 px-3 py-0.5 text-xs font-bold text-white shadow-xs">
+                  <BedDouble className="h-3 w-3" />
+                  SLEEP LAB 432Hz
+                </span>
+                <span className="text-xs font-semibold text-indigo-700">Dr. Andrew Weil</span>
+              </div>
+              <h3 className="text-lg font-bold text-neutral-900 mb-1.5">
+                4-7-8 Deep Sleep Pacer & Sound Lab
+              </h3>
+              <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed">
+                Fall asleep in under 3 minutes. Natural nervous system sedative pacer paired with pure Web Audio 432Hz delta drone and Tibetan singing bowls.
+              </p>
+            </div>
+            <div className="mt-5 pt-3 border-t border-indigo-100 flex items-center justify-between">
+              <span className="text-xs font-medium text-neutral-400">Insomnia Relief · 3 Mins</span>
+              <Link
+                to="/tools/sleep"
+                className="inline-flex items-center gap-1.5 rounded-full bg-indigo-600 px-4 py-2 text-xs font-bold text-white hover:bg-indigo-700 transition shadow-xs"
+              >
+                <span>Launch Sleep Lab</span>
                 <ArrowRight className="h-3.5 w-3.5" />
               </Link>
             </div>

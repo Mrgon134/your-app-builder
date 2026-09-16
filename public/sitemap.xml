@@ -177,6 +177,24 @@
     <changefreq>weekly</changefreq>
   </url>
   <url>
+    <loc>https://nuju.app/quiz/dopamine-detox</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.95</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/quiz/nervous-system</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.95</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/tools/sleep</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.95</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
     <loc>https://nuju.app/quiz/baterai-emosi</loc>
     <lastmod>2026-09-16</lastmod>
     <priority>0.9</priority>
@@ -4504,6 +4522,186 @@
       <image:caption>Panduan klinis metode somatik 5-4-3-2-1 untuk menghentikan serangan panik, jantung berdebar, dan pikiran kalut dalam 3 menit. Dilengkapi tool interaktif gratis.</image:caption>
     </image:image>
     <xhtml:link rel="alternate" hreflang="id" href="https://nuju.app/blog/teknik-grounding-5-4-3-2-1-atasi-panik-cemas"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/dopamine-detox-test-screen-addiction-screener</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Dopamine Detox Test: Free 12-Item Screen Addiction &amp; Receptor Reset Screener</image:title>
+      <image:caption>Take the free 12-question Dopamine Detox screener based on Dr. Anna Lembke&apos;s Dopamine Nation. Measure hedonic tolerance, phantom phone checks, and unlock fasting protocols.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/dopamine-detox-test-screen-addiction-screener"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/polyvagal-nervous-system-test-vagus-nerve-state</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Polyvagal Nervous System Test: Measure Fight, Flight, Freeze &amp; Vagal Tone</image:title>
+      <image:caption>Assess your autonomic nervous system state using Dr. Stephen Porges&apos; Polyvagal Theory. Discover whether you are in Ventral Safety, Sympathetic Alarm, or Dorsal Shutdown.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/polyvagal-nervous-system-test-vagus-nerve-state"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/4-7-8-breathing-technique-deep-sleep-insomnia</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>4-7-8 Breathing Technique: How to Fall Asleep Fast with 432Hz Sound Therapy</image:title>
+      <image:caption>Learn Dr. Andrew Weil&apos;s 4-7-8 sedative breathing method to fall asleep in under 3 minutes. Discover the neuroscience of the vagal brake and 432Hz delta harmonic frequencies.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/4-7-8-breathing-technique-deep-sleep-insomnia"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/dopamin-detox-test-kostenlos-handysucht-screener</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Dopamin-Detox-Test: Kostenloser Screener für Handysucht &amp; Reizüberflutung</image:title>
+      <image:caption>Machen Sie den 12-Fragen Dopamin-Detox-Test nach Dr. Anna Lembke. Messen Sie Ihre Reiztoleranz, ständiges Scrollen und erhalten Sie ein wissenschaftliches Fasten-Protokoll.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="de" href="https://nuju.app/blog/dopamin-detox-test-kostenlos-handysucht-screener"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/polyvagal-theorie-test-nervensystem-vagusnerv</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Polyvagal-Theorie Test: Erkennen Sie Kampf-, Flucht- oder Erstarrungszustände</image:title>
+      <image:caption>Testen Sie den Zustand Ihres autonomen Nervensystems nach Dr. Stephen Porges. Erfahren Sie, ob Sie sich in ventraler Sicherheit, sympathischem Alarm oder dorsaler Starre befinden.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="de" href="https://nuju.app/blog/polyvagal-theorie-test-nervensystem-vagusnerv"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/4-7-8-atemtechnik-zum-einschlafen-insomnie</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>4-7-8 Atemtechnik zum schnellen Einschlafen &amp; 432Hz Frequenztherapie</image:title>
+      <image:caption>Die wirksamste Methode gegen Schlaflosigkeit nach Dr. Andrew Weil. Erfahren Sie, wie 8 Sekunden Ausatmung den Herzschlag senken und tiefen Schlaf einleiten.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="de" href="https://nuju.app/blog/4-7-8-atemtechnik-zum-einschlafen-insomnie"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/test-detox-dopamine-gratuit-addiction-ecrans</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Test Détox Dopamine Gratuit : Évaluez Votre Addiction aux Écrans &amp; Récepteurs</image:title>
+      <image:caption>Passez le test de détox dopamine en 12 questions basé sur les travaux du Dr Anna Lembke. Mesurez votre tolérance hédonique et découvrez des protocoles de jeûne digital.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://nuju.app/blog/test-detox-dopamine-gratuit-addiction-ecrans"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/theorie-polyvagale-test-systeme-nerveux-nerf-vague</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Test Théorie Polyvagale : Identifiez Vos États de Fuite, Combat et Figement</image:title>
+      <image:caption>Explorez la régulation de votre nerf vague d&apos;après le Dr Stephen Porges. Découvrez si vous êtes en Sécurité Ventrale, Alerte Sympathique ou Blocage Dorsal.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://nuju.app/blog/theorie-polyvagale-test-systeme-nerveux-nerf-vague"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/respiration-4-7-8-pour-dormir-insomnie-ondes-delta</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Méthode de Respiration 4-7-8 pour Dormir &amp; Thérapie Sonore 432Hz</image:title>
+      <image:caption>Guide complet de la technique de respiration sédative 4-7-8 du Dr Andrew Weil. Ralentissez votre pouls et plongez dans un sommeil réparateur en 3 minutes.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://nuju.app/blog/respiration-4-7-8-pour-dormir-insomnie-ondes-delta"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/test-detox-dopamina-gratis-adiccion-pantallas</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Test de Détox de Dopamina Gratis: Mide tu Adicción a las Pantallas y Celular</image:title>
+      <image:caption>Descubre tu nivel de tolerancia dopaminérgica y dependencia del smartphone con el test de 12 preguntas basado en la Dra. Anna Lembke. Incluye protocolos de ayuno digital.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="es" href="https://nuju.app/blog/test-detox-dopamina-gratis-adiccion-pantallas"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/teoria-polivagal-test-sistema-nervioso-nervio-vago</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Test de la Teoría Polivagal: Identifica Estados de Lucha, Huida o Bloqueo</image:title>
+      <image:caption>Evalúa las respuestas de tu nervio vago con el modelo del Dr. Stephen Porges. Descubre si te encuentras en Seguridad Ventral, Alarma Simpática o Bloqueo Dorsal.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="es" href="https://nuju.app/blog/teoria-polivagal-test-sistema-nervioso-nervio-vago"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/tecnica-respiracion-4-7-8-para-dormir-insomnio</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Técnica de Respiración 4-7-8 para Dormir Rápido y Ondas Delta de 432Hz</image:title>
+      <image:caption>Aprende el método de respiración relajante del Dr. Andrew Weil para conciliar el sueño en menos de 3 minutos. Estimula el nervio vago y calma la mente.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="es" href="https://nuju.app/blog/tecnica-respiracion-4-7-8-para-dormir-insomnio"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/tes-detox-dopamin-online-kecanduan-hp-medsos</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Tes Detox Dopamin Online: Cek Level Kecanduan HP, Doomscrolling &amp; Reseptor Otak</image:title>
+      <image:caption>Ikuti tes gratis 12 pertanyaan skrining kecanduan layar berdasarkan buku Dopamine Nation Dr. Anna Lembke. Cek toleransi hedonik dan protokol puasa digital 24 jam.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="id" href="https://nuju.app/blog/tes-detox-dopamin-online-kecanduan-hp-medsos"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/tes-sistem-saraf-polivagal-fight-flight-freeze</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Tes Sistem Saraf Polivagal: Ukur Status Fight, Flight, Freeze &amp; Regulasi Somatik</image:title>
+      <image:caption>Skrining kondisi sistem saraf otonom berdasarkan Teori Polivagal Dr. Stephen Porges. Kenali apakah Anda berada di status Ventral, Simpatik, atau Dorsal Freeze.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="id" href="https://nuju.app/blog/tes-sistem-saraf-polivagal-fight-flight-freeze"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/latihan-napas-4-7-8-cara-cepat-tidur-nyenyak-insomnia</loc>
+    <lastmod>2026-09-16</lastmod>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Latihan Napas 4-7-8 Dr. Andrew Weil: Cara Cepat Tidur Pulas dalam 3 Menit</image:title>
+      <image:caption>Panduan lengkap teknik relaksasi napas 4-7-8 untuk mengatasi insomnia dan pikiran overthinking sebelum tidur. Dilengkapi panduan pacer visual dan audio 432Hz.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="id" href="https://nuju.app/blog/latihan-napas-4-7-8-cara-cepat-tidur-nyenyak-insomnia"/>
   </url>
   <url>
     <loc>https://nuju.app/blog/how-to-stop-overthinking-at-night</loc>

@@ -47,6 +47,9 @@ const BilateralStimulationLab = lazy(() => import("./pages/BilateralStimulationL
 const HspTest = lazy(() => import("./pages/HspTest.tsx"));
 const ShadowWorkTest = lazy(() => import("./pages/ShadowWorkTest.tsx"));
 const SensoryGroundingLab = lazy(() => import("./pages/SensoryGroundingLab.tsx"));
+const DopamineDetoxTest = lazy(() => import("./pages/DopamineDetoxTest.tsx"));
+const NervousSystemTest = lazy(() => import("./pages/NervousSystemTest.tsx"));
+const SleepPacerLab = lazy(() => import("./pages/SleepPacerLab.tsx"));
 const ZenBubbleGame = lazy(() => import("./pages/ZenBubbleGame.tsx"));
 const EbookSalesPage = lazy(() => import("./pages/EbookSalesPage.tsx"));
 const EbookReaderPage = lazy(() => import("./pages/EbookReaderPage.tsx"));
@@ -160,6 +163,15 @@ const App = () => (
                   <Route path="/tools/grounding" element={<SensoryGroundingLab />} />
                   <Route path="/tools/54321" element={<SensoryGroundingLab />} />
                   <Route path="/grounding" element={<SensoryGroundingLab />} />
+                  <Route path="/quiz/dopamine-detox" element={<DopamineDetoxTest />} />
+                  <Route path="/quiz/screen-addiction" element={<DopamineDetoxTest />} />
+                  <Route path="/tes-dopamine" element={<DopamineDetoxTest defaultLang="id" />} />
+                  <Route path="/quiz/nervous-system" element={<NervousSystemTest />} />
+                  <Route path="/quiz/polyvagal" element={<NervousSystemTest />} />
+                  <Route path="/tes-saraf" element={<NervousSystemTest defaultLang="id" />} />
+                  <Route path="/tools/sleep" element={<SleepPacerLab />} />
+                  <Route path="/tools/478" element={<SleepPacerLab />} />
+                  <Route path="/sleep" element={<SleepPacerLab />} />
                   <Route path="/game/zen-pop" element={<ZenBubbleGame />} />
                   <Route path="/games/stress-pop" element={<ZenBubbleGame />} />
                   <Route path="/quiz/:quizId" element={<QuizRunner />} />

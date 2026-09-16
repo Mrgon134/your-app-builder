@@ -8,6 +8,8 @@ import { LoveLanguageResult, LoveLang } from "@/data/love-languages";
 import { PeoplePleaserResult, PeoplePleaserLang } from "@/data/people-pleasing";
 import { HspProfile, HspLang } from "@/data/hsp";
 import { ShadowResult, ShadowLang } from "@/data/shadow-work";
+import { DopamineProfile, DopamineLang } from "@/data/dopamine-detox";
+import { VagalProfile, VagalLang } from "@/data/nervous-system";
 
 /**
  * Draws a rounded rectangle path on the canvas context with fallback for older environments.
@@ -1902,6 +1904,316 @@ export async function generateShadowCard(
 
   return { dataUrl, blob, file };
 }
+
+export interface DopamineCardInput {
+  totalScore: number;
+  maxScore: number;
+  level: string;
+  profile: DopamineProfile;
+  percentages: {
+    compulsion: number;
+    hedonic: number;
+    boredom: number;
+  };
+}
+
+export async function generateDopamineCard(
+  result: DopamineCardInput,
+  lang: DopamineLang = "en"
+): Promise<{ dataUrl: string; blob: Blob; file: File }> {
+  const width = 1080;
+  const height = 1350;
+  const canvas = document.createElement("canvas");
+  canvas.width = width;
+  canvas.height = height;
+  const ctx = canvas.getContext("2d");
+  if (!ctx) throw new Error("Could not get 2d context");
+
+  // Background
+  const bgGrad = ctx.createLinearGradient(0, 0, width, height);
+  bgGrad.addColorStop(0, "#160C04");
+  bgGrad.addColorStop(0.5, "#231405");
+  bgGrad.addColorStop(1, "#0A0502");
+  ctx.fillStyle = bgGrad;
+  ctx.fillRect(0, 0, width, height);
+
+  // Soft glowing amber orb in upper right
+  const orb = ctx.createRadialGradient(width - 150, 200, 20, width - 150, 200, 450);
+  orb.addColorStop(0, "rgba(245, 158, 11, 0.25)");
+  orb.addColorStop(1, "rgba(245, 158, 11, 0)");
+  ctx.fillStyle = orb;
+  ctx.fillRect(0, 0, width, height);
+
+  // Brand Header
+  ctx.fillStyle = "#F59E0B";
+  ctx.font = "bold 26px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("JU · DOPAMINE DETOX & SCREEN SCREENER", 80, 110);
+
+  // Badge pill
+  const badgeText = result.profile.badge[lang] || result.profile.badge.en;
+  ctx.fillStyle = "rgba(245, 158, 11, 0.15)";
+  drawRoundedRect(ctx, 80, 150, 380, 52, 26);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(245, 158, 11, 0.4)";
+  ctx.stroke();
+
+  ctx.fillStyle = "#FBBF24";
+  ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(badgeText.toUpperCase(), 105, 184);
+
+  // Title
+  const titleText = result.profile.title[lang] || result.profile.title.en;
+  ctx.fillStyle = "#FFFFFF";
+  ctx.font = "900 52px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  wrapText(ctx, titleText, 80, 265, width - 160, 62, 2);
+
+  // Tagline
+  const tagline = result.profile.tagline[lang] || result.profile.tagline.en;
+  ctx.fillStyle = "#FDE68A";
+  ctx.font = "italic 26px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  wrapText(ctx, `"${tagline}"`, 80, 360, width - 160, 36, 2);
+
+  // 3 Pillar Score Cards
+  const cardY = 440;
+  const colWidth = (width - 160 - 40) / 3;
+
+  // Pillar 1: Compulsion
+  ctx.fillStyle = "rgba(255, 255, 255, 0.04)";
+  drawRoundedRect(ctx, 80, cardY, colWidth, 180, 24);
+  ctx.fill();
+  ctx.fillStyle = "#F59E0B";
+  ctx.font = "bold 20px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("COMPULSION", 100, cardY + 45);
+  ctx.font = "900 48px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillStyle = "#FFFFFF";
+  ctx.fillText(`${result.percentages.compulsion}%`, 100, cardY + 110);
+
+  // Pillar 2: Hedonic Depletion
+  ctx.fillStyle = "rgba(255, 255, 255, 0.04)";
+  drawRoundedRect(ctx, 80 + colWidth + 20, cardY, colWidth, 180, 24);
+  ctx.fill();
+  ctx.fillStyle = "#FB923C";
+  ctx.font = "bold 20px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("DEPLETION", 100 + colWidth + 20, cardY + 45);
+  ctx.font = "900 48px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillStyle = "#FFFFFF";
+  ctx.fillText(`${result.percentages.hedonic}%`, 100 + colWidth + 20, cardY + 110);
+
+  // Pillar 3: Boredom Intolerance
+  ctx.fillStyle = "rgba(255, 255, 255, 0.04)";
+  drawRoundedRect(ctx, 80 + (colWidth + 20) * 2, cardY, colWidth, 180, 24);
+  ctx.fill();
+  ctx.fillStyle = "#F87171";
+  ctx.font = "bold 20px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("BOREDOM", 100 + (colWidth + 20) * 2, cardY + 45);
+  ctx.font = "900 48px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillStyle = "#FFFFFF";
+  ctx.fillText(`${result.percentages.boredom}%`, 100 + (colWidth + 20) * 2, cardY + 110);
+
+  // Description Box
+  ctx.fillStyle = "rgba(255, 255, 255, 0.04)";
+  drawRoundedRect(ctx, 80, 660, width - 160, 200, 28);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(245, 158, 11, 0.2)";
+  ctx.stroke();
+
+  ctx.fillStyle = "#FBBF24";
+  ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("NEURAL RECEPTOR DIAGNOSIS", 120, 710);
+
+  const descText = result.profile.description[lang] || result.profile.description.en;
+  ctx.fillStyle = "#E2E8F0";
+  ctx.font = "26px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  wrapText(ctx, descText, 120, 755, width - 240, 38, 3);
+
+  // Dopamine Fasting Protocol Box
+  ctx.fillStyle = "rgba(245, 158, 11, 0.08)";
+  drawRoundedRect(ctx, 80, 890, width - 160, 220, 28);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(245, 158, 11, 0.35)";
+  ctx.stroke();
+
+  ctx.fillStyle = "#F59E0B";
+  ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("RECOMMENDED FASTING PROTOCOL", 120, 940);
+
+  const tipText = (result.profile.fastingProtocol[lang] || result.profile.fastingProtocol.en)[0] || "";
+  ctx.fillStyle = "#FEF3C7";
+  ctx.font = "italic 26px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  wrapText(ctx, `"${tipText}"`, 120, 985, width - 240, 36, 3);
+
+  // Footer CTA
+  ctx.fillStyle = "rgba(255, 255, 255, 0.5)";
+  ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("Screen your screen addiction & dopamine tolerance free at:", 80, 1220);
+
+  ctx.fillStyle = "#F59E0B";
+  ctx.font = "900 30px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("nuju.app/quiz/dopamine-detox", 80, 1260);
+
+  const dataUrl = canvas.toDataURL("image/png", 0.95);
+  const blob = await new Promise<Blob>((resolve, reject) => {
+    canvas.toBlob((b) => (b ? resolve(b) : reject(new Error("Failed blob"))), "image/png", 0.95);
+  });
+  const file = new File([blob], `ju-dopamine-${result.level}.png`, { type: "image/png" });
+
+  return { dataUrl, blob, file };
+}
+
+export interface VagalCardInput {
+  dominantState: string;
+  profile: VagalProfile;
+  percentages: {
+    ventral: number;
+    sympathetic: number;
+    dorsal: number;
+  };
+}
+
+export async function generateNervousSystemCard(
+  result: VagalCardInput,
+  lang: VagalLang = "en"
+): Promise<{ dataUrl: string; blob: Blob; file: File }> {
+  const width = 1080;
+  const height = 1350;
+  const canvas = document.createElement("canvas");
+  canvas.width = width;
+  canvas.height = height;
+  const ctx = canvas.getContext("2d");
+  if (!ctx) throw new Error("Could not get 2d context");
+
+  // Background
+  const bgGrad = ctx.createLinearGradient(0, 0, width, height);
+  bgGrad.addColorStop(0, "#06130D");
+  bgGrad.addColorStop(0.5, "#0D2218");
+  bgGrad.addColorStop(1, "#030A07");
+  ctx.fillStyle = bgGrad;
+  ctx.fillRect(0, 0, width, height);
+
+  // Soft glowing emerald orb in upper right
+  const orb = ctx.createRadialGradient(width - 150, 200, 20, width - 150, 200, 450);
+  orb.addColorStop(0, "rgba(16, 185, 129, 0.25)");
+  orb.addColorStop(1, "rgba(16, 185, 129, 0)");
+  ctx.fillStyle = orb;
+  ctx.fillRect(0, 0, width, height);
+
+  // Brand Header
+  ctx.fillStyle = "#10B981";
+  ctx.font = "bold 26px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("JU · POLYVAGAL NERVOUS SYSTEM METER", 80, 110);
+
+  // Badge pill
+  const badgeText = result.profile.badge[lang] || result.profile.badge.en;
+  ctx.fillStyle = "rgba(16, 185, 129, 0.15)";
+  drawRoundedRect(ctx, 80, 150, 430, 52, 26);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(16, 185, 129, 0.4)";
+  ctx.stroke();
+
+  ctx.fillStyle = "#34D399";
+  ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(badgeText.toUpperCase(), 105, 184);
+
+  // Title
+  const titleText = result.profile.title[lang] || result.profile.title.en;
+  ctx.fillStyle = "#FFFFFF";
+  ctx.font = "900 52px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  wrapText(ctx, titleText, 80, 265, width - 160, 62, 2);
+
+  // Tagline
+  const tagline = result.profile.tagline[lang] || result.profile.tagline.en;
+  ctx.fillStyle = "#A7F3D0";
+  ctx.font = "italic 26px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  wrapText(ctx, `"${tagline}"`, 80, 360, width - 160, 36, 2);
+
+  // 3 Pillar Score Cards
+  const cardY = 440;
+  const colWidth = (width - 160 - 40) / 3;
+
+  // Pillar 1: Ventral Safety
+  ctx.fillStyle = "rgba(255, 255, 255, 0.04)";
+  drawRoundedRect(ctx, 80, cardY, colWidth, 180, 24);
+  ctx.fill();
+  ctx.fillStyle = "#10B981";
+  ctx.font = "bold 20px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("VENTRAL", 100, cardY + 45);
+  ctx.font = "900 48px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillStyle = "#FFFFFF";
+  ctx.fillText(`${result.percentages.ventral}%`, 100, cardY + 110);
+
+  // Pillar 2: Sympathetic Fight/Flight
+  ctx.fillStyle = "rgba(255, 255, 255, 0.04)";
+  drawRoundedRect(ctx, 80 + colWidth + 20, cardY, colWidth, 180, 24);
+  ctx.fill();
+  ctx.fillStyle = "#F59E0B";
+  ctx.font = "bold 20px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("SYMPATHETIC", 100 + colWidth + 20, cardY + 45);
+  ctx.font = "900 48px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillStyle = "#FFFFFF";
+  ctx.fillText(`${result.percentages.sympathetic}%`, 100 + colWidth + 20, cardY + 110);
+
+  // Pillar 3: Dorsal Freeze
+  ctx.fillStyle = "rgba(255, 255, 255, 0.04)";
+  drawRoundedRect(ctx, 80 + (colWidth + 20) * 2, cardY, colWidth, 180, 24);
+  ctx.fill();
+  ctx.fillStyle = "#818CF8";
+  ctx.font = "bold 20px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("DORSAL", 100 + (colWidth + 20) * 2, cardY + 45);
+  ctx.font = "900 48px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillStyle = "#FFFFFF";
+  ctx.fillText(`${result.percentages.dorsal}%`, 100 + (colWidth + 20) * 2, cardY + 110);
+
+  // Description Box
+  ctx.fillStyle = "rgba(255, 255, 255, 0.04)";
+  drawRoundedRect(ctx, 80, 660, width - 160, 200, 28);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(16, 185, 129, 0.2)";
+  ctx.stroke();
+
+  ctx.fillStyle = "#34D399";
+  ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("AUTONOMIC NERVOUS SYSTEM DIAGNOSIS", 120, 710);
+
+  const descText = result.profile.description[lang] || result.profile.description.en;
+  ctx.fillStyle = "#E2E8F0";
+  ctx.font = "26px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  wrapText(ctx, descText, 120, 755, width - 240, 38, 3);
+
+  // Regulation Drill Box
+  ctx.fillStyle = "rgba(16, 185, 129, 0.08)";
+  drawRoundedRect(ctx, 80, 890, width - 160, 220, 28);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(16, 185, 129, 0.35)";
+  ctx.stroke();
+
+  ctx.fillStyle = "#10B981";
+  ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("IMMEDIATE SOMATIC REGULATION DRILL", 120, 940);
+
+  const drillText = result.profile.regulationDrill[lang] || result.profile.regulationDrill.en;
+  ctx.fillStyle = "#D1FAE5";
+  ctx.font = "italic 26px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  wrapText(ctx, `"${drillText}"`, 120, 985, width - 240, 36, 3);
+
+  // Footer CTA
+  ctx.fillStyle = "rgba(255, 255, 255, 0.5)";
+  ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("Scan your fight, flight, or freeze state free at:", 80, 1220);
+
+  ctx.fillStyle = "#10B981";
+  ctx.font = "900 30px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("nuju.app/quiz/nervous-system", 80, 1260);
+
+  const dataUrl = canvas.toDataURL("image/png", 0.95);
+  const blob = await new Promise<Blob>((resolve, reject) => {
+    canvas.toBlob((b) => (b ? resolve(b) : reject(new Error("Failed blob"))), "image/png", 0.95);
+  });
+  const file = new File([blob], `ju-vagal-${result.dominantState}.png`, { type: "image/png" });
+
+  return { dataUrl, blob, file };
+}
+
+
 
 
 
