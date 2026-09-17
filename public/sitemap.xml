@@ -579,6 +579,30 @@
     <changefreq>weekly</changefreq>
   </url>
   <url>
+    <loc>https://nuju.app/quiz/betrayal-trauma</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.95</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/quiz/betrayal-blindness</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.9</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/quiz/pda-demand-avoidance</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.95</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/quiz/pathological-demand-avoidance</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.9</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
     <loc>https://nuju.app/quiz/baterai-emosi</loc>
     <lastmod>2026-09-17</lastmod>
     <priority>0.9</priority>
@@ -7858,6 +7882,150 @@
       <image:caption>Master the science of low-demand living. Learn how neurodivergent individuals and families can strip away artificial societal pressures to restore regulated autonomic baseline.</image:caption>
     </image:image>
     <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/low-demand-parenting-lifestyle-pda-nervous-system-reset"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/betrayal-trauma-recovery-guide-infidelity-gaslighting</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>The Betrayal Trauma Recovery Blueprint: How to Rebuild Your Intuition and Nervous System After Systemic Deceit</image:title>
+      <image:caption>A clinical guide to surviving intimate betrayal, infidelities, and relational gaslighting. Learn the three somatic stages to reconstruct gut trust and nervous system safety.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/betrayal-trauma-recovery-guide-infidelity-gaslighting"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/adult-pda-adhd-autism-autonomy-survival-guide</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>The Adult PDA Survival Handbook: Why Traditional Productivity Advice Destroys Your Autistic-ADHD Nervous System</image:title>
+      <image:caption>Why do Pomodoro timers, habit trackers, and to-do lists trigger catastrophic shutdown for PDA adults? Discover the low-demand architecture that restores natural motivation.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/adult-pda-adhd-autism-autonomy-survival-guide"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/cara-sembuh-dari-betrayal-trauma-diselingkuhi-pasangan</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Panduan Memulihkan Intuisi Pasca Diselingkuhi: Mengapa Maaf Saja Tidak Cukup untuk Menenangkan Saraf Vagus?</image:title>
+      <image:caption>Perselingkuhan bukan sekadar masalah komitmen yang patah, melainkan gempa neurobiologis pada tubuh korban. Simak tahapan klinis mengembalikan rasa percaya pada diri sendiri.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="id" href="https://nuju.app/blog/cara-sembuh-dari-betrayal-trauma-diselingkuhi-pasangan"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/strategi-otak-pda-alergi-tuntutan-produktivitas-dewasa</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Kenapa Bikin To-Do List Malah Bikin Otak Lumpuh? Cara Kerja Otak PDA dan Solusi Produktivitas Rendah Tekanan</image:title>
+      <image:caption>Makin dipaksa disiplin, makin mogok dan burnout? Kenali profil Pathological Demand Avoidance (PDA) pada orang dewasa dan cara menerapkan gaya hidup low-demand.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="id" href="https://nuju.app/blog/strategi-otak-pda-alergi-tuntutan-produktivitas-dewasa"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/verratstrauma-behandeln-selbstvertrauen-nach-betrug</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Verratstrauma heilen: Wie Sie Ihr körperliches Urvertrauen nach Untreue und Manipulation zurückgewinnen</image:title>
+      <image:caption>Wenn Vertrauen in den Grundfesten erschüttert wird: Klinischer Leitfaden zur somatischen Heilung nach Verrat und emotionalem Betrug nach Dr. Jennifer Freyd.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="de" href="https://nuju.app/blog/verratstrauma-behandeln-selbstvertrauen-nach-betrug"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/pda-am-arbeitsplatz-autismus-adhs-berufliche-strategien</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>PDA im Berufsleben: Wie Erwachsene mit extremem Autonomiedrang Fristen und Hierarchien meistern</image:title>
+      <image:caption>Warum herkömmliche Produktivitätsmethoden bei PDA-Erwachsenen zu Blockaden führen und wie eine &apos;Low-Demand&apos;-Arbeitsweise beruflichen Erfolg sichert.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="de" href="https://nuju.app/blog/pda-am-arbeitsplatz-autismus-adhs-berufliche-strategien"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/guerir-du-traumatisme-de-la-trahison-reconstruire-l-estime</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Guérir du Traumatisme de la Trahison : Comment Réparer le Nerf Vague et Réapprendre à Se Faire Confiance</image:title>
+      <image:caption>Guide somatique et psychologique pour surmonter l&apos;infidélité systémique et la cécité inconsciente. Retrouvez votre ancrage corporel.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://nuju.app/blog/guerir-du-traumatisme-de-la-trahison-reconstruire-l-estime"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/profil-pda-adulte-strategies-antipanique-travail-quotidien</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Le Profil PDA chez l&apos;Adulte : Pourquoi les Méthodes d&apos;Organisation Classiques Aggravent Votre Épuisement</image:title>
+      <image:caption>To-do lists, réveils stricts et contraintes : découvrez pourquoi les profils au besoin pervasif d&apos;autonomie (PDA) se bloquent face à la pression.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://nuju.app/blog/profil-pda-adulte-strategies-antipanique-travail-quotidien"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/sanar-el-trauma-por-traicion-recuperar-la-seguridad-visceral</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Cómo Sanar el Trauma por Traición: Restaurar la Confianza en tu Cuerpo y Superar la Negación Inconsciente</image:title>
+      <image:caption>Guía terapéutica para recuperarse tras descubrir engaños o infidelidades sistemáticas. Claves somáticas para regular el nervio vago y volver a confiar en tu instinto.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="es" href="https://nuju.app/blog/sanar-el-trauma-por-traicion-recuperar-la-seguridad-visceral"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/perfil-pda-adultos-superar-paralisis-demandas-cotidianas</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>El Perfil PDA en Adultos: Por Qué las Listas de Tareas Bloquean tu Cerebro Neurodivergente y Cómo Vivir en Baja Demanda</image:title>
+      <image:caption>¿Las exigencias externas e internas te paralizan en seco? Descubre el impulso pervasivo de autonomía (PDA) y las estrategias para desactivar el pánico.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="es" href="https://nuju.app/blog/perfil-pda-adultos-superar-paralisis-demandas-cotidianas"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/polyvagal-vow-of-silence-why-betrayal-freezes-the-voice</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>The Polyvagal Vow of Silence: Why Interpersonal Deception Freezes the Larynx and How Voice Journaling Unlocks It</image:title>
+      <image:caption>Explore the physiological connection between traumatic deceit, laryngeal constriction, and vocal biomarker shifts. Learn how expressive vocalization re-regulates the ventral vagal complex.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/polyvagal-vow-of-silence-why-betrayal-freezes-the-voice"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/declarative-micro-habits-reversing-pda-demand-burnout</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Declarative Micro-Habits: The Counter-Intuitive System That Allowed 120 PDA Adults to Escape Bed-Lock</image:title>
+      <image:caption>Case studies and clinical frameworks demonstrating how replacing imperatives with declarative phrasing resolves chronic task freeze and autistic-ADHD burnout.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/declarative-micro-habits-reversing-pda-demand-burnout"/>
   </url>
   <url>
     <loc>https://nuju.app/blog/how-to-stop-overthinking-at-night</loc>

@@ -1485,6 +1485,68 @@ export function getQuizAndToolPages({
         },
       ],
     },
+    {
+      route: "/quiz/betrayal-trauma",
+      aliases: ["/quiz/betrayal-blindness", "/tes-trauma-pengkhianatan"],
+      title: "Betrayal Trauma & Betrayal Blindness Test: Free Clinical Infidelity Screener",
+      description:
+        "Did you overlook obvious signs of deceit to keep your relationship intact? Free 12-item clinical screener based on Dr. Jennifer Freyd's Betrayal Trauma theory measuring blindness, hypervigilance, and gut disruption.",
+      category: "Trauma & Attachment Neurobiology",
+      duration: "90 secs",
+      itemsCount: 12,
+      framework: "Dr. Jennifer Freyd (Betrayal Trauma & Betrayal Blindness)",
+      overview:
+        "Betrayal trauma occurs when people or institutions we depend on for survival violate our core trust. This screener measures betrayal blindness (unconscious denial), hypervigilant scanning, and somatic enteric gut-brain shock.",
+      keyPoints: [
+        "Measures betrayal blindness, gaslighting doubt, and self-blame for 'ignoring red flags'",
+        "Assesses relational hypervigilance, text scanning, and persistent suspicion",
+        "Evaluates interoceptive gut shocks, nausea, and autonomic sleep disruptions",
+        "Provides grounding protocols, reality-anchoring documentation, and self-compassion tools",
+      ],
+      faqs: [
+        {
+          question: "What is betrayal blindness?",
+          answer:
+            "Betrayal blindness is an unconscious survival mechanism where a dependent person remains unaware of betrayal or abuse to preserve essential attachment and safety.",
+        },
+        {
+          question: "How does betrayal trauma affect the body?",
+          answer:
+            "Severe deception triggers the dorsal vagal complex, leading to acute digestive shutdown (hypochlorhydria, nausea, IBS), sudden tachycardia, and severe hyper-arousal.",
+        },
+      ],
+    },
+    {
+      route: "/quiz/pda-demand-avoidance",
+      aliases: ["/quiz/pathological-demand-avoidance", "/tes-pda-alergi-perintah"],
+      title: "Pathological Demand Avoidance (PDA) Test: Free Autonomy & Demand Resistance Screener",
+      description:
+        "Does being told what to do trigger intense rage, panic, or catatonic task freeze? Free 12-item neurodivergent screener measuring Pathological Demand Avoidance and Pervasive Drive for Autonomy in ADHD and Autism.",
+      category: "Neurodivergence & Executive Function",
+      duration: "90 secs",
+      itemsCount: 12,
+      framework: "Dr. Elizabeth Newson & Modern Pervasive Drive for Autonomy (PDA) Models",
+      overview:
+        "Pathological Demand Avoidance (PDA) is a neurodivergent profile where direct demands, expectations, and even personal self-care goals trigger an involuntary fight-or-flight panic response to protect personal autonomy.",
+      keyPoints: [
+        "Measures autonomy threat panic when receiving direct instructions or scheduled deadlines",
+        "Assesses internal demand paralysis—avoiding activities you love once they feel like obligations",
+        "Evaluates social masking, deflection through humor, and sudden physical symptoms",
+        "Provides low-demand lifestyle design, declarative language frameworks, and autonomy restoration",
+      ],
+      faqs: [
+        {
+          question: "What is Pathological Demand Avoidance (PDA)?",
+          answer:
+            "PDA is a profile within the neurodiversity spectrum where the brain's threat circuitry interprets demands and loss of autonomy as imminent danger, causing compulsive avoidance.",
+        },
+        {
+          question: "What is declarative language for PDA?",
+          answer:
+            "Declarative language replaces imperative commands ('Put your shoes on') with neutral, factual statements ('The shoes are next to the door'), removing the perceived coercion.",
+        },
+      ],
+    },
 
     // 3. Somatic & Regulation Tools
     {

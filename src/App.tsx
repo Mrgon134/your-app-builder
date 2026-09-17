@@ -90,6 +90,8 @@ const SplittingTest = lazy(() => import("./pages/SplittingTest.tsx"));
 const ToxicShameTest = lazy(() => import("./pages/ToxicShameTest.tsx"));
 const RSDTest = lazy(() => import("./pages/RsdScreenerTest.tsx"));
 const DopamineBurnoutTest = lazy(() => import("./pages/DopamineBurnoutTest.tsx"));
+const BetrayalTraumaTest = lazy(() => import("./pages/BetrayalTraumaTest.tsx"));
+const PdaTest = lazy(() => import("./pages/PdaTest.tsx"));
 const EbookSalesPage = lazy(() => import("./pages/EbookSalesPage.tsx"));
 const EbookReaderPage = lazy(() => import("./pages/EbookReaderPage.tsx"));
 const NotFound = lazy(() => import("./pages/NotFound.tsx"));
@@ -338,6 +340,12 @@ const App = () => (
                   <Route path="/quiz/toxic-shame" element={<ToxicShameTest />} />
                   <Route path="/quiz/internalized-shame" element={<ToxicShameTest />} />
                   <Route path="/tes-toxic-shame" element={<ToxicShameTest defaultLang="id" />} />
+                  <Route path="/quiz/betrayal-trauma" element={<BetrayalTraumaTest />} />
+                  <Route path="/quiz/betrayal-blindness" element={<BetrayalTraumaTest />} />
+                  <Route path="/tes-trauma-pengkhianatan" element={<BetrayalTraumaTest defaultLang="id" />} />
+                  <Route path="/quiz/pda-demand-avoidance" element={<PdaTest />} />
+                  <Route path="/quiz/pathological-demand-avoidance" element={<PdaTest />} />
+                  <Route path="/tes-pda-alergi-perintah" element={<PdaTest defaultLang="id" />} />
                   <Route path="/quiz/:quizId" element={<QuizRunner />} />
                   <Route path="/test-psikologi" element={<QuizHub />} />
                   <Route path="/test-psikologi/:quizId" element={<QuizRunner />} />
