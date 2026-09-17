@@ -84,6 +84,8 @@ const EmotionalNumbnessTest = lazy(() => import("./pages/EmotionalNumbnessTest.t
 const ToxicIndependenceTest = lazy(() => import("./pages/ToxicIndependenceTest.tsx"));
 const CompassionFatigueTest = lazy(() => import("./pages/CompassionFatigueTest.tsx"));
 const IntimacyAvoidanceTest = lazy(() => import("./pages/IntimacyAvoidanceTest.tsx"));
+const FawnResponseTest = lazy(() => import("./pages/FawnResponseTest.tsx"));
+const FinancialAnxietyTest = lazy(() => import("./pages/FinancialAnxietyTest.tsx"));
 const EbookSalesPage = lazy(() => import("./pages/EbookSalesPage.tsx"));
 const EbookReaderPage = lazy(() => import("./pages/EbookReaderPage.tsx"));
 const NotFound = lazy(() => import("./pages/NotFound.tsx"));
@@ -314,6 +316,12 @@ const App = () => (
                   <Route path="/quiz/intimacy-avoidance" element={<IntimacyAvoidanceTest />} />
                   <Route path="/quiz/intimacy-anorexia" element={<IntimacyAvoidanceTest />} />
                   <Route path="/tes-penghindaran-keintiman" element={<IntimacyAvoidanceTest defaultLang="id" />} />
+                  <Route path="/quiz/fawn-response" element={<FawnResponseTest />} />
+                  <Route path="/quiz/people-pleasing-fawn" element={<FawnResponseTest />} />
+                  <Route path="/tes-fawn-response" element={<FawnResponseTest defaultLang="id" />} />
+                  <Route path="/quiz/financial-anxiety" element={<FinancialAnxietyTest />} />
+                  <Route path="/quiz/scarcity-mindset" element={<FinancialAnxietyTest />} />
+                  <Route path="/tes-scarcity-mindset" element={<FinancialAnxietyTest defaultLang="id" />} />
                   <Route path="/quiz/:quizId" element={<QuizRunner />} />
                   <Route path="/test-psikologi" element={<QuizHub />} />
                   <Route path="/test-psikologi/:quizId" element={<QuizRunner />} />

@@ -507,6 +507,30 @@
     <changefreq>weekly</changefreq>
   </url>
   <url>
+    <loc>https://nuju.app/quiz/fawn-response</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.95</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/quiz/people-pleasing-fawn</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.9</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/quiz/financial-anxiety</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.95</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/quiz/scarcity-mindset</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.9</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
     <loc>https://nuju.app/quiz/baterai-emosi</loc>
     <lastmod>2026-09-17</lastmod>
     <priority>0.9</priority>
@@ -7210,6 +7234,150 @@
       <image:caption>For hyper-independent and intimacy-avoidant individuals, opening up feels like stepping off a cliff. Learn 4 somatic micro-steps to build genuine closeness while maintaining firm personal boundaries.</image:caption>
     </image:image>
     <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/micro-vulnerability-drills-let-someone-in-without-losing-control"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/the-fawn-response-report-2026-nuju-data-study</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>The 2026 Fawn Response Report: What 150,000 Mood Reflections Reveal About Trauma-Driven People-Pleasing</image:title>
+      <image:caption>Nuju Data Lab analyzed 150,000 anonymized reflection check-ins. Discover why 83% of compulsive people-pleasers experience acute physical throat tightness and secret rage when suppressing boundaries.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/the-fawn-response-report-2026-nuju-data-study"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/scarcity-bandwidth-tax-why-money-anxiety-depletes-brain</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>The Scarcity Bandwidth Tax: Why Financial Anxiety Drains 13 IQ Points Regardless of Your Actual Bank Balance</image:title>
+      <image:caption>Nuju Data Lab study of 150,000 reflections reveals how childhood financial precarity locks high earners into chronic phantom poverty and executive decision fatigue.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/scarcity-bandwidth-tax-why-money-anxiety-depletes-brain"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/cara-menghentikan-refleks-fawn-people-pleasing-trauma</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Cara Menghentikan Refleks Fawn: Kenapa Kamu Selalu Minta Maaf dan Takut Setengah Mati Berkata &apos;Tidak&apos;</image:title>
+      <image:caption>Sering tersenyum saat dimarahi, menelan pendapat sendiri, dan merasa bersalah saat menolak ajakan? Pelajari psikologi trauma refleks Fawn (Pete Walker) dan cara memulihkannya.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="id" href="https://nuju.app/blog/cara-menghentikan-refleks-fawn-people-pleasing-trauma"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/phantom-poverty-punya-tabungan-tapi-selalu-takut-miskin</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Phantom Poverty: Mengapa Kamu yang Punya Tabungan Aman Masih Saja Dihantui Ketakutan Jatuh Miskin?</image:title>
+      <image:caption>Merasa bersalah saat beli makanan enak, panik saat cek saldo, dan terobsesi hitung uang? Simak riset cognitive bandwidth tax dan cara sembuhkan trauma finansial masa kecil.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="id" href="https://nuju.app/blog/phantom-poverty-punya-tabungan-tapi-selalu-takut-miskin"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/die-fawn-response-verstehen-warum-uebertriebene-gefaelligkeit-ein-trauma-ist</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Die Fawn-Response verstehen: Warum übertriebene Gefälligkeit und Konfliktangst unbewusste Traumareflexe sind</image:title>
+      <image:caption>Lächeln Sie bei Aggressionen und entschuldigen sich für Ihre Existenz? Erfahren Sie die neurobiologischen Ursachen der Fawn-Reaktion nach Pete Walker und wie Sie gesunde Grenzen etablieren.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="de" href="https://nuju.app/blog/die-fawn-response-verstehen-warum-uebertriebene-gefaelligkeit-ein-trauma-ist"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/finanzangst-ueberwinden-wie-die-kognitive-knappheitssteuer-das-gehirn-laehmt</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Finanzangst überwinden: Wie die kognitive Knappheitssteuer Ihr Gehirn lähmt und ständige Panik erzeugt</image:title>
+      <image:caption>Erzeugt der Blick aufs Bankkonto Herzrasen, obwohl Ersparnisse vorhanden sind? Entdecken Sie die Harvard-Forschung von Mullainathan &amp; Shafir über Geldtraumata und Phantomschmerz der Armut.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="de" href="https://nuju.app/blog/finanzangst-ueberwinden-wie-die-kognitive-knappheitssteuer-das-gehirn-laehmt"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/le-reflexe-de-soumission-fawn-pourquoi-plaire-est-une-reponse-au-trauma</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Le réflexe de soumission (Fawn): Pourquoi vouloir plaire à tout prix est une blessure traumatique</image:title>
+      <image:caption>Souriez-vous face à la colère d&apos;autrui en étouffant vos propres besoins ? Découvrez la quatrième réponse au stress identifiée par Pete Walker et comment sortir de la complaisance servile.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://nuju.app/blog/le-reflexe-de-soumission-fawn-pourquoi-plaire-est-une-reponse-au-trauma"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/lanxiete-financiere-invisible-pourquoi-depenser-declenche-une-culpabilite-toxique</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>L&apos;anxiété financière invisible: Pourquoi dépenser pour soi déclenche une culpabilité viscérale</image:title>
+      <image:caption>Paniquez-vous en regardant votre compte malgré un salaire confortable ? Comprenez la taxe de pénurie cognitive selon Mullainathan &amp; Shafir et comment guérir le syndrome de pauvreté fantôme.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://nuju.app/blog/lanxiete-financiere-invisible-pourquoi-depenser-declenche-une-culpabilite-toxique"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/la-respuesta-fawn-por-que-complacer-a-todos-anulo-tu-identidad</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>La respuesta Fawn: Por qué complacer a los demás terminó anulando tu propia identidad</image:title>
+      <image:caption>¿Sonríes cuando estás furioso y pides perdón por ocupar espacio? Descubre la cuarta respuesta al trauma según Pete Walker y cómo recuperar tu voz y límites.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="es" href="https://nuju.app/blog/la-respuesta-fawn-por-que-complacer-a-todos-anulo-tu-identidad"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/mentalidad-de-escasez-por-que-tener-ahorros-no-te-quita-el-miedo-a-la-quiebra</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Mentalidad de escasez: Por qué tener ahorros no te quita el miedo visceral a la quiebra personal</image:title>
+      <image:caption>¿Sientes náuseas al revisar tu cuenta y culpa al comprarte algo? Conoce la ciencia del impuesto de ancho de banda de Mullainathan &amp; Shafir y cómo sanar el trauma del dinero.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="es" href="https://nuju.app/blog/mentalidad-de-escasez-por-que-tener-ahorros-no-te-quita-el-miedo-a-la-quiebra"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/somatics-of-saying-no-throat-chest-panic-boundaries</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>The Somatics of Saying &apos;No&apos;: How to Regulate Throat Constriction and Chest Panic During Boundaries</image:title>
+      <image:caption>Why does setting a boundary feel like facing a firing squad? Explore polyvagal vagus nerve responses, vocal cord bracing, and 3 physical micro-drills to speak your truth calmly.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/somatics-of-saying-no-throat-chest-panic-boundaries"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/money-scripts-childhood-scarcity-rewire-financial-trauma</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Money Scripts and Childhood Scarcity: How to Rewire Generational Financial Trauma in 4 Steps</image:title>
+      <image:caption>Were you shaped by parental arguments over bills or the shame of empty cupboards? Discover Dr. Brad Klontz&apos;s 4 Money Scripts and learn how to rewrite your financial nervous system.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/money-scripts-childhood-scarcity-rewire-financial-trauma"/>
   </url>
   <url>
     <loc>https://nuju.app/blog/how-to-stop-overthinking-at-night</loc>

@@ -1299,6 +1299,68 @@ export function getQuizAndToolPages({
         },
       ],
     },
+    {
+      route: "/quiz/fawn-response",
+      aliases: ["/quiz/people-pleasing-fawn", "/tes-fawn-response"],
+      title: "Fawn Response Test: Free People-Pleaser & Trauma Appeasement Screener",
+      description:
+        "Smile when you're angry, apologize for existing, or erase your needs to keep the peace? Free 12-item clinical screener based on Pete Walker's Complex PTSD Fawn Model and Harriet Braiker's Disease to Please.",
+      category: "Trauma & Relational Psychology",
+      duration: "90 secs",
+      itemsCount: 12,
+      framework: "Pete Walker (Complex PTSD Fawn Model) & Dr. Harriet Braiker (Disease to Please)",
+      overview:
+        "The Fawn response is a trauma defense where individuals appease, placate, and merge with others' desires to avoid conflict, retaliation, or abandonment. It drives compulsive agreeableness, identity surrender, and toxic post-fawn resentment.",
+      keyPoints: [
+        "Measures compulsive appeasement, conflict phobia, and visceral panic when someone is irritated",
+        "Assesses identity erasure, inability to state preferences, and fear of saying 'No'",
+        "Evaluates post-fawn secret rage, passive-aggressive withdrawal, and martyrdom cycles",
+        "Provides somatic anger discharge drills, 24-hour pause protocols, and sovereign boundary scripts",
+      ],
+      faqs: [
+        {
+          question: "What is the fawn trauma response?",
+          answer:
+            "Coined by trauma therapist Pete Walker, fawning is the fourth trauma response alongside fight, flight, and freeze. Fawners seek safety by becoming helpful, agreeable, and compliant to aggressors or demanding partners.",
+        },
+        {
+          question: "Is people-pleasing always a trauma response?",
+          answer:
+            "Kindness is healthy when it is voluntary. When people-pleasing is driven by acute panic, physical chest tightness, and total inability to say 'No', it is a trauma-conditioned fawn reflex.",
+        },
+      ],
+    },
+    {
+      route: "/quiz/financial-anxiety",
+      aliases: ["/quiz/scarcity-mindset", "/tes-scarcity-mindset"],
+      title: "Financial Anxiety Test: Free Scarcity Mindset & Money Trauma Screener",
+      description:
+        "Panic when checking your bank account, terrified of destitution despite savings, or drowning in guilt over basic purchases? Free 12-item clinical screener based on Mullainathan & Shafir's Scarcity Bandwidth Tax and Brad Klontz's Money Scripts.",
+      category: "Cognitive Bandwidth & Stress",
+      duration: "90 secs",
+      itemsCount: 12,
+      framework: "Sendhil Mullainathan & Eldar Shafir (Scarcity Bandwidth) & Dr. Brad Klontz (Money Scripts)",
+      overview:
+        "Financial anxiety and scarcity mindset tax cognitive bandwidth, creating tunneling where the brain obsesses over imagined financial ruin regardless of objective wealth. It leads to compulsive hoarding, spending guilt, and compensatory binging.",
+      keyPoints: [
+        "Measures cognitive bandwidth tax, money rumination, and decision fatigue around pricing",
+        "Assesses catastrophic destitution phobia, phantom poverty dread, and fear of homelessness",
+        "Evaluates deprivation guilt, hoarding broken items, and impulsive revenge-spending cycles",
+        "Provides somatic grounding anchors, dedicated weekly financial windows, and abundance protocols",
+      ],
+      faqs: [
+        {
+          question: "What is the cognitive bandwidth tax of scarcity?",
+          answer:
+            "Harvard and Princeton research demonstrates that worrying about financial scarcity consumes working memory and executive control, lowering effective fluid intelligence by up to 13 IQ points during financial triggers.",
+        },
+        {
+          question: "Why do I feel poor even when I have savings?",
+          answer:
+            "Childhood experiences of financial precarity or parental arguments condition the nervous system to treat spending as a threat to physical survival, leaving deep 'phantom poverty' somatic memories.",
+        },
+      ],
+    },
 
     // 3. Somatic & Regulation Tools
     {
