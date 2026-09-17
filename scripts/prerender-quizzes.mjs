@@ -1237,6 +1237,68 @@ export function getQuizAndToolPages({
         },
       ],
     },
+    {
+      route: "/quiz/compassion-fatigue",
+      aliases: ["/quiz/empathy-burnout", "/tes-kelelahan-empati"],
+      title: "Compassion Fatigue Test: Free Empathic Burnout & Emotional Exhaustion Screener",
+      description:
+        "Drained by listening to others, emotionally blunted, or cynical towards loved ones? Free 12-item clinical screener based on Charles Figley's Compassion Fatigue Model and Christina Maslach's Burnout Inventory.",
+      category: "Burnout & Empathic Health",
+      duration: "90 secs",
+      itemsCount: 12,
+      framework: "Charles Figley (Compassion Fatigue Model) & Christina Maslach (Burnout Inventory)",
+      overview:
+        "Compassion fatigue is the profound physical, emotional, and spiritual exhaustion that occurs when an individual absorbs the suffering and trauma of others without adequate emotional buffering. It leads to empathic depletion, protective cynicism, and vicarious trauma.",
+      keyPoints: [
+        "Measures empathic depletion, sensory saturation, and inability to resonate with others' feelings",
+        "Assesses protective cynicism, irritable numbness, and emotional callousness as survival defenses",
+        "Evaluates vicarious trauma, absorbed distress, and secondhand emotional burden",
+        "Provides somatic recovery exercises, emotional boundaries, and caring detachment protocols",
+      ],
+      faqs: [
+        {
+          question: "What is the difference between burnout and compassion fatigue?",
+          answer:
+            "Burnout is typically a gradual reaction to workplace workload and systemic stress. Compassion fatigue specifically arises from empathic engagement with others' suffering, often accompanied by secondary traumatic stress symptoms.",
+        },
+        {
+          question: "Can non-healthcare workers get compassion fatigue?",
+          answer:
+            "Yes. Parents, teachers, managers, supportive friends, and highly sensitive individuals (HSPs) frequently suffer from compassion fatigue from continually absorbing emotional weight.",
+        },
+      ],
+    },
+    {
+      route: "/quiz/intimacy-avoidance",
+      aliases: ["/quiz/intimacy-anorexia", "/tes-penghindaran-keintiman"],
+      title: "Intimacy Avoidance Test: Free Intimacy Anorexia & Emotional Guarding Screener",
+      description:
+        "Do you pull away when someone gets close, hide behind busyness, or find flaws in partners? Free 12-item clinical screener based on Doug Weiss's Intimacy Anorexia model and Harville Hendrix's Imago Therapy.",
+      category: "Attachment & Relational Psychology",
+      duration: "90 secs",
+      itemsCount: 12,
+      framework: "Dr. Doug Weiss (Intimacy Anorexia) & Dr. Harville Hendrix (Imago Therapy)",
+      overview:
+        "Intimacy avoidance (or intimacy anorexia) is the active withholding of emotional, physical, and spiritual intimacy from a partner or close companion. It functions as an unacknowledged armor against vulnerability, abandonment, or engulfment.",
+      keyPoints: [
+        "Measures affection withholding, avoiding eye contact, and emotional distancing when connection deepens",
+        "Assesses busyness evasion, task saturation, and workaholism deployed to avoid one-on-one intimacy",
+        "Evaluates silent blame, flaw-finding defense mechanisms, and pre-emptive relational detachment",
+        "Provides micro-vulnerability exercises, nervous system safety anchors, and relational repair steps",
+      ],
+      faqs: [
+        {
+          question: "What is intimacy anorexia?",
+          answer:
+            "Intimacy anorexia, a concept developed by psychologist Dr. Doug Weiss, is the compulsive withholding of emotional, relational, and physical connection to avoid being hurt or engulfed.",
+        },
+        {
+          question: "How does busyness act as an intimacy barrier?",
+          answer:
+            "By continually overloading schedules with meetings, chores, and digital stimulation, individuals create a plausible excuse to avoid quiet, vulnerable, and deep emotional conversations.",
+        },
+      ],
+    },
 
     // 3. Somatic & Regulation Tools
     {

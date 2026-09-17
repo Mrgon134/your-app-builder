@@ -82,6 +82,8 @@ const AttachmentCompatibilityTest = lazy(() => import("./pages/AttachmentCompati
 const ExistentialDreadTest = lazy(() => import("./pages/ExistentialDreadTest.tsx"));
 const EmotionalNumbnessTest = lazy(() => import("./pages/EmotionalNumbnessTest.tsx"));
 const ToxicIndependenceTest = lazy(() => import("./pages/ToxicIndependenceTest.tsx"));
+const CompassionFatigueTest = lazy(() => import("./pages/CompassionFatigueTest.tsx"));
+const IntimacyAvoidanceTest = lazy(() => import("./pages/IntimacyAvoidanceTest.tsx"));
 const EbookSalesPage = lazy(() => import("./pages/EbookSalesPage.tsx"));
 const EbookReaderPage = lazy(() => import("./pages/EbookReaderPage.tsx"));
 const NotFound = lazy(() => import("./pages/NotFound.tsx"));
@@ -306,6 +308,12 @@ const App = () => (
                   <Route path="/quiz/toxic-independence" element={<ToxicIndependenceTest />} />
                   <Route path="/quiz/counter-dependency" element={<ToxicIndependenceTest />} />
                   <Route path="/tes-kemandirian-toksik" element={<ToxicIndependenceTest defaultLang="id" />} />
+                  <Route path="/quiz/compassion-fatigue" element={<CompassionFatigueTest />} />
+                  <Route path="/quiz/empathy-burnout" element={<CompassionFatigueTest />} />
+                  <Route path="/tes-kelelahan-empati" element={<CompassionFatigueTest defaultLang="id" />} />
+                  <Route path="/quiz/intimacy-avoidance" element={<IntimacyAvoidanceTest />} />
+                  <Route path="/quiz/intimacy-anorexia" element={<IntimacyAvoidanceTest />} />
+                  <Route path="/tes-penghindaran-keintiman" element={<IntimacyAvoidanceTest defaultLang="id" />} />
                   <Route path="/quiz/:quizId" element={<QuizRunner />} />
                   <Route path="/test-psikologi" element={<QuizHub />} />
                   <Route path="/test-psikologi/:quizId" element={<QuizRunner />} />
