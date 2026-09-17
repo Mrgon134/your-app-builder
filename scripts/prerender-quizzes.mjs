@@ -1113,6 +1113,68 @@ export function getQuizAndToolPages({
         },
       ],
     },
+    {
+      route: "/quiz/attachment-compatibility",
+      aliases: ["/quiz/relationship-attachment", "/tes-kompatibilitas-attachment"],
+      title: "Attachment Compatibility Test: Free Relationship Dynamics & Push-Pull Screener",
+      description:
+        "Trapped in an anxious-avoidant push-pull cycle or craving security? Free 12-item clinical screener based on Amir Levine's Attached and Sue Johnson's Emotionally Focused Therapy (EFT).",
+      category: "Relationship Psychology",
+      duration: "90 secs",
+      itemsCount: 12,
+      framework: "Amir Levine (Attached) & Sue Johnson Emotionally Focused Therapy (EFT)",
+      overview:
+        "Attachment compatibility screener evaluates relational push-pull patterns, hyperactivating protest behaviors, and avoidant deactivating strategies. It illuminates why anxious and avoidant partners become magnetically entangled in exhausting dances of pursuit and withdrawal.",
+      keyPoints: [
+        "Measures anxious pursuit, urgency spirals, and catastrophic abandonment fear",
+        "Evaluates avoidant deactivation, emotional shutdown, and hyper-independence defenses",
+        "Assesses protest behaviors such as stonewalling, guilt tripping, and retaliatory silence",
+        "Provides de-escalation communication scripts and earned security cultivation protocols",
+      ],
+      faqs: [
+        {
+          question: "Can an anxious and avoidant couple build a secure relationship?",
+          answer:
+            "Yes, through 'earned security.' When both partners recognize the attachment dance without blaming, learn each other's nervous system triggers, and practice de-escalation scripts, they can transform the trap into mutual safety.",
+        },
+        {
+          question: "What is a deactivating strategy in avoidant attachment?",
+          answer:
+            "A deactivating strategy is an unconscious behavioral or cognitive maneuver (such as fault-finding, pulling away during intimacy, or emotional shutdown) used to suppress attachment needs and maintain psychological distance.",
+        },
+      ],
+    },
+    {
+      route: "/quiz/existential-dread",
+      aliases: ["/quiz/quarter-life-crisis", "/tes-krisis-eksistensial"],
+      title: "Existential Dread Test: Free Quarter-Life Crisis & Purpose Screener",
+      description:
+        "Paralyzed by cosmic nihilism, time slipping away, or lack of agency? Free 12-item clinical screener based on Viktor Frankl's Logotherapy and Irvin Yalom's Existential Psychotherapy.",
+      category: "Existential Psychology",
+      duration: "90 secs",
+      itemsCount: 12,
+      framework: "Viktor Frankl Logotherapy & Irvin Yalom Existential Psychotherapy",
+      overview:
+        "Existential dread screener diagnoses cosmic nihilism, temporal finitude anxiety, and quarter-life purpose paralysis. It helps users unpack the gap between routine obligations and deep human meaning, transforming dread into tragic optimism and grounded personal agency.",
+      keyPoints: [
+        "Measures meaning vacuum, cosmic absurdity, and questioning the point of effort",
+        "Assesses temporal anxiety, ticking-clock dread, and panic over aging or missed potential",
+        "Evaluates agency deficit, autopilot living, and feeling like an external spectator to your life",
+        "Delivers Logotherapy values alignment, micro-meaning rituals, and daily stoic anchors",
+      ],
+      faqs: [
+        {
+          question: "Is existential dread normal in your 20s and 30s?",
+          answer:
+            "Yes. A quarter-life existential crisis is extremely common as individuals transition from structured academic paths to ambiguous adult realities, confronting mortality, career meaning, and freedom of choice.",
+        },
+        {
+          question: "What is Viktor Frankl's concept of 'Tragic Optimism'?",
+          answer:
+            "Tragic optimism is the capacity to remain optimistic and find meaning despite the 'tragic triad' of human existence: pain, guilt, and death. Meaning is not found in avoiding suffering, but in how we choose to respond to it.",
+        },
+      ],
+    },
 
     // 3. Somatic & Regulation Tools
     {

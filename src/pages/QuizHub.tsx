@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { ArrowRight, Brain, Clock, Heart, HelpCircle, Lock, ShieldCheck, Sparkles, Users, Activity, Zap, Headphones, ShieldAlert, Compass, Briefcase, Wind, Eye, Shield, Feather, Moon, Hand, BedDouble, Smartphone, HeartHandshake, Waves, Award, Anchor, Radio, Volume2, Battery, HeartPulse, GitMerge, EyeOff } from "lucide-react";
+import { ArrowRight, Brain, Clock, Heart, HelpCircle, Lock, ShieldCheck, Sparkles, Users, Activity, Zap, Headphones, ShieldAlert, Compass, Briefcase, Wind, Eye, Shield, Feather, Moon, Hand, BedDouble, Smartphone, HeartHandshake, Waves, Award, Anchor, Radio, Volume2, Battery, HeartPulse, GitMerge, EyeOff, Hourglass } from "lucide-react";
 import SEOHead from "@/components/SEOHead";
 import AdSenseBanner from "@/components/AdSenseBanner";
 import AppStoreCta from "@/components/AppStoreCta";
@@ -1457,6 +1457,64 @@ const QuizHub: React.FC = () => {
                 className="inline-flex items-center gap-1.5 rounded-full bg-fuchsia-600 px-4 py-2 text-xs font-bold text-white hover:bg-fuchsia-700 transition shadow-xs"
               >
                 <span>Screen FOMO Index</span>
+                <ArrowRight className="h-3.5 w-3.5" />
+              </Link>
+            </div>
+          </div>
+
+          {/* Card 46: Attachment Compatibility & Relational Dynamics Screener */}
+          <div className="rounded-3xl border border-rose-300 bg-gradient-to-br from-rose-500/10 via-pink-50 to-white p-6 shadow-xs flex flex-col justify-between hover:shadow-md transition">
+            <div>
+              <div className="flex items-center justify-between mb-3">
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-rose-600 px-3 py-0.5 text-xs font-bold text-white shadow-xs">
+                  <HeartHandshake className="h-3 w-3" />
+                  LEVINE & JOHNSON EFT
+                </span>
+                <span className="text-xs font-semibold text-rose-700">Relational Harmony</span>
+              </div>
+              <h3 className="text-lg font-bold text-neutral-900 mb-1.5">
+                Attachment Compatibility Screener
+              </h3>
+              <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed">
+                Caught in an anxious-avoidant trap or seeking earned security? Screen your protest behaviors, deactivating strategies, and emotional responsiveness.
+              </p>
+            </div>
+            <div className="mt-5 pt-3 border-t border-rose-100 flex items-center justify-between">
+              <span className="text-xs font-medium text-neutral-400">~90 Secs · 12 Items</span>
+              <Link
+                to="/quiz/attachment-compatibility"
+                className="inline-flex items-center gap-1.5 rounded-full bg-rose-600 px-4 py-2 text-xs font-bold text-white hover:bg-rose-700 transition shadow-xs"
+              >
+                <span>Screen Compatibility</span>
+                <ArrowRight className="h-3.5 w-3.5" />
+              </Link>
+            </div>
+          </div>
+
+          {/* Card 47: Existential Dread & Purpose Alignment Screener */}
+          <div className="rounded-3xl border border-amber-300 bg-gradient-to-br from-amber-500/10 via-orange-50 to-white p-6 shadow-xs flex flex-col justify-between hover:shadow-md transition">
+            <div>
+              <div className="flex items-center justify-between mb-3">
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-amber-600 px-3 py-0.5 text-xs font-bold text-white shadow-xs">
+                  <Hourglass className="h-3 w-3" />
+                  FRANKL LOGOTHERAPY
+                </span>
+                <span className="text-xs font-semibold text-amber-700">Quarter-Life Meaning</span>
+              </div>
+              <h3 className="text-lg font-bold text-neutral-900 mb-1.5">
+                Existential Dread & Purpose Screener
+              </h3>
+              <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed">
+                Paralyzed by cosmic nihilism, time slipping away, or lack of agency? Screen your meaning vacuum, finitude anxiety, and re-anchor your inner compass.
+              </p>
+            </div>
+            <div className="mt-5 pt-3 border-t border-amber-100 flex items-center justify-between">
+              <span className="text-xs font-medium text-neutral-400">~90 Secs · 12 Items</span>
+              <Link
+                to="/quiz/existential-dread"
+                className="inline-flex items-center gap-1.5 rounded-full bg-amber-600 px-4 py-2 text-xs font-bold text-white hover:bg-amber-700 transition shadow-xs"
+              >
+                <span>Screen Existential Dread</span>
                 <ArrowRight className="h-3.5 w-3.5" />
               </Link>
             </div>

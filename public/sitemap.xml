@@ -435,6 +435,30 @@
     <changefreq>weekly</changefreq>
   </url>
   <url>
+    <loc>https://nuju.app/quiz/attachment-compatibility</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.95</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/quiz/relationship-attachment</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.9</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/quiz/existential-dread</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.95</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/quiz/quarter-life-crisis</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.9</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
     <loc>https://nuju.app/quiz/baterai-emosi</loc>
     <lastmod>2026-09-17</lastmod>
     <priority>0.9</priority>
@@ -6706,6 +6730,150 @@
       <image:caption>Missing out is not a failure; it is the fundamental currency of a meaningful life. Discover how cultivating JOMO dismantles algorithmic status anxiety.</image:caption>
     </image:image>
     <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/the-psychology-of-jomo-joy-of-missing-out-practical-guide"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/the-attachment-compatibility-report-2026-nuju-data-study</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>The 2026 Attachment Compatibility Report: What 150,000 App Reflections Reveal About the Anxious-Avoidant Trap and Earned Security</image:title>
+      <image:caption>Nuju Data Lab analyzed 150,000 anonymized relationship reflections. Discover why anxious and avoidant partners magnetically attract, what fuels protest behaviors, and how couples build earned security.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/the-attachment-compatibility-report-2026-nuju-data-study"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/cara-mengatasi-anxious-avoidant-trap-hubungan</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Cara Mengatasi Anxious-Avoidant Trap: Panduan Medis Melepaskan Siklus Tarik-Ulur dan Membangun Earned Security</image:title>
+      <image:caption>Apakah kamu terjebak dalam hubungan tarik-ulur yang menguras emosi? Pahami psikologi di balik anxious-avoidant trap dan 4 langkah klinis untuk membangun kelekatan aman.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="id" href="https://nuju.app/blog/cara-mengatasi-anxious-avoidant-trap-hubungan"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/existential-dread-at-3am-psychology-and-recovery</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Why Existential Dread Strikes at 3 AM: The Neuroscience of Cosmic Nihilism, Quarter-Life Crisis, and Viktor Frankl&apos;s Antidote</image:title>
+      <image:caption>Staring at the ceiling at 3 AM wondering what the point of your career, milestones, and existence is? Discover why the nocturnal brain falls into meaning vacuums and how to anchor purpose.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/existential-dread-at-3am-psychology-and-recovery"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/quarter-life-crisis-dan-kehampaan-makna-usia-20an</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Quarter-Life Crisis di Usia 20-an: Mengapa Kamu Merasa Tertinggal, Kehilangan Arah, dan Mengalami Hampa Eksistensial</image:title>
+      <image:caption>Memasuki usia 20-an atau 30-an dan merasa seperti jalan di tempat sementara orang lain sukses? Pahami krisis eksistensial quarter-life dan cara menyusun kompas hidupmu kembali.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="id" href="https://nuju.app/blog/quarter-life-crisis-dan-kehampaan-makna-usia-20an"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/how-to-communicate-with-an-avoidant-partner-without-triggering-shutdown</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>How to Communicate With an Avoidant Partner Without Triggering Emotional Shutdown: 5 Non-Violent EFT Scripts</image:title>
+      <image:caption>Does your partner freeze, stonewall, or walk out whenever serious relationship topics arise? Master 5 evidence-based Emotionally Focused Therapy (EFT) communication scripts.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/how-to-communicate-with-an-avoidant-partner-without-triggering-shutdown"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/deactivating-strategies-avoidant-attachment-signs</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>7 Subtle Deactivating Strategies Avoidants Use to Sabotage Intimacy (And How to Soften Them)</image:title>
+      <image:caption>Avoidant attachment rarely looks like overt cruelty—it disguises itself as phantom ex syndrome, hyper-independence, and flaw magnification. Discover 7 covert deactivating tactics.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/deactivating-strategies-avoidant-attachment-signs"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/tanda-silent-treatment-manipulasi-emosional-attachment</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Mengenali Silent Treatment dan Protest Behavior dalam Hubungan: Cara Menghentikan Sabotase Komunikasi Pasangan</image:title>
+      <image:caption>Apakah pasanganmu kerap membisu saat marah atau kamu sendiri sering mengancam putus demi dicari? Pelajari perbedaan silent treatment manipulatif dan cara memulihkannya.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="id" href="https://nuju.app/blog/tanda-silent-treatment-manipulasi-emosional-attachment"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/tragic-optimism-viktor-frankl-logotherapy-guide</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Viktor Frankl’s Tragic Optimism: How to Find Unshakeable Purpose When Modern Life Feels Absurd and Hollow</image:title>
+      <image:caption>Tired of toxic positivity and meaningless hustle culture? Discover Viktor Frankl&apos;s Tragic Optimism—the psychological capacity to find deep purpose despite pain, guilt, and death.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/tragic-optimism-viktor-frankl-logotherapy-guide"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/cara-menemukan-ikigai-saat-terjebak-burnout-karir</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Terjebak Burnout Karir dan Kehilangan Makna: Panduan Logoterapi &amp; Ikigai untuk Membangun Otonomi Hidup</image:title>
+      <image:caption>Bekerja keras setiap hari tapi merasa kosong dan kehilangan arah? Integrasikan filosofi Ikigai Jepang dan Logoterapi Frankl untuk memulihkan tujuan hidup dan otonomi karirmu.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="id" href="https://nuju.app/blog/cara-menemukan-ikigai-saat-terjebak-burnout-karir"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/attachment-wounds-childhood-trauma-relationship-patterns</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>From Anxious Pursuit to Secure Grounding: Healing Early Attachment Wounds Through Daily Somatic Journaling</image:title>
+      <image:caption>Your relational triggers aren&apos;t crazy—they are somatic muscle memory from childhood emotional neglect or inconsistency. Learn how to reparent your nervous system.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/attachment-wounds-childhood-trauma-relationship-patterns"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/finitude-anxiety-fear-of-wasting-youth-psychology</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Finitude Anxiety: Why You Feel You’re Running Out of Time in Your 20s and 30s (And the Cure for Temporal Dread)</image:title>
+      <image:caption>Terrified of turning 25, 30, or 40? Haunted by the feeling that your best years are behind you? Understand the psychology of finitude anxiety and reclaim present-moment sovereignty.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/finitude-anxiety-fear-of-wasting-youth-psychology"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/mengatasi-fear-of-missing-life-quarter-life-dread</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Fear of Missing Life (FOML): Mengapa Kamu Cemas Melihat Waktu Berlalu dan Cara Berdamai dengan Realitas Fana</image:title>
+      <image:caption>Bukan hanya takut ketinggalan tren (FOMO), tetapi takut kehilangan esensi hidup itu sendiri (FOML). Pahami kecemasan waktu fana dan cara hidup mindful di era serba cepat.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="id" href="https://nuju.app/blog/mengatasi-fear-of-missing-life-quarter-life-dread"/>
   </url>
   <url>
     <loc>https://nuju.app/blog/how-to-stop-overthinking-at-night</loc>
