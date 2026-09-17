@@ -30,6 +30,8 @@ import { ChronicGuiltScoreResult, ChronicGuiltLang } from "@/data/chronic-guilt"
 import { HyperIndependenceScoreResult, HyperIndependenceLang } from "@/data/hyper-independence";
 import { EnmeshmentScoreResult, EnmeshmentLang } from "@/data/enmeshment";
 import { PerceivedScoreResult, PerceivedLang } from "@/data/fear-of-being-perceived";
+import { DecisionFatigueScoreResult, DecisionFatigueLang } from "@/data/decision-fatigue";
+import { FomoScoreResult, FomoLang } from "@/data/fomo";
 
 /**
  * Draws a rounded rectangle path on the canvas context with fallback for older environments.
@@ -5599,6 +5601,385 @@ export async function generateFearOfBeingPerceivedCard(
 
   return { dataUrl, blob, file };
 }
+
+/**
+ * Generates an Instagram Story card (1080x1350) for Decision Fatigue Screener.
+ */
+export async function generateDecisionFatigueCard(
+  result: DecisionFatigueScoreResult,
+  lang: DecisionFatigueLang = "en"
+): Promise<{ dataUrl: string; blob: Blob; file: File }> {
+  const canvas = document.createElement("canvas");
+  const width = 1080;
+  const height = 1350;
+  canvas.width = width;
+  canvas.height = height;
+  const ctx = canvas.getContext("2d");
+  if (!ctx) throw new Error("Could not get 2D canvas context");
+
+  // Background gradient: Deep Cyber Slate
+  const bgGrad = ctx.createLinearGradient(0, 0, width, height);
+  bgGrad.addColorStop(0, "#080B14");
+  bgGrad.addColorStop(0.5, "#0D1326");
+  bgGrad.addColorStop(1, "#060810");
+  ctx.fillStyle = bgGrad;
+  ctx.fillRect(0, 0, width, height);
+
+  // Radial Glow in Indigo & Cyan
+  const radGlow = ctx.createRadialGradient(width * 0.8, height * 0.2, 50, width * 0.8, height * 0.2, 550);
+  radGlow.addColorStop(0, "rgba(99, 102, 241, 0.22)");
+  radGlow.addColorStop(1, "rgba(99, 102, 241, 0)");
+  ctx.fillStyle = radGlow;
+  ctx.fillRect(0, 0, width, height);
+
+  const radGlow2 = ctx.createRadialGradient(width * 0.2, height * 0.8, 50, width * 0.2, height * 0.8, 500);
+  radGlow2.addColorStop(0, "rgba(56, 189, 248, 0.15)");
+  radGlow2.addColorStop(1, "rgba(56, 189, 248, 0)");
+  ctx.fillStyle = radGlow2;
+  ctx.fillRect(0, 0, width, height);
+
+  // Card border
+  ctx.strokeStyle = "rgba(99, 102, 241, 0.28)";
+  ctx.lineWidth = 3;
+  drawRoundedRect(ctx, 40, 40, width - 80, height - 80, 40);
+  ctx.stroke();
+
+  // Top header pill
+  ctx.fillStyle = "rgba(99, 102, 241, 0.18)";
+  drawRoundedRect(ctx, 80, 80, 560, 56, 28);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(99, 102, 241, 0.4)";
+  ctx.stroke();
+
+  ctx.fillStyle = "#818CF8";
+  ctx.font = "bold 20px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("DECISION FATIGUE & BRAIN FOG INDEX", 105, 115);
+
+  // Assessment title
+  ctx.fillStyle = "#FFFFFF";
+  ctx.font = "900 46px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("Ego Depletion & Cognitive Load", 80, 195);
+
+  // Level Badge Pill
+  ctx.fillStyle = "rgba(79, 70, 229, 0.22)";
+  drawRoundedRect(ctx, 80, 230, 400, 50, 25);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(99, 102, 241, 0.45)";
+  ctx.stroke();
+
+  const badgeText = result.profile.badge[lang] || result.profile.badge.en;
+  ctx.fillStyle = "#C7D2FE";
+  ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(badgeText.toUpperCase(), 105, 263);
+
+  // Archetype Title Banner
+  ctx.fillStyle = "#FFFFFF";
+  ctx.font = "800 40px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  const archTitle = result.profile.title[lang] || result.profile.title.en;
+  ctx.fillText(archTitle, 80, 335);
+
+  // Tagline
+  ctx.fillStyle = "#93C5FD";
+  ctx.font = "italic 26px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  const tagline = result.profile.tagline[lang] || result.profile.tagline.en;
+  wrapText(ctx, `"${tagline}"`, 80, 385, width - 160, 36, 2);
+
+  // Subscales breakdown boxes
+  const boxWidth = 280;
+  const boxHeight = 160;
+  const boxY = 480;
+
+  // Box 1: Choice Paralysis
+  ctx.fillStyle = "rgba(255, 255, 255, 0.05)";
+  drawRoundedRect(ctx, 80, boxY, boxWidth, boxHeight, 20);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(99, 102, 241, 0.25)";
+  ctx.stroke();
+
+  ctx.fillStyle = "#818CF8";
+  ctx.font = "bold 17px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("CHOICE PARALYSIS", 105, boxY + 45);
+  ctx.fillStyle = "#FFFFFF";
+  ctx.font = "900 48px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(`${result.subscales.choice_paralysis.percentage}%`, 105, boxY + 105);
+  ctx.fillStyle = "#94A3B8";
+  ctx.font = "16px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("Trivial Lock-In", 105, boxY + 135);
+
+  // Box 2: Cognitive Saturation
+  ctx.fillStyle = "rgba(255, 255, 255, 0.05)";
+  drawRoundedRect(ctx, 400, boxY, boxWidth, boxHeight, 20);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(56, 189, 248, 0.25)";
+  ctx.stroke();
+
+  ctx.fillStyle = "#38BDF8";
+  ctx.font = "bold 17px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("COGNITIVE LOAD", 425, boxY + 45);
+  ctx.fillStyle = "#FFFFFF";
+  ctx.font = "900 48px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(`${result.subscales.cognitive_saturation.percentage}%`, 425, boxY + 105);
+  ctx.fillStyle = "#94A3B8";
+  ctx.font = "16px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("Prefrontal Fog", 425, boxY + 135);
+
+  // Box 3: Willpower Depletion
+  ctx.fillStyle = "rgba(255, 255, 255, 0.05)";
+  drawRoundedRect(ctx, 720, boxY, boxWidth, boxHeight, 20);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(244, 63, 94, 0.25)";
+  ctx.stroke();
+
+  ctx.fillStyle = "#FB7185";
+  ctx.font = "bold 17px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("WILLPOWER DRAIN", 745, boxY + 45);
+  ctx.fillStyle = "#FFFFFF";
+  ctx.font = "900 48px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(`${result.subscales.willpower_depletion.percentage}%`, 745, boxY + 105);
+  ctx.fillStyle = "#94A3B8";
+  ctx.font = "16px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("Impulse Surrender", 745, boxY + 135);
+
+  // Psychology Mechanism Box
+  ctx.fillStyle = "rgba(255, 255, 255, 0.03)";
+  drawRoundedRect(ctx, 80, 680, width - 160, 220, 28);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(99, 102, 241, 0.2)";
+  ctx.stroke();
+
+  ctx.fillStyle = "#818CF8";
+  ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("BAUMEISTER EGO DEPLETION DYNAMICS", 120, 725);
+
+  const descText = result.profile.description[lang] || result.profile.description.en;
+  ctx.fillStyle = "#E2E8F0";
+  ctx.font = "24px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  wrapText(ctx, descText, 120, 770, width - 240, 36, 3);
+
+  // Action Protocol Box
+  ctx.fillStyle = "rgba(255, 255, 255, 0.04)";
+  drawRoundedRect(ctx, 80, 930, width - 160, 215, 28);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(255, 255, 255, 0.15)";
+  ctx.stroke();
+
+  ctx.fillStyle = "#F8FAFC";
+  ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("COGNITIVE RESTORATION PROTOCOL", 120, 975);
+
+  const protocols = result.profile.actionProtocols[lang] || result.profile.actionProtocols.en;
+  const protocolText = protocols[0] || "";
+  ctx.fillStyle = "#CBD5E1";
+  ctx.font = "24px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  wrapText(ctx, protocolText, 120, 1020, width - 240, 36, 3);
+
+  // Footer CTA
+  ctx.fillStyle = "rgba(255, 255, 255, 0.5)";
+  ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("Measure your executive depletion & mental load at:", 80, 1200);
+
+  ctx.fillStyle = "#38BDF8";
+  ctx.font = "900 30px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("nuju.app/quiz/decision-fatigue", 80, 1245);
+
+  const dataUrl = canvas.toDataURL("image/png", 0.95);
+  const blob = await new Promise<Blob>((resolve, reject) => {
+    canvas.toBlob((b) => (b ? resolve(b) : reject(new Error("Failed blob"))), "image/png", 0.95);
+  });
+  const file = new File([blob], `nuju-decision-fatigue-${result.level}.png`, { type: "image/png" });
+
+  return { dataUrl, blob, file };
+}
+
+/**
+ * Generates an Instagram Story card (1080x1350) for FOMO & Digital Dopamine Screener.
+ */
+export async function generateFomoCard(
+  result: FomoScoreResult,
+  lang: FomoLang = "en"
+): Promise<{ dataUrl: string; blob: Blob; file: File }> {
+  const canvas = document.createElement("canvas");
+  const width = 1080;
+  const height = 1350;
+  canvas.width = width;
+  canvas.height = height;
+  const ctx = canvas.getContext("2d");
+  if (!ctx) throw new Error("Could not get 2D canvas context");
+
+  // Background gradient: Deep Midnight Plum
+  const bgGrad = ctx.createLinearGradient(0, 0, width, height);
+  bgGrad.addColorStop(0, "#0E0516");
+  bgGrad.addColorStop(0.5, "#170A24");
+  bgGrad.addColorStop(1, "#0A0311");
+  ctx.fillStyle = bgGrad;
+  ctx.fillRect(0, 0, width, height);
+
+  // Radial Glow in Magenta & Rose
+  const radGlow = ctx.createRadialGradient(width * 0.8, height * 0.2, 50, width * 0.8, height * 0.2, 550);
+  radGlow.addColorStop(0, "rgba(217, 70, 239, 0.22)");
+  radGlow.addColorStop(1, "rgba(217, 70, 239, 0)");
+  ctx.fillStyle = radGlow;
+  ctx.fillRect(0, 0, width, height);
+
+  const radGlow2 = ctx.createRadialGradient(width * 0.2, height * 0.8, 50, width * 0.2, height * 0.8, 500);
+  radGlow2.addColorStop(0, "rgba(251, 113, 133, 0.16)");
+  radGlow2.addColorStop(1, "rgba(251, 113, 133, 0)");
+  ctx.fillStyle = radGlow2;
+  ctx.fillRect(0, 0, width, height);
+
+  // Card border
+  ctx.strokeStyle = "rgba(217, 70, 239, 0.28)";
+  ctx.lineWidth = 3;
+  drawRoundedRect(ctx, 40, 40, width - 80, height - 80, 40);
+  ctx.stroke();
+
+  // Top header pill
+  ctx.fillStyle = "rgba(217, 70, 239, 0.18)";
+  drawRoundedRect(ctx, 80, 80, 540, 56, 28);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(217, 70, 239, 0.4)";
+  ctx.stroke();
+
+  ctx.fillStyle = "#E879F9";
+  ctx.font = "bold 20px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("FOMO & DIGITAL DOPAMINE INDEX", 105, 115);
+
+  // Assessment title
+  ctx.fillStyle = "#FFFFFF";
+  ctx.font = "900 46px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("Social Comparison & Feeds", 80, 195);
+
+  // Level Badge Pill
+  ctx.fillStyle = "rgba(192, 38, 211, 0.22)";
+  drawRoundedRect(ctx, 80, 230, 400, 50, 25);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(217, 70, 239, 0.45)";
+  ctx.stroke();
+
+  const badgeText = result.profile.badge[lang] || result.profile.badge.en;
+  ctx.fillStyle = "#F5D0FE";
+  ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(badgeText.toUpperCase(), 105, 263);
+
+  // Archetype Title Banner
+  ctx.fillStyle = "#FFFFFF";
+  ctx.font = "800 40px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  const archTitle = result.profile.title[lang] || result.profile.title.en;
+  ctx.fillText(archTitle, 80, 335);
+
+  // Tagline
+  ctx.fillStyle = "#F472B6";
+  ctx.font = "italic 26px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  const tagline = result.profile.tagline[lang] || result.profile.tagline.en;
+  wrapText(ctx, `"${tagline}"`, 80, 385, width - 160, 36, 2);
+
+  // Subscales breakdown boxes
+  const boxWidth = 280;
+  const boxHeight = 160;
+  const boxY = 480;
+
+  // Box 1: Social Comparison Anxiety
+  ctx.fillStyle = "rgba(255, 255, 255, 0.05)";
+  drawRoundedRect(ctx, 80, boxY, boxWidth, boxHeight, 20);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(217, 70, 239, 0.25)";
+  ctx.stroke();
+
+  ctx.fillStyle = "#E879F9";
+  ctx.font = "bold 17px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("PEER COMPARISON", 105, boxY + 45);
+  ctx.fillStyle = "#FFFFFF";
+  ctx.font = "900 48px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(`${result.subscales.social_comparison_anxiety.percentage}%`, 105, boxY + 105);
+  ctx.fillStyle = "#94A3B8";
+  ctx.font = "16px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("Status Envy", 105, boxY + 135);
+
+  // Box 2: Compulsive Monitoring
+  ctx.fillStyle = "rgba(255, 255, 255, 0.05)";
+  drawRoundedRect(ctx, 400, boxY, boxWidth, boxHeight, 20);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(244, 63, 94, 0.25)";
+  ctx.stroke();
+
+  ctx.fillStyle = "#FB7185";
+  ctx.font = "bold 17px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("MONITORING", 425, boxY + 45);
+  ctx.fillStyle = "#FFFFFF";
+  ctx.font = "900 48px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(`${result.subscales.compulsive_monitoring.percentage}%`, 425, boxY + 105);
+  ctx.fillStyle = "#94A3B8";
+  ctx.font = "16px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("Notification Reflex", 425, boxY + 135);
+
+  // Box 3: Presence Deficit
+  ctx.fillStyle = "rgba(255, 255, 255, 0.05)";
+  drawRoundedRect(ctx, 720, boxY, boxWidth, boxHeight, 20);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(168, 85, 247, 0.25)";
+  ctx.stroke();
+
+  ctx.fillStyle = "#C084FC";
+  ctx.font = "bold 17px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("PRESENCE DEFICIT", 745, boxY + 45);
+  ctx.fillStyle = "#FFFFFF";
+  ctx.font = "900 48px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(`${result.subscales.presence_deficit.percentage}%`, 745, boxY + 105);
+  ctx.fillStyle = "#94A3B8";
+  ctx.font = "16px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("Second Screening", 745, boxY + 135);
+
+  // Psychology Mechanism Box
+  ctx.fillStyle = "rgba(255, 255, 255, 0.03)";
+  drawRoundedRect(ctx, 80, 680, width - 160, 220, 28);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(217, 70, 239, 0.2)";
+  ctx.stroke();
+
+  ctx.fillStyle = "#E879F9";
+  ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("FESTINGER & PRZYBYLSKI DOPAMINE TRAP", 120, 725);
+
+  const descText = result.profile.description[lang] || result.profile.description.en;
+  ctx.fillStyle = "#E2E8F0";
+  ctx.font = "24px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  wrapText(ctx, descText, 120, 770, width - 240, 36, 3);
+
+  // Action Protocol Box
+  ctx.fillStyle = "rgba(255, 255, 255, 0.04)";
+  drawRoundedRect(ctx, 80, 930, width - 160, 215, 28);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(255, 255, 255, 0.15)";
+  ctx.stroke();
+
+  ctx.fillStyle = "#F8FAFC";
+  ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("JOMO & DIGITAL SOVEREIGNTY PROTOCOL", 120, 975);
+
+  const protocols = result.profile.actionProtocols[lang] || result.profile.actionProtocols.en;
+  const protocolText = protocols[0] || "";
+  ctx.fillStyle = "#CBD5E1";
+  ctx.font = "24px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  wrapText(ctx, protocolText, 120, 1020, width - 240, 36, 3);
+
+  // Footer CTA
+  ctx.fillStyle = "rgba(255, 255, 255, 0.5)";
+  ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("Discover your FOMO score and embrace JOMO at:", 80, 1200);
+
+  ctx.fillStyle = "#E879F9";
+  ctx.font = "900 30px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("nuju.app/quiz/fomo", 80, 1245);
+
+  const dataUrl = canvas.toDataURL("image/png", 0.95);
+  const blob = await new Promise<Blob>((resolve, reject) => {
+    canvas.toBlob((b) => (b ? resolve(b) : reject(new Error("Failed blob"))), "image/png", 0.95);
+  });
+  const file = new File([blob], `nuju-fomo-${result.level}.png`, { type: "image/png" });
+
+  return { dataUrl, blob, file };
+}
+
 
 
 

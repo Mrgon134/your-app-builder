@@ -1051,6 +1051,68 @@ export function getQuizAndToolPages({
         },
       ],
     },
+    {
+      route: "/quiz/decision-fatigue",
+      aliases: ["/quiz/brain-fog", "/tes-kelelahan-keputusan"],
+      title: "Decision Fatigue Test: Free Cognitive Load & Brain Fog Screener",
+      description:
+        "Paralyzed by simple choices or mentally exhausted by midday? Free 12-item clinical screener based on Baumeister's Ego Depletion and Sweller's Cognitive Load Theory.",
+      category: "Cognitive Architecture",
+      duration: "90 secs",
+      itemsCount: 12,
+      framework: "Roy Baumeister Ego Depletion & John Sweller Cognitive Load Theory (CLT)",
+      overview:
+        "Decision fatigue occurs when the prefrontal cortex exhausts its finite store of executive energy from relentless choices, leading to trivial choice paralysis, impulse surrender, and pervasive brain fog.",
+      keyPoints: [
+        "Assesses choice paralysis and agonizing over inconsequential daily selections",
+        "Measures cognitive saturation, working memory bottlenecks, and prefrontal fog",
+        "Evaluates willpower depletion and evening dopamine or sugar impulse surrender",
+        "Delivers cognitive offloading protocols, default choices, and midday neural resets",
+      ],
+      faqs: [
+        {
+          question: "What is decision fatigue?",
+          answer:
+            "Decision fatigue is the psychological deterioration in the quality of decisions made by an individual after a long session of decision-making, leading to procrastination or reckless impulsivity.",
+        },
+        {
+          question: "How can you prevent decision fatigue?",
+          answer:
+            "By establishing automated morning routines, limiting wardrobe and menu choices, batching critical decisions into early hours, and scheduling screen-free mental recovery pauses.",
+        },
+      ],
+    },
+    {
+      route: "/quiz/fomo",
+      aliases: ["/quiz/social-comparison", "/tes-fomo-dan-perbandingan"],
+      title: "FOMO & Digital Dopamine Test: Free Social Comparison Screener",
+      description:
+        "Constantly checking feeds, comparing milestones, or terrified of missing out? Free 12-item clinical screener based on Przybylski's FOMO scale and Festinger's Social Comparison Theory.",
+      category: "Digital Psychology",
+      duration: "90 secs",
+      itemsCount: 12,
+      framework: "Andrew Przybylski FOMO Scale & Leon Festinger Social Comparison Theory",
+      overview:
+        "FOMO (Fear of Missing Out) is a pervasive apprehension that others might be having rewarding experiences from which one is absent, driving compulsive screen monitoring, phantom vibrations, and status comparison anxiety.",
+      keyPoints: [
+        "Measures social comparison anxiety and benchmark panic against peer milestones",
+        "Evaluates compulsive feed monitoring, notification reflex, and phantom vibrations",
+        "Assesses presence deficit, second-screening habits, and inability to savor the present",
+        "Delivers JOMO (Joy of Missing Out) cultivation drills and digital sovereignty protocols",
+      ],
+      faqs: [
+        {
+          question: "What causes FOMO?",
+          answer:
+            "FOMO is fueled by variable dopamine reward loops engineered into social media platforms combined with upward social comparison bias, where we compare our unedited life to others' filtered top 1% moments.",
+        },
+        {
+          question: "What is JOMO and how do you achieve it?",
+          answer:
+            "JOMO is the Joy of Missing Out—the peaceful realization that you do not need to attend every gathering, buy every trend, or read every headline. It is cultivated through intentional digital boundaries and grounding in physical reality.",
+        },
+      ],
+    },
 
     // 3. Somatic & Regulation Tools
     {

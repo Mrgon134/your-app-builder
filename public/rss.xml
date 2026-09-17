@@ -6,7 +6,7 @@
     <atom:link href="https://nuju.app/rss.xml" rel="self" type="application/rss+xml" />
     <description>Practical guides on journaling, mood tracking, and emotional wellness from the Nuju team.</description>
     <language>en</language>
-    <lastBuildDate>Thu, 17 Sep 2026 03:16:32 GMT</lastBuildDate>
+    <lastBuildDate>Thu, 17 Sep 2026 03:26:07 GMT</lastBuildDate>
     <item>
       <title>Clinical Perfectionism Test: Free 12-Item Frost MPS Diagnostic for Fear of Failure</title>
       <link>https://nuju.app/blog/clinical-perfectionism-test-frost-mps-fear-of-failure</link>
@@ -546,6 +546,114 @@
       <category>Kesehatan Mental</category>
       <pubDate>Thu, 17 Sep 2026 12:00:00 GMT</pubDate>
       <dc:language>id</dc:language>
+    </item>
+    <item>
+      <title>The 2026 Decision Fatigue Report: What 145,000 App Reflections Reveal About 2 PM Brain Fog and Willpower Collapse</title>
+      <link>https://nuju.app/blog/the-decision-fatigue-report-2026-nuju-data-study</link>
+      <guid isPermaLink="true">https://nuju.app/blog/the-decision-fatigue-report-2026-nuju-data-study</guid>
+      <description>Nuju Data Lab analyzed 145,000 anonymized cognitive check-ins across 20 countries. Discover why 68% of professionals experience choice paralysis and evening impulse surrender.</description>
+      <category>Cognitive Science</category>
+      <pubDate>Thu, 17 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>FOMO vs JOMO in 2026: App Data Shows How 15 Minutes of Offline Grounding Restores Dopamine Sensitivity</title>
+      <link>https://nuju.app/blog/fomo-vs-jomo-neuroscience-2026-app-insights</link>
+      <guid isPermaLink="true">https://nuju.app/blog/fomo-vs-jomo-neuroscience-2026-app-insights</guid>
+      <description>Why does seeing peer success online trigger physical chest tightness? Nuju Data Lab unpacks 82,000 social comparison entries and the neuroscience of reclaiming JOMO.</description>
+      <category>Digital Wellness</category>
+      <pubDate>Thu, 17 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Mengapa Memilih Mau Makan Apa Terasa Sangat Melelahkan? Data Nuju Ungkap Fenomena Decision Fatigue</title>
+      <link>https://nuju.app/blog/mengapa-memilih-makanan-terasa-melelahkan-decision-fatigue</link>
+      <guid isPermaLink="true">https://nuju.app/blog/mengapa-memilih-makanan-terasa-melelahkan-decision-fatigue</guid>
+      <description>Pernahkah kamu berdebat 30 menit cuma untuk memilih menu makan malam di aplikasi ojol? Nuju Data Lab menganalisis kelumpuhan pilihan dan kelelahan mental prefrontal.</description>
+      <category>Psikologi Praktis</category>
+      <pubDate>Thu, 17 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>id</dc:language>
+    </item>
+    <item>
+      <title>Cara Mengatasi FOMO dan Teror Perbandingan di Media Sosial: Riset Aplikasi Nuju 2026</title>
+      <link>https://nuju.app/blog/cara-mengatasi-fomo-dan-perbandingan-sosial-di-medsos</link>
+      <guid isPermaLink="true">https://nuju.app/blog/cara-mengatasi-fomo-dan-perbandingan-sosial-di-medsos</guid>
+      <description>Merasa tertinggal saat melihat teman seumuran beli rumah atau jalan-jalan ke luar negeri? Nuju Data Lab menganalisis 30.000 curhat anonim seputar FOMO dan solusinya.</description>
+      <category>Kesehatan Digital</category>
+      <pubDate>Thu, 17 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>id</dc:language>
+    </item>
+    <item>
+      <title>Entscheidungsmüdigkeit im Alltag: Warum uns die Wahl des Abendessens stresst – Nuju Datenreport 2026</title>
+      <link>https://nuju.app/blog/warum-einfache-entscheidungen-abends-erschopfen-decision-fatigue</link>
+      <guid isPermaLink="true">https://nuju.app/blog/warum-einfache-entscheidungen-abends-erschopfen-decision-fatigue</guid>
+      <description>Warum fällt es nach der Arbeit so schwer, selbst kleinste Dinge zu entscheiden? Nuju Data Lab analysiert 145.000 Reflexionen über Ego-Depletion und kognitiven Burnout.</description>
+      <category>Kognitive Psychologie</category>
+      <pubDate>Thu, 17 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>de</dc:language>
+    </item>
+    <item>
+      <title>FOMO et surcharge dopaminergique en 2026 : Ce que révèlent 145 000 réflexions numériques</title>
+      <link>https://nuju.app/blog/fomo-et-surcharge-dopaminergique-analyse-nuju-2026</link>
+      <guid isPermaLink="true">https://nuju.app/blog/fomo-et-surcharge-dopaminergique-analyse-nuju-2026</guid>
+      <description>Pourquoi les réussites d&apos;autrui sur les réseaux déclenchent-elles un sentiment d&apos;angoisse viscéral ? Découvrez les données Nuju sur la comparaison sociale et le JOMO.</description>
+      <category>Psychologie Numérique</category>
+      <pubDate>Thu, 17 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>fr</dc:language>
+    </item>
+    <item>
+      <title>Fatiga por decisión y niebla mental: Cómo recuperar el ancho de banda cognitivo según datos de Nuju</title>
+      <link>https://nuju.app/blog/fatiga-por-decision-y-niebla-mental-informe-nuju-2026</link>
+      <guid isPermaLink="true">https://nuju.app/blog/fatiga-por-decision-y-niebla-mental-informe-nuju-2026</guid>
+      <description>¿Por qué tomar decisiones simples al final del día genera tanto estrés y ansiedad? El análisis de Nuju Data Lab sobre la sobrecarga del lóbulo prefrontal.</description>
+      <category>Neurociencia Aplicada</category>
+      <pubDate>Thu, 17 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>es</dc:language>
+    </item>
+    <item>
+      <title>The Zoom Spotlight Effect: Why 71% of Remote Workers Suffer Video Fatigue and Visibility Dread</title>
+      <link>https://nuju.app/blog/the-spotlight-effect-in-remote-work-2026-data</link>
+      <guid isPermaLink="true">https://nuju.app/blog/the-spotlight-effect-in-remote-work-2026-data</guid>
+      <description>Staring at your own face during video calls triggers unprecedented cognitive hyper-vigilance. Nuju Data Lab analyzes the psychology of camera anxiety and being perceived.</description>
+      <category>Workplace Psychology</category>
+      <pubDate>Thu, 17 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Sindrom Second-Screening: Mengapa Kita Tak Bisa Menonton Film Tanpa Scrolling HP?</title>
+      <link>https://nuju.app/blog/cara-menghentikan-kebiasaan-second-screening-scroll-sambil-nonton</link>
+      <guid isPermaLink="true">https://nuju.app/blog/cara-menghentikan-kebiasaan-second-screening-scroll-sambil-nonton</guid>
+      <description>Nonton Netflix sambil scrolling TikTok atau Twitter? Data Nuju menunjukkan bagaimana kebiasaan layar ganda membajak rentang perhatian dan memicu kecemasan kronis.</description>
+      <category>Fokus &amp; Otak</category>
+      <pubDate>Thu, 17 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>id</dc:language>
+    </item>
+    <item>
+      <title>Ego Depletion in High Achievers: Why Your Discipline Dies at 8 PM and How to Reset</title>
+      <link>https://nuju.app/blog/ego-depletion-in-high-achievers-how-willpower-runs-out</link>
+      <guid isPermaLink="true">https://nuju.app/blog/ego-depletion-in-high-achievers-how-willpower-runs-out</guid>
+      <description>High performers often view evening fatigue as personal weakness. Cognitive science and Nuju Data Lab prove it is biological self-preservation.</description>
+      <category>Peak Performance</category>
+      <pubDate>Thu, 17 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Riset Nuju 2026: Jam Paling Rawan Overthinking (23.00 - 02.00) dan Cara Memutus Siklusnya</title>
+      <link>https://nuju.app/blog/studi-nuju-jam-paling-rawan-overthinking-dan-dopamine-trapping</link>
+      <guid isPermaLink="true">https://nuju.app/blog/studi-nuju-jam-paling-rawan-overthinking-dan-dopamine-trapping</guid>
+      <description>Berdasarkan analisis log waktu 145.000 sesi curhat dan panic SOS di aplikasi Nuju, malam hari adalah zona badai amigdala. Pelajari cara menenangkannya.</description>
+      <category>Kesehatan Mental</category>
+      <pubDate>Thu, 17 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>id</dc:language>
+    </item>
+    <item>
+      <title>The Architecture of JOMO: How Choosing What to Miss Creates Unshakable Mental Peace</title>
+      <link>https://nuju.app/blog/the-psychology-of-jomo-joy-of-missing-out-practical-guide</link>
+      <guid isPermaLink="true">https://nuju.app/blog/the-psychology-of-jomo-joy-of-missing-out-practical-guide</guid>
+      <description>Missing out is not a failure; it is the fundamental currency of a meaningful life. Discover how cultivating JOMO dismantles algorithmic status anxiety.</description>
+      <category>Mindset &amp; Philosophy</category>
+      <pubDate>Thu, 17 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
     </item>
     <item>
       <title>Free Mental Health Test Online: Complete DASS-21 Depression, Anxiety &amp; Stress Screening</title>

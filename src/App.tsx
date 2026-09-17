@@ -76,6 +76,8 @@ const ChronicGuiltTest = lazy(() => import("./pages/ChronicGuiltTest.tsx"));
 const HyperIndependenceTest = lazy(() => import("./pages/HyperIndependenceTest.tsx"));
 const EnmeshmentTest = lazy(() => import("./pages/EnmeshmentTest.tsx"));
 const FearOfBeingPerceivedTest = lazy(() => import("./pages/FearOfBeingPerceivedTest.tsx"));
+const DecisionFatigueTest = lazy(() => import("./pages/DecisionFatigueTest.tsx"));
+const FomoTest = lazy(() => import("./pages/FomoTest.tsx"));
 const EbookSalesPage = lazy(() => import("./pages/EbookSalesPage.tsx"));
 const EbookReaderPage = lazy(() => import("./pages/EbookReaderPage.tsx"));
 const NotFound = lazy(() => import("./pages/NotFound.tsx"));
@@ -282,6 +284,12 @@ const App = () => (
                   <Route path="/quiz/fear-of-being-perceived" element={<FearOfBeingPerceivedTest />} />
                   <Route path="/quiz/spotlight-effect" element={<FearOfBeingPerceivedTest />} />
                   <Route path="/tes-takut-dilihat" element={<FearOfBeingPerceivedTest defaultLang="id" />} />
+                  <Route path="/quiz/decision-fatigue" element={<DecisionFatigueTest />} />
+                  <Route path="/quiz/brain-fog" element={<DecisionFatigueTest />} />
+                  <Route path="/tes-kelelahan-keputusan" element={<DecisionFatigueTest defaultLang="id" />} />
+                  <Route path="/quiz/fomo" element={<FomoTest />} />
+                  <Route path="/quiz/social-comparison" element={<FomoTest />} />
+                  <Route path="/tes-fomo-dan-perbandingan" element={<FomoTest defaultLang="id" />} />
                   <Route path="/quiz/:quizId" element={<QuizRunner />} />
                   <Route path="/test-psikologi" element={<QuizHub />} />
                   <Route path="/test-psikologi/:quizId" element={<QuizRunner />} />
