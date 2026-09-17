@@ -363,6 +363,30 @@
     <changefreq>weekly</changefreq>
   </url>
   <url>
+    <loc>https://nuju.app/quiz/chronic-guilt</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.95</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/quiz/guilt-self-sabotage</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.9</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/quiz/hyper-independence</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.95</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/quiz/trauma-independence</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.9</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
     <loc>https://nuju.app/quiz/baterai-emosi</loc>
     <lastmod>2026-09-17</lastmod>
     <priority>0.9</priority>
@@ -6202,6 +6226,150 @@
       <image:caption>Riset dari 80.000 evaluasi tidur membuktikan: semakin terkuras otonomi dirimu di siang hari, semakin larut kamu begadang scrolling HP. Pelajari cara menghentikan siklus balas dendam tidur.</image:caption>
     </image:image>
     <xhtml:link rel="alternate" hreflang="id" href="https://nuju.app/blog/kenapa-susah-tidur-padahal-lelah-data-revenge-bedtime-procrastination"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/the-chronic-guilt-epidemic-nuju-app-data-study</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>The Chronic Guilt Epidemic: What 120,000 Nuju App Check-Ins Reveal About Toxic Remorse &amp; Self-Sabotage</image:title>
+      <image:caption>Nuju Data Lab evaluated 120,000 anonymized mood logs and journal reflections. Discover the neuroscience of omnipotent responsibility and why 64% of high performers subconsciously punish themselves for resting.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/the-chronic-guilt-epidemic-nuju-app-data-study"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/hyper-independence-trauma-armor-nuju-data-report</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Hyper-Independence Is Not Resilience: Inside Nuju&apos;s 2026 Trauma &amp; Counter-Dependence Study</image:title>
+      <image:caption>When refusing help is actually an emotional fortress. Nuju Data Lab examines 85,000 user reflections on counter-dependence, childhood parentification, and the exhaustion of solitary survival.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/hyper-independence-trauma-armor-nuju-data-report"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/why-you-feel-guilty-resting-the-punitive-super-ego</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Why You Feel Guilty When Relaxing: The Neuroscience of Subconscious Penance &amp; Productivity Dread</image:title>
+      <image:caption>Can&apos;t sit still without feeling like you&apos;re failing? Explore the neurobiology of the Default Mode Network, the punitive super-ego, and why stillness feels unsafe to an anxious nervous system.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/why-you-feel-guilty-resting-the-punitive-super-ego"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/the-cost-of-never-asking-for-help-somatic-burnout</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>The Hidden Cost of Never Asking for Help: How Hyper-Independence Destroys the Nervous System</image:title>
+      <image:caption>Vagal tone suppression, jaw clenching, and adrenal collapse: explore the medical and neurological toll of carrying the world on your shoulders alone.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/the-cost-of-never-asking-for-help-somatic-burnout"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/das-neurotische-schuldgefuehl-nuju-datenstudie</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Chronische Schuldgefühle &amp; Selbstsabotage: Was 45.000 DACH-App-Einträge über das überlastete Über-Ich verraten</image:title>
+      <image:caption>Das Nuju Data Lab untersuchte 45.000 anonymisierte Einträge aus Deutschland, Österreich und der Schweiz. Warum ständiges Verantwortungsgefühl für andere krank macht.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="de" href="https://nuju.app/blog/das-neurotische-schuldgefuehl-nuju-datenstudie"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/hyper-unabhaengigkeit-als-traumafolge-selbsttest</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Hyper-Unabhängigkeit als Schutzpanzer: Warum Perfektionisten niemals um Hilfe bitten</image:title>
+      <image:caption>Alles alleine schaffen wollen ist keine Stärke, sondern oft ein Bindungstrauma. Erfahren Sie, warum Counter-Dependence Körper und Seele zermürbt.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="de" href="https://nuju.app/blog/hyper-unabhaengigkeit-als-traumafolge-selbsttest"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/la-culpabilite-chronique-etude-donnees-nuju</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Le Poids de la Culpabilité Chronique : Ce que Révèlent 50 000 Sessions de Journaling Émotionnel</image:title>
+      <image:caption>Le laboratoire Nuju analyse la culpabilité névrotique, le surmoi punitif et l&apos;auto-sabotage inconscient auprès des utilisateurs francophones.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://nuju.app/blog/la-culpabilite-chronique-etude-donnees-nuju"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/l-hyper-independance-le-piege-du-guerrier-solitaire</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>L&apos;Hyper-Indépendance : Quand le Refus d&apos;Aide Devient un Blindage Traumatique</image:title>
+      <image:caption>Tout faire seul n&apos;est pas une preuve de force, mais le symptôme d&apos;un système nerveux en alerte. Comprendre la contre-dépendance et réapprendre la confiance.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://nuju.app/blog/l-hyper-independance-le-piege-du-guerrier-solitaire"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/estudio-culpabilidad-cronica-y-autosabotaje-nuju</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>La Epidemia de la Culpa Crónica: Hallazgos del Laboratorio de Datos de Nuju sobre el Autosabotaje</image:title>
+      <image:caption>Análisis de 40.000 sesiones anónimas en países hispanohablantes. Por qué sentimos que todo es culpa nuestra y cómo el superyó sabotea el descanso y el éxito.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="es" href="https://nuju.app/blog/estudio-culpabilidad-cronica-y-autosabotaje-nuju"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/hiper-independencia-coraza-del-trauma-relacional</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Hiperindependencia: Por Qué Querer Hacerlo Todo Solo Es una Respuesta al Trauma</image:title>
+      <image:caption>No pedir ayuda no es fortaleza, es una coraza defensiva. Explora la contradependencia, la parentificación infantil y cómo aprender a confiar de nuevo.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="es" href="https://nuju.app/blog/hiper-independencia-coraza-del-trauma-relacional"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/data-aplikasi-nuju-rasa-bersalah-kronis-dan-self-sabotage</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Rasa Bersalah Kronis &amp; Sabotase Diri: Analisis Data 75.000 Pengguna Aplikasi Nuju di Indonesia</image:title>
+      <image:caption>Nuju Data Lab merilis laporan psikologis dari 75.000 catatan emosi anonim di Indonesia. Mengapa sindrom &apos;takut merepotkan&apos; dan beban rasa bersalah memicu sabotase karir?</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="id" href="https://nuju.app/blog/data-aplikasi-nuju-rasa-bersalah-kronis-dan-self-sabotage"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/kenapa-takut-minta-tolong-data-kemandirian-ekstrem</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Kenapa Kamu Gengsi &amp; Takut Minta Tolong? Bahaya Hyper-Independence Menurut Data Psikologi Nuju</image:title>
+      <image:caption>Merasa harus menuntaskan segalanya sendirian sampai tumbang? Data Nuju mengungkap hubungan erat antara kemandirian ekstrem, luka inner child, dan trauma masa lalu.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="id" href="https://nuju.app/blog/kenapa-takut-minta-tolong-data-kemandirian-ekstrem"/>
   </url>
   <url>
     <loc>https://nuju.app/blog/how-to-stop-overthinking-at-night</loc>

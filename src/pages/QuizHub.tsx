@@ -1287,6 +1287,64 @@ const QuizHub: React.FC = () => {
               </Link>
             </div>
           </div>
+
+          {/* Card 40: Chronic Guilt & Self-Sabotage Screener */}
+          <div className="rounded-3xl border border-rose-300 bg-gradient-to-br from-rose-500/10 via-pink-50 to-white p-6 shadow-xs flex flex-col justify-between hover:shadow-md transition">
+            <div>
+              <div className="flex items-center justify-between mb-3">
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-rose-600 px-3 py-0.5 text-xs font-bold text-white shadow-xs">
+                  <ShieldAlert className="h-3 w-3" />
+                  TOXIC REMORSE INDEX
+                </span>
+                <span className="text-xs font-semibold text-rose-700">Kugel-Jones GIC Model</span>
+              </div>
+              <h3 className="text-lg font-bold text-neutral-900 mb-1.5">
+                Chronic Guilt & Self-Sabotage Screener
+              </h3>
+              <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed">
+                Do you constantly feel responsible for other people's moods or sabotage your happiness? Differentiate healthy remorse from subconscious penance.
+              </p>
+            </div>
+            <div className="mt-5 pt-3 border-t border-rose-100 flex items-center justify-between">
+              <span className="text-xs font-medium text-neutral-400">~90 Secs · 12 Items</span>
+              <Link
+                to="/quiz/chronic-guilt"
+                className="inline-flex items-center gap-1.5 rounded-full bg-rose-600 px-4 py-2 text-xs font-bold text-white hover:bg-rose-700 transition shadow-xs"
+              >
+                <span>Screen Guilt Levels</span>
+                <ArrowRight className="h-3.5 w-3.5" />
+              </Link>
+            </div>
+          </div>
+
+          {/* Card 41: Hyper-Independence Diagnostic */}
+          <div className="rounded-3xl border border-sky-300 bg-gradient-to-br from-sky-500/10 via-teal-50 to-white p-6 shadow-xs flex flex-col justify-between hover:shadow-md transition">
+            <div>
+              <div className="flex items-center justify-between mb-3">
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-sky-600 px-3 py-0.5 text-xs font-bold text-white shadow-xs">
+                  <Shield className="h-3 w-3" />
+                  TRAUMA ARMOR INDEX
+                </span>
+                <span className="text-xs font-semibold text-sky-700">Attachment Defense Model</span>
+              </div>
+              <h3 className="text-lg font-bold text-neutral-900 mb-1.5">
+                Hyper-Independence Diagnostic
+              </h3>
+              <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed">
+                Do you refuse to ask for help even when burning out? Decode whether extreme self-reliance is a superpower or an emotional fortress guarding old wounds.
+              </p>
+            </div>
+            <div className="mt-5 pt-3 border-t border-sky-100 flex items-center justify-between">
+              <span className="text-xs font-medium text-neutral-400">~90 Secs · 12 Items</span>
+              <Link
+                to="/quiz/hyper-independence"
+                className="inline-flex items-center gap-1.5 rounded-full bg-sky-600 px-4 py-2 text-xs font-bold text-white hover:bg-sky-700 transition shadow-xs"
+              >
+                <span>Screen Trauma Armor</span>
+                <ArrowRight className="h-3.5 w-3.5" />
+              </Link>
+            </div>
+          </div>
         </div>
 
         {/* Country Filter Pills */}

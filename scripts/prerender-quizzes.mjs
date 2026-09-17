@@ -927,6 +927,68 @@ export function getQuizAndToolPages({
         },
       ],
     },
+    {
+      route: "/quiz/chronic-guilt",
+      aliases: ["/quiz/guilt-self-sabotage", "/tes-rasa-bersalah"],
+      title: "Chronic Guilt & Self-Sabotage Test: Free Clinical Subconscious Remorse Screener",
+      description:
+        "Do you feel constantly guilty for existing, relaxing, or other people's bad moods? Free 12-item clinical screener based on the Kugel-Jones Guilt Inventory (GIC).",
+      category: "Super-Ego & Remorse",
+      duration: "90 secs",
+      itemsCount: 12,
+      framework: "Kugel-Jones Guilt Inventory (GIC) & Freud Super-Ego Penance Dynamics",
+      overview:
+        "Chronic neurotic guilt is the toxic internalization of omnipotent responsibility, where an individual feels fundamentally at fault for others' emotions and subconsciously punishes themselves through self-sabotage, joy deprivation, and compulsive apology reflexes.",
+      keyPoints: [
+        "Distinguishes healthy reparative remorse from toxic, chronic, unearned guilt",
+        "Measures omnipotent responsibility and the urge to fix everyone's emotional states",
+        "Assesses subconscious self-sabotage, imposter penance, and happiness deprivation",
+        "Delivers boundary reinforcement exercises and self-compassion mantras",
+      ],
+      faqs: [
+        {
+          question: "What is omnipotent responsibility?",
+          answer:
+            "Omnipotent responsibility is the cognitive distortion where you believe you have total control over—and therefore total responsibility for—the happiness, comfort, and emotional stability of everyone around you.",
+        },
+        {
+          question: "How does chronic guilt cause self-sabotage?",
+          answer:
+            "When the harsh super-ego deems you undeserving of peace or success, it triggers subconscious behaviors—procrastination, conflicts, neglecting health—to inflict penance and relieve internal tension.",
+        },
+      ],
+    },
+    {
+      route: "/quiz/hyper-independence",
+      aliases: ["/quiz/trauma-independence", "/tes-kemandirian-ekstrem"],
+      title: "Hyper-Independence Test: Free Trauma-Fawn & Armor Diagnostic",
+      description:
+        "Do you refuse to ask for help even when burning out? Free 12-item clinical screener to see if extreme self-reliance is an emotional trauma defense mechanism.",
+      category: "Attachment & Autonomy",
+      duration: "90 secs",
+      itemsCount: 12,
+      framework: "Attachment Theory Counter-Dependence & Structural Dissociation Model",
+      overview:
+        "Hyper-independence is an adaptive defense mechanism often born from childhood parentification, neglect, or relational betrayal. When asking for help was historically met with rejection or danger, the nervous system concludes that total self-reliance is the only guarantee of safety.",
+      keyPoints: [
+        "Evaluates solitary armor and automatic refusal to delegate or accept support",
+        "Identifies vulnerability phobia and the dread of being emotionally indebted to others",
+        "Measures anticipatory threat detection and assuming others will inevitably drop the ball",
+        "Provides progressive micro-trust challenges and nervous system co-regulation practices",
+      ],
+      faqs: [
+        {
+          question: "Is hyper-independence a trauma response?",
+          answer:
+            "Yes. While modern culture praises relentless independence, clinical psychology recognizes extreme counter-dependence as a trauma-induced protective armor against vulnerability and betrayal.",
+        },
+        {
+          question: "How do you heal from hyper-independence?",
+          answer:
+            "By practicing progressive micro-delegation: asking for small, low-stakes assistance, learning to receive compliments, and processing somatic feelings of panic that arise during interdependence.",
+        },
+      ],
+    },
 
     // 3. Somatic & Regulation Tools
     {

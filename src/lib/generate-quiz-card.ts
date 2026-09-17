@@ -26,6 +26,8 @@ import { GaslightingScoreResult, GaslightingLang } from "@/data/gaslighting";
 import { CortisolScoreResult, CortisolLang } from "@/data/cortisol";
 import { EmotionalAvailabilityScoreResult, EmotionalAvailabilityLang } from "@/data/emotional-availability";
 import { BedtimeProcrastinationScoreResult, BedtimeProcrastinationLang } from "@/data/bedtime-procrastination";
+import { ChronicGuiltScoreResult, ChronicGuiltLang } from "@/data/chronic-guilt";
+import { HyperIndependenceScoreResult, HyperIndependenceLang } from "@/data/hyper-independence";
 
 /**
  * Draws a rounded rectangle path on the canvas context with fallback for older environments.
@@ -4856,6 +4858,374 @@ export async function generateBedtimeProcrastinationCard(
     canvas.toBlob((b) => (b ? resolve(b) : reject(new Error("Failed blob"))), "image/png", 0.95);
   });
   const file = new File([blob], `nuju-bedtime-procrastination-${result.level}.png`, { type: "image/png" });
+
+  return { dataUrl, blob, file };
+}
+
+/**
+ * Generates an Instagram Story format (1080x1350) share card for the Chronic Guilt & Self-Sabotage Screener.
+ */
+export async function generateChronicGuiltCard(
+  result: ChronicGuiltScoreResult,
+  lang: ChronicGuiltLang
+): Promise<{ dataUrl: string; blob: Blob; file: File }> {
+  const width = 1080;
+  const height = 1350;
+  const canvas = document.createElement("canvas");
+  canvas.width = width;
+  canvas.height = height;
+  const ctx = canvas.getContext("2d");
+  if (!ctx) throw new Error("Could not get canvas context");
+
+  // Background gradient: Deep Crimson Noir / Velvet Ember
+  const bgGrad = ctx.createLinearGradient(0, 0, width, height);
+  bgGrad.addColorStop(0, "#19080E");
+  bgGrad.addColorStop(0.5, "#250F18");
+  bgGrad.addColorStop(1, "#0F0408");
+  ctx.fillStyle = bgGrad;
+  ctx.fillRect(0, 0, width, height);
+
+  // Warm Crimson / Amber Glow
+  const glow = ctx.createRadialGradient(width * 0.8, height * 0.2, 10, width * 0.8, height * 0.2, 500);
+  glow.addColorStop(0, "rgba(225, 29, 72, 0.22)");
+  glow.addColorStop(0.6, "rgba(245, 158, 11, 0.12)");
+  glow.addColorStop(1, "rgba(0, 0, 0, 0)");
+  ctx.fillStyle = glow;
+  ctx.fillRect(0, 0, width, height);
+
+  // Card border
+  ctx.strokeStyle = "rgba(225, 29, 72, 0.28)";
+  ctx.lineWidth = 3;
+  drawRoundedRect(ctx, 40, 40, width - 80, height - 80, 40);
+  ctx.stroke();
+
+  // Top header pill
+  ctx.fillStyle = "rgba(225, 29, 72, 0.18)";
+  drawRoundedRect(ctx, 80, 80, 520, 56, 28);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(225, 29, 72, 0.4)";
+  ctx.stroke();
+
+  ctx.fillStyle = "#FDA4AF";
+  ctx.font = "bold 20px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("CHRONIC GUILT & SELF-SABOTAGE INDEX", 105, 115);
+
+  // Assessment title
+  ctx.fillStyle = "#FFFFFF";
+  ctx.font = "900 46px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("Toxic Burden & Penance", 80, 195);
+
+  // Level Badge Pill
+  ctx.fillStyle = "rgba(244, 63, 94, 0.22)";
+  drawRoundedRect(ctx, 80, 230, 380, 50, 25);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(244, 63, 94, 0.45)";
+  ctx.stroke();
+
+  const badgeText = result.profile.badge[lang] || result.profile.badge.en;
+  ctx.fillStyle = "#FECDD3";
+  ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(badgeText.toUpperCase(), 105, 263);
+
+  // Archetype Title Banner
+  ctx.fillStyle = "#FFFFFF";
+  ctx.font = "800 40px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  const archTitle = result.profile.title[lang] || result.profile.title.en;
+  ctx.fillText(archTitle, 80, 335);
+
+  // Tagline
+  ctx.fillStyle = "#FDE68A";
+  ctx.font = "italic 26px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  const tagline = result.profile.tagline[lang] || result.profile.tagline.en;
+  wrapText(ctx, `"${tagline}"`, 80, 385, width - 160, 36, 2);
+
+  // Subscales breakdown boxes
+  const boxWidth = 280;
+  const boxHeight = 160;
+  const boxY = 480;
+
+  // Box 1: Omnipotent Responsibility
+  ctx.fillStyle = "rgba(255, 255, 255, 0.05)";
+  drawRoundedRect(ctx, 80, boxY, boxWidth, boxHeight, 20);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(225, 29, 72, 0.25)";
+  ctx.stroke();
+
+  ctx.fillStyle = "#FB7185";
+  ctx.font = "bold 17px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("OMNIPOTENT RESP.", 105, boxY + 45);
+  ctx.fillStyle = "#FFFFFF";
+  ctx.font = "900 48px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(`${result.subscales.omnipotent_responsibility.percentage}%`, 105, boxY + 105);
+  ctx.fillStyle = "#94A3B8";
+  ctx.font = "16px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("Emotional Rescuing", 105, boxY + 135);
+
+  // Box 2: Punitive Sabotage
+  ctx.fillStyle = "rgba(255, 255, 255, 0.05)";
+  drawRoundedRect(ctx, 400, boxY, boxWidth, boxHeight, 20);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(245, 158, 11, 0.25)";
+  ctx.stroke();
+
+  ctx.fillStyle = "#FBBF24";
+  ctx.font = "bold 17px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("PUNITIVE SABOTAGE", 425, boxY + 45);
+  ctx.fillStyle = "#FFFFFF";
+  ctx.font = "900 48px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(`${result.subscales.punitive_self_sabotage.percentage}%`, 425, boxY + 105);
+  ctx.fillStyle = "#94A3B8";
+  ctx.font = "16px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("Penance & Deprivation", 425, boxY + 135);
+
+  // Box 3: Unworthiness Anxiety
+  ctx.fillStyle = "rgba(255, 255, 255, 0.05)";
+  drawRoundedRect(ctx, 720, boxY, boxWidth, boxHeight, 20);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(168, 85, 247, 0.25)";
+  ctx.stroke();
+
+  ctx.fillStyle = "#C084FC";
+  ctx.font = "bold 17px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("UNWORTHINESS", 745, boxY + 45);
+  ctx.fillStyle = "#FFFFFF";
+  ctx.font = "900 48px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(`${result.subscales.unworthiness_anxiety.percentage}%`, 745, boxY + 105);
+  ctx.fillStyle = "#94A3B8";
+  ctx.font = "16px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("Existential Apology", 745, boxY + 135);
+
+  // Psychology Mechanism Box
+  ctx.fillStyle = "rgba(255, 255, 255, 0.03)";
+  drawRoundedRect(ctx, 80, 680, width - 160, 220, 28);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(225, 29, 72, 0.2)";
+  ctx.stroke();
+
+  ctx.fillStyle = "#FDA4AF";
+  ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("CORE PSYCHODYNAMICS & SUPER-EGO CONFLICT", 120, 725);
+
+  const descText = result.profile.description[lang] || result.profile.description.en;
+  ctx.fillStyle = "#E2E8F0";
+  ctx.font = "24px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  wrapText(ctx, descText, 120, 770, width - 240, 36, 3);
+
+  // Action Protocol Box
+  ctx.fillStyle = "rgba(255, 255, 255, 0.04)";
+  drawRoundedRect(ctx, 80, 930, width - 160, 215, 28);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(255, 255, 255, 0.15)";
+  ctx.stroke();
+
+  ctx.fillStyle = "#F8FAFC";
+  ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("UNCONDITIONAL REPAIR PROTOCOL", 120, 975);
+
+  const protocols = result.profile.actionProtocols[lang] || result.profile.actionProtocols.en;
+  const protocolText = protocols[0] || "";
+  ctx.fillStyle = "#CBD5E1";
+  ctx.font = "24px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  wrapText(ctx, protocolText, 120, 1020, width - 240, 36, 3);
+
+  // Footer CTA
+  ctx.fillStyle = "rgba(255, 255, 255, 0.5)";
+  ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("Screen your chronic guilt & self-sabotage levels at:", 80, 1200);
+
+  ctx.fillStyle = "#FB7185";
+  ctx.font = "900 30px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("nuju.app/quiz/chronic-guilt", 80, 1245);
+
+  const dataUrl = canvas.toDataURL("image/png", 0.95);
+  const blob = await new Promise<Blob>((resolve, reject) => {
+    canvas.toBlob((b) => (b ? resolve(b) : reject(new Error("Failed blob"))), "image/png", 0.95);
+  });
+  const file = new File([blob], `nuju-chronic-guilt-${result.level}.png`, { type: "image/png" });
+
+  return { dataUrl, blob, file };
+}
+
+/**
+ * Generates an Instagram Story format (1080x1350) share card for the Hyper-Independence Screener.
+ */
+export async function generateHyperIndependenceCard(
+  result: HyperIndependenceScoreResult,
+  lang: HyperIndependenceLang
+): Promise<{ dataUrl: string; blob: Blob; file: File }> {
+  const width = 1080;
+  const height = 1350;
+  const canvas = document.createElement("canvas");
+  canvas.width = width;
+  canvas.height = height;
+  const ctx = canvas.getContext("2d");
+  if (!ctx) throw new Error("Could not get canvas context");
+
+  // Background gradient: Deep Slate / Obsidian Steel
+  const bgGrad = ctx.createLinearGradient(0, 0, width, height);
+  bgGrad.addColorStop(0, "#09131C");
+  bgGrad.addColorStop(0.5, "#0E1C2B");
+  bgGrad.addColorStop(1, "#050910");
+  ctx.fillStyle = bgGrad;
+  ctx.fillRect(0, 0, width, height);
+
+  // Steel Blue / Cyan Glow
+  const glow = ctx.createRadialGradient(width * 0.8, height * 0.2, 10, width * 0.8, height * 0.2, 500);
+  glow.addColorStop(0, "rgba(2, 132, 199, 0.24)");
+  glow.addColorStop(0.6, "rgba(13, 148, 136, 0.14)");
+  glow.addColorStop(1, "rgba(0, 0, 0, 0)");
+  ctx.fillStyle = glow;
+  ctx.fillRect(0, 0, width, height);
+
+  // Card border
+  ctx.strokeStyle = "rgba(2, 132, 199, 0.3)";
+  ctx.lineWidth = 3;
+  drawRoundedRect(ctx, 40, 40, width - 80, height - 80, 40);
+  ctx.stroke();
+
+  // Top header pill
+  ctx.fillStyle = "rgba(2, 132, 199, 0.18)";
+  drawRoundedRect(ctx, 80, 80, 520, 56, 28);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(2, 132, 199, 0.4)";
+  ctx.stroke();
+
+  ctx.fillStyle = "#38BDF8";
+  ctx.font = "bold 20px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("HYPER-INDEPENDENCE DIAGNOSTIC", 105, 115);
+
+  // Assessment title
+  ctx.fillStyle = "#FFFFFF";
+  ctx.font = "900 46px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("Trauma Shield & Self-Reliance", 80, 195);
+
+  // Level Badge Pill
+  ctx.fillStyle = "rgba(14, 165, 233, 0.22)";
+  drawRoundedRect(ctx, 80, 230, 380, 50, 25);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(14, 165, 233, 0.45)";
+  ctx.stroke();
+
+  const badgeText = result.profile.badge[lang] || result.profile.badge.en;
+  ctx.fillStyle = "#BAE6FD";
+  ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(badgeText.toUpperCase(), 105, 263);
+
+  // Archetype Title Banner
+  ctx.fillStyle = "#FFFFFF";
+  ctx.font = "800 40px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  const archTitle = result.profile.title[lang] || result.profile.title.en;
+  ctx.fillText(archTitle, 80, 335);
+
+  // Tagline
+  ctx.fillStyle = "#7DD3FC";
+  ctx.font = "italic 26px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  const tagline = result.profile.tagline[lang] || result.profile.tagline.en;
+  wrapText(ctx, `"${tagline}"`, 80, 385, width - 160, 36, 2);
+
+  // Subscales breakdown boxes
+  const boxWidth = 280;
+  const boxHeight = 160;
+  const boxY = 480;
+
+  // Box 1: Solitary Armor
+  ctx.fillStyle = "rgba(255, 255, 255, 0.05)";
+  drawRoundedRect(ctx, 80, boxY, boxWidth, boxHeight, 20);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(2, 132, 199, 0.25)";
+  ctx.stroke();
+
+  ctx.fillStyle = "#38BDF8";
+  ctx.font = "bold 17px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("SOLITARY ARMOR", 105, boxY + 45);
+  ctx.fillStyle = "#FFFFFF";
+  ctx.font = "900 48px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(`${result.subscales.solitary_armor.percentage}%`, 105, boxY + 105);
+  ctx.fillStyle = "#94A3B8";
+  ctx.font = "16px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("Help Delegation Refusal", 105, boxY + 135);
+
+  // Box 2: Vulnerability Phobia
+  ctx.fillStyle = "rgba(255, 255, 255, 0.05)";
+  drawRoundedRect(ctx, 400, boxY, boxWidth, boxHeight, 20);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(20, 184, 166, 0.25)";
+  ctx.stroke();
+
+  ctx.fillStyle = "#2DD4BF";
+  ctx.font = "bold 17px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("VULNERABILITY PHOBIA", 425, boxY + 45);
+  ctx.fillStyle = "#FFFFFF";
+  ctx.font = "900 48px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(`${result.subscales.vulnerability_phobia.percentage}%`, 425, boxY + 105);
+  ctx.fillStyle = "#94A3B8";
+  ctx.font = "16px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("Emotional Containment", 425, boxY + 135);
+
+  // Box 3: Threat Detection
+  ctx.fillStyle = "rgba(255, 255, 255, 0.05)";
+  drawRoundedRect(ctx, 720, boxY, boxWidth, boxHeight, 20);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(244, 63, 94, 0.25)";
+  ctx.stroke();
+
+  ctx.fillStyle = "#FB7185";
+  ctx.font = "bold 17px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("THREAT DETECTION", 745, boxY + 45);
+  ctx.fillStyle = "#FFFFFF";
+  ctx.font = "900 48px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(`${result.subscales.threat_detection.percentage}%`, 745, boxY + 105);
+  ctx.fillStyle = "#94A3B8";
+  ctx.font = "16px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("Anticipatory Betrayal", 745, boxY + 135);
+
+  // Psychology Mechanism Box
+  ctx.fillStyle = "rgba(255, 255, 255, 0.03)";
+  drawRoundedRect(ctx, 80, 680, width - 160, 220, 28);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(2, 132, 199, 0.2)";
+  ctx.stroke();
+
+  ctx.fillStyle = "#38BDF8";
+  ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("NEURO-DEFENSE SYSTEM & INTERDEPENDENCE CAPACITY", 120, 725);
+
+  const descText = result.profile.description[lang] || result.profile.description.en;
+  ctx.fillStyle = "#E2E8F0";
+  ctx.font = "24px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  wrapText(ctx, descText, 120, 770, width - 240, 36, 3);
+
+  // Action Protocol Box
+  ctx.fillStyle = "rgba(255, 255, 255, 0.04)";
+  drawRoundedRect(ctx, 80, 930, width - 160, 215, 28);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(255, 255, 255, 0.15)";
+  ctx.stroke();
+
+  ctx.fillStyle = "#F8FAFC";
+  ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("PROGRESSIVE INTERDEPENDENCE PROTOCOL", 120, 975);
+
+  const protocols = result.profile.actionProtocols[lang] || result.profile.actionProtocols.en;
+  const protocolText = protocols[0] || "";
+  ctx.fillStyle = "#CBD5E1";
+  ctx.font = "24px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  wrapText(ctx, protocolText, 120, 1020, width - 240, 36, 3);
+
+  // Footer CTA
+  ctx.fillStyle = "rgba(255, 255, 255, 0.5)";
+  ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("Screen your hyper-independence trauma patterns at:", 80, 1200);
+
+  ctx.fillStyle = "#38BDF8";
+  ctx.font = "900 30px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("nuju.app/quiz/hyper-independence", 80, 1245);
+
+  const dataUrl = canvas.toDataURL("image/png", 0.95);
+  const blob = await new Promise<Blob>((resolve, reject) => {
+    canvas.toBlob((b) => (b ? resolve(b) : reject(new Error("Failed blob"))), "image/png", 0.95);
+  });
+  const file = new File([blob], `nuju-hyper-independence-${result.level}.png`, { type: "image/png" });
 
   return { dataUrl, blob, file };
 }
