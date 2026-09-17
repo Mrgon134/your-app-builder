@@ -603,6 +603,30 @@
     <changefreq>weekly</changefreq>
   </url>
   <url>
+    <loc>https://nuju.app/quiz/functional-freeze</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.95</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/quiz/somatic-freeze</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.9</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/quiz/somatic-armoring</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.95</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/quiz/body-armoring</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.9</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
     <loc>https://nuju.app/quiz/baterai-emosi</loc>
     <lastmod>2026-09-17</lastmod>
     <priority>0.9</priority>
@@ -8026,6 +8050,150 @@
       <image:caption>Case studies and clinical frameworks demonstrating how replacing imperatives with declarative phrasing resolves chronic task freeze and autistic-ADHD burnout.</image:caption>
     </image:image>
     <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/declarative-micro-habits-reversing-pda-demand-burnout"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/functional-freeze-dorsal-vagal-shutdown-symptoms-guide</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Functional Freeze: Why You Feel Numb, Exhausted, and Paralyzed While Still Getting Work Done</image:title>
+      <image:caption>Are you showing up to work, sending emails, and ticking boxes while internally feeling dead, hollow, and unable to care? Discover the polyvagal neurobiology of functional freeze.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/functional-freeze-dorsal-vagal-shutdown-symptoms-guide"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/somatic-trauma-release-nervous-system-reset-exercises</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Somatic Trauma Release: How Stored Bodily Tension Blocks Emotional Regulation (And How to Discharge It)</image:title>
+      <image:caption>When the mind tries to forget, the body keeps the score. Learn how muscular armoring, psoas tension, and vocal constriction trap uncompleted stress cycles—and somatic exercises to release them.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/somatic-trauma-release-nervous-system-reset-exercises"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/hyper-independence-trauma-response-counter-dependency</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Hyper-Independence as a Trauma Response: Why Asking for Help Feels Like Severe Danger</image:title>
+      <image:caption>Do you take pride in never needing anyone, yet feel chronically lonely and exhausted? Understand counter-dependency, vulnerability phobia, and the childhood origins of extreme self-reliance.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/hyper-independence-trauma-response-counter-dependency"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/strong-friend-syndrome-silent-burnout-loneliness</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Strong Friend Syndrome: The Silent Burnout of Always Being the Anchor for Everyone Else</image:title>
+      <image:caption>Everyone comes to you with their crises, but when you fall apart, who checks on you? Explore the psychology of the strong friend trap and how to step down from being everyone&apos;s therapist.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/strong-friend-syndrome-silent-burnout-loneliness"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/functional-freeze-adalah-tubuh-mati-rasa-lelah-kronis</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Functional Freeze Adalah: Mengapa Kamu Merasa Mati Rasa dan Hampa Meski Tetap Produktif Bekerja</image:title>
+      <image:caption>Kenapa kamu bisa bekerja dan tersenyum di kantor, tapi di rumah langsung membeku menatap tembok berjam-jam? Pahami neurobiologi dorsal vagal freeze dan cara memulihkan tubuhmu.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="id" href="https://nuju.app/blog/functional-freeze-adalah-tubuh-mati-rasa-lelah-kronis"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/hyper-independence-trauma-mandiri-berlebihan-susah-minta-tolong</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Hyper-Independence: Mengapa Meminta Tolong Terasa Memalukan dan Bahaya Menurut Psikologi</image:title>
+      <image:caption>Apakah kamu lebih memilih kelelahan ekstrem daripada meminta bantuan orang lain? Ketahui mengapa kemandirian berlebihan adalah zirah pertahanan trauma masa kecil.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="id" href="https://nuju.app/blog/hyper-independence-trauma-mandiri-berlebihan-susah-minta-tolong"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/funktionaler-freeze-zustand-nervensystem-erstarrung-loesen</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Funktionaler Freeze Zustand: Warum du innerlich gelähmt bist, während du nach außen perfekt funktionierst</image:title>
+      <image:caption>Erledigst du deine Arbeit zuverlässig, fühlst dich innerlich jedoch wie betäubt und emotional abgeschnitten? Erfahre die Hintergründe des dorsalen Vagus-Freeze und somatische Lösungswege.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="de" href="https://nuju.app/blog/funktionaler-freeze-zustand-nervensystem-erstarrung-loesen"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/hyperunabhaengigkeit-trauma-reaktion-gegenabhaengigkeit-psychologie</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Hyperunabhängigkeit als Traumareaktion: Warum Hilfe annehmen Panik auslöst</image:title>
+      <image:caption>Glaubst du fest daran, dass du niemanden brauchst, fühlst dich aber insgeheim einsam und überlastet? Verstehe die Gegenabhängigkeit und den Schutzpanzer extremer Autonomie.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="de" href="https://nuju.app/blog/hyperunabhaengigkeit-trauma-reaktion-gegenabhaengigkeit-psychologie"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/figement-fonctionnel-dorsal-vagal-anesthésie-emotionnelle-corps</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Le Figement Fonctionnel : Pourquoi vous vous sentez vide et anesthésié tout en restant productif</image:title>
+      <image:caption>Vous continuez à assurer vos journées de travail tout en vous sentant détaché, fatigué et incapable de ressentir la moindre joie ? Découvrez l&apos;état de figement dorsal vagal.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://nuju.app/blog/figement-fonctionnel-dorsal-vagal-anesthésie-emotionnelle-corps"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/hyper-independance-traumatisme-contre-dependance-affective</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>L&apos;Hyper-Indépendance : Quand ne compter que sur soi devient une armure traumatique étouffante</image:title>
+      <image:caption>Avez-vous une sainte horreur de demander de l&apos;aide ? Découvrez pourquoi l&apos;autosuffisance extrême est une réaction de survie post-traumatique face à la trahison ou à la négligence.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://nuju.app/blog/hyper-independance-traumatisme-contre-dependance-affective"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/congelacion-funcional-nervio-vago-bloqueo-somatico-sintomas</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Congelación Funcional: Por Qué Te Sientes Apagado y Agotado Mientras Sigues Rindiendo en el Trabajo</image:title>
+      <image:caption>¿Cumples con todas tus obligaciones laborales pero por dentro te sientes entumecido, vacío e incapaz de disfrutar la vida? Conoce la neurobiología de la congelación funcional.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="es" href="https://nuju.app/blog/congelacion-funcional-nervio-vago-bloqueo-somatico-sintomas"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/hiperdependencia-trauma-contra-dependencia-autosuficiencia-extrema</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Hiperdependencia como Respuesta al Trauma: Por Qué Pedir Ayuda Te Provoca Angustia y Vergüenza</image:title>
+      <image:caption>¿Te enorgullece no necesitar a nadie pero en el fondo cargas una soledad y un cansancio insoportables? Descubre la contra-dependencia y el blindaje emocional de la autosuficiencia extrema.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="es" href="https://nuju.app/blog/hiperdependencia-trauma-contra-dependencia-autosuficiencia-extrema"/>
   </url>
   <url>
     <loc>https://nuju.app/blog/how-to-stop-overthinking-at-night</loc>

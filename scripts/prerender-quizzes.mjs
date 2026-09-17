@@ -1547,6 +1547,68 @@ export function getQuizAndToolPages({
         },
       ],
     },
+    {
+      route: "/quiz/functional-freeze",
+      aliases: ["/quiz/somatic-freeze", "/tes-functional-freeze"],
+      title: "Functional Freeze Test: Free Polyvagal & Somatic Shutdown Screener",
+      description:
+        "Are you productive at work but internally numb, detached, and exhausted? Free 12-item clinical screener measuring dorsal vagal freeze, somatic armoring, and executive inertia.",
+      category: "Polyvagal Neurobiology & Somatics",
+      duration: "90 secs",
+      itemsCount: 12,
+      framework: "Dr. Stephen Porges (Polyvagal Theory) & Peter Levine (Somatic Experiencing)",
+      overview:
+        "Functional freeze occurs when the nervous system co-activates sympathetic mobilization (to get work done) and dorsal vagal shutdown (numbing emotions and visceral vitality), leaving the individual feeling like a ghost drifting through their own life.",
+      keyPoints: [
+        "Measures dorsal vagal shutdown and chronic emotional disconnection",
+        "Assesses somatic armoring, unconscious clenched jaw, and held breath",
+        "Evaluates interoceptive dissociation and lack of visceral sensation",
+        "Provides somatic orientation, vocal vagus toning drills, and restorative rest plans",
+      ],
+      faqs: [
+        {
+          question: "What is a functional freeze response?",
+          answer:
+            "Functional freeze is a state where an individual remains outwardly productive and capable of completing tasks, while their nervous system is locked in an ancient dorsal vagal immobility response characterized by deep numbness and inertia.",
+        },
+        {
+          question: "How do you break out of a functional freeze state?",
+          answer:
+            "Cognitive talk therapy is often insufficient. Somatic bottom-up interventions—such as gentle vocal toning, sensory orientation (naming colors), physiological sighing, and somatic rocking—send physical cues of safety directly to the brainstem.",
+        },
+      ],
+    },
+    {
+      route: "/quiz/somatic-armoring",
+      aliases: ["/quiz/body-armoring", "/tes-body-armoring"],
+      title: "Somatic Armoring Test: Free Body Armor & Muscular Tension Diagnostic",
+      description:
+        "Does your body carry chronic clenched jaws, locked diaphragms, or rigid hips? Free 12-item clinical assessment measuring Wilhelm Reich's muscular segments and somatic trauma holding patterns.",
+      category: "Somatic Psychology & Bodywork",
+      duration: "90 secs",
+      itemsCount: 12,
+      framework: "Wilhelm Reich (Character Armor & Segments) & Dr. Bessel van der Kolk",
+      overview:
+        "Body armoring is chronic muscular spasms and tension patterns developed to bind anxiety, suppress rage or tears, and ward off perceived trauma. This diagnostic maps tension across cervical, thoracic, and pelvic segments.",
+      keyPoints: [
+        "Measures cervical & oral segment armoring (jaw clenching, lump in throat, neck guarding)",
+        "Assesses thoracic & diaphragmatic constriction (held breath, shallow chest breathing)",
+        "Evaluates pelvic & psoas locking (lower back stiffness, inability to surrender into mattress)",
+        "Provides targeted myofascial release, low-frequency vocal humming, and psoas de-escalation protocols",
+      ],
+      faqs: [
+        {
+          question: "What is body armoring in psychology?",
+          answer:
+            "Body armoring refers to chronic muscular rigidity that functions as a physical defense against the breakthrough of painful suppressed emotions and anxiety.",
+        },
+        {
+          question: "Can somatic armoring cause physical health issues?",
+          answer:
+            "Yes. Long-term muscular armoring can lead to tension headaches, temporomandibular joint (TMJ) dysfunction, chronic digestive disorders (IBS), shallow breathing, and adrenal fatigue.",
+        },
+      ],
+    },
 
     // 3. Somatic & Regulation Tools
     {

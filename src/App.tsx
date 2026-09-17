@@ -92,6 +92,8 @@ const RSDTest = lazy(() => import("./pages/RsdScreenerTest.tsx"));
 const DopamineBurnoutTest = lazy(() => import("./pages/DopamineBurnoutTest.tsx"));
 const BetrayalTraumaTest = lazy(() => import("./pages/BetrayalTraumaTest.tsx"));
 const PdaTest = lazy(() => import("./pages/PdaTest.tsx"));
+const FunctionalFreezeTest = lazy(() => import("./pages/FunctionalFreezeTest.tsx"));
+const SomaticArmoringTest = lazy(() => import("./pages/SomaticArmoringTest.tsx"));
 const EbookSalesPage = lazy(() => import("./pages/EbookSalesPage.tsx"));
 const EbookReaderPage = lazy(() => import("./pages/EbookReaderPage.tsx"));
 const NotFound = lazy(() => import("./pages/NotFound.tsx"));
@@ -346,6 +348,12 @@ const App = () => (
                   <Route path="/quiz/pda-demand-avoidance" element={<PdaTest />} />
                   <Route path="/quiz/pathological-demand-avoidance" element={<PdaTest />} />
                   <Route path="/tes-pda-alergi-perintah" element={<PdaTest defaultLang="id" />} />
+                  <Route path="/quiz/functional-freeze" element={<FunctionalFreezeTest />} />
+                  <Route path="/quiz/somatic-freeze" element={<FunctionalFreezeTest />} />
+                  <Route path="/tes-functional-freeze" element={<FunctionalFreezeTest />} />
+                  <Route path="/quiz/somatic-armoring" element={<SomaticArmoringTest />} />
+                  <Route path="/quiz/body-armoring" element={<SomaticArmoringTest />} />
+                  <Route path="/tes-body-armoring" element={<SomaticArmoringTest />} />
                   <Route path="/quiz/:quizId" element={<QuizRunner />} />
                   <Route path="/test-psikologi" element={<QuizHub />} />
                   <Route path="/test-psikologi/:quizId" element={<QuizRunner />} />

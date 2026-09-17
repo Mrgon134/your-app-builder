@@ -8598,3 +8598,455 @@ export async function generatePdaCard(
   return { dataUrl, blob, file };
 }
 
+export type FunctionalFreezeLang = "en" | "id" | "de" | "fr" | "es";
+
+export interface FunctionalFreezeScoreResult {
+  score: number;
+  percentage: number;
+  level: string;
+  profile: {
+    title: Record<string, string>;
+    badge: Record<string, string>;
+    summary: Record<string, string>;
+    neurobiology: Record<string, string>;
+    actionProtocol: Record<string, string[]>;
+  };
+  subscales: {
+    dorsal_vagal: { score: number; percentage: number };
+    somatic_armoring: { score: number; percentage: number };
+    interoceptive_dissociation: { score: number; percentage: number };
+  };
+}
+
+/**
+ * Generates an aesthetic high-resolution Instagram Story share card (1080x1350)
+ * for the Functional Freeze & Somatic State Screener.
+ */
+export async function generateFunctionalFreezeCard(
+  result: FunctionalFreezeScoreResult,
+  lang: FunctionalFreezeLang = "en"
+): Promise<{ dataUrl: string; blob: Blob; file: File }> {
+  const canvas = document.createElement("canvas");
+  const width = 1080;
+  const height = 1350;
+  canvas.width = width;
+  canvas.height = height;
+  const ctx = canvas.getContext("2d");
+  if (!ctx) throw new Error("Could not get 2D canvas context");
+
+  // Deep Navy Glacier & Slate gradient
+  const bgGrad = ctx.createLinearGradient(0, 0, width, height);
+  bgGrad.addColorStop(0, "#08101e");
+  bgGrad.addColorStop(0.5, "#0d1b2a");
+  bgGrad.addColorStop(1, "#050913");
+  ctx.fillStyle = bgGrad;
+  ctx.fillRect(0, 0, width, height);
+
+  // Atmospheric glacial glows
+  const glow1 = ctx.createRadialGradient(280, 240, 10, 280, 240, 500);
+  glow1.addColorStop(0, "rgba(56, 189, 248, 0.22)");
+  glow1.addColorStop(1, "rgba(56, 189, 248, 0)");
+  ctx.fillStyle = glow1;
+  ctx.fillRect(0, 0, width, height);
+
+  const glow2 = ctx.createRadialGradient(820, 1050, 10, 820, 1050, 600);
+  glow2.addColorStop(0, "rgba(129, 140, 248, 0.18)");
+  glow2.addColorStop(1, "rgba(129, 140, 248, 0)");
+  ctx.fillStyle = glow2;
+  ctx.fillRect(0, 0, width, height);
+
+  // Badge pill
+  ctx.fillStyle = "rgba(56, 189, 248, 0.14)";
+  drawRoundedRect(ctx, 80, 80, 580, 52, 26);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(56, 189, 248, 0.4)";
+  ctx.stroke();
+
+  ctx.fillStyle = "#7DD3FC";
+  ctx.font = "bold 20px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("POLYVAGAL & SOMATIC FREEZE TEST", 105, 115);
+
+  // Title
+  ctx.fillStyle = "#FFFFFF";
+  ctx.font = "900 44px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("Functional Freeze Profile", 80, 195);
+
+  // Level Badge
+  ctx.fillStyle = "rgba(56, 189, 248, 0.22)";
+  drawRoundedRect(ctx, 80, 230, 460, 50, 25);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(56, 189, 248, 0.5)";
+  ctx.stroke();
+
+  const badgeText = result.profile.badge[lang] || result.profile.badge.en;
+  ctx.fillStyle = "#E0F2FE";
+  ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(badgeText.toUpperCase(), 105, 263);
+
+  // Profile Title
+  ctx.fillStyle = "#FFFFFF";
+  ctx.font = "800 38px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  const pTitle = result.profile.title[lang] || result.profile.title.en;
+  ctx.fillText(pTitle, 80, 335);
+
+  // Subtitle/summary
+  ctx.fillStyle = "#BAE6FD";
+  ctx.font = "italic 24px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  const summary = result.profile.summary[lang] || result.profile.summary.en;
+  wrapText(ctx, `"${summary}"`, 80, 385, width - 160, 34, 2);
+
+  // Subscales
+  const boxWidth = 280;
+  const boxHeight = 160;
+  const boxY = 480;
+
+  // Box 1: Dorsal Vagal
+  ctx.fillStyle = "rgba(255, 255, 255, 0.05)";
+  drawRoundedRect(ctx, 80, boxY, boxWidth, boxHeight, 20);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(56, 189, 248, 0.25)";
+  ctx.stroke();
+
+  ctx.fillStyle = "#38BDF8";
+  ctx.font = "bold 17px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("DORSAL SHUTDOWN", 105, boxY + 45);
+  ctx.fillStyle = "#FFFFFF";
+  ctx.font = "900 48px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(`${result.subscales.dorsal_vagal.percentage}%`, 105, boxY + 105);
+  ctx.fillStyle = "#94A3B8";
+  ctx.font = "16px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("Immobility & Fatigue", 105, boxY + 135);
+
+  // Box 2: Somatic Armoring
+  ctx.fillStyle = "rgba(255, 255, 255, 0.05)";
+  drawRoundedRect(ctx, 400, boxY, boxWidth, boxHeight, 20);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(129, 140, 248, 0.25)";
+  ctx.stroke();
+
+  ctx.fillStyle = "#818CF8";
+  ctx.font = "bold 17px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("SOMATIC ARMORING", 425, boxY + 45);
+  ctx.fillStyle = "#FFFFFF";
+  ctx.font = "900 48px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(`${result.subscales.somatic_armoring.percentage}%`, 425, boxY + 105);
+  ctx.fillStyle = "#94A3B8";
+  ctx.font = "16px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("Chronic Body Tension", 425, boxY + 135);
+
+  // Box 3: Interoceptive Dissociation
+  ctx.fillStyle = "rgba(255, 255, 255, 0.05)";
+  drawRoundedRect(ctx, 720, boxY, boxWidth, boxHeight, 20);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(244, 114, 182, 0.25)";
+  ctx.stroke();
+
+  ctx.fillStyle = "#F472B6";
+  ctx.font = "bold 17px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("DISSOCIATION", 745, boxY + 45);
+  ctx.fillStyle = "#FFFFFF";
+  ctx.font = "900 48px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(`${result.subscales.interoceptive_dissociation.percentage}%`, 745, boxY + 105);
+  ctx.fillStyle = "#94A3B8";
+  ctx.font = "16px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("Visceral Numbing", 745, boxY + 135);
+
+  // Big Banner
+  const metricY = 675;
+  ctx.fillStyle = "rgba(56, 189, 248, 0.08)";
+  drawRoundedRect(ctx, 80, metricY, width - 160, 220, 24);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(56, 189, 248, 0.35)";
+  ctx.stroke();
+
+  ctx.fillStyle = "#7DD3FC";
+  ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("OVERALL NERVOUS SYSTEM FREEZE INDEX", 120, metricY + 50);
+
+  ctx.fillStyle = "#FFFFFF";
+  ctx.font = "900 64px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(`${result.percentage}%`, 120, metricY + 125);
+
+  const pBarW = width - 440;
+  ctx.fillStyle = "rgba(255, 255, 255, 0.12)";
+  drawRoundedRect(ctx, 290, metricY + 85, pBarW, 16, 8);
+  ctx.fill();
+
+  const progFill = (pBarW * result.percentage) / 100;
+  const pGrad = ctx.createLinearGradient(290, 0, 290 + progFill, 0);
+  pGrad.addColorStop(0, "#38BDF8");
+  pGrad.addColorStop(1, "#818CF8");
+  ctx.fillStyle = pGrad;
+  drawRoundedRect(ctx, 290, metricY + 85, Math.max(16, progFill), 16, 8);
+  ctx.fill();
+
+  ctx.fillStyle = "#CBD5E1";
+  ctx.font = "20px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(
+    "Polyvagal Metric: Dorsal freeze is an involuntary biological defense, not laziness or lack of discipline.",
+    120,
+    metricY + 180
+  );
+
+  // Action Protocol
+  ctx.fillStyle = "rgba(255, 255, 255, 0.04)";
+  drawRoundedRect(ctx, 80, 925, width - 160, 200, 24);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(255, 255, 255, 0.12)";
+  ctx.stroke();
+
+  ctx.fillStyle = "#F8FAFC";
+  ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("SOMATIC REGULATION PROTOCOL", 120, 975);
+
+  const protocols = result.profile.actionProtocol[lang] || result.profile.actionProtocol.en;
+  const protocolText = protocols[0] || "";
+  ctx.fillStyle = "#CBD5E1";
+  ctx.font = "24px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  wrapText(ctx, protocolText, 120, 1020, width - 240, 36, 3);
+
+  // Footer CTA
+  ctx.fillStyle = "rgba(255, 255, 255, 0.5)";
+  ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("Assess your dorsal vagal freeze state at:", 80, 1200);
+
+  ctx.fillStyle = "#38BDF8";
+  ctx.font = "900 30px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("nuju.app/quiz/functional-freeze", 80, 1245);
+
+  const dataUrl = canvas.toDataURL("image/png", 0.95);
+  const blob = await new Promise<Blob>((resolve, reject) => {
+    canvas.toBlob((b) => (b ? resolve(b) : reject(new Error("Failed blob"))), "image/png", 0.95);
+  });
+  const file = new File([blob], `nuju-freeze-${result.level}.png`, { type: "image/png" });
+
+  return { dataUrl, blob, file };
+}
+
+export type SomaticArmoringLang = "en" | "id" | "de" | "fr" | "es";
+
+export interface SomaticArmoringScoreResult {
+  score: number;
+  percentage: number;
+  level: string;
+  profile: {
+    title: Record<string, string>;
+    badge: Record<string, string>;
+    summary: Record<string, string>;
+    somaticMechanisms: Record<string, string>;
+    releaseProtocols: Record<string, string[]>;
+  };
+  segments: {
+    cervical_oral: { score: number; percentage: number };
+    thoracic_diaphragm: { score: number; percentage: number };
+    pelvic_psoas: { score: number; percentage: number };
+  };
+}
+
+/**
+ * Generates an aesthetic high-resolution Instagram Story share card (1080x1350)
+ * for the Somatic Armoring & Muscular Tension Diagnostic.
+ */
+export async function generateSomaticArmoringCard(
+  result: SomaticArmoringScoreResult,
+  lang: SomaticArmoringLang = "en"
+): Promise<{ dataUrl: string; blob: Blob; file: File }> {
+  const canvas = document.createElement("canvas");
+  const width = 1080;
+  const height = 1350;
+  canvas.width = width;
+  canvas.height = height;
+  const ctx = canvas.getContext("2d");
+  if (!ctx) throw new Error("Could not get 2D canvas context");
+
+  // Deep Obsidian Bronze & Dark Umber gradient
+  const bgGrad = ctx.createLinearGradient(0, 0, width, height);
+  bgGrad.addColorStop(0, "#120c08");
+  bgGrad.addColorStop(0.5, "#1c1209");
+  bgGrad.addColorStop(1, "#0a0705");
+  ctx.fillStyle = bgGrad;
+  ctx.fillRect(0, 0, width, height);
+
+  // Atmospheric glows
+  const glow1 = ctx.createRadialGradient(280, 240, 10, 280, 240, 500);
+  glow1.addColorStop(0, "rgba(245, 158, 11, 0.22)");
+  glow1.addColorStop(1, "rgba(245, 158, 11, 0)");
+  ctx.fillStyle = glow1;
+  ctx.fillRect(0, 0, width, height);
+
+  const glow2 = ctx.createRadialGradient(820, 1050, 10, 820, 1050, 600);
+  glow2.addColorStop(0, "rgba(217, 119, 6, 0.18)");
+  glow2.addColorStop(1, "rgba(217, 119, 6, 0)");
+  ctx.fillStyle = glow2;
+  ctx.fillRect(0, 0, width, height);
+
+  // Badge pill
+  ctx.fillStyle = "rgba(245, 158, 11, 0.14)";
+  drawRoundedRect(ctx, 80, 80, 580, 52, 26);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(245, 158, 11, 0.4)";
+  ctx.stroke();
+
+  ctx.fillStyle = "#FDE68A";
+  ctx.font = "bold 20px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("SOMATIC & MUSCULAR ARMORING TEST", 105, 115);
+
+  // Title
+  ctx.fillStyle = "#FFFFFF";
+  ctx.font = "900 44px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("Body Armor Diagnostic", 80, 195);
+
+  // Level Badge
+  ctx.fillStyle = "rgba(245, 158, 11, 0.22)";
+  drawRoundedRect(ctx, 80, 230, 480, 50, 25);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(245, 158, 11, 0.5)";
+  ctx.stroke();
+
+  const badgeText = result.profile.badge[lang] || result.profile.badge.en;
+  ctx.fillStyle = "#FEF3C7";
+  ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(badgeText.toUpperCase(), 105, 263);
+
+  // Profile Title
+  ctx.fillStyle = "#FFFFFF";
+  ctx.font = "800 38px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  const pTitle = result.profile.title[lang] || result.profile.title.en;
+  ctx.fillText(pTitle, 80, 335);
+
+  // Subtitle/summary
+  ctx.fillStyle = "#FDE68A";
+  ctx.font = "italic 24px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  const summary = result.profile.summary[lang] || result.profile.summary.en;
+  wrapText(ctx, `"${summary}"`, 80, 385, width - 160, 34, 2);
+
+  // Segments
+  const boxWidth = 280;
+  const boxHeight = 160;
+  const boxY = 480;
+
+  // Box 1: Cervical & Oral
+  ctx.fillStyle = "rgba(255, 255, 255, 0.05)";
+  drawRoundedRect(ctx, 80, boxY, boxWidth, boxHeight, 20);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(245, 158, 11, 0.25)";
+  ctx.stroke();
+
+  ctx.fillStyle = "#F59E0B";
+  ctx.font = "bold 17px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("CERVICAL & JAW", 105, boxY + 45);
+  ctx.fillStyle = "#FFFFFF";
+  ctx.font = "900 48px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(`${result.segments.cervical_oral.percentage}%`, 105, boxY + 105);
+  ctx.fillStyle = "#94A3B8";
+  ctx.font = "16px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("Clenched Jaw & Neck", 105, boxY + 135);
+
+  // Box 2: Thoracic & Diaphragm
+  ctx.fillStyle = "rgba(255, 255, 255, 0.05)";
+  drawRoundedRect(ctx, 400, boxY, boxWidth, boxHeight, 20);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(234, 88, 12, 0.25)";
+  ctx.stroke();
+
+  ctx.fillStyle = "#FB923C";
+  ctx.font = "bold 17px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("THORACIC & BREATH", 425, boxY + 45);
+  ctx.fillStyle = "#FFFFFF";
+  ctx.font = "900 48px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(`${result.segments.thoracic_diaphragm.percentage}%`, 425, boxY + 105);
+  ctx.fillStyle = "#94A3B8";
+  ctx.font = "16px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("Held Breath & Chest", 425, boxY + 135);
+
+  // Box 3: Pelvic & Psoas
+  ctx.fillStyle = "rgba(255, 255, 255, 0.05)";
+  drawRoundedRect(ctx, 720, boxY, boxWidth, boxHeight, 20);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(217, 119, 6, 0.25)";
+  ctx.stroke();
+
+  ctx.fillStyle = "#D97706";
+  ctx.font = "bold 17px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("PELVIC & PSOAS", 745, boxY + 45);
+  ctx.fillStyle = "#FFFFFF";
+  ctx.font = "900 48px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(`${result.segments.pelvic_psoas.percentage}%`, 745, boxY + 105);
+  ctx.fillStyle = "#94A3B8";
+  ctx.font = "16px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("Lower Back & Hips", 745, boxY + 135);
+
+  // Big Banner
+  const metricY = 675;
+  ctx.fillStyle = "rgba(245, 158, 11, 0.08)";
+  drawRoundedRect(ctx, 80, metricY, width - 160, 220, 24);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(245, 158, 11, 0.35)";
+  ctx.stroke();
+
+  ctx.fillStyle = "#FDE68A";
+  ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("OVERALL SOMATIC ARMORING INDEX", 120, metricY + 50);
+
+  ctx.fillStyle = "#FFFFFF";
+  ctx.font = "900 64px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(`${result.percentage}%`, 120, metricY + 125);
+
+  const pBarW = width - 440;
+  ctx.fillStyle = "rgba(255, 255, 255, 0.12)";
+  drawRoundedRect(ctx, 290, metricY + 85, pBarW, 16, 8);
+  ctx.fill();
+
+  const progFill = (pBarW * result.percentage) / 100;
+  const pGrad = ctx.createLinearGradient(290, 0, 290 + progFill, 0);
+  pGrad.addColorStop(0, "#F59E0B");
+  pGrad.addColorStop(1, "#EA580C");
+  ctx.fillStyle = pGrad;
+  drawRoundedRect(ctx, 290, metricY + 85, Math.max(16, progFill), 16, 8);
+  ctx.fill();
+
+  ctx.fillStyle = "#CBD5E1";
+  ctx.font = "20px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(
+    "Reichian Metric: Muscular armoring is emotional defense frozen into chronic physical posture.",
+    120,
+    metricY + 180
+  );
+
+  // Action Protocol
+  ctx.fillStyle = "rgba(255, 255, 255, 0.04)";
+  drawRoundedRect(ctx, 80, 925, width - 160, 200, 24);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(255, 255, 255, 0.12)";
+  ctx.stroke();
+
+  ctx.fillStyle = "#F8FAFC";
+  ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("SOMATIC DE-ARMORING PROTOCOL", 120, 975);
+
+  const protocols = result.profile.releaseProtocols[lang] || result.profile.releaseProtocols.en;
+  const protocolText = protocols[0] || "";
+  ctx.fillStyle = "#CBD5E1";
+  ctx.font = "24px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  wrapText(ctx, protocolText, 120, 1020, width - 240, 36, 3);
+
+  // Footer CTA
+  ctx.fillStyle = "rgba(255, 255, 255, 0.5)";
+  ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("Map your somatic armoring pattern at:", 80, 1200);
+
+  ctx.fillStyle = "#F59E0B";
+  ctx.font = "900 30px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("nuju.app/quiz/somatic-armoring", 80, 1245);
+
+  const dataUrl = canvas.toDataURL("image/png", 0.95);
+  const blob = await new Promise<Blob>((resolve, reject) => {
+    canvas.toBlob((b) => (b ? resolve(b) : reject(new Error("Failed blob"))), "image/png", 0.95);
+  });
+  const file = new File([blob], `nuju-armoring-${result.level}.png`, { type: "image/png" });
+
+  return { dataUrl, blob, file };
+}
+
+
+
