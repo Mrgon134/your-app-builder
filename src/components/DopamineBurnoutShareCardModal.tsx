@@ -8,17 +8,17 @@ import {
 } from "@/components/ui/dialog";
 import { Download, Share2, Check, Loader2, Sparkles } from "lucide-react";
 import { toast } from "sonner";
-import { RsdLang, RsdScoreResult } from "@/data/rsd-screener";
-import { generateRsdCard } from "@/lib/generate-quiz-card";
+import { DopamineBurnoutLang, DopamineBurnoutScoreResult } from "@/data/dopamine-burnout";
+import { generateDopamineBurnoutCard } from "@/lib/generate-quiz-card";
 
-interface RsdShareCardModalProps {
+interface DopamineBurnoutShareCardModalProps {
   isOpen: boolean;
   onClose: () => void;
-  result: RsdScoreResult;
-  lang: RsdLang;
+  result: DopamineBurnoutScoreResult;
+  lang: DopamineBurnoutLang;
 }
 
-const RsdShareCardModal: React.FC<RsdShareCardModalProps> = ({
+const DopamineBurnoutShareCardModal: React.FC<DopamineBurnoutShareCardModalProps> = ({
   isOpen,
   onClose,
   result,
@@ -38,7 +38,7 @@ const RsdShareCardModal: React.FC<RsdShareCardModalProps> = ({
     let isMounted = true;
     setIsGenerating(true);
 
-    generateRsdCard(result, lang)
+    generateDopamineBurnoutCard(result, lang)
       .then((generated) => {
         if (isMounted) {
           setCardData(generated);
@@ -46,7 +46,7 @@ const RsdShareCardModal: React.FC<RsdShareCardModalProps> = ({
         }
       })
       .catch((err) => {
-        console.error("Error generating RSD card:", err);
+        console.error("Error generating Dopamine Burnout card:", err);
         if (isMounted) {
           setIsGenerating(false);
           toast.error("Failed to generate story card.");
@@ -61,7 +61,7 @@ const RsdShareCardModal: React.FC<RsdShareCardModalProps> = ({
   const handleDownload = () => {
     if (!cardData) return;
     const link = document.createElement("a");
-    link.download = `nuju-rsd-screener-${result.level}.png`;
+    link.download = `nuju-dopamine-burnout-${result.level}.png`;
     link.href = cardData.dataUrl;
     link.click();
     toast.success("Story card downloaded!");
@@ -77,9 +77,9 @@ const RsdShareCardModal: React.FC<RsdShareCardModalProps> = ({
     ) {
       try {
         await navigator.share({
-          title: "My RSD (Rejection Sensitive Dysphoria) Score",
-          text: `My RSD Sensitivity: ${result.percentage}% (${result.profile.title.en}). Screen your rejection sensitivity free on Nuju:`,
-          url: "https://www.nuju.app/quiz/rsd-rejection-sensitivity",
+          title: "My Dopamine Burnout & Digital Overstimulation Score",
+          text: `My Dopamine Burnout Index: ${result.percentage}% (${result.profile.title.en}). Screen your neurochemical exhaustion free on Nuju:`,
+          url: "https://www.nuju.app/quiz/dopamine-burnout",
           files: [cardData.file],
         });
         toast.success("Shared successfully!");
@@ -95,11 +95,11 @@ const RsdShareCardModal: React.FC<RsdShareCardModalProps> = ({
   };
 
   const copyShareText = () => {
-    const text = `My RSD Sensitivity Score: ${
+    const text = `My Dopamine Burnout Score: ${
       result.profile.title[lang] || result.profile.title.en
-    } (${result.percentage}% rejection pain index - ${
+    } (${result.percentage}% neurochemical exhaustion index - ${
       result.profile.badge[lang] || result.profile.badge.en
-    }). Screen your rejection sensitivity free at: https://nuju.app/quiz/rsd-rejection-sensitivity`;
+    }). Screen your dopamine burnout free at: https://nuju.app/quiz/dopamine-burnout`;
 
     navigator.clipboard.writeText(text);
     setIsCopied(true);
@@ -109,18 +109,18 @@ const RsdShareCardModal: React.FC<RsdShareCardModalProps> = ({
 
   return (
     <Dialog open={isOpen} onOpenChange={(open) => !open && onClose()}>
-      <DialogContent className="max-w-md bg-[#1a1020] text-neutral-100 border-neutral-800 p-6 sm:p-8 rounded-3xl max-h-[92vh] overflow-y-auto">
+      <DialogContent className="max-w-md bg-[#080818] text-neutral-100 border-neutral-800 p-6 sm:p-8 rounded-3xl max-h-[92vh] overflow-y-auto">
         <DialogHeader className="text-left space-y-2">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-rose-500/10 border border-rose-500/30 text-rose-400 text-xs font-semibold w-fit">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 text-xs font-semibold w-fit">
             <Sparkles className="h-3.5 w-3.5" />
             <span>1080 × 1350 Story Card</span>
           </div>
           <DialogTitle className="text-xl font-bold text-white tracking-tight">
-            Share Your RSD Profile
+            Share Your Dopamine Burnout Profile
           </DialogTitle>
           <DialogDescription className="text-xs text-neutral-400">
-            Export a high-resolution story card with your rejection sensitivity
-            index, hyper-vigilance score, and de-escalation protocol.
+            Export a high-resolution story card with your neurochemical exhaustion
+            index, anhedonia score, and receptor recovery protocol.
           </DialogDescription>
         </DialogHeader>
 
@@ -128,7 +128,7 @@ const RsdShareCardModal: React.FC<RsdShareCardModalProps> = ({
         <div className="my-4 flex items-center justify-center min-h-[360px] rounded-2xl bg-neutral-950/80 border border-neutral-800/80 p-2 overflow-hidden shadow-inner">
           {isGenerating ? (
             <div className="flex flex-col items-center gap-3 text-neutral-400">
-              <Loader2 className="h-8 w-8 animate-spin text-rose-400" />
+              <Loader2 className="h-8 w-8 animate-spin text-cyan-400" />
               <span className="text-xs font-medium">
                 Generating story card...
               </span>
@@ -136,7 +136,7 @@ const RsdShareCardModal: React.FC<RsdShareCardModalProps> = ({
           ) : cardData ? (
             <img
               src={cardData.dataUrl}
-              alt="RSD Screener Story Card"
+              alt="Dopamine Burnout Story Card"
               className="max-h-[380px] w-auto rounded-xl object-contain shadow-2xl"
             />
           ) : (
@@ -151,7 +151,7 @@ const RsdShareCardModal: React.FC<RsdShareCardModalProps> = ({
           <button
             onClick={handleNativeShare}
             disabled={!cardData || isGenerating}
-            className="w-full flex items-center justify-center gap-2 py-3.5 px-4 rounded-xl font-semibold text-sm bg-rose-600 hover:bg-rose-500 text-white font-bold transition shadow-lg shadow-rose-600/25 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-full flex items-center justify-center gap-2 py-3.5 px-4 rounded-xl font-semibold text-sm bg-cyan-600 hover:bg-cyan-500 text-white font-bold transition shadow-lg shadow-cyan-600/25 disabled:opacity-50 disabled:cursor-not-allowed"
           >
             <Share2 className="h-4 w-4" />
             <span>Share Story Card (IG / TikTok)</span>
@@ -190,4 +190,4 @@ const RsdShareCardModal: React.FC<RsdShareCardModalProps> = ({
   );
 };
 
-export default RsdShareCardModal;
+export default DopamineBurnoutShareCardModal;

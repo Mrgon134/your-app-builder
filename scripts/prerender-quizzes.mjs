@@ -1361,6 +1361,130 @@ export function getQuizAndToolPages({
         },
       ],
     },
+    {
+      route: "/quiz/rsd-rejection-sensitivity",
+      aliases: ["/quiz/rejection-sensitive-dysphoria", "/tes-sensitivitas-penolakan"],
+      title: "Rejection Sensitive Dysphoria (RSD) Test: Free ADHD & Sensitivity Screener",
+      description:
+        "Does perceived criticism feel like an unbearable physical punch to the chest? Free 12-item clinical screener based on Dr. William Dodson's RSD Framework and Elaine Aron's Sensory Processing Sensitivity.",
+      category: "Neurodivergence & Emotional Intensity",
+      duration: "90 secs",
+      itemsCount: 12,
+      framework: "Dr. William Dodson (RSD in ADHD) & Dr. Elaine Aron (Sensory Processing Sensitivity)",
+      overview:
+        "Rejection Sensitive Dysphoria (RSD) is an extreme emotional sensitivity and pain triggered by perceived rejection, teasing, or criticism. Common in ADHD and neurodivergent individuals, it leads to visceral dysphoric collapse and pre-emptive defensive armoring.",
+      keyPoints: [
+        "Measures anticipatory rejection vigilance, tone scanning, and pre-rehearsal anxiety",
+        "Assesses visceral dysphoria, physical chest/gut constriction, and sudden crying spells",
+        "Evaluates defensive armoring, pre-emptive cutoffs, and shame-rage episodes",
+        "Provides neurodivergent cold splash protocols, 24-hour reality checks, and sensory de-escalation steps",
+      ],
+      faqs: [
+        {
+          question: "What is Rejection Sensitive Dysphoria (RSD)?",
+          answer:
+            "RSD is an intense, overwhelming neurological vulnerability to the perception of being rejected, criticized, or having failed, frequently co-occurring with ADHD and autism.",
+        },
+        {
+          question: "Can RSD be treated?",
+          answer:
+            "Yes. Understanding that RSD is a neurological pain response rather than a moral failure, combined with sensory regulation protocols, ACT therapy, and medical consultation (such as alpha-2 agonists), provides significant relief.",
+        },
+      ],
+    },
+    {
+      route: "/quiz/dopamine-burnout",
+      aliases: ["/quiz/digital-overstimulation", "/tes-kejenuhan-dopamin"],
+      title: "Dopamine Burnout Test: Free Digital Overstimulation & Screen Addiction Screener",
+      description:
+        "Real life feels painfully boring, trapped in mindless feed-scrolling, or irritable when offline? Free 12-item clinical screener based on Dr. Anna Lembke's Dopamine Nation and Dr. Andrew Huberman's Dopamine Dynamics.",
+      category: "Neurochemistry & Digital Wellbeing",
+      duration: "90 secs",
+      itemsCount: 12,
+      framework: "Dr. Anna Lembke (Stanford Dopamine Nation) & Dr. Andrew Huberman (Dopamine Baseline Dynamics)",
+      overview:
+        "Dopamine burnout occurs when chronic hyper-stimulation from short-form feeds, notifications, and gaming downregulates D2 dopamine receptors. This creates real-world anhedonia, motivation flatline, and acute withdrawal agitation when offline.",
+      keyPoints: [
+        "Measures anhedonia flatline and loss of drive for non-digital effort",
+        "Assesses compulsive device tunnelling, phantom vibrations, and time blindness",
+        "Evaluates restless withdrawal agitation, irritability offline, and revenge bedtime scrolling",
+        "Provides 30-day dopamine reset protocols, grayscale display tricks, and cold shower upregulation drills",
+      ],
+      faqs: [
+        {
+          question: "What causes dopamine burnout?",
+          answer:
+            "Continuous exposure to instant, effortless digital dopamine spikes forces the brain to downregulate D2 receptors to protect against overstimulation, leaving the individual in a chronic deficit state.",
+        },
+        {
+          question: "How do you reset dopamine receptors?",
+          answer:
+            "Stanford research indicates that a 2 to 4-week reduction in high-dopamine digital consumption, combined with cold water therapy, morning sunlight, and delayed gratification, restores receptor density.",
+        },
+      ],
+    },
+    {
+      route: "/quiz/splitting-polarization",
+      aliases: ["/quiz/black-and-white-thinking", "/tes-splitting-polarisasi"],
+      title: "Splitting & Black-and-White Polarization Test: Free Psychological Screener",
+      description:
+        "Do you swing between intense worship and sudden disgust? Free 12-item clinical screener measuring splitting, all-or-nothing cognitive distortions, and borderline defense mechanisms based on Otto Kernberg and Marsha Linehan.",
+      category: "Ego Defense & Emotional Regulation",
+      duration: "90 secs",
+      itemsCount: 12,
+      framework: "Otto Kernberg (Object Relations Splitting) & Marsha Linehan (DBT Dialectics)",
+      overview:
+        "Splitting is a primitive ego defense mechanism where people, relationships, or oneself are perceived in rigid binaries—all-good or all-bad. This clinical screener measures idealization/devaluation cycles, emotional whiplash, and intolerance of ambivalence.",
+      keyPoints: [
+        "Measures idealization and devaluation whiplash in intimate relationships",
+        "Assesses all-or-nothing cognitive distortions and catastrophizing flips",
+        "Evaluates intolerance of emotional ambiguity and grey-area anxiety",
+        "Provides DBT 'Both/And' dialectical exercises, whole-object integration drills, and relational grounding",
+      ],
+      faqs: [
+        {
+          question: "What is splitting in psychology?",
+          answer:
+            "Splitting is an unconscious defense mechanism where an individual cannot integrate the positive and negative qualities of self or others into a cohesive, realistic whole.",
+        },
+        {
+          question: "How does DBT help with splitting?",
+          answer:
+            "Dialectical Behavior Therapy (DBT) teaches radical acceptance and dialectical thinking—the practice of holding two seemingly opposing truths at the same time without collapsing into panic.",
+        },
+      ],
+    },
+    {
+      route: "/quiz/toxic-shame",
+      aliases: ["/quiz/internalized-shame", "/tes-toxic-shame"],
+      title: "Toxic Shame & Defectiveness Test: Free Internalized Shame Screener",
+      description:
+        "Guilt says 'I made a mistake.' Toxic shame says 'I am a mistake.' Free 12-item clinical assessment based on John Bradshaw's Healing the Shame That Binds You and Dr. Brené Brown's Shame Resilience Theory.",
+      category: "Trauma & Identity Architecture",
+      duration: "90 secs",
+      itemsCount: 12,
+      framework: "John Bradshaw (Healing the Shame That Binds You) & Dr. Brené Brown (Shame Resilience)",
+      overview:
+        "Toxic shame is not an emotion; it is an internalized identity where the self feels fundamentally flawed, unworthy, and contaminated. This screener measures core defectiveness conviction, persecutory self-contempt, and somatic shame collapse.",
+      keyPoints: [
+        "Measures core defectiveness conviction and fear of being fundamentally unlovable",
+        "Assesses internal persecutory self-contempt and brutal self-criticism",
+        "Evaluates somatic shame collapse, gaze aversion, and hiding reflexes",
+        "Provides Kristin Neff self-compassion mantras, inner child soothing, and exposure to safe vulnerability",
+      ],
+      faqs: [
+        {
+          question: "What is the difference between healthy guilt and toxic shame?",
+          answer:
+            "Healthy guilt evaluates behavior ('I did something bad') and promotes repair. Toxic shame evaluates identity ('I am fundamentally bad') and prompts social withdrawal, hiding, and despair.",
+        },
+        {
+          question: "Can toxic shame be healed?",
+          answer:
+            "Yes. Shame thrives in secrecy, silence, and judgment. Speaking shame aloud in safe environments, practicing somatic self-compassion, and reparenting inner critic dialogues breaks chronic shame loops.",
+        },
+      ],
+    },
 
     // 3. Somatic & Regulation Tools
     {

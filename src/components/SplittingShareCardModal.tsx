@@ -8,17 +8,20 @@ import {
 } from "@/components/ui/dialog";
 import { Download, Share2, Check, Loader2, Sparkles } from "lucide-react";
 import { toast } from "sonner";
-import { RsdLang, RsdScoreResult } from "@/data/rsd-screener";
-import { generateRsdCard } from "@/lib/generate-quiz-card";
+import {
+  SplittingLang,
+  SplittingScoreResult,
+} from "@/data/splitting-polarization";
+import { generateSplittingCard } from "@/lib/generate-quiz-card";
 
-interface RsdShareCardModalProps {
+interface SplittingShareCardModalProps {
   isOpen: boolean;
   onClose: () => void;
-  result: RsdScoreResult;
-  lang: RsdLang;
+  result: SplittingScoreResult;
+  lang: SplittingLang;
 }
 
-const RsdShareCardModal: React.FC<RsdShareCardModalProps> = ({
+export const SplittingShareCardModal: React.FC<SplittingShareCardModalProps> = ({
   isOpen,
   onClose,
   result,
@@ -38,7 +41,7 @@ const RsdShareCardModal: React.FC<RsdShareCardModalProps> = ({
     let isMounted = true;
     setIsGenerating(true);
 
-    generateRsdCard(result, lang)
+    generateSplittingCard(result, lang)
       .then((generated) => {
         if (isMounted) {
           setCardData(generated);
@@ -46,7 +49,7 @@ const RsdShareCardModal: React.FC<RsdShareCardModalProps> = ({
         }
       })
       .catch((err) => {
-        console.error("Error generating RSD card:", err);
+        console.error("Error generating Splitting card:", err);
         if (isMounted) {
           setIsGenerating(false);
           toast.error("Failed to generate story card.");
@@ -61,7 +64,7 @@ const RsdShareCardModal: React.FC<RsdShareCardModalProps> = ({
   const handleDownload = () => {
     if (!cardData) return;
     const link = document.createElement("a");
-    link.download = `nuju-rsd-screener-${result.level}.png`;
+    link.download = `nuju-splitting-${result.level}.png`;
     link.href = cardData.dataUrl;
     link.click();
     toast.success("Story card downloaded!");
@@ -70,16 +73,11 @@ const RsdShareCardModal: React.FC<RsdShareCardModalProps> = ({
   const handleNativeShare = async () => {
     if (!cardData) return;
 
-    if (
-      navigator.share &&
-      navigator.canShare &&
-      navigator.canShare({ files: [cardData.file] })
-    ) {
+    if (navigator.share && navigator.canShare && navigator.canShare({ files: [cardData.file] })) {
       try {
         await navigator.share({
-          title: "My RSD (Rejection Sensitive Dysphoria) Score",
-          text: `My RSD Sensitivity: ${result.percentage}% (${result.profile.title.en}). Screen your rejection sensitivity free on Nuju:`,
-          url: "https://www.nuju.app/quiz/rsd-rejection-sensitivity",
+          title: "My Splitting & Cognitive Polarization Profile",
+          text: `My Polarization Index: ${result.percentage}% (${result.profile.title.en}). Screen your black-and-white thinking free on Nuju:`,
           files: [cardData.file],
         });
         toast.success("Shared successfully!");
@@ -95,11 +93,11 @@ const RsdShareCardModal: React.FC<RsdShareCardModalProps> = ({
   };
 
   const copyShareText = () => {
-    const text = `My RSD Sensitivity Score: ${
+    const text = `My Splitting & Polarization Score: ${
       result.profile.title[lang] || result.profile.title.en
-    } (${result.percentage}% rejection pain index - ${
+    } (${result.percentage}% polarization index - ${
       result.profile.badge[lang] || result.profile.badge.en
-    }). Screen your rejection sensitivity free at: https://nuju.app/quiz/rsd-rejection-sensitivity`;
+    }). Screen your black-and-white thinking free at: https://nuju.app/quiz/splitting-cognitive-polarization`;
 
     navigator.clipboard.writeText(text);
     setIsCopied(true);
@@ -109,18 +107,17 @@ const RsdShareCardModal: React.FC<RsdShareCardModalProps> = ({
 
   return (
     <Dialog open={isOpen} onOpenChange={(open) => !open && onClose()}>
-      <DialogContent className="max-w-md bg-[#1a1020] text-neutral-100 border-neutral-800 p-6 sm:p-8 rounded-3xl max-h-[92vh] overflow-y-auto">
+      <DialogContent className="max-w-md bg-[#16162A] text-neutral-100 border-neutral-800 p-6 sm:p-8 rounded-3xl max-h-[92vh] overflow-y-auto">
         <DialogHeader className="text-left space-y-2">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-rose-500/10 border border-rose-500/30 text-rose-400 text-xs font-semibold w-fit">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/30 text-indigo-400 text-xs font-semibold w-fit">
             <Sparkles className="h-3.5 w-3.5" />
             <span>1080 × 1350 Story Card</span>
           </div>
           <DialogTitle className="text-xl font-bold text-white tracking-tight">
-            Share Your RSD Profile
+            Share Your Polarization Profile
           </DialogTitle>
           <DialogDescription className="text-xs text-neutral-400">
-            Export a high-resolution story card with your rejection sensitivity
-            index, hyper-vigilance score, and de-escalation protocol.
+            Export a high-resolution story card with your idealization-devaluation score, all-or-nothing metric, and DBT integration protocol.
           </DialogDescription>
         </DialogHeader>
 
@@ -128,21 +125,17 @@ const RsdShareCardModal: React.FC<RsdShareCardModalProps> = ({
         <div className="my-4 flex items-center justify-center min-h-[360px] rounded-2xl bg-neutral-950/80 border border-neutral-800/80 p-2 overflow-hidden shadow-inner">
           {isGenerating ? (
             <div className="flex flex-col items-center gap-3 text-neutral-400">
-              <Loader2 className="h-8 w-8 animate-spin text-rose-400" />
-              <span className="text-xs font-medium">
-                Generating story card...
-              </span>
+              <Loader2 className="h-8 w-8 animate-spin text-indigo-400" />
+              <span className="text-xs font-medium">Generating story card...</span>
             </div>
           ) : cardData ? (
             <img
               src={cardData.dataUrl}
-              alt="RSD Screener Story Card"
+              alt="Splitting Story Card"
               className="max-h-[380px] w-auto rounded-xl object-contain shadow-2xl"
             />
           ) : (
-            <div className="text-xs text-neutral-500">
-              Failed to render preview.
-            </div>
+            <div className="text-xs text-neutral-500">Failed to render preview.</div>
           )}
         </div>
 
@@ -151,7 +144,7 @@ const RsdShareCardModal: React.FC<RsdShareCardModalProps> = ({
           <button
             onClick={handleNativeShare}
             disabled={!cardData || isGenerating}
-            className="w-full flex items-center justify-center gap-2 py-3.5 px-4 rounded-xl font-semibold text-sm bg-rose-600 hover:bg-rose-500 text-white font-bold transition shadow-lg shadow-rose-600/25 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-full flex items-center justify-center gap-2 py-3.5 px-4 rounded-xl font-semibold text-sm bg-indigo-600 hover:bg-indigo-500 text-white font-bold transition shadow-lg shadow-indigo-600/25 disabled:opacity-50 disabled:cursor-not-allowed"
           >
             <Share2 className="h-4 w-4" />
             <span>Share Story Card (IG / TikTok)</span>
@@ -189,5 +182,3 @@ const RsdShareCardModal: React.FC<RsdShareCardModalProps> = ({
     </Dialog>
   );
 };
-
-export default RsdShareCardModal;

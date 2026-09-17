@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { ArrowRight, Brain, Clock, Heart, HelpCircle, Lock, ShieldCheck, Sparkles, Users, Activity, Zap, Headphones, ShieldAlert, Compass, Briefcase, Wind, Eye, Shield, Feather, Moon, Hand, BedDouble, Smartphone, HeartHandshake, Waves, Award, Anchor, Radio, Volume2, Battery, HeartPulse, GitMerge, EyeOff, Hourglass, Snowflake, Smile, Coins } from "lucide-react";
+import { ArrowRight, Brain, Clock, Heart, HelpCircle, Lock, ShieldCheck, Sparkles, Users, Activity, Zap, Headphones, ShieldAlert, Compass, Briefcase, Wind, Eye, Shield, Feather, Moon, Hand, BedDouble, Smartphone, HeartHandshake, Waves, Award, Anchor, Radio, Volume2, Battery, HeartPulse, GitMerge, EyeOff, Hourglass, Snowflake, Smile, Coins, HeartCrack, GitFork } from "lucide-react";
 import SEOHead from "@/components/SEOHead";
 import AdSenseBanner from "@/components/AdSenseBanner";
 import AppStoreCta from "@/components/AppStoreCta";
@@ -1689,6 +1689,122 @@ const QuizHub: React.FC = () => {
                 className="inline-flex items-center gap-1.5 rounded-full bg-emerald-600 px-4 py-2 text-xs font-bold text-white hover:bg-emerald-700 transition shadow-xs"
               >
                 <span>Screen Scarcity</span>
+                <ArrowRight className="h-3.5 w-3.5" />
+              </Link>
+            </div>
+          </div>
+
+          {/* Card 54: Rejection Sensitive Dysphoria (RSD) Screener */}
+          <div className="rounded-3xl border border-purple-300 bg-gradient-to-br from-purple-500/10 via-pink-50 to-white p-6 shadow-xs flex flex-col justify-between hover:shadow-md transition">
+            <div>
+              <div className="flex items-center justify-between mb-3">
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-purple-600 px-3 py-0.5 text-xs font-bold text-white shadow-xs">
+                  <HeartCrack className="h-3 w-3" />
+                  DR. WILLIAM DODSON
+                </span>
+                <span className="text-xs font-semibold text-purple-700">ADHD & Sensitivity</span>
+              </div>
+              <h3 className="text-lg font-bold text-neutral-900 mb-1.5">
+                Rejection Sensitivity (RSD)
+              </h3>
+              <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed">
+                Does a change in texting tone feel like an unbearable physical punch to the chest? Measure your rejection dysphoria, visceral shame spirals, and defensive cutoff habits.
+              </p>
+            </div>
+            <div className="mt-5 pt-3 border-t border-purple-100 flex items-center justify-between">
+              <span className="text-xs font-medium text-neutral-400">~90 Secs · 12 Items</span>
+              <Link
+                to="/quiz/rsd-rejection-sensitivity"
+                className="inline-flex items-center gap-1.5 rounded-full bg-purple-600 px-4 py-2 text-xs font-bold text-white hover:bg-purple-700 transition shadow-xs"
+              >
+                <span>Screen RSD</span>
+                <ArrowRight className="h-3.5 w-3.5" />
+              </Link>
+            </div>
+          </div>
+
+          {/* Card 55: Dopamine Burnout & Digital Overstimulation Screener */}
+          <div className="rounded-3xl border border-cyan-300 bg-gradient-to-br from-cyan-500/10 via-blue-50 to-white p-6 shadow-xs flex flex-col justify-between hover:shadow-md transition">
+            <div>
+              <div className="flex items-center justify-between mb-3">
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-cyan-600 px-3 py-0.5 text-xs font-bold text-white shadow-xs">
+                  <Smartphone className="h-3 w-3" />
+                  STANFORD DOPAMINE
+                </span>
+                <span className="text-xs font-semibold text-cyan-700">Receptor Burnout</span>
+              </div>
+              <h3 className="text-lg font-bold text-neutral-900 mb-1.5">
+                Dopamine Burnout Screener
+              </h3>
+              <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed">
+                Real life feels painfully boring, trapped in mindless feed-scrolling, or irritable when offline? Unpack receptor downregulation and reset your biological motivation baseline.
+              </p>
+            </div>
+            <div className="mt-5 pt-3 border-t border-cyan-100 flex items-center justify-between">
+              <span className="text-xs font-medium text-neutral-400">~90 Secs · 12 Items</span>
+              <Link
+                to="/quiz/dopamine-burnout"
+                className="inline-flex items-center gap-1.5 rounded-full bg-cyan-600 px-4 py-2 text-xs font-bold text-white hover:bg-cyan-700 transition shadow-xs"
+              >
+                <span>Screen Dopamine</span>
+                <ArrowRight className="h-3.5 w-3.5" />
+              </Link>
+            </div>
+          </div>
+
+          {/* Card 56: Splitting & Black-and-White Polarization Screener */}
+          <div className="rounded-3xl border border-indigo-300 bg-gradient-to-br from-indigo-500/10 via-slate-50 to-white p-6 shadow-xs flex flex-col justify-between hover:shadow-md transition">
+            <div>
+              <div className="flex items-center justify-between mb-3">
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-indigo-600 px-3 py-0.5 text-xs font-bold text-white shadow-xs">
+                  <GitFork className="h-3 w-3" />
+                  KERNBERG & LINEHAN DBT
+                </span>
+                <span className="text-xs font-semibold text-indigo-700">Ego Defense & Binaries</span>
+              </div>
+              <h3 className="text-lg font-bold text-neutral-900 mb-1.5">
+                Splitting & Polarization
+              </h3>
+              <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed">
+                Do you swing between intense idolization and sudden bitter contempt? Evaluate all-or-nothing cognitive filters, relational whiplash, and cultivate grey-area psychological integration.
+              </p>
+            </div>
+            <div className="mt-5 pt-3 border-t border-indigo-100 flex items-center justify-between">
+              <span className="text-xs font-medium text-neutral-400">~90 Secs · 12 Items</span>
+              <Link
+                to="/quiz/splitting-polarization"
+                className="inline-flex items-center gap-1.5 rounded-full bg-indigo-600 px-4 py-2 text-xs font-bold text-white hover:bg-indigo-700 transition shadow-xs"
+              >
+                <span>Screen Splitting</span>
+                <ArrowRight className="h-3.5 w-3.5" />
+              </Link>
+            </div>
+          </div>
+
+          {/* Card 57: Toxic Shame & Defectiveness Screener */}
+          <div className="rounded-3xl border border-rose-300 bg-gradient-to-br from-rose-500/10 via-orange-50 to-white p-6 shadow-xs flex flex-col justify-between hover:shadow-md transition">
+            <div>
+              <div className="flex items-center justify-between mb-3">
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-rose-600 px-3 py-0.5 text-xs font-bold text-white shadow-xs">
+                  <EyeOff className="h-3 w-3" />
+                  JOHN BRADSHAW
+                </span>
+                <span className="text-xs font-semibold text-rose-700">Identity & Defectiveness</span>
+              </div>
+              <h3 className="text-lg font-bold text-neutral-900 mb-1.5">
+                Toxic Shame & Defectiveness
+              </h3>
+              <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed">
+                Guilt says 'I made a mistake'; toxic shame says 'I am a mistake'. Measure core defectiveness beliefs, persecutory self-contempt, and visceral somatic hiding reflexes.
+              </p>
+            </div>
+            <div className="mt-5 pt-3 border-t border-rose-100 flex items-center justify-between">
+              <span className="text-xs font-medium text-neutral-400">~90 Secs · 12 Items</span>
+              <Link
+                to="/quiz/toxic-shame"
+                className="inline-flex items-center gap-1.5 rounded-full bg-rose-600 px-4 py-2 text-xs font-bold text-white hover:bg-rose-700 transition shadow-xs"
+              >
+                <span>Screen Toxic Shame</span>
                 <ArrowRight className="h-3.5 w-3.5" />
               </Link>
             </div>

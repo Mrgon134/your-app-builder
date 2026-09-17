@@ -86,6 +86,10 @@ const CompassionFatigueTest = lazy(() => import("./pages/CompassionFatigueTest.t
 const IntimacyAvoidanceTest = lazy(() => import("./pages/IntimacyAvoidanceTest.tsx"));
 const FawnResponseTest = lazy(() => import("./pages/FawnResponseTest.tsx"));
 const FinancialAnxietyTest = lazy(() => import("./pages/FinancialAnxietyTest.tsx"));
+const SplittingTest = lazy(() => import("./pages/SplittingTest.tsx"));
+const ToxicShameTest = lazy(() => import("./pages/ToxicShameTest.tsx"));
+const RSDTest = lazy(() => import("./pages/RsdScreenerTest.tsx"));
+const DopamineBurnoutTest = lazy(() => import("./pages/DopamineBurnoutTest.tsx"));
 const EbookSalesPage = lazy(() => import("./pages/EbookSalesPage.tsx"));
 const EbookReaderPage = lazy(() => import("./pages/EbookReaderPage.tsx"));
 const NotFound = lazy(() => import("./pages/NotFound.tsx"));
@@ -322,6 +326,18 @@ const App = () => (
                   <Route path="/quiz/financial-anxiety" element={<FinancialAnxietyTest />} />
                   <Route path="/quiz/scarcity-mindset" element={<FinancialAnxietyTest />} />
                   <Route path="/tes-scarcity-mindset" element={<FinancialAnxietyTest defaultLang="id" />} />
+                  <Route path="/quiz/rsd-rejection-sensitivity" element={<RSDTest />} />
+                  <Route path="/quiz/rejection-sensitive-dysphoria" element={<RSDTest />} />
+                  <Route path="/tes-sensitivitas-penolakan" element={<RSDTest defaultLang="id" />} />
+                  <Route path="/quiz/dopamine-burnout" element={<DopamineBurnoutTest />} />
+                  <Route path="/quiz/digital-overstimulation" element={<DopamineBurnoutTest />} />
+                  <Route path="/tes-kejenuhan-dopamin" element={<DopamineBurnoutTest defaultLang="id" />} />
+                  <Route path="/quiz/splitting-polarization" element={<SplittingTest />} />
+                  <Route path="/quiz/black-and-white-thinking" element={<SplittingTest />} />
+                  <Route path="/tes-splitting-polarisasi" element={<SplittingTest defaultLang="id" />} />
+                  <Route path="/quiz/toxic-shame" element={<ToxicShameTest />} />
+                  <Route path="/quiz/internalized-shame" element={<ToxicShameTest />} />
+                  <Route path="/tes-toxic-shame" element={<ToxicShameTest defaultLang="id" />} />
                   <Route path="/quiz/:quizId" element={<QuizRunner />} />
                   <Route path="/test-psikologi" element={<QuizHub />} />
                   <Route path="/test-psikologi/:quizId" element={<QuizRunner />} />
