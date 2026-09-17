@@ -2220,6 +2220,56 @@ export function getQuizAndToolPages({
         },
       ],
     },
+    {
+      route: "/quiz/cat-q",
+      aliases: ["/quiz/autism-masking", "/tes-cat-q"],
+      title: "CAT-Q Autistic & ADHD Social Camouflaging Screener",
+      description:
+        "Assess social masking, compensation strategies, and assimilation effort in neurodivergent adults. 12-item clinical self-test based on Hull et al.'s CAT-Q.",
+      category: "Neurodivergence & Camouflage",
+      duration: "90 secs",
+      itemsCount: 12,
+      framework: "Camouflaging Autistic Traits Questionnaire (CAT-Q, Hull et al.)",
+      overview:
+        "Autistic camouflaging is the conscious or subconscious suppression of natural neurodivergent traits and explicit imitation of neurotypical behaviors to blend in, avoid social ostracization, and survive neurotypical environments.",
+      keyPoints: [
+        "Evaluates Compensation (pre-scripting, copying social rules), Masking (repressing stims, forcing eye contact), and Assimilation (hypervigilant social chameleonism)",
+        "Identifies the root of adult neurodivergent burnout and autistic exhaustion",
+        "Actionable accommodations and self-compassion boundary scripts to unmask safely",
+      ],
+      faqs: [
+        {
+          question: "What is the difference between normal social adaptation and autistic masking?",
+          answer:
+            "While most people adjust their persona at work or parties, autistic camouflaging requires intense cognitive computation—forcing eye contact, monitoring facial muscles, calculating conversation pauses—which drains executive function and triggers severe nervous system collapse.",
+        },
+      ],
+    },
+    {
+      route: "/quiz/pure-o",
+      aliases: ["/quiz/intrusive-thoughts", "/tes-pure-o"],
+      title: "Pure O & Unwanted Intrusive Thoughts Screener",
+      description:
+        "Measure taboo intrusive thoughts, mental checking compulsions, and thought-action fusion. 12-item clinical self-test for Pure Obsessional OCD patterns.",
+      category: "OCD & Intrusive Cognition",
+      duration: "90 secs",
+      itemsCount: 12,
+      framework: "Yale-Brown Obsessive Compulsive Scale (Y-BOCS) & Thought-Action Fusion Metric",
+      overview:
+        "Pure Obsessional OCD ('Pure O') is a form of OCD where compulsive rituals occur invisibly in the mind—such as mental reviewing, reassurance-seeking, thought neutralizing, and compulsive rumination—triggered by ego-dystonic intrusive thoughts.",
+      keyPoints: [
+        "Measures Taboo/Harm Intrusions, Hidden Mental Compulsions, and Thought-Action Fusion",
+        "Educates on the ego-dystonic nature of taboo thoughts (thoughts you fear most are opposite to your core character)",
+        "Evidence-based Exposure and Response Prevention (ERP) and Acceptance & Commitment Therapy (ACT) reframes",
+      ],
+      faqs: [
+        {
+          question: "Does having a violent, taboo, or disturbing intrusive thought mean I secretly want to act on it?",
+          answer:
+            "No. In clinical psychology, intrusive thoughts are known as ego-dystonic: your extreme terror and guilt prove they directly contradict your genuine moral values. OCD latches onto whatever you cherish most.",
+        },
+      ],
+    },
 
     // 5. Ebook Sales Pages
     {

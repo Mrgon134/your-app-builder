@@ -651,6 +651,30 @@
     <changefreq>weekly</changefreq>
   </url>
   <url>
+    <loc>https://nuju.app/quiz/cat-q</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.95</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/quiz/autism-masking</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.9</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/quiz/pure-o</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.95</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/quiz/intrusive-thoughts</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.9</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
     <loc>https://nuju.app/quiz/baterai-emosi</loc>
     <lastmod>2026-09-17</lastmod>
     <priority>0.9</priority>
@@ -8362,6 +8386,150 @@
       <image:caption>¿Sientes tu cuerpo como un robot o el mundo como una escenografía de cartón? Conoce la neurobiología del trastorno DPDR, el test de Cambridge y ejercicios somáticos de arraigo.</image:caption>
     </image:image>
     <xhtml:link rel="alternate" hreflang="es" href="https://nuju.app/blog/despersonalizacion-desrealizacion-sintomas-niebla-mental-guia"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/autistic-masking-cat-q-social-camouflaging-exhaustion</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Autistic Masking &amp; Social Camouflaging (CAT-Q): Why Fitting In Is Exhausting Your Nervous System</image:title>
+      <image:caption>Do you manually calculate eye contact, rehearse scripts before phone calls, and collapse into non-verbal fatigue after social gatherings? Learn why neurodivergent masking leads to profound autistic burnout.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/autistic-masking-cat-q-social-camouflaging-exhaustion"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/pure-o-intrusive-thoughts-ocd-compassionate-guide</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Pure O (Pure Obsessional OCD): Why Your Worst Intrusive Thoughts Are Not Who You Are</image:title>
+      <image:caption>Terrified by sudden, taboo thoughts of harming someone, sexual taboos, or relationship doubt? Understand why Pure Obsessional OCD targets what you love most and how ERP therapy restores peace.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/pure-o-intrusive-thoughts-ocd-compassionate-guide"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/neurobiology-of-social-camouflaging-autism-adhd</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>The Neurobiology of Social Camouflaging: How Masking Depletes Dopamine and Triggers Autistic Burnout</image:title>
+      <image:caption>Why is neurodivergent masking so physiologically draining? Explore the fMRI neuroscience of executive prefrontal overload, mirror neuron compensation, and dopamine crashes.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/neurobiology-of-social-camouflaging-autism-adhd"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/erp-for-pure-o-disarming-mental-compulsions</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>ERP for Pure O: How to Disarm Mental Checking, Reassurance-Seeking, and Thought-Action Fusion</image:title>
+      <image:caption>A clinical step-by-step handbook on Exposure and Response Prevention (ERP) tailored specifically for hidden mental compulsions in Pure Obsessional OCD.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/erp-for-pure-o-disarming-mental-compulsions"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/tes-cat-q-indonesia-masking-autisme-burnout</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Tes CAT-Q Indonesia: Mengapa &apos;Memakai Topeng&apos; Agar Diterima Sosial Membuat Anda Mengalami Autistic Burnout?</image:title>
+      <image:caption>Apakah Anda selalu menghafal skrip sebelum berbicara, memaksa kontak mata, dan kehabisan tenaga luar biasa seusai kumpul sosial? Kenali fenomena autistic masking dan bahaya kelelahan mentalnya.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="id" href="https://nuju.app/blog/tes-cat-q-indonesia-masking-autisme-burnout"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/tes-pure-o-pikiran-intrusif-kompulsi-mental</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Tes Pure O &amp; Pikiran Intrusif: Kenapa Pikiran Terburuk yang Paling Anda Benci Justru Terus Muncul di Kepala?</image:title>
+      <image:caption>Tersiksa oleh pikiran tabu, kekerasan, atau keraguan moral yang tiba-tiba melintas di benak? Pahami sifat ego-dystonic pada Pure O dan bagaimana memutus lingkaran kompulsi mental.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="id" href="https://nuju.app/blog/tes-pure-o-pikiran-intrusif-kompulsi-mental"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/thought-action-fusion-jebakan-rasa-bersalah-pikiran</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Thought-Action Fusion: Jebakan Berpikir Bahwa Memikirkan Hal Buruk Sama Jahatnya dengan Melakukannya</image:title>
+      <image:caption>Merasa sangat berdosa dan kotor hanya karena memikirkan skenario tabu atau takut pikiran Anda bisa mencelakakan orang lain? Pelajari distorsi kognitif Thought-Action Fusion.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="id" href="https://nuju.app/blog/thought-action-fusion-jebakan-rasa-bersalah-pikiran"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/autistisches-masking-cat-q-test-erschoepfung</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Autistisches Masking &amp; CAT-Q Test: Warum das ständige soziale Anpassen zur totalen Erschöpfung führt</image:title>
+      <image:caption>Erzwingen Sie Blickkontakt, studieren soziale Regeln wie ein Drehbuch und brechen nach Meetings zusammen? Erfahren Sie, warum neurodivergentes Masking zu schwerem autistischem Burnout führt.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="de" href="https://nuju.app/blog/autistisches-masking-cat-q-test-erschoepfung"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/pure-o-zwangsgedanken-intrusive-gedanken-bewaeltigen</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Pure O und Zwangsgedanken: Warum quälende Tabugedanken das genaue Gegenteil Ihrer wahren Werte sind</image:title>
+      <image:caption>Haben Sie Angst vor plötzlichen, unerträglichen Gedanken über Gewalt oder Tabus? Erfahren Sie, was eine rein gedankliche Zwangsstörung (Pure O) bedeutet und wie ERP-Therapie hilft.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="de" href="https://nuju.app/blog/pure-o-zwangsgedanken-intrusive-gedanken-bewaeltigen"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/camouflage-social-cat-q-epuisement-neurodivergent</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Le Camouflage Social (CAT-Q) : Pourquoi masquer vos traits neurodivergents vous mène au burnout</image:title>
+      <image:caption>Répétez-vous vos conversations à l&apos;avance et forcez-vous le contact visuel au détriment de votre santé ? Découvrez les mécanismes du masking autistique et comment préserver votre énergie.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://nuju.app/blog/camouflage-social-cat-q-epuisement-neurodivergent"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/toc-pure-o-pensees-intrusives-compulsions-mentales</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Le TOC &apos;Pure O&apos; et les Pensées Intrusives : Pourquoi vos peurs intérieures ne définissent pas qui vous êtes</image:title>
+      <image:caption>Envahi par des pensées taboues effrayantes sur la violence ou la morale ? Découvrez la nature égo-dystone du TOC Pure O et comment l&apos;ERP libère des compulsions mentales.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://nuju.app/blog/toc-pure-o-pensees-intrusives-compulsions-mentales"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/enmascaramiento-autista-cat-q-costo-adultos</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Enmascaramiento Autista (CAT-Q): El costo invisible de fingir normalidad en adultos neurodivergentes</image:title>
+      <image:caption>¿Calculas manualmente cada contacto visual, ensayas frases y colapsas en un cansancio extremo tras socializar? Descubre qué es el masking autista y cómo evitar el burnout.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="es" href="https://nuju.app/blog/enmascaramiento-autista-cat-q-costo-adultos"/>
   </url>
   <url>
     <loc>https://nuju.app/blog/how-to-stop-overthinking-at-night</loc>
