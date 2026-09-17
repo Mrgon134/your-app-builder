@@ -39,6 +39,7 @@ import { ANTIGRAVITY_BLOG_POSTS_BATCH37 } from "./antigravity-posts-batch37";
 import { ANTIGRAVITY_BLOG_POSTS_BATCH38 } from "./antigravity-posts-batch38";
 import { ANTIGRAVITY_BLOG_POSTS_BATCH39 } from "./antigravity-posts-batch39";
 import { ANTIGRAVITY_BLOG_POSTS_BATCH40 } from "./antigravity-posts-batch40";
+import { ANTIGRAVITY_BLOG_POSTS_BATCH41 } from "./antigravity-posts-batch41";
 
 export interface BlogSection {
   type: "h2" | "h3" | "p" | "ul" | "ol" | "callout";
@@ -11517,11 +11518,12 @@ const RAW_BLOG_POSTS: BlogPost[] = [
   ...ANTIGRAVITY_BLOG_POSTS_BATCH38,
   ...ANTIGRAVITY_BLOG_POSTS_BATCH39,
   ...ANTIGRAVITY_BLOG_POSTS_BATCH40,
+  ...ANTIGRAVITY_BLOG_POSTS_BATCH41,
   ...SEO_BLOG_POSTS,
 ];
 
-const normalizeCopy = (value: string): string =>
-  value
+const normalizeCopy = (value?: string): string =>
+  (value || "")
     .replace(/â€”|â€“/g, "-")
     .replace(/â†’/g, "->")
     .replace(/â†/g, "<-")

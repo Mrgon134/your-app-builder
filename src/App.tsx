@@ -94,6 +94,8 @@ const BetrayalTraumaTest = lazy(() => import("./pages/BetrayalTraumaTest.tsx"));
 const PdaTest = lazy(() => import("./pages/PdaTest.tsx"));
 const FunctionalFreezeTest = lazy(() => import("./pages/FunctionalFreezeTest.tsx"));
 const SomaticArmoringTest = lazy(() => import("./pages/SomaticArmoringTest.tsx"));
+const DpdrTest = lazy(() => import("./pages/DpdrTest.tsx"));
+const FilialGuiltTest = lazy(() => import("./pages/FilialGuiltTest.tsx"));
 const EbookSalesPage = lazy(() => import("./pages/EbookSalesPage.tsx"));
 const EbookReaderPage = lazy(() => import("./pages/EbookReaderPage.tsx"));
 const NotFound = lazy(() => import("./pages/NotFound.tsx"));
@@ -354,6 +356,12 @@ const App = () => (
                   <Route path="/quiz/somatic-armoring" element={<SomaticArmoringTest />} />
                   <Route path="/quiz/body-armoring" element={<SomaticArmoringTest />} />
                   <Route path="/tes-body-armoring" element={<SomaticArmoringTest />} />
+                  <Route path="/quiz/dpdr" element={<DpdrTest />} />
+                  <Route path="/quiz/depersonalization-derealization" element={<DpdrTest />} />
+                  <Route path="/tes-dpdr" element={<DpdrTest />} />
+                  <Route path="/quiz/filial-guilt" element={<FilialGuiltTest />} />
+                  <Route path="/quiz/asian-family-enmeshment" element={<FilialGuiltTest />} />
+                  <Route path="/tes-filial-guilt" element={<FilialGuiltTest />} />
                   <Route path="/quiz/:quizId" element={<QuizRunner />} />
                   <Route path="/test-psikologi" element={<QuizHub />} />
                   <Route path="/test-psikologi/:quizId" element={<QuizRunner />} />

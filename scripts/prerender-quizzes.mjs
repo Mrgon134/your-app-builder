@@ -555,7 +555,7 @@ export function getQuizAndToolPages({
     },
     {
       route: "/quiz/dissociation",
-      aliases: ["/quiz/dpdr"],
+      aliases: ["/quiz/dissociative-experiences"],
       title: "Dissociation & Depersonalization-Derealization (DP/DR) Screener",
       description:
         "Screen for feelings of detachment from your body, environment, or emotions based on DES-II framework. Check if you are feeling disconnected from reality.",
@@ -2116,6 +2116,107 @@ export function getQuizAndToolPages({
         {
           question: "눈치 피로도를 줄이려면?",
           answer: "모든 사람의 기분을 내가 통제할 수 없음을 인정하고, 하루 5분은 온전히 나만의 감정에 집중하는 시간을 가지세요.",
+        },
+      ],
+    },
+
+    {
+      route: "/quiz/functional-freeze",
+      aliases: ["/quiz/somatic-freeze", "/tes-functional-freeze"],
+      title: "Functional Freeze & Polyvagal Somatic State Screener",
+      description:
+        "Assess your dorsal vagal freeze state, high-functioning shutdown, somatic armoring, and emotional blunting. 100% free and evidence-based.",
+      category: "Nervous System & Trauma",
+      duration: "90 secs",
+      itemsCount: 12,
+      framework: "Dr. Stephen Porges Polyvagal Theory & Somatic Dissociation Model",
+      overview:
+        "Functional freeze is an autonomic state where an individual remains outwardly high-performing and responsive to professional duties, while inwardly experiencing severe emotional paralysis, hollow detachment, and motor armoring.",
+      keyPoints: [
+        "Evaluates 3 core subscales: Dorsal Vagal Shutdown, Somatic Armoring, and Interoceptive Dissociation",
+        "Breaks down how high-functioning freeze masks deep nervous system fatigue",
+        "Prescribes neurosomatic mobilization protocols and voice journaling practices to restore ventral vagal tone",
+      ],
+      faqs: [
+        {
+          question: "How is functional freeze different from ordinary laziness?",
+          answer:
+            "Laziness is a conscious choice to conserve energy. Functional freeze is a biological neuroception of threat where the dorsal vagal brake locks motor initiation despite a desperate cognitive desire to act.",
+        },
+      ],
+    },
+    {
+      route: "/quiz/somatic-armoring",
+      aliases: ["/quiz/body-armoring", "/tes-body-armoring"],
+      title: "Somatic Armoring & Muscular Tension Diagnostic",
+      description:
+        "Discover where chronic stress and trauma holding patterns lock in your body. 12-item clinical self-check across cervical, thoracic, and pelvic segments.",
+      category: "Somatic Psychology",
+      duration: "90 secs",
+      itemsCount: 12,
+      framework: "Wilhelm Reich Somatic Armoring & Fascial Trauma Science",
+      overview:
+        "Muscular armoring is emotional defense frozen into chronic physical posture. Unprocessed grief, suppressed anger, and chronic threat freeze in specific bodily segments, restricting diaphragmatic breath and cellular vitality.",
+      keyPoints: [
+        "Diagnoses tension patterns across Cervical/Oral, Thoracic/Diaphragmatic, and Pelvic/Psoas segments",
+        "Explains the neurobiological link between held breath and autonomic hyperarousal",
+        "Actionable Reichian de-armoring and somatic unwinding protocols",
+      ],
+      faqs: [
+        {
+          question: "Can massage therapy permanently release somatic armoring?",
+          answer:
+            "Massage provides temporary relief, but lasting de-armoring requires neurological safety signaling and emotional vocalization so the brain stops ordering muscular rigidity.",
+        },
+      ],
+    },
+    {
+      route: "/quiz/dpdr",
+      aliases: ["/quiz/depersonalization-derealization", "/tes-dpdr"],
+      title: "Depersonalization & Derealization (DPDR) Screener",
+      description:
+        "Measure feelings of out-of-body detachment, dreamlike environmental unreality, and sensory fog. Free clinical self-assessment based on the Cambridge Depersonalization Scale.",
+      category: "Perception & Dissociation",
+      duration: "90 secs",
+      itemsCount: 12,
+      framework: "Cambridge Depersonalization Scale (CDS) & Sensory Integration Metric",
+      overview:
+        "Depersonalization and Derealization (DPDR) represent an emergency biological circuit-breaker where the brain dampens emotional transmission and perceptual vivacity to shield the conscious mind from severe sensory or emotional overwhelm.",
+      keyPoints: [
+        "Measures Depersonalization (bodily detachment), Derealization (glass wall/fog), and Cognitive Lag",
+        "Normalizes DPDR as an overprotective protective buffer, eliminating fear of psychosis or insanity",
+        "Step-by-step 5-4-3-2-1 sensory anchoring and tactile somatic grounding protocols",
+      ],
+      faqs: [
+        {
+          question: "Am I going crazy or losing my mind during a DPDR episode?",
+          answer:
+            "No. The very fact that you recognize things feel unreal proves intact reality testing. Psychosis lacks this awareness. DPDR is an anxiety-driven sensory defense, not insanity.",
+        },
+      ],
+    },
+    {
+      route: "/quiz/filial-guilt",
+      aliases: ["/quiz/asian-family-enmeshment", "/tes-filial-guilt"],
+      title: "Filial Piety Guilt & Asian Family Enmeshment Screener",
+      description:
+        "Measure chronic sacrifice debt, difficulty saying 'no' to parents, and Bowenian boundary differentiation. 12-item clinical self-assessment.",
+      category: "Family Systems & Boundaries",
+      duration: "90 secs",
+      itemsCount: 12,
+      framework: "Bowen Family Systems Theory & Filial Piety Guilt Metric",
+      overview:
+        "In collectivist and immigrant families, filial devotion frequently becomes entangled with emotional parentification and unpayable sacrifice debt. Learn how to love your parents without sacrificing your mental autonomy.",
+      keyPoints: [
+        "Evaluates Chronic Debt Guilt, Boundary Collapse, and Individuation Lock",
+        "Identifies emotional parentification where children are forced into marital counselor or savior roles",
+        "Provides non-reactive boundary scripts and 24-hour response guidelines for family demands",
+      ],
+      faqs: [
+        {
+          question: "Does setting boundaries with parents make me an ungrateful or bad child?",
+          answer:
+            "No. Boundaries clarify where you end and others begin. Healthy boundaries protect relationships from simmering resentment and preserve genuine affection over obligatory martyrdom.",
         },
       ],
     },
