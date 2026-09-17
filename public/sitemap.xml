@@ -315,6 +315,30 @@
     <changefreq>weekly</changefreq>
   </url>
   <url>
+    <loc>https://nuju.app/quiz/gaslighting</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.95</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/quiz/emotional-manipulation</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.9</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/quiz/cortisol-stress</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.95</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/quiz/chronic-stress-body</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.9</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
     <loc>https://nuju.app/quiz/baterai-emosi</loc>
     <lastmod>2026-09-17</lastmod>
     <priority>0.9</priority>
@@ -5866,6 +5890,150 @@
       <image:caption>Baterai sosialmu tinggal 5%? Kenali sains di balik introvert hangover, kelelahan topeng sosial (masking), dan protokol pemulihan sensorik di Nuju.</image:caption>
     </image:image>
     <xhtml:link rel="alternate" hreflang="id" href="https://nuju.app/blog/tes-baterai-sosial-introvert-hangover-kelelahan-mental-indonesia"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/stop-gaslighting-yourself-recovering-covert-manipulation</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>How to Stop Gaslighting Yourself: Recovering from Covert Emotional Manipulation</image:title>
+      <image:caption>Constantly second-guessing your memories, minimizing your pain, or wondering if you&apos;re &apos;too sensitive&apos;? Discover the neuroscience of self-gaslighting and actionable steps to reclaim emotional reality.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/stop-gaslighting-yourself-recovering-covert-manipulation"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/waking-up-at-3am-cortisol-spike-nervous-system-stress</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Why Am I Waking Up at 3 AM? The Cortisol Spike &amp; Nervous System Overdrive Explained</image:title>
+      <image:caption>Do you wake up suddenly between 3:00 and 4:00 AM with a racing mind, heart pounding, or jaw clenched? Understand the HPA-axis cortisol surge and how to reset your circadian autonomic balance.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/waking-up-at-3am-cortisol-spike-nervous-system-stress"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/the-apology-reflex-gaslighting-compulsive-apologizing</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>The Apology Reflex: Why Gaslighting Makes You Say Sorry for Things You Didn&apos;t Do</image:title>
+      <image:caption>Do you say &apos;I&apos;m sorry&apos; before asking a question, when someone bumps into you, or when you express a normal need? Understand the trauma-fawn response and how to extinguish compulsive apologies.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/the-apology-reflex-gaslighting-compulsive-apologizing"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/somatic-exercises-to-lower-cortisol-vagus-nerve-reset</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Somatic Exercises to Lower Cortisol: A 5-Minute Autonomic Nervous System Reset</image:title>
+      <image:caption>You cannot think your way out of a nervous system stuck in fight-or-flight. Practice 4 evidence-based somatic exercises to down-regulate high cortisol and soothe the vagus nerve.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/somatic-exercises-to-lower-cortisol-vagus-nerve-reset"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/gaslighting-in-beziehungen-erkennen-manipulation-test</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Gaslighting in Beziehungen erkennen: Wenn die eigene Wahrnehmung sabotiert wird</image:title>
+      <image:caption>Zweifelst du ständig an deinem eigenen Gedächtnis oder entschuldigst dich für Dinge, die du nicht getan hast? Entdecke die Warnsignale von Gaslighting und teste deine emotionale Realität.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="de" href="https://nuju.app/blog/gaslighting-in-beziehungen-erkennen-manipulation-test"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/cortisol-senken-bei-chronischem-stress-nervensystem-uebungen</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Cortisol senken bei Dauerstress: Somatische Übungen für das autonome Nervensystem</image:title>
+      <image:caption>Ständig erschöpft, aber nachts um 3 Uhr hellwach? Erfahre, wie chronisch erhöhtes Cortisol den Körper belastet und wie du dein Nervensystem somatisch regulierst.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="de" href="https://nuju.app/blog/cortisol-senken-bei-chronischem-stress-nervensystem-uebungen"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/reconnaitre-le-gaslighting-manipulation-emotionnelle-test</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Reconnaître le Gaslighting : Sortir de la Manipulation Émotionnelle et Retrouver Confiance</image:title>
+      <image:caption>Doutez-vous constamment de vos souvenirs ? Avez-vous l&apos;impression de devenir fou face aux réactions d&apos;un proche ? Découvrez les mécanismes du gaslighting et rétablissez votre réalité.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://nuju.app/blog/reconnaitre-le-gaslighting-manipulation-emotionnelle-test"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/pic-de-cortisol-3h-du-matin-reveil-nocturne-stress</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Pic de Cortisol à 3h du Matin : Pourquoi Votre Système Nerveux Vous Réveille en Sursaut</image:title>
+      <image:caption>Réveillé brutalement entre 3h et 4h du matin le cœur battant et l&apos;esprit encombré ? Comprenez le dérèglement de l&apos;axe HPA et découvrez des exercices somatiques pour vous rendormir.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://nuju.app/blog/pic-de-cortisol-3h-du-matin-reveil-nocturne-stress"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/como-saber-si-sufres-gaslighting-manipulacion-psicologica</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Cómo Saber si Sufres Gaslighting: Reconocer la Manipulación Psicológica y Poner Límites</image:title>
+      <image:caption>¿Dudas continuamente de tu propia memoria o te disculpas sin saber qué hiciste mal? Aprende a detectar el gaslighting encubierto y recupera tu seguridad emocional.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="es" href="https://nuju.app/blog/como-saber-si-sufres-gaslighting-manipulacion-psicologica"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/niveles-altos-de-cortisol-sintomas-fisicos-como-bajarlo</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Niveles Altos de Cortisol: Síntomas Físicos de Estrés Crónico y Cómo Regular el Sistema Nervioso</image:title>
+      <image:caption>¿Te despiertas a las 3 AM con taquicardia o tienes tensión constante en la mandíbula? Conoce los síntomas físicos del exceso de cortisol y cómo calmar tu eje HPA de forma natural.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="es" href="https://nuju.app/blog/niveles-altos-de-cortisol-sintomas-fisicos-como-bajarlo"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/cara-menghentikan-self-gaslighting-validasi-emosi</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Cara Menghentikan Self-Gaslighting: Melepaskan Rasa Ragu pada Ingatan dan Persepsi Sendiri</image:title>
+      <image:caption>Sering merasa bersalah saat tersakiti? Selalu berpikir &apos;apa aku yang terlalu baper&apos;? Pelajari psikologi self-gaslighting dan langkah konkret memulihkan kepercayaan pada diri sendiri.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="id" href="https://nuju.app/blog/cara-menghentikan-self-gaslighting-validasi-emosi"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/kenapa-bangun-jam-3-pagi-gelisah-lonjakan-kortisol</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Kenapa Sering Bangun Jam 3 Pagi Disertai Jantung Berdebar? Rahasia Lonjakan Kortisol dan Reset Saraf</image:title>
+      <image:caption>Tidur jam 11 malam tapi rutin terbangun jam 3 dini hari dengan pikiran kalut dan rahang kaku? Pahami lonjakan hormon kortisol nokturnal dan cara merestart sistem sarafmu.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="id" href="https://nuju.app/blog/kenapa-bangun-jam-3-pagi-gelisah-lonjakan-kortisol"/>
   </url>
   <url>
     <loc>https://nuju.app/blog/how-to-stop-overthinking-at-night</loc>

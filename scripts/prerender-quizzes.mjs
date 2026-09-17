@@ -803,6 +803,68 @@ export function getQuizAndToolPages({
         },
       ],
     },
+    {
+      route: "/quiz/gaslighting",
+      aliases: ["/quiz/emotional-manipulation"],
+      title: "Gaslighting & Emotional Manipulation Radar: Free 12-Item Diagnostic",
+      description:
+        "Are you second-guessing your memories and sanity? Free 12-item clinical screener based on the Stern Manipulation Scale. Identify covert narcissistic tactics and verify your reality.",
+      category: "Relational Psychology",
+      duration: "90 secs",
+      itemsCount: 12,
+      framework: "Stern Manipulation Index & Cognitive Invalidation Scale",
+      overview:
+        "Gaslighting is a form of insidious psychological abuse where one partner or authority figure systematically undermines the victim's perception of reality, memory, or sanity. Over time, the victim develops chronic self-doubt, hyper-vigilance, and an involuntary apology reflex.",
+      keyPoints: [
+        "Identifies reality distortion, chronic second-guessing, and perception invalidation",
+        "Assesses hyper-vigilance and walking on eggshells around unpredictable mood shifts",
+        "Evaluates the compulsive apology reflex and erosion of personal agency",
+        "Provides grounding anchoring drills, documentation protocols, and boundary scripts",
+      ],
+      faqs: [
+        {
+          question: "What are the common signs of being gaslit?",
+          answer:
+            "Frequently apologizing without knowing what you did wrong, constantly second-guessing your memory, withholding your true opinions to avoid explosions, and feeling like you are 'too sensitive' or 'crazy'.",
+        },
+        {
+          question: "How do you break free from gaslighting?",
+          answer:
+            "Keep private, timestamped reality logs (like in Nuju's encrypted journal), seek external reality checks from trusted neutral friends, and refuse to debate your emotional reactions.",
+        },
+      ],
+    },
+    {
+      route: "/quiz/cortisol-stress",
+      aliases: ["/quiz/chronic-stress-body"],
+      title: "Cortisol & Somatic Stress Body Screener: Free Nervous System Diagnostic",
+      description:
+        "Is chronic stress trapped in your body? Screen circadian disruptions, 3 AM waking, muscular armor, and neuroendocrine overdrive with our free 12-item somatic assessment.",
+      category: "Somatic Physiology",
+      duration: "90 secs",
+      itemsCount: 12,
+      framework: "HPA-Axis Autonomic Dysregulation & Somatic Armor Inventory",
+      overview:
+        "When the hypothalamic-pituitary-adrenal (HPA) axis remains chronically activated, elevated cortisol and adrenaline physically manifest in the body. Symptoms range from 3 AM insomnia bursts and morning brain fog to jaw tension, chronic fatigue, and afternoon blood sugar crashes.",
+      keyPoints: [
+        "Evaluates circadian cortisol rhythm shifts (wired at night, exhausted in morning)",
+        "Measures somatic muscular armor: jaw clenching, trap tightness, and shallow chest breathing",
+        "Identifies neuroendocrine overdrive and adrenal fatigue crashes",
+        "Delivers somatic down-regulation exercises: vagus nerve resets and physiological sigh protocols",
+      ],
+      faqs: [
+        {
+          question: "What does high cortisol feel like physically?",
+          answer:
+            "Feeling 'tired but wired' at bedtime, waking up abruptly around 3 to 4 AM with racing thoughts, experiencing afternoon energy crashes, and feeling physical tension in the jaw and neck.",
+        },
+        {
+          question: "How long does it take to reset dysregulated cortisol levels?",
+          answer:
+            "With consistent morning sunlight exposure, early evening screen wind-downs, somatic breathwork, and emotional journaling, autonomic balance improves within 2 to 4 weeks.",
+        },
+      ],
+    },
 
     // 3. Somatic & Regulation Tools
     {

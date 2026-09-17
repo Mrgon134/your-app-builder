@@ -68,6 +68,8 @@ const SensoryTest = lazy(() => import("./pages/SensoryTest.tsx"));
 const PhysiologicalSighLab = lazy(() => import("./pages/PhysiologicalSighLab.tsx"));
 const PerfectionismTest = lazy(() => import("./pages/PerfectionismTest.tsx"));
 const SocialBatteryTest = lazy(() => import("./pages/SocialBatteryTest.tsx"));
+const GaslightingTest = lazy(() => import("./pages/GaslightingTest.tsx"));
+const CortisolTest = lazy(() => import("./pages/CortisolTest.tsx"));
 const EbookSalesPage = lazy(() => import("./pages/EbookSalesPage.tsx"));
 const EbookReaderPage = lazy(() => import("./pages/EbookReaderPage.tsx"));
 const NotFound = lazy(() => import("./pages/NotFound.tsx"));
@@ -250,6 +252,12 @@ const App = () => (
                   <Route path="/quiz/introvert-hangover" element={<SocialBatteryTest />} />
                   <Route path="/quiz/social-exhaustion" element={<SocialBatteryTest />} />
                   <Route path="/tes-baterai-sosial" element={<SocialBatteryTest defaultLang="id" />} />
+                  <Route path="/quiz/gaslighting" element={<GaslightingTest />} />
+                  <Route path="/quiz/emotional-manipulation" element={<GaslightingTest />} />
+                  <Route path="/tes-gaslighting" element={<GaslightingTest defaultLang="id" />} />
+                  <Route path="/quiz/cortisol-stress" element={<CortisolTest />} />
+                  <Route path="/quiz/chronic-stress-body" element={<CortisolTest />} />
+                  <Route path="/tes-stres-kortisol" element={<CortisolTest defaultLang="id" />} />
                   <Route path="/quiz/:quizId" element={<QuizRunner />} />
                   <Route path="/test-psikologi" element={<QuizHub />} />
                   <Route path="/test-psikologi/:quizId" element={<QuizRunner />} />
