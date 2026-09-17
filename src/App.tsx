@@ -70,6 +70,8 @@ const PerfectionismTest = lazy(() => import("./pages/PerfectionismTest.tsx"));
 const SocialBatteryTest = lazy(() => import("./pages/SocialBatteryTest.tsx"));
 const GaslightingTest = lazy(() => import("./pages/GaslightingTest.tsx"));
 const CortisolTest = lazy(() => import("./pages/CortisolTest.tsx"));
+const EmotionalAvailabilityTest = lazy(() => import("./pages/EmotionalAvailabilityTest.tsx"));
+const BedtimeProcrastinationTest = lazy(() => import("./pages/BedtimeProcrastinationTest.tsx"));
 const EbookSalesPage = lazy(() => import("./pages/EbookSalesPage.tsx"));
 const EbookReaderPage = lazy(() => import("./pages/EbookReaderPage.tsx"));
 const NotFound = lazy(() => import("./pages/NotFound.tsx"));
@@ -258,6 +260,12 @@ const App = () => (
                   <Route path="/quiz/cortisol-stress" element={<CortisolTest />} />
                   <Route path="/quiz/chronic-stress-body" element={<CortisolTest />} />
                   <Route path="/tes-stres-kortisol" element={<CortisolTest defaultLang="id" />} />
+                  <Route path="/quiz/emotional-availability" element={<EmotionalAvailabilityTest />} />
+                  <Route path="/quiz/vulnerability-test" element={<EmotionalAvailabilityTest />} />
+                  <Route path="/tes-ketersediaan-emosional" element={<EmotionalAvailabilityTest defaultLang="id" />} />
+                  <Route path="/quiz/revenge-bedtime-procrastination" element={<BedtimeProcrastinationTest />} />
+                  <Route path="/quiz/sleep-procrastination" element={<BedtimeProcrastinationTest />} />
+                  <Route path="/tes-prokrastinasi-tidur" element={<BedtimeProcrastinationTest defaultLang="id" />} />
                   <Route path="/quiz/:quizId" element={<QuizRunner />} />
                   <Route path="/test-psikologi" element={<QuizHub />} />
                   <Route path="/test-psikologi/:quizId" element={<QuizRunner />} />

@@ -1229,6 +1229,64 @@ const QuizHub: React.FC = () => {
               </Link>
             </div>
           </div>
+
+          {/* Card 38: Emotional Availability & Vulnerability Radar */}
+          <div className="rounded-3xl border border-indigo-300 bg-gradient-to-br from-indigo-500/10 via-indigo-50 to-white p-6 shadow-xs flex flex-col justify-between hover:shadow-md transition">
+            <div>
+              <div className="flex items-center justify-between mb-3">
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-indigo-600 px-3 py-0.5 text-xs font-bold text-white shadow-xs">
+                  <HeartHandshake className="h-3 w-3" />
+                  INTIMACY DEFENSE
+                </span>
+                <span className="text-xs font-semibold text-indigo-700">Gottman & EFT</span>
+              </div>
+              <h3 className="text-lg font-bold text-neutral-900 mb-1.5">
+                Emotional Availability & Vulnerability Test
+              </h3>
+              <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed">
+                Are your relationship walls protecting you or keeping true connection out? Discover if you are securely open, a cautious pragmatist, or counter-dependent.
+              </p>
+            </div>
+            <div className="mt-5 pt-3 border-t border-indigo-100 flex items-center justify-between">
+              <span className="text-xs font-medium text-neutral-400">~2 Mins · 12 Items</span>
+              <Link
+                to="/quiz/emotional-availability"
+                className="inline-flex items-center gap-1.5 rounded-full bg-indigo-600 px-4 py-2 text-xs font-bold text-white hover:bg-indigo-700 transition shadow-xs"
+              >
+                <span>Check Availability</span>
+                <ArrowRight className="h-3.5 w-3.5" />
+              </Link>
+            </div>
+          </div>
+
+          {/* Card 39: Revenge Bedtime Procrastination Screener */}
+          <div className="rounded-3xl border border-amber-300 bg-gradient-to-br from-amber-500/10 via-purple-50 to-white p-6 shadow-xs flex flex-col justify-between hover:shadow-md transition">
+            <div>
+              <div className="flex items-center justify-between mb-3">
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-amber-600 px-3 py-0.5 text-xs font-bold text-white shadow-xs">
+                  <Moon className="h-3 w-3" />
+                  SLEEP DREAD INDEX
+                </span>
+                <span className="text-xs font-semibold text-amber-700">Kroese BPS Model</span>
+              </div>
+              <h3 className="text-lg font-bold text-neutral-900 mb-1.5">
+                Revenge Bedtime Procrastination Screener
+              </h3>
+              <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed">
+                Why can't you put your phone down at midnight even when exhausted? Measure your daytime autonomy deficit and nocturnal dopamine scrolling loop.
+              </p>
+            </div>
+            <div className="mt-5 pt-3 border-t border-amber-100 flex items-center justify-between">
+              <span className="text-xs font-medium text-neutral-400">~90 Secs · 12 Items</span>
+              <Link
+                to="/quiz/revenge-bedtime-procrastination"
+                className="inline-flex items-center gap-1.5 rounded-full bg-amber-600 px-4 py-2 text-xs font-bold text-white hover:bg-amber-700 transition shadow-xs"
+              >
+                <span>Screen Bedtime Habits</span>
+                <ArrowRight className="h-3.5 w-3.5" />
+              </Link>
+            </div>
+          </div>
         </div>
 
         {/* Country Filter Pills */}

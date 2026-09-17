@@ -24,6 +24,8 @@ import { PerfectionismScoreResult, PerfectionismLang } from "@/data/perfectionis
 import { SocialBatteryScoreResult, SocialBatteryLang } from "@/data/social-battery";
 import { GaslightingScoreResult, GaslightingLang } from "@/data/gaslighting";
 import { CortisolScoreResult, CortisolLang } from "@/data/cortisol";
+import { EmotionalAvailabilityScoreResult, EmotionalAvailabilityLang } from "@/data/emotional-availability";
+import { BedtimeProcrastinationScoreResult, BedtimeProcrastinationLang } from "@/data/bedtime-procrastination";
 
 /**
  * Draws a rounded rectangle path on the canvas context with fallback for older environments.
@@ -4490,6 +4492,374 @@ export async function generateCortisolCard(
 
   return { dataUrl, blob, file };
 }
+
+/**
+ * Generates an Instagram Story format (1080x1350) share card for the Emotional Availability Screener.
+ */
+export async function generateEmotionalAvailabilityCard(
+  result: EmotionalAvailabilityScoreResult,
+  lang: EmotionalAvailabilityLang
+): Promise<{ dataUrl: string; blob: Blob; file: File }> {
+  const width = 1080;
+  const height = 1350;
+  const canvas = document.createElement("canvas");
+  canvas.width = width;
+  canvas.height = height;
+  const ctx = canvas.getContext("2d");
+  if (!ctx) throw new Error("Could not get canvas context");
+
+  // Background gradient: Indigo / Deep Cyan / Midnight Blue
+  const bgGrad = ctx.createLinearGradient(0, 0, width, height);
+  bgGrad.addColorStop(0, "#0B0F19");
+  bgGrad.addColorStop(0.45, "#111827");
+  bgGrad.addColorStop(1, "#0A101D");
+  ctx.fillStyle = bgGrad;
+  ctx.fillRect(0, 0, width, height);
+
+  // Soft glow accents
+  const glow = ctx.createRadialGradient(width * 0.85, height * 0.15, 20, width * 0.85, height * 0.15, 450);
+  glow.addColorStop(0, "rgba(99, 102, 241, 0.18)");
+  glow.addColorStop(1, "rgba(99, 102, 241, 0)");
+  ctx.fillStyle = glow;
+  ctx.fillRect(0, 0, width, height);
+
+  // Card border
+  ctx.strokeStyle = "rgba(99, 102, 241, 0.25)";
+  ctx.lineWidth = 3;
+  drawRoundedRect(ctx, 40, 40, width - 80, height - 80, 40);
+  ctx.stroke();
+
+  // Top header tag
+  ctx.fillStyle = "rgba(99, 102, 241, 0.15)";
+  drawRoundedRect(ctx, 80, 80, 480, 56, 28);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(99, 102, 241, 0.35)";
+  ctx.stroke();
+
+  ctx.fillStyle = "#818CF8";
+  ctx.font = "bold 20px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("NUJU EMOTIONAL AVAILABILITY RADAR", 105, 115);
+
+  // Assessment title
+  ctx.fillStyle = "#FFFFFF";
+  ctx.font = "900 48px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("Emotional Availability", 80, 200);
+
+  // Level Badge Pill
+  ctx.fillStyle = "rgba(99, 102, 241, 0.2)";
+  drawRoundedRect(ctx, 80, 235, 360, 50, 25);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(99, 102, 241, 0.4)";
+  ctx.stroke();
+
+  const badgeText = result.profile.badge[lang] || result.profile.badge.en;
+  ctx.fillStyle = "#A5B4FC";
+  ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(badgeText.toUpperCase(), 105, 268);
+
+  // Archetype Title Banner
+  ctx.fillStyle = "#FFFFFF";
+  ctx.font = "800 40px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  const archTitle = result.profile.title[lang] || result.profile.title.en;
+  ctx.fillText(archTitle, 80, 340);
+
+  // Tagline
+  ctx.fillStyle = "#C7D2FE";
+  ctx.font = "italic 26px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  const tagline = result.profile.tagline[lang] || result.profile.tagline.en;
+  wrapText(ctx, `"${tagline}"`, 80, 390, width - 160, 36, 2);
+
+  // Subscales breakdown boxes
+  const boxWidth = 280;
+  const boxHeight = 160;
+  const boxY = 480;
+
+  // Box 1: Vulnerability Tolerance
+  ctx.fillStyle = "rgba(255, 255, 255, 0.04)";
+  drawRoundedRect(ctx, 80, boxY, boxWidth, boxHeight, 24);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(255, 255, 255, 0.1)";
+  ctx.stroke();
+
+  ctx.fillStyle = "#818CF8";
+  ctx.font = "bold 18px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("VULNERABILITY", 105, boxY + 45);
+  ctx.fillStyle = "#FFFFFF";
+  ctx.font = "900 48px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(`${result.subscales.vulnerability_tolerance.percentage}%`, 105, boxY + 105);
+  ctx.fillStyle = "#94A3B8";
+  ctx.font = "16px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("Exposure Fear", 105, boxY + 135);
+
+  // Box 2: Stonewalling
+  ctx.fillStyle = "rgba(255, 255, 255, 0.04)";
+  drawRoundedRect(ctx, 400, boxY, boxWidth, boxHeight, 24);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(255, 255, 255, 0.1)";
+  ctx.stroke();
+
+  ctx.fillStyle = "#38BDF8";
+  ctx.font = "bold 18px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("STONEWALLING", 425, boxY + 45);
+  ctx.fillStyle = "#FFFFFF";
+  ctx.font = "900 48px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(`${result.subscales.defensive_stonewalling.percentage}%`, 425, boxY + 105);
+  ctx.fillStyle = "#94A3B8";
+  ctx.font = "16px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("Conflict Shutdown", 425, boxY + 135);
+
+  // Box 3: Autonomy Anxiety
+  ctx.fillStyle = "rgba(255, 255, 255, 0.04)";
+  drawRoundedRect(ctx, 720, boxY, boxWidth, boxHeight, 24);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(255, 255, 255, 0.1)";
+  ctx.stroke();
+
+  ctx.fillStyle = "#A78BFA";
+  ctx.font = "bold 18px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("AUTONOMY FEAR", 745, boxY + 45);
+  ctx.fillStyle = "#FFFFFF";
+  ctx.font = "900 48px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(`${result.subscales.autonomy_anxiety.percentage}%`, 745, boxY + 105);
+  ctx.fillStyle = "#94A3B8";
+  ctx.font = "16px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("Engulfment Panic", 745, boxY + 135);
+
+  // Psychology Mechanism Box
+  ctx.fillStyle = "rgba(255, 255, 255, 0.03)";
+  drawRoundedRect(ctx, 80, 680, width - 160, 220, 28);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(99, 102, 241, 0.2)";
+  ctx.stroke();
+
+  ctx.fillStyle = "#818CF8";
+  ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("INTIMACY DEFENSE ARCHITECTURE", 120, 725);
+
+  const descText = result.profile.description[lang] || result.profile.description.en;
+  ctx.fillStyle = "#E2E8F0";
+  ctx.font = "24px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  wrapText(ctx, descText, 120, 770, width - 240, 36, 3);
+
+  // Action Protocol Box
+  ctx.fillStyle = "rgba(255, 255, 255, 0.04)";
+  drawRoundedRect(ctx, 80, 930, width - 160, 215, 28);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(255, 255, 255, 0.15)";
+  ctx.stroke();
+
+  ctx.fillStyle = "#F8FAFC";
+  ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("VULNERABILITY EXPANSION PROTOCOL", 120, 975);
+
+  const protocols = result.profile.actionProtocols[lang] || result.profile.actionProtocols.en;
+  const protocolText = protocols[0] || "";
+  ctx.fillStyle = "#CBD5E1";
+  ctx.font = "24px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  wrapText(ctx, protocolText, 120, 1020, width - 240, 36, 3);
+
+  // Footer CTA
+  ctx.fillStyle = "rgba(255, 255, 255, 0.5)";
+  ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("Screen your emotional availability free at:", 80, 1200);
+
+  ctx.fillStyle = "#818CF8";
+  ctx.font = "900 30px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("nuju.app/quiz/emotional-availability", 80, 1245);
+
+  const dataUrl = canvas.toDataURL("image/png", 0.95);
+  const blob = await new Promise<Blob>((resolve, reject) => {
+    canvas.toBlob((b) => (b ? resolve(b) : reject(new Error("Failed blob"))), "image/png", 0.95);
+  });
+  const file = new File([blob], `nuju-emotional-availability-${result.level}.png`, { type: "image/png" });
+
+  return { dataUrl, blob, file };
+}
+
+/**
+ * Generates an Instagram Story format (1080x1350) share card for the Revenge Bedtime Procrastination Screener.
+ */
+export async function generateBedtimeProcrastinationCard(
+  result: BedtimeProcrastinationScoreResult,
+  lang: BedtimeProcrastinationLang
+): Promise<{ dataUrl: string; blob: Blob; file: File }> {
+  const width = 1080;
+  const height = 1350;
+  const canvas = document.createElement("canvas");
+  canvas.width = width;
+  canvas.height = height;
+  const ctx = canvas.getContext("2d");
+  if (!ctx) throw new Error("Could not get canvas context");
+
+  // Background gradient: Deep Midnight Purple / Dark Obsidian
+  const bgGrad = ctx.createLinearGradient(0, 0, width, height);
+  bgGrad.addColorStop(0, "#0C091A");
+  bgGrad.addColorStop(0.5, "#140C29");
+  bgGrad.addColorStop(1, "#0A0614");
+  ctx.fillStyle = bgGrad;
+  ctx.fillRect(0, 0, width, height);
+
+  // Moonlit Amber / Violet Glow
+  const glow = ctx.createRadialGradient(width * 0.8, height * 0.2, 10, width * 0.8, height * 0.2, 500);
+  glow.addColorStop(0, "rgba(245, 158, 11, 0.18)");
+  glow.addColorStop(0.6, "rgba(168, 85, 247, 0.12)");
+  glow.addColorStop(1, "rgba(0, 0, 0, 0)");
+  ctx.fillStyle = glow;
+  ctx.fillRect(0, 0, width, height);
+
+  // Card border
+  ctx.strokeStyle = "rgba(245, 158, 11, 0.25)";
+  ctx.lineWidth = 3;
+  drawRoundedRect(ctx, 40, 40, width - 80, height - 80, 40);
+  ctx.stroke();
+
+  // Top header pill
+  ctx.fillStyle = "rgba(245, 158, 11, 0.15)";
+  drawRoundedRect(ctx, 80, 80, 520, 56, 28);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(245, 158, 11, 0.35)";
+  ctx.stroke();
+
+  ctx.fillStyle = "#FBBF24";
+  ctx.font = "bold 20px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("REVENGE BEDTIME PROCRASTINATION INDEX", 105, 115);
+
+  // Assessment title
+  ctx.fillStyle = "#FFFFFF";
+  ctx.font = "900 46px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("Midnight Sleep Dread", 80, 195);
+
+  // Level Badge Pill
+  ctx.fillStyle = "rgba(168, 85, 247, 0.2)";
+  drawRoundedRect(ctx, 80, 230, 360, 50, 25);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(168, 85, 247, 0.4)";
+  ctx.stroke();
+
+  const badgeText = result.profile.badge[lang] || result.profile.badge.en;
+  ctx.fillStyle = "#E9D5FF";
+  ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(badgeText.toUpperCase(), 105, 263);
+
+  // Archetype Title Banner
+  ctx.fillStyle = "#FFFFFF";
+  ctx.font = "800 40px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  const archTitle = result.profile.title[lang] || result.profile.title.en;
+  ctx.fillText(archTitle, 80, 335);
+
+  // Tagline
+  ctx.fillStyle = "#FDE68A";
+  ctx.font = "italic 26px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  const tagline = result.profile.tagline[lang] || result.profile.tagline.en;
+  wrapText(ctx, `"${tagline}"`, 80, 385, width - 160, 36, 2);
+
+  // Subscales breakdown boxes
+  const boxWidth = 280;
+  const boxHeight = 160;
+  const boxY = 480;
+
+  // Box 1: Autonomy Deficit
+  ctx.fillStyle = "rgba(255, 255, 255, 0.04)";
+  drawRoundedRect(ctx, 80, boxY, boxWidth, boxHeight, 24);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(255, 255, 255, 0.1)";
+  ctx.stroke();
+
+  ctx.fillStyle = "#F59E0B";
+  ctx.font = "bold 18px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("DAYTIME DEFICIT", 105, boxY + 45);
+  ctx.fillStyle = "#FFFFFF";
+  ctx.font = "900 48px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(`${result.subscales.autonomy_deficit.percentage}%`, 105, boxY + 105);
+  ctx.fillStyle = "#94A3B8";
+  ctx.font = "16px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("Freedom Hunger", 105, boxY + 135);
+
+  // Box 2: Dopamine Chasing
+  ctx.fillStyle = "rgba(255, 255, 255, 0.04)";
+  drawRoundedRect(ctx, 400, boxY, boxWidth, boxHeight, 24);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(255, 255, 255, 0.1)";
+  ctx.stroke();
+
+  ctx.fillStyle = "#C084FC";
+  ctx.font = "bold 18px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("DOPAMINE CHASE", 425, boxY + 45);
+  ctx.fillStyle = "#FFFFFF";
+  ctx.font = "900 48px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(`${result.subscales.dopamine_chasing.percentage}%`, 425, boxY + 105);
+  ctx.fillStyle = "#94A3B8";
+  ctx.font = "16px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("Midnight Scrolling", 425, boxY + 135);
+
+  // Box 3: Morning Regret
+  ctx.fillStyle = "rgba(255, 255, 255, 0.04)";
+  drawRoundedRect(ctx, 720, boxY, boxWidth, boxHeight, 24);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(255, 255, 255, 0.1)";
+  ctx.stroke();
+
+  ctx.fillStyle = "#FB7185";
+  ctx.font = "bold 18px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("MORNING GUILT", 745, boxY + 45);
+  ctx.fillStyle = "#FFFFFF";
+  ctx.font = "900 48px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(`${result.subscales.morning_regret.percentage}%`, 745, boxY + 105);
+  ctx.fillStyle = "#94A3B8";
+  ctx.font = "16px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("Circadian Debt", 745, boxY + 135);
+
+  // Psychology Mechanism Box
+  ctx.fillStyle = "rgba(255, 255, 255, 0.03)";
+  drawRoundedRect(ctx, 80, 680, width - 160, 220, 28);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(245, 158, 11, 0.2)";
+  ctx.stroke();
+
+  ctx.fillStyle = "#FBBF24";
+  ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("NOCTURNAL REBELLION DYNAMICS", 120, 725);
+
+  const descText = result.profile.description[lang] || result.profile.description.en;
+  ctx.fillStyle = "#E2E8F0";
+  ctx.font = "24px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  wrapText(ctx, descText, 120, 770, width - 240, 36, 3);
+
+  // Action Protocol Box
+  ctx.fillStyle = "rgba(255, 255, 255, 0.04)";
+  drawRoundedRect(ctx, 80, 930, width - 160, 215, 28);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(255, 255, 255, 0.15)";
+  ctx.stroke();
+
+  ctx.fillStyle = "#F8FAFC";
+  ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("CIRCADIAN REPAIR PROTOCOL", 120, 975);
+
+  const protocols = result.profile.actionProtocols[lang] || result.profile.actionProtocols.en;
+  const protocolText = protocols[0] || "";
+  ctx.fillStyle = "#CBD5E1";
+  ctx.font = "24px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  wrapText(ctx, protocolText, 120, 1020, width - 240, 36, 3);
+
+  // Footer CTA
+  ctx.fillStyle = "rgba(255, 255, 255, 0.5)";
+  ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("Test your sleep procrastination patterns free at:", 80, 1200);
+
+  ctx.fillStyle = "#F59E0B";
+  ctx.font = "900 30px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("nuju.app/quiz/revenge-bedtime-procrastination", 80, 1245);
+
+  const dataUrl = canvas.toDataURL("image/png", 0.95);
+  const blob = await new Promise<Blob>((resolve, reject) => {
+    canvas.toBlob((b) => (b ? resolve(b) : reject(new Error("Failed blob"))), "image/png", 0.95);
+  });
+  const file = new File([blob], `nuju-bedtime-procrastination-${result.level}.png`, { type: "image/png" });
+
+  return { dataUrl, blob, file };
+}
+
 
 
 

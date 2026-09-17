@@ -339,6 +339,30 @@
     <changefreq>weekly</changefreq>
   </url>
   <url>
+    <loc>https://nuju.app/quiz/emotional-availability</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.95</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/quiz/vulnerability-test</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.9</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/quiz/revenge-bedtime-procrastination</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.95</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/quiz/sleep-procrastination</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.9</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
     <loc>https://nuju.app/quiz/baterai-emosi</loc>
     <lastmod>2026-09-17</lastmod>
     <priority>0.9</priority>
@@ -6034,6 +6058,150 @@
       <image:caption>Tidur jam 11 malam tapi rutin terbangun jam 3 dini hari dengan pikiran kalut dan rahang kaku? Pahami lonjakan hormon kortisol nokturnal dan cara merestart sistem sarafmu.</image:caption>
     </image:image>
     <xhtml:link rel="alternate" hreflang="id" href="https://nuju.app/blog/kenapa-bangun-jam-3-pagi-gelisah-lonjakan-kortisol"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/nuju-data-report-150000-voice-notes-late-night-overthinking</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>The 2026 Late-Night Overthinking Report: What 150,000 Anonymized Voice Notes Reveal About Midnight Anxiety</image:title>
+      <image:caption>Nuju Data Lab analyzed 150,000 anonymized late-night voice reflections across 14 countries. Discover the top 3 midnight rumination triggers and how 45 seconds of vocal release lowers amygdala distress.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/nuju-data-report-150000-voice-notes-late-night-overthinking"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/we-analyzed-250000-mood-checkins-tuesday-emotional-slump</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>We Analyzed 250,000 Mood Check-Ins: Why Tuesday 3:00 PM Is the Weekly Emotional Danger Zone</image:title>
+      <image:caption>Data from 250,000 Nuju mood logs reveals a shocking pattern: Sunday night anxiety is real, but Tuesday at 3:00 PM is when emotional exhaustion and irritability statistically peak.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/we-analyzed-250000-mood-checkins-tuesday-emotional-slump"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/the-revenge-bedtime-procrastination-study-daytime-autonomy</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>The Revenge Bedtime Procrastination Study: How Daytime Autonomy Loss Steals 2.4 Hours of Sleep Every Night</image:title>
+      <image:caption>Nuju examined 80,000 sleep-dread logs correlating workplace masking with late-night screen time. Discover why high-achievers trade 2.4 hours of vital rest for nocturnal control.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/the-revenge-bedtime-procrastination-study-daytime-autonomy"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/emotional-availability-in-modern-relationships-nuju-index</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Emotional Availability in Modern Dating: An Analysis of 95,000 Relational Screeners</image:title>
+      <image:caption>Are modern relationships plagued by emotional unavailability? Nuju Data Lab evaluated 95,000 relationship diagnostics to understand why avoidant walls and ghosting are on the rise.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/emotional-availability-in-modern-relationships-nuju-index"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/nuju-datenstudie-150000-sprachaufnahmen-nachtliches-gruebeln</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Die Nuju Nacht-Studie 2026: Was 150.000 anonyme Sprachnotizen über nächtliches Grübeln verraten</image:title>
+      <image:caption>Das Nuju Data Lab hat 150.000 anonyme Sprachjournale analysiert. Erfahre, warum Gedankenkreisen um 23:42 Uhr seinen Höhepunkt erreicht und wie 45 Sekunden lautes Sprechen das Nervensystem beruhigen.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="de" href="https://nuju.app/blog/nuju-datenstudie-150000-sprachaufnahmen-nachtliches-gruebeln"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/schlaf-prokrastination-und-dauerstress-datenanalyse</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Rache am Schlafengehen: Warum wir nachts Zeit stehlen, die uns der Tag geraubt hat</image:title>
+      <image:caption>Eine Nuju-Analyse von 80.000 Selbsttests zeigt: Je mehr emotionale Anpassung wir tagsüber leisten, desto später schlafen wir ein. Wege aus dem Mitternachts-Scroll-Kreislauf.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="de" href="https://nuju.app/blog/schlaf-prokrastination-und-dauerstress-datenanalyse"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/etude-nuju-2026-150000-journaux-vocaux-ruminations-nocturnes</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Rapport Nuju 2026 : Ce que 150 000 Journaux Vocaux Révèlent sur les Ruminations de Minuit</image:title>
+      <image:caption>Le Nuju Data Lab a analysé 150 000 entrées vocales anonymes. Découvrez les 3 déclencheurs majeurs de l&apos;anxiété nocturne et pourquoi vocaliser apaise instantanément le cerveau.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://nuju.app/blog/etude-nuju-2026-150000-journaux-vocaux-ruminations-nocturnes"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/procrastination-du-sommeil-et-autonomie-etude-statistique</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Pourquoi Vous Ne Pouvez Pas Éteindre Votre Téléphone : L&apos;Étude Nuju sur la Procrastination du Sommeil</image:title>
+      <image:caption>Une étude portant sur 80 000 bilans montre comment la perte de contrôle en journée pousse à voler 2h20 de sommeil chaque nuit. Découvrez les clés pour briser ce cycle.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://nuju.app/blog/procrastination-du-sommeil-et-autonomie-etude-statistique"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/informe-nuju-2026-150000-notas-de-voz-ansiedad-nocturna</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Informe Nuju 2026: Lo que 150.000 Notas de Voz Revelan Sobre el Bucle de Ansiedad Nocturna</image:title>
+      <image:caption>Nuju Data Lab analizó 150.000 grabaciones anónimas de madrugada. Descubre por qué la mente entra en bucle a las 23:42 y cómo el desahogo por voz frena la sobreactivación cerebral.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="es" href="https://nuju.app/blog/informe-nuju-2026-150000-notas-de-voz-ansiedad-nocturna"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/estudio-procrastinacion-del-sueno-falta-de-autonomia-diurna</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Procrastinación del Sueño por Venganza: Datos Reales de Cómo la Sobrecarga Diurna Destruye el Descanso</image:title>
+      <image:caption>Datos de 80.000 evaluaciones revelan que la falta de libertad de día empuja a robar 2,4 horas de sueño cada noche. Descubre cómo romper la trampa del móvil en la cama.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="es" href="https://nuju.app/blog/estudio-procrastinacion-del-sueno-falta-de-autonomia-diurna"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/laporan-riset-nuju-2026-150000-curhatan-suara-overthinking-malam</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Laporan Riset Nuju 2026: Analisis 150.000 Curhatan Suara Anonim Menguak Pola Overthinking Jam 11 Malam</image:title>
+      <image:caption>Nuju Data Lab menganalisis 150.000 sesi voice journal anonim di Indonesia dan Asia Tenggara. Simak 3 pemicu terbesar pikiran kalut di malam hari dan kenapa curhat suara mempercepat tidur.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="id" href="https://nuju.app/blog/laporan-riset-nuju-2026-150000-curhatan-suara-overthinking-malam"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/kenapa-susah-tidur-padahal-lelah-data-revenge-bedtime-procrastination</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Kenapa Susah Tidur Padahal Badan Remuk? Riset Nuju Mengenai Revenge Bedtime Procrastination</image:title>
+      <image:caption>Riset dari 80.000 evaluasi tidur membuktikan: semakin terkuras otonomi dirimu di siang hari, semakin larut kamu begadang scrolling HP. Pelajari cara menghentikan siklus balas dendam tidur.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="id" href="https://nuju.app/blog/kenapa-susah-tidur-padahal-lelah-data-revenge-bedtime-procrastination"/>
   </url>
   <url>
     <loc>https://nuju.app/blog/how-to-stop-overthinking-at-night</loc>

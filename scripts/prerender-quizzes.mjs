@@ -865,6 +865,68 @@ export function getQuizAndToolPages({
         },
       ],
     },
+    {
+      route: "/quiz/emotional-availability",
+      aliases: ["/quiz/vulnerability-test"],
+      title: "Emotional Availability & Vulnerability Test: Free 12-Item Diagnostic",
+      description:
+        "Are you emotionally available or defensively walled off? Free 12-item clinical screener based on the Gottman Intimacy Scale and Emotionally Focused Therapy (EFT).",
+      category: "Relational Psychology",
+      duration: "90 secs",
+      itemsCount: 12,
+      framework: "Gottman Sound Relationship House & Johnson Emotionally Focused Therapy (EFT)",
+      overview:
+        "Emotional availability refers to the psychological capacity to experience, articulate, and connect with feelings of vulnerability and mutual interdependence without fleeing or erecting defensive walls.",
+      keyPoints: [
+        "Identifies vulnerability tolerance and fear of being emotionally seen",
+        "Measures conflict shutdown, silent treatment, and defensive stonewalling",
+        "Assesses autonomy panic, fear of engulfment, and counter-dependent lone fortress traits",
+        "Provides relational repair protocols, boundary scripts, and intimacy expansion exercises",
+      ],
+      faqs: [
+        {
+          question: "What does it mean to be emotionally unavailable?",
+          answer:
+            "It means having an unconscious protective barrier against deep intimacy, characterized by withdrawing during conflict, avoiding talks about future commitment, or intellectualizing feelings.",
+        },
+        {
+          question: "Can someone become emotionally available?",
+          answer:
+            "Yes. Emotional availability is an adaptive relational pattern shaped by attachment conditioning. Through nervous system regulation, honest journaling, and gradual vulnerability exposure, people can develop earned security.",
+        },
+      ],
+    },
+    {
+      route: "/quiz/revenge-bedtime-procrastination",
+      aliases: ["/quiz/sleep-procrastination"],
+      title: "Revenge Bedtime Procrastination Test: Free 12-Item Sleep Dread Screener",
+      description:
+        "Why do you sacrifice sleep to scroll on your phone? Measure your daytime autonomy deficit, midnight dopamine trance, and morning regret with our free 12-item screener.",
+      category: "Circadian Psychology",
+      duration: "90 secs",
+      itemsCount: 12,
+      framework: "Kroese Bedtime Procrastination Scale (BPS) & Daytime Autonomy Deficit Model",
+      overview:
+        "Revenge bedtime procrastination occurs when people delay sleep without external obligations, using midnight hours to reclaim personal freedom that was suppressed by daytime demands, bosses, or family duties.",
+      keyPoints: [
+        "Measures daytime autonomy deficit and the psychological urge to 'steal' midnight hours",
+        "Identifies compulsive dopamine seeking through screens, social media feeds, and sugar",
+        "Quantifies morning regret, brain fog, and chronic circadian sleep debt",
+        "Delivers behavioral friction protocols, sleep sanctuary resets, and audio wind-down tools",
+      ],
+      faqs: [
+        {
+          question: "Why is it called 'revenge' bedtime procrastination?",
+          answer:
+            "Originating from the Chinese term 'bàofùxìng áoyè', it describes a subconscious act of revenge against demanding daytime schedules by staying up late to feel in control of one's life.",
+        },
+        {
+          question: "How do you stop revenge bedtime procrastination?",
+          answer:
+            "By incorporating 15-minute guilt-free autonomy breaks during the workday, moving chargers away from the bedside, and switching from blue-light screens to ambient audio soundscapes at night.",
+        },
+      ],
+    },
 
     // 3. Somatic & Regulation Tools
     {
