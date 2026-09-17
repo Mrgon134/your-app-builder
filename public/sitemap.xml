@@ -459,6 +459,30 @@
     <changefreq>weekly</changefreq>
   </url>
   <url>
+    <loc>https://nuju.app/quiz/emotional-numbness</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.95</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/quiz/dissociative-blunting</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.9</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/quiz/toxic-independence</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.95</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/quiz/counter-dependency</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.9</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
     <loc>https://nuju.app/quiz/baterai-emosi</loc>
     <lastmod>2026-09-17</lastmod>
     <priority>0.9</priority>
@@ -6874,6 +6898,150 @@
       <image:caption>Bukan hanya takut ketinggalan tren (FOMO), tetapi takut kehilangan esensi hidup itu sendiri (FOML). Pahami kecemasan waktu fana dan cara hidup mindful di era serba cepat.</image:caption>
     </image:image>
     <xhtml:link rel="alternate" hreflang="id" href="https://nuju.app/blog/mengatasi-fear-of-missing-life-quarter-life-dread"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/the-emotional-numbness-report-2026-nuju-data-study</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>The 2026 Emotional Numbness &amp; Freeze Report: What 150,000 App Reflections Reveal About Affective Blunting and Dorsal Shutdown</image:title>
+      <image:caption>Nuju Data Lab analyzed 150,000 anonymized reflection check-ins. Discover why 61% of chronic overthinkers eventually hit emotional anesthesia, and how somatic thawing restores vitality.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/the-emotional-numbness-report-2026-nuju-data-study"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/cara-mengatasi-kebas-emosional-mati-rasa-psikologi</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Cara Mengatasi Kebas Emosional dan Hampa Batin: Panduan Polivagal Melepaskan Respons Freeze Tubuh</image:title>
+      <image:caption>Apakah kamu merasa hampa, sulit menangis saat tertimpa musibah, atau hidup seperti robot otomatis? Pahami penyebab biologis kebas emosional dan 4 cara mencairkannya.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="id" href="https://nuju.app/blog/cara-mengatasi-kebas-emosional-mati-rasa-psikologi"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/the-toxic-independence-report-2026-somatic-burnout</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>The 2026 Toxic Independence Report: When Extreme Self-Reliance Triggers Autoimmune Flare-Ups and Somatic Collapse</image:title>
+      <image:caption>Nuju Data Lab analyzed 150,000 reflection logs. Discover the hidden medical cost of refusing help, pushing past chronic pain, and why trauma-driven independence corrodes health.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/the-toxic-independence-report-2026-somatic-burnout"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/bahaya-toxic-independence-selalu-menolak-bantuan</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Bahaya Toxic Independence: Mengapa Menolak Bantuan Merusak Kesehatan Fisik dan Cara Belajar Menerima Pertolongan</image:title>
+      <image:caption>Terbiasa menyelesaikan semuanya sendiri hingga jatuh sakit? Pahami bahaya toxic independence bagi kesehatan jantung dan lambung, serta cara membangun kebiasaan saling tolong.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="id" href="https://nuju.app/blog/bahaya-toxic-independence-selalu-menolak-bantuan"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/polyvagal-freeze-vs-depression-how-to-tell-difference</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Dorsal Vagal Freeze vs. Clinical Depression: How to Tell the Difference and Somatically Thaw Your System</image:title>
+      <image:caption>Are you clinically depressed, or is your nervous system trapped in an evolutionary freeze response? Discover the biological differences and tailored recovery paths.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/polyvagal-freeze-vs-depression-how-to-tell-difference"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/gabor-mate-when-the-body-says-no-relationship-stress</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>When the Body Says No: How People-Pleasing and Suppressing Anger Silently Corrode the Immune System</image:title>
+      <image:caption>Explore Dr. Gabor Maté&apos;s revolutionary clinical insights on the mind-body connection. Learn why chronic niceness, boundary neglect, and repressed rage trigger physical pathology.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/gabor-mate-when-the-body-says-no-relationship-stress"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/tanda-kelelahan-mental-dorsal-vagal-shutdown-indonesia</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Mengenali Gejala Dorsal Vagal Shutdown: Saat Tubuh dan Pikiranmu Tiba-tiba &apos;Mati Lampu&apos; Akibat Stres Kronis</image:title>
+      <image:caption>Pernahkah energimu mendadak habis hingga sulit bicara atau bangun dari kasur? Pahami fenomena mati lampu saraf (dorsal vagal shutdown) dan protokol pemulihannya.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="id" href="https://nuju.app/blog/tanda-kelelahan-mental-dorsal-vagal-shutdown-indonesia"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/how-to-overcome-help-phobia-brene-brown-vulnerability</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>How to Overcome Help Phobia: Brené Brown&apos;s Blueprint for Asking for What You Need Without Humiliation</image:title>
+      <image:caption>Why does asking for help feel like standing naked in an auditorium? Discover how shame resilience and daring greatly dismantle the fear of being perceived as weak.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/how-to-overcome-help-phobia-brene-brown-vulnerability"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/cara-sembuh-dari-luka-pengasuhan-kemandirian-ekstrem</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Terpaksa Mandiri Sejak Kecil: Menyembuhkan Luka Inner Child &apos;Anak yang Tidak Boleh Merepotkan&apos;</image:title>
+      <image:caption>Apakah kamu adalah anak yang dibanggakan karena &apos;nggak pernah rewel&apos;, tapi dewasanya kelelahan setengah mati? Sembuhkan luka emosional kemandirian dini bersama Nuju.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="id" href="https://nuju.app/blog/cara-sembuh-dari-luka-pengasuhan-kemandirian-ekstrem"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/somatic-thawing-exercises-for-emotional-blunting</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>4 Gentle Somatic Thawing Exercises to Awaken a Frozen Nervous System (Without Triggering Panic)</image:title>
+      <image:caption>When you&apos;ve been emotionally numb for months, diving straight into intense grief can cause re-traumatization. Practice 4 gentle somatic micro-dosing protocols.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/somatic-thawing-exercises-for-emotional-blunting"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/interdependence-vs-codependency-healthy-relationship-boundary</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Interdependence vs. Codependency: The Crucial Boundary Between Mutual Support and Self-Loss</image:title>
+      <image:caption>Traumatized by codependency, many people swing into toxic hyper-independence. Discover the healthy middle ground: true relational interdependence.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/interdependence-vs-codependency-healthy-relationship-boundary"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/mengatasi-kebiasaan-memendam-emosi-dan-penyakit-psikosomatis</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Penyakit Psikosomatis Akibat Memendam Emosi: Mengapa Maag, Migrain, dan Nyeri Otot Berakar pada Represi Batin</image:title>
+      <image:caption>Sering bolak-balik berobat ke dokter tapi hasil laboratorium selalu normal? Pahami hubungan ilmiah antara emosi yang dipendam dan gangguan psikosomatis tubuh.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="id" href="https://nuju.app/blog/mengatasi-kebiasaan-memendam-emosi-dan-penyakit-psikosomatis"/>
   </url>
   <url>
     <loc>https://nuju.app/blog/how-to-stop-overthinking-at-night</loc>

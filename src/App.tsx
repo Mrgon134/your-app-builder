@@ -80,6 +80,8 @@ const DecisionFatigueTest = lazy(() => import("./pages/DecisionFatigueTest.tsx")
 const FomoTest = lazy(() => import("./pages/FomoTest.tsx"));
 const AttachmentCompatibilityTest = lazy(() => import("./pages/AttachmentCompatibilityTest.tsx"));
 const ExistentialDreadTest = lazy(() => import("./pages/ExistentialDreadTest.tsx"));
+const EmotionalNumbnessTest = lazy(() => import("./pages/EmotionalNumbnessTest.tsx"));
+const ToxicIndependenceTest = lazy(() => import("./pages/ToxicIndependenceTest.tsx"));
 const EbookSalesPage = lazy(() => import("./pages/EbookSalesPage.tsx"));
 const EbookReaderPage = lazy(() => import("./pages/EbookReaderPage.tsx"));
 const NotFound = lazy(() => import("./pages/NotFound.tsx"));
@@ -298,6 +300,12 @@ const App = () => (
                   <Route path="/quiz/existential-dread" element={<ExistentialDreadTest />} />
                   <Route path="/quiz/quarter-life-crisis" element={<ExistentialDreadTest />} />
                   <Route path="/tes-krisis-eksistensial" element={<ExistentialDreadTest defaultLang="id" />} />
+                  <Route path="/quiz/emotional-numbness" element={<EmotionalNumbnessTest />} />
+                  <Route path="/quiz/dissociative-blunting" element={<EmotionalNumbnessTest />} />
+                  <Route path="/tes-kebas-emosional" element={<EmotionalNumbnessTest defaultLang="id" />} />
+                  <Route path="/quiz/toxic-independence" element={<ToxicIndependenceTest />} />
+                  <Route path="/quiz/counter-dependency" element={<ToxicIndependenceTest />} />
+                  <Route path="/tes-kemandirian-toksik" element={<ToxicIndependenceTest defaultLang="id" />} />
                   <Route path="/quiz/:quizId" element={<QuizRunner />} />
                   <Route path="/test-psikologi" element={<QuizHub />} />
                   <Route path="/test-psikologi/:quizId" element={<QuizRunner />} />

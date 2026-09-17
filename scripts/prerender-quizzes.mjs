@@ -1175,6 +1175,68 @@ export function getQuizAndToolPages({
         },
       ],
     },
+    {
+      route: "/quiz/emotional-numbness",
+      aliases: ["/quiz/dissociative-blunting", "/tes-kebas-emosional"],
+      title: "Emotional Numbness Test: Free Dissociative Blunting & Polyvagal Freeze Screener",
+      description:
+        "Feeling hollow, detached like a spectator behind glass, or unable to cry? Free 12-item clinical screener based on Stephen Porges' Polyvagal Theory and Ruth Lanius' trauma research.",
+      category: "Trauma & Somatic Psychology",
+      duration: "90 secs",
+      itemsCount: 12,
+      framework: "Stephen Porges Polyvagal Theory & Ruth Lanius Dissociative Subtype Model",
+      overview:
+        "Emotional numbness is a protective neurobiological shutdown where the dorsal vagal complex suppresses affective awareness to prevent pain overwhelm. While functional during acute trauma, chronic blunting causes anhedonia, alienation from memories, and leaden physical lethargy.",
+      keyPoints: [
+        "Measures affective flatness, social acting, and hyper-intellectualized detachment",
+        "Assesses dorsal vagal shutdown, leaden limbs, and compulsive digital pacification",
+        "Evaluates anhedonia, emotional memory disconnect, and internal self-abandonment",
+        "Delivers gentle somatic thawing rituals, micro-dosing safety, and vagal re-engagement drills",
+      ],
+      faqs: [
+        {
+          question: "Why do I feel completely numb instead of sad?",
+          answer:
+            "When emotional pain exceeds your nervous system's capacity to process it safely, the brain releases endogenous opioids that shut down affective signaling. Numbness is not coldness; it is an emergency circuit breaker.",
+        },
+        {
+          question: "How do you gently thaw from emotional numbness?",
+          answer:
+            "Start with sensory grounding rather than forced emotional catharsis: warm water, soft fabrics, heavy blankets, gentle humming, and safe, unjudged journaling.",
+        },
+      ],
+    },
+    {
+      route: "/quiz/toxic-independence",
+      aliases: ["/quiz/counter-dependency", "/tes-kemandirian-toksik"],
+      title: "Toxic Independence Test: Free Counter-Dependency & Vulnerability Screener",
+      description:
+        "Refuse to ask for help, push through illness, or carry everyone else's burden? Free 12-item clinical screener based on Gabor Maté's When the Body Says No and Brené Brown's Daring Greatly.",
+      category: "Attachment & Somatic Health",
+      duration: "90 secs",
+      itemsCount: 12,
+      framework: "Gabor Maté (When the Body Says No) & Brené Brown (Daring Greatly)",
+      overview:
+        "Toxic independence (counter-dependency) is a trauma defense where needing others is perceived as fatal vulnerability. It drives individuals to refuse assistance, ignore bodily illness, and carry massive loads until their physical bodies collapse from autoimmune or inflammatory mutiny.",
+      keyPoints: [
+        "Measures care rejection, help phobia, and visceral panic when receiving assistance",
+        "Assesses somatic suppression, pushing past pain, and inability to rest without guilt",
+        "Evaluates the martyr complex, secret resentment, and terror of relational reliance",
+        "Provides micro-delegation exercises, body boundary reclamation, and interdependence scripts",
+      ],
+      faqs: [
+        {
+          question: "What is the difference between healthy self-reliance and toxic independence?",
+          answer:
+            "Healthy self-reliance is a conscious choice that coexists with the ability to ask for and receive help. Toxic independence is an involuntary, panic-driven compulsion where needing someone feels like a catastrophic surrender.",
+        },
+        {
+          question: "Can toxic independence cause physical illness?",
+          answer:
+            "Yes. As documented by Dr. Gabor Maté, chronic self-suppression, inability to say 'No', and suppressing physical fatigue flood the body with chronic stress hormones, heavily correlating with autoimmune flare-ups, migraines, and cardiovascular strain.",
+        },
+      ],
+    },
 
     // 3. Somatic & Regulation Tools
     {
