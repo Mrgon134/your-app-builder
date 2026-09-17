@@ -2270,6 +2270,56 @@ export function getQuizAndToolPages({
         },
       ],
     },
+    {
+      route: "/quiz/repressed-anger",
+      aliases: ["/quiz/somatic-rage", "/tes-amarah-terpendam"],
+      title: "Repressed Anger & Somatic Rage Screener",
+      description:
+        "Assess held-in fury, jaw clenching, people-pleaser resentment, and retroflected guilt. 12-item clinical self-assessment based on Wilhelm Reich and Dr. Gabor Maté models.",
+      category: "Somatic Psychology & Boundaries",
+      duration: "90 secs",
+      itemsCount: 12,
+      framework: "Wilhelm Reich Somatic Armoring & Gabor Maté Anger Retroflection Model",
+      overview:
+        "When boundary-protecting anger is punished or shamed in childhood, the nervous system inverts the fight impulse into chronic fascial clenching (bruxism, neck tension, headaches) or depressive exhaustion and people-pleasing resentment.",
+      keyPoints: [
+        "Evaluates Somatic Rage (jaw clenching, chest heat), Fawn Resentment (compulsive compliance followed by bitterness), and Anger Inversion (turning boundary violations into self-blame)",
+        "Differentiates destructive rage from healthy protective anger (the immune system of the psyche)",
+        "Somatic motor discharge exercises and non-violent boundary assertion protocols",
+      ],
+      faqs: [
+        {
+          question: "Why does swallowing my anger cause physical jaw pain and headaches?",
+          answer:
+            "When the motor impulse to protest or shout is inhibited, the brain contracts the masseter muscles, cervical spine, and trapezius to suppress vocalization. Over time, this chronic fascial clamping manifests as bruxism, tension migraines, and chronic exhaustion.",
+        },
+      ],
+    },
+    {
+      route: "/quiz/emotional-flashback",
+      aliases: ["/quiz/cptsd-triggers", "/tes-emotional-flashback"],
+      title: "Emotional Flashback & C-PTSD Somatic Trigger Screener",
+      description:
+        "Assess sudden waves of timeless dread, toxic shame attacks, and child survival regression in Complex PTSD. 12-item clinical self-assessment based on Pete Walker's C-PTSD framework.",
+      category: "Complex Trauma & C-PTSD",
+      duration: "90 secs",
+      itemsCount: 12,
+      framework: "Pete Walker Complex PTSD Model & Implicit Memory Integration",
+      overview:
+        "An emotional flashback is a sudden, intense regression into the terrifying feeling states of childhood abandonment, abuse, or neglect—occurring entirely without visual memory pictures. Sufferers experience overwhelming dread, helplessness, and brutal inner critic attacks.",
+      keyPoints: [
+        "Measures Amygdala Hijack (timeless dread, visceral panic), Toxic Shame & Inner Critic (savage self-contempt), and Truncated Defense (fawn/freeze collapse, urge to disappear)",
+        "Normalizes intense emotional storms as implicit memories of childhood overwhelm, not personal defects",
+        "Pete Walker's 13-step emergency flashback management and somatic inner-child reparenting protocols",
+      ],
+      faqs: [
+        {
+          question: "How can I tell if I am having an emotional flashback versus an anxiety attack?",
+          answer:
+            "In an anxiety attack, fear is usually focused on future catastrophic events ('What if I fail?'). In an emotional flashback, you feel an overwhelming sense of being small, powerless, fundamentally defective, or humiliated, as if you are a terrified child trapped in a dangerous past environment.",
+        },
+      ],
+    },
 
     // 5. Ebook Sales Pages
     {

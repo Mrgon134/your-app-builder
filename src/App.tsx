@@ -98,6 +98,8 @@ const DpdrTest = lazy(() => import("./pages/DpdrTest.tsx"));
 const FilialGuiltTest = lazy(() => import("./pages/FilialGuiltTest.tsx"));
 const CatqTest = lazy(() => import("./pages/CatqTest.tsx"));
 const PureOTest = lazy(() => import("./pages/PureOTest.tsx"));
+const RepressedAngerTest = lazy(() => import("./pages/RepressedAngerTest.tsx"));
+const EmotionalFlashbackTest = lazy(() => import("./pages/EmotionalFlashbackTest.tsx"));
 const EbookSalesPage = lazy(() => import("./pages/EbookSalesPage.tsx"));
 const EbookReaderPage = lazy(() => import("./pages/EbookReaderPage.tsx"));
 const NotFound = lazy(() => import("./pages/NotFound.tsx"));
@@ -370,6 +372,12 @@ const App = () => (
                   <Route path="/quiz/pure-o" element={<PureOTest />} />
                   <Route path="/quiz/intrusive-thoughts" element={<PureOTest />} />
                   <Route path="/tes-pure-o" element={<PureOTest />} />
+                  <Route path="/quiz/repressed-anger" element={<RepressedAngerTest />} />
+                  <Route path="/quiz/somatic-rage" element={<RepressedAngerTest />} />
+                  <Route path="/tes-amarah-terpendam" element={<RepressedAngerTest />} />
+                  <Route path="/quiz/emotional-flashback" element={<EmotionalFlashbackTest />} />
+                  <Route path="/quiz/cptsd-triggers" element={<EmotionalFlashbackTest />} />
+                  <Route path="/tes-emotional-flashback" element={<EmotionalFlashbackTest />} />
                   <Route path="/quiz/:quizId" element={<QuizRunner />} />
                   <Route path="/test-psikologi" element={<QuizHub />} />
                   <Route path="/test-psikologi/:quizId" element={<QuizRunner />} />

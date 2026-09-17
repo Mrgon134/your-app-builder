@@ -2041,6 +2041,64 @@ const QuizHub: React.FC = () => {
               </Link>
             </div>
           </div>
+
+          {/* Card 66: Somatic Rage & Repressed Anger Screener */}
+          <div className="rounded-3xl border border-red-300 bg-gradient-to-br from-red-500/10 via-rose-50 to-white p-6 shadow-xs flex flex-col justify-between hover:shadow-md transition">
+            <div>
+              <div className="flex items-center justify-between mb-3">
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-red-600 px-3 py-0.5 text-xs font-bold text-white shadow-xs">
+                  <Flame className="h-3 w-3" />
+                  SOMATIC RAGE
+                </span>
+                <span className="text-xs font-semibold text-red-700">Gabor Maté & Reich</span>
+              </div>
+              <h3 className="text-lg font-bold text-neutral-900 mb-1.5">
+                Repressed Anger & Somatic Rage
+              </h3>
+              <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed">
+                Always smiling on the outside but clenching your jaw, holding shoulder spasms, and silently burning with resentment? Measure somatic rage & anger inversion.
+              </p>
+            </div>
+            <div className="mt-5 pt-3 border-t border-red-100 flex items-center justify-between">
+              <span className="text-xs font-medium text-neutral-400">~90 Secs · 12 Items</span>
+              <Link
+                to="/quiz/repressed-anger"
+                className="inline-flex items-center gap-1.5 rounded-full bg-red-600 px-4 py-2 text-xs font-bold text-white hover:bg-red-700 transition shadow-xs"
+              >
+                <span>Screen Anger</span>
+                <ArrowRight className="h-3.5 w-3.5" />
+              </Link>
+            </div>
+          </div>
+
+          {/* Card 67: Emotional Flashback & C-PTSD Somatic Trigger Screener */}
+          <div className="rounded-3xl border border-sky-300 bg-gradient-to-br from-sky-500/10 via-indigo-50 to-white p-6 shadow-xs flex flex-col justify-between hover:shadow-md transition">
+            <div>
+              <div className="flex items-center justify-between mb-3">
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-sky-600 px-3 py-0.5 text-xs font-bold text-white shadow-xs">
+                  <HeartHandshake className="h-3 w-3" />
+                  PETE WALKER MODEL
+                </span>
+                <span className="text-xs font-semibold text-sky-700">C-PTSD Flashbacks</span>
+              </div>
+              <h3 className="text-lg font-bold text-neutral-900 mb-1.5">
+                Emotional Flashback Screener
+              </h3>
+              <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed">
+                Suddenly overwhelmed by visceral dread, feeling tiny, helpless, or under attack by brutal toxic shame? Screen implicit trauma triggers without visual memories.
+              </p>
+            </div>
+            <div className="mt-5 pt-3 border-t border-sky-100 flex items-center justify-between">
+              <span className="text-xs font-medium text-neutral-400">~90 Secs · 12 Items</span>
+              <Link
+                to="/quiz/emotional-flashback"
+                className="inline-flex items-center gap-1.5 rounded-full bg-sky-600 px-4 py-2 text-xs font-bold text-white hover:bg-sky-700 transition shadow-xs"
+              >
+                <span>Screen Flashback</span>
+                <ArrowRight className="h-3.5 w-3.5" />
+              </Link>
+            </div>
+          </div>
         </div>
 
         {/* Country Filter Pills */}
