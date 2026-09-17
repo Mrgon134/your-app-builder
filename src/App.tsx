@@ -66,6 +66,8 @@ const VocalToningLab = lazy(() => import("./pages/VocalToningLab.tsx"));
 const LimerenceTest = lazy(() => import("./pages/LimerenceTest.tsx"));
 const SensoryTest = lazy(() => import("./pages/SensoryTest.tsx"));
 const PhysiologicalSighLab = lazy(() => import("./pages/PhysiologicalSighLab.tsx"));
+const PerfectionismTest = lazy(() => import("./pages/PerfectionismTest.tsx"));
+const SocialBatteryTest = lazy(() => import("./pages/SocialBatteryTest.tsx"));
 const EbookSalesPage = lazy(() => import("./pages/EbookSalesPage.tsx"));
 const EbookReaderPage = lazy(() => import("./pages/EbookReaderPage.tsx"));
 const NotFound = lazy(() => import("./pages/NotFound.tsx"));
@@ -240,6 +242,14 @@ const App = () => (
                   <Route path="/tools/cyclic-sighing" element={<PhysiologicalSighLab />} />
                   <Route path="/cyclic-sighing" element={<PhysiologicalSighLab />} />
                   <Route path="/physiological-sigh" element={<PhysiologicalSighLab />} />
+                  <Route path="/quiz/perfectionism" element={<PerfectionismTest />} />
+                  <Route path="/quiz/fear-of-failure" element={<PerfectionismTest />} />
+                  <Route path="/quiz/maladaptive-perfectionism" element={<PerfectionismTest />} />
+                  <Route path="/tes-perfeksionisme" element={<PerfectionismTest defaultLang="id" />} />
+                  <Route path="/quiz/social-battery" element={<SocialBatteryTest />} />
+                  <Route path="/quiz/introvert-hangover" element={<SocialBatteryTest />} />
+                  <Route path="/quiz/social-exhaustion" element={<SocialBatteryTest />} />
+                  <Route path="/tes-baterai-sosial" element={<SocialBatteryTest defaultLang="id" />} />
                   <Route path="/quiz/:quizId" element={<QuizRunner />} />
                   <Route path="/test-psikologi" element={<QuizHub />} />
                   <Route path="/test-psikologi/:quizId" element={<QuizRunner />} />

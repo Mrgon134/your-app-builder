@@ -753,6 +753,56 @@ export function getQuizAndToolPages({
         },
       ],
     },
+    {
+      route: "/quiz/perfectionism",
+      aliases: ["/quiz/fear-of-failure", "/quiz/maladaptive-perfectionism"],
+      title: "Clinical Perfectionism & Fear of Failure Test: Frost & Hewitt MPS Screener",
+      description:
+        "Do you possess healthy high standards or paralyzing maladaptive perfectionism? Free 12-item clinical screener based on Frost and Hewitt Multidimensional Perfectionism Scales.",
+      category: "Cognitive Patterns",
+      duration: "90 secs",
+      itemsCount: 12,
+      framework: "Frost Multidimensional Perfectionism Scale (FMPS) & Hewitt-Flett MPS",
+      overview:
+        "Clinical perfectionism is not a pursuit of excellence, but a fear-driven cognitive shield. When self-worth is conditionally tied to error-free output, individuals experience task paralysis, moving goalposts, and acute distress over harmless mistakes.",
+      keyPoints: [
+        "Distinguishes adaptive striving from maladaptive mistake-rumination freeze",
+        "Evaluates fear of judgment and socially prescribed perfectionism",
+        "Provides actionable CBT reframes, the 80% rule, and somatic exposure drills",
+      ],
+      faqs: [
+        {
+          question: "What is the difference between healthy striving and perfectionism?",
+          answer:
+            "Healthy strivers focus on the process, enjoy growth, and bounce back from errors. Maladaptive perfectionists focus exclusively on avoiding mistakes, tying any flaw directly to personal worth.",
+        },
+      ],
+    },
+    {
+      route: "/quiz/social-battery",
+      aliases: ["/quiz/introvert-hangover", "/quiz/social-exhaustion"],
+      title: "Social Battery & Introvert Hangover Test: Free 10-Item Screener",
+      description:
+        "Is your social battery running on empty? Measure your social masking fatigue, sensory depletion, and recovery deficit. Get custom recharge protocols.",
+      category: "Social Vitality",
+      duration: "60 secs",
+      itemsCount: 10,
+      framework: "Sensory Depletion & Social Energy Index",
+      overview:
+        "An 'introvert hangover' occurs when the brain exhausts its reserves of social neurotransmitters after sustained masking, loud ambient noise, and people-pleasing. Solitude is essential neurological recovery.",
+      keyPoints: [
+        "Measures social masking load and emotional labor strain",
+        "Quantifies auditory and environmental overstimulation thresholds",
+        "Prescribes exact solitude duration and low-stimulation recharge routines",
+      ],
+      faqs: [
+        {
+          question: "How long does an introvert hangover last?",
+          answer:
+            "Depending on depletion depth, recovery takes between 3 hours to 2 full days of low-stimulation solitary rest with minimal speech and screen glare.",
+        },
+      ],
+    },
 
     // 3. Somatic & Regulation Tools
     {

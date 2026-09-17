@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { ArrowRight, Brain, Clock, Heart, HelpCircle, Lock, ShieldCheck, Sparkles, Users, Activity, Zap, Headphones, ShieldAlert, Compass, Briefcase, Wind, Eye, Shield, Feather, Moon, Hand, BedDouble, Smartphone, HeartHandshake, Waves, Award, Anchor, Radio, Volume2 } from "lucide-react";
+import { ArrowRight, Brain, Clock, Heart, HelpCircle, Lock, ShieldCheck, Sparkles, Users, Activity, Zap, Headphones, ShieldAlert, Compass, Briefcase, Wind, Eye, Shield, Feather, Moon, Hand, BedDouble, Smartphone, HeartHandshake, Waves, Award, Anchor, Radio, Volume2, Battery } from "lucide-react";
 import SEOHead from "@/components/SEOHead";
 import AdSenseBanner from "@/components/AdSenseBanner";
 import AppStoreCta from "@/components/AppStoreCta";
@@ -1109,6 +1109,64 @@ const QuizHub: React.FC = () => {
                 className="inline-flex items-center gap-1.5 rounded-full bg-cyan-600 px-4 py-2 text-xs font-bold text-white hover:bg-cyan-700 transition shadow-xs"
               >
                 <span>Launch Sigh Lab</span>
+                <ArrowRight className="h-3.5 w-3.5" />
+              </Link>
+            </div>
+          </div>
+
+          {/* Card 34: Clinical Perfectionism & Fear of Failure Screener */}
+          <div className="rounded-3xl border border-amber-300 bg-gradient-to-br from-amber-500/10 via-amber-50 to-white p-6 shadow-xs flex flex-col justify-between hover:shadow-md transition">
+            <div>
+              <div className="flex items-center justify-between mb-3">
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-amber-600 px-3 py-0.5 text-xs font-bold text-white shadow-xs">
+                  <Award className="h-3 w-3" />
+                  FMPS MODEL
+                </span>
+                <span className="text-xs font-semibold text-amber-700">Frost & Hewitt MPS</span>
+              </div>
+              <h3 className="text-lg font-bold text-neutral-900 mb-1.5">
+                Clinical Perfectionism & Fear of Failure Test
+              </h3>
+              <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed">
+                Do your high standards fuel excellence or paralyzing procrastination? Discover whether you are an Adaptive Striver or caught in fear-of-mistakes freeze.
+              </p>
+            </div>
+            <div className="mt-5 pt-3 border-t border-amber-100 flex items-center justify-between">
+              <span className="text-xs font-medium text-neutral-400">~2 Mins · 12 Items</span>
+              <Link
+                to="/quiz/perfectionism"
+                className="inline-flex items-center gap-1.5 rounded-full bg-amber-600 px-4 py-2 text-xs font-bold text-white hover:bg-amber-700 transition shadow-xs"
+              >
+                <span>Screen Perfectionism</span>
+                <ArrowRight className="h-3.5 w-3.5" />
+              </Link>
+            </div>
+          </div>
+
+          {/* Card 35: Social Battery & Introvert Hangover Screener */}
+          <div className="rounded-3xl border border-blue-300 bg-gradient-to-br from-blue-500/10 via-sky-50 to-white p-6 shadow-xs flex flex-col justify-between hover:shadow-md transition">
+            <div>
+              <div className="flex items-center justify-between mb-3">
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-blue-600 px-3 py-0.5 text-xs font-bold text-white shadow-xs">
+                  <Battery className="h-3 w-3" />
+                  ENERGY & SENSORY INDEX
+                </span>
+                <span className="text-xs font-semibold text-blue-700">Introvert Hangover</span>
+              </div>
+              <h3 className="text-lg font-bold text-neutral-900 mb-1.5">
+                Social Battery & Masking Fatigue Screener
+              </h3>
+              <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed">
+                Measure your remaining social battery, emotional labor masking strain, and how many hours of quiet solitude your nervous system needs to recharge.
+              </p>
+            </div>
+            <div className="mt-5 pt-3 border-t border-blue-100 flex items-center justify-between">
+              <span className="text-xs font-medium text-neutral-400">~90 Secs · 10 Items</span>
+              <Link
+                to="/quiz/social-battery"
+                className="inline-flex items-center gap-1.5 rounded-full bg-blue-600 px-4 py-2 text-xs font-bold text-white hover:bg-blue-700 transition shadow-xs"
+              >
+                <span>Check Social Battery</span>
                 <ArrowRight className="h-3.5 w-3.5" />
               </Link>
             </div>

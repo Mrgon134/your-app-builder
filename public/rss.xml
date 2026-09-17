@@ -6,7 +6,115 @@
     <atom:link href="https://nuju.app/rss.xml" rel="self" type="application/rss+xml" />
     <description>Practical guides on journaling, mood tracking, and emotional wellness from the Nuju team.</description>
     <language>en</language>
-    <lastBuildDate>Wed, 16 Sep 2026 07:56:20 GMT</lastBuildDate>
+    <lastBuildDate>Thu, 17 Sep 2026 02:00:57 GMT</lastBuildDate>
+    <item>
+      <title>Clinical Perfectionism Test: Free 12-Item Frost MPS Diagnostic for Fear of Failure</title>
+      <link>https://nuju.app/blog/clinical-perfectionism-test-frost-mps-fear-of-failure</link>
+      <guid isPermaLink="true">https://nuju.app/blog/clinical-perfectionism-test-frost-mps-fear-of-failure</guid>
+      <description>Are your high standards driving success or paralyzing you with anxiety and procrastination? Take our free 12-item clinical perfectionism test based on the Frost Multidimensional Perfectionism Scale (FMPS).</description>
+      <category>Mental Health</category>
+      <pubDate>Thu, 17 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Social Battery Test: Symptoms of an Introvert Hangover &amp; How to Recharge Fast</title>
+      <link>https://nuju.app/blog/social-battery-test-introvert-hangover-symptoms-recharge</link>
+      <guid isPermaLink="true">https://nuju.app/blog/social-battery-test-introvert-hangover-symptoms-recharge</guid>
+      <description>Is your social battery drained to 0%? Learn the neurobiology of social fatigue, masking exhaustion, and the famous &apos;introvert hangover&apos;—plus how to recover your energy.</description>
+      <category>Mental Health</category>
+      <pubDate>Thu, 17 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Maladaptive Perfectionism vs. Healthy Striving: How to Stop the Procrastination Paralysis</title>
+      <link>https://nuju.app/blog/maladaptive-perfectionism-vs-healthy-striving-paralyzed-procrastination</link>
+      <guid isPermaLink="true">https://nuju.app/blog/maladaptive-perfectionism-vs-healthy-striving-paralyzed-procrastination</guid>
+      <description>Explore the clinical distinction between healthy high standards and destructive perfectionism. Learn how to break the freeze loop and ship meaningful work.</description>
+      <category>Self-Improvement</category>
+      <pubDate>Thu, 17 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Sensory Depletion &amp; Social Exhaustion: 5 Somatic Reset Protocols for Empaths</title>
+      <link>https://nuju.app/blog/sensory-depletion-social-exhaustion-somatic-protocols</link>
+      <guid isPermaLink="true">https://nuju.app/blog/sensory-depletion-social-exhaustion-somatic-protocols</guid>
+      <description>When empathy burnout and sensory overstimulation collide, your nervous system requires active somatic resetting. Discover 5 evidence-based decompression tools.</description>
+      <category>Somatic Health</category>
+      <pubDate>Thu, 17 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Perfektionismus-Test: 12-Fragen-Diagnostik für Fehlerangst &amp; Aufschieberitis (FMPS)</title>
+      <link>https://nuju.app/blog/perfektionismus-test-angst-vor-fehlern-frost-mps</link>
+      <guid isPermaLink="true">https://nuju.app/blog/perfektionismus-test-angst-vor-fehlern-frost-mps</guid>
+      <description>Treiben dich deine hohen Ansprüche an oder lähmen sie dich? Mach den kostenlosen 12-Fragen-Selbsttest nach der Frost Multidimensional Perfectionism Scale.</description>
+      <category>Mental Health</category>
+      <pubDate>Thu, 17 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>de</dc:language>
+    </item>
+    <item>
+      <title>Soziale Batterie Test: Wie voll ist dein Energielevel? (Introvert-Hangover-Guide)</title>
+      <link>https://nuju.app/blog/soziale-batterie-test-introvert-hangover-erschoepfung</link>
+      <guid isPermaLink="true">https://nuju.app/blog/soziale-batterie-test-introvert-hangover-erschoepfung</guid>
+      <description>Fühlst du dich nach Gesellschaft wie gerädert? Teste dein soziales Energielevel und erfahre, wie viele Stunden Stille dein Nervensystem wirklich braucht.</description>
+      <category>Mental Health</category>
+      <pubDate>Thu, 17 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>de</dc:language>
+    </item>
+    <item>
+      <title>Test de Perfectionnisme Clinique : Dépistage de la Peur de l&apos;Échec en 12 Questions (FMPS)</title>
+      <link>https://nuju.app/blog/test-perfectionnisme-clinique-peur-de-lechec-mps</link>
+      <guid isPermaLink="true">https://nuju.app/blog/test-perfectionnisme-clinique-peur-de-lechec-mps</guid>
+      <description>Vos exigences élevées vous portent-elles ou vous paralysent-elles ? Passez notre test gratuit basé sur l&apos;échelle de perfectionnisme multidimensionnelle de Frost.</description>
+      <category>Mental Health</category>
+      <pubDate>Thu, 17 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>fr</dc:language>
+    </item>
+    <item>
+      <title>Test de Batterie Sociale : Symptômes de la Gueule de Bois Introvertie &amp; Recharge</title>
+      <link>https://nuju.app/blog/test-batterie-sociale-gueule-de-bois-introvertie</link>
+      <guid isPermaLink="true">https://nuju.app/blog/test-batterie-sociale-gueule-de-bois-introvertie</guid>
+      <description>Votre batterie sociale est-elle à 0% ? Mesurez votre niveau de saturation sensorielle et découvrez le protocole de repos adapté à votre profil.</description>
+      <category>Mental Health</category>
+      <pubDate>Thu, 17 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>fr</dc:language>
+    </item>
+    <item>
+      <title>Test de Perfeccionismo Clínico: Diagnóstico de 12 Preguntas para el Miedo al Error (FMPS)</title>
+      <link>https://nuju.app/blog/test-perfeccionismo-clinico-miedo-al-fracaso-mps</link>
+      <guid isPermaLink="true">https://nuju.app/blog/test-perfeccionismo-clinico-miedo-al-fracaso-mps</guid>
+      <description>¿Tus altos estándares te impulsan o te paralizan? Descubre tu perfil con nuestro test gratuito basado en la Escala Multidimensional de Frost.</description>
+      <category>Mental Health</category>
+      <pubDate>Thu, 17 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>es</dc:language>
+    </item>
+    <item>
+      <title>Test de Batería Social: Síntomas de la Resaca Introvertida y Cómo Recargar Energía</title>
+      <link>https://nuju.app/blog/test-bateria-social-resaca-introvertida-agotamiento</link>
+      <guid isPermaLink="true">https://nuju.app/blog/test-bateria-social-resaca-introvertida-agotamiento</guid>
+      <description>¿Sientes tu batería social en números rojos tras socializar? Conoce cuánto aislamiento sensorial necesita tu sistema nervioso para recuperarse.</description>
+      <category>Mental Health</category>
+      <pubDate>Thu, 17 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>es</dc:language>
+    </item>
+    <item>
+      <title>Tes Perfeksionisme Klinis: Deteksi 12 Tanda Takut Gagal &amp; Prokrastinasi Akut (FMPS)</title>
+      <link>https://nuju.app/blog/tes-perfeksionisme-klinis-takut-gagal-prokrastinasi-indonesia</link>
+      <guid isPermaLink="true">https://nuju.app/blog/tes-perfeksionisme-klinis-takut-gagal-prokrastinasi-indonesia</guid>
+      <description>Apakah standarmu yang tinggi membuahkan karya hebat atau justru membuatmu lumpuh menunda karena takut salah? Cek dengan skala Frost MPS.</description>
+      <category>Kesehatan Mental</category>
+      <pubDate>Thu, 17 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>id</dc:language>
+    </item>
+    <item>
+      <title>Tes Baterai Sosial: Kenali Gejala Introvert Hangover &amp; Berapa Jam Kamu Butuh Menyendiri</title>
+      <link>https://nuju.app/blog/tes-baterai-sosial-introvert-hangover-kelelahan-mental-indonesia</link>
+      <guid isPermaLink="true">https://nuju.app/blog/tes-baterai-sosial-introvert-hangover-kelelahan-mental-indonesia</guid>
+      <description>Baterai sosialmu tinggal 5%? Kenali sains di balik introvert hangover, kelelahan topeng sosial (masking), dan protokol pemulihan sensorik di Nuju.</description>
+      <category>Kesehatan Mental</category>
+      <pubDate>Thu, 17 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>id</dc:language>
+    </item>
     <item>
       <title>Free Mental Health Test Online: Complete DASS-21 Depression, Anxiety &amp; Stress Screening</title>
       <link>https://nuju.app/blog/free-mental-health-test-online-dass21</link>

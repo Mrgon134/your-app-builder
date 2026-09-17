@@ -4,361 +4,385 @@
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://nuju.app/</loc>
-    <lastmod>2026-09-16</lastmod>
+    <lastmod>2026-09-17</lastmod>
     <priority>1.0</priority>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://nuju.app/ai-journal</loc>
-    <lastmod>2026-09-16</lastmod>
+    <lastmod>2026-09-17</lastmod>
     <priority>0.9</priority>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://nuju.app/mood-tracker</loc>
-    <lastmod>2026-09-16</lastmod>
+    <lastmod>2026-09-17</lastmod>
     <priority>0.9</priority>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://nuju.app/voice-journaling</loc>
-    <lastmod>2026-09-16</lastmod>
+    <lastmod>2026-09-17</lastmod>
     <priority>0.8</priority>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://nuju.app/install</loc>
-    <lastmod>2026-09-16</lastmod>
+    <lastmod>2026-09-17</lastmod>
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
     <loc>https://nuju.app/about</loc>
-    <lastmod>2026-09-16</lastmod>
+    <lastmod>2026-09-17</lastmod>
     <priority>0.6</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
     <loc>https://nuju.app/support</loc>
-    <lastmod>2026-09-16</lastmod>
+    <lastmod>2026-09-17</lastmod>
     <priority>0.6</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
     <loc>https://nuju.app/contact</loc>
-    <lastmod>2026-09-16</lastmod>
+    <lastmod>2026-09-17</lastmod>
     <priority>0.5</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
     <loc>https://nuju.app/privacy</loc>
-    <lastmod>2026-09-16</lastmod>
+    <lastmod>2026-09-17</lastmod>
     <priority>0.4</priority>
     <changefreq>yearly</changefreq>
   </url>
   <url>
     <loc>https://nuju.app/terms</loc>
-    <lastmod>2026-09-16</lastmod>
+    <lastmod>2026-09-17</lastmod>
     <priority>0.4</priority>
     <changefreq>yearly</changefreq>
   </url>
   <url>
     <loc>https://nuju.app/blog</loc>
-    <lastmod>2026-09-16</lastmod>
+    <lastmod>2026-09-17</lastmod>
     <priority>0.8</priority>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://nuju.app/guides/journaling</loc>
-    <lastmod>2026-09-16</lastmod>
+    <lastmod>2026-09-17</lastmod>
     <priority>0.9</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
     <loc>https://nuju.app/quiz</loc>
-    <lastmod>2026-09-16</lastmod>
+    <lastmod>2026-09-17</lastmod>
     <priority>0.9</priority>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://nuju.app/quiz/mental-health</loc>
-    <lastmod>2026-09-16</lastmod>
+    <lastmod>2026-09-17</lastmod>
     <priority>0.95</priority>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://nuju.app/quiz/mental-health-test</loc>
-    <lastmod>2026-09-16</lastmod>
+    <lastmod>2026-09-17</lastmod>
     <priority>0.95</priority>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://nuju.app/quiz/attachment-style</loc>
-    <lastmod>2026-09-16</lastmod>
+    <lastmod>2026-09-17</lastmod>
     <priority>0.95</priority>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://nuju.app/quiz/adhd-screener</loc>
-    <lastmod>2026-09-16</lastmod>
+    <lastmod>2026-09-17</lastmod>
     <priority>0.95</priority>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://nuju.app/quiz/inner-child</loc>
-    <lastmod>2026-09-16</lastmod>
+    <lastmod>2026-09-17</lastmod>
     <priority>0.95</priority>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://nuju.app/quiz/burnout</loc>
-    <lastmod>2026-09-16</lastmod>
+    <lastmod>2026-09-17</lastmod>
     <priority>0.95</priority>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://nuju.app/tools/soundscapes</loc>
-    <lastmod>2026-09-16</lastmod>
+    <lastmod>2026-09-17</lastmod>
     <priority>0.9</priority>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://nuju.app/tools/panic-sos</loc>
-    <lastmod>2026-09-16</lastmod>
+    <lastmod>2026-09-17</lastmod>
     <priority>0.9</priority>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://nuju.app/tools/breathwork</loc>
-    <lastmod>2026-09-16</lastmod>
+    <lastmod>2026-09-17</lastmod>
     <priority>0.95</priority>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://nuju.app/breathe</loc>
-    <lastmod>2026-09-16</lastmod>
+    <lastmod>2026-09-17</lastmod>
     <priority>0.9</priority>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://nuju.app/quiz/love-languages</loc>
-    <lastmod>2026-09-16</lastmod>
+    <lastmod>2026-09-17</lastmod>
     <priority>0.95</priority>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://nuju.app/quiz/people-pleasing</loc>
-    <lastmod>2026-09-16</lastmod>
+    <lastmod>2026-09-17</lastmod>
     <priority>0.95</priority>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://nuju.app/tools/bilateral</loc>
-    <lastmod>2026-09-16</lastmod>
+    <lastmod>2026-09-17</lastmod>
     <priority>0.95</priority>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://nuju.app/emdr</loc>
-    <lastmod>2026-09-16</lastmod>
+    <lastmod>2026-09-17</lastmod>
     <priority>0.9</priority>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://nuju.app/quiz/hsp</loc>
-    <lastmod>2026-09-16</lastmod>
+    <lastmod>2026-09-17</lastmod>
     <priority>0.95</priority>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://nuju.app/quiz/shadow-work</loc>
-    <lastmod>2026-09-16</lastmod>
+    <lastmod>2026-09-17</lastmod>
     <priority>0.95</priority>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://nuju.app/tools/grounding</loc>
-    <lastmod>2026-09-16</lastmod>
+    <lastmod>2026-09-17</lastmod>
     <priority>0.95</priority>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://nuju.app/quiz/dopamine-detox</loc>
-    <lastmod>2026-09-16</lastmod>
+    <lastmod>2026-09-17</lastmod>
     <priority>0.95</priority>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://nuju.app/quiz/nervous-system</loc>
-    <lastmod>2026-09-16</lastmod>
+    <lastmod>2026-09-17</lastmod>
     <priority>0.95</priority>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://nuju.app/tools/sleep</loc>
-    <lastmod>2026-09-16</lastmod>
+    <lastmod>2026-09-17</lastmod>
     <priority>0.95</priority>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://nuju.app/quiz/rsd</loc>
-    <lastmod>2026-09-16</lastmod>
+    <lastmod>2026-09-17</lastmod>
     <priority>0.95</priority>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://nuju.app/quiz/cognitive-distortions</loc>
-    <lastmod>2026-09-16</lastmod>
+    <lastmod>2026-09-17</lastmod>
     <priority>0.95</priority>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://nuju.app/tools/nsdr</loc>
-    <lastmod>2026-09-16</lastmod>
+    <lastmod>2026-09-17</lastmod>
     <priority>0.95</priority>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://nuju.app/quiz/dissociation</loc>
-    <lastmod>2026-09-16</lastmod>
+    <lastmod>2026-09-17</lastmod>
     <priority>0.95</priority>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://nuju.app/quiz/imposter-syndrome</loc>
-    <lastmod>2026-09-16</lastmod>
+    <lastmod>2026-09-17</lastmod>
     <priority>0.95</priority>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://nuju.app/tools/solfeggio</loc>
-    <lastmod>2026-09-16</lastmod>
+    <lastmod>2026-09-17</lastmod>
     <priority>0.95</priority>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://nuju.app/quiz/emotional-agility</loc>
-    <lastmod>2026-09-16</lastmod>
+    <lastmod>2026-09-17</lastmod>
     <priority>0.95</priority>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://nuju.app/quiz/high-functioning-anxiety</loc>
-    <lastmod>2026-09-16</lastmod>
+    <lastmod>2026-09-17</lastmod>
     <priority>0.95</priority>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://nuju.app/tools/box-breathing</loc>
-    <lastmod>2026-09-16</lastmod>
+    <lastmod>2026-09-17</lastmod>
     <priority>0.95</priority>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://nuju.app/quiz/parentification</loc>
-    <lastmod>2026-09-16</lastmod>
+    <lastmod>2026-09-17</lastmod>
     <priority>0.95</priority>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://nuju.app/quiz/alexithymia</loc>
-    <lastmod>2026-09-16</lastmod>
+    <lastmod>2026-09-17</lastmod>
     <priority>0.95</priority>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://nuju.app/tools/vocal-toning</loc>
-    <lastmod>2026-09-16</lastmod>
+    <lastmod>2026-09-17</lastmod>
     <priority>0.95</priority>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://nuju.app/quiz/limerence</loc>
-    <lastmod>2026-09-16</lastmod>
+    <lastmod>2026-09-17</lastmod>
     <priority>0.95</priority>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://nuju.app/quiz/sensory-overload</loc>
-    <lastmod>2026-09-16</lastmod>
+    <lastmod>2026-09-17</lastmod>
     <priority>0.95</priority>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://nuju.app/tools/physiological-sigh</loc>
-    <lastmod>2026-09-16</lastmod>
+    <lastmod>2026-09-17</lastmod>
     <priority>0.95</priority>
     <changefreq>weekly</changefreq>
   </url>
   <url>
+    <loc>https://nuju.app/quiz/perfectionism</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.95</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/quiz/fear-of-failure</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.9</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/quiz/social-battery</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.95</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/quiz/introvert-hangover</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.9</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
     <loc>https://nuju.app/quiz/baterai-emosi</loc>
-    <lastmod>2026-09-16</lastmod>
+    <lastmod>2026-09-17</lastmod>
     <priority>0.9</priority>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://nuju.app/quiz/tipe-overthinking</loc>
-    <lastmod>2026-09-16</lastmod>
+    <lastmod>2026-09-17</lastmod>
     <priority>0.9</priority>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://nuju.app/quiz/burnout-screener</loc>
-    <lastmod>2026-09-16</lastmod>
+    <lastmod>2026-09-17</lastmod>
     <priority>0.9</priority>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://nuju.app/quiz/gaya-regulasi-emosi</loc>
-    <lastmod>2026-09-16</lastmod>
+    <lastmod>2026-09-17</lastmod>
     <priority>0.9</priority>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://nuju.app/quiz/high-functioning-anxiety-us</loc>
-    <lastmod>2026-09-16</lastmod>
+    <lastmod>2026-09-17</lastmod>
     <priority>0.9</priority>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://nuju.app/quiz/feierabend-burnout-de</loc>
-    <lastmod>2026-09-16</lastmod>
+    <lastmod>2026-09-17</lastmod>
     <priority>0.9</priority>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://nuju.app/quiz/winter-blues-nordic-no</loc>
-    <lastmod>2026-09-16</lastmod>
+    <lastmod>2026-09-17</lastmod>
     <priority>0.9</priority>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://nuju.app/quiz/dutch-niksen-burnout-nl</loc>
-    <lastmod>2026-09-16</lastmod>
+    <lastmod>2026-09-17</lastmod>
     <priority>0.9</priority>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://nuju.app/quiz/honne-tatemae-jp</loc>
-    <lastmod>2026-09-16</lastmod>
+    <lastmod>2026-09-17</lastmod>
     <priority>0.9</priority>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://nuju.app/quiz/nunchi-hwabyung-kr</loc>
-    <lastmod>2026-09-16</lastmod>
+    <lastmod>2026-09-17</lastmod>
     <priority>0.9</priority>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://nuju.app/ebook</loc>
-    <lastmod>2026-09-16</lastmod>
+    <lastmod>2026-09-17</lastmod>
     <priority>0.9</priority>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://nuju.app/buku</loc>
-    <lastmod>2026-09-16</lastmod>
+    <lastmod>2026-09-17</lastmod>
     <priority>0.8</priority>
     <changefreq>weekly</changefreq>
   </url>
@@ -5698,6 +5722,150 @@
       <image:caption>Teknik pernapasan dua tarikan napas tercepat di dunia yang terbukti secara ilmiah oleh Stanford Medicine. Pelajari cara membuka alveoli paru dan menurunkan detak jantung.</image:caption>
     </image:image>
     <xhtml:link rel="alternate" hreflang="id" href="https://nuju.app/blog/panduan-physiological-sigh-stanford-huberman-indonesia"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/clinical-perfectionism-test-frost-mps-fear-of-failure</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Clinical Perfectionism Test: Free 12-Item Frost MPS Diagnostic for Fear of Failure</image:title>
+      <image:caption>Are your high standards driving success or paralyzing you with anxiety and procrastination? Take our free 12-item clinical perfectionism test based on the Frost Multidimensional Perfectionism Scale (FMPS).</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/clinical-perfectionism-test-frost-mps-fear-of-failure"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/social-battery-test-introvert-hangover-symptoms-recharge</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Social Battery Test: Symptoms of an Introvert Hangover &amp; How to Recharge Fast</image:title>
+      <image:caption>Is your social battery drained to 0%? Learn the neurobiology of social fatigue, masking exhaustion, and the famous &apos;introvert hangover&apos;—plus how to recover your energy.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/social-battery-test-introvert-hangover-symptoms-recharge"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/maladaptive-perfectionism-vs-healthy-striving-paralyzed-procrastination</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Maladaptive Perfectionism vs. Healthy Striving: How to Stop the Procrastination Paralysis</image:title>
+      <image:caption>Explore the clinical distinction between healthy high standards and destructive perfectionism. Learn how to break the freeze loop and ship meaningful work.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/maladaptive-perfectionism-vs-healthy-striving-paralyzed-procrastination"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/sensory-depletion-social-exhaustion-somatic-protocols</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Sensory Depletion &amp; Social Exhaustion: 5 Somatic Reset Protocols for Empaths</image:title>
+      <image:caption>When empathy burnout and sensory overstimulation collide, your nervous system requires active somatic resetting. Discover 5 evidence-based decompression tools.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/sensory-depletion-social-exhaustion-somatic-protocols"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/perfektionismus-test-angst-vor-fehlern-frost-mps</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Perfektionismus-Test: 12-Fragen-Diagnostik für Fehlerangst &amp; Aufschieberitis (FMPS)</image:title>
+      <image:caption>Treiben dich deine hohen Ansprüche an oder lähmen sie dich? Mach den kostenlosen 12-Fragen-Selbsttest nach der Frost Multidimensional Perfectionism Scale.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="de" href="https://nuju.app/blog/perfektionismus-test-angst-vor-fehlern-frost-mps"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/soziale-batterie-test-introvert-hangover-erschoepfung</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Soziale Batterie Test: Wie voll ist dein Energielevel? (Introvert-Hangover-Guide)</image:title>
+      <image:caption>Fühlst du dich nach Gesellschaft wie gerädert? Teste dein soziales Energielevel und erfahre, wie viele Stunden Stille dein Nervensystem wirklich braucht.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="de" href="https://nuju.app/blog/soziale-batterie-test-introvert-hangover-erschoepfung"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/test-perfectionnisme-clinique-peur-de-lechec-mps</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Test de Perfectionnisme Clinique : Dépistage de la Peur de l&apos;Échec en 12 Questions (FMPS)</image:title>
+      <image:caption>Vos exigences élevées vous portent-elles ou vous paralysent-elles ? Passez notre test gratuit basé sur l&apos;échelle de perfectionnisme multidimensionnelle de Frost.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://nuju.app/blog/test-perfectionnisme-clinique-peur-de-lechec-mps"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/test-batterie-sociale-gueule-de-bois-introvertie</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Test de Batterie Sociale : Symptômes de la Gueule de Bois Introvertie &amp; Recharge</image:title>
+      <image:caption>Votre batterie sociale est-elle à 0% ? Mesurez votre niveau de saturation sensorielle et découvrez le protocole de repos adapté à votre profil.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://nuju.app/blog/test-batterie-sociale-gueule-de-bois-introvertie"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/test-perfeccionismo-clinico-miedo-al-fracaso-mps</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Test de Perfeccionismo Clínico: Diagnóstico de 12 Preguntas para el Miedo al Error (FMPS)</image:title>
+      <image:caption>¿Tus altos estándares te impulsan o te paralizan? Descubre tu perfil con nuestro test gratuito basado en la Escala Multidimensional de Frost.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="es" href="https://nuju.app/blog/test-perfeccionismo-clinico-miedo-al-fracaso-mps"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/test-bateria-social-resaca-introvertida-agotamiento</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Test de Batería Social: Síntomas de la Resaca Introvertida y Cómo Recargar Energía</image:title>
+      <image:caption>¿Sientes tu batería social en números rojos tras socializar? Conoce cuánto aislamiento sensorial necesita tu sistema nervioso para recuperarse.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="es" href="https://nuju.app/blog/test-bateria-social-resaca-introvertida-agotamiento"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/tes-perfeksionisme-klinis-takut-gagal-prokrastinasi-indonesia</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Tes Perfeksionisme Klinis: Deteksi 12 Tanda Takut Gagal &amp; Prokrastinasi Akut (FMPS)</image:title>
+      <image:caption>Apakah standarmu yang tinggi membuahkan karya hebat atau justru membuatmu lumpuh menunda karena takut salah? Cek dengan skala Frost MPS.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="id" href="https://nuju.app/blog/tes-perfeksionisme-klinis-takut-gagal-prokrastinasi-indonesia"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/tes-baterai-sosial-introvert-hangover-kelelahan-mental-indonesia</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Tes Baterai Sosial: Kenali Gejala Introvert Hangover &amp; Berapa Jam Kamu Butuh Menyendiri</image:title>
+      <image:caption>Baterai sosialmu tinggal 5%? Kenali sains di balik introvert hangover, kelelahan topeng sosial (masking), dan protokol pemulihan sensorik di Nuju.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="id" href="https://nuju.app/blog/tes-baterai-sosial-introvert-hangover-kelelahan-mental-indonesia"/>
   </url>
   <url>
     <loc>https://nuju.app/blog/how-to-stop-overthinking-at-night</loc>
