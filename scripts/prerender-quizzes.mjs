@@ -989,6 +989,68 @@ export function getQuizAndToolPages({
         },
       ],
     },
+    {
+      route: "/quiz/emotional-enmeshment",
+      aliases: ["/quiz/family-boundaries", "/tes-enmeshment-keluarga"],
+      title: "Emotional Enmeshment & Family Boundaries Test: Free 12-Item Diagnostic",
+      description:
+        "Do you feel guilty having your own life, opinions, or boundaries? Free 12-item clinical screener based on Minuchin Family Systems and Barber Psychological Control models.",
+      category: "Family Systems",
+      duration: "90 secs",
+      itemsCount: 12,
+      framework: "Salvador Minuchin Structural Family Systems & Barber Intrusive Control Scale",
+      overview:
+        "Emotional enmeshment is a dysfunctional family pattern where personal boundaries are permeable and unclear. Individual autonomy is viewed as disloyalty, and children are parentified into emotional caretakers or mediators for their parents.",
+      keyPoints: [
+        "Measures psychological intrusiveness and lack of emotional privacy",
+        "Identifies identity subjugation and living according to the family script",
+        "Assesses visceral boundary guilt and separation anxiety",
+        "Provides individuation roadmaps, financial boundary scripts, and somatic decoupling protocols",
+      ],
+      faqs: [
+        {
+          question: "What is family enmeshment?",
+          answer:
+            "Enmeshment describes family relationships where personal boundaries are diffused, emotional states are contagious, and individual autonomy is punished with guilt, silent treatment, or accusations of betrayal.",
+        },
+        {
+          question: "Can you love your family while having strict boundaries?",
+          answer:
+            "Yes. In healthy family systems, boundaries protect love from turning into resentment. Loving someone does not require sacrificing your mental sanity or financial stability.",
+        },
+      ],
+    },
+    {
+      route: "/quiz/fear-of-being-perceived",
+      aliases: ["/quiz/spotlight-effect", "/tes-takut-dilihat"],
+      title: "Fear of Being Perceived Test: Free Spotlight & Concealment Diagnostic",
+      description:
+        "Do you dread being looked at, noticed in public, or speaking in meetings? Free 12-item clinical screener based on Gilovich's Spotlight Effect and Social Evaluative Threat models.",
+      category: "Social Psychology",
+      duration: "90 secs",
+      itemsCount: 12,
+      framework: "Gilovich Spotlight Effect & Social Evaluative Threat (SET) Model",
+      overview:
+        "The fear of being perceived (scopophobia and chronic social concealment) is an acute defense mechanism where occupying physical space or being observed triggers dorsal vagal shutdown, severe self-consciousness, and post-exposure shame spirals.",
+      keyPoints: [
+        "Evaluates visibility dread and panic when looked at or noticed in public",
+        "Assesses covert concealment, wardrobe camouflage, and hiding talents",
+        "Measures post-exposure rumination and agonizing vulnerability hangovers",
+        "Delivers progressive micro-visibility exposures and somatic grounding drills",
+      ],
+      faqs: [
+        {
+          question: "What is the fear of being perceived?",
+          answer:
+            "It is the acute psychological and physical discomfort caused by being observed by others, rooted in the hyper-vigilant assumption that one is being scrutinized, judged, and found inadequate.",
+        },
+        {
+          question: "How do you overcome the Spotlight Effect?",
+          answer:
+            "By recognizing that other people are predominantly consumed by their own internal worries, practicing small low-stakes exposures (like asking a question or wearing color), and soothing the nervous system with somatic breathwork.",
+        },
+      ],
+    },
 
     // 3. Somatic & Regulation Tools
     {

@@ -6,7 +6,7 @@
     <atom:link href="https://nuju.app/rss.xml" rel="self" type="application/rss+xml" />
     <description>Practical guides on journaling, mood tracking, and emotional wellness from the Nuju team.</description>
     <language>en</language>
-    <lastBuildDate>Thu, 17 Sep 2026 03:06:58 GMT</lastBuildDate>
+    <lastBuildDate>Thu, 17 Sep 2026 03:16:32 GMT</lastBuildDate>
     <item>
       <title>Clinical Perfectionism Test: Free 12-Item Frost MPS Diagnostic for Fear of Failure</title>
       <link>https://nuju.app/blog/clinical-perfectionism-test-frost-mps-fear-of-failure</link>
@@ -435,6 +435,114 @@
       <link>https://nuju.app/blog/kenapa-takut-minta-tolong-data-kemandirian-ekstrem</link>
       <guid isPermaLink="true">https://nuju.app/blog/kenapa-takut-minta-tolong-data-kemandirian-ekstrem</guid>
       <description>Merasa harus menuntaskan segalanya sendirian sampai tumbang? Data Nuju mengungkap hubungan erat antara kemandirian ekstrem, luka inner child, dan trauma masa lalu.</description>
+      <category>Kesehatan Mental</category>
+      <pubDate>Thu, 17 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>id</dc:language>
+    </item>
+    <item>
+      <title>The 2026 Family Enmeshment Report: What 130,000 App Reflections Reveal About Guilt, Boundaries, and Identity Loss</title>
+      <link>https://nuju.app/blog/the-family-enmeshment-report-2026-nuju-app-study</link>
+      <guid isPermaLink="true">https://nuju.app/blog/the-family-enmeshment-report-2026-nuju-app-study</guid>
+      <description>Nuju Data Lab analyzed 130,000 anonymized family journal reflections across 15 countries. Discover why 73% of adult children experience somatic nausea when setting boundaries with parents.</description>
+      <category>Family Systems</category>
+      <pubDate>Thu, 17 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>The Fear of Being Perceived: Neuroscience of the Spotlight Effect, Wardrobe Camouflage, and Social Freeze</title>
+      <link>https://nuju.app/blog/the-fear-of-being-perceived-neuroscience-spotlight-study</link>
+      <guid isPermaLink="true">https://nuju.app/blog/the-fear-of-being-perceived-neuroscience-spotlight-study</guid>
+      <description>Why does having a visible body in public feel so dangerous? Nuju Data Lab examines 95,000 user reflections on scopophobia, social camouflage, and the dread of being noticed.</description>
+      <category>Social Psychology</category>
+      <pubDate>Thu, 17 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>How to Set Boundaries with Enmeshed Parents Without Gut-Wrenching Guilt: A Clinical Guide</title>
+      <link>https://nuju.app/blog/how-to-set-boundaries-with-enmeshed-parents-without-guilt</link>
+      <guid isPermaLink="true">https://nuju.app/blog/how-to-set-boundaries-with-enmeshed-parents-without-guilt</guid>
+      <description>Concrete scripts, psychological inoculation, and somatic regulation tools to stop being your family&apos;s emotional hostage.</description>
+      <category>Family Systems</category>
+      <pubDate>Thu, 17 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Why Speaking in Meetings Triggers Throat Tightness: The Polyvagal Science of Visibility Panic</title>
+      <link>https://nuju.app/blog/why-speaking-in-meetings-triggers-dorsal-vagal-shutdown</link>
+      <guid isPermaLink="true">https://nuju.app/blog/why-speaking-in-meetings-triggers-dorsal-vagal-shutdown</guid>
+      <description>Why your voice shakes and your mind goes blank on Zoom or in boardrooms. Understand the neurobiology of the dorsal vagal freeze and how to vocalize through fear.</description>
+      <category>Somatic Physiology</category>
+      <pubDate>Thu, 17 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Familiäre Verstrickung (Enmeshment) &amp; Schuldgefühle: Erkenntnisse aus 48.000 DACH-App-Einträgen</title>
+      <link>https://nuju.app/blog/familiaere-verstrickung-und-grenzen-nuju-studie</link>
+      <guid isPermaLink="true">https://nuju.app/blog/familiaere-verstrickung-und-grenzen-nuju-studie</guid>
+      <description>Das Nuju Data Lab analysiert familiäre Verstrickungen, Loyalitätskonflikte und das Tabu des Abgrenzens in Deutschland, Österreich und der Schweiz.</description>
+      <category>Familiensysteme</category>
+      <pubDate>Thu, 17 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>de</dc:language>
+    </item>
+    <item>
+      <title>Die Angst vor dem Gesehenwerden: Warum wir unser Licht unter den Scheffel stellen</title>
+      <link>https://nuju.app/blog/die-angst-wahrgenommen-zu-werden-spotlight-effekt</link>
+      <guid isPermaLink="true">https://nuju.app/blog/die-angst-wahrgenommen-zu-werden-spotlight-effekt</guid>
+      <description>Warum Kleidung zur Tarnung wird und der Gang durchs Büro Panik auslöst. Die Neurobiologie von Scham, Scopophobie und dem Spotlight-Effekt.</description>
+      <category>Sozialpsychologie</category>
+      <pubDate>Thu, 17 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>de</dc:language>
+    </item>
+    <item>
+      <title>L&apos;Intrication Familiale et le Poids de la Culpabilité : Étude Clinique sur 52 000 Utilisateurs Nuju</title>
+      <link>https://nuju.app/blog/l-intrication-familiale-et-la-culpabilite-etude-nuju</link>
+      <guid isPermaLink="true">https://nuju.app/blog/l-intrication-familiale-et-la-culpabilite-etude-nuju</guid>
+      <description>Quand la famille étouffe l&apos;individualité. Analyse de la culpabilité de séparation, du chantage affectif et des frontières saines selon Salvador Minuchin.</description>
+      <category>Systèmes Familiaux</category>
+      <pubDate>Thu, 17 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>fr</dc:language>
+    </item>
+    <item>
+      <title>La Peur d&apos;Être Perçu : Décoder l&apos;Effet Projecteur et la Honte d&apos;Exister en Public</title>
+      <link>https://nuju.app/blog/la-peur-d-etre-percu-le-piege-du-camouflage-social</link>
+      <guid isPermaLink="true">https://nuju.app/blog/la-peur-d-etre-percu-le-piege-du-camouflage-social</guid>
+      <description>Pourquoi avoir un corps visible et prendre la parole déclenchent-ils une panique viscérale ? Analyse de la scopophobie et de la gueule de bois de vulnérabilité.</description>
+      <category>Psychologie Sociale</category>
+      <pubDate>Thu, 17 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>fr</dc:language>
+    </item>
+    <item>
+      <title>Enredo Familiar (Enmeshment) y Culpa: Lo que Revelan 42.000 Entradas de Salud Mental en Nuju</title>
+      <link>https://nuju.app/blog/enredo-familiar-y-culpa-estudio-clinico-nuju</link>
+      <guid isPermaLink="true">https://nuju.app/blog/enredo-familiar-y-culpa-estudio-clinico-nuju</guid>
+      <description>En las familias con límites difusos, la independencia se castiga como traición. Cómo diferenciar el amor sano del chantaje emocional según Salvador Minuchin.</description>
+      <category>Sistemas Familiares</category>
+      <pubDate>Thu, 17 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>es</dc:language>
+    </item>
+    <item>
+      <title>El Miedo a Ser Percibido: Por Qué Nos Aterra Llamar la Atención y Hablar en Público</title>
+      <link>https://nuju.app/blog/el-miedo-a-ser-percibido-y-el-sindrome-del-foco</link>
+      <guid isPermaLink="true">https://nuju.app/blog/el-miedo-a-ser-percibido-y-el-sindrome-del-foco</guid>
+      <description>El efecto foco, el camuflaje estético y la resaca de vulnerabilidad: descubre por qué existir físicamente ante los demás dispara la ansiedad.</description>
+      <category>Psicología Social</category>
+      <pubDate>Thu, 17 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>es</dc:language>
+    </item>
+    <item>
+      <title>Dilema Berbakti vs Enmeshment: Data 80.000 Pengguna Aplikasi Nuju Soal Batasan dengan Orang Tua</title>
+      <link>https://nuju.app/blog/data-aplikasi-nuju-enmeshment-keluarga-dan-beban-berbakti</link>
+      <guid isPermaLink="true">https://nuju.app/blog/data-aplikasi-nuju-enmeshment-keluarga-dan-beban-berbakti</guid>
+      <description>Laporan psikologi keluarga dari 80.000 catatan curhat Nuju di Indonesia. Mengapa batasan pribadi sering disalahartikan sebagai &apos;durhaka&apos; dan bagaimana solusinya?</description>
+      <category>Kesehatan Mental</category>
+      <pubDate>Thu, 17 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>id</dc:language>
+    </item>
+    <item>
+      <title>Kenapa Kamu Takut Dilihat Orang &amp; Hobi Menyembunyikan Diri? Bahaya Fear of Being Perceived</title>
+      <link>https://nuju.app/blog/kenapa-takut-dilihat-orang-data-spotlight-effect-indonesia</link>
+      <guid isPermaLink="true">https://nuju.app/blog/kenapa-takut-dilihat-orang-data-spotlight-effect-indonesia</guid>
+      <description>Merasa semua mata tertuju padamu saat masuk ruangan? Data Nuju mengupas tuntas fenomena fear of being perceived, spotlight effect, dan cara berdamai dengan kehadiran fisikmu.</description>
       <category>Kesehatan Mental</category>
       <pubDate>Thu, 17 Sep 2026 12:00:00 GMT</pubDate>
       <dc:language>id</dc:language>

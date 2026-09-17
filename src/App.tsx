@@ -74,6 +74,8 @@ const EmotionalAvailabilityTest = lazy(() => import("./pages/EmotionalAvailabili
 const BedtimeProcrastinationTest = lazy(() => import("./pages/BedtimeProcrastinationTest.tsx"));
 const ChronicGuiltTest = lazy(() => import("./pages/ChronicGuiltTest.tsx"));
 const HyperIndependenceTest = lazy(() => import("./pages/HyperIndependenceTest.tsx"));
+const EnmeshmentTest = lazy(() => import("./pages/EnmeshmentTest.tsx"));
+const FearOfBeingPerceivedTest = lazy(() => import("./pages/FearOfBeingPerceivedTest.tsx"));
 const EbookSalesPage = lazy(() => import("./pages/EbookSalesPage.tsx"));
 const EbookReaderPage = lazy(() => import("./pages/EbookReaderPage.tsx"));
 const NotFound = lazy(() => import("./pages/NotFound.tsx"));
@@ -274,6 +276,12 @@ const App = () => (
                   <Route path="/quiz/hyper-independence" element={<HyperIndependenceTest />} />
                   <Route path="/quiz/trauma-independence" element={<HyperIndependenceTest />} />
                   <Route path="/tes-kemandirian-ekstrem" element={<HyperIndependenceTest defaultLang="id" />} />
+                  <Route path="/quiz/emotional-enmeshment" element={<EnmeshmentTest />} />
+                  <Route path="/quiz/family-boundaries" element={<EnmeshmentTest />} />
+                  <Route path="/tes-enmeshment-keluarga" element={<EnmeshmentTest defaultLang="id" />} />
+                  <Route path="/quiz/fear-of-being-perceived" element={<FearOfBeingPerceivedTest />} />
+                  <Route path="/quiz/spotlight-effect" element={<FearOfBeingPerceivedTest />} />
+                  <Route path="/tes-takut-dilihat" element={<FearOfBeingPerceivedTest defaultLang="id" />} />
                   <Route path="/quiz/:quizId" element={<QuizRunner />} />
                   <Route path="/test-psikologi" element={<QuizHub />} />
                   <Route path="/test-psikologi/:quizId" element={<QuizRunner />} />
