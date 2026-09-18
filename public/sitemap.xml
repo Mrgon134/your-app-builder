@@ -759,6 +759,42 @@
     <changefreq>weekly</changefreq>
   </url>
   <url>
+    <loc>https://nuju.app/quiz/rocd</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.95</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/quiz/relationship-ocd</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.9</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/tes-rocd</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.9</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/quiz/stonewalling</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.95</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/quiz/silent-treatment</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.9</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/tes-stonewalling</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.9</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
     <loc>https://nuju.app/quiz/baterai-emosi</loc>
     <lastmod>2026-09-18</lastmod>
     <priority>0.9</priority>
@@ -9046,6 +9082,150 @@
       <image:caption>¿Sientes culpa cada vez que pides ayuda y te incomodan los halagos? Conoce el ecoísmo, el reverso exacto del narcisismo identificado por el Dr. Craig Malkin.</image:caption>
     </image:image>
     <xhtml:link rel="alternate" hreflang="es" href="https://nuju.app/blog/egoismo-miedo-ocupar-espacio-elogios-narcisismo"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/relationship-ocd-rocd-why-you-obsess-over-loving-partner</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>The Psychology of Relationship OCD (ROCD): Why You Obsess Over Whether You Love Your Partner</image:title>
+      <image:caption>Do you spend hours scrutinizing your partner&apos;s flaws, googling &apos;how do I know if I&apos;m in love&apos;, or panicking if a kiss doesn&apos;t feel euphoric? Discover the clinical science of Relationship OCD (ROCD).</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/relationship-ocd-rocd-why-you-obsess-over-loving-partner"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/gottman-stonewalling-guide-why-conflict-makes-partner-shut-down</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>The Gottman Stonewalling Guide: Why Conflict Makes Your Partner Shut Down and Turn to Stone</image:title>
+      <image:caption>When arguments escalate, does your partner become stone-faced, go non-verbal, or walk out? Learn the neurobiology of Gottman&apos;s fourth horseman—stonewalling—and the 20-minute physiological timeout.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/gottman-stonewalling-guide-why-conflict-makes-partner-shut-down"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/is-it-rocd-or-true-incompatibility-intuition-vs-fear</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Is It ROCD or True Incompatibility? The Critical Difference Between Intuition and Fear</image:title>
+      <image:caption>Are you ignoring genuine red flags, or is your relationship anxiety lying to you? Learn how to distinguish genuine intuition from Relationship OCD panic loops.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/is-it-rocd-or-true-incompatibility-intuition-vs-fear"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/how-to-heal-from-silent-treatment-neurological-trauma</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>How to Heal from the Silent Treatment: Overcoming the Neurological Trauma of Stonewalling</image:title>
+      <image:caption>Being frozen out by someone you love causes acute physical brain pain. Discover why the silent treatment registers as biological exile and how to ground your nervous system.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/how-to-heal-from-silent-treatment-neurological-trauma"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/tes-relationship-ocd-rocd-meragukan-perasaan-kekurangan-pasangan</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Tes Relationship OCD (ROCD): Mengapa Anda Terus Meragukan Perasaan dan Memeriksa Kekurangan Pasangan?</image:title>
+      <image:caption>Apakah Anda terus-menerus bertanya &apos;Apakah aku benar-benar mencintainya?&apos; dan memeriksa kekurangan fisik pasangan hingga lelah? Kenali Relationship OCD (ROCD) dari Prof. Guy Doron.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="id" href="https://nuju.app/blog/tes-relationship-ocd-rocd-meragukan-perasaan-kekurangan-pasangan"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/psikologi-stonewalling-john-gottman-pasangan-membisu-menolak-bicara</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Psikologi Stonewalling (Dr. John Gottman): Mengapa Pasangan Tiba-tiba Membisu dan Menolak Bicara?</image:title>
+      <image:caption>Ketika bertengkar, apakah pasangan Anda mendadak memasang wajah dingin membatu, membisu, atau kabur? Pelajari sains stonewalling dan aturan jeda 20 menit Dr. John Gottman.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="id" href="https://nuju.app/blog/psikologi-stonewalling-john-gottman-pasangan-membisu-menolak-bicara"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/perbedaan-intuisi-vs-rocd-pasangan-salah-atau-otak-panik</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Perbedaan Intuisi vs ROCD: Apakah Pasangan Anda Memang Salah atau Otak Anda Sedang Panik?</image:title>
+      <image:caption>Apakah Anda sedang mengabaikan red flag nyata, atau kecemasan Relationship OCD Anda yang sedang membodohi Anda? Pelajari perbedaan tajam intuisi hati dan kepanikan ROCD.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="id" href="https://nuju.app/blog/perbedaan-intuisi-vs-rocd-pasangan-salah-atau-otak-panik"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/trauma-silent-treatment-mengapa-didiamkan-menyakitkan-secara-fisik</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Trauma Silent Treatment: Mengapa Didiamkan Pasangan Terasa Begitu Menyakitkan Secara Fisik?</image:title>
+      <image:caption>Didiamkan pasangan berhari-hari memicu rasa sakit nyata di otak. Pelajari neurobiologi di balik luka silent treatment dan cara memulihkan rasa aman diri.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="id" href="https://nuju.app/blog/trauma-silent-treatment-mengapa-didiamkan-menyakitkan-secara-fisik"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/relationship-ocd-rocd-warum-sie-an-der-liebe-zweifeln</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Relationship OCD (ROCD): Warum Sie zwanghaft an der Liebe zu Ihrem Partner zweifeln</image:title>
+      <image:caption>Zweifeln Sie täglich daran, ob Ihr Partner der &apos;Richtige&apos; ist, und scannen Sie obsessiv seine Makel? Entdecken Sie die klinischen Hintergründe von Relationship OCD (ROCD).</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="de" href="https://nuju.app/blog/relationship-ocd-rocd-warum-sie-an-der-liebe-zweifeln"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/stonewalling-john-gottman-dynamik-eisiges-schweigen-beziehung</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Stonewalling nach Dr. John Gottman: Die verheerende Dynamik des eisigen Schweigens</image:title>
+      <image:caption>Schaltet Ihr Partner bei Streit sofort auf stumm oder flüchtet aus dem Raum? Verstehen Sie die vegetative Überflutung (Puls &gt;100) und die Gottman-20-Minuten-Pause.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="de" href="https://nuju.app/blog/stonewalling-john-gottman-dynamik-eisiges-schweigen-beziehung"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/toc-de-couple-rocd-pourquoi-vous-doutez-de-vos-sentiments</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Le TOC de Couple (ROCD) : Pourquoi vous doutez obsessionnellement de vos sentiments</image:title>
+      <image:caption>Passez-vous vos journées à chercher si vous aimez &apos;assez&apos; votre partenaire et à scruter ses défauts ? Découvrez le TOC de couple (ROCD) selon le Pr Guy Doron.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://nuju.app/blog/toc-de-couple-rocd-pourquoi-vous-doutez-de-vos-sentiments"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/toc-de-amores-rocd-por-que-dudas-si-quieres-a-tu-pareja</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>TOC de Amores (ROCD): Por qué dudas obsesivamente de si quieres a tu pareja</image:title>
+      <image:caption>¿Te obsesionas con si tu pareja es la &apos;correcta&apos; y analizas cada defecto físico o intelectual? Conoce el TOC de amores (ROCD) según las investigaciones del Prof. Guy Doron.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="es" href="https://nuju.app/blog/toc-de-amores-rocd-por-que-dudas-si-quieres-a-tu-pareja"/>
   </url>
   <url>
     <loc>https://nuju.app/blog/how-to-stop-overthinking-at-night</loc>

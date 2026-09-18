@@ -11172,3 +11172,419 @@ export async function generateWindowOfToleranceCard(
 
   return { dataUrl, blob, file };
 }
+
+export type RocdCardLang = "en" | "id" | "de" | "fr" | "es";
+
+export interface RocdScoreResult {
+  score: number;
+  percentage: number;
+  level: string;
+  profile: {
+    title: Record<string, string>;
+    badge: Record<string, string>;
+    summary: Record<string, string>;
+    neurobiology: Record<string, string>;
+    actionProtocol: Record<string, string[]>;
+  };
+  subscales: {
+    feelings_and_rightness: { score: number; percentage: number };
+    partner_flaw_scrutiny: { score: number; percentage: number };
+    compulsive_checking: { score: number; percentage: number };
+  };
+}
+
+/**
+ * Generates an aesthetic high-resolution Instagram Story share card (1080x1350)
+ * for the Relationship OCD (ROCD) Screener (Prof. Guy Doron model).
+ */
+export async function generateRocdCard(
+  result: RocdScoreResult,
+  lang: RocdCardLang = "en"
+): Promise<{ dataUrl: string; blob: Blob; file: File }> {
+  const canvas = document.createElement("canvas");
+  const width = 1080;
+  const height = 1350;
+  canvas.width = width;
+  canvas.height = height;
+  const ctx = canvas.getContext("2d");
+  if (!ctx) throw new Error("Could not get 2D canvas context");
+
+  // Deep Amethyst & Midnight Violet gradient
+  const bgGrad = ctx.createLinearGradient(0, 0, width, height);
+  bgGrad.addColorStop(0, "#12081C");
+  bgGrad.addColorStop(0.5, "#210D34");
+  bgGrad.addColorStop(1, "#0C0514");
+  ctx.fillStyle = bgGrad;
+  ctx.fillRect(0, 0, width, height);
+
+  // Soft glowing Amethyst/Fuchsia radial orbs
+  const orb1 = ctx.createRadialGradient(180, 180, 10, 180, 180, 420);
+  orb1.addColorStop(0, "rgba(168, 85, 247, 0.22)");
+  orb1.addColorStop(1, "rgba(168, 85, 247, 0)");
+  ctx.fillStyle = orb1;
+  ctx.fillRect(0, 0, width, height);
+
+  const orb2 = ctx.createRadialGradient(width - 150, 420, 20, width - 150, 420, 460);
+  orb2.addColorStop(0, "rgba(217, 70, 239, 0.16)");
+  orb2.addColorStop(1, "rgba(217, 70, 239, 0)");
+  ctx.fillStyle = orb2;
+  ctx.fillRect(0, 0, width, height);
+
+  // Header Bar / Brand
+  ctx.fillStyle = "#C084FC";
+  ctx.font = "bold 24px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("NUJU · RELATIONSHIP OCD & OBSESSIVE DOUBT", 80, 105);
+
+  // Category Badge Pill
+  const badge = result.profile.badge[lang] || result.profile.badge.en;
+  ctx.fillStyle = "rgba(168, 85, 247, 0.16)";
+  drawRoundedRect(ctx, 80, 140, 480, 48, 24);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(192, 132, 252, 0.4)";
+  ctx.stroke();
+
+  ctx.fillStyle = "#E9D5FF";
+  ctx.font = "bold 20px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(badge.toUpperCase(), 105, 172);
+
+  // Result Title
+  const title = result.profile.title[lang] || result.profile.title.en;
+  ctx.fillStyle = "#FFFFFF";
+  ctx.font = "900 46px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  wrapText(ctx, title, 80, 245, width - 160, 54, 2);
+
+  // Subscale metrics grid
+  const boxY = 400;
+  const boxWidth = 290;
+  const boxHeight = 160;
+
+  // Box 1: Feelings & Rightness
+  ctx.fillStyle = "rgba(255, 255, 255, 0.05)";
+  drawRoundedRect(ctx, 80, boxY, boxWidth, boxHeight, 20);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(168, 85, 247, 0.25)";
+  ctx.stroke();
+
+  ctx.fillStyle = "#C084FC";
+  ctx.font = "bold 17px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("FEELINGS DOUBT", 105, boxY + 45);
+  ctx.fillStyle = "#FFFFFF";
+  ctx.font = "900 48px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(`${result.subscales.feelings_and_rightness.percentage}%`, 105, boxY + 105);
+  ctx.fillStyle = "#94A3B8";
+  ctx.font = "16px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("Is This Love / 'The One'", 105, boxY + 135);
+
+  // Box 2: Partner Flaw Scrutiny
+  ctx.fillStyle = "rgba(255, 255, 255, 0.05)";
+  drawRoundedRect(ctx, 400, boxY, boxWidth, boxHeight, 20);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(217, 70, 239, 0.25)";
+  ctx.stroke();
+
+  ctx.fillStyle = "#E879F9";
+  ctx.font = "bold 17px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("FLAW SCRUTINY", 425, boxY + 45);
+  ctx.fillStyle = "#FFFFFF";
+  ctx.font = "900 48px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(`${result.subscales.partner_flaw_scrutiny.percentage}%`, 425, boxY + 105);
+  ctx.fillStyle = "#94A3B8";
+  ctx.font = "16px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("Physical & Social Flaws", 425, boxY + 135);
+
+  // Box 3: Compulsive Checking
+  ctx.fillStyle = "rgba(255, 255, 255, 0.05)";
+  drawRoundedRect(ctx, 720, boxY, boxWidth, boxHeight, 20);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(192, 132, 252, 0.25)";
+  ctx.stroke();
+
+  ctx.fillStyle = "#A855F7";
+  ctx.font = "bold 17px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("COMPULSIONS", 745, boxY + 45);
+  ctx.fillStyle = "#FFFFFF";
+  ctx.font = "900 48px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(`${result.subscales.compulsive_checking.percentage}%`, 745, boxY + 105);
+  ctx.fillStyle = "#94A3B8";
+  ctx.font = "16px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("Exes & Online Reassurance", 745, boxY + 135);
+
+  // Big Banner
+  const metricY = 675;
+  ctx.fillStyle = "rgba(168, 85, 247, 0.08)";
+  drawRoundedRect(ctx, 80, metricY, width - 160, 220, 24);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(168, 85, 247, 0.35)";
+  ctx.stroke();
+
+  ctx.fillStyle = "#F3E8FF";
+  ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("OVERALL ROCD OBSESSION INTENSITY", 120, metricY + 50);
+
+  ctx.fillStyle = "#FFFFFF";
+  ctx.font = "900 64px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(`${result.percentage}%`, 120, metricY + 125);
+
+  const pBarW = width - 440;
+  ctx.fillStyle = "rgba(255, 255, 255, 0.12)";
+  drawRoundedRect(ctx, 290, metricY + 85, pBarW, 16, 8);
+  ctx.fill();
+
+  const progFill = (pBarW * result.percentage) / 100;
+  const pGrad = ctx.createLinearGradient(290, 0, 290 + progFill, 0);
+  pGrad.addColorStop(0, "#A855F7");
+  pGrad.addColorStop(1, "#7C3AED");
+  ctx.fillStyle = pGrad;
+  drawRoundedRect(ctx, 290, metricY + 85, Math.max(16, progFill), 16, 8);
+  ctx.fill();
+
+  ctx.fillStyle = "#CBD5E1";
+  ctx.font = "20px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(
+    "Prof. Guy Doron Insight: In ROCD, the problem is not your partner; it is an addiction to 100% certainty.",
+    120,
+    metricY + 180
+  );
+
+  // Action Protocol
+  ctx.fillStyle = "rgba(255, 255, 255, 0.04)";
+  drawRoundedRect(ctx, 80, 925, width - 160, 200, 24);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(255, 255, 255, 0.12)";
+  ctx.stroke();
+
+  ctx.fillStyle = "#F8FAFC";
+  ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("ERP UNCERTAINTY TOLERANCE PROTOCOL", 120, 975);
+
+  const protocols = result.profile.actionProtocol[lang] || result.profile.actionProtocol.en;
+  const protocolText = protocols[0] || "";
+  ctx.fillStyle = "#CBD5E1";
+  ctx.font = "24px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  wrapText(ctx, protocolText, 120, 1020, width - 240, 36, 3);
+
+  // Footer CTA
+  ctx.fillStyle = "rgba(255, 255, 255, 0.5)";
+  ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("Assess your Relationship OCD & checking compulsions at:", 80, 1200);
+
+  ctx.fillStyle = "#C084FC";
+  ctx.font = "900 30px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("nuju.app/quiz/rocd", 80, 1245);
+
+  const dataUrl = canvas.toDataURL("image/png", 0.95);
+  const blob = await new Promise<Blob>((resolve, reject) => {
+    canvas.toBlob((b) => (b ? resolve(b) : reject(new Error("Failed blob"))), "image/png", 0.95);
+  });
+  const file = new File([blob], `nuju-rocd-${result.level}.png`, { type: "image/png" });
+
+  return { dataUrl, blob, file };
+}
+
+export type StonewallingCardLang = "en" | "id" | "de" | "fr" | "es";
+
+export interface StonewallingScoreResult {
+  score: number;
+  percentage: number;
+  level: string;
+  profile: {
+    title: Record<string, string>;
+    badge: Record<string, string>;
+    summary: Record<string, string>;
+    neurobiology: Record<string, string>;
+    actionProtocol: Record<string, string[]>;
+  };
+  subscales: {
+    autonomic_flooding: { score: number; percentage: number };
+    shutdown_and_withdrawal: { score: number; percentage: number };
+    punitive_silence: { score: number; percentage: number };
+  };
+}
+
+/**
+ * Generates an aesthetic high-resolution Instagram Story share card (1080x1350)
+ * for the Gottman Stonewalling & Silent Treatment Screener (Dr. John Gottman model).
+ */
+export async function generateStonewallingCard(
+  result: StonewallingScoreResult,
+  lang: StonewallingCardLang = "en"
+): Promise<{ dataUrl: string; blob: Blob; file: File }> {
+  const canvas = document.createElement("canvas");
+  const width = 1080;
+  const height = 1350;
+  canvas.width = width;
+  canvas.height = height;
+  const ctx = canvas.getContext("2d");
+  if (!ctx) throw new Error("Could not get 2D canvas context");
+
+  // Glacial Ice & Obsidian Slate gradient
+  const bgGrad = ctx.createLinearGradient(0, 0, width, height);
+  bgGrad.addColorStop(0, "#080F18");
+  bgGrad.addColorStop(0.5, "#102030");
+  bgGrad.addColorStop(1, "#050B12");
+  ctx.fillStyle = bgGrad;
+  ctx.fillRect(0, 0, width, height);
+
+  // Soft glowing Cyan/Frost radial orbs
+  const orb1 = ctx.createRadialGradient(180, 180, 10, 180, 180, 420);
+  orb1.addColorStop(0, "rgba(56, 189, 248, 0.22)");
+  orb1.addColorStop(1, "rgba(56, 189, 248, 0)");
+  ctx.fillStyle = orb1;
+  ctx.fillRect(0, 0, width, height);
+
+  const orb2 = ctx.createRadialGradient(width - 150, 420, 20, width - 150, 420, 460);
+  orb2.addColorStop(0, "rgba(148, 163, 184, 0.16)");
+  orb2.addColorStop(1, "rgba(148, 163, 184, 0)");
+  ctx.fillStyle = orb2;
+  ctx.fillRect(0, 0, width, height);
+
+  // Header Bar / Brand
+  ctx.fillStyle = "#38BDF8";
+  ctx.font = "bold 24px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("NUJU · GOTTMAN STONEWALLING & SILENCE PROFILE", 80, 105);
+
+  // Category Badge Pill
+  const badge = result.profile.badge[lang] || result.profile.badge.en;
+  ctx.fillStyle = "rgba(56, 189, 248, 0.16)";
+  drawRoundedRect(ctx, 80, 140, 480, 48, 24);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(56, 189, 248, 0.4)";
+  ctx.stroke();
+
+  ctx.fillStyle = "#BAE6FD";
+  ctx.font = "bold 20px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(badge.toUpperCase(), 105, 172);
+
+  // Result Title
+  const title = result.profile.title[lang] || result.profile.title.en;
+  ctx.fillStyle = "#FFFFFF";
+  ctx.font = "900 46px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  wrapText(ctx, title, 80, 245, width - 160, 54, 2);
+
+  // Subscale metrics grid
+  const boxY = 400;
+  const boxWidth = 290;
+  const boxHeight = 160;
+
+  // Box 1: Autonomic Flooding
+  ctx.fillStyle = "rgba(255, 255, 255, 0.05)";
+  drawRoundedRect(ctx, 80, boxY, boxWidth, boxHeight, 20);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(244, 63, 94, 0.3)";
+  ctx.stroke();
+
+  ctx.fillStyle = "#FB7185";
+  ctx.font = "bold 17px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("FLOODING >100 BPM", 105, boxY + 45);
+  ctx.fillStyle = "#FFFFFF";
+  ctx.font = "900 48px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(`${result.subscales.autonomic_flooding.percentage}%`, 105, boxY + 105);
+  ctx.fillStyle = "#94A3B8";
+  ctx.font = "16px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("Pulse Spike & Overload", 105, boxY + 135);
+
+  // Box 2: Stone Wall Shutdown
+  ctx.fillStyle = "rgba(255, 255, 255, 0.05)";
+  drawRoundedRect(ctx, 400, boxY, boxWidth, boxHeight, 20);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(56, 189, 248, 0.3)";
+  ctx.stroke();
+
+  ctx.fillStyle = "#38BDF8";
+  ctx.font = "bold 17px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("STONE WALL", 425, boxY + 45);
+  ctx.fillStyle = "#FFFFFF";
+  ctx.font = "900 48px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(`${result.subscales.shutdown_and_withdrawal.percentage}%`, 425, boxY + 105);
+  ctx.fillStyle = "#94A3B8";
+  ctx.font = "16px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("Blank Stare & Non-Verbal", 425, boxY + 135);
+
+  // Box 3: Punitive Silence
+  ctx.fillStyle = "rgba(255, 255, 255, 0.05)";
+  drawRoundedRect(ctx, 720, boxY, boxWidth, boxHeight, 20);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(148, 163, 184, 0.3)";
+  ctx.stroke();
+
+  ctx.fillStyle = "#94A3B8";
+  ctx.font = "bold 17px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("SILENT TREATMENT", 745, boxY + 45);
+  ctx.fillStyle = "#FFFFFF";
+  ctx.font = "900 48px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(`${result.subscales.punitive_silence.percentage}%`, 745, boxY + 105);
+  ctx.fillStyle = "#94A3B8";
+  ctx.font = "16px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("Weaponized Freezing", 745, boxY + 135);
+
+  // Big Banner
+  const metricY = 675;
+  ctx.fillStyle = "rgba(56, 189, 248, 0.08)";
+  drawRoundedRect(ctx, 80, metricY, width - 160, 220, 24);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(56, 189, 248, 0.35)";
+  ctx.stroke();
+
+  ctx.fillStyle = "#E0F2FE";
+  ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("RELATIONAL STONEWALLING SEVERITY", 120, metricY + 50);
+
+  ctx.fillStyle = "#FFFFFF";
+  ctx.font = "900 64px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(`${result.percentage}%`, 120, metricY + 125);
+
+  const pBarW = width - 440;
+  ctx.fillStyle = "rgba(255, 255, 255, 0.12)";
+  drawRoundedRect(ctx, 290, metricY + 85, pBarW, 16, 8);
+  ctx.fill();
+
+  const progFill = (pBarW * result.percentage) / 100;
+  const pGrad = ctx.createLinearGradient(290, 0, 290 + progFill, 0);
+  pGrad.addColorStop(0, "#0284C7");
+  pGrad.addColorStop(1, "#38BDF8");
+  ctx.fillStyle = pGrad;
+  drawRoundedRect(ctx, 290, metricY + 85, Math.max(16, progFill), 16, 8);
+  ctx.fill();
+
+  ctx.fillStyle = "#CBD5E1";
+  ctx.font = "20px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(
+    "Dr. John Gottman Insight: Stonewalling is not indifference; it is autonomic overload disguised as cold stone.",
+    120,
+    metricY + 180
+  );
+
+  // Action Protocol
+  ctx.fillStyle = "rgba(255, 255, 255, 0.04)";
+  drawRoundedRect(ctx, 80, 925, width - 160, 200, 24);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(255, 255, 255, 0.12)";
+  ctx.stroke();
+
+  ctx.fillStyle = "#F8FAFC";
+  ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("GOTTMAN 20-MINUTE DE-ESCALATION PROTOCOL", 120, 975);
+
+  const protocols = result.profile.actionProtocol[lang] || result.profile.actionProtocol.en;
+  const protocolText = protocols[0] || "";
+  ctx.fillStyle = "#CBD5E1";
+  ctx.font = "24px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  wrapText(ctx, protocolText, 120, 1020, width - 240, 36, 3);
+
+  // Footer CTA
+  ctx.fillStyle = "rgba(255, 255, 255, 0.5)";
+  ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("Assess your conflict stonewalling & silent treatment at:", 80, 1200);
+
+  ctx.fillStyle = "#38BDF8";
+  ctx.font = "900 30px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("nuju.app/quiz/stonewalling", 80, 1245);
+
+  const dataUrl = canvas.toDataURL("image/png", 0.95);
+  const blob = await new Promise<Blob>((resolve, reject) => {
+    canvas.toBlob((b) => (b ? resolve(b) : reject(new Error("Failed blob"))), "image/png", 0.95);
+  });
+  const file = new File([blob], `nuju-stonewalling-${result.level}.png`, { type: "image/png" });
+
+  return { dataUrl, blob, file };
+}

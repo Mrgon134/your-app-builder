@@ -2215,6 +2215,64 @@ const QuizHub: React.FC = () => {
               </Link>
             </div>
           </div>
+
+          {/* Card 72: Relationship OCD (ROCD) Screener */}
+          <div className="rounded-3xl border border-rose-300 bg-gradient-to-br from-rose-500/10 via-pink-50 to-white p-6 shadow-xs flex flex-col justify-between hover:shadow-md transition">
+            <div>
+              <div className="flex items-center justify-between mb-3">
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-rose-600 px-3 py-0.5 text-xs font-bold text-white shadow-xs">
+                  <Heart className="h-3 w-3" />
+                  ROCD MODEL
+                </span>
+                <span className="text-xs font-semibold text-rose-700">Prof. Guy Doron</span>
+              </div>
+              <h3 className="text-lg font-bold text-neutral-900 mb-1.5">
+                Relationship OCD (ROCD) Screener
+              </h3>
+              <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed">
+                Obsessing over whether your partner is "the one", hyper-fixating on partner flaws, or compulsively checking your feelings? Screen relationship-centered OCD obsessions.
+              </p>
+            </div>
+            <div className="mt-5 pt-3 border-t border-rose-100 flex items-center justify-between">
+              <span className="text-xs font-medium text-neutral-400">~90 Secs · 12 Items</span>
+              <Link
+                to="/quiz/rocd"
+                className="inline-flex items-center gap-1.5 rounded-full bg-rose-600 px-4 py-2 text-xs font-bold text-white hover:bg-rose-700 transition shadow-xs"
+              >
+                <span>Screen ROCD</span>
+                <ArrowRight className="h-3.5 w-3.5" />
+              </Link>
+            </div>
+          </div>
+
+          {/* Card 73: Gottman Stonewalling & Silent Treatment Screener */}
+          <div className="rounded-3xl border border-indigo-300 bg-gradient-to-br from-indigo-500/10 via-slate-50 to-white p-6 shadow-xs flex flex-col justify-between hover:shadow-md transition">
+            <div>
+              <div className="flex items-center justify-between mb-3">
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-indigo-600 px-3 py-0.5 text-xs font-bold text-white shadow-xs">
+                  <ShieldAlert className="h-3 w-3" />
+                  GOTTMAN MODEL
+                </span>
+                <span className="text-xs font-semibold text-indigo-700">Dr. John Gottman</span>
+              </div>
+              <h3 className="text-lg font-bold text-neutral-900 mb-1.5">
+                Stonewalling & Silent Treatment Screener
+              </h3>
+              <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed">
+                Does relational conflict trigger overwhelming physiological flooding (over 100 bpm), leading you or your partner to shut down, wall off, or weaponize cold silence?
+              </p>
+            </div>
+            <div className="mt-5 pt-3 border-t border-indigo-100 flex items-center justify-between">
+              <span className="text-xs font-medium text-neutral-400">~90 Secs · 12 Items</span>
+              <Link
+                to="/quiz/stonewalling"
+                className="inline-flex items-center gap-1.5 rounded-full bg-indigo-600 px-4 py-2 text-xs font-bold text-white hover:bg-indigo-700 transition shadow-xs"
+              >
+                <span>Screen Stonewalling</span>
+                <ArrowRight className="h-3.5 w-3.5" />
+              </Link>
+            </div>
+          </div>
         </div>
 
         {/* Country Filter Pills */}

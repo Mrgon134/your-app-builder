@@ -2443,6 +2443,68 @@ export function getQuizAndToolPages({
       ],
     },
 
+    {
+      route: "/quiz/rocd",
+      aliases: ["/quiz/relationship-ocd", "/tes-rocd"],
+      title: "Relationship OCD (ROCD) Screener: Partner Flaws & Rightness Obsession (Guy Doron Model)",
+      description:
+        "Assess whether obsessive relationship doubts, compulsive flaw cataloging, and perpetual reassurance seeking are signs of Relationship OCD (ROCD) using clinical criteria.",
+      category: "Relationship Psychology",
+      duration: "90 secs",
+      itemsCount: 12,
+      framework: "Prof. Guy Doron Relationship-Centered OCD Model (ROCI & PROCSI)",
+      overview:
+        "Relationship Obsessive-Compulsive Disorder (ROCD) involves distressing, intrusive doubts regarding one's feelings for a partner, the partner's perceived flaws (physical appearance, morality, intelligence), or whether the relationship is 'the right one'. Sufferers engage in exhausting mental compulsions, checking feelings, comparing partners to exes or strangers, and seeking urgent reassurance.",
+      keyPoints: [
+        "Evaluates 3 core subscales: Feelings & Rightness Doubts, Partner Flaw Scrutiny, and Compulsive Checking & Reassurance",
+        "Distinguishes clinical ROCD compulsions from genuine, healthy relationship incompatibility",
+        "Evidence-based ERP (Exposure and Response Prevention) reframes and somatic de-escalation tools",
+      ],
+      faqs: [
+        {
+          question: "How do I know if it's ROCD or genuine incompatibility?",
+          answer:
+            "Genuine incompatibility usually brings sadness, resignation, or values misalignment without repetitive obsessive anxiety loops. ROCD feels like an urgent mental emergency with compulsive checking, panic spikes, and temporary relief after reassurance.",
+        },
+        {
+          question: "Can ROCD ruin a healthy, loving relationship?",
+          answer:
+            "Yes, if left unchecked, the compulsive scrutiny and emotional detachment can exhaust both partners. However, with ERP therapy, cognitive reframes, and safe somatic venting in Nuju, couples successfully overcome ROCD.",
+        },
+      ],
+    },
+
+    {
+      route: "/quiz/stonewalling",
+      aliases: ["/quiz/silent-treatment", "/tes-stonewalling"],
+      title: "Gottman Stonewalling & Silent Treatment Trauma Screener (John Gottman Model)",
+      description:
+        "Identify whether emotional shutdown during conflict is autonomic nervous system flooding (>100 bpm) or manipulative silent treatment, and measure its relational impact.",
+      category: "Relationship Psychology",
+      duration: "90 secs",
+      itemsCount: 12,
+      framework: "Dr. John Gottman Four Horsemen Relational Model & Autonomic Flooding Theory",
+      overview:
+        "Stonewalling is one of the Gottman Four Horsemen of relationship breakdown, occurring when a partner completely withdraws, becomes unresponsive, and refuses to engage. In 85% of cases, stonewalling is driven by Diffuse Physiological Arousal (DPA) where heart rate exceeds 100 bpm and cognitive processing shuts down. Conversely, punitive silent treatment is weaponized ostracism designed to punish or control.",
+      keyPoints: [
+        "Measures Autonomic Flooding (DPA tachycardia, fight-or-flight saturation), Shutdown & Emotional Withdrawal, and Punitive Cold Silence",
+        "Differentiates protective nervous system collapse from abusive silent treatment and narcissistic manipulation",
+        "Actionable Gottman 20-minute physiological timeout protocol and low-arousal repair attempts",
+      ],
+      faqs: [
+        {
+          question: "What is the difference between stonewalling and taking a healthy space break?",
+          answer:
+            "A healthy break states: 'I feel overwhelmed right now, let's take 20 minutes to calm down and return.' Stonewalling shuts down without warning, walks out, avoids eye contact, or gives the silent treatment for days without repair.",
+        },
+        {
+          question: "Why does stonewalling feel so painful to the partner?",
+          answer:
+            "Being stonewalled activates the dorsal anterior cingulate cortex—the same brain region that registers physical pain. It triggers primal abandonment panic and dysregulates the attachment system.",
+        },
+      ],
+    },
+
     // 5. Ebook Sales Pages
     {
       route: "/ebook",

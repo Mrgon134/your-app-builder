@@ -104,6 +104,8 @@ const MaladaptiveDaydreamingTest = lazy(() => import("./pages/MaladaptiveDaydrea
 const TraumaBondTest = lazy(() => import("./pages/TraumaBondTest.tsx"));
 const EchoismTest = lazy(() => import("./pages/EchoismTest.tsx"));
 const WindowOfToleranceTest = lazy(() => import("./pages/WindowOfToleranceTest.tsx"));
+const RocdTest = lazy(() => import("./pages/RocdTest.tsx"));
+const StonewallingTest = lazy(() => import("./pages/StonewallingTest.tsx"));
 const EbookSalesPage = lazy(() => import("./pages/EbookSalesPage.tsx"));
 const EbookReaderPage = lazy(() => import("./pages/EbookReaderPage.tsx"));
 const NotFound = lazy(() => import("./pages/NotFound.tsx"));
@@ -394,6 +396,12 @@ const App = () => (
                   <Route path="/quiz/window-of-tolerance" element={<WindowOfToleranceTest />} />
                   <Route path="/quiz/nervous-system-capacity" element={<WindowOfToleranceTest />} />
                   <Route path="/tes-window-of-tolerance" element={<WindowOfToleranceTest />} />
+                  <Route path="/quiz/rocd" element={<RocdTest />} />
+                  <Route path="/quiz/relationship-ocd" element={<RocdTest />} />
+                  <Route path="/tes-rocd" element={<RocdTest />} />
+                  <Route path="/quiz/stonewalling" element={<StonewallingTest />} />
+                  <Route path="/quiz/silent-treatment" element={<StonewallingTest />} />
+                  <Route path="/tes-stonewalling" element={<StonewallingTest />} />
                   <Route path="/quiz/:quizId" element={<QuizRunner />} />
                   <Route path="/test-psikologi" element={<QuizHub />} />
                   <Route path="/test-psikologi/:quizId" element={<QuizRunner />} />
