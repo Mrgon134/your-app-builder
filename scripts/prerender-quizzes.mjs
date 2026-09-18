@@ -2320,6 +2320,66 @@ export function getQuizAndToolPages({
         },
       ],
     },
+    {
+      route: "/quiz/maladaptive-daydreaming",
+      aliases: ["/quiz/immersive-daydreaming", "/tes-maladaptive-daydreaming"],
+      title: "Maladaptive Daydreaming Screener (MDS-16 Scale)",
+      description:
+        "Assess compulsive fantasy immersion, kinesthetic pacing, music triggers, and real-life vocational impairment. 12-item clinical self-assessment based on Prof. Eli Somer's model.",
+      category: "Dissociation & Daydreaming",
+      duration: "90 secs",
+      itemsCount: 12,
+      framework: "Prof. Eli Somer MDS-16 & Default Mode Network (DMN) Model",
+      overview:
+        "Maladaptive daydreaming is an extensive, compulsive fantasy activity that replaces human interaction and impairs academic, vocational, and interpersonal functioning, often sustained by repetitive motor rituals like pacing and looped music.",
+      keyPoints: [
+        "Evaluates Kinesthetic Movement & Pacing, Paracosm Depth & Immersion, and Vocational Distress & Impairment",
+        "Differentiates healthy immersive creativity from compulsive behavioral dissociation",
+        "Sensory embodiment protocols, audio journaling triggers, and Default Mode Network grounding drills",
+      ],
+      faqs: [
+        {
+          question: "Why do I need to walk or pace while daydreaming?",
+          answer:
+            "Repetitive motor movements like pacing, rocking, or hand gestures engage the cerebellum and motor cortex, allowing the Default Mode Network to sustain vivid internal simulations without cognitive interference from the external environment.",
+        },
+        {
+          question: "Can voice journaling help with maladaptive daydreaming?",
+          answer:
+            "Yes. Speaking out loud into an audio journal like Nuju activates Broca's area and sensory-motor speech networks, which immediately pulls the mind out of silent daydreaming loops and re-anchors attention to real-world sensory coordinates.",
+        },
+      ],
+    },
+    {
+      route: "/quiz/trauma-bond",
+      aliases: ["/quiz/trauma-bonding", "/tes-trauma-bonding"],
+      title: "Trauma Bonding & Intermittent Reinforcement Screener",
+      description:
+        "Assess narcissistic abuse hooks, biochemical addiction, cognitive dissonance, and somatic withdrawal panic. 12-item clinical self-assessment based on Dr. Patrick Carnes' Betrayal Bond model.",
+      category: "Trauma & Relationships",
+      duration: "90 secs",
+      itemsCount: 12,
+      framework: "Dr. Patrick Carnes Betrayal Bond & B.F. Skinner Intermittent Reinforcement Model",
+      overview:
+        "A trauma bond is a powerful neurochemical attachment forged through unpredictable cycles of abuse, betrayal, devaluation, and intermittent reconciliations. Sufferers experience extreme somatic withdrawal, terror of abandonment, and identity erosion.",
+      keyPoints: [
+        "Measures Intermittent Addiction & Chemical Craving, Cognitive Dissonance & Partner Defense, and Identity Erosion & Learned Helplessness",
+        "Demystifies why leaving a toxic partner feels like acute narcotic drug withdrawal",
+        "Zero-contact containment, somatic nervous system stabilization, and unedited reality-logging protocols",
+      ],
+      faqs: [
+        {
+          question: "Why does it feel impossible to leave a partner who hurts me?",
+          answer:
+            "Intermittent reinforcement—where kindness and abuse are distributed unpredictably—hijacks the brain's dopamine reward circuitry. The sudden relief of reconciliation after cold detachment triggers massive neurochemical highs that mimic physical substance addiction.",
+        },
+        {
+          question: "What are the physical symptoms of breaking a trauma bond?",
+          answer:
+            "During the first 30 days of No Contact, individuals often experience biological withdrawal: insomnia, shaking, nausea, panic spikes, crying jags, and compulsive urges to check communication channels.",
+        },
+      ],
+    },
 
     // 5. Ebook Sales Pages
     {

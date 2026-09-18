@@ -100,6 +100,8 @@ const CatqTest = lazy(() => import("./pages/CatqTest.tsx"));
 const PureOTest = lazy(() => import("./pages/PureOTest.tsx"));
 const RepressedAngerTest = lazy(() => import("./pages/RepressedAngerTest.tsx"));
 const EmotionalFlashbackTest = lazy(() => import("./pages/EmotionalFlashbackTest.tsx"));
+const MaladaptiveDaydreamingTest = lazy(() => import("./pages/MaladaptiveDaydreamingTest.tsx"));
+const TraumaBondTest = lazy(() => import("./pages/TraumaBondTest.tsx"));
 const EbookSalesPage = lazy(() => import("./pages/EbookSalesPage.tsx"));
 const EbookReaderPage = lazy(() => import("./pages/EbookReaderPage.tsx"));
 const NotFound = lazy(() => import("./pages/NotFound.tsx"));
@@ -378,6 +380,12 @@ const App = () => (
                   <Route path="/quiz/emotional-flashback" element={<EmotionalFlashbackTest />} />
                   <Route path="/quiz/cptsd-triggers" element={<EmotionalFlashbackTest />} />
                   <Route path="/tes-emotional-flashback" element={<EmotionalFlashbackTest />} />
+                  <Route path="/quiz/maladaptive-daydreaming" element={<MaladaptiveDaydreamingTest />} />
+                  <Route path="/quiz/immersive-daydreaming" element={<MaladaptiveDaydreamingTest />} />
+                  <Route path="/tes-maladaptive-daydreaming" element={<MaladaptiveDaydreamingTest />} />
+                  <Route path="/quiz/trauma-bond" element={<TraumaBondTest />} />
+                  <Route path="/quiz/trauma-bonding" element={<TraumaBondTest />} />
+                  <Route path="/tes-trauma-bonding" element={<TraumaBondTest />} />
                   <Route path="/quiz/:quizId" element={<QuizRunner />} />
                   <Route path="/test-psikologi" element={<QuizHub />} />
                   <Route path="/test-psikologi/:quizId" element={<QuizRunner />} />
