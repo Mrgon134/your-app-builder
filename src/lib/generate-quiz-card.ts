@@ -16807,6 +16807,399 @@ export async function generateCovertNarcissismCard(
   return { dataUrl, blob, file };
 }
 
+export type AphantasiaCardLang = "en" | "id" | "de" | "fr" | "es";
+
+export interface AphantasiaScoreResult {
+  score: number;
+  percentage: number;
+  level: string;
+  profile: {
+    title: Record<string, string>;
+    badge: Record<string, string>;
+    summary: Record<string, string>;
+    psychology: Record<string, string>;
+    actionProtocol: Record<string, string[]>;
+  };
+  subscales: {
+    visual_scene_vividness: { score: number; percentage: number };
+    facial_object_precision: { score: number; percentage: number };
+    multisensory_inner_simulation: { score: number; percentage: number };
+  };
+}
+
+/**
+ * Generates an aesthetic high-resolution Instagram Story share card (1080x1350)
+ * for the Aphantasia & Mind's Eye Blindness Screener (#100 Milestone, VVIQ Marks & Zeman model).
+ */
+export async function generateAphantasiaCard(
+  result: AphantasiaScoreResult,
+  lang: AphantasiaCardLang = "en"
+): Promise<{ dataUrl: string; blob: Blob; file: File }> {
+  const canvas = document.createElement("canvas");
+  canvas.width = 1080;
+  canvas.height = 1350;
+  const ctx = canvas.getContext("2d");
+  if (!ctx) throw new Error("Could not get 2D canvas context");
+
+  const width = 1080;
+  const height = 1350;
+
+  // Background: Deep Slate Cyan & Dark Ocean
+  const bgGrad = ctx.createLinearGradient(0, 0, width, height);
+  bgGrad.addColorStop(0, "#030712");
+  bgGrad.addColorStop(0.5, "#082F49");
+  bgGrad.addColorStop(1, "#030712");
+  ctx.fillStyle = bgGrad;
+  ctx.fillRect(0, 0, width, height);
+
+  // Subtle Cyan / Ice Blue Radial Glow
+  const radial = ctx.createRadialGradient(width * 0.8, height * 0.25, 40, width * 0.8, height * 0.25, 550);
+  radial.addColorStop(0, "rgba(56, 189, 248, 0.22)");
+  radial.addColorStop(1, "rgba(56, 189, 248, 0)");
+  ctx.fillStyle = radial;
+  ctx.fillRect(0, 0, width, height);
+
+  // Historic Milestone Header Brand Badge
+  ctx.fillStyle = "rgba(56, 189, 248, 0.12)";
+  ctx.beginPath();
+  ctx.roundRect(80, 80, 620, 56, 28);
+  ctx.fill();
+
+  ctx.fillStyle = "#38BDF8";
+  ctx.font = "bold 20px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("NUJU CLINICAL · #100 MILESTONE · VVIQ SCALE", 108, 115);
+
+  // Category Tag
+  ctx.fillStyle = "#7DD3FC";
+  ctx.font = "600 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("MIND'S EYE & VISUAL IMAGERY (PROF. ADAM ZEMAN)", 80, 185);
+
+  // Main Card Box
+  const cardBoxY = 220;
+  const cardBoxHeight = 920;
+  ctx.fillStyle = "rgba(255, 255, 255, 0.04)";
+  ctx.strokeStyle = "rgba(56, 189, 248, 0.35)";
+  ctx.lineWidth = 2;
+  ctx.beginPath();
+  ctx.roundRect(80, cardBoxY, width - 160, cardBoxHeight, 36);
+  ctx.fill();
+  ctx.stroke();
+
+  // Level Badge Pill
+  const levelTitle = result.profile.title[lang] || result.profile.title.en;
+  const levelBadge = result.profile.badge[lang] || result.profile.badge.en;
+
+  ctx.fillStyle = "rgba(56, 189, 248, 0.2)";
+  ctx.beginPath();
+  ctx.roundRect(120, cardBoxY + 40, 380, 44, 22);
+  ctx.fill();
+
+  ctx.fillStyle = "#E0F2FE";
+  ctx.font = "bold 18px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(levelBadge.toUpperCase(), 140, cardBoxY + 68);
+
+  // Title
+  ctx.fillStyle = "#FFFFFF";
+  ctx.font = "bold 34px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  const titleLines = wrapText(ctx, levelTitle, width - 240);
+  let curY = cardBoxY + 128;
+  titleLines.forEach((line) => {
+    ctx.fillText(line, 120, curY);
+    curY += 44;
+  });
+
+  // Score Hero Metric Box
+  curY += 10;
+  ctx.fillStyle = "rgba(255, 255, 255, 0.03)";
+  ctx.strokeStyle = "rgba(255, 255, 255, 0.08)";
+  ctx.beginPath();
+  ctx.roundRect(120, curY, width - 240, 110, 20);
+  ctx.fill();
+  ctx.stroke();
+
+  ctx.fillStyle = "#38BDF8";
+  ctx.font = "900 64px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(`${result.percentage}%`, 150, curY + 76);
+
+  ctx.fillStyle = "rgba(255, 255, 255, 0.9)";
+  ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("Mental Imagery Vividness Index", 350, curY + 48);
+
+  ctx.fillStyle = "rgba(255, 255, 255, 0.5)";
+  ctx.font = "16px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(`VVIQ Score: ${result.score} / 36 pts`, 350, curY + 78);
+
+  // Subscales
+  curY += 145;
+  const subscales = [
+    { label: "Visual Scene & Landscape Vividness", pct: result.subscales.visual_scene_vividness.percentage, color: "#38BDF8" },
+    { label: "Facial & 3D Object Precision", pct: result.subscales.facial_object_precision.percentage, color: "#0284C7" },
+    { label: "Multisensory Simulation (Sound/Taste)", pct: result.subscales.multisensory_inner_simulation.percentage, color: "#0EA5E9" },
+  ];
+
+  subscales.forEach((sub) => {
+    ctx.fillStyle = "#E2E8F0";
+    ctx.font = "bold 20px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+    ctx.fillText(sub.label, 120, curY);
+
+    ctx.fillStyle = "rgba(255, 255, 255, 0.7)";
+    ctx.font = "bold 20px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+    ctx.fillText(`${sub.pct}%`, width - 200, curY);
+
+    // Track
+    ctx.fillStyle = "rgba(255, 255, 255, 0.08)";
+    ctx.beginPath();
+    ctx.roundRect(120, curY + 12, width - 240, 14, 7);
+    ctx.fill();
+
+    // Bar
+    ctx.fillStyle = sub.color;
+    ctx.beginPath();
+    const barWidth = Math.max(14, ((width - 240) * sub.pct) / 100);
+    ctx.roundRect(120, curY + 12, barWidth, 14, 7);
+    ctx.fill();
+
+    curY += 56;
+  });
+
+  // Clinical Insight Box
+  curY += 20;
+  ctx.fillStyle = "rgba(56, 189, 248, 0.06)";
+  ctx.strokeStyle = "rgba(56, 189, 248, 0.25)";
+  ctx.beginPath();
+  ctx.roundRect(120, curY, width - 240, 160, 20);
+  ctx.fill();
+  ctx.stroke();
+
+  ctx.fillStyle = "#38BDF8";
+  ctx.font = "bold 20px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("PROF. ADAM ZEMAN NEUROBIOLOGY PRINCIPLE:", 145, curY + 40);
+
+  ctx.fillStyle = "rgba(255, 255, 255, 0.85)";
+  ctx.font = "italic 19px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  const quote = '"Aphantasia is not a deficit or defect, but a fascinating cognitive variation in how human consciousness processes memory, abstract models, and inner experience."';
+  const quoteLines = wrapText(ctx, quote, width - 290);
+  let qY = curY + 75;
+  quoteLines.forEach((l) => {
+    ctx.fillText(l, 145, qY);
+    qY += 28;
+  });
+
+  // Footer CTA
+  ctx.fillStyle = "rgba(255, 255, 255, 0.5)";
+  ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("Discover your mind's eye vividness free at:", 80, 1200);
+
+  ctx.fillStyle = "#38BDF8";
+  ctx.font = "900 30px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("nuju.app/quiz/aphantasia", 80, 1245);
+
+  const dataUrl = canvas.toDataURL("image/png", 0.95);
+  const blob = await new Promise<Blob>((resolve, reject) => {
+    canvas.toBlob((b) => (b ? resolve(b) : reject(new Error("Failed blob"))), "image/png", 0.95);
+  });
+  const file = new File([blob], `nuju-aphantasia-${result.level}.png`, { type: "image/png" });
+
+  return { dataUrl, blob, file };
+}
+
+export type RetrospectiveJealousyCardLang = "en" | "id" | "de" | "fr" | "es";
+
+export interface RetrospectiveJealousyScoreResult {
+  score: number;
+  percentage: number;
+  level: string;
+  profile: {
+    title: Record<string, string>;
+    badge: Record<string, string>;
+    summary: Record<string, string>;
+    psychology: Record<string, string>;
+    actionProtocol: Record<string, string[]>;
+  };
+  subscales: {
+    intrusive_mental_movies: { score: number; percentage: number };
+    compulsive_investigative_checking: { score: number; percentage: number };
+    moral_contamination_fear: { score: number; percentage: number };
+  };
+}
+
+/**
+ * Generates an aesthetic high-resolution Instagram Story share card (1080x1350)
+ * for the Retrospective Jealousy & Romantic Past Screener (Dr. Robert L. Leahy & Zachary Stockill model).
+ */
+export async function generateRetrospectiveJealousyCard(
+  result: RetrospectiveJealousyScoreResult,
+  lang: RetrospectiveJealousyCardLang = "en"
+): Promise<{ dataUrl: string; blob: Blob; file: File }> {
+  const canvas = document.createElement("canvas");
+  canvas.width = 1080;
+  canvas.height = 1350;
+  const ctx = canvas.getContext("2d");
+  if (!ctx) throw new Error("Could not get 2D canvas context");
+
+  const width = 1080;
+  const height = 1350;
+
+  // Background: Deep Crimson Obsidian & Wine
+  const bgGrad = ctx.createLinearGradient(0, 0, width, height);
+  bgGrad.addColorStop(0, "#0F0306");
+  bgGrad.addColorStop(0.5, "#2A0912");
+  bgGrad.addColorStop(1, "#0A0204");
+  ctx.fillStyle = bgGrad;
+  ctx.fillRect(0, 0, width, height);
+
+  // Subtle Rose / Crimson Radial Glow
+  const radial = ctx.createRadialGradient(width * 0.8, height * 0.25, 40, width * 0.8, height * 0.25, 550);
+  radial.addColorStop(0, "rgba(225, 29, 72, 0.2)");
+  radial.addColorStop(1, "rgba(225, 29, 72, 0)");
+  ctx.fillStyle = radial;
+  ctx.fillRect(0, 0, width, height);
+
+  // Header Brand Badge
+  ctx.fillStyle = "rgba(255, 255, 255, 0.08)";
+  ctx.beginPath();
+  ctx.roundRect(80, 80, 580, 56, 28);
+  ctx.fill();
+
+  ctx.fillStyle = "#FB7185";
+  ctx.font = "bold 20px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("NUJU CLINICAL · RETROSPECTIVE JEALOUSY", 108, 115);
+
+  // Category Tag
+  ctx.fillStyle = "#FDA4AF";
+  ctx.font = "600 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("ROMANTIC PAST OCD & RUMINATION (LEAHY MODEL)", 80, 185);
+
+  // Main Card Box
+  const cardBoxY = 220;
+  const cardBoxHeight = 920;
+  ctx.fillStyle = "rgba(255, 255, 255, 0.04)";
+  ctx.strokeStyle = "rgba(225, 29, 72, 0.28)";
+  ctx.lineWidth = 2;
+  ctx.beginPath();
+  ctx.roundRect(80, cardBoxY, width - 160, cardBoxHeight, 36);
+  ctx.fill();
+  ctx.stroke();
+
+  // Level Badge Pill
+  const levelTitle = result.profile.title[lang] || result.profile.title.en;
+  const levelBadge = result.profile.badge[lang] || result.profile.badge.en;
+
+  ctx.fillStyle = "rgba(225, 29, 72, 0.2)";
+  ctx.beginPath();
+  ctx.roundRect(120, cardBoxY + 40, 380, 44, 22);
+  ctx.fill();
+
+  ctx.fillStyle = "#FFE4E6";
+  ctx.font = "bold 18px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(levelBadge.toUpperCase(), 140, cardBoxY + 68);
+
+  // Title
+  ctx.fillStyle = "#FFFFFF";
+  ctx.font = "bold 34px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  const titleLines = wrapText(ctx, levelTitle, width - 240);
+  let curY = cardBoxY + 128;
+  titleLines.forEach((line) => {
+    ctx.fillText(line, 120, curY);
+    curY += 44;
+  });
+
+  // Score Hero Metric Box
+  curY += 10;
+  ctx.fillStyle = "rgba(255, 255, 255, 0.03)";
+  ctx.strokeStyle = "rgba(255, 255, 255, 0.08)";
+  ctx.beginPath();
+  ctx.roundRect(120, curY, width - 240, 110, 20);
+  ctx.fill();
+  ctx.stroke();
+
+  ctx.fillStyle = "#FB7185";
+  ctx.font = "900 64px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(`${result.percentage}%`, 150, curY + 76);
+
+  ctx.fillStyle = "rgba(255, 255, 255, 0.9)";
+  ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("Retroactive Jealousy Load", 350, curY + 48);
+
+  ctx.fillStyle = "rgba(255, 255, 255, 0.5)";
+  ctx.font = "16px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(`Clinical RJ Score: ${result.score} / 36 pts`, 350, curY + 78);
+
+  // Subscales
+  curY += 145;
+  const subscales = [
+    { label: "Intrusive Mental Movies & Flashbacks", pct: result.subscales.intrusive_mental_movies.percentage, color: "#FB7185" },
+    { label: "Compulsive Checking & Interrogation", pct: result.subscales.compulsive_investigative_checking.percentage, color: "#F43F5E" },
+    { label: "Moral Contamination Fear & Sabotage", pct: result.subscales.moral_contamination_fear.percentage, color: "#E11D48" },
+  ];
+
+  subscales.forEach((sub) => {
+    ctx.fillStyle = "#E2E8F0";
+    ctx.font = "bold 20px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+    ctx.fillText(sub.label, 120, curY);
+
+    ctx.fillStyle = "rgba(255, 255, 255, 0.7)";
+    ctx.font = "bold 20px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+    ctx.fillText(`${sub.pct}%`, width - 200, curY);
+
+    // Track
+    ctx.fillStyle = "rgba(255, 255, 255, 0.08)";
+    ctx.beginPath();
+    ctx.roundRect(120, curY + 12, width - 240, 14, 7);
+    ctx.fill();
+
+    // Bar
+    ctx.fillStyle = sub.color;
+    ctx.beginPath();
+    const barWidth = Math.max(14, ((width - 240) * sub.pct) / 100);
+    ctx.roundRect(120, curY + 12, barWidth, 14, 7);
+    ctx.fill();
+
+    curY += 56;
+  });
+
+  // Clinical Insight Box
+  curY += 20;
+  ctx.fillStyle = "rgba(225, 29, 72, 0.06)";
+  ctx.strokeStyle = "rgba(225, 29, 72, 0.25)";
+  ctx.beginPath();
+  ctx.roundRect(120, curY, width - 240, 160, 20);
+  ctx.fill();
+  ctx.stroke();
+
+  ctx.fillStyle = "#FB7185";
+  ctx.font = "bold 20px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("DR. ROBERT L. LEAHY (JEALOUSY CURE PRINCIPLE):", 145, curY + 40);
+
+  ctx.fillStyle = "rgba(255, 255, 255, 0.85)";
+  ctx.font = "italic 19px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  const quote = '"Retroactive jealousy is an illusion of control. Seeking reassurance about the past feeds the addiction; only radical acceptance of the uncontrollable brings peace."';
+  const quoteLines = wrapText(ctx, quote, width - 290);
+  let qY = curY + 75;
+  quoteLines.forEach((l) => {
+    ctx.fillText(l, 145, qY);
+    qY += 28;
+  });
+
+  // Footer CTA
+  ctx.fillStyle = "rgba(255, 255, 255, 0.5)";
+  ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("Screen your retrospective jealousy & partner past triggers at:", 80, 1200);
+
+  ctx.fillStyle = "#FB7185";
+  ctx.font = "900 30px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("nuju.app/quiz/retrospective-jealousy", 80, 1245);
+
+  const dataUrl = canvas.toDataURL("image/png", 0.95);
+  const blob = await new Promise<Blob>((resolve, reject) => {
+    canvas.toBlob((b) => (b ? resolve(b) : reject(new Error("Failed blob"))), "image/png", 0.95);
+  });
+  const file = new File([blob], `nuju-retrospective-jealousy-${result.level}.png`, { type: "image/png" });
+
+  return { dataUrl, blob, file };
+}
+
+
 
 
 

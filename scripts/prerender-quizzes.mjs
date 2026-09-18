@@ -3311,6 +3311,69 @@ export function getQuizAndToolPages({
       ],
     },
 
+    {
+      route: "/quiz/aphantasia",
+      aliases: ["/quiz/minds-eye", "/tes-afantasia"],
+      title: "Aphantasia & Mind's Eye Blindness Screener: Free VVIQ 12-Item Test (Card #100 Milestone)",
+      description:
+        "Can you see an apple in your mind? Measure your mental imagery vividness, total aphantasia (blind mind's eye), or hyperphantasia cinema using the clinical VVIQ model by Dr. David Marks and Prof. Adam Zeman.",
+      category: "Neuroscience & Visual Imagery",
+      duration: "90 secs",
+      itemsCount: 12,
+      framework: "Prof. Adam Zeman & Dr. David Marks (Vividness of Visual Imagery Questionnaire - VVIQ)",
+      overview:
+        "Aphantasia is the natural cognitive variation where an individual cannot voluntarily generate mental visual imagery. Rather than seeing pictures, aphantasics think through abstract concepts, spatial logic, and semantic knowledge.",
+      keyPoints: [
+        "Card #100 historic milestone assessment on Nuju",
+        "Measures 3 clinical subscales: Visual Scene Vividness, Facial & Object Precision, and Multisensory Inner Simulation",
+        "Based on the validated VVIQ model researched by Prof. Adam Zeman at the University of Exeter",
+        "Provides cognitive strengths mapping, externalized memory strategies, and high-res share card",
+      ],
+      faqs: [
+        {
+          question: "Is aphantasia considered a disability?",
+          answer:
+            "No. Prof. Adam Zeman and cognitive scientists classify aphantasia as a healthy, natural spectrum of cognitive diversity. Aphantasics frequently excel in programming, abstract logic, mathematics, and high-speed problem solving.",
+        },
+        {
+          question: "Can people with aphantasia dream visually?",
+          answer:
+            "Yes. Many individuals with aphantasia report visual dreams because involuntary REM dreaming activates different neural pathways than conscious, top-down voluntary mental imagery.",
+        },
+      ],
+    },
+
+    {
+      route: "/quiz/retrospective-jealousy",
+      aliases: ["/quiz/partner-past", "/tes-cemburu-masa-lalu"],
+      title: "Retrospective Jealousy & Romantic Past Screener: Free RJ-OCD Diagnostic",
+      description:
+        "Are you tormented by involuntary mental movies of your partner's romantic or sexual past? Free 12-item clinical screener based on Dr. Robert L. Leahy's cognitive model and Zachary Stockill's retroactive jealousy framework.",
+      category: "Relational Psychology & ROCD",
+      duration: "90 secs",
+      itemsCount: 12,
+      framework: "Dr. Robert L. Leahy (The Jealousy Cure) & Zachary Stockill RJ Cognitive Model",
+      overview:
+        "Retrospective jealousy (retroactive jealousy) is a form of Relationship OCD where an individual obsesses over their partner's past relationships. Characterized by graphic mental movies, forensic interrogations, and moral contamination panic, it threatens otherwise healthy connections.",
+      keyPoints: [
+        "Measures 3 subscales: Intrusive Mental Movies, Compulsive Investigative Checking, and Moral Contamination Fear",
+        "Identifies the reassurance addiction trap and provides immediate behavioral ceasefire strategies",
+        "Delivers Exposure and Response Prevention (ERP) protocols for intrusive imagery of exes",
+      ],
+      faqs: [
+        {
+          question: "Why does my partner's past bother me if I love them?",
+          answer:
+            "Retroactive jealousy is not caused by your partner's past; it is an anxiety disorder driven by certainty addiction, low self-worth, and fear of being inferior to prior lovers.",
+        },
+        {
+          question: "How do I stop interrogating my partner about their exes?",
+          answer:
+            "Implement a 30-day absolute reassurance freeze. Recognize that asking questions feeds the OCD cycle. When triggers spike, vent into Nuju's voice sanctuary instead of confronting your partner.",
+        },
+      ],
+    },
+
     // 5. Ebook Sales Pages
     {
       route: "/ebook",

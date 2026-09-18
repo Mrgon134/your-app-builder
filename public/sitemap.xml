@@ -1263,6 +1263,42 @@
     <changefreq>weekly</changefreq>
   </url>
   <url>
+    <loc>https://nuju.app/quiz/aphantasia</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.95</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/quiz/minds-eye</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.9</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/tes-afantasia</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.9</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/quiz/retrospective-jealousy</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.95</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/quiz/partner-past</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.9</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/tes-cemburu-masa-lalu</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.9</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
     <loc>https://nuju.app/quiz/baterai-emosi</loc>
     <lastmod>2026-09-18</lastmod>
     <priority>0.9</priority>
@@ -11374,6 +11410,102 @@
       <image:caption>모든 나르시시스트가 거만하고 외향적인 것은 아닙니다. 수줍음과 피해 의식 뒤에 숨겨진 취약한 나르시시즘(내현적 나르시시즘)과 조너선 치크 교수의 HSNS 척도를 분석합니다.</image:caption>
     </image:image>
     <xhtml:link rel="alternate" hreflang="ko" href="https://nuju.app/blog/covert-narcissism-vulnerable-victim-korea"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/aphantasia-neurobiology-vviq-minds-eye-blindness-zeman</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>The Blind Mind&apos;s Eye: Inside the Neurobiology of Aphantasia, Visual Imagery Vividness, and the VVIQ Scale</image:title>
+      <image:caption>Can you picture an apple or your mother&apos;s face in your mind? Explore the fascinating science of Aphantasia, Prof. Adam Zeman&apos;s neuroimaging discoveries, and how the human brain thinks without pictures.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/aphantasia-neurobiology-vviq-minds-eye-blindness-zeman"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/afantasia-buta-imajinasi-visual-minds-eye-zeman</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Ketika Kepala Gelap Gulita: Mengenal Afantasia, Mata Batin yang Tak Bisa Membayangkan Gambar, dan Skala VVIQ</image:title>
+      <image:caption>Apakah kamu mengira &apos;membayangkan apel&apos; hanyalah kiasan bahasa? Pahami kondisi afantasia, penelitian Prof. Adam Zeman, serta bagaimana orang tanpa visual mental berpikir dengan kecerdasan luar biasa.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="id" href="https://nuju.app/blog/afantasia-buta-imajinasi-visual-minds-eye-zeman"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/retrospective-jealousy-ocd-partner-past-mental-movies-leahy</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Tormented by a Ghost: The Cognitive Architecture of Retrospective Jealousy and How to Break the Past-Obsession Loop</image:title>
+      <image:caption>Why does knowing about your partner&apos;s past lovers trigger agonizing mental movies and relentless interrogations? Explore Dr. Robert L. Leahy&apos;s cognitive therapy model for retroactive jealousy.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/retrospective-jealousy-ocd-partner-past-mental-movies-leahy"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/cemburu-masa-lalu-pasangan-retrospective-jealousy-mantan</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Tersiksa Oleh Mantan yang Tak Pernah Ditemui: Memahami Cemburu Masa Lalu (Retroactive Jealousy) dan Cara Menyembuhkannya</image:title>
+      <image:caption>Mengapa bayangan masa lalu pasangan bersama mantannya terus menghantui dan memicu interogasi tanpa henti? Pahami psikologi retrospective jealousy dan solusi klinis Dr. Robert Leahy.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="id" href="https://nuju.app/blog/cemburu-masa-lalu-pasangan-retrospective-jealousy-mantan"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/aphantasie-blindes-inneres-auge-vviq-zeman-kognition</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Das blinde innere Auge: Die Neurobiologie der Aphantasie, der VVIQ-Test und das Denken ohne innere Bilder</image:title>
+      <image:caption>Können Sie sich ein rotes Segelboot auf dem Meer vor Ihrem inneren Auge vorstellen? Erfahren Sie, warum bei Menschen mit Aphantasie der Bildschirm im Kopf dunkel bleibt und wie sie abstrakt brillieren.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="de" href="https://nuju.app/blog/aphantasie-blindes-inneres-auge-vviq-zeman-kognition"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/jalousie-retrospective-obsession-passe-partenaire-leahy</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Hanté par ses ex : Comprendre la jalousie rétrospective, les mini-films obsessionnels et la thérapie cognitive</image:title>
+      <image:caption>Pourquoi le passé amoureux ou intime de votre partenaire vous torture-t-il au point de déclencher des interrogatoires incessants ? Découvrez le modèle clinique du Dr Robert L. Leahy.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://nuju.app/blog/jalousie-retrospective-obsession-passe-partenaire-leahy"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/aphantasia-visual-imagery-vviq-zeman</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>頭の中に映像が浮かばない「アファンタジア」とは？心の目が見えない脳の仕組みとVVIQ診断</image:title>
+      <image:caption>「目を閉じてリンゴを思い浮かべて」と言われても真っ暗な暗闇しか見えない？アダム・ゼーマン教授の研究によるアファンタジアの脳科学的特徴と概念的思考の強みを解説します。</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://nuju.app/blog/aphantasia-visual-imagery-vviq-zeman"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/retrospective-jealousy-partner-past-korea</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>만나본 적도 없는 연인의 전 애인 때문에 고통받는 당신에게: 회고적 질투(Retroactive Jealousy)의 뇌과학과 극복법</image:title>
+      <image:caption>현재 관계는 더없이 완벽한데 왜 연인의 과거 연애사가 머릿속에서 생생한 영화처럼 재생될까요? 로버트 리히 박사의 인지행동 치료 모델로 과거 집착 강박의 사슬을 끊어내세요.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://nuju.app/blog/retrospective-jealousy-partner-past-korea"/>
   </url>
   <url>
     <loc>https://nuju.app/blog/how-to-stop-overthinking-at-night</loc>
