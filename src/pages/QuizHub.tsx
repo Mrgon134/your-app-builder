@@ -2737,6 +2737,64 @@ const QuizHub: React.FC = () => {
               </Link>
             </div>
           </div>
+
+          {/* Card 90: Thanatophobia & Existential Death Anxiety Screener */}
+          <div className="rounded-3xl border border-amber-300 bg-gradient-to-br from-amber-500/10 via-amber-50 to-white p-6 shadow-xs flex flex-col justify-between hover:shadow-md transition">
+            <div>
+              <div className="flex items-center justify-between mb-3">
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-amber-500 px-3 py-0.5 text-xs font-bold text-neutral-950 shadow-xs">
+                  <Compass className="h-3 w-3" />
+                  YALOM &amp; TMT MODEL
+                </span>
+                <span className="text-xs font-semibold text-amber-800">Dr. Irvin D. Yalom</span>
+              </div>
+              <h3 className="text-lg font-bold text-neutral-900 mb-1.5">
+                Thanatophobia &amp; Death Anxiety Screener
+              </h3>
+              <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed">
+                Do thoughts of mortality trigger heart palpitations, nocturnal dread, or panic before falling asleep? Screen existential annihilation dread and mortality salience.
+              </p>
+            </div>
+            <div className="mt-5 pt-3 border-t border-amber-100 flex items-center justify-between">
+              <span className="text-xs font-medium text-neutral-400">~90 Secs · 12 Items</span>
+              <Link
+                to="/quiz/thanatophobia"
+                className="inline-flex items-center gap-1.5 rounded-full bg-amber-500 px-4 py-2 text-xs font-bold text-neutral-950 hover:bg-amber-600 transition shadow-xs"
+              >
+                <span>Screen Thanatophobia</span>
+                <ArrowRight className="h-3.5 w-3.5" />
+              </Link>
+            </div>
+          </div>
+
+          {/* Card 91: Executive Dysfunction & Task Paralysis Screener */}
+          <div className="rounded-3xl border border-sky-300 bg-gradient-to-br from-sky-500/10 via-indigo-50 to-white p-6 shadow-xs flex flex-col justify-between hover:shadow-md transition">
+            <div>
+              <div className="flex items-center justify-between mb-3">
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-sky-600 px-3 py-0.5 text-xs font-bold text-white shadow-xs">
+                  <Zap className="h-3 w-3" />
+                  BARKLEY ADHD MODEL
+                </span>
+                <span className="text-xs font-semibold text-sky-800">Dr. Russell Barkley</span>
+              </div>
+              <h3 className="text-lg font-bold text-neutral-900 mb-1.5">
+                Executive Dysfunction &amp; Task Paralysis Screener
+              </h3>
+              <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed">
+                Staring at your screen screaming internally to start while frozen in place? Differentiate laziness from neurological task initiation friction and time blindness.
+              </p>
+            </div>
+            <div className="mt-5 pt-3 border-t border-sky-100 flex items-center justify-between">
+              <span className="text-xs font-medium text-neutral-400">~90 Secs · 12 Items</span>
+              <Link
+                to="/quiz/executive-dysfunction"
+                className="inline-flex items-center gap-1.5 rounded-full bg-sky-600 px-4 py-2 text-xs font-bold text-white hover:bg-sky-700 transition shadow-xs"
+              >
+                <span>Screen Task Paralysis</span>
+                <ArrowRight className="h-3.5 w-3.5" />
+              </Link>
+            </div>
+          </div>
         </div>
 
         {/* Country Filter Pills */}

@@ -3001,6 +3001,68 @@ export function getQuizAndToolPages({
       ],
     },
 
+    {
+      route: "/quiz/thanatophobia",
+      aliases: ["/quiz/death-anxiety", "/tes-thanatophobia"],
+      title: "Thanatophobia & Existential Death Anxiety Screener (Dr. Irvin D. Yalom & TMT Model)",
+      description:
+        "Do thoughts of mortality, non-existence, or eternity trigger nocturnal dread and heart palpitations? Free 12-item clinical screener measuring existential annihilation dread, symbolic immortality strivings, and mortality salience paralysis.",
+      category: "Existential Psychology & Anxiety",
+      duration: "90 secs",
+      itemsCount: 12,
+      framework: "Dr. Irvin D. Yalom (Existential Psychotherapy) & Terror Management Theory (Solomon, Greenberg, Pyszczynski)",
+      overview:
+        "Thanatophobia is the profound fear of death, dying, and personal annihilation. While daylight distractions mask existential terror, the quiet of night dismantles psychological defenses. This screener benchmarks annihilation vertigo, somatic vigilance, and immortality strivings.",
+      keyPoints: [
+        "Measures 3 clinical dimensions: Existential Annihilation Dread, Symbolic Immortality Striving, and Mortality Salience Paralysis",
+        "Assesses sleep-onset panic spikes, pulse-checking somatic vigilance, and fear of non-existence",
+        "Includes Dr. Yalom's awakening principles, Epictetus cognitive anchors, and nocturnal audio journal grounding",
+      ],
+      faqs: [
+        {
+          question: "What causes death anxiety before falling asleep?",
+          answer:
+            "During the day, sensory input and tasks suppress existential dread. At bedtime, quiet darkness dismantles conscious distractions, allowing the brain's baseline fear of finitude and non-existence to reach awareness and trigger panic sensations.",
+        },
+        {
+          question: "Is thanatophobia curable?",
+          answer:
+            "Yes. Through existential psychotherapy and Terror Management cognitive grounding, individuals learn to shift from morbid avoidance into the Yalom Awakening state, where mortality salience fuels deep daily presence and purpose.",
+        },
+      ],
+    },
+
+    {
+      route: "/quiz/executive-dysfunction",
+      aliases: ["/quiz/task-paralysis", "/tes-disfungsi-eksekutif"],
+      title: "Executive Dysfunction & Task Paralysis Screener (Dr. Russell Barkley ADHD Model)",
+      description:
+        "Staring at your screen screaming internally to start while physically frozen? Free 12-item clinical screener measuring prefrontal activation barriers, working memory object impermanence, and time blindness.",
+      category: "ADHD & Prefrontal Executive Function",
+      duration: "90 secs",
+      itemsCount: 12,
+      framework: "Dr. Russell Barkley (ADHD Executive Function Model) & Dr. Thomas E. Brown (Executive Function Impairment)",
+      overview:
+        "Executive dysfunction is a neurochemical initiation breakdown in the prefrontal cortex, not a moral failure or laziness. This screener measures task activation barriers, working memory object impermanence, and urgency-dependent time blindness.",
+      keyPoints: [
+        "Measures 3 clinical dimensions: Task Initiation Activation Barrier, Working Memory Object Impermanence, and Time Blindness & Urgency Dependence",
+        "Assesses intention-to-action gaps, Wall of Awful paralysis, and waiting-mode freeze",
+        "Provides 2-minute micro-activation ramps, externalized visual cues, and zero-resistance voice brain-dump techniques",
+      ],
+      faqs: [
+        {
+          question: "How is executive dysfunction different from laziness?",
+          answer:
+            "Laziness is a conscious, guilt-free choice to avoid effort. Executive dysfunction is an agonizing state where a person desperately wants to initiate a task and suffers immense internal distress, but lacks the prefrontal dopamine ignition to cross the motor barrier.",
+        },
+        {
+          question: "What is the 'Wall of Awful' in ADHD?",
+          answer:
+            "The Wall of Awful is an emotional barrier built from past failures, shame, and fear of judgment. Approaching a simple task requires climbing over this accumulated mountain of negative affect, triggering cognitive paralysis.",
+        },
+      ],
+    },
+
     // 5. Ebook Sales Pages
     {
       route: "/ebook",

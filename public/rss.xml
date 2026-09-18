@@ -6,7 +6,7 @@
     <atom:link href="https://nuju.app/rss.xml" rel="self" type="application/rss+xml" />
     <description>Practical guides on journaling, mood tracking, and emotional wellness from the Nuju team.</description>
     <language>en</language>
-    <lastBuildDate>Fri, 18 Sep 2026 02:55:59 GMT</lastBuildDate>
+    <lastBuildDate>Fri, 18 Sep 2026 06:25:24 GMT</lastBuildDate>
     <item>
       <title>The Neuroscience of Maladaptive Daydreaming: Why Kinesthetic Pacing, Looped Music, and Paracosms Trap the Mind</title>
       <link>https://nuju.app/blog/maladaptive-daydreaming-neuroscience-pacing-music-paracosm</link>
@@ -1192,6 +1192,114 @@
       <guid isPermaLink="true">https://nuju.app/blog/esquema-de-abandono-sistema-nervioso-panico-distancia-emocional</guid>
       <description>Conozca el modelo de Terapia de Esquemas del Dr. Jeffrey Young sobre el esquema de abandono. Por qué la distancia desata pánico vital y cómo sanar el apego.</description>
       <category>Apego &amp; Terapia de Esquemas</category>
+      <pubDate>Fri, 18 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>es</dc:language>
+    </item>
+    <item>
+      <title>The Clock in Your Chest: The Neurobiology of Thanatophobia and Sleep-Onset Death Anxiety</title>
+      <link>https://nuju.app/blog/thanatophobia-death-anxiety-neurobiology-sleep-onset-panic</link>
+      <guid isPermaLink="true">https://nuju.app/blog/thanatophobia-death-anxiety-neurobiology-sleep-onset-panic</guid>
+      <description>Explore Dr. Irvin Yalom&apos;s existential psychotherapy model and Terror Management Theory (TMT): why lying in the dark ignites visceral mortality panic and racing heartbeats.</description>
+      <category>Existential Psychology &amp; Anxiety</category>
+      <pubDate>Fri, 18 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>The Wall of Awful: The Neuroscience of Executive Dysfunction and ADHD Task Paralysis</title>
+      <link>https://nuju.app/blog/executive-dysfunction-task-paralysis-adhd-wall-of-awful</link>
+      <guid isPermaLink="true">https://nuju.app/blog/executive-dysfunction-task-paralysis-adhd-wall-of-awful</guid>
+      <description>Understand why task paralysis is a neurochemical initiation barrier rather than laziness, based on Dr. Russell Barkley&apos;s ADHD executive function model.</description>
+      <category>ADHD &amp; Executive Function</category>
+      <pubDate>Fri, 18 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Staring at the Sun: Why Confronting Mortality Is the Ultimate Catalyst for Living Authentically</title>
+      <link>https://nuju.app/blog/staring-at-the-sun-irvin-yalom-death-anxiety-authentic-life</link>
+      <guid isPermaLink="true">https://nuju.app/blog/staring-at-the-sun-irvin-yalom-death-anxiety-authentic-life</guid>
+      <description>Delve into Dr. Irvin Yalom&apos;s therapeutic masterpiece &apos;Staring at the Sun&apos; and discover how coming to terms with mortality awakens profound life purpose and emotional freedom.</description>
+      <category>Existential Philosophy &amp; Growth</category>
+      <pubDate>Fri, 18 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Time Blindness: Why Your Brain Only Recognizes &apos;Now&apos; and &apos;Not Now&apos;</title>
+      <link>https://nuju.app/blog/time-blindness-executive-function-adhd-urgency-dependence</link>
+      <guid isPermaLink="true">https://nuju.app/blog/time-blindness-executive-function-adhd-urgency-dependence</guid>
+      <description>Explore the neuropsychology of time blindness in ADHD and executive dysfunction: why deadlines vanish until the panic threshold is breached.</description>
+      <category>Neuroscience &amp; ADHD</category>
+      <pubDate>Fri, 18 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Teror Menjelang Tidur: Mengapa Pikiran Tentang Kematian Membuat Jantung Berdegup Kencang</title>
+      <link>https://nuju.app/blog/teror-menjelang-tidur-thanatophobia-cemas-kematian</link>
+      <guid isPermaLink="true">https://nuju.app/blog/teror-menjelang-tidur-thanatophobia-cemas-kematian</guid>
+      <description>Pahami neurobiologi thanatophobia dan kecemasan eksistensial menjelang tidur menurut model psikoterapi Dr. Irvin Yalom dan Terror Management Theory.</description>
+      <category>Psikologi Klinis &amp; Kecemasan</category>
+      <pubDate>Fri, 18 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>id</dc:language>
+    </item>
+    <item>
+      <title>Kelumpuhan Memulai Tugas (Executive Dysfunction): Bukan Malas, Tapi Masalah Dopamin Otak</title>
+      <link>https://nuju.app/blog/executive-dysfunction-task-paralysis-bukan-malas-dopamin</link>
+      <guid isPermaLink="true">https://nuju.app/blog/executive-dysfunction-task-paralysis-bukan-malas-dopamin</guid>
+      <description>Pelajari neurosains di balik executive dysfunction dan kelumpuhan tugas (task paralysis) menurut model ADHD Dr. Russell Barkley.</description>
+      <category>ADHD &amp; Neurosains</category>
+      <pubDate>Fri, 18 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>id</dc:language>
+    </item>
+    <item>
+      <title>Menatap Sang Surya: Bagaimana Menghadapi Ketakutan Kematian Menjadikan Hidup Lebih Bermakna</title>
+      <link>https://nuju.app/blog/menatap-sang-surya-irvin-yalom-kecemasan-kematian</link>
+      <guid isPermaLink="true">https://nuju.app/blog/menatap-sang-surya-irvin-yalom-kecemasan-kematian</guid>
+      <description>Ulasan mendalam buku karya Dr. Irvin Yalom &apos;Menatap Sang Surya&apos; dan bagaimana menerima kematian membebaskan kita dari kepalsuan dan penyesalan.</description>
+      <category>Filsafat &amp; Pertumbuhan Diri</category>
+      <pubDate>Fri, 18 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>id</dc:language>
+    </item>
+    <item>
+      <title>Time Blindness: Mengapa Otak Hanya Mengenal &apos;Sekarang&apos; dan &apos;Belum Nanti&apos;</title>
+      <link>https://nuju.app/blog/time-blindness-adhd-mengapa-otak-hanya-kenal-sekarang</link>
+      <guid isPermaLink="true">https://nuju.app/blog/time-blindness-adhd-mengapa-otak-hanya-kenal-sekarang</guid>
+      <description>Pahami fenomena time blindness pada ADHD dan disfungsi eksekutif: mengapa deadline sering tak terasa hingga memicu kepanikan mendadak.</description>
+      <category>ADHD &amp; Manajemen Waktu</category>
+      <pubDate>Fri, 18 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>id</dc:language>
+    </item>
+    <item>
+      <title>Thanatophobie &amp; Todesangst: Wenn der Gedanke an die eigene Endlichkeit Panik auslöst</title>
+      <link>https://nuju.app/blog/thanatophobie-todesangst-einschlafen-endlichkeit-panik</link>
+      <guid isPermaLink="true">https://nuju.app/blog/thanatophobie-todesangst-einschlafen-endlichkeit-panik</guid>
+      <description>Erfahren Sie mehr über die Neurobiologie der nächtlichen Todesangst nach Dr. Irvin D. Yalom und der Terror-Management-Theorie.</description>
+      <category>Existenzielle Psychologie &amp; Angst</category>
+      <pubDate>Fri, 18 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>de</dc:language>
+    </item>
+    <item>
+      <title>Exekutive Dysfunktion: Warum Aufgabenlähmung nichts mit Faulheit zu tun hat</title>
+      <link>https://nuju.app/blog/exekutive-dysfunktion-aufgabenlaehmung-adhs-dopamin</link>
+      <guid isPermaLink="true">https://nuju.app/blog/exekutive-dysfunktion-aufgabenlaehmung-adhs-dopamin</guid>
+      <description>Verstehen Sie die Neurologie der exekutiven Dysfunktion und der Aufgabenblockade bei ADHS nach dem Modell von Dr. Russell Barkley.</description>
+      <category>ADHS &amp; Neurobiologie</category>
+      <pubDate>Fri, 18 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>de</dc:language>
+    </item>
+    <item>
+      <title>La Thanatophobie : Comprendre et Apaiser l&apos;Angoisse de Mort Nocturne</title>
+      <link>https://nuju.app/blog/thanatophobie-angoisse-de-mort-nocturne-yalom</link>
+      <guid isPermaLink="true">https://nuju.app/blog/thanatophobie-angoisse-de-mort-nocturne-yalom</guid>
+      <description>Explorez le modèle de thérapie existentielle du Dr Irvin Yalom et découvrez comment surmonter le vertige de la finitude avant de s&apos;endormir.</description>
+      <category>Psychologie Existentielle</category>
+      <pubDate>Fri, 18 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>fr</dc:language>
+    </item>
+    <item>
+      <title>Disfunción Ejecutiva y Parálisis de Tareas: Por Qué Tu Cerebro No Puede Empezar</title>
+      <link>https://nuju.app/blog/disfuncion-ejecutiva-paralisis-tareas-adhd-dopamina</link>
+      <guid isPermaLink="true">https://nuju.app/blog/disfuncion-ejecutiva-paralisis-tareas-adhd-dopamina</guid>
+      <description>Aprende por qué la parálisis de inicio no es pereza sino un bloqueo neuroquímico del lóbulo frontal, basado en el modelo de TDAH del Dr. Russell Barkley.</description>
+      <category>TDAH &amp; Neurociencia</category>
       <pubDate>Fri, 18 Sep 2026 12:00:00 GMT</pubDate>
       <dc:language>es</dc:language>
     </item>

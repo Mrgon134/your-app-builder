@@ -53,6 +53,7 @@ import { ANTIGRAVITY_BLOG_POSTS_BATCH51 } from "./antigravity-posts-batch51";
 import { ANTIGRAVITY_BLOG_POSTS_BATCH52 } from "./antigravity-posts-batch52";
 import { ANTIGRAVITY_BLOG_POSTS_BATCH53 } from "./antigravity-posts-batch53";
 import { ANTIGRAVITY_BLOG_POSTS_BATCH54 } from "./antigravity-posts-batch54";
+import { ANTIGRAVITY_BLOG_POSTS_BATCH55 } from "./antigravity-posts-batch55";
 
 export interface BlogSection {
   type: "h2" | "h3" | "p" | "ul" | "ol" | "callout";
@@ -11545,6 +11546,7 @@ const RAW_BLOG_POSTS: BlogPost[] = [
   ...ANTIGRAVITY_BLOG_POSTS_BATCH52,
   ...ANTIGRAVITY_BLOG_POSTS_BATCH53,
   ...ANTIGRAVITY_BLOG_POSTS_BATCH54,
+  ...ANTIGRAVITY_BLOG_POSTS_BATCH55,
   ...SEO_BLOG_POSTS,
 ];
 
