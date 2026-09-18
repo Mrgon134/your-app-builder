@@ -116,6 +116,8 @@ const ComparisonTrapTest = lazy(() => import("./pages/ComparisonTrapTest.tsx"));
 const SpiritualNarcissismTest = lazy(() => import("./pages/SpiritualNarcissismTest.tsx"));
 const HypervigilanceTest = lazy(() => import("./pages/HypervigilanceTest.tsx"));
 const ChildhoodEmotionalNeglectTest = lazy(() => import("./pages/ChildhoodEmotionalNeglectTest.tsx"));
+const ExistentialDepressionTest = lazy(() => import("./pages/ExistentialDepressionTest.tsx"));
+const AmbiguousLossTest = lazy(() => import("./pages/AmbiguousLossTest.tsx"));
 const EbookSalesPage = lazy(() => import("./pages/EbookSalesPage.tsx"));
 const EbookReaderPage = lazy(() => import("./pages/EbookReaderPage.tsx"));
 const NotFound = lazy(() => import("./pages/NotFound.tsx"));
@@ -442,6 +444,12 @@ const App = () => (
                   <Route path="/quiz/childhood-emotional-neglect" element={<ChildhoodEmotionalNeglectTest />} />
                   <Route path="/quiz/cen-screener" element={<ChildhoodEmotionalNeglectTest />} />
                   <Route path="/tes-emotional-neglect" element={<ChildhoodEmotionalNeglectTest />} />
+                  <Route path="/quiz/existential-depression" element={<ExistentialDepressionTest />} />
+                  <Route path="/quiz/dabrowski-overexcitability" element={<ExistentialDepressionTest />} />
+                  <Route path="/tes-depresi-eksistensial" element={<ExistentialDepressionTest />} />
+                  <Route path="/quiz/ambiguous-loss" element={<AmbiguousLossTest />} />
+                  <Route path="/quiz/frozen-grief" element={<AmbiguousLossTest />} />
+                  <Route path="/tes-ambiguous-loss" element={<AmbiguousLossTest />} />
                   <Route path="/quiz/:quizId" element={<QuizRunner />} />
                   <Route path="/test-psikologi" element={<QuizHub />} />
                   <Route path="/test-psikologi/:quizId" element={<QuizRunner />} />

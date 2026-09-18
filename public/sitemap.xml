@@ -975,6 +975,42 @@
     <changefreq>weekly</changefreq>
   </url>
   <url>
+    <loc>https://nuju.app/quiz/existential-depression</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.95</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/quiz/dabrowski-overexcitability</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.9</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/tes-depresi-eksistensial</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.9</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/quiz/ambiguous-loss</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.95</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/quiz/frozen-grief</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.9</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/tes-ambiguous-loss</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.9</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
     <loc>https://nuju.app/quiz/baterai-emosi</loc>
     <lastmod>2026-09-18</lastmod>
     <priority>0.9</priority>
@@ -10126,6 +10162,150 @@
       <image:caption>El modelo de la Dra. Jonice Webb: cómo la ausencia de sintonía emocional de los padres genera desconexión, alexitimia y vergüenza invisible en la adultez.</image:caption>
     </image:image>
     <xhtml:link rel="alternate" hreflang="es" href="https://nuju.app/blog/negligencia-emocional-infantil-cen-vacio-cronico-sin-saber-por-que"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/existential-depression-deep-thinkers-dabrowski-meaning-of-life</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Existential Depression: Why Deep Thinkers Mourn the Meaning of Life</image:title>
+      <image:caption>Explore Kazimierz Dąbrowski&apos;s Theory of Positive Disintegration and Dr. James T. Webb&apos;s model of existential depression in intense, gifted minds.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/existential-depression-deep-thinkers-dabrowski-meaning-of-life"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/ambiguous-loss-grieving-someone-still-alive-pauline-boss</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Ambiguous Loss: The Agony of Grieving Someone Who Is Still Alive</image:title>
+      <image:caption>Understand Dr. Pauline Boss&apos;s model of Ambiguous Loss: why mourning someone physically present but emotionally gone (or vice-versa) freezes human bereavement.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/ambiguous-loss-grieving-someone-still-alive-pauline-boss"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/burden-of-overexcitability-dabrowski-gifted-adults-intensity</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>The Burden of Over-Excitability: When Your Nervous System Feels Everything at 10x</image:title>
+      <image:caption>Why do gifted, highly sensitive adults feel sensory, emotional, and moral input with exhausting intensity? The 5 forms of Dąbrowski overexcitability.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/burden-of-overexcitability-dabrowski-gifted-adults-intensity"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/frozen-grief-healing-without-closure-ambiguous-loss-limbo</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Frozen Grief: Why You Can&apos;t Heal Without Closure (And How to Accept Limbo)</image:title>
+      <image:caption>When a relationship ends without explanation or an ex vanishes into silence, grief freezes. How to reconstruct identity when closure is impossible.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/frozen-grief-healing-without-closure-ambiguous-loss-limbo"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/depresi-eksistensial-orang-kritis-hampa-terasing-dabrowski</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Depresi Eksistensial: Mengapa Orang yang Berpikir Kritis Sering Merasa Hampa &amp; Terasing</image:title>
+      <image:caption>Pelajari teori Disintegrasi Positif Kazimierz Dąbrowski dan krisis eksistensial pada orang yang berpikiran mendalam dan berempati tinggi.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="id" href="https://nuju.app/blog/depresi-eksistensial-orang-kritis-hampa-terasing-dabrowski"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/ambiguous-loss-berduka-seseorang-masih-ada-tapi-asing</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Ambiguous Loss: Pedihnya Berduka atas Seseorang yang Masih Ada Tapi Sudah Berubah</image:title>
+      <image:caption>Pelajari model Ambiguous Loss Dr. Pauline Boss: mengapa berduka atas orang yang masih hidup atau hubungan tanpa kepastian begitu menyiksa batin.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="id" href="https://nuju.app/blog/ambiguous-loss-berduka-seseorang-masih-ada-tapi-asing"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/beban-overexcitability-otak-hati-merasakan-dunia-terlalu-intens</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Beban Overexcitability: Ketika Otak dan Hatimu Merasakan Dunia 10 Kali Lebih Intens</image:title>
+      <image:caption>Kenapa kamu gampang lelah oleh suara bising, muak pada kemunafikan, dan memikirkan hal mendalam? Pahami 5 bentuk overexcitability menurut Dąbrowski.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="id" href="https://nuju.app/blog/beban-overexcitability-otak-hati-merasakan-dunia-terlalu-intens"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/duka-tanpa-kepastian-frozen-grief-menunggu-tanpa-ujung</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Duka Tanpa Kepastian (Frozen Grief): Mengapa Menunggu Tanpa Ujung Begitu Melelahkan</image:title>
+      <image:caption>Kenapa kamu tidak bisa move on saat hubungan berakhir tanpa penjelasan? Pahami fenomena frozen grief dan cara memberikan penutupan untuk diri sendiri.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="id" href="https://nuju.app/blog/duka-tanpa-kepastian-frozen-grief-menunggu-tanpa-ujung"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/existenzielle-depression-hochbegabung-dabrowski-weltschmerz</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Existenzielle Depression &amp; Hochbegabung: Wenn tiefes Denken in Weltschmerz mündet</image:title>
+      <image:caption>Die Theorie der positiven Desintegration nach Kazimierz Dąbrowski und das Modell von Dr. James T. Webb: Warum tiefgründige Menschen an der Sinnfrage leiden.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="de" href="https://nuju.app/blog/existenzielle-depression-hochbegabung-dabrowski-weltschmerz"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/mehrdeutiger-verlust-ambiguous-loss-trauern-um-lebende</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Mehrdeutiger Verlust (Ambiguous Loss): Trauern um jemanden, der noch lebt</image:title>
+      <image:caption>Das Modell von Dr. Pauline Boss: Warum das Fehlen eines klaren Abschlusses bei Demenz, Kontaktabbruch oder Trennungen das Nervensystem zermürbt.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="de" href="https://nuju.app/blog/mehrdeutiger-verlust-ambiguous-loss-trauern-um-lebende"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/depression-existentielle-esprits-creatifs-douleur-du-monde</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>La Dépression Existentielle : Pourquoi les Esprits Créatifs Ressentent la Douleur du Monde</image:title>
+      <image:caption>La théorie de la désintégration positive de Kazimierz Dąbrowski : pourquoi la lucidité morale et la douance intellectuelle engendrent un vide existentiel déchirant.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://nuju.app/blog/depression-existentielle-esprits-creatifs-douleur-du-monde"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/perdida-ambigua-dolor-llorar-alguien-presente-pauline-boss</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Pérdida Ambigua: El Dolor de Llorar a Alguien Que Aún Está Físicamente Presente</image:title>
+      <image:caption>El modelo de la Dra. Pauline Boss: cómo sobrellevar el duelo suspendido ante el Alzheimer, adicciones, desapariciones emocionales y rupturas sin despedida.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="es" href="https://nuju.app/blog/perdida-ambigua-dolor-llorar-alguien-presente-pauline-boss"/>
   </url>
   <url>
     <loc>https://nuju.app/blog/how-to-stop-overthinking-at-night</loc>

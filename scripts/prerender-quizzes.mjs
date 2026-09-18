@@ -2815,6 +2815,68 @@ export function getQuizAndToolPages({
       ],
     },
 
+    {
+      route: "/quiz/existential-depression",
+      aliases: ["/quiz/dabrowski-overexcitability", "/tes-depresi-eksistensial"],
+      title: "Existential Depression & Dabrowski Over-excitability Screener (Positive Disintegration Model)",
+      description:
+        "Do societal norms feel arbitrary, hollow, or absurd? Free 12-item clinical screener measuring cosmic loneliness, moral intensity, and positive disintegration crisis based on Kazimierz Dąbrowski and Dr. James T. Webb.",
+      category: "Existential Psychology",
+      duration: "90 secs",
+      itemsCount: 12,
+      framework: "Kazimierz Dąbrowski (Theory of Positive Disintegration) & Dr. James T. Webb (Existential Depression in Gifted Adults)",
+      overview:
+        "Existential Depression occurs when deep cognitive capacity and acute emotional overexcitability collide with the arbitrary, unexamined scripts of conventional society. This screener measures cosmic alienation, intense overexcitabilities, and the positive disintegration of the conformist self.",
+      keyPoints: [
+        "Measures 3 clinical subscales: Existential Alienation & Cosmic Dread, Neuro-Emotional Over-Excitability & Moral Intensity, and Positive Disintegration & Autonomous Values Crisis",
+        "Assesses hypocrisy intolerance, cosmic loneliness, and the breakdown of superficial personas",
+        "Includes radical somatic grounding drills, sovereign values definition, and private voice journaling",
+      ],
+      faqs: [
+        {
+          question: "What is existential depression?",
+          answer:
+            "Existential depression is a profound crisis of meaning, cosmic loneliness, and moral anguish experienced by deep thinkers and gifted individuals when confronting mortality, absurdity, and societal hypocrisy.",
+        },
+        {
+          question: "What is Positive Disintegration according to Dąbrowski?",
+          answer:
+            "It is the necessary breakdown of a conformist, socially conditioned personality (Level I) to clear the foundation for an authentic, self-chosen hierarchy of values (Level IV/V).",
+        },
+      ],
+    },
+
+    {
+      route: "/quiz/ambiguous-loss",
+      aliases: ["/quiz/frozen-grief", "/tes-ambiguous-loss"],
+      title: "Ambiguous Loss & Frozen Grief Screener (Dr. Pauline Boss Model)",
+      description:
+        "Grieving someone physically present but emotionally unreachable, or trapped in limbo after ghosting or estrangement? Free 12-item clinical screener based on Dr. Pauline Boss's Ambiguous Loss architecture.",
+      category: "Grief & Attachment",
+      duration: "90 secs",
+      itemsCount: 12,
+      framework: "Dr. Pauline Boss (Ambiguous Loss Model & Disenfranchised Grief Architecture)",
+      overview:
+        "Ambiguous Loss is the most agonizing form of bereavement because the lack of an official funeral, clean goodbye, or definitive ending freezes the human mourning cycle. This screener measures psychological absence/presence paradoxes, frozen grief paralysis, and boundary ambiguity fatigue.",
+      keyPoints: [
+        "Measures 3 clinical dimensions: Psychological Absence & Physical Presence Paradox, Frozen Grief & Closure Paralysis, and Boundary Ambiguity & Relational Fatigue",
+        "Evaluates role confusion, chronic hope-grief pendulum swings, and unvalidated disenfranchised mourning",
+        "Provides dialectical 'both/and' acceptance protocols, private symbolic closure rituals, and encrypted voice mourning",
+      ],
+      faqs: [
+        {
+          question: "What is ambiguous loss?",
+          answer:
+            "Ambiguous loss is an unresolved loss without verifiable closure—either a person is physically absent but psychologically present (ghosting, missing persons), or physically present but psychologically absent (dementia, addiction, emotional estrangement).",
+        },
+        {
+          question: "How do you heal from ambiguous loss without closure?",
+          answer:
+            "By abandoning the search for binary certainty and adopting dialectical 'Both/And' thinking ('They are gone from my daily life, AND they remain part of my story'), creating private rituals, and releasing the need for an explanation.",
+        },
+      ],
+    },
+
     // 5. Ebook Sales Pages
     {
       route: "/ebook",

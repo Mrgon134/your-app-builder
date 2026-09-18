@@ -2563,6 +2563,64 @@ const QuizHub: React.FC = () => {
               </Link>
             </div>
           </div>
+
+          {/* Card 84: Existential Depression & Over-Excitabilities Screener */}
+          <div className="rounded-3xl border border-violet-300 bg-gradient-to-br from-violet-500/10 via-violet-50 to-white p-6 shadow-xs flex flex-col justify-between hover:shadow-md transition">
+            <div>
+              <div className="flex items-center justify-between mb-3">
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-violet-600 px-3 py-0.5 text-xs font-bold text-white shadow-xs">
+                  <Compass className="h-3 w-3" />
+                  POSITIVE DISINTEGRATION
+                </span>
+                <span className="text-xs font-semibold text-violet-800">K. Dąbrowski &amp; Dr. J. T. Webb</span>
+              </div>
+              <h3 className="text-lg font-bold text-neutral-900 mb-1.5">
+                Existential Depression &amp; Overexcitability Screener
+              </h3>
+              <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed">
+                Do societal scripts feel arbitrary and absurd? Screen cosmic loneliness, intellectual and emotional overexcitabilities, and positive disintegration crisis.
+              </p>
+            </div>
+            <div className="mt-5 pt-3 border-t border-violet-100 flex items-center justify-between">
+              <span className="text-xs font-medium text-neutral-400">~90 Secs · 12 Items</span>
+              <Link
+                to="/quiz/existential-depression"
+                className="inline-flex items-center gap-1.5 rounded-full bg-violet-600 px-4 py-2 text-xs font-bold text-white hover:bg-violet-700 transition shadow-xs"
+              >
+                <span>Screen Existential Intensity</span>
+                <ArrowRight className="h-3.5 w-3.5" />
+              </Link>
+            </div>
+          </div>
+
+          {/* Card 85: Ambiguous Loss & Frozen Grief Screener */}
+          <div className="rounded-3xl border border-sky-300 bg-gradient-to-br from-sky-500/10 via-sky-50 to-white p-6 shadow-xs flex flex-col justify-between hover:shadow-md transition">
+            <div>
+              <div className="flex items-center justify-between mb-3">
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-sky-600 px-3 py-0.5 text-xs font-bold text-white shadow-xs">
+                  <HeartCrack className="h-3 w-3" />
+                  AMBIGUOUS LOSS MODEL
+                </span>
+                <span className="text-xs font-semibold text-sky-800">Dr. Pauline Boss Grief Architecture</span>
+              </div>
+              <h3 className="text-lg font-bold text-neutral-900 mb-1.5">
+                Ambiguous Loss &amp; Frozen Grief Screener
+              </h3>
+              <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed">
+                Grieving someone physically present but emotionally gone, or struggling with unresolved closure? Screen psychological absence, closure paralysis, and limbo fatigue.
+              </p>
+            </div>
+            <div className="mt-5 pt-3 border-t border-sky-100 flex items-center justify-between">
+              <span className="text-xs font-medium text-neutral-400">~90 Secs · 12 Items</span>
+              <Link
+                to="/quiz/ambiguous-loss"
+                className="inline-flex items-center gap-1.5 rounded-full bg-sky-600 px-4 py-2 text-xs font-bold text-white hover:bg-sky-700 transition shadow-xs"
+              >
+                <span>Screen Ambiguous Loss</span>
+                <ArrowRight className="h-3.5 w-3.5" />
+              </Link>
+            </div>
+          </div>
         </div>
 
         {/* Country Filter Pills */}

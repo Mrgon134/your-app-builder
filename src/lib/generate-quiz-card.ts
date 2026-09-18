@@ -13679,6 +13679,425 @@ export async function generateChildhoodEmotionalNeglectCard(
   return { dataUrl, blob, file };
 }
 
+export type ExistentialDepressionCardLang = "en" | "id" | "de" | "fr" | "es";
+
+export interface ExistentialDepressionScoreResult {
+  score: number;
+  percentage: number;
+  level: string;
+  profile: {
+    title: Record<string, string>;
+    badge: Record<string, string>;
+    summary: Record<string, string>;
+    psychology: Record<string, string>;
+    actionProtocol: Record<string, string[]>;
+  };
+  subscales: {
+    existential_alienation_dread: { score: number; percentage: number };
+    overexcitability_intensity: { score: number; percentage: number };
+    positive_disintegration_crisis: { score: number; percentage: number };
+  };
+}
+
+/**
+ * Generates an aesthetic high-resolution Instagram Story share card (1080x1350)
+ * for the Existential Depression & Dabrowski Over-excitability Screener.
+ */
+export async function generateExistentialDepressionCard(
+  result: ExistentialDepressionScoreResult,
+  lang: ExistentialDepressionCardLang = "en"
+): Promise<{ dataUrl: string; blob: Blob; file: File }> {
+  const canvas = document.createElement("canvas");
+  canvas.width = 1080;
+  canvas.height = 1350;
+  const ctx = canvas.getContext("2d");
+  if (!ctx) throw new Error("Could not get 2D canvas context");
+
+  const width = 1080;
+  const height = 1350;
+
+  // Background: Deep Cosmic Starlight & Violet Obsidian
+  const bgGrad = ctx.createLinearGradient(0, 0, width, height);
+  bgGrad.addColorStop(0, "#06040A");
+  bgGrad.addColorStop(0.5, "#120D1F");
+  bgGrad.addColorStop(1, "#06040A");
+  ctx.fillStyle = bgGrad;
+  ctx.fillRect(0, 0, width, height);
+
+  // Atmospheric glows
+  const glow1 = ctx.createRadialGradient(250, 270, 20, 250, 270, 500);
+  glow1.addColorStop(0, "rgba(139, 92, 246, 0.22)");
+  glow1.addColorStop(1, "rgba(139, 92, 246, 0)");
+  ctx.fillStyle = glow1;
+  ctx.fillRect(0, 0, width, height);
+
+  const glow2 = ctx.createRadialGradient(850, 950, 20, 850, 950, 480);
+  glow2.addColorStop(0, "rgba(245, 158, 11, 0.16)");
+  glow2.addColorStop(1, "rgba(245, 158, 11, 0)");
+  ctx.fillStyle = glow2;
+  ctx.fillRect(0, 0, width, height);
+
+  // Top header
+  ctx.fillStyle = "rgba(255, 255, 255, 0.7)";
+  ctx.font = "bold 20px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.letterSpacing = "2px";
+  ctx.fillText("NUJU CLINICAL SCREENER · DABROWSKI OVEREXCITABILITY & TPD", 80, 100);
+
+  // Primary Title
+  ctx.fillStyle = "#FFFFFF";
+  ctx.font = "900 44px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.letterSpacing = "-0.5px";
+  ctx.fillText("EXISTENTIAL INTENSITY PROFILE", 80, 165);
+
+  // Subtitle / Framework
+  ctx.fillStyle = "#A78BFA";
+  ctx.font = "600 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.letterSpacing = "0.5px";
+  ctx.fillText("Kazimierz Dąbrowski Positive Disintegration & Dr. James T. Webb", 80, 205);
+
+  // Hero Score Card Box
+  const cardY = 245;
+  const cardH = 345;
+  ctx.fillStyle = "rgba(255, 255, 255, 0.05)";
+  drawRoundedRect(ctx, 80, cardY, width - 160, cardH, 28);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(167, 139, 250, 0.35)";
+  ctx.lineWidth = 2;
+  ctx.stroke();
+
+  // Tier Badge Pill
+  const badgeText = (result.profile.badge[lang] || result.profile.badge.en).toUpperCase();
+  ctx.font = "bold 20px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  const badgeWidth = ctx.measureText(badgeText).width + 48;
+  const badgeGradient = ctx.createLinearGradient(120, cardY + 35, 120 + badgeWidth, cardY + 35);
+  badgeGradient.addColorStop(0, "#8B5CF6");
+  badgeGradient.addColorStop(1, "#6D28D9");
+  ctx.fillStyle = badgeGradient;
+  drawRoundedRect(ctx, 120, cardY + 28, badgeWidth, 38, 19);
+  ctx.fill();
+
+  ctx.fillStyle = "#FFFFFF";
+  ctx.fillText(badgeText, 144, cardY + 54);
+
+  // Large Numerical Score
+  ctx.fillStyle = "#FFFFFF";
+  ctx.font = "900 76px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(`${result.score}`, 120, cardY + 155);
+
+  ctx.fillStyle = "rgba(255, 255, 255, 0.5)";
+  ctx.font = "bold 32px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("/ 36", 225, cardY + 155);
+
+  // Percentage Indicator
+  ctx.fillStyle = "#DDD6FE";
+  ctx.font = "bold 24px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(`Existential Tension: ${result.percentage}%`, 330, cardY + 155);
+
+  // Profile Title
+  const titleText = result.profile.title[lang] || result.profile.title.en;
+  ctx.fillStyle = "#FFFFFF";
+  ctx.font = "bold 32px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  wrapText(ctx, titleText, 120, cardY + 215, width - 240, 40, 2);
+
+  // Subscales Metrics Box
+  const metricY = 625;
+  const metricH = 265;
+  ctx.fillStyle = "rgba(255, 255, 255, 0.03)";
+  drawRoundedRect(ctx, 80, metricY, width - 160, metricH, 24);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(255, 255, 255, 0.1)";
+  ctx.stroke();
+
+  ctx.fillStyle = "#E2E8F0";
+  ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("OVEREXCITABILITY & VALUES CRISIS METRICS", 120, metricY + 50);
+
+  // 3 Subscale Progress Bars
+  const subscales = [
+    { label: "Existential Alienation", val: result.subscales.existential_alienation_dread.percentage },
+    { label: "Overexcitability & Intensity", val: result.subscales.overexcitability_intensity.percentage },
+    { label: "Positive Disintegration", val: result.subscales.positive_disintegration_crisis.percentage },
+  ];
+
+  subscales.forEach((sub, idx) => {
+    const rowY = metricY + 95 + idx * 45;
+    ctx.fillStyle = "rgba(255, 255, 255, 0.8)";
+    ctx.font = "18px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+    ctx.fillText(sub.label, 120, rowY + 8);
+
+    ctx.fillStyle = "#C4B5FD";
+    ctx.font = "bold 18px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+    ctx.fillText(`${sub.val}%`, 530, rowY + 8);
+
+    // Track
+    ctx.fillStyle = "rgba(255, 255, 255, 0.12)";
+    drawRoundedRect(ctx, 600, rowY - 6, 360, 16, 8);
+    ctx.fill();
+
+    // Fill
+    const fillW = Math.max(12, Math.min(360, (360 * sub.val) / 100));
+    const barGrad = ctx.createLinearGradient(600, rowY, 600 + fillW, rowY);
+    barGrad.addColorStop(0, "#8B5CF6");
+    barGrad.addColorStop(1, "#6D28D9");
+    ctx.fillStyle = barGrad;
+    drawRoundedRect(ctx, 600, rowY - 6, fillW, 16, 8);
+    ctx.fill();
+  });
+
+  // Clinical Insight Quote
+  ctx.fillStyle = "#CBD5E1";
+  ctx.font = "20px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(
+    "Dąbrowski Insight: Crisis is not pathology; it is the necessary birth pangs of an authentic hierarchy of values.",
+    120,
+    metricY + 235
+  );
+
+  // Action Protocol
+  ctx.fillStyle = "rgba(255, 255, 255, 0.04)";
+  drawRoundedRect(ctx, 80, 925, width - 160, 200, 24);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(255, 255, 255, 0.12)";
+  ctx.stroke();
+
+  ctx.fillStyle = "#F8FAFC";
+  ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("SOVEREIGN VALUES & EXISTENTIAL SAFE HARBOR PROTOCOL", 120, 975);
+
+  const protocols = result.profile.actionProtocol[lang] || result.profile.actionProtocol.en;
+  const protocolText = protocols[0] || "";
+  ctx.fillStyle = "#CBD5E1";
+  ctx.font = "24px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  wrapText(ctx, protocolText, 120, 1020, width - 240, 36, 3);
+
+  // Footer CTA
+  ctx.fillStyle = "rgba(255, 255, 255, 0.5)";
+  ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("Assess your existential depression & overexcitability free at:", 80, 1200);
+
+  ctx.fillStyle = "#A78BFA";
+  ctx.font = "900 30px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("nuju.app/quiz/existential-depression", 80, 1245);
+
+  const dataUrl = canvas.toDataURL("image/png", 0.95);
+  const blob = await new Promise<Blob>((resolve, reject) => {
+    canvas.toBlob((b) => (b ? resolve(b) : reject(new Error("Failed blob"))), "image/png", 0.95);
+  });
+  const file = new File([blob], `nuju-existential-${result.level}.png`, { type: "image/png" });
+
+  return { dataUrl, blob, file };
+}
+
+export type AmbiguousLossCardLang = "en" | "id" | "de" | "fr" | "es";
+
+export interface AmbiguousLossScoreResult {
+  score: number;
+  percentage: number;
+  level: string;
+  profile: {
+    title: Record<string, string>;
+    badge: Record<string, string>;
+    summary: Record<string, string>;
+    psychology: Record<string, string>;
+    actionProtocol: Record<string, string[]>;
+  };
+  subscales: {
+    psychological_absence_presence: { score: number; percentage: number };
+    frozen_grief_closure_paralysis: { score: number; percentage: number };
+    boundary_ambiguity_exhaustion: { score: number; percentage: number };
+  };
+}
+
+/**
+ * Generates an aesthetic high-resolution Instagram Story share card (1080x1350)
+ * for the Ambiguous Loss & Frozen Grief Screener (Dr. Pauline Boss model).
+ */
+export async function generateAmbiguousLossCard(
+  result: AmbiguousLossScoreResult,
+  lang: AmbiguousLossCardLang = "en"
+): Promise<{ dataUrl: string; blob: Blob; file: File }> {
+  const canvas = document.createElement("canvas");
+  canvas.width = 1080;
+  canvas.height = 1350;
+  const ctx = canvas.getContext("2d");
+  if (!ctx) throw new Error("Could not get 2D canvas context");
+
+  const width = 1080;
+  const height = 1350;
+
+  // Background: Deep Twilight Slate & Mist Blue
+  const bgGrad = ctx.createLinearGradient(0, 0, width, height);
+  bgGrad.addColorStop(0, "#080C14");
+  bgGrad.addColorStop(0.5, "#101A2B");
+  bgGrad.addColorStop(1, "#080C14");
+  ctx.fillStyle = bgGrad;
+  ctx.fillRect(0, 0, width, height);
+
+  // Atmospheric glows
+  const glow1 = ctx.createRadialGradient(250, 270, 20, 250, 270, 500);
+  glow1.addColorStop(0, "rgba(56, 189, 248, 0.2)");
+  glow1.addColorStop(1, "rgba(56, 189, 248, 0)");
+  ctx.fillStyle = glow1;
+  ctx.fillRect(0, 0, width, height);
+
+  const glow2 = ctx.createRadialGradient(850, 950, 20, 850, 950, 480);
+  glow2.addColorStop(0, "rgba(96, 165, 250, 0.16)");
+  glow2.addColorStop(1, "rgba(96, 165, 250, 0)");
+  ctx.fillStyle = glow2;
+  ctx.fillRect(0, 0, width, height);
+
+  // Top header
+  ctx.fillStyle = "rgba(255, 255, 255, 0.7)";
+  ctx.font = "bold 20px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.letterSpacing = "2px";
+  ctx.fillText("NUJU CLINICAL SCREENER · AMBIGUOUS LOSS & DISENFRANCHISED GRIEF", 80, 100);
+
+  // Primary Title
+  ctx.fillStyle = "#FFFFFF";
+  ctx.font = "900 44px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.letterSpacing = "-0.5px";
+  ctx.fillText("AMBIGUOUS LOSS PROFILE", 80, 165);
+
+  // Subtitle / Framework
+  ctx.fillStyle = "#38BDF8";
+  ctx.font = "600 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.letterSpacing = "0.5px";
+  ctx.fillText("Dr. Pauline Boss Ambiguous Loss & Boundary Ambiguity Model", 80, 205);
+
+  // Hero Score Card Box
+  const cardY = 245;
+  const cardH = 345;
+  ctx.fillStyle = "rgba(255, 255, 255, 0.05)";
+  drawRoundedRect(ctx, 80, cardY, width - 160, cardH, 28);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(56, 189, 248, 0.35)";
+  ctx.lineWidth = 2;
+  ctx.stroke();
+
+  // Tier Badge Pill
+  const badgeText = (result.profile.badge[lang] || result.profile.badge.en).toUpperCase();
+  ctx.font = "bold 20px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  const badgeWidth = ctx.measureText(badgeText).width + 48;
+  const badgeGradient = ctx.createLinearGradient(120, cardY + 35, 120 + badgeWidth, cardY + 35);
+  badgeGradient.addColorStop(0, "#0284C7");
+  badgeGradient.addColorStop(1, "#0369A1");
+  ctx.fillStyle = badgeGradient;
+  drawRoundedRect(ctx, 120, cardY + 28, badgeWidth, 38, 19);
+  ctx.fill();
+
+  ctx.fillStyle = "#FFFFFF";
+  ctx.fillText(badgeText, 144, cardY + 54);
+
+  // Large Numerical Score
+  ctx.fillStyle = "#FFFFFF";
+  ctx.font = "900 76px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(`${result.score}`, 120, cardY + 155);
+
+  ctx.fillStyle = "rgba(255, 255, 255, 0.5)";
+  ctx.font = "bold 32px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("/ 36", 225, cardY + 155);
+
+  // Percentage Indicator
+  ctx.fillStyle = "#BAE6FD";
+  ctx.font = "bold 24px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(`Ambiguity Index: ${result.percentage}%`, 330, cardY + 155);
+
+  // Profile Title
+  const titleText = result.profile.title[lang] || result.profile.title.en;
+  ctx.fillStyle = "#FFFFFF";
+  ctx.font = "bold 32px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  wrapText(ctx, titleText, 120, cardY + 215, width - 240, 40, 2);
+
+  // Subscales Metrics Box
+  const metricY = 625;
+  const metricH = 265;
+  ctx.fillStyle = "rgba(255, 255, 255, 0.03)";
+  drawRoundedRect(ctx, 80, metricY, width - 160, metricH, 24);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(255, 255, 255, 0.1)";
+  ctx.stroke();
+
+  ctx.fillStyle = "#E2E8F0";
+  ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("AMBIGUOUS LOSS & FROZEN GRIEF METRICS", 120, metricY + 50);
+
+  // 3 Subscale Progress Bars
+  const subscales = [
+    { label: "Psychological Absence / Presence", val: result.subscales.psychological_absence_presence.percentage },
+    { label: "Frozen Grief & Closure Paralysis", val: result.subscales.frozen_grief_closure_paralysis.percentage },
+    { label: "Boundary Ambiguity Exhaustion", val: result.subscales.boundary_ambiguity_exhaustion.percentage },
+  ];
+
+  subscales.forEach((sub, idx) => {
+    const rowY = metricY + 95 + idx * 45;
+    ctx.fillStyle = "rgba(255, 255, 255, 0.8)";
+    ctx.font = "18px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+    ctx.fillText(sub.label, 120, rowY + 8);
+
+    ctx.fillStyle = "#38BDF8";
+    ctx.font = "bold 18px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+    ctx.fillText(`${sub.val}%`, 530, rowY + 8);
+
+    // Track
+    ctx.fillStyle = "rgba(255, 255, 255, 0.12)";
+    drawRoundedRect(ctx, 600, rowY - 6, 360, 16, 8);
+    ctx.fill();
+
+    // Fill
+    const fillW = Math.max(12, Math.min(360, (360 * sub.val) / 100));
+    const barGrad = ctx.createLinearGradient(600, rowY, 600 + fillW, rowY);
+    barGrad.addColorStop(0, "#38BDF8");
+    barGrad.addColorStop(1, "#0284C7");
+    ctx.fillStyle = barGrad;
+    drawRoundedRect(ctx, 600, rowY - 6, fillW, 16, 8);
+    ctx.fill();
+  });
+
+  // Clinical Insight Quote
+  ctx.fillStyle = "#CBD5E1";
+  ctx.font = "20px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(
+    "Pauline Boss Insight: The challenge of ambiguous loss is learning to live with both/and: they are gone, AND they remain.",
+    120,
+    metricY + 235
+  );
+
+  // Action Protocol
+  ctx.fillStyle = "rgba(255, 255, 255, 0.04)";
+  drawRoundedRect(ctx, 80, 925, width - 160, 200, 24);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(255, 255, 255, 0.12)";
+  ctx.stroke();
+
+  ctx.fillStyle = "#F8FAFC";
+  ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("DIALECTICAL BOTH/AND GRIEF & BOUNDARY RECLAMATION PROTOCOL", 120, 975);
+
+  const protocols = result.profile.actionProtocol[lang] || result.profile.actionProtocol.en;
+  const protocolText = protocols[0] || "";
+  ctx.fillStyle = "#CBD5E1";
+  ctx.font = "24px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  wrapText(ctx, protocolText, 120, 1020, width - 240, 36, 3);
+
+  // Footer CTA
+  ctx.fillStyle = "rgba(255, 255, 255, 0.5)";
+  ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("Assess your ambiguous loss & frozen grief free at:", 80, 1200);
+
+  ctx.fillStyle = "#38BDF8";
+  ctx.font = "900 30px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("nuju.app/quiz/ambiguous-loss", 80, 1245);
+
+  const dataUrl = canvas.toDataURL("image/png", 0.95);
+  const blob = await new Promise<Blob>((resolve, reject) => {
+    canvas.toBlob((b) => (b ? resolve(b) : reject(new Error("Failed blob"))), "image/png", 0.95);
+  });
+  const file = new File([blob], `nuju-ambiguous-loss-${result.level}.png`, { type: "image/png" });
+
+  return { dataUrl, blob, file };
+}
+
+
 
 
 
