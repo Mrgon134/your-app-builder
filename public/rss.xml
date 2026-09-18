@@ -6,7 +6,7 @@
     <atom:link href="https://nuju.app/rss.xml" rel="self" type="application/rss+xml" />
     <description>Practical guides on journaling, mood tracking, and emotional wellness from the Nuju team.</description>
     <language>en</language>
-    <lastBuildDate>Fri, 18 Sep 2026 06:34:20 GMT</lastBuildDate>
+    <lastBuildDate>Fri, 18 Sep 2026 07:02:50 GMT</lastBuildDate>
     <item>
       <title>The Neuroscience of Maladaptive Daydreaming: Why Kinesthetic Pacing, Looped Music, and Paracosms Trap the Mind</title>
       <link>https://nuju.app/blog/maladaptive-daydreaming-neuroscience-pacing-music-paracosm</link>
@@ -1374,6 +1374,78 @@
       <category>외모 심리학 &amp; 신경인지과학</category>
       <pubDate>Fri, 18 Sep 2026 12:00:00 GMT</pubDate>
       <dc:language>kr</dc:language>
+    </item>
+    <item>
+      <title>Trapped in Manual Breathing: The Neurobiology of Sensorimotor OCD and Somatic Hyperawareness</title>
+      <link>https://nuju.app/blog/sensorimotor-ocd-somatic-hyperawareness-manual-breathing-veale</link>
+      <guid isPermaLink="true">https://nuju.app/blog/sensorimotor-ocd-somatic-hyperawareness-manual-breathing-veale</guid>
+      <description>Understand why conscious attention locks onto breathing, swallowing, and blinking, the dread of lost biological autopilot, and ERP strategies from Dr. David Veale and Steven Phillipson.</description>
+      <category>Neurodivergence &amp; OCD</category>
+      <pubDate>Fri, 18 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Terkunci di Mode Napas Manual: Mengenal Sensorimotor OCD, Cemas Menelan Saliva, dan Terapi Pemulihannya</title>
+      <link>https://nuju.app/blog/sensorimotor-ocd-terkunci-napas-manual-hipersensitivitas-tubuh</link>
+      <guid isPermaLink="true">https://nuju.app/blog/sensorimotor-ocd-terkunci-napas-manual-hipersensitivitas-tubuh</guid>
+      <description>Kenapa otak tiba-tiba sadar penuh pada tarikan napas atau kedipan mata hingga panik kehilangan autopilot tubuh? Pahami sindrom sensorimotor OCD dan solusinya.</description>
+      <category>Neurodivergence &amp; OCD</category>
+      <pubDate>Fri, 18 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>id</dc:language>
+    </item>
+    <item>
+      <title>The Vulnerability Hangover: Brené Brown&apos;s Research on Post-Sharing Shame and the Urge to Disappear</title>
+      <link>https://nuju.app/blog/vulnerability-hangover-brene-brown-post-social-shame-replay</link>
+      <guid isPermaLink="true">https://nuju.app/blog/vulnerability-hangover-brene-brown-post-social-shame-replay</guid>
+      <description>Why does speaking your raw truth or crying in front of someone produce a morning-after knot of dread? Understand Dr. Brené Brown&apos;s model of vulnerability hangovers.</description>
+      <category>Emotional Regulation &amp; Relationships</category>
+      <pubDate>Fri, 18 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Vulnerability Hangover: Kenapa Kita Selalu Menyesal, Malu, dan Ingin Menghilang Setelah Curhat Terbuka?</title>
+      <link>https://nuju.app/blog/vulnerability-hangover-kenapa-menyesal-setelah-curhat-buka-diri</link>
+      <guid isPermaLink="true">https://nuju.app/blog/vulnerability-hangover-kenapa-menyesal-setelah-curhat-buka-diri</guid>
+      <description>Pernah curhat sambil menangis ke teman, lalu besok paginya merasa sangat mual, menyesal, dan ingin hapus chat? Pelajari riset Dr. Brené Brown tentang fenomena ini.</description>
+      <category>Emotional Regulation &amp; Relationships</category>
+      <pubDate>Fri, 18 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>id</dc:language>
+    </item>
+    <item>
+      <title>Sensorimotorische Zwangsstörung: Wenn Atmen, Schlucken und Blinzeln zur Qual werden – Mechanismen und ERP-Therapie</title>
+      <link>https://nuju.app/blog/sensorimotorische-zwangsstörung-atmen-schlucken-hyperfokus-erp</link>
+      <guid isPermaLink="true">https://nuju.app/blog/sensorimotorische-zwangsstörung-atmen-schlucken-hyperfokus-erp</guid>
+      <description>Warum bleibt die Aufmerksamkeit plötzlich an der eigenen Atmung oder dem Schluckakt hängen? Erfahren Sie alles über somatische Zwänge nach Dr. David Veale.</description>
+      <category>Neurodivergence &amp; OCD</category>
+      <pubDate>Fri, 18 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>de</dc:language>
+    </item>
+    <item>
+      <title>La Gueule de Bois Émotionnelle : Comprendre la Honte Post-Vulnérabilité et l&apos;Urgence de Supprimer ses Messages selon Brené Brown</title>
+      <link>https://nuju.app/blog/gueule-de-bois-emotionnelle-vulnerabilite-regret-partage</link>
+      <guid isPermaLink="true">https://nuju.app/blog/gueule-de-bois-emotionnelle-vulnerabilite-regret-partage</guid>
+      <description>Pourquoi regrette-t-on amèrement d&apos;avoir pleuré ou partagé ses blessures intimes le lendemain matin ? Découvrez la psychologie de Brené Brown.</description>
+      <category>Emotional Regulation &amp; Relationships</category>
+      <pubDate>Fri, 18 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>fr</dc:language>
+    </item>
+    <item>
+      <title>【体性感覚強迫と自動呼吸への不安】呼吸や唾液の飲み込みを意識しすぎて苦しい時の森田療法とERPアプローチ</title>
+      <link>https://nuju.app/blog/sensorimotor-ocd-kokyuu-kuuhaku-morita-therapy</link>
+      <guid isPermaLink="true">https://nuju.app/blog/sensorimotor-ocd-kokyuu-kuuhaku-morita-therapy</guid>
+      <description>無意識のはずの呼吸や瞬き、唾液の飲み込みが気になってパニックになる「体性感覚強迫（センソリモータOCD）」。原因と森田療法的「あるがまま」の対処法を解説。</description>
+      <category>Neurodivergence &amp; OCD</category>
+      <pubDate>Fri, 18 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>ja</dc:language>
+    </item>
+    <item>
+      <title>취약성 숙취(Vulnerability Hangover): 솔직하게 속마음을 털어놓은 뒤 밀려오는 후회, 자책, 그리고 회피 충동의 심리학</title>
+      <link>https://nuju.app/blog/vulnerability-hangover-post-social-shame-korea</link>
+      <guid isPermaLink="true">https://nuju.app/blog/vulnerability-hangover-post-social-shame-korea</guid>
+      <description>누군가에게 눈물을 흘리거나 약점을 털어놓은 다음 날 아침, 왜 극심한 수치심과 문자 삭제 충동이 일어날까요? 브레네 브라운 박사의 취약성 숙취 연구.</description>
+      <category>Emotional Regulation &amp; Relationships</category>
+      <pubDate>Fri, 18 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>ko</dc:language>
     </item>
     <item>
       <title>Clinical Perfectionism Test: Free 12-Item Frost MPS Diagnostic for Fear of Failure</title>

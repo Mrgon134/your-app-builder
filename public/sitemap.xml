@@ -1155,6 +1155,42 @@
     <changefreq>weekly</changefreq>
   </url>
   <url>
+    <loc>https://nuju.app/quiz/sensorimotor-ocd</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.95</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/quiz/somatic-hyperawareness</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.9</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/tes-sensorimotor-ocd</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.9</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/quiz/vulnerability-hangover</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.95</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/quiz/post-social-shame</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.9</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/tes-vulnerability-hangover</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.9</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
     <loc>https://nuju.app/quiz/baterai-emosi</loc>
     <lastmod>2026-09-18</lastmod>
     <priority>0.9</priority>
@@ -10978,6 +11014,102 @@
       <image:caption>거울 속 내 모습이 괴물처럼 느껴지는 신체변형장애(BDD)의 뇌과학적 원인, 세부 왜곡 메커니즘, 그리고 외모 강박을 끊어내는 신체 중립성(Body Neutrality) 훈련.</image:caption>
     </image:image>
     <xhtml:link rel="alternate" hreflang="kr" href="https://nuju.app/blog/body-dysmorphia-bdd-mirror-checking-neuroscience-korea"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/sensorimotor-ocd-somatic-hyperawareness-manual-breathing-veale</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Trapped in Manual Breathing: The Neurobiology of Sensorimotor OCD and Somatic Hyperawareness</image:title>
+      <image:caption>Understand why conscious attention locks onto breathing, swallowing, and blinking, the dread of lost biological autopilot, and ERP strategies from Dr. David Veale and Steven Phillipson.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/sensorimotor-ocd-somatic-hyperawareness-manual-breathing-veale"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/sensorimotor-ocd-terkunci-napas-manual-hipersensitivitas-tubuh</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Terkunci di Mode Napas Manual: Mengenal Sensorimotor OCD, Cemas Menelan Saliva, dan Terapi Pemulihannya</image:title>
+      <image:caption>Kenapa otak tiba-tiba sadar penuh pada tarikan napas atau kedipan mata hingga panik kehilangan autopilot tubuh? Pahami sindrom sensorimotor OCD dan solusinya.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="id" href="https://nuju.app/blog/sensorimotor-ocd-terkunci-napas-manual-hipersensitivitas-tubuh"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/vulnerability-hangover-brene-brown-post-social-shame-replay</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>The Vulnerability Hangover: Brené Brown&apos;s Research on Post-Sharing Shame and the Urge to Disappear</image:title>
+      <image:caption>Why does speaking your raw truth or crying in front of someone produce a morning-after knot of dread? Understand Dr. Brené Brown&apos;s model of vulnerability hangovers.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/vulnerability-hangover-brene-brown-post-social-shame-replay"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/vulnerability-hangover-kenapa-menyesal-setelah-curhat-buka-diri</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Vulnerability Hangover: Kenapa Kita Selalu Menyesal, Malu, dan Ingin Menghilang Setelah Curhat Terbuka?</image:title>
+      <image:caption>Pernah curhat sambil menangis ke teman, lalu besok paginya merasa sangat mual, menyesal, dan ingin hapus chat? Pelajari riset Dr. Brené Brown tentang fenomena ini.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="id" href="https://nuju.app/blog/vulnerability-hangover-kenapa-menyesal-setelah-curhat-buka-diri"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/sensorimotorische-zwangsstörung-atmen-schlucken-hyperfokus-erp</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Sensorimotorische Zwangsstörung: Wenn Atmen, Schlucken und Blinzeln zur Qual werden – Mechanismen und ERP-Therapie</image:title>
+      <image:caption>Warum bleibt die Aufmerksamkeit plötzlich an der eigenen Atmung oder dem Schluckakt hängen? Erfahren Sie alles über somatische Zwänge nach Dr. David Veale.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="de" href="https://nuju.app/blog/sensorimotorische-zwangsstörung-atmen-schlucken-hyperfokus-erp"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/gueule-de-bois-emotionnelle-vulnerabilite-regret-partage</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>La Gueule de Bois Émotionnelle : Comprendre la Honte Post-Vulnérabilité et l&apos;Urgence de Supprimer ses Messages selon Brené Brown</image:title>
+      <image:caption>Pourquoi regrette-t-on amèrement d&apos;avoir pleuré ou partagé ses blessures intimes le lendemain matin ? Découvrez la psychologie de Brené Brown.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://nuju.app/blog/gueule-de-bois-emotionnelle-vulnerabilite-regret-partage"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/sensorimotor-ocd-kokyuu-kuuhaku-morita-therapy</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>【体性感覚強迫と自動呼吸への不安】呼吸や唾液の飲み込みを意識しすぎて苦しい時の森田療法とERPアプローチ</image:title>
+      <image:caption>無意識のはずの呼吸や瞬き、唾液の飲み込みが気になってパニックになる「体性感覚強迫（センソリモータOCD）」。原因と森田療法的「あるがまま」の対処法を解説。</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://nuju.app/blog/sensorimotor-ocd-kokyuu-kuuhaku-morita-therapy"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/vulnerability-hangover-post-social-shame-korea</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>취약성 숙취(Vulnerability Hangover): 솔직하게 속마음을 털어놓은 뒤 밀려오는 후회, 자책, 그리고 회피 충동의 심리학</image:title>
+      <image:caption>누군가에게 눈물을 흘리거나 약점을 털어놓은 다음 날 아침, 왜 극심한 수치심과 문자 삭제 충동이 일어날까요? 브레네 브라운 박사의 취약성 숙취 연구.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://nuju.app/blog/vulnerability-hangover-post-social-shame-korea"/>
   </url>
   <url>
     <loc>https://nuju.app/blog/how-to-stop-overthinking-at-night</loc>

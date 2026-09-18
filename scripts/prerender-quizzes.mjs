@@ -3125,6 +3125,68 @@ export function getQuizAndToolPages({
       ],
     },
 
+    {
+      route: "/quiz/sensorimotor-ocd",
+      aliases: ["/quiz/somatic-hyperawareness", "/tes-sensorimotor-ocd"],
+      title: "Sensorimotor OCD & Somatic Hyperawareness Screener (Dr. David Veale Model)",
+      description:
+        "Does conscious attention lock onto manual breathing, swallowing, or blinking with panic of losing biological autopilot? Free 12-item clinical screener measuring somatic fixation, loss of autopilot dread, and compulsive distraction strain.",
+      category: "Neurodivergence & OCD",
+      duration: "90 secs",
+      itemsCount: 12,
+      framework: "Dr. David Veale & Dr. Steven Phillipson (Inhibitory Learning & Somatic ERP)",
+      overview:
+        "Sensorimotor OCD involves obsessive conscious hyperawareness of automatic biological functions—most commonly breathing, swallowing, blinking, or bodily sensations—paired with catastrophic fear of permanent loss of biological autopilot. This screener measures interoceptive lock-in and exhaustion.",
+      keyPoints: [
+        "Measures 3 clinical dimensions: Somatic Fixation Lock-In, Loss of Autopilot Dread, and Compulsive Distraction Strain",
+        "Distinguishes benign body awareness from clinical sensorimotor obsessional lock-in",
+        "Includes ERP exposure hierarchy guidelines, inhibitory learning drills, and vocal decompression",
+      ],
+      faqs: [
+        {
+          question: "Can focusing on breathing actually cause me to forget how to breathe automatically?",
+          answer:
+            "No. Breathing is controlled by the medulla oblongata and pons in the brainstem, an ancient, non-conscious survival circuit. Even when conscious attention interferes temporarily, autonomic control automatically reasserts itself when you fall asleep or engage in external activities.",
+        },
+        {
+          question: "Why does trying to distract myself from breathing make the obsession worse?",
+          answer:
+            "Frantic attempts to avoid thinking about breathing trigger the ironic process theory (white bear effect): your brain must continually scan to check if you are still noticing the breath, thereby reinforcing the neural spotlight on the lungs.",
+        },
+      ],
+    },
+
+    {
+      route: "/quiz/vulnerability-hangover",
+      aliases: ["/quiz/post-social-shame", "/tes-vulnerability-hangover"],
+      title: "Vulnerability Hangover & Post-Social Shame Screener (Dr. Brené Brown Model)",
+      description:
+        "Does sharing deep emotions or crying in front of others trigger a morning-after sick stomach, forensic conversation replays, and urges to delete messages or isolate? Free 12-item screener measuring emotional exposure dread.",
+      category: "Emotional Regulation & Relationships",
+      duration: "90 secs",
+      itemsCount: 12,
+      framework: "Dr. Brené Brown (Shame Resilience Theory) & Dr. Thomas Gilovich (Spotlight Effect)",
+      overview:
+        "A vulnerability hangover is the visceral, gut-wrenching feeling of exposure that occurs after dropping emotional armor and sharing authentic, unguarded feelings. This screener measures forensic conversation replays, exposure nausea, and retraction/ghosting impulses.",
+      keyPoints: [
+        "Measures 3 exposure dimensions: Post-Social Forensic Replay, Exposure Nausea & Self-Blame, and Retraction & Isolation Urge",
+        "De-centers the Spotlight Effect to overcome catastrophic social exposure assumptions",
+        "Provides the 24-hour moratorium on apologies and polyvagal somatic self-soothing tools",
+      ],
+      faqs: [
+        {
+          question: "Why do I feel physically sick the morning after opening up to someone?",
+          answer:
+            "Removing emotional armor triggers a threat response in the amygdala once the initial social warmth fades. The nervous system interprets vulnerability as physical exposure, causing somatic symptoms like stomach knots, nausea, and adrenaline rushes.",
+        },
+        {
+          question: "How do other people usually perceive my vulnerability?",
+          answer:
+            "Social psychology research demonstrates the 'beautiful mess effect': while we judge our own vulnerability as weak, messy, and pathetic, observers consistently view our disclosures as brave, magnetic, trustworthy, and deeply relatable.",
+        },
+      ],
+    },
+
     // 5. Ebook Sales Pages
     {
       route: "/ebook",

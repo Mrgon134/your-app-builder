@@ -2853,6 +2853,64 @@ const QuizHub: React.FC = () => {
               </Link>
             </div>
           </div>
+
+          {/* Card 94: Sensorimotor OCD & Somatic Hyperawareness Screener */}
+          <div className="rounded-3xl border border-cyan-300 bg-gradient-to-br from-cyan-500/10 via-cyan-50 to-white p-6 shadow-xs flex flex-col justify-between hover:shadow-md transition">
+            <div>
+              <div className="flex items-center justify-between mb-3">
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-cyan-600 px-3 py-0.5 text-xs font-bold text-white shadow-xs">
+                  <Wind className="h-3 w-3" />
+                  VEALE &amp; PHILLIPSON
+                </span>
+                <span className="text-xs font-semibold text-cyan-800">Dr. David Veale</span>
+              </div>
+              <h3 className="text-lg font-bold text-neutral-900 mb-1.5">
+                Sensorimotor OCD &amp; Somatic Hyperawareness Screener
+              </h3>
+              <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed">
+                Does conscious attention lock onto manual breathing, swallowing, or blinking with panic of losing biological autopilot? Screen somatic hyperawareness load.
+              </p>
+            </div>
+            <div className="mt-5 pt-3 border-t border-cyan-100 flex items-center justify-between">
+              <span className="text-xs font-medium text-neutral-400">~90 Secs · 12 Items</span>
+              <Link
+                to="/quiz/sensorimotor-ocd"
+                className="inline-flex items-center gap-1.5 rounded-full bg-cyan-600 px-4 py-2 text-xs font-bold text-white hover:bg-cyan-700 transition shadow-xs"
+              >
+                <span>Screen Sensorimotor OCD</span>
+                <ArrowRight className="h-3.5 w-3.5" />
+              </Link>
+            </div>
+          </div>
+
+          {/* Card 95: Vulnerability Hangover & Post-Social Exposure Dread Screener */}
+          <div className="rounded-3xl border border-indigo-300 bg-gradient-to-br from-indigo-500/10 via-violet-50 to-white p-6 shadow-xs flex flex-col justify-between hover:shadow-md transition">
+            <div>
+              <div className="flex items-center justify-between mb-3">
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-indigo-600 px-3 py-0.5 text-xs font-bold text-white shadow-xs">
+                  <HeartCrack className="h-3 w-3" />
+                  BRENÉ BROWN MODEL
+                </span>
+                <span className="text-xs font-semibold text-indigo-800">Dr. Brené Brown</span>
+              </div>
+              <h3 className="text-lg font-bold text-neutral-900 mb-1.5">
+                Vulnerability Hangover &amp; Post-Social Shame Screener
+              </h3>
+              <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed">
+                Does sharing deep emotions trigger a morning-after sick stomach, forensic conversation replays, and urges to delete messages or isolate? Screen vulnerability dread.
+              </p>
+            </div>
+            <div className="mt-5 pt-3 border-t border-indigo-100 flex items-center justify-between">
+              <span className="text-xs font-medium text-neutral-400">~90 Secs · 12 Items</span>
+              <Link
+                to="/quiz/vulnerability-hangover"
+                className="inline-flex items-center gap-1.5 rounded-full bg-indigo-600 px-4 py-2 text-xs font-bold text-white hover:bg-indigo-700 transition shadow-xs"
+              >
+                <span>Screen Vulnerability Hangover</span>
+                <ArrowRight className="h-3.5 w-3.5" />
+              </Link>
+            </div>
+          </div>
         </div>
 
         {/* Country Filter Pills */}
