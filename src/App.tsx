@@ -120,6 +120,8 @@ const ExistentialDepressionTest = lazy(() => import("./pages/ExistentialDepressi
 const AmbiguousLossTest = lazy(() => import("./pages/AmbiguousLossTest.tsx"));
 const ChronicResentmentTest = lazy(() => import("./pages/ChronicResentmentTest.tsx"));
 const PathologicalAltruismTest = lazy(() => import("./pages/PathologicalAltruismTest.tsx"));
+const MoralScrupulosityTest = lazy(() => import("./pages/MoralScrupulosityTest.tsx"));
+const AbandonmentSchemaTest = lazy(() => import("./pages/AbandonmentSchemaTest.tsx"));
 const EbookSalesPage = lazy(() => import("./pages/EbookSalesPage.tsx"));
 const EbookReaderPage = lazy(() => import("./pages/EbookReaderPage.tsx"));
 const NotFound = lazy(() => import("./pages/NotFound.tsx"));
@@ -458,6 +460,12 @@ const App = () => (
                   <Route path="/quiz/pathological-altruism" element={<PathologicalAltruismTest />} />
                   <Route path="/quiz/savior-complex" element={<PathologicalAltruismTest />} />
                   <Route path="/tes-altruisme-patologis" element={<PathologicalAltruismTest />} />
+                  <Route path="/quiz/moral-scrupulosity" element={<MoralScrupulosityTest />} />
+                  <Route path="/quiz/am-i-a-bad-person" element={<MoralScrupulosityTest />} />
+                  <Route path="/tes-skrupulositas" element={<MoralScrupulosityTest />} />
+                  <Route path="/quiz/abandonment-schema" element={<AbandonmentSchemaTest />} />
+                  <Route path="/quiz/fear-of-abandonment" element={<AbandonmentSchemaTest />} />
+                  <Route path="/tes-skema-pengabaian" element={<AbandonmentSchemaTest />} />
                   <Route path="/quiz/:quizId" element={<QuizRunner />} />
                   <Route path="/test-psikologi" element={<QuizHub />} />
                   <Route path="/test-psikologi/:quizId" element={<QuizRunner />} />

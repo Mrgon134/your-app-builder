@@ -2679,6 +2679,64 @@ const QuizHub: React.FC = () => {
               </Link>
             </div>
           </div>
+
+          {/* Card 88: Moral Scrupulosity & Pure OCD Screener */}
+          <div className="rounded-3xl border border-slate-300 bg-gradient-to-br from-slate-500/10 via-slate-50 to-white p-6 shadow-xs flex flex-col justify-between hover:shadow-md transition">
+            <div>
+              <div className="flex items-center justify-between mb-3">
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-slate-700 px-3 py-0.5 text-xs font-bold text-white shadow-xs">
+                  <ShieldCheck className="h-3 w-3" />
+                  MORAL OCD &amp; SCRUPULOSITY
+                </span>
+                <span className="text-xs font-semibold text-slate-800">Dr. Ian Osborn &amp; Dr. J. Grayson</span>
+              </div>
+              <h3 className="text-lg font-bold text-neutral-900 mb-1.5">
+                Moral Scrupulosity &amp; Pure OCD Screener
+              </h3>
+              <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed">
+                Do you obsess over whether you are secretly a bad person? Screen moral purity dread, guilt magnification, and ethical paralysis.
+              </p>
+            </div>
+            <div className="mt-5 pt-3 border-t border-slate-100 flex items-center justify-between">
+              <span className="text-xs font-medium text-neutral-400">~90 Secs · 12 Items</span>
+              <Link
+                to="/quiz/moral-scrupulosity"
+                className="inline-flex items-center gap-1.5 rounded-full bg-slate-700 px-4 py-2 text-xs font-bold text-white hover:bg-slate-800 transition shadow-xs"
+              >
+                <span>Screen Moral Scrupulosity</span>
+                <ArrowRight className="h-3.5 w-3.5" />
+              </Link>
+            </div>
+          </div>
+
+          {/* Card 89: Abandonment Schema & Relational Panic Screener */}
+          <div className="rounded-3xl border border-rose-300 bg-gradient-to-br from-rose-500/10 via-rose-50 to-white p-6 shadow-xs flex flex-col justify-between hover:shadow-md transition">
+            <div>
+              <div className="flex items-center justify-between mb-3">
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-rose-600 px-3 py-0.5 text-xs font-bold text-white shadow-xs">
+                  <Heart className="h-3 w-3" />
+                  SCHEMA THERAPY MODEL
+                </span>
+                <span className="text-xs font-semibold text-rose-800">Dr. Jeffrey Young Architecture</span>
+              </div>
+              <h3 className="text-lg font-bold text-neutral-900 mb-1.5">
+                Abandonment Schema &amp; Relational Panic Screener
+              </h3>
+              <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed">
+                Does a delayed text trigger primal panic in your chest? Screen anticipatory desertion terror, protest clinging, and relational fragility.
+              </p>
+            </div>
+            <div className="mt-5 pt-3 border-t border-rose-100 flex items-center justify-between">
+              <span className="text-xs font-medium text-neutral-400">~90 Secs · 12 Items</span>
+              <Link
+                to="/quiz/abandonment-schema"
+                className="inline-flex items-center gap-1.5 rounded-full bg-rose-600 px-4 py-2 text-xs font-bold text-white hover:bg-rose-700 transition shadow-xs"
+              >
+                <span>Screen Abandonment Schema</span>
+                <ArrowRight className="h-3.5 w-3.5" />
+              </Link>
+            </div>
+          </div>
         </div>
 
         {/* Country Filter Pills */}

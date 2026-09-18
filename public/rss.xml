@@ -6,7 +6,7 @@
     <atom:link href="https://nuju.app/rss.xml" rel="self" type="application/rss+xml" />
     <description>Practical guides on journaling, mood tracking, and emotional wellness from the Nuju team.</description>
     <language>en</language>
-    <lastBuildDate>Fri, 18 Sep 2026 02:50:06 GMT</lastBuildDate>
+    <lastBuildDate>Fri, 18 Sep 2026 02:55:59 GMT</lastBuildDate>
     <item>
       <title>The Neuroscience of Maladaptive Daydreaming: Why Kinesthetic Pacing, Looped Music, and Paracosms Trap the Mind</title>
       <link>https://nuju.app/blog/maladaptive-daydreaming-neuroscience-pacing-music-paracosm</link>
@@ -1084,6 +1084,114 @@
       <guid isPermaLink="true">https://nuju.app/blog/altruismo-patologico-peligro-salvar-demas-costa-propia-vida</guid>
       <description>Conozca el modelo de la Dra. Barbara Oakley sobre el altruismo patológico y el síndrome del salvador. Por qué rescatar a personas heridas destruye tus límites.</description>
       <category>Límites &amp; Psicología Relacional</category>
+      <pubDate>Fri, 18 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>es</dc:language>
+    </item>
+    <item>
+      <title>The Curse of Being &apos;Too Good&apos;: The Neurobiology of Moral Scrupulosity OCD</title>
+      <link>https://nuju.app/blog/moral-scrupulosity-ocd-am-i-a-bad-person-guilt</link>
+      <guid isPermaLink="true">https://nuju.app/blog/moral-scrupulosity-ocd-am-i-a-bad-person-guilt</guid>
+      <description>Explore Dr. Ian Osborn and Dr. Jonathan Grayson&apos;s models of Moral Scrupulosity: why random intrusive thoughts trigger intense guilt and the obsessive terror of being an evil person.</description>
+      <category>Clinical Psychology &amp; OCD</category>
+      <pubDate>Fri, 18 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>The Abandonment Schema: Why Your Nervous System Panics When Someone Pulls Away</title>
+      <link>https://nuju.app/blog/abandonment-schema-nervous-system-relational-panic-jeffrey-young</link>
+      <guid isPermaLink="true">https://nuju.app/blog/abandonment-schema-nervous-system-relational-panic-jeffrey-young</guid>
+      <description>Explore Dr. Jeffrey Young&apos;s Schema Therapy model of the Abandonment Schema: why emotional distance triggers primal death panic and how to heal relational terror.</description>
+      <category>Attachment &amp; Schema Therapy</category>
+      <pubDate>Fri, 18 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>The Reassurance Trap: Why Asking &apos;Are You Mad at Me?&apos; Fuels Moral Anxiety</title>
+      <link>https://nuju.app/blog/reassurance-trap-asking-are-you-mad-at-me-scrupulosity</link>
+      <guid isPermaLink="true">https://nuju.app/blog/reassurance-trap-asking-are-you-mad-at-me-scrupulosity</guid>
+      <description>Uncover why compulsively seeking validation from romantic partners and friends acts like a drug that worsens OCD and attachment insecurity.</description>
+      <category>Relational Psychology</category>
+      <pubDate>Fri, 18 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Pre-Emptive Abandonment: Why You Destroy Healthy Love Before They Can Leave You</title>
+      <link>https://nuju.app/blog/preemptive-abandonment-why-you-destroy-healthy-love-first</link>
+      <guid isPermaLink="true">https://nuju.app/blog/preemptive-abandonment-why-you-destroy-healthy-love-first</guid>
+      <description>Understand the self-sabotaging psychology of breaking up with partners who love you: why predictability of grief feels safer than the vulnerability of intimacy.</description>
+      <category>Attachment &amp; Intimacy</category>
+      <pubDate>Fri, 18 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Skrupulositas Moral: Mengapa Kamu Terus Merasa Sebagai &apos;Orang Jahat&apos; yang Penuh Dosa</title>
+      <link>https://nuju.app/blog/skrupulositas-moral-ocd-selalu-merasa-orang-jahat-berdosa</link>
+      <guid isPermaLink="true">https://nuju.app/blog/skrupulositas-moral-ocd-selalu-merasa-orang-jahat-berdosa</guid>
+      <description>Memahami skrupulositas moral (Moral OCD): ketika pikiran liar sekilas dianggap bukti kejahatan batin dan dorongan meminta maaf berulang kali merusak ketenangan jiwamu.</description>
+      <category>Psikologi Klinis &amp; OCD</category>
+      <pubDate>Fri, 18 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>id</dc:language>
+    </item>
+    <item>
+      <title>Skema Pengabaian (Abandonment Schema): Mengapa Tubuh Panik Saat Pasangan Menjauh Sedikit Saja</title>
+      <link>https://nuju.app/blog/skema-pengabaian-abandonment-schema-panik-pasangan-menjauh</link>
+      <guid isPermaLink="true">https://nuju.app/blog/skema-pengabaian-abandonment-schema-panik-pasangan-menjauh</guid>
+      <description>Pelajari teori Terapi Skema Dr. Jeffrey Young tentang Abandonment Schema: mengapa keterlambatan membalas chat memicu alarm bertahan hidup dan cara mengatasinya.</description>
+      <category>Attachment &amp; Hubungan</category>
+      <pubDate>Fri, 18 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>id</dc:language>
+    </item>
+    <item>
+      <title>Jebakan Meminta Penegasan: Bahaya Terus Bertanya &apos;Kamu Marah Sama Aku?&apos;</title>
+      <link>https://nuju.app/blog/jebakan-reassurance-bahaya-terus-bertanya-kamu-marah</link>
+      <guid isPermaLink="true">https://nuju.app/blog/jebakan-reassurance-bahaya-terus-bertanya-kamu-marah</guid>
+      <description>Memahami psikologi di balik kebiasaan kompulsif meminta penegasan. Mengapa bertanya &apos;Apakah kita baik-baik saja?&apos; justru merusak rasa percaya dan memperparah kecemasan.</description>
+      <category>Dinamika Relasi &amp; Kecemasan</category>
+      <pubDate>Fri, 18 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>id</dc:language>
+    </item>
+    <item>
+      <title>Meninggalkan Sebelum Ditinggalkan: Mekanisme Pertahanan Diri yang Merusak Hubungan Sehat</title>
+      <link>https://nuju.app/blog/meninggalkan-sebelum-ditinggalkan-sabotase-hubungan-sehat</link>
+      <guid isPermaLink="true">https://nuju.app/blog/meninggalkan-sebelum-ditinggalkan-sabotase-hubungan-sehat</guid>
+      <description>Mengapa kamu tega memutuskan orang yang tulus mencintaimu? Membedah sindrom sabotase diri &apos;Pre-Emptive Abandonment&apos; dan cara berani menerima cinta yang aman.</description>
+      <category>Psikologi Asmara &amp; Trauma</category>
+      <pubDate>Fri, 18 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>id</dc:language>
+    </item>
+    <item>
+      <title>Skrupulosität &amp; Moralische Zwangsstörung: Wenn das Gewissen zur seelischen Folter wird</title>
+      <link>https://nuju.app/blog/skrupulositaet-moralische-zwangsstoerung-gewissen-folter</link>
+      <guid isPermaLink="true">https://nuju.app/blog/skrupulositaet-moralische-zwangsstoerung-gewissen-folter</guid>
+      <description>Erfahren Sie nach Dr. Ian Osborn, wie moralische Skrupulosität und Pure-O Zwänge das Gehirn kapern und warum aufdringliche Gedanken kein Beweis für Bösartigkeit sind.</description>
+      <category>Klinische Psychologie &amp; Zwang</category>
+      <pubDate>Fri, 18 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>de</dc:language>
+    </item>
+    <item>
+      <title>Das Verlassenheits-Schema: Warum das Nervensystem bei emotionaler Distanz Alarm schlägt</title>
+      <link>https://nuju.app/blog/verlassenheits-schema-nervensystem-emotionale-distanz-alarm</link>
+      <guid isPermaLink="true">https://nuju.app/blog/verlassenheits-schema-nervensystem-emotionale-distanz-alarm</guid>
+      <description>Untersuchen Sie Dr. Jeffrey Youngs Schematherapie-Modell des Verlassenheitsschemas. Warum Stille Verlustpanik auslöst und wie Sie innere Sicherheit aufbauen.</description>
+      <category>Bindung &amp; Schematherapie</category>
+      <pubDate>Fri, 18 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>de</dc:language>
+    </item>
+    <item>
+      <title>La Scrupulosité Morale : Pourquoi la Peur d&apos;Être une Mauvaise Personne Déclenche des TOC</title>
+      <link>https://nuju.app/blog/scrupulosite-morale-peur-etre-mauvaise-personne-toc</link>
+      <guid isPermaLink="true">https://nuju.app/blog/scrupulosite-morale-peur-etre-mauvaise-personne-toc</guid>
+      <description>Comprenez la scrupulosité morale et le TOC pur selon le Dr Ian Osborn. Pourquoi les pensées intrusives ne définissent pas votre valeur éthique.</description>
+      <category>Psychologie Clinique &amp; TOC</category>
+      <pubDate>Fri, 18 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>fr</dc:language>
+    </item>
+    <item>
+      <title>El Esquema de Abandono: Por Qué Tu Sistema Nervioso Entra en Pánico Cuando Alguien Se Aleja</title>
+      <link>https://nuju.app/blog/esquema-de-abandono-sistema-nervioso-panico-distancia-emocional</link>
+      <guid isPermaLink="true">https://nuju.app/blog/esquema-de-abandono-sistema-nervioso-panico-distancia-emocional</guid>
+      <description>Conozca el modelo de Terapia de Esquemas del Dr. Jeffrey Young sobre el esquema de abandono. Por qué la distancia desata pánico vital y cómo sanar el apego.</description>
+      <category>Apego &amp; Terapia de Esquemas</category>
       <pubDate>Fri, 18 Sep 2026 12:00:00 GMT</pubDate>
       <dc:language>es</dc:language>
     </item>

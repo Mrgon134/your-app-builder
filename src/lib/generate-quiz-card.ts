@@ -14515,6 +14515,382 @@ export async function generatePathologicalAltruismCard(
   return { dataUrl, blob, file };
 }
 
+export type MoralScrupulosityCardLang = "en" | "id" | "de" | "fr" | "es";
+
+export interface MoralScrupulosityScoreResult {
+  score: number;
+  percentage: number;
+  level: string;
+  profile: {
+    title: Record<string, string>;
+    badge: Record<string, string>;
+    summary: Record<string, string>;
+    psychology: Record<string, string>;
+    actionProtocol: Record<string, string[]>;
+  };
+  subscales: {
+    moral_purity_hypervigilance: { score: number; percentage: number };
+    guilt_magnification_confession: { score: number; percentage: number };
+    ethical_perfectionism_paralysis: { score: number; percentage: number };
+  };
+}
+
+/**
+ * Generates an aesthetic high-resolution Instagram Story share card (1080x1350)
+ * for the Moral Scrupulosity & Pure OCD Screener (Dr. Ian Osborn & Dr. Jonathan Grayson model).
+ */
+export async function generateMoralScrupulosityCard(
+  result: MoralScrupulosityScoreResult,
+  lang: MoralScrupulosityCardLang = "en"
+): Promise<{ dataUrl: string; blob: Blob; file: File }> {
+  const canvas = document.createElement("canvas");
+  canvas.width = 1080;
+  canvas.height = 1350;
+  const ctx = canvas.getContext("2d");
+  if (!ctx) throw new Error("Could not get 2D canvas context");
+
+  const width = 1080;
+  const height = 1350;
+
+  // Background: Deep Silver Slate & Charcoal Obsidian
+  const bgGrad = ctx.createLinearGradient(0, 0, width, height);
+  bgGrad.addColorStop(0, "#08080C");
+  bgGrad.addColorStop(0.5, "#14141E");
+  bgGrad.addColorStop(1, "#0A0A0F");
+  ctx.fillStyle = bgGrad;
+  ctx.fillRect(0, 0, width, height);
+
+  // Subtle Silver Grid / Radial Accent
+  const radial = ctx.createRadialGradient(width * 0.8, height * 0.2, 50, width * 0.8, height * 0.2, 550);
+  radial.addColorStop(0, "rgba(226, 232, 240, 0.12)");
+  radial.addColorStop(1, "rgba(226, 232, 240, 0)");
+  ctx.fillStyle = radial;
+  ctx.fillRect(0, 0, width, height);
+
+  // Header Brand Badge
+  ctx.fillStyle = "rgba(255, 255, 255, 0.08)";
+  ctx.beginPath();
+  ctx.roundRect(80, 80, 480, 56, 28);
+  ctx.fill();
+
+  ctx.fillStyle = "#E2E8F0";
+  ctx.font = "bold 20px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("NUJU CLINICAL · MORAL SCRUPULOSITY", 108, 115);
+
+  // Category Tag
+  ctx.fillStyle = "#94A3B8";
+  ctx.font = "600 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("MORAL OCD & GUILT AUDIT (OSBORN MODEL)", 80, 185);
+
+  // Main Card Box
+  const cardBoxY = 220;
+  const cardBoxHeight = 920;
+  ctx.fillStyle = "rgba(255, 255, 255, 0.04)";
+  ctx.strokeStyle = "rgba(226, 232, 240, 0.18)";
+  ctx.lineWidth = 2;
+  ctx.beginPath();
+  ctx.roundRect(80, cardBoxY, width - 160, cardBoxHeight, 36);
+  ctx.fill();
+  ctx.stroke();
+
+  // Badge inside card
+  const badgeText = (result.profile.badge[lang] || result.profile.badge.en || "MORAL HYPERVIGILANCE").toUpperCase();
+  ctx.fillStyle = "rgba(226, 232, 240, 0.15)";
+  ctx.beginPath();
+  ctx.roundRect(120, cardBoxY + 45, 340, 48, 24);
+  ctx.fill();
+
+  ctx.fillStyle = "#F8FAFC";
+  ctx.font = "bold 18px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(badgeText, 145, cardBoxY + 76);
+
+  // Title
+  const titleText = result.profile.title[lang] || result.profile.title.en || "Moral Scrupulosity Index";
+  ctx.fillStyle = "#FFFFFF";
+  ctx.font = "900 46px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  const titleLines = wrapText(ctx, titleText, width - 240);
+  let curY = cardBoxY + 150;
+  titleLines.slice(0, 2).forEach((line) => {
+    ctx.fillText(line, 120, curY);
+    curY += 54;
+  });
+
+  // Score display
+  curY += 10;
+  ctx.fillStyle = "#E2E8F0";
+  ctx.font = "900 82px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(`${result.percentage}%`, 120, curY + 60);
+
+  ctx.fillStyle = "rgba(255, 255, 255, 0.6)";
+  ctx.font = "600 24px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(`Scrupulosity Tension (${result.score}/36 pts)`, 350, curY + 25);
+
+  ctx.fillStyle = "#94A3B8";
+  ctx.font = "500 20px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("Caudate Nucleus Guilt Hyper-Alarm", 350, curY + 60);
+
+  // Subscale Progress Bars
+  curY += 120;
+  const subscales = [
+    { label: "Moral Purity Dread", pct: result.subscales.moral_purity_hypervigilance.percentage, color: "#CBD5E1" },
+    { label: "Guilt & Confession", pct: result.subscales.guilt_magnification_confession.percentage, color: "#94A3B8" },
+    { label: "Ethical Paralysis", pct: result.subscales.ethical_perfectionism_paralysis.percentage, color: "#E2E8F0" },
+  ];
+
+  subscales.forEach((sub) => {
+    ctx.fillStyle = "#E2E8F0";
+    ctx.font = "bold 20px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+    ctx.fillText(sub.label, 120, curY);
+
+    ctx.fillStyle = "rgba(255, 255, 255, 0.7)";
+    ctx.font = "bold 20px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+    ctx.fillText(`${sub.pct}%`, width - 200, curY);
+
+    // Track
+    ctx.fillStyle = "rgba(255, 255, 255, 0.08)";
+    ctx.beginPath();
+    ctx.roundRect(120, curY + 12, width - 240, 14, 7);
+    ctx.fill();
+
+    // Bar
+    ctx.fillStyle = sub.color;
+    ctx.beginPath();
+    const barWidth = Math.max(14, ((width - 240) * sub.pct) / 100);
+    ctx.roundRect(120, curY + 12, barWidth, 14, 7);
+    ctx.fill();
+
+    curY += 56;
+  });
+
+  // Clinical Insight Box
+  curY += 20;
+  ctx.fillStyle = "rgba(226, 232, 240, 0.05)";
+  ctx.strokeStyle = "rgba(226, 232, 240, 0.15)";
+  ctx.beginPath();
+  ctx.roundRect(120, curY, width - 240, 160, 20);
+  ctx.fill();
+  ctx.stroke();
+
+  ctx.fillStyle = "#E2E8F0";
+  ctx.font = "bold 20px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("DR. IAN OSBORN CLINICAL RULE:", 145, curY + 40);
+
+  ctx.fillStyle = "rgba(255, 255, 255, 0.85)";
+  ctx.font = "italic 19px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  const quote = '"Thoughts are not sins, and random mental noise is not a character flaw. The cure for scrupulosity is learning to tolerate ethical uncertainty."';
+  const quoteLines = wrapText(ctx, quote, width - 290);
+  let qY = curY + 75;
+  quoteLines.forEach((l) => {
+    ctx.fillText(l, 145, qY);
+    qY += 28;
+  });
+
+  // Footer CTA
+  ctx.fillStyle = "rgba(255, 255, 255, 0.5)";
+  ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("Screen your moral scrupulosity & guilt loops free at:", 80, 1200);
+
+  ctx.fillStyle = "#F8FAFC";
+  ctx.font = "900 30px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("nuju.app/quiz/moral-scrupulosity", 80, 1245);
+
+  const dataUrl = canvas.toDataURL("image/png", 0.95);
+  const blob = await new Promise<Blob>((resolve, reject) => {
+    canvas.toBlob((b) => (b ? resolve(b) : reject(new Error("Failed blob"))), "image/png", 0.95);
+  });
+  const file = new File([blob], `nuju-scrupulosity-${result.level}.png`, { type: "image/png" });
+
+  return { dataUrl, blob, file };
+}
+
+export type AbandonmentSchemaCardLang = "en" | "id" | "de" | "fr" | "es";
+
+export interface AbandonmentSchemaScoreResult {
+  score: number;
+  percentage: number;
+  level: string;
+  profile: {
+    title: Record<string, string>;
+    badge: Record<string, string>;
+    summary: Record<string, string>;
+    psychology: Record<string, string>;
+    actionProtocol: Record<string, string[]>;
+  };
+  subscales: {
+    anticipatory_desertion_terror: { score: number; percentage: number };
+    clinging_testing_protest: { score: number; percentage: number };
+    relational_fragility_conviction: { score: number; percentage: number };
+  };
+}
+
+/**
+ * Generates an aesthetic high-resolution Instagram Story share card (1080x1350)
+ * for the Abandonment Schema & Relational Panic Screener (Dr. Jeffrey Young Schema Therapy Model).
+ */
+export async function generateAbandonmentSchemaCard(
+  result: AbandonmentSchemaScoreResult,
+  lang: AbandonmentSchemaCardLang = "en"
+): Promise<{ dataUrl: string; blob: Blob; file: File }> {
+  const canvas = document.createElement("canvas");
+  canvas.width = 1080;
+  canvas.height = 1350;
+  const ctx = canvas.getContext("2d");
+  if (!ctx) throw new Error("Could not get 2D canvas context");
+
+  const width = 1080;
+  const height = 1350;
+
+  // Background: Ocean Midnight & Rose Gold Obsidian
+  const bgGrad = ctx.createLinearGradient(0, 0, width, height);
+  bgGrad.addColorStop(0, "#04080F");
+  bgGrad.addColorStop(0.5, "#0E182A");
+  bgGrad.addColorStop(1, "#180C1E");
+  ctx.fillStyle = bgGrad;
+  ctx.fillRect(0, 0, width, height);
+
+  // Subtle Rose-Teal Glow Accent
+  const radial = ctx.createRadialGradient(width * 0.2, height * 0.3, 50, width * 0.2, height * 0.3, 600);
+  radial.addColorStop(0, "rgba(244, 114, 182, 0.12)");
+  radial.addColorStop(1, "rgba(56, 189, 248, 0)");
+  ctx.fillStyle = radial;
+  ctx.fillRect(0, 0, width, height);
+
+  // Header Brand Badge
+  ctx.fillStyle = "rgba(255, 255, 255, 0.08)";
+  ctx.beginPath();
+  ctx.roundRect(80, 80, 480, 56, 28);
+  ctx.fill();
+
+  ctx.fillStyle = "#FDA4AF";
+  ctx.font = "bold 20px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("NUJU CLINICAL · ABANDONMENT SCHEMA", 108, 115);
+
+  // Category Tag
+  ctx.fillStyle = "#93C5FD";
+  ctx.font = "600 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("SCHEMA THERAPY & ATTACHMENT PANIC (JEFFREY YOUNG)", 80, 185);
+
+  // Main Card Box
+  const cardBoxY = 220;
+  const cardBoxHeight = 920;
+  ctx.fillStyle = "rgba(255, 255, 255, 0.04)";
+  ctx.strokeStyle = "rgba(244, 114, 182, 0.2)";
+  ctx.lineWidth = 2;
+  ctx.beginPath();
+  ctx.roundRect(80, cardBoxY, width - 160, cardBoxHeight, 36);
+  ctx.fill();
+  ctx.stroke();
+
+  // Badge inside card
+  const badgeText = (result.profile.badge[lang] || result.profile.badge.en || "ATTACHMENT ALARM").toUpperCase();
+  ctx.fillStyle = "rgba(244, 114, 182, 0.15)";
+  ctx.beginPath();
+  ctx.roundRect(120, cardBoxY + 45, 340, 48, 24);
+  ctx.fill();
+
+  ctx.fillStyle = "#FDE047";
+  ctx.font = "bold 18px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(badgeText, 145, cardBoxY + 76);
+
+  // Title
+  const titleText = result.profile.title[lang] || result.profile.title.en || "Abandonment Schema Dynamic";
+  ctx.fillStyle = "#FFFFFF";
+  ctx.font = "900 46px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  const titleLines = wrapText(ctx, titleText, width - 240);
+  let curY = cardBoxY + 150;
+  titleLines.slice(0, 2).forEach((line) => {
+    ctx.fillText(line, 120, curY);
+    curY += 54;
+  });
+
+  // Score display
+  curY += 10;
+  ctx.fillStyle = "#F472B6";
+  ctx.font = "900 82px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(`${result.percentage}%`, 120, curY + 60);
+
+  ctx.fillStyle = "rgba(255, 255, 255, 0.6)";
+  ctx.font = "600 24px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(`Abandonment Load (${result.score}/36 pts)`, 350, curY + 25);
+
+  ctx.fillStyle = "#93C5FD";
+  ctx.font = "500 20px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("Vulnerable Child Attachment Radar", 350, curY + 60);
+
+  // Subscale Progress Bars
+  curY += 120;
+  const subscales = [
+    { label: "Anticipatory Panic", pct: result.subscales.anticipatory_desertion_terror.percentage, color: "#F472B6" },
+    { label: "Clinging & Protest", pct: result.subscales.clinging_testing_protest.percentage, color: "#FB7185" },
+    { label: "Relational Fragility", pct: result.subscales.relational_fragility_conviction.percentage, color: "#38BDF8" },
+  ];
+
+  subscales.forEach((sub) => {
+    ctx.fillStyle = "#E2E8F0";
+    ctx.font = "bold 20px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+    ctx.fillText(sub.label, 120, curY);
+
+    ctx.fillStyle = "rgba(255, 255, 255, 0.7)";
+    ctx.font = "bold 20px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+    ctx.fillText(`${sub.pct}%`, width - 200, curY);
+
+    // Track
+    ctx.fillStyle = "rgba(255, 255, 255, 0.08)";
+    ctx.beginPath();
+    ctx.roundRect(120, curY + 12, width - 240, 14, 7);
+    ctx.fill();
+
+    // Bar
+    ctx.fillStyle = sub.color;
+    ctx.beginPath();
+    const barWidth = Math.max(14, ((width - 240) * sub.pct) / 100);
+    ctx.roundRect(120, curY + 12, barWidth, 14, 7);
+    ctx.fill();
+
+    curY += 56;
+  });
+
+  // Clinical Insight Box
+  curY += 20;
+  ctx.fillStyle = "rgba(244, 114, 182, 0.06)";
+  ctx.strokeStyle = "rgba(244, 114, 182, 0.2)";
+  ctx.beginPath();
+  ctx.roundRect(120, curY, width - 240, 160, 20);
+  ctx.fill();
+  ctx.stroke();
+
+  ctx.fillStyle = "#FDA4AF";
+  ctx.font = "bold 20px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("DR. JEFFREY YOUNG SCHEMA INSIGHT:", 145, curY + 40);
+
+  ctx.fillStyle = "rgba(255, 255, 255, 0.85)";
+  ctx.font = "italic 19px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  const quote = '"The abandonment schema convinces you that love is a fragile bubble about to burst. Healing begins when you realize you can never be abandoned by yourself."';
+  const quoteLines = wrapText(ctx, quote, width - 290);
+  let qY = curY + 75;
+  quoteLines.forEach((l) => {
+    ctx.fillText(l, 145, qY);
+    qY += 28;
+  });
+
+  // Footer CTA
+  ctx.fillStyle = "rgba(255, 255, 255, 0.5)";
+  ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("Screen your abandonment schema & relational panic at:", 80, 1200);
+
+  ctx.fillStyle = "#F472B6";
+  ctx.font = "900 30px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("nuju.app/quiz/abandonment-schema", 80, 1245);
+
+  const dataUrl = canvas.toDataURL("image/png", 0.95);
+  const blob = await new Promise<Blob>((resolve, reject) => {
+    canvas.toBlob((b) => (b ? resolve(b) : reject(new Error("Failed blob"))), "image/png", 0.95);
+  });
+  const file = new File([blob], `nuju-abandonment-${result.level}.png`, { type: "image/png" });
+
+  return { dataUrl, blob, file };
+}
+
 
 
 
