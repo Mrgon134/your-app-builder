@@ -6,7 +6,7 @@
     <atom:link href="https://nuju.app/rss.xml" rel="self" type="application/rss+xml" />
     <description>Practical guides on journaling, mood tracking, and emotional wellness from the Nuju team.</description>
     <language>en</language>
-    <lastBuildDate>Fri, 18 Sep 2026 08:06:35 GMT</lastBuildDate>
+    <lastBuildDate>Fri, 18 Sep 2026 08:28:40 GMT</lastBuildDate>
     <item>
       <title>The Neuroscience of Maladaptive Daydreaming: Why Kinesthetic Pacing, Looped Music, and Paracosms Trap the Mind</title>
       <link>https://nuju.app/blog/maladaptive-daydreaming-neuroscience-pacing-music-paracosm</link>
@@ -1516,6 +1516,78 @@
       <guid isPermaLink="true">https://nuju.app/blog/misophonia-chewing-sound-rage-korea</guid>
       <description>누군가 음식을 쩝쩝거리거나 콧소리를 낼 때 극심한 분노와 패닉이 엄습하나요? 암스테르담 미소포니아 척도(A-MISO-S)와 전방 섬엽 과활성화의 진실.</description>
       <category>Auditory Neuroscience &amp; Sensory Processing</category>
+      <pubDate>Fri, 18 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>ko</dc:language>
+    </item>
+    <item>
+      <title>When Space Becomes a Prison: The Neurobiology of Agoraphobia, Panic Escape Dread, and the Shrinking Perimeter</title>
+      <link>https://nuju.app/blog/agoraphobia-neurobiology-panic-escape-barlow-bandelow</link>
+      <guid isPermaLink="true">https://nuju.app/blog/agoraphobia-neurobiology-panic-escape-barlow-bandelow</guid>
+      <description>Why does a crowded supermarket or a bridge cause paralyzing dread? Explore the clinical neuroscience of agoraphobia, Dr. David Barlow&apos;s interoceptive conditioning, and the Bandelow PAS model.</description>
+      <category>Neuroscience &amp; Anxiety Disorders</category>
+      <pubDate>Fri, 18 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Ketika Dunia Menyusut Sebatas Kamar: Memahami Agorafobia, Panik Terjebak di Tempat Ramai, dan Cara Pulih</title>
+      <link>https://nuju.app/blog/agorafobia-takut-tempat-umum-panik-terjebak-keluar-rumah</link>
+      <guid isPermaLink="true">https://nuju.app/blog/agorafobia-takut-tempat-umum-panik-terjebak-keluar-rumah</guid>
+      <description>Mengapa antrean kasir, macet tol, atau sekadar keluar rumah terasa seperti ancaman maut? Pahami neurosains agorafobia, skala PAS Bandelow, dan langkah memulihkan ruang gerakmu.</description>
+      <category>Kesehatan Mental &amp; Gangguan Kecemasan</category>
+      <pubDate>Fri, 18 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>id</dc:language>
+    </item>
+    <item>
+      <title>The Quiet Storm: Unmasking Covert Narcissism, Fragile Superiority, and the Psychology of Silent Grievance</title>
+      <link>https://nuju.app/blog/covert-narcissism-vulnerable-entitlement-hypersensitivity-hsns</link>
+      <guid isPermaLink="true">https://nuju.app/blog/covert-narcissism-vulnerable-entitlement-hypersensitivity-hsns</guid>
+      <description>Not all narcissists are loud, arrogant showmen. Explore the hidden psychology of covert narcissism, Dr. Jonathan Cheek&apos;s HSNS scale, and fragile entitlement.</description>
+      <category>Personality Psychology &amp; Relational Dynamics</category>
+      <pubDate>Fri, 18 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Mengenal Narsisisme Terselubung: Merasa Jenius Disalahpahami, Baper Parah, dan Jebakan Korban Abadi</title>
+      <link>https://nuju.app/blog/narsisisme-terselubung-covert-narcissist-mudah-tersinggung-korban</link>
+      <guid isPermaLink="true">https://nuju.app/blog/narsisisme-terselubung-covert-narcissist-mudah-tersinggung-korban</guid>
+      <description>Tidak semua narsis itu sombong dan suka pamer. Pelajari ciri covert narcissism, skala HSNS Dr. Jonathan Cheek, dan cara membedakannya dari rasa rendah diri biasa.</description>
+      <category>Psikologi Kepribadian &amp; Hubungan Sosial</category>
+      <pubDate>Fri, 18 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>id</dc:language>
+    </item>
+    <item>
+      <title>Wenn die Welt immer kleiner wird: Die Neurobiologie der Agoraphobie, Fluchthemmung und das PAS-Modell</title>
+      <link>https://nuju.app/blog/agoraphobie-panikvermeidung-bewegungsradius-barlow</link>
+      <guid isPermaLink="true">https://nuju.app/blog/agoraphobie-panikvermeidung-bewegungsradius-barlow</guid>
+      <description>Warum werden Supermärkte, Staus oder weite Strecken zur unüberwindbaren Hürde? Erfahren Sie alles über Agoraphobie, die Bandelow-Skala und graduelle Exposition.</description>
+      <category>Neurowissenschaften &amp; Angststörungen</category>
+      <pubDate>Fri, 18 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>de</dc:language>
+    </item>
+    <item>
+      <title>Le Narcissisme Vulnérable : Hypersensibilité, Sentiment d&apos;Injustice et Échelle HSNS de Jonathan Cheek</title>
+      <link>https://nuju.app/blog/narcissisme-vulnerable-hypersensibilite-victimisation-hsns</link>
+      <guid isPermaLink="true">https://nuju.app/blog/narcissisme-vulnerable-hypersensibilite-victimisation-hsns</guid>
+      <description>Loin du cliché du pervers narcissique arrogant et bruyant, découvrez le narcissisme caché : susceptibilité exacerbée, statut de victime et sentiment de supériorité blessée.</description>
+      <category>Psychologie Clinique &amp; Personnalité</category>
+      <pubDate>Fri, 18 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>fr</dc:language>
+    </item>
+    <item>
+      <title>【広場恐怖症とパニック回避】外出が怖くなるメカニズム、PAS尺度、そして行動半径を取り戻す心理学</title>
+      <link>https://nuju.app/blog/agoraphobia-panic-kaihi-koudou-barlow</link>
+      <guid isPermaLink="true">https://nuju.app/blog/agoraphobia-panic-kaihi-koudou-barlow</guid>
+      <description>なぜスーパーのレジ、満員電車、高速道路でパニックが起きるのか？広場恐怖症の神経科学、バンドロー博士のPAS尺度、曝露療法のステップを解説。</description>
+      <category>神経科学と不安障害</category>
+      <pubDate>Fri, 18 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>ja</dc:language>
+    </item>
+    <item>
+      <title>취약한 나르시시즘(Covert Narcissism): 피해자 코스프레, 예민함, 그리고 인정 욕구의 심리학</title>
+      <link>https://nuju.app/blog/covert-narcissism-vulnerable-victim-korea</link>
+      <guid isPermaLink="true">https://nuju.app/blog/covert-narcissism-vulnerable-victim-korea</guid>
+      <description>모든 나르시시스트가 거만하고 외향적인 것은 아닙니다. 수줍음과 피해 의식 뒤에 숨겨진 취약한 나르시시즘(내현적 나르시시즘)과 조너선 치크 교수의 HSNS 척도를 분석합니다.</description>
+      <category>성격 심리학 &amp; 대인관계</category>
       <pubDate>Fri, 18 Sep 2026 12:00:00 GMT</pubDate>
       <dc:language>ko</dc:language>
     </item>

@@ -130,6 +130,8 @@ const SensorimotorTest = lazy(() => import("./pages/SensorimotorTest.tsx"));
 const VulnerabilityHangoverTest = lazy(() => import("./pages/VulnerabilityHangoverTest.tsx"));
 const AnhedoniaTest = lazy(() => import("./pages/AnhedoniaTest.tsx"));
 const MisophoniaTest = lazy(() => import("./pages/MisophoniaTest.tsx"));
+const AgoraphobiaTest = lazy(() => import("./pages/AgoraphobiaTest.tsx"));
+const CovertNarcissismTest = lazy(() => import("./pages/CovertNarcissismTest.tsx"));
 const EbookSalesPage = lazy(() => import("./pages/EbookSalesPage.tsx"));
 const EbookReaderPage = lazy(() => import("./pages/EbookReaderPage.tsx"));
 const NotFound = lazy(() => import("./pages/NotFound.tsx"));
@@ -498,6 +500,12 @@ const App = () => (
                   <Route path="/quiz/misophonia" element={<MisophoniaTest />} />
                   <Route path="/quiz/sound-rage" element={<MisophoniaTest />} />
                   <Route path="/tes-misophonia" element={<MisophoniaTest />} />
+                  <Route path="/quiz/agoraphobia" element={<AgoraphobiaTest />} />
+                  <Route path="/quiz/panic-avoidance" element={<AgoraphobiaTest />} />
+                  <Route path="/tes-agorafobia" element={<AgoraphobiaTest />} />
+                  <Route path="/quiz/covert-narcissism" element={<CovertNarcissismTest />} />
+                  <Route path="/quiz/vulnerable-narcissism" element={<CovertNarcissismTest />} />
+                  <Route path="/tes-narsisisme-terselubung" element={<CovertNarcissismTest />} />
                   <Route path="/quiz/:quizId" element={<QuizRunner />} />
                   <Route path="/test-psikologi" element={<QuizHub />} />
                   <Route path="/test-psikologi/:quizId" element={<QuizRunner />} />

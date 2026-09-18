@@ -1227,6 +1227,42 @@
     <changefreq>weekly</changefreq>
   </url>
   <url>
+    <loc>https://nuju.app/quiz/agoraphobia</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.95</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/quiz/panic-avoidance</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.9</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/tes-agorafobia</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.9</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/quiz/covert-narcissism</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.95</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/quiz/vulnerable-narcissism</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.9</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/tes-narsisisme-terselubung</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.9</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
     <loc>https://nuju.app/quiz/baterai-emosi</loc>
     <lastmod>2026-09-18</lastmod>
     <priority>0.9</priority>
@@ -11242,6 +11278,102 @@
       <image:caption>누군가 음식을 쩝쩝거리거나 콧소리를 낼 때 극심한 분노와 패닉이 엄습하나요? 암스테르담 미소포니아 척도(A-MISO-S)와 전방 섬엽 과활성화의 진실.</image:caption>
     </image:image>
     <xhtml:link rel="alternate" hreflang="ko" href="https://nuju.app/blog/misophonia-chewing-sound-rage-korea"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/agoraphobia-neurobiology-panic-escape-barlow-bandelow</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>When Space Becomes a Prison: The Neurobiology of Agoraphobia, Panic Escape Dread, and the Shrinking Perimeter</image:title>
+      <image:caption>Why does a crowded supermarket or a bridge cause paralyzing dread? Explore the clinical neuroscience of agoraphobia, Dr. David Barlow&apos;s interoceptive conditioning, and the Bandelow PAS model.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/agoraphobia-neurobiology-panic-escape-barlow-bandelow"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/agorafobia-takut-tempat-umum-panik-terjebak-keluar-rumah</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Ketika Dunia Menyusut Sebatas Kamar: Memahami Agorafobia, Panik Terjebak di Tempat Ramai, dan Cara Pulih</image:title>
+      <image:caption>Mengapa antrean kasir, macet tol, atau sekadar keluar rumah terasa seperti ancaman maut? Pahami neurosains agorafobia, skala PAS Bandelow, dan langkah memulihkan ruang gerakmu.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="id" href="https://nuju.app/blog/agorafobia-takut-tempat-umum-panik-terjebak-keluar-rumah"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/covert-narcissism-vulnerable-entitlement-hypersensitivity-hsns</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>The Quiet Storm: Unmasking Covert Narcissism, Fragile Superiority, and the Psychology of Silent Grievance</image:title>
+      <image:caption>Not all narcissists are loud, arrogant showmen. Explore the hidden psychology of covert narcissism, Dr. Jonathan Cheek&apos;s HSNS scale, and fragile entitlement.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/covert-narcissism-vulnerable-entitlement-hypersensitivity-hsns"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/narsisisme-terselubung-covert-narcissist-mudah-tersinggung-korban</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Mengenal Narsisisme Terselubung: Merasa Jenius Disalahpahami, Baper Parah, dan Jebakan Korban Abadi</image:title>
+      <image:caption>Tidak semua narsis itu sombong dan suka pamer. Pelajari ciri covert narcissism, skala HSNS Dr. Jonathan Cheek, dan cara membedakannya dari rasa rendah diri biasa.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="id" href="https://nuju.app/blog/narsisisme-terselubung-covert-narcissist-mudah-tersinggung-korban"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/agoraphobie-panikvermeidung-bewegungsradius-barlow</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Wenn die Welt immer kleiner wird: Die Neurobiologie der Agoraphobie, Fluchthemmung und das PAS-Modell</image:title>
+      <image:caption>Warum werden Supermärkte, Staus oder weite Strecken zur unüberwindbaren Hürde? Erfahren Sie alles über Agoraphobie, die Bandelow-Skala und graduelle Exposition.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="de" href="https://nuju.app/blog/agoraphobie-panikvermeidung-bewegungsradius-barlow"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/narcissisme-vulnerable-hypersensibilite-victimisation-hsns</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Le Narcissisme Vulnérable : Hypersensibilité, Sentiment d&apos;Injustice et Échelle HSNS de Jonathan Cheek</image:title>
+      <image:caption>Loin du cliché du pervers narcissique arrogant et bruyant, découvrez le narcissisme caché : susceptibilité exacerbée, statut de victime et sentiment de supériorité blessée.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://nuju.app/blog/narcissisme-vulnerable-hypersensibilite-victimisation-hsns"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/agoraphobia-panic-kaihi-koudou-barlow</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>【広場恐怖症とパニック回避】外出が怖くなるメカニズム、PAS尺度、そして行動半径を取り戻す心理学</image:title>
+      <image:caption>なぜスーパーのレジ、満員電車、高速道路でパニックが起きるのか？広場恐怖症の神経科学、バンドロー博士のPAS尺度、曝露療法のステップを解説。</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://nuju.app/blog/agoraphobia-panic-kaihi-koudou-barlow"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/covert-narcissism-vulnerable-victim-korea</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>취약한 나르시시즘(Covert Narcissism): 피해자 코스프레, 예민함, 그리고 인정 욕구의 심리학</image:title>
+      <image:caption>모든 나르시시스트가 거만하고 외향적인 것은 아닙니다. 수줍음과 피해 의식 뒤에 숨겨진 취약한 나르시시즘(내현적 나르시시즘)과 조너선 치크 교수의 HSNS 척도를 분석합니다.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://nuju.app/blog/covert-narcissism-vulnerable-victim-korea"/>
   </url>
   <url>
     <loc>https://nuju.app/blog/how-to-stop-overthinking-at-night</loc>

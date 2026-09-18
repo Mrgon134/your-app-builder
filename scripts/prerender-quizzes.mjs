@@ -3249,6 +3249,68 @@ export function getQuizAndToolPages({
       ],
     },
 
+    {
+      route: "/quiz/agoraphobia",
+      aliases: ["/quiz/panic-avoidance", "/tes-agorafobia"],
+      title: "Agoraphobia & Panic Escape Dread Screener (Dr. Borwin Bandelow PAS Model)",
+      description:
+        "Assess whether public transit, open spaces, supermarkets, traffic gridlocks, or leaving home trigger overwhelming panic and avoidance using the clinical Panic and Agoraphobia Scale (PAS) framework.",
+      category: "Neuroscience & Anxiety Disorders",
+      duration: "90 secs",
+      itemsCount: 12,
+      framework: "Dr. Borwin Bandelow (Panic and Agoraphobia Scale - PAS) & Dr. David H. Barlow (Interoceptive Conditioning)",
+      overview:
+        "Agoraphobia is not a fear of physical geography or buildings, but an interoceptive terror of having panic sensations in places from which rapid escape or immediate rescue would be difficult or humiliating. This screener measures entrapment dread, bodily hypervigilance, and comfort zone shrinkage.",
+      keyPoints: [
+        "Measures 3 clinical dimensions: Spatial Escape & Entrapment Dread, Fear of Fear (Interoception), and Safety Tether Constriction",
+        "Based on Dr. Borwin Bandelow's Panic and Agoraphobia Scale (PAS) and Barlow's cognitive model",
+        "Includes gradual in vivo exposure hierarchies, interoceptive desensitization drills, and vocal decompression",
+      ],
+      faqs: [
+        {
+          question: "Is agoraphobia just a fear of open fields or big skies?",
+          answer:
+            "No. In clinical psychiatry, agoraphobia is defined by fear of situations where escape might be difficult or embarrassing in the event of panic symptoms—such as public transit, traffic jams, grocery stores, airplanes, or being far from home.",
+        },
+        {
+          question: "Can agoraphobia be treated without medicine?",
+          answer:
+            "Yes. Cognitive Behavioral Therapy (CBT), interoceptive exposure (learning to tolerate bodily panic cues), and gradual in vivo exposure have among the highest long-term recovery rates in clinical psychology.",
+        },
+      ],
+    },
+
+    {
+      route: "/quiz/covert-narcissism",
+      aliases: ["/quiz/vulnerable-narcissism", "/tes-narsisisme-terselubung"],
+      title: "Covert Narcissism & Vulnerable Self-Absorption Screener (Cheek HSNS Model)",
+      description:
+        "Assess hypersensitive narcissism, covert superiority fantasies, silent resentment, and weaponized victimhood using the clinical Hypersensitive Narcissism Scale (HSNS) by Dr. Jonathan Cheek and Dr. Frank Hendin.",
+      category: "Personality Psychology & Relational Dynamics",
+      duration: "90 secs",
+      itemsCount: 12,
+      framework: "Dr. Jonathan M. Cheek & Dr. Frank G. Hendin (Hypersensitive Narcissism Scale - HSNS)",
+      overview:
+        "Unlike grandiose narcissists who crave the spotlight, covert (vulnerable) narcissists are often introverted and reserved, but simmer with defensive hypersensitivity, silent entitlement, and deep-seated grievance that an unappreciative world ignores their unique genius. This screener measures vulnerable ego fragility.",
+      keyPoints: [
+        "Measures 3 clinical dimensions: Defensive Hypersensitivity, Covert Entitlement & Grievance, and Martyrdom (Weaponized Victimhood)",
+        "Based on the clinical Hypersensitive Narcissism Scale (HSNS) developed at Wellesley College",
+        "Provides radical self-honesty prompts, humility cultivation practices, and healthy empathy integration",
+      ],
+      faqs: [
+        {
+          question: "How is covert narcissism different from ordinary introversion or shyness?",
+          answer:
+            "Shy individuals do not harbor hidden fantasies of superiority or bitter resentment toward others' success. Covert narcissists experience quiet entitlement—believing they deserve special admiration and feeling deeply aggrieved when they don't receive it.",
+        },
+        {
+          question: "Can a vulnerable narcissist change?",
+          answer:
+            "Yes. With authentic self-awareness, mentalization-based therapy, and willingness to tolerate 'ordinariness' without shame, individuals can dismantle their grievance armor and build genuine relational connections.",
+        },
+      ],
+    },
+
     // 5. Ebook Sales Pages
     {
       route: "/ebook",
