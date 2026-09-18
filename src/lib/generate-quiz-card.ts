@@ -13261,6 +13261,425 @@ export async function generateSpiritualNarcissismCard(
   return { dataUrl, blob, file };
 }
 
+export type HypervigilanceCardLang = "en" | "id" | "de" | "fr" | "es";
+
+export interface HypervigilanceScoreResult {
+  score: number;
+  percentage: number;
+  level: string;
+  profile: {
+    title: Record<string, string>;
+    badge: Record<string, string>;
+    summary: Record<string, string>;
+    neurobiology: Record<string, string>;
+    actionProtocol: Record<string, string[]>;
+  };
+  subscales: {
+    environmental_threat_scanning: { score: number; percentage: number };
+    interpersonal_micro_attunement: { score: number; percentage: number };
+    autonomic_exhaustion: { score: number; percentage: number };
+  };
+}
+
+/**
+ * Generates an aesthetic high-resolution Instagram Story share card (1080x1350)
+ * for the Hypervigilance & Chronic Threat Scanning Screener (Stephen Porges & Peter Levine model).
+ */
+export async function generateHypervigilanceCard(
+  result: HypervigilanceScoreResult,
+  lang: HypervigilanceCardLang = "en"
+): Promise<{ dataUrl: string; blob: Blob; file: File }> {
+  const canvas = document.createElement("canvas");
+  canvas.width = 1080;
+  canvas.height = 1350;
+  const ctx = canvas.getContext("2d");
+  if (!ctx) throw new Error("Could not get 2D canvas context");
+
+  const width = 1080;
+  const height = 1350;
+
+  // Background: Deep Midnight Emerald & Obsidian
+  const bgGrad = ctx.createLinearGradient(0, 0, width, height);
+  bgGrad.addColorStop(0, "#050B08");
+  bgGrad.addColorStop(0.5, "#0A1810");
+  bgGrad.addColorStop(1, "#050B08");
+  ctx.fillStyle = bgGrad;
+  ctx.fillRect(0, 0, width, height);
+
+  // Atmospheric glows
+  const glow1 = ctx.createRadialGradient(250, 270, 20, 250, 270, 500);
+  glow1.addColorStop(0, "rgba(16, 185, 129, 0.22)");
+  glow1.addColorStop(1, "rgba(16, 185, 129, 0)");
+  ctx.fillStyle = glow1;
+  ctx.fillRect(0, 0, width, height);
+
+  const glow2 = ctx.createRadialGradient(850, 950, 20, 850, 950, 480);
+  glow2.addColorStop(0, "rgba(245, 158, 11, 0.18)");
+  glow2.addColorStop(1, "rgba(245, 158, 11, 0)");
+  ctx.fillStyle = glow2;
+  ctx.fillRect(0, 0, width, height);
+
+  // Top header
+  ctx.fillStyle = "rgba(255, 255, 255, 0.7)";
+  ctx.font = "bold 20px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.letterSpacing = "2px";
+  ctx.fillText("NUJU CLINICAL SCREENER · POLYVAGAL NEUROCEPTION ARCHITECTURE", 80, 100);
+
+  // Primary Title
+  ctx.fillStyle = "#FFFFFF";
+  ctx.font = "900 44px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.letterSpacing = "-0.5px";
+  ctx.fillText("HYPERVIGILANCE PROFILE", 80, 165);
+
+  // Subtitle / Framework
+  ctx.fillStyle = "#34D399";
+  ctx.font = "600 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.letterSpacing = "0.5px";
+  ctx.fillText("Dr. Stephen Porges & Dr. Peter Levine Somatic Threat Model", 80, 205);
+
+  // Hero Score Card Box
+  const cardY = 245;
+  const cardH = 345;
+  ctx.fillStyle = "rgba(255, 255, 255, 0.05)";
+  drawRoundedRect(ctx, 80, cardY, width - 160, cardH, 28);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(52, 211, 153, 0.35)";
+  ctx.lineWidth = 2;
+  ctx.stroke();
+
+  // Tier Badge Pill
+  const badgeText = (result.profile.badge[lang] || result.profile.badge.en).toUpperCase();
+  ctx.font = "bold 20px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  const badgeWidth = ctx.measureText(badgeText).width + 48;
+  const badgeGradient = ctx.createLinearGradient(120, cardY + 35, 120 + badgeWidth, cardY + 35);
+  badgeGradient.addColorStop(0, "#10B981");
+  badgeGradient.addColorStop(1, "#059669");
+  ctx.fillStyle = badgeGradient;
+  drawRoundedRect(ctx, 120, cardY + 28, badgeWidth, 38, 19);
+  ctx.fill();
+
+  ctx.fillStyle = "#0F172A";
+  ctx.fillText(badgeText, 144, cardY + 54);
+
+  // Large Numerical Score
+  ctx.fillStyle = "#FFFFFF";
+  ctx.font = "900 76px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(`${result.score}`, 120, cardY + 155);
+
+  ctx.fillStyle = "rgba(255, 255, 255, 0.5)";
+  ctx.font = "bold 32px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("/ 48", 225, cardY + 155);
+
+  // Percentage Indicator
+  ctx.fillStyle = "#A7F3D0";
+  ctx.font = "bold 24px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(`Threat Index: ${result.percentage}%`, 330, cardY + 155);
+
+  // Profile Title
+  const titleText = result.profile.title[lang] || result.profile.title.en;
+  ctx.fillStyle = "#FFFFFF";
+  ctx.font = "bold 32px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  wrapText(ctx, titleText, 120, cardY + 215, width - 240, 40, 2);
+
+  // Subscales Metrics Box
+  const metricY = 625;
+  const metricH = 265;
+  ctx.fillStyle = "rgba(255, 255, 255, 0.03)";
+  drawRoundedRect(ctx, 80, metricY, width - 160, metricH, 24);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(255, 255, 255, 0.1)";
+  ctx.stroke();
+
+  ctx.fillStyle = "#E2E8F0";
+  ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("AUTONOMIC THREAT SCANNING & EXHAUSTION", 120, metricY + 50);
+
+  // 3 Subscale Progress Bars
+  const subscales = [
+    { label: "Environmental Scanning", val: result.subscales.environmental_threat_scanning.percentage },
+    { label: "Interpersonal Attunement", val: result.subscales.interpersonal_micro_attunement.percentage },
+    { label: "Autonomic Exhaustion", val: result.subscales.autonomic_exhaustion.percentage },
+  ];
+
+  subscales.forEach((sub, idx) => {
+    const rowY = metricY + 95 + idx * 45;
+    ctx.fillStyle = "rgba(255, 255, 255, 0.8)";
+    ctx.font = "18px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+    ctx.fillText(sub.label, 120, rowY + 8);
+
+    ctx.fillStyle = "#34D399";
+    ctx.font = "bold 18px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+    ctx.fillText(`${sub.val}%`, 530, rowY + 8);
+
+    // Track
+    ctx.fillStyle = "rgba(255, 255, 255, 0.12)";
+    drawRoundedRect(ctx, 600, rowY - 6, 360, 16, 8);
+    ctx.fill();
+
+    // Fill
+    const fillW = Math.max(12, Math.min(360, (360 * sub.val) / 100));
+    const barGrad = ctx.createLinearGradient(600, rowY, 600 + fillW, rowY);
+    barGrad.addColorStop(0, "#10B981");
+    barGrad.addColorStop(1, "#059669");
+    ctx.fillStyle = barGrad;
+    drawRoundedRect(ctx, 600, rowY - 6, fillW, 16, 8);
+    ctx.fill();
+  });
+
+  // Clinical Insight Quote
+  ctx.fillStyle = "#CBD5E1";
+  ctx.font = "20px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(
+    "Stephen Porges Insight: Neuroception detects threat before conscious thought. When danger is assumed, rest is impossible.",
+    120,
+    metricY + 235
+  );
+
+  // Action Protocol
+  ctx.fillStyle = "rgba(255, 255, 255, 0.04)";
+  drawRoundedRect(ctx, 80, 925, width - 160, 200, 24);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(255, 255, 255, 0.12)";
+  ctx.stroke();
+
+  ctx.fillStyle = "#F8FAFC";
+  ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("SOMATIC SAFETY & NERVOUS SYSTEM GROUNDING PROTOCOL", 120, 975);
+
+  const protocols = result.profile.actionProtocol[lang] || result.profile.actionProtocol.en;
+  const protocolText = protocols[0] || "";
+  ctx.fillStyle = "#CBD5E1";
+  ctx.font = "24px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  wrapText(ctx, protocolText, 120, 1020, width - 240, 36, 3);
+
+  // Footer CTA
+  ctx.fillStyle = "rgba(255, 255, 255, 0.5)";
+  ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("Assess your hypervigilance & chronic threat scanning free at:", 80, 1200);
+
+  ctx.fillStyle = "#34D399";
+  ctx.font = "900 30px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("nuju.app/quiz/hypervigilance", 80, 1245);
+
+  const dataUrl = canvas.toDataURL("image/png", 0.95);
+  const blob = await new Promise<Blob>((resolve, reject) => {
+    canvas.toBlob((b) => (b ? resolve(b) : reject(new Error("Failed blob"))), "image/png", 0.95);
+  });
+  const file = new File([blob], `nuju-hypervigilance-${result.level}.png`, { type: "image/png" });
+
+  return { dataUrl, blob, file };
+}
+
+export type ChildhoodEmotionalNeglectCardLang = "en" | "id" | "de" | "fr" | "es";
+
+export interface ChildhoodEmotionalNeglectScoreResult {
+  score: number;
+  percentage: number;
+  level: string;
+  profile: {
+    title: Record<string, string>;
+    badge: Record<string, string>;
+    summary: Record<string, string>;
+    neurobiology: Record<string, string>;
+    actionProtocol: Record<string, string[]>;
+  };
+  subscales: {
+    emotional_invisibility: { score: number; percentage: number };
+    alexithymic_disconnection: { score: number; percentage: number };
+    fatal_flaw_shame: { score: number; percentage: number };
+  };
+}
+
+/**
+ * Generates an aesthetic high-resolution Instagram Story share card (1080x1350)
+ * for Childhood Emotional Neglect (CEN) & Emotional Invisibility Screener (Dr. Jonice Webb model).
+ */
+export async function generateChildhoodEmotionalNeglectCard(
+  result: ChildhoodEmotionalNeglectScoreResult,
+  lang: ChildhoodEmotionalNeglectCardLang = "en"
+): Promise<{ dataUrl: string; blob: Blob; file: File }> {
+  const canvas = document.createElement("canvas");
+  canvas.width = 1080;
+  canvas.height = 1350;
+  const ctx = canvas.getContext("2d");
+  if (!ctx) throw new Error("Could not get 2D canvas context");
+
+  const width = 1080;
+  const height = 1350;
+
+  // Background: Deep Nordic Mist & Rose Quartz
+  const bgGrad = ctx.createLinearGradient(0, 0, width, height);
+  bgGrad.addColorStop(0, "#0C0D14");
+  bgGrad.addColorStop(0.5, "#161826");
+  bgGrad.addColorStop(1, "#0C0D14");
+  ctx.fillStyle = bgGrad;
+  ctx.fillRect(0, 0, width, height);
+
+  // Atmospheric glows
+  const glow1 = ctx.createRadialGradient(250, 270, 20, 250, 270, 500);
+  glow1.addColorStop(0, "rgba(244, 63, 94, 0.22)");
+  glow1.addColorStop(1, "rgba(244, 63, 94, 0)");
+  ctx.fillStyle = glow1;
+  ctx.fillRect(0, 0, width, height);
+
+  const glow2 = ctx.createRadialGradient(850, 950, 20, 850, 950, 480);
+  glow2.addColorStop(0, "rgba(251, 113, 133, 0.18)");
+  glow2.addColorStop(1, "rgba(251, 113, 133, 0)");
+  ctx.fillStyle = glow2;
+  ctx.fillRect(0, 0, width, height);
+
+  // Top header
+  ctx.fillStyle = "rgba(255, 255, 255, 0.7)";
+  ctx.font = "bold 20px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.letterSpacing = "2px";
+  ctx.fillText("NUJU CLINICAL SCREENER · EMOTIONAL INVISIBILITY ARCHITECTURE", 80, 100);
+
+  // Primary Title
+  ctx.fillStyle = "#FFFFFF";
+  ctx.font = "900 44px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.letterSpacing = "-0.5px";
+  ctx.fillText("CHILDHOOD EMOTIONAL NEGLECT", 80, 165);
+
+  // Subtitle / Framework
+  ctx.fillStyle = "#FB7185";
+  ctx.font = "600 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.letterSpacing = "0.5px";
+  ctx.fillText("Dr. Jonice Webb CEN & Invisible Child Architecture", 80, 205);
+
+  // Hero Score Card Box
+  const cardY = 245;
+  const cardH = 345;
+  ctx.fillStyle = "rgba(255, 255, 255, 0.05)";
+  drawRoundedRect(ctx, 80, cardY, width - 160, cardH, 28);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(251, 113, 133, 0.35)";
+  ctx.lineWidth = 2;
+  ctx.stroke();
+
+  // Tier Badge Pill
+  const badgeText = (result.profile.badge[lang] || result.profile.badge.en).toUpperCase();
+  ctx.font = "bold 20px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  const badgeWidth = ctx.measureText(badgeText).width + 48;
+  const badgeGradient = ctx.createLinearGradient(120, cardY + 35, 120 + badgeWidth, cardY + 35);
+  badgeGradient.addColorStop(0, "#F43F5E");
+  badgeGradient.addColorStop(1, "#E11D48");
+  ctx.fillStyle = badgeGradient;
+  drawRoundedRect(ctx, 120, cardY + 28, badgeWidth, 38, 19);
+  ctx.fill();
+
+  ctx.fillStyle = "#FFFFFF";
+  ctx.fillText(badgeText, 144, cardY + 54);
+
+  // Large Numerical Score
+  ctx.fillStyle = "#FFFFFF";
+  ctx.font = "900 76px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(`${result.score}`, 120, cardY + 155);
+
+  ctx.fillStyle = "rgba(255, 255, 255, 0.5)";
+  ctx.font = "bold 32px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("/ 48", 225, cardY + 155);
+
+  // Percentage Indicator
+  ctx.fillStyle = "#FECDD3";
+  ctx.font = "bold 24px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(`CEN Index: ${result.percentage}%`, 330, cardY + 155);
+
+  // Profile Title
+  const titleText = result.profile.title[lang] || result.profile.title.en;
+  ctx.fillStyle = "#FFFFFF";
+  ctx.font = "bold 32px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  wrapText(ctx, titleText, 120, cardY + 215, width - 240, 40, 2);
+
+  // Subscales Metrics Box
+  const metricY = 625;
+  const metricH = 265;
+  ctx.fillStyle = "rgba(255, 255, 255, 0.03)";
+  drawRoundedRect(ctx, 80, metricY, width - 160, metricH, 24);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(255, 255, 255, 0.1)";
+  ctx.stroke();
+
+  ctx.fillStyle = "#E2E8F0";
+  ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("EMOTIONAL NEGLECT & FATAL FLAW BURDEN", 120, metricY + 50);
+
+  // 3 Subscale Progress Bars
+  const subscales = [
+    { label: "Emotional Invisibility", val: result.subscales.emotional_invisibility.percentage },
+    { label: "Alexithymic Disconnection", val: result.subscales.alexithymic_disconnection.percentage },
+    { label: "Fatal Flaw Shame", val: result.subscales.fatal_flaw_shame.percentage },
+  ];
+
+  subscales.forEach((sub, idx) => {
+    const rowY = metricY + 95 + idx * 45;
+    ctx.fillStyle = "rgba(255, 255, 255, 0.8)";
+    ctx.font = "18px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+    ctx.fillText(sub.label, 120, rowY + 8);
+
+    ctx.fillStyle = "#FB7185";
+    ctx.font = "bold 18px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+    ctx.fillText(`${sub.val}%`, 530, rowY + 8);
+
+    // Track
+    ctx.fillStyle = "rgba(255, 255, 255, 0.12)";
+    drawRoundedRect(ctx, 600, rowY - 6, 360, 16, 8);
+    ctx.fill();
+
+    // Fill
+    const fillW = Math.max(12, Math.min(360, (360 * sub.val) / 100));
+    const barGrad = ctx.createLinearGradient(600, rowY, 600 + fillW, rowY);
+    barGrad.addColorStop(0, "#F43F5E");
+    barGrad.addColorStop(1, "#E11D48");
+    ctx.fillStyle = barGrad;
+    drawRoundedRect(ctx, 600, rowY - 6, fillW, 16, 8);
+    ctx.fill();
+  });
+
+  // Clinical Insight Quote
+  ctx.fillStyle = "#CBD5E1";
+  ctx.font = "20px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(
+    "Jonice Webb Insight: Emotional neglect is what did NOT happen: the unfelt tears, the unasked questions, the unseen soul.",
+    120,
+    metricY + 235
+  );
+
+  // Action Protocol
+  ctx.fillStyle = "rgba(255, 255, 255, 0.04)";
+  drawRoundedRect(ctx, 80, 925, width - 160, 200, 24);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(255, 255, 255, 0.12)";
+  ctx.stroke();
+
+  ctx.fillStyle = "#F8FAFC";
+  ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("SOMATIC REPARENTING & EMOTIONAL RESURRECTION PROTOCOL", 120, 975);
+
+  const protocols = result.profile.actionProtocol[lang] || result.profile.actionProtocol.en;
+  const protocolText = protocols[0] || "";
+  ctx.fillStyle = "#CBD5E1";
+  ctx.font = "24px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  wrapText(ctx, protocolText, 120, 1020, width - 240, 36, 3);
+
+  // Footer CTA
+  ctx.fillStyle = "rgba(255, 255, 255, 0.5)";
+  ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("Assess your childhood emotional neglect (CEN) free at:", 80, 1200);
+
+  ctx.fillStyle = "#FB7185";
+  ctx.font = "900 30px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("nuju.app/quiz/childhood-emotional-neglect", 80, 1245);
+
+  const dataUrl = canvas.toDataURL("image/png", 0.95);
+  const blob = await new Promise<Blob>((resolve, reject) => {
+    canvas.toBlob((b) => (b ? resolve(b) : reject(new Error("Failed blob"))), "image/png", 0.95);
+  });
+  const file = new File([blob], `nuju-cen-${result.level}.png`, { type: "image/png" });
+
+  return { dataUrl, blob, file };
+}
+
+
 
 
 

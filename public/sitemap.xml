@@ -939,6 +939,42 @@
     <changefreq>weekly</changefreq>
   </url>
   <url>
+    <loc>https://nuju.app/quiz/hypervigilance</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.95</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/quiz/threat-scanning</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.9</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/tes-hipervigilansi</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.9</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/quiz/childhood-emotional-neglect</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.95</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/quiz/cen-screener</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.9</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/tes-emotional-neglect</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.9</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
     <loc>https://nuju.app/quiz/baterai-emosi</loc>
     <lastmod>2026-09-18</lastmod>
     <priority>0.9</priority>
@@ -9946,6 +9982,150 @@
       <image:caption>Cómo las prácticas holísticas y el lenguaje de alta vibración se convierten en la trinchera perfecta para la superioridad moral y la evasión de culpas.</image:caption>
     </image:image>
     <xhtml:link rel="alternate" hreflang="es" href="https://nuju.app/blog/narcisismo-espiritual-falsa-iluminacion-ego-disfrazado-de-sabiduria"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/hypervigilance-nervous-system-threat-scanning-safe</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Hypervigilance: Why Your Nervous System is Always Scanning for Danger (Even When Safe)</image:title>
+      <image:caption>Explore the neurobiology of hypervigilance, faulty neuroception under Dr. Stephen Porges&apos; polyvagal model, and how somatic grounding rewires chronic threat monitoring.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/hypervigilance-nervous-system-threat-scanning-safe"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/childhood-emotional-neglect-cen-feeling-empty-normal-childhood</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Childhood Emotional Neglect (CEN): Why You Feel Empty Despite Having a &apos;Good&apos; Childhood</image:title>
+      <image:caption>Uncover Dr. Jonice Webb&apos;s Childhood Emotional Neglect model: why the absence of parental emotional attunement causes chronic numbness, alexithymia, and fatal-flaw shame.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/childhood-emotional-neglect-cen-feeling-empty-normal-childhood"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/walking-on-eggshells-neurobiology-tone-of-voice-hyperattunement</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Walking on Eggshells: The Neurobiology of Tone-of-Voice Hyper-Attunement</image:title>
+      <image:caption>Why can you detect a 5% shift in someone&apos;s vocal pitch or footsteps? Understand acoustic neuroception, trauma adaptations, and boundary repair.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/walking-on-eggshells-neurobiology-tone-of-voice-hyperattunement"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/fatal-flaw-syndrome-unseen-childhood-emotions-loneliness</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>The Fatal Flaw Syndrome: How Unseen Childhood Emotions Morph into Adult Loneliness</image:title>
+      <image:caption>Understand why individuals who experienced emotional neglect suffer from the &apos;Fatal Flaw&apos; delusion: the deep-seated belief that they are fundamentally unlovable.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/fatal-flaw-syndrome-unseen-childhood-emotions-loneliness"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/hipervigilansi-trauma-tubuh-siaga-bahaya-susah-rileks</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Hipervigilansi Trauma: Mengapa Tubuhmu Selalu Siaga Bahaya dan Susah Rileks</image:title>
+      <image:caption>Pelajari neurobiologi hipervigilansi trauma, mengapa tubuhmu terus memindai bahaya meski situasi aman, dan cara menenangkan sistem saraf yang lelah.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="id" href="https://nuju.app/blog/hipervigilansi-trauma-tubuh-siaga-bahaya-susah-rileks"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/childhood-emotional-neglect-cen-merasa-hampa-orang-tua-baik</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Childhood Emotional Neglect (CEN): Merasa Hampa Padahal Orang Tua Tidak Pernah Memukul</image:title>
+      <image:caption>Mengapa banyak orang dewasa merasa hampa dan terasing meski dibesarkan di keluarga berkecukupan? Pahami trauma luka tak terlihat pengabaian emosional masa kecil.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="id" href="https://nuju.app/blog/childhood-emotional-neglect-cen-merasa-hampa-orang-tua-baik"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/kebiasaan-over-analisis-nada-bicara-saraf-mode-bertahan-hidup</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Kebiasaan Over-Menganalisis Nada Bicara Orang: Tanda Saraf Terjebak Mode Bertahan Hidup</image:title>
+      <image:caption>Kenapa kamu panik saat mendengar perubahan intonasi suara atau langkah kaki orang lain? Pahami respon adaptasi trauma berjalan di atas cangkang telur.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="id" href="https://nuju.app/blog/kebiasaan-over-analisis-nada-bicara-saraf-mode-bertahan-hidup"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/merasa-ada-yang-kurang-luka-pengabaian-emosional-masa-kecil</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Merasa Ada yang &apos;Kurang&apos; di Dalam Diri: Memahami Luka Pengabaian Emosional Masa Kecil</image:title>
+      <image:caption>Pernahkah kamu merasa ada yang cacat atau kurang di dalam dirimu meski hidup tampak baik? Pahami sindrom cacat batin akibat pengabaian masa lalu.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="id" href="https://nuju.app/blog/merasa-ada-yang-kurang-luka-pengabaian-emosional-masa-kecil"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/hypervigilanz-chronische-anspannung-nervensystem-findet-keine-ruhe</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Hypervigilanz &amp; chronische Anspannung: Warum das Nervensystem keine Ruhe findet</image:title>
+      <image:caption>Die Neurobiologie der Hypervigilanz nach Stephen Porges und Peter Levine: Warum das Nervensystem auch in Sicherheit permanent nach Gefahren scannt.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="de" href="https://nuju.app/blog/hypervigilanz-chronische-anspannung-nervensystem-findet-keine-ruhe"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/emotionale-vernachlaessigung-kindheit-cen-unsichtbares-trauma-leere</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Emotionale Vernachlässigung in der Kindheit (CEN): Das unsichtbare Trauma der Leere</image:title>
+      <image:caption>Das Modell von Dr. Jonice Webb: Warum das Fehlen emotionaler Resonanz in der Kindheit zu chronischer innerer Leere, Alexithymie und Scham führt.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="de" href="https://nuju.app/blog/emotionale-vernachlaessigung-kindheit-cen-unsichtbares-trauma-leere"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/hypervigilance-traumatique-corps-bloque-mode-alerte</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>L&apos;Hypervigilance Traumatique : Pourquoi Votre Corps Reste Bloqué en Mode Alerte</image:title>
+      <image:caption>Explorez la neurobiologie de l&apos;hypervigilance selon le modèle polyvagal : pourquoi votre système nerveux anticipe le danger même en parfaite sécurité.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://nuju.app/blog/hypervigilance-traumatique-corps-bloque-mode-alerte"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/negligencia-emocional-infantil-cen-vacio-cronico-sin-saber-por-que</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Negligencia Emocional Infantil (CEN): Por Qué Sientes un Vacío Crónico Sin Saber Por Qué</image:title>
+      <image:caption>El modelo de la Dra. Jonice Webb: cómo la ausencia de sintonía emocional de los padres genera desconexión, alexitimia y vergüenza invisible en la adultez.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="es" href="https://nuju.app/blog/negligencia-emocional-infantil-cen-vacio-cronico-sin-saber-por-que"/>
   </url>
   <url>
     <loc>https://nuju.app/blog/how-to-stop-overthinking-at-night</loc>

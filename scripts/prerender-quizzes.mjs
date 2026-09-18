@@ -2753,6 +2753,68 @@ export function getQuizAndToolPages({
       ],
     },
 
+    {
+      route: "/quiz/hypervigilance",
+      aliases: ["/quiz/threat-scanning", "/tes-hipervigilansi"],
+      title: "Hypervigilance & Chronic Threat Scanning Screener (Polyvagal & Somatic Model)",
+      description:
+        "Is your nervous system locked in fight-or-flight even when safe? Free 12-item clinical screener assessing acoustic hyper-attunement, somatic bracing, and neuroception threat bias.",
+      category: "Trauma & Somatics",
+      duration: "90 secs",
+      itemsCount: 12,
+      framework: "Dr. Stephen Porges (Polyvagal Neuroception) & Dr. Peter Levine (Somatic Experiencing)",
+      overview:
+        "Hypervigilance is a trauma-induced state of chronic autonomic arousal where neuroception continually misreads neutral sensory stimuli as imminent danger. This screener measures environmental threat scanning, interpersonal micro-attunement, and autonomic somatic exhaustion.",
+      keyPoints: [
+        "Measures 3 clinical subscales: Environmental Threat Scanning, Interpersonal Micro-Attunement, and Autonomic Exhaustion & Somatic Bracing",
+        "Evaluates the stapedius acoustic reflex, seating posture safety biases, and jumpy startle responses",
+        "Provides Dr. Peter Levine somatic orienting drills, 4-7-8 vagal brake breathing, and zero-knowledge audio journaling decompression",
+      ],
+      faqs: [
+        {
+          question: "What is hypervigilance?",
+          answer:
+            "Hypervigilance is an autonomic state of perpetual alertness and sensory scanning caused by trauma, where the brain and body remain primed for threat even in safe environments.",
+        },
+        {
+          question: "How do you calm a hypervigilant nervous system?",
+          answer:
+            "Somatic orienting (slowly rotating the neck to visually register physical exits and safety), prolonged exhalations to stimulate the vagus nerve, and verbalizing sensory tension in a secure private journal help reset neuroception.",
+        },
+      ],
+    },
+
+    {
+      route: "/quiz/childhood-emotional-neglect",
+      aliases: ["/quiz/cen-screener", "/tes-emotional-neglect"],
+      title: "Childhood Emotional Neglect (CEN) Screener (Dr. Jonice Webb Model)",
+      description:
+        "Do you feel emotionally empty, numb, or defective despite a 'good' childhood? Free 12-item clinical screener measuring emotional invisibility, alexithymia, and fatal-flaw shame.",
+      category: "Developmental Psychology",
+      duration: "90 secs",
+      itemsCount: 12,
+      framework: "Dr. Jonice Webb (Running on Empty CEN Model) & Dr. Allan Schore (Attachment Neurobiology)",
+      overview:
+        "Childhood Emotional Neglect (CEN) is the invisible trauma of omission—a parent's failure to notice, mirror, and validate their child's emotional world. This clinical screener measures emotional invisibility, alexithymic disconnection, and core defective-self shame.",
+      keyPoints: [
+        "Measures 3 dimensions: Emotional Invisibility in Family of Origin, Alexithymic Disconnection & Numbness, and Fatal-Flaw Syndrome & Defective Self-Shame",
+        "Explains the neurobiology of right-hemisphere emotional mirroring deficits",
+        "Includes concrete emotional reparenting protocols, somatic sensation naming, and private voice journaling",
+      ],
+      faqs: [
+        {
+          question: "What is Childhood Emotional Neglect (CEN)?",
+          answer:
+            "CEN is an act of omission where parents fail to emotionally respond to, validate, or comfort their child, leaving the adult feeling chronically empty, numb, and hyper-independent.",
+        },
+        {
+          question: "Why do I feel empty if my parents never abused me?",
+          answer:
+            "Because emotional neglect is invisible. You cannot remember what did not happen. The lack of emotional mirroring creates a void that adults often mistake for a personal character flaw.",
+        },
+      ],
+    },
+
     // 5. Ebook Sales Pages
     {
       route: "/ebook",

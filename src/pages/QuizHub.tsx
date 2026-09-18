@@ -2505,6 +2505,64 @@ const QuizHub: React.FC = () => {
               </Link>
             </div>
           </div>
+
+          {/* Card 82: Hypervigilance & Chronic Threat Scanning Screener */}
+          <div className="rounded-3xl border border-emerald-300 bg-gradient-to-br from-emerald-500/10 via-emerald-50 to-white p-6 shadow-xs flex flex-col justify-between hover:shadow-md transition">
+            <div>
+              <div className="flex items-center justify-between mb-3">
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-600 px-3 py-0.5 text-xs font-bold text-white shadow-xs">
+                  <ShieldAlert className="h-3 w-3" />
+                  POLYVAGAL &amp; SOMATIC MODEL
+                </span>
+                <span className="text-xs font-semibold text-emerald-800">Dr. Stephen Porges &amp; P. Levine</span>
+              </div>
+              <h3 className="text-lg font-bold text-neutral-900 mb-1.5">
+                Hypervigilance &amp; Chronic Threat Scanning Screener
+              </h3>
+              <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed">
+                Is your nervous system locked in fight-or-flight even when safe? Screen acoustic hyper-attunement, somatic bracing, and neuroception alarms.
+              </p>
+            </div>
+            <div className="mt-5 pt-3 border-t border-emerald-100 flex items-center justify-between">
+              <span className="text-xs font-medium text-neutral-400">~90 Secs · 12 Items</span>
+              <Link
+                to="/quiz/hypervigilance"
+                className="inline-flex items-center gap-1.5 rounded-full bg-emerald-600 px-4 py-2 text-xs font-bold text-white hover:bg-emerald-700 transition shadow-xs"
+              >
+                <span>Screen Hypervigilance</span>
+                <ArrowRight className="h-3.5 w-3.5" />
+              </Link>
+            </div>
+          </div>
+
+          {/* Card 83: Childhood Emotional Neglect & Emotional Invisibility Screener */}
+          <div className="rounded-3xl border border-rose-300 bg-gradient-to-br from-rose-500/10 via-rose-50 to-white p-6 shadow-xs flex flex-col justify-between hover:shadow-md transition">
+            <div>
+              <div className="flex items-center justify-between mb-3">
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-rose-600 px-3 py-0.5 text-xs font-bold text-white shadow-xs">
+                  <EyeOff className="h-3 w-3" />
+                  CEN &amp; INVISIBILITY MODEL
+                </span>
+                <span className="text-xs font-semibold text-rose-800">Dr. Jonice Webb &amp; Running on Empty</span>
+              </div>
+              <h3 className="text-lg font-bold text-neutral-900 mb-1.5">
+                Childhood Emotional Neglect (CEN) Screener
+              </h3>
+              <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed">
+                Feel empty or unlovable despite a 'normal' childhood? Screen emotional invisibility, alexithymic disconnection, and fatal-flaw shame.
+              </p>
+            </div>
+            <div className="mt-5 pt-3 border-t border-rose-100 flex items-center justify-between">
+              <span className="text-xs font-medium text-neutral-400">~90 Secs · 12 Items</span>
+              <Link
+                to="/quiz/childhood-emotional-neglect"
+                className="inline-flex items-center gap-1.5 rounded-full bg-rose-600 px-4 py-2 text-xs font-bold text-white hover:bg-rose-700 transition shadow-xs"
+              >
+                <span>Screen Emotional Neglect</span>
+                <ArrowRight className="h-3.5 w-3.5" />
+              </Link>
+            </div>
+          </div>
         </div>
 
         {/* Country Filter Pills */}
