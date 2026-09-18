@@ -10756,5 +10756,419 @@ export async function generateTraumaBondCard(
   return { dataUrl, blob, file };
 }
 
+export type EchoismCardLang = "en" | "id" | "de" | "fr" | "es";
 
+export interface EchoismScoreResult {
+  score: number;
+  percentage: number;
+  level: string;
+  profile: {
+    title: Record<string, string>;
+    badge: Record<string, string>;
+    summary: Record<string, string>;
+    neurobiology: Record<string, string>;
+    actionProtocol: Record<string, string[]>;
+  };
+  subscales: {
+    self_erasure: { score: number; percentage: number };
+    praise_aversion: { score: number; percentage: number };
+    narcissist_magnet: { score: number; percentage: number };
+  };
+}
 
+/**
+ * Generates an aesthetic high-resolution Instagram Story share card (1080x1350)
+ * for the Echoism & Fear of Taking Up Space Screener (Dr. Craig Malkin model).
+ */
+export async function generateEchoismCard(
+  result: EchoismScoreResult,
+  lang: EchoismCardLang = "en"
+): Promise<{ dataUrl: string; blob: Blob; file: File }> {
+  const canvas = document.createElement("canvas");
+  const width = 1080;
+  const height = 1350;
+  canvas.width = width;
+  canvas.height = height;
+  const ctx = canvas.getContext("2d");
+  if (!ctx) throw new Error("Could not get 2D canvas context");
+
+  // Deep Forest Moss & Misty Sage gradient
+  const bgGrad = ctx.createLinearGradient(0, 0, width, height);
+  bgGrad.addColorStop(0, "#051310");
+  bgGrad.addColorStop(0.5, "#0A221C");
+  bgGrad.addColorStop(1, "#030C0A");
+  ctx.fillStyle = bgGrad;
+  ctx.fillRect(0, 0, width, height);
+
+  // Soft glowing Emerald/Sage radial orbs
+  const orb1 = ctx.createRadialGradient(180, 180, 10, 180, 180, 420);
+  orb1.addColorStop(0, "rgba(52, 211, 153, 0.22)");
+  orb1.addColorStop(1, "rgba(52, 211, 153, 0)");
+  ctx.fillStyle = orb1;
+  ctx.fillRect(0, 0, width, height);
+
+  const orb2 = ctx.createRadialGradient(width - 150, 420, 20, width - 150, 420, 460);
+  orb2.addColorStop(0, "rgba(16, 185, 129, 0.18)");
+  orb2.addColorStop(1, "rgba(16, 185, 129, 0)");
+  ctx.fillStyle = orb2;
+  ctx.fillRect(0, 0, width, height);
+
+  // Header Bar / Brand
+  ctx.fillStyle = "#6EE7B7";
+  ctx.font = "bold 24px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("NUJU · ECHOISM & FEAR OF TAKING UP SPACE PROFILE", 80, 105);
+
+  // Category Badge Pill
+  const badge = result.profile.badge[lang] || result.profile.badge.en;
+  ctx.fillStyle = "rgba(52, 211, 153, 0.16)";
+  drawRoundedRect(ctx, 80, 140, 480, 48, 24);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(110, 231, 183, 0.4)";
+  ctx.stroke();
+
+  ctx.fillStyle = "#A7F3D0";
+  ctx.font = "bold 20px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(badge.toUpperCase(), 105, 172);
+
+  // Result Title
+  const title = result.profile.title[lang] || result.profile.title.en;
+  ctx.fillStyle = "#FFFFFF";
+  ctx.font = "900 48px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  wrapText(ctx, title, 80, 245, width - 160, 56, 2);
+
+  // Subscale metrics grid
+  const boxY = 400;
+  const boxWidth = 290;
+  const boxHeight = 160;
+
+  // Box 1: Self-Erasure
+  ctx.fillStyle = "rgba(255, 255, 255, 0.05)";
+  drawRoundedRect(ctx, 80, boxY, boxWidth, boxHeight, 20);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(52, 211, 153, 0.25)";
+  ctx.stroke();
+
+  ctx.fillStyle = "#6EE7B7";
+  ctx.font = "bold 17px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("SELF-ERASURE", 105, boxY + 45);
+  ctx.fillStyle = "#FFFFFF";
+  ctx.font = "900 48px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(`${result.subscales.self_erasure.percentage}%`, 105, boxY + 105);
+  ctx.fillStyle = "#94A3B8";
+  ctx.font = "16px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("Dread of Being Burden", 105, boxY + 135);
+
+  // Box 2: Praise Aversion
+  ctx.fillStyle = "rgba(255, 255, 255, 0.05)";
+  drawRoundedRect(ctx, 400, boxY, boxWidth, boxHeight, 20);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(52, 211, 153, 0.25)";
+  ctx.stroke();
+
+  ctx.fillStyle = "#A7F3D0";
+  ctx.font = "bold 17px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("PRAISE AVERSION", 425, boxY + 45);
+  ctx.fillStyle = "#FFFFFF";
+  ctx.font = "900 48px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(`${result.subscales.praise_aversion.percentage}%`, 425, boxY + 105);
+  ctx.fillStyle = "#94A3B8";
+  ctx.font = "16px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("Spotlight Discomfort", 425, boxY + 135);
+
+  // Box 3: Narcissist Attraction
+  ctx.fillStyle = "rgba(255, 255, 255, 0.05)";
+  drawRoundedRect(ctx, 720, boxY, boxWidth, boxHeight, 20);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(16, 185, 129, 0.25)";
+  ctx.stroke();
+
+  ctx.fillStyle = "#34D399";
+  ctx.font = "bold 17px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("MIRROR DYNAMIC", 745, boxY + 45);
+  ctx.fillStyle = "#FFFFFF";
+  ctx.font = "900 48px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(`${result.subscales.narcissist_magnet.percentage}%`, 745, boxY + 105);
+  ctx.fillStyle = "#94A3B8";
+  ctx.font = "16px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("Drawn to Grandiosity", 745, boxY + 135);
+
+  // Big Banner
+  const metricY = 675;
+  ctx.fillStyle = "rgba(52, 211, 153, 0.08)";
+  drawRoundedRect(ctx, 80, metricY, width - 160, 220, 24);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(52, 211, 153, 0.35)";
+  ctx.stroke();
+
+  ctx.fillStyle = "#D1FAE5";
+  ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("OVERALL ECHOISM SEVERITY INDEX", 120, metricY + 50);
+
+  ctx.fillStyle = "#FFFFFF";
+  ctx.font = "900 64px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(`${result.percentage}%`, 120, metricY + 125);
+
+  const pBarW = width - 440;
+  ctx.fillStyle = "rgba(255, 255, 255, 0.12)";
+  drawRoundedRect(ctx, 290, metricY + 85, pBarW, 16, 8);
+  ctx.fill();
+
+  const progFill = (pBarW * result.percentage) / 100;
+  const pGrad = ctx.createLinearGradient(290, 0, 290 + progFill, 0);
+  pGrad.addColorStop(0, "#10B981");
+  pGrad.addColorStop(1, "#059669");
+  ctx.fillStyle = pGrad;
+  drawRoundedRect(ctx, 290, metricY + 85, Math.max(16, progFill), 16, 8);
+  ctx.fill();
+
+  ctx.fillStyle = "#CBD5E1";
+  ctx.font = "20px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(
+    "Dr. Craig Malkin Insight: Echoists survive childhood by becoming as small and quiet as an echo.",
+    120,
+    metricY + 180
+  );
+
+  // Action Protocol
+  ctx.fillStyle = "rgba(255, 255, 255, 0.04)";
+  drawRoundedRect(ctx, 80, 925, width - 160, 200, 24);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(255, 255, 255, 0.12)";
+  ctx.stroke();
+
+  ctx.fillStyle = "#F8FAFC";
+  ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("SOMATIC VOICE RECLAIMING DRILL", 120, 975);
+
+  const protocols = result.profile.actionProtocol[lang] || result.profile.actionProtocol.en;
+  const protocolText = protocols[0] || "";
+  ctx.fillStyle = "#CBD5E1";
+  ctx.font = "24px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  wrapText(ctx, protocolText, 120, 1020, width - 240, 36, 3);
+
+  // Footer CTA
+  ctx.fillStyle = "rgba(255, 255, 255, 0.5)";
+  ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("Screen your echoism traits & voice recovery at:", 80, 1200);
+
+  ctx.fillStyle = "#6EE7B7";
+  ctx.font = "900 30px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("nuju.app/quiz/echoism", 80, 1245);
+
+  const dataUrl = canvas.toDataURL("image/png", 0.95);
+  const blob = await new Promise<Blob>((resolve, reject) => {
+    canvas.toBlob((b) => (b ? resolve(b) : reject(new Error("Failed blob"))), "image/png", 0.95);
+  });
+  const file = new File([blob], `nuju-echoism-${result.level}.png`, { type: "image/png" });
+
+  return { dataUrl, blob, file };
+}
+
+export type WindowOfToleranceCardLang = "en" | "id" | "de" | "fr" | "es";
+
+export interface WindowOfToleranceScoreResult {
+  score: number;
+  percentage: number;
+  level: string;
+  profile: {
+    title: Record<string, string>;
+    badge: Record<string, string>;
+    summary: Record<string, string>;
+    neurobiology: Record<string, string>;
+    actionProtocol: Record<string, string[]>;
+  };
+  subscales: {
+    hyperarousal: { score: number; percentage: number };
+    hypoarousal: { score: number; percentage: number };
+    narrow_capacity: { score: number; percentage: number };
+  };
+}
+
+/**
+ * Generates an aesthetic high-resolution Instagram Story share card (1080x1350)
+ * for the Nervous System Window of Tolerance Screener (Dr. Dan Siegel autonomic model).
+ */
+export async function generateWindowOfToleranceCard(
+  result: WindowOfToleranceScoreResult,
+  lang: WindowOfToleranceCardLang = "en"
+): Promise<{ dataUrl: string; blob: Blob; file: File }> {
+  const canvas = document.createElement("canvas");
+  const width = 1080;
+  const height = 1350;
+  canvas.width = width;
+  canvas.height = height;
+  const ctx = canvas.getContext("2d");
+  if (!ctx) throw new Error("Could not get 2D canvas context");
+
+  // Dual-spectrum horizon gradient: Deep Navy / Slate
+  const bgGrad = ctx.createLinearGradient(0, 0, width, height);
+  bgGrad.addColorStop(0, "#090E17");
+  bgGrad.addColorStop(0.5, "#0E1726");
+  bgGrad.addColorStop(1, "#08101D");
+  ctx.fillStyle = bgGrad;
+  ctx.fillRect(0, 0, width, height);
+
+  // Hyperarousal Amber Glow (top right)
+  const orb1 = ctx.createRadialGradient(width - 150, 180, 10, width - 150, 180, 440);
+  orb1.addColorStop(0, "rgba(245, 158, 11, 0.20)");
+  orb1.addColorStop(1, "rgba(245, 158, 11, 0)");
+  ctx.fillStyle = orb1;
+  ctx.fillRect(0, 0, width, height);
+
+  // Hypoarousal Cyan Glow (bottom left)
+  const orb2 = ctx.createRadialGradient(180, height - 250, 20, 180, height - 250, 480);
+  orb2.addColorStop(0, "rgba(6, 182, 212, 0.18)");
+  orb2.addColorStop(1, "rgba(6, 182, 212, 0)");
+  ctx.fillStyle = orb2;
+  ctx.fillRect(0, 0, width, height);
+
+  // Header Bar / Brand
+  ctx.fillStyle = "#38BDF8";
+  ctx.font = "bold 24px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("NUJU · AUTONOMIC NERVOUS SYSTEM PROFILE", 80, 105);
+
+  // Category Badge Pill
+  const badge = result.profile.badge[lang] || result.profile.badge.en;
+  ctx.fillStyle = "rgba(56, 189, 248, 0.15)";
+  drawRoundedRect(ctx, 80, 140, 500, 48, 24);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(56, 189, 248, 0.4)";
+  ctx.stroke();
+
+  ctx.fillStyle = "#BAE6FD";
+  ctx.font = "bold 20px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(badge.toUpperCase(), 105, 172);
+
+  // Result Title
+  const title = result.profile.title[lang] || result.profile.title.en;
+  ctx.fillStyle = "#FFFFFF";
+  ctx.font = "900 46px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  wrapText(ctx, title, 80, 245, width - 160, 54, 2);
+
+  // Subscale metrics grid
+  const boxY = 400;
+  const boxWidth = 290;
+  const boxHeight = 160;
+
+  // Box 1: Hyperarousal (Sympathetic / Fight-or-Flight)
+  ctx.fillStyle = "rgba(255, 255, 255, 0.05)";
+  drawRoundedRect(ctx, 80, boxY, boxWidth, boxHeight, 20);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(245, 158, 11, 0.35)";
+  ctx.stroke();
+
+  ctx.fillStyle = "#FBBF24";
+  ctx.font = "bold 17px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("HYPERAROUSAL", 105, boxY + 45);
+  ctx.fillStyle = "#FFFFFF";
+  ctx.font = "900 48px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(`${result.subscales.hyperarousal.percentage}%`, 105, boxY + 105);
+  ctx.fillStyle = "#94A3B8";
+  ctx.font = "16px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("Fight / Flight / Panic", 105, boxY + 135);
+
+  // Box 2: Hypoarousal (Dorsal Vagal / Freeze-Shutdown)
+  ctx.fillStyle = "rgba(255, 255, 255, 0.05)";
+  drawRoundedRect(ctx, 400, boxY, boxWidth, boxHeight, 20);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(6, 182, 212, 0.35)";
+  ctx.stroke();
+
+  ctx.fillStyle = "#22D3EE";
+  ctx.font = "bold 17px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("HYPOAROUSAL", 425, boxY + 45);
+  ctx.fillStyle = "#FFFFFF";
+  ctx.font = "900 48px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(`${result.subscales.hypoarousal.percentage}%`, 425, boxY + 105);
+  ctx.fillStyle = "#94A3B8";
+  ctx.font = "16px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("Freeze / Fog / Shutdown", 425, boxY + 135);
+
+  // Box 3: Narrow Capacity (Fragility)
+  ctx.fillStyle = "rgba(255, 255, 255, 0.05)";
+  drawRoundedRect(ctx, 720, boxY, boxWidth, boxHeight, 20);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(168, 85, 247, 0.35)";
+  ctx.stroke();
+
+  ctx.fillStyle = "#C084FC";
+  ctx.font = "bold 17px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("MICRO-CAPACITY", 745, boxY + 45);
+  ctx.fillStyle = "#FFFFFF";
+  ctx.font = "900 48px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(`${result.subscales.narrow_capacity.percentage}%`, 745, boxY + 105);
+  ctx.fillStyle = "#94A3B8";
+  ctx.font = "16px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("Rapid Trigger Cycling", 745, boxY + 135);
+
+  // Big Metric Banner
+  const metricY = 675;
+  ctx.fillStyle = "rgba(56, 189, 248, 0.08)";
+  drawRoundedRect(ctx, 80, metricY, width - 160, 220, 24);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(56, 189, 248, 0.35)";
+  ctx.stroke();
+
+  ctx.fillStyle = "#E0F2FE";
+  ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("AUTONOMIC DYSREGULATION BURDEN", 120, metricY + 50);
+
+  ctx.fillStyle = "#FFFFFF";
+  ctx.font = "900 64px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(`${result.percentage}%`, 120, metricY + 125);
+
+  const pBarW = width - 440;
+  ctx.fillStyle = "rgba(255, 255, 255, 0.12)";
+  drawRoundedRect(ctx, 290, metricY + 85, pBarW, 16, 8);
+  ctx.fill();
+
+  const progFill = (pBarW * result.percentage) / 100;
+  const pGrad = ctx.createLinearGradient(290, 0, 290 + progFill, 0);
+  pGrad.addColorStop(0, "#0284C7");
+  pGrad.addColorStop(1, "#38BDF8");
+  ctx.fillStyle = pGrad;
+  drawRoundedRect(ctx, 290, metricY + 85, Math.max(16, progFill), 16, 8);
+  ctx.fill();
+
+  ctx.fillStyle = "#CBD5E1";
+  ctx.font = "20px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(
+    "Dr. Dan Siegel Insight: Widening your window expands your capacity to feel without losing control.",
+    120,
+    metricY + 180
+  );
+
+  // Action Protocol
+  ctx.fillStyle = "rgba(255, 255, 255, 0.04)";
+  drawRoundedRect(ctx, 80, 925, width - 160, 200, 24);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(255, 255, 255, 0.12)";
+  ctx.stroke();
+
+  ctx.fillStyle = "#F8FAFC";
+  ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("SOMATIC PENDULATION & REGULATION PROTOCOL", 120, 975);
+
+  const protocols = result.profile.actionProtocol[lang] || result.profile.actionProtocol.en;
+  const protocolText = protocols[0] || "";
+  ctx.fillStyle = "#CBD5E1";
+  ctx.font = "24px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  wrapText(ctx, protocolText, 120, 1020, width - 240, 36, 3);
+
+  // Footer CTA
+  ctx.fillStyle = "rgba(255, 255, 255, 0.5)";
+  ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("Assess your autonomic capacity & vagus nerve brake at:", 80, 1200);
+
+  ctx.fillStyle = "#38BDF8";
+  ctx.font = "900 30px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("nuju.app/quiz/window-of-tolerance", 80, 1245);
+
+  const dataUrl = canvas.toDataURL("image/png", 0.95);
+  const blob = await new Promise<Blob>((resolve, reject) => {
+    canvas.toBlob((b) => (b ? resolve(b) : reject(new Error("Failed blob"))), "image/png", 0.95);
+  });
+  const file = new File([blob], `nuju-window-of-tolerance-${result.level}.png`, { type: "image/png" });
+
+  return { dataUrl, blob, file };
+}

@@ -102,6 +102,8 @@ const RepressedAngerTest = lazy(() => import("./pages/RepressedAngerTest.tsx"));
 const EmotionalFlashbackTest = lazy(() => import("./pages/EmotionalFlashbackTest.tsx"));
 const MaladaptiveDaydreamingTest = lazy(() => import("./pages/MaladaptiveDaydreamingTest.tsx"));
 const TraumaBondTest = lazy(() => import("./pages/TraumaBondTest.tsx"));
+const EchoismTest = lazy(() => import("./pages/EchoismTest.tsx"));
+const WindowOfToleranceTest = lazy(() => import("./pages/WindowOfToleranceTest.tsx"));
 const EbookSalesPage = lazy(() => import("./pages/EbookSalesPage.tsx"));
 const EbookReaderPage = lazy(() => import("./pages/EbookReaderPage.tsx"));
 const NotFound = lazy(() => import("./pages/NotFound.tsx"));
@@ -386,6 +388,12 @@ const App = () => (
                   <Route path="/quiz/trauma-bond" element={<TraumaBondTest />} />
                   <Route path="/quiz/trauma-bonding" element={<TraumaBondTest />} />
                   <Route path="/tes-trauma-bonding" element={<TraumaBondTest />} />
+                  <Route path="/quiz/echoism" element={<EchoismTest />} />
+                  <Route path="/quiz/fear-of-taking-up-space" element={<EchoismTest />} />
+                  <Route path="/tes-echoism" element={<EchoismTest />} />
+                  <Route path="/quiz/window-of-tolerance" element={<WindowOfToleranceTest />} />
+                  <Route path="/quiz/nervous-system-capacity" element={<WindowOfToleranceTest />} />
+                  <Route path="/tes-window-of-tolerance" element={<WindowOfToleranceTest />} />
                   <Route path="/quiz/:quizId" element={<QuizRunner />} />
                   <Route path="/test-psikologi" element={<QuizHub />} />
                   <Route path="/test-psikologi/:quizId" element={<QuizRunner />} />

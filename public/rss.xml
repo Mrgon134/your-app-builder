@@ -6,7 +6,7 @@
     <atom:link href="https://nuju.app/rss.xml" rel="self" type="application/rss+xml" />
     <description>Practical guides on journaling, mood tracking, and emotional wellness from the Nuju team.</description>
     <language>en</language>
-    <lastBuildDate>Fri, 18 Sep 2026 01:38:19 GMT</lastBuildDate>
+    <lastBuildDate>Fri, 18 Sep 2026 01:49:11 GMT</lastBuildDate>
     <item>
       <title>The Neuroscience of Maladaptive Daydreaming: Why Kinesthetic Pacing, Looped Music, and Paracosms Trap the Mind</title>
       <link>https://nuju.app/blog/maladaptive-daydreaming-neuroscience-pacing-music-paracosm</link>
@@ -112,6 +112,114 @@
       <guid isPermaLink="true">https://nuju.app/blog/vinculo-traumatico-trauma-bonding-refuerzo-intermitente-adiccion</guid>
       <description>¿Por qué es tan difícil dejar a una pareja que te lastima? Entiende la neurobiología del trauma bond, la adicción a la dopamina y los pasos para liberarte.</description>
       <category>Trauma &amp; Relationships</category>
+      <pubDate>Fri, 18 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>es</dc:language>
+    </item>
+    <item>
+      <title>The Psychology of Echoism: Why You Have a Mortal Fear of Taking Up Space or Having Needs</title>
+      <link>https://nuju.app/blog/echoism-psychology-fear-of-taking-up-space-craig-malkin</link>
+      <guid isPermaLink="true">https://nuju.app/blog/echoism-psychology-fear-of-taking-up-space-craig-malkin</guid>
+      <description>Do you feel sick to your stomach when someone asks what you want for dinner, or dread receiving compliments? Discover Echoism, the polar opposite of narcissism identified by Harvard psychologist Dr. Craig Malkin.</description>
+      <category>Narcissism &amp; Boundary Work</category>
+      <pubDate>Fri, 18 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>The Window of Tolerance Explained: Why You Swing Between Hyperaroused Panic and Hypoaroused Freeze</title>
+      <link>https://nuju.app/blog/window-of-tolerance-nervous-system-hyperarousal-hypoarousal</link>
+      <guid isPermaLink="true">https://nuju.app/blog/window-of-tolerance-nervous-system-hyperarousal-hypoarousal</guid>
+      <description>Do you explode into irritable panic over tiny hiccups, then instantly crash into numb, exhausted brain fog? Understand Dr. Dan Siegel&apos;s Window of Tolerance and Polyvagal nervous system states.</description>
+      <category>Somatic &amp; Nervous System</category>
+      <pubDate>Fri, 18 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Echoism vs People Pleasing: The Hidden Defense Against Covert Narcissistic Conditioning</title>
+      <link>https://nuju.app/blog/echoism-vs-people-pleasing-narcissistic-conditioning</link>
+      <guid isPermaLink="true">https://nuju.app/blog/echoism-vs-people-pleasing-narcissistic-conditioning</guid>
+      <description>Are you just a generous people pleaser, or are you an echoist living in terror of taking up space? Uncover the crucial psychological distinctions and how to break free.</description>
+      <category>Narcissism &amp; Boundary Work</category>
+      <pubDate>Fri, 18 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>How to Widen Your Window of Tolerance: Somatic Pendulation, Vocal Toning &amp; Nervous System Resets</title>
+      <link>https://nuju.app/blog/how-to-widen-window-of-tolerance-somatic-pendulation-vagus</link>
+      <guid isPermaLink="true">https://nuju.app/blog/how-to-widen-window-of-tolerance-somatic-pendulation-vagus</guid>
+      <description>Constantly triggered or shutting down? Learn neurobiological protocols including somatic pendulation, Peter Levine&apos;s trauma drills, and vocal vagus stimulation to expand your stress capacity.</description>
+      <category>Somatic &amp; Nervous System</category>
+      <pubDate>Fri, 18 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Tes Echoism: Kenapa Anda Sangat Takut Membebani Orang Lain dan Merasa Bersalah Memiliki Kebutuhan?</title>
+      <link>https://nuju.app/blog/tes-echoism-kenapa-takut-membebani-orang-lain-merasa-bersalah</link>
+      <guid isPermaLink="true">https://nuju.app/blog/tes-echoism-kenapa-takut-membebani-orang-lain-merasa-bersalah</guid>
+      <description>Apakah Anda benci saat orang lain merayakan ulang tahun Anda, atau selalu merasa jadi beban jika meminta tolong? Pelajari psikologi Echoism (kebalikan narsisme) dari Dr. Craig Malkin.</description>
+      <category>Narcissism &amp; Boundary Work</category>
+      <pubDate>Fri, 18 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>id</dc:language>
+    </item>
+    <item>
+      <title>Window of Tolerance: Mengapa Emosi Anda Mudah Meledak Cemas atau Tiba-tiba Mati Rasa dan Membeku?</title>
+      <link>https://nuju.app/blog/window-of-tolerance-emosi-meledak-cemas-mati-rasa-freeze</link>
+      <guid isPermaLink="true">https://nuju.app/blog/window-of-tolerance-emosi-meledak-cemas-mati-rasa-freeze</guid>
+      <description>Apakah sistem saraf Anda mudah terlempar antara panik jantung berdebar (hiperarousal) dan lemas mati rasa (hipoarousal)? Pelajari konsep Window of Tolerance Dr. Dan Siegel.</description>
+      <category>Somatic &amp; Nervous System</category>
+      <pubDate>Fri, 18 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>id</dc:language>
+    </item>
+    <item>
+      <title>Perbedaan Echoist dan People Pleaser: Mengapa Anda Menghindari Sorotan dan Benci Dipuji?</title>
+      <link>https://nuju.app/blog/perbedaan-echoist-dan-people-pleaser-benci-dipuji</link>
+      <guid isPermaLink="true">https://nuju.app/blog/perbedaan-echoist-dan-people-pleaser-benci-dipuji</guid>
+      <description>Apakah Anda sekadar people pleaser yang suka menolong, atau seorang echoist yang ketakutan setengah mati jika menjadi pusat perhatian? Temukan perbedaan mendalamnya.</description>
+      <category>Narcissism &amp; Boundary Work</category>
+      <pubDate>Fri, 18 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>id</dc:language>
+    </item>
+    <item>
+      <title>Cara Memperluas Window of Tolerance: Latihan Somatik untuk Menenangkan Saraf yang Terlalu Sensitif</title>
+      <link>https://nuju.app/blog/cara-memperluas-window-of-tolerance-latihan-somatik-saraf</link>
+      <guid isPermaLink="true">https://nuju.app/blog/cara-memperluas-window-of-tolerance-latihan-somatik-saraf</guid>
+      <description>Pelajari latihan somatik teruji secara klinis—termasuk pendulasi Peter Levine, vocal toning saraf vagus, dan physiological sigh—untuk memperkuat daya tahan stres sistem saraf Anda.</description>
+      <category>Somatic &amp; Nervous System</category>
+      <pubDate>Fri, 18 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>id</dc:language>
+    </item>
+    <item>
+      <title>Echoismus (Dr. Craig Malkin): Die panische Angst davor, Raum einzunehmen oder narzisstisch zu wirken</title>
+      <link>https://nuju.app/blog/echoismus-angst-raum-einzunehmen-malkin-narzissmus</link>
+      <guid isPermaLink="true">https://nuju.app/blog/echoismus-angst-raum-einzunehmen-malkin-narzissmus</guid>
+      <description>Fühlen Sie sich schuldig, wenn Sie eigene Bedürfnisse äußern, und hassen Sie Komplimente? Entdecken Sie Echoismus, das Gegenstück zum Narzissmus nach Dr. Craig Malkin.</description>
+      <category>Narcissism &amp; Boundary Work</category>
+      <pubDate>Fri, 18 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>de</dc:language>
+    </item>
+    <item>
+      <title>Das Window of Tolerance: Warum Ihr Nervensystem zwischen Panik (Hyperarousal) und Erstarrung schwankt</title>
+      <link>https://nuju.app/blog/window-of-tolerance-nervensystem-hyperarousal-erstarrung</link>
+      <guid isPermaLink="true">https://nuju.app/blog/window-of-tolerance-nervensystem-hyperarousal-erstarrung</guid>
+      <description>Kippen Sie bei Stress sofort in Herzrasen und Wut, nur um kurz darauf in bleierne Erschöpfung abzustürzen? Verstehen Sie das Toleranzfenster nach Dr. Dan Siegel.</description>
+      <category>Somatic &amp; Nervous System</category>
+      <pubDate>Fri, 18 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>de</dc:language>
+    </item>
+    <item>
+      <title>L&apos;Échoïsme : La peur viscérale d&apos;avoir des besoins et d&apos;exister face aux narcissiques</title>
+      <link>https://nuju.app/blog/echoisme-peur-viscerale-avoir-besoins-narcissiques</link>
+      <guid isPermaLink="true">https://nuju.app/blog/echoisme-peur-viscerale-avoir-besoins-narcissiques</guid>
+      <description>Avez-vous honte d&apos;exprimer vos envies et détestez-vous recevoir des compliments ? Découvrez l&apos;échoïsme, l&apos;opposé clinique du narcissisme selon le Dr Craig Malkin.</description>
+      <category>Narcissism &amp; Boundary Work</category>
+      <pubDate>Fri, 18 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>fr</dc:language>
+    </item>
+    <item>
+      <title>Ecoísmo: El miedo mortal a ocupar espacio, recibir elogios y tener necesidades propias</title>
+      <link>https://nuju.app/blog/egoismo-miedo-ocupar-espacio-elogios-narcisismo</link>
+      <guid isPermaLink="true">https://nuju.app/blog/egoismo-miedo-ocupar-espacio-elogios-narcisismo</guid>
+      <description>¿Sientes culpa cada vez que pides ayuda y te incomodan los halagos? Conoce el ecoísmo, el reverso exacto del narcisismo identificado por el Dr. Craig Malkin.</description>
+      <category>Narcissism &amp; Boundary Work</category>
       <pubDate>Fri, 18 Sep 2026 12:00:00 GMT</pubDate>
       <dc:language>es</dc:language>
     </item>

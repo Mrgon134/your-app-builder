@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { ArrowRight, Brain, Clock, Heart, HelpCircle, Lock, ShieldCheck, Sparkles, Users, Activity, Zap, Headphones, ShieldAlert, Compass, Briefcase, Wind, Eye, Shield, Feather, Moon, Hand, BedDouble, Smartphone, HeartHandshake, Waves, Award, Anchor, Radio, Volume2, Battery, HeartPulse, GitMerge, EyeOff, Hourglass, Snowflake, Smile, Coins, HeartCrack, GitFork, Flame } from "lucide-react";
+import { ArrowRight, Brain, Clock, Heart, HelpCircle, Lock, ShieldCheck, Sparkles, Users, Activity, Zap, Headphones, ShieldAlert, Compass, Briefcase, Wind, Eye, Shield, Feather, Moon, Hand, BedDouble, Smartphone, HeartHandshake, Waves, Award, Anchor, Radio, Volume2, VolumeX, Battery, HeartPulse, GitMerge, EyeOff, Hourglass, Snowflake, Smile, Coins, HeartCrack, GitFork, Flame } from "lucide-react";
 import SEOHead from "@/components/SEOHead";
 import AdSenseBanner from "@/components/AdSenseBanner";
 import AppStoreCta from "@/components/AppStoreCta";
@@ -2153,6 +2153,64 @@ const QuizHub: React.FC = () => {
                 className="inline-flex items-center gap-1.5 rounded-full bg-rose-600 px-4 py-2 text-xs font-bold text-white hover:bg-rose-700 transition shadow-xs"
               >
                 <span>Screen Trauma Bond</span>
+                <ArrowRight className="h-3.5 w-3.5" />
+              </Link>
+            </div>
+          </div>
+
+          {/* Card 70: Echoism & Fear of Taking Up Space Screener */}
+          <div className="rounded-3xl border border-emerald-300 bg-gradient-to-br from-emerald-500/10 via-teal-50 to-white p-6 shadow-xs flex flex-col justify-between hover:shadow-md transition">
+            <div>
+              <div className="flex items-center justify-between mb-3">
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-600 px-3 py-0.5 text-xs font-bold text-white shadow-xs">
+                  <VolumeX className="h-3 w-3" />
+                  ECHOISM SPECTRUM
+                </span>
+                <span className="text-xs font-semibold text-emerald-700">Dr. Craig Malkin</span>
+              </div>
+              <h3 className="text-lg font-bold text-neutral-900 mb-1.5">
+                Echoism & Self-Erasure Screener
+              </h3>
+              <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed">
+                Dread taking up space, hate receiving compliments, and feel guilty just having personal needs? Measure echoistic self-erasure and narcissistic partner attraction.
+              </p>
+            </div>
+            <div className="mt-5 pt-3 border-t border-emerald-100 flex items-center justify-between">
+              <span className="text-xs font-medium text-neutral-400">~90 Secs · 12 Items</span>
+              <Link
+                to="/quiz/echoism"
+                className="inline-flex items-center gap-1.5 rounded-full bg-emerald-600 px-4 py-2 text-xs font-bold text-white hover:bg-emerald-700 transition shadow-xs"
+              >
+                <span>Screen Echoism</span>
+                <ArrowRight className="h-3.5 w-3.5" />
+              </Link>
+            </div>
+          </div>
+
+          {/* Card 71: Window of Tolerance & Nervous System Capacity Screener */}
+          <div className="rounded-3xl border border-sky-300 bg-gradient-to-br from-sky-500/10 via-cyan-50 to-white p-6 shadow-xs flex flex-col justify-between hover:shadow-md transition">
+            <div>
+              <div className="flex items-center justify-between mb-3">
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-sky-600 px-3 py-0.5 text-xs font-bold text-white shadow-xs">
+                  <Activity className="h-3 w-3" />
+                  POLYVAGAL MODEL
+                </span>
+                <span className="text-xs font-semibold text-sky-700">Dr. Dan Siegel</span>
+              </div>
+              <h3 className="text-lg font-bold text-neutral-900 mb-1.5">
+                Window of Tolerance Screener
+              </h3>
+              <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed">
+                Swinging between racing panic/rage (hyperarousal) and sudden brain fog or numbness (hypoarousal)? Assess your autonomic nervous system capacity.
+              </p>
+            </div>
+            <div className="mt-5 pt-3 border-t border-sky-100 flex items-center justify-between">
+              <span className="text-xs font-medium text-neutral-400">~90 Secs · 12 Items</span>
+              <Link
+                to="/quiz/window-of-tolerance"
+                className="inline-flex items-center gap-1.5 rounded-full bg-sky-600 px-4 py-2 text-xs font-bold text-white hover:bg-sky-700 transition shadow-xs"
+              >
+                <span>Screen Window</span>
                 <ArrowRight className="h-3.5 w-3.5" />
               </Link>
             </div>

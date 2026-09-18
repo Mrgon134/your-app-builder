@@ -2381,6 +2381,68 @@ export function getQuizAndToolPages({
       ],
     },
 
+    {
+      route: "/quiz/echoism",
+      aliases: ["/quiz/fear-of-taking-up-space", "/tes-echoism"],
+      title: "Echoism & Fear of Taking Up Space Screener (Dr. Craig Malkin Harvard Model)",
+      description:
+        "Do you dread taking up space, hate receiving compliments, and feel guilty having personal needs? Measure echoistic self-erasure and narcissistic partner attraction.",
+      category: "Narcissism & Boundary Work",
+      duration: "90 secs",
+      itemsCount: 12,
+      framework: "Dr. Craig Malkin Harvard Medical School Echoism Spectrum Model",
+      overview:
+        "Echoism describes the polar psychological opposite of narcissism. Named after the mythical nymph Echo who lost her voice, echoists suffer from an intense dread of seeming narcissistic or demanding, surviving by erasing their own desires, avoiding attention, and reflecting others.",
+      keyPoints: [
+        "Evaluates Self-Erasure & Needs Guilt, Praise Aversion & Spotlight Dread, and Narcissistic Partner Attraction",
+        "Explores childhood origins: growing up with narcissistic, volatile, or emotionally fragile parents",
+        "Practical somatic boundary assertion protocols and private voice journaling exercises",
+      ],
+      faqs: [
+        {
+          question: "How does Echoism differ from healthy humility?",
+          answer:
+            "Healthy humility is comfortable with quiet accomplishment without arrogance. Echoism is a fear-driven compulsion to remain invisible, believing that having basic needs makes you a toxic burden.",
+        },
+        {
+          question: "Why do echoists attract narcissists?",
+          answer:
+            "Narcissists demand all the admiration and space, while echoists crave total invisibility. The echoist feels safe from criticism by surrendering their needs, while the narcissist thrives having a compliant partner.",
+        },
+      ],
+    },
+
+    {
+      route: "/quiz/window-of-tolerance",
+      aliases: ["/quiz/nervous-system-capacity", "/tes-window-of-tolerance"],
+      title: "Window of Tolerance & Nervous System Capacity Screener (Dr. Dan Siegel Polyvagal Model)",
+      description:
+        "Assess whether your nervous system operates in a resilient wide zone or gets easily thrown into fight-or-flight panic (hyperarousal) or dorsal freeze collapse (hypoarousal).",
+      category: "Somatic & Nervous System",
+      duration: "90 secs",
+      itemsCount: 12,
+      framework: "Dr. Dan Siegel Autonomic Arousal Model & Dr. Stephen Porges Polyvagal Theory",
+      overview:
+        "The Window of Tolerance describes the optimal zone of autonomic nervous system arousal where you can process emotions, navigate daily stressors, and think clearly. When trauma or chronic burnout constricts this window, minor triggers catapult the body into hyperaroused panic or drop it into hypoaroused numbness and freeze.",
+      keyPoints: [
+        "Measures Sympathetic Hyperarousal (Fight/Flight/Panic), Dorsal Hypoarousal (Freeze/Shutdown/Numbness), and Micro-Window Fragility",
+        "Explains the neurobiology of the myelinated vagal brake, heart rate variability, and insular awareness",
+        "Step-by-step somatic pendulation, low-frequency vocal toning, and physiological sigh de-escalation drills",
+      ],
+      faqs: [
+        {
+          question: "What does it feel like to be outside your Window of Tolerance?",
+          answer:
+            "Above the window (hyperarousal), you feel wired, angry, racing thoughts, and sensory overload. Below the window (hypoarousal), you experience mental fog, emotional numbness, physical exhaustion, and couch-lock paralysis.",
+        },
+        {
+          question: "Can you widen your Window of Tolerance permanently?",
+          answer:
+            "Yes. Consistent somatic practices (such as vocal vagus stimulation, physiological sighs, and daily unpressured voice journaling in Nuju) rewire neuroception and widen autonomic capacity over time.",
+        },
+      ],
+    },
+
     // 5. Ebook Sales Pages
     {
       route: "/ebook",
