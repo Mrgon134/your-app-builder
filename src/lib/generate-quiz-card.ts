@@ -16019,6 +16019,402 @@ export async function generateVulnerabilityHangoverCard(
   return { dataUrl, blob, file };
 }
 
+// ============================================================================
+// BATCH 58: ANHEDONIA & MISOPHONIA SCREENERS
+// ============================================================================
+
+export type AnhedoniaCardLang = "en" | "id" | "de" | "fr" | "es";
+
+export interface AnhedoniaScoreResult {
+  score: number;
+  percentage: number;
+  level: string;
+  profile: {
+    title: Record<string, string>;
+    badge: Record<string, string>;
+    summary: Record<string, string>;
+    psychology: Record<string, string>;
+    actionProtocol: Record<string, string[]>;
+  };
+  subscales: {
+    consummatory_pleasure_deficit: { score: number; percentage: number };
+    anticipatory_pleasure_deficit: { score: number; percentage: number };
+    social_anhedonia_detachment: { score: number; percentage: number };
+  };
+}
+
+/**
+ * Generates an aesthetic high-resolution Instagram Story share card (1080x1350)
+ * for the Anhedonia & Reward Deficiency Screener (SHAPS Model).
+ */
+export async function generateAnhedoniaCard(
+  result: AnhedoniaScoreResult,
+  lang: AnhedoniaCardLang = "en"
+): Promise<{ dataUrl: string; blob: Blob; file: File }> {
+  const canvas = document.createElement("canvas");
+  canvas.width = 1080;
+  canvas.height = 1350;
+  const ctx = canvas.getContext("2d");
+  if (!ctx) throw new Error("Could not get 2D canvas context");
+
+  const width = 1080;
+  const height = 1350;
+
+  // Background: Deep Slate & Twilight Charcoal
+  const bgGrad = ctx.createLinearGradient(0, 0, width, height);
+  bgGrad.addColorStop(0, "#090D16");
+  bgGrad.addColorStop(0.5, "#111827");
+  bgGrad.addColorStop(1, "#070A10");
+  ctx.fillStyle = bgGrad;
+  ctx.fillRect(0, 0, width, height);
+
+  // Subtle Muted Amethyst Glow Radial
+  const radial = ctx.createRadialGradient(width * 0.8, height * 0.25, 40, width * 0.8, height * 0.25, 550);
+  radial.addColorStop(0, "rgba(168, 85, 247, 0.14)");
+  radial.addColorStop(1, "rgba(168, 85, 247, 0)");
+  ctx.fillStyle = radial;
+  ctx.fillRect(0, 0, width, height);
+
+  // Header Brand Badge
+  ctx.fillStyle = "rgba(255, 255, 255, 0.08)";
+  ctx.beginPath();
+  ctx.roundRect(80, 80, 520, 56, 28);
+  ctx.fill();
+
+  ctx.fillStyle = "#C084FC";
+  ctx.font = "bold 20px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("NUJU CLINICAL · ANHEDONIA & REWARD", 108, 115);
+
+  // Category Tag
+  ctx.fillStyle = "#A855F7";
+  ctx.font = "600 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("SNAITH-HAMILTON PLEASURE SCALE (SHAPS)", 80, 185);
+
+  // Main Card Box
+  const cardBoxY = 220;
+  const cardBoxHeight = 920;
+  ctx.fillStyle = "rgba(255, 255, 255, 0.04)";
+  ctx.strokeStyle = "rgba(168, 85, 247, 0.25)";
+  ctx.lineWidth = 2;
+  ctx.beginPath();
+  ctx.roundRect(80, cardBoxY, width - 160, cardBoxHeight, 36);
+  ctx.fill();
+  ctx.stroke();
+
+  // Level Badge Pill
+  const levelTitle = result.profile.title[lang] || result.profile.title.en;
+  const levelBadge = result.profile.badge[lang] || result.profile.badge.en;
+
+  ctx.fillStyle = "rgba(168, 85, 247, 0.18)";
+  ctx.beginPath();
+  ctx.roundRect(120, cardBoxY + 40, 360, 44, 22);
+  ctx.fill();
+
+  ctx.fillStyle = "#E9D5FF";
+  ctx.font = "bold 18px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(levelBadge.toUpperCase(), 140, cardBoxY + 68);
+
+  // Title
+  ctx.fillStyle = "#FFFFFF";
+  ctx.font = "bold 34px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  const titleLines = wrapText(ctx, levelTitle, width - 240);
+  let curY = cardBoxY + 128;
+  titleLines.forEach((line) => {
+    ctx.fillText(line, 120, curY);
+    curY += 44;
+  });
+
+  // Score Hero Metric Box
+  curY += 10;
+  ctx.fillStyle = "rgba(255, 255, 255, 0.03)";
+  ctx.strokeStyle = "rgba(255, 255, 255, 0.08)";
+  ctx.beginPath();
+  ctx.roundRect(120, curY, width - 240, 110, 20);
+  ctx.fill();
+  ctx.stroke();
+
+  ctx.fillStyle = "#C084FC";
+  ctx.font = "900 64px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(`${result.percentage}%`, 150, curY + 76);
+
+  ctx.fillStyle = "rgba(255, 255, 255, 0.9)";
+  ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("Hedonic Blunting Load", 350, curY + 48);
+
+  ctx.fillStyle = "rgba(255, 255, 255, 0.5)";
+  ctx.font = "16px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(`Clinical SHAPS Score: ${result.score} / 36 pts`, 350, curY + 78);
+
+  // Subscales
+  curY += 145;
+  const subscales = [
+    { label: "Consummatory Sensory Pleasure", pct: result.subscales.consummatory_pleasure_deficit.percentage, color: "#C084FC" },
+    { label: "Anticipatory Dopamine Drive", pct: result.subscales.anticipatory_pleasure_deficit.percentage, color: "#E879F9" },
+    { label: "Social Hedonic Connection", pct: result.subscales.social_anhedonia_detachment.percentage, color: "#9333EA" },
+  ];
+
+  subscales.forEach((sub) => {
+    ctx.fillStyle = "#E2E8F0";
+    ctx.font = "bold 20px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+    ctx.fillText(sub.label, 120, curY);
+
+    ctx.fillStyle = "rgba(255, 255, 255, 0.7)";
+    ctx.font = "bold 20px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+    ctx.fillText(`${sub.pct}%`, width - 200, curY);
+
+    // Track
+    ctx.fillStyle = "rgba(255, 255, 255, 0.08)";
+    ctx.beginPath();
+    ctx.roundRect(120, curY + 12, width - 240, 14, 7);
+    ctx.fill();
+
+    // Bar
+    ctx.fillStyle = sub.color;
+    ctx.beginPath();
+    const barWidth = Math.max(14, ((width - 240) * sub.pct) / 100);
+    ctx.roundRect(120, curY + 12, barWidth, 14, 7);
+    ctx.fill();
+
+    curY += 56;
+  });
+
+  // Clinical Insight Box
+  curY += 20;
+  ctx.fillStyle = "rgba(168, 85, 247, 0.06)";
+  ctx.strokeStyle = "rgba(168, 85, 247, 0.2)";
+  ctx.beginPath();
+  ctx.roundRect(120, curY, width - 240, 160, 20);
+  ctx.fill();
+  ctx.stroke();
+
+  ctx.fillStyle = "#C084FC";
+  ctx.font = "bold 20px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("DR. R. PHILIP SNAITH CLINICAL PRINCIPLE:", 145, curY + 40);
+
+  ctx.fillStyle = "rgba(255, 255, 255, 0.85)";
+  ctx.font = "italic 19px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  const quote = '"Anhedonia is not sadness; it is the neurobiological dampening of hedonic capacity where sensory, social, and future experiences lose their physiological resonance."';
+  const quoteLines = wrapText(ctx, quote, width - 290);
+  let qY = curY + 75;
+  quoteLines.forEach((l) => {
+    ctx.fillText(l, 145, qY);
+    qY += 28;
+  });
+
+  // Footer CTA
+  ctx.fillStyle = "rgba(255, 255, 255, 0.5)";
+  ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("Screen your pleasure capacity & dopamine flatline at:", 80, 1200);
+
+  ctx.fillStyle = "#C084FC";
+  ctx.font = "900 30px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("nuju.app/quiz/anhedonia", 80, 1245);
+
+  const dataUrl = canvas.toDataURL("image/png", 0.95);
+  const blob = await new Promise<Blob>((resolve, reject) => {
+    canvas.toBlob((b) => (b ? resolve(b) : reject(new Error("Failed blob"))), "image/png", 0.95);
+  });
+  const file = new File([blob], `nuju-anhedonia-${result.level}.png`, { type: "image/png" });
+
+  return { dataUrl, blob, file };
+}
+
+export type MisophoniaCardLang = "en" | "id" | "de" | "fr" | "es";
+
+export interface MisophoniaScoreResult {
+  score: number;
+  percentage: number;
+  level: string;
+  profile: {
+    title: Record<string, string>;
+    badge: Record<string, string>;
+    summary: Record<string, string>;
+    psychology: Record<string, string>;
+    actionProtocol: Record<string, string[]>;
+  };
+  subscales: {
+    orofacial_trigger_reactivity: { score: number; percentage: number };
+    autonomic_rage_panic_surge: { score: number; percentage: number };
+    anticipatory_social_avoidance: { score: number; percentage: number };
+  };
+}
+
+/**
+ * Generates an aesthetic high-resolution Instagram Story share card (1080x1350)
+ * for the Misophonia & Sound Rage Screener (A-MISO-S Model).
+ */
+export async function generateMisophoniaCard(
+  result: MisophoniaScoreResult,
+  lang: MisophoniaCardLang = "en"
+): Promise<{ dataUrl: string; blob: Blob; file: File }> {
+  const canvas = document.createElement("canvas");
+  canvas.width = 1080;
+  canvas.height = 1350;
+  const ctx = canvas.getContext("2d");
+  if (!ctx) throw new Error("Could not get 2D canvas context");
+
+  const width = 1080;
+  const height = 1350;
+
+  // Background: Deep Crimson Charcoal
+  const bgGrad = ctx.createLinearGradient(0, 0, width, height);
+  bgGrad.addColorStop(0, "#120305");
+  bgGrad.addColorStop(0.5, "#20060A");
+  bgGrad.addColorStop(1, "#0A0203");
+  ctx.fillStyle = bgGrad;
+  ctx.fillRect(0, 0, width, height);
+
+  // Fiery Rose/Orange Glow Radial
+  const radial = ctx.createRadialGradient(width * 0.8, height * 0.25, 40, width * 0.8, height * 0.25, 550);
+  radial.addColorStop(0, "rgba(244, 63, 94, 0.16)");
+  radial.addColorStop(1, "rgba(244, 63, 94, 0)");
+  ctx.fillStyle = radial;
+  ctx.fillRect(0, 0, width, height);
+
+  // Header Brand Badge
+  ctx.fillStyle = "rgba(255, 255, 255, 0.08)";
+  ctx.beginPath();
+  ctx.roundRect(80, 80, 520, 56, 28);
+  ctx.fill();
+
+  ctx.fillStyle = "#FB7185";
+  ctx.font = "bold 20px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("NUJU CLINICAL · MISOPHONIA & SOUND RAGE", 108, 115);
+
+  // Category Tag
+  ctx.fillStyle = "#F43F5E";
+  ctx.font = "600 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("AMSTERDAM MISOPHONIA SCALE (A-MISO-S)", 80, 185);
+
+  // Main Card Box
+  const cardBoxY = 220;
+  const cardBoxHeight = 920;
+  ctx.fillStyle = "rgba(255, 255, 255, 0.04)";
+  ctx.strokeStyle = "rgba(244, 63, 94, 0.25)";
+  ctx.lineWidth = 2;
+  ctx.beginPath();
+  ctx.roundRect(80, cardBoxY, width - 160, cardBoxHeight, 36);
+  ctx.fill();
+  ctx.stroke();
+
+  // Level Badge Pill
+  const levelTitle = result.profile.title[lang] || result.profile.title.en;
+  const levelBadge = result.profile.badge[lang] || result.profile.badge.en;
+
+  ctx.fillStyle = "rgba(244, 63, 94, 0.18)";
+  ctx.beginPath();
+  ctx.roundRect(120, cardBoxY + 40, 360, 44, 22);
+  ctx.fill();
+
+  ctx.fillStyle = "#FECDD3";
+  ctx.font = "bold 18px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(levelBadge.toUpperCase(), 140, cardBoxY + 68);
+
+  // Title
+  ctx.fillStyle = "#FFFFFF";
+  ctx.font = "bold 34px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  const titleLines = wrapText(ctx, levelTitle, width - 240);
+  let curY = cardBoxY + 128;
+  titleLines.forEach((line) => {
+    ctx.fillText(line, 120, curY);
+    curY += 44;
+  });
+
+  // Score Hero Metric Box
+  curY += 10;
+  ctx.fillStyle = "rgba(255, 255, 255, 0.03)";
+  ctx.strokeStyle = "rgba(255, 255, 255, 0.08)";
+  ctx.beginPath();
+  ctx.roundRect(120, curY, width - 240, 110, 20);
+  ctx.fill();
+  ctx.stroke();
+
+  ctx.fillStyle = "#FB7185";
+  ctx.font = "900 64px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(`${result.percentage}%`, 150, curY + 76);
+
+  ctx.fillStyle = "rgba(255, 255, 255, 0.9)";
+  ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("Misophonic Rage Load", 350, curY + 48);
+
+  ctx.fillStyle = "rgba(255, 255, 255, 0.5)";
+  ctx.font = "16px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(`A-MISO-S Clinical Score: ${result.score} / 36 pts`, 350, curY + 78);
+
+  // Subscales
+  curY += 145;
+  const subscales = [
+    { label: "Orofacial Trigger Reactivity", pct: result.subscales.orofacial_trigger_reactivity.percentage, color: "#FB7185" },
+    { label: "Autonomic Fight-or-Flight Surge", pct: result.subscales.autonomic_rage_panic_surge.percentage, color: "#F43F5E" },
+    { label: "Anticipatory Avoidance Strain", pct: result.subscales.anticipatory_social_avoidance.percentage, color: "#E11D48" },
+  ];
+
+  subscales.forEach((sub) => {
+    ctx.fillStyle = "#E2E8F0";
+    ctx.font = "bold 20px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+    ctx.fillText(sub.label, 120, curY);
+
+    ctx.fillStyle = "rgba(255, 255, 255, 0.7)";
+    ctx.font = "bold 20px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+    ctx.fillText(`${sub.pct}%`, width - 200, curY);
+
+    // Track
+    ctx.fillStyle = "rgba(255, 255, 255, 0.08)";
+    ctx.beginPath();
+    ctx.roundRect(120, curY + 12, width - 240, 14, 7);
+    ctx.fill();
+
+    // Bar
+    ctx.fillStyle = sub.color;
+    ctx.beginPath();
+    const barWidth = Math.max(14, ((width - 240) * sub.pct) / 100);
+    ctx.roundRect(120, curY + 12, barWidth, 14, 7);
+    ctx.fill();
+
+    curY += 56;
+  });
+
+  // Clinical Insight Box
+  curY += 20;
+  ctx.fillStyle = "rgba(244, 63, 94, 0.06)";
+  ctx.strokeStyle = "rgba(244, 63, 94, 0.2)";
+  ctx.beginPath();
+  ctx.roundRect(120, curY, width - 240, 160, 20);
+  ctx.fill();
+  ctx.stroke();
+
+  ctx.fillStyle = "#FB7185";
+  ctx.font = "bold 20px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("DR. SUKHBINDER KUMAR (NEWCASTLE fMRI):", 145, curY + 40);
+
+  ctx.fillStyle = "rgba(255, 255, 255, 0.85)";
+  ctx.font = "italic 19px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  const quote = '"Misophonia is not a dislike of sound, but an involuntary structural hyperactivity between the auditory cortex and the anterior insular fight-or-flight hub."';
+  const quoteLines = wrapText(ctx, quote, width - 290);
+  let qY = curY + 75;
+  quoteLines.forEach((l) => {
+    ctx.fillText(l, 145, qY);
+    qY += 28;
+  });
+
+  // Footer CTA
+  ctx.fillStyle = "rgba(255, 255, 255, 0.5)";
+  ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("Screen your misophonia & sound rage triggers at:", 80, 1200);
+
+  ctx.fillStyle = "#FB7185";
+  ctx.font = "900 30px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("nuju.app/quiz/misophonia", 80, 1245);
+
+  const dataUrl = canvas.toDataURL("image/png", 0.95);
+  const blob = await new Promise<Blob>((resolve, reject) => {
+    canvas.toBlob((b) => (b ? resolve(b) : reject(new Error("Failed blob"))), "image/png", 0.95);
+  });
+  const file = new File([blob], `nuju-misophonia-${result.level}.png`, { type: "image/png" });
+
+  return { dataUrl, blob, file };
+}
+
 
 
 

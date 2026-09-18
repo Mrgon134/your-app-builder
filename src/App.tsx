@@ -128,6 +128,8 @@ const BodyDysmorphiaTest = lazy(() => import("./pages/BodyDysmorphiaTest.tsx"));
 const HealthAnxietyTest = lazy(() => import("./pages/HealthAnxietyTest.tsx"));
 const SensorimotorTest = lazy(() => import("./pages/SensorimotorTest.tsx"));
 const VulnerabilityHangoverTest = lazy(() => import("./pages/VulnerabilityHangoverTest.tsx"));
+const AnhedoniaTest = lazy(() => import("./pages/AnhedoniaTest.tsx"));
+const MisophoniaTest = lazy(() => import("./pages/MisophoniaTest.tsx"));
 const EbookSalesPage = lazy(() => import("./pages/EbookSalesPage.tsx"));
 const EbookReaderPage = lazy(() => import("./pages/EbookReaderPage.tsx"));
 const NotFound = lazy(() => import("./pages/NotFound.tsx"));
@@ -490,6 +492,12 @@ const App = () => (
                   <Route path="/quiz/vulnerability-hangover" element={<VulnerabilityHangoverTest />} />
                   <Route path="/quiz/post-social-shame" element={<VulnerabilityHangoverTest />} />
                   <Route path="/tes-vulnerability-hangover" element={<VulnerabilityHangoverTest />} />
+                  <Route path="/quiz/anhedonia" element={<AnhedoniaTest />} />
+                  <Route path="/quiz/loss-of-pleasure" element={<AnhedoniaTest />} />
+                  <Route path="/tes-anhedonia" element={<AnhedoniaTest />} />
+                  <Route path="/quiz/misophonia" element={<MisophoniaTest />} />
+                  <Route path="/quiz/sound-rage" element={<MisophoniaTest />} />
+                  <Route path="/tes-misophonia" element={<MisophoniaTest />} />
                   <Route path="/quiz/:quizId" element={<QuizRunner />} />
                   <Route path="/test-psikologi" element={<QuizHub />} />
                   <Route path="/test-psikologi/:quizId" element={<QuizRunner />} />

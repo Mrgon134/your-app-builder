@@ -1191,6 +1191,42 @@
     <changefreq>weekly</changefreq>
   </url>
   <url>
+    <loc>https://nuju.app/quiz/anhedonia</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.95</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/quiz/loss-of-pleasure</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.9</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/tes-anhedonia</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.9</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/quiz/misophonia</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.95</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/quiz/sound-rage</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.9</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/tes-misophonia</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.9</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
     <loc>https://nuju.app/quiz/baterai-emosi</loc>
     <lastmod>2026-09-18</lastmod>
     <priority>0.9</priority>
@@ -11110,6 +11146,102 @@
       <image:caption>누군가에게 눈물을 흘리거나 약점을 털어놓은 다음 날 아침, 왜 극심한 수치심과 문자 삭제 충동이 일어날까요? 브레네 브라운 박사의 취약성 숙취 연구.</image:caption>
     </image:image>
     <xhtml:link rel="alternate" hreflang="ko" href="https://nuju.app/blog/vulnerability-hangover-post-social-shame-korea"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/anhedonia-neurobiology-loss-of-pleasure-shaps-dopamine</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>The Grey World: The Neurobiology of Anhedonia, Dopamine Receptor Downregulation, and Lost Pleasure</image:title>
+      <image:caption>Why does your favorite meal taste like cardboard and your beloved music sound like background noise? Explore the neuroscience of anhedonia, SHAPS metrics, and hedonic recovery.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/anhedonia-neurobiology-loss-of-pleasure-shaps-dopamine"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/anhedonia-kenapa-kehilangan-rasa-senang-hobi-makanan-hambar</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Ketika Hidup Kehilangan Rasa: Memahami Anhedonia, Kehampaan Emosi, dan Mengapa Musik Tak Lagi Terdengar Indah</image:title>
+      <image:caption>Kenapa makanan favorit terasa seperti kertas dan liburan terasa membosankan? Kenali sindrom anhedonia, kehabisan dopamin akibat burnout, dan cara memulihkannya.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="id" href="https://nuju.app/blog/anhedonia-kenapa-kehilangan-rasa-senang-hobi-makanan-hambar"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/misophonia-chewing-sound-rage-neuroscience-anterior-insula</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Sound Rage: The Neuroscience of Misophonia, Insular Cortex Hyperactivity, and Orofacial Triggers</image:title>
+      <image:caption>Why does someone eating potato chips or breathing heavily ignite an instantaneous, violent flash of rage? Explore the groundbreaking brain science of misophonia.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/misophonia-chewing-sound-rage-neuroscience-anterior-insula"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/misophonia-kenapa-marah-dengar-suara-kunyahan-orang-makan</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Kenapa Suara Orang Mengunyah Makanan Bikin Kita Meledak Marah? Mengenal Misofonia dan Neurobiologinya</image:title>
+      <image:caption>Mendengar orang makan kerupuk, mengecap bibir, atau bernapas keras membuat emosimu membakar? Pahami gangguan misofonia, riset fMRI, dan solusinya.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="id" href="https://nuju.app/blog/misophonia-kenapa-marah-dengar-suara-kunyahan-orang-makan"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/anhedonie-freudlosigkeit-dopamin-rezeptoren-shaps-therapie</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Anhedonie und der Verlust der Freude: Neurobiologie der Belohnungsdefizienz und Wege aus der emotionalen Taubheit</image:title>
+      <image:caption>Warum fühlt sich alles grau und bedeutungslos an? Erfahren Sie alles über Anhedonie, die SHAPS-Skala nach Dr. Philip Snaith und dopaminerge Regeneration.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="de" href="https://nuju.app/blog/anhedonie-freudlosigkeit-dopamin-rezeptoren-shaps-therapie"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/misophonie-rage-bruits-mastication-insula-anterieure</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>La Misophonie Expliquée : Pourquoi les Bruits de Bouche et de Respiration Déclenchent une Rage Incontrôlable</image:title>
+      <image:caption>Entendre quelqu&apos;un mâcher ou respirer vous donne des envies de meurtre ? Découvrez les découvertes en neuro-imagerie sur l&apos;insula antérieure et l&apos;échelle A-MISO-S.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://nuju.app/blog/misophonie-rage-bruits-mastication-insula-anterieure"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/anhedonia-kairaku-soushitsu-dopamine-burnout-kaifuku</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>【アヘドニア（快感喪失）の脳科学】好きな音楽や食事が楽しめない時のドーパミン回復法とSHAPS理論</image:title>
+      <image:caption>かつて夢中だった趣味や美味しい食事が急に灰色に感じられる「アヘドニア（快感喪失症）」。スネイス・ハミルトン快感尺度（SHAPS）に基づく神経回復の処方箋。</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://nuju.app/blog/anhedonia-kairaku-soushitsu-dopamine-burnout-kaifuku"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/misophonia-chewing-sound-rage-korea</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>미소포니아(Misophonia): 씹는 소리, 숨소리에 갑자기 살인적인 분노가 치미는 뇌과학적 원인과 대처법</image:title>
+      <image:caption>누군가 음식을 쩝쩝거리거나 콧소리를 낼 때 극심한 분노와 패닉이 엄습하나요? 암스테르담 미소포니아 척도(A-MISO-S)와 전방 섬엽 과활성화의 진실.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://nuju.app/blog/misophonia-chewing-sound-rage-korea"/>
   </url>
   <url>
     <loc>https://nuju.app/blog/how-to-stop-overthinking-at-night</loc>

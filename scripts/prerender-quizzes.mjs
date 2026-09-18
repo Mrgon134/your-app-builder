@@ -3187,6 +3187,68 @@ export function getQuizAndToolPages({
       ],
     },
 
+    {
+      route: "/quiz/anhedonia",
+      aliases: ["/quiz/loss-of-pleasure", "/tes-anhedonia"],
+      title: "Anhedonia & Reward Deficiency Screener (Dr. R. Philip Snaith SHAPS Model)",
+      description:
+        "Has food, music, hobbies, and social interaction turned completely grey and joyless? Free 12-item clinical screener measuring consummatory sensory pleasure, anticipatory dopamine drive, and social hedonic detachment.",
+      category: "Neuroscience & Mood Psychology",
+      duration: "90 secs",
+      itemsCount: 12,
+      framework: "Dr. R. Philip Snaith (Snaith-Hamilton Pleasure Scale - SHAPS) & Dr. Kenneth Blum",
+      overview:
+        "Anhedonia is the neurobiological dampening of the brain's mesocorticolimbic reward system, characterized by the absence of positive affect. This screener measures in-the-moment sensory savoring deficits, lost future anticipation, and relational emotional flatlining.",
+      keyPoints: [
+        "Measures 3 clinical dimensions: Consummatory Sensory Savoring, Anticipatory Dopamine Drive, and Social Hedonic Resonance",
+        "Distinguishes negative depressive affect from the neurobiological absence of positive affect",
+        "Includes behavioral activation schedules, micro-sensory restoration drills, and vocal decompression",
+      ],
+      faqs: [
+        {
+          question: "What is the difference between sadness and anhedonia?",
+          answer:
+            "Sadness is an active, painful emotional state characterized by grief, tears, or hurt. Anhedonia is an emotional flatline where you feel empty or neutral, completely unable to feel joy, excitement, or satisfaction even in ideal circumstances.",
+        },
+        {
+          question: "Can anhedonia improve after chronic burnout?",
+          answer:
+            "Yes. When caused by chronic stress or dopamine receptor downregulation, dopamine D2 receptor density can recover with restorative sleep, behavioral activation, reduced digital overstimulation, and somatic nervous system regulation.",
+        },
+      ],
+    },
+
+    {
+      route: "/quiz/misophonia",
+      aliases: ["/quiz/sound-rage", "/tes-misophonia"],
+      title: "Misophonia & Sound Sensitivity Screener (Amsterdam Misophonia Scale A-MISO-S)",
+      description:
+        "Do chewing, crunching, breathing, or tapping sounds trigger instantaneous visceral fury and flight-or-flight panic? Free 12-item clinical screener measuring orofacial reactivity, autonomic rage surges, and avoidance strain.",
+      category: "Auditory Neuroscience & Sensory Processing",
+      duration: "90 secs",
+      itemsCount: 12,
+      framework: "Dr. Damiaan Denys (Amsterdam Misophonia Scale - A-MISO-S) & Dr. Sukhbinder Kumar (Newcastle fMRI)",
+      overview:
+        "Misophonia is a sensory processing disorder where specific human orofacial and kinetic sounds trigger hyper-connectivity between the auditory cortex and the anterior insular fight-or-flight hub. This screener benchmarks trigger severity, physiological panic, and relationship impact.",
+      keyPoints: [
+        "Measures 3 acoustic dimensions: Orofacial Sound Trigger Reactivity, Autonomic Fight-or-Flight Surge, and Anticipatory Avoidance Strain",
+        "Differentiates sound volume pain (hyperacusis) from neurological insular sound rage (misophonia)",
+        "Provides acoustic filtering guidance, household sanctuary communication agreements, and somatic vagus grounding",
+      ],
+      faqs: [
+        {
+          question: "Why do chewing sounds bother me so much more when family members make them?",
+          answer:
+            "The brain's emotional architecture treats intimate relationships and the home as a primary sanctuary of safety. When intrusive trigger sounds occur within that sanctuary, the nervous system registers it as a deep personal boundary violation.",
+        },
+        {
+          question: "Is misophonia just an annoyance or an ear problem?",
+          answer:
+            "Neither. Audiograms show hearing is normal. fMRI neuroimaging reveals that in misophonia, the anterior insular cortex misinterprets specific everyday sounds as urgent survival threats, causing an involuntary visceral adrenaline spike.",
+        },
+      ],
+    },
+
     // 5. Ebook Sales Pages
     {
       route: "/ebook",

@@ -6,7 +6,7 @@
     <atom:link href="https://nuju.app/rss.xml" rel="self" type="application/rss+xml" />
     <description>Practical guides on journaling, mood tracking, and emotional wellness from the Nuju team.</description>
     <language>en</language>
-    <lastBuildDate>Fri, 18 Sep 2026 07:02:50 GMT</lastBuildDate>
+    <lastBuildDate>Fri, 18 Sep 2026 08:06:35 GMT</lastBuildDate>
     <item>
       <title>The Neuroscience of Maladaptive Daydreaming: Why Kinesthetic Pacing, Looped Music, and Paracosms Trap the Mind</title>
       <link>https://nuju.app/blog/maladaptive-daydreaming-neuroscience-pacing-music-paracosm</link>
@@ -1444,6 +1444,78 @@
       <guid isPermaLink="true">https://nuju.app/blog/vulnerability-hangover-post-social-shame-korea</guid>
       <description>누군가에게 눈물을 흘리거나 약점을 털어놓은 다음 날 아침, 왜 극심한 수치심과 문자 삭제 충동이 일어날까요? 브레네 브라운 박사의 취약성 숙취 연구.</description>
       <category>Emotional Regulation &amp; Relationships</category>
+      <pubDate>Fri, 18 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>ko</dc:language>
+    </item>
+    <item>
+      <title>The Grey World: The Neurobiology of Anhedonia, Dopamine Receptor Downregulation, and Lost Pleasure</title>
+      <link>https://nuju.app/blog/anhedonia-neurobiology-loss-of-pleasure-shaps-dopamine</link>
+      <guid isPermaLink="true">https://nuju.app/blog/anhedonia-neurobiology-loss-of-pleasure-shaps-dopamine</guid>
+      <description>Why does your favorite meal taste like cardboard and your beloved music sound like background noise? Explore the neuroscience of anhedonia, SHAPS metrics, and hedonic recovery.</description>
+      <category>Neuroscience &amp; Mood Psychology</category>
+      <pubDate>Fri, 18 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Ketika Hidup Kehilangan Rasa: Memahami Anhedonia, Kehampaan Emosi, dan Mengapa Musik Tak Lagi Terdengar Indah</title>
+      <link>https://nuju.app/blog/anhedonia-kenapa-kehilangan-rasa-senang-hobi-makanan-hambar</link>
+      <guid isPermaLink="true">https://nuju.app/blog/anhedonia-kenapa-kehilangan-rasa-senang-hobi-makanan-hambar</guid>
+      <description>Kenapa makanan favorit terasa seperti kertas dan liburan terasa membosankan? Kenali sindrom anhedonia, kehabisan dopamin akibat burnout, dan cara memulihkannya.</description>
+      <category>Neuroscience &amp; Mood Psychology</category>
+      <pubDate>Fri, 18 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>id</dc:language>
+    </item>
+    <item>
+      <title>Sound Rage: The Neuroscience of Misophonia, Insular Cortex Hyperactivity, and Orofacial Triggers</title>
+      <link>https://nuju.app/blog/misophonia-chewing-sound-rage-neuroscience-anterior-insula</link>
+      <guid isPermaLink="true">https://nuju.app/blog/misophonia-chewing-sound-rage-neuroscience-anterior-insula</guid>
+      <description>Why does someone eating potato chips or breathing heavily ignite an instantaneous, violent flash of rage? Explore the groundbreaking brain science of misophonia.</description>
+      <category>Auditory Neuroscience &amp; Sensory Processing</category>
+      <pubDate>Fri, 18 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Kenapa Suara Orang Mengunyah Makanan Bikin Kita Meledak Marah? Mengenal Misofonia dan Neurobiologinya</title>
+      <link>https://nuju.app/blog/misophonia-kenapa-marah-dengar-suara-kunyahan-orang-makan</link>
+      <guid isPermaLink="true">https://nuju.app/blog/misophonia-kenapa-marah-dengar-suara-kunyahan-orang-makan</guid>
+      <description>Mendengar orang makan kerupuk, mengecap bibir, atau bernapas keras membuat emosimu membakar? Pahami gangguan misofonia, riset fMRI, dan solusinya.</description>
+      <category>Auditory Neuroscience &amp; Sensory Processing</category>
+      <pubDate>Fri, 18 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>id</dc:language>
+    </item>
+    <item>
+      <title>Anhedonie und der Verlust der Freude: Neurobiologie der Belohnungsdefizienz und Wege aus der emotionalen Taubheit</title>
+      <link>https://nuju.app/blog/anhedonie-freudlosigkeit-dopamin-rezeptoren-shaps-therapie</link>
+      <guid isPermaLink="true">https://nuju.app/blog/anhedonie-freudlosigkeit-dopamin-rezeptoren-shaps-therapie</guid>
+      <description>Warum fühlt sich alles grau und bedeutungslos an? Erfahren Sie alles über Anhedonie, die SHAPS-Skala nach Dr. Philip Snaith und dopaminerge Regeneration.</description>
+      <category>Neuroscience &amp; Mood Psychology</category>
+      <pubDate>Fri, 18 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>de</dc:language>
+    </item>
+    <item>
+      <title>La Misophonie Expliquée : Pourquoi les Bruits de Bouche et de Respiration Déclenchent une Rage Incontrôlable</title>
+      <link>https://nuju.app/blog/misophonie-rage-bruits-mastication-insula-anterieure</link>
+      <guid isPermaLink="true">https://nuju.app/blog/misophonie-rage-bruits-mastication-insula-anterieure</guid>
+      <description>Entendre quelqu&apos;un mâcher ou respirer vous donne des envies de meurtre ? Découvrez les découvertes en neuro-imagerie sur l&apos;insula antérieure et l&apos;échelle A-MISO-S.</description>
+      <category>Auditory Neuroscience &amp; Sensory Processing</category>
+      <pubDate>Fri, 18 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>fr</dc:language>
+    </item>
+    <item>
+      <title>【アヘドニア（快感喪失）の脳科学】好きな音楽や食事が楽しめない時のドーパミン回復法とSHAPS理論</title>
+      <link>https://nuju.app/blog/anhedonia-kairaku-soushitsu-dopamine-burnout-kaifuku</link>
+      <guid isPermaLink="true">https://nuju.app/blog/anhedonia-kairaku-soushitsu-dopamine-burnout-kaifuku</guid>
+      <description>かつて夢中だった趣味や美味しい食事が急に灰色に感じられる「アヘドニア（快感喪失症）」。スネイス・ハミルトン快感尺度（SHAPS）に基づく神経回復の処方箋。</description>
+      <category>Neuroscience &amp; Mood Psychology</category>
+      <pubDate>Fri, 18 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>ja</dc:language>
+    </item>
+    <item>
+      <title>미소포니아(Misophonia): 씹는 소리, 숨소리에 갑자기 살인적인 분노가 치미는 뇌과학적 원인과 대처법</title>
+      <link>https://nuju.app/blog/misophonia-chewing-sound-rage-korea</link>
+      <guid isPermaLink="true">https://nuju.app/blog/misophonia-chewing-sound-rage-korea</guid>
+      <description>누군가 음식을 쩝쩝거리거나 콧소리를 낼 때 극심한 분노와 패닉이 엄습하나요? 암스테르담 미소포니아 척도(A-MISO-S)와 전방 섬엽 과활성화의 진실.</description>
+      <category>Auditory Neuroscience &amp; Sensory Processing</category>
       <pubDate>Fri, 18 Sep 2026 12:00:00 GMT</pubDate>
       <dc:language>ko</dc:language>
     </item>
