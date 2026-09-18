@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { ArrowRight, Brain, Clock, Heart, HelpCircle, Lock, ShieldCheck, Sparkles, Users, Activity, Zap, Headphones, ShieldAlert, Compass, Briefcase, Wind, Eye, Shield, Feather, Moon, Hand, BedDouble, Smartphone, HeartHandshake, Waves, Award, Anchor, Radio, Volume2, VolumeX, Battery, HeartPulse, GitMerge, EyeOff, Hourglass, Snowflake, Smile, Coins, HeartCrack, GitFork, Flame, Scale } from "lucide-react";
+import { ArrowRight, Brain, Clock, Heart, HelpCircle, Lock, ShieldCheck, Sparkles, Users, Activity, Zap, Headphones, ShieldAlert, Compass, Briefcase, Wind, Eye, Shield, Feather, Moon, Hand, BedDouble, Smartphone, HeartHandshake, Waves, Award, Anchor, Radio, Volume2, VolumeX, Battery, HeartPulse, GitMerge, EyeOff, Hourglass, Snowflake, Smile, Coins, HeartCrack, GitFork, Flame, Scale, HeartOff } from "lucide-react";
 import SEOHead from "@/components/SEOHead";
 import AdSenseBanner from "@/components/AdSenseBanner";
 import AppStoreCta from "@/components/AppStoreCta";
@@ -2385,6 +2385,64 @@ const QuizHub: React.FC = () => {
                 className="inline-flex items-center gap-1.5 rounded-full bg-rose-600 px-4 py-2 text-xs font-bold text-white hover:bg-rose-700 transition shadow-xs"
               >
                 <span>Screen Mental Load</span>
+                <ArrowRight className="h-3.5 w-3.5" />
+              </Link>
+            </div>
+          </div>
+
+          {/* Card 78: Dating Fatigue & Paradox of Choice Screener */}
+          <div className="rounded-3xl border border-purple-300 bg-gradient-to-br from-purple-500/10 via-purple-50 to-white p-6 shadow-xs flex flex-col justify-between hover:shadow-md transition">
+            <div>
+              <div className="flex items-center justify-between mb-3">
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-purple-600 px-3 py-0.5 text-xs font-bold text-white shadow-xs">
+                  <HeartOff className="h-3 w-3" />
+                  CHOICE PARADOX
+                </span>
+                <span className="text-xs font-semibold text-purple-700">Dr. Barry Schwartz &amp; Dr. Eli Finkel</span>
+              </div>
+              <h3 className="text-lg font-bold text-neutral-900 mb-1.5">
+                Dating Fatigue &amp; Paradox of Choice Screener
+              </h3>
+              <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed">
+                Exhausted by endless superficial swiping, ghosting fatigue, and analysis paralysis? Differentiate normal singlehood from algorithmic dating app burnout.
+              </p>
+            </div>
+            <div className="mt-5 pt-3 border-t border-purple-100 flex items-center justify-between">
+              <span className="text-xs font-medium text-neutral-400">~90 Secs · 12 Items</span>
+              <Link
+                to="/quiz/dating-fatigue"
+                className="inline-flex items-center gap-1.5 rounded-full bg-purple-600 px-4 py-2 text-xs font-bold text-white hover:bg-purple-700 transition shadow-xs"
+              >
+                <span>Screen Dating Fatigue</span>
+                <ArrowRight className="h-3.5 w-3.5" />
+              </Link>
+            </div>
+          </div>
+
+          {/* Card 79: Toxic Positivity & Emotional Invalidation Screener */}
+          <div className="rounded-3xl border border-lime-300 bg-gradient-to-br from-lime-500/10 via-lime-50 to-white p-6 shadow-xs flex flex-col justify-between hover:shadow-md transition">
+            <div>
+              <div className="flex items-center justify-between mb-3">
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-lime-600 px-3 py-0.5 text-xs font-bold text-neutral-950 shadow-xs">
+                  <Smile className="h-3 w-3" />
+                  EMOTIONAL AGILITY
+                </span>
+                <span className="text-xs font-semibold text-lime-800">Dr. Susan David</span>
+              </div>
+              <h3 className="text-lg font-bold text-neutral-900 mb-1.5">
+                Toxic Positivity &amp; Emotional Invalidation Screener
+              </h3>
+              <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed">
+                Tired of being told to &quot;look on the bright side&quot; and &quot;stay positive&quot; while hurting? Measure your emotional suppression, guilt, and spiritual bypassing.
+              </p>
+            </div>
+            <div className="mt-5 pt-3 border-t border-lime-100 flex items-center justify-between">
+              <span className="text-xs font-medium text-neutral-400">~90 Secs · 12 Items</span>
+              <Link
+                to="/quiz/toxic-positivity"
+                className="inline-flex items-center gap-1.5 rounded-full bg-lime-600 px-4 py-2 text-xs font-bold text-neutral-950 hover:bg-lime-700 transition shadow-xs"
+              >
+                <span>Screen Invalidation</span>
                 <ArrowRight className="h-3.5 w-3.5" />
               </Link>
             </div>

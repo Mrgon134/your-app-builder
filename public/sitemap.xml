@@ -867,6 +867,42 @@
     <changefreq>weekly</changefreq>
   </url>
   <url>
+    <loc>https://nuju.app/quiz/dating-fatigue</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.95</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/quiz/dating-app-burnout</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.9</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/tes-dating-fatigue</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.9</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/quiz/toxic-positivity</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.95</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/quiz/emotional-invalidation</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.9</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/tes-toxic-positivity</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.9</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
     <loc>https://nuju.app/quiz/baterai-emosi</loc>
     <lastmod>2026-09-18</lastmod>
     <priority>0.9</priority>
@@ -9586,6 +9622,150 @@
       <image:caption>¿Tu pareja se hace la desentendida para que termines haciendo tú las tareas del hogar? Descubre cómo la incompetencia aprendida anula el deseo y la equidad.</image:caption>
     </image:image>
     <xhtml:link rel="alternate" hreflang="es" href="https://nuju.app/blog/traicion-institucional-incompetencia-estrategica-carga-mental-pareja"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/dating-app-burnout-swiping-lonely-cynical-numb</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Dating App Burnout: Why Swiping is Making You Lonely, Cynical, and Emotionally Numb</image:title>
+      <image:caption>Has opening dating apps started feeling like a grim second job? Understand the neurobiology of algorithmic burnout, ghosting fatigue, and how to recover your capacity to love.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/dating-app-burnout-swiping-lonely-cynical-numb"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/toxic-positivity-vs-emotional-agility-good-vibes-poison</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Toxic Positivity vs Emotional Agility: Why &apos;Good Vibes Only&apos; is Psychological Poison</image:title>
+      <image:caption>Tired of being told &apos;Everything happens for a reason&apos; when your life is falling apart? Discover why toxic positivity causes chronic illness and how emotional agility heals.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/toxic-positivity-vs-emotional-agility-good-vibes-poison"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/the-paradox-of-choice-in-romance-modern-dating-apps</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>The Paradox of Choice in Romance: How Infinite Swiping Destroys Commitment</image:title>
+      <image:caption>Why does having hundreds of dating matches make it impossible to choose? Explore Dr. Barry Schwartz&apos;s Paradox of Choice and how the illusion of abundance ruins modern love.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/the-paradox-of-choice-in-romance-modern-dating-apps"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/spiritual-bypassing-platitudes-gaslighting-trauma</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Spiritual Bypassing: How New Age Platitudes Are Used to Gaslight Real Trauma</image:title>
+      <image:caption>When someone tells you that your cancer, trauma, or poverty was &apos;attracted by your low vibration&apos;, that isn&apos;t enlightenment—it&apos;s spiritual abuse. Understand spiritual bypassing.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/spiritual-bypassing-platitudes-gaslighting-trauma"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/dating-app-fatigue-swiping-hampa-sinis-takut-komitmen</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Dating App Fatigue: Mengapa Swiping Bikin Kamu Hampa, Sinis, dan Takut Berkomitmen</image:title>
+      <image:caption>Merasa lelah membuka Tinder atau Bumble tapi tetap menggeser layar tiap malam? Pahami bahaya dating app burnout dan cara memulihkan hati yang mati rasa.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="id" href="https://nuju.app/blog/dating-app-fatigue-swiping-hampa-sinis-takut-komitmen"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/toxic-positivity-kantor-keluarga-bahaya-dipaksa-bersyukur</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Toxic Positivity di Kantor dan Keluarga: Bahaya Dipaksa Selalu Bersyukur Saat Sedang Hancur</image:title>
+      <image:caption>Sering dibilang &apos;Kurang bersyukur tuh&apos; saat kamu sedang depresi atau sakit? Pahami bahaya toxic positivity bagi kesehatan mental dan fisik.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="id" href="https://nuju.app/blog/toxic-positivity-kantor-keluarga-bahaya-dipaksa-bersyukur"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/paradoks-pilihan-percintaan-ilusi-swipe-berikutnya</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Paradoks Pilihan Percintaan: Mengapa Terlalu Banyak Opsi di Aplikasi Kencan Merusak Pernikahan</image:title>
+      <image:caption>Merasa sulit jatuh cinta atau mudah bosan dengan pasangan karena mengira ada opsi lebih baik? Pelajari teori Paradox of Choice karya Barry Schwartz.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="id" href="https://nuju.app/blog/paradoks-pilihan-percintaan-ilusi-swipe-berikutnya"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/spiritual-bypassing-nasihat-agama-motivasi-bungkam-emosi</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Spiritual Bypassing: Ketika Nasihat Agama dan Motivasi Dijadikan Alat Membungkam Luka</image:title>
+      <image:caption>Pernahkah trauma atau dukamu diabaikan dengan kalimat &apos;Itu karma&apos; atau &apos;Pikiranmu saja yang kurang positif&apos;? Kenali bentuk manipulasi spiritual bypassing.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="id" href="https://nuju.app/blog/spiritual-bypassing-nasihat-agama-motivasi-bungkam-emosi"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/dating-app-burnout-endloses-swipen-einsamkeit-beziehung</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Dating-App-Burnout: Warum endloses Wischen einsam macht und Gefühle abtötet</image:title>
+      <image:caption>Fühlt sich Tinder oder Bumble wie ein zäher Zweitjob an? Erfahre die psychologischen Hintergründe von Swipe-Müdigkeit und wie du dein Herz wieder öffnest.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="de" href="https://nuju.app/blog/dating-app-burnout-endloses-swipen-einsamkeit-beziehung"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/toxische-positivitaet-good-vibes-only-seelischer-schaden</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Toxische Positivität: Warum &apos;Good Vibes Only&apos; der Seele schadet und Gefühle abtötet</image:title>
+      <image:caption>Bist du es leid, bei Schmerz mit &apos;Alles hat seinen Sinn&apos; abgespeist zu werden? Erfahre, warum erzwungene Fröhlichkeit krank macht und wie emotionale Agilität heilt.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="de" href="https://nuju.app/blog/toxische-positivitaet-good-vibes-only-seelischer-schaden"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/fatigue-applications-rencontre-paradoxe-du-choix-epuisement</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Fatigue des Applications de Rencontre : Le Paradoxe du Choix et l&apos;Épuisement Amoureux</image:title>
+      <image:caption>Faire défiler les profils sur Tinder ou Bumble vous vide-t-il de toute énergie ? Découvrez les ressorts de la fatigue du swipe et comment retrouver le goût de l&apos;amour.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://nuju.app/blog/fatigue-applications-rencontre-paradoxe-du-choix-epuisement"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/positividad-toxica-agotamiento-apps-citas-cinismo-romantico</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Positividad Tóxica y Agotamiento de Apps de Citas: Cómo Sanar del Cinismo Romántico</image:title>
+      <image:caption>¿Harto de frases vacías como &apos;Todo pasa por algo&apos; mientras las apps de citas te dejan el corazón vacío? Aprende a validar tu dolor y recuperar la ilusión.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="es" href="https://nuju.app/blog/positividad-toxica-agotamiento-apps-citas-cinismo-romantico"/>
   </url>
   <url>
     <loc>https://nuju.app/blog/how-to-stop-overthinking-at-night</loc>

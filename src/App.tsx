@@ -110,6 +110,8 @@ const AutisticBurnoutTest = lazy(() => import("./pages/AutisticBurnoutTest.tsx")
 const AnxiousAvoidantTrapTest = lazy(() => import("./pages/AnxiousAvoidantTrapTest.tsx"));
 const MoralInjuryTest = lazy(() => import("./pages/MoralInjuryTest.tsx"));
 const WeaponizedIncompetenceTest = lazy(() => import("./pages/WeaponizedIncompetenceTest.tsx"));
+const DatingFatigueTest = lazy(() => import("./pages/DatingFatigueTest.tsx"));
+const ToxicPositivityTest = lazy(() => import("./pages/ToxicPositivityTest.tsx"));
 const EbookSalesPage = lazy(() => import("./pages/EbookSalesPage.tsx"));
 const EbookReaderPage = lazy(() => import("./pages/EbookReaderPage.tsx"));
 const NotFound = lazy(() => import("./pages/NotFound.tsx"));
@@ -418,6 +420,12 @@ const App = () => (
                   <Route path="/quiz/weaponized-incompetence" element={<WeaponizedIncompetenceTest />} />
                   <Route path="/quiz/mental-load" element={<WeaponizedIncompetenceTest />} />
                   <Route path="/tes-weaponized-incompetence" element={<WeaponizedIncompetenceTest />} />
+                  <Route path="/quiz/dating-fatigue" element={<DatingFatigueTest />} />
+                  <Route path="/quiz/dating-app-burnout" element={<DatingFatigueTest />} />
+                  <Route path="/tes-dating-fatigue" element={<DatingFatigueTest />} />
+                  <Route path="/quiz/toxic-positivity" element={<ToxicPositivityTest />} />
+                  <Route path="/quiz/emotional-invalidation" element={<ToxicPositivityTest />} />
+                  <Route path="/tes-toxic-positivity" element={<ToxicPositivityTest />} />
                   <Route path="/quiz/:quizId" element={<QuizRunner />} />
                   <Route path="/test-psikologi" element={<QuizHub />} />
                   <Route path="/test-psikologi/:quizId" element={<QuizRunner />} />

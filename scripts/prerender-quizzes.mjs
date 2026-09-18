@@ -2629,6 +2629,68 @@ export function getQuizAndToolPages({
       ],
     },
 
+    {
+      route: "/quiz/dating-fatigue",
+      aliases: ["/quiz/dating-app-burnout", "/tes-dating-fatigue"],
+      title: "Dating Fatigue & Paradox of Choice Screener (Dr. Barry Schwartz Model)",
+      description:
+        "Assess whether dating app burnout, ghosting weariness, and the illusion of infinite choice are causing romantic numbness and analysis paralysis.",
+      category: "Relationship Psychology",
+      duration: "90 secs",
+      itemsCount: 12,
+      framework: "Dr. Barry Schwartz (Paradox of Choice) & Dr. Eli Finkel Modern Dating Architecture",
+      overview:
+        "Dating Fatigue is the psychological and neurochemical exhaustion resulting from digital dating app commodification, variable-ratio dopamine loops, and the illusion of endless choice. Individuals experience swipe apathy, checklist perfectionism, and romantic numbing as defense mechanisms against chronic rejection and superficiality.",
+      keyPoints: [
+        "Measures 3 distinct subscales: Swipe Apathy & Algorithmic Burnout, Paradox of Choice & Checklist Paralysis, and Rejection Desensitization",
+        "Differentiates natural singlehood from dopamine receptor burnout and relational cynicism",
+        "Actionable 30-day app detox protocols, slow dating boundaries, and private audio decontamination",
+      ],
+      faqs: [
+        {
+          question: "Why do dating apps make people feel so lonely and depleted?",
+          answer:
+            "Dating apps operate on variable-ratio reward schedules that flood the brain with dopamine anticipation while reducing real human connection to two-dimensional resume metrics, triggering profound commodification and emotional anhedonia.",
+        },
+        {
+          question: "Can romantic curiosity and excitement be recovered after dating app burnout?",
+          answer:
+            "Yes. A 30-day digital detox, shifting to in-person serendipity, and establishing slow dating rules (maximum 10 profiles a day) allows dopamine pathways and emotional vulnerability to heal.",
+        },
+      ],
+    },
+
+    {
+      route: "/quiz/toxic-positivity",
+      aliases: ["/quiz/emotional-invalidation", "/tes-toxic-positivity"],
+      title: "Toxic Positivity & Emotional Invalidation Screener (Dr. Susan David Model)",
+      description:
+        "Assess whether compulsive optimism, 'Good Vibes Only' dogmatism, and spiritual bypassing are silencing your authentic feelings and causing somatic distress.",
+      category: "Mental Health & Culture",
+      duration: "90 secs",
+      itemsCount: 12,
+      framework: "Dr. Susan David (Emotional Agility) & Whitney Goodman Emotional Validation Architecture",
+      overview:
+        "Toxic Positivity is the compulsive imposition of positive thinking as the only acceptable response to pain, grief, or injustice. When painful emotions are dismissed with platitudes like 'Everything happens for a reason,' individuals internalize shame, experience somatic symptoms (bruxism, gut inflammation), and fall into deep emotional isolation.",
+      keyPoints: [
+        "Measures 3 critical dimensions: Suppression Shaming & Forced Smiles, Spiritual Bypassing & Clichés, and Emotional Isolation & Tension",
+        "Explains the biological danger of suppressing negative affect (the rebound effect and autonomic arousal)",
+        "Evidence-based emotional agility frameworks, authentic emotional permission, and zero-censorship voice journaling",
+      ],
+      faqs: [
+        {
+          question: "What is the difference between healthy optimism and toxic positivity?",
+          answer:
+            "Healthy optimism acknowledges reality, validates grief and anger, and looks for realistic hope. Toxic positivity denies, shames, and suppresses painful feelings, demanding forced happiness regardless of circumstances.",
+        },
+        {
+          question: "How does spiritual bypassing harm mental health?",
+          answer:
+            "Spiritual bypassing uses concepts like karma, manifestation, and detachment to avoid confronting real trauma and boundaries. It blames victims for their own suffering by claiming they attracted tragedy through 'negative energy.'",
+        },
+      ],
+    },
+
     // 5. Ebook Sales Pages
     {
       route: "/ebook",
