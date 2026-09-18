@@ -15267,6 +15267,383 @@ export async function generateExecutiveDysfunctionCard(
   return { dataUrl, blob, file };
 }
 
+export type BodyDysmorphiaCardLang = "en" | "id" | "de" | "fr" | "es";
+
+export interface BodyDysmorphiaScoreResult {
+  score: number;
+  percentage: number;
+  level: string;
+  profile: {
+    title: Record<string, string>;
+    badge: Record<string, string>;
+    summary: Record<string, string>;
+    psychology: Record<string, string>;
+    actionProtocol: Record<string, string[]>;
+  };
+  subscales: {
+    flaw_magnification: { score: number; percentage: number };
+    mirror_checking: { score: number; percentage: number };
+    social_camouflaging: { score: number; percentage: number };
+  };
+}
+
+/**
+ * Generates an aesthetic high-resolution Instagram Story share card (1080x1350)
+ * for the Body Dysmorphia & Mirror Checking Screener (Dr. Katharine Phillips Model).
+ */
+export async function generateBodyDysmorphiaCard(
+  result: BodyDysmorphiaScoreResult,
+  lang: BodyDysmorphiaCardLang = "en"
+): Promise<{ dataUrl: string; blob: Blob; file: File }> {
+  const canvas = document.createElement("canvas");
+  canvas.width = 1080;
+  canvas.height = 1350;
+  const ctx = canvas.getContext("2d");
+  if (!ctx) throw new Error("Could not get 2D canvas context");
+
+  const width = 1080;
+  const height = 1350;
+
+  // Background: Deep Velvet Burgundy & Dark Obsidian
+  const bgGrad = ctx.createLinearGradient(0, 0, width, height);
+  bgGrad.addColorStop(0, "#0E0507");
+  bgGrad.addColorStop(0.5, "#1B0B11");
+  bgGrad.addColorStop(1, "#0A0406");
+  ctx.fillStyle = bgGrad;
+  ctx.fillRect(0, 0, width, height);
+
+  // Subtle Rose Glow Radial
+  const radial = ctx.createRadialGradient(width * 0.8, height * 0.25, 40, width * 0.8, height * 0.25, 550);
+  radial.addColorStop(0, "rgba(244, 63, 94, 0.15)");
+  radial.addColorStop(1, "rgba(244, 63, 94, 0)");
+  ctx.fillStyle = radial;
+  ctx.fillRect(0, 0, width, height);
+
+  // Header Brand Badge
+  ctx.fillStyle = "rgba(255, 255, 255, 0.08)";
+  ctx.beginPath();
+  ctx.roundRect(80, 80, 500, 56, 28);
+  ctx.fill();
+
+  ctx.fillStyle = "#FDA4AF";
+  ctx.font = "bold 20px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("NUJU CLINICAL · BODY DYSMORPHIA", 108, 115);
+
+  // Category Tag
+  ctx.fillStyle = "#FB7185";
+  ctx.font = "600 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("BDD & MIRROR CHECKING (DR. PHILLIPS MODEL)", 80, 185);
+
+  // Main Card Box
+  const cardBoxY = 220;
+  const cardBoxHeight = 920;
+  ctx.fillStyle = "rgba(255, 255, 255, 0.04)";
+  ctx.strokeStyle = "rgba(244, 63, 94, 0.25)";
+  ctx.lineWidth = 2;
+  ctx.beginPath();
+  ctx.roundRect(80, cardBoxY, width - 160, cardBoxHeight, 36);
+  ctx.fill();
+  ctx.stroke();
+
+  // Badge inside card
+  const badgeText = (result.profile.badge[lang] || result.profile.badge.en || "BDD FRICTION").toUpperCase();
+  ctx.fillStyle = "rgba(244, 63, 94, 0.18)";
+  ctx.beginPath();
+  ctx.roundRect(120, cardBoxY + 45, 340, 48, 24);
+  ctx.fill();
+
+  ctx.fillStyle = "#FECDD3";
+  ctx.font = "bold 18px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(badgeText, 145, cardBoxY + 76);
+
+  // Title
+  const titleText = result.profile.title[lang] || result.profile.title.en || "Body Dysmorphia Profile";
+  ctx.fillStyle = "#FFFFFF";
+  ctx.font = "900 44px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  const titleLines = wrapText(ctx, titleText, width - 240);
+  let curY = cardBoxY + 150;
+  titleLines.slice(0, 2).forEach((line) => {
+    ctx.fillText(line, 120, curY);
+    curY += 54;
+  });
+
+  // Score display
+  curY += 10;
+  ctx.fillStyle = "#FB7185";
+  ctx.font = "900 82px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(`${result.percentage}%`, 120, curY + 60);
+
+  ctx.fillStyle = "rgba(255, 255, 255, 0.6)";
+  ctx.font = "600 24px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(`Dysmorphic Friction (${result.score}/36 pts)`, 350, curY + 25);
+
+  ctx.fillStyle = "#FDA4AF";
+  ctx.font = "500 20px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("Visual Perceptual Zooming Tension", 350, curY + 60);
+
+  // Subscale Progress Bars
+  curY += 120;
+  const subscales = [
+    { label: "Flaw Magnification", pct: result.subscales.flaw_magnification.percentage, color: "#FB7185" },
+    { label: "Mirror Checking Rituals", pct: result.subscales.mirror_checking.percentage, color: "#FDA4AF" },
+    { label: "Social Camouflaging", pct: result.subscales.social_camouflaging.percentage, color: "#F43F5E" },
+  ];
+
+  subscales.forEach((sub) => {
+    ctx.fillStyle = "#E2E8F0";
+    ctx.font = "bold 20px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+    ctx.fillText(sub.label, 120, curY);
+
+    ctx.fillStyle = "rgba(255, 255, 255, 0.7)";
+    ctx.font = "bold 20px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+    ctx.fillText(`${sub.pct}%`, width - 200, curY);
+
+    // Track
+    ctx.fillStyle = "rgba(255, 255, 255, 0.08)";
+    ctx.beginPath();
+    ctx.roundRect(120, curY + 12, width - 240, 14, 7);
+    ctx.fill();
+
+    // Bar
+    ctx.fillStyle = sub.color;
+    ctx.beginPath();
+    const barWidth = Math.max(14, ((width - 240) * sub.pct) / 100);
+    ctx.roundRect(120, curY + 12, barWidth, 14, 7);
+    ctx.fill();
+
+    curY += 56;
+  });
+
+  // Clinical Insight Box
+  curY += 20;
+  ctx.fillStyle = "rgba(244, 63, 94, 0.06)";
+  ctx.strokeStyle = "rgba(244, 63, 94, 0.2)";
+  ctx.beginPath();
+  ctx.roundRect(120, curY, width - 240, 160, 20);
+  ctx.fill();
+  ctx.stroke();
+
+  ctx.fillStyle = "#FDA4AF";
+  ctx.font = "bold 20px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("DR. KATHARINE PHILLIPS CLINICAL PRINCIPLE:", 145, curY + 40);
+
+  ctx.fillStyle = "rgba(255, 255, 255, 0.85)";
+  ctx.font = "italic 19px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  const quote = '"BDD is not vanity; it is agonizing torment. The person does not see themselves with normal eyes; they see their perceived flaw through a distorting neurological microscope."';
+  const quoteLines = wrapText(ctx, quote, width - 290);
+  let qY = curY + 75;
+  quoteLines.forEach((l) => {
+    ctx.fillText(l, 145, qY);
+    qY += 28;
+  });
+
+  // Footer CTA
+  ctx.fillStyle = "rgba(255, 255, 255, 0.5)";
+  ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("Screen your body dysmorphia & mirror checking at:", 80, 1200);
+
+  ctx.fillStyle = "#FB7185";
+  ctx.font = "900 30px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("nuju.app/quiz/body-dysmorphia", 80, 1245);
+
+  const dataUrl = canvas.toDataURL("image/png", 0.95);
+  const blob = await new Promise<Blob>((resolve, reject) => {
+    canvas.toBlob((b) => (b ? resolve(b) : reject(new Error("Failed blob"))), "image/png", 0.95);
+  });
+  const file = new File([blob], `nuju-body-dysmorphia-${result.level}.png`, { type: "image/png" });
+
+  return { dataUrl, blob, file };
+}
+
+export type HealthAnxietyCardLang = "en" | "id" | "de" | "fr" | "es";
+
+export interface HealthAnxietyScoreResult {
+  score: number;
+  percentage: number;
+  level: string;
+  profile: {
+    title: Record<string, string>;
+    badge: Record<string, string>;
+    summary: Record<string, string>;
+    psychology: Record<string, string>;
+    actionProtocol: Record<string, string[]>;
+  };
+  subscales: {
+    somatic_catastrophizing: { score: number; percentage: number };
+    cyberchondria_reassurance: { score: number; percentage: number };
+    body_checking_hypervigilance: { score: number; percentage: number };
+  };
+}
+
+/**
+ * Generates an aesthetic high-resolution Instagram Story share card (1080x1350)
+ * for the Health Anxiety & Cyberchondria Screener (Dr. Paul Salkovskis SHAI Model).
+ */
+export async function generateHealthAnxietyCard(
+  result: HealthAnxietyScoreResult,
+  lang: HealthAnxietyCardLang = "en"
+): Promise<{ dataUrl: string; blob: Blob; file: File }> {
+  const canvas = document.createElement("canvas");
+  canvas.width = 1080;
+  canvas.height = 1350;
+  const ctx = canvas.getContext("2d");
+  if (!ctx) throw new Error("Could not get 2D canvas context");
+
+  const width = 1080;
+  const height = 1350;
+
+  // Background: Deep Forest Jade & Dark Obsidian
+  const bgGrad = ctx.createLinearGradient(0, 0, width, height);
+  bgGrad.addColorStop(0, "#040D09");
+  bgGrad.addColorStop(0.5, "#081A12");
+  bgGrad.addColorStop(1, "#030A07");
+  ctx.fillStyle = bgGrad;
+  ctx.fillRect(0, 0, width, height);
+
+  // Subtle Emerald / Mint Glow Radial
+  const radial = ctx.createRadialGradient(width * 0.8, height * 0.25, 40, width * 0.8, height * 0.25, 550);
+  radial.addColorStop(0, "rgba(16, 185, 129, 0.15)");
+  radial.addColorStop(1, "rgba(16, 185, 129, 0)");
+  ctx.fillStyle = radial;
+  ctx.fillRect(0, 0, width, height);
+
+  // Header Brand Badge
+  ctx.fillStyle = "rgba(255, 255, 255, 0.08)";
+  ctx.beginPath();
+  ctx.roundRect(80, 80, 500, 56, 28);
+  ctx.fill();
+
+  ctx.fillStyle = "#6EE7B7";
+  ctx.font = "bold 20px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("NUJU CLINICAL · HEALTH ANXIETY", 108, 115);
+
+  // Category Tag
+  ctx.fillStyle = "#34D399";
+  ctx.font = "600 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("CYBERCHONDRIA & SHAI MODEL (SALKOVSKIS)", 80, 185);
+
+  // Main Card Box
+  const cardBoxY = 220;
+  const cardBoxHeight = 920;
+  ctx.fillStyle = "rgba(255, 255, 255, 0.04)";
+  ctx.strokeStyle = "rgba(16, 185, 129, 0.25)";
+  ctx.lineWidth = 2;
+  ctx.beginPath();
+  ctx.roundRect(80, cardBoxY, width - 160, cardBoxHeight, 36);
+  ctx.fill();
+  ctx.stroke();
+
+  // Badge inside card
+  const badgeText = (result.profile.badge[lang] || result.profile.badge.en || "HEALTH ANXIETY").toUpperCase();
+  ctx.fillStyle = "rgba(16, 185, 129, 0.18)";
+  ctx.beginPath();
+  ctx.roundRect(120, cardBoxY + 45, 340, 48, 24);
+  ctx.fill();
+
+  ctx.fillStyle = "#A7F3D0";
+  ctx.font = "bold 18px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(badgeText, 145, cardBoxY + 76);
+
+  // Title
+  const titleText = result.profile.title[lang] || result.profile.title.en || "Health Anxiety Profile";
+  ctx.fillStyle = "#FFFFFF";
+  ctx.font = "900 44px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  const titleLines = wrapText(ctx, titleText, width - 240);
+  let curY = cardBoxY + 150;
+  titleLines.slice(0, 2).forEach((line) => {
+    ctx.fillText(line, 120, curY);
+    curY += 54;
+  });
+
+  // Score display
+  curY += 10;
+  ctx.fillStyle = "#34D399";
+  ctx.font = "900 82px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(`${result.percentage}%`, 120, curY + 60);
+
+  ctx.fillStyle = "rgba(255, 255, 255, 0.6)";
+  ctx.font = "600 24px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(`Interoceptive Alarm (${result.score}/36 pts)`, 350, curY + 25);
+
+  ctx.fillStyle = "#6EE7B7";
+  ctx.font = "500 20px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("Somatic Catastrophizing Load", 350, curY + 60);
+
+  // Subscale Progress Bars
+  curY += 120;
+  const subscales = [
+    { label: "Somatic Catastrophizing", pct: result.subscales.somatic_catastrophizing.percentage, color: "#34D399" },
+    { label: "Cyberchondria Googling", pct: result.subscales.cyberchondria_reassurance.percentage, color: "#6EE7B7" },
+    { label: "Body Checking / Probing", pct: result.subscales.body_checking_hypervigilance.percentage, color: "#10B981" },
+  ];
+
+  subscales.forEach((sub) => {
+    ctx.fillStyle = "#E2E8F0";
+    ctx.font = "bold 20px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+    ctx.fillText(sub.label, 120, curY);
+
+    ctx.fillStyle = "rgba(255, 255, 255, 0.7)";
+    ctx.font = "bold 20px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+    ctx.fillText(`${sub.pct}%`, width - 200, curY);
+
+    // Track
+    ctx.fillStyle = "rgba(255, 255, 255, 0.08)";
+    ctx.beginPath();
+    ctx.roundRect(120, curY + 12, width - 240, 14, 7);
+    ctx.fill();
+
+    // Bar
+    ctx.fillStyle = sub.color;
+    ctx.beginPath();
+    const barWidth = Math.max(14, ((width - 240) * sub.pct) / 100);
+    ctx.roundRect(120, curY + 12, barWidth, 14, 7);
+    ctx.fill();
+
+    curY += 56;
+  });
+
+  // Clinical Insight Box
+  curY += 20;
+  ctx.fillStyle = "rgba(16, 185, 129, 0.06)";
+  ctx.strokeStyle = "rgba(16, 185, 129, 0.2)";
+  ctx.beginPath();
+  ctx.roundRect(120, curY, width - 240, 160, 20);
+  ctx.fill();
+  ctx.stroke();
+
+  ctx.fillStyle = "#6EE7B7";
+  ctx.font = "bold 20px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("DR. PAUL SALKOVSKIS CLINICAL PRINCIPLE:", 145, curY + 40);
+
+  ctx.fillStyle = "rgba(255, 255, 255, 0.85)";
+  ctx.font = "italic 19px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  const quote = '"Health anxiety is not caused by physical illness, but by the catastrophic misinterpretation of normal somatic sensations, amplified by compulsive checking and Google reassurance spirals."';
+  const quoteLines = wrapText(ctx, quote, width - 290);
+  let qY = curY + 75;
+  quoteLines.forEach((l) => {
+    ctx.fillText(l, 145, qY);
+    qY += 28;
+  });
+
+  // Footer CTA
+  ctx.fillStyle = "rgba(255, 255, 255, 0.5)";
+  ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("Screen your health anxiety & cyberchondria at:", 80, 1200);
+
+  ctx.fillStyle = "#34D399";
+  ctx.font = "900 30px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("nuju.app/quiz/health-anxiety", 80, 1245);
+
+  const dataUrl = canvas.toDataURL("image/png", 0.95);
+  const blob = await new Promise<Blob>((resolve, reject) => {
+    canvas.toBlob((b) => (b ? resolve(b) : reject(new Error("Failed blob"))), "image/png", 0.95);
+  });
+  const file = new File([blob], `nuju-health-anxiety-${result.level}.png`, { type: "image/png" });
+
+  return { dataUrl, blob, file };
+}
+
+
 
 
 

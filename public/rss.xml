@@ -6,7 +6,7 @@
     <atom:link href="https://nuju.app/rss.xml" rel="self" type="application/rss+xml" />
     <description>Practical guides on journaling, mood tracking, and emotional wellness from the Nuju team.</description>
     <language>en</language>
-    <lastBuildDate>Fri, 18 Sep 2026 06:25:24 GMT</lastBuildDate>
+    <lastBuildDate>Fri, 18 Sep 2026 06:34:20 GMT</lastBuildDate>
     <item>
       <title>The Neuroscience of Maladaptive Daydreaming: Why Kinesthetic Pacing, Looped Music, and Paracosms Trap the Mind</title>
       <link>https://nuju.app/blog/maladaptive-daydreaming-neuroscience-pacing-music-paracosm</link>
@@ -1302,6 +1302,78 @@
       <category>TDAH &amp; Neurociencia</category>
       <pubDate>Fri, 18 Sep 2026 12:00:00 GMT</pubDate>
       <dc:language>es</dc:language>
+    </item>
+    <item>
+      <title>The Broken Mirror: The Neurobiology of Body Dysmorphic Disorder (BDD) and Mirror-Checking Rituals</title>
+      <link>https://nuju.app/blog/body-dysmorphia-neurobiology-mirror-checking-bdd-treatment</link>
+      <guid isPermaLink="true">https://nuju.app/blog/body-dysmorphia-neurobiology-mirror-checking-bdd-treatment</guid>
+      <description>Explore Dr. Katharine Phillips&apos; clinical research on Body Dysmorphic Disorder (BDD): why your visual cortex zooms in on granular flaws and how mirror rituals trap the nervous system.</description>
+      <category>Body Image &amp; Somatic Psychology</category>
+      <pubDate>Fri, 18 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Ketika Cermin Menjadi Musuh: Psikologi Body Dysmorphia (BDD), Obsesi Cermin, dan Rasa Malu Fisik</title>
+      <link>https://nuju.app/blog/tes-body-dysmorphia-psikologi-bdd-obsesi-cermin-insecure</link>
+      <guid isPermaLink="true">https://nuju.app/blog/tes-body-dysmorphia-psikologi-bdd-obsesi-cermin-insecure</guid>
+      <description>Pelajari mengapa insecure fisik bisa berkembang menjadi Body Dysmorphic Disorder (BDD), neurobiologi pembesaran cacat fisik, dan cara menghentikan ritual cermin yang menyiksa.</description>
+      <category>Psikologi &amp; Citra Tubuh</category>
+      <pubDate>Fri, 18 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>id</dc:language>
+    </item>
+    <item>
+      <title>Cyberchondria and Health Anxiety: Why Googling Symptoms Traps Your Nervous System in a Threat Loop</title>
+      <link>https://nuju.app/blog/cyberchondria-health-anxiety-shai-model-symptom-googling</link>
+      <guid isPermaLink="true">https://nuju.app/blog/cyberchondria-health-anxiety-shai-model-symptom-googling</guid>
+      <description>Understand the Short Health Anxiety Inventory (SHAI) model by Dr. Paul Salkovskis: why harmless body twitches trigger catastrophic cancer fears and how to break the Googling addiction.</description>
+      <category>Anxiety &amp; Interoceptive Neuroscience</category>
+      <pubDate>Fri, 18 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Cemas Sakit Parah Tiap Jantung Berdebar: Membedah Health Anxiety, Hipokondria, dan Cyberchondria</title>
+      <link>https://nuju.app/blog/health-anxiety-hipokondria-cyberchondria-takut-sakit-parah</link>
+      <guid isPermaLink="true">https://nuju.app/blog/health-anxiety-hipokondria-cyberchondria-takut-sakit-parah</guid>
+      <description>Mengapa kedutan otot atau debaran jantung memicu kepanikan penyakit fatal? Pelajari model kognitif Salkovskis, bahaya googling gejala, dan cara memulihkan kepercayaan pada tubuh.</description>
+      <category>Kesehatan Mental &amp; Kecemasan</category>
+      <pubDate>Fri, 18 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>id</dc:language>
+    </item>
+    <item>
+      <title>Körperschemastörung &amp; BDD: Warum der Spiegel lügt und wie die Neurobiologie der Körperdysmorphie funktioniert</title>
+      <link>https://nuju.app/blog/koerperdysmorphie-bdd-spiegelkontrolle-neurobiologie-therapie</link>
+      <guid isPermaLink="true">https://nuju.app/blog/koerperdysmorphie-bdd-spiegelkontrolle-neurobiologie-therapie</guid>
+      <description>Entdecken Sie die klinischen Erkenntnisse von Dr. Katharine Phillips zur körperdysmorphen Störung (BDD): Warum das visuelle Gehirn Makel vergrößert und wie man den Spiegelzwang bricht.</description>
+      <category>Klinische Psychologie &amp; Körperbild</category>
+      <pubDate>Fri, 18 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>de</dc:language>
+    </item>
+    <item>
+      <title>Anxiété de Santé &amp; Cybercondrie : Pourquoi chercher vos symptômes sur Google détruit votre système nerveux</title>
+      <link>https://nuju.app/blog/cybercondrie-anxiete-de-sante-peur-maladie-hypocondrie</link>
+      <guid isPermaLink="true">https://nuju.app/blog/cybercondrie-anxiete-de-sante-peur-maladie-hypocondrie</guid>
+      <description>Comprenez le modèle SHAI du Dr Paul Salkovskis : comment les recherches médicales compulsives créent une boucle de terreur somatique et comment retrouver la paix corporelle.</description>
+      <category>Anxiété &amp; Neurosciences Somatiques</category>
+      <pubDate>Fri, 18 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>fr</dc:language>
+    </item>
+    <item>
+      <title>【病気不安症とサイバーコンドリア】体の違和感を検索してパニックになる心理学と自律神経の整え方</title>
+      <link>https://nuju.app/blog/health-anxiety-cyberchondria-byouki-fuan-shou-morita</link>
+      <guid isPermaLink="true">https://nuju.app/blog/health-anxiety-cyberchondria-byouki-fuan-shou-morita</guid>
+      <description>動悸や筋肉のピクつきをGoogleで検索して不治の病を確信してしまう「サイバーコンドリア」。ポール・サルコフスキス博士のSHAI理論と森田療法から抜け出す方法を解説。</description>
+      <category>心身医学・不安障害</category>
+      <pubDate>Fri, 18 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>jp</dc:language>
+    </item>
+    <item>
+      <title>신체변형장애(BDD)와 거울 강박: 외모 집착과 사회적 불안을 치유하는 신경과학적 접근법</title>
+      <link>https://nuju.app/blog/body-dysmorphia-bdd-mirror-checking-neuroscience-korea</link>
+      <guid isPermaLink="true">https://nuju.app/blog/body-dysmorphia-bdd-mirror-checking-neuroscience-korea</guid>
+      <description>거울 속 내 모습이 괴물처럼 느껴지는 신체변형장애(BDD)의 뇌과학적 원인, 세부 왜곡 메커니즘, 그리고 외모 강박을 끊어내는 신체 중립성(Body Neutrality) 훈련.</description>
+      <category>외모 심리학 &amp; 신경인지과학</category>
+      <pubDate>Fri, 18 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>kr</dc:language>
     </item>
     <item>
       <title>Clinical Perfectionism Test: Free 12-Item Frost MPS Diagnostic for Fear of Failure</title>

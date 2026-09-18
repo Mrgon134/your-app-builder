@@ -124,6 +124,8 @@ const MoralScrupulosityTest = lazy(() => import("./pages/MoralScrupulosityTest.t
 const AbandonmentSchemaTest = lazy(() => import("./pages/AbandonmentSchemaTest.tsx"));
 const ThanatophobiaTest = lazy(() => import("./pages/ThanatophobiaTest.tsx"));
 const ExecutiveDysfunctionTest = lazy(() => import("./pages/ExecutiveDysfunctionTest.tsx"));
+const BodyDysmorphiaTest = lazy(() => import("./pages/BodyDysmorphiaTest.tsx"));
+const HealthAnxietyTest = lazy(() => import("./pages/HealthAnxietyTest.tsx"));
 const EbookSalesPage = lazy(() => import("./pages/EbookSalesPage.tsx"));
 const EbookReaderPage = lazy(() => import("./pages/EbookReaderPage.tsx"));
 const NotFound = lazy(() => import("./pages/NotFound.tsx"));
@@ -474,6 +476,12 @@ const App = () => (
                   <Route path="/quiz/executive-dysfunction" element={<ExecutiveDysfunctionTest />} />
                   <Route path="/quiz/task-paralysis" element={<ExecutiveDysfunctionTest />} />
                   <Route path="/tes-disfungsi-eksekutif" element={<ExecutiveDysfunctionTest />} />
+                  <Route path="/quiz/body-dysmorphia" element={<BodyDysmorphiaTest />} />
+                  <Route path="/quiz/bdd-test" element={<BodyDysmorphiaTest />} />
+                  <Route path="/tes-body-dysmorphia" element={<BodyDysmorphiaTest />} />
+                  <Route path="/quiz/health-anxiety" element={<HealthAnxietyTest />} />
+                  <Route path="/quiz/cyberchondria-test" element={<HealthAnxietyTest />} />
+                  <Route path="/tes-health-anxiety" element={<HealthAnxietyTest />} />
                   <Route path="/quiz/:quizId" element={<QuizRunner />} />
                   <Route path="/test-psikologi" element={<QuizHub />} />
                   <Route path="/test-psikologi/:quizId" element={<QuizRunner />} />

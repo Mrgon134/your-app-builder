@@ -1119,6 +1119,42 @@
     <changefreq>weekly</changefreq>
   </url>
   <url>
+    <loc>https://nuju.app/quiz/body-dysmorphia</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.95</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/quiz/bdd-test</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.9</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/tes-body-dysmorphia</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.9</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/quiz/health-anxiety</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.95</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/quiz/cyberchondria-test</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.9</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/tes-health-anxiety</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.9</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
     <loc>https://nuju.app/quiz/baterai-emosi</loc>
     <lastmod>2026-09-18</lastmod>
     <priority>0.9</priority>
@@ -10846,6 +10882,102 @@
       <image:caption>Aprende por qué la parálisis de inicio no es pereza sino un bloqueo neuroquímico del lóbulo frontal, basado en el modelo de TDAH del Dr. Russell Barkley.</image:caption>
     </image:image>
     <xhtml:link rel="alternate" hreflang="es" href="https://nuju.app/blog/disfuncion-ejecutiva-paralisis-tareas-adhd-dopamina"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/body-dysmorphia-neurobiology-mirror-checking-bdd-treatment</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>The Broken Mirror: The Neurobiology of Body Dysmorphic Disorder (BDD) and Mirror-Checking Rituals</image:title>
+      <image:caption>Explore Dr. Katharine Phillips&apos; clinical research on Body Dysmorphic Disorder (BDD): why your visual cortex zooms in on granular flaws and how mirror rituals trap the nervous system.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/body-dysmorphia-neurobiology-mirror-checking-bdd-treatment"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/tes-body-dysmorphia-psikologi-bdd-obsesi-cermin-insecure</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Ketika Cermin Menjadi Musuh: Psikologi Body Dysmorphia (BDD), Obsesi Cermin, dan Rasa Malu Fisik</image:title>
+      <image:caption>Pelajari mengapa insecure fisik bisa berkembang menjadi Body Dysmorphic Disorder (BDD), neurobiologi pembesaran cacat fisik, dan cara menghentikan ritual cermin yang menyiksa.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="id" href="https://nuju.app/blog/tes-body-dysmorphia-psikologi-bdd-obsesi-cermin-insecure"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/cyberchondria-health-anxiety-shai-model-symptom-googling</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Cyberchondria and Health Anxiety: Why Googling Symptoms Traps Your Nervous System in a Threat Loop</image:title>
+      <image:caption>Understand the Short Health Anxiety Inventory (SHAI) model by Dr. Paul Salkovskis: why harmless body twitches trigger catastrophic cancer fears and how to break the Googling addiction.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/cyberchondria-health-anxiety-shai-model-symptom-googling"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/health-anxiety-hipokondria-cyberchondria-takut-sakit-parah</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Cemas Sakit Parah Tiap Jantung Berdebar: Membedah Health Anxiety, Hipokondria, dan Cyberchondria</image:title>
+      <image:caption>Mengapa kedutan otot atau debaran jantung memicu kepanikan penyakit fatal? Pelajari model kognitif Salkovskis, bahaya googling gejala, dan cara memulihkan kepercayaan pada tubuh.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="id" href="https://nuju.app/blog/health-anxiety-hipokondria-cyberchondria-takut-sakit-parah"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/koerperdysmorphie-bdd-spiegelkontrolle-neurobiologie-therapie</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Körperschemastörung &amp; BDD: Warum der Spiegel lügt und wie die Neurobiologie der Körperdysmorphie funktioniert</image:title>
+      <image:caption>Entdecken Sie die klinischen Erkenntnisse von Dr. Katharine Phillips zur körperdysmorphen Störung (BDD): Warum das visuelle Gehirn Makel vergrößert und wie man den Spiegelzwang bricht.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="de" href="https://nuju.app/blog/koerperdysmorphie-bdd-spiegelkontrolle-neurobiologie-therapie"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/cybercondrie-anxiete-de-sante-peur-maladie-hypocondrie</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Anxiété de Santé &amp; Cybercondrie : Pourquoi chercher vos symptômes sur Google détruit votre système nerveux</image:title>
+      <image:caption>Comprenez le modèle SHAI du Dr Paul Salkovskis : comment les recherches médicales compulsives créent une boucle de terreur somatique et comment retrouver la paix corporelle.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://nuju.app/blog/cybercondrie-anxiete-de-sante-peur-maladie-hypocondrie"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/health-anxiety-cyberchondria-byouki-fuan-shou-morita</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>【病気不安症とサイバーコンドリア】体の違和感を検索してパニックになる心理学と自律神経の整え方</image:title>
+      <image:caption>動悸や筋肉のピクつきをGoogleで検索して不治の病を確信してしまう「サイバーコンドリア」。ポール・サルコフスキス博士のSHAI理論と森田療法から抜け出す方法を解説。</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="jp" href="https://nuju.app/blog/health-anxiety-cyberchondria-byouki-fuan-shou-morita"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/body-dysmorphia-bdd-mirror-checking-neuroscience-korea</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>신체변형장애(BDD)와 거울 강박: 외모 집착과 사회적 불안을 치유하는 신경과학적 접근법</image:title>
+      <image:caption>거울 속 내 모습이 괴물처럼 느껴지는 신체변형장애(BDD)의 뇌과학적 원인, 세부 왜곡 메커니즘, 그리고 외모 강박을 끊어내는 신체 중립성(Body Neutrality) 훈련.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="kr" href="https://nuju.app/blog/body-dysmorphia-bdd-mirror-checking-neuroscience-korea"/>
   </url>
   <url>
     <loc>https://nuju.app/blog/how-to-stop-overthinking-at-night</loc>

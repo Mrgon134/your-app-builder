@@ -3063,6 +3063,68 @@ export function getQuizAndToolPages({
       ],
     },
 
+    {
+      route: "/quiz/body-dysmorphia",
+      aliases: ["/quiz/bdd-test", "/tes-body-dysmorphia"],
+      title: "Body Dysmorphic Disorder (BDD) & Mirror Checking Screener (Dr. Katharine Phillips Model)",
+      description:
+        "Do perceived physical flaws, compulsive mirror rituals, or dread of photographs consume hours of your day? Free 12-item clinical screener measuring flaw magnification, mirror checking loops, and social camouflaging.",
+      category: "Body Image & Somatic Psychology",
+      duration: "90 secs",
+      itemsCount: 12,
+      framework: "Dr. Katharine Phillips (The Broken Mirror) & Dr. Thomas F. Cash (Cash Body-Self Relations Model)",
+      overview:
+        "Body Dysmorphic Disorder (BDD) is a severe neurobiological visual processing impairment where the visual cortex over-focuses on granular flaws while losing holistic perspective. This screener benchmarks flaw magnification, compulsive mirror rituals, and social camouflaging.",
+      keyPoints: [
+        "Measures 3 clinical dimensions: Perceived Flaw Magnification, Compulsive Mirror Checking/Avoidance, and Social Camouflaging",
+        "Assesses perceptual zooming, photo dread, and catastrophic appearance shame",
+        "Includes the 2-foot mirror rule, timeboxed mirror hygiene, and audio-based somatic neutrality grounding",
+      ],
+      faqs: [
+        {
+          question: "Can cosmetic surgery cure Body Dysmorphic Disorder?",
+          answer:
+            "Clinical research indicates that over 98% of people with BDD experience no lasting psychological improvement from cosmetic procedures. Because the distortion resides in frontostriatal brain circuits and visual filtering, the obsession almost immediately migrates to another body feature.",
+        },
+        {
+          question: "What is the difference between normal insecurity and BDD?",
+          answer:
+            "Normal insecurity is occasional dissatisfaction that does not substantially impair daily functioning. BDD involves obsessive daily rumination (over 1 hour daily), compulsive checking rituals, severe emotional distress, and social avoidance or agoraphobia.",
+        },
+      ],
+    },
+
+    {
+      route: "/quiz/health-anxiety",
+      aliases: ["/quiz/cyberchondria-test", "/tes-health-anxiety"],
+      title: "Health Anxiety & Cyberchondria Screener (Dr. Paul Salkovskis SHAI Model)",
+      description:
+        "Does an unfamiliar bodily twitch or heart flutter trigger catastrophic illness panic and symptom googling spirals? Free 12-item clinical screener measuring somatic catastrophizing, cyberchondria reassurance loops, and body checking.",
+      category: "Anxiety & Interoceptive Neuroscience",
+      duration: "90 secs",
+      itemsCount: 12,
+      framework: "Dr. Paul Salkovskis (Short Health Anxiety Inventory - SHAI) & Dr. Gordon J. G. Asmundson",
+      overview:
+        "Health anxiety is driven by the catastrophic misinterpretation of normal somatic sensations, amplified by algorithmic symptom googling (cyberchondria) and compulsive reassurance seeking. This screener benchmarks interoceptive alarm, reassurance addiction, and body checking.",
+      keyPoints: [
+        "Measures 3 clinical dimensions: Somatic Catastrophizing, Cyberchondria Googling Loops, and Body Checking Hypervigilance",
+        "Differentiates organic biological noise from catastrophic cognitive misinterpretations",
+        "Provides the 72-hour googling moratorium, interoceptive habituation exercises, and safe audio decompression",
+      ],
+      faqs: [
+        {
+          question: "Why does googling symptoms make health anxiety worse?",
+          answer:
+            "Search algorithms monetize fear and maximize engagement by displaying rare, fatal edge-cases. Reading worst-case diagnoses floods the limbic system with adrenaline, which causes physiological palpitations and dizziness that are then misinterpreted as proof of illness.",
+        },
+        {
+          question: "Why does doctor reassurance only relieve health anxiety temporarily?",
+          answer:
+            "Reassurance acts like a short-lived psychological sedative: it temporarily soothes the amygdala, but reinforces the core cognitive error that normal bodily sensations are dangerous and require external medical validation to survive.",
+        },
+      ],
+    },
+
     // 5. Ebook Sales Pages
     {
       route: "/ebook",

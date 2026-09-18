@@ -2795,6 +2795,64 @@ const QuizHub: React.FC = () => {
               </Link>
             </div>
           </div>
+
+          {/* Card 92: Body Dysmorphia & Mirror Checking Screener */}
+          <div className="rounded-3xl border border-rose-300 bg-gradient-to-br from-rose-500/10 via-rose-50 to-white p-6 shadow-xs flex flex-col justify-between hover:shadow-md transition">
+            <div>
+              <div className="flex items-center justify-between mb-3">
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-rose-600 px-3 py-0.5 text-xs font-bold text-white shadow-xs">
+                  <Eye className="h-3 w-3" />
+                  BDD &amp; CASH MODEL
+                </span>
+                <span className="text-xs font-semibold text-rose-800">Dr. Katharine Phillips</span>
+              </div>
+              <h3 className="text-lg font-bold text-neutral-900 mb-1.5">
+                Body Dysmorphia &amp; Mirror Checking Screener
+              </h3>
+              <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed">
+                Do perceived flaws, compulsive mirror rituals, or dread of photos consume hours of your day? Screen perceptual zooming and body dysmorphic friction.
+              </p>
+            </div>
+            <div className="mt-5 pt-3 border-t border-rose-100 flex items-center justify-between">
+              <span className="text-xs font-medium text-neutral-400">~90 Secs · 12 Items</span>
+              <Link
+                to="/quiz/body-dysmorphia"
+                className="inline-flex items-center gap-1.5 rounded-full bg-rose-600 px-4 py-2 text-xs font-bold text-white hover:bg-rose-700 transition shadow-xs"
+              >
+                <span>Screen Body Dysmorphia</span>
+                <ArrowRight className="h-3.5 w-3.5" />
+              </Link>
+            </div>
+          </div>
+
+          {/* Card 93: Health Anxiety & Cyberchondria Screener */}
+          <div className="rounded-3xl border border-emerald-300 bg-gradient-to-br from-emerald-500/10 via-teal-50 to-white p-6 shadow-xs flex flex-col justify-between hover:shadow-md transition">
+            <div>
+              <div className="flex items-center justify-between mb-3">
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-600 px-3 py-0.5 text-xs font-bold text-white shadow-xs">
+                  <HeartPulse className="h-3 w-3" />
+                  SHAI MODEL
+                </span>
+                <span className="text-xs font-semibold text-emerald-800">Dr. Paul Salkovskis</span>
+              </div>
+              <h3 className="text-lg font-bold text-neutral-900 mb-1.5">
+                Health Anxiety &amp; Cyberchondria Screener
+              </h3>
+              <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed">
+                Does an unfamiliar twitch or chest flutter trigger catastrophic illness fears and symptom googling spirals? Screen cyberchondria and interoceptive alarm.
+              </p>
+            </div>
+            <div className="mt-5 pt-3 border-t border-emerald-100 flex items-center justify-between">
+              <span className="text-xs font-medium text-neutral-400">~90 Secs · 12 Items</span>
+              <Link
+                to="/quiz/health-anxiety"
+                className="inline-flex items-center gap-1.5 rounded-full bg-emerald-600 px-4 py-2 text-xs font-bold text-white hover:bg-emerald-700 transition shadow-xs"
+              >
+                <span>Screen Health Anxiety</span>
+                <ArrowRight className="h-3.5 w-3.5" />
+              </Link>
+            </div>
+          </div>
         </div>
 
         {/* Country Filter Pills */}
