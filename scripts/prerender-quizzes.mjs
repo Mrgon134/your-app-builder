@@ -2877,6 +2877,68 @@ export function getQuizAndToolPages({
       ],
     },
 
+    {
+      route: "/quiz/chronic-resentment",
+      aliases: ["/quiz/grudge-holding", "/tes-resentment"],
+      title: "Chronic Resentment & Grudge Holding Screener (Stanford Forgiveness Project Model)",
+      description:
+        "Do old betrayals replay as imaginary arguments years later? Free 12-item clinical screener measuring grievance rumination, somatic bitterness, and defensive hostility based on Dr. Fred Luskin and Dr. Robert Enright.",
+      category: "Emotional Regulation & Neuroscience",
+      duration: "90 secs",
+      itemsCount: 12,
+      framework: "Dr. Fred Luskin (Stanford Forgiveness Projects) & Dr. Robert Enright (International Forgiveness Institute)",
+      overview:
+        "Chronic Resentment is the somatic and psychological toll of nursing unclosed grievances. When the brain re-litigates old betrayals, sympathetic arousal stays elevated, flooding the vascular and immune systems with emergency cortisol. This screener benchmarks injustice rumination, somatic bitterness, and defense hardening.",
+      keyPoints: [
+        "Measures 3 clinical dimensions: Injustice Rumination & Replay Loops, Somatic Bitterness & Physiological Poisoning, and Hostility & Defensive Hardening",
+        "Assesses imaginary arguments, physical tension upon remembering betrayers, and cynicism",
+        "Includes grievance decoupling drills, tenant eviction protocols, and zero-knowledge voice catharsis",
+      ],
+      faqs: [
+        {
+          question: "What is chronic resentment in clinical psychology?",
+          answer:
+            "Chronic resentment is persistent emotional bitterness and cognitive rumination triggered by perceived mistreatment or betrayal, keeping the autonomic nervous system in prolonged stress.",
+        },
+        {
+          question: "Does forgiving mean reconciling with the person who hurt me?",
+          answer:
+            "No. Forgiveness is an internal decoupling process that removes venom from your vascular and neurological systems. Reconciliation is a separate interpersonal decision requiring mutual trust and safety.",
+        },
+      ],
+    },
+
+    {
+      route: "/quiz/pathological-altruism",
+      aliases: ["/quiz/savior-complex", "/tes-altruisme-patologis"],
+      title: "Pathological Altruism & Savior Complex Screener (Dr. Barbara Oakley Model)",
+      description:
+        "Does saying 'no' trigger agonizing guilt, or do you compulsively rescue wounded partners at the expense of your own life? Free 12-item clinical screener based on Dr. Barbara Oakley and Dr. Rachel Naomi Remen.",
+      category: "Attachment & Boundary Psychology",
+      duration: "90 secs",
+      itemsCount: 12,
+      framework: "Dr. Barbara Oakley (Pathological Altruism) & Dr. Rachel Naomi Remen (Helping vs. Serving Architecture)",
+      overview:
+        "Pathological Altruism occurs when the drive to help or fix others results in net harm to the recipient, the helper, or innocent bystanders. This screener measures destructive rescuing compulsions, enabler boundary erosion, and martyrdom depletion.",
+      keyPoints: [
+        "Measures 3 clinical dimensions: Destructive Rescuing Compulsion, Enabler Boundary Erosion, and Martyrdom & Depletion Burnout",
+        "Evaluates guilt intolerance when setting limits, shielding others from natural consequences, and caregiver exhaustion",
+        "Provides guilt-tolerance protocols, Karpman Drama Triangle decoupling, and sovereign voice boundary check-ins",
+      ],
+      faqs: [
+        {
+          question: "What is pathological altruism?",
+          answer:
+            "Pathological altruism is helping behavior with good intentions that ultimately produces harm—often by enabling addiction, preventing natural accountability, or destroying the helper's financial and emotional stability.",
+        },
+        {
+          question: "How does the savior complex harm relationships?",
+          answer:
+            "By infantilizing the partner, assuming moral superiority, and creating a toxic cycle where the rescuer eventually burns out and turns into a resentful persecutor.",
+        },
+      ],
+    },
+
     // 5. Ebook Sales Pages
     {
       route: "/ebook",

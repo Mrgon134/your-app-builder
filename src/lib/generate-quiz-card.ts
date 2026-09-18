@@ -14097,6 +14097,425 @@ export async function generateAmbiguousLossCard(
   return { dataUrl, blob, file };
 }
 
+export type ChronicResentmentCardLang = "en" | "id" | "de" | "fr" | "es";
+
+export interface ChronicResentmentScoreResult {
+  score: number;
+  percentage: number;
+  level: string;
+  profile: {
+    title: Record<string, string>;
+    badge: Record<string, string>;
+    summary: Record<string, string>;
+    neurobiology: Record<string, string>;
+    actionProtocol: Record<string, string[]>;
+  };
+  subscales: {
+    injustice_rumination_replay: { score: number; percentage: number };
+    somatic_bitterness_poisoning: { score: number; percentage: number };
+    hostility_defense_hardening: { score: number; percentage: number };
+  };
+}
+
+/**
+ * Generates an aesthetic high-resolution Instagram Story share card (1080x1350)
+ * for the Chronic Resentment & Grudge Holding Screener (Stanford Forgiveness model).
+ */
+export async function generateChronicResentmentCard(
+  result: ChronicResentmentScoreResult,
+  lang: ChronicResentmentCardLang = "en"
+): Promise<{ dataUrl: string; blob: Blob; file: File }> {
+  const canvas = document.createElement("canvas");
+  canvas.width = 1080;
+  canvas.height = 1350;
+  const ctx = canvas.getContext("2d");
+  if (!ctx) throw new Error("Could not get 2D canvas context");
+
+  const width = 1080;
+  const height = 1350;
+
+  // Background: Deep Crimson Ember & Charcoal Obsidian
+  const bgGrad = ctx.createLinearGradient(0, 0, width, height);
+  bgGrad.addColorStop(0, "#0A0404");
+  bgGrad.addColorStop(0.5, "#1B0808");
+  bgGrad.addColorStop(1, "#0A0404");
+  ctx.fillStyle = bgGrad;
+  ctx.fillRect(0, 0, width, height);
+
+  // Atmospheric glows
+  const glow1 = ctx.createRadialGradient(250, 270, 20, 250, 270, 500);
+  glow1.addColorStop(0, "rgba(239, 68, 68, 0.22)");
+  glow1.addColorStop(1, "rgba(239, 68, 68, 0)");
+  ctx.fillStyle = glow1;
+  ctx.fillRect(0, 0, width, height);
+
+  const glow2 = ctx.createRadialGradient(850, 950, 20, 850, 950, 480);
+  glow2.addColorStop(0, "rgba(245, 158, 11, 0.16)");
+  glow2.addColorStop(1, "rgba(245, 158, 11, 0)");
+  ctx.fillStyle = glow2;
+  ctx.fillRect(0, 0, width, height);
+
+  // Top header
+  ctx.fillStyle = "rgba(255, 255, 255, 0.7)";
+  ctx.font = "bold 20px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.letterSpacing = "2px";
+  ctx.fillText("NUJU CLINICAL SCREENER · STANFORD FORGIVENESS ARCHITECTURE", 80, 100);
+
+  // Primary Title
+  ctx.fillStyle = "#FFFFFF";
+  ctx.font = "900 44px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.letterSpacing = "-0.5px";
+  ctx.fillText("CHRONIC RESENTMENT PROFILE", 80, 165);
+
+  // Subtitle / Framework
+  ctx.fillStyle = "#F87171";
+  ctx.font = "600 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.letterSpacing = "0.5px";
+  ctx.fillText("Dr. Fred Luskin (Stanford Forgiveness) & Dr. Robert Enright Model", 80, 205);
+
+  // Hero Score Card Box
+  const cardY = 245;
+  const cardH = 345;
+  ctx.fillStyle = "rgba(255, 255, 255, 0.05)";
+  drawRoundedRect(ctx, 80, cardY, width - 160, cardH, 28);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(248, 113, 113, 0.35)";
+  ctx.lineWidth = 2;
+  ctx.stroke();
+
+  // Tier Badge Pill
+  const badgeText = (result.profile.badge[lang] || result.profile.badge.en).toUpperCase();
+  ctx.font = "bold 20px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  const badgeWidth = ctx.measureText(badgeText).width + 48;
+  const badgeGradient = ctx.createLinearGradient(120, cardY + 35, 120 + badgeWidth, cardY + 35);
+  badgeGradient.addColorStop(0, "#DC2626");
+  badgeGradient.addColorStop(1, "#991B1B");
+  ctx.fillStyle = badgeGradient;
+  drawRoundedRect(ctx, 120, cardY + 28, badgeWidth, 38, 19);
+  ctx.fill();
+
+  ctx.fillStyle = "#FFFFFF";
+  ctx.fillText(badgeText, 144, cardY + 54);
+
+  // Large Numerical Score
+  ctx.fillStyle = "#FFFFFF";
+  ctx.font = "900 76px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(`${result.score}`, 120, cardY + 155);
+
+  ctx.fillStyle = "rgba(255, 255, 255, 0.5)";
+  ctx.font = "bold 32px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("/ 36", 225, cardY + 155);
+
+  // Percentage Indicator
+  ctx.fillStyle = "#FECACA";
+  ctx.font = "bold 24px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(`Bitterness Index: ${result.percentage}%`, 330, cardY + 155);
+
+  // Profile Title
+  const titleText = result.profile.title[lang] || result.profile.title.en;
+  ctx.fillStyle = "#FFFFFF";
+  ctx.font = "bold 32px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  wrapText(ctx, titleText, 120, cardY + 215, width - 240, 40, 2);
+
+  // Subscales Metrics Box
+  const metricY = 625;
+  const metricH = 265;
+  ctx.fillStyle = "rgba(255, 255, 255, 0.03)";
+  drawRoundedRect(ctx, 80, metricY, width - 160, metricH, 24);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(255, 255, 255, 0.1)";
+  ctx.stroke();
+
+  ctx.fillStyle = "#E2E8F0";
+  ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("INJUSTICE RUMINATION & SOMATIC BITTERNESS METRICS", 120, metricY + 50);
+
+  // 3 Subscale Progress Bars
+  const subscales = [
+    { label: "Injustice Rumination & Replay", val: result.subscales.injustice_rumination_replay.percentage },
+    { label: "Somatic Bitterness & Poisoning", val: result.subscales.somatic_bitterness_poisoning.percentage },
+    { label: "Hostility & Defensive Hardening", val: result.subscales.hostility_defense_hardening.percentage },
+  ];
+
+  subscales.forEach((sub, idx) => {
+    const rowY = metricY + 95 + idx * 45;
+    ctx.fillStyle = "rgba(255, 255, 255, 0.8)";
+    ctx.font = "18px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+    ctx.fillText(sub.label, 120, rowY + 8);
+
+    ctx.fillStyle = "#F87171";
+    ctx.font = "bold 18px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+    ctx.fillText(`${sub.val}%`, 530, rowY + 8);
+
+    // Track
+    ctx.fillStyle = "rgba(255, 255, 255, 0.12)";
+    drawRoundedRect(ctx, 600, rowY - 6, 360, 16, 8);
+    ctx.fill();
+
+    // Fill
+    const fillW = Math.max(12, Math.min(360, (360 * sub.val) / 100));
+    const barGrad = ctx.createLinearGradient(600, rowY, 600 + fillW, rowY);
+    barGrad.addColorStop(0, "#EF4444");
+    barGrad.addColorStop(1, "#B91C1C");
+    ctx.fillStyle = barGrad;
+    drawRoundedRect(ctx, 600, rowY - 6, fillW, 16, 8);
+    ctx.fill();
+  });
+
+  // Clinical Insight Quote
+  ctx.fillStyle = "#CBD5E1";
+  ctx.font = "20px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(
+    "Fred Luskin Insight: Resentment is the emotional equivalent of holding hot coals waiting to throw them at another.",
+    120,
+    metricY + 235
+  );
+
+  // Action Protocol
+  ctx.fillStyle = "rgba(255, 255, 255, 0.04)";
+  drawRoundedRect(ctx, 80, 925, width - 160, 200, 24);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(255, 255, 255, 0.12)";
+  ctx.stroke();
+
+  ctx.fillStyle = "#F8FAFC";
+  ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("SOMATIC BITTERNESS PURGE & SOVEREIGN BOUNDARY PROTOCOL", 120, 975);
+
+  const protocols = result.profile.actionProtocol[lang] || result.profile.actionProtocol.en;
+  const protocolText = protocols[0] || "";
+  ctx.fillStyle = "#CBD5E1";
+  ctx.font = "24px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  wrapText(ctx, protocolText, 120, 1020, width - 240, 36, 3);
+
+  // Footer CTA
+  ctx.fillStyle = "rgba(255, 255, 255, 0.5)";
+  ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("Assess your chronic resentment & grudge burden free at:", 80, 1200);
+
+  ctx.fillStyle = "#F87171";
+  ctx.font = "900 30px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("nuju.app/quiz/chronic-resentment", 80, 1245);
+
+  const dataUrl = canvas.toDataURL("image/png", 0.95);
+  const blob = await new Promise<Blob>((resolve, reject) => {
+    canvas.toBlob((b) => (b ? resolve(b) : reject(new Error("Failed blob"))), "image/png", 0.95);
+  });
+  const file = new File([blob], `nuju-resentment-${result.level}.png`, { type: "image/png" });
+
+  return { dataUrl, blob, file };
+}
+
+export type PathologicalAltruismCardLang = "en" | "id" | "de" | "fr" | "es";
+
+export interface PathologicalAltruismScoreResult {
+  score: number;
+  percentage: number;
+  level: string;
+  profile: {
+    title: Record<string, string>;
+    badge: Record<string, string>;
+    summary: Record<string, string>;
+    psychology: Record<string, string>;
+    actionProtocol: Record<string, string[]>;
+  };
+  subscales: {
+    destructive_rescuing_compulsion: { score: number; percentage: number };
+    enabler_boundary_erosion: { score: number; percentage: number };
+    martyrdom_depletion: { score: number; percentage: number };
+  };
+}
+
+/**
+ * Generates an aesthetic high-resolution Instagram Story share card (1080x1350)
+ * for the Pathological Altruism & Savior Complex Screener (Dr. Barbara Oakley model).
+ */
+export async function generatePathologicalAltruismCard(
+  result: PathologicalAltruismScoreResult,
+  lang: PathologicalAltruismCardLang = "en"
+): Promise<{ dataUrl: string; blob: Blob; file: File }> {
+  const canvas = document.createElement("canvas");
+  canvas.width = 1080;
+  canvas.height = 1350;
+  const ctx = canvas.getContext("2d");
+  if (!ctx) throw new Error("Could not get 2D canvas context");
+
+  const width = 1080;
+  const height = 1350;
+
+  // Background: Deep Amethyst & Soft Gold
+  const bgGrad = ctx.createLinearGradient(0, 0, width, height);
+  bgGrad.addColorStop(0, "#08060F");
+  bgGrad.addColorStop(0.5, "#160F2B");
+  bgGrad.addColorStop(1, "#08060F");
+  ctx.fillStyle = bgGrad;
+  ctx.fillRect(0, 0, width, height);
+
+  // Atmospheric glows
+  const glow1 = ctx.createRadialGradient(250, 270, 20, 250, 270, 500);
+  glow1.addColorStop(0, "rgba(168, 85, 247, 0.22)");
+  glow1.addColorStop(1, "rgba(168, 85, 247, 0)");
+  ctx.fillStyle = glow1;
+  ctx.fillRect(0, 0, width, height);
+
+  const glow2 = ctx.createRadialGradient(850, 950, 20, 850, 950, 480);
+  glow2.addColorStop(0, "rgba(234, 179, 8, 0.16)");
+  glow2.addColorStop(1, "rgba(234, 179, 8, 0)");
+  ctx.fillStyle = glow2;
+  ctx.fillRect(0, 0, width, height);
+
+  // Top header
+  ctx.fillStyle = "rgba(255, 255, 255, 0.7)";
+  ctx.font = "bold 20px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.letterSpacing = "2px";
+  ctx.fillText("NUJU CLINICAL SCREENER · PATHOLOGICAL ALTRUISM & ENABLING", 80, 100);
+
+  // Primary Title
+  ctx.fillStyle = "#FFFFFF";
+  ctx.font = "900 44px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.letterSpacing = "-0.5px";
+  ctx.fillText("PATHOLOGICAL ALTRUISM PROFILE", 80, 165);
+
+  // Subtitle / Framework
+  ctx.fillStyle = "#C084FC";
+  ctx.font = "600 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.letterSpacing = "0.5px";
+  ctx.fillText("Dr. Barbara Oakley & Dr. Rachel Naomi Remen Caretaker Model", 80, 205);
+
+  // Hero Score Card Box
+  const cardY = 245;
+  const cardH = 345;
+  ctx.fillStyle = "rgba(255, 255, 255, 0.05)";
+  drawRoundedRect(ctx, 80, cardY, width - 160, cardH, 28);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(192, 132, 252, 0.35)";
+  ctx.lineWidth = 2;
+  ctx.stroke();
+
+  // Tier Badge Pill
+  const badgeText = (result.profile.badge[lang] || result.profile.badge.en).toUpperCase();
+  ctx.font = "bold 20px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  const badgeWidth = ctx.measureText(badgeText).width + 48;
+  const badgeGradient = ctx.createLinearGradient(120, cardY + 35, 120 + badgeWidth, cardY + 35);
+  badgeGradient.addColorStop(0, "#9333EA");
+  badgeGradient.addColorStop(1, "#6B21A8");
+  ctx.fillStyle = badgeGradient;
+  drawRoundedRect(ctx, 120, cardY + 28, badgeWidth, 38, 19);
+  ctx.fill();
+
+  ctx.fillStyle = "#FFFFFF";
+  ctx.fillText(badgeText, 144, cardY + 54);
+
+  // Large Numerical Score
+  ctx.fillStyle = "#FFFFFF";
+  ctx.font = "900 76px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(`${result.score}`, 120, cardY + 155);
+
+  ctx.fillStyle = "rgba(255, 255, 255, 0.5)";
+  ctx.font = "bold 32px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("/ 36", 225, cardY + 155);
+
+  // Percentage Indicator
+  ctx.fillStyle = "#E9D5FF";
+  ctx.font = "bold 24px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(`Self-Sacrifice Index: ${result.percentage}%`, 330, cardY + 155);
+
+  // Profile Title
+  const titleText = result.profile.title[lang] || result.profile.title.en;
+  ctx.fillStyle = "#FFFFFF";
+  ctx.font = "bold 32px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  wrapText(ctx, titleText, 120, cardY + 215, width - 240, 40, 2);
+
+  // Subscales Metrics Box
+  const metricY = 625;
+  const metricH = 265;
+  ctx.fillStyle = "rgba(255, 255, 255, 0.03)";
+  drawRoundedRect(ctx, 80, metricY, width - 160, metricH, 24);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(255, 255, 255, 0.1)";
+  ctx.stroke();
+
+  ctx.fillStyle = "#E2E8F0";
+  ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("COMPULSIVE RESCUING & ENABLING METRICS", 120, metricY + 50);
+
+  // 3 Subscale Progress Bars
+  const subscales = [
+    { label: "Destructive Rescuing", val: result.subscales.destructive_rescuing_compulsion.percentage },
+    { label: "Enabler Boundary Erosion", val: result.subscales.enabler_boundary_erosion.percentage },
+    { label: "Martyrdom Depletion", val: result.subscales.martyrdom_depletion.percentage },
+  ];
+
+  subscales.forEach((sub, idx) => {
+    const rowY = metricY + 95 + idx * 45;
+    ctx.fillStyle = "rgba(255, 255, 255, 0.8)";
+    ctx.font = "18px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+    ctx.fillText(sub.label, 120, rowY + 8);
+
+    ctx.fillStyle = "#C084FC";
+    ctx.font = "bold 18px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+    ctx.fillText(`${sub.val}%`, 530, rowY + 8);
+
+    // Track
+    ctx.fillStyle = "rgba(255, 255, 255, 0.12)";
+    drawRoundedRect(ctx, 600, rowY - 6, 360, 16, 8);
+    ctx.fill();
+
+    // Fill
+    const fillW = Math.max(12, Math.min(360, (360 * sub.val) / 100));
+    const barGrad = ctx.createLinearGradient(600, rowY, 600 + fillW, rowY);
+    barGrad.addColorStop(0, "#A855F7");
+    barGrad.addColorStop(1, "#7E22CE");
+    ctx.fillStyle = barGrad;
+    drawRoundedRect(ctx, 600, rowY - 6, fillW, 16, 8);
+    ctx.fill();
+  });
+
+  // Clinical Insight Quote
+  ctx.fillStyle = "#CBD5E1";
+  ctx.font = "20px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(
+    "Barbara Oakley Insight: Altruism becomes pathological when helping destroys the giver and enables stagnation.",
+    120,
+    metricY + 235
+  );
+
+  // Action Protocol
+  ctx.fillStyle = "rgba(255, 255, 255, 0.04)";
+  drawRoundedRect(ctx, 80, 925, width - 160, 200, 24);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(255, 255, 255, 0.12)";
+  ctx.stroke();
+
+  ctx.fillStyle = "#F8FAFC";
+  ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("ETHICAL SELF-PRIORITIZATION & DISENGAGEMENT PROTOCOL", 120, 975);
+
+  const protocols = result.profile.actionProtocol[lang] || result.profile.actionProtocol.en;
+  const protocolText = protocols[0] || "";
+  ctx.fillStyle = "#CBD5E1";
+  ctx.font = "24px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  wrapText(ctx, protocolText, 120, 1020, width - 240, 36, 3);
+
+  // Footer CTA
+  ctx.fillStyle = "rgba(255, 255, 255, 0.5)";
+  ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("Assess your pathological altruism & savior trap free at:", 80, 1200);
+
+  ctx.fillStyle = "#C084FC";
+  ctx.font = "900 30px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("nuju.app/quiz/pathological-altruism", 80, 1245);
+
+  const dataUrl = canvas.toDataURL("image/png", 0.95);
+  const blob = await new Promise<Blob>((resolve, reject) => {
+    canvas.toBlob((b) => (b ? resolve(b) : reject(new Error("Failed blob"))), "image/png", 0.95);
+  });
+  const file = new File([blob], `nuju-altruism-${result.level}.png`, { type: "image/png" });
+
+  return { dataUrl, blob, file };
+}
+
+
 
 
 

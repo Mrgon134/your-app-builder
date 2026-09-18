@@ -1011,6 +1011,42 @@
     <changefreq>weekly</changefreq>
   </url>
   <url>
+    <loc>https://nuju.app/quiz/chronic-resentment</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.95</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/quiz/grudge-holding</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.9</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/tes-resentment</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.9</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/quiz/pathological-altruism</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.95</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/quiz/savior-complex</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.9</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/tes-altruisme-patologis</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.9</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
     <loc>https://nuju.app/quiz/baterai-emosi</loc>
     <lastmod>2026-09-18</lastmod>
     <priority>0.9</priority>
@@ -10306,6 +10342,150 @@
       <image:caption>El modelo de la Dra. Pauline Boss: cómo sobrellevar el duelo suspendido ante el Alzheimer, adicciones, desapariciones emocionales y rupturas sin despedida.</image:caption>
     </image:image>
     <xhtml:link rel="alternate" hreflang="es" href="https://nuju.app/blog/perdida-ambigua-dolor-llorar-alguien-presente-pauline-boss"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/chronic-resentment-neurobiology-grudge-holding-poison</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>The Poison You Drink: The Neurobiology of Chronic Resentment and Grudge-Holding</image:title>
+      <image:caption>Explore the somatic and neurological toll of chronic resentment. Discover Dr. Fred Luskin and Dr. Robert Enright&apos;s models of grievance decoupling and cardiovascular healing.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/chronic-resentment-neurobiology-grudge-holding-poison"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/pathological-altruism-when-helping-others-destroys-you</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Pathological Altruism: When Helping Others Destroys Your Own Life</image:title>
+      <image:caption>Examine Dr. Barbara Oakley&apos;s model of Pathological Altruism: why compulsive helping, codependency, and rescuing emotionally broken individuals harms both helper and recipient.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/pathological-altruism-when-helping-others-destroys-you"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/injustice-replay-loop-brain-relitigating-old-arguments</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>The Injustice Replay Loop: Why Your Brain Won&apos;t Stop Re-litigating Old Arguments</image:title>
+      <image:caption>Understand the neuroscience of bathroom debates and bedtime rage loops: why the brain obsesses over past unfairness and how to halt default mode network rumination.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/injustice-replay-loop-brain-relitigating-old-arguments"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/savior-trap-rescuing-broken-people-addictive-defense</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>The Savior Trap: Why Rescuing Emotionally Broken People Is an Addictive Defense</image:title>
+      <image:caption>Uncover why being drawn to &apos;fixer-upper&apos; partners and chaotic friends is a trauma response designed to avoid facing your own unresolved vulnerability.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/savior-trap-rescuing-broken-people-addictive-defense"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/racun-batin-resentment-menyimpan-dendam-merusak-tubuh</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Racun Batin Bernama Resentment: Mengapa Menyimpan Dendam Merusak Tubuh dan Jiwamu</image:title>
+      <image:caption>Telusuri dampak biologis dari dendam kronis menurut Stanford Forgiveness Project. Mengapa rasa dongkol yang dipendam merusak pembuluh darah dan cara membuang racunnya.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="id" href="https://nuju.app/blog/racun-batin-resentment-menyimpan-dendam-merusak-tubuh"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/pathological-altruism-niat-baik-menolong-menghancurkan-diri</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Pathological Altruism: Ketika Niat Baik Menolong Malah Menghancurkan Hidupmu Sendiri</image:title>
+      <image:caption>Kenali jebakan menolong yang merugikan (pathological altruism) dan sindrom pahlawan. Mengapa menyelamatkan orang bermasalah memicu kebangkrutan emosional dan batas sehat.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="id" href="https://nuju.app/blog/pathological-altruism-niat-baik-menolong-menghancurkan-diri"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/lingkaran-memutar-ulang-sakit-hati-otak-berdebat-di-kamar-mandi</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Lingkaran Memutar Ulang Sakit Hati: Kenapa Otak Suka Berdebat di Kamar Mandi</image:title>
+      <image:caption>Memahami sains di balik kebiasaan berdebat imajiner di kamar mandi atau sebelum tidur. Mengapa amigdala tak henti merekonstruksi ketidakadilan masa lalu.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="id" href="https://nuju.app/blog/lingkaran-memutar-ulang-sakit-hati-otak-berdebat-di-kamar-mandi"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/jebakan-pahlawan-savior-complex-pelarian-diri-sendiri</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Jebakan Pahlawan (Savior Complex): Merawat Orang Lain Sebagai Pelarian dari Diri Sendiri</image:title>
+      <image:caption>Kupas tuntas psikodinamika di balik dorongan menyelamatkan orang terluka. Mengapa menjadi pahlawan bagi orang lain sering kali adalah kedok menghindari kekosongan batin sendiri.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="id" href="https://nuju.app/blog/jebakan-pahlawan-savior-complex-pelarian-diri-sendiri"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/chronischer-groll-verbitterung-zorn-vergiftet-koerper</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Chronischer Groll &amp; Verbitterung: Wie unverarbeiteter Zorn den Körper vergiftet</image:title>
+      <image:caption>Erfahren Sie nach dem Modell des Stanford Forgiveness Projects, wie chronischer Groll das Herz-Kreislauf-System schädigt und wie Sie seelisches Gift entladen.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="de" href="https://nuju.app/blog/chronischer-groll-verbitterung-zorn-vergiftet-koerper"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/pathologischer-altruismus-aufopferung-selbstzerstoerung</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Pathologischer Altruismus: Wenn Aufopferung zur seelischen Selbstzerstörung wird</image:title>
+      <image:caption>Untersuchen Sie Dr. Barbara Oakleys Konzept des pathologischen Altruismus. Warum zwanghaftes Helfen Beziehungen zerstört und wie gesunde Grenzen aussehen.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="de" href="https://nuju.app/blog/pathologischer-altruismus-aufopferung-selbstzerstoerung"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/ressentiment-chronique-ruminer-vengeance-detruit-sante</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Le Ressentiment Chronique : Pourquoi Ruminer la Vengeance Détruit Votre Santé</image:title>
+      <image:caption>Découvrez l&apos;impact neurobiologique de l&apos;amertume et de la rancune chronique selon les recherches de Stanford. Comment expulser la colère sans minimiser le préjudice.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://nuju.app/blog/ressentiment-chronique-ruminer-vengeance-detruit-sante"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/altruismo-patologico-peligro-salvar-demas-costa-propia-vida</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Altruismo Patológico: El Peligro de Salvar a los Demás a Costa de Tu Propia Vida</image:title>
+      <image:caption>Conozca el modelo de la Dra. Barbara Oakley sobre el altruismo patológico y el síndrome del salvador. Por qué rescatar a personas heridas destruye tus límites.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="es" href="https://nuju.app/blog/altruismo-patologico-peligro-salvar-demas-costa-propia-vida"/>
   </url>
   <url>
     <loc>https://nuju.app/blog/how-to-stop-overthinking-at-night</loc>
