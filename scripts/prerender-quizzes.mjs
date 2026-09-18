@@ -2691,6 +2691,68 @@ export function getQuizAndToolPages({
       ],
     },
 
+    {
+      route: "/quiz/comparison-trap",
+      aliases: ["/quiz/social-media-envy", "/tes-comparison-trap"],
+      title: "Comparison Trap & Social Media Envy Screener (Festinger & Ethan Kross Model)",
+      description:
+        "Assess whether upward social comparison on Instagram and LinkedIn is triggering chronic feelings of inadequacy, passive envy, and digital identity erosion.",
+      category: "Social Psychology & Culture",
+      duration: "90 secs",
+      itemsCount: 12,
+      framework: "Leon Festinger (Social Comparison Theory) & Dr. Ethan Kross Social Comparison Architecture",
+      overview:
+        "The Comparison Trap occurs when individuals compulsively evaluate their messy, unvarnished reality against curated highlight reels of peers. Under the algorithmic magnification of social media, upward comparison activates the dorsal anterior cingulate cortex (dACC), converting benign inspiration into toxic envy, imposter anxiety, and chronic feelings of lagging behind.",
+      keyPoints: [
+        "Evaluates 3 core subscales: Upward Comparison & Chronic Lag, Foster Envy & Resentment, and Algorithmic Identity Erosion",
+        "Breaks down the neurochemistry of digital envy and the dorsal anterior cingulate cortex pain pathway",
+        "Practical 4-step digital detox protocol, feed curation hygiene, and zero-knowledge encrypted audio journaling",
+      ],
+      faqs: [
+        {
+          question: "Why does social media make me feel so behind in life?",
+          answer:
+            "Human brains evolved in small tribes of 50-150 people where comparison helped maintain cooperation. Algorithms force you to compare against the top 2% highlights of billions of global outliers, triggering artificial social rejection signals.",
+        },
+        {
+          question: "What is the difference between benign envy and malicious envy?",
+          answer:
+            "Benign envy focuses on learning from someone's path and sparks motivation. Malicious envy focuses on the person's right to have success, provoking bitterness, secret schadenfreude, and depressive paralysis.",
+        },
+      ],
+    },
+
+    {
+      route: "/quiz/spiritual-narcissism",
+      aliases: ["/quiz/spiritual-superiority", "/tes-spiritual-narcissism"],
+      title: "Spiritual Narcissism & Superiority Screener (Dr. Craig Malkin & Kaufman Model)",
+      description:
+        "Evaluate whether mindfulness, esoteric doctrines, or 'high vibration' lifestyles have been co-opted by the ego to achieve moral elitism and weaponized gaslighting.",
+      category: "Spiritual Psychology",
+      duration: "90 secs",
+      itemsCount: 12,
+      framework: "Dr. Craig Malkin & Scott Barry Kaufman Spiritual Superiority Architecture",
+      overview:
+        "Spiritual Narcissism describes the hijacking of spiritual or wellness practices by the ego to secure supreme self-importance and moral superiority. Rather than dissolving the ego in humility, spiritual narcissists use concepts like karma, vibration, and detachment to judge 'lower-frequency' peers, escape interpersonal accountability, and evade vulnerable human relationships.",
+      keyPoints: [
+        "Measures 3 dimensions: Holier-Than-Thou Elitism & High-Vibration Arrogance, Enlightened Gaslighting & Karma Invalidation, and Performance Asceticism & Guru Persona",
+        "Examines dopamine reward loops in the ventral striatum fueled by spiritual self-righteousness",
+        "Concrete shadow integration practices, de-bypassing communication protocols, and anonymous emotional expression",
+      ],
+      faqs: [
+        {
+          question: "What is spiritual narcissism?",
+          answer:
+            "It is the tendency to use spiritual concepts, meditation, and esoteric beliefs to inflate self-esteem, feel more 'evolved' than others, and avoid accountability for ordinary human flaws.",
+        },
+        {
+          question: "How do spiritual narcissists gaslight people?",
+          answer:
+            "They use doctrines like the law of attraction ('you attracted this pain'), cosmic karma, or forced forgiveness to blame victims of abuse and silence legitimate anger.",
+        },
+      ],
+    },
+
     // 5. Ebook Sales Pages
     {
       route: "/ebook",

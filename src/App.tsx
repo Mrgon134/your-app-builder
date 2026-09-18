@@ -112,6 +112,8 @@ const MoralInjuryTest = lazy(() => import("./pages/MoralInjuryTest.tsx"));
 const WeaponizedIncompetenceTest = lazy(() => import("./pages/WeaponizedIncompetenceTest.tsx"));
 const DatingFatigueTest = lazy(() => import("./pages/DatingFatigueTest.tsx"));
 const ToxicPositivityTest = lazy(() => import("./pages/ToxicPositivityTest.tsx"));
+const ComparisonTrapTest = lazy(() => import("./pages/ComparisonTrapTest.tsx"));
+const SpiritualNarcissismTest = lazy(() => import("./pages/SpiritualNarcissismTest.tsx"));
 const EbookSalesPage = lazy(() => import("./pages/EbookSalesPage.tsx"));
 const EbookReaderPage = lazy(() => import("./pages/EbookReaderPage.tsx"));
 const NotFound = lazy(() => import("./pages/NotFound.tsx"));
@@ -426,6 +428,12 @@ const App = () => (
                   <Route path="/quiz/toxic-positivity" element={<ToxicPositivityTest />} />
                   <Route path="/quiz/emotional-invalidation" element={<ToxicPositivityTest />} />
                   <Route path="/tes-toxic-positivity" element={<ToxicPositivityTest />} />
+                  <Route path="/quiz/comparison-trap" element={<ComparisonTrapTest />} />
+                  <Route path="/quiz/social-media-envy" element={<ComparisonTrapTest />} />
+                  <Route path="/tes-comparison-trap" element={<ComparisonTrapTest />} />
+                  <Route path="/quiz/spiritual-narcissism" element={<SpiritualNarcissismTest />} />
+                  <Route path="/quiz/spiritual-superiority" element={<SpiritualNarcissismTest />} />
+                  <Route path="/tes-spiritual-narcissism" element={<SpiritualNarcissismTest />} />
                   <Route path="/quiz/:quizId" element={<QuizRunner />} />
                   <Route path="/test-psikologi" element={<QuizHub />} />
                   <Route path="/test-psikologi/:quizId" element={<QuizRunner />} />

@@ -903,6 +903,42 @@
     <changefreq>weekly</changefreq>
   </url>
   <url>
+    <loc>https://nuju.app/quiz/comparison-trap</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.95</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/quiz/social-media-envy</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.9</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/tes-comparison-trap</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.9</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/quiz/spiritual-narcissism</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.95</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/quiz/spiritual-superiority</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.9</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/tes-spiritual-narcissism</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.9</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
     <loc>https://nuju.app/quiz/baterai-emosi</loc>
     <lastmod>2026-09-18</lastmod>
     <priority>0.9</priority>
@@ -9766,6 +9802,150 @@
       <image:caption>¿Harto de frases vacías como &apos;Todo pasa por algo&apos; mientras las apps de citas te dejan el corazón vacío? Aprende a validar tu dolor y recuperar la ilusión.</image:caption>
     </image:image>
     <xhtml:link rel="alternate" hreflang="es" href="https://nuju.app/blog/positividad-toxica-agotamiento-apps-citas-cinismo-romantico"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/the-comparison-trap-social-media-envy-chronically-behind</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>The Comparison Trap: Why Scrolling Social Media Makes You Feel Chronically Behind in Life</image:title>
+      <image:caption>Understand the social psychology and neuroscience behind the comparison trap, upward comparison dysphoria, and how to reclaim your authentic life pacing.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/the-comparison-trap-social-media-envy-chronically-behind"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/social-media-envy-vs-benign-admiration-neuroscience</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Social Media Envy vs. Benign Admiration: The Neuroscience of Algorithmic Resentment</image:title>
+      <image:caption>Why does seeing others succeed on Instagram sometimes inspire us and other times trigger bitter resentment? The cognitive mechanisms separating benign envy from toxic grudge.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/social-media-envy-vs-benign-admiration-neuroscience"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/spiritual-narcissism-ego-disguised-as-enlightenment</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Spiritual Narcissism: When the Ego Disguises Itself as Enlightenment</image:title>
+      <image:caption>How spirituality, mindfulness, and wellness culture can become the ultimate breeding ground for grandiosity, elitism, and covert narcissistic control.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/spiritual-narcissism-ego-disguised-as-enlightenment"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/enlightened-gaslighting-spiritual-bypassing-karma-shaming</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Enlightened Gaslighting: How Spiritual Bypassing and &apos;Karma Shaming&apos; Silence Real Harm</image:title>
+      <image:caption>When wellness dogma turns cruel: analyzing how phrases like &apos;You attracted this trauma&apos; and &apos;Choose love over anger&apos; are used to evade relational accountability.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/enlightened-gaslighting-spiritual-bypassing-karma-shaming"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/comparison-trap-media-sosial-merasa-tertinggal-pencapaian</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Comparison Trap di Media Sosial: Mengapa Kamu Merasa Selalu Tertinggal dari Orang Lain</image:title>
+      <image:caption>Pernah merasa cemas dan tidak berharga setelah membuka Instagram? Pahami jebakan perbandingan sosial (Festinger model) dan cara menyembuhkan luka mental tertinggal.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="id" href="https://nuju.app/blog/comparison-trap-media-sosial-merasa-tertinggal-pencapaian"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/mengenal-spiritual-narcissism-kesucian-senjata-ego-merendahkan-orang</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Mengenal Spiritual Narcissism: Ketika Kesucian dan Laku Spiritual Dijadikan Senjata Ego</image:title>
+      <image:caption>Banyak yang tidak sadar bahwa meditasi, gaya hidup holistik, dan ajaran pencerahan bisa berubah menjadi topeng narsisme yang merendahkan orang lain.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="id" href="https://nuju.app/blog/mengenal-spiritual-narcissism-kesucian-senjata-ego-merendahkan-orang"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/envy-toxic-era-algoritma-cara-mengatasi-iri-hati-instagram</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Envy Toxic di Era Algoritma: Cara Mengatasi Iri Hati Saat Melihat Highlight Orang Lain</image:title>
+      <image:caption>Iri hati adalah emosi yang tabu diakui tapi paling sering dialami pengguna medsos. Pahami neurosains kecemburuan digital dan cara mengubahnya jadi kompas diri.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="id" href="https://nuju.app/blog/envy-toxic-era-algoritma-cara-mengatasi-iri-hati-instagram"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/bahaya-enlightened-gaslighting-manipulasi-dalil-karma-spiritual</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Bahaya Enlightened Gaslighting: &apos;Pikiranmu yang Menarik Hal Buruk&apos; dan Manipulasi Batin</image:title>
+      <image:caption>Waspadai jebakan manipulasi berkedok spiritual: ketika dalil karma, hukum tarik-menarik, dan ajaran &apos;positif saja&apos; dipakai membungkam luka nyata.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="id" href="https://nuju.app/blog/bahaya-enlightened-gaslighting-manipulasi-dalil-karma-spiritual"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/die-vergleichsfalle-social-media-staendig-unzulaenglich-fuehlen</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Die Vergleichsfalle auf Social Media: Warum wir uns ständig unzulänglich und abgehängt fühlen</image:title>
+      <image:caption>Die Neurobiologie der Aufwärtsvergleiche auf Instagram und LinkedIn. Warum uns der Erfolg anderer lähmt und wie wir unseren eigenen Lebensrhythmus wiederfinden.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="de" href="https://nuju.app/blog/die-vergleichsfalle-social-media-staendig-unzulaenglich-fuehlen"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/spiritueller-narzissmus-wenn-erleuchtung-zum-ego-werkzeug-wird</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Spiritueller Narzissmus: Wenn Erleuchtung und Achtsamkeit zum Werkzeug des Egos werden</image:title>
+      <image:caption>Wie Meditationspraxis, Schwingungslehre und Wellnesskultur zur perfekten Tarnung für elitäre Überlegenheit und verdeckte Manipulation werden.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="de" href="https://nuju.app/blog/spiritueller-narzissmus-wenn-erleuchtung-zum-ego-werkzeug-wird"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/piege-comparaison-numerique-reseaux-sociaux-estime-de-soi</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Le Piège de la Comparaison Numérique : Comment les Réseaux Sociaux Érodent l&apos;Estime de Soi</image:title>
+      <image:caption>La théorie de la comparaison sociale de Léon Festinger à l&apos;ère d&apos;Instagram. Pourquoi se comparer aux faits saillants d&apos;autrui engendre anxiété et sentiment d&apos;échec.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://nuju.app/blog/piege-comparaison-numerique-reseaux-sociaux-estime-de-soi"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/narcisismo-espiritual-falsa-iluminacion-ego-disfrazado-de-sabiduria</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Narcisismo Espiritual y Falsa Iluminación: Cuando el Ego se Disfraza de Sabiduría Trascendental</image:title>
+      <image:caption>Cómo las prácticas holísticas y el lenguaje de alta vibración se convierten en la trinchera perfecta para la superioridad moral y la evasión de culpas.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="es" href="https://nuju.app/blog/narcisismo-espiritual-falsa-iluminacion-ego-disfrazado-de-sabiduria"/>
   </url>
   <url>
     <loc>https://nuju.app/blog/how-to-stop-overthinking-at-night</loc>
