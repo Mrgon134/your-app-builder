@@ -2567,6 +2567,68 @@ export function getQuizAndToolPages({
       ],
     },
 
+    {
+      route: "/quiz/moral-injury",
+      aliases: ["/quiz/institutional-betrayal", "/tes-moral-injury"],
+      title: "Moral Injury & Institutional Betrayal Screener (Dr. Brett Litz Model)",
+      description:
+        "Assess whether institutional betrayal, transgression guilt, and moral distress from compromised values are causing profound psychological and existential agony.",
+      category: "Trauma & Moral Injury",
+      duration: "90 secs",
+      itemsCount: 12,
+      framework: "Dr. Brett Litz & Dr. Jonathan Shay Moral Injury and Ethical Betrayal Architecture",
+      overview:
+        "Moral injury is the profound psychological, biological, and spiritual distress that results from witnessing, participating in, or failing to prevent actions that transgress deeply held moral values, especially when perpetrated by trusted authorities or systems. Unlike fear-based PTSD, moral injury centers on guilt, shame, and righteous indignation.",
+      keyPoints: [
+        "Measures 3 distinct subscales: Institutional Betrayal & Broken Leadership, Transgression Guilt & Moral Compromise, and Existential Alienation",
+        "Clinically distinguishes moral injury from occupational burnout and terror-based PTSD",
+        "Actionable moral repair protocols, moral decontamination, and confidential audio sanctuary processing",
+      ],
+      faqs: [
+        {
+          question: "Can moral injury occur outside of military combat?",
+          answer:
+            "Absolutely. Moral injury is extraordinarily common in healthcare (profit-driven staffing cuts), corporate life (fraud, whistleblower retaliation), public service, and toxic religious or familial systems.",
+        },
+        {
+          question: "How does moral injury differ from PTSD?",
+          answer:
+            "PTSD is driven by mortal fear and autonomic hypervigilance (amygdala), whereas moral injury is driven by moral grief, shame, disgust, and the loss of trust in human integrity (anterior insula and cingulate cortex).",
+        },
+      ],
+    },
+
+    {
+      route: "/quiz/weaponized-incompetence",
+      aliases: ["/quiz/mental-load", "/tes-weaponized-incompetence"],
+      title: "Weaponized Incompetence & Mental Load Screener (Fair Play Model)",
+      description:
+        "Assess whether strategic helplessness, feigned ineptitude, and domestic cognitive overload are draining your energy and eroding relational intimacy.",
+      category: "Relationship Psychology",
+      duration: "90 secs",
+      itemsCount: 12,
+      framework: "Eve Rodsky (Fair Play) & Dr. Arlie Hochschild Domestic Labor Architecture",
+      overview:
+        "Weaponized Incompetence (strategic helplessness) is a covert dynamic where one partner intentionally botches domestic tasks, asks endless trivial questions, or feigns cluelessness until their partner takes over. This dumps the invisible cognitive 'mental load' onto one person, creating a toxic parent-child dynamic that kills sexual intimacy.",
+      keyPoints: [
+        "Measures 3 critical dimensions: Strategic Helplessness & Botched Chores, Mental Load Disparity & Household Management, and Parent-Child Dynamic & Sexual Erosion",
+        "Clarifies the difference between physical task execution and invisible cognitive planning (CPE)",
+        "Evidence-based boundary frameworks, zero-rescue rules, and radical labor rebalancing protocols",
+      ],
+      faqs: [
+        {
+          question: "Why does weaponized incompetence destroy romantic desire?",
+          answer:
+            "Eroticism and sexual attraction require respect between two independent adults. When one partner is forced to manage, monitor, and clean up after the other like an adolescent, desire is extinguished by chronic resentment.",
+        },
+        {
+          question: "How can couples break the cycle of strategic helplessness?",
+          answer:
+            "By implementing Full Ownership (Conception, Planning, and Execution) under the Fair Play model, eliminating half-tasks, and establishing a strict zero-rescue boundary where partners experience the natural consequences of neglected duties.",
+        },
+      ],
+    },
+
     // 5. Ebook Sales Pages
     {
       route: "/ebook",

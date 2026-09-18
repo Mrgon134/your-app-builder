@@ -831,6 +831,42 @@
     <changefreq>weekly</changefreq>
   </url>
   <url>
+    <loc>https://nuju.app/quiz/moral-injury</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.95</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/quiz/institutional-betrayal</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.9</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/tes-moral-injury</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.9</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/quiz/weaponized-incompetence</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.95</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/quiz/mental-load</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.9</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/tes-weaponized-incompetence</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.9</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
     <loc>https://nuju.app/quiz/baterai-emosi</loc>
     <lastmod>2026-09-18</lastmod>
     <priority>0.9</priority>
@@ -9406,6 +9442,150 @@
       <image:caption>¿Por qué cuanto más buscas cercanía, más se aleja tu pareja? Comprende la neurobiología del apego adulto (EFT) y aprende a romper la dinámica de tira y afloja.</image:caption>
     </image:image>
     <xhtml:link rel="alternate" hreflang="es" href="https://nuju.app/blog/trampa-ansioso-evitativo-como-salir-ciclo-persecucion-distanciamiento"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/moral-injury-vs-ptsd-institutional-betrayal-recovery</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Moral Injury vs PTSD: When Trauma is Not Fear, but a Shattered Conscience</image:title>
+      <image:caption>Struggling with profound guilt, rage at corrupt leadership, and loss of faith in humanity? Learn why moral injury differs fundamentally from PTSD and how to heal ethical soul-wounds.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/moral-injury-vs-ptsd-institutional-betrayal-recovery"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/weaponized-incompetence-marriage-mental-load-fair-play</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Weaponized Incompetence in Relationships: The Covert Manipulation Killing Intimacy</image:title>
+      <image:caption>Does your partner ask where the salt is for the tenth time or shrink your clothes so you never ask them to do laundry again? Uncover weaponized incompetence and how to apply Fair Play.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/weaponized-incompetence-marriage-mental-load-fair-play"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/corporate-gaslighting-whistleblower-moral-distress</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Corporate Gaslighting and Whistleblower Moral Distress: Surviving the Toxic System</image:title>
+      <image:caption>When you speak the truth in a corrupt organization, why do they make you feel like the crazy one? Understand institutional betrayal and whistleblower psychology.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/corporate-gaslighting-whistleblower-moral-distress"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/the-mental-load-why-women-are-exhausted-cognitive-labor</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>The Mental Load: Why You Are Chronically Exhausted Even When Your Partner &apos;Helps&apos;</image:title>
+      <image:caption>Physical chores are only the tip of the iceberg. Discover why domestic mental load—the invisible cognitive labor of anticipating, planning, and tracking—causes profound burnout.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/the-mental-load-why-women-are-exhausted-cognitive-labor"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/moral-injury-tempat-kerja-khianat-institusi-etika</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Moral Injury di Tempat Kerja: Ketika Kelelahanmu Bukan Burnout Biasa, Tapi Luka Nurani</image:title>
+      <image:caption>Merasa muak dengan kemunafikan atasan, manipulasi perusahaan, dan terpaksa berkompromi dengan etika? Pahami fenomena moral injury dan khianat institusi.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="id" href="https://nuju.app/blog/moral-injury-tempat-kerja-khianat-institusi-etika"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/weaponized-incompetence-pura-pura-bodoh-pasangan-beban-mental</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Weaponized Incompetence: Trik Pasangan Pura-Pura Bodoh Agar Lepas dari Pekerjaan Rumah</image:title>
+      <image:caption>Apakah pasanganmu sengaja salah mencuci baju atau selalu bertanya hal sepele sampai kamu menyerah dan mengerjakannya sendiri? Waspadai manipulasi strategic helplessness.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="id" href="https://nuju.app/blog/weaponized-incompetence-pura-pura-bodoh-pasangan-beban-mental"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/kelelahan-mental-istri-mengasuh-suami-parentifikasi-hubungan</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Sindrom &apos;Mengasuh Suami&apos;: Mengapa Hubungan Seperti Ibu dan Anak Membunuh Hasrat Seksual</image:title>
+      <image:caption>Merasa seperti punya anak tambahan saat menikah dengan pasanganmu? Ketahui bahaya parentifikasi hubungan dan hilangnya rasa hormat dalam pernikahan.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="id" href="https://nuju.app/blog/kelelahan-mental-istri-mengasuh-suami-parentifikasi-hubungan"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/mengapa-kamu-merasa-bersalah-setelah-berbicara-jujur-moral-distress</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Mengapa Kamu Merasa Bersalah Setelah Berkata Jujur? Bahaya Gaslighting Nurani</image:title>
+      <image:caption>Pernahkah kamu menyuarakan kebenaran atau memasang batasan sehat, tetapi malah dihantui rasa bersalah dan cemas? Kenali sindrom trauma pembungkaman.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="id" href="https://nuju.app/blog/mengapa-kamu-merasa-bersalah-setelah-berbicara-jujur-moral-distress"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/moralische-verletzung-institutioneller-verrat-berufsethik-heilen</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Moralische Verletzung (Moral Injury): Wenn die Seele an institutioneller Heuchelei zerbricht</image:title>
+      <image:caption>Fühlst du dich von Führungskräften verraten, die Gewinne über Menschen stellen? Erfahre, warum Moral Injury kein einfaches Burnout ist und wie ethische Heilung gelingt.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="de" href="https://nuju.app/blog/moralische-verletzung-institutioneller-verrat-berufsethik-heilen"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/weaponized-incompetence-strategische-hilflosigkeit-beziehung-fair-play</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Weaponized Incompetence: Wenn der Partner sich mit Absicht dumm stellt</image:title>
+      <image:caption>Wäscht dein Partner die Wäsche absichtlich falsch oder fragt endlos nach simplen Dingen? Entlarve strategische Hilflosigkeit und rette deine Beziehung mit Fair Play.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="de" href="https://nuju.app/blog/weaponized-incompetence-strategische-hilflosigkeit-beziehung-fair-play"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/charge-mentale-incompetence-feinte-sauver-son-couple-fair-play</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Charge Mentale et Incompétence Feinte : Comment Sauver son Couple de l&apos;Épuisement</image:title>
+      <image:caption>Votre partenaire fait-il semblant de ne pas savoir faire une machine ou pose-t-il mille questions pour que vous fassiez tout ? Découvrez l&apos;incompétence stratégique.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://nuju.app/blog/charge-mentale-incompetence-feinte-sauver-son-couple-fair-play"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/traicion-institucional-incompetencia-estrategica-carga-mental-pareja</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Incompetencia Estratégica y Carga Mental: La Trampa Invisible que Destruye a las Parejas</image:title>
+      <image:caption>¿Tu pareja se hace la desentendida para que termines haciendo tú las tareas del hogar? Descubre cómo la incompetencia aprendida anula el deseo y la equidad.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="es" href="https://nuju.app/blog/traicion-institucional-incompetencia-estrategica-carga-mental-pareja"/>
   </url>
   <url>
     <loc>https://nuju.app/blog/how-to-stop-overthinking-at-night</loc>

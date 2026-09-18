@@ -12007,3 +12007,422 @@ export async function generateAnxiousAvoidantTrapCard(
   return { dataUrl, blob, file };
 }
 
+export type MoralInjuryCardLang = "en" | "id" | "de" | "fr" | "es";
+
+export interface MoralInjuryScoreResult {
+  score: number;
+  percentage: number;
+  level: string;
+  profile: {
+    title: Record<string, string>;
+    badge: Record<string, string>;
+    summary: Record<string, string>;
+    neurobiology: Record<string, string>;
+    actionProtocol: Record<string, string[]>;
+  };
+  subscales: {
+    institutional_betrayal: { score: number; percentage: number };
+    transgression_guilt: { score: number; percentage: number };
+    existential_alienation: { score: number; percentage: number };
+  };
+}
+
+/**
+ * Generates an aesthetic high-resolution Instagram Story share card (1080x1350)
+ * for the Moral Injury & Ethical Betrayal Screener (Dr. Brett Litz model).
+ */
+export async function generateMoralInjuryCard(
+  result: MoralInjuryScoreResult,
+  lang: MoralInjuryCardLang = "en"
+): Promise<{ dataUrl: string; blob: Blob; file: File }> {
+  const canvas = document.createElement("canvas");
+  canvas.width = 1080;
+  canvas.height = 1350;
+  const ctx = canvas.getContext("2d");
+  if (!ctx) throw new Error("Could not get 2D canvas context");
+
+  const width = 1080;
+  const height = 1350;
+
+  // Background: Deep Obsidian Navy & Burnished Bronze
+  const bgGrad = ctx.createLinearGradient(0, 0, width, height);
+  bgGrad.addColorStop(0, "#050912");
+  bgGrad.addColorStop(0.5, "#12131F");
+  bgGrad.addColorStop(1, "#211D0F");
+  ctx.fillStyle = bgGrad;
+  ctx.fillRect(0, 0, width, height);
+
+  // Soft glowing atmospheric orbs
+  const glow1 = ctx.createRadialGradient(250, 270, 20, 250, 270, 500);
+  glow1.addColorStop(0, "rgba(217, 119, 6, 0.25)");
+  glow1.addColorStop(1, "rgba(217, 119, 6, 0)");
+  ctx.fillStyle = glow1;
+  ctx.fillRect(0, 0, width, height);
+
+  const glow2 = ctx.createRadialGradient(850, 950, 20, 850, 950, 480);
+  glow2.addColorStop(0, "rgba(59, 130, 246, 0.20)");
+  glow2.addColorStop(1, "rgba(59, 130, 246, 0)");
+  ctx.fillStyle = glow2;
+  ctx.fillRect(0, 0, width, height);
+
+  // Top header: Brand & Category Badge
+  ctx.fillStyle = "rgba(255, 255, 255, 0.7)";
+  ctx.font = "bold 20px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.letterSpacing = "2px";
+  ctx.fillText("NUJU CLINICAL SCREENER · MORAL INJURY MODEL", 80, 100);
+
+  // Primary Title
+  ctx.fillStyle = "#FFFFFF";
+  ctx.font = "900 46px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.letterSpacing = "-0.5px";
+  ctx.fillText("MORAL INJURY PROFILE", 80, 165);
+
+  // Subtitle / Framework
+  ctx.fillStyle = "#F59E0B";
+  ctx.font = "600 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.letterSpacing = "0.5px";
+  ctx.fillText("Dr. Brett Litz & Dr. Jonathan Shay Ethical Betrayal Architecture", 80, 205);
+
+  // Hero Score Card Box
+  const cardY = 245;
+  const cardH = 345;
+  ctx.fillStyle = "rgba(255, 255, 255, 0.05)";
+  drawRoundedRect(ctx, 80, cardY, width - 160, cardH, 28);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(245, 158, 11, 0.35)";
+  ctx.lineWidth = 2;
+  ctx.stroke();
+
+  // Tier Badge Pill
+  const badgeText = (result.profile.badge[lang] || result.profile.badge.en).toUpperCase();
+  ctx.font = "bold 20px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  const badgeWidth = ctx.measureText(badgeText).width + 48;
+  const badgeGradient = ctx.createLinearGradient(120, cardY + 35, 120 + badgeWidth, cardY + 35);
+  badgeGradient.addColorStop(0, "#D97706");
+  badgeGradient.addColorStop(1, "#B45309");
+  ctx.fillStyle = badgeGradient;
+  drawRoundedRect(ctx, 120, cardY + 28, badgeWidth, 38, 19);
+  ctx.fill();
+
+  ctx.fillStyle = "#FFFFFF";
+  ctx.fillText(badgeText, 144, cardY + 54);
+
+  // Large Numerical Score
+  ctx.fillStyle = "#FFFFFF";
+  ctx.font = "900 76px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(`${result.score}`, 120, cardY + 155);
+
+  ctx.fillStyle = "rgba(255, 255, 255, 0.5)";
+  ctx.font = "bold 32px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("/ 48", 225, cardY + 155);
+
+  // Percentage Indicator
+  ctx.fillStyle = "#FDE68A";
+  ctx.font = "bold 24px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(`Moral Distress Index: ${result.percentage}%`, 330, cardY + 155);
+
+  // Profile Title
+  const titleText = result.profile.title[lang] || result.profile.title.en;
+  ctx.fillStyle = "#FFFFFF";
+  ctx.font = "bold 32px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  wrapText(ctx, titleText, 120, cardY + 215, width - 240, 40, 2);
+
+  // Subscales Metrics Box
+  const metricY = 625;
+  const metricH = 265;
+  ctx.fillStyle = "rgba(255, 255, 255, 0.03)";
+  drawRoundedRect(ctx, 80, metricY, width - 160, metricH, 24);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(255, 255, 255, 0.1)";
+  ctx.stroke();
+
+  ctx.fillStyle = "#E2E8F0";
+  ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("ETHICAL BETRAYAL & TRANSGRESSION DIMENSIONS", 120, metricY + 50);
+
+  // 3 Subscale Progress Bars
+  const subscales = [
+    { label: "Institutional Betrayal", val: result.subscales.institutional_betrayal.percentage },
+    { label: "Transgression Guilt & Complicity", val: result.subscales.transgression_guilt.percentage },
+    { label: "Existential Alienation", val: result.subscales.existential_alienation.percentage },
+  ];
+
+  subscales.forEach((sub, idx) => {
+    const rowY = metricY + 95 + idx * 45;
+    ctx.fillStyle = "rgba(255, 255, 255, 0.8)";
+    ctx.font = "18px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+    ctx.fillText(sub.label, 120, rowY + 8);
+
+    ctx.fillStyle = "#F59E0B";
+    ctx.font = "bold 18px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+    ctx.fillText(`${sub.val}%`, 540, rowY + 8);
+
+    // Track
+    ctx.fillStyle = "rgba(255, 255, 255, 0.12)";
+    drawRoundedRect(ctx, 610, rowY - 6, 350, 16, 8);
+    ctx.fill();
+
+    // Fill
+    const fillW = Math.max(12, Math.min(350, (350 * sub.val) / 100));
+    const barGrad = ctx.createLinearGradient(610, rowY, 610 + fillW, rowY);
+    barGrad.addColorStop(0, "#F59E0B");
+    barGrad.addColorStop(1, "#D97706");
+    ctx.fillStyle = barGrad;
+    drawRoundedRect(ctx, 610, rowY - 6, fillW, 16, 8);
+    ctx.fill();
+  });
+
+  // Clinical Insight Quote
+  ctx.fillStyle = "#CBD5E1";
+  ctx.font = "20px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(
+    "Dr. Brett Litz Insight: Moral injury is not fear; it is the deep agony of compromised conscience and broken trust.",
+    120,
+    metricY + 235
+  );
+
+  // Action Protocol
+  ctx.fillStyle = "rgba(255, 255, 255, 0.04)";
+  drawRoundedRect(ctx, 80, 925, width - 160, 200, 24);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(255, 255, 255, 0.12)";
+  ctx.stroke();
+
+  ctx.fillStyle = "#F8FAFC";
+  ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("MORAL REPAIR & RECONCILIATION PROTOCOL", 120, 975);
+
+  const protocols = result.profile.actionProtocol[lang] || result.profile.actionProtocol.en;
+  const protocolText = protocols[0] || "";
+  ctx.fillStyle = "#CBD5E1";
+  ctx.font = "24px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  wrapText(ctx, protocolText, 120, 1020, width - 240, 36, 3);
+
+  // Footer CTA
+  ctx.fillStyle = "rgba(255, 255, 255, 0.5)";
+  ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("Assess your moral distress & institutional betrayal free at:", 80, 1200);
+
+  ctx.fillStyle = "#F59E0B";
+  ctx.font = "900 30px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("nuju.app/quiz/moral-injury", 80, 1245);
+
+  const dataUrl = canvas.toDataURL("image/png", 0.95);
+  const blob = await new Promise<Blob>((resolve, reject) => {
+    canvas.toBlob((b) => (b ? resolve(b) : reject(new Error("Failed blob"))), "image/png", 0.95);
+  });
+  const file = new File([blob], `nuju-moral-injury-${result.level}.png`, { type: "image/png" });
+
+  return { dataUrl, blob, file };
+}
+
+export type WeaponizedIncompetenceCardLang = "en" | "id" | "de" | "fr" | "es";
+
+export interface WeaponizedIncompetenceScoreResult {
+  score: number;
+  percentage: number;
+  level: string;
+  profile: {
+    title: Record<string, string>;
+    badge: Record<string, string>;
+    summary: Record<string, string>;
+    neurobiology: Record<string, string>;
+    actionProtocol: Record<string, string[]>;
+  };
+  subscales: {
+    strategic_helplessness: { score: number; percentage: number };
+    mental_load_disparity: { score: number; percentage: number };
+    parent_child_exhaustion: { score: number; percentage: number };
+  };
+}
+
+/**
+ * Generates an aesthetic high-resolution Instagram Story share card (1080x1350)
+ * for the Weaponized Incompetence & Mental Load Screener (Fair Play model).
+ */
+export async function generateWeaponizedIncompetenceCard(
+  result: WeaponizedIncompetenceScoreResult,
+  lang: WeaponizedIncompetenceCardLang = "en"
+): Promise<{ dataUrl: string; blob: Blob; file: File }> {
+  const canvas = document.createElement("canvas");
+  canvas.width = 1080;
+  canvas.height = 1350;
+  const ctx = canvas.getContext("2d");
+  if (!ctx) throw new Error("Could not get 2D canvas context");
+
+  const width = 1080;
+  const height = 1350;
+
+  // Background: Dark Steel & Electric Rose / Coral
+  const bgGrad = ctx.createLinearGradient(0, 0, width, height);
+  bgGrad.addColorStop(0, "#0E0507");
+  bgGrad.addColorStop(0.5, "#1F0B13");
+  bgGrad.addColorStop(1, "#36101B");
+  ctx.fillStyle = bgGrad;
+  ctx.fillRect(0, 0, width, height);
+
+  // Soft glowing atmospheric orbs
+  const glow1 = ctx.createRadialGradient(250, 280, 20, 250, 280, 500);
+  glow1.addColorStop(0, "rgba(244, 63, 94, 0.28)");
+  glow1.addColorStop(1, "rgba(244, 63, 94, 0)");
+  ctx.fillStyle = glow1;
+  ctx.fillRect(0, 0, width, height);
+
+  const glow2 = ctx.createRadialGradient(850, 950, 20, 850, 950, 480);
+  glow2.addColorStop(0, "rgba(251, 113, 133, 0.20)");
+  glow2.addColorStop(1, "rgba(251, 113, 133, 0)");
+  ctx.fillStyle = glow2;
+  ctx.fillRect(0, 0, width, height);
+
+  // Top header: Brand & Category Badge
+  ctx.fillStyle = "rgba(255, 255, 255, 0.7)";
+  ctx.font = "bold 20px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.letterSpacing = "2px";
+  ctx.fillText("NUJU CLINICAL SCREENER · FAIR PLAY MODEL", 80, 100);
+
+  // Primary Title
+  ctx.fillStyle = "#FFFFFF";
+  ctx.font = "900 44px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.letterSpacing = "-0.5px";
+  ctx.fillText("WEAPONIZED INCOMPETENCE", 80, 165);
+
+  // Subtitle / Framework
+  ctx.fillStyle = "#FB7185";
+  ctx.font = "600 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.letterSpacing = "0.5px";
+  ctx.fillText("Domestic Feigned Helplessness & Invisible Mental Load Assessment", 80, 205);
+
+  // Hero Score Card Box
+  const cardY = 245;
+  const cardH = 345;
+  ctx.fillStyle = "rgba(255, 255, 255, 0.05)";
+  drawRoundedRect(ctx, 80, cardY, width - 160, cardH, 28);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(244, 63, 94, 0.35)";
+  ctx.lineWidth = 2;
+  ctx.stroke();
+
+  // Tier Badge Pill
+  const badgeText = (result.profile.badge[lang] || result.profile.badge.en).toUpperCase();
+  ctx.font = "bold 20px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  const badgeWidth = ctx.measureText(badgeText).width + 48;
+  const badgeGradient = ctx.createLinearGradient(120, cardY + 35, 120 + badgeWidth, cardY + 35);
+  badgeGradient.addColorStop(0, "#F43F5E");
+  badgeGradient.addColorStop(1, "#BE123C");
+  ctx.fillStyle = badgeGradient;
+  drawRoundedRect(ctx, 120, cardY + 28, badgeWidth, 38, 19);
+  ctx.fill();
+
+  ctx.fillStyle = "#FFFFFF";
+  ctx.fillText(badgeText, 144, cardY + 54);
+
+  // Large Numerical Score
+  ctx.fillStyle = "#FFFFFF";
+  ctx.font = "900 76px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(`${result.score}`, 120, cardY + 155);
+
+  ctx.fillStyle = "rgba(255, 255, 255, 0.5)";
+  ctx.font = "bold 32px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("/ 48", 225, cardY + 155);
+
+  // Percentage Indicator
+  ctx.fillStyle = "#FECDD3";
+  ctx.font = "bold 24px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(`Labor Disparity Index: ${result.percentage}%`, 330, cardY + 155);
+
+  // Profile Title
+  const titleText = result.profile.title[lang] || result.profile.title.en;
+  ctx.fillStyle = "#FFFFFF";
+  ctx.font = "bold 32px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  wrapText(ctx, titleText, 120, cardY + 215, width - 240, 40, 2);
+
+  // Subscales Metrics Box
+  const metricY = 625;
+  const metricH = 265;
+  ctx.fillStyle = "rgba(255, 255, 255, 0.03)";
+  drawRoundedRect(ctx, 80, metricY, width - 160, metricH, 24);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(255, 255, 255, 0.1)";
+  ctx.stroke();
+
+  ctx.fillStyle = "#E2E8F0";
+  ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("DOMESTIC & EMOTIONAL LABOR DISPARITY", 120, metricY + 50);
+
+  // 3 Subscale Progress Bars
+  const subscales = [
+    { label: "Strategic Helplessness", val: result.subscales.strategic_helplessness.percentage },
+    { label: "Mental Load Disparity", val: result.subscales.mental_load_disparity.percentage },
+    { label: "Parent-Child Dynamic", val: result.subscales.parent_child_exhaustion.percentage },
+  ];
+
+  subscales.forEach((sub, idx) => {
+    const rowY = metricY + 95 + idx * 45;
+    ctx.fillStyle = "rgba(255, 255, 255, 0.8)";
+    ctx.font = "18px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+    ctx.fillText(sub.label, 120, rowY + 8);
+
+    ctx.fillStyle = "#FB7185";
+    ctx.font = "bold 18px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+    ctx.fillText(`${sub.val}%`, 530, rowY + 8);
+
+    // Track
+    ctx.fillStyle = "rgba(255, 255, 255, 0.12)";
+    drawRoundedRect(ctx, 600, rowY - 6, 360, 16, 8);
+    ctx.fill();
+
+    // Fill
+    const fillW = Math.max(12, Math.min(360, (360 * sub.val) / 100));
+    const barGrad = ctx.createLinearGradient(600, rowY, 600 + fillW, rowY);
+    barGrad.addColorStop(0, "#FB7185");
+    barGrad.addColorStop(1, "#E11D48");
+    ctx.fillStyle = barGrad;
+    drawRoundedRect(ctx, 600, rowY - 6, fillW, 16, 8);
+    ctx.fill();
+  });
+
+  // Clinical Insight Quote
+  ctx.fillStyle = "#CBD5E1";
+  ctx.font = "20px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(
+    "Eve Rodsky Insight: Asking for help is not delegation; it is managing an employee in your own marriage.",
+    120,
+    metricY + 235
+  );
+
+  // Action Protocol
+  ctx.fillStyle = "rgba(255, 255, 255, 0.04)";
+  drawRoundedRect(ctx, 80, 925, width - 160, 200, 24);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(255, 255, 255, 0.12)";
+  ctx.stroke();
+
+  ctx.fillStyle = "#F8FAFC";
+  ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("FAIR PLAY REBALANCING & BOUNDARY PROTOCOL", 120, 975);
+
+  const protocols = result.profile.actionProtocol[lang] || result.profile.actionProtocol.en;
+  const protocolText = protocols[0] || "";
+  ctx.fillStyle = "#CBD5E1";
+  ctx.font = "24px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  wrapText(ctx, protocolText, 120, 1020, width - 240, 36, 3);
+
+  // Footer CTA
+  ctx.fillStyle = "rgba(255, 255, 255, 0.5)";
+  ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("Assess your relationship mental load & strategic incompetence at:", 80, 1200);
+
+  ctx.fillStyle = "#FB7185";
+  ctx.font = "900 30px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("nuju.app/quiz/weaponized-incompetence", 80, 1245);
+
+  const dataUrl = canvas.toDataURL("image/png", 0.95);
+  const blob = await new Promise<Blob>((resolve, reject) => {
+    canvas.toBlob((b) => (b ? resolve(b) : reject(new Error("Failed blob"))), "image/png", 0.95);
+  });
+  const file = new File([blob], `nuju-weaponized-incompetence-${result.level}.png`, { type: "image/png" });
+
+  return { dataUrl, blob, file };
+}
+
+
