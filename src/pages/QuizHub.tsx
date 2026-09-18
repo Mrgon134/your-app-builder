@@ -2273,6 +2273,64 @@ const QuizHub: React.FC = () => {
               </Link>
             </div>
           </div>
+
+          {/* Card 74: Autistic Burnout & Masking Exhaustion Screener */}
+          <div className="rounded-3xl border border-purple-300 bg-gradient-to-br from-purple-500/10 via-violet-50 to-white p-6 shadow-xs flex flex-col justify-between hover:shadow-md transition">
+            <div>
+              <div className="flex items-center justify-between mb-3">
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-purple-600 px-3 py-0.5 text-xs font-bold text-white shadow-xs">
+                  <Brain className="h-3 w-3" />
+                  AASPIRE MODEL
+                </span>
+                <span className="text-xs font-semibold text-purple-700">Dr. Dora Raymaker</span>
+              </div>
+              <h3 className="text-lg font-bold text-neutral-900 mb-1.5">
+                Autistic Burnout & Masking Screener
+              </h3>
+              <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed">
+                Experiencing bone-deep exhaustion, sudden speech loss (situational mutism), executive function collapse, or extreme sensory agony? Screen AASPIRE autistic burnout.
+              </p>
+            </div>
+            <div className="mt-5 pt-3 border-t border-purple-100 flex items-center justify-between">
+              <span className="text-xs font-medium text-neutral-400">~90 Secs · 12 Items</span>
+              <Link
+                to="/quiz/autistic-burnout"
+                className="inline-flex items-center gap-1.5 rounded-full bg-purple-600 px-4 py-2 text-xs font-bold text-white hover:bg-purple-700 transition shadow-xs"
+              >
+                <span>Screen Burnout</span>
+                <ArrowRight className="h-3.5 w-3.5" />
+              </Link>
+            </div>
+          </div>
+
+          {/* Card 75: Anxious-Avoidant Trap & Pursue-Withdraw Screener */}
+          <div className="rounded-3xl border border-amber-300 bg-gradient-to-br from-amber-500/10 via-orange-50 to-white p-6 shadow-xs flex flex-col justify-between hover:shadow-md transition">
+            <div>
+              <div className="flex items-center justify-between mb-3">
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-amber-600 px-3 py-0.5 text-xs font-bold text-white shadow-xs">
+                  <HeartCrack className="h-3 w-3" />
+                  EFT ATTACHMENT
+                </span>
+                <span className="text-xs font-semibold text-amber-700">Dr. Sue Johnson</span>
+              </div>
+              <h3 className="text-lg font-bold text-neutral-900 mb-1.5">
+                Anxious-Avoidant Trap Screener
+              </h3>
+              <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed">
+                Trapped in the push-pull relationship rollercoaster? Does one partner panic and chase while the other feels suffocated and withdraws? Assess your cycle.
+              </p>
+            </div>
+            <div className="mt-5 pt-3 border-t border-amber-100 flex items-center justify-between">
+              <span className="text-xs font-medium text-neutral-400">~90 Secs · 12 Items</span>
+              <Link
+                to="/quiz/anxious-avoidant-trap"
+                className="inline-flex items-center gap-1.5 rounded-full bg-amber-600 px-4 py-2 text-xs font-bold text-white hover:bg-amber-700 transition shadow-xs"
+              >
+                <span>Screen Trap</span>
+                <ArrowRight className="h-3.5 w-3.5" />
+              </Link>
+            </div>
+          </div>
         </div>
 
         {/* Country Filter Pills */}

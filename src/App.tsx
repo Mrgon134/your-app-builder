@@ -106,6 +106,8 @@ const EchoismTest = lazy(() => import("./pages/EchoismTest.tsx"));
 const WindowOfToleranceTest = lazy(() => import("./pages/WindowOfToleranceTest.tsx"));
 const RocdTest = lazy(() => import("./pages/RocdTest.tsx"));
 const StonewallingTest = lazy(() => import("./pages/StonewallingTest.tsx"));
+const AutisticBurnoutTest = lazy(() => import("./pages/AutisticBurnoutTest.tsx"));
+const AnxiousAvoidantTrapTest = lazy(() => import("./pages/AnxiousAvoidantTrapTest.tsx"));
 const EbookSalesPage = lazy(() => import("./pages/EbookSalesPage.tsx"));
 const EbookReaderPage = lazy(() => import("./pages/EbookReaderPage.tsx"));
 const NotFound = lazy(() => import("./pages/NotFound.tsx"));
@@ -402,6 +404,12 @@ const App = () => (
                   <Route path="/quiz/stonewalling" element={<StonewallingTest />} />
                   <Route path="/quiz/silent-treatment" element={<StonewallingTest />} />
                   <Route path="/tes-stonewalling" element={<StonewallingTest />} />
+                  <Route path="/quiz/autistic-burnout" element={<AutisticBurnoutTest />} />
+                  <Route path="/quiz/neurodivergent-burnout" element={<AutisticBurnoutTest />} />
+                  <Route path="/tes-autistic-burnout" element={<AutisticBurnoutTest />} />
+                  <Route path="/quiz/anxious-avoidant-trap" element={<AnxiousAvoidantTrapTest />} />
+                  <Route path="/quiz/anxious-avoidant-dance" element={<AnxiousAvoidantTrapTest />} />
+                  <Route path="/tes-anxious-avoidant" element={<AnxiousAvoidantTrapTest />} />
                   <Route path="/quiz/:quizId" element={<QuizRunner />} />
                   <Route path="/test-psikologi" element={<QuizHub />} />
                   <Route path="/test-psikologi/:quizId" element={<QuizRunner />} />

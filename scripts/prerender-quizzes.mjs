@@ -2505,6 +2505,68 @@ export function getQuizAndToolPages({
       ],
     },
 
+    {
+      route: "/quiz/autistic-burnout",
+      aliases: ["/quiz/neurodivergent-burnout", "/tes-autistic-burnout"],
+      title: "Autistic Burnout & Masking Exhaustion Screener (AASPIRE ABM Model)",
+      description:
+        "Assess whether profound chronic fatigue, loss of speech/executive function, and heightened sensory overload are signs of autistic burnout using clinical AASPIRE research.",
+      category: "Neurodivergence & Sensory",
+      duration: "90 secs",
+      itemsCount: 12,
+      framework: "Dr. Dora Raymaker & Christina Nicolaidis AASPIRE Autistic Burnout Measure",
+      overview:
+        "Autistic Burnout is a debilitating condition resulting from chronic life stress and a mismatch of expectations and abilities without adequate supports. Characterized by pervasive physical and cognitive exhaustion, loss of functional skills (including situational mutism and executive dysfunction), and reduced sensory tolerance.",
+      keyPoints: [
+        "Evaluates 3 primary dimensions: Pervasive Chronic Exhaustion, Skill Regression & Mutism, and Sensory Intolerance",
+        "Differentiates neurodivergent burnout from clinical depression (loss of capacity vs loss of interest)",
+        "Evidence-based radical rest, unmasking permissions, and zero-demand sensory recovery protocols",
+      ],
+      faqs: [
+        {
+          question: "How does autistic burnout differ from occupational burnout or depression?",
+          answer:
+            "Occupational burnout resolves with workplace changes, and depression often responds to behavioral activation and social connection. Autistic burnout involves neurological skill regression (loss of speech, hygiene, cooking) and worsens dramatically when forced to socialize.",
+        },
+        {
+          question: "Can lost skills be recovered after autistic burnout?",
+          answer:
+            "Yes, but recovery requires prolonged radical rest, sensory deprivation, dropping non-essential masking demands, and using assistive communication tools like private voice journaling in Nuju.",
+        },
+      ],
+    },
+
+    {
+      route: "/quiz/anxious-avoidant-trap",
+      aliases: ["/quiz/anxious-avoidant-dance", "/tes-anxious-avoidant"],
+      title: "Anxious-Avoidant Trap & Pursue-Withdraw Cycle Screener (EFT Model)",
+      description:
+        "Identify whether relational whiplash, panic-driven protest behaviors, and cold emotional withdrawal are signs of the anxious-avoidant attachment trap.",
+      category: "Relationship Psychology",
+      duration: "90 secs",
+      itemsCount: 12,
+      framework: "Dr. Sue Johnson (Emotionally Focused Therapy - EFT) & Dr. Amir Levine Attached Model",
+      overview:
+        "The Anxious-Avoidant Trap is an escalating pursue-withdraw relational loop where one partner craves closeness and pursues with protest behaviors (texts, panic, anger), while the other feels suffocated and withdraws into stonewalling. This polarization causes severe nervous system dysregulation and trauma bonding.",
+      keyPoints: [
+        "Measures 3 subscales: Anxious Pursuit & Protest Behaviors, Avoidant Distancing & Deactivation, and Push-Pull Trauma Whiplash",
+        "Explains the neurochemistry of intermittent reinforcement and post-conflict dopamine spikes",
+        "Actionable EFT cycle-de-escalation scripts, timed pauses, and somatic vocal discharge exercises",
+      ],
+      faqs: [
+        {
+          question: "Can an anxious-avoidant relationship become secure and healthy?",
+          answer:
+            "Yes. When both partners identify the pursue-withdraw dynamic as the shared enemy, agree on structured timeouts with explicit return promises, and practice self-soothing, the relationship can evolve into earned security.",
+        },
+        {
+          question: "Why do anxious and avoidant individuals magnetically attract each other?",
+          answer:
+            "The avoidant partner's initial independence feels like safe stability to the anxious person, while the anxious partner's warmth feels vibrant to the avoidant person. Paradoxically, the familiar childhood trauma scripts of both partners confirm each other's deepest fears.",
+        },
+      ],
+    },
+
     // 5. Ebook Sales Pages
     {
       route: "/ebook",

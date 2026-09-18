@@ -795,6 +795,42 @@
     <changefreq>weekly</changefreq>
   </url>
   <url>
+    <loc>https://nuju.app/quiz/autistic-burnout</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.95</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/quiz/neurodivergent-burnout</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.9</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/tes-autistic-burnout</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.9</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/quiz/anxious-avoidant-trap</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.95</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/quiz/anxious-avoidant-dance</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.9</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/tes-anxious-avoidant</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.9</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
     <loc>https://nuju.app/quiz/baterai-emosi</loc>
     <lastmod>2026-09-18</lastmod>
     <priority>0.9</priority>
@@ -9226,6 +9262,150 @@
       <image:caption>¿Te obsesionas con si tu pareja es la &apos;correcta&apos; y analizas cada defecto físico o intelectual? Conoce el TOC de amores (ROCD) según las investigaciones del Prof. Guy Doron.</image:caption>
     </image:image>
     <xhtml:link rel="alternate" hreflang="es" href="https://nuju.app/blog/toc-de-amores-rocd-por-que-dudas-si-quieres-a-tu-pareja"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/autistic-burnout-vs-depression-why-standard-therapy-fails-skill-loss</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Autistic Burnout vs Depression: Why Standard Therapy Fails and Causes Further Skill Loss</image:title>
+      <image:caption>Are you experiencing bone-deep exhaustion, sudden speech loss, and excruciating sensory sensitivity? Discover why autistic burnout is misdiagnosed as depression and why standard CBT makes it worse.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/autistic-burnout-vs-depression-why-standard-therapy-fails-skill-loss"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/anxious-avoidant-trap-how-to-break-pursue-withdraw-cycle-eft</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>The Anxious-Avoidant Trap: How to Break the Pursue-Withdraw Cycle (EFT Guide)</image:title>
+      <image:caption>Why do anxious and avoidant partners magnetically attract each other only to trigger mutual agony? Learn the neurobiology of the pursue-withdraw dynamic and how to de-escalate it with EFT.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/anxious-avoidant-trap-how-to-break-pursue-withdraw-cycle-eft"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/sensory-overload-skill-regression-late-diagnosed-autistic-burnout</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Sensory Overload &amp; Skill Regression: The Hidden Signs of Late-Diagnosed Neurodivergent Burnout</image:title>
+      <image:caption>Why did you suddenly lose the ability to handle grocery stores, small talk, or daily chores in your 20s or 30s? Explore the science of masking collapse and autistic skill regression.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/sensory-overload-skill-regression-late-diagnosed-autistic-burnout"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/neurobiology-anxious-avoidant-dance-protest-behaviors-deactivating-strategies</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>The Neurobiology of the Anxious-Avoidant Dance: Protest Behaviors vs Deactivating Strategies</image:title>
+      <image:caption>What happens inside the brain during relational conflict? Discover the neurological clash between the anxious amygdala panic and the avoidant dorsal vagal shutdown.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/neurobiology-anxious-avoidant-dance-protest-behaviors-deactivating-strategies"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/tes-autistic-burnout-kehilangan-kemampuan-bicara-lelah-masking</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Tes Autistic Burnout: Kenapa Anda Tiba-tiba Kehilangan Kemampuan Bicara dan Lelah Masking?</image:title>
+      <image:caption>Merasa sangat lelah hingga sulit mandi, malas bicara, dan tersiksa mendengar suara bising? Kenali tanda-tanda klinis Autistic Burnout dan bedanya dengan depresi biasa.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="id" href="https://nuju.app/blog/tes-autistic-burnout-kehilangan-kemampuan-bicara-lelah-masking"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/jebakan-anxious-avoidant-mengapa-hubungan-kejar-menghindar-menguras-energi</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Jebakan Anxious-Avoidant: Mengapa Hubungan Kejar-Menghindar Sangat Mencandu dan Menguras Energi?</image:title>
+      <image:caption>Mengapa satu pihak panik mengejar saat pasangan menjauh, sementara pihak lain merasa tercekik saat dituntut keintiman? Pahami siklus pursue-withdraw dan cara mengatasinya.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="id" href="https://nuju.app/blog/jebakan-anxious-avoidant-mengapa-hubungan-kejar-menghindar-menguras-energi"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/perbedaan-depresi-vs-autistic-burnout-mengapa-terapi-biasa-memperparah</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Perbedaan Depresi vs Autistic Burnout: Mengapa Terapi Biasa Malah Memperparah Kondisi Anda?</image:title>
+      <image:caption>Merasa terapi CBT dan ajakan &apos;keluar rumah&apos; justru membuat Anda semakin hancur? Pelajari perbedaan neurobiologis antara depresi klinis dan kelelahan sistem saraf autistik.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="id" href="https://nuju.app/blog/perbedaan-depresi-vs-autistic-burnout-mengapa-terapi-biasa-memperparah"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/cara-menghentikan-siklus-anxious-avoidant-regulasi-emosi-pasangan-menjauh</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Cara Menghentikan Siklus Anxious-Avoidant: Panduan Regulasi Emosi Saat Pasangan Menjauh</image:title>
+      <image:caption>Tangan gemetar dan panik saat pasangan tiba-tiba dingin? Simak panduan langkah demi langkah menenangkan sistem saraf otonom Anda tanpa merusak hubungan.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="id" href="https://nuju.app/blog/cara-menghentikan-siklus-anxious-avoidant-regulasi-emosi-pasangan-menjauh"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/autistischer-burnout-aaspire-masking-erschoepfung-sprachverlust</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Autistischer Burnout (AASPIRE): Warum Masking zur totalen Erschöpfung und zum Sprachverlust führt</image:title>
+      <image:caption>Wenn soziale Fassaden zusammenbrechen: Erfahren Sie alles über die klinischen Kriterien des autistischen Burnouts nach Dr. Dora Raymaker und den Unterschied zur Depression.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="de" href="https://nuju.app/blog/autistischer-burnout-aaspire-masking-erschoepfung-sprachverlust"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/angst-vermeidungs-falle-eft-nahe-rueckzug-schleife-durchbrechen</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Die Angst-Vermeidungs-Falle (EFT): Wenn Nähe und Rückzug zur zerstörerischen Schleife werden</image:title>
+      <image:caption>Warum ziehen sich ängstliche und vermeidende Partner magisch an, nur um sich gegenseitig zu quälen? Der neurobiologische Leitfaden zur Verfolgungs-Rückzugs-Spirale.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="de" href="https://nuju.app/blog/angst-vermeidungs-falle-eft-nahe-rueckzug-schleife-durchbrechen"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/burnout-autistique-camouflage-social-regression-aptitudes-epuisement</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Le Burnout Autistique : Quand le camouflage social mène à la régression et à l&apos;épuisement total</image:title>
+      <image:caption>Perte subite de la parole, intolérance au bruit et incapacité à gérer le quotidien : découvrez les mécanismes cliniques du burnout autistique (modèle AASPIRE).</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://nuju.app/blog/burnout-autistique-camouflage-social-regression-aptitudes-epuisement"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/trampa-ansioso-evitativo-como-salir-ciclo-persecucion-distanciamiento</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>La Trampa Ansioso-Evitativo: Cómo salir del ciclo tóxico de persecución y distanciamiento</image:title>
+      <image:caption>¿Por qué cuanto más buscas cercanía, más se aleja tu pareja? Comprende la neurobiología del apego adulto (EFT) y aprende a romper la dinámica de tira y afloja.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="es" href="https://nuju.app/blog/trampa-ansioso-evitativo-como-salir-ciclo-persecucion-distanciamiento"/>
   </url>
   <url>
     <loc>https://nuju.app/blog/how-to-stop-overthinking-at-night</loc>

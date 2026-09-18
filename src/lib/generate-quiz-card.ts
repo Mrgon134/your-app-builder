@@ -11588,3 +11588,422 @@ export async function generateStonewallingCard(
 
   return { dataUrl, blob, file };
 }
+
+export type AutisticBurnoutCardLang = "en" | "id" | "de" | "fr" | "es";
+
+export interface AutisticBurnoutScoreResult {
+  score: number;
+  percentage: number;
+  level: string;
+  profile: {
+    title: Record<string, string>;
+    badge: Record<string, string>;
+    summary: Record<string, string>;
+    neurobiology: Record<string, string>;
+    actionProtocol: Record<string, string[]>;
+  };
+  subscales: {
+    pervasive_exhaustion: { score: number; percentage: number };
+    skill_regression: { score: number; percentage: number };
+    sensory_intolerance: { score: number; percentage: number };
+  };
+}
+
+/**
+ * Generates an aesthetic high-resolution Instagram Story share card (1080x1350)
+ * for the Autistic Burnout & Masking Exhaustion Screener (AASPIRE Model).
+ */
+export async function generateAutisticBurnoutCard(
+  result: AutisticBurnoutScoreResult,
+  lang: AutisticBurnoutCardLang = "en"
+): Promise<{ dataUrl: string; blob: Blob; file: File }> {
+  const canvas = document.createElement("canvas");
+  canvas.width = 1080;
+  canvas.height = 1350;
+  const ctx = canvas.getContext("2d");
+  if (!ctx) throw new Error("Could not get 2D canvas context");
+
+  const width = 1080;
+  const height = 1350;
+
+  // Background: Deep Cosmic Violet / Midnight Amethyst
+  const bgGrad = ctx.createLinearGradient(0, 0, width, height);
+  bgGrad.addColorStop(0, "#08020F");
+  bgGrad.addColorStop(0.5, "#150824");
+  bgGrad.addColorStop(1, "#260E3C");
+  ctx.fillStyle = bgGrad;
+  ctx.fillRect(0, 0, width, height);
+
+  // Soft glowing atmospheric orbs
+  const glow1 = ctx.createRadialGradient(250, 280, 20, 250, 280, 500);
+  glow1.addColorStop(0, "rgba(168, 85, 247, 0.28)");
+  glow1.addColorStop(1, "rgba(168, 85, 247, 0)");
+  ctx.fillStyle = glow1;
+  ctx.fillRect(0, 0, width, height);
+
+  const glow2 = ctx.createRadialGradient(850, 950, 20, 850, 950, 480);
+  glow2.addColorStop(0, "rgba(139, 92, 246, 0.22)");
+  glow2.addColorStop(1, "rgba(139, 92, 246, 0)");
+  ctx.fillStyle = glow2;
+  ctx.fillRect(0, 0, width, height);
+
+  // Top header: Brand & Category Badge
+  ctx.fillStyle = "rgba(255, 255, 255, 0.7)";
+  ctx.font = "bold 20px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.letterSpacing = "2px";
+  ctx.fillText("NUJU CLINICAL SCREENER · AASPIRE MODEL", 80, 100);
+
+  // Primary Title
+  ctx.fillStyle = "#FFFFFF";
+  ctx.font = "900 48px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.letterSpacing = "-0.5px";
+  ctx.fillText("AUTISTIC BURNOUT PROFILE", 80, 165);
+
+  // Subtitle / Framework
+  ctx.fillStyle = "#C084FC";
+  ctx.font = "600 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.letterSpacing = "0.5px";
+  ctx.fillText("Dr. Dora Raymaker AASPIRE Autistic Burnout Measure (ABM)", 80, 205);
+
+  // Hero Score Card Box
+  const cardY = 245;
+  const cardH = 345;
+  ctx.fillStyle = "rgba(255, 255, 255, 0.05)";
+  drawRoundedRect(ctx, 80, cardY, width - 160, cardH, 28);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(192, 132, 252, 0.35)";
+  ctx.lineWidth = 2;
+  ctx.stroke();
+
+  // Tier Badge Pill
+  const badgeText = (result.profile.badge[lang] || result.profile.badge.en).toUpperCase();
+  ctx.font = "bold 20px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  const badgeWidth = ctx.measureText(badgeText).width + 48;
+  const badgeGradient = ctx.createLinearGradient(120, cardY + 35, 120 + badgeWidth, cardY + 35);
+  badgeGradient.addColorStop(0, "#A855F7");
+  badgeGradient.addColorStop(1, "#7C3AED");
+  ctx.fillStyle = badgeGradient;
+  drawRoundedRect(ctx, 120, cardY + 28, badgeWidth, 38, 19);
+  ctx.fill();
+
+  ctx.fillStyle = "#FFFFFF";
+  ctx.fillText(badgeText, 144, cardY + 54);
+
+  // Large Numerical Score
+  ctx.fillStyle = "#FFFFFF";
+  ctx.font = "900 76px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(`${result.score}`, 120, cardY + 155);
+
+  ctx.fillStyle = "rgba(255, 255, 255, 0.5)";
+  ctx.font = "bold 32px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("/ 48", 225, cardY + 155);
+
+  // Percentage Indicator
+  ctx.fillStyle = "#E9D5FF";
+  ctx.font = "bold 24px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(`Burnout Saturation: ${result.percentage}%`, 330, cardY + 155);
+
+  // Profile Title
+  const titleText = result.profile.title[lang] || result.profile.title.en;
+  ctx.fillStyle = "#FFFFFF";
+  ctx.font = "bold 32px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  wrapText(ctx, titleText, 120, cardY + 215, width - 240, 40, 2);
+
+  // Subscales Metrics Box
+  const metricY = 625;
+  const metricH = 265;
+  ctx.fillStyle = "rgba(255, 255, 255, 0.03)";
+  drawRoundedRect(ctx, 80, metricY, width - 160, metricH, 24);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(255, 255, 255, 0.1)";
+  ctx.stroke();
+
+  ctx.fillStyle = "#E2E8F0";
+  ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("NEURODIVERGENT BURNOUT DIMENSIONS", 120, metricY + 50);
+
+  // 3 Subscale Progress Bars
+  const subscales = [
+    { label: "Pervasive Exhaustion", val: result.subscales.pervasive_exhaustion.percentage },
+    { label: "Skill Regression & Mutism", val: result.subscales.skill_regression.percentage },
+    { label: "Sensory Intolerance", val: result.subscales.sensory_intolerance.percentage },
+  ];
+
+  subscales.forEach((sub, idx) => {
+    const rowY = metricY + 95 + idx * 45;
+    ctx.fillStyle = "rgba(255, 255, 255, 0.8)";
+    ctx.font = "18px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+    ctx.fillText(sub.label, 120, rowY + 8);
+
+    ctx.fillStyle = "#C084FC";
+    ctx.font = "bold 18px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+    ctx.fillText(`${sub.val}%`, 520, rowY + 8);
+
+    // Track
+    ctx.fillStyle = "rgba(255, 255, 255, 0.12)";
+    drawRoundedRect(ctx, 600, rowY - 6, 360, 16, 8);
+    ctx.fill();
+
+    // Fill
+    const fillW = Math.max(12, Math.min(360, (360 * sub.val) / 100));
+    const barGrad = ctx.createLinearGradient(600, rowY, 600 + fillW, rowY);
+    barGrad.addColorStop(0, "#C084FC");
+    barGrad.addColorStop(1, "#9333EA");
+    ctx.fillStyle = barGrad;
+    drawRoundedRect(ctx, 600, rowY - 6, fillW, 16, 8);
+    ctx.fill();
+  });
+
+  // Clinical Insight Quote
+  ctx.fillStyle = "#CBD5E1";
+  ctx.font = "20px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(
+    "Dr. Dora Raymaker Insight: Autistic burnout is not depression; it is the cost of forced neurotypical compliance.",
+    120,
+    metricY + 235
+  );
+
+  // Action Protocol
+  ctx.fillStyle = "rgba(255, 255, 255, 0.04)";
+  drawRoundedRect(ctx, 80, 925, width - 160, 200, 24);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(255, 255, 255, 0.12)";
+  ctx.stroke();
+
+  ctx.fillStyle = "#F8FAFC";
+  ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("RADICAL REST & UNMASKING RECOVERY PROTOCOL", 120, 975);
+
+  const protocols = result.profile.actionProtocol[lang] || result.profile.actionProtocol.en;
+  const protocolText = protocols[0] || "";
+  ctx.fillStyle = "#CBD5E1";
+  ctx.font = "24px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  wrapText(ctx, protocolText, 120, 1020, width - 240, 36, 3);
+
+  // Footer CTA
+  ctx.fillStyle = "rgba(255, 255, 255, 0.5)";
+  ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("Screen your autistic burnout & sensory threshold free at:", 80, 1200);
+
+  ctx.fillStyle = "#C084FC";
+  ctx.font = "900 30px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("nuju.app/quiz/autistic-burnout", 80, 1245);
+
+  const dataUrl = canvas.toDataURL("image/png", 0.95);
+  const blob = await new Promise<Blob>((resolve, reject) => {
+    canvas.toBlob((b) => (b ? resolve(b) : reject(new Error("Failed blob"))), "image/png", 0.95);
+  });
+  const file = new File([blob], `nuju-autistic-burnout-${result.level}.png`, { type: "image/png" });
+
+  return { dataUrl, blob, file };
+}
+
+export type AnxiousAvoidantCardLang = "en" | "id" | "de" | "fr" | "es";
+
+export interface AnxiousAvoidantScoreResult {
+  score: number;
+  percentage: number;
+  level: string;
+  profile: {
+    title: Record<string, string>;
+    badge: Record<string, string>;
+    summary: Record<string, string>;
+    neurobiology: Record<string, string>;
+    actionProtocol: Record<string, string[]>;
+  };
+  subscales: {
+    anxious_pursuit: { score: number; percentage: number };
+    avoidant_distancing: { score: number; percentage: number };
+    cycle_dysregulation: { score: number; percentage: number };
+  };
+}
+
+/**
+ * Generates an aesthetic high-resolution Instagram Story share card (1080x1350)
+ * for the Anxious-Avoidant Trap & Push-Pull Cycle Screener (EFT Model).
+ */
+export async function generateAnxiousAvoidantTrapCard(
+  result: AnxiousAvoidantScoreResult,
+  lang: AnxiousAvoidantCardLang = "en"
+): Promise<{ dataUrl: string; blob: Blob; file: File }> {
+  const canvas = document.createElement("canvas");
+  canvas.width = 1080;
+  canvas.height = 1350;
+  const ctx = canvas.getContext("2d");
+  if (!ctx) throw new Error("Could not get 2D canvas context");
+
+  const width = 1080;
+  const height = 1350;
+
+  // Background: Sunset Rust & Midnight Amber
+  const bgGrad = ctx.createLinearGradient(0, 0, width, height);
+  bgGrad.addColorStop(0, "#0F0502");
+  bgGrad.addColorStop(0.5, "#260C05");
+  bgGrad.addColorStop(1, "#3D1306");
+  ctx.fillStyle = bgGrad;
+  ctx.fillRect(0, 0, width, height);
+
+  // Soft glowing atmospheric orbs
+  const glow1 = ctx.createRadialGradient(260, 260, 20, 260, 260, 490);
+  glow1.addColorStop(0, "rgba(245, 158, 11, 0.28)");
+  glow1.addColorStop(1, "rgba(245, 158, 11, 0)");
+  ctx.fillStyle = glow1;
+  ctx.fillRect(0, 0, width, height);
+
+  const glow2 = ctx.createRadialGradient(850, 960, 20, 850, 960, 480);
+  glow2.addColorStop(0, "rgba(239, 68, 68, 0.22)");
+  glow2.addColorStop(1, "rgba(239, 68, 68, 0)");
+  ctx.fillStyle = glow2;
+  ctx.fillRect(0, 0, width, height);
+
+  // Top header: Brand & Category Badge
+  ctx.fillStyle = "rgba(255, 255, 255, 0.7)";
+  ctx.font = "bold 20px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.letterSpacing = "2px";
+  ctx.fillText("NUJU CLINICAL SCREENER · EFT ATTACHMENT MODEL", 80, 100);
+
+  // Primary Title
+  ctx.fillStyle = "#FFFFFF";
+  ctx.font = "900 46px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.letterSpacing = "-0.5px";
+  ctx.fillText("ANXIOUS-AVOIDANT TRAP", 80, 165);
+
+  // Subtitle / Framework
+  ctx.fillStyle = "#FBBF24";
+  ctx.font = "600 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.letterSpacing = "0.5px";
+  ctx.fillText("Dr. Sue Johnson (EFT) & Dr. Amir Levine Pursue-Withdraw Model", 80, 205);
+
+  // Hero Score Card Box
+  const cardY = 245;
+  const cardH = 345;
+  ctx.fillStyle = "rgba(255, 255, 255, 0.05)";
+  drawRoundedRect(ctx, 80, cardY, width - 160, cardH, 28);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(245, 158, 11, 0.35)";
+  ctx.lineWidth = 2;
+  ctx.stroke();
+
+  // Tier Badge Pill
+  const badgeText = (result.profile.badge[lang] || result.profile.badge.en).toUpperCase();
+  ctx.font = "bold 20px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  const badgeWidth = ctx.measureText(badgeText).width + 48;
+  const badgeGradient = ctx.createLinearGradient(120, cardY + 35, 120 + badgeWidth, cardY + 35);
+  badgeGradient.addColorStop(0, "#F59E0B");
+  badgeGradient.addColorStop(1, "#EA580C");
+  ctx.fillStyle = badgeGradient;
+  drawRoundedRect(ctx, 120, cardY + 28, badgeWidth, 38, 19);
+  ctx.fill();
+
+  ctx.fillStyle = "#FFFFFF";
+  ctx.fillText(badgeText, 144, cardY + 54);
+
+  // Large Numerical Score
+  ctx.fillStyle = "#FFFFFF";
+  ctx.font = "900 76px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(`${result.score}`, 120, cardY + 155);
+
+  ctx.fillStyle = "rgba(255, 255, 255, 0.5)";
+  ctx.font = "bold 32px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("/ 48", 225, cardY + 155);
+
+  // Percentage Indicator
+  ctx.fillStyle = "#FDE68A";
+  ctx.font = "bold 24px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(`Trap Saturation: ${result.percentage}%`, 330, cardY + 155);
+
+  // Profile Title
+  const titleText = result.profile.title[lang] || result.profile.title.en;
+  ctx.fillStyle = "#FFFFFF";
+  ctx.font = "bold 32px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  wrapText(ctx, titleText, 120, cardY + 215, width - 240, 40, 2);
+
+  // Subscales Metrics Box
+  const metricY = 625;
+  const metricH = 265;
+  ctx.fillStyle = "rgba(255, 255, 255, 0.03)";
+  drawRoundedRect(ctx, 80, metricY, width - 160, metricH, 24);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(255, 255, 255, 0.1)";
+  ctx.stroke();
+
+  ctx.fillStyle = "#E2E8F0";
+  ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("PURSUE-WITHDRAW RELATIONAL DYNAMICS", 120, metricY + 50);
+
+  // 3 Subscale Progress Bars
+  const subscales = [
+    { label: "Anxious Pursuit & Protest", val: result.subscales.anxious_pursuit.percentage },
+    { label: "Avoidant Distancing & Deactivation", val: result.subscales.avoidant_distancing.percentage },
+    { label: "Push-Pull Trauma Whiplash", val: result.subscales.cycle_dysregulation.percentage },
+  ];
+
+  subscales.forEach((sub, idx) => {
+    const rowY = metricY + 95 + idx * 45;
+    ctx.fillStyle = "rgba(255, 255, 255, 0.8)";
+    ctx.font = "18px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+    ctx.fillText(sub.label, 120, rowY + 8);
+
+    ctx.fillStyle = "#FBBF24";
+    ctx.font = "bold 18px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+    ctx.fillText(`${sub.val}%`, 540, rowY + 8);
+
+    // Track
+    ctx.fillStyle = "rgba(255, 255, 255, 0.12)";
+    drawRoundedRect(ctx, 610, rowY - 6, 350, 16, 8);
+    ctx.fill();
+
+    // Fill
+    const fillW = Math.max(12, Math.min(350, (350 * sub.val) / 100));
+    const barGrad = ctx.createLinearGradient(610, rowY, 610 + fillW, rowY);
+    barGrad.addColorStop(0, "#F59E0B");
+    barGrad.addColorStop(1, "#EA580C");
+    ctx.fillStyle = barGrad;
+    drawRoundedRect(ctx, 610, rowY - 6, fillW, 16, 8);
+    ctx.fill();
+  });
+
+  // Clinical Insight Quote
+  ctx.fillStyle = "#CBD5E1";
+  ctx.font = "20px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(
+    "Dr. Sue Johnson Insight: The enemy is not your partner; it is the destructive pursue-withdraw dance that captures you both.",
+    120,
+    metricY + 235
+  );
+
+  // Action Protocol
+  ctx.fillStyle = "rgba(255, 255, 255, 0.04)";
+  drawRoundedRect(ctx, 80, 925, width - 160, 200, 24);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(255, 255, 255, 0.12)";
+  ctx.stroke();
+
+  ctx.fillStyle = "#F8FAFC";
+  ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("EFT DE-ESCALATION & ATTACHMENT REGULATION", 120, 975);
+
+  const protocols = result.profile.actionProtocol[lang] || result.profile.actionProtocol.en;
+  const protocolText = protocols[0] || "";
+  ctx.fillStyle = "#CBD5E1";
+  ctx.font = "24px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  wrapText(ctx, protocolText, 120, 1020, width - 240, 36, 3);
+
+  // Footer CTA
+  ctx.fillStyle = "rgba(255, 255, 255, 0.5)";
+  ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("Assess your anxious-avoidant trap & pursue-withdraw cycle at:", 80, 1200);
+
+  ctx.fillStyle = "#FBBF24";
+  ctx.font = "900 30px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("nuju.app/quiz/anxious-avoidant-trap", 80, 1245);
+
+  const dataUrl = canvas.toDataURL("image/png", 0.95);
+  const blob = await new Promise<Blob>((resolve, reject) => {
+    canvas.toBlob((b) => (b ? resolve(b) : reject(new Error("Failed blob"))), "image/png", 0.95);
+  });
+  const file = new File([blob], `nuju-anxious-avoidant-trap-${result.level}.png`, { type: "image/png" });
+
+  return { dataUrl, blob, file };
+}
+
