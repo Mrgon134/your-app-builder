@@ -134,6 +134,8 @@ const AgoraphobiaTest = lazy(() => import("./pages/AgoraphobiaTest.tsx"));
 const CovertNarcissismTest = lazy(() => import("./pages/CovertNarcissismTest.tsx"));
 const AphantasiaTest = lazy(() => import("./pages/AphantasiaTest.tsx"));
 const RetrospectiveJealousyTest = lazy(() => import("./pages/RetrospectiveJealousyTest.tsx"));
+const SomniphobiaTest = lazy(() => import("./pages/SomniphobiaTest.tsx"));
+const FamilyScapegoatTest = lazy(() => import("./pages/FamilyScapegoatTest.tsx"));
 const EbookSalesPage = lazy(() => import("./pages/EbookSalesPage.tsx"));
 const EbookReaderPage = lazy(() => import("./pages/EbookReaderPage.tsx"));
 const NotFound = lazy(() => import("./pages/NotFound.tsx"));
@@ -514,6 +516,14 @@ const App = () => (
                   <Route path="/quiz/retrospective-jealousy" element={<RetrospectiveJealousyTest />} />
                   <Route path="/quiz/partner-past" element={<RetrospectiveJealousyTest />} />
                   <Route path="/tes-cemburu-masa-lalu" element={<RetrospectiveJealousyTest />} />
+                  <Route path="/quiz/somniphobia" element={<SomniphobiaTest />} />
+                  <Route path="/quiz/sleep-dread" element={<SomniphobiaTest />} />
+                  <Route path="/tes-takut-tidur" element={<SomniphobiaTest />} />
+                  <Route path="/tes-somnifobia" element={<SomniphobiaTest />} />
+                  <Route path="/quiz/family-scapegoat" element={<FamilyScapegoatTest />} />
+                  <Route path="/quiz/scapegoat-syndrome" element={<FamilyScapegoatTest />} />
+                  <Route path="/quiz/scapegoat-child" element={<FamilyScapegoatTest />} />
+                  <Route path="/tes-kambing-hitam-keluarga" element={<FamilyScapegoatTest />} />
                   <Route path="/quiz/:quizId" element={<QuizRunner />} />
                   <Route path="/test-psikologi" element={<QuizHub />} />
                   <Route path="/test-psikologi/:quizId" element={<QuizRunner />} />

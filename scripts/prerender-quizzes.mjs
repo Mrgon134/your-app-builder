@@ -3374,6 +3374,70 @@ export function getQuizAndToolPages({
       ],
     },
 
+    {
+      route: "/quiz/somniphobia",
+      aliases: ["/quiz/sleep-dread", "/tes-takut-tidur", "/tes-somnifobia"],
+      title: "Somniphobia & Sleep Dread Screener: Free Bedtime Panic 12-Item Test",
+      description:
+        "Do you dread going to sleep at night? Measure your bedtime anticipatory anxiety, panic jolts when dozing off, and insomnia performance fear based on the Morin & Espie cognitive model.",
+      category: "Sleep Medicine & Clinical Anxiety",
+      duration: "90 secs",
+      itemsCount: 12,
+      framework: "Dr. Charles Morin & Dr. Colin Espie (DBAS & Cognitive Insomnia Model)",
+      overview:
+        "Somniphobia is an acute phobic dread of falling asleep. Driven by autonomic hyperarousal and fear of losing conscious control, it triggers bedtime adrenaline surges, clock-checking panics, and hypnic jerks.",
+      keyPoints: [
+        "Measures 3 clinical subscales: Bedtime Anticipatory Panic, Loss of Control Dread, and Insomnia Performance Anxiety",
+        "Breaks down the paradoxical sleep effort cycle and conditioned bed-threat associations",
+        "Delivers evidence-based CBT-I stimulus control and physiological sighing protocols",
+        "Includes high-res 1080x1350 canvas share card and private night journaling companion",
+      ],
+      faqs: [
+        {
+          question: "Why do I panic right as I start falling asleep?",
+          answer:
+            "Hypnic jerks and surges of wakefulness occur when a hypervigilant nervous system misinterprets the natural slowing of your heart rate as a life-threatening danger, triggering a protective adrenaline spike.",
+        },
+        {
+          question: "How do I stop dreading bedtime?",
+          answer:
+            "Apply the 20-minute stimulus control rule: never stay in bed battling panic. Turn your clock away, and practice paradoxical intention by simply aiming to rest comfortably with eyes closed.",
+        },
+      ],
+    },
+
+    {
+      route: "/quiz/family-scapegoat",
+      aliases: ["/quiz/scapegoat-syndrome", "/quiz/scapegoat-child", "/tes-kambing-hitam-keluarga"],
+      title: "Family Scapegoat Syndrome Screener: Free Black Sheep & Systemic Blame Diagnostic",
+      description:
+        "Were you assigned the scapegoat role in your family? Free 12-item clinical screener based on Rebecca Mandeville's Family Scapegoat Abuse (FSA) model and Murray Bowen's family systems theory.",
+      category: "Family Systems & Trauma Recovery",
+      duration: "90 secs",
+      itemsCount: 12,
+      framework: "Rebecca Mandeville (Family Scapegoat Abuse FSA) & Dr. Murray Bowen Family Systems",
+      overview:
+        "Family Scapegoat Syndrome occurs when a dysfunctional family projects its unacknowledged shame, marital conflict, or emotional chaos onto one designated child. Often chosen for their empathy and honesty, the scapegoat is systematically blamed, gaslighted, and ostracized.",
+      keyPoints: [
+        "Measures 3 subscales: Systemic Blame Projection, Smear Campaign Gaslighting, and Internalized Defective Identity",
+        "Identifies narcissistic family roles (Golden Child vs. Scapegoat vs. Enablers)",
+        "Provides trauma-informed gray-rock strategies, boundary setting, and toxic shame deconstruction",
+        "Includes high-res 1080x1350 story card and private validation sanctuary",
+      ],
+      faqs: [
+        {
+          question: "Why does the family always blame the scapegoat?",
+          answer:
+            "Assigning blame to one person allows the dysfunctional family system to maintain the illusion of harmony and avoid facing parental emotional immaturity or marital failures.",
+        },
+        {
+          question: "Can I heal without an apology from my family?",
+          answer:
+            "Yes. Healing begins by grieving the emotionally safe family you never had, establishing strict low-contact or no-contact boundaries, and building a chosen family that respects your authenticity.",
+        },
+      ],
+    },
+
     // 5. Ebook Sales Pages
     {
       route: "/ebook",

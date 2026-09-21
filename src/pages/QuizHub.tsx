@@ -3086,6 +3086,64 @@ const QuizHub: React.FC = () => {
               </Link>
             </div>
           </div>
+
+          {/* Card 102: Somniphobia & Sleep Dread Screener */}
+          <div className="rounded-3xl border border-indigo-300 bg-gradient-to-br from-indigo-500/10 via-slate-50 to-white p-6 shadow-xs flex flex-col justify-between hover:shadow-md transition">
+            <div>
+              <div className="flex items-center justify-between mb-3">
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-indigo-600 px-3 py-0.5 text-xs font-bold text-white shadow-xs">
+                  <Moon className="h-3 w-3" />
+                  MORIN &amp; ESPIE MODEL
+                </span>
+                <span className="text-xs font-semibold text-indigo-800">Dr. Charles Morin</span>
+              </div>
+              <h3 className="text-lg font-bold text-neutral-900 mb-1.5">
+                Somniphobia &amp; Sleep Dread Screener
+              </h3>
+              <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed">
+                Does approaching your bed trigger racing heartbeats, clock-watching dread, or panic jolts when falling asleep? Screen sleep anticipatory panic and circadian fear.
+              </p>
+            </div>
+            <div className="mt-5 pt-3 border-t border-indigo-100 flex items-center justify-between">
+              <span className="text-xs font-medium text-neutral-400">~90 Secs · 12 Items</span>
+              <Link
+                to="/quiz/somniphobia"
+                className="inline-flex items-center gap-1.5 rounded-full bg-indigo-600 px-4 py-2 text-xs font-bold text-white hover:bg-indigo-700 transition shadow-xs"
+              >
+                <span>Screen Somniphobia</span>
+                <ArrowRight className="h-3.5 w-3.5" />
+              </Link>
+            </div>
+          </div>
+
+          {/* Card 103: Family Scapegoat Syndrome Screener */}
+          <div className="rounded-3xl border border-orange-300 bg-gradient-to-br from-orange-500/10 via-amber-50 to-white p-6 shadow-xs flex flex-col justify-between hover:shadow-md transition">
+            <div>
+              <div className="flex items-center justify-between mb-3">
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-orange-600 px-3 py-0.5 text-xs font-bold text-white shadow-xs">
+                  <Flame className="h-3 w-3" />
+                  MANDEVILLE FSA MODEL
+                </span>
+                <span className="text-xs font-semibold text-orange-800">Rebecca Mandeville</span>
+              </div>
+              <h3 className="text-lg font-bold text-neutral-900 mb-1.5">
+                Family Scapegoat Syndrome Screener
+              </h3>
+              <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed">
+                Were you automatically blamed for family crises while siblings could do no wrong? Screen systemic blame projection, smear campaigns, and toxic shame.
+              </p>
+            </div>
+            <div className="mt-5 pt-3 border-t border-orange-100 flex items-center justify-between">
+              <span className="text-xs font-medium text-neutral-400">~90 Secs · 12 Items</span>
+              <Link
+                to="/quiz/family-scapegoat"
+                className="inline-flex items-center gap-1.5 rounded-full bg-orange-600 px-4 py-2 text-xs font-bold text-white hover:bg-orange-700 transition shadow-xs"
+              >
+                <span>Screen Scapegoat Dynamics</span>
+                <ArrowRight className="h-3.5 w-3.5" />
+              </Link>
+            </div>
+          </div>
         </div>
 
         {/* Country Filter Pills */}
