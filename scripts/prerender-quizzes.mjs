@@ -3694,6 +3694,70 @@ export function getQuizAndToolPages({
       ],
     },
 
+    {
+      route: "/quiz/claustrophobia",
+      aliases: ["/quiz/enclosed-space-anxiety", "/tes-klaustrofobia", "/tes-takut-ruang-sempit"],
+      title: "Claustrophobia Screener: Free 12-Item Enclosed Space Anxiety Test (CLQ Model)",
+      description:
+        "Do you panic when elevator doors close, dread windowless rooms or MRI tubes, and avoid crowds? Screen claustrophobia based on Prof. Jack Rachman's CLQ model.",
+      category: "Anxiety Disorders & Clinical Phobias",
+      duration: "90 secs",
+      itemsCount: 12,
+      framework: "Prof. Jack Rachman & Prof. Paul Emmelkamp Claustrophobia Questionnaire (CLQ)",
+      overview:
+        "Claustrophobia is a specific phobia driven by two core psychological vulnerabilities: fear of suffocation (anticipation of running out of breathable air) and fear of restriction (motor entrapment and loss of instant escape).",
+      keyPoints: [
+        "Measures 3 clinical subscales: Suffocation Fear & Air Flow Panic, Physical Restriction & Entrapment Dread, and Anticipatory Avoidance & Escape Monitoring",
+        "Breaks down why hyperventilation in tight spaces creates physiological illusions of oxygen depletion",
+        "Analyzes avoidance coping behaviors such as compulsive stair-climbing and seat-selection restrictions",
+        "Provides interoceptive breathing retraining, hierarchical in-vivo exposure steps, and vagal grounding",
+      ],
+      faqs: [
+        {
+          question: "Can an elevator actually run out of oxygen?",
+          answer:
+            "No. All commercial elevators and aircraft are engineered with active passive/mechanical ventilation shafts and cannot become airtight or oxygen-depleted.",
+        },
+        {
+          question: "How does exposure therapy help claustrophobia?",
+          answer:
+            "By gradually confronting enclosed spaces without fleeing, your amygdala learns through inhibitory learning that confinement sensations are safe and survivable.",
+        },
+      ],
+    },
+
+    {
+      route: "/quiz/cyberchondria",
+      aliases: ["/quiz/health-anxiety-online", "/tes-cyberchondria", "/tes-cemas-penyakit-online"],
+      title: "Cyberchondria Screener: Free 12-Item Online Health Anxiety Test (Starcevic CSS)",
+      description:
+        "Do you spend hours googling physical symptoms at 2 AM, obsess over smartwatch heart rate spikes, and distrust doctor clearances? Screen cyberchondria based on the Starcevic CSS model.",
+      category: "Digital Psychology & Health Anxiety",
+      duration: "90 secs",
+      itemsCount: 12,
+      framework: "Dr. Vladan Starcevic & Dr. David Berle Cyberchondria Severity Scale (CSS-12)",
+      overview:
+        "Cyberchondria is the compulsive online searching for health and medical information, which paradoxically amplifies health anxiety, catastrophic confirmation bias, and somatic symptom mimicry.",
+      keyPoints: [
+        "Measures 3 clinical subscales: Compulsive Searching & Rabbit Holes, Catastrophic Distress & Bodily Vigilance, and Reassurance Seeking & Medical Mistrust",
+        "Explains how search engine algorithms prioritize sensational, deadly diagnoses over common benign causes",
+        "Unpacks the somatic mimicry loop where reading about illnesses triggers real physical palpitations and tingling",
+        "Provides practical digital health hygiene: 7-day search moratoriums, turning off wearable panic alerts, and audio reflection",
+      ],
+      faqs: [
+        {
+          question: "What is the difference between hypochondria and cyberchondria?",
+          answer:
+            "Hypochondria (Illness Anxiety Disorder) is the general fear of serious illness, while cyberchondria specifically involves the compulsive online searching that fuels and worsens that anxiety.",
+        },
+        {
+          question: "Why does searching symptoms on Google make me feel worse?",
+          answer:
+            "Algorithms prioritize rare and catastrophic conditions that get high clicks, creating an illusion of probability that triggers fight-or-flight somatic panic.",
+        },
+      ],
+    },
+
     // 5. Ebook Sales Pages
     {
       route: "/ebook",

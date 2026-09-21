@@ -144,6 +144,8 @@ const NightEatingTest = lazy(() => import("./pages/NightEatingTest.tsx"));
 const PmddTest = lazy(() => import("./pages/PmddTest.tsx"));
 const EmetophobiaTest = lazy(() => import("./pages/EmetophobiaTest.tsx"));
 const NomophobiaTest = lazy(() => import("./pages/NomophobiaTest.tsx"));
+const ClaustrophobiaTest = lazy(() => import("./pages/ClaustrophobiaTest.tsx"));
+const CyberchondriaTest = lazy(() => import("./pages/CyberchondriaTest.tsx"));
 const EbookSalesPage = lazy(() => import("./pages/EbookSalesPage.tsx"));
 const EbookReaderPage = lazy(() => import("./pages/EbookReaderPage.tsx"));
 const NotFound = lazy(() => import("./pages/NotFound.tsx"));
@@ -562,6 +564,14 @@ const App = () => (
                   <Route path="/quiz/smartphone-separation-anxiety" element={<NomophobiaTest />} />
                   <Route path="/tes-nomofobia" element={<NomophobiaTest />} />
                   <Route path="/tes-ketergantungan-hp" element={<NomophobiaTest />} />
+                  <Route path="/quiz/claustrophobia" element={<ClaustrophobiaTest />} />
+                  <Route path="/quiz/enclosed-space-anxiety" element={<ClaustrophobiaTest />} />
+                  <Route path="/tes-klaustrofobia" element={<ClaustrophobiaTest />} />
+                  <Route path="/tes-takut-ruang-sempit" element={<ClaustrophobiaTest />} />
+                  <Route path="/quiz/cyberchondria" element={<CyberchondriaTest />} />
+                  <Route path="/quiz/health-anxiety-online" element={<CyberchondriaTest />} />
+                  <Route path="/tes-cyberchondria" element={<CyberchondriaTest />} />
+                  <Route path="/tes-cemas-penyakit-online" element={<CyberchondriaTest />} />
                   <Route path="/quiz/:quizId" element={<QuizRunner />} />
                   <Route path="/test-psikologi" element={<QuizHub />} />
                   <Route path="/test-psikologi/:quizId" element={<QuizRunner />} />

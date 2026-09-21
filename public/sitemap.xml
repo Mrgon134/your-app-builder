@@ -1527,6 +1527,54 @@
     <changefreq>weekly</changefreq>
   </url>
   <url>
+    <loc>https://nuju.app/quiz/claustrophobia</loc>
+    <lastmod>2026-09-21</lastmod>
+    <priority>0.95</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/quiz/enclosed-space-anxiety</loc>
+    <lastmod>2026-09-21</lastmod>
+    <priority>0.9</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/tes-klaustrofobia</loc>
+    <lastmod>2026-09-21</lastmod>
+    <priority>0.9</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/tes-takut-ruang-sempit</loc>
+    <lastmod>2026-09-21</lastmod>
+    <priority>0.9</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/quiz/cyberchondria</loc>
+    <lastmod>2026-09-21</lastmod>
+    <priority>0.95</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/quiz/health-anxiety-online</loc>
+    <lastmod>2026-09-21</lastmod>
+    <priority>0.9</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/tes-cyberchondria</loc>
+    <lastmod>2026-09-21</lastmod>
+    <priority>0.9</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/tes-cemas-penyakit-online</loc>
+    <lastmod>2026-09-21</lastmod>
+    <priority>0.9</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
     <loc>https://nuju.app/quiz/baterai-emosi</loc>
     <lastmod>2026-09-21</lastmod>
     <priority>0.9</priority>
@@ -12214,6 +12262,102 @@
       <image:caption>스마트폰이 손에 없거나 배터리가 방전되면 심장이 두근거리고 극심한 불안을 느끼나요? 아이오와 주립대 차간 일디림 교수의 NMP-Q 척도로 본 스마트폰 격리 불안증의 실체.</image:caption>
     </image:image>
     <xhtml:link rel="alternate" hreflang="ko" href="https://nuju.app/blog/nomophobia-smartphone-buranjeung-yildirim-nmpq-korea"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/claustrophobia-fear-of-enclosed-spaces-rachman-clq</loc>
+    <lastmod>2026-09-21</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Locked In and Gasping for Air: Inside Claustrophobia, Suffocation Fears, and Jack Rachman&apos;s CLQ Model</image:title>
+      <image:caption>Why does a closed elevator door, an MRI tube, or an airplane cabin trigger heart-racing panic and a desperate urge to bolt? Discover the psychology of Claustrophobia and Jack Rachman&apos;s Claustrophobia Questionnaire (CLQ) framework.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/claustrophobia-fear-of-enclosed-spaces-rachman-clq"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/klaustrofobia-takut-ruang-sempit-lift-rachman-clq</loc>
+    <lastmod>2026-09-21</lastmod>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Panik Saat Pintu Lift Tertutup dan Takut Mati Lemas: Memahami Klaustrofobia dan Model Klinis CLQ Jack Rachman</image:title>
+      <image:caption>Mengapa pintu lift yang tertutup atau gerbong KRL yang padat bisa memicu jantung berdegup kencang, sesak napas, dan dorongan nekat untuk kabur? Kenali klaustrofobia, dua dimensi pemicunya, dan cara mengatasinya.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="id" href="https://nuju.app/blog/klaustrofobia-takut-ruang-sempit-lift-rachman-clq"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/cyberchondria-online-health-anxiety-starcevic-css</loc>
+    <lastmod>2026-09-21</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>The 2 AM Google Death Spiral: Inside Cyberchondria, Algorithmic Catastrophizing, and Vladan Starcevic&apos;s CSS Model</image:title>
+      <image:caption>Why does searching a mild headache on Google inevitably convince you that you have a brain tumor or rare fatal disease? Discover Cyberchondria, the algorithmic feedback loop of health panic, and the Starcevic CSS diagnostic framework.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/cyberchondria-online-health-anxiety-starcevic-css"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/cyberchondria-cemas-penyakit-gejala-google-starcevic</loc>
+    <lastmod>2026-09-21</lastmod>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Begadang Demi Googling Gejala Penyakit: Mengenal Cyberchondria, Teror WebMD, dan Skala Klinis CSS Starcevic</image:title>
+      <image:caption>Mengapa mencari arti pusing atau kedutan otot di Google selalu berujung pada keyakinan bahwa kamu mengidap kanker atau penyakit mematikan? Kenali Cyberchondria dan cara memutus rantai cemasnya.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="id" href="https://nuju.app/blog/cyberchondria-cemas-penyakit-gejala-google-starcevic"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/klaustrophobie-angst-vor-engen-raeumen-rachman-clq</loc>
+    <lastmod>2026-09-21</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Panik im Fahrstuhl und Erstickungsangst: Klaustrophobie verstehen nach Jack Rachmans CLQ-Modell</image:title>
+      <image:caption>Warum lösen geschlossene Aufzugtüren, MRT-Röhren oder Tunnel akute Todesangst und Herzrasen aus? Erfahren Sie alles über die Dimensionen der Klaustrophobie nach dem CLQ-Modell von Prof. Jack Rachman.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="de" href="https://nuju.app/blog/klaustrophobie-angst-vor-engen-raeumen-rachman-clq"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/claustrophobie-peur-des-espaces-clos-rachman-tcc</loc>
+    <lastmod>2026-09-21</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>La Panique de l&apos;Enfermement : Comprendre la Claustrophobie, la Peur d&apos;Étouffer et le Modèle CLQ de Jack Rachman</image:title>
+      <image:caption>Pourquoi les portes d&apos;ascenseur fermées, les rames de métro ou les tunnels provoquent-ils une sensation d&apos;asphyxie et un besoin viscéral de fuir ? Découvrez la claustrophobie et l&apos;approche clinique du Pr Jack Rachman.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://nuju.app/blog/claustrophobie-peur-des-espaces-clos-rachman-tcc"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/claustrophobia-heisa-kyoufushou-rachman-clq</loc>
+    <lastmod>2026-09-21</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>エレベーターと満員電車の息苦しさ：閉所恐怖症（クラウストロフォビア）の病理とラックマン博士のCLQ診断モデル</image:title>
+      <image:caption>エレベーターの扉が閉まる瞬間や満員電車、MRIの狭い空間で息が詰まり逃げ出したくなるのはなぜ？ジャック・ラックマン教授のCLQ（閉所恐怖質問票）モデルと認知行動療法による克服法。</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://nuju.app/blog/claustrophobia-heisa-kyoufushou-rachman-clq"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/cyberchondria-geon-gang-yeom-ryeojjeung-starcevic-css-korea</loc>
+    <lastmod>2026-09-21</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>새벽 2시의 구글링 파멸 루프: 사이버콘드리아(인터넷 건강염려증)와 스타르체비치 CSS 진단 모델</image:title>
+      <image:caption>사소한 두통이나 근육 떨림을 인터넷에 검색하다가 불치병이나 암에 걸렸다는 극심한 공포에 빠지시나요? 시드니대 블라단 스타르체비치 교수의 CSS 척도로 분석한 사이버콘드리아 극복법.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://nuju.app/blog/cyberchondria-geon-gang-yeom-ryeojjeung-starcevic-css-korea"/>
   </url>
   <url>
     <loc>https://nuju.app/blog/how-to-stop-overthinking-at-night</loc>
