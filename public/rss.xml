@@ -6,7 +6,7 @@
     <atom:link href="https://nuju.app/rss.xml" rel="self" type="application/rss+xml" />
     <description>Practical guides on journaling, mood tracking, and emotional wellness from the Nuju team.</description>
     <language>en</language>
-    <lastBuildDate>Mon, 21 Sep 2026 02:26:22 GMT</lastBuildDate>
+    <lastBuildDate>Mon, 21 Sep 2026 02:42:57 GMT</lastBuildDate>
     <item>
       <title>The Terrifying Dread of Falling Asleep: Inside Somniphobia, Nighttime Anticipatory Panic, and the Cognitive Insomnia Paradox</title>
       <link>https://nuju.app/blog/somniphobia-sleep-dread-anticipatory-bedtime-anxiety-morin</link>
@@ -436,6 +436,78 @@
       <guid isPermaLink="true">https://nuju.app/blog/cyberchondria-geon-gang-yeom-ryeojjeung-starcevic-css-korea</guid>
       <description>사소한 두통이나 근육 떨림을 인터넷에 검색하다가 불치병이나 암에 걸렸다는 극심한 공포에 빠지시나요? 시드니대 블라단 스타르체비치 교수의 CSS 척도로 분석한 사이버콘드리아 극복법.</description>
       <category>디지털 심리학 &amp; 건강 불안</category>
+      <pubDate>Mon, 21 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>ko</dc:language>
+    </item>
+    <item>
+      <title>Looking Down into the Abyss: The Neuroscience of Acrophobia, Visual Height Intolerance, and Cohen&apos;s AQ Model</title>
+      <link>https://nuju.app/blog/acrophobia-fear-of-heights-cohen-aq-vertigo</link>
+      <guid isPermaLink="true">https://nuju.app/blog/acrophobia-fear-of-heights-cohen-aq-vertigo</guid>
+      <description>Why does stepping onto a high balcony, glass skywalk, or suspension bridge trigger spinning vertigo, rubbery legs, and the chilling &apos;Call of the Void&apos;? Discover Acrophobia and the science of height panic.</description>
+      <category>Anxiety Disorders &amp; Specific Phobias</category>
+      <pubDate>Mon, 21 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Melihat ke Bawah Bikin Lutut Lemas: Memahami Akrofobia, Vertigo Visual, dan Skala Cohen AQ</title>
+      <link>https://nuju.app/blog/akrofobia-takut-ketinggian-vertigo-panik-cohen-aq</link>
+      <guid isPermaLink="true">https://nuju.app/blog/akrofobia-takut-ketinggian-vertigo-panik-cohen-aq</guid>
+      <description>Mengapa menatap ke bawah dari jembatan layang, balkon apartemen, atau lift kaca memicu rasa melayang, perut mual, dan dorongan nekat menjauh? Pahami Akrofobia dan sains di baliknya.</description>
+      <category>Gangguan Kecemasan &amp; Fobia Spesifik</category>
+      <pubDate>Mon, 21 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>id</dc:language>
+    </item>
+    <item>
+      <title>Frozen at the Podium: The Evolutionary Psychology of Glossophobia and McCroskey&apos;s PRPSA Model</title>
+      <link>https://nuju.app/blog/glossophobia-public-speaking-anxiety-mccroskey-prpsa</link>
+      <guid isPermaLink="true">https://nuju.app/blog/glossophobia-public-speaking-anxiety-mccroskey-prpsa</guid>
+      <description>Why does speaking in front of an audience trigger violent heart racing, dry mouth, shaking hands, and terrifying mental blankouts? Discover Glossophobia, tribal rejection terror, and Dr. James McCroskey&apos;s PRPSA framework.</description>
+      <category>Social Psychology &amp; Performance Anxiety</category>
+      <pubDate>Mon, 21 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Gemetar Saat Ditodong Bicara: Sains di Balik Glosofobia dan Skala PRPSA McCroskey</title>
+      <link>https://nuju.app/blog/glosofobia-takut-bicara-di-depan-umum-stage-fright-prpsa</link>
+      <guid isPermaLink="true">https://nuju.app/blog/glosofobia-takut-bicara-di-depan-umum-stage-fright-prpsa</guid>
+      <description>Mengapa disuruh presentasi di depan rapat atau panggung membuat jantung berdegup kencang, suara bergetar, dan pikiran mendadak kosong? Pelajari Glosofobia dan cara menaklukkannya.</description>
+      <category>Psikologi Sosial &amp; Kecemasan Tampil</category>
+      <pubDate>Mon, 21 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>id</dc:language>
+    </item>
+    <item>
+      <title>Der Blick in die Tiefe: Die Neurobiologie der Akrophobie, visueller Höhenschwindel und das Cohen-AQ-Modell</title>
+      <link>https://nuju.app/blog/akrophobie-hoehenangst-cohen-aq-exposition</link>
+      <guid isPermaLink="true">https://nuju.app/blog/akrophobie-hoehenangst-cohen-aq-exposition</guid>
+      <description>Warum lösen Glasbrücken, Aussichtstürme oder Hochhausbalkone Schwindel, weiche Knie und den Drang zum Festklammern aus? Erfahren Sie alles über Akrophobie und evidenzbasierte Konfrontation.</description>
+      <category>Angststörungen &amp; Spezifische Phobien</category>
+      <pubDate>Mon, 21 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>de</dc:language>
+    </item>
+    <item>
+      <title>Le Vertige du Précipice : Neurobiologie de l&apos;Acrophobie, l&apos;Appel du Vide et le Modèle Cohen AQ</title>
+      <link>https://nuju.app/blog/acrophobie-peur-du-vide-hauteur-cohen-tcc</link>
+      <guid isPermaLink="true">https://nuju.app/blog/acrophobie-peur-du-vide-hauteur-cohen-tcc</guid>
+      <description>Pourquoi les passerelles suspendues, ascenseurs en verre ou balcons élevés déclenchent-ils une instabilité brutale et l&apos;envie de s&apos;accroupir ? Tout sur l&apos;Acrophobie et l&apos;Acrophobia Questionnaire de Daniel Cohen.</description>
+      <category>Troubles Anxieux &amp; Phobies Spécifiques</category>
+      <pubDate>Mon, 21 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>fr</dc:language>
+    </item>
+    <item>
+      <title>足がすくむ深淵の恐怖：高所恐怖症（アクロフォビア）の脳科学とコーエンAQ評価モデル</title>
+      <link>https://nuju.app/blog/acrophobia-kousho-kyoufushou-cohen-aq</link>
+      <guid isPermaLink="true">https://nuju.app/blog/acrophobia-kousho-kyoufushou-cohen-aq</guid>
+      <description>高層ビルの展望台や吊り橋、透明な床でめまいや膝の震え、パニックが起きるのはなぜ？高所恐怖症のメカニズムとダニエル・コーエン博士のAQ診断尺度。</description>
+      <category>不安障害・特定の恐怖症</category>
+      <pubDate>Mon, 21 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>ja</dc:language>
+    </item>
+    <item>
+      <title>단상 위에 선 순간의 침묵: 대중 연설 공포증(Glossophobia)과 매크로스키 PRPSA 모델</title>
+      <link>https://nuju.app/blog/glossophobia-daejung-gongpojeung-mccroskey-prpsa-korea</link>
+      <guid isPermaLink="true">https://nuju.app/blog/glossophobia-daejung-gongpojeung-mccroskey-prpsa-korea</guid>
+      <description>발표나 회의에서 마이크를 잡으면 심장이 터질 듯 뛰고 목소리가 떨리며 머릿속이 하얘지는 이유는? 대중 공포증의 진화심리학과 제임스 매크로스키 교수의 PRPSA 척도.</description>
+      <category>사회심리학 &amp; 수행 불안</category>
       <pubDate>Mon, 21 Sep 2026 12:00:00 GMT</pubDate>
       <dc:language>ko</dc:language>
     </item>

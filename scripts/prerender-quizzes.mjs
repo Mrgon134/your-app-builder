@@ -3758,6 +3758,70 @@ export function getQuizAndToolPages({
       ],
     },
 
+    {
+      route: "/quiz/acrophobia",
+      aliases: ["/quiz/fear-of-heights", "/tes-akrofobia", "/tes-takut-ketinggian"],
+      title: "Acrophobia Screener: Free 12-Item Height Vertigo Test (Cohen AQ Model)",
+      description:
+        "Do balconies, suspension bridges, glass elevators, or ladders trigger postural spinning, rubbery legs, and falling dread? Screen acrophobia based on the Cohen AQ model.",
+      category: "Anxiety Disorders & Specific Phobias",
+      duration: "90 secs",
+      itemsCount: 12,
+      framework: "Dr. Daniel C. Cohen (Acrophobia Questionnaire AQ) & Brandt-Daroff vHI Model",
+      overview:
+        "Acrophobia is an incapacitating fear of heights rooted in visual-vestibular sensory mismatch. When distance to the ground exceeds three meters, the brain suffers from visual postural ataxia, interpreting loss of optical foreground anchors as a catastrophic mortal fall.",
+      keyPoints: [
+        "Measures 3 clinical subscales: Visual Height Intolerance & Vertigo, Catastrophic Fall & Impulse Anxiety, and Anticipatory Elevation Avoidance",
+        "Demystifies the 'Call of the Void' (l'appel du vide) as an ultra-fast survival alarm rather than a suicidal urge",
+        "Explains the neurobiology of rubbery legs, postural ataxia, and sympathetic adrenal flooding near open ledges",
+        "Provides horizon gaze anchoring, proprioceptive grounding techniques, and Virtual Reality Exposure guidance",
+      ],
+      faqs: [
+        {
+          question: "Why do my legs feel like jelly when I look down from a high balcony?",
+          answer:
+            "When the ground drops away, your eyes lose nearby spatial anchors. Your brain detects an illusion of violent body swaying, prompting the amygdala to tense and shake leg muscles in a panic response.",
+        },
+        {
+          question: "Can acrophobia be cured permanently?",
+          answer:
+            "Yes. Cognitive Behavioral Therapy (CBT) combined with Virtual Reality Exposure Therapy (VRET) has a clinical success rate exceeding 80% for height desensitization.",
+        },
+      ],
+    },
+
+    {
+      route: "/quiz/glossophobia",
+      aliases: ["/quiz/public-speaking-anxiety", "/tes-glosofobia", "/tes-takut-bicara-di-depan-umum"],
+      title: "Glossophobia Screener: Free 12-Item Public Speaking Anxiety Test (PRPSA)",
+      description:
+        "Do presentations, speeches, or introducing yourself trigger racing heart, dry mouth, voice tremors, and mental blankouts? Screen glossophobia based on the McCroskey PRPSA model.",
+      category: "Social Psychology & Performance Anxiety",
+      duration: "90 secs",
+      itemsCount: 12,
+      framework: "Dr. James C. McCroskey Personal Report of Public Speaking Anxiety (PRPSA) & Paul PRCS Model",
+      overview:
+        "Glossophobia is the intense fear of speaking in front of an audience. Evolutionary psychology reveals that standing alone before scrutinizing eyes triggers primal tribal exclusion alarms, flooding the body with adrenaline and temporarily shutting down verbal language centers (Broca's area).",
+      keyPoints: [
+        "Measures 3 clinical subscales: Physiological Stage Fright & Tremors, Catastrophic Scrutiny & Blankouts, and Performance Avoidance & Career Sabotage",
+        "Explains why public speaking fear is often rated as more terrifying than heights, financial collapse, or death",
+        "Deconstructs the Spotlight Effect and demonstrates why audiences view speakers as far more poised than they feel",
+        "Offers actionable protocols: reframing arousal as excitement, 3-second deliberate pauses, and private vocal journaling",
+      ],
+      faqs: [
+        {
+          question: "Why do I go completely blank when giving a presentation?",
+          answer:
+            "Massive adrenaline rushes shunt blood away from the prefrontal cortex and speech centers (Broca's area) into large muscles for fight-or-flight, temporarily freezing working memory.",
+        },
+        {
+          question: "How can I overcome severe stage fright?",
+          answer:
+            "Reframe anxiety as excitement, take slow physiological sighs before speaking, pause deliberately between points, and build vocal comfort through daily low-stakes voice journaling.",
+        },
+      ],
+    },
+
     // 5. Ebook Sales Pages
     {
       route: "/ebook",

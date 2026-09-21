@@ -19557,3 +19557,397 @@ export async function generateCyberchondriaCard(
 
   return { dataUrl, blob, file };
 }
+
+export type AcrophobiaCardLang = "en" | "id" | "de" | "fr" | "es";
+
+export interface AcrophobiaScoreResult {
+  score: number;
+  percentage: number;
+  level: string;
+  profile: {
+    title: Record<string, string>;
+    badge: Record<string, string>;
+    summary: Record<string, string>;
+    psychology: Record<string, string>;
+    actionProtocol: Record<string, string[]>;
+  };
+  subscales: {
+    visual_height_intolerance_vertigo: { score: number; percentage: number };
+    catastrophic_fall_impulse_anxiety: { score: number; percentage: number };
+    anticipatory_elevation_avoidance: { score: number; percentage: number };
+  };
+}
+
+/**
+ * Generates an aesthetic high-resolution Instagram Story share card (1080x1350)
+ * for the Acrophobia & Height Vertigo Panic Screener (Card #114, Cohen AQ model).
+ */
+export async function generateAcrophobiaCard(
+  result: AcrophobiaScoreResult,
+  lang: AcrophobiaCardLang = "en"
+): Promise<{ dataUrl: string; blob: Blob; file: File }> {
+  const canvas = document.createElement("canvas");
+  canvas.width = 1080;
+  canvas.height = 1350;
+  const ctx = canvas.getContext("2d");
+  if (!ctx) throw new Error("Could not get 2D canvas context");
+
+  const width = 1080;
+  const height = 1350;
+
+  // Background: Alpine Abyss Obsidian & Deep Slate
+  const bgGrad = ctx.createLinearGradient(0, 0, width, height);
+  bgGrad.addColorStop(0, "#030712");
+  bgGrad.addColorStop(0.5, "#0B132B");
+  bgGrad.addColorStop(1, "#1E1B4B");
+  ctx.fillStyle = bgGrad;
+  ctx.fillRect(0, 0, width, height);
+
+  // Vertigo Amber & Glacial Cyan Glow
+  const radial = ctx.createRadialGradient(width * 0.82, height * 0.22, 40, width * 0.82, height * 0.22, 540);
+  radial.addColorStop(0, "rgba(245, 158, 11, 0.24)");
+  radial.addColorStop(0.55, "rgba(6, 182, 212, 0.15)");
+  radial.addColorStop(1, "rgba(245, 158, 11, 0)");
+  ctx.fillStyle = radial;
+  ctx.fillRect(0, 0, width, height);
+
+  // Brand Header Badge
+  ctx.fillStyle = "rgba(245, 158, 11, 0.15)";
+  ctx.beginPath();
+  ctx.roundRect(80, 80, 580, 56, 28);
+  ctx.fill();
+
+  ctx.fillStyle = "#F59E0B";
+  ctx.font = "bold 20px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("NUJU CLINICAL · CARD #114 · COHEN AQ MODEL", 108, 115);
+
+  // Category Tag
+  ctx.fillStyle = "#FED7AA";
+  ctx.font = "600 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("ACROPHOBIA & HEIGHT VERTIGO PANIC", 80, 185);
+
+  // Main Card Box
+  const cardBoxY = 220;
+  const cardBoxHeight = 920;
+  ctx.fillStyle = "rgba(255, 255, 255, 0.04)";
+  ctx.strokeStyle = "rgba(245, 158, 11, 0.38)";
+  ctx.lineWidth = 2;
+  ctx.beginPath();
+  ctx.roundRect(80, cardBoxY, width - 160, cardBoxHeight, 36);
+  ctx.fill();
+  ctx.stroke();
+
+  // Level Badge Pill
+  const levelTitle = result.profile.title[lang] || result.profile.title.en;
+  const levelBadge = result.profile.badge[lang] || result.profile.badge.en;
+
+  ctx.fillStyle = "rgba(245, 158, 11, 0.22)";
+  ctx.beginPath();
+  ctx.roundRect(120, cardBoxY + 40, 420, 44, 22);
+  ctx.fill();
+
+  ctx.fillStyle = "#FFFBEB";
+  ctx.font = "bold 18px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(levelBadge.toUpperCase(), 140, cardBoxY + 68);
+
+  // Title
+  ctx.fillStyle = "#FFFFFF";
+  ctx.font = "bold 34px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  const titleLines = wrapText(ctx, levelTitle, width - 240);
+  let curY = cardBoxY + 128;
+  titleLines.forEach((line) => {
+    ctx.fillText(line, 120, curY);
+    curY += 44;
+  });
+
+  // Score Hero Metric Box
+  curY += 10;
+  ctx.fillStyle = "rgba(255, 255, 255, 0.03)";
+  ctx.strokeStyle = "rgba(255, 255, 255, 0.08)";
+  ctx.beginPath();
+  ctx.roundRect(120, curY, width - 240, 110, 20);
+  ctx.fill();
+  ctx.stroke();
+
+  ctx.fillStyle = "#F59E0B";
+  ctx.font = "900 64px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(`${result.percentage}%`, 150, curY + 76);
+
+  ctx.fillStyle = "rgba(255, 255, 255, 0.9)";
+  ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("Height Vertigo Vulnerability Index", 350, curY + 48);
+
+  ctx.fillStyle = "rgba(255, 255, 255, 0.5)";
+  ctx.font = "16px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(`AQ Score: ${result.score} / 36 pts`, 350, curY + 78);
+
+  // Subscales
+  curY += 145;
+  const subscales = [
+    { label: "Visual Height Intolerance & Vertigo", pct: result.subscales.visual_height_intolerance_vertigo.percentage, color: "#06B6D4" },
+    { label: "Catastrophic Fall & Impulse Dread", pct: result.subscales.catastrophic_fall_impulse_anxiety.percentage, color: "#F59E0B" },
+    { label: "Anticipatory Elevation Avoidance", pct: result.subscales.anticipatory_elevation_avoidance.percentage, color: "#EF4444" },
+  ];
+
+  subscales.forEach((sub) => {
+    ctx.fillStyle = "#E2E8F0";
+    ctx.font = "bold 20px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+    ctx.fillText(sub.label, 120, curY);
+
+    ctx.fillStyle = "rgba(255, 255, 255, 0.7)";
+    ctx.font = "bold 20px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+    ctx.fillText(`${sub.pct}%`, width - 200, curY);
+
+    // Track
+    ctx.fillStyle = "rgba(255, 255, 255, 0.08)";
+    ctx.beginPath();
+    ctx.roundRect(120, curY + 12, width - 240, 14, 7);
+    ctx.fill();
+
+    // Bar
+    ctx.fillStyle = sub.color;
+    ctx.beginPath();
+    const barWidth = Math.max(14, ((width - 240) * sub.pct) / 100);
+    ctx.roundRect(120, curY + 12, barWidth, 14, 7);
+    ctx.fill();
+
+    curY += 56;
+  });
+
+  // Clinical Insight Box
+  curY += 20;
+  ctx.fillStyle = "rgba(245, 158, 11, 0.08)";
+  ctx.strokeStyle = "rgba(245, 158, 11, 0.3)";
+  ctx.beginPath();
+  ctx.roundRect(120, curY, width - 240, 160, 20);
+  ctx.fill();
+  ctx.stroke();
+
+  ctx.fillStyle = "#FCD34D";
+  ctx.font = "bold 20px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("DR. DANIEL C. COHEN (AQ RESEARCH PRINCIPLE):", 145, curY + 40);
+
+  ctx.fillStyle = "rgba(255, 255, 255, 0.85)";
+  ctx.font = "italic 19px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  const quote = '"Height panic is visual-vestibular conflict—when the ground drops away, the visual system loses its spatial anchor and the amygdala sounds a mortal fall alarm."';
+  const quoteLines = wrapText(ctx, quote, width - 290);
+  let qY = curY + 75;
+  quoteLines.forEach((l) => {
+    ctx.fillText(l, 145, qY);
+    qY += 28;
+  });
+
+  // Footer CTA
+  ctx.fillStyle = "rgba(255, 255, 255, 0.5)";
+  ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("Screen acrophobia and visual height intolerance at:", 80, 1200);
+
+  ctx.fillStyle = "#F59E0B";
+  ctx.font = "900 30px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("nuju.app/quiz/acrophobia", 80, 1245);
+
+  const dataUrl = canvas.toDataURL("image/png", 0.95);
+  const blob = await new Promise<Blob>((resolve, reject) => {
+    canvas.toBlob((b) => (b ? resolve(b) : reject(new Error("Failed blob"))), "image/png", 0.95);
+  });
+  const file = new File([blob], `nuju-acrophobia-${result.level}.png`, { type: "image/png" });
+
+  return { dataUrl, blob, file };
+}
+
+export type GlossophobiaCardLang = "en" | "id" | "de" | "fr" | "es";
+
+export interface GlossophobiaScoreResult {
+  score: number;
+  percentage: number;
+  level: string;
+  profile: {
+    title: Record<string, string>;
+    badge: Record<string, string>;
+    summary: Record<string, string>;
+    psychology: Record<string, string>;
+    actionProtocol: Record<string, string[]>;
+  };
+  subscales: {
+    physiological_stage_fright_tremors: { score: number; percentage: number };
+    catastrophic_scrutiny_blankout_dread: { score: number; percentage: number };
+    performance_avoidance_career_sabotage: { score: number; percentage: number };
+  };
+}
+
+/**
+ * Generates an aesthetic high-resolution Instagram Story share card (1080x1350)
+ * for the Glossophobia & Public Speaking Anxiety Screener (Card #115, McCroskey PRPSA model).
+ */
+export async function generateGlossophobiaCard(
+  result: GlossophobiaScoreResult,
+  lang: GlossophobiaCardLang = "en"
+): Promise<{ dataUrl: string; blob: Blob; file: File }> {
+  const canvas = document.createElement("canvas");
+  canvas.width = 1080;
+  canvas.height = 1350;
+  const ctx = canvas.getContext("2d");
+  if (!ctx) throw new Error("Could not get 2D canvas context");
+
+  const width = 1080;
+  const height = 1350;
+
+  // Background: Executive Stage Obsidian & Deep Spotlight Velvet
+  const bgGrad = ctx.createLinearGradient(0, 0, width, height);
+  bgGrad.addColorStop(0, "#0A0612");
+  bgGrad.addColorStop(0.5, "#170D28");
+  bgGrad.addColorStop(1, "#2A1245");
+  ctx.fillStyle = bgGrad;
+  ctx.fillRect(0, 0, width, height);
+
+  // Radiant Spotlight Gold & Velvet Violet Glow
+  const radial = ctx.createRadialGradient(width * 0.8, height * 0.22, 40, width * 0.8, height * 0.22, 550);
+  radial.addColorStop(0, "rgba(251, 191, 36, 0.25)");
+  radial.addColorStop(0.55, "rgba(168, 85, 247, 0.16)");
+  radial.addColorStop(1, "rgba(251, 191, 36, 0)");
+  ctx.fillStyle = radial;
+  ctx.fillRect(0, 0, width, height);
+
+  // Brand Header Badge
+  ctx.fillStyle = "rgba(251, 191, 36, 0.15)";
+  ctx.beginPath();
+  ctx.roundRect(80, 80, 600, 56, 28);
+  ctx.fill();
+
+  ctx.fillStyle = "#FBBF24";
+  ctx.font = "bold 20px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("NUJU CLINICAL · CARD #115 · MCCROSKEY PRPSA", 108, 115);
+
+  // Category Tag
+  ctx.fillStyle = "#FEF3C7";
+  ctx.font = "600 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("GLOSSOPHOBIA & PUBLIC SPEAKING ANXIETY", 80, 185);
+
+  // Main Card Box
+  const cardBoxY = 220;
+  const cardBoxHeight = 920;
+  ctx.fillStyle = "rgba(255, 255, 255, 0.04)";
+  ctx.strokeStyle = "rgba(251, 191, 36, 0.38)";
+  ctx.lineWidth = 2;
+  ctx.beginPath();
+  ctx.roundRect(80, cardBoxY, width - 160, cardBoxHeight, 36);
+  ctx.fill();
+  ctx.stroke();
+
+  // Level Badge Pill
+  const levelTitle = result.profile.title[lang] || result.profile.title.en;
+  const levelBadge = result.profile.badge[lang] || result.profile.badge.en;
+
+  ctx.fillStyle = "rgba(251, 191, 36, 0.22)";
+  ctx.beginPath();
+  ctx.roundRect(120, cardBoxY + 40, 420, 44, 22);
+  ctx.fill();
+
+  ctx.fillStyle = "#FFFBEB";
+  ctx.font = "bold 18px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(levelBadge.toUpperCase(), 140, cardBoxY + 68);
+
+  // Title
+  ctx.fillStyle = "#FFFFFF";
+  ctx.font = "bold 34px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  const titleLines = wrapText(ctx, levelTitle, width - 240);
+  let curY = cardBoxY + 128;
+  titleLines.forEach((line) => {
+    ctx.fillText(line, 120, curY);
+    curY += 44;
+  });
+
+  // Score Hero Metric Box
+  curY += 10;
+  ctx.fillStyle = "rgba(255, 255, 255, 0.03)";
+  ctx.strokeStyle = "rgba(255, 255, 255, 0.08)";
+  ctx.beginPath();
+  ctx.roundRect(120, curY, width - 240, 110, 20);
+  ctx.fill();
+  ctx.stroke();
+
+  ctx.fillStyle = "#FBBF24";
+  ctx.font = "900 64px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(`${result.percentage}%`, 150, curY + 76);
+
+  ctx.fillStyle = "rgba(255, 255, 255, 0.9)";
+  ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("Podium Panic Severity Index", 350, curY + 48);
+
+  ctx.fillStyle = "rgba(255, 255, 255, 0.5)";
+  ctx.font = "16px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(`PRPSA Score: ${result.score} / 36 pts`, 350, curY + 78);
+
+  // Subscales
+  curY += 145;
+  const subscales = [
+    { label: "Physiological Stage Fright & Tremors", pct: result.subscales.physiological_stage_fright_tremors.percentage, color: "#FBBF24" },
+    { label: "Scrutiny & Blankout Dread", pct: result.subscales.catastrophic_scrutiny_blankout_dread.percentage, color: "#A855F7" },
+    { label: "Performance Avoidance & Career Sabotage", pct: result.subscales.performance_avoidance_career_sabotage.percentage, color: "#FB7185" },
+  ];
+
+  subscales.forEach((sub) => {
+    ctx.fillStyle = "#E2E8F0";
+    ctx.font = "bold 20px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+    ctx.fillText(sub.label, 120, curY);
+
+    ctx.fillStyle = "rgba(255, 255, 255, 0.7)";
+    ctx.font = "bold 20px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+    ctx.fillText(`${sub.pct}%`, width - 200, curY);
+
+    // Track
+    ctx.fillStyle = "rgba(255, 255, 255, 0.08)";
+    ctx.beginPath();
+    ctx.roundRect(120, curY + 12, width - 240, 14, 7);
+    ctx.fill();
+
+    // Bar
+    ctx.fillStyle = sub.color;
+    ctx.beginPath();
+    const barWidth = Math.max(14, ((width - 240) * sub.pct) / 100);
+    ctx.roundRect(120, curY + 12, barWidth, 14, 7);
+    ctx.fill();
+
+    curY += 56;
+  });
+
+  // Clinical Insight Box
+  curY += 20;
+  ctx.fillStyle = "rgba(251, 191, 36, 0.08)";
+  ctx.strokeStyle = "rgba(251, 191, 36, 0.3)";
+  ctx.beginPath();
+  ctx.roundRect(120, curY, width - 240, 160, 20);
+  ctx.fill();
+  ctx.stroke();
+
+  ctx.fillStyle = "#FDE68A";
+  ctx.font = "bold 20px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("DR. JAMES C. MCCROSKEY (PRPSA PRINCIPLE):", 145, curY + 40);
+
+  ctx.fillStyle = "rgba(255, 255, 255, 0.85)";
+  ctx.font = "italic 19px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  const quote = '"Glossophobia is an ancient tribal fear—standing alone before scrutinizing eyes triggers the primitive terror of social banishment and predation."';
+  const quoteLines = wrapText(ctx, quote, width - 290);
+  let qY = curY + 75;
+  quoteLines.forEach((l) => {
+    ctx.fillText(l, 145, qY);
+    qY += 28;
+  });
+
+  // Footer CTA
+  ctx.fillStyle = "rgba(255, 255, 255, 0.5)";
+  ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("Screen glossophobia and public speaking anxiety at:", 80, 1200);
+
+  ctx.fillStyle = "#FBBF24";
+  ctx.font = "900 30px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("nuju.app/quiz/glossophobia", 80, 1245);
+
+  const dataUrl = canvas.toDataURL("image/png", 0.95);
+  const blob = await new Promise<Blob>((resolve, reject) => {
+    canvas.toBlob((b) => (b ? resolve(b) : reject(new Error("Failed blob"))), "image/png", 0.95);
+  });
+  const file = new File([blob], `nuju-glossophobia-${result.level}.png`, { type: "image/png" });
+
+  return { dataUrl, blob, file };
+}

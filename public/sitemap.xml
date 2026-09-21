@@ -1575,6 +1575,54 @@
     <changefreq>weekly</changefreq>
   </url>
   <url>
+    <loc>https://nuju.app/quiz/acrophobia</loc>
+    <lastmod>2026-09-21</lastmod>
+    <priority>0.95</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/quiz/fear-of-heights</loc>
+    <lastmod>2026-09-21</lastmod>
+    <priority>0.9</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/tes-akrofobia</loc>
+    <lastmod>2026-09-21</lastmod>
+    <priority>0.9</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/tes-takut-ketinggian</loc>
+    <lastmod>2026-09-21</lastmod>
+    <priority>0.9</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/quiz/glossophobia</loc>
+    <lastmod>2026-09-21</lastmod>
+    <priority>0.95</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/quiz/public-speaking-anxiety</loc>
+    <lastmod>2026-09-21</lastmod>
+    <priority>0.9</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/tes-glosofobia</loc>
+    <lastmod>2026-09-21</lastmod>
+    <priority>0.9</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/tes-takut-bicara-di-depan-umum</loc>
+    <lastmod>2026-09-21</lastmod>
+    <priority>0.9</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
     <loc>https://nuju.app/quiz/baterai-emosi</loc>
     <lastmod>2026-09-21</lastmod>
     <priority>0.9</priority>
@@ -12358,6 +12406,102 @@
       <image:caption>사소한 두통이나 근육 떨림을 인터넷에 검색하다가 불치병이나 암에 걸렸다는 극심한 공포에 빠지시나요? 시드니대 블라단 스타르체비치 교수의 CSS 척도로 분석한 사이버콘드리아 극복법.</image:caption>
     </image:image>
     <xhtml:link rel="alternate" hreflang="ko" href="https://nuju.app/blog/cyberchondria-geon-gang-yeom-ryeojjeung-starcevic-css-korea"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/acrophobia-fear-of-heights-cohen-aq-vertigo</loc>
+    <lastmod>2026-09-21</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Looking Down into the Abyss: The Neuroscience of Acrophobia, Visual Height Intolerance, and Cohen&apos;s AQ Model</image:title>
+      <image:caption>Why does stepping onto a high balcony, glass skywalk, or suspension bridge trigger spinning vertigo, rubbery legs, and the chilling &apos;Call of the Void&apos;? Discover Acrophobia and the science of height panic.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/acrophobia-fear-of-heights-cohen-aq-vertigo"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/akrofobia-takut-ketinggian-vertigo-panik-cohen-aq</loc>
+    <lastmod>2026-09-21</lastmod>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Melihat ke Bawah Bikin Lutut Lemas: Memahami Akrofobia, Vertigo Visual, dan Skala Cohen AQ</image:title>
+      <image:caption>Mengapa menatap ke bawah dari jembatan layang, balkon apartemen, atau lift kaca memicu rasa melayang, perut mual, dan dorongan nekat menjauh? Pahami Akrofobia dan sains di baliknya.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="id" href="https://nuju.app/blog/akrofobia-takut-ketinggian-vertigo-panik-cohen-aq"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/glossophobia-public-speaking-anxiety-mccroskey-prpsa</loc>
+    <lastmod>2026-09-21</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Frozen at the Podium: The Evolutionary Psychology of Glossophobia and McCroskey&apos;s PRPSA Model</image:title>
+      <image:caption>Why does speaking in front of an audience trigger violent heart racing, dry mouth, shaking hands, and terrifying mental blankouts? Discover Glossophobia, tribal rejection terror, and Dr. James McCroskey&apos;s PRPSA framework.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/glossophobia-public-speaking-anxiety-mccroskey-prpsa"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/glosofobia-takut-bicara-di-depan-umum-stage-fright-prpsa</loc>
+    <lastmod>2026-09-21</lastmod>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Gemetar Saat Ditodong Bicara: Sains di Balik Glosofobia dan Skala PRPSA McCroskey</image:title>
+      <image:caption>Mengapa disuruh presentasi di depan rapat atau panggung membuat jantung berdegup kencang, suara bergetar, dan pikiran mendadak kosong? Pelajari Glosofobia dan cara menaklukkannya.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="id" href="https://nuju.app/blog/glosofobia-takut-bicara-di-depan-umum-stage-fright-prpsa"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/akrophobie-hoehenangst-cohen-aq-exposition</loc>
+    <lastmod>2026-09-21</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Der Blick in die Tiefe: Die Neurobiologie der Akrophobie, visueller Höhenschwindel und das Cohen-AQ-Modell</image:title>
+      <image:caption>Warum lösen Glasbrücken, Aussichtstürme oder Hochhausbalkone Schwindel, weiche Knie und den Drang zum Festklammern aus? Erfahren Sie alles über Akrophobie und evidenzbasierte Konfrontation.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="de" href="https://nuju.app/blog/akrophobie-hoehenangst-cohen-aq-exposition"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/acrophobie-peur-du-vide-hauteur-cohen-tcc</loc>
+    <lastmod>2026-09-21</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Le Vertige du Précipice : Neurobiologie de l&apos;Acrophobie, l&apos;Appel du Vide et le Modèle Cohen AQ</image:title>
+      <image:caption>Pourquoi les passerelles suspendues, ascenseurs en verre ou balcons élevés déclenchent-ils une instabilité brutale et l&apos;envie de s&apos;accroupir ? Tout sur l&apos;Acrophobie et l&apos;Acrophobia Questionnaire de Daniel Cohen.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://nuju.app/blog/acrophobie-peur-du-vide-hauteur-cohen-tcc"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/acrophobia-kousho-kyoufushou-cohen-aq</loc>
+    <lastmod>2026-09-21</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>足がすくむ深淵の恐怖：高所恐怖症（アクロフォビア）の脳科学とコーエンAQ評価モデル</image:title>
+      <image:caption>高層ビルの展望台や吊り橋、透明な床でめまいや膝の震え、パニックが起きるのはなぜ？高所恐怖症のメカニズムとダニエル・コーエン博士のAQ診断尺度。</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://nuju.app/blog/acrophobia-kousho-kyoufushou-cohen-aq"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/glossophobia-daejung-gongpojeung-mccroskey-prpsa-korea</loc>
+    <lastmod>2026-09-21</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>단상 위에 선 순간의 침묵: 대중 연설 공포증(Glossophobia)과 매크로스키 PRPSA 모델</image:title>
+      <image:caption>발표나 회의에서 마이크를 잡으면 심장이 터질 듯 뛰고 목소리가 떨리며 머릿속이 하얘지는 이유는? 대중 공포증의 진화심리학과 제임스 매크로스키 교수의 PRPSA 척도.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://nuju.app/blog/glossophobia-daejung-gongpojeung-mccroskey-prpsa-korea"/>
   </url>
   <url>
     <loc>https://nuju.app/blog/how-to-stop-overthinking-at-night</loc>

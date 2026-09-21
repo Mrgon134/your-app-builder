@@ -146,6 +146,8 @@ const EmetophobiaTest = lazy(() => import("./pages/EmetophobiaTest.tsx"));
 const NomophobiaTest = lazy(() => import("./pages/NomophobiaTest.tsx"));
 const ClaustrophobiaTest = lazy(() => import("./pages/ClaustrophobiaTest.tsx"));
 const CyberchondriaTest = lazy(() => import("./pages/CyberchondriaTest.tsx"));
+const AcrophobiaTest = lazy(() => import("./pages/AcrophobiaTest.tsx"));
+const GlossophobiaTest = lazy(() => import("./pages/GlossophobiaTest.tsx"));
 const EbookSalesPage = lazy(() => import("./pages/EbookSalesPage.tsx"));
 const EbookReaderPage = lazy(() => import("./pages/EbookReaderPage.tsx"));
 const NotFound = lazy(() => import("./pages/NotFound.tsx"));
@@ -572,6 +574,14 @@ const App = () => (
                   <Route path="/quiz/health-anxiety-online" element={<CyberchondriaTest />} />
                   <Route path="/tes-cyberchondria" element={<CyberchondriaTest />} />
                   <Route path="/tes-cemas-penyakit-online" element={<CyberchondriaTest />} />
+                  <Route path="/quiz/acrophobia" element={<AcrophobiaTest />} />
+                  <Route path="/quiz/fear-of-heights" element={<AcrophobiaTest />} />
+                  <Route path="/tes-akrofobia" element={<AcrophobiaTest />} />
+                  <Route path="/tes-takut-ketinggian" element={<AcrophobiaTest />} />
+                  <Route path="/quiz/glossophobia" element={<GlossophobiaTest />} />
+                  <Route path="/quiz/public-speaking-anxiety" element={<GlossophobiaTest />} />
+                  <Route path="/tes-glosofobia" element={<GlossophobiaTest />} />
+                  <Route path="/tes-takut-bicara-di-depan-umum" element={<GlossophobiaTest />} />
                   <Route path="/quiz/:quizId" element={<QuizRunner />} />
                   <Route path="/test-psikologi" element={<QuizHub />} />
                   <Route path="/test-psikologi/:quizId" element={<QuizRunner />} />
