@@ -3566,6 +3566,70 @@ export function getQuizAndToolPages({
       ],
     },
 
+    {
+      route: "/quiz/night-eating",
+      aliases: ["/quiz/nes", "/tes-kebiasaan-makan-malam", "/tes-night-eating-syndrome"],
+      title: "Night Eating Syndrome (NES) Screener: Free 12-Item Stunkard NEQ Test",
+      description:
+        "Do you skip breakfast, crave carbohydrates late at night, or wake up at 2 AM unable to sleep without eating? Screen circadian delay based on the Stunkard NEQ model.",
+      category: "Circadian Health & Sleep Psychology",
+      duration: "90 secs",
+      itemsCount: 12,
+      framework: "Dr. Albert Stunkard (1955) & Dr. Kelly Allison NEQ Model",
+      overview:
+        "Night Eating Syndrome (NES) is a circadian eating and sleep disorder characterized by morning anorexia, evening hyperphagia (consuming >25% of calories after dinner), and waking from sleep with an urgent compulsion to eat carbohydrates to fall back asleep.",
+      keyPoints: [
+        "Measures 3 clinical subscales: Circadian Delay & Morning Anorexia, Nocturnal Awakenings & Ingestion Urge, and Evening Dysphoria & Sleep Fragmentation",
+        "Explains the uncoupling between the master brain clock (SCN) and peripheral metabolic liver clocks",
+        "Provides evidence-based chronotherapy routines, morning bright light exposure, and bedside somatic anchors",
+        "Includes high-res 1080x1350 story card and private bedside voice journaling space",
+      ],
+      faqs: [
+        {
+          question: "Is Night Eating Syndrome caused by lack of willpower?",
+          answer:
+            "No. NES is a neuroendocrine circadian rhythm disorder. Blunted nocturnal leptin elevation and delayed melatonin release create intense physiological hunger signals and sleep fragmentation.",
+        },
+        {
+          question: "How is Night Eating Syndrome treated?",
+          answer:
+            "Treatment focuses on chronobiological realignment: morning high-lux light therapy, eating protein before 11 AM to reset liver clocks, stimulus control in the bedroom, and addressing evening anxiety.",
+        },
+      ],
+    },
+
+    {
+      route: "/quiz/pmdd",
+      aliases: ["/quiz/premenstrual-dysphoric-disorder", "/tes-pmdd", "/tes-gejala-haid-ekstrem"],
+      title: "Premenstrual Dysphoric Disorder (PMDD) Screener: Free 12-Item Steiner DRSP Test",
+      description:
+        "Do you experience uncontrollable rage, crushing despair, or severe brain fog 7-10 days before your period that vanishes when bleeding starts? Screen luteal neurosteroid vulnerability.",
+      category: "Women's Health & Reproductive Neurobiology",
+      duration: "90 secs",
+      itemsCount: 12,
+      framework: "Dr. Meir Steiner & Dr. Teri Pearlstein DRSP & DSM-5 Model",
+      overview:
+        "Premenstrual Dysphoric Disorder (PMDD) is a severe, disabling neuroendocrine psychiatric condition affecting 5-8% of menstruating individuals. It is characterized by acute cellular hypersensitivity of brain GABA-A receptors to normal late-luteal neurosteroid (allopregnanolone) fluctuations.",
+      keyPoints: [
+        "Measures 3 clinical subscales: Luteal Affective Lability & Rage, Interpersonal Friction & Rejection Pain, and Somatic Exhaustion & Rapid Flow Remission",
+        "Validates the pathognomonic diagnostic marker: total symptom disappearance within 24-48 hours of menstrual flow onset",
+        "Explains NIH genetic findings on altered ESC/E(Z) cellular sensitivity vs. typical hormone blood tests",
+        "Provides cycle boundary rules, evidence-based intermittent SSRI guidance, and safe emotional venting protocols",
+      ],
+      faqs: [
+        {
+          question: "What is the difference between PMS and PMDD?",
+          answer:
+            "While PMS causes mild physical tension and irritability, PMDD causes severe psychiatric disruption: explosive rage, suicidal despair, panic attacks, and relational crises that vanish once menstruation begins.",
+        },
+        {
+          question: "Why are my hormone blood tests normal if I have PMDD?",
+          answer:
+            "PMDD is not an absolute hormone deficiency. Circulating estrogen and progesterone are normal; the disorder is caused by abnormal cellular neurosensitivity in brain GABA receptors responding to normal progesterone metabolite drops.",
+        },
+      ],
+    },
+
     // 5. Ebook Sales Pages
     {
       route: "/ebook",

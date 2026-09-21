@@ -1431,6 +1431,54 @@
     <changefreq>weekly</changefreq>
   </url>
   <url>
+    <loc>https://nuju.app/quiz/night-eating</loc>
+    <lastmod>2026-09-21</lastmod>
+    <priority>0.95</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/quiz/nes</loc>
+    <lastmod>2026-09-21</lastmod>
+    <priority>0.9</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/tes-kebiasaan-makan-malam</loc>
+    <lastmod>2026-09-21</lastmod>
+    <priority>0.9</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/tes-night-eating-syndrome</loc>
+    <lastmod>2026-09-21</lastmod>
+    <priority>0.9</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/quiz/pmdd</loc>
+    <lastmod>2026-09-21</lastmod>
+    <priority>0.95</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/quiz/premenstrual-dysphoric-disorder</loc>
+    <lastmod>2026-09-21</lastmod>
+    <priority>0.9</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/tes-pmdd</loc>
+    <lastmod>2026-09-21</lastmod>
+    <priority>0.9</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/tes-gejala-haid-ekstrem</loc>
+    <lastmod>2026-09-21</lastmod>
+    <priority>0.9</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
     <loc>https://nuju.app/quiz/baterai-emosi</loc>
     <lastmod>2026-09-21</lastmod>
     <priority>0.9</priority>
@@ -11926,6 +11974,102 @@
       <image:caption>멍하니 피부를 뜯거나 머리카락을 뽑는 행동이 왜 단순한 나쁜 버릇이 아닐까요? BFRB의 뇌과학적 원인, 낸시 코이튼 박사의 MGH 임상 척도와 습관 반전 훈련(HRT)을 알아봅니다.</image:caption>
     </image:image>
     <xhtml:link rel="alternate" hreflang="ko" href="https://nuju.app/blog/bfrb-skin-picking-trichotillomania-habit-reversal-korea"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/night-eating-syndrome-circadian-stunkard-neq-reset</loc>
+    <lastmod>2026-09-21</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Why You Raid the Fridge at 2 AM: Inside Night Eating Syndrome (NES), Circadian Phase Delays, and the Stunkard NEQ Model</image:title>
+      <image:caption>Why can&apos;t you fall asleep without late-night carbs? Discover the neurobiology of Night Eating Syndrome (NES), circadian phase desynchrony, Dr. Albert Stunkard&apos;s criteria, and chronobiological recovery.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/night-eating-syndrome-circadian-stunkard-neq-reset"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/night-eating-syndrome-kebiasaan-makan-tengah-malam-stunkard</loc>
+    <lastmod>2026-09-21</lastmod>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Terbangun Tengah Malam untuk Makan: Mengenal Night Eating Syndrome (NES), Jam Biologis yang Kacau, dan Solusinya</image:title>
+      <image:caption>Kenapa kamu tidak bisa tidur tanpa makan karbohidrat di larut malam? Pelajari Night Eating Syndrome (NES), gangguan hormon sirkadian menurut Dr. Albert Stunkard, dan cara memperbaikinya.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="id" href="https://nuju.app/blog/night-eating-syndrome-kebiasaan-makan-tengah-malam-stunkard"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/pmdd-premenstrual-dysphoric-disorder-luteal-rage-steiner</loc>
+    <lastmod>2026-09-21</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>The Luteal Hijack: Inside Premenstrual Dysphoric Disorder (PMDD), Cyclical Rage, and Cellular Neurosteroid Sensitivity</image:title>
+      <image:caption>Why do you feel like a dangerous stranger takes over your brain 10 days before your period? Understand PMDD, the DRSP diagnostic model by Dr. Meir Steiner, and evidence-based clinical treatments.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/pmdd-premenstrual-dysphoric-disorder-luteal-rage-steiner"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/pmdd-gangguan-disforia-pramenstruasi-marah-sebelum-haid</loc>
+    <lastmod>2026-09-21</lastmod>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Marah Hebat dan Putus Asa Sebelum Haid: Memahami PMDD, Hipersensitivitas Hormon, dan Solusi Medisnya</image:title>
+      <image:caption>Kenapa kamu merasa seperti orang yang berbeda dan ingin menghancurkan hidupmu 10 hari sebelum menstruasi? Kenali Premenstrual Dysphoric Disorder (PMDD) dan cara mengatasinya.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="id" href="https://nuju.app/blog/pmdd-gangguan-disforia-pramenstruasi-marah-sebelum-haid"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/night-eating-syndrom-stunkard-circadiane-schlaf-stoerung</loc>
+    <lastmod>2026-09-21</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Essen um 2 Uhr nachts: Das Night-Eating-Syndrom (NES), circadiane Phasenverschiebung und Dr. Stunkards NEQ-Modell</image:title>
+      <image:caption>Warum wachen Sie nachts auf und können nur nach dem Verzehr von Kohlenhydraten wieder schlafen? Erfahren Sie alles über das Night-Eating-Syndrom (NES) und circadiane Chronobiologie.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="de" href="https://nuju.app/blog/night-eating-syndrom-stunkard-circadiane-schlaf-stoerung"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/tdpm-trouble-dysphorique-premenstruel-luteale-steiner</loc>
+    <lastmod>2026-09-21</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>La Tempête Lutéale : Comprendre le Trouble Dysphorique Prémenstruel (TDPM), la Rage Cyclique et le Modèle DRSP</image:title>
+      <image:caption>Pourquoi avez-vous l&apos;impression de devenir une autre personne 10 jours avant vos règles ? Découvrez la neurobiologie du TDPM, les critères DRSP et les solutions médicales.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://nuju.app/blog/tdpm-trouble-dysphorique-premenstruel-luteale-steiner"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/night-eating-syndrome-shinya-kaigui-stunkard-circadian</loc>
+    <lastmod>2026-09-21</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>深夜2時の過食と朝の食欲不振：体内時計の狂い「夜間摂食症候群（NES）」の神経生物学と克服法</image:title>
+      <image:caption>夜中に目が覚めて炭水化物を食べないと眠れないのはなぜ？アルバート・スタンカード博士の夜間摂食症候群（NES）診断基準と体内時計のリセット法を解説。</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://nuju.app/blog/night-eating-syndrome-shinya-kaigui-stunkard-circadian"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/pmdd-wolgyeongjeon-buhwajjeung-luteal-rage-korea</loc>
+    <lastmod>2026-09-21</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>생리 전 10일의 분노와 절망: 월경전 불쾌장애(PMDD)의 신경생물학과 DRSP 진단 기준</image:title>
+      <image:caption>생리 전만 되면 딴사람처럼 극심한 분노와 우울감에 휩싸이다가 생리가 시작되면 마법처럼 사라지나요? 단순 생리전증후군(PMS)이 아닌 PMDD의 원인과 치료법.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://nuju.app/blog/pmdd-wolgyeongjeon-buhwajjeung-luteal-rage-korea"/>
   </url>
   <url>
     <loc>https://nuju.app/blog/how-to-stop-overthinking-at-night</loc>

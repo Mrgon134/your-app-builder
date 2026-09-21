@@ -140,6 +140,8 @@ const RuminationTest = lazy(() => import("./pages/RuminationTest.tsx"));
 const ParasocialTest = lazy(() => import("./pages/ParasocialTest.tsx"));
 const BfrbTest = lazy(() => import("./pages/BfrbTest.tsx"));
 const OrthorexiaTest = lazy(() => import("./pages/OrthorexiaTest.tsx"));
+const NightEatingTest = lazy(() => import("./pages/NightEatingTest.tsx"));
+const PmddTest = lazy(() => import("./pages/PmddTest.tsx"));
 const EbookSalesPage = lazy(() => import("./pages/EbookSalesPage.tsx"));
 const EbookReaderPage = lazy(() => import("./pages/EbookReaderPage.tsx"));
 const NotFound = lazy(() => import("./pages/NotFound.tsx"));
@@ -542,6 +544,14 @@ const App = () => (
                   <Route path="/quiz/orthorexia" element={<OrthorexiaTest />} />
                   <Route path="/quiz/clean-eating-obsession" element={<OrthorexiaTest />} />
                   <Route path="/tes-ortoreksia" element={<OrthorexiaTest />} />
+                  <Route path="/quiz/night-eating" element={<NightEatingTest />} />
+                  <Route path="/quiz/nes" element={<NightEatingTest />} />
+                  <Route path="/tes-kebiasaan-makan-malam" element={<NightEatingTest />} />
+                  <Route path="/tes-night-eating-syndrome" element={<NightEatingTest />} />
+                  <Route path="/quiz/pmdd" element={<PmddTest />} />
+                  <Route path="/quiz/premenstrual-dysphoric-disorder" element={<PmddTest />} />
+                  <Route path="/tes-pmdd" element={<PmddTest />} />
+                  <Route path="/tes-gejala-haid-ekstrem" element={<PmddTest />} />
                   <Route path="/quiz/:quizId" element={<QuizRunner />} />
                   <Route path="/test-psikologi" element={<QuizHub />} />
                   <Route path="/test-psikologi/:quizId" element={<QuizRunner />} />

@@ -6,7 +6,7 @@
     <atom:link href="https://nuju.app/rss.xml" rel="self" type="application/rss+xml" />
     <description>Practical guides on journaling, mood tracking, and emotional wellness from the Nuju team.</description>
     <language>en</language>
-    <lastBuildDate>Mon, 21 Sep 2026 01:47:10 GMT</lastBuildDate>
+    <lastBuildDate>Mon, 21 Sep 2026 01:54:45 GMT</lastBuildDate>
     <item>
       <title>The Terrifying Dread of Falling Asleep: Inside Somniphobia, Nighttime Anticipatory Panic, and the Cognitive Insomnia Paradox</title>
       <link>https://nuju.app/blog/somniphobia-sleep-dread-anticipatory-bedtime-anxiety-morin</link>
@@ -220,6 +220,78 @@
       <guid isPermaLink="true">https://nuju.app/blog/bfrb-skin-picking-trichotillomania-habit-reversal-korea</guid>
       <description>멍하니 피부를 뜯거나 머리카락을 뽑는 행동이 왜 단순한 나쁜 버릇이 아닐까요? BFRB의 뇌과학적 원인, 낸시 코이튼 박사의 MGH 임상 척도와 습관 반전 훈련(HRT)을 알아봅니다.</description>
       <category>임상심리학 &amp; 강박스펙트럼</category>
+      <pubDate>Mon, 21 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>ko</dc:language>
+    </item>
+    <item>
+      <title>Why You Raid the Fridge at 2 AM: Inside Night Eating Syndrome (NES), Circadian Phase Delays, and the Stunkard NEQ Model</title>
+      <link>https://nuju.app/blog/night-eating-syndrome-circadian-stunkard-neq-reset</link>
+      <guid isPermaLink="true">https://nuju.app/blog/night-eating-syndrome-circadian-stunkard-neq-reset</guid>
+      <description>Why can&apos;t you fall asleep without late-night carbs? Discover the neurobiology of Night Eating Syndrome (NES), circadian phase desynchrony, Dr. Albert Stunkard&apos;s criteria, and chronobiological recovery.</description>
+      <category>Circadian Health &amp; Sleep Psychology</category>
+      <pubDate>Mon, 21 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Terbangun Tengah Malam untuk Makan: Mengenal Night Eating Syndrome (NES), Jam Biologis yang Kacau, dan Solusinya</title>
+      <link>https://nuju.app/blog/night-eating-syndrome-kebiasaan-makan-tengah-malam-stunkard</link>
+      <guid isPermaLink="true">https://nuju.app/blog/night-eating-syndrome-kebiasaan-makan-tengah-malam-stunkard</guid>
+      <description>Kenapa kamu tidak bisa tidur tanpa makan karbohidrat di larut malam? Pelajari Night Eating Syndrome (NES), gangguan hormon sirkadian menurut Dr. Albert Stunkard, dan cara memperbaikinya.</description>
+      <category>Psikologi Tidur &amp; Gangguan Makan</category>
+      <pubDate>Mon, 21 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>id</dc:language>
+    </item>
+    <item>
+      <title>The Luteal Hijack: Inside Premenstrual Dysphoric Disorder (PMDD), Cyclical Rage, and Cellular Neurosteroid Sensitivity</title>
+      <link>https://nuju.app/blog/pmdd-premenstrual-dysphoric-disorder-luteal-rage-steiner</link>
+      <guid isPermaLink="true">https://nuju.app/blog/pmdd-premenstrual-dysphoric-disorder-luteal-rage-steiner</guid>
+      <description>Why do you feel like a dangerous stranger takes over your brain 10 days before your period? Understand PMDD, the DRSP diagnostic model by Dr. Meir Steiner, and evidence-based clinical treatments.</description>
+      <category>Women&apos;s Health &amp; Neurobiology</category>
+      <pubDate>Mon, 21 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Marah Hebat dan Putus Asa Sebelum Haid: Memahami PMDD, Hipersensitivitas Hormon, dan Solusi Medisnya</title>
+      <link>https://nuju.app/blog/pmdd-gangguan-disforia-pramenstruasi-marah-sebelum-haid</link>
+      <guid isPermaLink="true">https://nuju.app/blog/pmdd-gangguan-disforia-pramenstruasi-marah-sebelum-haid</guid>
+      <description>Kenapa kamu merasa seperti orang yang berbeda dan ingin menghancurkan hidupmu 10 hari sebelum menstruasi? Kenali Premenstrual Dysphoric Disorder (PMDD) dan cara mengatasinya.</description>
+      <category>Kesehatan Mental &amp; Hormon</category>
+      <pubDate>Mon, 21 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>id</dc:language>
+    </item>
+    <item>
+      <title>Essen um 2 Uhr nachts: Das Night-Eating-Syndrom (NES), circadiane Phasenverschiebung und Dr. Stunkards NEQ-Modell</title>
+      <link>https://nuju.app/blog/night-eating-syndrom-stunkard-circadiane-schlaf-stoerung</link>
+      <guid isPermaLink="true">https://nuju.app/blog/night-eating-syndrom-stunkard-circadiane-schlaf-stoerung</guid>
+      <description>Warum wachen Sie nachts auf und können nur nach dem Verzehr von Kohlenhydraten wieder schlafen? Erfahren Sie alles über das Night-Eating-Syndrom (NES) und circadiane Chronobiologie.</description>
+      <category>Schlafmedizin &amp; Essstörungen</category>
+      <pubDate>Mon, 21 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>de</dc:language>
+    </item>
+    <item>
+      <title>La Tempête Lutéale : Comprendre le Trouble Dysphorique Prémenstruel (TDPM), la Rage Cyclique et le Modèle DRSP</title>
+      <link>https://nuju.app/blog/tdpm-trouble-dysphorique-premenstruel-luteale-steiner</link>
+      <guid isPermaLink="true">https://nuju.app/blog/tdpm-trouble-dysphorique-premenstruel-luteale-steiner</guid>
+      <description>Pourquoi avez-vous l&apos;impression de devenir une autre personne 10 jours avant vos règles ? Découvrez la neurobiologie du TDPM, les critères DRSP et les solutions médicales.</description>
+      <category>Santé des Femmes &amp; Neurobiologie</category>
+      <pubDate>Mon, 21 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>fr</dc:language>
+    </item>
+    <item>
+      <title>深夜2時の過食と朝の食欲不振：体内時計の狂い「夜間摂食症候群（NES）」の神経生物学と克服法</title>
+      <link>https://nuju.app/blog/night-eating-syndrome-shinya-kaigui-stunkard-circadian</link>
+      <guid isPermaLink="true">https://nuju.app/blog/night-eating-syndrome-shinya-kaigui-stunkard-circadian</guid>
+      <description>夜中に目が覚めて炭水化物を食べないと眠れないのはなぜ？アルバート・スタンカード博士の夜間摂食症候群（NES）診断基準と体内時計のリセット法を解説。</description>
+      <category>睡眠医学・食行動心理学</category>
+      <pubDate>Mon, 21 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>ja</dc:language>
+    </item>
+    <item>
+      <title>생리 전 10일의 분노와 절망: 월경전 불쾌장애(PMDD)의 신경생물학과 DRSP 진단 기준</title>
+      <link>https://nuju.app/blog/pmdd-wolgyeongjeon-buhwajjeung-luteal-rage-korea</link>
+      <guid isPermaLink="true">https://nuju.app/blog/pmdd-wolgyeongjeon-buhwajjeung-luteal-rage-korea</guid>
+      <description>생리 전만 되면 딴사람처럼 극심한 분노와 우울감에 휩싸이다가 생리가 시작되면 마법처럼 사라지나요? 단순 생리전증후군(PMS)이 아닌 PMDD의 원인과 치료법.</description>
+      <category>여성 건강 &amp; 신경생물학</category>
       <pubDate>Mon, 21 Sep 2026 12:00:00 GMT</pubDate>
       <dc:language>ko</dc:language>
     </item>

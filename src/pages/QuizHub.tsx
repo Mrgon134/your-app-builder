@@ -3260,6 +3260,64 @@ const QuizHub: React.FC = () => {
               </Link>
             </div>
           </div>
+
+          {/* Card 108: Night Eating Syndrome (NES) Screener */}
+          <div className="rounded-3xl border border-amber-300 bg-gradient-to-br from-amber-500/10 via-indigo-50 to-white p-6 shadow-xs flex flex-col justify-between hover:shadow-md transition">
+            <div>
+              <div className="flex items-center justify-between mb-3">
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-amber-600 px-3 py-0.5 text-xs font-bold text-white shadow-xs">
+                  <Moon className="h-3 w-3" />
+                  STUNKARD NEQ MODEL
+                </span>
+                <span className="text-xs font-semibold text-amber-800">Dr. Albert Stunkard</span>
+              </div>
+              <h3 className="text-lg font-bold text-neutral-900 mb-1.5">
+                Night Eating Syndrome &amp; Circadian Screener
+              </h3>
+              <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed">
+                Do you skip breakfast, crave carbohydrates late at night, or wake up at 2 AM unable to sleep without eating? Screen your circadian hunger phase delay and restore sleep quality.
+              </p>
+            </div>
+            <div className="mt-5 pt-3 border-t border-amber-100 flex items-center justify-between">
+              <span className="text-xs font-medium text-neutral-400">~90 Secs · 12 Items</span>
+              <Link
+                to="/quiz/night-eating"
+                className="inline-flex items-center gap-1.5 rounded-full bg-amber-600 px-4 py-2 text-xs font-bold text-white hover:bg-amber-700 transition shadow-xs"
+              >
+                <span>Screen Night Eating</span>
+                <ArrowRight className="h-3.5 w-3.5" />
+              </Link>
+            </div>
+          </div>
+
+          {/* Card 109: Premenstrual Dysphoric Disorder (PMDD) Screener */}
+          <div className="rounded-3xl border border-fuchsia-300 bg-gradient-to-br from-fuchsia-500/10 via-rose-50 to-white p-6 shadow-xs flex flex-col justify-between hover:shadow-md transition">
+            <div>
+              <div className="flex items-center justify-between mb-3">
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-fuchsia-600 px-3 py-0.5 text-xs font-bold text-white shadow-xs">
+                  <Sparkles className="h-3 w-3" />
+                  STEINER DRSP MODEL
+                </span>
+                <span className="text-xs font-semibold text-fuchsia-800">Dr. Meir Steiner</span>
+              </div>
+              <h3 className="text-lg font-bold text-neutral-900 mb-1.5">
+                Premenstrual Dysphoric Disorder (PMDD) Screener
+              </h3>
+              <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed">
+                Do you experience uncontrollable rage, crushing despair, or severe brain fog 7–10 days before your period that vanishes once bleeding starts? Screen luteal neurosteroid vulnerability.
+              </p>
+            </div>
+            <div className="mt-5 pt-3 border-t border-fuchsia-100 flex items-center justify-between">
+              <span className="text-xs font-medium text-neutral-400">~90 Secs · 12 Items</span>
+              <Link
+                to="/quiz/pmdd"
+                className="inline-flex items-center gap-1.5 rounded-full bg-fuchsia-600 px-4 py-2 text-xs font-bold text-white hover:bg-fuchsia-700 transition shadow-xs"
+              >
+                <span>Screen PMDD</span>
+                <ArrowRight className="h-3.5 w-3.5" />
+              </Link>
+            </div>
+          </div>
         </div>
 
         {/* Country Filter Pills */}

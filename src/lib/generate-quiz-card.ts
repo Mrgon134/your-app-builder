@@ -18375,3 +18375,397 @@ export async function generateOrthorexiaCard(
 
   return { dataUrl, blob, file };
 }
+
+export type NightEatingCardLang = "en" | "id" | "de" | "fr" | "es";
+
+export interface NightEatingScoreResult {
+  score: number;
+  percentage: number;
+  level: string;
+  profile: {
+    title: Record<string, string>;
+    badge: Record<string, string>;
+    summary: Record<string, string>;
+    psychology: Record<string, string>;
+    actionProtocol: Record<string, string[]>;
+  };
+  subscales: {
+    circadian_delay_morning_anorexia: { score: number; percentage: number };
+    nocturnal_awakenings_ingestion_urge: { score: number; percentage: number };
+    evening_dysphoria_sleep_fragmentation: { score: number; percentage: number };
+  };
+}
+
+/**
+ * Generates an aesthetic high-resolution Instagram Story share card (1080x1350)
+ * for the Night Eating Syndrome (NES) Screener (Card #108, Stunkard & Allison NEQ model).
+ */
+export async function generateNightEatingCard(
+  result: NightEatingScoreResult,
+  lang: NightEatingCardLang = "en"
+): Promise<{ dataUrl: string; blob: Blob; file: File }> {
+  const canvas = document.createElement("canvas");
+  canvas.width = 1080;
+  canvas.height = 1350;
+  const ctx = canvas.getContext("2d");
+  if (!ctx) throw new Error("Could not get 2D canvas context");
+
+  const width = 1080;
+  const height = 1350;
+
+  // Background: Deep Midnight Obsidian & Moon Slate
+  const bgGrad = ctx.createLinearGradient(0, 0, width, height);
+  bgGrad.addColorStop(0, "#080C14");
+  bgGrad.addColorStop(0.5, "#0F172A");
+  bgGrad.addColorStop(1, "#1E1B4B");
+  ctx.fillStyle = bgGrad;
+  ctx.fillRect(0, 0, width, height);
+
+  // Subtle Indigo / Amber Radial Glow
+  const radial = ctx.createRadialGradient(width * 0.8, height * 0.22, 40, width * 0.8, height * 0.22, 550);
+  radial.addColorStop(0, "rgba(99, 102, 241, 0.25)");
+  radial.addColorStop(0.6, "rgba(245, 158, 11, 0.08)");
+  radial.addColorStop(1, "rgba(99, 102, 241, 0)");
+  ctx.fillStyle = radial;
+  ctx.fillRect(0, 0, width, height);
+
+  // Brand Header Badge
+  ctx.fillStyle = "rgba(99, 102, 241, 0.15)";
+  ctx.beginPath();
+  ctx.roundRect(80, 80, 620, 56, 28);
+  ctx.fill();
+
+  ctx.fillStyle = "#818CF8";
+  ctx.font = "bold 20px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("NUJU CLINICAL · CARD #108 · STUNKARD NEQ MODEL", 108, 115);
+
+  // Category Tag
+  ctx.fillStyle = "#FDE68A";
+  ctx.font = "600 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("NIGHT EATING SYNDROME & CIRCADIAN METABOLISM", 80, 185);
+
+  // Main Card Box
+  const cardBoxY = 220;
+  const cardBoxHeight = 920;
+  ctx.fillStyle = "rgba(255, 255, 255, 0.04)";
+  ctx.strokeStyle = "rgba(99, 102, 241, 0.38)";
+  ctx.lineWidth = 2;
+  ctx.beginPath();
+  ctx.roundRect(80, cardBoxY, width - 160, cardBoxHeight, 36);
+  ctx.fill();
+  ctx.stroke();
+
+  // Level Badge Pill
+  const levelTitle = result.profile.title[lang] || result.profile.title.en;
+  const levelBadge = result.profile.badge[lang] || result.profile.badge.en;
+
+  ctx.fillStyle = "rgba(99, 102, 241, 0.22)";
+  ctx.beginPath();
+  ctx.roundRect(120, cardBoxY + 40, 420, 44, 22);
+  ctx.fill();
+
+  ctx.fillStyle = "#EEF2FF";
+  ctx.font = "bold 18px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(levelBadge.toUpperCase(), 140, cardBoxY + 68);
+
+  // Title
+  ctx.fillStyle = "#FFFFFF";
+  ctx.font = "bold 34px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  const titleLines = wrapText(ctx, levelTitle, width - 240);
+  let curY = cardBoxY + 128;
+  titleLines.forEach((line) => {
+    ctx.fillText(line, 120, curY);
+    curY += 44;
+  });
+
+  // Score Hero Metric Box
+  curY += 10;
+  ctx.fillStyle = "rgba(255, 255, 255, 0.03)";
+  ctx.strokeStyle = "rgba(255, 255, 255, 0.08)";
+  ctx.beginPath();
+  ctx.roundRect(120, curY, width - 240, 110, 20);
+  ctx.fill();
+  ctx.stroke();
+
+  ctx.fillStyle = "#F59E0B";
+  ctx.font = "900 64px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(`${result.percentage}%`, 150, curY + 76);
+
+  ctx.fillStyle = "rgba(255, 255, 255, 0.9)";
+  ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("Night Eating Index", 350, curY + 48);
+
+  ctx.fillStyle = "rgba(255, 255, 255, 0.5)";
+  ctx.font = "16px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(`NEQ Score: ${result.score} / 36 pts`, 350, curY + 78);
+
+  // Subscales
+  curY += 145;
+  const subscales = [
+    { label: "Circadian Delay & Morning Anorexia", pct: result.subscales.circadian_delay_morning_anorexia.percentage, color: "#F59E0B" },
+    { label: "Nocturnal Awakenings & Ingestion Urge", pct: result.subscales.nocturnal_awakenings_ingestion_urge.percentage, color: "#818CF8" },
+    { label: "Evening Dysphoria & Sleep Fragmentation", pct: result.subscales.evening_dysphoria_sleep_fragmentation.percentage, color: "#F43F5E" },
+  ];
+
+  subscales.forEach((sub) => {
+    ctx.fillStyle = "#E2E8F0";
+    ctx.font = "bold 20px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+    ctx.fillText(sub.label, 120, curY);
+
+    ctx.fillStyle = "rgba(255, 255, 255, 0.7)";
+    ctx.font = "bold 20px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+    ctx.fillText(`${sub.pct}%`, width - 200, curY);
+
+    // Track
+    ctx.fillStyle = "rgba(255, 255, 255, 0.08)";
+    ctx.beginPath();
+    ctx.roundRect(120, curY + 12, width - 240, 14, 7);
+    ctx.fill();
+
+    // Bar
+    ctx.fillStyle = sub.color;
+    ctx.beginPath();
+    const barWidth = Math.max(14, ((width - 240) * sub.pct) / 100);
+    ctx.roundRect(120, curY + 12, barWidth, 14, 7);
+    ctx.fill();
+
+    curY += 56;
+  });
+
+  // Clinical Insight Box
+  curY += 20;
+  ctx.fillStyle = "rgba(99, 102, 241, 0.08)";
+  ctx.strokeStyle = "rgba(99, 102, 241, 0.3)";
+  ctx.beginPath();
+  ctx.roundRect(120, curY, width - 240, 160, 20);
+  ctx.fill();
+  ctx.stroke();
+
+  ctx.fillStyle = "#A5B4FC";
+  ctx.font = "bold 20px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("DR. ALBERT STUNKARD (CIRCADIAN NES PRINCIPLE):", 145, curY + 40);
+
+  ctx.fillStyle = "rgba(255, 255, 255, 0.85)";
+  ctx.font = "italic 19px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  const quote = '"Night eating is not a lack of willpower or moral weakness—it is an uncoupling of the master circadian clock and peripheral metabolic rhythms under chronic neuroendocrine strain."';
+  const quoteLines = wrapText(ctx, quote, width - 290);
+  let qY = curY + 75;
+  quoteLines.forEach((l) => {
+    ctx.fillText(l, 145, qY);
+    qY += 28;
+  });
+
+  // Footer CTA
+  ctx.fillStyle = "rgba(255, 255, 255, 0.5)";
+  ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("Screen midnight eating urges and circadian phase delay at:", 80, 1200);
+
+  ctx.fillStyle = "#F59E0B";
+  ctx.font = "900 30px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("nuju.app/quiz/night-eating", 80, 1245);
+
+  const dataUrl = canvas.toDataURL("image/png", 0.95);
+  const blob = await new Promise<Blob>((resolve, reject) => {
+    canvas.toBlob((b) => (b ? resolve(b) : reject(new Error("Failed blob"))), "image/png", 0.95);
+  });
+  const file = new File([blob], `nuju-night-eating-${result.level}.png`, { type: "image/png" });
+
+  return { dataUrl, blob, file };
+}
+
+export type PmddCardLang = "en" | "id" | "de" | "fr" | "es";
+
+export interface PmddScoreResult {
+  score: number;
+  percentage: number;
+  level: string;
+  profile: {
+    title: Record<string, string>;
+    badge: Record<string, string>;
+    summary: Record<string, string>;
+    psychology: Record<string, string>;
+    actionProtocol: Record<string, string[]>;
+  };
+  subscales: {
+    luteal_affective_lability_rage: { score: number; percentage: number };
+    interpersonal_friction_rejection_pain: { score: number; percentage: number };
+    somatic_cognitive_exhaustion_rapid_remission: { score: number; percentage: number };
+  };
+}
+
+/**
+ * Generates an aesthetic high-resolution Instagram Story share card (1080x1350)
+ * for the Premenstrual Dysphoric Disorder (PMDD) Screener (Card #109, Steiner & Pearlstein DRSP model).
+ */
+export async function generatePmddCard(
+  result: PmddScoreResult,
+  lang: PmddCardLang = "en"
+): Promise<{ dataUrl: string; blob: Blob; file: File }> {
+  const canvas = document.createElement("canvas");
+  canvas.width = 1080;
+  canvas.height = 1350;
+  const ctx = canvas.getContext("2d");
+  if (!ctx) throw new Error("Could not get 2D canvas context");
+
+  const width = 1080;
+  const height = 1350;
+
+  // Background: Deep Plum Midnight Velvet & Rose Crimson Shadow
+  const bgGrad = ctx.createLinearGradient(0, 0, width, height);
+  bgGrad.addColorStop(0, "#0F0614");
+  bgGrad.addColorStop(0.5, "#200C2A");
+  bgGrad.addColorStop(1, "#3B0820");
+  ctx.fillStyle = bgGrad;
+  ctx.fillRect(0, 0, width, height);
+
+  // Subtle Orchid / Magenta Radial Glow
+  const radial = ctx.createRadialGradient(width * 0.8, height * 0.22, 40, width * 0.8, height * 0.22, 550);
+  radial.addColorStop(0, "rgba(217, 70, 239, 0.24)");
+  radial.addColorStop(0.6, "rgba(244, 63, 94, 0.12)");
+  radial.addColorStop(1, "rgba(217, 70, 239, 0)");
+  ctx.fillStyle = radial;
+  ctx.fillRect(0, 0, width, height);
+
+  // Brand Header Badge
+  ctx.fillStyle = "rgba(217, 70, 239, 0.15)";
+  ctx.beginPath();
+  ctx.roundRect(80, 80, 620, 56, 28);
+  ctx.fill();
+
+  ctx.fillStyle = "#E879F9";
+  ctx.font = "bold 20px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("NUJU CLINICAL · CARD #109 · STEINER DRSP MODEL", 108, 115);
+
+  // Category Tag
+  ctx.fillStyle = "#FBCFE8";
+  ctx.font = "600 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("PREMENSTRUAL DYSPHORIC DISORDER (PMDD)", 80, 185);
+
+  // Main Card Box
+  const cardBoxY = 220;
+  const cardBoxHeight = 920;
+  ctx.fillStyle = "rgba(255, 255, 255, 0.04)";
+  ctx.strokeStyle = "rgba(217, 70, 239, 0.38)";
+  ctx.lineWidth = 2;
+  ctx.beginPath();
+  ctx.roundRect(80, cardBoxY, width - 160, cardBoxHeight, 36);
+  ctx.fill();
+  ctx.stroke();
+
+  // Level Badge Pill
+  const levelTitle = result.profile.title[lang] || result.profile.title.en;
+  const levelBadge = result.profile.badge[lang] || result.profile.badge.en;
+
+  ctx.fillStyle = "rgba(217, 70, 239, 0.22)";
+  ctx.beginPath();
+  ctx.roundRect(120, cardBoxY + 40, 420, 44, 22);
+  ctx.fill();
+
+  ctx.fillStyle = "#FDF2F8";
+  ctx.font = "bold 18px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(levelBadge.toUpperCase(), 140, cardBoxY + 68);
+
+  // Title
+  ctx.fillStyle = "#FFFFFF";
+  ctx.font = "bold 34px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  const titleLines = wrapText(ctx, levelTitle, width - 240);
+  let curY = cardBoxY + 128;
+  titleLines.forEach((line) => {
+    ctx.fillText(line, 120, curY);
+    curY += 44;
+  });
+
+  // Score Hero Metric Box
+  curY += 10;
+  ctx.fillStyle = "rgba(255, 255, 255, 0.03)";
+  ctx.strokeStyle = "rgba(255, 255, 255, 0.08)";
+  ctx.beginPath();
+  ctx.roundRect(120, curY, width - 240, 110, 20);
+  ctx.fill();
+  ctx.stroke();
+
+  ctx.fillStyle = "#F472B6";
+  ctx.font = "900 64px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(`${result.percentage}%`, 150, curY + 76);
+
+  ctx.fillStyle = "rgba(255, 255, 255, 0.9)";
+  ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("PMDD Luteal Vulnerability", 350, curY + 48);
+
+  ctx.fillStyle = "rgba(255, 255, 255, 0.5)";
+  ctx.font = "16px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(`DRSP Score: ${result.score} / 36 pts`, 350, curY + 78);
+
+  // Subscales
+  curY += 145;
+  const subscales = [
+    { label: "Luteal Affective Lability & Rage", pct: result.subscales.luteal_affective_lability_rage.percentage, color: "#F43F5E" },
+    { label: "Interpersonal Friction & Rejection Pain", pct: result.subscales.interpersonal_friction_rejection_pain.percentage, color: "#C084FC" },
+    { label: "Somatic Exhaustion & Rapid Remission", pct: result.subscales.somatic_cognitive_exhaustion_rapid_remission.percentage, color: "#FBBF24" },
+  ];
+
+  subscales.forEach((sub) => {
+    ctx.fillStyle = "#E2E8F0";
+    ctx.font = "bold 20px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+    ctx.fillText(sub.label, 120, curY);
+
+    ctx.fillStyle = "rgba(255, 255, 255, 0.7)";
+    ctx.font = "bold 20px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+    ctx.fillText(`${sub.pct}%`, width - 200, curY);
+
+    // Track
+    ctx.fillStyle = "rgba(255, 255, 255, 0.08)";
+    ctx.beginPath();
+    ctx.roundRect(120, curY + 12, width - 240, 14, 7);
+    ctx.fill();
+
+    // Bar
+    ctx.fillStyle = sub.color;
+    ctx.beginPath();
+    const barWidth = Math.max(14, ((width - 240) * sub.pct) / 100);
+    ctx.roundRect(120, curY + 12, barWidth, 14, 7);
+    ctx.fill();
+
+    curY += 56;
+  });
+
+  // Clinical Insight Box
+  curY += 20;
+  ctx.fillStyle = "rgba(217, 70, 239, 0.08)";
+  ctx.strokeStyle = "rgba(217, 70, 239, 0.3)";
+  ctx.beginPath();
+  ctx.roundRect(120, curY, width - 240, 160, 20);
+  ctx.fill();
+  ctx.stroke();
+
+  ctx.fillStyle = "#F0ABFC";
+  ctx.font = "bold 20px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("DR. MEIR STEINER (PMDD CLINICAL NEUROBIOLOGY):", 145, curY + 40);
+
+  ctx.fillStyle = "rgba(255, 255, 255, 0.85)";
+  ctx.font = "italic 19px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  const quote = '"PMDD is not a character flaw or hormonal deficit—it is an acute cellular neurosensitivity to normal neurosteroid flux. Awareness and cycle tracking turn cyclical shame into compassionate biological sovereignty."';
+  const quoteLines = wrapText(ctx, quote, width - 290);
+  let qY = curY + 75;
+  quoteLines.forEach((l) => {
+    ctx.fillText(l, 145, qY);
+    qY += 28;
+  });
+
+  // Footer CTA
+  ctx.fillStyle = "rgba(255, 255, 255, 0.5)";
+  ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("Screen premenstrual dysphoria and cyclical luteal rage at:", 80, 1200);
+
+  ctx.fillStyle = "#F472B6";
+  ctx.font = "900 30px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("nuju.app/quiz/pmdd", 80, 1245);
+
+  const dataUrl = canvas.toDataURL("image/png", 0.95);
+  const blob = await new Promise<Blob>((resolve, reject) => {
+    canvas.toBlob((b) => (b ? resolve(b) : reject(new Error("Failed blob"))), "image/png", 0.95);
+  });
+  const file = new File([blob], `nuju-pmdd-${result.level}.png`, { type: "image/png" });
+
+  return { dataUrl, blob, file };
+}
