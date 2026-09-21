@@ -6,7 +6,7 @@
     <atom:link href="https://nuju.app/rss.xml" rel="self" type="application/rss+xml" />
     <description>Practical guides on journaling, mood tracking, and emotional wellness from the Nuju team.</description>
     <language>en</language>
-    <lastBuildDate>Mon, 21 Sep 2026 01:36:49 GMT</lastBuildDate>
+    <lastBuildDate>Mon, 21 Sep 2026 01:47:10 GMT</lastBuildDate>
     <item>
       <title>The Terrifying Dread of Falling Asleep: Inside Somniphobia, Nighttime Anticipatory Panic, and the Cognitive Insomnia Paradox</title>
       <link>https://nuju.app/blog/somniphobia-sleep-dread-anticipatory-bedtime-anxiety-morin</link>
@@ -148,6 +148,78 @@
       <guid isPermaLink="true">https://nuju.app/blog/depressive-rumination-overthinking-mental-loop-korea</guid>
       <description>우울할 때 혼자 깊이 생각할수록 왜 마음은 더 바닥으로 가라앉을까요? 수잔 놀렌-혹스마 박사의 우울성 반추(Rumination) 이론과 &apos;왜 나만?&apos;의 함정에서 탈출하는 실행 프로토콜.</description>
       <category>인지심리학 &amp; 기분장애</category>
+      <pubDate>Mon, 21 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>ko</dc:language>
+    </item>
+    <item>
+      <title>Beyond Nervous Habits: Inside Body-Focused Repetitive Behaviors (BFRBs), Excoriation Disorder, and Habit Reversal Training</title>
+      <link>https://nuju.app/blog/bfrb-skin-picking-hair-pulling-keuthen-mgh-hrt</link>
+      <guid isPermaLink="true">https://nuju.app/blog/bfrb-skin-picking-hair-pulling-keuthen-mgh-hrt</guid>
+      <description>Why can&apos;t you just &apos;stop picking&apos; your skin or pulling hair? Explore the neurobiology of BFRBs, the MGH clinical scales by Dr. Nancy Keuthen, and evidence-based Habit Reversal Training (HRT).</description>
+      <category>OCD-Spectrum &amp; Behavioral Psychology</category>
+      <pubDate>Mon, 21 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Bukan Sekadar Kebiasaan Buruk: Memahami BFRB, Dorongan Skin Picking (Dermatillomania), Trikotilomania, dan Terapi HRT</title>
+      <link>https://nuju.app/blog/bfrb-skin-picking-mencabut-rambut-dermatillomania-keuthen</link>
+      <guid isPermaLink="true">https://nuju.app/blog/bfrb-skin-picking-mencabut-rambut-dermatillomania-keuthen</guid>
+      <description>Mengapa tanganmu otomatis meraba dan mengelupas kulit atau mencabut rambut saat melamun? Pahami sains klinis BFRB, skala MGH Dr. Nancy Keuthen, dan teknik Habit Reversal Training.</description>
+      <category>Psikologi Klinis &amp; Spektrum OCD</category>
+      <pubDate>Mon, 21 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>id</dc:language>
+    </item>
+    <item>
+      <title>The Dark Side of Wellness: Inside Orthorexia Nervosa, Clean Eating Obsession, and Steven Bratman&apos;s Food Purity Paradox</title>
+      <link>https://nuju.app/blog/orthorexia-nervosa-clean-eating-obsession-bratman-orto15</link>
+      <guid isPermaLink="true">https://nuju.app/blog/orthorexia-nervosa-clean-eating-obsession-bratman-orto15</guid>
+      <description>When does healthy eating turn into a dangerous psychological disorder? Discover the clinical science of Orthorexia Nervosa, Dr. Steven Bratman&apos;s ORTO-15 criteria, and how clean eating can destroy your life.</description>
+      <category>Eating Disorders &amp; Nutritional Psychology</category>
+      <pubDate>Mon, 21 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Ketika Obsesi &apos;Clean Eating&apos; Menjadi Penjara: Mengenal Ortoreksia Nervosa, Teror Bahan Makanan, dan Teori Steven Bratman</title>
+      <link>https://nuju.app/blog/ortoreksia-nervosa-obsesi-makanan-sehat-diet-ekstrem-bratman</link>
+      <guid isPermaLink="true">https://nuju.app/blog/ortoreksia-nervosa-obsesi-makanan-sehat-diet-ekstrem-bratman</guid>
+      <description>Kapan pola hidup sehat berubah menjadi gangguan makan yang merusak mental dan fisik? Pahami psikologi Ortoreksia Nervosa, bahaya moralisasi makanan, dan cara menemukan kembali kedamaian meja makan.</description>
+      <category>Gangguan Makan &amp; Psikologi Nutrisi</category>
+      <pubDate>Mon, 21 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>id</dc:language>
+    </item>
+    <item>
+      <title>Der unbezwingbare Drang: Körperbezogene repetitive Verhaltensweisen (BFRB), Dermatillomanie und das Habit-Reversal-Training</title>
+      <link>https://nuju.app/blog/bfrb-skin-picking-trichotillomanie-drang-keuthen-hrt</link>
+      <guid isPermaLink="true">https://nuju.app/blog/bfrb-skin-picking-trichotillomanie-drang-keuthen-hrt</guid>
+      <description>Warum können Betroffene nicht einfach mit dem Kratzen oder Zupfen aufhören? Entdecken Sie die Neurobiologie von BFRBs, die MGH-Skalen von Dr. Nancy Keuthen und wirksame HRT-Methoden.</description>
+      <category>Klinische Psychologie &amp; Zwangsstörungen</category>
+      <pubDate>Mon, 21 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>de</dc:language>
+    </item>
+    <item>
+      <title>L&apos;impulsion invisible : Comprendre la dermatillomanie, la trichotillomanie et les troubles BFRB selon le modèle comportemental</title>
+      <link>https://nuju.app/blog/dermatillomanie-trichotillomanie-bfrb-trouble-excoriation-keuthen</link>
+      <guid isPermaLink="true">https://nuju.app/blog/dermatillomanie-trichotillomanie-bfrb-trouble-excoriation-keuthen</guid>
+      <description>Pourquoi triturer sa peau ou s&apos;arracher les cheveux n&apos;est pas une simple manie ? Découvrez la science des comportements répétitifs centrés sur le corps (CRCC/BFRB) et les thérapies comportementales.</description>
+      <category>Psychologie Comportementale &amp; TOC</category>
+      <pubDate>Mon, 21 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>fr</dc:language>
+    </item>
+    <item>
+      <title>「体に良い食事」という強迫観念：オルトレキシア（過度な健康食執着）とスティーブン・ブラットマンの警告</title>
+      <link>https://nuju.app/blog/orthorexia-clean-eating-obsession-diet-syokuji-bratman</link>
+      <guid isPermaLink="true">https://nuju.app/blog/orthorexia-clean-eating-obsession-diet-syokuji-bratman</guid>
+      <description>オーガニックや無添加へのこだわりが、なぜ心と体を蝕む精神的苦痛へと変貌するのか？オルトレキシア・ネルヴォーサ（健康食強迫）の心理メカニズムとORTO-15指標を解説します。</description>
+      <category>摂食障害＆栄養心理学</category>
+      <pubDate>Mon, 21 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>ja</dc:language>
+    </item>
+    <item>
+      <title>멈출 수 없는 손길의 고통: 신체 중심 반복 행동(BFRB), 피부 뜯기(Dermatillomania)와 발모벽 극복 가이드</title>
+      <link>https://nuju.app/blog/bfrb-skin-picking-trichotillomania-habit-reversal-korea</link>
+      <guid isPermaLink="true">https://nuju.app/blog/bfrb-skin-picking-trichotillomania-habit-reversal-korea</guid>
+      <description>멍하니 피부를 뜯거나 머리카락을 뽑는 행동이 왜 단순한 나쁜 버릇이 아닐까요? BFRB의 뇌과학적 원인, 낸시 코이튼 박사의 MGH 임상 척도와 습관 반전 훈련(HRT)을 알아봅니다.</description>
+      <category>임상심리학 &amp; 강박스펙트럼</category>
       <pubDate>Mon, 21 Sep 2026 12:00:00 GMT</pubDate>
       <dc:language>ko</dc:language>
     </item>

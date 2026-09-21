@@ -138,6 +138,8 @@ const SomniphobiaTest = lazy(() => import("./pages/SomniphobiaTest.tsx"));
 const FamilyScapegoatTest = lazy(() => import("./pages/FamilyScapegoatTest.tsx"));
 const RuminationTest = lazy(() => import("./pages/RuminationTest.tsx"));
 const ParasocialTest = lazy(() => import("./pages/ParasocialTest.tsx"));
+const BfrbTest = lazy(() => import("./pages/BfrbTest.tsx"));
+const OrthorexiaTest = lazy(() => import("./pages/OrthorexiaTest.tsx"));
 const EbookSalesPage = lazy(() => import("./pages/EbookSalesPage.tsx"));
 const EbookReaderPage = lazy(() => import("./pages/EbookReaderPage.tsx"));
 const NotFound = lazy(() => import("./pages/NotFound.tsx"));
@@ -533,6 +535,13 @@ const App = () => (
                   <Route path="/quiz/parasocial-relationship" element={<ParasocialTest />} />
                   <Route path="/quiz/parasocial-attachment" element={<ParasocialTest />} />
                   <Route path="/tes-hubungan-parasosial" element={<ParasocialTest />} />
+                  <Route path="/quiz/bfrb" element={<BfrbTest />} />
+                  <Route path="/quiz/skin-picking-hair-pulling" element={<BfrbTest />} />
+                  <Route path="/tes-kebiasaan-kulit-rambut" element={<BfrbTest />} />
+                  <Route path="/tes-bfrb" element={<BfrbTest />} />
+                  <Route path="/quiz/orthorexia" element={<OrthorexiaTest />} />
+                  <Route path="/quiz/clean-eating-obsession" element={<OrthorexiaTest />} />
+                  <Route path="/tes-ortoreksia" element={<OrthorexiaTest />} />
                   <Route path="/quiz/:quizId" element={<QuizRunner />} />
                   <Route path="/test-psikologi" element={<QuizHub />} />
                   <Route path="/test-psikologi/:quizId" element={<QuizRunner />} />

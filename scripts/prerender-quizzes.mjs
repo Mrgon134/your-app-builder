@@ -3502,6 +3502,70 @@ export function getQuizAndToolPages({
       ],
     },
 
+    {
+      route: "/quiz/bfrb",
+      aliases: ["/quiz/skin-picking-hair-pulling", "/tes-kebiasaan-kulit-rambut", "/tes-bfrb"],
+      title: "Body-Focused Repetitive Behaviors Screener: Free 12-Item MGH-SPS / HRT Test",
+      description:
+        "Do you compulsively pick your skin, pull hair, or bite nails? Measure your BFRB sensory urges, trance rituals, and tissue damage based on the MGH & HRT models.",
+      category: "OCD-Spectrum & Behavioral Psychology",
+      duration: "90 secs",
+      itemsCount: 12,
+      framework: "Dr. Nancy Keuthen (MGH-SPS / MGH-HPS) & Azrin Habit Reversal Training",
+      overview:
+        "Body-Focused Repetitive Behaviors (BFRBs) are chronic neurobiological sensorimotor habits where individuals compulsively pick their skin, pull hair, or bite nails to regulate autonomic arousal, stress, or sensory underload.",
+      keyPoints: [
+        "Measures 3 clinical subscales: Sensory Urge & Tactile Tension, Automatic vs. Focused Compulsion, and Shame, Tissue Damage & Concealment",
+        "Distinguishes automatic sedentary picking from focused mirror inspection sessions",
+        "Provides evidence-based Habit Reversal Training (HRT) competing responses and stimulus control",
+        "Includes high-res 1080x1350 canvas story card and private sensory grounding companion",
+      ],
+      faqs: [
+        {
+          question: "Why can't I just stop picking or pulling using willpower?",
+          answer:
+            "BFRBs are automated neurological motor habits, not failures of character. The premonitory sensory urge bypasses rational executive control, requiring physical barriers and competing muscle responses.",
+        },
+        {
+          question: "What is the best therapy for BFRBs?",
+          answer:
+            "Habit Reversal Training (HRT) combined with Mansueto's ComB model and stimulus control (removing magnifying mirrors, wearing barrier gloves or gel nails) has the highest clinical efficacy.",
+        },
+      ],
+    },
+
+    {
+      route: "/quiz/orthorexia",
+      aliases: ["/quiz/clean-eating-obsession", "/tes-ortoreksia"],
+      title: "Orthorexia Nervosa & Clean Eating Obsession Screener: Free 12-Item ORTO-15 Test",
+      description:
+        "Has healthy eating turned into a rigid obsession? Measure dietary moralization, ingredient anxiety, and social isolation based on the Bratman ORTO-15 model.",
+      category: "Eating Disorders & Nutritional Psychology",
+      duration: "90 secs",
+      itemsCount: 12,
+      framework: "Dr. Steven Bratman (1997) & ORTO-15 Orthorexia Nervosa Model",
+      overview:
+        "Orthorexia Nervosa is the pathological obsession with biologically 'pure', 'clean', or righteous eating. It transforms nourishment into a moral battlefield, resulting in severe dietary restriction, anxiety over unapproved ingredients, and social alienation.",
+      keyPoints: [
+        "Measures 3 clinical subscales: Dietary Moralization & Guilt, Obsessive Ingredient Vigilance, and Nutritional Social Isolation",
+        "Unpacks the food purity paradox where extreme wellness pursuit causes functional malnutrition",
+        "Delivers CBT-E food neutrality reframes, graded fear food exposure, and social commensality recovery",
+        "Includes high-res 1080x1350 story card and private food peace journaling tool",
+      ],
+      faqs: [
+        {
+          question: "How is orthorexia different from healthy eating?",
+          answer:
+            "Healthy eating improves your life, energy, and joy. Orthorexia destroys your mental peace, causes panic over cooking oils, leads to nutrient deficiencies, and isolates you from social gatherings.",
+        },
+        {
+          question: "How do I start recovering from clean eating obsession?",
+          answer:
+            "Practice food neutrality by uncoupling morality from ingredients, challenge detox myths, and systematically reintroduce one 'imperfect' food with loved ones each week.",
+        },
+      ],
+    },
+
     // 5. Ebook Sales Pages
     {
       route: "/ebook",
