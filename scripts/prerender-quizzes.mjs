@@ -3438,6 +3438,70 @@ export function getQuizAndToolPages({
       ],
     },
 
+    {
+      route: "/quiz/rumination",
+      aliases: ["/quiz/overthinking-loop", "/tes-ruminasi", "/tes-overthinking-berulang"],
+      title: "Depressive Rumination & Brooding Loop Screener: Free 12-Item RRS Test",
+      description:
+        "Are you trapped in obsessive overthinking and self-critical brooding? Measure mental replay, depressive brooding, and abstract why-spirals based on Nolen-Hoeksema's RRS model.",
+      category: "Cognitive Psychology & Mood Disorders",
+      duration: "90 secs",
+      itemsCount: 12,
+      framework: "Dr. Susan Nolen-Hoeksema (Ruminative Responses Scale RRS & Response Styles Theory)",
+      overview:
+        "Depressive rumination is the repetitive, passive fixation on symptoms of distress and their possible causes without engaging in constructive problem solving. Driven by maladaptive brooding and DMN hyperactivity, it transforms transient sadness into chronic depressive loops.",
+      keyPoints: [
+        "Measures 3 clinical subscales: Brooding & Self-Criticism, Depressive Symptom Replay, and Abstract Analytical Paralysis",
+        "Differentiates adaptive reflective pondering from destructive self-blaming brooding (Treynor et al., 2003)",
+        "Provides Watkins' concrete-level processing exercises and behavioral activation protocols",
+        "Includes high-res 1080x1350 canvas story card and private voice unload companion",
+      ],
+      faqs: [
+        {
+          question: "Why does overthinking make my sadness worse?",
+          answer:
+            "Brooding monopolizes working memory and biases your brain toward recalling negative memories. Because abstract 'Why' questions lack practical answers, the brain loops endlessly in distress.",
+        },
+        {
+          question: "How do I break a depressive rumination loop?",
+          answer:
+            "Apply the 5-minute rule: if thinking hasn't led to a physical action in 5 minutes, stand up immediately. Shift from 'Why did this happen?' to 'What is one concrete physical step I can take right now?'.",
+        },
+      ],
+    },
+
+    {
+      route: "/quiz/parasocial-relationship",
+      aliases: ["/quiz/parasocial-attachment", "/tes-hubungan-parasosial"],
+      title: "Parasocial Attachment & Digital Intimacy Screener: Free 12-Item PSI Test",
+      description:
+        "Do you feel an intimate connection with a streamer, VTuber, or creator that replaces offline companionship? Free 12-item screener based on the Horton & Wohl Parasocial Interaction model.",
+      category: "Media Psychology & Digital Attachment",
+      duration: "90 secs",
+      itemsCount: 12,
+      framework: "Dr. Donald Horton & R. Richard Wohl (1956) & Rubin-Perse PSI Scale",
+      overview:
+        "Parasocial interaction is the psychological illusion of a reciprocal face-to-face relationship with a media personality or streamer. In live streaming, camera gazes and chat recognition activate biological attachment circuitry, often substituting for offline intimacy.",
+      keyPoints: [
+        "Measures 3 subscales: Perceived Two-Way Illusion, Emotional Dependency & Consolation, and Reality & Social Substitution",
+        "Unpacks the illusion of pseudo-reciprocity in live streaming, Superchats, and VIP subscriptions",
+        "Provides digital boundaries, reality grounding, and reciprocal human reconnection protocols",
+        "Includes high-res 1080x1350 story card and private reflection journal",
+      ],
+      faqs: [
+        {
+          question: "Is having a parasocial relationship with a streamer bad?",
+          answer:
+            "Casual entertainment and fondness are normal. However, when a creator's stream replaces real-world friends, drains your savings on superchats, or causes panic during hiatuses, it has crossed into unhealthy dependency.",
+        },
+        {
+          question: "How do I overcome extreme streamer attachment?",
+          answer:
+            "Practice a 7-day complete media fast from the creator, stop spending money on donations, and reinvest that time and energy into reciprocal, face-to-face offline communities.",
+        },
+      ],
+    },
+
     // 5. Ebook Sales Pages
     {
       route: "/ebook",

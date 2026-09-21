@@ -3144,6 +3144,64 @@ const QuizHub: React.FC = () => {
               </Link>
             </div>
           </div>
+
+          {/* Card 104: Depressive Rumination & Brooding Loop Screener */}
+          <div className="rounded-3xl border border-violet-300 bg-gradient-to-br from-violet-500/10 via-purple-50 to-white p-6 shadow-xs flex flex-col justify-between hover:shadow-md transition">
+            <div>
+              <div className="flex items-center justify-between mb-3">
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-violet-600 px-3 py-0.5 text-xs font-bold text-white shadow-xs">
+                  <Brain className="h-3 w-3" />
+                  NOLEN-HOEKSEMA RRS MODEL
+                </span>
+                <span className="text-xs font-semibold text-violet-800">Dr. Susan Nolen-Hoeksema</span>
+              </div>
+              <h3 className="text-lg font-bold text-neutral-900 mb-1.5">
+                Depressive Rumination &amp; Brooding Screener
+              </h3>
+              <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed">
+                Do you endlessly replay past mistakes, ask unanswerable "Why me?" questions, or feel paralyzed by self-critical thoughts? Screen your brooding loops and discover concrete ways to break free.
+              </p>
+            </div>
+            <div className="mt-5 pt-3 border-t border-violet-100 flex items-center justify-between">
+              <span className="text-xs font-medium text-neutral-400">~90 Secs · 12 Items</span>
+              <Link
+                to="/quiz/rumination"
+                className="inline-flex items-center gap-1.5 rounded-full bg-violet-600 px-4 py-2 text-xs font-bold text-white hover:bg-violet-700 transition shadow-xs"
+              >
+                <span>Screen Rumination</span>
+                <ArrowRight className="h-3.5 w-3.5" />
+              </Link>
+            </div>
+          </div>
+
+          {/* Card 105: Parasocial Attachment & Digital Intimacy Screener */}
+          <div className="rounded-3xl border border-cyan-300 bg-gradient-to-br from-cyan-500/10 via-sky-50 to-white p-6 shadow-xs flex flex-col justify-between hover:shadow-md transition">
+            <div>
+              <div className="flex items-center justify-between mb-3">
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-cyan-600 px-3 py-0.5 text-xs font-bold text-white shadow-xs">
+                  <Radio className="h-3 w-3" />
+                  HORTON &amp; WOHL PSI MODEL
+                </span>
+                <span className="text-xs font-semibold text-cyan-800">Horton &amp; Wohl</span>
+              </div>
+              <h3 className="text-lg font-bold text-neutral-900 mb-1.5">
+                Parasocial Attachment &amp; Digital Intimacy Screener
+              </h3>
+              <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed">
+                Do you feel a personal connection with a streamer or creator that replaces real-world friendship? Screen one-sided intimacy illusions, emotional reliance, and social substitution.
+              </p>
+            </div>
+            <div className="mt-5 pt-3 border-t border-cyan-100 flex items-center justify-between">
+              <span className="text-xs font-medium text-neutral-400">~90 Secs · 12 Items</span>
+              <Link
+                to="/quiz/parasocial-relationship"
+                className="inline-flex items-center gap-1.5 rounded-full bg-cyan-600 px-4 py-2 text-xs font-bold text-white hover:bg-cyan-700 transition shadow-xs"
+              >
+                <span>Screen Parasocial Bond</span>
+                <ArrowRight className="h-3.5 w-3.5" />
+              </Link>
+            </div>
+          </div>
         </div>
 
         {/* Country Filter Pills */}

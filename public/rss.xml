@@ -6,7 +6,7 @@
     <atom:link href="https://nuju.app/rss.xml" rel="self" type="application/rss+xml" />
     <description>Practical guides on journaling, mood tracking, and emotional wellness from the Nuju team.</description>
     <language>en</language>
-    <lastBuildDate>Mon, 21 Sep 2026 01:30:35 GMT</lastBuildDate>
+    <lastBuildDate>Mon, 21 Sep 2026 01:36:49 GMT</lastBuildDate>
     <item>
       <title>The Terrifying Dread of Falling Asleep: Inside Somniphobia, Nighttime Anticipatory Panic, and the Cognitive Insomnia Paradox</title>
       <link>https://nuju.app/blog/somniphobia-sleep-dread-anticipatory-bedtime-anxiety-morin</link>
@@ -76,6 +76,78 @@
       <guid isPermaLink="true">https://nuju.app/blog/family-scapegoat-syndrome-narcissistic-family-korea</guid>
       <description>집안의 갈등과 부모의 불행을 혼자 뒤집어써 온 K-장녀, 블랙십(Black Sheep)을 위한 심층 보고서. 레베카 만데빌의 FSA 모델과 죄책감에서 벗어나는 법.</description>
       <category>가족 심리학 및 트라우마 치유</category>
+      <pubDate>Mon, 21 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>ko</dc:language>
+    </item>
+    <item>
+      <title>The Exhausting Loop of Overthinking: Inside Depressive Rumination, Susan Nolen-Hoeksema&apos;s RRS Model, and the Trap of Brooding</title>
+      <link>https://nuju.app/blog/depressive-rumination-brooding-loop-nolen-hoeksema-rrs</link>
+      <guid isPermaLink="true">https://nuju.app/blog/depressive-rumination-brooding-loop-nolen-hoeksema-rrs</guid>
+      <description>Why does thinking about your sadness make you sadder? Explore the clinical psychology of depressive rumination, Susan Nolen-Hoeksema&apos;s RRS framework, and evidence-based concrete processing to break the cycle.</description>
+      <category>Cognitive Psychology &amp; Mood Disorders</category>
+      <pubDate>Mon, 21 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Terjebak dalam Pusaran Overthinking: Mengenal Ruminasi Depresif, Model RRS Susan Nolen-Hoeksema, dan Cara Memutus Siklus Brooding</title>
+      <link>https://nuju.app/blog/ruminasi-overthinking-berulang-jebakan-brooding-nolen-hoeksema</link>
+      <guid isPermaLink="true">https://nuju.app/blog/ruminasi-overthinking-berulang-jebakan-brooding-nolen-hoeksema</guid>
+      <description>Mengapa semakin lama kamu memikirkan kesedihanmu, suasana hatimu justru semakin hancur? Pelajari sains psikologi ruminasi, bahaya pertanyaan &apos;Kenapa aku?&apos;, dan cara memutus rantai pikiran melumpuhkan.</description>
+      <category>Kesehatan Mental &amp; Psikologi Kognitif</category>
+      <pubDate>Mon, 21 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>id</dc:language>
+    </item>
+    <item>
+      <title>The Illusion of Two-Way Intimacy: Inside Parasocial Attachment, Live Streamer Dependency, and Horton &amp; Wohl&apos;s Interaction Theory</title>
+      <link>https://nuju.app/blog/parasocial-attachment-streamer-vtuber-digital-intimacy-horton-wohl</link>
+      <guid isPermaLink="true">https://nuju.app/blog/parasocial-attachment-streamer-vtuber-digital-intimacy-horton-wohl</guid>
+      <description>Why does watching your favorite Twitch streamer, YouTuber, or VTuber feel like spending time with an intimate best friend? Unpack the psychology of parasocial relationships, the illusion of reciprocity, and modern digital intimacy.</description>
+      <category>Media Psychology &amp; Digital Culture</category>
+      <pubDate>Mon, 21 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Ketika Sahabat Terbaikmu Ada di Layar Kaca: Mengurai Hubungan Parasosial, Ketergantungan Streamer &amp; Idola, dan Teori PSI Horton-Wohl</title>
+      <link>https://nuju.app/blog/hubungan-parasosial-streamer-idola-kesepian-digital-horton</link>
+      <guid isPermaLink="true">https://nuju.app/blog/hubungan-parasosial-streamer-idola-kesepian-digital-horton</guid>
+      <description>Mengapa menonton live stream streamer atau VTuber favorit terasa seperti nongkrong bersama sahabat terdekat? Pahami psikologi hubungan parasosial, ilusi kedekatan digital, dan bahaya substitusi dunia nyata.</description>
+      <category>Psikologi Media &amp; Budaya Digital</category>
+      <pubDate>Mon, 21 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>id</dc:language>
+    </item>
+    <item>
+      <title>Das endlose Gedankenkarussell: Depressives Grübeln, Nolen-Hoeksemas RRS-Modell und der Ausweg aus der Lähmung</title>
+      <link>https://nuju.app/blog/depressives-gruebeln-ruminieren-gedankenschleifen-nolen-hoeksema</link>
+      <guid isPermaLink="true">https://nuju.app/blog/depressives-gruebeln-ruminieren-gedankenschleifen-nolen-hoeksema</guid>
+      <description>Warum führt stundenlanges Nachdenken über Traurigkeit niemals zu einer Lösung? Entdecken Sie die Psychologie des depressiven Grübelns (Rumination) und wissenschaftlich fundierte Wege zur mentalen Befreiung.</description>
+      <category>Kognitive Psychologie &amp; Depression</category>
+      <pubDate>Mon, 21 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>de</dc:language>
+    </item>
+    <item>
+      <title>L&apos;engrenage toxique du ressassement mental : Comprendre la rumination dépressive selon le modèle RRS de Susan Nolen-Hoeksema</title>
+      <link>https://nuju.app/blog/rumination-mentale-depression-boucle-pensee-nolen-hoeksema</link>
+      <guid isPermaLink="true">https://nuju.app/blog/rumination-mentale-depression-boucle-pensee-nolen-hoeksema</guid>
+      <description>Pourquoi disséquer vos pensées négatives ne fait qu&apos;aggraver votre mal-être ? Explorez la psychologie des ruminations dépressives, la différence entre brooding et réflexion, et les clés pour stopper la boucle.</description>
+      <category>Psychologie Clinique &amp; Troubles de l&apos;Humeur</category>
+      <pubDate>Mon, 21 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>fr</dc:language>
+    </item>
+    <item>
+      <title>画面の中の親友という錯覚：配信者・推しへのパラソーシャル愛着（疑似恋愛・依存）とホートン＆ウォールのPSI理論</title>
+      <link>https://nuju.app/blog/parasocial-relationship-oshi-streamer-izon-horton</link>
+      <guid isPermaLink="true">https://nuju.app/blog/parasocial-relationship-oshi-streamer-izon-horton</guid>
+      <description>なぜVTuberやストリーマーの配信を見ていると、本物の親友や恋人と過ごしているように感じるのか？心理学における「パラソーシャル関係（疑似相互作用）」の罠と、健全な距離感の保ち方を解説します。</description>
+      <category>メディア心理学＆現代文化</category>
+      <pubDate>Mon, 21 Sep 2026 12:00:00 GMT</pubDate>
+      <dc:language>ja</dc:language>
+    </item>
+    <item>
+      <title>끝없는 생각의 굴레에서 벗어나는 법: 우울성 반추(Rumination), 놀렌-혹스마 RRS 모델과 브루딩의 덫</title>
+      <link>https://nuju.app/blog/depressive-rumination-overthinking-mental-loop-korea</link>
+      <guid isPermaLink="true">https://nuju.app/blog/depressive-rumination-overthinking-mental-loop-korea</guid>
+      <description>우울할 때 혼자 깊이 생각할수록 왜 마음은 더 바닥으로 가라앉을까요? 수잔 놀렌-혹스마 박사의 우울성 반추(Rumination) 이론과 &apos;왜 나만?&apos;의 함정에서 탈출하는 실행 프로토콜.</description>
+      <category>인지심리학 &amp; 기분장애</category>
       <pubDate>Mon, 21 Sep 2026 12:00:00 GMT</pubDate>
       <dc:language>ko</dc:language>
     </item>

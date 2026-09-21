@@ -136,6 +136,8 @@ const AphantasiaTest = lazy(() => import("./pages/AphantasiaTest.tsx"));
 const RetrospectiveJealousyTest = lazy(() => import("./pages/RetrospectiveJealousyTest.tsx"));
 const SomniphobiaTest = lazy(() => import("./pages/SomniphobiaTest.tsx"));
 const FamilyScapegoatTest = lazy(() => import("./pages/FamilyScapegoatTest.tsx"));
+const RuminationTest = lazy(() => import("./pages/RuminationTest.tsx"));
+const ParasocialTest = lazy(() => import("./pages/ParasocialTest.tsx"));
 const EbookSalesPage = lazy(() => import("./pages/EbookSalesPage.tsx"));
 const EbookReaderPage = lazy(() => import("./pages/EbookReaderPage.tsx"));
 const NotFound = lazy(() => import("./pages/NotFound.tsx"));
@@ -524,6 +526,13 @@ const App = () => (
                   <Route path="/quiz/scapegoat-syndrome" element={<FamilyScapegoatTest />} />
                   <Route path="/quiz/scapegoat-child" element={<FamilyScapegoatTest />} />
                   <Route path="/tes-kambing-hitam-keluarga" element={<FamilyScapegoatTest />} />
+                  <Route path="/quiz/rumination" element={<RuminationTest />} />
+                  <Route path="/quiz/overthinking-loop" element={<RuminationTest />} />
+                  <Route path="/tes-ruminasi" element={<RuminationTest />} />
+                  <Route path="/tes-overthinking-berulang" element={<RuminationTest />} />
+                  <Route path="/quiz/parasocial-relationship" element={<ParasocialTest />} />
+                  <Route path="/quiz/parasocial-attachment" element={<ParasocialTest />} />
+                  <Route path="/tes-hubungan-parasosial" element={<ParasocialTest />} />
                   <Route path="/quiz/:quizId" element={<QuizRunner />} />
                   <Route path="/test-psikologi" element={<QuizHub />} />
                   <Route path="/test-psikologi/:quizId" element={<QuizRunner />} />
