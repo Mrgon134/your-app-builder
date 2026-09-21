@@ -1479,6 +1479,54 @@
     <changefreq>weekly</changefreq>
   </url>
   <url>
+    <loc>https://nuju.app/quiz/emetophobia</loc>
+    <lastmod>2026-09-21</lastmod>
+    <priority>0.95</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/quiz/fear-of-vomiting</loc>
+    <lastmod>2026-09-21</lastmod>
+    <priority>0.9</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/tes-emetofobia</loc>
+    <lastmod>2026-09-21</lastmod>
+    <priority>0.9</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/tes-takut-muntah</loc>
+    <lastmod>2026-09-21</lastmod>
+    <priority>0.9</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/quiz/nomophobia</loc>
+    <lastmod>2026-09-21</lastmod>
+    <priority>0.95</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/quiz/smartphone-separation-anxiety</loc>
+    <lastmod>2026-09-21</lastmod>
+    <priority>0.9</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/tes-nomofobia</loc>
+    <lastmod>2026-09-21</lastmod>
+    <priority>0.9</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://nuju.app/tes-ketergantungan-hp</loc>
+    <lastmod>2026-09-21</lastmod>
+    <priority>0.9</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
     <loc>https://nuju.app/quiz/baterai-emosi</loc>
     <lastmod>2026-09-21</lastmod>
     <priority>0.9</priority>
@@ -12070,6 +12118,102 @@
       <image:caption>생리 전만 되면 딴사람처럼 극심한 분노와 우울감에 휩싸이다가 생리가 시작되면 마법처럼 사라지나요? 단순 생리전증후군(PMS)이 아닌 PMDD의 원인과 치료법.</image:caption>
     </image:image>
     <xhtml:link rel="alternate" hreflang="ko" href="https://nuju.app/blog/pmdd-wolgyeongjeon-buhwajjeung-luteal-rage-korea"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/emetophobia-fear-of-vomiting-veale-spovi-exposure</loc>
+    <lastmod>2026-09-21</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>The Terror of Throwing Up: Inside Emetophobia (SPOV), Visceral Hypervigilance, and Dr. David Veale&apos;s Cognitive Model</image:title>
+      <image:caption>Why does the mere thought or sound of vomiting trigger blind panic, frantic expiration date checking, and public avoidance? Discover the clinical science of Specific Phobia of Vomiting (Emetophobia) and David Veale&apos;s SPOVI framework.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/emetophobia-fear-of-vomiting-veale-spovi-exposure"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/emetofobia-takut-muntah-berlebihan-veale-spovi</loc>
+    <lastmod>2026-09-21</lastmod>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Takut Muntah Berlebihan hingga Cemas Makan di Luar: Mengenal Emetofobia, Siklus Mual Psikosomatis, dan Solusi Klinis</image:title>
+      <image:caption>Mengapa suara orang batuk atau rasa mual sedikit saja bisa membuat jantungmu berdegup kencang dan panik luar biasa? Pelajari fobia takut muntah (Emetofobia), kriteria SPOVI David Veale, dan cara memutus rantai cemasnya.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="id" href="https://nuju.app/blog/emetofobia-takut-muntah-berlebihan-veale-spovi"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/nomophobia-smartphone-separation-anxiety-yildirim-nmpq</loc>
+    <lastmod>2026-09-21</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Can&apos;t Bear 1% Battery? The Science of Nomophobia, Smartphone Separation Panic, and the Iowa State NMP-Q Model</image:title>
+      <image:caption>Why does an uncharged phone or lack of cell service trigger physical restlessness and fight-or-flight panic? Discover Nomophobia (No Mobile Phone Phobia), the Iowa State NMP-Q diagnostic framework, and digital autonomy resets.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/nomophobia-smartphone-separation-anxiety-yildirim-nmpq"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/nomofobia-cemas-tanpa-hp-ketergantungan-smartphone-yildirim</loc>
+    <lastmod>2026-09-21</lastmod>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Panik Saat Baterai 1% dan Jantung Berdebar Tanpa Sinyal: Menakar Nomofobia Menggunakan Model Klinis NMP-Q</image:title>
+      <image:caption>Mengapa ketinggalan smartphone di rumah bisa membuatmu merasa cemas, gelisah, dan hampa seperti kehilangan separuh diri? Kenali Nomofobia (No Mobile Phone Phobia), sindrom getaran hantu, dan riset NMP-Q Iowa State.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="id" href="https://nuju.app/blog/nomofobia-cemas-tanpa-hp-ketergantungan-smartphone-yildirim"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/emetophobie-angst-vor-dem-erbrechen-veale-spovi</loc>
+    <lastmod>2026-09-21</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>Panische Angst vor dem Erbrechen: Emetophobie verstehen, Dr. David Veales SPOVI-Modell und kognitive Exposition</image:title>
+      <image:caption>Warum löst schon der leiseste Anflug von Übelkeit oder das Husten eines Mitmenschen Todesangst aus? Erfahren Sie alles über die spezifische Phobie vor dem Erbrechen (Emetophobie) und wissenschaftliche Therapiemodelle.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="de" href="https://nuju.app/blog/emetophobie-angst-vor-dem-erbrechen-veale-spovi"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/emetophobie-peur-de-vomir-veale-spovi-tcc</loc>
+    <lastmod>2026-09-21</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>La Terreur de Vomir : Comprendre l&apos;Émétophobie, l&apos;Hypervigilance Viscérale et le Modèle SPOVI du Dr David Veale</image:title>
+      <image:caption>Pourquoi l&apos;idée ou le bruit d&apos;une personne qui vomit déclenche-t-elle une panique incontrôlable et l&apos;évitement des repas au restaurant ? Découvrez l&apos;émétophobie (SPOV) et les thérapies TCC d&apos;exposition.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://nuju.app/blog/emetophobie-peur-de-vomir-veale-spovi-tcc"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/emetophobia-ouo-kyoufushou-veale-spovi</loc>
+    <lastmod>2026-09-21</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>吐くことへの耐え難い恐怖「嘔吐恐怖症（エメトフォビア）」：胃腸の過敏性とデイヴィッド・ヴィール博士のSPOVIモデル</image:title>
+      <image:caption>わずかな胃の不快感や誰かの咳払いで心臓が激しく波打つのはなぜ？嘔吐恐怖症（エメトフォビア）のメカニズム、過剰な安全行動、そして認知行動療法の最新アプローチ。</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://nuju.app/blog/emetophobia-ouo-kyoufushou-veale-spovi"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/nomophobia-smartphone-buranjeung-yildirim-nmpq-korea</loc>
+    <lastmod>2026-09-21</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>배터리 1%의 극심한 공포: 스마트폰 격리 불안증 &apos;노모포비아(Nomophobia)&apos;와 일디림 NMP-Q 모델</image:title>
+      <image:caption>스마트폰이 손에 없거나 배터리가 방전되면 심장이 두근거리고 극심한 불안을 느끼나요? 아이오와 주립대 차간 일디림 교수의 NMP-Q 척도로 본 스마트폰 격리 불안증의 실체.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://nuju.app/blog/nomophobia-smartphone-buranjeung-yildirim-nmpq-korea"/>
   </url>
   <url>
     <loc>https://nuju.app/blog/how-to-stop-overthinking-at-night</loc>

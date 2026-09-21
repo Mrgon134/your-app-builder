@@ -3630,6 +3630,70 @@ export function getQuizAndToolPages({
       ],
     },
 
+    {
+      route: "/quiz/emetophobia",
+      aliases: ["/quiz/fear-of-vomiting", "/tes-emetofobia", "/tes-takut-muntah"],
+      title: "Emetophobia Screener: Free 12-Item Specific Phobia of Vomiting (SPOV) Test",
+      description:
+        "Do you obsessively check food expiration dates, panic when feeling slight stomach nausea, or avoid travel out of terror of vomiting? Screen SPOV based on Prof. David Veale's SPOVI model.",
+      category: "Anxiety Disorders & Clinical Phobias",
+      duration: "90 secs",
+      itemsCount: 12,
+      framework: "Prof. David Veale (King's College London) SPOVI & Boschen Model",
+      overview:
+        "Emetophobia (Specific Phobia of Vomiting / SPOV) is a disabling anxiety disorder characterized by visceral hypervigilance, catastrophic misinterpretation of normal gastric sensations, and exhaustive safety rituals surrounding food and public spaces.",
+      keyPoints: [
+        "Measures 3 clinical subscales: Visceral Hypervigilance & Nausea Panic, Contamination & Safety Checking Rituals, and Interpersonal, Travel & Control Avoidance",
+        "Explains the psychosomatic feedback loop between fight-or-flight adrenaline, stomach vasoconstriction, and nausea sensations",
+        "Breaks down how safety behaviors (hoarding antacids, compulsive sniffing) perpetuate chronic fear of throwing up",
+        "Provides evidence-based gradual exposure hierarchy, interoceptive desensitization, and private audio grounding",
+      ],
+      faqs: [
+        {
+          question: "Why does anxiety feel like nausea in emetophobia?",
+          answer:
+            "During panic, the sympathetic nervous system diverts blood away from the digestive tract, freezing gastric motility and causing genuine nausea sensations that sufferers mistake for impending vomiting.",
+        },
+        {
+          question: "Can emetophobia be cured?",
+          answer:
+            "Yes. Cognitive Behavioral Therapy (CBT) with Exposure and Response Prevention (ERP) has high success rates by progressively reducing safety crutches and normalizing bodily sensations.",
+        },
+      ],
+    },
+
+    {
+      route: "/quiz/nomophobia",
+      aliases: ["/quiz/smartphone-separation-anxiety", "/tes-nomofobia", "/tes-ketergantungan-hp"],
+      title: "Nomophobia Screener: Free 12-Item Smartphone Separation Anxiety Test",
+      description:
+        "Do you panic when battery hits 1%, hallucinate phantom pocket vibrations, or feel severe separation distress without cell service? Measure nomophobia based on the Iowa State NMP-Q scale.",
+      category: "Digital Psychology & Behavioral Addictions",
+      duration: "90 secs",
+      itemsCount: 12,
+      framework: "Dr. Çağan Yıldırım & Dr. Ana-Paula Correia (Iowa State University) NMP-Q Model",
+      overview:
+        "Nomophobia (No Mobile Phone Phobia) is a contemporary separation anxiety disorder stemming from the loss of digital connectivity, communication, and informational access, treating the smartphone as an externalized lobe of the self.",
+      keyPoints: [
+        "Measures 3 clinical subscales: Device Separation Panic & Disconnect Dread, Compulsive Checking & Phantom Vibrations, and Interpersonal Disconnection & FOMO",
+        "Explains Phantom Vibration Syndrome and why the sensory cortex incorporates the smartphone into physical body schema",
+        "Analyzes dopamine anticipation loops in low-battery and low-signal panic responses",
+        "Provides practical digital autonomy protocols, grayscale screen shifts, progressive separation walks, and audio reflection",
+      ],
+      faqs: [
+        {
+          question: "What is Phantom Vibration Syndrome?",
+          answer:
+            "It is a sensory cortex misinterpretation where minor clothing friction or muscle twitches in your thigh are perceived as incoming phone vibrations due to constant neuro-anticipation of notifications.",
+        },
+        {
+          question: "How can I reduce smartphone separation anxiety?",
+          answer:
+            "Implement small behavioral boundaries: switch display to grayscale, keep chargers away from the bed, practice 20-minute device-free walks, and use voice journaling instead of mindless scrolling.",
+        },
+      ],
+    },
+
     // 5. Ebook Sales Pages
     {
       route: "/ebook",

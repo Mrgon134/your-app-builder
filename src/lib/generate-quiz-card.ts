@@ -18769,3 +18769,397 @@ export async function generatePmddCard(
 
   return { dataUrl, blob, file };
 }
+
+export type EmetophobiaCardLang = "en" | "id" | "de" | "fr" | "es";
+
+export interface EmetophobiaScoreResult {
+  score: number;
+  percentage: number;
+  level: string;
+  profile: {
+    title: Record<string, string>;
+    badge: Record<string, string>;
+    summary: Record<string, string>;
+    psychology: Record<string, string>;
+    actionProtocol: Record<string, string[]>;
+  };
+  subscales: {
+    visceral_hypervigilance_nausea_panic: { score: number; percentage: number };
+    contamination_safety_checking_rituals: { score: number; percentage: number };
+    interpersonal_travel_avoidance_control: { score: number; percentage: number };
+  };
+}
+
+/**
+ * Generates an aesthetic high-resolution Instagram Story share card (1080x1350)
+ * for the Emetophobia (Specific Phobia of Vomiting / SPOV) Screener (Card #110, Veale SPOVI model).
+ */
+export async function generateEmetophobiaCard(
+  result: EmetophobiaScoreResult,
+  lang: EmetophobiaCardLang = "en"
+): Promise<{ dataUrl: string; blob: Blob; file: File }> {
+  const canvas = document.createElement("canvas");
+  canvas.width = 1080;
+  canvas.height = 1350;
+  const ctx = canvas.getContext("2d");
+  if (!ctx) throw new Error("Could not get 2D canvas context");
+
+  const width = 1080;
+  const height = 1350;
+
+  // Background: Deep Marine Obsidian & Muted Oceanic Slate
+  const bgGrad = ctx.createLinearGradient(0, 0, width, height);
+  bgGrad.addColorStop(0, "#040D14");
+  bgGrad.addColorStop(0.5, "#0B202D");
+  bgGrad.addColorStop(1, "#102F3F");
+  ctx.fillStyle = bgGrad;
+  ctx.fillRect(0, 0, width, height);
+
+  // Subtle Cyan / Teal Radial Glow
+  const radial = ctx.createRadialGradient(width * 0.8, height * 0.22, 40, width * 0.8, height * 0.22, 550);
+  radial.addColorStop(0, "rgba(56, 189, 248, 0.24)");
+  radial.addColorStop(0.6, "rgba(45, 212, 191, 0.1)");
+  radial.addColorStop(1, "rgba(56, 189, 248, 0)");
+  ctx.fillStyle = radial;
+  ctx.fillRect(0, 0, width, height);
+
+  // Brand Header Badge
+  ctx.fillStyle = "rgba(56, 189, 248, 0.15)";
+  ctx.beginPath();
+  ctx.roundRect(80, 80, 620, 56, 28);
+  ctx.fill();
+
+  ctx.fillStyle = "#38BDF8";
+  ctx.font = "bold 20px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("NUJU CLINICAL · CARD #110 · VEALE SPOVI MODEL", 108, 115);
+
+  // Category Tag
+  ctx.fillStyle = "#BAE6FD";
+  ctx.font = "600 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("EMETOPHOBIA (SPECIFIC PHOBIA OF VOMITING)", 80, 185);
+
+  // Main Card Box
+  const cardBoxY = 220;
+  const cardBoxHeight = 920;
+  ctx.fillStyle = "rgba(255, 255, 255, 0.04)";
+  ctx.strokeStyle = "rgba(56, 189, 248, 0.38)";
+  ctx.lineWidth = 2;
+  ctx.beginPath();
+  ctx.roundRect(80, cardBoxY, width - 160, cardBoxHeight, 36);
+  ctx.fill();
+  ctx.stroke();
+
+  // Level Badge Pill
+  const levelTitle = result.profile.title[lang] || result.profile.title.en;
+  const levelBadge = result.profile.badge[lang] || result.profile.badge.en;
+
+  ctx.fillStyle = "rgba(56, 189, 248, 0.22)";
+  ctx.beginPath();
+  ctx.roundRect(120, cardBoxY + 40, 420, 44, 22);
+  ctx.fill();
+
+  ctx.fillStyle = "#F0F9FF";
+  ctx.font = "bold 18px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(levelBadge.toUpperCase(), 140, cardBoxY + 68);
+
+  // Title
+  ctx.fillStyle = "#FFFFFF";
+  ctx.font = "bold 34px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  const titleLines = wrapText(ctx, levelTitle, width - 240);
+  let curY = cardBoxY + 128;
+  titleLines.forEach((line) => {
+    ctx.fillText(line, 120, curY);
+    curY += 44;
+  });
+
+  // Score Hero Metric Box
+  curY += 10;
+  ctx.fillStyle = "rgba(255, 255, 255, 0.03)";
+  ctx.strokeStyle = "rgba(255, 255, 255, 0.08)";
+  ctx.beginPath();
+  ctx.roundRect(120, curY, width - 240, 110, 20);
+  ctx.fill();
+  ctx.stroke();
+
+  ctx.fillStyle = "#38BDF8";
+  ctx.font = "900 64px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(`${result.percentage}%`, 150, curY + 76);
+
+  ctx.fillStyle = "rgba(255, 255, 255, 0.9)";
+  ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("Emetophobia Phobia Index", 350, curY + 48);
+
+  ctx.fillStyle = "rgba(255, 255, 255, 0.5)";
+  ctx.font = "16px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(`SPOVI Score: ${result.score} / 36 pts`, 350, curY + 78);
+
+  // Subscales
+  curY += 145;
+  const subscales = [
+    { label: "Visceral Hypervigilance & Nausea Panic", pct: result.subscales.visceral_hypervigilance_nausea_panic.percentage, color: "#38BDF8" },
+    { label: "Contamination & Safety Checking Rituals", pct: result.subscales.contamination_safety_checking_rituals.percentage, color: "#2DD4BF" },
+    { label: "Interpersonal & Travel Avoidance Control", pct: result.subscales.interpersonal_travel_avoidance_control.percentage, color: "#F59E0B" },
+  ];
+
+  subscales.forEach((sub) => {
+    ctx.fillStyle = "#E2E8F0";
+    ctx.font = "bold 20px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+    ctx.fillText(sub.label, 120, curY);
+
+    ctx.fillStyle = "rgba(255, 255, 255, 0.7)";
+    ctx.font = "bold 20px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+    ctx.fillText(`${sub.pct}%`, width - 200, curY);
+
+    // Track
+    ctx.fillStyle = "rgba(255, 255, 255, 0.08)";
+    ctx.beginPath();
+    ctx.roundRect(120, curY + 12, width - 240, 14, 7);
+    ctx.fill();
+
+    // Bar
+    ctx.fillStyle = sub.color;
+    ctx.beginPath();
+    const barWidth = Math.max(14, ((width - 240) * sub.pct) / 100);
+    ctx.roundRect(120, curY + 12, barWidth, 14, 7);
+    ctx.fill();
+
+    curY += 56;
+  });
+
+  // Clinical Insight Box
+  curY += 20;
+  ctx.fillStyle = "rgba(56, 189, 248, 0.08)";
+  ctx.strokeStyle = "rgba(56, 189, 248, 0.3)";
+  ctx.beginPath();
+  ctx.roundRect(120, curY, width - 240, 160, 20);
+  ctx.fill();
+  ctx.stroke();
+
+  ctx.fillStyle = "#7DD3FC";
+  ctx.font = "bold 20px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("PROF. DAVID VEALE (SPOVI CLINICAL PRINCIPLE):", 145, curY + 40);
+
+  ctx.fillStyle = "rgba(255, 255, 255, 0.85)";
+  ctx.font = "italic 19px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  const quote = '"Emetophobia is maintained not by the biological act of vomiting, but by the endless safety rituals designed to escape it. Dropping the rituals teaches the brain that nausea is safe."';
+  const quoteLines = wrapText(ctx, quote, width - 290);
+  let qY = curY + 75;
+  quoteLines.forEach((l) => {
+    ctx.fillText(l, 145, qY);
+    qY += 28;
+  });
+
+  // Footer CTA
+  ctx.fillStyle = "rgba(255, 255, 255, 0.5)";
+  ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("Screen fear of vomiting and gastrointestinal panic at:", 80, 1200);
+
+  ctx.fillStyle = "#38BDF8";
+  ctx.font = "900 30px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("nuju.app/quiz/emetophobia", 80, 1245);
+
+  const dataUrl = canvas.toDataURL("image/png", 0.95);
+  const blob = await new Promise<Blob>((resolve, reject) => {
+    canvas.toBlob((b) => (b ? resolve(b) : reject(new Error("Failed blob"))), "image/png", 0.95);
+  });
+  const file = new File([blob], `nuju-emetophobia-${result.level}.png`, { type: "image/png" });
+
+  return { dataUrl, blob, file };
+}
+
+export type NomophobiaCardLang = "en" | "id" | "de" | "fr" | "es";
+
+export interface NomophobiaScoreResult {
+  score: number;
+  percentage: number;
+  level: string;
+  profile: {
+    title: Record<string, string>;
+    badge: Record<string, string>;
+    summary: Record<string, string>;
+    psychology: Record<string, string>;
+    actionProtocol: Record<string, string[]>;
+  };
+  subscales: {
+    device_separation_panic_disconnect: { score: number; percentage: number };
+    compulsive_checking_phantom_vibrations: { score: number; percentage: number };
+    interpersonal_disconnection_fomo: { score: number; percentage: number };
+  };
+}
+
+/**
+ * Generates an aesthetic high-resolution Instagram Story share card (1080x1350)
+ * for the Nomophobia & Smartphone Separation Screener (Card #111, Yildirim NMP-Q model).
+ */
+export async function generateNomophobiaCard(
+  result: NomophobiaScoreResult,
+  lang: NomophobiaCardLang = "en"
+): Promise<{ dataUrl: string; blob: Blob; file: File }> {
+  const canvas = document.createElement("canvas");
+  canvas.width = 1080;
+  canvas.height = 1350;
+  const ctx = canvas.getContext("2d");
+  if (!ctx) throw new Error("Could not get 2D canvas context");
+
+  const width = 1080;
+  const height = 1350;
+
+  // Background: Cyber Obsidian & Electric Indigo Slate
+  const bgGrad = ctx.createLinearGradient(0, 0, width, height);
+  bgGrad.addColorStop(0, "#080C14");
+  bgGrad.addColorStop(0.5, "#0F172A");
+  bgGrad.addColorStop(1, "#1E1B4B");
+  ctx.fillStyle = bgGrad;
+  ctx.fillRect(0, 0, width, height);
+
+  // Electric Cyan / Neon Amber Radial Glow
+  const radial = ctx.createRadialGradient(width * 0.8, height * 0.22, 40, width * 0.8, height * 0.22, 550);
+  radial.addColorStop(0, "rgba(6, 182, 212, 0.25)");
+  radial.addColorStop(0.6, "rgba(245, 158, 11, 0.1)");
+  radial.addColorStop(1, "rgba(6, 182, 212, 0)");
+  ctx.fillStyle = radial;
+  ctx.fillRect(0, 0, width, height);
+
+  // Brand Header Badge
+  ctx.fillStyle = "rgba(6, 182, 212, 0.15)";
+  ctx.beginPath();
+  ctx.roundRect(80, 80, 620, 56, 28);
+  ctx.fill();
+
+  ctx.fillStyle = "#22D3EE";
+  ctx.font = "bold 20px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("NUJU CLINICAL · CARD #111 · YILDIRIM NMP-Q MODEL", 108, 115);
+
+  // Category Tag
+  ctx.fillStyle = "#A5F3FC";
+  ctx.font = "600 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("NOMOPHOBIA & DIGITAL SEPARATION ANXIETY", 80, 185);
+
+  // Main Card Box
+  const cardBoxY = 220;
+  const cardBoxHeight = 920;
+  ctx.fillStyle = "rgba(255, 255, 255, 0.04)";
+  ctx.strokeStyle = "rgba(6, 182, 212, 0.38)";
+  ctx.lineWidth = 2;
+  ctx.beginPath();
+  ctx.roundRect(80, cardBoxY, width - 160, cardBoxHeight, 36);
+  ctx.fill();
+  ctx.stroke();
+
+  // Level Badge Pill
+  const levelTitle = result.profile.title[lang] || result.profile.title.en;
+  const levelBadge = result.profile.badge[lang] || result.profile.badge.en;
+
+  ctx.fillStyle = "rgba(6, 182, 212, 0.22)";
+  ctx.beginPath();
+  ctx.roundRect(120, cardBoxY + 40, 420, 44, 22);
+  ctx.fill();
+
+  ctx.fillStyle = "#ECFEFF";
+  ctx.font = "bold 18px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(levelBadge.toUpperCase(), 140, cardBoxY + 68);
+
+  // Title
+  ctx.fillStyle = "#FFFFFF";
+  ctx.font = "bold 34px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  const titleLines = wrapText(ctx, levelTitle, width - 240);
+  let curY = cardBoxY + 128;
+  titleLines.forEach((line) => {
+    ctx.fillText(line, 120, curY);
+    curY += 44;
+  });
+
+  // Score Hero Metric Box
+  curY += 10;
+  ctx.fillStyle = "rgba(255, 255, 255, 0.03)";
+  ctx.strokeStyle = "rgba(255, 255, 255, 0.08)";
+  ctx.beginPath();
+  ctx.roundRect(120, curY, width - 240, 110, 20);
+  ctx.fill();
+  ctx.stroke();
+
+  ctx.fillStyle = "#06B6D4";
+  ctx.font = "900 64px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(`${result.percentage}%`, 150, curY + 76);
+
+  ctx.fillStyle = "rgba(255, 255, 255, 0.9)";
+  ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("Nomophobia Dependency Index", 350, curY + 48);
+
+  ctx.fillStyle = "rgba(255, 255, 255, 0.5)";
+  ctx.font = "16px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText(`NMP-Q Score: ${result.score} / 36 pts`, 350, curY + 78);
+
+  // Subscales
+  curY += 145;
+  const subscales = [
+    { label: "Device Separation Panic & Disconnect", pct: result.subscales.device_separation_panic_disconnect.percentage, color: "#06B6D4" },
+    { label: "Compulsive Checking & Phantom Vibrations", pct: result.subscales.compulsive_checking_phantom_vibrations.percentage, color: "#6366F1" },
+    { label: "Interpersonal Disconnection & FOMO", pct: result.subscales.interpersonal_disconnection_fomo.percentage, color: "#F43F5E" },
+  ];
+
+  subscales.forEach((sub) => {
+    ctx.fillStyle = "#E2E8F0";
+    ctx.font = "bold 20px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+    ctx.fillText(sub.label, 120, curY);
+
+    ctx.fillStyle = "rgba(255, 255, 255, 0.7)";
+    ctx.font = "bold 20px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+    ctx.fillText(`${sub.pct}%`, width - 200, curY);
+
+    // Track
+    ctx.fillStyle = "rgba(255, 255, 255, 0.08)";
+    ctx.beginPath();
+    ctx.roundRect(120, curY + 12, width - 240, 14, 7);
+    ctx.fill();
+
+    // Bar
+    ctx.fillStyle = sub.color;
+    ctx.beginPath();
+    const barWidth = Math.max(14, ((width - 240) * sub.pct) / 100);
+    ctx.roundRect(120, curY + 12, barWidth, 14, 7);
+    ctx.fill();
+
+    curY += 56;
+  });
+
+  // Clinical Insight Box
+  curY += 20;
+  ctx.fillStyle = "rgba(6, 182, 212, 0.08)";
+  ctx.strokeStyle = "rgba(6, 182, 212, 0.3)";
+  ctx.beginPath();
+  ctx.roundRect(120, curY, width - 240, 160, 20);
+  ctx.fill();
+  ctx.stroke();
+
+  ctx.fillStyle = "#67E8F9";
+  ctx.font = "bold 20px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("DR. ÇAĞAN YILDIRIM (NMP-Q RESEARCH PRINCIPLE):", 145, curY + 40);
+
+  ctx.fillStyle = "rgba(255, 255, 255, 0.85)";
+  ctx.font = "italic 19px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  const quote = '"Nomophobia reveals that the smartphone has transitioned from an external communication tool into a biological surrogate for emotional regulation and social safety."';
+  const quoteLines = wrapText(ctx, quote, width - 290);
+  let qY = curY + 75;
+  quoteLines.forEach((l) => {
+    ctx.fillText(l, 145, qY);
+    qY += 28;
+  });
+
+  // Footer CTA
+  ctx.fillStyle = "rgba(255, 255, 255, 0.5)";
+  ctx.font = "bold 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("Screen smartphone separation anxiety and nomophobia at:", 80, 1200);
+
+  ctx.fillStyle = "#06B6D4";
+  ctx.font = "900 30px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  ctx.fillText("nuju.app/quiz/nomophobia", 80, 1245);
+
+  const dataUrl = canvas.toDataURL("image/png", 0.95);
+  const blob = await new Promise<Blob>((resolve, reject) => {
+    canvas.toBlob((b) => (b ? resolve(b) : reject(new Error("Failed blob"))), "image/png", 0.95);
+  });
+  const file = new File([blob], `nuju-nomophobia-${result.level}.png`, { type: "image/png" });
+
+  return { dataUrl, blob, file };
+}
