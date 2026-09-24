@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { Link, Navigate, useParams } from "react-router-dom";
-import { ArrowLeft, ArrowRight, Clock, List, Tag } from "lucide-react";
+import { Activity, ArrowLeft, ArrowRight, CheckCircle2, Clock, List, Sparkles, Tag } from "lucide-react";
 import { Helmet } from "react-helmet-async";
 import AppStoreCta from "@/components/AppStoreCta";
 import AdSenseBanner from "@/components/AdSenseBanner";
@@ -17,6 +17,7 @@ import {
   LANGUAGE_ALTERNATES,
   slugifyHeading,
 } from "@/data/blog-posts";
+import { getBlogQuizOrTool, BlogQuizToolTarget } from "@/data/blog-quiz-tool-mapping";
 
 const RECOMMENDATION_USE_CASE_SLUGS = new Set([
   "mood-tracking-for-anxiety",
@@ -2670,12 +2671,15 @@ type CommercialDestination = {
 };
 
 const COMMERCIAL_DESTINATION_BY_SLUG: Record<string, CommercialDestination> = {
+  "best-self-reflection-apps": { href: "/ai-journal", label: "Try Nuju AI Reflection Free" },
   "best-mood-tracker-apps": { href: "/mood-tracker", label: "See the Nuju mood tracker" },
   "daylio-alternatives": { href: "/mood-tracker", label: "See the Nuju mood tracker" },
   "emoko-alternatives": { href: "/mood-tracker", label: "See the Nuju mood tracker" },
   "mood-tracker-for-self-awareness": { href: "/mood-tracker", label: "See the Nuju mood tracker" },
   "mood-tracking-for-anxiety": { href: "/mood-tracker", label: "See the Nuju mood tracker" },
   "journaling-for-adhd": { href: "/voice-journaling", label: "See voice journaling on Nuju" },
+  "apple-journal-alternatives": { href: "/ai-journal", label: "Try Nuju Cross-Platform Journal Free" },
+  "day-one-alternative": { href: "/ai-journal", label: "Try Nuju AI Journal Free" },
 };
 
 const DEFAULT_COMMERCIAL_DESTINATION: CommercialDestination = {
@@ -2755,7 +2759,206 @@ const getRecommendationSnapshot = (
   return null;
 };
 
+/**
+ * Recursively parses inline markdown:
+ * - [text](url) -> <Link to="..."> or <a href="...">
+ * - `code` -> <code>...</code>
+ * - ***bold italic*** or ___bold italic___ -> <strong className="font-bold text-foreground"><em className="italic">...</em></strong>
+ * - **bold** or __bold__ -> <strong className="font-bold text-foreground">...</strong>
+ * - *italic* or _italic_ -> <em className="italic">...</em>
+ * Handles nested and edge cases (e.g. ***Why* did I feel like that?** or **Kebaikan (*Self-Kindness*):**).
+ * Filters out stray JSON-LD scripts that were mistakenly placed in paragraphs.
+ */
+export function renderFormattedInline(input: string): React.ReactNode {
+  if (!input) return null;
+  const trimmed = input.trim();
+  if (trimmed.startsWith("<script") || trimmed.endsWith("</script>")) {
+    return null;
+  }
+
+  const regex = /(?:\[([^\]]+)\]\(([^)]+)\))|(?:`([^`]+)`)|(?:\*\*\*([^\s*]|(?:[^\s*][\s\S]*?[^\s*]))\*\*\*)|(?:___([^\s_]|(?:[^\s_][\s\S]*?[^\s_]))___)|(?:\*\*([^\s]|(?:[^\s][\s\S]*?[^\s]))\*\*)|(?:__([^\s_]|(?:[^\s_][\s\S]*?[^\s_]))__)|(?:(?<!\*)\*([^*\n]+?)\*(?!\*))|(?:(?<![a-zA-Z0-9_])_([^\s_]|(?:[^\s_][^_\n]*?[^\s_]))_(?![a-zA-Z0-9_]))/g;
+
+  const elements: React.ReactNode[] = [];
+  let lastIndex = 0;
+  let match: RegExpExecArray | null;
+
+  while ((match = regex.exec(input)) !== null) {
+    if (match.index > lastIndex) {
+      elements.push(input.slice(lastIndex, match.index));
+    }
+
+    if (match[1] !== undefined && match[2] !== undefined) {
+      const linkText = match[1];
+      const linkUrl = match[2];
+      const isInternal =
+        linkUrl.startsWith("/") ||
+        linkUrl.startsWith("#") ||
+        linkUrl.startsWith("https://nuju.app");
+      const cleanUrl = isInternal
+        ? linkUrl.replace(/^https:\/\/nuju\.app/, "") || "/"
+        : linkUrl;
+
+      if (isInternal) {
+        elements.push(
+          <Link
+            key={match.index}
+            to={cleanUrl}
+            className="font-medium text-primary underline underline-offset-2 transition-colors hover:text-primary/80"
+          >
+            {renderFormattedInline(linkText)}
+          </Link>
+        );
+      } else {
+        elements.push(
+          <a
+            key={match.index}
+            href={linkUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-medium text-primary underline underline-offset-2 transition-colors hover:text-primary/80"
+          >
+            {renderFormattedInline(linkText)}
+          </a>
+        );
+      }
+    } else if (match[3] !== undefined) {
+      elements.push(
+        <code
+          key={match.index}
+          className="rounded bg-muted px-1.5 py-0.5 text-xs font-mono text-foreground"
+        >
+          {match[3]}
+        </code>
+      );
+    } else if (match[4] !== undefined || match[5] !== undefined) {
+      const content = match[4] !== undefined ? match[4] : match[5];
+      elements.push(
+        <strong key={match.index} className="font-bold text-foreground">
+          <em className="italic">{renderFormattedInline(content)}</em>
+        </strong>
+      );
+    } else if (match[6] !== undefined || match[7] !== undefined) {
+      const content = match[6] !== undefined ? match[6] : match[7];
+      elements.push(
+        <strong key={match.index} className="font-bold text-foreground">
+          {renderFormattedInline(content)}
+        </strong>
+      );
+    } else if (match[8] !== undefined || match[9] !== undefined) {
+      const content = match[8] !== undefined ? match[8] : match[9];
+      elements.push(
+        <em key={match.index} className="italic">
+          {renderFormattedInline(content)}
+        </em>
+      );
+    }
+
+    lastIndex = regex.lastIndex;
+  }
+
+  if (lastIndex < input.length) {
+    elements.push(input.slice(lastIndex));
+  }
+
+  return elements.length === 1 ? elements[0] : elements;
+}
+
+interface BlogQuizToolCtaProps {
+  post: BlogPostData;
+  target: BlogQuizToolTarget;
+  language: string;
+  onCtaClick: (targetUrl: string, type: string) => void;
+}
+
+const CTA_TRUST_BADGES: Record<string, { privacy: string; instant: string }> = {
+  en: { privacy: "100% Private · No Login Required", instant: "Instant Score & CBT Insights" },
+  id: { privacy: "100% Privat & Tanpa Login", instant: "Hasil & Wawasan CBT Instan" },
+  de: { privacy: "100% Privat · Keine Anmeldung", instant: "Sofortige Auswertung & CBT-Einblicke" },
+  fr: { privacy: "100% Privé · Sans Inscription", instant: "Score Immédiat & Analyse TCC" },
+  es: { privacy: "100% Privado · Sin Registro", instant: "Puntuación Inmediata y Guía TCC" },
+  ja: { privacy: "完全プライベート · 登録不要", instant: "即時スコア & CBTインサイト" },
+  ko: { privacy: "100% 비공개 · 로그인 불필요", instant: "즉각적인 결과 및 CBT 인사이트" },
+  zh: { privacy: "100% 私密 · 无需注册", instant: "即时评分与 CBT 洞察" },
+};
+
+const BlogQuizToolCta: React.FC<BlogQuizToolCtaProps> = ({
+  target,
+  language,
+  onCtaClick,
+}) => {
+  const trustBadge = CTA_TRUST_BADGES[language] ?? CTA_TRUST_BADGES.en;
+
+  return (
+    <section
+      data-testid="blog-quiz-tool-cta"
+      className="my-12 overflow-hidden rounded-3xl border border-primary/30 bg-gradient-to-br from-primary/10 via-card to-background p-6 shadow-sm transition-all sm:p-8"
+      aria-label={target.quizTitle}
+    >
+      <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
+        <div className="max-w-xl space-y-3">
+          <div className="flex flex-wrap items-center gap-2">
+            <span className="inline-flex items-center gap-1 rounded-full bg-primary/15 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-primary">
+              <Sparkles className="h-3.5 w-3.5" />
+              {target.quizEyebrow}
+            </span>
+            <span className="inline-flex items-center rounded-full border border-border/60 bg-background/80 px-2.5 py-0.5 text-xs font-medium text-muted-foreground">
+              {target.quizBadge}
+            </span>
+          </div>
+
+          <h3 className="font-serif text-2xl font-bold leading-tight text-foreground sm:text-3xl">
+            {renderFormattedInline(target.quizTitle)}
+          </h3>
+
+          <p className="text-sm leading-relaxed text-foreground/80 sm:text-base">
+            {renderFormattedInline(target.quizDescription)}
+          </p>
+
+          <div className="flex flex-wrap items-center gap-4 pt-1 text-xs text-muted-foreground">
+            <span className="inline-flex items-center gap-1.5 font-medium">
+              <CheckCircle2 className="h-4 w-4 text-emerald-500" />
+              {trustBadge.privacy}
+            </span>
+            <span className="inline-flex items-center gap-1.5 font-medium">
+              <CheckCircle2 className="h-4 w-4 text-emerald-500" />
+              {trustBadge.instant}
+            </span>
+          </div>
+        </div>
+
+        <div className="flex flex-col gap-3 sm:flex-row lg:flex-col lg:min-w-[220px]">
+          <Link
+            to={target.quizHref}
+            data-testid="blog-quiz-tool-cta-link"
+            className="group inline-flex items-center justify-center gap-2 rounded-full bg-primary px-6 py-3.5 text-sm font-semibold text-primary-foreground shadow-md transition-all hover:bg-primary/90 hover:shadow-lg active:scale-[0.98]"
+            onClick={() => onCtaClick(target.quizHref, "primary_quiz")}
+          >
+            <span>{target.primaryButtonLabel}</span>
+            <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+          </Link>
+
+          {target.secondaryTool && (
+            <Link
+              to={target.secondaryTool.href}
+              data-testid="blog-quiz-tool-cta-secondary-link"
+              className="inline-flex items-center justify-center gap-2 rounded-full border border-border/80 bg-background/90 px-5 py-3 text-xs font-semibold text-foreground transition-colors hover:border-primary/40 hover:bg-primary/5 hover:text-primary"
+              onClick={() => onCtaClick(target.secondaryTool!.href, "secondary_tool")}
+            >
+              <Activity className="h-3.5 w-3.5 text-primary" />
+              <span>{target.secondaryTool.buttonLabel}</span>
+            </Link>
+          )}
+        </div>
+      </div>
+    </section>
+  );
+};
+
 const renderSection = (section: BlogSection, index: number) => {
+  if (typeof section.content === "string" && section.content.trim().startsWith("<script")) {
+    return null;
+  }
+
   switch (section.type) {
     case "h2":
       return (
@@ -2764,7 +2967,7 @@ const renderSection = (section: BlogSection, index: number) => {
           id={slugifyHeading(section.content as string)}
           className="mt-10 mb-4 scroll-mt-20 font-serif text-2xl font-bold text-foreground"
         >
-          {section.content as string}
+          {renderFormattedInline(section.content as string)}
         </h2>
       );
     case "h3":
@@ -2773,13 +2976,13 @@ const renderSection = (section: BlogSection, index: number) => {
           key={index}
           className="mt-8 mb-3 font-serif text-xl font-semibold text-foreground"
         >
-          {section.content as string}
+          {renderFormattedInline(section.content as string)}
         </h3>
       );
     case "p":
       return (
         <p key={index} className="mb-4 leading-relaxed text-foreground/85">
-          {section.content as string}
+          {renderFormattedInline(section.content as string)}
         </p>
       );
     case "ul":
@@ -2788,7 +2991,7 @@ const renderSection = (section: BlogSection, index: number) => {
           {(section.content as string[]).map((item, i) => (
             <li key={i} className="flex gap-2 leading-relaxed text-foreground/85">
               <span className="mt-2 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-primary" />
-              {item}
+              <span>{renderFormattedInline(item)}</span>
             </li>
           ))}
         </ul>
@@ -2799,7 +3002,7 @@ const renderSection = (section: BlogSection, index: number) => {
           {(section.content as string[]).map((item, i) => (
             <li key={i} className="flex gap-3 leading-relaxed text-foreground/85">
               <span className="flex-shrink-0 font-semibold text-primary">{i + 1}.</span>
-              {item}
+              <span>{renderFormattedInline(item)}</span>
             </li>
           ))}
         </ol>
@@ -2810,7 +3013,7 @@ const renderSection = (section: BlogSection, index: number) => {
           key={index}
           className="my-6 rounded-xl border-l-4 border-primary bg-primary/5 px-5 py-4 italic leading-relaxed text-foreground/90"
         >
-          {section.content as string}
+          {renderFormattedInline(section.content as string)}
         </blockquote>
       );
     default:
@@ -2867,6 +3070,7 @@ const BlogPost: React.FC = () => {
   const relatedPosts = getRelatedPosts(post.slug, 3);
   const recommendationSnapshot = getRecommendationSnapshot(post, language);
   const internalLinkCards = getInternalLinkCards(post.slug);
+  const quizToolTarget = getBlogQuizOrTool(post, language);
 
   const nujuEntity = {
     "@type": "Organization",
@@ -3073,14 +3277,14 @@ const BlogPost: React.FC = () => {
           data-speakable-title="true"
           className="mb-6 font-serif text-3xl font-bold leading-tight text-foreground sm:text-4xl"
         >
-          {post.title}
+          {renderFormattedInline(post.title)}
         </h1>
 
         <p
           data-speakable-bluf="true"
           className="mb-10 border-b border-border/40 pb-10 text-lg leading-relaxed text-muted-foreground"
         >
-          {post.description}
+          {renderFormattedInline(post.description)}
         </p>
 
         {tocItems.length >= 3 && (
@@ -3099,7 +3303,7 @@ const BlogPost: React.FC = () => {
                     href={`#${item.id}`}
                     className="text-foreground/80 transition-colors hover:text-primary"
                   >
-                    {i + 1}. {item.label}
+                    {i + 1}. {renderFormattedInline(item.label)}
                   </a>
                 </li>
               ))}
@@ -3119,6 +3323,22 @@ const BlogPost: React.FC = () => {
             </React.Fragment>
           ))}
         </div>
+
+        {quizToolTarget && (
+          <BlogQuizToolCta
+            post={post}
+            target={quizToolTarget}
+            language={language}
+            onCtaClick={(href, type) =>
+              events.trackRecommendationCtaClick(
+                post.slug,
+                post.category,
+                `blog_article_${type}_cta`,
+                "quiz",
+              )
+            }
+          />
+        )}
 
         {internalLinkCards.length > 0 && (
           <section
@@ -3157,10 +3377,10 @@ const BlogPost: React.FC = () => {
                     {link.eyebrow}
                   </p>
                   <h3 className="font-serif text-lg font-semibold leading-snug text-foreground transition-colors group-hover:text-primary">
-                    {link.post.title}
+                    {renderFormattedInline(link.post.title)}
                   </h3>
                   <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                    {link.body}
+                    {renderFormattedInline(link.body)}
                   </p>
                 </Link>
               ))}
@@ -3174,10 +3394,10 @@ const BlogPost: React.FC = () => {
             className="mt-12 rounded-3xl border border-primary/20 bg-primary/5 p-6 sm:p-8"
           >
             <p className="mb-2 text-xs font-semibold uppercase tracking-[0.24em] text-primary">
-              {recommendationSnapshot.eyebrow}
+              {renderFormattedInline(recommendationSnapshot.eyebrow)}
             </p>
             <h2 className="font-serif text-2xl font-bold text-foreground sm:text-3xl">
-              {recommendationSnapshot.title}
+              {renderFormattedInline(recommendationSnapshot.title)}
             </h2>
 
             <div className="mt-6 grid gap-4 sm:grid-cols-2">
@@ -3187,10 +3407,10 @@ const BlogPost: React.FC = () => {
                   className="rounded-2xl border border-primary/10 bg-background/80 p-4"
                 >
                   <p className="text-sm font-semibold uppercase tracking-wide text-primary">
-                    {point.label}
+                    {renderFormattedInline(point.label)}
                   </p>
                   <p className="mt-2 text-sm leading-relaxed text-foreground/85">
-                    {point.body}
+                    {renderFormattedInline(point.body)}
                   </p>
                 </div>
               ))}
@@ -3258,11 +3478,11 @@ const BlogPost: React.FC = () => {
                   className="group rounded-xl border border-border/50 bg-card/40 px-5 py-4 transition-colors hover:border-primary/30"
                 >
                   <summary className="cursor-pointer list-none font-serif text-lg font-semibold text-foreground marker:hidden">
-                    {item.question}
+                    {renderFormattedInline(item.question)}
                   </summary>
-                  <p className="mt-3 leading-relaxed text-foreground/85">
-                    {item.answer}
-                  </p>
+                  <div className="mt-3 leading-relaxed text-foreground/85">
+                    {renderFormattedInline(item.answer)}
+                  </div>
                 </details>
               ))}
             </div>
@@ -3282,9 +3502,29 @@ const BlogPost: React.FC = () => {
             {copy.ctaBody}
           </p>
           <div className="flex flex-col items-center justify-center gap-3 sm:flex-row">
+            {quizToolTarget && (
+              <Link
+                to={quizToolTarget.quizHref}
+                className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground shadow-sm transition-all hover:bg-primary/90 hover:shadow-md"
+                onClick={() =>
+                  events.trackRecommendationCtaClick(
+                    post.slug,
+                    post.category,
+                    "blog_article_footer_quiz_cta",
+                    "quiz",
+                  )
+                }
+              >
+                {quizToolTarget.primaryButtonLabel} <ArrowRight className="h-4 w-4" />
+              </Link>
+            )}
             <Link
               to={`/onboarding?source=blog_article_cta_${post.slug}`}
-              className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition-all hover:opacity-90"
+              className={
+                quizToolTarget
+                  ? "inline-flex items-center justify-center gap-2 rounded-full border border-border/70 bg-background px-5 py-3 text-sm font-semibold text-foreground transition-colors hover:border-primary/40 hover:text-primary"
+                  : "inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition-all hover:opacity-90"
+              }
               onClick={() =>
                 events.trackRecommendationCtaClick(
                   post.slug,
@@ -3332,7 +3572,7 @@ const BlogPost: React.FC = () => {
                     {related.category}
                   </span>
                   <h3 className="mb-2 font-serif text-base font-semibold leading-snug text-foreground transition-colors group-hover:text-primary">
-                    {related.title}
+                    {renderFormattedInline(related.title)}
                   </h3>
                   <span className="mt-auto flex items-center gap-1 text-xs text-muted-foreground">
                     <Clock className="h-3 w-3" />

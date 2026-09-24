@@ -36,6 +36,11 @@ const PRERENDER_STYLE = `
   .nuju-prerender a:hover {
     text-decoration: underline;
   }
+  .nuju-prerender strong,
+  .nuju-card strong {
+    font-weight: 700;
+    color: #111827;
+  }
   .nuju-card {
     border: 1px solid rgba(124, 110, 219, 0.14);
     border-radius: 28px;
@@ -305,6 +310,56 @@ function escapeAttribute(value) {
   return escapeHtml(value).replace(/`/g, "&#96;");
 }
 
+function formatBlogHtml(value) {
+  if (!value) return "";
+  const str = String(value);
+  if (str.trim().startsWith("<script")) return "";
+
+  const regex = /\[([^\]]+)\]\(([^)]+)\)|`([^`]+)`|\*\*\*([^\s*]|(?:[^\s*][\s\S]*?[^\s*]))\*\*\*|___([^\s_]|(?:[^\s_][\s\S]*?[^\s_]))___|\*\*([^\s]|(?:[^\s][\s\S]*?[^\s]))\*\*|__([^\s_]|(?:[^\s_][\s\S]*?[^\s_]))__|(?<!\*)\*([^*\n]+?)\*(?!\*)|(?<![a-zA-Z0-9_])_([^\s_]|(?:[^\s_][^_\n]*?[^\s_]))_(?![a-zA-Z0-9_])/g;
+  let lastIndex = 0;
+  let result = "";
+  let match;
+
+  while ((match = regex.exec(str)) !== null) {
+    if (match.index > lastIndex) {
+      result += escapeHtml(str.slice(lastIndex, match.index));
+    }
+
+    if (match[1] !== undefined && match[2] !== undefined) {
+      const linkText = match[1];
+      const linkUrl = match[2];
+      const isInternal =
+        linkUrl.startsWith("/") ||
+        linkUrl.startsWith("#") ||
+        linkUrl.startsWith("https://nuju.app");
+      const cleanUrl = isInternal
+        ? linkUrl.replace(/^https:\/\/nuju\.app/, "") || "/"
+        : linkUrl;
+      const targetAttr = isInternal ? "" : ' target="_blank" rel="noopener noreferrer"';
+      result += `<a href="${escapeAttribute(cleanUrl)}"${targetAttr}>${formatBlogHtml(linkText)}</a>`;
+    } else if (match[3] !== undefined) {
+      result += `<code>${escapeHtml(match[3])}</code>`;
+    } else if (match[4] !== undefined || match[5] !== undefined) {
+      const content = match[4] !== undefined ? match[4] : match[5];
+      result += `<strong><em>${formatBlogHtml(content)}</em></strong>`;
+    } else if (match[6] !== undefined || match[7] !== undefined) {
+      const content = match[6] !== undefined ? match[6] : match[7];
+      result += `<strong>${formatBlogHtml(content)}</strong>`;
+    } else if (match[8] !== undefined || match[9] !== undefined) {
+      const content = match[8] !== undefined ? match[8] : match[9];
+      result += `<em>${formatBlogHtml(content)}</em>`;
+    }
+
+    lastIndex = regex.lastIndex;
+  }
+
+  if (lastIndex < str.length) {
+    result += escapeHtml(str.slice(lastIndex));
+  }
+
+  return result;
+}
+
 function normalizeText(value) {
   return String(value)
     .replace(/—|–/g, "-")
@@ -385,8 +440,8 @@ function renderFaq(faqs) {
     .map(
       (item) => `
         <details>
-          <summary>${escapeHtml(item.question)}</summary>
-          <p>${escapeHtml(item.answer)}</p>
+          <summary>${formatBlogHtml(item.question)}</summary>
+          <p>${formatBlogHtml(item.answer)}</p>
         </details>
       `,
     )
@@ -410,8 +465,8 @@ function renderLinkCardGrid(items) {
           (item) => `
             <article class="nuju-mini-card">
               ${item.badge ? `<p class="nuju-eyebrow">${escapeHtml(item.badge)}</p>` : ""}
-              <h3><a href="${escapeAttribute(item.href)}">${escapeHtml(item.title)}</a></h3>
-              <p>${escapeHtml(item.description)}</p>
+              <h3><a href="${escapeAttribute(item.href)}">${formatBlogHtml(item.title)}</a></h3>
+              <p>${formatBlogHtml(item.description)}</p>
             </article>
           `,
         )
@@ -1574,8 +1629,8 @@ function renderBlogIndexBody(posts) {
         .map(
           (post) => `
             <article class="nuju-mini-card">
-              <h3><a href="/blog/${escapeAttribute(post.slug)}">${escapeHtml(post.title)}</a></h3>
-              <p>${escapeHtml(post.description)}</p>
+              <h3><a href="/blog/${escapeAttribute(post.slug)}">${formatBlogHtml(post.title)}</a></h3>
+              <p>${formatBlogHtml(post.description)}</p>
               <div class="nuju-chip-row">
                 <span class="nuju-chip">${escapeHtml(post.category)}</span>
                 <span class="nuju-chip">${escapeHtml(`${post.readingTime} min read`)}</span>
@@ -1707,26 +1762,50 @@ function renderGuideBody() {
   });
 }
 
+function renderBlogQuizToolCta(quizOrTool) {
+  if (!quizOrTool) return "";
+  const badge = quizOrTool.badge || quizOrTool.quizBadge || "";
+  const title = quizOrTool.title || quizOrTool.quizTitle || "";
+  const description = quizOrTool.description || quizOrTool.quizDescription || "";
+  const href = quizOrTool.href || quizOrTool.quizHref || "/quiz";
+  const buttonText = quizOrTool.buttonText || quizOrTool.primaryButtonLabel || "Take Quiz";
+
+  return `
+    <section class="nuju-section nuju-quiz-tool-card" style="margin-top: 36px; padding: 24px; border-radius: 20px; border: 1.5px solid #c7d2fe; background: linear-gradient(135deg, rgba(238, 242, 255, 0.7) 0%, rgba(245, 243, 255, 0.7) 100%);">
+      <span style="display: inline-block; padding: 4px 10px; border-radius: 9999px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; background: #e0e7ff; color: #4338ca; margin-bottom: 12px;">${escapeHtml(badge)}</span>
+      <h2 style="font-size: 1.35rem; font-weight: 700; color: #1e1b4b; margin: 0 0 8px;">${formatBlogHtml(title)}</h2>
+      <p style="font-size: 0.95rem; color: #374151; margin: 0 0 16px; line-height: 1.6;">${formatBlogHtml(description)}</p>
+      <a href="${escapeAttribute(href)}" style="display: inline-flex; align-items: center; justify-content: center; padding: 12px 22px; border-radius: 12px; font-size: 0.925rem; font-weight: 600; color: #ffffff; background: linear-gradient(135deg, #6366f1 0%, #7c3aed 100%); text-decoration: none; box-shadow: 0 4px 12px rgba(99, 102, 241, 0.25);">${escapeHtml(buttonText)} &rarr;</a>
+    </section>
+  `;
+}
+
 function renderBlogSection(section, index, slugifyHeading) {
   const key = `${section.type}-${index}`;
 
+  if (typeof section.content === "string" && section.content.trim().startsWith("<script")) {
+    return "";
+  }
+
   switch (section.type) {
     case "h2":
-      return `<h2 id="${escapeAttribute(slugifyHeading(String(section.content)))}">${escapeHtml(section.content)}</h2>`;
+      return `<h2 id="${escapeAttribute(slugifyHeading(String(section.content)))}">${formatBlogHtml(section.content)}</h2>`;
     case "h3":
-      return `<h3>${escapeHtml(section.content)}</h3>`;
-    case "p":
-      return `<p>${escapeHtml(section.content)}</p>`;
+      return `<h3>${formatBlogHtml(section.content)}</h3>`;
+    case "p": {
+      const formatted = formatBlogHtml(section.content);
+      return formatted ? `<p>${formatted}</p>` : "";
+    }
     case "ul":
       return `<ul class="nuju-list">${section.content
-        .map((item) => `<li>${escapeHtml(item)}</li>`)
+        .map((item) => `<li>${formatBlogHtml(item)}</li>`)
         .join("")}</ul>`;
     case "ol":
       return `<ol class="nuju-ordered">${section.content
-        .map((item) => `<li>${escapeHtml(item)}</li>`)
+        .map((item) => `<li>${formatBlogHtml(item)}</li>`)
         .join("")}</ol>`;
     case "callout":
-      return `<blockquote class="nuju-callout">${escapeHtml(section.content)}</blockquote>`;
+      return `<blockquote class="nuju-callout">${formatBlogHtml(section.content)}</blockquote>`;
     default:
       return `<!-- skipped ${escapeAttribute(key)} -->`;
   }
@@ -1803,6 +1882,8 @@ const PRERENDER_LOCALE_MAP = {
   ja: "ja-JP",
   fr: "fr-FR",
   ko: "ko-KR",
+  es: "es-ES",
+  zh: "zh-CN",
 };
 
 const PRERENDER_OG_LOCALE_MAP = {
@@ -1812,6 +1893,19 @@ const PRERENDER_OG_LOCALE_MAP = {
   ja: "ja_JP",
   fr: "fr_FR",
   ko: "ko_KR",
+  es: "es_ES",
+  zh: "zh_CN",
+};
+
+const PRERENDER_LANGUAGE_NAMES = {
+  id: "Bahasa Indonesia",
+  en: "English",
+  de: "Deutsch",
+  fr: "Français",
+  es: "Español",
+  ja: "日本語",
+  ko: "한국어",
+  zh: "中文",
 };
 
 const PRERENDER_BLOG_COPY = {
@@ -1850,6 +1944,20 @@ const PRERENDER_BLOG_COPY = {
     ctaBody: "하루 단 30초. 음성이나 텍스트로 털어놓으면 AI가 감정 패턴을 분석해 드립니다.",
     ctaLabel: "무료로 시작하기",
   },
+  es: {
+    keepReading: "Seguir leyendo",
+    faqTitle: "Preguntas frecuentes",
+    ctaTitle: "Comienza tu primer diario hoy",
+    ctaBody: "Nuju toma solo 30 segundos al día. Registra tu estado de ánimo, obtén análisis de IA y comprende tus patrones emocionales.",
+    ctaLabel: "Comenzar gratis",
+  },
+  zh: {
+    keepReading: "继续阅读",
+    faqTitle: "常见问题解答",
+    ctaTitle: "今天开始您的第一篇反思日记",
+    ctaBody: "Nuju 每天只需 30 秒。语音或文字倾诉，AI 深度解析情绪模式，开启心理觉察。",
+    ctaLabel: "免费开始体验",
+  },
   en: {
     keepReading: "Keep reading",
     faqTitle: "Frequently asked questions",
@@ -1860,7 +1968,7 @@ const PRERENDER_BLOG_COPY = {
 };
 
 function renderBlogPostBody(post, relatedPosts, helpers) {
-  const { getPostLanguage, slugifyHeading } = helpers;
+  const { getPostLanguage, slugifyHeading, getBlogQuizOrTool } = helpers;
   const language = getPostLanguage(post);
   const locale = PRERENDER_LOCALE_MAP[language] || "en-US";
   const copy = PRERENDER_BLOG_COPY[language] || PRERENDER_BLOG_COPY.en;
@@ -1869,6 +1977,9 @@ function renderBlogPostBody(post, relatedPosts, helpers) {
     post.updatedAt && post.updatedAt !== post.publishedAt
       ? formatDate(post.updatedAt, locale)
       : null;
+
+  const quizOrTool = getBlogQuizOrTool ? getBlogQuizOrTool(post, language) : null;
+  const quizToolHtml = renderBlogQuizToolCta(quizOrTool);
 
   const relatedHtml =
     relatedPosts.length > 0
@@ -1880,8 +1991,8 @@ function renderBlogPostBody(post, relatedPosts, helpers) {
               .map(
                 (related) => `
                   <article class="nuju-mini-card">
-                    <h3><a href="/blog/${escapeAttribute(related.slug)}">${escapeHtml(related.title)}</a></h3>
-                    <p>${escapeHtml(related.description)}</p>
+                    <h3><a href="/blog/${escapeAttribute(related.slug)}">${formatBlogHtml(related.title)}</a></h3>
+                    <p>${formatBlogHtml(related.description)}</p>
                   </article>
                 `,
               )
@@ -1918,8 +2029,8 @@ function renderBlogPostBody(post, relatedPosts, helpers) {
       <article class="nuju-card">
         <header class="nuju-article-header">
           <p class="nuju-article-kicker">${escapeHtml(post.category)}</p>
-          <h1>${escapeHtml(post.title)}</h1>
-          <p>${escapeHtml(post.description)}</p>
+          <h1>${formatBlogHtml(post.title)}</h1>
+          <p>${formatBlogHtml(post.description)}</p>
           <div class="nuju-chip-row">
             <span class="nuju-chip">${escapeHtml(formattedDate)}</span>
             ${
@@ -1930,7 +2041,7 @@ function renderBlogPostBody(post, relatedPosts, helpers) {
                 : ""
             }
             <span class="nuju-chip">${escapeHtml(`${post.readingTime} min read`)}</span>
-            <span class="nuju-chip">${escapeHtml(language === "id" ? "Bahasa Indonesia" : "English")}</span>
+            <span class="nuju-chip">${escapeHtml(PRERENDER_LANGUAGE_NAMES[language] || "English")}</span>
           </div>
         </header>
         <div class="nuju-grid">
@@ -1938,6 +2049,7 @@ function renderBlogPostBody(post, relatedPosts, helpers) {
             .map((section, index) => renderBlogSection(section, index, slugifyHeading))
             .join("")}
         </div>
+        ${quizToolHtml}
         ${faqHtml}
         ${productLinkHtml}
         ${renderInternalLinkCluster(post, helpers)}
@@ -2660,6 +2772,7 @@ function buildBlogPages(helpers) {
     getPostLanguage,
     LANGUAGE_ALTERNATES,
     slugifyHeading,
+    getBlogQuizOrTool,
   } = helpers;
 
   const posts = getPublishedBlogPosts(new Date()).map(normalizeBlogPost);
@@ -2753,6 +2866,7 @@ function buildBlogPages(helpers) {
         getPostLanguage,
         publishedPostBySlug,
         slugifyHeading,
+        getBlogQuizOrTool,
       }),
     };
   });
@@ -2767,6 +2881,7 @@ async function prerender() {
     getPostLanguage: blogModule.getPostLanguage,
     LANGUAGE_ALTERNATES: blogModule.LANGUAGE_ALTERNATES,
     slugifyHeading: blogModule.slugifyHeading,
+    getBlogQuizOrTool: blogModule.getBlogQuizOrTool,
   };
 
   const publishedPosts = helpers.getPublishedBlogPosts(new Date()).map(normalizeBlogPost);

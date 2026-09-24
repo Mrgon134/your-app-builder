@@ -135,6 +135,11 @@ const softwareApplicationSchema = {
   applicationSubCategory: "Mood Tracking and Emotional Wellness",
   operatingSystem: "Web browser, iOS, Android",
   url: CANONICAL,
+  downloadUrl: "https://apps.apple.com/us/app/nuju/id6763682187",
+  sameAs: [
+    "https://apps.apple.com/us/app/nuju/id6763682187",
+    "https://www.producthunt.com/products/nuju"
+  ],
   description:
     "Nuju is the mood tracker app that pairs 10-second mood and energy check-ins with optional written reflection, 30-day trend charts, and AI summaries that interpret what changed.",
   image: "https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image",
@@ -174,8 +179,8 @@ const MoodTracker: React.FC = () => {
   return (
     <div className="min-h-screen bg-background">
       <SEOHead
-        title="AI Mood Tracker: 10-Second Check-Ins & Real Patterns"
-        description="Track mood in 10 seconds. Nuju turns daily check-ins into 30-day emotional patterns, pixel calendars, and weekly AI summaries. Private by default. Start free."
+        title="Mood Tracker App: 10-Second Daily Check-Ins & AI Insights | Nuju"
+        description="Track mood in 10 seconds with Nuju. The AI mood tracker app for 30-day emotional trends, pixel calendars, and gentle weekly pattern insights. Start free."
         canonical={CANONICAL}
         breadcrumbs={[
           { name: "Home", url: "https://nuju.app/" },

@@ -619,3 +619,10 @@ input[type="range"]::-webkit-slider-thumb {
   background-size: 200% 200%;
   animation: gradient-flow 8s ease infinite;
 }
+
+/* Blog article prose typography & high contrast bold */
+.prose-nuju strong,
+.prose strong {
+  font-weight: 700;
+  color: hsl(var(--foreground));
+}

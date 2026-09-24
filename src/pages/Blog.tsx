@@ -5,6 +5,7 @@ import AppStoreCta from "@/components/AppStoreCta";
 import SEOHead from "@/components/SEOHead";
 import AdSenseBanner from "@/components/AdSenseBanner";
 import { getPublishedBlogPosts } from "@/data/blog-posts";
+import { renderFormattedInline } from "./BlogPost";
 import { usePostHogEvents } from "@/hooks/use-posthog-events";
 
 const RECOMMENDATION_HUB_ORDER = [
@@ -215,10 +216,10 @@ const Blog: React.FC = () => {
                     </span>
                   </div>
                   <h3 className="mb-2 font-serif text-lg font-semibold leading-snug text-foreground transition-colors group-hover:text-primary">
-                    {post.title}
+                    {renderFormattedInline(post.title)}
                   </h3>
                   <p className="mb-4 flex-1 text-sm leading-relaxed text-muted-foreground line-clamp-4">
-                    {post.description}
+                    {renderFormattedInline(post.description)}
                   </p>
                   <div className="flex items-center justify-between text-xs text-muted-foreground">
                     <span className="flex items-center gap-1">
@@ -307,10 +308,10 @@ const Blog: React.FC = () => {
                     </span>
                   </div>
                   <h2 className="mb-2 font-serif text-xl font-semibold text-foreground leading-snug group-hover:text-primary transition-colors">
-                    {post.title}
+                    {renderFormattedInline(post.title)}
                   </h2>
                   <p className="mb-4 flex-1 text-sm text-muted-foreground leading-relaxed line-clamp-3">
-                    {post.description}
+                    {renderFormattedInline(post.description)}
                   </p>
                   <div className="flex items-center justify-between text-xs text-muted-foreground">
                     <span className="flex items-center gap-1">

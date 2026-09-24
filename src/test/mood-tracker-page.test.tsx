@@ -45,7 +45,7 @@ describe("MoodTracker landing page", () => {
     renderPage();
     expect(seoHeadProps).toHaveBeenCalledWith(
       expect.objectContaining({
-        title: "AI Mood Tracker: 10-Second Check-Ins & Real Patterns",
+        title: "Mood Tracker App: 10-Second Daily Check-Ins & AI Insights | Nuju",
         canonical: "https://nuju.app/mood-tracker",
       }),
     );

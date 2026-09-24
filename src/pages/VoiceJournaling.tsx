@@ -113,6 +113,11 @@ const softwareApplicationSchema = {
   applicationSubCategory: "Voice Journaling and Reflection",
   operatingSystem: "Web browser, iOS, Android",
   url: CANONICAL,
+  downloadUrl: "https://apps.apple.com/us/app/nuju/id6763682187",
+  sameAs: [
+    "https://apps.apple.com/us/app/nuju/id6763682187",
+    "https://www.producthunt.com/products/nuju"
+  ],
   description:
     "Nuju voice journaling lets you talk for a minute, get an automatic transcript and AI reflection, and feed spoken entries into the same mood and pattern layer as your written journal.",
   image: "https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image",

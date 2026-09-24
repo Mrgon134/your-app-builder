@@ -135,6 +135,11 @@ const softwareApplicationSchema = {
   applicationSubCategory: "AI Journaling and Mood Tracking",
   operatingSystem: "Web browser, iOS, Android",
   url: CANONICAL,
+  downloadUrl: "https://apps.apple.com/us/app/nuju/id6763682187",
+  sameAs: [
+    "https://apps.apple.com/us/app/nuju/id6763682187",
+    "https://www.producthunt.com/products/nuju"
+  ],
   description:
     "Nuju is the AI journaling app that pairs 30-second mood check-ins with written reflection, four coach personas, weekly AI summaries, and pattern discovery across your entries.",
   image: "https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image",
