@@ -2680,6 +2680,8 @@ const COMMERCIAL_DESTINATION_BY_SLUG: Record<string, CommercialDestination> = {
   "journaling-for-adhd": { href: "/voice-journaling", label: "See voice journaling on Nuju" },
   "apple-journal-alternatives": { href: "/ai-journal", label: "Try Nuju Cross-Platform Journal Free" },
   "day-one-alternative": { href: "/ai-journal", label: "Try Nuju AI Journal Free" },
+  "journal-prompts-for-mental-health": { href: "/ai-journal", label: "Try Nuju Prompts & AI Reflection Free" },
+  "best-mental-health-apps": { href: "/mood-tracker", label: "See the Nuju mood tracker" },
 };
 
 const DEFAULT_COMMERCIAL_DESTINATION: CommercialDestination = {

@@ -2099,6 +2099,30 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/best-self-reflection-apps"/>
   </url>
   <url>
+    <loc>https://nuju.app/blog/journal-prompts-for-mental-health</loc>
+    <lastmod>2026-09-24</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>60 Journal Prompts for Mental Health (That Actually Help)</image:title>
+      <image:caption>Feeling overwhelmed or stuck? These 60 science-backed journal prompts for mental health help untangle anxiety, combat burnout, and rebuild emotional clarity.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/journal-prompts-for-mental-health"/>
+  </url>
+  <url>
+    <loc>https://nuju.app/blog/best-mental-health-apps</loc>
+    <lastmod>2026-09-24</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>6 Best Mental Health Apps in 2026: Tested for Daily Stress &amp; Clarity</image:title>
+      <image:caption>Tired of generic wellness apps? We tested 6 top mental health phone apps for daily check-in speed, mood tracking, AI reflection, and real anxiety relief.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/best-mental-health-apps"/>
+  </url>
+  <url>
     <loc>https://nuju.app/blog/daily-reflection-app</loc>
     <lastmod>2026-05-24</lastmod>
     <priority>0.7</priority>

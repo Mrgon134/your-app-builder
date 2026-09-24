@@ -2479,6 +2479,179 @@ const RAW_BLOG_POSTS: BlogPost[] = [
     ],
   },
   {
+    slug: "journal-prompts-for-mental-health",
+    title: "60 Journal Prompts for Mental Health (That Actually Help)",
+    description: "Feeling overwhelmed or stuck? These 60 science-backed journal prompts for mental health help untangle anxiety, combat burnout, and rebuild emotional clarity.",
+    metaTitle: "60 Journal Prompts for Mental Health: Anxiety, Burnout, & Clarity | Nuju",
+    metaDescription: "Feeling overwhelmed? Try these 60 science-backed journal prompts for mental health. Categorized for anxiety, depression fog, burnout, and daily reset.",
+    publishedAt: "2026-05-24",
+    updatedAt: "2026-09-24",
+    readingTime: 9,
+    category: "Journaling Tips",
+    sections: [
+      { type: "p", content: "Short answer: staring at a blank journal page while overwhelmed only creates more anxiety. These 60 research-backed journal prompts for mental health give your brain structured scaffolding — taking less than five minutes a day to offload stress and name what you feel." },
+      { type: "p", content: "Decades of psychological research — starting with Dr. James Pennebaker's expressive writing studies and corroborated by UCLA's neuroscience lab — prove that affect labeling (translating raw emotion into language) measurably calms amygdala reactivity. When you write, your prefrontal cortex takes over, moving you out of fight-or-flight into cognitive clarity." },
+      { type: "h2", content: "How to journal for mental health (without burning out)" },
+      { type: "ul", content: [
+        "The 5-minute rule: You do not need to write an essay. Writing one honest paragraph in 3 to 5 minutes delivers 90% of the emotional processing benefit.",
+        "Consistency beats intensity: Daily short check-ins create emotional awareness faster than a 2-hour weekend venting session.",
+        "Never edit or censor yourself: Your journal is not a high school essay. Spelling, grammar, and neatness do not matter — honesty does.",
+        "Combine mood tracking with writing: Rating your mood and energy level before you write gives objective context to your words."
+      ] },
+      { type: "h2", content: "Prompts for anxiety, racing thoughts, and overthinking" },
+      { type: "ul", content: [
+        "What is the single loudest thought in my head right now, and what evidence do I have that it is 100% true?",
+        "If my worst-case prediction actually happened, what are three realistic steps I would take to handle it?",
+        "What is currently outside my control, and what is one small thing inside my control right now?",
+        "Where in my body am I holding tension right now, and what is that physical sensation trying to communicate?",
+        "What story is my anxious brain telling me about today, and what is a calmer, more grounded alternative story?",
+        "What would I say right now to a close friend who came to me with this exact worry?",
+        "What is something I have been avoiding because it makes me nervous, and what is the real risk of doing it?",
+        "If I look back on this situation in six months, what part of it will actually matter?",
+        "What boundary do I need to set today to protect my nervous system?",
+        "What is one past challenge I was convinced would break me, but that I survived and learned from?"
+      ] },
+      { type: "h2", content: "Prompts for burnout, overwhelm, and exhaustion" },
+      { type: "ul", content: [
+        "What drained the most energy from me over the past 48 hours?",
+        "Am I taking on responsibilities, emotional labor, or expectations that do not belong to me?",
+        "What would 'doing enough for today' look like if I gave myself full permission to rest?",
+        "What is one task on my to-do list that I can delete, delegate, or postpone until next week?",
+        "When was the last time I felt genuinely rested, and what was I doing?",
+        "What does my body need right now: water, sleep, physical movement, silence, or human connection?",
+        "How much of my current exhaustion comes from trying to please people or prove my worth?",
+        "What is one small boundary at work or home that would immediately protect my mental space?",
+        "If I could say a guilt-free 'no' to one request this week, what would it be?",
+        "What is one simple sensory comfort I can enjoy tonight (a warm bath, quiet music, a cup of tea)?"
+      ] },
+      { type: "h2", content: "Prompts for low mood, brain fog, and depressive numbness" },
+      { type: "ul", content: [
+        "What is one tiny victory from today, even if it was just getting out of bed or drinking a glass of water?",
+        "What does today feel like if I compare it to a weather pattern (fog, overcast, storm, or clearing)?",
+        "What is one truth about my life or character that my low mood is currently trying to hide from me?",
+        "Who is one safe person in my life I can send a simple text to right now?",
+        "What is one small, low-effort activity that usually brings 1% more lightness to my day?",
+        "Can I allow myself to feel sad or heavy today without judging myself for feeling this way?",
+        "What expectation can I let go of today so I don't feel like I am failing?",
+        "What is one memory from the past year that still brings a genuine smile or warmth to my chest?",
+        "What is something gentle I can do for my future self before going to sleep?",
+        "What would happen if I stopped fighting how I feel and simply let today be an easy, low-gear day?"
+      ] },
+      { type: "h2", content: "Prompts for self-compassion and quieting your inner critic" },
+      { type: "ul", content: [
+        "What is the meanest thing my inner critic said to me today, and how can I answer it with compassion?",
+        "In what ways am I being harder on myself than I would ever be on anyone else?",
+        "What mistake did I make recently that I need to forgive myself for?",
+        "What parts of my progress or growth have I been ignoring because they don't look 'perfect'?",
+        "What is one compliment someone gave me recently that I brushed off but should accept?",
+        "How have I shown strength or resilience in the past thirty days?",
+        "What does my inner child or younger self need to hear from me right now?",
+        "If I treated myself like someone I was responsible for helping, what would I tell myself today?",
+        "What makes me worthy of love and peace, completely independent of my productivity or achievements?",
+        "What is one kind, reassuring sentence I can repeat to myself when things get chaotic?"
+      ] },
+      { type: "h2", content: "Prompts for evening reflection and closing mental open loops" },
+      { type: "ul", content: [
+        "What were the three most peaceful or meaningful moments of my day?",
+        "What unfinished task or conversation is still looping in my head, and what is the next action I can take tomorrow?",
+        "What emotion surprised me today, and what triggered it?",
+        "What did I learn about my triggers, energy levels, or boundaries today?",
+        "What am I genuinely grateful for tonight that I didn't pay to have?",
+        "How did my morning mood compare to my evening mood, and what drove the difference?",
+        "What is one thought I need to leave on this paper so my brain can rest tonight?",
+        "Who made a positive impact on my day, and have I thanked them?",
+        "What is one thing I am looking forward to waking up to tomorrow?",
+        "What affirmation will I sleep on tonight?"
+      ] },
+      { type: "h2", content: "How AI reflection turns journal prompts into real self-awareness" },
+      { type: "p", content: "Writing prompts in a paper notebook is great for immediate emotional offloading. But after a few weeks, paper leaves you with a pile of pages you rarely re-read. That is where an AI-powered reflection tool changes the game." },
+      { type: "p", content: "Nuju combines guided prompts with daily 30-second mood logs, voice journaling, and automated weekly pattern recognition. Instead of writing into a void, Nuju's AI reads back your entries to highlight recurring emotional triggers, blind spots, and seasonal mood trends. You can try the [free web journaling reveal](/onboarding?source=blog_journal-prompts-for-mental-health) with zero setup, or download the official app on the [Apple App Store](https://apps.apple.com/us/app/nuju/id6763682187)." },
+      { type: "callout", content: "Crisis disclaimer: Journaling and self-reflection tools support personal awareness, mindfulness, and emotional regulation. They are not therapy, psychiatric diagnosis, or medical care. If you are experiencing a mental health emergency, crisis, or suicidal thoughts, please call or text 988 (USA/Canada) or reach out to your local crisis hotline immediately." }
+    ],
+    faq: [
+      {
+        question: "What are the best journal prompts for mental health?",
+        answer: "The best journal prompts for mental health are specific and low-friction, focusing on naming the loudest emotion, separating realistic outcomes from catastrophic worries, and identifying daily triggers. Categorizing prompts by state (anxiety, burnout, low mood) ensures you find relevant guidance immediately."
+      },
+      {
+        question: "How long should you journal for mental health?",
+        answer: "Research shows that 5 to 15 minutes of expressive writing is the sweet spot. Short, consistent check-ins (even 2 to 3 minutes using structured prompts or voice capture) provide stronger emotional regulation than infrequent, exhausting long-form sessions."
+      },
+      {
+        question: "Can journaling replace therapy or medication?",
+        answer: "No. Journaling is a self-care and emotional reflection tool that complements therapy, but it does not diagnose, treat, or replace professional psychiatric or medical care."
+      },
+      {
+        question: "What is affect labeling in journaling?",
+        answer: "Affect labeling is the psychological process of putting feelings into words. Brain imaging studies from UCLA show that verbally identifying an emotion reduces amygdala activation and stimulates prefrontal reasoning, immediately lowering felt distress."
+      }
+    ]
+  },
+  {
+    slug: "best-mental-health-apps",
+    title: "6 Best Mental Health Apps in 2026: Tested for Daily Stress & Clarity",
+    description: "Tired of generic wellness apps? We tested 6 top mental health phone apps for daily check-in speed, mood tracking, AI reflection, and real anxiety relief.",
+    metaTitle: "6 Best Mental Health Apps 2026: Phone Apps Tested & Ranked | Nuju",
+    metaDescription: "Looking for the best mental health phone apps? Compare 6 top tools for daily mood tracking, anxiety relief, CBT exercises, and AI reflection. Free to try.",
+    publishedAt: "2026-05-24",
+    updatedAt: "2026-09-24",
+    readingTime: 8,
+    category: "App Comparison",
+    sections: [
+      { type: "p", content: "Short answer: most mental health phone apps in 2026 are either expensive meditation libraries or passive emoji trackers. For emotional pattern recognition and 30-second daily check-ins, Nuju is our top pick. For guided meditation, Headspace leads. For clinical CBT, Moodfit. For gamified habits, Finch." },
+      { type: "p", content: "The digital mental health market has exploded with hundreds of apps. But when you are stressed, overthinking, or exhausted, you do not need a bloated library of 45-minute audio courses. You need a phone app that meets you where you are, lets you offload feelings in under a minute, and actually explains what is happening across your days." },
+      { type: "h2", content: "Comparison: Top 6 mental health phone apps at a glance" },
+      { type: "ul", content: [
+        "**Nuju**: Best for daily emotional check-ins, voice journaling, and AI pattern recognition. 30-second entry, 4 coach personas, encrypted privacy, free web reveal and [Apple App Store app](https://apps.apple.com/us/app/nuju/id6763682187).",
+        "**Headspace**: Best for mindfulness and guided meditation courses. Excellent sleep soundscapes and beginner meditation routines (iOS, Android).",
+        "**Finch**: Best for gamified mental health self-care. Raise a virtual pet bird by ticking off micro-habits and reflections (iOS, Android).",
+        "**Daylio**: Best for quick, no-writing habit and mood logging. Tap-to-log emoji check-ins with clean correlation charts (iOS, Android).",
+        "**Calm**: Best for sleep stories, ambient music, and stress relaxation. Beautiful sound design and bedtime narration (iOS, Android, Web).",
+        "**Bearable**: Best for tracking chronic health conditions alongside mood. Comprehensive symptom, medication, and sleep factor tracking (iOS, Android)."
+      ] },
+      { type: "h2", content: "#1 Nuju — Best overall for daily emotional reflection and AI insights" },
+      { type: "p", content: "Nuju ranks #1 because it solves the biggest reason people abandon mental health apps: time commitment and blank-page anxiety. Instead of demanding lengthy daily exercises, Nuju provides a frictionless 30-second check-in (mood rating, energy slider, and optional voice or text note)." },
+      { type: "p", content: "Where Nuju stands out from typical mood trackers is its automated reflection engine. Instead of leaving you with isolated charts, Nuju surfaces recurring emotional triggers, weekly patterns, and relationship dynamics using 4 selectable coach personas. You can try the [free web reveal](/onboarding?source=blog_best-mental-health-apps) with no account required upfront, or install the app directly on the [Apple App Store](https://apps.apple.com/us/app/nuju/id6763682187). Strict privacy: entries are encrypted and never used for AI model training." },
+      { type: "h2", content: "#2 Headspace — Best for guided meditation and mindfulness" },
+      { type: "p", content: "Headspace remains the premier app for learning meditation from scratch. Structured courses guide users through breathing techniques, body scans, and mindfulness exercises for anxiety. Tradeoff: higher annual subscription and less focus on personal written reflection." },
+      { type: "h2", content: "#3 Finch — Best for gamified self-care" },
+      { type: "p", content: "If standard self-care apps feel dry, Finch turns mental wellness into a nurturing pet game. You complete small tasks — drinking water, getting out of bed, naming one feeling — to send your bird on adventures. Ideal for ADHD and young adults seeking gentle positive reinforcement." },
+      { type: "h2", content: "#4 Daylio — Best for fast, writing-free mood logs" },
+      { type: "p", content: "Daylio is built for pure speed: two taps to log your mood emoji and activity tags in under 10 seconds. Great streak tracking and month-over-month graphs. However, it does not analyze written context or offer AI reflection." },
+      { type: "h2", content: "#5 Calm — Best for sleep and stress relaxation" },
+      { type: "p", content: "Calm excels at nighttime wind-down with its famous Sleep Stories, nature soundscapes, and calming masterclasses. Best for users whose primary mental health struggle is insomnia or evening restlessness." },
+      { type: "h2", content: "#6 Bearable — Best for chronic illness and symptom correlation" },
+      { type: "p", content: "Bearable is engineered for users managing health conditions alongside mood. It lets you cross-reference mood fluctuations against medications, sleep quality, pain levels, and food intake with clinical-style statistical correlations." },
+      { type: "h2", content: "What to look for in a mental health app" },
+      { type: "ul", content: [
+        "Entry friction under 60 seconds: If an app requires 15 minutes of quiet time to use, you will skip it on your hardest days.",
+        "Actionable interpretation: Does the app explain your patterns, or just show raw emoji bar charts?",
+        "Clear privacy boundaries: Mental health logs are deeply intimate. Ensure the app has zero data selling and never trains public AI models on private journals.",
+        "Transparent pricing: A generous free trial or free tier to test the experience before committing."
+      ] },
+      { type: "h2", content: "Bottom line" },
+      { type: "p", content: "For daily self-reflection and pattern discovery: Nuju. For meditation and mindfulness: Headspace. For gentle gamification: Finch. For fast emoji tracking: Daylio. Choose the app that matches what you actually need: guided relaxation, habit building, or understanding your emotional patterns." }
+    ],
+    faq: [
+      {
+        question: "What is the best mental health phone app in 2026?",
+        answer: "Nuju is rated the best mental health phone app for daily emotional clarity and self-reflection because of its 30-second check-in speed and automated AI pattern recognition. For guided meditation, Headspace and Calm remain industry leaders."
+      },
+      {
+        question: "Are mental health apps free?",
+        answer: "Most mental health apps use a freemium model. Nuju offers a free web reveal and core tracking features without requiring a credit card. Finch and Daylio also offer functional free tiers, while apps like Headspace and Calm require subscriptions after short trials."
+      },
+      {
+        question: "Can a mental health app help with anxiety and panic?",
+        answer: "Yes. Apps that facilitate affect labeling (naming emotions) and rapid capture help reduce amygdala activation during stress spikes. However, apps are supplementary wellness tools and should never replace licensed psychiatric care or crisis intervention."
+      },
+      {
+        question: "Is my personal data safe in a mental health app?",
+        answer: "Privacy depends heavily on the provider. Trustworthy apps like Nuju enforce encrypted storage, strict private access controls, zero data broker sharing, and explicit guarantees that journal entries are never used to train machine learning models."
+      }
+    ]
+  },
+  {
     slug: "daily-reflection-app",
     title: "Best Daily Reflection App in 2026: What Actually Builds Self-Awareness",
     description: "A good daily reflection app should do more than save prompts. Here is what to look for if you want fast check-ins, mood context, and AI that helps you notice patterns.",

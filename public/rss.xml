@@ -6,7 +6,7 @@
     <atom:link href="https://nuju.app/rss.xml" rel="self" type="application/rss+xml" />
     <description>Practical guides on journaling, mood tracking, and emotional wellness from the Nuju team.</description>
     <language>en</language>
-    <lastBuildDate>Thu, 24 Sep 2026 04:15:44 GMT</lastBuildDate>
+    <lastBuildDate>Thu, 24 Sep 2026 04:33:47 GMT</lastBuildDate>
     <item>
       <title>The Terrifying Dread of Falling Asleep: Inside Somniphobia, Nighttime Anticipatory Panic, and the Cognitive Insomnia Paradox</title>
       <link>https://nuju.app/blog/somniphobia-sleep-dread-anticipatory-bedtime-anxiety-morin</link>
@@ -6259,6 +6259,24 @@
       <guid isPermaLink="true">https://nuju.app/blog/mood-tracker-app-market-2026</guid>
       <description>The mood tracker app market is splitting between quick logs, health dashboards, and AI reflection. Here is what users actually seem to need from the next generation of mood apps.</description>
       <category>Research</category>
+      <pubDate>Sun, 24 May 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>60 Journal Prompts for Mental Health (That Actually Help)</title>
+      <link>https://nuju.app/blog/journal-prompts-for-mental-health</link>
+      <guid isPermaLink="true">https://nuju.app/blog/journal-prompts-for-mental-health</guid>
+      <description>Feeling overwhelmed or stuck? These 60 science-backed journal prompts for mental health help untangle anxiety, combat burnout, and rebuild emotional clarity.</description>
+      <category>Journaling Tips</category>
+      <pubDate>Sun, 24 May 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>6 Best Mental Health Apps in 2026: Tested for Daily Stress &amp; Clarity</title>
+      <link>https://nuju.app/blog/best-mental-health-apps</link>
+      <guid isPermaLink="true">https://nuju.app/blog/best-mental-health-apps</guid>
+      <description>Tired of generic wellness apps? We tested 6 top mental health phone apps for daily check-in speed, mood tracking, AI reflection, and real anxiety relief.</description>
+      <category>App Comparison</category>
       <pubDate>Sun, 24 May 2026 12:00:00 GMT</pubDate>
       <dc:language>en</dc:language>
     </item>
