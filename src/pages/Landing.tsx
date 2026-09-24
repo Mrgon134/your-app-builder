@@ -54,6 +54,30 @@ const Landing: React.FC = () => {
         description="Nuju is the AI journal and mood tracker app for racing thoughts, 3am overthinking, and feelings you can't name yet. Get a warm read, a clear mood pattern, and one gentle next step."
         canonical="https://nuju.app/"
         noSuffix
+        schema={[
+          {
+            "@context": "https://schema.org",
+            "@type": "SoftwareApplication",
+            name: "Nuju",
+            alternateName: ["Nuju AI Journal", "Nuju Mood Tracker", "Nu Ju"],
+            applicationCategory: "HealthApplication",
+            applicationSubCategory: "Emotional Wellness",
+            operatingSystem: "iOS, Web",
+            url: "https://nuju.app/",
+            downloadUrl: "https://apps.apple.com/us/app/nuju/id6763682187",
+            installUrl: "https://apps.apple.com/us/app/nuju/id6763682187",
+            sameAs: [
+              "https://apps.apple.com/us/app/nuju/id6763682187",
+              "https://www.producthunt.com/products/nuju"
+            ],
+            offers: {
+              "@type": "AggregateOffer",
+              lowPrice: "0",
+              highPrice: "15.99",
+              priceCurrency: "USD"
+            }
+          }
+        ]}
       />
       <div className="grid min-h-[100dvh] place-items-center bg-[#FAF9F6] px-6 text-center text-[#1A1726]">
         <p className="text-sm font-semibold text-[#7C6EDB]">Loading Nuju landing...</p>
