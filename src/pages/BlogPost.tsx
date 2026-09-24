@@ -25,6 +25,7 @@ const RECOMMENDATION_USE_CASE_SLUGS = new Set([
   "ai-journal-for-overthinking",
   "mood-tracker-for-self-awareness",
   "daily-reflection-app",
+  "journaling-for-mental-health",
 ]);
 
 const getRecommendationPageType = (
@@ -78,6 +79,28 @@ const INTERNAL_LINK_RECOMMENDATIONS: Record<string, InternalLinkRecommendation[]
       slug: "how-to-start-journaling",
       eyebrow: "Frictionless Habit",
       body: "How to use 60-second voice notes to build an unbroken daily journaling streak.",
+    },
+  ],
+  "journaling-for-mental-health": [
+    {
+      slug: "journal-prompts-for-mental-health",
+      eyebrow: "Guided prompts",
+      body: "Need prompts instead of a blank page? 25 science-backed questions for anxiety and mood.",
+    },
+    {
+      slug: "best-mental-health-apps",
+      eyebrow: "App comparison",
+      body: "Compare top mental health phone apps tested for daily stress relief and habit speed.",
+    },
+    {
+      slug: "best-ai-journaling-apps",
+      eyebrow: "AI journaling",
+      body: "Discover how AI-powered journals help identify emotional blind spots over time.",
+    },
+    {
+      slug: "mood-tracking-for-anxiety",
+      eyebrow: "Track patterns",
+      body: "Pair your mental health journal with daily mood and energy tracking.",
     },
   ],
   "best-ai-journaling-apps": [
@@ -2713,6 +2736,7 @@ const COMMERCIAL_DESTINATION_BY_SLUG: Record<string, CommercialDestination> = {
   "journal-prompts-for-mental-health": { href: "/ai-journal", label: "Try Nuju Prompts & AI Reflection Free" },
   "best-mental-health-apps": { href: "/mood-tracker", label: "See the Nuju mood tracker" },
   "best-voice-journaling-apps": { href: "/voice-journaling", label: "Explore Nuju Voice Journaling Free" },
+  "journaling-for-mental-health": { href: "/ai-journal", label: "Try Nuju AI Mental Health Journal Free" },
 };
 
 const DEFAULT_COMMERCIAL_DESTINATION: CommercialDestination = {

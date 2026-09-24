@@ -139,14 +139,14 @@ const AttachmentStyleTest: React.FC<AttachmentStyleTestProps> = ({ defaultLang =
     <div className="min-h-screen bg-[#FAF9F6] text-neutral-900 selection:bg-rose-200">
       <SEOHead
         title={
-          lang === "en" ? "Attachment Style Test (Scientific ECR-R) | Secure, Anxious, Avoidant" :
+          lang === "en" ? "Free Attachment Style Quiz Online (ECR-R): Secure, Anxious, Avoidant | Nuju" :
           lang === "de" ? "Bindungsstil Test (Wissenschaftlich) | Sicher, Ängstlich, Vermeidend" :
           lang === "fr" ? "Test de Style d'Attachement (ECR-R) | Sécurisant, Anxieux, Évitant" :
           lang === "es" ? "Test de Estilo de Apego (ECR-R) | Seguro, Ansioso, Evitativo" :
           "Tes Gaya Kelekatan Hubungan (Attachment Style) | Secure, Anxious, Avoidant"
         }
         description={
-          lang === "en" ? "Discover your relationship attachment style with the validated ECR-R model. Uncover whether you are Secure, Anxious-Preoccupied, Dismissive-Avoidant, or Fearful-Disorganized." :
+          lang === "en" ? "Take our free attachment style quiz online based on the scientific ECR-R model. Discover whether you are Secure, Anxious-Preoccupied, Dismissive-Avoidant, or Fearful." :
           lang === "de" ? "Finde deinen Beziehungstyp heraus mit dem wissenschaftlichen ECR-R Modell. Erfahre deine Muster bei Nähe und Bindungsangst." :
           lang === "fr" ? "Découvrez votre profil relationnel avec le modèle ECR-R. Comprenez vos réactions émotionnelles en amour." :
           lang === "es" ? "Descubre tu estilo de apego en las relaciones con el modelo ECR-R. Comprende tus patrones de cercanía e intimidad." :
@@ -171,6 +171,14 @@ const AttachmentStyleTest: React.FC<AttachmentStyleTestProps> = ({ defaultLang =
             "@context": "https://schema.org",
             "@type": "FAQPage",
             mainEntity: [
+              {
+                "@type": "Question",
+                name: "Can I take the attachment style quiz for free?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "Yes. Nuju offers the validated ECR-R relationship attachment style quiz 100% free with no sign-up or credit card required. Receive instant feedback and tailored reflection prompts.",
+                },
+              },
               {
                 "@type": "Question",
                 name: "What are the 4 attachment styles?",

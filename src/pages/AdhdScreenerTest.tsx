@@ -106,7 +106,7 @@ const AdhdScreenerTest: React.FC<AdhdScreenerTestProps> = ({ defaultLang = "en" 
             ? "Test TDAH Adulte & Épuisement Dopaminergique Gratuit en Ligne"
             : lang === "es"
             ? "Test TDAH Adultos y Fatiga Dopaminérgica Online Gratis"
-            : "Free Adult ADHD & Dopamine Burnout Screener (WHO ASRS v1.1)"
+            : "Free ADHD Test Online: Adult ADHD Screener (WHO ASRS v1.1) | Nuju"
         }
         description={
           lang === "id"
@@ -117,7 +117,7 @@ const AdhdScreenerTest: React.FC<AdhdScreenerTestProps> = ({ defaultLang = "en" 
             ? "Dépistage du TDAH chez l'adulte et de la fatigue attentionnelle numérique. Basé sur l'échelle OMS ASRS v1.1."
             : lang === "es"
             ? "Cribado de TDAH en adultos y sobrecarga dopaminérgica basado en el modelo OMS ASRS v1.1. Rápido, confidencial y sin registro."
-            : "Evidence-based adult ADHD and dopamine fatigue self-assessment based on WHO ASRS v1.1. Instant scoring, zero registration required."
+            : "Take the free adult ADHD test online based on WHO ASRS v1.1. Screen for inattention, hyperactivity, executive dysfunction, and dopamine fatigue with instant results."
         }
         canonical="https://nuju.app/quiz/adhd-screener"
         language={lang}
@@ -142,6 +142,14 @@ const AdhdScreenerTest: React.FC<AdhdScreenerTestProps> = ({ defaultLang = "en" 
             "@context": "https://schema.org",
             "@type": "FAQPage",
             mainEntity: [
+              {
+                "@type": "Question",
+                name: "Can I take an adult ADHD test online for free?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "Yes. Nuju provides the 18-question WHO ASRS v1.1 adult ADHD screener online for free with no account or credit card required. Results include inattention, hyperactivity, and dopamine fatigue breakdowns.",
+                },
+              },
               {
                 "@type": "Question",
                 name: "What is the WHO ASRS v1.1?",

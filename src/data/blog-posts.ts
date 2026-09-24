@@ -624,7 +624,10 @@ const RAW_BLOG_POSTS: BlogPost[] = [
     title: "How Journaling Improves Mental Health: What the Research Says",
     description:
       "From reducing anxiety to improving sleep, journaling has decades of science behind it. Here's what actually works — and why.",
+    metaTitle: "How to Journal for Mental Health: Science-Backed Guide | Nuju",
+    metaDescription: "Learn how to journal for mental health using 35+ years of psychology research. Discover expressive writing protocols, emotion labeling, and 30-second check-ins.",
     publishedAt: "2026-04-12",
+    updatedAt: "2026-09-24",
     readingTime: 7,
     category: "Mental Wellness",
     sections: [
@@ -719,9 +722,23 @@ const RAW_BLOG_POSTS: BlogPost[] = [
       {
         type: "p",
         content:
-          "Nuju's 30-second entry format is built around this principle — consistent daily check-ins that take no willpower, with AI that helps surface patterns across your entries over time.",
+          "Nuju's 30-second entry format is built around this principle — consistent daily check-ins that take no willpower, with AI that helps surface patterns across your entries over time. You can start with our curated [journal prompts for mental health](/blog/journal-prompts-for-mental-health) or take the [free mental health quiz](/quiz/mental-health-test) to baseline your current stress and mood levels.",
       },
     ],
+    faq: [
+      {
+        question: "How do I start journaling for mental health?",
+        answer: "Start small: dedicate 2 to 5 minutes daily to affect labeling (naming what you feel) and write uncensored thoughts about your biggest emotional friction. Focus on regularity over length."
+      },
+      {
+        question: "What is the science behind journaling and mental health?",
+        answer: "Pennebaker's expressive writing research and UCLA neuroscience show that translating feelings into words engages the prefrontal cortex and decreases amygdala reactivity, directly down-regulating autonomic stress responses."
+      },
+      {
+        question: "Is journaling better with prompts or free writing?",
+        answer: "Both work. Free writing excels for emotional venting and stream of consciousness, while structured prompts help break repetitive overthinking loops and identify cognitive distortions."
+      }
+    ]
   },
   {
     slug: "what-is-a-mood-journal",
