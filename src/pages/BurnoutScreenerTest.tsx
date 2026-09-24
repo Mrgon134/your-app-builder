@@ -93,12 +93,12 @@ const BurnoutScreenerTest: React.FC<BurnoutScreenerTestProps> = ({ defaultLang =
             ? "Test de Burnout Professionnel Gratuit en Ligne (Modèle Maslach MBI)"
             : lang === "es"
             ? "Test de Burnout Laboral Online Gratis: Medir Agotamiento y Estrés (MBI)"
-            : "Free Workplace Burnout Test: Maslach Burnout Inventory (MBI) Screener"
+            : "Free Burnout Test Online: Workplace Exhaustion & Stress Screener (MBI) | Nuju"
         }
         description={
           lang === "id"
             ? "Skrining burnout profesional mandiri berdasarkan model Maslach Burnout Inventory. Evaluasi kelelahan emosional, sikap sinis, dan penurunan efikasi kerja."
-            : "Free evidence-based workplace burnout assessment adapted from the Maslach Burnout Inventory. Instant evaluation of emotional exhaustion and cynicism."
+            : "Free burnout test online adapted from the Maslach Burnout Inventory (MBI). Check your emotional exhaustion, cynicism, and workplace stress with instant private scoring."
         }
         canonical="https://nuju.app/quiz/burnout"
         language={lang}
@@ -123,6 +123,14 @@ const BurnoutScreenerTest: React.FC<BurnoutScreenerTestProps> = ({ defaultLang =
             "@context": "https://schema.org",
             "@type": "FAQPage",
             mainEntity: [
+              {
+                "@type": "Question",
+                name: "Can I take a burnout test online for free?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "Yes. Nuju provides a free online burnout test based on the Maslach Burnout Inventory framework. You can assess emotional exhaustion, depersonalization, and professional efficacy in under 3 minutes with zero sign-up required.",
+                },
+              },
               {
                 "@type": "Question",
                 name: "What are the 3 dimensions of burnout?",

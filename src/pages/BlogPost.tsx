@@ -58,7 +58,34 @@ type InternalLinkCard = InternalLinkRecommendation & {
 };
 
 const INTERNAL_LINK_RECOMMENDATIONS: Record<string, InternalLinkRecommendation[]> = {
+  "best-voice-journaling-apps": [
+    {
+      slug: "best-ai-journaling-apps",
+      eyebrow: "AI Journaling",
+      body: "Compare AI journals if you want to combine voice memos with AI pattern recognition.",
+    },
+    {
+      slug: "journaling-for-adhd",
+      eyebrow: "ADHD & Brain Dump",
+      body: "Why speaking your thoughts is 3x easier than typing when executive dysfunction kicks in.",
+    },
+    {
+      slug: "best-mental-health-apps",
+      eyebrow: "Mental Health Tools",
+      body: "See how voice check-ins fit into the broader landscape of daily mental wellness apps.",
+    },
+    {
+      slug: "how-to-start-journaling",
+      eyebrow: "Frictionless Habit",
+      body: "How to use 60-second voice notes to build an unbroken daily journaling streak.",
+    },
+  ],
   "best-ai-journaling-apps": [
+    {
+      slug: "best-voice-journaling-apps",
+      eyebrow: "Voice-first journaling",
+      body: "Prefer speaking over typing? Compare the top voice journaling and audio diary apps.",
+    },
     {
       slug: "best-mood-tracker-apps",
       eyebrow: "Mood tracker intent",
@@ -2627,6 +2654,9 @@ const UnpublishedBlogPostNotice: React.FC<{ post: BlogPostData }> = ({ post }) =
         breadcrumbs={[
           { name: "Home", url: "https://nuju.app/" },
           { name: "Blog", url: "https://nuju.app/blog" },
+          ...(post.category
+            ? [{ name: post.category, url: "https://nuju.app/blog" }]
+            : []),
           { name: post.title, url: canonical },
         ]}
       />
@@ -2682,6 +2712,7 @@ const COMMERCIAL_DESTINATION_BY_SLUG: Record<string, CommercialDestination> = {
   "day-one-alternative": { href: "/ai-journal", label: "Try Nuju AI Journal Free" },
   "journal-prompts-for-mental-health": { href: "/ai-journal", label: "Try Nuju Prompts & AI Reflection Free" },
   "best-mental-health-apps": { href: "/mood-tracker", label: "See the Nuju mood tracker" },
+  "best-voice-journaling-apps": { href: "/voice-journaling", label: "Explore Nuju Voice Journaling Free" },
 };
 
 const DEFAULT_COMMERCIAL_DESTINATION: CommercialDestination = {
@@ -3189,6 +3220,9 @@ const BlogPost: React.FC = () => {
         breadcrumbs={[
           { name: "Home", url: "https://nuju.app/" },
           { name: "Blog", url: "https://nuju.app/blog" },
+          ...(post.category
+            ? [{ name: post.category, url: "https://nuju.app/blog" }]
+            : []),
           { name: post.title, url: canonical },
         ]}
       />

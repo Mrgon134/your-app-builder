@@ -6,7 +6,7 @@
     <atom:link href="https://nuju.app/rss.xml" rel="self" type="application/rss+xml" />
     <description>Practical guides on journaling, mood tracking, and emotional wellness from the Nuju team.</description>
     <language>en</language>
-    <lastBuildDate>Thu, 24 Sep 2026 04:33:47 GMT</lastBuildDate>
+    <lastBuildDate>Thu, 24 Sep 2026 04:42:43 GMT</lastBuildDate>
     <item>
       <title>The Terrifying Dread of Falling Asleep: Inside Somniphobia, Nighttime Anticipatory Panic, and the Cognitive Insomnia Paradox</title>
       <link>https://nuju.app/blog/somniphobia-sleep-dread-anticipatory-bedtime-anxiety-morin</link>
@@ -6276,6 +6276,15 @@
       <link>https://nuju.app/blog/best-mental-health-apps</link>
       <guid isPermaLink="true">https://nuju.app/blog/best-mental-health-apps</guid>
       <description>Tired of generic wellness apps? We tested 6 top mental health phone apps for daily check-in speed, mood tracking, AI reflection, and real anxiety relief.</description>
+      <category>App Comparison</category>
+      <pubDate>Sun, 24 May 2026 12:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>5 Best Voice Journaling Apps in 2026: Tested for Speed &amp; AI Clarity</title>
+      <link>https://nuju.app/blog/best-voice-journaling-apps</link>
+      <guid isPermaLink="true">https://nuju.app/blog/best-voice-journaling-apps</guid>
+      <description>Tired of typing out your feelings? We tested the 5 best voice journaling and audio diary apps for speech transcription, emotional context, and AI pattern recognition.</description>
       <category>App Comparison</category>
       <pubDate>Sun, 24 May 2026 12:00:00 GMT</pubDate>
       <dc:language>en</dc:language>

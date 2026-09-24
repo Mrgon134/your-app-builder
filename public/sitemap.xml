@@ -2123,6 +2123,18 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/best-mental-health-apps"/>
   </url>
   <url>
+    <loc>https://nuju.app/blog/best-voice-journaling-apps</loc>
+    <lastmod>2026-09-24</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <image:image>
+      <image:loc>https://sxgmlnlqmdjjfmcypivi.supabase.co/functions/v1/og-image</image:loc>
+      <image:title>5 Best Voice Journaling Apps in 2026: Tested for Speed &amp; AI Clarity</image:title>
+      <image:caption>Tired of typing out your feelings? We tested the 5 best voice journaling and audio diary apps for speech transcription, emotional context, and AI pattern recognition.</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuju.app/blog/best-voice-journaling-apps"/>
+  </url>
+  <url>
     <loc>https://nuju.app/blog/daily-reflection-app</loc>
     <lastmod>2026-05-24</lastmod>
     <priority>0.7</priority>

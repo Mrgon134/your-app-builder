@@ -161,13 +161,13 @@ const MentalHealthTest: React.FC<MentalHealthTestProps> = ({ defaultLang = "en" 
       <SEOHead
         title={
           lang === "en"
-            ? "Free DASS-21 Mental Health Test | Depression, Anxiety, Stress Assessment"
-            : "Tes Kesehatan Mental Online Gratis (DASS-21) | Skrining Depresi, Cemas, Stres"
+            ? "Free Mental Health Quiz (DASS-21) | Depression Test Online & Anxiety Assessment | Nuju"
+            : "Tes Kesehatan Mental Online Gratis (DASS-21) | Skrining Depresi, Cemas, Stres | Nuju"
         }
         description={
           lang === "en"
-            ? "Evaluate your emotional wellbeing with the validated DASS-21 psychological assessment. 21 questions measuring depression, anxiety, and stress levels with instant CBT insights and Ju mascot feedback."
-            : "Ikuti tes kesehatan mental DASS-21 terstandar ilmiah secara gratis. 21 pertanyaan mengukur tingkat depresi, kecemasan, dan stres dengan insight CBT dan rekomendasi pemulihan batin."
+            ? "Take the free online mental health quiz & depression test (DASS-21). 21 science-backed questions assessing anxiety, stress, and mood with instant private results."
+            : "Ikuti tes kesehatan mental DASS-21 terstandar ilmiah secara gratis. 21 pertanyaan mengukur tingkat depresi, kecemasan, dan stres dengan insight CBT."
         }
         canonical="https://nuju.app/quiz/mental-health-test"
         language={lang}
@@ -209,10 +209,26 @@ const MentalHealthTest: React.FC<MentalHealthTestProps> = ({ defaultLang = "en" 
               },
               {
                 "@type": "Question",
+                name: "Can I take a depression test online for free?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "Yes. Nuju provides the 21-question DASS-21 screener online for free without requiring registration or a credit card. It provides instant private breakdown across mood, anxiety, and stress dimensions.",
+                },
+              },
+              {
+                "@type": "Question",
                 name: "Is DASS-21 a diagnostic tool?",
                 acceptedAnswer: {
                   "@type": "Answer",
-                  text: "DASS-21 is a validated self-report screening measure rather than a clinical diagnostic tool. It provides insight into severity levels of distress, which can guide self-care, lifestyle adjustments, or professional consultation.",
+                  text: "DASS-21 is a validated self-report screening measure rather than a clinical diagnostic tool. It provides insight into severity levels of distress, which can guide self-care, daily reflection, or professional consultation.",
+                },
+              },
+              {
+                "@type": "Question",
+                name: "What should I do after completing the test?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "Review your dimensional scores and journal prompts. You can track your daily triggers in 30 seconds with Nuju AI journal or bring your assessment summary to a licensed therapist for personalized support.",
                 },
               },
             ],
