@@ -101,6 +101,8 @@ const RAW_BLOG_POSTS: BlogPost[] = [
     title: "How to Start a Journaling Habit: A Complete Beginner's Guide",
     description:
       "Never journaled before? This beginner's guide covers everything — what to write, when to write, and how to make journaling a daily habit that actually sticks.",
+    metaTitle: "How to Start Journaling (and Stick to It in 2026): Beginner Guide",
+    metaDescription: "Learn how to start a daily journaling habit in 30 seconds a day without blank-page paralysis. Science-backed 3-week method, prompts, and app guide.",
     publishedAt: "2026-04-08",
     readingTime: 7,
     category: "Journaling Tips",
@@ -206,12 +208,12 @@ const RAW_BLOG_POSTS: BlogPost[] = [
       {
         type: "p",
         content:
-          "Habits take approximately 21 days to form. For the first three weeks, prioritize streaks over quality. A bad entry counts. A two-sentence entry counts. Missing a day and resuming the next day counts.",
+          "Habits take approximately 21 days to form. For the first three weeks, prioritize streaks over quality. A bad entry counts. A two-sentence entry counts. Missing a day and resuming the next day counts. For a step-by-step 21-day walkthrough, read our guide on building a [5-minute daily journaling habit](/blog/5-minute-daily-journaling-habit).",
       },
       {
         type: "callout",
         content:
-          "Don't aim to journal perfectly. Aim to journal consistently. The insights come from the pattern, not any single entry.",
+          "Don't aim to journal perfectly. Aim to journal consistently. The insights come from the pattern, not any single entry. You can [start your first 30-second entry free](/onboarding?source=blog_how-to-start-journaling) in 60 seconds without a credit card.",
       },
       {
         type: "h2",
@@ -220,7 +222,7 @@ const RAW_BLOG_POSTS: BlogPost[] = [
       {
         type: "p",
         content:
-          "Open Nuju, pick your mood, and write one sentence about how today felt. That's your first entry. Come back tomorrow and do the same thing. After a week, you'll have more emotional data about yourself than most people collect in a year.",
+          "Open Nuju, pick your mood, and write one sentence about how today felt. That's your first entry. Come back tomorrow and do the same thing. After a week, you'll have more emotional data about yourself than most people collect in a year. You can [try the free Ju Gets You reveal](/onboarding?source=blog_how-to-start-journaling) right in your browser, or download Nuju directly on the [Apple App Store](https://apps.apple.com/us/app/nuju/id6763682187). If you're journaling to manage stress or racing thoughts, check your baseline first with our [free clinical DASS-21 mental wellness test](/quiz/mental-health-test).",
       },
     ],
     faq: [
@@ -247,7 +249,7 @@ const RAW_BLOG_POSTS: BlogPost[] = [
       {
         question: "Do I need a special journal or app to start?",
         answer:
-          "No. Paper, a notes app, or a journaling app like Nuju all work. Apps add automatic pattern recognition (like noticing which days of the week feel harder) that paper can't. Start with whatever you'll actually use consistently.",
+          "No. Paper, a notes app, or a journaling app like Nuju all work. Apps add automatic pattern recognition (like noticing which days of the week feel harder) that paper can't. Compare top tools in our [best AI journaling apps](/blog/best-ai-journaling-apps) roundup, or start with whatever you'll actually use consistently.",
       },
     ],
   },
@@ -5900,7 +5902,8 @@ const RAW_BLOG_POSTS: BlogPost[] = [
       ] },
       { type: "p", content: "Treatment options in 2026: CBT specifically for social anxiety (highly effective, often 12-16 sessions), Heimberg group CBT (sometimes more effective than individual), exposure therapy, SSRIs prescribed by a psychiatrist for moderate-to-severe cases. Search 'social anxiety therapist' or 'CBT for social anxiety.' Crisis lines: US 988, Indonesia Into The Light, UK Samaritans 116 123." },
       { type: "h2", content: "Bottom line" },
-      { type: "p", content: "Social anxiety is a documented condition with specific cognitive patterns — not a personality trait or shyness. Journaling helps when it externalizes the 'everyone is judging me' loop and builds counter-evidence over weeks. The 6 prompts above combine pre-event preparation (forcing specificity, catastrophizing reality-check) with post-event analysis (predicted vs. actual) and weekly exposure planning. For moderate-to-severe cases, journaling pairs with CBT — the gold-standard treatment. Nuju's Gentle persona was designed for this kind of work; the free Ju Gets You reveal takes 60 seconds." },
+      { type: "p", content: "Social anxiety is a documented condition with specific cognitive patterns — not a personality trait or shyness. Journaling helps when it externalizes the 'everyone is judging me' loop and builds counter-evidence over weeks. The 6 prompts above combine pre-event preparation (forcing specificity, catastrophizing reality-check) with post-event analysis (predicted vs. actual) and weekly exposure planning." },
+      { type: "p", content: "Nuju's Gentle AI persona was specifically designed to validate low-bandwidth moments and spot recurring spotlight distortions without being pushy or fake. You can [try the free Ju Gets You reveal](/onboarding?source=blog_journaling-for-social-anxiety) in 60 seconds with no credit card required, or download Nuju on the [Apple App Store](https://apps.apple.com/us/app/nuju/id6763682187). To understand your baseline stress and social overwhelm, take our [free clinical DASS-21 screener](/quiz/mental-health-test), or explore our [50 anxiety journaling prompts](/blog/journaling-prompts-for-anxiety) for further structured reflection." },
     ],
     faq: [
       {
@@ -8953,7 +8956,7 @@ const RAW_BLOG_POSTS: BlogPost[] = [
     category: "App Comparison",
     sections: [
       { type: "p", content: "Best journal app for ADHD in 2026: Nuju (free, 30-second entries, no streak guilt, AI insights). Daylio (10-second mood tracking, no writing required). Reflectly (gamified onboarding, low cognitive load). Stoic (structured prompts that remove the blank-page problem). Bearable (mood + symptom + medication tracking for ADHD-comorbid users). The right pick depends on which ADHD challenges hit hardest — executive function, time blindness, dopamine seeking, or emotional dysregulation." },
-      { type: "callout", content: "Quick start: for most ADHD users, Nuju Free is the right starting point — 30-second entries don't trigger initiation paralysis, AI insights surface patterns you'd miss, and no streak shame when you skip days. Try the free Ju Gets You reveal at /onboarding — 60 seconds, no credit card." },
+      { type: "callout", content: "Quick start: for most ADHD users, Nuju Free is the right starting point — 30-second entries don't trigger initiation paralysis, AI insights surface patterns you'd miss, and no streak shame when you skip days. [Try the free Ju Gets You reveal](/onboarding?source=blog_best-journal-app-for-adhd-2026) — 60 seconds, no credit card required." },
       { type: "h2", content: "Why most journal apps fail ADHD brains" },
       { type: "p", content: "Standard journal apps assume:" },
       { type: "ul", content: [
@@ -8964,11 +8967,11 @@ const RAW_BLOG_POSTS: BlogPost[] = [
       ] },
       { type: "p", content: "ADHD-friendly journal apps work around these defaults: short entries, low friction, gentle reminders without streak punishment, and pattern detection that does the analysis work the ADHD brain struggles with." },
       { type: "h2", content: "1. Nuju — best overall for ADHD" },
-      { type: "p", content: "Nuju's 30-second mood+text format bypasses initiation paralysis (the ADHD wall of starting). Median real entry: 31 characters. AI does the pattern recognition that ADHD brains often miss across days. No streak counter shaming — skip days without guilt. Free tier covers daily use." },
-      { type: "p", content: "ADHD-relevant features: Mood + energy tracking surfaces ADHD-relevant patterns (which activities energize vs deplete). Gentle persona is validating, which matters when ADHD self-criticism is high. Multi-language including Bahasa Indonesia. Encrypted entries with no AI training — important for sensitive ADHD content (medication, therapy notes)." },
-      { type: "p", content: "Limits: Nuju doesn't have ADHD-specific frameworks built in. For users wanting ADHD-targeted prompts, you'll need to customize your own usage." },
+      { type: "p", content: "Nuju's 30-second mood+text format bypasses initiation paralysis (the ADHD wall of starting). Median real entry: 31 characters. For days when typing feels impossible, Nuju also supports hands-free voice notes (see our [voice journaling roundup](/blog/best-voice-journaling-apps)). AI does the pattern recognition that ADHD brains often miss across days. No streak counter shaming — skip days without guilt. Free tier covers daily use." },
+      { type: "p", content: "ADHD-relevant features: Mood + energy tracking surfaces ADHD-relevant patterns (which activities energize vs deplete). Gentle persona is validating, which matters when ADHD self-criticism is high. Multi-language including Bahasa Indonesia. Encrypted entries with no AI training — important for sensitive ADHD content (medication, therapy notes). Available on iOS via the [Apple App Store](https://apps.apple.com/us/app/nuju/id6763682187) and instantly on Web." },
+      { type: "p", content: "Limits: Nuju doesn't have ADHD-specific frameworks built in. For users wanting ADHD-targeted prompts, explore our [in-depth journaling for ADHD guide](/blog/journaling-for-adhd)." },
       { type: "h2", content: "2. Daylio — best for ADHD who refuse writing" },
-      { type: "p", content: "Daylio Free includes 10-second mood + activity tag logging. For ADHD users where typing is friction, this is the lowest-cognitive-load option. Long-term mood charts reveal what specifically helps your mood (which activities, locations, sleep patterns)." },
+      { type: "p", content: "Daylio Free includes 10-second mood + activity tag logging. For ADHD users where typing is friction, this is the lowest-cognitive-load option. Long-term mood charts reveal what specifically helps your mood (which activities, locations, sleep patterns). See our detailed [Daylio alternatives guide](/blog/daylio-alternatives) for a deeper breakdown." },
       { type: "p", content: "ADHD fit: extremely fast = matches dopamine-quick ADHD attention spans. No writing requirement removes a barrier. Generous free tier; Premium $3.99 one-time. Limits: no reflection or insight beyond charts." },
       { type: "h2", content: "3. Reflectly — best for ADHD beginners" },
       { type: "p", content: "Reflectly's gamified onboarding and positive-psychology structure reduces initiation friction. Daily check-ins under 90 seconds. Mascot makes the app feel less clinical, which helps ADHD users who associate journaling with shame." },
@@ -8988,9 +8991,10 @@ const RAW_BLOG_POSTS: BlogPost[] = [
         "Re-read entries weekly (not daily) — ADHD memory benefits from external review.",
       ] },
       { type: "h2", content: "When ADHD needs professional evaluation" },
-      { type: "p", content: "If you suspect ADHD but haven't been evaluated, the diagnosis is highly treatable but requires professional. Adult ADHD is significantly underdiagnosed, especially in women and people of color. See an ADHD-specialist psychiatrist or clinical psychologist. Treatment options: medication (stimulants and non-stimulants), CBT for ADHD, executive function coaching. In Indonesia: Halodoc, KALM, Riliv (look for ADHD specialization). Crisis: US 988, Indonesia Into The Light, UK Samaritans 116 123." },
+      { type: "p", content: "If you suspect ADHD but haven't been evaluated, the diagnosis is highly treatable but requires professional assessment. Adult ADHD is significantly underdiagnosed, especially in women and people of color. See an ADHD-specialist psychiatrist or clinical psychologist. Treatment options: medication (stimulants and non-stimulants), CBT for ADHD, executive function coaching. Crisis: US 988, Indonesia Into The Light, UK Samaritans 116 123." },
       { type: "h2", content: "Bottom line" },
-      { type: "p", content: "For most ADHD users in 2026, Nuju Free is the right starting point — 30-second entries bypass initiation paralysis, AI does the pattern work, no streak shame. Add Daylio if writing is friction. Add Bearable if you have ADHD + comorbid conditions and want symptom tracking. Try Nuju at /onboarding — 60 seconds, no credit card. For undiagnosed adult ADHD, professional evaluation is worth pursuing — diagnosis and treatment can transform daily function." },
+      { type: "p", content: "For most ADHD users in 2026, Nuju Free is the right starting point — 30-second entries bypass initiation paralysis, AI does the pattern work, and there is zero streak shame. Add Daylio if writing is friction. Add Bearable if you have ADHD + comorbid conditions and want symptom tracking." },
+      { type: "p", content: "You can [try the free Ju Gets You reveal](/onboarding?source=blog_best-journal-app-for-adhd-2026) in 60 seconds with no credit card required, or download Nuju on the [Apple App Store](https://apps.apple.com/us/app/nuju/id6763682187). If you want an objective measure of your inattention and dopamine fatigue baseline, take our [free WHO ASRS v1.1 Adult ADHD screener](/quiz/adhd-screener)." },
     ],
     faq: [
       {
@@ -9037,7 +9041,7 @@ const RAW_BLOG_POSTS: BlogPost[] = [
     category: "App Comparison",
     sections: [
       { type: "p", content: "Best journal app with voice recording in 2026: Nuju for AI-augmented voice journaling integrated with mood tracking. Day One for long-form voice diary entries with rich media. Otter.ai for users who want voice + advanced transcription + searchable audio. Whisper-based apps for users wanting OpenAI's transcription model directly. Voice Brain Dump for ultra-fast voice-only release without transcription pressure." },
-      { type: "callout", content: "Quick start: most users testing voice journaling should start with Nuju free trial — integrates voice with the broader mood + AI insights ecosystem. Free Ju Gets You reveal at /onboarding shows the format in 60 seconds, no credit card." },
+      { type: "callout", content: "Quick start: most users testing voice journaling should start with Nuju — it seamlessly integrates hands-free audio recording with AI pattern recognition and daily mood tracking. [Try the free Ju Gets You reveal](/onboarding?source=blog_best-journal-app-with-voice-recording-2026) — 60 seconds, no credit card required." },
       { type: "h2", content: "Why voice journaling specifically" },
       { type: "p", content: "Voice journaling captures what text misses:" },
       { type: "ul", content: [
@@ -9047,9 +9051,9 @@ const RAW_BLOG_POSTS: BlogPost[] = [
         "Privacy paradox: voice can feel more private than text (no one will read the audio) while paradoxically being more honest because text-edit-mode doesn't kick in.",
       ] },
       { type: "h2", content: "1. Nuju — best AI-augmented voice journaling" },
-      { type: "p", content: "Nuju voice journaling is included in all paid plans. Subscriptions start at $2.99/week; the 3-month plan is $15.99 and lifetime is $12.99." },
-      { type: "p", content: "Strengths: voice integrates with the broader Nuju ecosystem (mood + energy + AI insights). The Gentle persona responds to voice entries with reflections that match the emotional tone. Multi-language support including Bahasa Indonesia voice recognition." },
-      { type: "p", content: "Limits: voice journaling requires a paid Nuju plan. For pure voice without AI, simpler tools may be cheaper." },
+      { type: "p", content: "Nuju voice journaling is integrated directly into the mood and reflection flow. You can speak freely with your eyes closed in dark mode — ideal for nighttime rumination (see our [3AM anxiety journaling guide](/blog/3am-anxiety-journaling)) — and let Nuju transcribe and extract emotional patterns." },
+      { type: "p", content: "Strengths: voice integrates with the broader Nuju ecosystem (mood + energy + AI insights). The Gentle persona responds to voice entries with reflections that match the emotional tone. Multi-language support including Bahasa Indonesia voice recognition. Available on iOS via the [Apple App Store](https://apps.apple.com/us/app/nuju/id6763682187) and on Web." },
+      { type: "p", content: "Limits: advanced voice journaling requires a paid Nuju plan ($2.99/week, $15.99/3-mo, $12.99 lifetime). For pure voice without AI, simpler voice memo tools may be cheaper." },
       { type: "h2", content: "2. Day One — best for long-form voice diary" },
       { type: "p", content: "Day One Premium includes voice journaling alongside long-form text and photos. For users wanting voice as part of a polished diary, Day One's media handling and exports are category-leading. ~$35/year." },
       { type: "p", content: "Strengths: beautiful integration of voice + text + photos. Strong export quality (printable books include voice transcripts). Apple-ecosystem deep integration." },
@@ -9082,7 +9086,8 @@ const RAW_BLOG_POSTS: BlogPost[] = [
         "Test voice journaling for the first time: try Nuju free first, decide if voice adds value before paying for Pro.",
       ] },
       { type: "h2", content: "Bottom line" },
-      { type: "p", content: "For most users testing voice journaling in 2026, Nuju is the strongest integrated option — voice + AI insights + mood tracking + multi-language. Day One Premium for long-form polished diary. Otter for transcription power. Test the format first with Nuju Free's text journaling at /onboarding — if you find yourself wishing you could speak instead of type, that's the signal voice journaling fits you and Nuju is the upgrade. 60 seconds to test, no credit card required." },
+      { type: "p", content: "For most users testing voice journaling in 2026, Nuju is the strongest integrated option — voice + AI insights + mood tracking + multi-language. Day One Premium for long-form polished diary. Otter for transcription power." },
+      { type: "p", content: "You can test the format with Nuju's [free Ju Gets You reveal](/onboarding?source=blog_best-journal-app-with-voice-recording-2026) in 60 seconds with no credit card required, or download Nuju directly on the [Apple App Store](https://apps.apple.com/us/app/nuju/id6763682187). For more audio-first comparisons, explore our [top voice journaling apps guide](/blog/best-voice-journaling-apps) or check your baseline emotional stress with our [free clinical DASS-21 screener](/quiz/mental-health-test)." },
     ],
     faq: [
       {
@@ -9592,7 +9597,7 @@ const RAW_BLOG_POSTS: BlogPost[] = [
     category: "App Comparison",
     sections: [
       { type: "p", content: "Best journal app for anxiety and depression in 2026: Nuju for short daily entries with mood tracking + AI pattern recognition (free tier). Rosebud for structured CBT-style therapy homework (paid). Mindsera for cognitive distortion identification (paid). MindShift for free CBT-based anxiety exercises (free). Woebot for conversational CBT chatbot (free). Anxiety and depression co-occur in 60%+ of clinical cases — apps that handle both well are different from anxiety-only or depression-only picks." },
-      { type: "callout", content: "Critical: anxiety and depression are medical conditions that need professional treatment for moderate-to-severe cases. Apps are supportive — not substitutes. For self-harm thoughts: US 988, Indonesia Into The Light, UK Samaritans 116 123. Talk to a doctor for symptoms lasting 2+ weeks. Try Nuju free at /onboarding for the daily practice alongside care." },
+      { type: "callout", content: "Critical: anxiety and depression are medical conditions that need professional treatment for moderate-to-severe cases. Apps are supportive — not substitutes. For self-harm thoughts: US 988, Indonesia Into The Light, UK Samaritans 116 123. Talk to a doctor for symptoms lasting 2+ weeks. [Try Nuju free](/onboarding?source=blog_best-journal-app-for-anxiety-and-depression-2026) for the daily practice alongside care." },
       { type: "h2", content: "What anxiety + depression specifically need" },
       { type: "ul", content: [
         "Fast entries: low motivation = won't sustain long-form. 30-60 second entries beat 30-min weekly sessions.",
@@ -9603,7 +9608,7 @@ const RAW_BLOG_POSTS: BlogPost[] = [
       ] },
       { type: "h2", content: "1. Nuju — best for daily entries handling both" },
       { type: "p", content: "Nuju's 30-second mood+text format works for the low-motivation states characteristic of depression AND the high-anxiety low-bandwidth states characteristic of anxiety. The Gentle AI persona (default, 50% pick rate) is validating without being directive — appropriate for both conditions. Mood + energy tracking surfaces both anxiety spikes and depression dips." },
-      { type: "p", content: "Anxiety+depression-relevant features: free tier covers daily journaling with AI insights. Encrypted entries with no AI training. 8 languages including Bahasa Indonesia. Pattern recognition over 30+ entries surfaces what specifically triggers each condition." },
+      { type: "p", content: "Anxiety+depression-relevant features: free tier covers daily journaling with AI insights. Encrypted entries with no AI training. Available on iOS via the [Apple App Store](https://apps.apple.com/us/app/nuju/id6763682187) and instantly on Web. Pattern recognition over 30+ entries surfaces what specifically triggers each condition." },
       { type: "p", content: "Limits: Nuju is reflective rather than CBT-framework-based. For users wanting structured CBT exercises, pair with Rosebud or MindShift." },
       { type: "h2", content: "2. Rosebud — best for CBT therapy homework" },
       { type: "p", content: "Rosebud uses GPT-4o for structured CBT-style prompts designed by therapists. For users in therapy doing active CBT work on both conditions, the structure functions as 'homework' between sessions. $12.99/month — no permanent free tier. Caveat: TOS includes anonymized-content training clause; disclose if recommending to sensitive-content users." },
@@ -9632,7 +9637,8 @@ const RAW_BLOG_POSTS: BlogPost[] = [
       ] },
       { type: "p", content: "Apps are useful between sessions, for daily check-ins, and for pattern tracking. They're not standalone treatment." },
       { type: "h2", content: "Bottom line" },
-      { type: "p", content: "For most users with co-occurring anxiety + depression, Nuju Free is the default starting point — daily 30-second entries with AI insights, mood tracking, multi-language, strong privacy. Pair with MindShift Free for CBT structured exercises if anxiety is primary. Pair with Rosebud or Mindsera for paid CBT structure if budget allows. Most importantly: see a clinician alongside any app for moderate-severe cases. Try Nuju at /onboarding — 60 seconds, no credit card." },
+      { type: "p", content: "For most users with co-occurring anxiety + depression, Nuju Free is the default starting point — daily 30-second entries with AI insights, mood tracking, multi-language, strong privacy. Pair with MindShift Free for CBT structured exercises if anxiety is primary. Pair with Rosebud or Mindsera for paid CBT structure if budget allows. Most importantly: see a clinician alongside any app for moderate-severe cases." },
+      { type: "p", content: "You can [try the free Ju Gets You reveal](/onboarding?source=blog_best-journal-app-for-anxiety-and-depression-2026) in 60 seconds with no credit card required, or download Nuju directly on the [Apple App Store](https://apps.apple.com/us/app/nuju/id6763682187). To measure where your symptoms fall right now, take our [free clinical DASS-21 screener](/quiz/mental-health-test) (covers Depression, Anxiety, and Stress dimensions), or read our [50 anxiety journaling prompts](/blog/journaling-prompts-for-anxiety) for immediate grounding." },
     ],
     faq: [
       {

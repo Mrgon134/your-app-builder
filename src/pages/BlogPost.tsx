@@ -28,6 +28,8 @@ const RECOMMENDATION_USE_CASE_SLUGS = new Set([
   "journaling-for-mental-health",
   "3am-anxiety-journaling",
   "journaling-prompts-for-anxiety",
+  "journaling-for-social-anxiety",
+  "how-to-start-journaling",
 ]);
 
 const getRecommendationPageType = (
@@ -374,7 +376,100 @@ const INTERNAL_LINK_RECOMMENDATIONS: Record<string, InternalLinkRecommendation[]
       body: "Audio-first journals with automatic transcription and recurring theme detection.",
     },
   ],
+  "best-journal-app-for-adhd-2026": [
+    {
+      slug: "journaling-for-adhd",
+      eyebrow: "ADHD Strategy",
+      body: "Practical 2-minute rule and structure tips for journaling with executive dysfunction.",
+    },
+    {
+      slug: "best-voice-journaling-apps",
+      eyebrow: "Audio First",
+      body: "Skip typing paralysis completely by speaking your thoughts into a voice journal.",
+    },
+    {
+      slug: "daylio-alternatives",
+      eyebrow: "Competitor Switch",
+      body: "Compare fast 10-second mood logging tools when writing long entries feels impossible.",
+    },
+    {
+      slug: "ai-journal-for-overthinking",
+      eyebrow: "Racing Thoughts",
+      body: "How AI reflection interrupts dopamine loops and late-night task spiraling.",
+    },
+  ],
+  "best-journal-app-with-voice-recording-2026": [
+    {
+      slug: "best-voice-journaling-apps",
+      eyebrow: "Category Roundup",
+      body: "The broader voice journaling landscape compared for transcription accuracy and privacy.",
+    },
+    {
+      slug: "3am-anxiety-journaling",
+      eyebrow: "Nighttime Voice Notes",
+      body: "Why eyes-closed voice check-ins in bed work better than bright screens when you cannot sleep.",
+    },
+    {
+      slug: "best-ai-journaling-apps",
+      eyebrow: "AI Reflection",
+      body: "Compare tools that turn spoken audio into clear emotional and cognitive pattern insights.",
+    },
+    {
+      slug: "how-to-start-journaling",
+      eyebrow: "Frictionless Habit",
+      body: "How to use 60-second audio check-ins to build a consistent daily habit from scratch.",
+    },
+  ],
+  "best-journal-app-for-anxiety-and-depression-2026": [
+    {
+      slug: "journaling-prompts-for-anxiety",
+      eyebrow: "Grounding Prompts",
+      body: "50 short prompts that gently de-escalate anxiety and cognitive distortions.",
+    },
+    {
+      slug: "3am-anxiety-journaling",
+      eyebrow: "Midnight Panic",
+      body: "A 3-minute somatic reset technique for sudden nighttime anxiety awakenings.",
+    },
+    {
+      slug: "ai-journal-for-overthinking",
+      eyebrow: "Rumination Cycles",
+      body: "How to externalize obsessive worry loops into clear, objective perspective.",
+    },
+    {
+      slug: "best-mental-health-apps",
+      eyebrow: "Broader Ecosystem",
+      body: "Compare top mental health apps tested for daily mood support and clinical boundaries.",
+    },
+  ],
+  "journaling-for-social-anxiety": [
+    {
+      slug: "journaling-prompts-for-anxiety",
+      eyebrow: "Anxiety Prompts",
+      body: "50 grounding prompts to calm social anticipatory dread and bodily tension.",
+    },
+    {
+      slug: "ai-journal-for-overthinking",
+      eyebrow: "Overthinking Loop",
+      body: "How to stop post-event rumination and analyzing what you said at a social event.",
+    },
+    {
+      slug: "how-to-start-journaling",
+      eyebrow: "Safe Space",
+      body: "Build a non-judgmental private daily ritual where you can express without performance.",
+    },
+    {
+      slug: "best-ai-journaling-apps",
+      eyebrow: "Gentle AI Feedback",
+      body: "Discover why low-bandwidth, gentle AI responses feel safer than clinical advice.",
+    },
+  ],
   "how-to-start-journaling": [
+    {
+      slug: "5-minute-daily-journaling-habit",
+      eyebrow: "Habit Science",
+      body: "The 21-day routine for building a sustainable daily practice that sticks.",
+    },
     {
       slug: "best-ai-journaling-apps",
       eyebrow: "Choose a tool",
@@ -2868,6 +2963,11 @@ const COMMERCIAL_DESTINATION_BY_SLUG: Record<string, CommercialDestination> = {
   "journaling-prompts-for-anxiety": { href: "/ai-journal", label: "Try Nuju Prompts & AI Read Free" },
   "nuju-vs-daylio": { href: "/mood-tracker", label: "See the Nuju mood tracker" },
   "nuju-vs-apple-journal": { href: "/ai-journal", label: "Try Nuju Cross-Platform Free" },
+  "best-journal-app-for-adhd-2026": { href: "/ai-journal", label: "Try Nuju ADHD-Friendly Journal Free" },
+  "best-journal-app-with-voice-recording-2026": { href: "/voice-journaling", label: "Try Nuju Voice Journaling Free" },
+  "best-journal-app-for-anxiety-and-depression-2026": { href: "/ai-journal", label: "Try Nuju for Anxiety & Low Mood Free" },
+  "journaling-for-social-anxiety": { href: "/ai-journal", label: "Try Nuju Gentle Reflection Free" },
+  "how-to-start-journaling": { href: "/ai-journal", label: "Start Your First 30-Second Journal Free" },
 };
 
 const DEFAULT_COMMERCIAL_DESTINATION: CommercialDestination = {
