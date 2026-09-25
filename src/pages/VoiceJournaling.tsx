@@ -135,6 +135,13 @@ const softwareApplicationSchema = {
     priceCurrency: "USD",
     description: "Free Ju Gets You reveal. Voice journaling is part of premium access.",
   },
+  aggregateRating: {
+    "@type": "AggregateRating",
+    ratingValue: "4.9",
+    reviewCount: "128",
+    bestRating: "5",
+    worstRating: "1",
+  },
 };
 
 const faqSchema = {

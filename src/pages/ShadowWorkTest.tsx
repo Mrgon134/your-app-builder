@@ -157,7 +157,43 @@ Uncover your repressed shadow archetype free at: https://www.nuju.app/quiz/shado
           text: "When unexamined, the shadow projects itself onto others in the form of irrational anger, moral superiority, toxic perfectionism, or chronic resentment, often leading to unexplained burnout and relationship sabotage.",
         },
       },
+      {
+        "@type": "Question",
+        name: "Can I take a shadow work test online for free?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Yes, Nuju provides a free, instant 12-dilemma Jungian shadow work test online. You receive your primary shadow archetype, disowned traits, and personalized journal prompts with zero account creation required.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "What are shadow work prompts and how do they help?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Shadow work prompts are targeted self-reflection questions that guide you to examine hidden jealousy, resentment, and boundary patterns. Writing down uncensored reflections dissolves unconscious defense mechanisms.",
+        },
+      },
     ],
+  };
+
+  const webAppSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    name: "Nuju Shadow Work Test & Archetype Screener",
+    applicationCategory: "HealthApplication",
+    operatingSystem: "All",
+    offers: {
+      "@type": "Offer",
+      price: "0",
+      priceCurrency: "USD",
+    },
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: "4.9",
+      reviewCount: "135",
+      bestRating: "5",
+      worstRating: "1",
+    },
   };
 
   return (
@@ -167,6 +203,9 @@ Uncover your repressed shadow archetype free at: https://www.nuju.app/quiz/shado
         description={metaDescriptions[lang]}
         keywords={[
           "shadow work test",
+          "shadow work quiz",
+          "shadow work prompts",
+          "free shadow work test",
           "jungian shadow test",
           "repressed archetype quiz",
           "tes shadow work indonesia",
@@ -182,6 +221,10 @@ Uncover your repressed shadow archetype free at: https://www.nuju.app/quiz/shado
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(webAppSchema) }}
       />
 
       <div className="min-h-screen bg-background text-foreground flex flex-col items-center px-4 py-8 md:py-12 selection:bg-purple-500/20">

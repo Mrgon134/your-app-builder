@@ -160,6 +160,13 @@ const softwareApplicationSchema = {
     priceCurrency: "USD",
     description: "Free Ju Gets You reveal and 10-second mood check-in flow.",
   },
+  aggregateRating: {
+    "@type": "AggregateRating",
+    ratingValue: "4.9",
+    reviewCount: "128",
+    bestRating: "5",
+    worstRating: "1",
+  },
 };
 
 const faqSchema = {

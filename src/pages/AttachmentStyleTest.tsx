@@ -195,6 +195,22 @@ const AttachmentStyleTest: React.FC<AttachmentStyleTestProps> = ({ defaultLang =
                   text: "Yes. Attachment styles are dynamic emotional adaptations, not permanent life sentences. Through somatic awareness, honest communication, therapy, and secure relationships, you can develop earned security.",
                 },
               },
+              {
+                "@type": "Question",
+                name: "How is the Nuju attachment style test scored?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "Nuju uses continuous dimensional scoring based on the scientific ECR-R model, measuring Attachment Anxiety and Attachment Avoidance independently along two spectrums rather than forcing you into a single rigid label.",
+                },
+              },
+              {
+                "@type": "Question",
+                name: "What is the rarest attachment style?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "Fearful-Avoidant (also called Disorganized) attachment is the rarest style, observed in approximately 3% to 5% of the general population. It is characterized by high anxiety and high avoidance simultaneously.",
+                },
+              },
             ],
           },
         ]}
