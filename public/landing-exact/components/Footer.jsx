@@ -18,8 +18,10 @@ const footerColumns = [
     items: [
       ['Best Self-Reflection Apps', '/blog/best-self-reflection-apps'],
       ['Mental Health Prompts', '/blog/journal-prompts-for-mental-health'],
+      ['Attachment Style Quiz', '/quiz/attachment-style'],
       ['Adult ADHD Screener', '/quiz/adhd-screener'],
       ['Mental Health Test (DASS-21)', '/quiz/mental-health-test'],
+      ['Shadow Work Test', '/quiz/shadow-work'],
       ['3AM Anxiety Journal', '/blog/3am-anxiety-journaling'],
       ['Best AI Journaling Apps', '/blog/best-ai-journaling-apps'],
       ['Daylio Alternative', '/blog/daylio-alternatives'],
