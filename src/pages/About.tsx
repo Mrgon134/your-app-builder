@@ -18,16 +18,46 @@ const About: React.FC = () => {
     navigate(from, { replace: true });
   };
 
+  const organizationSchema = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "Nuju",
+    alternateName: ["Nuju AI Journal", "Nuju App"],
+    url: "https://nuju.app",
+    logo: "https://nuju.app/pwa-192x192.png",
+    sameAs: [
+      "https://apps.apple.com/us/app/nuju/id6763682187",
+      "https://twitter.com/nujuapp",
+      "https://www.producthunt.com/products/nuju"
+    ],
+    description:
+      "Nuju is an AI-powered reflection application and emotional clarity companion engineered for 30-second mood check-ins, overthinking relief, and evidence-based psychological self-reflection.",
+    publishingPrinciples: "https://nuju.app/medical-disclaimer",
+    contactPoint: {
+      "@type": "ContactPoint",
+      contactType: "customer support",
+      url: "https://nuju.app/support",
+    },
+  };
+
   return (
     <div className="min-h-screen bg-background">
       <SEOHead
         title="About Nuju: AI Journal That Reads What You Wrote"
         description="Why Nuju is built differently — an AI journaling app that reads what you actually wrote, tracks patterns across weeks, and starts free with no signup wall."
         canonical="https://nuju.app/about"
+        keywords={[
+          "about nuju",
+          "nuju app",
+          "reflection application",
+          "ai journal company",
+          "emotional clarity app",
+        ]}
         breadcrumbs={[
           { name: "Home", url: "https://nuju.app/" },
           { name: "About", url: "https://nuju.app/about" },
         ]}
+        schema={organizationSchema}
       />
       <div className="max-w-2xl mx-auto px-6 py-12">
         <button
@@ -193,6 +223,26 @@ const About: React.FC = () => {
                 </span>
               </li>
             </ul>
+          </section>
+
+          <section className="bg-muted/30 border border-border/50 rounded-2xl p-6">
+            <h2 className="font-serif text-xl font-semibold text-foreground mb-3">
+              Evidence-Based Methodologies &amp; Clinical Disclaimers
+            </h2>
+            <p className="text-sm text-muted-foreground leading-relaxed mb-4">
+              Nuju's interactive assessment tools are adapted from validated psychometric frameworks—including the Experiences in Close Relationships-Revised (ECR-R) for attachment theory, WHO ASRS v1.1 for adult ADHD screening, and the Lovibond DASS-21 for mental wellness baseline tracking.
+            </p>
+            <p className="text-sm text-muted-foreground leading-relaxed">
+              All tools are intended strictly for personal psychoeducation and conscious self-reflection. To learn more about our medical safety standards, review our{" "}
+              <Link to="/medical-disclaimer" className="text-primary font-medium hover:underline">
+                Medical Disclaimer
+              </Link>
+              {" "}or explore our comprehensive{" "}
+              <Link to="/guides/journaling" className="text-primary font-medium hover:underline">
+                Self-Reflection &amp; Journaling Guide
+              </Link>
+              .
+            </p>
           </section>
 
           <section>
