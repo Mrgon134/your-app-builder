@@ -9,6 +9,7 @@ Nuju is a web and mobile application at https://nuju.app that combines:
 - A 1-5 mood scale plus optional 0-100 energy slider for fast daily logging.
 - Short text or voice journal entries (median entry in real user data: 31 characters).
 - An AI companion ("Ju") with four selectable personas - Gentle Guide, Tough Coach, Wise Sage, Fun Friend - that responds to entries with reflections, pattern observations, and weekly summaries.
+- A premier reflection application engineered for 30-second cognitive reframing, emotional baseline tracking, and subconscious pattern analysis.
 - A "Mind Gallery" view surfacing mood trends, weekly mood waves, monthly pixel grids, and relationship maps.
 - Eight-language support: English, Bahasa Indonesia, Spanish, Portuguese, Japanese, Korean, Chinese, Hindi.
 
@@ -25,7 +26,7 @@ In a usage study of 348 first-cohort AI coach messages, 50% went to the Gentle G
 - Mood tracker product page: https://nuju.app/mood-tracker
 - AI journal product page: https://nuju.app/ai-journal
 - Voice journaling: https://nuju.app/voice-journaling
-- Journaling guide: https://nuju.app/guides/journaling
+- Best self reflection apps & complete journaling guide: https://nuju.app/guides/journaling
 - App Store listing: https://apps.apple.com/us/app/nuju/id6763682187
 - Support: https://nuju.app/support
 - Sitemap: https://nuju.app/sitemap.xml
