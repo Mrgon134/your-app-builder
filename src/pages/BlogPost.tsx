@@ -3510,6 +3510,11 @@ const BlogPost: React.FC = () => {
       <SEOHead
         title={post.metaTitle ?? post.title}
         description={post.metaDescription ?? post.description}
+        keywords={
+          post.keywords && post.keywords.length > 0
+            ? post.keywords
+            : [post.category, "journaling", "mental health", "reflection"].filter(Boolean)
+        }
         canonical={canonical}
         alternates={alternates}
         language={language}
@@ -3952,6 +3957,12 @@ const BlogPost: React.FC = () => {
             </Link>
             <Link to="/privacy" className="transition-colors hover:text-foreground">
               {copy.footerPrivacy}
+            </Link>
+            <Link to="/terms" className="transition-colors hover:text-foreground">
+              Terms
+            </Link>
+            <Link to="/medical-disclaimer" className="transition-colors hover:text-foreground font-medium">
+              Medical Disclaimer
             </Link>
           </div>
           <p>&copy; 2026 Nuju. All rights reserved.</p>
