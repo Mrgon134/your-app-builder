@@ -28,6 +28,7 @@ interface SEOHeadProps {
   description: string;
   keywords?: string[] | string;
   canonical?: string;
+  canonicalUrl?: string;
   noindex?: boolean;
   breadcrumbs?: BreadcrumbItem[];
   alternates?: AlternateLink[];
@@ -48,6 +49,7 @@ const SEOHead: React.FC<SEOHeadProps> = ({
   description,
   keywords,
   canonical,
+  canonicalUrl,
   noindex,
   breadcrumbs,
   alternates,
@@ -59,6 +61,12 @@ const SEOHead: React.FC<SEOHeadProps> = ({
 }) => {
   const fullTitle = noSuffix ? title : `${title} | ${BASE_TITLE}`;
   const ogLocale = LOCALE_MAP[language] ?? "en_US";
+  const rawCanonical = canonical || canonicalUrl;
+  const resolvedCanonical = rawCanonical
+    ? rawCanonical.startsWith("http")
+      ? rawCanonical
+      : `https://nuju.app${rawCanonical.startsWith("/") ? "" : "/"}${rawCanonical}`
+    : undefined;
   const ogImage = image
     ? image.startsWith("http")
       ? image
@@ -89,7 +97,7 @@ const SEOHead: React.FC<SEOHeadProps> = ({
           content={Array.isArray(keywords) ? keywords.join(", ") : keywords}
         />
       )}
-      {canonical && <link rel="canonical" href={canonical} />}
+      {resolvedCanonical && <link rel="canonical" href={resolvedCanonical} />}
       {noindex && <meta name="robots" content="noindex, nofollow" />}
 
       <meta property="og:type" content="website" />
@@ -99,7 +107,7 @@ const SEOHead: React.FC<SEOHeadProps> = ({
       <meta property="og:image:alt" content={ogImageAlt} />
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />
-      {canonical && <meta property="og:url" content={canonical} />}
+      {resolvedCanonical && <meta property="og:url" content={resolvedCanonical} />}
       <meta property="og:locale" content={ogLocale} />
       <meta property="og:site_name" content="Nuju" />
 
@@ -111,10 +119,10 @@ const SEOHead: React.FC<SEOHeadProps> = ({
       <meta name="twitter:site" content="@nujuapp" />
       <meta name="twitter:creator" content="@nujuapp" />
 
-      {canonical && !alternates && (
-        <link rel="alternate" hrefLang={language} href={canonical} />
+      {resolvedCanonical && !alternates && (
+        <link rel="alternate" hrefLang={language} href={resolvedCanonical} />
       )}
-      {canonical && <link rel="alternate" hrefLang="x-default" href={canonical} />}
+      {resolvedCanonical && <link rel="alternate" hrefLang="x-default" href={resolvedCanonical} />}
       {alternates?.map(({ lang, url }) => (
         <link key={lang} rel="alternate" hrefLang={lang} href={url} />
       ))}
