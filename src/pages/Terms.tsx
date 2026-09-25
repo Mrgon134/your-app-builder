@@ -19,13 +19,32 @@ const Terms: React.FC = () => {
   return (
     <div className="min-h-screen bg-background">
       <SEOHead
-        title="Terms of Service and Paid Access Rules"
-        description="Read Nuju's terms of service, account rules, payment terms, and the boundaries of the AI journaling experience before you keep using the app."
+        title="Terms of Service & Usage Policy | Nuju"
+        description="Read Nuju's terms of service, subscription policies, and safety rules for our AI reflection and mood tracking services."
         canonical="https://nuju.app/terms"
+        keywords={[
+          "nuju terms of service",
+          "nuju user agreement",
+          "ai journaling terms",
+          "subscription policy",
+        ]}
         breadcrumbs={[
           { name: "Home", url: "https://nuju.app/" },
           { name: "Terms of Service", url: "https://nuju.app/terms" },
         ]}
+        schema={{
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          name: "Nuju Terms of Service",
+          url: "https://nuju.app/terms",
+          description:
+            "Terms of service, usage guidelines, and subscription policies for Nuju AI Journal.",
+          publisher: {
+            "@type": "Organization",
+            name: "Nuju",
+            url: "https://nuju.app",
+          },
+        }}
       />
       <div className="max-w-2xl mx-auto px-6 py-12">
         <button

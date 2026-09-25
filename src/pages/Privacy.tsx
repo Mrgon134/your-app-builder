@@ -17,13 +17,32 @@ const Privacy: React.FC = () => {
   return (
     <div className="min-h-screen bg-background">
       <SEOHead
-        title="Privacy Policy and Data Handling"
-        description="Learn how Nuju collects, stores, and protects journal data, account details, and AI-generated insights, plus what happens if you export or delete your account."
+        title="Privacy Policy & Data Protection | Nuju"
+        description="Learn how Nuju encrypts and protects journal data, mood logs, and AI reflections. Zero data sold, zero AI model training on private entries."
         canonical="https://nuju.app/privacy"
+        keywords={[
+          "nuju privacy policy",
+          "private journaling app",
+          "ai journal data encryption",
+          "encrypted mood tracker",
+        ]}
         breadcrumbs={[
           { name: "Home", url: "https://nuju.app/" },
           { name: "Privacy Policy", url: "https://nuju.app/privacy" },
         ]}
+        schema={{
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          name: "Nuju Privacy Policy & Data Protection",
+          url: "https://nuju.app/privacy",
+          description:
+            "Privacy policy, encryption standards, and data handling practices for Nuju AI Journal.",
+          publisher: {
+            "@type": "Organization",
+            name: "Nuju",
+            url: "https://nuju.app",
+          },
+        }}
       />
       <div className="max-w-2xl mx-auto px-6 py-12">
         <button
