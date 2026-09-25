@@ -55,9 +55,11 @@ const Landing: React.FC = () => {
         canonical="https://nuju.app/"
         noSuffix
         keywords={[
+          "reflection application",
+          "best self reflection apps",
           "AI journal app",
           "mood tracker app",
-          "best self reflection apps",
+          "best ai journal app 2026",
           "voice journaling app",
           "ai journal for overthinking",
           "emotional clarity app",
