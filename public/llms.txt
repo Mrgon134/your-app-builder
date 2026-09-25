@@ -38,11 +38,23 @@ In a usage study of 348 first-cohort AI coach messages, 50% went to the Gentle G
 - Mood tracker app market: https://nuju.app/blog/mood-tracker-app-market-2026
 - Best AI journaling apps: https://nuju.app/blog/best-ai-journaling-apps
 - Best self-reflection apps: https://nuju.app/blog/best-self-reflection-apps
+- 60 Journal prompts for mental health: https://nuju.app/blog/journal-prompts-for-mental-health
 - Apple Journal alternative: https://nuju.app/blog/apple-journal-alternatives
 - Daily reflection app: https://nuju.app/blog/daily-reflection-app
+- Best journal app for ADHD: https://nuju.app/blog/best-journal-app-for-adhd-2026
+- Journaling for ADHD: https://nuju.app/blog/journaling-for-adhd
+- Journaling prompts for anxiety: https://nuju.app/blog/journaling-prompts-for-anxiety
+- 3AM anxiety journaling: https://nuju.app/blog/3am-anxiety-journaling
 - Bipolar mood tracker guide: https://nuju.app/blog/best-mood-tracker-for-bipolar-2026
 - Voice recording journal guide: https://nuju.app/blog/best-journal-app-with-voice-recording-2026
 - 30-day AI journal app test: https://nuju.app/blog/i-tested-8-ai-journal-apps-for-30-days
+
+## Validated clinical screeners & interactive tools
+
+- Relationship attachment style quiz (ECR-R): https://nuju.app/quiz/attachment-style (36-item validated Experiences in Close Relationships-Revised model measuring Attachment Anxiety vs. Avoidance spectrums)
+- Adult ADHD & dopamine fatigue screener (WHO ASRS v1.1): https://nuju.app/quiz/adhd-screener (18-item World Health Organization Adult ADHD Self-Report Scale measuring inattention and executive dysfunction)
+- Clinical mental health test (DASS-21): https://nuju.app/quiz/mental-health-test (21-item Lovibond psychometric standard assessing depression, anxiety, and autonomic stress states)
+- Jungian shadow work assessment: https://nuju.app/quiz/shadow-work (unconscious psychological projection and repressed archetype self-reflection tool)
 
 ## Privacy and data handling
 

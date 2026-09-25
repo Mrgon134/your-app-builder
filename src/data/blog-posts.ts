@@ -2660,6 +2660,15 @@ const RAW_BLOG_POSTS: BlogPost[] = [
         "Never edit or censor yourself: Your journal is not a high school essay. Spelling, grammar, and neatness do not matter — honesty does.",
         "Combine mood tracking with writing: Rating your mood and energy level before you write gives objective context to your words."
       ] },
+      { type: "h2", content: "Daily check-in prompts (the 2-minute baseline)" },
+      { type: "p", content: "If you only have two minutes before starting work or winding down for bed, use these five grounding baseline prompts to take an honest mental pulse:" },
+      { type: "ul", content: [
+        "What was the single best moment of my day, and what was the most mentally draining challenge?",
+        "How did I actively nurture my mental health or protect my personal boundaries today?",
+        "What is one small victory I achieved today, even if getting through the afternoon felt difficult?",
+        "What does my body and nervous system need right now to feel safe, rested, and supported?",
+        "What is one honest observation I learned about my emotional triggers or energy patterns today?"
+      ] },
       { type: "h2", content: "Prompts for anxiety, racing thoughts, and overthinking" },
       { type: "ul", content: [
         "What is the single loudest thought in my head right now, and what evidence do I have that it is 100% true?",
