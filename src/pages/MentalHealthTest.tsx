@@ -766,8 +766,11 @@ const MentalHealthTest: React.FC<MentalHealthTestProps> = ({ defaultLang = "en" 
               <ShieldCheck className="h-4 w-4 inline-block mr-1.5 text-neutral-400" />
               <strong>{lang === "en" ? "Medical Disclaimer: " : "Disclaimer Medis: "}</strong>
               {lang === "en"
-                ? "The DASS-21 is a psychological screening instrument intended for personal self-reflection and educational awareness. It is not a clinical diagnosis or a substitute for professional mental health evaluation, medical advice, or psychiatric treatment."
-                : "Skrining DASS-21 ini ditujukan untuk sarana refleksi diri dan kesadaran emosional mandiri. Hasil tes ini bukan merupakan diagnosis medis dan tidak menggantikan konsultasi dengan psikolog klinis, psikiater, atau tenaga medis profesional."}
+                ? "The DASS-21 is a psychological screening instrument intended for personal self-reflection and educational awareness. It is not a clinical diagnosis or a substitute for professional mental health evaluation, medical advice, or psychiatric treatment. "
+                : "Skrining DASS-21 ini ditujukan untuk sarana refleksi diri dan kesadaran emosional mandiri. Hasil tes ini bukan merupakan diagnosis medis dan tidak menggantikan konsultasi dengan psikolog klinis, psikiater, atau tenaga medis profesional. "}
+              <Link to="/medical-disclaimer" className="underline text-indigo-600 hover:text-indigo-800 font-medium">
+                {lang === "en" ? "Read full medical disclaimer" : "Baca disclaimer medis selengkapnya"}
+              </Link>
             </div>
 
             {/* App Store CTA */}
@@ -917,6 +920,27 @@ const MentalHealthTest: React.FC<MentalHealthTestProps> = ({ defaultLang = "en" 
           </div>
         )}
       </main>
+
+      {/* Trust & Legal Footer */}
+      <footer className="border-t border-slate-200/80 bg-neutral-50 py-8 text-center text-xs text-neutral-500">
+        <div className="max-w-5xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <p>© {new Date().getFullYear()} Nuju. Evidence-based mental wellness & reflection.</p>
+          <div className="flex items-center gap-4 text-neutral-500">
+            <Link to="/quiz" className="hover:text-neutral-800">
+              All Quizzes
+            </Link>
+            <Link to="/privacy" className="hover:text-neutral-800">
+              Privacy
+            </Link>
+            <Link to="/terms" className="hover:text-neutral-800">
+              Terms
+            </Link>
+            <Link to="/medical-disclaimer" className="hover:text-neutral-800 font-medium">
+              Medical Disclaimer
+            </Link>
+          </div>
+        </div>
+      </footer>
 
       {/* Share Modal */}
       {result && (

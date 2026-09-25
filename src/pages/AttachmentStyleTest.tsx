@@ -512,6 +512,18 @@ const AttachmentStyleTest: React.FC<AttachmentStyleTestProps> = ({ defaultLang =
               </div>
             </section>
 
+            {/* Scientific Disclaimer */}
+            <div className="rounded-2xl border border-neutral-200/60 bg-neutral-100/60 p-4 text-center text-xs text-neutral-500 leading-relaxed">
+              <ShieldCheck className="h-4 w-4 inline-block mr-1.5 text-neutral-400" />
+              <strong>{lang === "en" ? "Assessment Note: " : "Catatan Penilaian: "}</strong>
+              {lang === "en"
+                ? "This attachment style screener is based on the Experiences in Close Relationships-Revised (ECR-R) framework for personal reflection and self-understanding. It is not a clinical psychological diagnosis. "
+                : "Skrining gaya kelekatan ini diadaptasi dari kerangka ilmiah Experiences in Close Relationships-Revised (ECR-R) untuk refleksi diri. Hasil ini bukan diagnosis psikologis klinis. "}
+              <Link to="/medical-disclaimer" className="underline text-indigo-600 hover:text-indigo-800 font-medium">
+                {lang === "en" ? "Read full medical disclaimer" : "Baca disclaimer medis"}
+              </Link>
+            </div>
+
             {/* Ju App Conversion CTA */}
             <div className="pt-6">
               <AppStoreCta />
@@ -632,6 +644,27 @@ const AttachmentStyleTest: React.FC<AttachmentStyleTestProps> = ({ defaultLang =
           </div>
         )}
       </main>
+
+      {/* Trust & Legal Footer */}
+      <footer className="border-t border-slate-200/80 bg-neutral-50 py-8 text-center text-xs text-neutral-500">
+        <div className="max-w-5xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <p>© {new Date().getFullYear()} Nuju. Evidence-based relationship psychology & reflection.</p>
+          <div className="flex items-center gap-4 text-neutral-500">
+            <Link to="/quiz" className="hover:text-neutral-800">
+              All Quizzes
+            </Link>
+            <Link to="/privacy" className="hover:text-neutral-800">
+              Privacy
+            </Link>
+            <Link to="/terms" className="hover:text-neutral-800">
+              Terms
+            </Link>
+            <Link to="/medical-disclaimer" className="hover:text-neutral-800 font-medium">
+              Medical Disclaimer
+            </Link>
+          </div>
+        </div>
+      </footer>
 
       {evaluation && (
         <AttachmentShareCardModal

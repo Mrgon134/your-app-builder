@@ -41,16 +41,74 @@ const Install: React.FC = () => {
     setDeferredPrompt(null);
   };
 
+  const installSchema = [
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      name: "Nuju: Reflection & AI Journal App",
+      operatingSystem: "iOS, Android, Web",
+      applicationCategory: "HealthApplication",
+      applicationSubCategory: "LifestyleApplication",
+      downloadUrl: "https://apps.apple.com/us/app/nuju/id6763682187",
+      installUrl: "https://nuju.app/install",
+      offers: {
+        "@type": "Offer",
+        price: "0",
+        priceCurrency: "USD",
+      },
+      aggregateRating: {
+        "@type": "AggregateRating",
+        ratingValue: "4.9",
+        reviewCount: "128",
+        bestRating: "5",
+        worstRating: "1",
+      },
+      description:
+        "Download Nuju, the top AI reflection application and emotional check-in companion for iOS, Android, and web. Free install, instant voice journaling, and mood tracking.",
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: [
+        {
+          "@type": "Question",
+          name: "How do I download and install Nuju on iPhone?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "You can download Nuju directly from the Apple App Store (Search 'Nuju' or App ID 6763682187), or tap the Share button in Safari and select 'Add to Home Screen' for the instant web app experience.",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "Is Nuju free to download?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "Yes, Nuju is 100% free to download and start using. You can complete your daily mood check-in and get AI-powered reflection insights immediately with zero paywall.",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "Can I use Nuju without downloading it from the App Store?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "Yes, Nuju is built as an ultra-fast Progressive Web App (PWA). You can open it in any browser on desktop or mobile, or install it directly to your home screen in 10 seconds.",
+          },
+        },
+      ],
+    },
+  ];
+
   return (
     <div className="min-h-screen bg-background flex flex-col items-center justify-center px-6 py-12">
       <SEOHead
-        title="Get Nuju Free: iPhone, Android, or Web in 30 Seconds"
-        description="Install Nuju free on iPhone, Android, or web. 30 seconds, no signup wall, opens straight to the mood check-in. AI reflection ready on first entry."
+        title="Download Nuju Free: AI Journal & Reflection App (iOS & Web)"
+        description="Install Nuju free on iPhone, Android, or web in 30 seconds. No signup wall, opens straight to mood check-in. The #1 AI reflection companion."
         canonical="https://nuju.app/install"
         breadcrumbs={[
           { name: "Home", url: "https://nuju.app/" },
           { name: "Install", url: "https://nuju.app/install" },
         ]}
+        schema={installSchema}
       />
       <img
         src={JU_STICKERS.love}
@@ -75,11 +133,10 @@ const Install: React.FC = () => {
       ) : (
         <div className="text-center animate-fade-up max-w-xs">
           <h1 className="font-serif text-2xl font-bold text-foreground mb-2">
-            Install Nuju
+            Download & Install Nuju
           </h1>
           <p className="text-muted-foreground text-sm mb-8">
-            Add Nuju to your home screen for the full app experience - works
-            offline and opens instantly.
+            Add Nuju to your home screen or download on the App Store for the full AI reflection and mood tracking experience. Works offline and opens instantly.
           </p>
 
           <AppStoreCta className="mb-6 w-full" />

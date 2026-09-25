@@ -12,6 +12,7 @@ import {
   Flame,
   Eye,
   CheckCircle2,
+  ShieldCheck,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import SEOHead from "@/components/SEOHead";
@@ -570,12 +571,45 @@ Uncover your repressed shadow archetype free at: https://www.nuju.app/quiz/shado
                 {/* AdSense Result Slot */}
                 <AdSenseBanner slot="shadow-result" format="auto" />
 
+                {/* Self-Reflection & Ethical Disclaimer */}
+                <div className="rounded-2xl border border-border/50 bg-card/60 p-4 text-center text-xs text-muted-foreground leading-relaxed">
+                  <ShieldCheck className="h-4 w-4 inline-block mr-1.5 text-muted-foreground" />
+                  <strong>{lang === "id" ? "Catatan Refleksi: " : "Self-Reflection Note: "}</strong>
+                  {lang === "id"
+                    ? "Tes shadow work ini diadaptasi dari psikologi analitis Jungian untuk sarana refleksi mandiri dan mengenali bagian bawah sadar. Tes ini bukan diagnosis klinis. "
+                    : "This shadow work assessment is adapted from Jungian analytical concepts for self-reflection and subconscious integration. It is not a clinical psychological diagnosis. "}
+                  <Link to="/medical-disclaimer" className="underline text-primary hover:opacity-80 font-medium">
+                    {lang === "id" ? "Baca disclaimer medis" : "Read medical disclaimer"}
+                  </Link>
+                </div>
+
                 {/* App CTA */}
                 <AppStoreCta />
               </motion.div>
             )
           )}
         </div>
+
+        {/* Trust & Legal Footer */}
+        <footer className="border-t border-border/50 bg-card/40 py-8 text-center text-xs text-muted-foreground mt-12">
+          <div className="max-w-5xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <p>© {new Date().getFullYear()} Nuju. Depth psychology & conscious reflection.</p>
+            <div className="flex items-center gap-4 text-muted-foreground">
+              <Link to="/quiz" className="hover:text-foreground">
+                All Quizzes
+              </Link>
+              <Link to="/privacy" className="hover:text-foreground">
+                Privacy
+              </Link>
+              <Link to="/terms" className="hover:text-foreground">
+                Terms
+              </Link>
+              <Link to="/medical-disclaimer" className="hover:text-foreground font-medium">
+                Medical Disclaimer
+              </Link>
+            </div>
+          </div>
+        </footer>
 
         {/* Share Card Modal */}
         {result && (
