@@ -3764,14 +3764,31 @@ const QuizHub: React.FC = () => {
         </div>
 
         {/* Medical & Ethical Disclaimer */}
-        <footer className="border-t border-neutral-200 pt-8 pb-12 text-center text-xs text-neutral-400 max-w-2xl mx-auto space-y-2">
+        <footer className="border-t border-neutral-200 pt-8 pb-12 text-center text-xs text-neutral-400 max-w-2xl mx-auto space-y-3">
           <p className="font-medium text-neutral-500">
-            ⚠️ <strong>Ethics & Medical Disclaimer:</strong> Mini tests and quizzes on nuju.app are psychoeducational and self-reflection instruments, not clinical diagnoses or substitutes for professional consultation with a psychologist or psychiatrist.
+            ⚠️ <strong>Ethics & Medical Disclaimer:</strong> Mini tests and quizzes on nuju.app are psychoeducational and self-reflection instruments, not clinical diagnoses or substitutes for professional consultation with a psychologist or psychiatrist.{" "}
+            <Link to="/medical-disclaimer" className="underline text-indigo-600 hover:text-indigo-800 font-medium">
+              Read our full medical disclaimer.
+            </Link>
           </p>
           <p>
-            If you are experiencing a mental health crisis, thoughts of self-harm, or severe depression, please contact your nearest emergency mental health service immediately.
+            If you are experiencing a mental health crisis, thoughts of self-harm, or severe depression, please contact the 988 Suicide &amp; Crisis Lifeline (US &amp; Canada) or your local emergency mental health service immediately.
           </p>
-          <p className="pt-4">
+          <div className="flex items-center justify-center gap-4 text-neutral-500 pt-2">
+            <Link to="/" className="hover:text-neutral-900">
+              Home
+            </Link>
+            <Link to="/privacy" className="hover:text-neutral-900">
+              Privacy Policy
+            </Link>
+            <Link to="/terms" className="hover:text-neutral-900">
+              Terms of Service
+            </Link>
+            <Link to="/medical-disclaimer" className="hover:text-neutral-900 font-medium">
+              Medical Disclaimer
+            </Link>
+          </div>
+          <p className="pt-2">
             &copy; {new Date().getFullYear()} Nuju (nuju.app) • All rights reserved.
           </p>
         </footer>
