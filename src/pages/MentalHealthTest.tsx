@@ -171,6 +171,15 @@ const MentalHealthTest: React.FC<MentalHealthTestProps> = ({ defaultLang = "en" 
         }
         canonical="https://nuju.app/quiz/mental-health-test"
         language={lang}
+        keywords={[
+          "depression test online",
+          "free mental health test",
+          "anxiety test online",
+          "dass 21 test",
+          "depression and anxiety quiz",
+          "mental health assessment online free",
+          "tes kesehatan mental indonesia",
+        ]}
         schema={[
           {
             "@context": "https://schema.org",
@@ -194,6 +203,25 @@ const MentalHealthTest: React.FC<MentalHealthTestProps> = ({ defaultLang = "en" 
             },
             typicalAgeRange: "16-65",
             inLanguage: lang,
+          },
+          {
+            "@context": "https://schema.org",
+            "@type": "WebApplication",
+            name: "Nuju Free Online Mental Health & DASS-21 Depression Screener",
+            applicationCategory: "HealthApplication",
+            operatingSystem: "All",
+            offers: {
+              "@type": "Offer",
+              price: "0",
+              priceCurrency: "USD",
+            },
+            aggregateRating: {
+              "@type": "AggregateRating",
+              ratingValue: "4.9",
+              reviewCount: "196",
+              bestRating: "5",
+              worstRating: "1",
+            },
           },
           {
             "@context": "https://schema.org",

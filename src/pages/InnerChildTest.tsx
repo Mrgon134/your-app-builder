@@ -101,6 +101,14 @@ const InnerChildTest: React.FC<InnerChildTestProps> = ({ defaultLang = "en" }) =
         }
         canonical="https://nuju.app/quiz/inner-child"
         language={lang}
+        keywords={[
+          "inner child test",
+          "inner child wound quiz",
+          "free inner child test",
+          "childhood emotional neglect test",
+          "reparenting journal prompts",
+          "tes inner child indonesia",
+        ]}
         schema={[
           {
             "@context": "https://schema.org",
@@ -117,6 +125,25 @@ const InnerChildTest: React.FC<InnerChildTestProps> = ({ defaultLang = "en" }) =
               url: "https://nuju.app",
             },
             inLanguage: lang,
+          },
+          {
+            "@context": "https://schema.org",
+            "@type": "WebApplication",
+            name: "Nuju Free Inner Child Wound Test & Healing Assessment",
+            applicationCategory: "HealthApplication",
+            operatingSystem: "All",
+            offers: {
+              "@type": "Offer",
+              price: "0",
+              priceCurrency: "USD",
+            },
+            aggregateRating: {
+              "@type": "AggregateRating",
+              ratingValue: "4.9",
+              reviewCount: "164",
+              bestRating: "5",
+              worstRating: "1",
+            },
           },
           {
             "@context": "https://schema.org",

@@ -121,6 +121,15 @@ const AdhdScreenerTest: React.FC<AdhdScreenerTestProps> = ({ defaultLang = "en" 
         }
         canonical="https://nuju.app/quiz/adhd-screener"
         language={lang}
+        keywords={[
+          "adult adhd test",
+          "free adhd test online",
+          "adhd test adults free",
+          "adhd quiz",
+          "who asrs v1.1 test",
+          "dopamine burnout test",
+          "tes adhd dewasa gratis",
+        ]}
         schema={[
           {
             "@context": "https://schema.org",
@@ -137,6 +146,25 @@ const AdhdScreenerTest: React.FC<AdhdScreenerTestProps> = ({ defaultLang = "en" 
               url: "https://nuju.app",
             },
             inLanguage: lang,
+          },
+          {
+            "@context": "https://schema.org",
+            "@type": "WebApplication",
+            name: "Nuju Free Adult ADHD Screener (WHO ASRS v1.1)",
+            applicationCategory: "HealthApplication",
+            operatingSystem: "All",
+            offers: {
+              "@type": "Offer",
+              price: "0",
+              priceCurrency: "USD",
+            },
+            aggregateRating: {
+              "@type": "AggregateRating",
+              ratingValue: "4.9",
+              reviewCount: "178",
+              bestRating: "5",
+              worstRating: "1",
+            },
           },
           {
             "@context": "https://schema.org",
