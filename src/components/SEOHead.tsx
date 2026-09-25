@@ -26,6 +26,7 @@ export const LOCALE_MAP: Record<SupportedLanguage, string> = {
 interface SEOHeadProps {
   title: string;
   description: string;
+  keywords?: string[] | string;
   canonical?: string;
   noindex?: boolean;
   breadcrumbs?: BreadcrumbItem[];
@@ -45,6 +46,7 @@ const OG_IMAGE_ALT = "Nuju AI journal companion app screenshot";
 const SEOHead: React.FC<SEOHeadProps> = ({
   title,
   description,
+  keywords,
   canonical,
   noindex,
   breadcrumbs,
@@ -81,6 +83,12 @@ const SEOHead: React.FC<SEOHeadProps> = ({
     <Helmet>
       <title>{fullTitle}</title>
       <meta name="description" content={description} />
+      {keywords && (
+        <meta
+          name="keywords"
+          content={Array.isArray(keywords) ? keywords.join(", ") : keywords}
+        />
+      )}
       {canonical && <link rel="canonical" href={canonical} />}
       {noindex && <meta name="robots" content="noindex, nofollow" />}
 

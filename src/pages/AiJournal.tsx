@@ -82,20 +82,29 @@ const FREE_VS_PAID = {
 const COMPARISON = [
   {
     name: "Nuju",
-    body: "AI journaling + mood tracking + multiple coach personas in one low-friction app. Built around what you actually wrote, not generic templates.",
+    badge: "Best for Emotional Clarity & Overthinking",
+    body: "Pairs 30-second mood check-ins with empathetic AI reflection, 4 coach personas, and multi-week pattern recognition. Zero blank-page pressure.",
     accent: true,
   },
   {
-    name: "Generic AI chatbot",
-    body: "Will respond to a single message but does not store mood, build memory, or surface multi-week patterns from your reflection.",
+    name: "Rosebud",
+    badge: "Conversational Socratic Dialogue",
+    body: "Interactive AI chat partner that asks reflective follow-up questions. Great for deep back-and-forth conversation, but requires longer typing sessions.",
   },
   {
-    name: "Pure mood tracker (Daylio, etc.)",
-    body: "Fast logging of mood and tags, but no journaling and no AI interpretation of why your mood is moving the way it is.",
+    name: "Reflection.app",
+    badge: "Guided Prompts & Programs",
+    body: "Structured reflection prompts and coaching programs. Ideal for traditional structured writers, but lacks instant 30-second emotional check-in flow.",
   },
   {
-    name: "Prompt-only journaling app",
-    body: "Helpful for getting started, but stops at the prompt. Less useful once you want patterns instead of more pages.",
+    name: "Day One",
+    badge: "Multimedia Archiving",
+    body: "The legacy gold standard for text, photos, and audio diary entries. Powerful archiving, but minimal proactive emotional feedback loops.",
+  },
+  {
+    name: "Daylio",
+    badge: "Pure Micro Mood Logging",
+    body: "Extremely fast icon-based mood logging, but no AI reflection on your actual writing and no deep cognitive pattern analysis.",
   },
 ];
 
@@ -427,7 +436,14 @@ const AiJournal: React.FC = () => {
                   row.accent ? "border-primary/30 bg-primary/5" : "border-border/60 bg-card/60"
                 }`}
               >
-                <p className="font-serif text-lg font-semibold text-foreground">{row.name}</p>
+                <div className="flex flex-wrap items-center justify-between gap-2">
+                  <p className="font-serif text-lg font-semibold text-foreground">{row.name}</p>
+                  {row.badge && (
+                    <span className="rounded-full bg-primary/10 px-2.5 py-0.5 text-xs font-medium text-primary">
+                      {row.badge}
+                    </span>
+                  )}
+                </div>
                 <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{row.body}</p>
               </div>
             ))}

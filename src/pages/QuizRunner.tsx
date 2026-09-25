@@ -596,6 +596,27 @@ const QuizRunner: React.FC = () => {
           />
         )}
       </main>
+
+      {/* Trust & Legal Footer */}
+      <footer className="border-t border-neutral-200/80 bg-white py-8 text-center text-xs text-neutral-500">
+        <div className="max-w-4xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <p>© {new Date().getFullYear()} Nuju. Evidence-based self-reflection & mental wellness.</p>
+          <div className="flex items-center gap-4 text-neutral-500">
+            <Link to="/quiz" className="hover:text-neutral-900">
+              All Quizzes
+            </Link>
+            <Link to="/privacy" className="hover:text-neutral-900">
+              Privacy
+            </Link>
+            <Link to="/terms" className="hover:text-neutral-900">
+              Terms
+            </Link>
+            <Link to="/medical-disclaimer" className="hover:text-neutral-900 font-medium">
+              Medical Disclaimer
+            </Link>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 };
