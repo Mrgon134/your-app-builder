@@ -498,7 +498,11 @@ const RAW_BLOG_POSTS: BlogPost[] = [
     title: "50 Journaling Prompts for Anxiety (That Actually Help)",
     description:
       "Blank page anxiety is real. These 50 prompts are designed to help you untangle anxious thoughts, identify triggers, and find clarity — no clinical jargon required.",
+    metaTitle: "50 Journaling Prompts for Anxiety (That Actually Calm Your Mind)",
+    metaDescription:
+      "Overwhelmed by anxious thoughts? Try these 50 science-backed anxiety journaling prompts designed to reduce amygdala reactivity in 2 minutes. Free web & app reveal.",
     publishedAt: "2026-04-11",
+    updatedAt: "2026-09-25",
     readingTime: 8,
     category: "Journaling Tips",
     sections: [
@@ -613,9 +617,35 @@ const RAW_BLOG_POSTS: BlogPost[] = [
         ],
       },
       {
+        type: "h2",
+        content: "Turning prompts into daily relief with Nuju",
+      },
+      {
         type: "p",
         content:
-          "Nuju includes daily journaling prompts and an AI coach that responds to your entries — so instead of writing into a void, you get a reflection back. Free to try.",
+          "Instead of writing into a blank notebook where anxious thoughts get lost, Nuju pairs these guided prompts with 30-second mood logs, voice check-ins, and AI pattern recognition. The AI companion reflects back recurring emotional themes, helping you notice triggers before they escalate into full-blown panic. You can start with the [free web journaling reveal](/onboarding?source=blog_journaling-prompts-for-anxiety) without a credit card, or download the app directly on the [Apple App Store](https://apps.apple.com/us/app/nuju/id6763682187). If you'd like an immediate baseline of your emotional strain, you can also take our free [clinical DASS-21 mental health screener](/quiz/mental-health-test).",
+      },
+    ],
+    faq: [
+      {
+        question: "How do journaling prompts help with anxiety?",
+        answer:
+          "Anxiety floods working memory with chaotic, looping thoughts. Structured prompts give your prefrontal cortex scaffolding to name specific fears ('affect labeling'), which neuroscience research shows measurably dampens amygdala reactivity in under 2 minutes.",
+      },
+      {
+        question: "How long should I journal when feeling anxious?",
+        answer:
+          "Just 2 to 5 minutes is optimal. Long, open-ended journaling can inadvertently fuel rumination and spiraling. A short check-in that identifies one trigger and one small grounded action delivers the fastest emotional relief.",
+      },
+      {
+        question: "Should I write by hand or use an anxiety journal app?",
+        answer:
+          "Both work. Handwriting offers tactile grounding, while an AI journal app like Nuju allows rapid 30-second voice check-ins, automated trigger tracking, and private reflection without the friction of carrying a notebook.",
+      },
+      {
+        question: "What is the best prompt when having a sudden panic attack?",
+        answer:
+          "Use a 5-4-3-2-1 sensory grounding prompt: name 5 things you can see, 4 textures you can touch, 3 sounds you can hear, 2 scents you can smell, and 1 slow breath you can take right now to signal safety to your nervous system.",
       },
     ],
   },
@@ -1605,10 +1635,10 @@ const RAW_BLOG_POSTS: BlogPost[] = [
     slug: "reflectly-alternatives",
     title: "Best Reflectly Alternatives in 2026 (If You Want More Than Prompts)",
     description: "Reflectly is great for getting started, but many people outgrow it. If you want deeper insight, better mood tracking, or more useful AI reflection, start here.",
-    metaTitle: "5 Best Reflectly Alternatives in 2026 (AI Journal Apps Tested)",
-    metaDescription: "Outgrew Reflectly's prompts? We tested 5 alternatives — see the AI journal that actually reads your entries and shows the pattern you keep missing.",
+    metaTitle: "5 Best Reflectly Alternatives in 2026: AI Journal Apps Tested",
+    metaDescription: "Outgrew Reflectly's prompts? Compare the 5 best Reflectly alternatives for deep AI insights, mood patterns, and low friction. Test Nuju free on iOS & web.",
     publishedAt: "2026-04-20",
-    updatedAt: "2026-05-13",
+    updatedAt: "2026-09-25",
     readingTime: 7,
     category: "App Comparison",
     sections: [
@@ -1619,8 +1649,17 @@ const RAW_BLOG_POSTS: BlogPost[] = [
       { type: "h2", content: "Where Reflectly starts to feel limiting" },
       { type: "ul", content: ["The experience is prompt-first, not insight-first", "It gives you a place to reflect but less help understanding long-term patterns", "Mood tracking exists, but the analysis layer is fairly light", "If you want the app to connect journal content, emotions, and recurring themes, you may hit the ceiling quickly"] },
       { type: "callout", content: "If prompts are all you need, Reflectly is still a solid app. If you want the app to explain what keeps repeating in your emotional life, you will probably outgrow it." },
+      { type: "h2", content: "Quick comparison: 5 Reflectly alternatives at a glance" },
+      { type: "ul", content: [
+        "**Nuju**: Best for AI pattern recognition, 30-second mood checks, and voice notes (Free web reveal + [Apple App Store](https://apps.apple.com/us/app/nuju/id6763682187)).",
+        "**Day One**: Best for traditional, polished multimedia journaling without AI analysis.",
+        "**Rosebud AI**: Best for structured, CBT-style guided reflection dialogues.",
+        "**Stoic**: Best for morning & evening Stoic philosophy exercises and quote prompts.",
+        "**Daylio**: Best for 10-second emoji-only mood logging with no written reflection."
+      ] },
       { type: "h2", content: "1. Nuju - Best Reflectly alternative for deeper insight" },
       { type: "p", content: "Nuju keeps the low-friction feel that makes Reflectly easy to start, but adds a stronger reflection engine after the entry. Instead of stopping at prompts, Nuju combines mood and energy check-ins, written reflection, AI summaries, and pattern recognition. The key difference is that Nuju helps you see what is repeating across entries, not just what you wrote today. If Reflectly feels helpful but shallow, Nuju is the upgrade path." },
+      { type: "p", content: "You can test the reflection engine right now with the [free web reflection reveal](/onboarding?source=blog_reflectly-alternatives) without a credit card, or download the app directly on the [Apple App Store](https://apps.apple.com/us/app/nuju/id6763682187). All journal entries are protected with end-to-end cloud encryption and strict privacy: zero model training on your private thoughts." },
       { type: "h2", content: "2. Day One - Best if you want beautiful private journaling without AI" },
       { type: "p", content: "Day One is still the strongest option if what you really want is a polished digital diary rather than AI reflection. Great design, strong writing experience, and a long track record. But it is not trying to interpret your emotional patterns for you. Best for people who want a premium journal, not a guided reflection tool." },
       { type: "h2", content: "3. Rosebud AI - Best for structured reflection sessions" },
@@ -1636,7 +1675,7 @@ const RAW_BLOG_POSTS: BlogPost[] = [
     ],
     faq: [
       {
-        question: "What is the best Reflectly alternative?",
+        question: "What is the best Reflectly alternative in 2026?",
         answer:
           "If you want deeper emotional insight rather than just prompts, Nuju is the strongest alternative. It keeps the low-friction journaling flow but adds mood tracking, AI summaries, and pattern recognition across entries. Day One is better for pure journaling, and Rosebud AI is better for more structured guided sessions.",
       },
@@ -1654,6 +1693,11 @@ const RAW_BLOG_POSTS: BlogPost[] = [
         question: "How is Nuju different from Reflectly?",
         answer:
           "Reflectly is prompt-led. Nuju is insight-led. Both reduce friction, but Nuju goes further by combining mood tracking, journaling, and AI pattern recognition so the app can show what keeps repeating across your entries instead of just helping you fill in today's page.",
+      },
+      {
+        question: "Is Nuju free to try on iOS and Web?",
+        answer:
+          "Yes. You can test Nuju's AI reflection with the free web reveal without creating an account or entering a credit card, or download the app on the Apple App Store. Core daily check-ins and mood logs are 100% free.",
       },
     ],
   },
@@ -1839,7 +1883,7 @@ const RAW_BLOG_POSTS: BlogPost[] = [
     metaTitle: "Best AI Journaling App 2026: 8 Apps Tested for Real Insight",
     metaDescription: "We tested 8 AI journaling apps for memory, mood tracking, privacy, and free access. See which one gives specific insight, not generic chat.",
     publishedAt: "2026-04-20",
-    updatedAt: "2026-05-25",
+    updatedAt: "2026-09-25",
     readingTime: 8,
     category: "App Comparison",
     sections: [
@@ -1861,6 +1905,7 @@ const RAW_BLOG_POSTS: BlogPost[] = [
       { type: "h2", content: "The 3 that passed our test" },
       { type: "h2", content: "1. Nuju — Best overall" },
       { type: "p", content: "Nuju is the most complete AI journaling app tested. The AI reads your entries and responds with specific observations — not a template. Four coach personas (Gentle Guide, Tough Coach, Wise Sage, Fun Friend) let you match coaching style to what you need that day. Pattern recognition surfaces weekly mood cycles and relationship correlations. Privacy: private database access controls, signed media URLs, no data sold, no AI training on your entries. Free tier is genuinely useful." },
+      { type: "p", content: "You can start directly with the [free web journal reveal](/onboarding?source=blog_best-ai-journaling-apps) without entering a credit card, or download the app on the [Apple App Store](https://apps.apple.com/us/app/nuju/id6763682187). Check out how Nuju stacks up against individual tools in our [Daylio Alternatives](/blog/daylio-alternatives) and [Reflectly Alternatives](/blog/reflectly-alternatives) guides, or compare audio features in [Best Voice Journaling Apps](/blog/best-voice-journaling-apps)." },
       { type: "h2", content: "2. Rosebud AI — Best for structured CBT reflection" },
       { type: "p", content: "Rosebud takes a more structured approach — guided reflection sessions based on CBT frameworks, with AI that asks follow-up questions. Less free-form than Nuju; better scaffolded for people who want structured sessions. Good privacy practices. Best for: CBT-based reflection with AI guidance." },
       { type: "h2", content: "3. Reflectly — Best for beginners" },
@@ -1913,7 +1958,10 @@ const RAW_BLOG_POSTS: BlogPost[] = [
     slug: "journaling-for-adhd",
     title: "How to Journal with ADHD: Short, Flexible, and Actually Effective",
     description: "Traditional journaling advice doesn't work for ADHD brains. Here's a system built around how your brain actually operates — not against it.",
+    metaTitle: "Journaling for ADHD: How to Journal Without Paralysis (2026)",
+    metaDescription: "Standard journaling fails ADHD brains. Learn the 3-minute ADHD journaling system — voice notes, micro-prompts, and AI pattern tracking. Free reveal on web & iOS.",
     publishedAt: "2026-04-20",
+    updatedAt: "2026-09-25",
     readingTime: 7,
     category: "Journaling Tips",
     sections: [
@@ -1927,11 +1975,41 @@ const RAW_BLOG_POSTS: BlogPost[] = [
       { type: "ol", content: ["Keep it under 2 minutes — anything longer won't happen consistently; the minimum is one mood rating and one sentence", "Use a prompt every single time — never start with a blank page; even a simple 'what's on my mind right now?' is enough", "Celebrate completion, not quality — the streak matters more than the content; a bad entry counts exactly as much as a good one"] },
       { type: "h2", content: "Best formats for ADHD journaling" },
       { type: "ul", content: ["Voice notes — speaking is faster than typing for many ADHD brains and captures thoughts before they disappear", "Bullet points only — no sentences required, just fragments that capture the thought", "Mood rating only — on the hardest days, just a number is a complete entry", "Prompt-based apps — removes the blank page problem entirely"] },
+      { type: "h2", content: "Why voice journaling unlocks consistency for ADHD" },
+      { type: "p", content: "Speaking is 3x faster than typing. For ADHD brains that get bogged down by executive dysfunction and perfectionism, speaking a 30-second audio stream directly bypasses blank-page paralysis. Nuju's [dedicated voice journaling](/voice-journaling) transcribes your thoughts in real time and highlights key insights automatically without screen fatigue." },
       { type: "h2", content: "Using body doubling for the journaling habit" },
       { type: "p", content: "Body doubling — working alongside another person — is one of the most effective ADHD productivity techniques. For journaling, this means doing your check-in at the same time as a partner, roommate, or even a virtual body doubling session. The presence of another person (even on screen) reduces the initiation friction significantly." },
       { type: "h2", content: "Tracking ADHD symptoms through mood journaling" },
       { type: "p", content: "For people with ADHD, mood tracking adds a specific benefit: correlating symptom severity with sleep, medication timing, and activity patterns. Many people discover that their ADHD symptoms are significantly worse on certain days and, with tracking, can identify why — and adjust." },
-      { type: "p", content: "Nuju's 30-second entry and daily prompt are specifically built around the low-friction format that works for ADHD — open the app, tap a mood, read one prompt, write one sentence, done." },
+      { type: "h2", content: "How Nuju removes the friction" },
+      { type: "p", content: "Nuju's 30-second entry and daily prompt are specifically built around the low-friction format that works for ADHD — open the app, tap a mood, read one prompt, speak or write one sentence, done. You can start right away with the [free web journaling reveal](/onboarding?source=blog_journaling-for-adhd) without needing a credit card, or download Nuju on the [Apple App Store](https://apps.apple.com/us/app/nuju/id6763682187). If you want to check your focus baseline and dopamine fatigue level, take our [free WHO ASRS v1.1 Adult ADHD screener](/quiz/adhd-screener)." },
+    ],
+    faq: [
+      {
+        question: "Why do people with ADHD struggle with traditional journaling?",
+        answer:
+          "Traditional journaling requires executive function: deciding what to write, initiating without structure, and sustaining attention across paragraphs. For ADHD brains, open blank pages cause initiation paralysis, while perfectionism turns missed days into feelings of failure.",
+      },
+      {
+        question: "What is the 2-minute journaling rule for ADHD?",
+        answer:
+          "The 2-minute rule states that a journal entry should take less than 120 seconds. Rate your mood on a 1-5 scale, answer one focused prompt in a single sentence or bullet fragment, and close the entry. Low friction guarantees habit consistency.",
+      },
+      {
+        question: "Is voice journaling better than typing for ADHD?",
+        answer:
+          "Yes. Speaking bypasses fine motor friction, spelling perfectionism, and slow typing. Speaking a quick 30-second stream-of-consciousness thought capture lets ADHDers externalize ideas before dopamine dips or attention wanders.",
+      },
+      {
+        question: "How does mood tracking help with ADHD management?",
+        answer:
+          "Mood and energy tracking reveals hidden correlations between medication timing, sleep cycles, sensory overload, and executive dysfunction, helping you identify which days and environments trigger dopamine crashes.",
+      },
+      {
+        question: "Where can I take a free adult ADHD screener online?",
+        answer:
+          "You can take Nuju's free, confidential WHO ASRS v1.1 Adult ADHD screener at /quiz/adhd-screener. It takes under 90 seconds and calculates an objective breakdown of inattention and hyperactivity indicators.",
+      },
     ],
   },
   {
@@ -1941,6 +2019,7 @@ const RAW_BLOG_POSTS: BlogPost[] = [
     metaTitle: "Best AI Journal for Overthinking 2026 (Stops the Spiral)",
     metaDescription: "Brain loops, racing thoughts, can't stop replaying it? The AI journal built for overthinkers — short entry, named feeling, one move out. Free reveal.",
     publishedAt: "2026-04-20",
+    updatedAt: "2026-09-25",
     readingTime: 7,
     category: "Mental Wellness",
     sections: [
@@ -1952,6 +2031,7 @@ const RAW_BLOG_POSTS: BlogPost[] = [
       { type: "callout", content: "The goal is not to write more. The goal is to get out of the loop faster and notice what keeps triggering it." },
       { type: "h2", content: "Why Nuju is the best fit for overthinking" },
       { type: "p", content: "Nuju is built around a low-friction check-in: mood, energy, a quick written note, then reflection. That matters because overthinking makes long setups feel impossible. The AI layer helps most after the entry. Instead of forcing you to manually decode your own patterns, Nuju can surface recurring themes, emotional shifts, and relationship triggers across entries. For someone who overthinks, that turns journaling from endless processing into pattern recognition." },
+      { type: "p", content: "You can test the experience right now with the [free web reveal](/onboarding?source=blog_ai-journal-for-overthinking) with zero setup, or download the mobile app on the [Apple App Store](https://apps.apple.com/us/app/nuju/id6763682187). If your overthinking peaks at night, explore our [3AM Anxiety Journaling technique](/blog/3am-anxiety-journaling) or speak your thoughts into [hands-free voice journaling](/voice-journaling)." },
       { type: "h2", content: "A 3-minute AI journaling workflow for overthinking" },
       { type: "ol", content: ["Name the state in one line: 'I am looping on this because...'", "Write the main fear, not every branch of the fear", "End with one grounded next step for tomorrow, not a full plan", "Let the app keep the record so you can stop carrying it in your head"] },
       { type: "h2", content: "Features that actually matter" },
@@ -1978,6 +2058,11 @@ const RAW_BLOG_POSTS: BlogPost[] = [
         question: "Is an AI journal better than a paper journal for overthinking?",
         answer:
           "Paper is still great if privacy and simplicity are your top priorities. An AI journal becomes more useful when you want help spotting patterns across entries and reducing the amount of self-analysis you have to do manually.",
+      },
+      {
+        question: "How does Nuju stop racing thoughts?",
+        answer:
+          "Nuju provides a bounded 30-second check-in with four selectable coach personas. Instead of feeding analysis paralysis, the AI validates your core emotion, names the underlying cognitive distortion, and provides one grounded micro-action for relief.",
       },
       {
         question: "Can Nuju replace therapy for overthinking?",
@@ -2120,7 +2205,7 @@ const RAW_BLOG_POSTS: BlogPost[] = [
     metaTitle: "3AM Anxiety Journal: The 3-Minute Brain-Dump That Stops the Spiral",
     metaDescription: "Brain won't shut up at 3am? The 3-minute journaling technique that actually quiets racing thoughts — plus the best AI journal app for nighttime anxiety in 2026.",
     publishedAt: "2026-04-29",
-    updatedAt: "2026-05-21",
+    updatedAt: "2026-09-25",
     readingTime: 6,
     category: "Mental Wellness",
     sections: [
@@ -2135,8 +2220,8 @@ const RAW_BLOG_POSTS: BlogPost[] = [
       { type: "h2", content: "Why pen + paper sometimes fails at 3am" },
       { type: "p", content: "Three things break the paper-and-pen technique in real life: you can't see the page in the dark, turning on the light wakes you up further, and handwriting is slow when your brain is moving fast. A phone screen on lowest brightness, voice memo, or a journal app designed for one-tap entry solves all three. The technique stays the same — only the surface changes." },
       { type: "h2", content: "The best AI journal app for 3am anxiety in 2026" },
-      { type: "p", content: "If you want the 3-minute technique without the friction of typing in a notes app or fumbling with paper, an AI journal designed for low-bandwidth moments works better than a generic journal. The best AI journal for racing thoughts at night should: (1) open and accept input in under 5 seconds, (2) work in voice or text, (3) hand you back the word you couldn't quite find, and (4) catch the pattern if 3am brain becomes a habit. Nuju was built around exactly this — a 30-second mood-plus-text or voice entry, an AI read that names what you're carrying, and one small move sized for low-bandwidth you. Free Ju Gets You reveal, no card." },
-      { type: "p", content: "If typing on a bright screen in the dark wakes you up further, try Nuju's dedicated /voice-journaling mode: speak for 60 seconds with your eyes closed, and Whisper automatically transcribes it with zero screen glare. If your loop is chronic daytime rumination rather than sudden waking anxiety, see our guide on /blog/ai-journal-for-overthinking." },
+      { type: "p", content: "If you want the 3-minute technique without the friction of typing in a notes app or fumbling with paper, an AI journal designed for low-bandwidth moments works better than a generic journal. The best AI journal for racing thoughts at night should: (1) open and accept input in under 5 seconds, (2) work in voice or text, (3) hand you back the word you couldn't quite find, and (4) catch the pattern if 3am brain becomes a habit. Nuju was built around exactly this — a 30-second mood-plus-text or voice entry, an AI read that names what you're carrying, and one small move sized for low-bandwidth you. You can try the [free web reveal](/onboarding?source=blog_3am-anxiety-journaling) with zero friction, or install the official app on the [Apple App Store](https://apps.apple.com/us/app/nuju/id6763682187)." },
+      { type: "p", content: "If typing on a bright screen in the dark wakes you up further, try Nuju's dedicated [voice journaling](/voice-journaling) mode: speak for 60 seconds with your eyes closed, and Whisper automatically transcribes it with zero screen glare. If your loop is chronic daytime rumination rather than sudden waking anxiety, see our guide on [AI Journal for Overthinking](/blog/ai-journal-for-overthinking). You can also evaluate your general anxiety and stress levels with our free [clinical DASS-21 screener](/quiz/mental-health-test)." },
       { type: "h2", content: "What to do with the rest of the brain dump" },
       { type: "p", content: "Everything else on the list is captured. It won't be forgotten. That's all your brain needed to know. Put the phone or notebook down and return to resting — not trying to sleep, just resting. Sleep usually follows within 10–20 minutes once the loop is broken." },
       { type: "h2", content: "What NOT to do at 3am" },
@@ -2146,7 +2231,7 @@ const RAW_BLOG_POSTS: BlogPost[] = [
       { type: "h2", content: "When 3am anxiety becomes a pattern" },
       { type: "p", content: "If you wake up at 3am with racing thoughts more than twice a week for more than two weeks, journaling alone isn't enough — but the entries become useful data. Nuju's pattern recognition surfaces what triggers nighttime spirals (which days, which people, which kinds of input) so the daytime fixes get specific. If the anxiety is persistent, intense, or interfering with daily life, talk to a doctor. Journaling is a tool, not treatment." },
       { type: "h2", content: "Bottom line" },
-      { type: "p", content: "The 3-minute brain-dump-plus-one-action technique is the most reliable 3am anxiety tool there is. It works on paper, in a notes app, or in a journal designed for the moment. For repeat 3am brain — the kind where this is happening 2–3 times a week — Nuju's free reveal plus its pattern recognition over time turns a one-night-only fix into something that catches the trigger before next week's 3am even arrives." },
+      { type: "p", content: "The 3-minute brain-dump-plus-one-action technique is the most reliable 3am anxiety tool there is. It works on paper, in a notes app, or in a journal designed for the moment. For repeat 3am brain — the kind where this is happening 2–3 times a week — Nuju's [free web reveal](/onboarding?source=blog_3am-anxiety-journaling) plus its pattern recognition over time turns a one-night-only fix into something that catches the trigger before next week's 3am even arrives." },
     ],
     faq: [
       {
@@ -2862,7 +2947,7 @@ const RAW_BLOG_POSTS: BlogPost[] = [
     metaTitle: "5 Best Emoko Alternatives 2026 (AI Mood + Reflection)",
     metaDescription: "Outgrew Emoko's emoji logs? We tested 5 alternatives — see which mood tracker actually reads your entries and explains your patterns in 2026.",
     publishedAt: "2026-05-13",
-    updatedAt: "2026-05-13",
+    updatedAt: "2026-09-25",
     readingTime: 7,
     category: "App Comparison",
     sections: [
@@ -2888,7 +2973,8 @@ const RAW_BLOG_POSTS: BlogPost[] = [
       ] },
       { type: "callout", content: "Emoko helps you log emotions in a way that feels good. It does not help you understand them. Once you have a few months of pixels, the question becomes: what do they actually mean?" },
       { type: "h2", content: "1. Nuju — Best Emoko alternative for AI reflection" },
-      { type: "p", content: "Nuju keeps the quick, low-friction entry flow Emoko users like — a 30-second mood and energy check-in — but adds written reflection plus AI that reads what you actually wrote. The key difference: Nuju does not just store the data, it interprets it. After a few weeks it surfaces patterns in your words, not just your tags. Four coach personas (Gentle Guide, Tough Coach, Wise Sage, Fun Friend) match different emotional needs, and a relationship mood map shows which people correlate with better or worse mood. Free tier with no credit card. Works on iOS, Android, and as an installable web app." },
+      { type: "p", content: "Nuju keeps the quick, low-friction entry flow Emoko users like — a 30-second mood and energy check-in — but adds written reflection plus AI that reads what you actually wrote. The key difference: Nuju does not just store the data, it interprets it. After a few weeks it surfaces patterns in your words, not just your tags. Four coach personas (Gentle Guide, Tough Coach, Wise Sage, Fun Friend) match different emotional needs, and a relationship mood map shows which people correlate with better or worse mood." },
+      { type: "p", content: "You can start tracking your mood right now with the [free web mood check-in](/onboarding?source=blog_emoko-alternatives) without a credit card, or download the app directly on the [Apple App Store](https://apps.apple.com/us/app/nuju/id6763682187). All journal entries are protected with end-to-end cloud encryption: zero model training on your private reflections." },
       { type: "h2", content: "2. Daylio — Best for fastest pure mood logging" },
       { type: "p", content: "If you liked Emoko's speed but care less about the cute styling, Daylio is the most refined version of the same idea. Years of polish, very fast emoji + activity entry, solid streak tracking, and activity correlation that has been tested across millions of users. No journaling, no AI, no interpretation. Best for people who want the absolute lightest mood tracker and value stability over features." },
       { type: "h2", content: "3. Bearable — Best for health and mood correlation" },
@@ -5443,6 +5529,7 @@ const RAW_BLOG_POSTS: BlogPost[] = [
     metaTitle: "Nuju vs Daylio 2026: AI Journal vs Mood Tracker Comparison",
     metaDescription: "Nuju vs Daylio: Daylio = 10-sec mood tracking (no AI). Nuju = 30-sec mood + text with AI insights. They serve different jobs — often complementary.",
     publishedAt: "2026-05-22",
+    updatedAt: "2026-09-25",
     readingTime: 7,
     category: "App Comparison",
     sections: [
@@ -5507,7 +5594,7 @@ const RAW_BLOG_POSTS: BlogPost[] = [
       ] },
       { type: "p", content: "If budget is a hard constraint, both apps have legitimate free tiers. Daylio Premium's one-time pricing is unusual in 2026 (most apps are subscription) and worth noting." },
       { type: "h2", content: "Bottom line" },
-      { type: "p", content: "Nuju and Daylio target genuinely different jobs. Daylio is the fastest pure mood tracker on the market — pick it if writing is friction and charts are enough. Nuju is an AI journal — pick it if you want short text entries with AI feedback and pattern recognition. They're often used together for different parts of the day. Both have strong free tiers, so 'try both' is a realistic option. Start with Nuju's free Ju Gets You reveal (60 seconds, no signup) and see if the AI feedback feels useful — if you don't engage with the AI part, switch to Daylio for pure mood logging." },
+      { type: "p", content: "Nuju and Daylio target genuinely different jobs. Daylio is the fastest pure mood tracker on the market — pick it if writing is friction and charts are enough. Nuju is an AI journal — pick it if you want short text entries with AI feedback and pattern recognition. They're often used together for different parts of the day. You can test Nuju's [free web journaling reveal](/onboarding?source=blog_nuju-vs-daylio) without creating an account or download the official app on the [Apple App Store](https://apps.apple.com/us/app/nuju/id6763682187). To compare broader mood tracking tools, check our full [Daylio Alternatives](/blog/daylio-alternatives) guide." },
     ],
     faq: [
       {
@@ -5965,6 +6052,7 @@ const RAW_BLOG_POSTS: BlogPost[] = [
     metaTitle: "Nuju vs Apple Journal 2026: AI Journal vs iOS-Only Default",
     metaDescription: "Apple Journal is free on iOS but no AI, no Android, no web, no Indonesian. Nuju cross-platform with AI insights. Honest comparison for 2026.",
     publishedAt: "2026-05-22",
+    updatedAt: "2026-09-25",
     readingTime: 6,
     category: "App Comparison",
     sections: [
@@ -6010,7 +6098,7 @@ const RAW_BLOG_POSTS: BlogPost[] = [
         "Want both? Use Apple Journal as a memory log (photos, places) + Nuju as the reflective AI journal.",
       ] },
       { type: "h2", content: "Bottom line" },
-      { type: "p", content: "Apple Journal is solid for what it is — a free, system-integrated iOS notes-and-mood log. Nuju targets a different need: AI-powered journaling with cross-platform sync and multi-language support. For most users in 2026 with multiple devices or non-English language preference, Nuju covers more ground. For iOS-only users who just want a minimal mood log, Apple Journal works well. Many users actually run both. Try Nuju's free Ju Gets You reveal (60 seconds, no signup) to see if AI feedback fits your style — if not, Apple Journal is a fine fallback." },
+      { type: "p", content: "Apple Journal is solid for what it is — a free, system-integrated iOS notes-and-mood log. Nuju targets a different need: AI-powered journaling with cross-platform sync and multi-language support. For most users in 2026 with multiple devices or non-English language preference, Nuju covers more ground. For iOS-only users who just want a minimal mood log, Apple Journal works well. You can try Nuju's [free web journaling reveal](/onboarding?source=blog_nuju-vs-apple-journal) without creating an account or download the app directly on the [Apple App Store](https://apps.apple.com/us/app/nuju/id6763682187). For a broader look at alternatives, see our full [Apple Journal Alternatives](/blog/apple-journal-alternatives) guide." },
     ],
     faq: [
       {

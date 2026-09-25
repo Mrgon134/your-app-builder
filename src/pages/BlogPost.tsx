@@ -26,6 +26,8 @@ const RECOMMENDATION_USE_CASE_SLUGS = new Set([
   "mood-tracker-for-self-awareness",
   "daily-reflection-app",
   "journaling-for-mental-health",
+  "3am-anxiety-journaling",
+  "journaling-prompts-for-anxiety",
 ]);
 
 const getRecommendationPageType = (
@@ -248,6 +250,128 @@ const INTERNAL_LINK_RECOMMENDATIONS: Record<string, InternalLinkRecommendation[]
       slug: "ai-journal-for-overthinking",
       eyebrow: "Use case",
       body: "A better next read if your main loop is rumination or nighttime replay.",
+    },
+  ],
+  "journaling-for-adhd": [
+    {
+      slug: "best-voice-journaling-apps",
+      eyebrow: "Voice notes",
+      body: "Speaking thoughts is 3x faster than typing when executive dysfunction kicks in.",
+    },
+    {
+      slug: "ai-journal-for-overthinking",
+      eyebrow: "Racing thoughts",
+      body: "How to capture brain loops without spiraling into endless self-analysis.",
+    },
+    {
+      slug: "how-to-start-journaling",
+      eyebrow: "Frictionless habit",
+      body: "Build a tiny, sustainable journaling routine without perfectionist guilt.",
+    },
+    {
+      slug: "journaling-prompts-for-anxiety",
+      eyebrow: "Guided prompts",
+      body: "50 short prompts that remove blank-page initiation paralysis.",
+    },
+  ],
+  "ai-journal-for-overthinking": [
+    {
+      slug: "3am-anxiety-journaling",
+      eyebrow: "Nighttime spiraling",
+      body: "The 3-minute brain dump technique for racing thoughts when you can't sleep.",
+    },
+    {
+      slug: "journaling-prompts-for-anxiety",
+      eyebrow: "Grounding prompts",
+      body: "Short prompts designed to slow cognitive overwhelm and label raw feelings.",
+    },
+    {
+      slug: "best-ai-journaling-apps",
+      eyebrow: "Compare tools",
+      body: "Discover which AI journaling apps offer pattern tracking and safe reflection.",
+    },
+    {
+      slug: "reflectly-alternatives",
+      eyebrow: "Deeper insight",
+      body: "Switch from superficial prompt generators to AI that reads your actual patterns.",
+    },
+  ],
+  "3am-anxiety-journaling": [
+    {
+      slug: "ai-journal-for-overthinking",
+      eyebrow: "Stop the spiral",
+      body: "How AI journaling catches rumination loops before they ruin your sleep.",
+    },
+    {
+      slug: "best-voice-journaling-apps",
+      eyebrow: "Eyes-closed voice notes",
+      body: "Speak in the dark without screen glare to break nighttime anxiety loops.",
+    },
+    {
+      slug: "journaling-prompts-for-anxiety",
+      eyebrow: "Calming prompts",
+      body: "Sensory grounding questions to shift the nervous system out of fight-or-flight.",
+    },
+    {
+      slug: "mood-tracking-for-anxiety",
+      eyebrow: "Trigger mapping",
+      body: "Track daytime mood fluctuations to discover what triggers 3am awakenings.",
+    },
+  ],
+  "journaling-prompts-for-anxiety": [
+    {
+      slug: "journal-prompts-for-mental-health",
+      eyebrow: "Mental health prompts",
+      body: "60 structured prompts for emotional decompression and stress release.",
+    },
+    {
+      slug: "3am-anxiety-journaling",
+      eyebrow: "Nighttime anxiety",
+      body: "The 3-minute technique specifically designed for middle-of-the-night panic.",
+    },
+    {
+      slug: "ai-journal-for-overthinking",
+      eyebrow: "Overthinking loops",
+      body: "Pair prompts with an AI companion that notices recurring cognitive distortions.",
+    },
+    {
+      slug: "mood-tracking-for-anxiety",
+      eyebrow: "Track daily baseline",
+      body: "Pair prompt journaling with simple 30-second mood and energy check-ins.",
+    },
+  ],
+  "nuju-vs-daylio": [
+    {
+      slug: "daylio-alternatives",
+      eyebrow: "Category comparison",
+      body: "Compare the 5 strongest alternatives to Daylio tested for AI and depth.",
+    },
+    {
+      slug: "best-mood-tracker-apps",
+      eyebrow: "Mood tracker guide",
+      body: "See how Daylio, Nuju, and Bearable compare across daily tracking features.",
+    },
+    {
+      slug: "best-ai-journaling-apps",
+      eyebrow: "AI journal upgrade",
+      body: "Understand why users switch from tag logging to AI that reads written entries.",
+    },
+  ],
+  "nuju-vs-apple-journal": [
+    {
+      slug: "apple-journal-alternatives",
+      eyebrow: "Cross-platform options",
+      body: "See why users need web and Android alternatives to Apple's default journal.",
+    },
+    {
+      slug: "best-ai-journaling-apps",
+      eyebrow: "AI pattern reflection",
+      body: "Compare journals that provide emotional interpretation beyond Apple's photo prompts.",
+    },
+    {
+      slug: "best-voice-journaling-apps",
+      eyebrow: "Voice audio journals",
+      body: "Audio-first journals with automatic transcription and recurring theme detection.",
     },
   ],
   "how-to-start-journaling": [
@@ -2737,6 +2861,13 @@ const COMMERCIAL_DESTINATION_BY_SLUG: Record<string, CommercialDestination> = {
   "best-mental-health-apps": { href: "/mood-tracker", label: "See the Nuju mood tracker" },
   "best-voice-journaling-apps": { href: "/voice-journaling", label: "Explore Nuju Voice Journaling Free" },
   "journaling-for-mental-health": { href: "/ai-journal", label: "Try Nuju AI Mental Health Journal Free" },
+  "reflectly-alternatives": { href: "/ai-journal", label: "Try Nuju AI Reflection Free" },
+  "best-ai-journaling-apps": { href: "/ai-journal", label: "Try Nuju AI Journal Free" },
+  "ai-journal-for-overthinking": { href: "/ai-journal", label: "Try Nuju for Overthinking Free" },
+  "3am-anxiety-journaling": { href: "/voice-journaling", label: "Try Nuju 3AM Voice Journal Free" },
+  "journaling-prompts-for-anxiety": { href: "/ai-journal", label: "Try Nuju Prompts & AI Read Free" },
+  "nuju-vs-daylio": { href: "/mood-tracker", label: "See the Nuju mood tracker" },
+  "nuju-vs-apple-journal": { href: "/ai-journal", label: "Try Nuju Cross-Platform Free" },
 };
 
 const DEFAULT_COMMERCIAL_DESTINATION: CommercialDestination = {
