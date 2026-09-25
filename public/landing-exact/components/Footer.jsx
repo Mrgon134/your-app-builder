@@ -14,6 +14,18 @@ const footerColumns = [
     ],
   },
   {
+    h: 'Guides & Tools',
+    items: [
+      ['Best Self-Reflection Apps', '/blog/best-self-reflection-apps'],
+      ['Mental Health Prompts', '/blog/journal-prompts-for-mental-health'],
+      ['Adult ADHD Screener', '/quiz/adhd-screener'],
+      ['Mental Health Test (DASS-21)', '/quiz/mental-health-test'],
+      ['3AM Anxiety Journal', '/blog/3am-anxiety-journaling'],
+      ['Best AI Journaling Apps', '/blog/best-ai-journaling-apps'],
+      ['Daylio Alternative', '/blog/daylio-alternatives'],
+    ],
+  },
+  {
     h: 'Company',
     items: [
       ['About', '/about'],

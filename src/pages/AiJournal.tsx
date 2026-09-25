@@ -530,25 +530,36 @@ const AiJournal: React.FC = () => {
       </main>
 
       <footer className="border-t border-border/60 px-4 py-8">
-        <div className="mx-auto flex max-w-3xl flex-wrap items-center justify-between gap-4 text-sm text-muted-foreground">
-          <Link to="/" className="font-serif font-bold text-foreground">
-            Nuju
-          </Link>
-          <div className="flex flex-wrap gap-4">
-            <Link to="/blog" className="transition-colors hover:text-foreground">
-              Blog
+        <div className="mx-auto max-w-3xl space-y-4 text-sm text-muted-foreground">
+          <div className="flex flex-wrap items-center justify-between gap-4">
+            <Link to="/" className="font-serif font-bold text-foreground">
+              Nuju
             </Link>
-            <Link to="/about" className="transition-colors hover:text-foreground">
-              About
-            </Link>
-            <Link to="/support" className="transition-colors hover:text-foreground">
-              Support
-            </Link>
-            <Link to="/privacy" className="transition-colors hover:text-foreground">
-              Privacy
-            </Link>
+            <div className="flex flex-wrap gap-4">
+              <Link to="/blog" className="transition-colors hover:text-foreground">
+                Blog
+              </Link>
+              <Link to="/about" className="transition-colors hover:text-foreground">
+                About
+              </Link>
+              <Link to="/support" className="transition-colors hover:text-foreground">
+                Support
+              </Link>
+              <Link to="/privacy" className="transition-colors hover:text-foreground">
+                Privacy
+              </Link>
+            </div>
+            <p>&copy; 2026 Nuju. All rights reserved.</p>
           </div>
-          <p>&copy; 2026 Nuju. All rights reserved.</p>
+          <div className="border-t border-border/40 pt-4 text-xs flex flex-wrap gap-x-4 gap-y-2">
+            <span className="font-medium text-foreground">Explore:</span>
+            <Link to="/blog/best-self-reflection-apps" className="hover:text-foreground transition-colors">Best Self-Reflection Apps</Link>
+            <Link to="/blog/journal-prompts-for-mental-health" className="hover:text-foreground transition-colors">Mental Health Prompts</Link>
+            <Link to="/quiz/adhd-screener" className="hover:text-foreground transition-colors">Adult ADHD Screener</Link>
+            <Link to="/quiz/mental-health-test" className="hover:text-foreground transition-colors">DASS-21 Test</Link>
+            <Link to="/blog/3am-anxiety-journaling" className="hover:text-foreground transition-colors">3AM Anxiety Journal</Link>
+            <Link to="/blog/best-ai-journaling-apps" className="hover:text-foreground transition-colors">Best AI Journals</Link>
+          </div>
         </div>
       </footer>
     </div>
