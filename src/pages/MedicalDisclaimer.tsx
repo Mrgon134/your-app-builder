@@ -20,13 +20,33 @@ const MedicalDisclaimer: React.FC = () => {
   return (
     <div className="min-h-screen bg-background">
       <SEOHead
-        title="Medical Disclaimer"
-        description="Important medical disclaimer for Nuju - the app is not a medical service and should not replace professional mental health support."
+        title="Medical Disclaimer & Safety Standards | Nuju"
+        description="Important medical disclaimer and clinical safety standards for Nuju. Psychoeducational self-reflection app policy and emergency crisis resources."
         canonical="https://nuju.app/medical-disclaimer"
+        keywords={[
+          "nuju medical disclaimer",
+          "mental health app disclaimer",
+          "psychological screening safety",
+          "crisis intervention resources",
+          "988 lifeline",
+        ]}
         breadcrumbs={[
           { name: "Home", url: "https://nuju.app/" },
           { name: "Medical Disclaimer", url: "https://nuju.app/medical-disclaimer" },
         ]}
+        schema={{
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          name: "Nuju Medical Disclaimer & Safety Standards",
+          url: "https://nuju.app/medical-disclaimer",
+          description:
+            "Nuju's official medical disclaimer, clinical safety guidelines, and emergency crisis intervention contact resources.",
+          publisher: {
+            "@type": "Organization",
+            name: "Nuju",
+            url: "https://nuju.app",
+          },
+        }}
       />
       <div className="max-w-2xl mx-auto px-6 py-12">
         <button onClick={handleBack} className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors mb-8 bg-transparent border-none cursor-pointer">
