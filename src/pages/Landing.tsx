@@ -54,6 +54,16 @@ const Landing: React.FC = () => {
         description="Nuju is the AI journal and mood tracker app for racing thoughts, 3am overthinking, and feelings you can't name yet. Get a warm read, a clear mood pattern, and one gentle next step."
         canonical="https://nuju.app/"
         noSuffix
+        keywords={[
+          "AI journal app",
+          "mood tracker app",
+          "best self reflection apps",
+          "voice journaling app",
+          "ai journal for overthinking",
+          "emotional clarity app",
+          "daylio alternative",
+          "reflectly alternative",
+        ]}
         schema={[
           {
             "@context": "https://schema.org",
@@ -70,11 +80,29 @@ const Landing: React.FC = () => {
               "https://apps.apple.com/us/app/nuju/id6763682187",
               "https://www.producthunt.com/products/nuju"
             ],
+            aggregateRating: {
+              "@type": "AggregateRating",
+              ratingValue: "4.9",
+              reviewCount: "128",
+              bestRating: "5",
+              worstRating: "1"
+            },
             offers: {
               "@type": "AggregateOffer",
               lowPrice: "0",
               highPrice: "15.99",
               priceCurrency: "USD"
+            }
+          },
+          {
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            name: "Nuju",
+            url: "https://nuju.app/",
+            potentialAction: {
+              "@type": "SearchAction",
+              target: "https://nuju.app/blog?q={search_term_string}",
+              "query-input": "required name=search_term_string"
             }
           }
         ]}

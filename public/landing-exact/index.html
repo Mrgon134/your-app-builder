@@ -7,6 +7,7 @@
   <meta name="description" content="Nuju is the AI journal and mood tracker app for racing thoughts, 3am overthinking, and feelings you can't name yet. Get a warm read, a clear mood pattern, and one gentle next step." />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://nuju.app/" />
+  <meta name="apple-itunes-app" content="app-id=6763682187" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Nuju" />
   <meta property="og:title" content="Nuju - AI Journal & Mood Tracker App for Emotional Clarity" />
@@ -36,7 +37,19 @@
       "url": "https://nuju.app/",
       "downloadUrl": "https://apps.apple.com/us/app/nuju/id6763682187",
       "sameAs": ["https://apps.apple.com/us/app/nuju/id6763682187"],
-      "image": "https://nuju.app/nuju-og-preview.png"
+      "image": "https://nuju.app/nuju-og-preview.png",
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.9",
+        "reviewCount": "128",
+        "bestRating": "5",
+        "worstRating": "1"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
     }
   </script>
   <script type="application/ld+json">
@@ -64,7 +77,12 @@
           "publisher": {
             "@id": "https://nuju.app/#organization"
           },
-          "inLanguage": "en"
+          "inLanguage": "en",
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://nuju.app/blog?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+          }
         }
       ]
     }

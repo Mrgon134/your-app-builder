@@ -55,6 +55,80 @@ const QuizHub: React.FC = () => {
         description="Take 1-minute interactive psychology tests: Check your emotional battery, late-night overthinking patterns, and burnout levels. 100% free, private, and CBT-based."
         canonical="https://nuju.app/quiz"
         language="en"
+        keywords={[
+          "free psychology tests",
+          "mental health quiz",
+          "psychological tests online",
+          "clinical screeners free",
+          "attachment style quiz",
+          "adult adhd test",
+          "shadow work test",
+          "depression test online",
+        ]}
+        schema={[
+          {
+            "@context": "https://schema.org",
+            "@type": "ItemList",
+            name: "Free Online Psychology Tests & Clinical Screeners",
+            description: "Directory of validated, evidence-based self-assessments for attachment style, adult ADHD, depression, anxiety, shadow work, and burnout.",
+            numberOfItems: 6,
+            itemListElement: [
+              {
+                "@type": "ListItem",
+                position: 1,
+                name: "ECR-R Attachment Style Test",
+                url: "https://nuju.app/quiz/attachment-style",
+                description: "12-item psychometric assessment measuring attachment anxiety and avoidance.",
+              },
+              {
+                "@type": "ListItem",
+                position: 2,
+                name: "Jungian Shadow Work & Archetype Assessment",
+                url: "https://nuju.app/quiz/shadow-work",
+                description: "12-dilemma analytical psychology screener exploring repressed shadow archetypes.",
+              },
+              {
+                "@type": "ListItem",
+                position: 3,
+                name: "Adult ADHD & Dopamine Fatigue Screener (WHO ASRS v1.1)",
+                url: "https://nuju.app/quiz/adhd-screener",
+                description: "Standardized WHO assessment for inattention, executive dysfunction, and dopamine burnout.",
+              },
+              {
+                "@type": "ListItem",
+                position: 4,
+                name: "DASS-21 Clinical Mental Health Screener",
+                url: "https://nuju.app/quiz/mental-health-test",
+                description: "Scientifically validated 21-question screener evaluating depression, anxiety, and stress.",
+              },
+              {
+                "@type": "ListItem",
+                position: 5,
+                name: "Inner Child Wound Assessment",
+                url: "https://nuju.app/quiz/inner-child",
+                description: "Identify core developmental emotional patterns: Abandonment, Achievement, Guilt, or Invisibility.",
+              },
+              {
+                "@type": "ListItem",
+                position: 6,
+                name: "Burnout & Chronic Stress Screener",
+                url: "https://nuju.app/quiz/burnout",
+                description: "Evaluate emotional exhaustion, depersonalization, and cognitive fatigue.",
+              },
+            ],
+          },
+          {
+            "@context": "https://schema.org",
+            "@type": "CollectionPage",
+            name: "Free Psychology Tests & Mental Health Screeners",
+            url: "https://nuju.app/quiz",
+            provider: {
+              "@type": "Organization",
+              name: "Nuju",
+              url: "https://nuju.app",
+            },
+          },
+        ]}
       />
 
       {/* Navigation Header */}
