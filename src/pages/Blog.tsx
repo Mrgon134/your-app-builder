@@ -67,9 +67,71 @@ const Blog: React.FC = () => {
         title="Blog: Journaling, Mood Tracking, and Wellness Guides"
         description="Read recommendation pages, honest app comparisons, and practical guides for journaling, mood tracking, emotional clarity, and building a reflection habit that sticks."
         canonical="https://nuju.app/blog"
+        keywords={[
+          "journaling blog",
+          "best self reflection apps",
+          "best ai journaling apps",
+          "mood tracker app comparisons",
+          "daylio alternative",
+          "daily reflection apps",
+          "journal prompts for mental health",
+        ]}
         breadcrumbs={[
           { name: "Home", url: "https://nuju.app/" },
           { name: "Blog", url: "https://nuju.app/blog" },
+        ]}
+        schema={[
+          {
+            "@context": "https://schema.org",
+            "@type": "CollectionPage",
+            name: "Nuju Journaling & Reflection Blog",
+            description: "Guides, research-backed breakdowns, and app comparisons for journaling, mood tracking, and emotional wellness.",
+            url: "https://nuju.app/blog",
+            provider: {
+              "@type": "Organization",
+              name: "Nuju",
+              url: "https://nuju.app",
+            },
+          },
+          {
+            "@context": "https://schema.org",
+            "@type": "ItemList",
+            name: "Top Journaling & Reflection App Guides",
+            description: "Curated comparison guides for self-reflection and mood tracking tools.",
+            numberOfItems: 5,
+            itemListElement: [
+              {
+                "@type": "ListItem",
+                position: 1,
+                name: "Best AI Journaling Apps in 2026",
+                url: "https://nuju.app/blog/best-ai-journaling-apps",
+              },
+              {
+                "@type": "ListItem",
+                position: 2,
+                name: "Best Self-Reflection Apps for Daily Clarity",
+                url: "https://nuju.app/blog/best-self-reflection-apps",
+              },
+              {
+                "@type": "ListItem",
+                position: 3,
+                name: "Best Mood Tracker Apps Tested",
+                url: "https://nuju.app/blog/best-mood-tracker-apps",
+              },
+              {
+                "@type": "ListItem",
+                position: 4,
+                name: "Daylio Alternatives: From Micro-Logs to Deep Insight",
+                url: "https://nuju.app/blog/daylio-alternatives",
+              },
+              {
+                "@type": "ListItem",
+                position: 5,
+                name: "Journal Prompts for Mental Health & Anxiety",
+                url: "https://nuju.app/blog/journal-prompts-for-mental-health",
+              },
+            ],
+          },
         ]}
       />
 
