@@ -37,9 +37,9 @@ const JournalingGuide: React.FC = () => {
   const articleSchema = {
     "@context": "https://schema.org",
     "@type": "Article",
-    headline: "The Complete Guide to Journaling: Methods, Science & Tools (2026)",
+    headline: "Best Self Reflection Apps & The Complete Guide to Journaling (2026)",
     description:
-      "Everything you need to start, sustain, and get real value from a journaling practice — backed by research and distilled from 20+ in-depth guides.",
+      "Discover the top self reflection apps and journaling methods of 2026. Compare Nuju, Day One, and Stoic for AI insights, mood tracking, and emotional clarity.",
     datePublished: "2026-04-18",
     dateModified: "2026-04-18",
     inLanguage: "en",
@@ -97,12 +97,13 @@ const JournalingGuide: React.FC = () => {
   return (
     <div className="min-h-screen bg-background">
       <SEOHead
-        title="Complete Guide to Journaling: Science, Methods, Tools"
-        description="How to journal in 30 seconds a day, stick with the habit, and track moods. Methods, prompts, and tools for 2026 — for people who keep failing."
+        title="Best Self Reflection Apps & Complete Journaling Guide (2026)"
+        description="Discover the top self reflection apps and journaling methods of 2026. Compare Nuju, Day One, and Stoic for AI insights, mood tracking, and emotional clarity."
         canonical={canonical}
         keywords={[
           "reflection application",
           "best self reflection apps",
+          "best self-reflection apps",
           "daily reflection apps",
           "journal prompts for mental health",
           "how to journal for mental health",
@@ -112,7 +113,7 @@ const JournalingGuide: React.FC = () => {
         breadcrumbs={[
           { name: "Home", url: "https://nuju.app/" },
           { name: "Guides", url: "https://nuju.app/guides/journaling" },
-          { name: "Journaling", url: canonical },
+          { name: "Journaling Guide", url: canonical },
         ]}
       />
       <Helmet>
@@ -141,7 +142,7 @@ const JournalingGuide: React.FC = () => {
       <article className="mx-auto max-w-3xl px-4 py-12">
         <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-primary">The Complete Guide</p>
         <h1 className="font-serif text-4xl font-bold text-foreground leading-tight mb-6 sm:text-5xl">
-          Journaling: Methods, Science &amp; Tools
+          Best Self Reflection Apps &amp; The Complete Journaling Guide
         </h1>
         <p className="text-lg text-muted-foreground leading-relaxed mb-6">
           Everything you need to start a journaling practice that actually sticks — backed by research, distilled from
