@@ -164,6 +164,14 @@ const VoiceJournaling: React.FC = () => {
         title="Voice Journaling App: Talk 1 Min for Instant AI Clarity"
         description="Speak your mind for 60 seconds. Nuju transcribes, spots emotional patterns, and helps calm racing thoughts without typing. Private & free to start."
         canonical={CANONICAL}
+        keywords={[
+          "voice journaling app",
+          "audio diary app",
+          "best voice journaling apps",
+          "audio journal app",
+          "voice journal app",
+          "voice recording journal",
+        ]}
         breadcrumbs={[
           { name: "Home", url: "https://nuju.app/" },
           { name: "Voice Journaling", url: CANONICAL },

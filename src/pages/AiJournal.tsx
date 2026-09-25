@@ -196,6 +196,16 @@ const AiJournal: React.FC = () => {
         title="AI Journal App: Mood Tracking & Real Emotional Clarity"
         description="Stop staring at blank pages. Nuju pairs 30-second mood check-ins with AI reflection, 4 coach personas, and private pattern tracking. Free to start."
         canonical={CANONICAL}
+        keywords={[
+          "ai journal app",
+          "ai journaling",
+          "best ai journaling apps",
+          "ai journal for overthinking",
+          "3am anxiety journal",
+          "self reflection app",
+          "daylio alternative",
+          "reflectly alternative",
+        ]}
         breadcrumbs={[
           { name: "Home", url: "https://nuju.app/" },
           { name: "AI Journal", url: CANONICAL },

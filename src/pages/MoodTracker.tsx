@@ -189,6 +189,15 @@ const MoodTracker: React.FC = () => {
         title="Mood Tracker App: 10-Second Daily Check-Ins & AI Insights | Nuju"
         description="Track mood in 10 seconds with Nuju. The AI mood tracker app for 30-day emotional trends, pixel calendars, and gentle weekly pattern insights. Start free."
         canonical={CANONICAL}
+        keywords={[
+          "mood tracker app",
+          "best mood tracker apps",
+          "mood tracking app with ai insights",
+          "daily mood tracker",
+          "daylio alternative",
+          "emoko alternative",
+          "mood tracker for anxiety",
+        ]}
         breadcrumbs={[
           { name: "Home", url: "https://nuju.app/" },
           { name: "Mood Tracker", url: CANONICAL },
