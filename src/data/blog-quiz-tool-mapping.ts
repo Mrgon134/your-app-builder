@@ -1341,6 +1341,49 @@ const TOPIC_CONFIGS: TopicConfig[] = [
       },
     },
   },
+
+  // 33. Self-Reflection & Emotional Clarity
+  {
+    id: "self-reflection",
+    patterns: [
+      "best-self-reflection-apps",
+      "self-reflection",
+      "reflection-app",
+      "daily-reflection",
+      "reflection-application",
+      "refleksi-diri",
+    ],
+    en: {
+      quizTitle: "Clinical Mental Health & Stress Screener (DASS-21)",
+      quizEyebrow: "Evidence-Based Self-Awareness Screener",
+      quizDescription: "Before choosing a reflection app, assess your current emotional baseline, anxiety markers, and mental clutter in 90 seconds.",
+      quizBadge: "⏱️ 90 Seconds · Clinical Screener · 100% Free",
+      quizHref: "/quiz/mental-health-test",
+      primaryButtonLabel: "Check My Reflection Baseline",
+      secondaryTool: {
+        title: "Physiological Sigh Breathwork",
+        description: "2-minute rapid neuro-vagal reset to halt overthinking and clear mental fog before journaling.",
+        href: "/tools/physiological-sigh",
+        buttonLabel: "Try Breathwork Tool",
+        type: "tool",
+      },
+    },
+    idLang: {
+      quizTitle: "Tes Kesehatan Mental & Skrining Stres (DASS-21)",
+      quizEyebrow: "Skrining Kesadaran Diri Klinis",
+      quizDescription: "Ukur tingkat stres, kecemasan, dan beban mentalmu sebelum memulai jurnal refleksi diri harian.",
+      quizBadge: "⏱️ 90 Detik · Skrining Klinis · 100% Gratis",
+      quizHref: "/quiz/mental-health-test",
+      primaryButtonLabel: "Mulai Skrining Refleksi Diri",
+      secondaryTool: {
+        title: "Latihan Napas Physiological Sigh",
+        description: "Regulasi detak jantung dan redakan overthinking dalam 2 menit sebelum menulis jurnal.",
+        href: "/tools/physiological-sigh",
+        buttonLabel: "Buka Alat Pernapasan",
+        type: "tool",
+      },
+    },
+  },
 ];
 
 export const MULTILINGUAL_FRAMES: Record<string, {

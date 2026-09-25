@@ -527,9 +527,19 @@ const INTERNAL_LINK_RECOMMENDATIONS: Record<string, InternalLinkRecommendation[]
       body: "Use this if you want reflection to become a low-friction daily practice, not a once-in-a-while prompt.",
     },
     {
+      slug: "journal-prompts-for-mental-health",
+      eyebrow: "Guided Prompts",
+      body: "Need structured questions? Explore 60 research-backed prompts for stress, anxiety, and burnout.",
+    },
+    {
       slug: "best-ai-journaling-apps",
       eyebrow: "AI journal intent",
-      body: "Go deeper on AI journaling apps when reflection means pattern recognition.",
+      body: "Go deeper on AI journaling apps when reflection means pattern recognition and memory.",
+    },
+    {
+      slug: "ai-journal-for-overthinking",
+      eyebrow: "Overthinking loop",
+      body: "Learn how structured micro-reflection untangles rumination and cognitive spirals.",
     },
     {
       slug: "best-mood-tracker-apps",
@@ -3448,6 +3458,37 @@ const BlogPost: React.FC = () => {
         }
       : null;
 
+  const itemListElements =
+    post.category === "App Comparison"
+      ? post.sections
+          .filter(
+            (s): s is BlogSection & { type: "h2"; content: string } =>
+              s.type === "h2" && /^#?\d+[\.\s—–-]+/.test(s.content)
+          )
+          .map((s, idx) => {
+            const rawName = s.content.replace(/^#?\d+[\.\s—–-]+/, "").trim();
+            const cleanName = rawName.split(/[—–-]/)[0].trim();
+            return {
+              "@type": "ListItem",
+              position: idx + 1,
+              name: cleanName,
+              description: rawName,
+            };
+          })
+      : [];
+
+  const itemListSchema =
+    itemListElements.length >= 3
+      ? {
+          "@context": "https://schema.org",
+          "@type": "ItemList",
+          name: post.title,
+          description: post.description,
+          numberOfItems: itemListElements.length,
+          itemListElement: itemListElements,
+        }
+      : null;
+
   const formattedDate = new Date(post.publishedAt).toLocaleDateString(locale, {
     year: "numeric",
     month: "long",
@@ -3486,6 +3527,9 @@ const BlogPost: React.FC = () => {
         <script type="application/ld+json">{JSON.stringify(articleSchema)}</script>
         {faqSchema && (
           <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
+        )}
+        {itemListSchema && (
+          <script type="application/ld+json">{JSON.stringify(itemListSchema)}</script>
         )}
       </Helmet>
 
