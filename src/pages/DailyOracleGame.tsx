@@ -402,7 +402,7 @@ const DailyOracleGame: React.FC = () => {
             ? "Saque su carta diaria de arquetipo. Afirmaciones, sabiduría consciente y preguntas de introspección."
             : "Draw your daily mindful archetype card. Receive custom affirmations, grounding wisdom, and a powerful daily journaling prompt."
         }
-        canonicalUrl="https://ju-journal.com/game/oracle"
+        canonicalUrl="https://nuju.app/game/oracle"
       />
 
       {/* Header */}

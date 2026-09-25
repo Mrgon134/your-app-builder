@@ -851,7 +851,7 @@ export async function generateAttachmentCard(
   ctx.fillStyle = "rgba(255, 255, 255, 0.6)";
   ctx.font = "bold 24px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
   ctx.textAlign = "left";
-  ctx.fillText("JU JOURNAL • ECR-R ATTACHMENT ASSESSMENT", 80, 110);
+  ctx.fillText("NUJU • ECR-R ATTACHMENT ASSESSMENT", 80, 110);
 
   // Badge
   ctx.fillStyle = "rgba(244, 63, 94, 0.15)";
@@ -942,7 +942,7 @@ export async function generateAttachmentCard(
 
   ctx.fillStyle = "#F43F5E";
   ctx.font = "900 30px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
-  ctx.fillText("ju-journal.com/quiz/attachment-style", 80, 1260);
+  ctx.fillText("nuju.app/quiz/attachment-style", 80, 1260);
 
   const dataUrl = canvas.toDataURL("image/png", 0.95);
   const blob = await new Promise<Blob>((resolve, reject) => {
@@ -999,7 +999,7 @@ export async function generateAdhdCard(
   ctx.fillStyle = "rgba(255, 255, 255, 0.6)";
   ctx.font = "bold 24px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
   ctx.textAlign = "left";
-  ctx.fillText("JU JOURNAL • WHO ASRS v1.1 ADHD SCREENER", 80, 110);
+  ctx.fillText("NUJU • WHO ASRS v1.1 ADHD SCREENER", 80, 110);
 
   // Badge
   ctx.fillStyle = "rgba(245, 158, 11, 0.15)";
@@ -1086,7 +1086,7 @@ export async function generateAdhdCard(
 
   ctx.fillStyle = "#F59E0B";
   ctx.font = "900 30px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
-  ctx.fillText("ju-journal.com/quiz/adhd-screener", 80, 1260);
+  ctx.fillText("nuju.app/quiz/adhd-screener", 80, 1260);
 
   const dataUrl = canvas.toDataURL("image/png", 0.95);
   const blob = await new Promise<Blob>((resolve, reject) => {

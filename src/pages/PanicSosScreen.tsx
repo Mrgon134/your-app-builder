@@ -253,7 +253,7 @@ const PanicSosScreen: React.FC = () => {
             ? "Herramienta de emergencia para calmar ataques de pánico y ansiedad severa. Respiración guiada y anclaje 5-4-3-2-1 inmediato."
             : "Immediate emergency panic attack relief. Box breathing vagus nerve pacer, 5-4-3-2-1 sensory grounding, and 24/7 crisis hotline access."
         }
-        canonicalUrl="https://ju-journal.com/emergency"
+        canonicalUrl="https://nuju.app/emergency"
       />
 
       {/* Header */}

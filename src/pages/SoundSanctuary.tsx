@@ -585,7 +585,7 @@ const SoundSanctuary: React.FC = () => {
             ? "Generador de sonido ambiental para concentración profunda y TDAH. Ruido marrón puro, lluvia relajante y frecuencias 528Hz."
             : "Free in-browser ambient soundscape and 528Hz Solfeggio generator. Pure synthesized brown noise for ADHD focus, rain, and deep work."
         }
-        canonicalUrl="https://ju-journal.com/soundscapes"
+        canonicalUrl="https://nuju.app/soundscapes"
       />
 
       {/* Header */}
