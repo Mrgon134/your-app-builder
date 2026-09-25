@@ -55,12 +55,60 @@ const JournalingGuide: React.FC = () => {
     mainEntityOfPage: { "@type": "WebPage", "@id": canonical },
   };
 
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: [
+      {
+        "@type": "Question",
+        name: "What is the best self-reflection app in 2026?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Nuju is widely rated as the top self-reflection application in 2026 for AI pattern recognition and 30-second low-friction check-ins. Other leading options include Reflection.app for guided coaching, Stoic for structured routines, and Day One for media-rich memories.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "How often should I journal for self-reflection?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Daily consistency is far more effective than duration. A 30-second reflection every day establishes neuro-associative habit loops that outperform a 20-minute session once a week.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "How long should each journal entry be?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "For everyday emotional tracking and mental clarity, 1 to 3 sentences or a 30-second voice note is ideal to prevent cognitive burnout and ensure long-term consistency.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Can self-reflection apps replace professional therapy?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "No. Self-reflection and journaling apps serve as complementary daily tools for tracking emotional baselines and preparing for therapy sessions, not as clinical diagnostic substitutes.",
+        },
+      },
+    ],
+  };
+
   return (
     <div className="min-h-screen bg-background">
       <SEOHead
         title="Complete Guide to Journaling: Science, Methods, Tools"
         description="How to journal in 30 seconds a day, stick with the habit, and track moods. Methods, prompts, and tools for 2026 — for people who keep failing."
         canonical={canonical}
+        keywords={[
+          "reflection application",
+          "best self reflection apps",
+          "daily reflection apps",
+          "journal prompts for mental health",
+          "how to journal for mental health",
+          "ai self reflection",
+          "emotional clarity app",
+        ]}
         breadcrumbs={[
           { name: "Home", url: "https://nuju.app/" },
           { name: "Guides", url: "https://nuju.app/guides/journaling" },
@@ -70,6 +118,7 @@ const JournalingGuide: React.FC = () => {
       <Helmet>
         <html lang="en" />
         <script type="application/ld+json">{JSON.stringify(articleSchema)}</script>
+        <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
       </Helmet>
 
       <nav className="sticky top-0 z-50 border-b border-border/60 bg-background/95">
@@ -258,10 +307,32 @@ const JournalingGuide: React.FC = () => {
           </p>
         </Chapter>
 
-        <Chapter id="tools" title="Best journaling & mood tracking tools">
+        <Chapter id="tools" title="Best self reflection applications & mood tracking tools (2026)">
           <p>
-            Which app is right for you depends on what you want back from your entries. A quick shortlist by goal:
+            When choosing a <strong>reflection application</strong> in 2026, the key distinction is between passive storage tools (which hold your words without reading them) and active insight engines (which reflect patterns, cognitive loops, and emotional triggers back to you).
           </p>
+          <div className="grid gap-3 my-4 sm:grid-cols-2">
+            <div className="rounded-xl border border-primary/20 bg-primary/5 p-4">
+              <h4 className="font-serif font-bold text-foreground mb-1">Nuju (Best for AI Pattern Recognition &amp; Speed)</h4>
+              <p className="text-sm text-muted-foreground mb-2">30-second voice or text check-ins with AI pattern analysis to identify recurring themes, triggers, and cognitive traps. 100% private.</p>
+              <InlineLink to="/ai-journal">Explore Nuju AI Journal →</InlineLink>
+            </div>
+            <div className="rounded-xl border border-border/50 bg-card/60 p-4">
+              <h4 className="font-serif font-bold text-foreground mb-1">Reflection.app (Best for Guided Prompts)</h4>
+              <p className="text-sm text-muted-foreground mb-2">Holstee-backed platform with structured monthly and annual guided review cycles.</p>
+              <InlineLink to="/blog/best-ai-journaling-apps">Compare with Nuju →</InlineLink>
+            </div>
+            <div className="rounded-xl border border-border/50 bg-card/60 p-4">
+              <h4 className="font-serif font-bold text-foreground mb-1">Stoic (Best for Structured Philosophy)</h4>
+              <p className="text-sm text-muted-foreground mb-2">Daily morning prep and evening reflection grounded in stoic philosophy and bite-sized quote analysis.</p>
+              <InlineLink to="/blog/best-journaling-apps-2026">Read 2026 Roundup →</InlineLink>
+            </div>
+            <div className="rounded-xl border border-border/50 bg-card/60 p-4">
+              <h4 className="font-serif font-bold text-foreground mb-1">Day One (Best for Media Archives)</h4>
+              <p className="text-sm text-muted-foreground mb-2">Long-form multimedia scrapbook for photos, audio memos, location logs, and on-this-day memories.</p>
+              <InlineLink to="/blog/day-one-alternatives">Compare Day One →</InlineLink>
+            </div>
+          </div>
           <ul className="space-y-2 pl-4">
             <li className="flex gap-2"><span className="mt-2 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-primary" /> Overall roundup: <InlineLink to="/blog/best-journaling-apps-2026">best journaling apps 2026</InlineLink></li>
             <li className="flex gap-2"><span className="mt-2 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-primary" /> AI-specific: <InlineLink to="/blog/best-ai-journaling-apps">best AI journaling apps</InlineLink></li>
@@ -270,13 +341,13 @@ const JournalingGuide: React.FC = () => {
           </ul>
         </Chapter>
 
-        <Chapter id="specific-situations" title="Journaling for specific situations">
-          <p>Journaling isn&rsquo;t one-size-fits-all. These guides are tuned for specific contexts:</p>
+        <Chapter id="specific-situations" title="Journaling for specific situations & clinical self-tests">
+          <p>Journaling isn&rsquo;t one-size-fits-all. Pair your written reflections with validated psychological screeners to clarify where to focus:</p>
           <ul className="space-y-2 pl-4">
-            <li className="flex gap-2"><Brain className="mt-1 h-4 w-4 flex-shrink-0 text-primary" /> <InlineLink to="/blog/journaling-for-adhd">Journaling for ADHD</InlineLink> — low-friction systems built for executive-function reality.</li>
-            <li className="flex gap-2"><Heart className="mt-1 h-4 w-4 flex-shrink-0 text-primary" /> <InlineLink to="/blog/journaling-for-relationships">Journaling for relationships</InlineLink> — prompts for couples and conflict repair.</li>
-            <li className="flex gap-2"><Sparkles className="mt-1 h-4 w-4 flex-shrink-0 text-primary" /> <InlineLink to="/blog/mood-tracking-for-anxiety">Mood tracking for anxiety</InlineLink> — turn racing thoughts into data.</li>
-            <li className="flex gap-2"><BookOpen className="mt-1 h-4 w-4 flex-shrink-0 text-primary" /> <InlineLink to="/blog/journaling-before-therapy">Journaling before therapy</InlineLink> — arrive with clearer notes and patterns.</li>
+            <li className="flex gap-2"><Brain className="mt-1 h-4 w-4 flex-shrink-0 text-primary" /> <InlineLink to="/quiz/adhd-screener">Adult ADHD &amp; Dopamine Fatigue Screener</InlineLink> — evaluate executive dysfunction and task initiation friction.</li>
+            <li className="flex gap-2"><Heart className="mt-1 h-4 w-4 flex-shrink-0 text-primary" /> <InlineLink to="/quiz/attachment-style">ECR-R Attachment Style Test</InlineLink> — measure relational anxiety vs avoidance for relationship journaling.</li>
+            <li className="flex gap-2"><Sparkles className="mt-1 h-4 w-4 flex-shrink-0 text-primary" /> <InlineLink to="/quiz/shadow-work">Jungian Shadow Work Assessment</InlineLink> — identify repressed archetypes and projection triggers.</li>
+            <li className="flex gap-2"><BookOpen className="mt-1 h-4 w-4 flex-shrink-0 text-primary" /> <InlineLink to="/quiz/mental-health-test">DASS-21 Mental Health Test</InlineLink> — dimensional depression, anxiety, and stress baseline scoring.</li>
           </ul>
         </Chapter>
 
